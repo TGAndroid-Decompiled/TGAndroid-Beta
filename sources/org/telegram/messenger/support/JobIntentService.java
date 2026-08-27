@@ -13,11 +13,10 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
-import androidx.recyclerview.widget.DiffUtil;
+import i0.a;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.pip.PipSource$$ExternalSyntheticApiModelOutline0;
 
 public abstract class JobIntentService extends Service {
     static final boolean DEBUG = false;
@@ -52,12 +51,12 @@ public abstract class JobIntentService extends Service {
         }
 
         @Override
-        public void onCancelled(Void r1) {
+        public void onCancelled(Void r10) {
             JobIntentService.this.processorFinished();
         }
 
         @Override
-        public void onPostExecute(Void r1) {
+        public void onPostExecute(Void r10) {
             JobIntentService.this.processorFinished();
         }
     }
@@ -156,9 +155,9 @@ public abstract class JobIntentService extends Service {
         final Intent mIntent;
         final int mStartId;
 
-        public CompatWorkItem(Intent intent, int i) {
+        public CompatWorkItem(Intent intent, int i10) {
             this.mIntent = intent;
-            this.mStartId = i;
+            this.mStartId = i10;
         }
 
         @Override
@@ -265,51 +264,16 @@ public abstract class JobIntentService extends Service {
         private final JobInfo mJobInfo;
         private final JobScheduler mJobScheduler;
 
-        public JobWorkEnqueuer(Context context, ComponentName componentName, int i) {
+        public JobWorkEnqueuer(Context context, ComponentName componentName, int i10) {
             super(context, componentName);
-            ensureJobId(i);
-            this.mJobInfo = new JobInfo.Builder(i, this.mComponentName).setOverrideDeadline(0L).setRequiredNetworkType(1).build();
+            ensureJobId(i10);
+            this.mJobInfo = new JobInfo.Builder(i10, this.mComponentName).setOverrideDeadline(0L).setRequiredNetworkType(1).build();
             this.mJobScheduler = (JobScheduler) context.getApplicationContext().getSystemService("jobscheduler");
         }
 
         @Override
         public void enqueueWork(Intent intent) {
-            this.mJobScheduler.enqueue(this.mJobInfo, PipSource$$ExternalSyntheticApiModelOutline0.m(intent));
-        }
-    }
-
-    public static abstract class WorkEnqueuer {
-        final ComponentName mComponentName;
-        boolean mHasJobId;
-        int mJobId;
-
-        public WorkEnqueuer(Context context, ComponentName componentName) {
-            this.mComponentName = componentName;
-        }
-
-        public abstract void enqueueWork(Intent intent);
-
-        public void ensureJobId(int i) {
-            if (!this.mHasJobId) {
-                this.mHasJobId = true;
-                this.mJobId = i;
-            } else {
-                if (this.mJobId == i) {
-                    return;
-                }
-                StringBuilder sbM = DiffUtil.m(i, "Given job ID ", " is different than previous ");
-                sbM.append(this.mJobId);
-                throw new IllegalArgumentException(sbM.toString());
-            }
-        }
-
-        public void serviceProcessingFinished() {
-        }
-
-        public void serviceProcessingStarted() {
-        }
-
-        public void serviceStartReceived() {
+            this.mJobScheduler.enqueue(this.mJobInfo, new JobWorkItem(intent));
         }
     }
 
@@ -321,11 +285,11 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public static void enqueueWork(Context context, Class cls, int i, Intent intent) {
-        enqueueWork(context, new ComponentName(context, (Class<?>) cls), i, intent);
+    public static void enqueueWork(Context context, Class cls, int i10, Intent intent) {
+        enqueueWork(context, new ComponentName(context, (Class<?>) cls), i10, intent);
     }
 
-    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z, int i) {
+    public static WorkEnqueuer getWorkEnqueuer(Context context, ComponentName componentName, boolean z10, int i10) {
         WorkEnqueuer compatWorkEnqueuer;
         HashMap<ComponentName, WorkEnqueuer> map = sClassWorkEnqueuer;
         WorkEnqueuer workEnqueuer = map.get(componentName);
@@ -335,10 +299,10 @@ public abstract class JobIntentService extends Service {
         if (Build.VERSION.SDK_INT < 26) {
             compatWorkEnqueuer = new CompatWorkEnqueuer(context, componentName);
         } else {
-            if (!z) {
+            if (!z10) {
                 throw new IllegalArgumentException("Can't be here without a job id");
             }
-            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i);
+            compatWorkEnqueuer = new JobWorkEnqueuer(context, componentName, i10);
         }
         map.put(componentName, compatWorkEnqueuer);
         return compatWorkEnqueuer;
@@ -370,11 +334,11 @@ public abstract class JobIntentService extends Service {
         return onStopCurrentWork();
     }
 
-    public void ensureProcessorRunningLocked(boolean z) {
+    public void ensureProcessorRunningLocked(boolean z10) {
         if (this.mCurProcessor == null) {
             this.mCurProcessor = new CommandProcessor();
             WorkEnqueuer workEnqueuer = this.mCompatWorkEnqueuer;
-            if (workEnqueuer != null && z) {
+            if (workEnqueuer != null && z10) {
                 workEnqueuer.serviceProcessingStarted();
             }
             this.mCurProcessor.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Void[0]);
@@ -421,7 +385,7 @@ public abstract class JobIntentService extends Service {
     public abstract void onHandleWork(Intent intent);
 
     @Override
-    public int onStartCommand(Intent intent, int i, int i2) {
+    public int onStartCommand(Intent intent, int i10, int i11) {
         if (this.mCompatQueue == null) {
             return 2;
         }
@@ -431,7 +395,7 @@ public abstract class JobIntentService extends Service {
             if (intent == null) {
                 intent = new Intent();
             }
-            arrayList.add(new CompatWorkItem(intent, i2));
+            arrayList.add(new CompatWorkItem(intent, i11));
             ensureProcessorRunningLocked(true);
         }
         return 3;
@@ -460,18 +424,53 @@ public abstract class JobIntentService extends Service {
         }
     }
 
-    public void setInterruptIfStopped(boolean z) {
-        this.mInterruptIfStopped = z;
+    public void setInterruptIfStopped(boolean z10) {
+        this.mInterruptIfStopped = z10;
     }
 
-    public static void enqueueWork(Context context, ComponentName componentName, int i, Intent intent) {
+    public static void enqueueWork(Context context, ComponentName componentName, int i10, Intent intent) {
         if (intent == null) {
             throw new IllegalArgumentException("work must not be null");
         }
         synchronized (sLock) {
-            WorkEnqueuer workEnqueuer = getWorkEnqueuer(context, componentName, true, i);
-            workEnqueuer.ensureJobId(i);
+            WorkEnqueuer workEnqueuer = getWorkEnqueuer(context, componentName, true, i10);
+            workEnqueuer.ensureJobId(i10);
             workEnqueuer.enqueueWork(intent);
+        }
+    }
+
+    public static abstract class WorkEnqueuer {
+        final ComponentName mComponentName;
+        boolean mHasJobId;
+        int mJobId;
+
+        public WorkEnqueuer(Context context, ComponentName componentName) {
+            this.mComponentName = componentName;
+        }
+
+        public abstract void enqueueWork(Intent intent);
+
+        public void ensureJobId(int i10) {
+            if (!this.mHasJobId) {
+                this.mHasJobId = true;
+                this.mJobId = i10;
+            } else {
+                if (this.mJobId == i10) {
+                    return;
+                }
+                StringBuilder sbO = a.o(i10, "Given job ID ", " is different than previous ");
+                sbO.append(this.mJobId);
+                throw new IllegalArgumentException(sbO.toString());
+            }
+        }
+
+        public void serviceProcessingFinished() {
+        }
+
+        public void serviceProcessingStarted() {
+        }
+
+        public void serviceStartReceived() {
         }
     }
 }

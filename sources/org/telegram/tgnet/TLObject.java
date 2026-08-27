@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-import me.vkryl.core.BitwiseUtils;
+import h7.a8;
 
 public class TLObject {
     public static final int FLAG_0 = 1;
@@ -44,38 +44,35 @@ public class TLObject {
     public boolean disableFree = false;
     public int networkType;
 
-    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t, InputSerializedData inputSerializedData, int i, boolean z) {
-        if (t == null) {
-            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i, z);
+    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t10, InputSerializedData inputSerializedData, int i10, boolean z10) {
+        if (t10 == null) {
+            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i10, z10);
             return null;
         }
-        t.readParams(inputSerializedData, z);
-        return t;
+        t10.readParams(inputSerializedData, z10);
+        return t10;
     }
 
-    public static <T extends TLObject> T deepCopy(T t, Vector.TLDeserializer<T> tLDeserializer) {
-        if (t == null) {
+    public static <T extends TLObject> T deepCopy(T t10, Vector.TLDeserializer<T> tLDeserializer) {
+        if (t10 == null) {
             return null;
         }
-        SerializedData serializedData = new SerializedData(t.getObjectSize());
-        t.serializeToStream(serializedData);
+        SerializedData serializedData = new SerializedData(t10.getObjectSize());
+        t10.serializeToStream(serializedData);
         SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
         return (T) tLDeserializer.deserialize(serializedData2, serializedData2.readInt32(false), false);
     }
 
-    public static boolean hasFlag(int i, int i2) {
-        return BitwiseUtils.hasFlag(i, i2);
+    public static boolean hasFlag(int i10, int i11) {
+        return a8.a(i10, i11);
     }
 
-    public static int setFlag(int i, int i2, boolean z) {
-        return BitwiseUtils.setFlag(i, i2, z);
+    public static int setFlag(int i10, int i11, boolean z10) {
+        return a8.b(i10, i11, z10);
     }
 
-    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
         return null;
-    }
-
-    public void freeResources() {
     }
 
     public int getObjectSize() {
@@ -86,9 +83,12 @@ public class TLObject {
         return nativeByteBuffer.length();
     }
 
-    public void readParams(InputSerializedData inputSerializedData, boolean z) {
+    public void freeResources() {
     }
 
     public void serializeToStream(OutputSerializedData outputSerializedData) {
+    }
+
+    public void readParams(InputSerializedData inputSerializedData, boolean z10) {
     }
 }

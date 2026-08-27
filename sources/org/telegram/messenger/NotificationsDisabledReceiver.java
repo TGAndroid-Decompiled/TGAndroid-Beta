@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override
@@ -77,7 +76,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     FileLog.d("apply channel{else} " + stringExtra + " state");
                 }
                 SharedPreferences.Editor editorEdit = notificationsSettings.edit();
-                editorEdit.putInt(zzii.m("notify2_", sharedPrefKey), booleanExtra ? 2 : 0);
+                editorEdit.putInt(s3.c.e("notify2_", sharedPrefKey), booleanExtra ? 2 : 0);
                 if (!booleanExtra) {
                     editorEdit.remove("notifyuntil_" + sharedPrefKey);
                 }

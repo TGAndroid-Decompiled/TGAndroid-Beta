@@ -14,14 +14,14 @@ public class CameraSessionWrapper {
         return cameraSessionWrapper;
     }
 
-    public void destroy(boolean z, Runnable runnable, Runnable runnable2) {
+    public void destroy(boolean z10, Runnable runnable, Runnable runnable2) {
         if (this.camera2Session != null) {
             if (runnable != null) {
                 runnable.run();
             }
-            this.camera2Session.destroy(z, runnable2);
+            this.camera2Session.destroy(z10, runnable2);
         } else if (this.camera1Session != null) {
-            CameraController.getInstance().close(this.camera1Session, !z ? new CountDownLatch(1) : null, runnable, runnable2);
+            CameraController.getInstance().close(this.camera1Session, !z10 ? new CountDownLatch(1) : null, runnable, runnable2);
         }
     }
 
@@ -164,34 +164,34 @@ public class CameraSessionWrapper {
         }
     }
 
-    public void setFlipFront(boolean z) {
+    public void setFlipFront(boolean z10) {
         CameraSession cameraSession;
         if (this.camera2Session == null && (cameraSession = this.camera1Session) != null) {
-            cameraSession.setFlipFront(z);
+            cameraSession.setFlipFront(z10);
         }
     }
 
-    public void setOptimizeForBarcode(boolean z) {
+    public void setOptimizeForBarcode(boolean z10) {
         Camera2Session camera2Session = this.camera2Session;
         if (camera2Session != null) {
-            camera2Session.setScanningBarcode(z);
+            camera2Session.setScanningBarcode(z10);
             return;
         }
         CameraSession cameraSession = this.camera1Session;
         if (cameraSession != null) {
-            cameraSession.setOptimizeForBarcode(z);
+            cameraSession.setOptimizeForBarcode(z10);
         }
     }
 
-    public void setZoom(float f) {
+    public void setZoom(float f10) {
         Camera2Session camera2Session = this.camera2Session;
         if (camera2Session != null) {
-            camera2Session.setZoom(AndroidUtilities.lerp(camera2Session.getMinZoom(), this.camera2Session.getMaxZoom(), f));
+            camera2Session.setZoom(AndroidUtilities.lerp(camera2Session.getMinZoom(), this.camera2Session.getMaxZoom(), f10));
             return;
         }
         CameraSession cameraSession = this.camera1Session;
         if (cameraSession != null) {
-            cameraSession.setZoom(f);
+            cameraSession.setZoom(f10);
         }
     }
 

@@ -48,8 +48,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         }
     }
 
-    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z, boolean z2) {
-        this(context, z, z2, null);
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11) {
+        this(context, z10, z11, null);
     }
 
     private BitrateAdjuster createBitrateAdjuster(VideoCodecMimeType videoCodecMimeType, String str) {
@@ -60,21 +60,21 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        int i = 0;
+        int i10 = 0;
         while (true) {
             MediaCodecInfo codecInfoAt = null;
-            if (i >= MediaCodecList.getCodecCount()) {
+            if (i10 >= MediaCodecList.getCodecCount()) {
                 return null;
             }
             try {
-                codecInfoAt = MediaCodecList.getCodecInfoAt(i);
-            } catch (IllegalArgumentException e) {
-                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e);
+                codecInfoAt = MediaCodecList.getCodecInfoAt(i10);
+            } catch (IllegalArgumentException e9) {
+                Logging.e("HardwareVideoEncoderFactory", "Cannot retrieve encoder codec info", e9);
             }
             if (codecInfoAt != null && codecInfoAt.isEncoder() && isSupportedCodec(codecInfoAt, videoCodecMimeType)) {
                 return codecInfoAt;
             }
-            i++;
+            i10++;
         }
     }
 
@@ -82,8 +82,8 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (videoCodecMimeType != VideoCodecMimeType.VP8 || !str.startsWith("OMX.qcom.")) {
             return 0;
         }
-        int i = Build.VERSION.SDK_INT;
-        return (i >= 23 && i == 23) ? 20000 : 15000;
+        int i10 = Build.VERSION.SDK_INT;
+        return (i10 >= 23 && i10 == 23) ? 20000 : 15000;
     }
 
     private boolean isH264HighProfileSupported(MediaCodecInfo mediaCodecInfo) {
@@ -94,14 +94,14 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (Build.VERSION.SDK_INT >= 29) {
             return mediaCodecInfo.isHardwareAccelerated();
         }
-        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
-        if (i == 1) {
+        int i10 = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        if (i10 == 1) {
             return isHardwareSupportedInCurrentSdkVp8(mediaCodecInfo);
         }
-        if (i == 2) {
+        if (i10 == 2) {
             return isHardwareSupportedInCurrentSdkVp9(mediaCodecInfo);
         }
-        if (i != 3) {
+        if (i10 != 3) {
             return false;
         }
         return isHardwareSupportedInCurrentSdkH264(mediaCodecInfo);
@@ -169,20 +169,20 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return VideoEncoderFactory.CC.$default$getEncoderSelector(this);
+        return y.a(this);
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return getSupportedCodecs();
+        return y.b(this);
     }
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
         ArrayList arrayList = new ArrayList();
         VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264, VideoCodecMimeType.AV1, VideoCodecMimeType.H265};
-        for (int i = 0; i < 5; i++) {
-            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i];
+        for (int i10 = 0; i10 < 5; i10++) {
+            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i10];
             MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
             if (mediaCodecInfoFindCodecForType != null) {
                 String strName = videoCodecMimeType.name();
@@ -195,20 +195,20 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);
     }
 
-    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z, boolean z2, Predicate<MediaCodecInfo> predicate) {
+    public HardwareVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11, Predicate<MediaCodecInfo> predicate) {
         if (context instanceof EglBase14.Context) {
             this.sharedContext = (EglBase14.Context) context;
         } else {
             Logging.w("HardwareVideoEncoderFactory", "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;
         }
-        this.enableIntelVp8Encoder = z;
-        this.enableH264HighProfile = z2;
+        this.enableIntelVp8Encoder = z10;
+        this.enableH264HighProfile = z11;
         this.codecAllowedPredicate = predicate;
     }
 
     @Deprecated
-    public HardwareVideoEncoderFactory(boolean z, boolean z2) {
-        this(null, z, z2);
+    public HardwareVideoEncoderFactory(boolean z10, boolean z11) {
+        this(null, z10, z11);
     }
 }

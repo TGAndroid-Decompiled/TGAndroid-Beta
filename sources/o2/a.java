@@ -1,0 +1,72 @@
+package o2;
+
+import java.util.Random;
+
+public final class a extends Random {
+
+    public long f19156a;
+
+    public long f19157b;
+
+    @Override
+    public final int next(int i10) {
+        return ((int) nextLong()) >>> (32 - i10);
+    }
+
+    @Override
+    public final boolean nextBoolean() {
+        return nextLong() >= 0;
+    }
+
+    @Override
+    public final void nextBytes(byte[] bArr) {
+        int length = bArr.length;
+        int i10 = 0;
+        while (i10 < length) {
+            long jNextLong = (int) nextLong();
+            int iMin = Math.min(length - i10, 8);
+            while (true) {
+                int i11 = iMin - 1;
+                if (iMin > 0) {
+                    bArr[i10] = (byte) jNextLong;
+                    jNextLong >>>= 8;
+                    i10++;
+                    iMin = i11;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final double nextDouble() {
+        return (nextLong() >>> 11) * 1.1102230246251565E-16d;
+    }
+
+    @Override
+    public final float nextFloat() {
+        return (((int) nextLong()) >>> 8) * 5.9604645E-8f;
+    }
+
+    @Override
+    public final int nextInt() {
+        return (int) nextLong();
+    }
+
+    @Override
+    public final long nextLong() {
+        long j10 = this.f19156a;
+        long j11 = this.f19157b;
+        long j12 = j10 + j11;
+        long j13 = j11 ^ j10;
+        this.f19156a = (Long.rotateLeft(j10, 55) ^ j13) ^ (j13 << 14);
+        this.f19157b = Long.rotateLeft(j13, 36);
+        return j12;
+    }
+
+    @Override
+    public final void setSeed(long j10) {
+        if (this.f19156a != 0 || this.f19157b != 0) {
+            throw new RuntimeException("No seed set");
+        }
+    }
+}

@@ -19,6 +19,6 @@ public class AppStartReceiver extends BroadcastReceiver {
         if (intent == null || !"android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new Emoji$$ExternalSyntheticLambda1(3));
+        AndroidUtilities.runOnUIThread(new w1(2));
     }
 }

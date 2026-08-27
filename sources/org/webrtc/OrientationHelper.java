@@ -10,12 +10,12 @@ public class OrientationHelper {
     public static volatile boolean cameraRotationDisabled;
     private OrientationEventListener orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
         @Override
-        public void onOrientationChanged(int i) {
-            if (OrientationHelper.this.orientationEventListener == null || i == -1) {
+        public void onOrientationChanged(int i10) {
+            if (OrientationHelper.this.orientationEventListener == null || i10 == -1) {
                 return;
             }
             OrientationHelper orientationHelper = OrientationHelper.this;
-            int iRoundOrientation = orientationHelper.roundOrientation(i, orientationHelper.rotation);
+            int iRoundOrientation = orientationHelper.roundOrientation(i10, orientationHelper.rotation);
             if (iRoundOrientation != OrientationHelper.this.rotation) {
                 OrientationHelper orientationHelper2 = OrientationHelper.this;
                 orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = iRoundOrientation);
@@ -24,14 +24,14 @@ public class OrientationHelper {
     };
     private int rotation;
 
-    public int roundOrientation(int i, int i2) {
-        if (i2 != -1) {
-            int iAbs = Math.abs(i - i2);
+    public int roundOrientation(int i10, int i11) {
+        if (i11 != -1) {
+            int iAbs = Math.abs(i10 - i11);
             if (Math.min(iAbs, 360 - iAbs) < 50) {
-                return i2;
+                return i11;
             }
         }
-        return (((i + 45) / 90) * 90) % 360;
+        return (((i10 + 45) / 90) * 90) % 360;
     }
 
     public int getOrientation() {
@@ -39,9 +39,6 @@ public class OrientationHelper {
             return 0;
         }
         return this.rotation;
-    }
-
-    public void onOrientationUpdate(int i) {
     }
 
     public void start() {
@@ -59,5 +56,8 @@ public class OrientationHelper {
             orientationEventListener.disable();
             this.orientationEventListener = null;
         }
+    }
+
+    public void onOrientationUpdate(int i10) {
     }
 }

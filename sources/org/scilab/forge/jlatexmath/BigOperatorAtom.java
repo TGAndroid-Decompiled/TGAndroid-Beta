@@ -16,15 +16,15 @@ public class BigOperatorAtom extends Atom {
         this.type = 1;
     }
 
-    private static Box changeWidth(Box box, float f) {
-        return (box == null || Math.abs(f - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f, 2);
+    private static Box changeWidth(Box box, float f10) {
+        return (box == null || Math.abs(f10 - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f10, 2);
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         RowAtom rowAtom;
         Atom atom;
-        int i;
+        int i10;
         Box horizontalBox;
         float italic;
         float fMax;
@@ -44,8 +44,8 @@ public class BigOperatorAtom extends Atom {
         } else {
             rowAtom = null;
         }
-        boolean z = this.limitsSet;
-        if ((z && !this.limits) || ((!z && style >= 2) || (i = (atom = this.base).type_limits) == 1 || (i == 0 && style >= 2))) {
+        boolean z10 = this.limitsSet;
+        if ((z10 && !this.limits) || ((!z10 && style >= 2) || (i10 = (atom = this.base).type_limits) == 1 || (i10 == 0 && style >= 2))) {
             if (rowAtom == null) {
                 return new ScriptsAtom(this.base, this.under, this.over).createBox(teXEnvironment);
             }
@@ -57,9 +57,9 @@ public class BigOperatorAtom extends Atom {
             return boxCreateBox;
         }
         if ((atom instanceof SymbolAtom) && atom.type == 1) {
-            Char r5 = teXFont.getChar(((SymbolAtom) atom).getName(), style);
+            Char r10 = teXFont.getChar(((SymbolAtom) atom).getName(), style);
             horizontalBox = this.base.createBox(teXEnvironment);
-            italic = r5.getItalic();
+            italic = r10.getItalic();
         } else {
             horizontalBox = new HorizontalBox(atom == null ? new StrutBox(0.0f, 0.0f, 0.0f, 0.0f) : atom.createBox(teXEnvironment));
             italic = 0.0f;
@@ -109,9 +109,9 @@ public class BigOperatorAtom extends Atom {
         return horizontalBox2;
     }
 
-    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z) {
+    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z10) {
         this(atom, atom2, atom3);
-        this.limits = z;
+        this.limits = z10;
         this.limitsSet = true;
     }
 }

@@ -6,13 +6,13 @@ public class RTCStatsReport {
     private final Map<String, RTCStats> stats;
     private final long timestampUs;
 
-    public RTCStatsReport(long j, Map<String, RTCStats> map) {
-        this.timestampUs = j;
+    public RTCStatsReport(long j10, Map<String, RTCStats> map) {
+        this.timestampUs = j10;
         this.stats = map;
     }
 
-    private static RTCStatsReport create(long j, Map map) {
-        return new RTCStatsReport(j, map);
+    private static RTCStatsReport create(long j10, Map map) {
+        return new RTCStatsReport(j10, map);
     }
 
     public Map<String, RTCStats> getStatsMap() {
@@ -24,18 +24,18 @@ public class RTCStatsReport {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("{ timestampUs: ");
-        sb.append(this.timestampUs);
-        sb.append(", stats: [\n");
-        boolean z = true;
+        StringBuilder sb2 = new StringBuilder("{ timestampUs: ");
+        sb2.append(this.timestampUs);
+        sb2.append(", stats: [\n");
+        boolean z10 = true;
         for (RTCStats rTCStats : this.stats.values()) {
-            if (!z) {
-                sb.append(",\n");
+            if (!z10) {
+                sb2.append(",\n");
             }
-            sb.append(rTCStats);
-            z = false;
+            sb2.append(rTCStats);
+            z10 = false;
         }
-        sb.append(" ] }");
-        return sb.toString();
+        sb2.append(" ] }");
+        return sb2.toString();
     }
 }

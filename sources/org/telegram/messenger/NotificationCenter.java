@@ -4,366 +4,364 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
-import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda15;
 
 public class NotificationCenter {
     private static final long EXPIRE_NOTIFICATIONS_TIME = 5017;
     private static volatile NotificationCenter[] Instance = new NotificationCenter[4];
-    public static final int activeAccountChanged = 251;
-    public static final int activeAuctionsUpdated = 241;
-    public static final int activeGroupCallsUpdated = 170;
-    public static final int activityPermissionsGranted = 316;
-    public static final int adminedChannelsLoaded = 237;
-    public static final int albumsDidLoad = 161;
+    public static final int activeAccountChanged;
+    public static final int activeAuctionsUpdated;
+    public static final int activeGroupCallsUpdated;
+    public static final int activityPermissionsGranted;
+    public static final int adminedChannelsLoaded;
+    public static final int albumsDidLoad;
     public static boolean alreadyLogged = false;
-    public static final int animatedEmojiDocumentLoaded = 116;
-    public static final int appConfigUpdated = 240;
-    public static final int appDidLogout = 178;
-    public static final int appUpdateAvailable = 291;
-    public static final int appUpdateLoading = 292;
-    public static final int applyGroupCallVisibleParticipants = 171;
-    public static final int archivedStickersCountDidLoad = 88;
-    public static final int articleClosed = 92;
-    public static final int attachMenuBotsDidLoad = 297;
-    public static final int audioDidSent = 162;
-    public static final int audioRecordTooShort = 163;
-    public static final int audioRouteChanged = 164;
-    public static final int availableEffectsUpdate = 217;
-    public static final int billingConfirmPurchaseError = 311;
-    public static final int billingProductDetailsUpdated = 310;
-    public static final int blockedUsersDidLoad = 43;
-    public static final int bookmarkAdded = 123;
-    public static final int boostByChannelCreated = 191;
-    public static final int boostedChannelByUser = 190;
-    public static final int botDownloadsUpdate = 234;
-    public static final int botForumDraftDelete = 338;
-    public static final int botForumDraftUpdate = 337;
-    public static final int botForumTopicDidCreate = 336;
-    public static final int botInfoDidLoad = 66;
-    public static final int botKeyboardDidLoad = 69;
-    public static final int botStarsTransactionsLoaded = 226;
-    public static final int botStarsUpdated = 225;
-    public static final int businessLinkCreated = 126;
-    public static final int businessLinksUpdated = 125;
-    public static final int businessMessagesUpdated = 120;
-    public static final int callTabsVisibleToggled = 341;
-    public static final int cameraInitied = 260;
-    public static final int changeRepliesCounter = 13;
-    public static final int channelConnectedBotsUpdate = 236;
-    public static final int channelRecommendationsLoaded = 201;
-    public static final int channelRightsUpdated = 90;
-    public static final int channelStarsUpdated = 227;
-    public static final int channelSuggestedBotsUpdate = 235;
-    public static final int chatAvailableReactionsUpdated = 298;
-    public static final int chatDidCreated = 28;
-    public static final int chatDidFailCreate = 29;
-    public static final int chatInfoCantLoad = 31;
-    public static final int chatInfoDidLoad = 30;
-    public static final int chatOnlineCountDidLoad = 95;
-    public static final int chatSearchResultsAvailable = 70;
-    public static final int chatSearchResultsLoading = 72;
-    public static final int chatSwitchedForum = 318;
-    public static final int chatWasBoostedByUser = 212;
-    public static final int chatlistFolderUpdate = 326;
-    public static final int closeChatActivity = 5;
-    public static final int closeChats = 4;
-    public static final int closeInCallActivity = 174;
-    public static final int closeOtherAppActivities = 259;
-    public static final int closeProfileActivity = 6;
-    public static final int closeSearchByActiveAction = 283;
-    public static final int commentsRead = 12;
-    public static final int commonChatsLoaded = 239;
-    public static final int communityPendingRequestsUpdate = 345;
-    public static final int communitySwitchedCollapsed = 346;
-    public static final int conferenceEmojiUpdated = 242;
-    public static final int configLoaded = 179;
-    public static final int contactsDidLoad = 25;
-    public static final int contactsImported = 26;
-    public static final int contactsPermissionBadgeCheck = 342;
-    public static final int contentSettingsLoaded = 243;
-    public static final int currentUserPremiumStatusChanged = 306;
-    public static final int currentUserShowLimitReachedDialog = 309;
-    public static final int customStickerCreated = 215;
-    public static final int customTypefacesLoaded = 329;
-    public static final int dialogDeleted = 113;
-    public static final int dialogFiltersUpdated = 184;
-    public static final int dialogIsTranslatable = 130;
-    public static final int dialogPhotosLoaded = 38;
-    public static final int dialogPhotosUpdate = 200;
-    public static final int dialogTranslate = 131;
-    public static final int dialogsNeedReload = 3;
-    public static final int dialogsUnreadCounterChanged = 147;
-    public static final int dialogsUnreadPollVotesCounterChanged = 300;
-    public static final int dialogsUnreadReactionsCounterChanged = 299;
-    public static final int diceStickersDidLoad = 61;
-    public static final int didApplyNewTheme = 264;
-    public static final int didClearDatabase = 286;
-    public static final int didCreatedNewDeleteTask = 45;
-    public static final int didEndCall = 173;
-    public static final int didGenerateFingerprintKeyPair = 132;
-    public static final int didLoadChatAdmins = 109;
-    public static final int didLoadChatInviter = 108;
-    public static final int didLoadPinnedMessages = 56;
-    public static final int didLoadSendAsPeers = 16;
-    public static final int didLoadSponsoredMessages = 15;
-    public static final int didReceiveCall = 256;
+    public static final int animatedEmojiDocumentLoaded;
+    public static final int appConfigUpdated;
+    public static final int appDidLogout;
+    public static final int appUpdateAvailable;
+    public static final int appUpdateLoading;
+    public static final int applyGroupCallVisibleParticipants;
+    public static final int archivedStickersCountDidLoad;
+    public static final int articleClosed;
+    public static final int attachMenuBotsDidLoad;
+    public static final int audioDidSent;
+    public static final int audioRecordTooShort;
+    public static final int audioRouteChanged;
+    public static final int availableEffectsUpdate;
+    public static final int billingConfirmPurchaseError;
+    public static final int billingProductDetailsUpdated;
+    public static final int blockedUsersDidLoad;
+    public static final int bookmarkAdded;
+    public static final int boostByChannelCreated;
+    public static final int boostedChannelByUser;
+    public static final int botDownloadsUpdate;
+    public static final int botForumDraftDelete;
+    public static final int botForumDraftUpdate;
+    public static final int botForumTopicDidCreate;
+    public static final int botInfoDidLoad;
+    public static final int botKeyboardDidLoad;
+    public static final int botStarsTransactionsLoaded;
+    public static final int botStarsUpdated;
+    public static final int businessLinkCreated;
+    public static final int businessLinksUpdated;
+    public static final int businessMessagesUpdated;
+    public static final int callTabsVisibleToggled;
+    public static final int cameraInitied;
+    public static final int changeRepliesCounter;
+    public static final int channelConnectedBotsUpdate;
+    public static final int channelRecommendationsLoaded;
+    public static final int channelRightsUpdated;
+    public static final int channelStarsUpdated;
+    public static final int channelSuggestedBotsUpdate;
+    public static final int chatAvailableReactionsUpdated;
+    public static final int chatDidCreated;
+    public static final int chatDidFailCreate;
+    public static final int chatInfoCantLoad;
+    public static final int chatInfoDidLoad;
+    public static final int chatOnlineCountDidLoad;
+    public static final int chatSearchResultsAvailable;
+    public static final int chatSearchResultsLoading;
+    public static final int chatSwitchedForum;
+    public static final int chatWasBoostedByUser;
+    public static final int chatlistFolderUpdate;
+    public static final int closeChatActivity;
+    public static final int closeChats;
+    public static final int closeInCallActivity;
+    public static final int closeOtherAppActivities;
+    public static final int closeProfileActivity;
+    public static final int closeSearchByActiveAction;
+    public static final int commentsRead;
+    public static final int commonChatsLoaded;
+    public static final int communityPendingRequestsUpdate;
+    public static final int communitySwitchedCollapsed;
+    public static final int conferenceEmojiUpdated;
+    public static final int configLoaded;
+    public static final int contactsDidLoad;
+    public static final int contactsImported;
+    public static final int contactsPermissionBadgeCheck;
+    public static final int contentSettingsLoaded;
+    public static final int currentUserPremiumStatusChanged;
+    public static final int currentUserShowLimitReachedDialog;
+    public static final int customStickerCreated;
+    public static final int customTypefacesLoaded;
+    public static final int dialogDeleted;
+    public static final int dialogFiltersUpdated;
+    public static final int dialogIsTranslatable;
+    public static final int dialogPhotosLoaded;
+    public static final int dialogPhotosUpdate;
+    public static final int dialogTranslate;
+    public static final int dialogsNeedReload;
+    public static final int dialogsUnreadCounterChanged;
+    public static final int dialogsUnreadPollVotesCounterChanged;
+    public static final int dialogsUnreadReactionsCounterChanged;
+    public static final int diceStickersDidLoad;
+    public static final int didApplyNewTheme;
+    public static final int didClearDatabase;
+    public static final int didCreatedNewDeleteTask;
+    public static final int didEndCall;
+    public static final int didGenerateFingerprintKeyPair;
+    public static final int didLoadChatAdmins;
+    public static final int didLoadChatInviter;
+    public static final int didLoadPinnedMessages;
+    public static final int didLoadSendAsPeers;
+    public static final int didLoadSponsoredMessages;
+    public static final int didReceiveCall;
     public static final int didReceiveNewMessages = 1;
-    public static final int didReceiveSmsCode = 255;
-    public static final int didReceivedWebpages = 58;
-    public static final int didReceivedWebpagesInUpdates = 59;
-    public static final int didRemoveTwoStepPassword = 54;
-    public static final int didReplacedPhotoInMemCache = 261;
-    public static final int didSetNewTheme = 262;
-    public static final int didSetNewWallpapper = 274;
-    public static final int didSetOrRemoveTwoStepPassword = 53;
-    public static final int didSetPasscode = 50;
-    public static final int didStartedCall = 165;
-    public static final int didStartedMultiGiftsSelector = 189;
-    public static final int didUpdateConnectionState = 137;
-    public static final int didUpdateExtendedMedia = 104;
-    public static final int didUpdateGlobalAutoDeleteTimer = 319;
-    public static final int didUpdateMessagesViews = 77;
-    public static final int didUpdatePollResults = 94;
-    public static final int didUpdatePremiumGiftFieldIcon = 194;
-    public static final int didUpdatePremiumGiftStickers = 192;
-    public static final int didUpdateReactions = 103;
-    public static final int didUpdateTonGiftStickers = 193;
-    public static final int didVerifyMessagesStickers = 105;
-    public static final int emojiKeywordsLoaded = 207;
-    public static final int emojiLoaded = 257;
-    public static final int emojiPreviewThemesChanged = 295;
-    public static final int encryptedChatCreated = 37;
-    public static final int encryptedChatUpdated = 35;
-    public static final int factCheckLoaded = 224;
-    public static final int featuredEmojiDidLoad = 63;
-    public static final int featuredStickersDidLoad = 62;
-    public static final int fileLoadFailed = 143;
-    public static final int fileLoadProgressChanged = 141;
-    public static final int fileLoaded = 142;
-    public static final int fileNewChunkAvailable = 145;
-    public static final int filePreparingFailed = 146;
-    public static final int filePreparingStarted = 144;
-    public static final int fileUploadFailed = 139;
-    public static final int fileUploadProgressChanged = 140;
-    public static final int fileUploaded = 138;
-    public static final int filterSettingsUpdated = 185;
-    public static final int folderBecomeEmpty = 40;
-    public static final int forceImportContactsStart = 24;
-    public static final int giftsToUserSent = 188;
-    private static volatile NotificationCenter globalInstance = null;
-    public static final int goingToPreviewTheme = 269;
-    public static final int groupCallScreencastStateChanged = 169;
-    public static final int groupCallSpeakingUsersUpdated = 168;
-    public static final int groupCallTypingsUpdated = 172;
-    public static final int groupCallUpdated = 166;
-    public static final int groupCallVisibilityChanged = 175;
-    public static final int groupPackUpdated = 213;
-    public static final int groupRestrictionsUnlockedByBoosts = 211;
-    public static final int groupStickersDidLoad = 64;
-    public static final int guardBotDecisionResult = 343;
-    public static final int hasNewContactsToImport = 27;
-    public static final int hashtagSearchUpdated = 71;
-    public static final int historyCleared = 8;
-    public static final int historyImportProgressChanged = 110;
-    public static final int httpFileDidFailedLoad = 136;
-    public static final int httpFileDidLoad = 135;
-    public static final int invalidateMotionBackground = 258;
-    public static final int joinedGroup = 248;
-    public static final int liveLocationsCacheChanged = 280;
-    public static final int liveLocationsChanged = 278;
-    public static final int liveStoryMessageUpdate = 177;
-    public static final int liveStoryUpdated = 176;
-    public static final int loadedAiComposeTones = 249;
-    public static final int loadingMessagesFailed = 19;
-    public static final int locationPermissionDenied = 271;
-    public static final int locationPermissionGranted = 270;
-    public static final int mainUserInfoChanged = 46;
-    public static final int mediaCountDidLoad = 33;
-    public static final int mediaCountsDidLoad = 34;
-    public static final int mediaDidLoad = 32;
-    public static final int memoryLeakFoundException = 340;
-    public static final int messagePlayingDidReset = 149;
-    public static final int messagePlayingDidSeek = 152;
-    public static final int messagePlayingDidStart = 151;
-    public static final int messagePlayingGoingToStop = 153;
-    public static final int messagePlayingPlayStateChanged = 150;
-    public static final int messagePlayingProgressDidChanged = 148;
-    public static final int messagePlayingSpeedChanged = 284;
-    public static final int messageReceivedByAck = 20;
-    public static final int messageReceivedByServer = 21;
-    public static final int messageReceivedByServer2 = 22;
-    public static final int messageSendError = 23;
-    public static final int messageTranslated = 128;
-    public static final int messageTranslating = 129;
-    public static final int messagesDeleted = 7;
-    public static final int messagesDidLoad = 14;
-    public static final int messagesDidLoadWithoutProcess = 18;
-    public static final int messagesFeeUpdated = 238;
-    public static final int messagesRead = 9;
-    public static final int messagesReadContent = 65;
-    public static final int messagesReadEncrypted = 36;
-    public static final int monoForumMessagesRead = 11;
-    public static final int moreMusicDidLoad = 74;
-    public static final int musicDidLoad = 73;
-    public static final int musicIdsLoaded = 245;
-    public static final int musicListLoaded = 244;
-    public static final int nearEarEvent = 333;
-    public static final int needAddArchivedStickers = 87;
-    public static final int needCheckSystemBarColors = 266;
-    public static final int needDeleteBusinessLink = 127;
-    public static final int needDeleteDialog = 180;
-    public static final int needReloadRecentDialogsSearch = 78;
-    public static final int needSetDayNightTheme = 268;
-    public static final int needShareTheme = 267;
-    public static final int needShowAlert = 75;
-    public static final int needShowPlayServicesAlert = 76;
-    public static final int newDraftReceived = 85;
-    public static final int newEmojiSuggestionsAvailable = 181;
-    public static final int newLocationAvailable = 279;
-    public static final int newPeopleNearbyAvailable = 97;
-    public static final int newSessionReceived = 57;
-    public static final int newSuggestionsAvailable = 107;
-    public static final int notificationsCountUpdated = 281;
-    public static final int notificationsSettingsUpdated = 42;
-    public static final int onActivityResultReceived = 303;
-    public static final int onDatabaseMigration = 293;
-    public static final int onDatabaseOpened = 301;
-    public static final int onDatabaseReset = 320;
-    public static final int onDownloadingFilesChanged = 302;
-    public static final int onEmojiInteractionsReceived = 294;
-    public static final int onReceivedChannelDifference = 331;
-    public static final int onRequestPermissionResultReceived = 304;
-    public static final int onUserRingtonesUpdated = 305;
-    public static final int openArticle = 91;
-    public static final int openBoostForUsersDialog = 210;
-    public static final int openedChatChanged = 44;
-    public static final int passcodeDismissed = 51;
-    public static final int paymentFinished = 89;
-    public static final int peerSettingsDidLoad = 79;
-    public static final int permissionsGranted = 315;
-    public static final int pinnedInfoDidLoad = 68;
-    public static final int playerDidStartPlaying = 282;
-    public static final int premiumFloodWaitReceived = 216;
-    public static final int premiumPromoUpdated = 307;
-    public static final int premiumStatusChangedGlobal = 308;
-    public static final int premiumStickersPreviewLoaded = 312;
-    public static final int privacyRulesUpdated = 47;
-    public static final int profileMusicUpdated = 246;
-    public static final int proxyChangedByRotation = 277;
-    public static final int proxyCheckDone = 276;
-    public static final int proxySettingsChanged = 275;
-    public static final int pushMessagesUpdated = 252;
-    public static final int quickRepliesDeleted = 122;
-    public static final int quickRepliesUpdated = 121;
-    public static final int reactionsDidLoad = 296;
-    public static final int recentDocumentsDidLoad = 86;
-    public static final int recentEmojiStatusesUpdate = 117;
-    public static final int recordPaused = 158;
-    public static final int recordProgressChanged = 154;
-    public static final int recordResumed = 159;
-    public static final int recordStartError = 156;
-    public static final int recordStarted = 155;
-    public static final int recordStopped = 157;
-    public static final int reloadDialogPhotos = 39;
-    public static final int reloadGuestBotHints = 83;
-    public static final int reloadHints = 81;
-    public static final int reloadInlineHints = 82;
-    public static final int reloadInterface = 272;
-    public static final int reloadWebappsHints = 84;
-    public static final int removeAllMessagesFromDialog = 41;
-    public static final int replaceMessagesObjects = 49;
-    public static final int replyMessagesDidLoad = 55;
-    public static final int requestPermissions = 314;
-    public static final int savedMessagesDialogsUpdate = 202;
-    public static final int savedMessagesForwarded = 206;
-    public static final int savedReactionTagsUpdate = 203;
-    public static final int scheduledMessagesUpdated = 106;
-    public static final int screenStateChanged = 285;
-    public static final int screenshotTook = 160;
-    public static final int sendingMessagesChanged = 102;
-    public static final int showBulletin = 290;
-    public static final int smsJobStatusUpdate = 208;
-    public static final int starBalanceUpdated = 221;
-    public static final int starGiftOptionsLoaded = 219;
-    public static final int starGiftSoldOut = 232;
-    public static final int starGiftsLoaded = 229;
-    public static final int starGiveawayOptionsLoaded = 220;
-    public static final int starOptionsLoaded = 218;
-    public static final int starReactionAnonymousUpdate = 124;
-    public static final int starSubscriptionsLoaded = 223;
-    public static final int starTransactionsLoaded = 222;
-    public static final int starUserGiftCollectionsLoaded = 231;
-    public static final int starUserGiftsLoaded = 230;
-    public static final int startAllHeavyOperations = 99;
-    public static final int startSpoilers = 101;
-    public static final int stealthModeChanged = 330;
-    public static final int stickersDidLoad = 60;
-    public static final int stickersImportComplete = 112;
-    public static final int stickersImportProgressChanged = 111;
-    public static final int stopAllHeavyOperations = 98;
-    public static final int stopSpoilers = 100;
-    public static final int storiesBlocklistUpdate = 196;
-    public static final int storiesDraftsUpdated = 325;
-    public static final int storiesEnabledUpdate = 195;
-    public static final int storiesLimitUpdate = 197;
-    public static final int storiesListUpdated = 324;
-    public static final int storiesReadUpdated = 332;
-    public static final int storiesSendAsUpdate = 198;
-    public static final int storiesUpdated = 322;
-    public static final int storyAlbumsCollectionsUpdate = 205;
-    public static final int storyDeleted = 323;
-    public static final int storyGroupCallUpdated = 167;
-    public static final int storyQualityUpdate = 209;
-    public static final int suggestedFiltersLoaded = 186;
-    public static final int suggestedLangpack = 273;
-    public static final int themeAccentListUpdated = 265;
-    public static final int themeListUpdated = 263;
-    public static final int themeUploadError = 183;
-    public static final int themeUploadedToServer = 182;
-    public static final int threadMessagesRead = 10;
-    public static final int timezonesUpdated = 214;
-    public static final int tlSchemeParseException = 339;
-    public static final int topicsDidLoaded = 317;
-    private static int totalEvents = 347;
-    public static final int translationModelDownloaded = 335;
-    public static final int translationModelDownloading = 334;
-    public static final int twoStepPasswordChanged = 52;
-    public static final int unconfirmedAuthUpdate = 199;
-    public static final int updateAllMessages = 228;
-    public static final int updateBotMenuButton = 187;
-    public static final int updateDefaultSendAsPeer = 17;
-    public static final int updateInterfaces = 2;
-    public static final int updateMentionsCount = 93;
-    public static final int updateMessageMedia = 48;
-    public static final int updateSearchSettings = 118;
-    public static final int updateStories = 233;
-    public static final int updateTranscriptionLock = 119;
-    public static final int updatedChatRanks = 247;
-    public static final int updatedChatbot = 250;
-    public static final int uploadStoryEnd = 328;
-    public static final int uploadStoryProgress = 327;
-    public static final int userEmojiStatusUpdated = 313;
-    public static final int userInfoDidLoad = 67;
-    public static final int userIsPremiumBlockedUpadted = 204;
-    public static final int videoLoadingStateChanged = 96;
-    public static final int voiceTranscriptionUpdate = 115;
-    public static final int voipServiceCreated = 287;
-    public static final int walletPendingTransactionsChanged = 133;
-    public static final int walletSyncProgressChanged = 134;
-    public static final int wallpaperSettedToUser = 321;
-    public static final int wallpapersDidLoad = 253;
-    public static final int wallpapersNeedReload = 254;
-    public static final int wasUnableToFindCurrentLocation = 80;
-    public static final int webBrowserSettingsUpdate = 344;
-    public static final int webRtcMicAmplitudeEvent = 288;
-    public static final int webRtcSpeakerAmplitudeEvent = 289;
-    public static final int webViewResultSent = 114;
+    public static final int didReceiveSmsCode;
+    public static final int didReceivedWebpages;
+    public static final int didReceivedWebpagesInUpdates;
+    public static final int didRemoveTwoStepPassword;
+    public static final int didReplacedPhotoInMemCache;
+    public static final int didSetNewTheme;
+    public static final int didSetNewWallpapper;
+    public static final int didSetOrRemoveTwoStepPassword;
+    public static final int didSetPasscode;
+    public static final int didStartedCall;
+    public static final int didStartedMultiGiftsSelector;
+    public static final int didUpdateConnectionState;
+    public static final int didUpdateExtendedMedia;
+    public static final int didUpdateGlobalAutoDeleteTimer;
+    public static final int didUpdateMessagesViews;
+    public static final int didUpdatePollResults;
+    public static final int didUpdatePremiumGiftFieldIcon;
+    public static final int didUpdatePremiumGiftStickers;
+    public static final int didUpdateReactions;
+    public static final int didUpdateTonGiftStickers;
+    public static final int didVerifyMessagesStickers;
+    public static final int emojiKeywordsLoaded;
+    public static final int emojiLoaded;
+    public static final int emojiPreviewThemesChanged;
+    public static final int encryptedChatCreated;
+    public static final int encryptedChatUpdated;
+    public static final int factCheckLoaded;
+    public static final int featuredEmojiDidLoad;
+    public static final int featuredStickersDidLoad;
+    public static final int fileLoadFailed;
+    public static final int fileLoadProgressChanged;
+    public static final int fileLoaded;
+    public static final int fileNewChunkAvailable;
+    public static final int filePreparingFailed;
+    public static final int filePreparingStarted;
+    public static final int fileUploadFailed;
+    public static final int fileUploadProgressChanged;
+    public static final int fileUploaded;
+    public static final int filterSettingsUpdated;
+    public static final int folderBecomeEmpty;
+    public static final int forceImportContactsStart;
+    public static final int giftsToUserSent;
+    private static volatile NotificationCenter globalInstance;
+    public static final int goingToPreviewTheme;
+    public static final int groupCallScreencastStateChanged;
+    public static final int groupCallSpeakingUsersUpdated;
+    public static final int groupCallTypingsUpdated;
+    public static final int groupCallUpdated;
+    public static final int groupCallVisibilityChanged;
+    public static final int groupPackUpdated;
+    public static final int groupRestrictionsUnlockedByBoosts;
+    public static final int groupStickersDidLoad;
+    public static final int guardBotDecisionResult;
+    public static final int hasNewContactsToImport;
+    public static final int hashtagSearchUpdated;
+    public static final int historyCleared;
+    public static final int historyImportProgressChanged;
+    public static final int httpFileDidFailedLoad;
+    public static final int httpFileDidLoad;
+    public static final int invalidateMotionBackground;
+    public static final int joinedGroup;
+    public static final int liveLocationsCacheChanged;
+    public static final int liveLocationsChanged;
+    public static final int liveStoryMessageUpdate;
+    public static final int liveStoryUpdated;
+    public static final int loadedAiComposeTones;
+    public static final int loadingMessagesFailed;
+    public static final int locationPermissionDenied;
+    public static final int locationPermissionGranted;
+    public static final int mainUserInfoChanged;
+    public static final int mediaCountDidLoad;
+    public static final int mediaCountsDidLoad;
+    public static final int mediaDidLoad;
+    public static final int memoryLeakFoundException;
+    public static final int messagePlayingDidReset;
+    public static final int messagePlayingDidSeek;
+    public static final int messagePlayingDidStart;
+    public static final int messagePlayingGoingToStop;
+    public static final int messagePlayingPlayStateChanged;
+    public static final int messagePlayingProgressDidChanged;
+    public static final int messagePlayingSpeedChanged;
+    public static final int messageReceivedByAck;
+    public static final int messageReceivedByServer;
+    public static final int messageReceivedByServer2;
+    public static final int messageSendError;
+    public static final int messageTranslated;
+    public static final int messageTranslating;
+    public static final int messagesDeleted;
+    public static final int messagesDidLoad;
+    public static final int messagesDidLoadWithoutProcess;
+    public static final int messagesFeeUpdated;
+    public static final int messagesRead;
+    public static final int messagesReadContent;
+    public static final int messagesReadEncrypted;
+    public static final int monoForumMessagesRead;
+    public static final int moreMusicDidLoad;
+    public static final int musicDidLoad;
+    public static final int musicIdsLoaded;
+    public static final int musicListLoaded;
+    public static final int nearEarEvent;
+    public static final int needAddArchivedStickers;
+    public static final int needCheckSystemBarColors;
+    public static final int needDeleteBusinessLink;
+    public static final int needDeleteDialog;
+    public static final int needReloadRecentDialogsSearch;
+    public static final int needSetDayNightTheme;
+    public static final int needShareTheme;
+    public static final int needShowAlert;
+    public static final int needShowPlayServicesAlert;
+    public static final int newDraftReceived;
+    public static final int newEmojiSuggestionsAvailable;
+    public static final int newLocationAvailable;
+    public static final int newPeopleNearbyAvailable;
+    public static final int newSessionReceived;
+    public static final int newSuggestionsAvailable;
+    public static final int notificationsCountUpdated;
+    public static final int notificationsSettingsUpdated;
+    public static final int onActivityResultReceived;
+    public static final int onDatabaseMigration;
+    public static final int onDatabaseOpened;
+    public static final int onDatabaseReset;
+    public static final int onDownloadingFilesChanged;
+    public static final int onEmojiInteractionsReceived;
+    public static final int onReceivedChannelDifference;
+    public static final int onRequestPermissionResultReceived;
+    public static final int onUserRingtonesUpdated;
+    public static final int openArticle;
+    public static final int openBoostForUsersDialog;
+    public static final int openedChatChanged;
+    public static final int passcodeDismissed;
+    public static final int paymentFinished;
+    public static final int peerSettingsDidLoad;
+    public static final int permissionsGranted;
+    public static final int pinnedInfoDidLoad;
+    public static final int playerDidStartPlaying;
+    public static final int premiumFloodWaitReceived;
+    public static final int premiumPromoUpdated;
+    public static final int premiumStatusChangedGlobal;
+    public static final int premiumStickersPreviewLoaded;
+    public static final int privacyRulesUpdated;
+    public static final int profileMusicUpdated;
+    public static final int proxyChangedByRotation;
+    public static final int proxyCheckDone;
+    public static final int proxySettingsChanged;
+    public static final int pushMessagesUpdated;
+    public static final int quickRepliesDeleted;
+    public static final int quickRepliesUpdated;
+    public static final int reactionsDidLoad;
+    public static final int recentDocumentsDidLoad;
+    public static final int recentEmojiStatusesUpdate;
+    public static final int recordPaused;
+    public static final int recordProgressChanged;
+    public static final int recordResumed;
+    public static final int recordStartError;
+    public static final int recordStarted;
+    public static final int recordStopped;
+    public static final int reloadDialogPhotos;
+    public static final int reloadGuestBotHints;
+    public static final int reloadHints;
+    public static final int reloadInlineHints;
+    public static final int reloadInterface;
+    public static final int reloadWebappsHints;
+    public static final int removeAllMessagesFromDialog;
+    public static final int replaceMessagesObjects;
+    public static final int replyMessagesDidLoad;
+    public static final int requestPermissions;
+    public static final int savedMessagesDialogsUpdate;
+    public static final int savedMessagesForwarded;
+    public static final int savedReactionTagsUpdate;
+    public static final int scheduledMessagesUpdated;
+    public static final int screenStateChanged;
+    public static final int screenshotTook;
+    public static final int sendingMessagesChanged;
+    public static final int showBulletin;
+    public static final int smsJobStatusUpdate;
+    public static final int starBalanceUpdated;
+    public static final int starGiftOptionsLoaded;
+    public static final int starGiftSoldOut;
+    public static final int starGiftsLoaded;
+    public static final int starGiveawayOptionsLoaded;
+    public static final int starOptionsLoaded;
+    public static final int starReactionAnonymousUpdate;
+    public static final int starSubscriptionsLoaded;
+    public static final int starTransactionsLoaded;
+    public static final int starUserGiftCollectionsLoaded;
+    public static final int starUserGiftsLoaded;
+    public static final int startAllHeavyOperations;
+    public static final int startSpoilers;
+    public static final int stealthModeChanged;
+    public static final int stickersDidLoad;
+    public static final int stickersImportComplete;
+    public static final int stickersImportProgressChanged;
+    public static final int stopAllHeavyOperations;
+    public static final int stopSpoilers;
+    public static final int storiesBlocklistUpdate;
+    public static final int storiesDraftsUpdated;
+    public static final int storiesEnabledUpdate;
+    public static final int storiesLimitUpdate;
+    public static final int storiesListUpdated;
+    public static final int storiesReadUpdated;
+    public static final int storiesSendAsUpdate;
+    public static final int storiesUpdated;
+    public static final int storyAlbumsCollectionsUpdate;
+    public static final int storyDeleted;
+    public static final int storyGroupCallUpdated;
+    public static final int storyQualityUpdate;
+    public static final int suggestedFiltersLoaded;
+    public static final int suggestedLangpack;
+    public static final int themeAccentListUpdated;
+    public static final int themeListUpdated;
+    public static final int themeUploadError;
+    public static final int themeUploadedToServer;
+    public static final int threadMessagesRead;
+    public static final int timezonesUpdated;
+    public static final int tlSchemeParseException;
+    public static final int topicsDidLoaded;
+    private static int totalEvents;
+    public static final int translationModelDownloaded;
+    public static final int translationModelDownloading;
+    public static final int twoStepPasswordChanged;
+    public static final int unconfirmedAuthUpdate;
+    public static final int updateAllMessages;
+    public static final int updateBotMenuButton;
+    public static final int updateDefaultSendAsPeer;
+    public static final int updateInterfaces;
+    public static final int updateMentionsCount;
+    public static final int updateMessageMedia;
+    public static final int updateSearchSettings;
+    public static final int updateStories;
+    public static final int updateTranscriptionLock;
+    public static final int updatedChatRanks;
+    public static final int updatedChatbot;
+    public static final int uploadStoryEnd;
+    public static final int uploadStoryProgress;
+    public static final int userEmojiStatusUpdated;
+    public static final int userInfoDidLoad;
+    public static final int userIsPremiumBlockedUpadted;
+    public static final int videoLoadingStateChanged;
+    public static final int voiceTranscriptionUpdate;
+    public static final int voipServiceCreated;
+    public static final int walletPendingTransactionsChanged;
+    public static final int walletSyncProgressChanged;
+    public static final int wallpaperSettedToUser;
+    public static final int wallpapersDidLoad;
+    public static final int wallpapersNeedReload;
+    public static final int wasUnableToFindCurrentLocation;
+    public static final int webBrowserSettingsUpdate;
+    public static final int webRtcMicAmplitudeEvent;
+    public static final int webRtcSpeakerAmplitudeEvent;
+    public static final int webViewResultSent;
     private int animationInProgressCount;
     private Runnable checkForExpiredNotifications;
     private int currentAccount;
@@ -393,16 +391,17 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int id;
 
-        private DelayedPost(int i, Object[] objArr) {
-            this.id = i;
+        private int f19625id;
+
+        private DelayedPost(int i10, Object[] objArr) {
+            this.f19625id = i10;
             this.args = objArr;
         }
     }
 
     public interface NotificationCenterDelegate {
-        void didReceivedNotification(int i, int i2, Object... objArr);
+        void didReceivedNotification(int i10, int i11, Object... objArr);
     }
 
     public static class ObserversGroup {
@@ -411,30 +410,31 @@ public class NotificationCenter {
         private final ArrayList<Observer> observers;
 
         public static class Observer {
-            private final int id;
+
+            private final int f19626id;
             private final NotificationCenterDelegate observer;
 
-            private Observer(NotificationCenterDelegate notificationCenterDelegate, int i) {
+            private Observer(NotificationCenterDelegate notificationCenterDelegate, int i10) {
                 this.observer = notificationCenterDelegate;
-                this.id = i;
+                this.f19626id = i10;
             }
         }
 
-        public ObserversGroup add(int i) {
-            this.notificationCenter.addObserver(this.delegate, i);
-            this.observers.add(new Observer(this.delegate, i));
+        public ObserversGroup add(int i10) {
+            this.notificationCenter.addObserver(this.delegate, i10);
+            this.observers.add(new Observer(this.delegate, i10));
             return this;
         }
 
         public void removeAllObservers() {
             ArrayList<Observer> arrayList = this.observers;
             int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Observer observer = arrayList.get(i);
-                i++;
+            int i10 = 0;
+            while (i10 < size) {
+                Observer observer = arrayList.get(i10);
+                i10++;
                 Observer observer2 = observer;
-                this.notificationCenter.removeObserver(observer2.observer, observer2.id);
+                this.notificationCenter.removeObserver(observer2.observer, observer2.f19626id);
             }
             this.observers.clear();
             this.notificationCenter = null;
@@ -449,11 +449,361 @@ public class NotificationCenter {
     }
 
     public interface PostponeNotificationCallback {
-        boolean needPostpone(int i, int i2, Object[] objArr);
+        boolean needPostpone(int i10, int i11, Object[] objArr);
     }
 
-    public NotificationCenter(int i) {
-        this.currentAccount = i;
+    static {
+        int i10 = 1 + 1;
+        updateInterfaces = i10;
+        dialogsNeedReload = i10 + 1;
+        closeChats = i10 + 2;
+        closeChatActivity = i10 + 3;
+        closeProfileActivity = i10 + 4;
+        messagesDeleted = i10 + 5;
+        historyCleared = i10 + 6;
+        messagesRead = i10 + 7;
+        threadMessagesRead = i10 + 8;
+        monoForumMessagesRead = i10 + 9;
+        commentsRead = i10 + 10;
+        changeRepliesCounter = i10 + 11;
+        messagesDidLoad = i10 + 12;
+        didLoadSponsoredMessages = i10 + 13;
+        didLoadSendAsPeers = i10 + 14;
+        updateDefaultSendAsPeer = i10 + 15;
+        messagesDidLoadWithoutProcess = i10 + 16;
+        loadingMessagesFailed = i10 + 17;
+        messageReceivedByAck = i10 + 18;
+        messageReceivedByServer = i10 + 19;
+        messageReceivedByServer2 = i10 + 20;
+        messageSendError = i10 + 21;
+        forceImportContactsStart = i10 + 22;
+        contactsDidLoad = i10 + 23;
+        contactsImported = i10 + 24;
+        hasNewContactsToImport = i10 + 25;
+        chatDidCreated = i10 + 26;
+        chatDidFailCreate = i10 + 27;
+        chatInfoDidLoad = i10 + 28;
+        chatInfoCantLoad = i10 + 29;
+        mediaDidLoad = i10 + 30;
+        mediaCountDidLoad = i10 + 31;
+        mediaCountsDidLoad = i10 + 32;
+        encryptedChatUpdated = i10 + 33;
+        messagesReadEncrypted = i10 + 34;
+        encryptedChatCreated = i10 + 35;
+        dialogPhotosLoaded = i10 + 36;
+        reloadDialogPhotos = i10 + 37;
+        folderBecomeEmpty = i10 + 38;
+        removeAllMessagesFromDialog = i10 + 39;
+        notificationsSettingsUpdated = i10 + 40;
+        blockedUsersDidLoad = i10 + 41;
+        openedChatChanged = i10 + 42;
+        didCreatedNewDeleteTask = i10 + 43;
+        mainUserInfoChanged = i10 + 44;
+        privacyRulesUpdated = i10 + 45;
+        updateMessageMedia = i10 + 46;
+        replaceMessagesObjects = i10 + 47;
+        didSetPasscode = i10 + 48;
+        passcodeDismissed = i10 + 49;
+        twoStepPasswordChanged = i10 + 50;
+        didSetOrRemoveTwoStepPassword = i10 + 51;
+        didRemoveTwoStepPassword = i10 + 52;
+        replyMessagesDidLoad = i10 + 53;
+        didLoadPinnedMessages = i10 + 54;
+        newSessionReceived = i10 + 55;
+        didReceivedWebpages = i10 + 56;
+        didReceivedWebpagesInUpdates = i10 + 57;
+        stickersDidLoad = i10 + 58;
+        diceStickersDidLoad = i10 + 59;
+        featuredStickersDidLoad = i10 + 60;
+        featuredEmojiDidLoad = i10 + 61;
+        groupStickersDidLoad = i10 + 62;
+        messagesReadContent = i10 + 63;
+        botInfoDidLoad = i10 + 64;
+        userInfoDidLoad = i10 + 65;
+        pinnedInfoDidLoad = i10 + 66;
+        botKeyboardDidLoad = i10 + 67;
+        chatSearchResultsAvailable = i10 + 68;
+        hashtagSearchUpdated = i10 + 69;
+        chatSearchResultsLoading = i10 + 70;
+        musicDidLoad = i10 + 71;
+        moreMusicDidLoad = i10 + 72;
+        needShowAlert = i10 + 73;
+        needShowPlayServicesAlert = i10 + 74;
+        didUpdateMessagesViews = i10 + 75;
+        needReloadRecentDialogsSearch = i10 + 76;
+        peerSettingsDidLoad = i10 + 77;
+        wasUnableToFindCurrentLocation = i10 + 78;
+        reloadHints = i10 + 79;
+        reloadInlineHints = i10 + 80;
+        reloadGuestBotHints = i10 + 81;
+        reloadWebappsHints = i10 + 82;
+        newDraftReceived = i10 + 83;
+        recentDocumentsDidLoad = i10 + 84;
+        needAddArchivedStickers = i10 + 85;
+        archivedStickersCountDidLoad = i10 + 86;
+        paymentFinished = i10 + 87;
+        channelRightsUpdated = i10 + 88;
+        openArticle = i10 + 89;
+        articleClosed = i10 + 90;
+        updateMentionsCount = i10 + 91;
+        didUpdatePollResults = i10 + 92;
+        chatOnlineCountDidLoad = i10 + 93;
+        videoLoadingStateChanged = i10 + 94;
+        newPeopleNearbyAvailable = i10 + 95;
+        stopAllHeavyOperations = i10 + 96;
+        startAllHeavyOperations = i10 + 97;
+        stopSpoilers = i10 + 98;
+        startSpoilers = i10 + 99;
+        sendingMessagesChanged = i10 + 100;
+        didUpdateReactions = i10 + 101;
+        didUpdateExtendedMedia = i10 + 102;
+        didVerifyMessagesStickers = i10 + 103;
+        scheduledMessagesUpdated = i10 + 104;
+        newSuggestionsAvailable = i10 + 105;
+        didLoadChatInviter = i10 + 106;
+        didLoadChatAdmins = i10 + 107;
+        historyImportProgressChanged = i10 + 108;
+        stickersImportProgressChanged = i10 + 109;
+        stickersImportComplete = i10 + 110;
+        dialogDeleted = i10 + 111;
+        webViewResultSent = i10 + 112;
+        voiceTranscriptionUpdate = i10 + 113;
+        animatedEmojiDocumentLoaded = i10 + 114;
+        recentEmojiStatusesUpdate = i10 + 115;
+        updateSearchSettings = i10 + 116;
+        updateTranscriptionLock = i10 + 117;
+        businessMessagesUpdated = i10 + 118;
+        quickRepliesUpdated = i10 + 119;
+        quickRepliesDeleted = i10 + 120;
+        bookmarkAdded = i10 + 121;
+        starReactionAnonymousUpdate = i10 + 122;
+        businessLinksUpdated = i10 + 123;
+        businessLinkCreated = i10 + 124;
+        needDeleteBusinessLink = i10 + 125;
+        messageTranslated = i10 + 126;
+        messageTranslating = i10 + 127;
+        dialogIsTranslatable = i10 + 128;
+        dialogTranslate = i10 + 129;
+        didGenerateFingerprintKeyPair = i10 + 130;
+        walletPendingTransactionsChanged = i10 + 131;
+        walletSyncProgressChanged = i10 + 132;
+        httpFileDidLoad = i10 + 133;
+        httpFileDidFailedLoad = i10 + 134;
+        didUpdateConnectionState = i10 + 135;
+        fileUploaded = i10 + 136;
+        fileUploadFailed = i10 + 137;
+        fileUploadProgressChanged = i10 + 138;
+        fileLoadProgressChanged = i10 + 139;
+        fileLoaded = i10 + 140;
+        fileLoadFailed = i10 + 141;
+        filePreparingStarted = i10 + 142;
+        fileNewChunkAvailable = i10 + 143;
+        filePreparingFailed = i10 + 144;
+        dialogsUnreadCounterChanged = i10 + 145;
+        messagePlayingProgressDidChanged = i10 + 146;
+        messagePlayingDidReset = i10 + 147;
+        messagePlayingPlayStateChanged = i10 + 148;
+        messagePlayingDidStart = i10 + 149;
+        messagePlayingDidSeek = i10 + 150;
+        messagePlayingGoingToStop = i10 + 151;
+        recordProgressChanged = i10 + 152;
+        recordStarted = i10 + 153;
+        recordStartError = i10 + 154;
+        recordStopped = i10 + 155;
+        recordPaused = i10 + 156;
+        recordResumed = i10 + 157;
+        screenshotTook = i10 + 158;
+        albumsDidLoad = i10 + 159;
+        audioDidSent = i10 + 160;
+        audioRecordTooShort = i10 + 161;
+        audioRouteChanged = i10 + 162;
+        didStartedCall = i10 + 163;
+        groupCallUpdated = i10 + 164;
+        storyGroupCallUpdated = i10 + 165;
+        groupCallSpeakingUsersUpdated = i10 + 166;
+        groupCallScreencastStateChanged = i10 + 167;
+        activeGroupCallsUpdated = i10 + 168;
+        applyGroupCallVisibleParticipants = i10 + 169;
+        groupCallTypingsUpdated = i10 + 170;
+        didEndCall = i10 + 171;
+        closeInCallActivity = i10 + 172;
+        groupCallVisibilityChanged = i10 + 173;
+        liveStoryUpdated = i10 + 174;
+        liveStoryMessageUpdate = i10 + 175;
+        appDidLogout = i10 + 176;
+        configLoaded = i10 + 177;
+        needDeleteDialog = i10 + 178;
+        newEmojiSuggestionsAvailable = i10 + 179;
+        themeUploadedToServer = i10 + 180;
+        themeUploadError = i10 + 181;
+        dialogFiltersUpdated = i10 + 182;
+        filterSettingsUpdated = i10 + 183;
+        suggestedFiltersLoaded = i10 + 184;
+        updateBotMenuButton = i10 + 185;
+        giftsToUserSent = i10 + 186;
+        didStartedMultiGiftsSelector = i10 + 187;
+        boostedChannelByUser = i10 + 188;
+        boostByChannelCreated = i10 + 189;
+        didUpdatePremiumGiftStickers = i10 + 190;
+        didUpdateTonGiftStickers = i10 + 191;
+        didUpdatePremiumGiftFieldIcon = i10 + 192;
+        storiesEnabledUpdate = i10 + 193;
+        storiesBlocklistUpdate = i10 + 194;
+        storiesLimitUpdate = i10 + 195;
+        storiesSendAsUpdate = i10 + 196;
+        unconfirmedAuthUpdate = i10 + 197;
+        dialogPhotosUpdate = i10 + 198;
+        channelRecommendationsLoaded = i10 + 199;
+        savedMessagesDialogsUpdate = i10 + 200;
+        savedReactionTagsUpdate = i10 + 201;
+        userIsPremiumBlockedUpadted = i10 + 202;
+        storyAlbumsCollectionsUpdate = i10 + 203;
+        savedMessagesForwarded = i10 + 204;
+        emojiKeywordsLoaded = i10 + 205;
+        smsJobStatusUpdate = i10 + 206;
+        storyQualityUpdate = i10 + 207;
+        openBoostForUsersDialog = i10 + 208;
+        groupRestrictionsUnlockedByBoosts = i10 + 209;
+        chatWasBoostedByUser = i10 + 210;
+        groupPackUpdated = i10 + 211;
+        timezonesUpdated = i10 + 212;
+        customStickerCreated = i10 + 213;
+        premiumFloodWaitReceived = i10 + 214;
+        availableEffectsUpdate = i10 + 215;
+        starOptionsLoaded = i10 + 216;
+        starGiftOptionsLoaded = i10 + 217;
+        starGiveawayOptionsLoaded = i10 + 218;
+        starBalanceUpdated = i10 + 219;
+        starTransactionsLoaded = i10 + 220;
+        starSubscriptionsLoaded = i10 + 221;
+        factCheckLoaded = i10 + 222;
+        botStarsUpdated = i10 + 223;
+        botStarsTransactionsLoaded = i10 + 224;
+        channelStarsUpdated = i10 + 225;
+        updateAllMessages = i10 + 226;
+        starGiftsLoaded = i10 + 227;
+        starUserGiftsLoaded = i10 + 228;
+        starUserGiftCollectionsLoaded = i10 + 229;
+        starGiftSoldOut = i10 + 230;
+        updateStories = i10 + 231;
+        botDownloadsUpdate = i10 + 232;
+        channelSuggestedBotsUpdate = i10 + 233;
+        channelConnectedBotsUpdate = i10 + 234;
+        adminedChannelsLoaded = i10 + 235;
+        messagesFeeUpdated = i10 + 236;
+        commonChatsLoaded = i10 + 237;
+        appConfigUpdated = i10 + 238;
+        activeAuctionsUpdated = i10 + 239;
+        conferenceEmojiUpdated = i10 + 240;
+        contentSettingsLoaded = i10 + 241;
+        musicListLoaded = i10 + 242;
+        musicIdsLoaded = i10 + 243;
+        profileMusicUpdated = i10 + 244;
+        updatedChatRanks = i10 + 245;
+        joinedGroup = i10 + 246;
+        loadedAiComposeTones = i10 + 247;
+        updatedChatbot = i10 + 248;
+        activeAccountChanged = i10 + 249;
+        pushMessagesUpdated = i10 + 250;
+        wallpapersDidLoad = i10 + 251;
+        wallpapersNeedReload = i10 + 252;
+        didReceiveSmsCode = i10 + 253;
+        didReceiveCall = i10 + 254;
+        emojiLoaded = i10 + 255;
+        invalidateMotionBackground = i10 + 256;
+        closeOtherAppActivities = i10 + 257;
+        cameraInitied = i10 + 258;
+        didReplacedPhotoInMemCache = i10 + 259;
+        didSetNewTheme = i10 + 260;
+        themeListUpdated = i10 + 261;
+        didApplyNewTheme = i10 + 262;
+        themeAccentListUpdated = i10 + 263;
+        needCheckSystemBarColors = i10 + 264;
+        needShareTheme = i10 + 265;
+        needSetDayNightTheme = i10 + 266;
+        goingToPreviewTheme = i10 + 267;
+        locationPermissionGranted = i10 + 268;
+        locationPermissionDenied = i10 + 269;
+        reloadInterface = i10 + 270;
+        suggestedLangpack = i10 + 271;
+        didSetNewWallpapper = i10 + 272;
+        proxySettingsChanged = i10 + 273;
+        proxyCheckDone = i10 + 274;
+        proxyChangedByRotation = i10 + 275;
+        liveLocationsChanged = i10 + 276;
+        newLocationAvailable = i10 + 277;
+        liveLocationsCacheChanged = i10 + 278;
+        notificationsCountUpdated = i10 + 279;
+        playerDidStartPlaying = i10 + 280;
+        closeSearchByActiveAction = i10 + 281;
+        messagePlayingSpeedChanged = i10 + 282;
+        screenStateChanged = i10 + 283;
+        didClearDatabase = i10 + 284;
+        voipServiceCreated = i10 + 285;
+        webRtcMicAmplitudeEvent = i10 + 286;
+        webRtcSpeakerAmplitudeEvent = i10 + 287;
+        showBulletin = i10 + 288;
+        appUpdateAvailable = i10 + 289;
+        appUpdateLoading = i10 + 290;
+        onDatabaseMigration = i10 + 291;
+        onEmojiInteractionsReceived = i10 + 292;
+        emojiPreviewThemesChanged = i10 + 293;
+        reactionsDidLoad = i10 + 294;
+        attachMenuBotsDidLoad = i10 + 295;
+        chatAvailableReactionsUpdated = i10 + 296;
+        dialogsUnreadReactionsCounterChanged = i10 + 297;
+        dialogsUnreadPollVotesCounterChanged = i10 + 298;
+        onDatabaseOpened = i10 + 299;
+        onDownloadingFilesChanged = i10 + 300;
+        onActivityResultReceived = i10 + 301;
+        onRequestPermissionResultReceived = i10 + 302;
+        onUserRingtonesUpdated = i10 + 303;
+        currentUserPremiumStatusChanged = i10 + 304;
+        premiumPromoUpdated = i10 + 305;
+        premiumStatusChangedGlobal = i10 + 306;
+        currentUserShowLimitReachedDialog = i10 + 307;
+        billingProductDetailsUpdated = i10 + 308;
+        billingConfirmPurchaseError = i10 + 309;
+        premiumStickersPreviewLoaded = i10 + 310;
+        userEmojiStatusUpdated = i10 + 311;
+        requestPermissions = i10 + 312;
+        permissionsGranted = i10 + 313;
+        activityPermissionsGranted = i10 + 314;
+        topicsDidLoaded = i10 + 315;
+        chatSwitchedForum = i10 + 316;
+        didUpdateGlobalAutoDeleteTimer = i10 + 317;
+        onDatabaseReset = i10 + 318;
+        wallpaperSettedToUser = i10 + 319;
+        storiesUpdated = i10 + 320;
+        storyDeleted = i10 + 321;
+        storiesListUpdated = i10 + 322;
+        storiesDraftsUpdated = i10 + 323;
+        chatlistFolderUpdate = i10 + 324;
+        uploadStoryProgress = i10 + 325;
+        uploadStoryEnd = i10 + 326;
+        customTypefacesLoaded = i10 + 327;
+        stealthModeChanged = i10 + 328;
+        onReceivedChannelDifference = i10 + 329;
+        storiesReadUpdated = i10 + 330;
+        nearEarEvent = i10 + 331;
+        translationModelDownloading = i10 + 332;
+        translationModelDownloaded = i10 + 333;
+        botForumTopicDidCreate = i10 + 334;
+        botForumDraftUpdate = i10 + 335;
+        botForumDraftDelete = i10 + 336;
+        tlSchemeParseException = i10 + 337;
+        memoryLeakFoundException = i10 + 338;
+        callTabsVisibleToggled = i10 + 339;
+        contactsPermissionBadgeCheck = i10 + 340;
+        guardBotDecisionResult = i10 + 341;
+        webBrowserSettingsUpdate = i10 + 342;
+        communityPendingRequestsUpdate = i10 + 343;
+        totalEvents = i10 + 345;
+        communitySwitchedCollapsed = i10 + 344;
+    }
+
+    public NotificationCenter(int i10) {
+        this.currentAccount = i10;
     }
 
     public void checkForExpiredNotifications() {
@@ -464,51 +814,51 @@ public class NotificationCenter {
         }
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         long jMin = Long.MAX_VALUE;
-        for (int i = 0; i < this.allowedNotifications.size(); i++) {
-            long j = this.allowedNotifications.valueAt(i).time;
-            if (jElapsedRealtime - j > 1000) {
+        for (int i10 = 0; i10 < this.allowedNotifications.size(); i10++) {
+            long j10 = this.allowedNotifications.valueAt(i10).time;
+            if (jElapsedRealtime - j10 > 1000) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i)));
+                arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i10)));
             } else {
-                jMin = Math.min(j, jMin);
+                jMin = Math.min(j10, jMin);
             }
         }
         if (arrayList != null) {
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                onAnimationFinish(((Integer) arrayList.get(i2)).intValue());
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                onAnimationFinish(((Integer) arrayList.get(i11)).intValue());
             }
         }
         if (jMin != Long.MAX_VALUE) {
-            AndroidUtilities.runOnUIThread(new NotificationCenter$$ExternalSyntheticLambda1(this, 0), Math.max(17L, 5017 - (jElapsedRealtime - jMin)));
+            AndroidUtilities.runOnUIThread(new tg(this, 0), Math.max(17L, 5017 - (jElapsedRealtime - jMin)));
         }
     }
 
-    private ArrayList<NotificationCenterDelegate> createArrayForId(int i) {
-        return (i == didReplacedPhotoInMemCache || i == stopAllHeavyOperations || i == startAllHeavyOperations) ? new UniqArrayList() : new ArrayList<>();
+    private ArrayList<NotificationCenterDelegate> createArrayForId(int i10) {
+        return (i10 == didReplacedPhotoInMemCache || i10 == stopAllHeavyOperations || i10 == startAllHeavyOperations) ? new UniqArrayList() : new ArrayList<>();
     }
 
     public static void diffObserverDumps(SparseArray<Integer> sparseArray, SparseArray<Integer> sparseArray2) {
-        for (int i = 0; i < sparseArray.size(); i++) {
-            int iKeyAt = sparseArray.keyAt(i);
-            int iIntValue = sparseArray.valueAt(i).intValue();
+        for (int i10 = 0; i10 < sparseArray.size(); i10++) {
+            int iKeyAt = sparseArray.keyAt(i10);
+            int iIntValue = sparseArray.valueAt(i10).intValue();
             int iIntValue2 = sparseArray2.get(iKeyAt, -1).intValue();
             if (iIntValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + iKeyAt + " REMOVED (was " + iIntValue + ")");
             } else if (iIntValue != iIntValue2) {
-                StringBuilder sbM = DiffUtil.m("key=", iKeyAt, " CHANGED: ", iIntValue, " -> ");
-                sbM.append(iIntValue2);
-                Log.i("ObserverDiff", sbM.toString());
+                StringBuilder sbP = com.google.android.recaptcha.internal.a.p("key=", iKeyAt, " CHANGED: ", iIntValue, " -> ");
+                sbP.append(iIntValue2);
+                Log.i("ObserverDiff", sbP.toString());
             }
         }
-        for (int i2 = 0; i2 < sparseArray2.size(); i2++) {
-            int iKeyAt2 = sparseArray2.keyAt(i2);
+        for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
+            int iKeyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(iKeyAt2, -1).intValue() == -1) {
-                StringBuilder sbM2 = DiffUtil.m(iKeyAt2, "key=", " ADDED (size=");
-                sbM2.append(sparseArray2.valueAt(i2));
-                sbM2.append(")");
-                Log.i("ObserverDiff", sbM2.toString());
+                StringBuilder sbO = i0.a.o(iKeyAt2, "key=", " ADDED (size=");
+                sbO.append(sparseArray2.valueAt(i11));
+                sbO.append(")");
+                Log.i("ObserverDiff", sbO.toString());
             }
         }
     }
@@ -533,19 +883,19 @@ public class NotificationCenter {
         return notificationCenter;
     }
 
-    public static NotificationCenter getInstance(int i) {
+    public static NotificationCenter getInstance(int i10) {
         NotificationCenter notificationCenter;
-        NotificationCenter notificationCenter2 = Instance[i];
+        NotificationCenter notificationCenter2 = Instance[i10];
         if (notificationCenter2 != null) {
             return notificationCenter2;
         }
         synchronized (NotificationCenter.class) {
             try {
-                notificationCenter = Instance[i];
+                notificationCenter = Instance[i10];
                 if (notificationCenter == null) {
                     NotificationCenter[] notificationCenterArr = Instance;
-                    NotificationCenter notificationCenter3 = new NotificationCenter(i);
-                    notificationCenterArr[i] = notificationCenter3;
+                    NotificationCenter notificationCenter3 = new NotificationCenter(i10);
+                    notificationCenterArr[i10] = notificationCenter3;
                     notificationCenter = notificationCenter3;
                 }
             } catch (Throwable th) {
@@ -556,64 +906,61 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda1(this, 1);
+        this.checkForExpiredNotifications = new tg(this, 1);
     }
 
-    public static void lambda$listen$3() {
-    }
-
-    public static void lambda$listen$4(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
-        if (i2 == i) {
+    public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
+        if (i11 == i10) {
             callback.run(objArr);
         }
     }
 
-    public void lambda$listen$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
+    public void lambda$listen$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i10) {
         view.removeOnAttachStateChangeListener(onAttachStateChangeListener);
-        removeObserver(notificationCenterDelegate, i);
+        removeObserver(notificationCenterDelegate, i10);
     }
 
-    public void lambda$postNotificationDebounced$2(int i, Object[] objArr, int i2) {
-        postNotificationNameInternal(i, false, objArr);
-        this.alreadyPostedRunnubles.remove(i2);
+    public void lambda$postNotificationDebounced$2(int i10, Object[] objArr, int i11) {
+        postNotificationNameInternal(i10, false, objArr);
+        this.alreadyPostedRunnubles.remove(i11);
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new Emoji$$ExternalSyntheticLambda3(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new z0(view, 2));
     }
 
-    private void postNotificationDebounced(int i, Object[] objArr) {
-        int iHashCode = i + (Arrays.hashCode(objArr) << 16);
+    private void postNotificationDebounced(int i10, Object[] objArr) {
+        int iHashCode = i10 + (Arrays.hashCode(objArr) << 16);
         if (this.alreadyPostedRunnubles.indexOfKey(iHashCode) >= 0) {
             return;
         }
-        ImageLoader$5$$ExternalSyntheticLambda6 imageLoader$5$$ExternalSyntheticLambda6 = new ImageLoader$5$$ExternalSyntheticLambda6(this, i, objArr, iHashCode, 6);
-        this.alreadyPostedRunnubles.put(iHashCode, imageLoader$5$$ExternalSyntheticLambda6);
-        AndroidUtilities.runOnUIThread(imageLoader$5$$ExternalSyntheticLambda6, 250L);
+        y4 y4Var = new y4(this, i10, objArr, iHashCode, 8);
+        this.alreadyPostedRunnubles.put(iHashCode, y4Var);
+        AndroidUtilities.runOnUIThread(y4Var, 250L);
     }
 
-    private boolean shouldDebounce(int i, Object[] objArr) {
-        return i == updateInterfaces;
+    private boolean shouldDebounce(int i10, Object[] objArr) {
+        return i10 == updateInterfaces;
     }
 
-    public void addObserver(NotificationCenterDelegate notificationCenterDelegate, int i) {
+    public void addObserver(NotificationCenterDelegate notificationCenterDelegate, int i10) {
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             throw new RuntimeException("addObserver allowed only from MAIN thread");
         }
         if (this.broadcasting != 0) {
-            ArrayList<NotificationCenterDelegate> arrayList = this.addAfterBroadcast.get(i);
+            ArrayList<NotificationCenterDelegate> arrayList = this.addAfterBroadcast.get(i10);
             if (arrayList == null) {
                 arrayList = new ArrayList<>();
-                this.addAfterBroadcast.put(i, arrayList);
+                this.addAfterBroadcast.put(i10, arrayList);
             }
             arrayList.add(notificationCenterDelegate);
             return;
         }
-        ArrayList<NotificationCenterDelegate> arrayList2 = this.observers.get(i);
+        ArrayList<NotificationCenterDelegate> arrayList2 = this.observers.get(i10);
         if (arrayList2 == null) {
             SparseArray<ArrayList<NotificationCenterDelegate>> sparseArray = this.observers;
-            ArrayList<NotificationCenterDelegate> arrayListCreateArrayForId = createArrayForId(i);
-            sparseArray.put(i, arrayListCreateArrayForId);
+            ArrayList<NotificationCenterDelegate> arrayListCreateArrayForId = createArrayForId(i10);
+            sparseArray.put(i10, arrayListCreateArrayForId);
             arrayList2 = arrayListCreateArrayForId;
         }
         if (arrayList2.contains(notificationCenterDelegate)) {
@@ -624,7 +971,7 @@ public class NotificationCenter {
             return;
         }
         alreadyLogged = true;
-        FileLog.e((Throwable) new RuntimeException(DiffUtil.m(i, "Total observers more than 1000, need check for memory leak. ")), true);
+        FileLog.e((Throwable) new RuntimeException(i0.a.k(i10, "Total observers more than 1000, need check for memory leak. ")), true);
     }
 
     public void addPostponeNotificationsCallback(PostponeNotificationCallback postponeNotificationCallback) {
@@ -651,9 +998,9 @@ public class NotificationCenter {
 
     public SparseArray<Integer> dumpObservers() {
         SparseArray<Integer> sparseArray = new SparseArray<>();
-        for (int i = 0; i < this.observers.size(); i++) {
-            int iKeyAt = this.observers.keyAt(i);
-            ArrayList<NotificationCenterDelegate> arrayListValueAt = this.observers.valueAt(i);
+        for (int i10 = 0; i10 < this.observers.size(); i10++) {
+            int iKeyAt = this.observers.keyAt(i10);
+            ArrayList<NotificationCenterDelegate> arrayListValueAt = this.observers.valueAt(i10);
             sparseArray.put(iKeyAt, Integer.valueOf(arrayListValueAt != null ? arrayListValueAt.size() : 0));
         }
         return sparseArray;
@@ -663,14 +1010,14 @@ public class NotificationCenter {
         return this.currentHeavyOperationFlags;
     }
 
-    public ArrayList<NotificationCenterDelegate> getObservers(int i) {
-        return this.observers.get(i);
+    public ArrayList<NotificationCenterDelegate> getObservers(int i10) {
+        return this.observers.get(i10);
     }
 
     public int getObserversSize() {
         int size = 0;
-        for (int i = 0; i < this.observers.size(); i++) {
-            ArrayList<NotificationCenterDelegate> arrayListValueAt = this.observers.valueAt(i);
+        for (int i10 = 0; i10 < this.observers.size(); i10++) {
+            ArrayList<NotificationCenterDelegate> arrayListValueAt = this.observers.valueAt(i10);
             if (arrayListValueAt != null) {
                 size = arrayListValueAt.size() + size;
             }
@@ -678,46 +1025,46 @@ public class NotificationCenter {
         return size;
     }
 
-    public boolean hasObservers(int i) {
-        return this.observers.indexOfKey(i) >= 0;
+    public boolean hasObservers(int i10) {
+        return this.observers.indexOfKey(i10) >= 0;
     }
 
     public boolean isAnimationInProgress() {
         return this.animationInProgressCount > 0;
     }
 
-    public Runnable listen(View view, final int i, final Utilities.Callback<Object[]> callback) {
+    public Runnable listen(View view, final int i10, final Utilities.Callback<Object[]> callback) {
         if (view == null || callback == null) {
-            return new Emoji$$ExternalSyntheticLambda1(16);
+            return new w1(16);
         }
         final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
             @Override
-            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.lambda$listen$4(i, callback, i2, i3, objArr);
+            public final void didReceivedNotification(int i11, int i12, Object[] objArr) {
+                NotificationCenter.lambda$listen$4(i10, callback, i11, i12, objArr);
             }
         };
         View.OnAttachStateChangeListener onAttachStateChangeListener = new View.OnAttachStateChangeListener() {
             @Override
             public void onViewAttachedToWindow(View view2) {
-                NotificationCenter.this.addObserver(notificationCenterDelegate, i);
+                NotificationCenter.this.addObserver(notificationCenterDelegate, i10);
             }
 
             @Override
             public void onViewDetachedFromWindow(View view2) {
-                NotificationCenter.this.removeObserver(notificationCenterDelegate, i);
+                NotificationCenter.this.removeObserver(notificationCenterDelegate, i10);
             }
         };
         view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-        return new GiftSheet$$ExternalSyntheticLambda15(this, view, onAttachStateChangeListener, notificationCenterDelegate, i, 6);
+        return new gh.e1(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 9);
     }
 
-    public void onAnimationFinish(int i) {
-        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i);
-        this.allowedNotifications.delete(i);
+    public void onAnimationFinish(int i10) {
+        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i10);
+        this.allowedNotifications.delete(i10);
         if (allowedNotifications != null) {
             this.animationInProgressCount--;
             if (!this.heavyOperationsCounter.isEmpty()) {
-                this.heavyOperationsCounter.remove(Integer.valueOf(i));
+                this.heavyOperationsCounter.remove(Integer.valueOf(i10));
                 if (this.heavyOperationsCounter.isEmpty()) {
                     getGlobalInstance().lambda$postNotificationNameOnUIThread$1(startAllHeavyOperations, 512);
                 }
@@ -733,98 +1080,93 @@ public class NotificationCenter {
         this.checkForExpiredNotifications = null;
     }
 
-    public void lambda$postNotificationNameOnUIThread$1(int i, Object... objArr) {
-        boolean z = true;
-        boolean z2 = i == startAllHeavyOperations || i == stopAllHeavyOperations || i == didReplacedPhotoInMemCache || i == closeChats || i == invalidateMotionBackground || i == needCheckSystemBarColors || i == messageReceivedByServer2;
+    public void lambda$postNotificationNameOnUIThread$1(int i10, Object... objArr) {
+        boolean z10 = i10 == startAllHeavyOperations || i10 == stopAllHeavyOperations || i10 == didReplacedPhotoInMemCache || i10 == closeChats || i10 == invalidateMotionBackground || i10 == needCheckSystemBarColors || i10 == messageReceivedByServer2;
         ArrayList arrayList = null;
-        if (z2 || this.allowedNotifications.size() <= 0) {
-            z = z2;
-        } else {
+        if (!z10 && this.allowedNotifications.size() > 0) {
             int size = this.allowedNotifications.size();
             long jElapsedRealtime = SystemClock.elapsedRealtime();
-            int i2 = 0;
-            for (int i3 = 0; i3 < this.allowedNotifications.size(); i3++) {
-                AllowedNotifications allowedNotificationsValueAt = this.allowedNotifications.valueAt(i3);
+            int i11 = 0;
+            for (int i12 = 0; i12 < this.allowedNotifications.size(); i12++) {
+                AllowedNotifications allowedNotificationsValueAt = this.allowedNotifications.valueAt(i12);
                 if (jElapsedRealtime - allowedNotificationsValueAt.time > 5017) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();
                     }
-                    arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i3)));
+                    arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i12)));
                 }
                 int[] iArr = allowedNotificationsValueAt.allowedIds;
                 if (iArr == null) {
                     break;
                 }
-                for (int i4 : iArr) {
-                    if (i4 == i) {
-                        i2++;
+                for (int i13 : iArr) {
+                    if (i13 == i10) {
+                        i11++;
                         break;
                     }
                 }
             }
-            if (size != i2) {
-                z = false;
-            }
+            z10 = size == i11;
         }
-        if (i == startAllHeavyOperations) {
+        if (i10 == startAllHeavyOperations) {
             this.currentHeavyOperationFlags = (~((Integer) objArr[0]).intValue()) & this.currentHeavyOperationFlags;
-        } else if (i == stopAllHeavyOperations) {
+        } else if (i10 == stopAllHeavyOperations) {
             this.currentHeavyOperationFlags = ((Integer) objArr[0]).intValue() | this.currentHeavyOperationFlags;
         }
-        if (shouldDebounce(i, objArr) && BuildVars.DEBUG_VERSION) {
-            postNotificationDebounced(i, objArr);
+        if (shouldDebounce(i10, objArr) && BuildVars.DEBUG_VERSION) {
+            postNotificationDebounced(i10, objArr);
         } else {
-            postNotificationNameInternal(i, z, objArr);
+            postNotificationNameInternal(i10, z10, objArr);
         }
         if (arrayList != null) {
-            for (int i5 = 0; i5 < arrayList.size(); i5++) {
-                onAnimationFinish(((Integer) arrayList.get(i5)).intValue());
+            for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                onAnimationFinish(((Integer) arrayList.get(i14)).intValue());
             }
         }
     }
 
-    public void postNotificationNameInternal(int i, boolean z, Object... objArr) {
+    public void postNotificationNameInternal(int i10, boolean z10, Object... objArr) {
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             throw new RuntimeException("postNotificationName allowed only from MAIN thread");
         }
-        if (!z && isAnimationInProgress()) {
-            this.delayedPosts.add(new DelayedPost(i, objArr));
+        if (!z10 && isAnimationInProgress()) {
+            this.delayedPosts.add(new DelayedPost(i10, objArr));
             return;
         }
         if (!this.postponeCallbackList.isEmpty()) {
-            for (int i2 = 0; i2 < this.postponeCallbackList.size(); i2++) {
-                if (this.postponeCallbackList.get(i2).needPostpone(i, this.currentAccount, objArr)) {
-                    this.delayedPosts.add(new DelayedPost(i, objArr));
+            for (int i11 = 0; i11 < this.postponeCallbackList.size(); i11++) {
+                if (this.postponeCallbackList.get(i11).needPostpone(i10, this.currentAccount, objArr)) {
+                    this.delayedPosts.add(new DelayedPost(i10, objArr));
                     return;
                 }
             }
         }
         this.broadcasting++;
-        ArrayList<NotificationCenterDelegate> arrayList = this.observers.get(i);
+        ArrayList<NotificationCenterDelegate> arrayList = this.observers.get(i10);
         if (arrayList != null && !arrayList.isEmpty()) {
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                arrayList.get(i3).didReceivedNotification(i, this.currentAccount, objArr);
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                arrayList.get(i12).didReceivedNotification(i10, this.currentAccount, objArr);
             }
         }
-        int i4 = this.broadcasting - 1;
-        this.broadcasting = i4;
-        if (i4 == 0) {
+        int i13 = this.broadcasting - 1;
+        this.broadcasting = i13;
+        if (i13 == 0) {
             if (this.removeAfterBroadcast.size() != 0) {
-                for (int i5 = 0; i5 < this.removeAfterBroadcast.size(); i5++) {
-                    int iKeyAt = this.removeAfterBroadcast.keyAt(i5);
+                for (int i14 = 0; i14 < this.removeAfterBroadcast.size(); i14++) {
+                    int iKeyAt = this.removeAfterBroadcast.keyAt(i14);
                     ArrayList<NotificationCenterDelegate> arrayList2 = this.removeAfterBroadcast.get(iKeyAt);
-                    for (int i6 = 0; i6 < arrayList2.size(); i6++) {
-                        removeObserver(arrayList2.get(i6), iKeyAt);
+                    for (int i15 = 0; i15 < arrayList2.size(); i15++) {
+                        removeObserver(arrayList2.get(i15), iKeyAt);
                     }
                 }
                 this.removeAfterBroadcast.clear();
             }
             if (this.addAfterBroadcast.size() != 0) {
-                for (int i7 = 0; i7 < this.addAfterBroadcast.size(); i7++) {
-                    int iKeyAt2 = this.addAfterBroadcast.keyAt(i7);
+                for (int i16 = 0; i16 < this.addAfterBroadcast.size(); i16++) {
+                    int iKeyAt2 = this.addAfterBroadcast.keyAt(i16);
                     ArrayList<NotificationCenterDelegate> arrayList3 = this.addAfterBroadcast.get(iKeyAt2);
-                    for (int i8 = 0; i8 < arrayList3.size(); i8++) {
-                        addObserver(arrayList3.get(i8), iKeyAt2);
+                    for (int i17 = 0; i17 < arrayList3.size(); i17++) {
+                        addObserver(arrayList3.get(i17), iKeyAt2);
                     }
                 }
                 this.addAfterBroadcast.clear();
@@ -832,30 +1174,30 @@ public class NotificationCenter {
         }
     }
 
-    public void postNotificationNameOnUIThread(int i, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda5(this, i, objArr, 19));
+    public void postNotificationNameOnUIThread(int i10, Object... objArr) {
+        AndroidUtilities.runOnUIThread(new r4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
         this.delayedRunnables.remove(runnable);
     }
 
-    public void removeObserver(NotificationCenterDelegate notificationCenterDelegate, int i) {
+    public void removeObserver(NotificationCenterDelegate notificationCenterDelegate, int i10) {
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             throw new RuntimeException("removeObserver allowed only from MAIN thread");
         }
         if (this.broadcasting == 0) {
-            ArrayList<NotificationCenterDelegate> arrayList = this.observers.get(i);
+            ArrayList<NotificationCenterDelegate> arrayList = this.observers.get(i10);
             if (arrayList != null) {
                 arrayList.remove(notificationCenterDelegate);
                 return;
             }
             return;
         }
-        ArrayList<NotificationCenterDelegate> arrayList2 = this.removeAfterBroadcast.get(i);
+        ArrayList<NotificationCenterDelegate> arrayList2 = this.removeAfterBroadcast.get(i10);
         if (arrayList2 == null) {
             arrayList2 = new ArrayList<>();
-            this.removeAfterBroadcast.put(i, arrayList2);
+            this.removeAfterBroadcast.put(i10, arrayList2);
         }
         arrayList2.add(notificationCenterDelegate);
     }
@@ -874,9 +1216,9 @@ public class NotificationCenter {
             this.delayedPostsTmp.clear();
             this.delayedPostsTmp.addAll(this.delayedPosts);
             this.delayedPosts.clear();
-            for (int i = 0; i < this.delayedPostsTmp.size(); i++) {
-                DelayedPost delayedPost = this.delayedPostsTmp.get(i);
-                postNotificationNameInternal(delayedPost.id, true, delayedPost.args);
+            for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
+                DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
+                postNotificationNameInternal(delayedPost.f19625id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -886,28 +1228,28 @@ public class NotificationCenter {
         this.delayedRunnablesTmp.clear();
         this.delayedRunnablesTmp.addAll(this.delayedRunnables);
         this.delayedRunnables.clear();
-        for (int i2 = 0; i2 < this.delayedRunnablesTmp.size(); i2++) {
-            AndroidUtilities.runOnUIThread(this.delayedRunnablesTmp.get(i2));
+        for (int i11 = 0; i11 < this.delayedRunnablesTmp.size(); i11++) {
+            AndroidUtilities.runOnUIThread(this.delayedRunnablesTmp.get(i11));
         }
         this.delayedRunnablesTmp.clear();
     }
 
-    public int setAnimationInProgress(int i, int[] iArr) {
-        return setAnimationInProgress(i, iArr, true);
+    public int setAnimationInProgress(int i10, int[] iArr) {
+        return setAnimationInProgress(i10, iArr, true);
     }
 
-    public void updateAllowedNotifications(int i, int[] iArr) {
-        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i);
+    public void updateAllowedNotifications(int i10, int[] iArr) {
+        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i10);
         if (allowedNotifications != null) {
             allowedNotifications.allowedIds = iArr;
         }
     }
 
-    public void updateObserver(boolean z, NotificationCenterDelegate notificationCenterDelegate, int i) {
-        if (z) {
-            addObserver(notificationCenterDelegate, i);
+    public void updateObserver(boolean z10, NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        if (z10) {
+            addObserver(notificationCenterDelegate, i10);
         } else {
-            removeObserver(notificationCenterDelegate, i);
+            removeObserver(notificationCenterDelegate, i10);
         }
     }
 
@@ -919,9 +1261,9 @@ public class NotificationCenter {
         }
 
         @Override
-        public boolean add(T t) {
-            if (this.set.add(t)) {
-                return super.add(t);
+        public boolean add(T t10) {
+            if (this.set.add(t10)) {
+                return super.add(t10);
             }
             return false;
         }
@@ -929,13 +1271,13 @@ public class NotificationCenter {
         @Override
         public boolean addAll(Collection<? extends T> collection) {
             Iterator<? extends T> it = collection.iterator();
-            boolean z = false;
+            boolean z10 = false;
             while (it.hasNext()) {
                 if (add(it.next())) {
-                    z = true;
+                    z10 = true;
                 }
             }
-            return z;
+            return z10;
         }
 
         @Override
@@ -950,12 +1292,12 @@ public class NotificationCenter {
         }
 
         @Override
-        public T remove(int i) {
-            T t = (T) super.remove(i);
-            if (t != null) {
-                this.set.remove(t);
+        public T remove(int i10) {
+            T t10 = (T) super.remove(i10);
+            if (t10 != null) {
+                this.set.remove(t10);
             }
-            return t;
+            return t10;
         }
 
         @Override
@@ -964,14 +1306,14 @@ public class NotificationCenter {
         }
 
         @Override
-        public void add(int i, T t) {
-            if (this.set.add(t)) {
-                super.add(i, t);
+        public void add(int i10, T t10) {
+            if (this.set.add(t10)) {
+                super.add(i10, t10);
             }
         }
 
         @Override
-        public boolean addAll(int i, Collection<? extends T> collection) {
+        public boolean addAll(int i10, Collection<? extends T> collection) {
             throw new UnsupportedOperationException();
         }
 
@@ -984,26 +1326,29 @@ public class NotificationCenter {
         }
     }
 
-    public int setAnimationInProgress(int i, int[] iArr, boolean z) {
-        int i2 = 1;
-        onAnimationFinish(i);
-        if (this.heavyOperationsCounter.isEmpty() && z) {
+    public int setAnimationInProgress(int i10, int[] iArr, boolean z10) {
+        onAnimationFinish(i10);
+        int i11 = 1;
+        if (this.heavyOperationsCounter.isEmpty() && z10) {
             getGlobalInstance().lambda$postNotificationNameOnUIThread$1(stopAllHeavyOperations, 512);
         }
         this.animationInProgressCount++;
-        int i3 = this.animationInProgressPointer + 1;
-        this.animationInProgressPointer = i3;
-        if (z) {
-            this.heavyOperationsCounter.add(Integer.valueOf(i3));
+        int i12 = this.animationInProgressPointer + 1;
+        this.animationInProgressPointer = i12;
+        if (z10) {
+            this.heavyOperationsCounter.add(Integer.valueOf(i12));
         }
         AllowedNotifications allowedNotifications = new AllowedNotifications();
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            NotificationCenter$$ExternalSyntheticLambda1 notificationCenter$$ExternalSyntheticLambda1 = new NotificationCenter$$ExternalSyntheticLambda1(this, i2);
-            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda1;
-            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda1, 5017L);
+            tg tgVar = new tg(this, i11);
+            this.checkForExpiredNotifications = tgVar;
+            AndroidUtilities.runOnUIThread(tgVar, 5017L);
         }
         return this.animationInProgressPointer;
+    }
+
+    public static void lambda$listen$3() {
     }
 }

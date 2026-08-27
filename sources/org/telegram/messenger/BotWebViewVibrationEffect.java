@@ -34,7 +34,7 @@ public enum BotWebViewVibrationEffect {
                 this.vibrationEffect = VibrationEffect.createWaveform(this.fallbackTimings, -1);
             }
         }
-        return AndroidUtilities$$ExternalSyntheticApiModelOutline1.m(this.vibrationEffect);
+        return (VibrationEffect) this.vibrationEffect;
     }
 
     public void vibrate() {

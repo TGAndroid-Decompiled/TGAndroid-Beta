@@ -16,24 +16,22 @@ public final class AiTonesController {
     private int requestId = -1;
     private long requestedTime = 0;
 
-    public AiTonesController(int i) {
-        this.currentAccount = i;
+    public AiTonesController(int i10) {
+        this.currentAccount = i10;
     }
 
     public void lambda$request$0(TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
         this.requestId = -1;
         this.requestedTime = System.currentTimeMillis();
-        if (!(tones instanceof TL_aicompose.TL_tones)) {
-            boolean z = tones instanceof TL_aicompose.TL_tonesNotModified;
-            return;
+        if (tones instanceof TL_aicompose.TL_tones) {
+            MessagesController.getInstance(this.currentAccount).putUsers(tones.users, false);
+            this.tones.clear();
+            TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
+            this.tones.addAll(tL_tones.tones);
+            this.hash = tL_tones.hash;
+            save();
+            notifyUpdate();
         }
-        MessagesController.getInstance(this.currentAccount).putUsers(tones.users, false);
-        this.tones.clear();
-        TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
-        this.tones.addAll(tL_tones.tones);
-        this.hash = tL_tones.hash;
-        save();
-        notifyUpdate();
     }
 
     private void save() {
@@ -47,9 +45,9 @@ public final class AiTonesController {
 
     public void add(TL_aicompose.AiComposeTone aiComposeTone) {
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-            long j = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).id;
-            for (int i = 0; i < this.tones.size(); i++) {
-                if ((this.tones.get(i) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i)).id == j) {
+            long j10 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f22591id;
+            for (int i10 = 0; i10 < this.tones.size(); i10++) {
+                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f22591id == j10) {
                     return;
                 }
             }
@@ -67,9 +65,9 @@ public final class AiTonesController {
     }
 
     public void edit(TL_aicompose.TL_aiComposeTone tL_aiComposeTone) {
-        for (int i = 0; i < this.tones.size(); i++) {
-            if ((this.tones.get(i) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i)).id == tL_aiComposeTone.id) {
-                this.tones.set(i, tL_aiComposeTone);
+        for (int i10 = 0; i10 < this.tones.size(); i10++) {
+            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f22591id == tL_aiComposeTone.f22591id) {
+                this.tones.set(i10, tL_aiComposeTone);
                 notifyUpdate();
                 return;
             }
@@ -77,13 +75,13 @@ public final class AiTonesController {
     }
 
     public int getSavedTonesCount() {
-        int i = 0;
-        for (int i2 = 0; i2 < this.tones.size(); i2++) {
-            if (this.tones.get(i2) instanceof TL_aicompose.TL_aiComposeTone) {
-                i++;
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.tones.size(); i11++) {
+            if (this.tones.get(i11) instanceof TL_aicompose.TL_aiComposeTone) {
+                i10++;
             }
         }
-        return i;
+        return i10;
     }
 
     public void invalidate() {
@@ -111,8 +109,8 @@ public final class AiTonesController {
                         this.tones.addAll(((TL_aicompose.TL_tones) tonesTLdeserialize).tones);
                     }
                 }
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e9) {
+                FileLog.e(e9);
             }
         }
         request();
@@ -132,7 +130,7 @@ public final class AiTonesController {
         if (this.requestId < 0 && System.currentTimeMillis() - this.requestedTime >= 1800000) {
             TL_aicompose.getTones gettones = new TL_aicompose.getTones();
             gettones.hash = this.hash;
-            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new AiTonesController$$ExternalSyntheticLambda0(), new AiTonesController$$ExternalSyntheticLambda1(this, 0));
+            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new a(), new le(this, 1));
         }
     }
 

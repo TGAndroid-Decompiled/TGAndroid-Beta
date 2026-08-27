@@ -10,14 +10,14 @@ public class JavaFontRenderingBox extends Box {
     private float size;
     private TextLayout text;
 
-    public JavaFontRenderingBox(String str, int i, float f, Font font2, boolean z) {
-        this.size = f;
-        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i), null);
+    public JavaFontRenderingBox(String str, int i10, float f10, Font font2, boolean z10) {
+        this.size = f10;
+        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i10), null);
         this.text = textLayout;
         Rectangle2D bounds = textLayout.getBounds();
-        this.height = ((-bounds.getY()) * f) / 10.0f;
-        this.depth = ((bounds.getHeight() * f) / 10.0f) - this.height;
-        this.width = (((bounds.getX() + bounds.getWidth()) + 0.4f) * f) / 10.0f;
+        this.height = ((-bounds.getY()) * f10) / 10.0f;
+        this.depth = ((bounds.getHeight() * f10) / 10.0f) - this.height;
+        this.width = (((bounds.getX() + bounds.getWidth()) + 0.4f) * f10) / 10.0f;
     }
 
     public static void setFont(String str) {
@@ -25,15 +25,15 @@ public class JavaFontRenderingBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        drawDebug(graphics2D, f, f2);
-        graphics2D.translate(f, f2);
-        float f3 = this.size;
-        graphics2D.scale(((double) f3) * 0.1d, ((double) f3) * 0.1d);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        drawDebug(graphics2D, f10, f11);
+        graphics2D.translate(f10, f11);
+        float f12 = this.size;
+        graphics2D.scale(((double) f12) * 0.1d, ((double) f12) * 0.1d);
         this.text.draw(graphics2D, 0, 0);
-        float f4 = this.size;
-        graphics2D.scale(10.0f / f4, 10.0f / f4);
-        graphics2D.translate(-f, -f2);
+        float f13 = this.size;
+        graphics2D.scale(10.0f / f13, 10.0f / f13);
+        graphics2D.translate(-f10, -f11);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class JavaFontRenderingBox extends Box {
         return 0;
     }
 
-    public JavaFontRenderingBox(String str, int i, float f) {
-        this(str, i, f, font, true);
+    public JavaFontRenderingBox(String str, int i10, float f10) {
+        this(str, i10, f10, font, true);
     }
 }

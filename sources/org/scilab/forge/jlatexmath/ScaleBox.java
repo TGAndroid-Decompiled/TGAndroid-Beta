@@ -7,30 +7,30 @@ public class ScaleBox extends Box {
     private double xscl;
     private double yscl;
 
-    public ScaleBox(Box box, double d, double d2) {
+    public ScaleBox(Box box, double d, double d10) {
         this.box = box;
         this.xscl = (Double.isNaN(d) || Double.isInfinite(d)) ? 0.0d : d;
-        this.yscl = (Double.isNaN(d2) || Double.isInfinite(d2)) ? 0.0d : d2;
+        this.yscl = (Double.isNaN(d10) || Double.isInfinite(d10)) ? 0.0d : d10;
         this.width = box.width * ((float) Math.abs(this.xscl));
-        double d3 = this.yscl;
-        this.height = (d3 > 0.0d ? box.height : -box.depth) * ((float) d3);
-        this.depth = (d3 > 0.0d ? box.depth : -box.height) * ((float) d3);
-        this.shift = box.shift * ((float) d3);
+        double d11 = this.yscl;
+        this.height = (d11 > 0.0d ? box.height : -box.depth) * ((float) d11);
+        this.depth = (d11 > 0.0d ? box.depth : -box.height) * ((float) d11);
+        this.shift = box.shift * ((float) d11);
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        drawDebug(graphics2D, f, f2);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        drawDebug(graphics2D, f10, f11);
         double d = this.xscl;
         if (d == 0.0d || this.yscl == 0.0d) {
             return;
         }
-        float f3 = d < 0.0d ? this.width : 0.0f;
-        graphics2D.translate(f + f3, f2);
+        float f12 = d < 0.0d ? this.width : 0.0f;
+        graphics2D.translate(f10 + f12, f11);
         graphics2D.scale(this.xscl, this.yscl);
         this.box.draw(graphics2D, 0.0f, 0.0f);
         graphics2D.scale(1.0d / this.xscl, 1.0d / this.yscl);
-        graphics2D.translate((-f) - f3, -f2);
+        graphics2D.translate((-f10) - f12, -f11);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class ScaleBox extends Box {
         return this.box.getLastFontId();
     }
 
-    public ScaleBox(Box box, float f) {
-        double d = f;
+    public ScaleBox(Box box, float f10) {
+        double d = f10;
         this(box, d, d);
     }
 }

@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 
 public class CameraEnumerationAndroid {
     static final ArrayList<Size> COMMON_RESOLUTIONS = new ArrayList<>(Arrays.asList(new Size(160, 120), new Size(240, 160), new Size(320, 240), new Size(400, 240), new Size(480, 320), new Size(640, 360), new Size(640, 480), new Size(768, 480), new Size(854, 480), new Size(800, 600), new Size(960, 540), new Size(960, 640), new Size(1024, 576), new Size(1024, 600), new Size(1280, 720), new Size(1280, 1024), new Size(1920, 1080), new Size(1920, 1440), new Size(2560, 1440), new Size(3840, 2160)));
@@ -22,9 +21,9 @@ public class CameraEnumerationAndroid {
             public int max;
             public int min;
 
-            public FramerateRange(int i, int i2) {
-                this.min = i;
-                this.max = i2;
+            public FramerateRange(int i10, int i11) {
+                this.min = i10;
+                this.max = i11;
             }
 
             public boolean equals(Object obj) {
@@ -44,10 +43,10 @@ public class CameraEnumerationAndroid {
             }
         }
 
-        public CaptureFormat(int i, int i2, int i3, int i4) {
-            this.width = i;
-            this.height = i2;
-            this.framerate = new FramerateRange(i3, i4);
+        public CaptureFormat(int i10, int i11, int i12, int i13) {
+            this.width = i10;
+            this.height = i11;
+            this.framerate = new FramerateRange(i12, i13);
         }
 
         public boolean equals(Object obj) {
@@ -70,16 +69,16 @@ public class CameraEnumerationAndroid {
             return this.width + "x" + this.height + "@" + this.framerate;
         }
 
-        public static int frameSize(int i, int i2, int i3) {
-            if (i3 != 17) {
+        public static int frameSize(int i10, int i11, int i12) {
+            if (i12 != 17) {
                 throw new UnsupportedOperationException("Don't know how to calculate the frame size of non-NV21 image formats.");
             }
-            return (ImageFormat.getBitsPerPixel(i3) * (i * i2)) / 8;
+            return (ImageFormat.getBitsPerPixel(i12) * (i10 * i11)) / 8;
         }
 
-        public CaptureFormat(int i, int i2, FramerateRange framerateRange) {
-            this.width = i;
-            this.height = i2;
+        public CaptureFormat(int i10, int i11, FramerateRange framerateRange) {
+            this.width = i10;
+            this.height = i11;
             this.framerate = framerateRange;
         }
     }
@@ -89,14 +88,14 @@ public class CameraEnumerationAndroid {
         }
 
         @Override
-        public int compare(T t, T t2) {
-            return diff(t) - diff(t2);
+        public int compare(T t10, T t11) {
+            return diff(t10) - diff(t11);
         }
 
-        public abstract int diff(T t);
+        public abstract int diff(T t10);
     }
 
-    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i) {
+    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i10) {
         return (CaptureFormat.FramerateRange) Collections.min(list, new ClosestComparator<CaptureFormat.FramerateRange>() {
             private static final int MAX_FPS_DIFF_THRESHOLD = 5000;
             private static final int MAX_FPS_HIGH_DIFF_WEIGHT = 3;
@@ -109,18 +108,18 @@ public class CameraEnumerationAndroid {
                 super();
             }
 
-            private int progressivePenalty(int i2, int i3, int i4, int i5) {
-                return i2 < i3 ? i2 * i4 : CalendarActivity$$ExternalSyntheticOutline0.m(i2, i3, i5, i4 * i3);
+            private int progressivePenalty(int i11, int i12, int i13, int i14) {
+                return i11 < i12 ? i11 * i13 : i0.a.e(i11, i12, i14, i13 * i12);
             }
 
             @Override
             public int diff(CaptureFormat.FramerateRange framerateRange) {
-                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i * 1000) - framerateRange.max), 5000, 1, 3);
+                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i10 * 1000) - framerateRange.max), 5000, 1, 3);
             }
         });
     }
 
-    public static Size getClosestSupportedSize(List<Size> list, final int i, final int i2) {
+    public static Size getClosestSupportedSize(List<Size> list, final int i10, final int i11) {
         return (Size) Collections.min(list, new ClosestComparator<Size>() {
             {
                 super();
@@ -128,7 +127,7 @@ public class CameraEnumerationAndroid {
 
             @Override
             public int diff(Size size) {
-                return Math.abs(i2 - size.height) + Math.abs(i - size.width);
+                return Math.abs(i11 - size.height) + Math.abs(i10 - size.width);
             }
         });
     }

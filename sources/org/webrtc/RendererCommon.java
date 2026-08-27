@@ -8,11 +8,11 @@ public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     public interface GlDrawer {
-        void drawOes(int i, int i2, int i3, int i4, int i5, float[] fArr, int i6, int i7, int i8, int i9, int i10, int i11, boolean z);
+        void drawOes(int i10, int i11, int i12, int i13, int i14, float[] fArr, int i15, int i16, int i17, int i18, int i19, int i20, boolean z10);
 
-        void drawRgb(int i, int i2, int i3, int i4, int i5, float[] fArr, int i6, int i7, int i8, int i9, int i10, int i11, boolean z);
+        void drawRgb(int i10, int i11, int i12, int i13, int i14, float[] fArr, int i15, int i16, int i17, int i18, int i19, int i20, boolean z10);
 
-        void drawYuv(int[] iArr, int i, int i2, int i3, int i4, float[] fArr, int i5, int i6, int i7, int i8, int i9, int i10, boolean z);
+        void drawYuv(int[] iArr, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
 
         void release();
     }
@@ -20,7 +20,7 @@ public class RendererCommon {
     public interface RendererEvents {
         void onFirstFrameRendered();
 
-        void onFrameResolutionChanged(int i, int i2, int i3);
+        void onFrameResolutionChanged(int i10, int i11, int i12);
     }
 
     public enum ScalingType {
@@ -39,23 +39,23 @@ public class RendererCommon {
             this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
         }
 
-        public Point measure(boolean z, int i, int i2, int i3, int i4) {
-            int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i);
-            int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i2);
-            if (i3 == 0 || i4 == 0 || defaultSize == 0 || defaultSize2 == 0) {
+        public Point measure(boolean z10, int i10, int i11, int i12, int i13) {
+            int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i10);
+            int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i11);
+            if (i12 == 0 || i13 == 0 || defaultSize == 0 || defaultSize2 == 0) {
                 return new Point(defaultSize, defaultSize2);
             }
-            float f = i3 / i4;
-            float f2 = defaultSize / defaultSize2;
-            Point displaySize = RendererCommon.getDisplaySize(((f > 1.0f ? 1 : (f == 1.0f ? 0 : -1)) > 0) == ((f2 > 1.0f ? 1 : (f2 == 1.0f ? 0 : -1)) > 0) ? this.visibleFractionMatchOrientation : this.visibleFractionMismatchOrientation, f, defaultSize, defaultSize2);
-            if (!z) {
-                if (View.MeasureSpec.getMode(i) == 1073741824) {
+            float f10 = i12 / i13;
+            float f11 = defaultSize / defaultSize2;
+            Point displaySize = RendererCommon.getDisplaySize(((f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1)) > 0) == ((f11 > 1.0f ? 1 : (f11 == 1.0f ? 0 : -1)) > 0) ? this.visibleFractionMatchOrientation : this.visibleFractionMismatchOrientation, f10, defaultSize, defaultSize2);
+            if (!z10) {
+                if (View.MeasureSpec.getMode(i10) == 1073741824) {
                     displaySize.x = defaultSize;
                 }
-                if (View.MeasureSpec.getMode(i2) == 1073741824) {
+                if (View.MeasureSpec.getMode(i11) == 1073741824) {
                     displaySize.y = defaultSize2;
                 } else {
-                    if ((f > 1.0f) == (f2 > 1.0f)) {
+                    if ((f10 > 1.0f) == (f11 > 1.0f)) {
                         displaySize.y = defaultSize2;
                     }
                 }
@@ -67,9 +67,9 @@ public class RendererCommon {
             setScalingType(scalingType, scalingType);
         }
 
-        public void setVisibleFraction(float f, float f2) {
-            this.visibleFractionMatchOrientation = f;
-            this.visibleFractionMismatchOrientation = f2;
+        public void setVisibleFraction(float f10, float f11) {
+            this.visibleFractionMatchOrientation = f10;
+            this.visibleFractionMismatchOrientation = f11;
         }
 
         public void setScalingType(ScalingType scalingType, ScalingType scalingType2) {
@@ -79,12 +79,12 @@ public class RendererCommon {
     }
 
     private static void adjustOrigin(float[] fArr) {
-        float f = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
-        fArr[12] = f;
-        float f2 = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
-        fArr[13] = f2;
-        fArr[12] = f + 0.5f;
-        fArr[13] = f2 + 0.5f;
+        float f10 = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
+        fArr[12] = f10;
+        float f11 = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
+        fArr[13] = f11;
+        fArr[12] = f10 + 0.5f;
+        fArr[13] = f11 + 0.5f;
     }
 
     public static float[] convertMatrixFromAndroidGraphicsMatrix(Matrix matrix) {
@@ -114,31 +114,31 @@ public class RendererCommon {
         throw new IllegalArgumentException();
     }
 
-    public static Point getDisplaySize(ScalingType scalingType, float f, int i, int i2) {
-        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f, i, i2);
+    public static Point getDisplaySize(ScalingType scalingType, float f10, int i10, int i11) {
+        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i10, i11);
     }
 
-    public static float[] getLayoutMatrix(boolean z, float f, float f2) {
-        float f3;
-        float f4;
-        if (f2 > f) {
-            f4 = f / f2;
-            f3 = 1.0f;
+    public static float[] getLayoutMatrix(boolean z10, float f10, float f11) {
+        float f12;
+        float f13;
+        if (f11 > f10) {
+            f13 = f10 / f11;
+            f12 = 1.0f;
         } else {
-            f3 = f2 / f;
-            f4 = 1.0f;
+            f12 = f11 / f10;
+            f13 = 1.0f;
         }
-        if (z) {
-            f3 *= -1.0f;
+        if (z10) {
+            f12 *= -1.0f;
         }
         float[] fArr = new float[16];
         android.opengl.Matrix.setIdentityM(fArr, 0);
-        android.opengl.Matrix.scaleM(fArr, 0, f3, f4, 1.0f);
+        android.opengl.Matrix.scaleM(fArr, 0, f12, f13, 1.0f);
         adjustOrigin(fArr);
         return fArr;
     }
 
-    public static Point getDisplaySize(float f, float f2, int i, int i2) {
-        return (f == 0.0f || f2 == 0.0f) ? new Point(i, i2) : new Point(Math.min(i, Math.round((i2 / f) * f2)), Math.min(i2, Math.round((i / f) / f2)));
+    public static Point getDisplaySize(float f10, float f11, int i10, int i11) {
+        return (f10 == 0.0f || f11 == 0.0f) ? new Point(i10, i11) : new Point(Math.min(i10, Math.round((i11 / f10) * f11)), Math.min(i11, Math.round((i10 / f10) / f11)));
     }
 }

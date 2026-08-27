@@ -15,13 +15,13 @@ public class SendMessageChatArguments {
             return new SendMessageChatArguments(this);
         }
 
-        public void setQuickReplyShortcut(String str, int i) {
+        public void setQuickReplyShortcut(String str, int i10) {
             this.quickReplyShortcut = str;
-            this.quickReplyShortcutId = i;
+            this.quickReplyShortcutId = i10;
         }
 
-        public void setWelcomeMessageChatId(long j) {
-            this.welcomeMessageChatId = j;
+        public void setWelcomeMessageChatId(long j10) {
+            this.welcomeMessageChatId = j10;
         }
     }
 

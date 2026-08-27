@@ -7,13 +7,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public class ProxyRotationController implements NotificationCenter.NotificationCenterDelegate {
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new SecretChatHelper$$ExternalSyntheticLambda22(this, 5);
+    private Runnable checkProxyAndSwitchRunnable = new rg(this, 4);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -21,43 +20,43 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     private void initInternal() {
-        for (int i = 0; i < 4; i++) {
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.didUpdateConnectionState);
+        for (int i10 = 0; i10 < 4; i10++) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.didUpdateConnectionState);
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.proxyCheckDone);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.proxySettingsChanged);
     }
 
-    public static void lambda$new$0(SharedConfig.ProxyInfo proxyInfo, long j) {
+    public static void lambda$new$0(SharedConfig.ProxyInfo proxyInfo, long j10) {
         proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
         proxyInfo.checking = false;
-        if (j == -1) {
+        if (j10 == -1) {
             proxyInfo.available = false;
             proxyInfo.ping = 0L;
         } else {
-            proxyInfo.ping = j;
+            proxyInfo.ping = j10;
             proxyInfo.available = true;
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
     }
 
-    public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j) {
-        AndroidUtilities.runOnUIThread(new RichEditor$$ExternalSyntheticLambda48(proxyInfo, j, 5));
+    public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j10) {
+        AndroidUtilities.runOnUIThread(new nh(proxyInfo, j10, 0));
     }
 
     public void lambda$new$2() {
         this.isCurrentlyChecking = true;
-        int i = UserConfig.selectedAccount;
-        boolean z = false;
-        for (int i2 = 0; i2 < SharedConfig.proxyList.size(); i2++) {
-            SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i2);
+        int i10 = UserConfig.selectedAccount;
+        boolean z10 = false;
+        for (int i11 = 0; i11 < SharedConfig.proxyList.size(); i11++) {
+            SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i11);
             if (!proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
                 proxyInfo.checking = true;
-                proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new BillingController$$ExternalSyntheticLambda0(proxyInfo, 11));
-                z = true;
+                proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new d(proxyInfo, 11));
+                z10 = true;
             }
         }
-        if (z) {
+        if (z10) {
             return;
         }
         this.isCurrentlyChecking = false;
@@ -72,12 +71,12 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
             ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-            Collections.sort(arrayList, new Emoji$$ExternalSyntheticLambda0(26));
+            Collections.sort(arrayList, new q(26));
             int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
                 SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
                 if (proxyInfo != SharedConfig.currentProxy && !proxyInfo.checking && proxyInfo.available) {
                     SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
@@ -103,21 +102,21 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.proxyCheckDone) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.proxyCheckDone) {
             if (SharedConfig.isProxyEnabled() && SharedConfig.proxyRotationEnabled && SharedConfig.proxyList.size() > 1 && this.isCurrentlyChecking) {
                 switchToAvailable();
                 return;
             }
             return;
         }
-        if (i == NotificationCenter.proxySettingsChanged) {
+        if (i10 == NotificationCenter.proxySettingsChanged) {
             AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
             return;
         }
-        if (i == NotificationCenter.didUpdateConnectionState && i2 == UserConfig.selectedAccount) {
+        if (i10 == NotificationCenter.didUpdateConnectionState && i11 == UserConfig.selectedAccount) {
             if ((SharedConfig.isProxyEnabled() || SharedConfig.proxyRotationEnabled) && SharedConfig.proxyList.size() > 1) {
-                if (ConnectionsManager.getInstance(i2).getConnectionState() != 4) {
+                if (ConnectionsManager.getInstance(i11).getConnectionState() != 4) {
                     AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
                 } else {
                     if (this.isCurrentlyChecking) {

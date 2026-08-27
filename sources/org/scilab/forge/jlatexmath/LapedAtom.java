@@ -4,9 +4,9 @@ public class LapedAtom extends Atom {
     private Atom at;
     private char type;
 
-    public LapedAtom(Atom atom, char c) {
+    public LapedAtom(Atom atom, char c10) {
         this.at = atom;
-        this.type = c;
+        this.type = c10;
     }
 
     @Override
@@ -15,12 +15,12 @@ public class LapedAtom extends Atom {
         VerticalBox verticalBox = new VerticalBox();
         verticalBox.add(boxCreateBox);
         verticalBox.setWidth(0.0f);
-        char c = this.type;
-        if (c == 'l') {
+        char c10 = this.type;
+        if (c10 == 'l') {
             boxCreateBox.setShift(-boxCreateBox.getWidth());
             return verticalBox;
         }
-        if (c != 'r') {
+        if (c10 != 'r') {
             boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
             return verticalBox;
         }

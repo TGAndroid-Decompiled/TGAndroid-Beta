@@ -1,152 +1,134 @@
 package org.telegram.messenger;
 
-import androidx.car.app.HostException;
-import com.google.android.gms.internal.mlkit_language_id_common.zzii;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.internal.LinkedTreeMap;
-import com.google.gson.internal.Streams;
-import com.google.gson.internal.bind.TypeAdapters;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import com.google.gson.stream.MalformedJsonException;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterFactory {
+public final class RuntimeClassNameTypeAdapterFactory<T> implements ma.v {
     private final Class<?> baseType;
-    private final ExclusionStrategy exclusionStrategy;
+    private final ma.a exclusionStrategy;
     private final Map<String, Class<?>> labelToSubtype = new LinkedHashMap();
     private final Map<Class<?>, String> subtypeToLabel = new LinkedHashMap();
     private final String typeFieldName;
 
-    private RuntimeClassNameTypeAdapterFactory(Class<?> cls, String str, ExclusionStrategy exclusionStrategy) {
+    private RuntimeClassNameTypeAdapterFactory(Class<?> cls, String str, ma.a aVar) {
         if (str == null || cls == null) {
             throw null;
         }
         this.baseType = cls;
         this.typeFieldName = str;
-        this.exclusionStrategy = exclusionStrategy;
+        this.exclusionStrategy = aVar;
     }
 
-    public static <T> RuntimeClassNameTypeAdapterFactory<T> of(Class<T> cls, String str, ExclusionStrategy exclusionStrategy) {
-        return new RuntimeClassNameTypeAdapterFactory<>(cls, str, exclusionStrategy);
+    public static <T> RuntimeClassNameTypeAdapterFactory<T> of(Class<T> cls, String str, ma.a aVar) {
+        return new RuntimeClassNameTypeAdapterFactory<>(cls, str, aVar);
     }
 
     @Override
-    public <R> TypeAdapter create(final Gson gson, final TypeToken<R> typeToken) {
-        if (this.exclusionStrategy.shouldSkipClass(typeToken.rawType.getClass())) {
+    public <R> ma.u create(final ma.g gVar, final ta.a<R> aVar) {
+        ma.a aVar2 = this.exclusionStrategy;
+        Class cls = aVar.f48151a;
+        Class cls2 = aVar.f48151a;
+        if (aVar2.shouldSkipClass(cls.getClass())) {
             return null;
         }
         final LinkedHashMap linkedHashMap = new LinkedHashMap();
         final LinkedHashMap linkedHashMap2 = new LinkedHashMap();
-        Class cls = typeToken.rawType;
-        if (Object.class.isAssignableFrom(cls)) {
-            TypeAdapter delegateAdapter = gson.getDelegateAdapter(this, typeToken);
-            linkedHashMap.put(cls.getSimpleName(), delegateAdapter);
-            linkedHashMap2.put(cls, delegateAdapter);
+        if (Object.class.isAssignableFrom(cls2)) {
+            ma.u uVarC = gVar.c(this, aVar);
+            linkedHashMap.put(cls2.getSimpleName(), uVarC);
+            linkedHashMap2.put(cls2, uVarC);
         }
-        return new TypeAdapter() {
-            private TypeAdapter getDelegate(Class<?> cls2) {
-                TypeAdapter typeAdapter = (TypeAdapter) linkedHashMap2.get(cls2);
-                if (typeAdapter != null) {
-                    return typeAdapter;
+        return new ma.u() {
+            private ma.u getDelegate(Class<?> cls3) {
+                ma.u uVar = (ma.u) linkedHashMap2.get(cls3);
+                if (uVar != null) {
+                    return uVar;
                 }
                 for (Map.Entry entry : linkedHashMap2.entrySet()) {
-                    if (((Class) entry.getKey()).isAssignableFrom(cls2)) {
-                        return (TypeAdapter) entry.getValue();
+                    if (((Class) entry.getKey()).isAssignableFrom(cls3)) {
+                        return (ma.u) entry.getValue();
                     }
                 }
                 return null;
             }
 
             @Override
-            public R read(JsonReader jsonReader) {
-                boolean z;
-                JsonElement jsonElement;
+            public R read(ua.a aVar3) {
+                boolean z10;
+                ma.i iVar;
                 try {
                     try {
-                        jsonReader.peek();
-                        z = false;
+                        aVar3.x();
+                        z10 = false;
                         try {
-                            jsonElement = (JsonElement) TypeAdapters.JSON_ELEMENT.read(jsonReader);
-                        } catch (EOFException e) {
-                            e = e;
-                            if (!z) {
-                                throw new JsonIOException(e);
+                            iVar = (ma.i) pa.h1.f45646z.read(aVar3);
+                        } catch (EOFException e9) {
+                            e = e9;
+                            if (!z10) {
+                                throw new ma.j(e);
                             }
-                            jsonElement = JsonNull.INSTANCE;
+                            iVar = ma.k.f17910a;
                         }
-                    } catch (EOFException e2) {
-                        e = e2;
-                        z = true;
+                    } catch (EOFException e10) {
+                        e = e10;
+                        z10 = true;
                     }
-                    jsonElement.getClass();
-                    if (!(jsonElement instanceof JsonObject)) {
-                        if (jsonElement instanceof JsonNull) {
+                    iVar.getClass();
+                    if (!(iVar instanceof ma.l)) {
+                        if (iVar instanceof ma.k) {
                             return null;
                         }
-                        return gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, typeToken).fromJsonTree(jsonElement);
+                        return gVar.c(RuntimeClassNameTypeAdapterFactory.this, aVar).fromJsonTree(iVar);
                     }
-                    JsonElement jsonElement2 = (JsonElement) jsonElement.getAsJsonObject().members.remove(RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
-                    if (jsonElement2 == null) {
-                        throw new HostException("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + " because it does not define a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
+                    ma.i iVar2 = (ma.i) iVar.i().f17911a.remove(RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
+                    if (iVar2 == null) {
+                        throw new a7.c("cannot deserialize " + RuntimeClassNameTypeAdapterFactory.this.baseType + " because it does not define a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
                     }
-                    String asString = jsonElement2.getAsString();
-                    TypeAdapter delegateAdapter2 = (TypeAdapter) linkedHashMap.get(asString);
-                    if (delegateAdapter2 == null) {
+                    String strN = iVar2.n();
+                    ma.u uVarC2 = (ma.u) linkedHashMap.get(strN);
+                    if (uVarC2 == null) {
                         try {
-                            delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, new TypeToken(Class.forName(asString)));
-                        } catch (ClassNotFoundException e3) {
-                            throw new HostException(zzii.m("Cannot find class ", asString), e3);
+                            uVarC2 = gVar.c(RuntimeClassNameTypeAdapterFactory.this, new ta.a(Class.forName(strN)));
+                        } catch (ClassNotFoundException e11) {
+                            throw new a7.c(s3.c.e("Cannot find class ", strN), e11);
                         }
                     }
-                    return delegateAdapter2.fromJsonTree(jsonElement);
-                } catch (MalformedJsonException e4) {
-                    throw new JsonIOException(e4);
-                } catch (IOException e5) {
-                    throw new JsonIOException(e5);
-                } catch (NumberFormatException e6) {
-                    throw new JsonIOException(e6);
+                    return uVarC2.fromJsonTree(iVar);
+                } catch (IOException e12) {
+                    throw new ma.j(e12);
+                } catch (NumberFormatException e13) {
+                    throw new ma.j(e13);
+                } catch (ua.c e14) {
+                    throw new ma.j(e14);
                 }
             }
 
             @Override
-            public void write(JsonWriter jsonWriter, R r) {
-                Class<?> cls2 = r.getClass();
-                String simpleName = cls2.getSimpleName();
-                TypeAdapter delegate = getDelegate(cls2);
+            public void write(ua.b bVar, R r10) {
+                Class<?> cls3 = r10.getClass();
+                String simpleName = cls3.getSimpleName();
+                ma.u delegate = getDelegate(cls3);
                 if (delegate == null) {
-                    throw new HostException("cannot serialize " + cls2.getSimpleName() + "; did you forget to register a subtype?");
+                    throw new a7.c("cannot serialize " + cls3.getSimpleName() + "; did you forget to register a subtype?");
                 }
-                JsonElement jsonTree = delegate.toJsonTree(r);
+                ma.i jsonTree = delegate.toJsonTree(r10);
                 jsonTree.getClass();
-                if (!(jsonTree instanceof JsonObject)) {
-                    Streams.write(jsonTree, jsonWriter);
+                if (!(jsonTree instanceof ma.l)) {
+                    oa.d.l(jsonTree, bVar);
                     return;
                 }
-                JsonObject asJsonObject = jsonTree.getAsJsonObject();
-                String str = RuntimeClassNameTypeAdapterFactory.this.typeFieldName;
-                LinkedTreeMap linkedTreeMap = asJsonObject.members;
-                if (linkedTreeMap.containsKey(str)) {
-                    throw new HostException("cannot serialize " + cls2.getSimpleName() + " because it already defines a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
+                oa.l lVar = jsonTree.i().f17911a;
+                if (lVar.containsKey(RuntimeClassNameTypeAdapterFactory.this.typeFieldName)) {
+                    throw new a7.c("cannot serialize " + cls3.getSimpleName() + " because it already defines a field named " + RuntimeClassNameTypeAdapterFactory.this.typeFieldName);
                 }
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.add(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new JsonPrimitive(simpleName));
-                for (Map.Entry entry : (LinkedTreeMap.KeySet) linkedTreeMap.entrySet()) {
-                    jsonObject.add((String) entry.getKey(), (JsonElement) entry.getValue());
+                ma.l lVar2 = new ma.l();
+                lVar2.o(RuntimeClassNameTypeAdapterFactory.this.typeFieldName, new ma.m(simpleName));
+                for (Map.Entry entry : (oa.j) lVar.entrySet()) {
+                    lVar2.o((String) entry.getKey(), (ma.i) entry.getValue());
                 }
-                Streams.write(jsonObject, jsonWriter);
+                oa.d.l(lVar2, bVar);
             }
         }.nullSafe();
     }

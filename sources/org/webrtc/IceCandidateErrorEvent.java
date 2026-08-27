@@ -7,11 +7,11 @@ public final class IceCandidateErrorEvent {
     public final int port;
     public final String url;
 
-    public IceCandidateErrorEvent(String str, int i, String str2, int i2, String str3) {
+    public IceCandidateErrorEvent(String str, int i10, String str2, int i11, String str3) {
         this.address = str;
-        this.port = i;
+        this.port = i10;
         this.url = str2;
-        this.errorCode = i2;
+        this.errorCode = i11;
         this.errorText = str3;
     }
 }

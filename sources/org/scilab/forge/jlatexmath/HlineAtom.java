@@ -13,11 +13,11 @@ public class HlineAtom extends Atom {
         return verticalBox;
     }
 
-    public void setShift(float f) {
-        this.shift = f;
+    public void setShift(float f10) {
+        this.shift = f10;
     }
 
-    public void setWidth(float f) {
-        this.width = f;
+    public void setWidth(float f10) {
+        this.width = f10;
     }
 }

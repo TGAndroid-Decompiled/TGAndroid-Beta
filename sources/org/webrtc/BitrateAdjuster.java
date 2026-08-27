@@ -5,7 +5,7 @@ interface BitrateAdjuster {
 
     double getAdjustedFramerateFps();
 
-    void reportEncodedFrame(int i);
+    void reportEncodedFrame(int i10);
 
-    void setTargets(int i, double d);
+    void setTargets(int i10, double d);
 }

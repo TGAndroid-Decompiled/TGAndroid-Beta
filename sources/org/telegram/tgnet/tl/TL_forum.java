@@ -44,8 +44,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -62,8 +62,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_affectedHistory deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_messages_affectedHistory.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.TL_messages_affectedHistory deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.TL_messages_affectedHistory.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -100,8 +100,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -112,16 +112,17 @@ public class TL_forum {
         public int offset_id;
         public int offset_topic;
         public TLRPC.InputPeer peer;
-        public String q;
+
+        public String f22598q;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1000635391);
-            int flag = TLObject.setFlag(0, 1, this.q != null);
+            int flag = TLObject.setFlag(0, 1, this.f22598q != null);
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(flag, 1)) {
-                outputSerializedData.writeString(this.q);
+                outputSerializedData.writeString(this.f22598q);
             }
             outputSerializedData.writeInt32(this.offset_date);
             outputSerializedData.writeInt32(this.offset_id);
@@ -130,8 +131,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -148,8 +149,8 @@ public class TL_forum {
         }
 
         @Override
-        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.TL_messages_forumTopics deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.TL_messages_forumTopics.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -160,8 +161,8 @@ public class TL_forum {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -180,8 +181,8 @@ public class TL_forum {
         public int topic_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override

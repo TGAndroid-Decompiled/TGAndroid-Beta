@@ -65,7 +65,7 @@ public class RowAtom extends Atom implements Row {
         HorizontalBox horizontalBox = new HorizontalBox(teXEnvironment.getColor(), teXEnvironment.getBackground());
         teXEnvironment.reset();
         ListIterator<Atom> listIterator = this.elements.listIterator();
-        int i = 0;
+        int i10 = 0;
         while (true) {
             Atom next = null;
             if (!listIterator.hasNext()) {
@@ -73,27 +73,27 @@ public class RowAtom extends Atom implements Row {
                 return horizontalBox;
             }
             Atom next2 = listIterator.next();
-            i++;
-            boolean z = false;
+            i10++;
+            boolean z10 = false;
             while (next2 instanceof BreakMarkAtom) {
-                if (!z) {
-                    z = true;
+                if (!z10) {
+                    z10 = true;
                 }
                 if (!listIterator.hasNext()) {
                     break;
                 }
                 next2 = listIterator.next();
-                i++;
+                i10++;
             }
             if (next2 instanceof DynamicAtom) {
                 DynamicAtom dynamicAtom = (DynamicAtom) next2;
                 if (dynamicAtom.getInsertMode()) {
                     next2 = dynamicAtom.getAtom();
                     if (next2 instanceof RowAtom) {
-                        int i2 = i - 1;
-                        this.elements.remove(i2);
-                        this.elements.addAll(i2, ((RowAtom) next2).elements);
-                        listIterator = this.elements.listIterator(i2);
+                        int i11 = i10 - 1;
+                        this.elements.remove(i11);
+                        this.elements.addAll(i11, ((RowAtom) next2).elements);
+                        listIterator = this.elements.listIterator(i11);
                         next2 = listIterator.next();
                     }
                 }
@@ -107,7 +107,7 @@ public class RowAtom extends Atom implements Row {
             while (true) {
                 if (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
                     Atom next3 = listIterator.next();
-                    int i3 = i + 1;
+                    int i12 = i10 + 1;
                     if ((next3 instanceof CharSymbol) && ligKernSet.get(next3.getLeftType())) {
                         dummy2.markAsTextSymbol();
                         CharFont charFont = dummy2.getCharFont(teXFont);
@@ -119,7 +119,7 @@ public class RowAtom extends Atom implements Row {
                             break;
                         }
                         dummy2.changeAtom(new FixedCharAtom(ligature));
-                        i = i3;
+                        i10 = i12;
                     } else {
                         listIterator.previous();
                     }
@@ -135,7 +135,7 @@ public class RowAtom extends Atom implements Row {
             if (dummy2.isCharInMathMode() && (boxCreateBox instanceof CharBox)) {
                 ((CharBox) boxCreateBox).addItalicCorrectionToWidth();
             }
-            if (z || ((next2 instanceof CharAtom) && Character.isDigit(((CharAtom) next2).getCharacter()))) {
+            if (z10 || ((next2 instanceof CharAtom) && Character.isDigit(((CharAtom) next2).getCharacter()))) {
                 horizontalBox.addBreakPosition(horizontalBox.children.size());
             }
             horizontalBox.add(boxCreateBox);

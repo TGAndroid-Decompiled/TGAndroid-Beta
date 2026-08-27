@@ -9,70 +9,68 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.RemoteViews;
-import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 
 public class ChatsWidgetProvider extends AppWidgetProvider {
-    private static int getCellsForSize(int i) {
-        int i2 = 2;
-        while (i2 * 72 < i) {
-            i2++;
+    private static int getCellsForSize(int i10) {
+        int i11 = 2;
+        while (i11 * 72 < i10) {
+            i11++;
         }
-        return i2 - 1;
+        return i11 - 1;
     }
 
-    public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i) {
-        int i2;
-        int i3;
+    public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i10) {
+        int i11;
+        int i12;
         ApplicationLoader.postInitApplication();
-        int cellsForSize = getCellsForSize(appWidgetManager.getAppWidgetOptions(i).getInt("appWidgetMaxHeight"));
+        int cellsForSize = getCellsForSize(appWidgetManager.getAppWidgetOptions(i10).getInt("appWidgetMaxHeight"));
         Intent intent = new Intent(context, (Class<?>) ChatsWidgetService.class);
-        intent.putExtra("appWidgetId", i);
+        intent.putExtra("appWidgetId", i10);
         intent.setData(Uri.parse(intent.toUri(1)));
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
-        if (sharedPreferences.getBoolean("deleted" + i, false)) {
-            i2 = i;
-            i3 = R.layout.shortcut_widget_layout_1;
+        if (sharedPreferences.getBoolean("deleted" + i10, false)) {
+            i11 = i10;
+            i12 = R.layout.shortcut_widget_layout_1;
         } else {
-            int i4 = sharedPreferences.getInt("account" + i, -1);
-            if (i4 == -1) {
+            int i13 = sharedPreferences.getInt("account" + i10, -1);
+            if (i13 == -1) {
                 SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-                editorEdit.putInt(DiffUtil.m(i, "account"), UserConfig.selectedAccount);
-                editorEdit.putInt("type" + i, 0).commit();
+                editorEdit.putInt(i0.a.k(i10, "account"), UserConfig.selectedAccount);
+                editorEdit.putInt("type" + i10, 0).commit();
             }
             ArrayList<Long> arrayList = new ArrayList<>();
-            if (i4 >= 0) {
-                i2 = i;
-                AccountInstance.getInstance(i4).getMessagesStorage().getWidgetDialogIds(i2, 0, arrayList, null, null, false);
+            if (i13 >= 0) {
+                i11 = i10;
+                AccountInstance.getInstance(i13).getMessagesStorage().getWidgetDialogIds(i11, 0, arrayList, null, null, false);
             } else {
-                i2 = i;
+                i11 = i10;
             }
             if (cellsForSize == 1 || arrayList.size() <= 1) {
-                i3 = R.layout.shortcut_widget_layout_1;
+                i12 = R.layout.shortcut_widget_layout_1;
             } else if (cellsForSize == 2 || arrayList.size() <= 2) {
-                i3 = R.layout.shortcut_widget_layout_2;
+                i12 = R.layout.shortcut_widget_layout_2;
             } else {
-                i3 = (cellsForSize == 3 || arrayList.size() <= 3) ? R.layout.shortcut_widget_layout_3 : R.layout.shortcut_widget_layout_4;
+                i12 = (cellsForSize == 3 || arrayList.size() <= 3) ? R.layout.shortcut_widget_layout_3 : R.layout.shortcut_widget_layout_4;
             }
         }
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i3);
-        int i5 = R.id.list_view;
-        remoteViews.setRemoteAdapter(i2, i5, intent);
-        remoteViews.setEmptyView(i5, R.id.empty_view);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i12);
+        remoteViews.setRemoteAdapter(i11, R.id.list_view, intent);
+        remoteViews.setEmptyView(R.id.list_view, R.id.empty_view);
         Intent intent2 = new Intent(ApplicationLoader.applicationContext, (Class<?>) LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + Integer.MAX_VALUE);
         intent2.addFlags(67108864);
         intent2.addCategory("android.intent.category.LAUNCHER");
-        remoteViews.setPendingIntentTemplate(i5, PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160));
-        appWidgetManager.updateAppWidget(i2, remoteViews);
-        appWidgetManager.notifyAppWidgetViewDataChanged(i2, i5);
+        remoteViews.setPendingIntentTemplate(R.id.list_view, PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160));
+        appWidgetManager.updateAppWidget(i11, remoteViews);
+        appWidgetManager.notifyAppWidgetViewDataChanged(i11, R.id.list_view);
     }
 
     @Override
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int i, Bundle bundle) {
-        updateWidget(context, appWidgetManager, i);
-        super.onAppWidgetOptionsChanged(context, appWidgetManager, i, bundle);
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int i10, Bundle bundle) {
+        updateWidget(context, appWidgetManager, i10);
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, i10, bundle);
     }
 
     @Override
@@ -81,14 +79,14 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
         ApplicationLoader.postInitApplication();
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
         SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-        for (int i = 0; i < iArr.length; i++) {
-            int i2 = sharedPreferences.getInt("account" + iArr[i], -1);
-            if (i2 >= 0) {
-                AccountInstance.getInstance(i2).getMessagesStorage().clearWidgetDialogs(iArr[i]);
+        for (int i10 = 0; i10 < iArr.length; i10++) {
+            int i11 = sharedPreferences.getInt("account" + iArr[i10], -1);
+            if (i11 >= 0) {
+                AccountInstance.getInstance(i11).getMessagesStorage().clearWidgetDialogs(iArr[i10]);
             }
-            editorEdit.remove("account" + iArr[i]);
-            editorEdit.remove("type" + iArr[i]);
-            editorEdit.remove("deleted" + iArr[i]);
+            editorEdit.remove("account" + iArr[i10]);
+            editorEdit.remove("type" + iArr[i10]);
+            editorEdit.remove("deleted" + iArr[i10]);
         }
         editorEdit.commit();
     }
@@ -101,8 +99,8 @@ public class ChatsWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
         super.onUpdate(context, appWidgetManager, iArr);
-        for (int i : iArr) {
-            updateWidget(context, appWidgetManager, i);
+        for (int i10 : iArr) {
+            updateWidget(context, appWidgetManager, i10);
         }
     }
 }

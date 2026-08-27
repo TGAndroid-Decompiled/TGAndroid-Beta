@@ -11,7 +11,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.EncoderInfo getEncoderInfo() {
-        return VideoEncoder.CC.$default$getEncoderInfo(this);
+        return x.b(this);
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public final VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
-        return VideoEncoder.CC.$default$getResolutionBitrateLimits(this);
+        return x.c(this);
     }
 
     @Override
@@ -43,12 +43,12 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i) {
+    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i10) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 
     @Override
     public final VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        return setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        return x.e(this, rateControlParameters);
     }
 }

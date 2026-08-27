@@ -1,9 +1,9 @@
 package org.telegram.SQLite;
 
-import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+import s3.c;
 
 public class SQLiteDatabase {
     private boolean inTransaction;
@@ -25,7 +25,7 @@ public class SQLiteDatabase {
         beginTransaction(this.sqliteHandle);
     }
 
-    public native void beginTransaction(long j);
+    public native void beginTransaction(long j10);
 
     public void checkOpened() throws SQLiteException {
         if (!this.isOpen) {
@@ -38,16 +38,16 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e) {
+            } catch (SQLiteException e9) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                    FileLog.e(e9.getMessage(), e9);
                 }
             }
             this.isOpen = false;
         }
     }
 
-    public native void closedb(long j);
+    public native void closedb(long j10);
 
     public void commitTransaction() {
         if (this.inTransaction) {
@@ -56,7 +56,7 @@ public class SQLiteDatabase {
         }
     }
 
-    public native void commitTransaction(long j);
+    public native void commitTransaction(long j10);
 
     public SQLitePreparedStatement executeFast(String str) {
         return new SQLitePreparedStatement(this, str);
@@ -77,15 +77,15 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) throws SQLiteException {
         checkOpened();
-        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, zzii.m("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, c.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (sQLiteCursorQuery.next()) {
             int columnCount = sQLiteCursorQuery.getColumnCount();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < columnCount; i++) {
-                sb.append(sQLiteCursorQuery.stringValue(i));
-                sb.append(", ");
+            StringBuilder sb2 = new StringBuilder();
+            for (int i10 = 0; i10 < columnCount; i10++) {
+                sb2.append(sQLiteCursorQuery.stringValue(i10));
+                sb2.append(", ");
             }
-            FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
+            FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());
         }
         sQLiteCursorQuery.dispose();
     }

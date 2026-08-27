@@ -27,7 +27,7 @@ public class NotificationsService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int i, int i2) {
+    public int onStartCommand(Intent intent, int i10, int i11) {
         return 1;
     }
 }

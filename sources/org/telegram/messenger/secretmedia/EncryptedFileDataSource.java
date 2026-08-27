@@ -1,18 +1,18 @@
 package org.telegram.messenger.secretmedia;
 
 import android.net.Uri;
-import com.google.android.exoplayer2.upstream.BaseDataSource;
-import com.google.android.exoplayer2.upstream.DataSourceException;
-import com.google.android.exoplayer2.upstream.DataSpec;
-import com.google.android.exoplayer2.upstream.TransferListener;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
+import com.google.android.exoplayer2.upstream.g;
+import com.google.android.exoplayer2.upstream.n;
+import com.google.android.exoplayer2.upstream.q;
+import com.google.android.exoplayer2.upstream.y0;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
+import s3.c;
 
-public final class EncryptedFileDataSource extends BaseDataSource {
+public final class EncryptedFileDataSource extends g {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
     private boolean opened;
@@ -32,8 +32,8 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     public void close() {
         try {
             this.fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e9) {
+            e9.printStackTrace();
         }
         if (this.opened) {
             this.opened = false;
@@ -54,49 +54,49 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     }
 
     @Override
-    public long open(DataSpec dataSpec) throws DataSourceException {
-        Uri uri = dataSpec.uri;
-        long j = dataSpec.position;
+    public long open(q qVar) throws n {
+        Uri uri = qVar.f3022a;
+        long j10 = qVar.f3026f;
+        long j11 = qVar.f3025e;
         this.uri = uri;
-        File file = new File(dataSpec.uri.getPath());
+        File file = new File(qVar.f3022a.getPath());
         try {
-            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), zzhp.m(file.getName(), ".key")));
+            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), c.l(file.getName(), ".key")));
             this.fileInputStream = encryptedFileInputStream;
-            encryptedFileInputStream.skip(j);
+            encryptedFileInputStream.skip(j11);
             int length = (int) file.length();
-            transferInitializing(dataSpec);
-            long j2 = length;
-            if (j > j2) {
-                throw new DataSourceException();
+            transferInitializing(qVar);
+            long j12 = length;
+            if (j11 > j12) {
+                throw new n(2008);
             }
-            int i = (int) (j2 - j);
-            this.bytesRemaining = i;
-            long j3 = dataSpec.length;
-            if (j3 != -1) {
-                this.bytesRemaining = (int) Math.min(i, j3);
+            int i10 = (int) (j12 - j11);
+            this.bytesRemaining = i10;
+            if (j10 != -1) {
+                this.bytesRemaining = (int) Math.min(i10, j10);
             }
             this.opened = true;
-            transferStarted(dataSpec);
-            return j3 != -1 ? j3 : this.bytesRemaining;
+            transferStarted(qVar);
+            return j10 != -1 ? j10 : this.bytesRemaining;
         } catch (Throwable unused) {
-            throw new DataSourceException();
+            throw new n(2008);
         }
     }
 
     @Override
-    public int read(byte[] bArr, int i, int i2) {
-        if (i2 == 0) {
+    public int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
             return 0;
         }
-        int i3 = this.bytesRemaining;
-        if (i3 == 0) {
+        int i12 = this.bytesRemaining;
+        if (i12 == 0) {
             return -1;
         }
-        int iMin = Math.min(i2, i3);
+        int iMin = Math.min(i11, i12);
         try {
-            this.fileInputStream.read(bArr, i, iMin);
-        } catch (IOException e) {
-            e.printStackTrace();
+            this.fileInputStream.read(bArr, i10, iMin);
+        } catch (IOException e9) {
+            e9.printStackTrace();
         }
         this.bytesRemaining -= iMin;
         bytesTransferred(iMin);
@@ -104,10 +104,10 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     }
 
     @Deprecated
-    public EncryptedFileDataSource(TransferListener transferListener) {
+    public EncryptedFileDataSource(y0 y0Var) {
         this();
-        if (transferListener != null) {
-            addTransferListener(transferListener);
+        if (y0Var != null) {
+            addTransferListener(y0Var);
         }
     }
 }

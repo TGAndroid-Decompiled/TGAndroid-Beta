@@ -6,21 +6,21 @@ import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.TLRPC$TL_config$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.l;
 
 public class TL_payments {
 
     public static abstract class StarGiftActiveAuctions extends TLObject {
-        public static StarGiftActiveAuctions TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (StarGiftActiveAuctions) TLObject.TLdeserialize(StarGiftActiveAuctions.class, fromConstructor(i), inputSerializedData, i, z);
+        public static StarGiftActiveAuctions TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (StarGiftActiveAuctions) TLObject.TLdeserialize(StarGiftActiveAuctions.class, fromConstructor(i10), inputSerializedData, i10, z10);
         }
 
-        private static StarGiftActiveAuctions fromConstructor(int i) {
-            if (i == -1359565892) {
+        private static StarGiftActiveAuctions fromConstructor(int i10) {
+            if (i10 == -1359565892) {
                 return new TL_starGiftActiveAuctions();
             }
-            if (i != -617358640) {
+            if (i10 != -617358640) {
                 return null;
             }
             return new TL_starGiftActiveAuctionsNotModified();
@@ -33,15 +33,15 @@ public class TL_payments {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
 
-        public static TL_StarGiftAuctionAcquiredGifts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_StarGiftAuctionAcquiredGifts) TLObject.TLdeserialize(TL_StarGiftAuctionAcquiredGifts.class, 2103169520 != i ? null : new TL_StarGiftAuctionAcquiredGifts(), inputSerializedData, i, z);
+        public static TL_StarGiftAuctionAcquiredGifts TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_StarGiftAuctionAcquiredGifts) TLObject.TLdeserialize(TL_StarGiftAuctionAcquiredGifts.class, 2103169520 != i10 ? null : new TL_StarGiftAuctionAcquiredGifts(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.gifts = Vector.deserialize(inputSerializedData, new TL_iv$pageTableRow$$ExternalSyntheticLambda0(3), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.gifts = Vector.deserialize(inputSerializedData, new a(3), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
         }
 
         @Override
@@ -62,18 +62,18 @@ public class TL_payments {
         public TL_stars.TL_StarGiftAuctionUserState user_state;
         public ArrayList<TLRPC.User> users;
 
-        public static TL_StarGiftAuctionState TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_StarGiftAuctionState) TLObject.TLdeserialize(TL_StarGiftAuctionState.class, 1798960364 != i ? null : new TL_StarGiftAuctionState(), inputSerializedData, i, z);
+        public static TL_StarGiftAuctionState TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_StarGiftAuctionState) TLObject.TLdeserialize(TL_StarGiftAuctionState.class, 1798960364 != i10 ? null : new TL_StarGiftAuctionState(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.timeout = inputSerializedData.readInt32(z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.timeout = inputSerializedData.readInt32(z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
         }
 
         @Override
@@ -99,8 +99,8 @@ public class TL_payments {
         }
 
         @Override
-        public StarGiftActiveAuctions deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return StarGiftActiveAuctions.TLdeserialize(inputSerializedData, i, z);
+        public StarGiftActiveAuctions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return StarGiftActiveAuctions.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -115,8 +115,8 @@ public class TL_payments {
         }
 
         @Override
-        public TL_StarGiftAuctionAcquiredGifts deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_StarGiftAuctionAcquiredGifts.TLdeserialize(inputSerializedData, i, z);
+        public TL_StarGiftAuctionAcquiredGifts deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_StarGiftAuctionAcquiredGifts.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -133,8 +133,8 @@ public class TL_payments {
         }
 
         @Override
-        public TL_StarGiftAuctionState deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_StarGiftAuctionState.TLdeserialize(inputSerializedData, i, z);
+        public TL_StarGiftAuctionState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_StarGiftAuctionState.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -151,8 +151,8 @@ public class TL_payments {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -181,8 +181,8 @@ public class TL_payments {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -193,10 +193,10 @@ public class TL_payments {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.auctions = Vector.deserialize(inputSerializedData, new TL_iv$pageTableRow$$ExternalSyntheticLambda0(4), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.auctions = Vector.deserialize(inputSerializedData, new a(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
         }
 
         @Override
@@ -208,27 +208,14 @@ public class TL_payments {
         }
     }
 
-    public static class TL_starGiftActiveAuctionsNotModified extends StarGiftActiveAuctions {
-        public static final int constructor = -617358640;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-617358640);
-        }
-    }
-
     public static class connectStarRefBot extends TLObject {
         public static final int constructor = 2127901834;
         public TLRPC.InputUser bot;
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -251,24 +238,24 @@ public class TL_payments {
         public boolean revoked;
         public String url;
 
-        public static connectedBotStarRef TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (connectedBotStarRef) TLObject.TLdeserialize(connectedBotStarRef.class, 429997937 != i ? null : new connectedBotStarRef(), inputSerializedData, i, z);
+        public static connectedBotStarRef TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (connectedBotStarRef) TLObject.TLdeserialize(connectedBotStarRef.class, 429997937 != i10 ? null : new connectedBotStarRef(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.revoked = TLObject.hasFlag(int32, 2);
-            this.url = inputSerializedData.readString(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.bot_id = inputSerializedData.readInt64(z);
-            this.commission_permille = inputSerializedData.readInt32(z);
+            this.url = inputSerializedData.readString(z10);
+            this.date = inputSerializedData.readInt32(z10);
+            this.bot_id = inputSerializedData.readInt64(z10);
+            this.commission_permille = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.duration_months = inputSerializedData.readInt32(z);
+                this.duration_months = inputSerializedData.readInt32(z10);
             }
-            this.participants = inputSerializedData.readInt64(z);
-            this.revenue = inputSerializedData.readInt64(z);
+            this.participants = inputSerializedData.readInt64(z10);
+            this.revenue = inputSerializedData.readInt64(z10);
         }
 
         @Override
@@ -295,15 +282,15 @@ public class TL_payments {
         public ArrayList<connectedBotStarRef> connected_bots = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static connectedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (connectedStarRefBots) TLObject.TLdeserialize(connectedStarRefBots.class, -1730811363 != i ? null : new connectedStarRefBots(), inputSerializedData, i, z);
+        public static connectedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (connectedStarRefBots) TLObject.TLdeserialize(connectedStarRefBots.class, -1730811363 != i10 ? null : new connectedStarRefBots(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.count = inputSerializedData.readInt32(z);
-            this.connected_bots = Vector.deserialize(inputSerializedData, new TL_iv$pageTableRow$$ExternalSyntheticLambda0(5), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.count = inputSerializedData.readInt32(z10);
+            this.connected_bots = Vector.deserialize(inputSerializedData, new a(5), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -323,8 +310,8 @@ public class TL_payments {
         public boolean revoked;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -344,8 +331,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -365,8 +352,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -392,8 +379,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -419,23 +406,23 @@ public class TL_payments {
         public int end_date;
         public int flags;
 
-        public static starRefProgram TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (starRefProgram) TLObject.TLdeserialize(starRefProgram.class, -586389774 != i ? null : new starRefProgram(), inputSerializedData, i, z);
+        public static starRefProgram TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (starRefProgram) TLObject.TLdeserialize(starRefProgram.class, -586389774 != i10 ? null : new starRefProgram(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.bot_id = inputSerializedData.readInt64(z);
-            this.commission_permille = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.bot_id = inputSerializedData.readInt64(z10);
+            this.commission_permille = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.duration_months = inputSerializedData.readInt32(z);
+                this.duration_months = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.end_date = inputSerializedData.readInt32(z);
+                this.end_date = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.daily_revenue_per_user = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.daily_revenue_per_user = TL_stars.StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -465,18 +452,18 @@ public class TL_payments {
         public ArrayList<starRefProgram> suggested_bots = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (suggestedStarRefBots) TLObject.TLdeserialize(suggestedStarRefBots.class, -1261053863 != i ? null : new suggestedStarRefBots(), inputSerializedData, i, z);
+        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (suggestedStarRefBots) TLObject.TLdeserialize(suggestedStarRefBots.class, -1261053863 != i10 ? null : new suggestedStarRefBots(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.suggested_bots = Vector.deserialize(inputSerializedData, new TL_iv$pageTableRow$$ExternalSyntheticLambda0(6), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.suggested_bots = Vector.deserialize(inputSerializedData, new a(6), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
         }
 
@@ -490,6 +477,19 @@ public class TL_payments {
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
+        }
+    }
+
+    public static class TL_starGiftActiveAuctionsNotModified extends StarGiftActiveAuctions {
+        public static final int constructor = -617358640;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-617358640);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
         }
     }
 }

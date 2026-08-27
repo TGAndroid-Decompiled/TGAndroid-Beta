@@ -1,7 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.text.TextUtils;
-import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
+import gh.d1;
 import java.io.File;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -13,8 +13,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Components.voip.e2;
 
 public class VoIPDebugToSend {
     private final int currentAccount;
@@ -30,8 +29,8 @@ public class VoIPDebugToSend {
         }
     }
 
-    public VoIPDebugToSend(int i) {
-        this.currentAccount = i;
+    public VoIPDebugToSend(int i10) {
+        this.currentAccount = i10;
     }
 
     public void lambda$done$0(TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
@@ -45,12 +44,12 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new GiftSheet$$ExternalSyntheticLambda4(1, this, savecalldebug));
+        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new d1(24, this, savecalldebug));
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         if (AndroidUtilities.gzip(new File(data.logPath), file)) {
-            AndroidUtilities.runOnUIThread(new VoIPService$$ExternalSyntheticLambda59(this, file, savecalldebug, 1));
+            AndroidUtilities.runOnUIThread(new l(this, file, savecalldebug, 0));
         }
     }
 
@@ -61,12 +60,12 @@ public class VoIPDebugToSend {
         if (!(tLObject instanceof TLRPC.TL_boolFalse) || TextUtils.isEmpty(data.logPath)) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda53(1, this, data, new File(MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder(), data.logPath, ".gzip")), savecalldebug));
+        Utilities.searchQueue.postRunnable(new k(this, data, new File(a9.p.p(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
     }
 
-    public void done(long j, boolean z) {
-        Data dataRemove = this.pending.remove(Long.valueOf(j));
-        if (dataRemove == null || !z) {
+    public void done(long j10, boolean z10) {
+        Data dataRemove = this.pending.remove(Long.valueOf(j10));
+        if (dataRemove == null || !z10) {
             return;
         }
         TL_phone.saveCallDebug savecalldebug = new TL_phone.saveCallDebug();
@@ -76,23 +75,23 @@ public class VoIPDebugToSend {
         TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
         savecalldebug.peer = tL_inputPhoneCall;
         tL_inputPhoneCall.access_hash = dataRemove.access_hash;
-        tL_inputPhoneCall.id = dataRemove.callId;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new VoIPService$$ExternalSyntheticLambda77(this, dataRemove, savecalldebug, 1));
+        tL_inputPhoneCall.f22445id = dataRemove.callId;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new m(this, dataRemove, savecalldebug, 0));
     }
 
-    public void push(long j, long j2, Instance.FinalState finalState, String str) {
+    public void push(long j10, long j11, Instance.FinalState finalState, String str) {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
-                finalState.debugLog = VoIPService.getStringFromFile(VoIPHelper.getLogFilePath("" + j, true));
-            } catch (Exception e) {
-                e.printStackTrace();
+                finalState.debugLog = VoIPService.getStringFromFile(e2.e("" + j10, true));
+            } catch (Exception e9) {
+                e9.printStackTrace();
             }
         }
         Data data = new Data();
-        data.callId = j;
-        data.access_hash = j2;
+        data.callId = j10;
+        data.access_hash = j11;
         data.state = finalState;
         data.logPath = str;
-        this.pending.put(Long.valueOf(j), data);
+        this.pending.put(Long.valueOf(j10), data);
     }
 }

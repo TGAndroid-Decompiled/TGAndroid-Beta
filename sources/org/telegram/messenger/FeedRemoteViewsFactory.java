@@ -29,10 +29,10 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         this.mContext = context;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
-        int i = sharedPreferences.getInt("account" + intExtra, -1);
-        if (i >= 0) {
+        int i10 = sharedPreferences.getInt("account" + intExtra, -1);
+        if (i10 >= 0) {
             this.dialogId = sharedPreferences.getLong("dialogId" + intExtra, 0L);
-            this.accountInstance = AccountInstance.getInstance(i);
+            this.accountInstance = AccountInstance.getInstance(i10);
         }
     }
 
@@ -45,8 +45,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
             this.messages.clear();
             this.messages.addAll((ArrayList) objArr[2]);
             this.countDownLatch.countDown();
@@ -59,8 +59,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int i10) {
+        return i10;
     }
 
     @Override
@@ -69,19 +69,17 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public RemoteViews getViewAt(int i) {
-        MessageObject messageObject = this.messages.get(i);
+    public RemoteViews getViewAt(int i10) {
+        MessageObject messageObject = this.messages.get(i10);
         RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), R.layout.feed_widget_item);
         if (messageObject.type == 0) {
-            int i2 = R.id.feed_widget_item_text;
-            remoteViews.setTextViewText(i2, messageObject.messageText);
-            remoteViews.setViewVisibility(i2, 0);
+            remoteViews.setTextViewText(R.id.feed_widget_item_text, messageObject.messageText);
+            remoteViews.setViewVisibility(R.id.feed_widget_item_text, 0);
         } else if (TextUtils.isEmpty(messageObject.caption)) {
             remoteViews.setViewVisibility(R.id.feed_widget_item_text, 8);
         } else {
-            int i3 = R.id.feed_widget_item_text;
-            remoteViews.setTextViewText(i3, messageObject.caption);
-            remoteViews.setViewVisibility(i3, 0);
+            remoteViews.setTextViewText(R.id.feed_widget_item_text, messageObject.caption);
+            remoteViews.setViewVisibility(R.id.feed_widget_item_text, 0);
         }
         ArrayList<TLRPC.PhotoSize> arrayList = messageObject.photoThumbs;
         if (arrayList == null || arrayList.isEmpty()) {
@@ -89,11 +87,10 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         } else {
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
             if (pathToAttach.exists()) {
-                int i4 = R.id.feed_widget_item_image;
-                remoteViews.setViewVisibility(i4, 0);
-                Uri uriForFile = FileProvider.getUriForFile(this.mContext, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
-                grantUriAccessToWidget(this.mContext, uriForFile);
-                remoteViews.setImageViewUri(i4, uriForFile);
+                remoteViews.setViewVisibility(R.id.feed_widget_item_image, 0);
+                Uri uriD = FileProvider.d(this.mContext, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
+                grantUriAccessToWidget(this.mContext, uriD);
+                remoteViews.setImageViewUri(R.id.feed_widget_item_image, uriD);
             } else {
                 remoteViews.setViewVisibility(R.id.feed_widget_item_image, 8);
             }
@@ -139,11 +136,11 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
             this.messages.clear();
             return;
         }
-        AndroidUtilities.runOnUIThread(new ANRDetector$$ExternalSyntheticLambda0(this, 2));
+        AndroidUtilities.runOnUIThread(new d1(this, 1));
         try {
             this.countDownLatch.await();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
         }
     }
 

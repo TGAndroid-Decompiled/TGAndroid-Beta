@@ -39,7 +39,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     if (string != null) {
                         sharedPreferences.edit().putString("sms_hash_code", string + "|" + strReplace).commit();
                     }
-                    AndroidUtilities.runOnUIThread(new FileLog$$ExternalSyntheticLambda1(strReplace, 5));
+                    AndroidUtilities.runOnUIThread(new u1(strReplace, 5));
                 }
             }
         } catch (Throwable th) {

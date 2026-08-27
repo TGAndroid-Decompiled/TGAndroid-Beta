@@ -25,97 +25,97 @@ public class RotateBox extends Box {
     private float ymax;
     private float ymin;
 
-    public RotateBox(Box box, double d, float f, float f2) {
+    public RotateBox(Box box, double d, float f10, float f11) {
         this.box = box;
-        double d2 = (3.141592653589793d * d) / 180.0d;
-        this.angle = d2;
+        double d10 = (3.141592653589793d * d) / 180.0d;
+        this.angle = d10;
         this.height = box.height;
         this.depth = box.depth;
         this.width = box.width;
-        double dSin = Math.sin(d2);
+        double dSin = Math.sin(d10);
         double dCos = Math.cos(this.angle);
-        double d3 = f;
-        double d4 = 1.0d - dCos;
-        double d5 = f2;
-        this.shiftX = (float) ((d5 * dSin) + (d3 * d4));
-        this.shiftY = (float) ((d5 * d4) - (d3 * dSin));
-        float f3 = this.height;
-        float f4 = this.depth;
-        float f5 = this.width;
-        this.xmax = ((float) Math.max(((double) (-f3)) * dSin, Math.max(((double) f4) * dSin, Math.max((((double) f4) * dSin) + (((double) f5) * dCos), (((double) f5) * dCos) - (((double) f3) * dSin))))) + this.shiftX;
-        float f6 = this.height;
-        float f7 = this.depth;
-        float f8 = this.width;
-        this.xmin = ((float) Math.min(((double) (-f6)) * dSin, Math.min(((double) f7) * dSin, Math.min((((double) f7) * dSin) + (((double) f8) * dCos), (((double) f8) * dCos) - (((double) f6) * dSin))))) + this.shiftX;
-        float f9 = this.height;
-        float f10 = this.depth;
-        float f11 = this.width;
-        this.ymax = (float) Math.max(((double) f9) * dCos, Math.max(((double) (-f10)) * dCos, Math.max((((double) f11) * dSin) - (((double) f10) * dCos), (((double) f9) * dCos) + (((double) f11) * dSin))));
+        double d11 = f10;
+        double d12 = 1.0d - dCos;
+        double d13 = f11;
+        this.shiftX = (float) ((d13 * dSin) + (d11 * d12));
+        this.shiftY = (float) ((d13 * d12) - (d11 * dSin));
         float f12 = this.height;
         float f13 = this.depth;
         float f14 = this.width;
-        float fMin = (float) Math.min(((double) f12) * dCos, Math.min(((double) (-f13)) * dCos, Math.min((((double) f14) * dSin) - (((double) f13) * dCos), (((double) f12) * dCos) + (((double) f14) * dSin))));
+        this.xmax = ((float) Math.max(((double) (-f12)) * dSin, Math.max(((double) f13) * dSin, Math.max((((double) f13) * dSin) + (((double) f14) * dCos), (((double) f14) * dCos) - (((double) f12) * dSin))))) + this.shiftX;
+        float f15 = this.height;
+        float f16 = this.depth;
+        float f17 = this.width;
+        this.xmin = ((float) Math.min(((double) (-f15)) * dSin, Math.min(((double) f16) * dSin, Math.min((((double) f16) * dSin) + (((double) f17) * dCos), (((double) f17) * dCos) - (((double) f15) * dSin))))) + this.shiftX;
+        float f18 = this.height;
+        float f19 = this.depth;
+        float f20 = this.width;
+        this.ymax = (float) Math.max(((double) f18) * dCos, Math.max(((double) (-f19)) * dCos, Math.max((((double) f20) * dSin) - (((double) f19) * dCos), (((double) f18) * dCos) + (((double) f20) * dSin))));
+        float f21 = this.height;
+        float f22 = this.depth;
+        float f23 = this.width;
+        float fMin = (float) Math.min(((double) f21) * dCos, Math.min(((double) (-f22)) * dCos, Math.min((((double) f23) * dSin) - (((double) f22) * dCos), (((double) f21) * dCos) + (((double) f23) * dSin))));
         this.ymin = fMin;
         this.width = this.xmax - this.xmin;
-        float f15 = this.ymax;
-        float f16 = this.shiftY;
-        this.height = f15 + f16;
-        this.depth = (-fMin) - f16;
+        float f24 = this.ymax;
+        float f25 = this.shiftY;
+        this.height = f24 + f25;
+        this.depth = (-fMin) - f25;
     }
 
-    private static Point2D.Float calculateShift(Box box, int i) {
-        Point2D.Float r0 = new Point2D.Float(0.0f, -box.depth);
-        switch (i) {
+    private static Point2D.Float calculateShift(Box box, int i10) {
+        Point2D.Float r10 = new Point2D.Float(0.0f, -box.depth);
+        switch (i10) {
             case 0:
-                r0.x = 0.0f;
-                r0.y = -box.depth;
+                r10.f47639x = 0.0f;
+                r10.f47640y = -box.depth;
                 break;
             case 1:
-                r0.x = box.width / 2.0f;
-                r0.y = -box.depth;
+                r10.f47639x = box.width / 2.0f;
+                r10.f47640y = -box.depth;
                 break;
             case 2:
-                r0.x = box.width;
-                r0.y = -box.depth;
+                r10.f47639x = box.width;
+                r10.f47640y = -box.depth;
                 break;
             case 3:
-                r0.x = 0.0f;
-                r0.y = box.height;
+                r10.f47639x = 0.0f;
+                r10.f47640y = box.height;
                 break;
             case 4:
-                r0.x = box.width / 2.0f;
-                r0.y = box.height;
+                r10.f47639x = box.width / 2.0f;
+                r10.f47640y = box.height;
                 break;
             case 5:
-                r0.x = box.width;
-                r0.y = box.height;
+                r10.f47639x = box.width;
+                r10.f47640y = box.height;
                 break;
             case 6:
-                r0.x = 0.0f;
-                r0.y = 0.0f;
+                r10.f47639x = 0.0f;
+                r10.f47640y = 0.0f;
                 break;
             case 7:
-                r0.x = box.width;
-                r0.y = 0.0f;
+                r10.f47639x = box.width;
+                r10.f47640y = 0.0f;
                 break;
             case 8:
-                r0.x = box.width / 2.0f;
-                r0.y = 0.0f;
+                r10.f47639x = box.width / 2.0f;
+                r10.f47640y = 0.0f;
                 break;
             case 9:
-                r0.x = 0.0f;
-                r0.y = (box.height - box.depth) / 2.0f;
+                r10.f47639x = 0.0f;
+                r10.f47640y = (box.height - box.depth) / 2.0f;
                 break;
             case 10:
-                r0.x = box.width / 2.0f;
-                r0.y = (box.height - box.depth) / 2.0f;
+                r10.f47639x = box.width / 2.0f;
+                r10.f47640y = (box.height - box.depth) / 2.0f;
                 break;
             case 11:
-                r0.x = box.width;
-                r0.y = (box.height - box.depth) / 2.0f;
+                r10.f47639x = box.width;
+                r10.f47640y = (box.height - box.depth) / 2.0f;
                 break;
         }
-        return r0;
+        return r10;
     }
 
     public static int getOrigin(String str) {
@@ -162,17 +162,17 @@ public class RotateBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        drawDebug(graphics2D, f, f2);
-        this.box.drawDebug(graphics2D, f, f2, true);
-        float f3 = f2 - this.shiftY;
-        float f4 = (this.shiftX - this.xmin) + f;
-        double d = f4;
-        double d2 = f3;
-        graphics2D.rotate(-this.angle, d, d2);
-        this.box.draw(graphics2D, f4, f3);
-        this.box.drawDebug(graphics2D, f4, f3, true);
-        graphics2D.rotate(this.angle, d, d2);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        drawDebug(graphics2D, f10, f11);
+        this.box.drawDebug(graphics2D, f10, f11, true);
+        float f12 = f11 - this.shiftY;
+        float f13 = (this.shiftX - this.xmin) + f10;
+        double d = f13;
+        double d10 = f12;
+        graphics2D.rotate(-this.angle, d, d10);
+        this.box.draw(graphics2D, f13, f12);
+        this.box.drawDebug(graphics2D, f13, f12, true);
+        graphics2D.rotate(this.angle, d, d10);
     }
 
     @Override
@@ -181,10 +181,10 @@ public class RotateBox extends Box {
     }
 
     public RotateBox(Box box, double d, Point2D.Float r10) {
-        this(box, d, r10.x, r10.y);
+        this(box, d, r10.f47639x, r10.f47640y);
     }
 
-    public RotateBox(Box box, double d, int i) {
-        this(box, d, calculateShift(box, i));
+    public RotateBox(Box box, double d, int i10) {
+        this(box, d, calculateShift(box, i10));
     }
 }

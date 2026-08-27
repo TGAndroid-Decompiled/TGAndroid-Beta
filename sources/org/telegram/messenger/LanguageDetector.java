@@ -2,8 +2,6 @@ package org.telegram.messenger;
 
 import android.content.Context;
 import com.google.android.gms.tasks.TaskExecutors;
-import com.google.mlkit.common.sdkinternal.MlKitContext;
-import com.google.mlkit.nl.languageid.LanguageIdentification;
 
 public class LanguageDetector {
 
@@ -35,28 +33,28 @@ public class LanguageDetector {
         }
     }
 
-    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z) {
-        if (z) {
+    public static void detectLanguage(String str, StringCallback stringCallback, ExceptionCallback exceptionCallback, boolean z10) {
+        if (z10) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (MlKitContext.zza) {
-                    MlKitContext.zzb(context, TaskExecutors.MAIN_THREAD);
+                synchronized (za.g.f50286b) {
+                    za.g.d(context, TaskExecutors.MAIN_THREAD);
                 }
-            } catch (IllegalStateException e) {
-                if (!z) {
+            } catch (IllegalStateException e9) {
+                if (!z10) {
                     detectLanguage(str, stringCallback, exceptionCallback, true);
                     return;
                 }
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e);
+                    exceptionCallback.run(e9);
                 }
-                FileLog.e((Throwable) e, false);
+                FileLog.e((Throwable) e9, false);
                 return;
-            } catch (Exception e2) {
+            } catch (Exception e10) {
                 if (exceptionCallback != null) {
-                    exceptionCallback.run(e2);
+                    exceptionCallback.run(e10);
                 }
-                FileLog.e(e2);
+                FileLog.e(e10);
                 return;
             } catch (Throwable th) {
                 if (exceptionCallback != null) {
@@ -66,6 +64,6 @@ public class LanguageDetector {
                 return;
             }
         }
-        LanguageIdentification.getClient().identifyLanguage(str).addOnSuccessListener(new BillingController$$ExternalSyntheticLambda0(stringCallback, 6)).addOnFailureListener(new BillingController$$ExternalSyntheticLambda0(exceptionCallback, 7));
+        g7.g0.a().g(str).addOnSuccessListener(new d(stringCallback, 6)).addOnFailureListener(new d(exceptionCallback, 7));
     }
 }

@@ -23,8 +23,8 @@ public abstract class JLatexMathAndroid {
     public static InputStream getResourceAsStream(String str) {
         try {
             return context().getAssets().open("org/scilab/forge/jlatexmath/" + str);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException e9) {
+            throw new RuntimeException(e9);
         }
     }
 

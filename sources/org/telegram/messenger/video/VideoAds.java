@@ -1,5 +1,6 @@
 package org.telegram.messenger.video;
 
+import ag.g2;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -18,11 +19,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.car.app.utils.RemoteUtils$$ExternalSyntheticLambda2;
+import gh.a4;
+import gh.f3;
+import h7.z5;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
-import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
+import jh.h0;
+import lh.k7;
+import nh.x1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -33,45 +38,42 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.SimpleTextView;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda17;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.AnimatedFloat;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.Text;
-import org.telegram.ui.DarkBlueThemeResourcesProvider;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.f1;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.k1;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.b70;
+import org.telegram.ui.Components.c70;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.ec;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.i6;
+import org.telegram.ui.Components.jb;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.n9;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.pz0;
+import org.telegram.ui.Components.s5;
+import org.telegram.ui.Components.y5;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ReportBottomSheet;
-import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda3;
-import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda40;
+import org.telegram.ui.x21;
 
 public class VideoAds {
     private static HashMap<VideoAdsLocation, VideoAds> cached = new HashMap<>();
     private int between_delay;
-    private Bulletin bulletin;
-    private BulletinFactory bulletinFactory;
+    private ec bulletin;
+    private mc bulletinFactory;
     private long bulletinShowTime;
     private final int currentAccount;
     private long currentBulletinPassedTime;
-    private ItemOptions currentMenu;
+    private b70 currentMenu;
     private float currentMenuTranslationY;
     private final long dialogId;
     private boolean lastPopupShown;
@@ -80,7 +82,7 @@ public class VideoAds {
     private boolean loading;
     private final int msg_id;
     private Runnable onPopupCallback;
-    private PremiumFeatureBottomSheet premiumSheet;
+    private g2 premiumSheet;
     private int requestId;
     private int start_delay;
     public boolean videoWasPlaying;
@@ -88,48 +90,48 @@ public class VideoAds {
     private long waitingTimeSince;
     private final ArrayList<TLRPC.TL_sponsoredMessage> ads = new ArrayList<>();
     private boolean first = true;
-    private final Runnable showRunnable = new VideoAds$$ExternalSyntheticLambda12(this, 0);
+    private final Runnable showRunnable = new d(this, 0);
 
-    public static class AdLayout extends Bulletin.ButtonLayout {
+    public static class AdLayout extends cb {
         public final ImageView buttonView;
-        public final BackupImageView imageView;
+        public final n9 imageView;
         private final LinearLayout linearLayout;
-        public final LinkSpanDrawable.LinksTextView subtitleTextView;
-        public final SimpleTextView titleTextView;
+        public final p80 subtitleTextView;
+        public final h5 titleTextView;
 
-        public AdLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider);
-            setBackground(getThemedColor(Theme.key_undo_background));
-            BackupImageView backupImageView = new BackupImageView(context);
-            this.imageView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.dp(48.0f));
-            addView(backupImageView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 9.0f, 0.0f, 0.0f, 0.0f));
-            int themedColor = getThemedColor(Theme.key_undo_infoColor);
-            int themedColor2 = getThemedColor(Theme.key_undo_cancelColor);
+        public AdLayout(Context context, c6 c6Var) {
+            super(context, c6Var);
+            setBackground(getThemedColor(g6.Fi));
+            n9 n9Var = new n9(context);
+            this.imageView = n9Var;
+            n9Var.setRoundRadius(AndroidUtilities.dp(48.0f));
+            addView(n9Var, z5.i(36.0f, 36.0f, 8388627, 9.0f, 0.0f, 0.0f, 0.0f));
+            int themedColor = getThemedColor(g6.Hi);
+            int themedColor2 = getThemedColor(g6.Gi);
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
             linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 54.0f, 8.0f));
-            SimpleTextView simpleTextView = new SimpleTextView(context);
-            this.titleTextView = simpleTextView;
-            simpleTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            simpleTextView.setTextColor(themedColor);
-            simpleTextView.setTextSize(14);
-            simpleTextView.setTypeface(AndroidUtilities.bold());
-            linearLayout.addView(simpleTextView);
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
-            this.subtitleTextView = linksTextView;
-            linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            linksTextView.setTextColor(themedColor);
-            linksTextView.setLinkTextColor(themedColor2);
-            linksTextView.setTypeface(Typeface.SANS_SERIF);
-            linksTextView.setTextSize(1, 13.0f);
-            linearLayout.addView(linksTextView);
+            addView(linearLayout, z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 54.0f, 8.0f));
+            h5 h5Var = new h5(context);
+            this.titleTextView = h5Var;
+            h5Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            h5Var.setTextColor(themedColor);
+            h5Var.setTextSize(14);
+            h5Var.setTypeface(AndroidUtilities.bold());
+            linearLayout.addView(h5Var);
+            p80 p80Var = new p80(context, null);
+            this.subtitleTextView = p80Var;
+            p80Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            p80Var.setTextColor(themedColor);
+            p80Var.setLinkTextColor(themedColor2);
+            p80Var.setTypeface(Typeface.SANS_SERIF);
+            p80Var.setTextSize(1, 13.0f);
+            linearLayout.addView(p80Var);
             ImageView imageView = new ImageView(context);
             this.buttonView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(0.15f, getThemedColor(Theme.key_featuredStickers_addButton)), 7, -1));
-            addView(imageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388629, 0.0f, 0.0f, 11.0f, 0.0f));
+            imageView.setBackground(g6.f0(g6.l1(0.15f, getThemedColor(g6.Oh)), 7, -1));
+            addView(imageView, z5.i(32.0f, 32.0f, 8388629, 0.0f, 0.0f, 11.0f, 0.0f));
         }
 
         @Override
@@ -139,64 +141,12 @@ public class VideoAds {
 
         public void hideImage() {
             this.imageView.setVisibility(8);
-            this.linearLayout.setLayoutParams(LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 10.0f, 8.0f, 54.0f, 8.0f));
+            this.linearLayout.setLayoutParams(z5.i(-2.0f, -2.0f, 8388627, 10.0f, 8.0f, 54.0f, 8.0f));
         }
 
         @Override
         public void onShow() {
             super.onShow();
-        }
-    }
-
-    public static class AdOptionsDrawable extends Drawable {
-        public final int color;
-        public final Drawable icon;
-        public final Paint backgroundPaint = new Paint(1);
-        public final Text text = new Text(LocaleController.getString(R.string.SponsoredMessageAd), 11.0f, AndroidUtilities.bold());
-        private float alpha = 1.0f;
-
-        public AdOptionsDrawable(Context context, int i) {
-            this.color = i;
-            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
-            this.icon = drawableMutate;
-            drawableMutate.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getBounds());
-            rectF.left += AndroidUtilities.dp(4.0f);
-            this.backgroundPaint.setColor(Theme.multAlpha(this.alpha * 0.2f, this.color));
-            canvas.drawRoundRect(rectF, rectF.height(), rectF.height(), this.backgroundPaint);
-            this.text.draw(canvas, rectF.left + AndroidUtilities.dp(5.0f), rectF.centerY(), this.color, this.alpha);
-            this.icon.setBounds(getBounds().right - AndroidUtilities.dp(12.99f), getBounds().centerY() - AndroidUtilities.dp(5.665f), getBounds().right - AndroidUtilities.dp(1.66f), AndroidUtilities.dp(5.665f) + getBounds().centerY());
-            this.icon.setAlpha((int) (this.alpha * 255.0f));
-            this.icon.draw(canvas);
-        }
-
-        @Override
-        public int getIntrinsicHeight() {
-            return AndroidUtilities.dp(16.0f);
-        }
-
-        @Override
-        public int getIntrinsicWidth() {
-            return (int) (this.text.getWidth() + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(18.0f));
-        }
-
-        @Override
-        public int getOpacity() {
-            return -2;
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.alpha = i / 255.0f;
-        }
-
-        @Override
-        public void setColorFilter(ColorFilter colorFilter) {
         }
     }
 
@@ -209,81 +159,82 @@ public class VideoAds {
         private final View parentView;
         private boolean paused;
         private long pausedTime;
-        private final AnimatedFloat showCrossAnimated;
-        private final AnimatedFloat showTimerAnimated;
+        private final y5 showCrossAnimated;
+        private final y5 showTimerAnimated;
         private final long startTime;
-        private final AnimatedTextView.AnimatedTextDrawable timer;
-        private final AnimatedFloat timerScaleAnimated;
+        private final i6 timer;
+        private final y5 timerScaleAnimated;
 
-        public CloseDrawable(View view, int i, int i2, long j) {
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-            this.timer = animatedTextDrawable;
+        public CloseDrawable(View view, int i10, int i11, long j10) {
+            i6 i6Var = new i6(false, true, true, false);
+            this.timer = i6Var;
             Paint paint = new Paint(1);
             this.paint = paint;
             this.paused = false;
             this.alpha = 255;
             this.parentView = view;
-            this.startTime = System.currentTimeMillis() - j;
-            this.min_display_duration = ((long) i) * 1000;
-            this.max_display_duration = ((long) i2) * 1000;
+            this.startTime = System.currentTimeMillis() - j10;
+            this.min_display_duration = ((long) i10) * 1000;
+            this.max_display_duration = ((long) i11) * 1000;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
-            animatedTextDrawable.setCallback(view);
-            animatedTextDrawable.setGravity(17);
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(12.0f));
-            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
-            animatedTextDrawable.setTextColor(-1);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.showCrossAnimated = new AnimatedFloat(view, 0L, 420L, cubicBezierInterpolator);
-            this.showTimerAnimated = new AnimatedFloat(view, 0L, 420L, cubicBezierInterpolator);
-            this.timerScaleAnimated = new AnimatedFloat(view, 0L, 420L, cubicBezierInterpolator);
+            i6Var.setCallback(view);
+            i6Var.f29239b = 17;
+            i6Var.t(AndroidUtilities.dp(12.0f));
+            i6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
+            i6Var.G = AndroidUtilities.displaySize.x;
+            i6Var.r(-1);
+            er erVar = er.h;
+            this.showCrossAnimated = new y5(view, 0L, 420L, erVar);
+            this.showTimerAnimated = new y5(view, 0L, 420L, erVar);
+            this.timerScaleAnimated = new y5(view, 0L, 420L, erVar);
         }
 
         @Override
         public void draw(Canvas canvas) {
-            float f;
+            float f10;
             float fCenterX = getBounds().centerX();
             float fCenterY = getBounds().centerY();
             long jCurrentTimeMillis = ((this.paused ? this.pausedTime : System.currentTimeMillis()) - this.minusTime) - this.startTime;
             long jMax = Math.max(0L, this.min_display_duration - jCurrentTimeMillis);
-            long j = this.min_display_duration;
-            float f2 = jMax / j;
-            float f3 = this.showTimerAnimated.set(jCurrentTimeMillis < j);
+            long j10 = this.min_display_duration;
+            float f11 = jMax / j10;
+            float fE = this.showTimerAnimated.e(jCurrentTimeMillis < j10);
             String str = "" + ((int) Math.ceil(jMax / 1000.0d));
-            AnimatedFloat animatedFloat = this.timerScaleAnimated;
+            y5 y5Var = this.timerScaleAnimated;
             if (str.length() >= 3) {
-                f = 0.825f;
+                f10 = 0.825f;
             } else {
-                f = str.length() >= 2 ? 0.875f : 1.0f;
+                f10 = str.length() >= 2 ? 0.875f : 1.0f;
             }
-            float f4 = animatedFloat.set(f);
+            float fD = y5Var.d(f10, false);
             canvas.save();
-            canvas.scale(f4, f4, fCenterX, fCenterY);
-            this.timer.setText(str);
-            this.timer.setBounds(fCenterX - 1.0f, fCenterY - 1.0f, fCenterX + 1.0f, fCenterY + 1.0f);
-            this.timer.setAlpha((int) (this.alpha * f3));
-            this.timer.draw(canvas);
+            canvas.scale(fD, fD, fCenterX, fCenterY);
+            this.timer.q(str, true, true);
+            this.timer.l(fCenterX - 1.0f, fCenterY - 1.0f, fCenterX + 1.0f, fCenterY + 1.0f);
+            i6 i6Var = this.timer;
+            i6Var.f29257w = (int) (this.alpha * fE);
+            i6Var.draw(canvas);
             canvas.restore();
-            this.paint.setAlpha((int) (this.alpha * f3));
+            this.paint.setAlpha((int) (this.alpha * fE));
             this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(fCenterX - AndroidUtilities.dp(9.0f), fCenterY - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + fCenterX, AndroidUtilities.dp(9.0f) + fCenterY);
-            canvas.drawArc(rectF, -90.0f, f2 * (-360.0f), false, this.paint);
-            float f5 = this.showCrossAnimated.set((1.0f - f2) * 360.0f > 75.0f);
-            float fLerp = AndroidUtilities.lerp(fCenterX, AndroidUtilities.dp(8.0f) + fCenterX, f3);
-            float fLerp2 = AndroidUtilities.lerp(fCenterY, fCenterY - AndroidUtilities.dp(8.0f), f3);
-            float fLerp3 = AndroidUtilities.lerp(0.35f, 1.0f, f5) * AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), f3);
-            this.paint.setAlpha((int) (this.alpha * f5));
-            float f6 = fLerp - fLerp3;
-            float f7 = fLerp2 - fLerp3;
-            float f8 = fLerp + fLerp3;
-            float f9 = fLerp3 + fLerp2;
-            canvas.drawLine(f6, f7, f8, f9, this.paint);
-            canvas.drawLine(f6, f9, f8, f7, this.paint);
-            if (f3 > 0.0f) {
+            canvas.drawArc(rectF, -90.0f, f11 * (-360.0f), false, this.paint);
+            float fE2 = this.showCrossAnimated.e((1.0f - f11) * 360.0f > 75.0f);
+            float fLerp = AndroidUtilities.lerp(fCenterX, AndroidUtilities.dp(8.0f) + fCenterX, fE);
+            float fLerp2 = AndroidUtilities.lerp(fCenterY, fCenterY - AndroidUtilities.dp(8.0f), fE);
+            float fLerp3 = AndroidUtilities.lerp(0.35f, 1.0f, fE2) * AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), fE);
+            this.paint.setAlpha((int) (this.alpha * fE2));
+            float f12 = fLerp - fLerp3;
+            float f13 = fLerp2 - fLerp3;
+            float f14 = fLerp + fLerp3;
+            float f15 = fLerp3 + fLerp2;
+            canvas.drawLine(f12, f13, f14, f15, this.paint);
+            canvas.drawLine(f12, f15, f14, f13, this.paint);
+            if (fE > 0.0f) {
                 this.parentView.invalidate();
             }
         }
@@ -308,13 +259,13 @@ public class VideoAds {
         }
 
         @Override
-        public void setAlpha(int i) {
-            this.alpha = i;
+        public void setAlpha(int i10) {
+            this.alpha = i10;
         }
 
-        public void setColor(int i) {
-            this.timer.setTextColor(i);
-            this.paint.setColor(i);
+        public void setColor(int i10) {
+            this.timer.r(i10);
+            this.paint.setColor(i10);
         }
 
         @Override
@@ -323,12 +274,12 @@ public class VideoAds {
             this.paint.setColorFilter(colorFilter);
         }
 
-        public void setPaused(boolean z) {
-            if (this.paused == z) {
+        public void setPaused(boolean z10) {
+            if (this.paused == z10) {
                 return;
             }
-            this.paused = z;
-            if (z) {
+            this.paused = z10;
+            if (z10) {
                 this.pausedTime = System.currentTimeMillis();
             } else {
                 this.minusTime += System.currentTimeMillis() - this.pausedTime;
@@ -340,9 +291,9 @@ public class VideoAds {
         int currentAccount;
         long dialogId;
 
-        public VideoAdsLocation(int i, long j) {
-            this.currentAccount = i;
-            this.dialogId = j;
+        public VideoAdsLocation(int i10, long j10) {
+            this.currentAccount = i10;
+            this.dialogId = j10;
         }
 
         public boolean equals(Object obj) {
@@ -363,13 +314,13 @@ public class VideoAds {
         }
     }
 
-    private VideoAds(int i, long j, int i2, BulletinFactory bulletinFactory) {
+    private VideoAds(int i10, long j10, int i11, mc mcVar) {
         this.lastTime = 0L;
-        this.currentAccount = i;
-        this.dialogId = j;
-        this.msg_id = i2;
+        this.currentAccount = i10;
+        this.dialogId = j10;
+        this.msg_id = i11;
         this.lastTime = System.currentTimeMillis();
-        init(bulletinFactory);
+        init(mcVar);
     }
 
     private void checkPopupShownCallback() {
@@ -386,8 +337,8 @@ public class VideoAds {
         cached.clear();
     }
 
-    private void init(BulletinFactory bulletinFactory) {
-        this.bulletinFactory = bulletinFactory;
+    private void init(mc mcVar) {
+        this.bulletinFactory = mcVar;
         if (this.currentBulletinPassedTime <= 0) {
             this.lastTime = System.currentTimeMillis();
             if (this.waitingPaused) {
@@ -419,50 +370,60 @@ public class VideoAds {
     }
 
     public void lambda$load$1(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ClickHelper$$ExternalSyntheticLambda0(10, this, tLObject));
+        AndroidUtilities.runOnUIThread(new k7(20, this, tLObject));
     }
 
     public static void lambda$show$10(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         AndroidUtilities.addToClipboard(tL_sponsoredMessage.additional_info);
     }
 
-    public void lambda$show$12(ItemOptions itemOptions) {
+    public void lambda$show$12(b70 b70Var) {
         if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
             showPremium();
             return;
         }
-        itemOptions.dismiss();
-        Bulletin bulletin = this.bulletin;
-        if (bulletin != null) {
-            bulletin.setCanHide(true);
-            this.bulletin.hide();
+        b70Var.u();
+        ec ecVar = this.bulletin;
+        if (ecVar != null) {
+            ecVar.i(true);
+            this.bulletin.b();
         }
-        this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        this.bulletinFactory.c(LocaleController.getString(R.string.AdHidden)).j();
         MessagesController.getInstance(this.currentAccount).disableAds(true);
     }
 
-    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, ItemOptions itemOptions) {
-        int i = this.currentAccount;
-        long j = this.dialogId;
-        BulletinFactory bulletinFactory = this.bulletinFactory;
-        DarkBlueThemeResourcesProvider darkBlueThemeResourcesProvider = new DarkBlueThemeResourcesProvider();
-        VideoAds$$ExternalSyntheticLambda12 videoAds$$ExternalSyntheticLambda12 = new VideoAds$$ExternalSyntheticLambda12(this, 1);
-        Objects.requireNonNull(itemOptions);
-        ReportBottomSheet.openSponsored(i, context, j, tL_sponsoredMessage, bulletinFactory, darkBlueThemeResourcesProvider, videoAds$$ExternalSyntheticLambda12, new VideoAds$$ExternalSyntheticLambda14(itemOptions, 0));
+    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, b70 b70Var) {
+        int i10 = this.currentAccount;
+        long j10 = this.dialogId;
+        mc mcVar = this.bulletinFactory;
+        h0 h0Var = new h0();
+        int i11 = 1;
+        d dVar = new d(this, i11);
+        Objects.requireNonNull(b70Var);
+        a aVar = new a(b70Var, i11);
+        int i12 = x21.v;
+        if (context == null) {
+            return;
+        }
+        TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
+        byte[] bArr = tL_sponsoredMessage.random_id;
+        tL_messages_reportSponsoredMessage.random_id = bArr;
+        tL_messages_reportSponsoredMessage.option = new byte[0];
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_reportSponsoredMessage, new c70(context, h0Var, j10, bArr, aVar, mcVar, dVar, i10));
     }
 
-    public void lambda$show$15(ItemOptions itemOptions) {
+    public void lambda$show$15(b70 b70Var) {
         if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
             showPremium();
             return;
         }
-        itemOptions.dismiss();
-        Bulletin bulletin = this.bulletin;
-        if (bulletin != null) {
-            bulletin.setCanHide(true);
-            this.bulletin.hide();
+        b70Var.u();
+        ec ecVar = this.bulletin;
+        if (ecVar != null) {
+            ecVar.i(true);
+            this.bulletin.b();
         }
-        this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        this.bulletinFactory.c(LocaleController.getString(R.string.AdHidden)).j();
         MessagesController.getInstance(this.currentAccount).disableAds(true);
     }
 
@@ -472,46 +433,50 @@ public class VideoAds {
         checkPopupShownCallback();
     }
 
-    public void lambda$show$17(Bulletin bulletin, final TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, Theme.ResourcesProvider resourcesProvider, AdLayout adLayout, Utilities.Callback callback, View view) {
+    public void lambda$show$17(ec ecVar, final TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, c6 c6Var, AdLayout adLayout, Utilities.Callback callback, View view) {
         ViewGroup viewGroup;
-        ItemOptions itemOptionsMakeSwipeback;
+        b70 b70VarJ;
         Context context2;
         int iDp;
         int iDp2;
         ArrayList arrayList;
         String str;
-        int i;
-        int i2;
-        int i3;
-        Bulletin bulletin2 = this.bulletin;
-        if (bulletin2 == null || bulletin2 != bulletin) {
+        final b70 b70Var;
+        int i10;
+        int i11;
+        int i12;
+        ec ecVar2 = this.bulletin;
+        if (ecVar2 == null || ecVar2 != ecVar) {
             return;
         }
         try {
-            viewGroup = (ViewGroup) bulletin2.getLayout().getParent().getParent();
+            viewGroup = (ViewGroup) ecVar2.f28016e.getParent().getParent();
         } catch (Exception unused) {
             viewGroup = null;
         }
         if (viewGroup == null) {
             return;
         }
-        DarkBlueThemeResourcesProvider darkBlueThemeResourcesProvider = new DarkBlueThemeResourcesProvider();
-        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(viewGroup, (Theme.ResourcesProvider) darkBlueThemeResourcesProvider, (View) this.bulletin.getLayout(), true, false);
-        itemOptionsMakeOptions.setSwipebackGravity(true, true);
-        itemOptionsMakeOptions.setScaleOut(true);
-        itemOptionsMakeOptions.setDimAlpha(0);
-        itemOptionsMakeOptions.setDrawScrim(false);
-        itemOptionsMakeOptions.setDismissWithButtons(false);
+        h0 h0Var = new h0();
+        final b70 b70Var2 = new b70(viewGroup, h0Var, this.bulletin.f28016e, true, false, false);
+        b70Var2.H = true;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = b70Var2.D;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.f22693c = true;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.d = true;
+        b70Var2.I = true;
+        b70Var2.f26992s = 0;
+        b70Var2.f26993t = false;
+        b70Var2.J = false;
         if (tL_sponsoredMessage.sponsor_info == null && tL_sponsoredMessage.additional_info == null) {
             String str2 = tL_sponsoredMessage.url;
             if (str2 != null) {
                 if (!str2.startsWith("https://" + MessagesController.getInstance(this.currentAccount).linkPrefix)) {
-                    itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(0, context, darkBlueThemeResourcesProvider, true, false);
+                    b70VarJ = b70Var2.J();
+                    f1 f1Var = new f1(0, context, h0Var, true, false);
                     context2 = context;
-                    actionBarMenuSubItem.setItemHeight(44);
-                    actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
-                    AnimatedEmojiSpan.TextViewEmojis textView = actionBarMenuSubItem.getTextView();
+                    f1Var.setItemHeight(44);
+                    f1Var.g(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back, null);
+                    s5 textView = f1Var.getTextView();
                     if (LocaleController.isRTL) {
                         iDp = 0;
                     } else {
@@ -523,70 +488,51 @@ public class VideoAds {
                         iDp2 = 0;
                     }
                     textView.setPadding(iDp, 0, iDp2, 0);
-                    final int i4 = 2;
-                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                    final int i13 = 2;
+                    f1Var.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            switch (i4) {
+                            switch (i13) {
                                 case 0:
-                                    VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) itemOptionsMakeOptions, view2);
+                                    VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) b70Var2, view2);
                                     break;
                                 case 1:
-                                    VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) itemOptionsMakeOptions, view2);
+                                    VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) b70Var2, view2);
                                     break;
                                 default:
-                                    ((ItemOptions) itemOptionsMakeOptions).closeSwipeback();
+                                    ((b70) b70Var2).s();
                                     break;
                             }
                         }
                     });
-                    itemOptionsMakeSwipeback.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
-                    itemOptionsMakeSwipeback.addView(new ActionBarPopupWindow.GapView(context2, darkBlueThemeResourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator), LayoutHelper.createLinear(-1, 8));
+                    b70VarJ.r(f1Var, z5.n(-1, -2));
+                    b70VarJ.r(new k1(context2, h0Var), z5.n(-1, 8));
                     arrayList = new ArrayList();
                     str = tL_sponsoredMessage.url;
                     if (str != null) {
+                        b70Var = b70Var2;
+                    } else {
+                        b70Var = b70Var2;
+                    }
+                    if (tL_sponsoredMessage.sponsor_info != null) {
                         TextView textView2 = new TextView(context2);
-                        textView2.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_chat_messageLinkIn));
+                        textView2.setTextColor(h0Var.N0(g6.E8));
                         textView2.setTextSize(1, 14.0f);
                         textView2.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
                         textView2.setMaxWidth(AndroidUtilities.dp(300.0f));
-                        Uri uri = Uri.parse(tL_sponsoredMessage.url);
-                        textView2.setText(Browser.replace(uri, null, null, Browser.IDN_toUnicode(uri.getHost()), null));
-                        int color = darkBlueThemeResourcesProvider.getColor(Theme.key_dialogButtonSelector);
+                        textView2.setText(tL_sponsoredMessage.sponsor_info);
+                        int iN0 = h0Var.N0(g6.I5);
                         if (tL_sponsoredMessage.additional_info == null) {
-                            i3 = 6;
+                            i12 = 6;
                         } else {
-                            i3 = 0;
+                            i12 = 0;
                         }
-                        textView2.setBackground(Theme.createRadSelectorDrawable(color, 0, i3));
-                        textView2.setOnClickListener(new BotAdView$$ExternalSyntheticLambda3(1, this, itemOptionsMakeOptions, tL_sponsoredMessage, context2));
-                        textView2.setOnLongClickListener(new View.OnLongClickListener() {
-                            @Override
-                            public final boolean onLongClick(View view2) {
-                                return VideoAds.lambda$show$8(tL_sponsoredMessage, view2);
-                            }
-                        });
-                        arrayList.add(textView2);
-                    }
-                    if (tL_sponsoredMessage.sponsor_info != null) {
-                        TextView textView3 = new TextView(context2);
-                        textView3.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_actionBarDefaultSubmenuItem));
-                        textView3.setTextSize(1, 14.0f);
-                        textView3.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
-                        textView3.setMaxWidth(AndroidUtilities.dp(300.0f));
-                        textView3.setText(tL_sponsoredMessage.sponsor_info);
-                        int color2 = darkBlueThemeResourcesProvider.getColor(Theme.key_dialogButtonSelector);
-                        if (tL_sponsoredMessage.additional_info == null) {
-                            i2 = 6;
-                        } else {
-                            i2 = 0;
-                        }
-                        textView3.setBackground(Theme.createRadSelectorDrawable(color2, 0, i2));
-                        final int i5 = 0;
-                        textView3.setOnClickListener(new View.OnClickListener() {
+                        textView2.setBackground(g6.Y(iN0, 0, i12));
+                        final int i14 = 0;
+                        textView2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                switch (i5) {
+                                switch (i14) {
                                     case 0:
                                         VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
                                         break;
@@ -594,65 +540,66 @@ public class VideoAds {
                                         VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
                                         break;
                                     default:
-                                        ((ItemOptions) tL_sponsoredMessage).closeSwipeback();
+                                        ((b70) tL_sponsoredMessage).s();
+                                        break;
+                                }
+                            }
+                        });
+                        arrayList.add(textView2);
+                    }
+                    if (tL_sponsoredMessage.additional_info != null) {
+                        TextView textView3 = new TextView(context2);
+                        textView3.setTextColor(h0Var.N0(g6.E8));
+                        textView3.setTextSize(1, 14.0f);
+                        textView3.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                        textView3.setMaxWidth(AndroidUtilities.dp(300.0f));
+                        textView3.setText(tL_sponsoredMessage.additional_info);
+                        textView3.setBackground(g6.Y(g6.v0(g6.I5, c6Var), 0, 6));
+                        final int i15 = 1;
+                        textView3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                switch (i15) {
+                                    case 0:
+                                        VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
+                                        break;
+                                    case 1:
+                                        VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
+                                        break;
+                                    default:
+                                        ((b70) tL_sponsoredMessage).s();
                                         break;
                                 }
                             }
                         });
                         arrayList.add(textView3);
                     }
-                    if (tL_sponsoredMessage.additional_info != null) {
-                        TextView textView4 = new TextView(context2);
-                        textView4.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_actionBarDefaultSubmenuItem));
-                        textView4.setTextSize(1, 14.0f);
-                        textView4.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
-                        textView4.setMaxWidth(AndroidUtilities.dp(300.0f));
-                        textView4.setText(tL_sponsoredMessage.additional_info);
-                        textView4.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
-                        final int i6 = 1;
-                        textView4.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view2) {
-                                switch (i6) {
-                                    case 0:
-                                        VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
-                                        break;
-                                    case 1:
-                                        VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view2);
-                                        break;
-                                    default:
-                                        ((ItemOptions) tL_sponsoredMessage).closeSwipeback();
-                                        break;
-                                }
-                            }
-                        });
-                        arrayList.add(textView4);
-                    }
-                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                        View view2 = (View) arrayList.get(i7);
-                        if (i7 > 0) {
+                    for (i10 = 0; i10 < arrayList.size(); i10++) {
+                        View view2 = (View) arrayList.get(i10);
+                        if (i10 > 0) {
                             FrameLayout frameLayout = new FrameLayout(context2);
-                            frameLayout.setBackgroundColor(darkBlueThemeResourcesProvider.getColor(Theme.key_divider));
-                            i = -1;
-                            LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, 1);
-                            layoutParamsCreateLinear.height = 1;
-                            itemOptionsMakeSwipeback.addView(frameLayout, layoutParamsCreateLinear);
+                            frameLayout.setBackgroundColor(h0Var.N0(g6.f23054d7));
+                            i11 = -1;
+                            LinearLayout.LayoutParams layoutParamsN = z5.n(-1, 1);
+                            layoutParamsN.height = 1;
+                            b70VarJ.r(frameLayout, layoutParamsN);
                         } else {
-                            i = -1;
+                            i11 = -1;
                         }
-                        itemOptionsMakeSwipeback.addView(view2, LayoutHelper.createLinear(i, -2));
+                        b70VarJ.r(view2, z5.n(i11, -2));
                     }
-                    itemOptionsMakeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new RichEditor$$ExternalSyntheticLambda40(itemOptionsMakeOptions, itemOptionsMakeSwipeback, 1));
+                    b70Var.c(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new f3(b70Var, b70VarJ, 2), false);
                 }
             }
             context2 = context;
+            b70Var = b70Var2;
         } else {
-            itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(0, context, darkBlueThemeResourcesProvider, true, false);
+            b70VarJ = b70Var2.J();
+            f1 f1Var2 = new f1(0, context, h0Var, true, false);
             context2 = context;
-            actionBarMenuSubItem2.setItemHeight(44);
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
-            AnimatedEmojiSpan.TextViewEmojis textView5 = actionBarMenuSubItem2.getTextView();
+            f1Var2.setItemHeight(44);
+            f1Var2.g(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back, null);
+            s5 textView4 = f1Var2.getTextView();
             if (LocaleController.isRTL) {
                 iDp = 0;
             } else {
@@ -663,71 +610,68 @@ public class VideoAds {
             } else {
                 iDp2 = 0;
             }
-            textView5.setPadding(iDp, 0, iDp2, 0);
-            final int i8 = 2;
-            actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+            textView4.setPadding(iDp, 0, iDp2, 0);
+            final int i16 = 2;
+            f1Var2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
-                    switch (i8) {
+                    switch (i16) {
                         case 0:
-                            VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) itemOptionsMakeOptions, view3);
+                            VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) b70Var2, view3);
                             break;
                         case 1:
-                            VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) itemOptionsMakeOptions, view3);
+                            VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) b70Var2, view3);
                             break;
                         default:
-                            ((ItemOptions) itemOptionsMakeOptions).closeSwipeback();
+                            ((b70) b70Var2).s();
                             break;
                     }
                 }
             });
-            itemOptionsMakeSwipeback.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
-            itemOptionsMakeSwipeback.addView(new ActionBarPopupWindow.GapView(context2, darkBlueThemeResourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator), LayoutHelper.createLinear(-1, 8));
+            b70VarJ.r(f1Var2, z5.n(-1, -2));
+            b70VarJ.r(new k1(context2, h0Var), z5.n(-1, 8));
             arrayList = new ArrayList();
             str = tL_sponsoredMessage.url;
-            if (str != null && !TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(this.currentAccount).linkPrefix)) {
-                TextView textView6 = new TextView(context2);
-                textView6.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_chat_messageLinkIn));
-                textView6.setTextSize(1, 14.0f);
-                textView6.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
-                textView6.setMaxWidth(AndroidUtilities.dp(300.0f));
-                Uri uri2 = Uri.parse(tL_sponsoredMessage.url);
-                textView6.setText(Browser.replace(uri2, null, null, Browser.IDN_toUnicode(uri2.getHost()), null));
-                int color3 = darkBlueThemeResourcesProvider.getColor(Theme.key_dialogButtonSelector);
-                if (tL_sponsoredMessage.additional_info == null) {
-                    i3 = 6;
-                } else {
-                    i3 = 0;
-                }
-                textView6.setBackground(Theme.createRadSelectorDrawable(color3, 0, i3));
-                textView6.setOnClickListener(new BotAdView$$ExternalSyntheticLambda3(1, this, itemOptionsMakeOptions, tL_sponsoredMessage, context2));
-                textView6.setOnLongClickListener(new View.OnLongClickListener() {
+            if (str != null || TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(this.currentAccount).linkPrefix)) {
+                b70Var = b70Var2;
+            } else {
+                TextView textView5 = new TextView(context2);
+                textView5.setTextColor(h0Var.N0(g6.gc));
+                textView5.setTextSize(1, 14.0f);
+                textView5.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView5.setMaxWidth(AndroidUtilities.dp(300.0f));
+                Uri uri = Uri.parse(tL_sponsoredMessage.url);
+                textView5.setText(we.e.v(uri, null, null, we.e.a(uri.getHost()), null));
+                textView5.setBackground(g6.Y(h0Var.N0(g6.I5), 0, tL_sponsoredMessage.additional_info == null ? 6 : 0));
+                b70Var = b70Var2;
+                textView5.setOnClickListener(new a4(this, b70Var, tL_sponsoredMessage, context2, 5));
+                textView5.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view3) {
                         return VideoAds.lambda$show$8(tL_sponsoredMessage, view3);
                     }
                 });
-                arrayList.add(textView6);
+                arrayList.add(textView5);
             }
             if (tL_sponsoredMessage.sponsor_info != null) {
-                TextView textView7 = new TextView(context2);
-                textView7.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_actionBarDefaultSubmenuItem));
-                textView7.setTextSize(1, 14.0f);
-                textView7.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
-                textView7.setMaxWidth(AndroidUtilities.dp(300.0f));
-                textView7.setText(tL_sponsoredMessage.sponsor_info);
-                int color4 = darkBlueThemeResourcesProvider.getColor(Theme.key_dialogButtonSelector);
+                TextView textView6 = new TextView(context2);
+                textView6.setTextColor(h0Var.N0(g6.E8));
+                textView6.setTextSize(1, 14.0f);
+                textView6.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView6.setMaxWidth(AndroidUtilities.dp(300.0f));
+                textView6.setText(tL_sponsoredMessage.sponsor_info);
+                int iN1 = h0Var.N0(g6.I5);
                 if (tL_sponsoredMessage.additional_info == null) {
-                    i2 = 6;
+                    i12 = 6;
                 } else {
-                    i2 = 0;
+                    i12 = 0;
                 }
-                textView7.setBackground(Theme.createRadSelectorDrawable(color4, 0, i2));
-                final int i9 = 0;
-                textView7.setOnClickListener(new View.OnClickListener() {
+                textView6.setBackground(g6.Y(iN1, 0, i12));
+                final int i17 = 0;
+                textView6.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        switch (i9) {
+                        switch (i17) {
                             case 0:
                                 VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
                                 break;
@@ -735,128 +679,131 @@ public class VideoAds {
                                 VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
                                 break;
                             default:
-                                ((ItemOptions) tL_sponsoredMessage).closeSwipeback();
+                                ((b70) tL_sponsoredMessage).s();
+                                break;
+                        }
+                    }
+                });
+                arrayList.add(textView6);
+            }
+            if (tL_sponsoredMessage.additional_info != null) {
+                TextView textView7 = new TextView(context2);
+                textView7.setTextColor(h0Var.N0(g6.E8));
+                textView7.setTextSize(1, 14.0f);
+                textView7.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView7.setMaxWidth(AndroidUtilities.dp(300.0f));
+                textView7.setText(tL_sponsoredMessage.additional_info);
+                textView7.setBackground(g6.Y(g6.v0(g6.I5, c6Var), 0, 6));
+                final int i18 = 1;
+                textView7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        switch (i18) {
+                            case 0:
+                                VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
+                                break;
+                            case 1:
+                                VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
+                                break;
+                            default:
+                                ((b70) tL_sponsoredMessage).s();
                                 break;
                         }
                     }
                 });
                 arrayList.add(textView7);
             }
-            if (tL_sponsoredMessage.additional_info != null) {
-                TextView textView8 = new TextView(context2);
-                textView8.setTextColor(darkBlueThemeResourcesProvider.getColor(Theme.key_actionBarDefaultSubmenuItem));
-                textView8.setTextSize(1, 14.0f);
-                textView8.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
-                textView8.setMaxWidth(AndroidUtilities.dp(300.0f));
-                textView8.setText(tL_sponsoredMessage.additional_info);
-                textView8.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
-                final int i10 = 1;
-                textView8.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view3) {
-                        switch (i10) {
-                            case 0:
-                                VideoAds.lambda$show$9((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
-                                break;
-                            case 1:
-                                VideoAds.lambda$show$10((TLRPC.TL_sponsoredMessage) tL_sponsoredMessage, view3);
-                                break;
-                            default:
-                                ((ItemOptions) tL_sponsoredMessage).closeSwipeback();
-                                break;
-                        }
-                    }
-                });
-                arrayList.add(textView8);
-            }
-            while (i7 < arrayList.size()) {
-                View view3 = (View) arrayList.get(i7);
-                if (i7 > 0) {
+            while (i10 < arrayList.size()) {
+                View view3 = (View) arrayList.get(i10);
+                if (i10 > 0) {
                     FrameLayout frameLayout2 = new FrameLayout(context2);
-                    frameLayout2.setBackgroundColor(darkBlueThemeResourcesProvider.getColor(Theme.key_divider));
-                    i = -1;
-                    LinearLayout.LayoutParams layoutParamsCreateLinear2 = LayoutHelper.createLinear(-1, 1);
-                    layoutParamsCreateLinear2.height = 1;
-                    itemOptionsMakeSwipeback.addView(frameLayout2, layoutParamsCreateLinear2);
+                    frameLayout2.setBackgroundColor(h0Var.N0(g6.f23054d7));
+                    i11 = -1;
+                    LinearLayout.LayoutParams layoutParamsN2 = z5.n(-1, 1);
+                    layoutParamsN2.height = 1;
+                    b70VarJ.r(frameLayout2, layoutParamsN2);
                 } else {
-                    i = -1;
+                    i11 = -1;
                 }
-                itemOptionsMakeSwipeback.addView(view3, LayoutHelper.createLinear(i, -2));
+                b70VarJ.r(view3, z5.n(i11, -2));
             }
-            itemOptionsMakeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new RichEditor$$ExternalSyntheticLambda40(itemOptionsMakeOptions, itemOptionsMakeSwipeback, 1));
+            b70Var.c(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new f3(b70Var, b70VarJ, 2), false);
         }
         if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() && !tL_sponsoredMessage.can_report) {
-            final int i11 = 0;
-            itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.HideAd), new Runnable(this) {
-                public final VideoAds f$0;
+            final int i19 = 1;
+            b70Var.c(R.drawable.msg_block2, LocaleController.getString(R.string.HideAd), new Runnable(this) {
+
+                public final VideoAds f21828b;
 
                 {
-                    this.f$0 = this;
+                    this.f21828b = this;
                 }
 
                 @Override
                 public final void run() {
-                    switch (i11) {
+                    switch (i19) {
                         case 0:
-                            this.f$0.lambda$show$12(itemOptionsMakeOptions);
+                            this.f21828b.lambda$show$15(b70Var);
                             break;
                         default:
-                            this.f$0.lambda$show$15(itemOptionsMakeOptions);
+                            this.f21828b.lambda$show$12(b70Var);
                             break;
                     }
                 }
-            });
+            }, false);
         }
         if (tL_sponsoredMessage.can_report) {
-            itemOptionsMakeOptions.add(R.drawable.msg_info, LocaleController.getString(R.string.AboutRevenueSharingAds), new ClickHelper$$ExternalSyntheticLambda0(12, context2, darkBlueThemeResourcesProvider));
-            itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new Theme$$ExternalSyntheticLambda17(6, this, context2, tL_sponsoredMessage, itemOptionsMakeOptions));
+            b70Var.c(R.drawable.msg_info, LocaleController.getString(R.string.AboutRevenueSharingAds), new k7(22, context2, h0Var), false);
+            Context context3 = context2;
+            b70 b70Var3 = b70Var;
+            b70Var = b70Var3;
+            b70Var.c(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new androidx.car.app.utils.b(this, context3, tL_sponsoredMessage, b70Var3, 23), false);
             if (!MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
-                itemOptionsMakeOptions = itemOptionsMakeOptions;
-                itemOptionsMakeOptions.addGap();
-                final int i12 = 1;
-                itemOptionsMakeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new Runnable(this) {
-                    public final VideoAds f$0;
+                b70Var.k();
+                final int i20 = 0;
+                b70Var.c(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new Runnable(this) {
+
+                    public final VideoAds f21828b;
 
                     {
-                        this.f$0 = this;
+                        this.f21828b = this;
                     }
 
                     @Override
                     public final void run() {
-                        switch (i12) {
+                        switch (i20) {
                             case 0:
-                                this.f$0.lambda$show$12(itemOptionsMakeOptions);
+                                this.f21828b.lambda$show$15(b70Var);
                                 break;
                             default:
-                                this.f$0.lambda$show$15(itemOptionsMakeOptions);
+                                this.f21828b.lambda$show$12(b70Var);
                                 break;
                         }
                     }
-                });
+                }, false);
             }
         }
-        itemOptionsMakeOptions = itemOptionsMakeOptions;
-        if (itemOptionsMakeOptions.getItemsCount() <= 0) {
+        if (b70Var.x() <= 0) {
             return;
         }
-        this.currentMenu = itemOptionsMakeOptions;
+        this.currentMenu = b70Var;
         this.currentMenuTranslationY = adLayout.getTranslationY();
         callback.run(Boolean.TRUE);
-        itemOptionsMakeOptions.setOnDismiss(new ClickHelper$$ExternalSyntheticLambda0(11, this, callback));
-        itemOptionsMakeOptions.show();
+        b70Var.f26987p = new k7(21, this, callback);
+        b70Var.Z();
         checkPopupShownCallback();
     }
 
     public void lambda$show$18(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
         logSponsoredClicked(tL_sponsoredMessage);
-        Browser.openUrl(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
+        we.e.r(view.getContext(), Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(UserConfig.selectedAccount).sponsoredLinksInappAllow, false);
     }
 
     public void lambda$show$2(CloseDrawable closeDrawable, View view) {
         if (closeDrawable.isCrossAvailable()) {
-            Bulletin bulletin = this.bulletin;
-            if (bulletin != null) {
-                bulletin.hide();
+            ec ecVar = this.bulletin;
+            if (ecVar != null) {
+                ecVar.b();
                 return;
             }
             return;
@@ -865,69 +812,70 @@ public class VideoAds {
             showPremium();
             return;
         }
-        Bulletin bulletin2 = this.bulletin;
-        if (bulletin2 != null) {
-            bulletin2.hide();
+        ec ecVar2 = this.bulletin;
+        if (ecVar2 != null) {
+            ecVar2.b();
             this.bulletin = null;
         }
         MessagesController.getInstance(this.currentAccount).disableAds(true);
-        this.bulletinFactory.createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
+        this.bulletinFactory.c(LocaleController.getString(R.string.AdHidden)).j();
     }
 
-    public void lambda$show$3(Bulletin bulletin, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
-        Bulletin bulletin2 = this.bulletin;
-        if (bulletin2 == null || bulletin2 != bulletin) {
+    public void lambda$show$3(ec ecVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
+        ec ecVar2 = this.bulletin;
+        if (ecVar2 == null || ecVar2 != ecVar) {
             return;
         }
-        bulletin2.setDuration((tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000);
-        this.bulletin.setCanHide(true);
+        ecVar2.f28020j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+        ecVar2.i(true);
     }
 
-    public void lambda$show$4(Bulletin bulletin, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
-        Bulletin bulletin2 = this.bulletin;
-        if (bulletin2 == null || bulletin2 != bulletin || bool.booleanValue() == zArr[0]) {
+    public void lambda$show$4(ec ecVar, boolean[] zArr, CloseDrawable closeDrawable, long[] jArr, Runnable runnable, long[] jArr2, long j10, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Boolean bool) {
+        ec ecVar2 = this.bulletin;
+        if (ecVar2 == null || ecVar2 != ecVar || bool.booleanValue() == zArr[0]) {
             return;
         }
         boolean zBooleanValue = bool.booleanValue();
         zArr[0] = zBooleanValue;
         closeDrawable.setPaused(zBooleanValue);
         if (zArr[0]) {
-            this.bulletin.setCanHide(false);
+            this.bulletin.i(false);
             jArr[0] = System.currentTimeMillis();
             AndroidUtilities.cancelRunOnUIThread(runnable);
             return;
         }
         AndroidUtilities.cancelRunOnUIThread(runnable);
         jArr2[0] = (System.currentTimeMillis() - jArr[0]) + jArr2[0];
-        long jCurrentTimeMillis = (System.currentTimeMillis() - j) - jArr2[0];
-        long j2 = (((long) tL_sponsoredMessage.min_display_duration) * 1000) - jCurrentTimeMillis;
-        long j3 = (((long) tL_sponsoredMessage.max_display_duration) * 1000) - jCurrentTimeMillis;
-        if (j3 <= 0) {
-            Bulletin bulletin3 = this.bulletin;
-            if (bulletin3 != null) {
-                bulletin3.hide();
+        long jCurrentTimeMillis = (System.currentTimeMillis() - j10) - jArr2[0];
+        long j11 = (((long) tL_sponsoredMessage.min_display_duration) * 1000) - jCurrentTimeMillis;
+        long j12 = (((long) tL_sponsoredMessage.max_display_duration) * 1000) - jCurrentTimeMillis;
+        if (j12 <= 0) {
+            ec ecVar3 = this.bulletin;
+            if (ecVar3 != null) {
+                ecVar3.b();
                 this.bulletin = null;
                 return;
             }
             return;
         }
-        if (j2 > 0) {
-            AndroidUtilities.runOnUIThread(runnable, j2);
-        } else {
-            this.bulletin.setDuration((int) j3);
-            this.bulletin.setCanHide(true);
+        if (j11 > 0) {
+            AndroidUtilities.runOnUIThread(runnable, j11);
+            return;
         }
+        ec ecVar4 = this.bulletin;
+        ecVar4.f28020j = (int) j12;
+        ecVar4.i(true);
     }
 
-    public void lambda$show$5(Bulletin bulletin, boolean[] zArr) {
-        Bulletin bulletin2 = this.bulletin;
-        if (bulletin2 == null || bulletin2 != bulletin || zArr[0]) {
+    public void lambda$show$5(ec ecVar, boolean[] zArr) {
+        ec ecVar2 = this.bulletin;
+        if (ecVar2 == null || ecVar2 != ecVar || zArr[0]) {
             return;
         }
         zArr[0] = true;
-        ItemOptions itemOptions = this.currentMenu;
-        if (itemOptions != null) {
-            itemOptions.dismiss();
+        b70 b70Var = this.currentMenu;
+        if (b70Var != null) {
+            b70Var.u();
             this.currentMenu = null;
         }
         this.bulletin = null;
@@ -943,10 +891,10 @@ public class VideoAds {
         schedule();
     }
 
-    public void lambda$show$7(ItemOptions itemOptions, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
-        itemOptions.dismiss();
+    public void lambda$show$7(b70 b70Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
+        b70Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
-        Browser.openUrl(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow, false);
+        we.e.r(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow, false);
     }
 
     public static boolean lambda$show$8(TLRPC.TL_sponsoredMessage tL_sponsoredMessage, View view) {
@@ -958,8 +906,8 @@ public class VideoAds {
         AndroidUtilities.addToClipboard(tL_sponsoredMessage.sponsor_info);
     }
 
-    public void lambda$showPremium$19(PremiumFeatureBottomSheet premiumFeatureBottomSheet) {
-        if (premiumFeatureBottomSheet == this.premiumSheet) {
+    public void lambda$showPremium$19(g2 g2Var) {
+        if (g2Var == this.premiumSheet) {
             this.premiumSheet = null;
             checkPopupShownCallback();
         }
@@ -980,25 +928,25 @@ public class VideoAds {
         this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSponsoredMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$load$1(tLObject, tL_error);
+                this.f21845a.lambda$load$1(tLObject, tL_error);
             }
         });
     }
 
-    public static VideoAds make(int i, long j, int i2, BulletinFactory bulletinFactory) {
-        BulletinFactory bulletinFactory2;
-        VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i, j);
+    public static VideoAds make(int i10, long j10, int i11, mc mcVar) {
+        mc mcVar2;
+        VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i10, j10);
         VideoAds videoAds = cached.get(videoAdsLocation);
-        if (videoAds == null || ((videoAds.msg_id != i2 || System.currentTimeMillis() - videoAds.lastTime > 180000) && videoAds.ads.isEmpty())) {
+        if (videoAds == null || ((videoAds.msg_id != i11 || System.currentTimeMillis() - videoAds.lastTime > 180000) && videoAds.ads.isEmpty())) {
             HashMap<VideoAdsLocation, VideoAds> map = cached;
-            bulletinFactory2 = bulletinFactory;
-            VideoAds videoAds2 = new VideoAds(i, j, i2, bulletinFactory2);
+            mcVar2 = mcVar;
+            VideoAds videoAds2 = new VideoAds(i10, j10, i11, mcVar2);
             map.put(videoAdsLocation, videoAds2);
             videoAds = videoAds2;
         } else {
-            bulletinFactory2 = bulletinFactory;
+            mcVar2 = mcVar;
         }
-        videoAds.init(bulletinFactory2);
+        videoAds.init(mcVar2);
         return videoAds;
     }
 
@@ -1017,92 +965,92 @@ public class VideoAds {
         final TLRPC.TL_sponsoredMessage tL_sponsoredMessage = this.ads.get(0);
         final long jCurrentTimeMillis = System.currentTimeMillis() - this.currentBulletinPassedTime;
         this.bulletinShowTime = jCurrentTimeMillis;
-        Bulletin bulletin = this.bulletin;
-        if (bulletin != null) {
-            bulletin.hide();
+        ec ecVar = this.bulletin;
+        if (ecVar != null) {
+            ecVar.b();
             this.bulletin = null;
         }
-        final Context context = this.bulletinFactory.getContext();
-        final Theme.ResourcesProvider resourcesProvider = this.bulletinFactory.getResourcesProvider();
-        final AdLayout adLayout = new AdLayout(context, resourcesProvider) {
+        Context contextW = this.bulletinFactory.W();
+        c6 c6Var = this.bulletinFactory.f30645c;
+        AdLayout adLayout = new AdLayout(contextW, c6Var) {
             @Override
             public void updatePosition() {
                 super.updatePosition();
                 if (VideoAds.this.currentMenu != null) {
-                    VideoAds.this.currentMenu.setTranslationY(getTranslationY() - VideoAds.this.currentMenuTranslationY);
+                    VideoAds.this.currentMenu.X(getTranslationY() - VideoAds.this.currentMenuTranslationY);
                 }
             }
         };
-        adLayout.titleTextView.setText(tL_sponsoredMessage.title);
-        SimpleTextView simpleTextView = adLayout.titleTextView;
-        Context context2 = this.bulletinFactory.getContext();
-        int i = Theme.key_featuredStickers_addButton;
-        simpleTextView.setRightDrawable(new AdOptionsDrawable(context2, Theme.getColor(i, this.bulletinFactory.getResourcesProvider())));
+        adLayout.titleTextView.k(tL_sponsoredMessage.title);
+        h5 h5Var = adLayout.titleTextView;
+        Context contextW2 = this.bulletinFactory.W();
+        int i10 = g6.Oh;
+        h5Var.i(new AdOptionsDrawable(contextW2, g6.v0(i10, this.bulletinFactory.f30645c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
-                adLayout.imageView.setImage(ImageLocation.getForDocument(tL_sponsoredMessage.media.document), "48_48", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 48), tL_sponsoredMessage.media.document), "48_48", (String) null, 0L, 0, (Object) null);
+                adLayout.imageView.k(ImageLocation.getForDocument(tL_sponsoredMessage.media.document), "48_48", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 48), tL_sponsoredMessage.media.document), "48_48", 0L, null, null, 0);
             } else {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo != null) {
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 48, true, null, true);
-                    adLayout.imageView.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_sponsoredMessage.media.photo), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_sponsoredMessage.media.photo.sizes, 48, true, closestPhotoSizeWithSize, false), tL_sponsoredMessage.media.photo), "48_48", (String) null, 0L, 0, (Object) null);
+                    adLayout.imageView.k(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_sponsoredMessage.media.photo), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_sponsoredMessage.media.photo.sizes, 48, true, closestPhotoSizeWithSize, false), tL_sponsoredMessage.media.photo), "48_48", 0L, null, null, 0);
                 }
             }
         } else {
             TLRPC.Photo photo2 = tL_sponsoredMessage.photo;
             if (photo2 != null) {
                 TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, 48, true, null, true);
-                adLayout.imageView.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tL_sponsoredMessage.photo), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_sponsoredMessage.photo.sizes, 48, true, closestPhotoSizeWithSize2, false), tL_sponsoredMessage.photo), "48_48", (String) null, 0L, 0, (Object) null);
+                adLayout.imageView.k(ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tL_sponsoredMessage.photo), "48_48", ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_sponsoredMessage.photo.sizes, 48, true, closestPhotoSizeWithSize2, false), tL_sponsoredMessage.photo), "48_48", 0L, null, null, 0);
             } else {
                 adLayout.hideImage();
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(Theme.getColor(i, this.bulletinFactory.getResourcesProvider()));
+        closeDrawable.setColor(g6.v0(i10, this.bulletinFactory.f30645c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
-        adLayout.buttonView.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(1, this, closeDrawable));
-        final Bulletin bulletinCreate = this.bulletinFactory.create(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
-        this.bulletin = bulletinCreate;
-        bulletinCreate.setCanHideOnShow = false;
-        bulletinCreate.setCanHide(false);
-        final RemoteUtils$$ExternalSyntheticLambda2 remoteUtils$$ExternalSyntheticLambda2 = new RemoteUtils$$ExternalSyntheticLambda2(this, bulletinCreate, tL_sponsoredMessage, 12);
+        adLayout.buttonView.setOnClickListener(new x1(2, this, closeDrawable));
+        final ec ecVarB = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
+        this.bulletin = ecVarB;
+        ecVarB.f28031u = false;
+        ecVarB.i(false);
+        final j3.m mVar = new j3.m(this, ecVarB, tL_sponsoredMessage, 24);
         final long[] jArr = new long[1];
         final long[] jArr2 = new long[1];
         final boolean[] zArr = new boolean[1];
-        final ?? r0 = new Utilities.Callback() {
+        Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$show$4(bulletinCreate, zArr, closeDrawable, jArr2, remoteUtils$$ExternalSyntheticLambda2, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
+                this.f21832a.lambda$show$4(ecVarB, zArr, closeDrawable, jArr2, mVar, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
             }
         };
-        AndroidUtilities.runOnUIThread(remoteUtils$$ExternalSyntheticLambda2, ((long) tL_sponsoredMessage.min_display_duration) * 1000);
-        Bulletin bulletin2 = this.bulletin;
-        bulletin2.hideAfterBottomSheet = false;
-        bulletin2.setOnHideListener(new RemoteUtils$$ExternalSyntheticLambda2(this, bulletinCreate, new boolean[1], 13));
-        adLayout.titleTextView.setRightDrawableOnClick(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$show$17(bulletinCreate, tL_sponsoredMessage, context, resourcesProvider, adLayout, r0, view);
-            }
-        });
-        this.bulletin.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(2, this, tL_sponsoredMessage));
-        this.bulletin.show();
+        AndroidUtilities.runOnUIThread(mVar, ((long) tL_sponsoredMessage.min_display_duration) * 1000);
+        ec ecVar2 = this.bulletin;
+        ecVar2.f28028r = false;
+        ecVar2.v = new j3.m(this, ecVarB, new boolean[1], 25);
+        adLayout.titleTextView.setRightDrawableOnClick(new f(this, ecVarB, tL_sponsoredMessage, contextW, c6Var, adLayout, callback, 0));
+        ec ecVar3 = this.bulletin;
+        x1 x1Var = new x1(3, this, tL_sponsoredMessage);
+        jb jbVar = ecVar3.f28016e;
+        if (jbVar != null) {
+            jbVar.setOnClickListener(x1Var);
+        }
+        this.bulletin.j();
         logSponsoredShown(tL_sponsoredMessage);
     }
 
     public void showPremium() {
-        PremiumFeatureBottomSheet premiumFeatureBottomSheet = this.premiumSheet;
-        if (premiumFeatureBottomSheet != null) {
-            premiumFeatureBottomSheet.lambda$showGiftOfferSheet$15();
+        g2 g2Var = this.premiumSheet;
+        if (g2Var != null) {
+            g2Var.dismiss();
             this.premiumSheet = null;
         }
-        BaseFragment baseFragment = new BaseFragment() {
+        g2 g2Var2 = new g2(new n2() {
             @Override
             public Context getContext() {
-                return AndroidUtilities.findActivity(LaunchActivity.instance);
+                return AndroidUtilities.findActivity(LaunchActivity.C1);
             }
 
             @Override
@@ -1113,23 +1061,22 @@ public class VideoAds {
             @Override
             public Activity getParentActivity() {
                 Activity activityFindActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-                return activityFindActivity == null ? LaunchActivity.instance : activityFindActivity;
+                return activityFindActivity == null ? LaunchActivity.C1 : activityFindActivity;
             }
-        };
-        PremiumFeatureBottomSheet premiumFeatureBottomSheet2 = new PremiumFeatureBottomSheet(baseFragment, baseFragment.getContext(), baseFragment.getCurrentAccount(), false, 3, true, null);
-        this.premiumSheet = premiumFeatureBottomSheet2;
-        premiumFeatureBottomSheet2.setOnDismissListener(new ClickHelper$$ExternalSyntheticLambda0(9, this, premiumFeatureBottomSheet2));
-        premiumFeatureBottomSheet2.show();
+        }, 3, true);
+        this.premiumSheet = g2Var2;
+        g2Var2.setOnDismissListener(new k7(19, this, g2Var2));
+        g2Var2.show();
         checkPopupShownCallback();
     }
 
     public boolean isPopupShown() {
-        ItemOptions itemOptions = this.currentMenu;
-        if (itemOptions != null && itemOptions.isShown()) {
+        b70 b70Var = this.currentMenu;
+        if (b70Var != null && b70Var.D()) {
             return true;
         }
-        PremiumFeatureBottomSheet premiumFeatureBottomSheet = this.premiumSheet;
-        return premiumFeatureBottomSheet != null && premiumFeatureBottomSheet.isShown();
+        g2 g2Var = this.premiumSheet;
+        return g2Var != null && g2Var.isShown();
     }
 
     public void logSponsoredClicked(TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
@@ -1162,13 +1109,13 @@ public class VideoAds {
         this.onPopupCallback = runnable;
     }
 
-    public void setWaitingPaused(boolean z) {
-        if (this.waitingPaused == z) {
+    public void setWaitingPaused(boolean z10) {
+        if (this.waitingPaused == z10) {
             return;
         }
-        this.waitingPaused = z;
+        this.waitingPaused = z10;
         AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
-        if (z) {
+        if (z10) {
             this.waitingTimeSince = System.currentTimeMillis();
             return;
         }
@@ -1188,14 +1135,14 @@ public class VideoAds {
                     this.first = false;
                 }
             }
-            this.bulletin.hide();
+            this.bulletin.b();
             this.bulletin = null;
         } else {
             this.currentBulletinPassedTime = 0L;
         }
-        ItemOptions itemOptions = this.currentMenu;
-        if (itemOptions != null) {
-            itemOptions.dismiss();
+        b70 b70Var = this.currentMenu;
+        if (b70Var != null) {
+            b70Var.u();
             this.currentMenu = null;
         }
         this.bulletin = null;
@@ -1206,5 +1153,57 @@ public class VideoAds {
         }
         AndroidUtilities.cancelRunOnUIThread(this.showRunnable);
         setWaitingPaused(true);
+    }
+
+    public static class AdOptionsDrawable extends Drawable {
+        public final int color;
+        public final Drawable icon;
+        public final Paint backgroundPaint = new Paint(1);
+        public final pz0 text = new pz0(LocaleController.getString(R.string.SponsoredMessageAd), 11.0f, AndroidUtilities.bold());
+        private float alpha = 1.0f;
+
+        public AdOptionsDrawable(Context context, int i10) {
+            this.color = i10;
+            Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
+            this.icon = drawableMutate;
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getBounds());
+            rectF.left += AndroidUtilities.dp(4.0f);
+            this.backgroundPaint.setColor(g6.l1(this.alpha * 0.2f, this.color));
+            canvas.drawRoundRect(rectF, rectF.height(), rectF.height(), this.backgroundPaint);
+            this.text.c(rectF.left + AndroidUtilities.dp(5.0f), rectF.centerY(), this.alpha, this.color, canvas);
+            this.icon.setBounds(getBounds().right - AndroidUtilities.dp(12.99f), getBounds().centerY() - AndroidUtilities.dp(5.665f), getBounds().right - AndroidUtilities.dp(1.66f), AndroidUtilities.dp(5.665f) + getBounds().centerY());
+            this.icon.setAlpha((int) (this.alpha * 255.0f));
+            this.icon.draw(canvas);
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return AndroidUtilities.dp(16.0f);
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return (int) (this.text.l() + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(18.0f));
+        }
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i10) {
+            this.alpha = i10 / 255.0f;
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
     }
 }

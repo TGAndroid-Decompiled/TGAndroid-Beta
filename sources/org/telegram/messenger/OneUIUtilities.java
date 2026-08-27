@@ -47,10 +47,10 @@ public class OneUIUtilities {
             if (iIntValue < 100000) {
                 return false;
             }
-            int i = iIntValue - 90000;
-            oneUIEncodedVersion = i;
-            oneUIMajorVersion = i / 10000;
-            oneUIMinorVersion = (i % 10000) / 100.0f;
+            int i10 = iIntValue - 90000;
+            oneUIEncodedVersion = i10;
+            oneUIMajorVersion = i10 / 10000;
+            oneUIMinorVersion = (i10 % 10000) / 100.0f;
             isOneUI = Boolean.TRUE;
         } catch (Exception unused) {
             isOneUI = Boolean.FALSE;

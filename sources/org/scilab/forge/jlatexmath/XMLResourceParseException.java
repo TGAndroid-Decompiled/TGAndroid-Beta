@@ -4,27 +4,27 @@ public class XMLResourceParseException extends ResourceParseException {
     private static final long serialVersionUID = 2091302779298293946L;
 
     public XMLResourceParseException(String str, String str2, String str3, String str4) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(str);
-        sb.append(": invalid <");
-        sb.append(str2);
-        sb.append(">-element found: attribute '");
-        sb.append(str3);
-        sb.append("' ");
-        sb.append(str4 == null ? "is required!" : str4);
-        super(sb.toString());
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(str);
+        sb2.append(": invalid <");
+        sb2.append(str2);
+        sb2.append(">-element found: attribute '");
+        sb2.append(str3);
+        sb2.append("' ");
+        sb2.append(str4 == null ? "is required!" : str4);
+        super(sb2.toString());
     }
 
     public XMLResourceParseException(String str, String str2, String str3, String str4, Throwable th) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(str);
-        sb.append(": invalid <");
-        sb.append(str2);
-        sb.append(">-element found: attribute '");
-        sb.append(str3);
-        sb.append("' ");
-        sb.append(str4 == null ? "is required!" : str4);
-        super(sb.toString(), th);
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(str);
+        sb2.append(": invalid <");
+        sb2.append(str2);
+        sb2.append(">-element found: attribute '");
+        sb2.append(str3);
+        sb2.append("' ");
+        sb2.append(str4 == null ? "is required!" : str4);
+        super(sb2.toString(), th);
     }
 
     public XMLResourceParseException(String str, String str2) {

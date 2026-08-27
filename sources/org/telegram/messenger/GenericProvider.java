@@ -1,5 +1,5 @@
 package org.telegram.messenger;
 
 public interface GenericProvider<F, T> {
-    T provide(F f);
+    T provide(F f10);
 }

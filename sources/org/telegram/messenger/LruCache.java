@@ -12,29 +12,29 @@ public class LruCache<T> {
     private int maxSize;
     private int size;
 
-    public LruCache(int i) {
-        if (i <= 0) {
+    public LruCache(int i10) {
+        if (i10 <= 0) {
             throw new IllegalArgumentException("maxSize <= 0");
         }
-        this.maxSize = i;
+        this.maxSize = i10;
         this.map = new LinkedHashMap<>(0, 0.75f, true);
         this.mapFilters = new LinkedHashMap<>();
     }
 
-    private int safeSizeOf(String str, T t) {
-        int iSizeOf = sizeOf(str, t);
+    private int safeSizeOf(String str, T t10) {
+        int iSizeOf = sizeOf(str, t10);
         if (iSizeOf >= 0) {
             return iSizeOf;
         }
-        throw new IllegalStateException("Negative size: " + str + "=" + t);
+        throw new IllegalStateException("Negative size: " + str + "=" + t10);
     }
 
-    private void trimToSize(int i, String str) {
+    private void trimToSize(int i10, String str) {
         ArrayList<String> arrayList;
         synchronized (this) {
             try {
                 Iterator<Map.Entry<String, T>> it = this.map.entrySet().iterator();
-                while (it.hasNext() && this.size > i && !this.map.isEmpty()) {
+                while (it.hasNext() && this.size > i10 && !this.map.isEmpty()) {
                     Map.Entry<String, T> next = it.next();
                     String key = next.getKey();
                     if (str == null || !str.equals(key)) {
@@ -61,9 +61,6 @@ public class LruCache<T> {
         return this.map.containsKey(str);
     }
 
-    public void entryRemoved(boolean z, String str, T t, T t2) {
-    }
-
     public final synchronized Set<Map.Entry<String, T>> entrySet() {
         return this.map.entrySet();
     }
@@ -78,9 +75,9 @@ public class LruCache<T> {
         }
         synchronized (this) {
             try {
-                T t = this.map.get(str);
-                if (t != null) {
-                    return t;
+                T t10 = this.map.get(str);
+                if (t10 != null) {
+                    return t10;
                 }
                 return null;
             } catch (Throwable th) {
@@ -108,15 +105,15 @@ public class LruCache<T> {
         }
     }
 
-    public T put(String str, T t) {
+    public T put(String str, T t10) {
         T tPut;
-        if (str == null || t == null) {
+        if (str == null || t10 == null) {
             throw new NullPointerException("key == null || value == null");
         }
         synchronized (this) {
             try {
-                this.size += safeSizeOf(str, t);
-                tPut = this.map.put(str, t);
+                this.size += safeSizeOf(str, t10);
+                tPut = this.map.put(str, t10);
                 if (tPut != null) {
                     this.size -= safeSizeOf(str, tPut);
                 }
@@ -136,7 +133,7 @@ public class LruCache<T> {
             }
         }
         if (tPut != null) {
-            entryRemoved(false, str, tPut, t);
+            entryRemoved(false, str, tPut, t10);
         }
         trimToSize(this.maxSize, str);
         return tPut;
@@ -175,7 +172,10 @@ public class LruCache<T> {
         return this.size;
     }
 
-    public int sizeOf(String str, T t) {
+    public int sizeOf(String str, T t10) {
         return 1;
+    }
+
+    public void entryRemoved(boolean z10, String str, T t10, T t11) {
     }
 }

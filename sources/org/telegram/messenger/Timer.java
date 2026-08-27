@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 
 public class Timer {
@@ -34,19 +33,19 @@ public class Timer {
         public void done() {
             if (this.endTime < 0) {
                 Timer timer = Timer.this;
-                int i = timer.pad;
-                timer.pad = i - 1;
-                this.pad = i;
+                int i10 = timer.pad;
+                timer.pad = i10 - 1;
+                this.pad = i10;
             }
             this.endTime = System.currentTimeMillis();
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder();
-            sb.append(this.task);
-            sb.append(": ");
-            sb.append(this.endTime < 0 ? "not done" : Fragment$$ExternalSyntheticOutline0.m(new StringBuilder(), this.endTime - this.startTime, "ms"));
-            return sb.toString();
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.task);
+            sb2.append(": ");
+            sb2.append(this.endTime < 0 ? "not done" : a9.p.o(new StringBuilder(), this.endTime - this.startTime, "ms"));
+            return sb2.toString();
         }
     }
 
@@ -88,25 +87,25 @@ public class Timer {
 
     private void finish() {
         long jCurrentTimeMillis = System.currentTimeMillis() - this.startTime;
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.name);
-        sb.append(" total=");
-        sb.append(jCurrentTimeMillis);
-        sb.append("ms\n");
-        for (int i = 0; i < this.tasks.size(); i++) {
-            if (this.tasks.get(i) != null) {
-                sb.append("#");
-                sb.append(i);
-                int i2 = this.tasks.get(i).pad;
-                for (int i3 = 0; i3 < i2; i3++) {
-                    sb.append(" ");
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(this.name);
+        sb2.append(" total=");
+        sb2.append(jCurrentTimeMillis);
+        sb2.append("ms\n");
+        for (int i10 = 0; i10 < this.tasks.size(); i10++) {
+            if (this.tasks.get(i10) != null) {
+                sb2.append("#");
+                sb2.append(i10);
+                int i11 = this.tasks.get(i10).pad;
+                for (int i12 = 0; i12 < i11; i12++) {
+                    sb2.append(" ");
                 }
-                sb.append(" ");
-                sb.append(this.tasks.get(i));
-                sb.append("\n");
+                sb2.append(" ");
+                sb2.append(this.tasks.get(i10));
+                sb2.append("\n");
             }
         }
-        FileLog.d(sb.toString());
+        FileLog.d(sb2.toString());
     }
 
     private void log(String str) {

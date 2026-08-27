@@ -16,8 +16,8 @@ public class TeXFormulaSettingsParser {
     }
 
     private static void addFormulaToMap(NodeList nodeList, String[] strArr, String[] strArr2) {
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Element element = (Element) nodeList.item(i);
+        for (int i10 = 0; i10 < nodeList.getLength(); i10++) {
+            Element element = (Element) nodeList.item(i10);
             String attribute = element.getAttribute("char");
             String attribute2 = element.getAttribute("formula");
             String attribute3 = element.getAttribute("text");
@@ -38,8 +38,8 @@ public class TeXFormulaSettingsParser {
     }
 
     private static void addToMap(NodeList nodeList, String[] strArr, String[] strArr2) {
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Element element = (Element) nodeList.item(i);
+        for (int i10 = 0; i10 < nodeList.getLength(); i10++) {
+            Element element = (Element) nodeList.item(i10);
             String attribute = element.getAttribute("char");
             String attribute2 = element.getAttribute("symbol");
             String attribute3 = element.getAttribute("text");
@@ -79,8 +79,8 @@ public class TeXFormulaSettingsParser {
             documentBuilderFactoryNewInstance.setIgnoringElementContentWhitespace(true);
             documentBuilderFactoryNewInstance.setIgnoringComments(true);
             this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e9) {
+            throw new XMLResourceParseException(str, e9);
         }
     }
 }

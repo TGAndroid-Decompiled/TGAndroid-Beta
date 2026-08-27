@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.SharedConfig$$ExternalSyntheticLambda5;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -18,7 +17,8 @@ public class TL_ephemeral {
         public ArrayList<TLRPC.MessageEntity> entities;
         public int flags;
         public TLRPC.Peer from_id;
-        public int id;
+
+        public int f22593id;
         public boolean invert_media;
         public TLRPC.MessageMedia media;
         public String message;
@@ -33,18 +33,18 @@ public class TL_ephemeral {
         public long via_bot_id;
         public boolean welcome;
 
-        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i), inputSerializedData, i, z);
+        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i10), inputSerializedData, i10, z10);
         }
 
-        private static EphemeralMessage fromConstructor(int i) {
-            if (i == -1896618863) {
+        private static EphemeralMessage fromConstructor(int i10) {
+            if (i10 == -1896618863) {
                 return new TL_ephemeralMessage_layer229_old();
             }
-            if (i == -641278950) {
+            if (i10 == -641278950) {
                 return new TL_ephemeralMessage_layer228();
             }
-            if (i != -584597783) {
+            if (i10 != -584597783) {
                 return null;
             }
             return new TL_ephemeralMessage();
@@ -62,15 +62,16 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
     public static class TL_deleteMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -1829312617;
         public int flags;
-        public int id;
+
+        public int f22594id;
         public TLRPC.InputPeer peer;
         public TLRPC.InputUser receiver_id;
 
@@ -84,30 +85,31 @@ public class TL_ephemeral {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22594id);
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
     public static class TL_deleteWelcomeMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -394090015;
-        public int id;
+
+        public int f22595id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-394090015);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22595id);
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -142,7 +144,7 @@ public class TL_ephemeral {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22463id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.message);
             }
@@ -165,44 +167,44 @@ public class TL_ephemeral {
         public static final int constructor = -584597783;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.out = TLObject.hasFlag(int32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
             this.noforwards = TLObject.hasFlag(this.flags, 4096);
-            this.id = inputSerializedData.readInt32(z);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.f22593id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.receiver_id = inputSerializedData.readInt64(z);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.message = inputSerializedData.readString(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
-                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
-                this.chat_instance = inputSerializedData.readInt64(z);
+                this.chat_instance = inputSerializedData.readInt64(z10);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
-                this.anchor_msg_id = inputSerializedData.readInt32(z);
+                this.anchor_msg_id = inputSerializedData.readInt32(z10);
             }
         }
 
@@ -230,7 +232,7 @@ public class TL_ephemeral {
             int flag10 = TLObject.setFlag(flag9, 4096, this.noforwards);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22593id);
             this.from_id.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 512)) {
                 this.peer_id.serializeToStream(outputSerializedData);
@@ -269,30 +271,30 @@ public class TL_ephemeral {
         public static final int constructor = -641278950;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.out = TLObject.hasFlag(int32, 1);
-            this.id = inputSerializedData.readInt32(z);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.receiver_id = inputSerializedData.readInt64(z);
+            this.f22593id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.message = inputSerializedData.readString(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -310,7 +312,7 @@ public class TL_ephemeral {
             int flag5 = TLObject.setFlag(flag4, 64, this.reply_to != null);
             this.flags = flag5;
             outputSerializedData.writeInt32(flag5);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22593id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -338,35 +340,35 @@ public class TL_ephemeral {
         public static final int constructor = -1896618863;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.out = TLObject.hasFlag(int32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
-            this.id = inputSerializedData.readInt32(z);
-            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.receiver_id = inputSerializedData.readInt64(z);
+            this.f22593id = inputSerializedData.readInt32(z10);
+            this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.receiver_id = inputSerializedData.readInt64(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.top_msg_id = inputSerializedData.readInt32(z);
+                this.top_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.message = inputSerializedData.readString(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_markup = TLRPC.ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reply_to = TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
-                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.rich_message = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -390,7 +392,7 @@ public class TL_ephemeral {
             int flag8 = TLObject.setFlag(flag7, 256, this.rich_message != null);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22593id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -421,7 +423,8 @@ public class TL_ephemeral {
         public static final int constructor = 1067738312;
         public byte[] data;
         public int flags;
-        public int id;
+
+        public int f22596id;
         public TLRPC.InputPeer peer;
 
         @Override
@@ -431,15 +434,15 @@ public class TL_ephemeral {
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22596id);
             if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeByteArray(this.data);
             }
         }
 
         @Override
-        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -456,14 +459,15 @@ public class TL_ephemeral {
         }
 
         @Override
-        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return WelcomeMessages.TLdeserialize(inputSerializedData, i, z);
+        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return WelcomeMessages.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
     public static class TL_reportMessage extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = -2029718849;
-        public int id;
+
+        public int f22597id;
         public String message;
         public byte[] option;
         public TLRPC.InputPeer peer;
@@ -472,14 +476,14 @@ public class TL_ephemeral {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2029718849);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22597id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }
 
         @Override
-        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -549,8 +553,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -558,9 +562,9 @@ public class TL_ephemeral {
         public static final int constructor = 273664114;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.hash = inputSerializedData.readInt64(z);
-            this.messages = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(12), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.hash = inputSerializedData.readInt64(z10);
+            this.messages = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(29), z10);
         }
 
         @Override
@@ -571,35 +575,35 @@ public class TL_ephemeral {
         }
     }
 
+    public static abstract class WelcomeMessages extends TLObject {
+        public long hash;
+        public ArrayList<EphemeralMessage> messages = new ArrayList<>();
+
+        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        }
+
+        private static WelcomeMessages fromConstructor(int i10) {
+            if (i10 == 273664114) {
+                return new TL_welcomeMessages();
+            }
+            if (i10 != 1509940017) {
+                return null;
+            }
+            return new TL_welcomeMessagesNotModified();
+        }
+    }
+
     public static class TL_welcomeMessagesNotModified extends WelcomeMessages {
         public static final int constructor = 1509940017;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-        }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1509940017);
         }
-    }
 
-    public static abstract class WelcomeMessages extends TLObject {
-        public long hash;
-        public ArrayList<EphemeralMessage> messages = new ArrayList<>();
-
-        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i), inputSerializedData, i, z);
-        }
-
-        private static WelcomeMessages fromConstructor(int i) {
-            if (i == 273664114) {
-                return new TL_welcomeMessages();
-            }
-            if (i != 1509940017) {
-                return null;
-            }
-            return new TL_welcomeMessagesNotModified();
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
         }
     }
 }

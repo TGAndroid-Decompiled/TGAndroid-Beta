@@ -18,11 +18,11 @@ public class BotInlineKeyboard {
         private int separators;
 
         public void addBotKeyboard(TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup) {
-            for (int i = 0; i < tL_replyInlineMarkup.rows.size(); i++) {
-                ArrayList<TL_keyboard.KeyboardInlineButton> arrayList = tL_replyInlineMarkup.rows.get(i).buttons;
+            for (int i10 = 0; i10 < tL_replyInlineMarkup.rows.size(); i10++) {
+                ArrayList<TL_keyboard.KeyboardInlineButton> arrayList = tL_replyInlineMarkup.rows.get(i10).buttons;
                 ButtonBot[] buttonBotArr = new ButtonBot[arrayList.size()];
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    buttonBotArr[i2] = new ButtonBot(arrayList.get(i2));
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    buttonBotArr[i11] = new ButtonBot(arrayList.get(i11));
                 }
                 this.buttons.add(buttonBotArr);
             }
@@ -41,14 +41,14 @@ public class BotInlineKeyboard {
                 return;
             }
             int rowsCount = source.getRowsCount();
-            for (int i = 0; i < rowsCount; i++) {
-                int columnsCount = source.getColumnsCount(i);
+            for (int i10 = 0; i10 < rowsCount; i10++) {
+                int columnsCount = source.getColumnsCount(i10);
                 Button[] buttonArr = new Button[columnsCount];
-                for (int i2 = 0; i2 < columnsCount; i2++) {
-                    buttonArr[i2] = source.getButton(i, i2);
+                for (int i11 = 0; i11 < columnsCount; i11++) {
+                    buttonArr[i11] = source.getButton(i10, i11);
                 }
                 this.buttons.add(buttonArr);
-                if (source.hasSeparator(i)) {
+                if (source.hasSeparator(i10)) {
                     addSeparator();
                 }
             }
@@ -149,13 +149,14 @@ public class BotInlineKeyboard {
         public static final int SUGGESTION_DECLINE = 1;
         public static final int SUGGESTION_EDIT = 3;
         public final int icon;
-        public final int id;
+
+        public final int f19608id;
         public final int text;
 
-        public ButtonCustom(int i, int i2, int i3) {
-            this.id = i;
-            this.text = i2;
-            this.icon = i3;
+        public ButtonCustom(int i10, int i11, int i12) {
+            this.f19608id = i10;
+            this.text = i11;
+            this.icon = i12;
         }
 
         @Override
@@ -174,13 +175,13 @@ public class BotInlineKeyboard {
         private final int separators;
 
         @Override
-        public Button getButton(int i, int i2) {
-            return this.buttons[i][i2];
+        public Button getButton(int i10, int i11) {
+            return this.buttons[i10][i11];
         }
 
         @Override
-        public int getColumnsCount(int i) {
-            return this.buttons[i].length;
+        public int getColumnsCount(int i10) {
+            return this.buttons[i10].length;
         }
 
         @Override
@@ -189,36 +190,29 @@ public class BotInlineKeyboard {
         }
 
         @Override
-        public boolean hasSeparator(int i) {
-            return ((1 << i) & this.separators) != 0;
+        public boolean hasSeparator(int i10) {
+            return ((1 << i10) & this.separators) != 0;
         }
 
         @Override
         public final boolean isEmpty() {
-            return Source.CC.$default$isEmpty(this);
+            return m0.a(this);
         }
 
-        private KeyboardSourceArray(Button[][] buttonArr, int i) {
+        private KeyboardSourceArray(Button[][] buttonArr, int i10) {
             this.buttons = buttonArr;
-            this.separators = i;
+            this.separators = i10;
         }
     }
 
     public interface Source {
+        Button getButton(int i10, int i11);
 
-        public abstract class CC {
-            public static boolean $default$isEmpty(Source source) {
-                return source.getRowsCount() == 0;
-            }
-        }
-
-        Button getButton(int i, int i2);
-
-        int getColumnsCount(int i);
+        int getColumnsCount(int i10);
 
         int getRowsCount();
 
-        boolean hasSeparator(int i);
+        boolean hasSeparator(int i10);
 
         boolean isEmpty();
     }

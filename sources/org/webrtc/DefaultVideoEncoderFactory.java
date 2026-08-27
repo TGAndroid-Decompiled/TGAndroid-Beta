@@ -7,8 +7,8 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
     private final VideoEncoderFactory hardwareVideoEncoderFactory;
     private final VideoEncoderFactory softwareVideoEncoderFactory = new SoftwareVideoEncoderFactory();
 
-    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z, boolean z2) {
-        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z, z2);
+    public DefaultVideoEncoderFactory(EglBase.Context context, boolean z10, boolean z11) {
+        this.hardwareVideoEncoderFactory = new HardwareVideoEncoderFactory(context, z10, z11);
     }
 
     @Override
@@ -23,12 +23,12 @@ public class DefaultVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public final VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {
-        return VideoEncoderFactory.CC.$default$getEncoderSelector(this);
+        return y.a(this);
     }
 
     @Override
     public final VideoCodecInfo[] getImplementations() {
-        return getSupportedCodecs();
+        return y.b(this);
     }
 
     @Override

@@ -7,7 +7,6 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import androidx.core.util.Consumer;
 import java.util.List;
 
 public interface IMapsProvider {
@@ -19,14 +18,14 @@ public interface IMapsProvider {
         public final LatLng target;
         public final float zoom;
 
-        public CameraPosition(LatLng latLng, float f) {
+        public CameraPosition(LatLng latLng, float f10) {
             this.target = latLng;
-            this.zoom = f;
+            this.zoom = f10;
         }
     }
 
     public interface ICallableMethod<R, A> {
-        R call(A a);
+        R call(A a2);
     }
 
     public interface ICameraUpdate {
@@ -45,25 +44,25 @@ public interface IMapsProvider {
 
         void setCenter(LatLng latLng);
 
-        void setFillColor(int i);
+        void setFillColor(int i10);
 
         void setRadius(double d);
 
-        void setStrokeColor(int i);
+        void setStrokeColor(int i10);
     }
 
     public interface ICircleOptions {
         ICircleOptions center(LatLng latLng);
 
-        ICircleOptions fillColor(int i);
+        ICircleOptions fillColor(int i10);
 
         ICircleOptions radius(double d);
 
-        ICircleOptions strokeColor(int i);
+        ICircleOptions strokeColor(int i10);
 
         ICircleOptions strokePattern(List<PatternItem> list);
 
-        ICircleOptions strokeWidth(int i);
+        ICircleOptions strokeWidth(int i10);
     }
 
     public interface ILatLngBounds {
@@ -83,7 +82,7 @@ public interface IMapsProvider {
 
         void animateCamera(ICameraUpdate iCameraUpdate);
 
-        void animateCamera(ICameraUpdate iCameraUpdate, int i, ICancelableCallback iCancelableCallback);
+        void animateCamera(ICameraUpdate iCameraUpdate, int i10, ICancelableCallback iCancelableCallback);
 
         void animateCamera(ICameraUpdate iCameraUpdate, ICancelableCallback iCancelableCallback);
 
@@ -101,9 +100,9 @@ public interface IMapsProvider {
 
         void setMapStyle(IMapStyleOptions iMapStyleOptions);
 
-        void setMapType(int i);
+        void setMapType(int i10);
 
-        void setMyLocationEnabled(boolean z);
+        void setMyLocationEnabled(boolean z10);
 
         void setOnCameraIdleListener(Runnable runnable);
 
@@ -115,25 +114,18 @@ public interface IMapsProvider {
 
         void setOnMarkerClickListener(OnMarkerClickListener onMarkerClickListener);
 
-        void setOnMyLocationChangeListener(Consumer consumer);
+        void setOnMyLocationChangeListener(q0.a aVar);
 
-        void setPadding(int i, int i2, int i3, int i4);
+        void setPadding(int i10, int i11, int i12, int i13);
     }
 
     public interface IMapStyleOptions {
     }
 
     public interface IMapView {
-
-        public abstract class CC {
-            public static GLSurfaceView $default$getGlSurfaceView(IMapView iMapView) {
-                return null;
-            }
-        }
-
         GLSurfaceView getGlSurfaceView();
 
-        void getMapAsync(Consumer consumer);
+        void getMapAsync(q0.a aVar);
 
         View getView();
 
@@ -161,23 +153,23 @@ public interface IMapsProvider {
 
         void remove();
 
-        void setIcon(int i);
+        void setIcon(int i10);
 
         void setIcon(Bitmap bitmap);
 
         void setPosition(LatLng latLng);
 
-        void setRotation(int i);
+        void setRotation(int i10);
 
         void setTag(Object obj);
     }
 
     public interface IMarkerOptions {
-        IMarkerOptions anchor(float f, float f2);
+        IMarkerOptions anchor(float f10, float f11);
 
-        IMarkerOptions flat(boolean z);
+        IMarkerOptions flat(boolean z10);
 
-        IMarkerOptions icon(int i);
+        IMarkerOptions icon(int i10);
 
         IMarkerOptions icon(Bitmap bitmap);
 
@@ -197,20 +189,20 @@ public interface IMapsProvider {
     }
 
     public interface IUISettings {
-        void setCompassEnabled(boolean z);
+        void setCompassEnabled(boolean z10);
 
-        void setMyLocationButtonEnabled(boolean z);
+        void setMyLocationButtonEnabled(boolean z10);
 
-        void setZoomControlsEnabled(boolean z);
+        void setZoomControlsEnabled(boolean z10);
     }
 
     public static final class LatLng {
         public final double latitude;
         public final double longitude;
 
-        public LatLng(double d, double d2) {
+        public LatLng(double d, double d10) {
             this.latitude = d;
-            this.longitude = d2;
+            this.longitude = d10;
         }
     }
 
@@ -219,7 +211,7 @@ public interface IMapsProvider {
         public static final int REASON_DEVELOPER_ANIMATION = 3;
         public static final int REASON_GESTURE = 1;
 
-        void onCameraMoveStarted(int i);
+        void onCameraMoveStarted(int i10);
     }
 
     public interface OnMarkerClickListener {
@@ -231,16 +223,16 @@ public interface IMapsProvider {
         public static final class Dash extends PatternItem {
             public final int length;
 
-            public Dash(int i) {
-                this.length = i;
+            public Dash(int i10) {
+                this.length = i10;
             }
         }
 
         public static final class Gap extends PatternItem {
             public final int length;
 
-            public Gap(int i) {
-                this.length = i;
+            public Gap(int i10) {
+                this.length = i10;
             }
         }
     }
@@ -251,13 +243,13 @@ public interface IMapsProvider {
 
     void initializeMaps(Context context);
 
-    IMapStyleOptions loadRawResourceStyle(Context context, int i);
+    IMapStyleOptions loadRawResourceStyle(Context context, int i10);
 
     ICameraUpdate newCameraUpdateLatLng(LatLng latLng);
 
-    ICameraUpdate newCameraUpdateLatLngBounds(ILatLngBounds iLatLngBounds, int i);
+    ICameraUpdate newCameraUpdateLatLngBounds(ILatLngBounds iLatLngBounds, int i10);
 
-    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f);
+    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f10);
 
     ICircleOptions onCreateCircleOptions();
 

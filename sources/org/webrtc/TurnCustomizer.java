@@ -3,8 +3,8 @@ package org.webrtc;
 public class TurnCustomizer {
     private long nativeTurnCustomizer;
 
-    public TurnCustomizer(long j) {
-        this.nativeTurnCustomizer = j;
+    public TurnCustomizer(long j10) {
+        this.nativeTurnCustomizer = j10;
     }
 
     private void checkTurnCustomizerExists() {
@@ -13,7 +13,7 @@ public class TurnCustomizer {
         }
     }
 
-    private static native void nativeFreeTurnCustomizer(long j);
+    private static native void nativeFreeTurnCustomizer(long j10);
 
     public void dispose() {
         checkTurnCustomizerExists();

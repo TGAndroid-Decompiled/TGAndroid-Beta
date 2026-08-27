@@ -10,7 +10,8 @@ import java.util.concurrent.TimeUnit;
 public class ThreadUtils {
 
     public class C1CaughtException {
-        Exception e;
+
+        Exception f45290e;
     }
 
     public class C1Result {
@@ -61,16 +62,16 @@ public class ThreadUtils {
     }
 
     public static void executeUninterruptibly(BlockingOperation blockingOperation) {
-        boolean z = false;
+        boolean z10 = false;
         while (true) {
             try {
                 blockingOperation.run();
                 break;
             } catch (InterruptedException unused) {
-                z = true;
+                z10 = true;
             }
         }
-        if (z) {
+        if (z10) {
             Thread.currentThread().interrupt();
         }
     }
@@ -79,8 +80,8 @@ public class ThreadUtils {
         if (handler.getLooper().getThread() == Thread.currentThread()) {
             try {
                 return callable.call();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            } catch (Exception e9) {
+                throw new RuntimeException(e9);
             }
         }
         final C1Result c1Result = new C1Result();
@@ -91,55 +92,55 @@ public class ThreadUtils {
             public void run() {
                 try {
                     c1Result.value = callable.call();
-                } catch (Exception e2) {
-                    c1CaughtException.e = e2;
+                } catch (Exception e10) {
+                    c1CaughtException.f45290e = e10;
                 }
                 countDownLatch.countDown();
             }
         });
         awaitUninterruptibly(countDownLatch);
-        if (c1CaughtException.e == null) {
+        if (c1CaughtException.f45290e == null) {
             return c1Result.value;
         }
-        RuntimeException runtimeException = new RuntimeException(c1CaughtException.e);
-        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.e.getStackTrace(), runtimeException.getStackTrace()));
+        RuntimeException runtimeException = new RuntimeException(c1CaughtException.f45290e);
+        runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f45290e.getStackTrace(), runtimeException.getStackTrace()));
         throw runtimeException;
     }
 
-    public static boolean joinUninterruptibly(Thread thread, long j) {
+    public static boolean joinUninterruptibly(Thread thread, long j10) {
         long jElapsedRealtime = SystemClock.elapsedRealtime();
-        boolean z = false;
-        long jElapsedRealtime2 = j;
+        boolean z10 = false;
+        long jElapsedRealtime2 = j10;
         while (jElapsedRealtime2 > 0) {
             try {
                 thread.join(jElapsedRealtime2);
                 break;
             } catch (InterruptedException unused) {
-                jElapsedRealtime2 = j - (SystemClock.elapsedRealtime() - jElapsedRealtime);
-                z = true;
+                jElapsedRealtime2 = j10 - (SystemClock.elapsedRealtime() - jElapsedRealtime);
+                z10 = true;
             }
         }
-        if (z) {
+        if (z10) {
             Thread.currentThread().interrupt();
         }
         return !thread.isAlive();
     }
 
-    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j) {
+    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j10) {
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         boolean zAwait = false;
-        long jElapsedRealtime2 = j;
-        boolean z = false;
+        long jElapsedRealtime2 = j10;
+        boolean z10 = false;
         do {
             try {
                 zAwait = countDownLatch.await(jElapsedRealtime2, TimeUnit.MILLISECONDS);
                 break;
             } catch (InterruptedException unused) {
-                jElapsedRealtime2 = j - (SystemClock.elapsedRealtime() - jElapsedRealtime);
-                z = true;
+                jElapsedRealtime2 = j10 - (SystemClock.elapsedRealtime() - jElapsedRealtime);
+                z10 = true;
             }
         } while (jElapsedRealtime2 > 0);
-        if (z) {
+        if (z10) {
             Thread.currentThread().interrupt();
         }
         return zAwait;

@@ -9,33 +9,33 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 
 interface MediaCodecWrapper {
-    void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i);
+    void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i10);
 
     Surface createInputSurface();
 
-    int dequeueInputBuffer(long j);
+    int dequeueInputBuffer(long j10);
 
-    int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j);
+    int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j10);
 
     void flush();
 
     MediaCodecInfo getCodecInfo();
 
-    ByteBuffer getInputBuffer(int i);
+    ByteBuffer getInputBuffer(int i10);
 
     MediaFormat getInputFormat();
 
-    ByteBuffer getOutputBuffer(int i);
+    ByteBuffer getOutputBuffer(int i10);
 
     MediaFormat getOutputFormat();
 
-    MediaFormat getOutputFormat(int i);
+    MediaFormat getOutputFormat(int i10);
 
-    void queueInputBuffer(int i, int i2, int i3, long j, int i4);
+    void queueInputBuffer(int i10, int i11, int i12, long j10, int i13);
 
     void release();
 
-    void releaseOutputBuffer(int i, boolean z);
+    void releaseOutputBuffer(int i10, boolean z10);
 
     void setParameters(Bundle bundle);
 

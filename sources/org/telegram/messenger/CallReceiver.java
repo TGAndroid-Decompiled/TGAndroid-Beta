@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
-import org.telegram.PhoneFormat.PhoneFormat;
 
 public class CallReceiver extends BroadcastReceiver {
     public static void checkLastReceivedCall() {
@@ -32,9 +31,9 @@ public class CallReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.PHONE_STATE") && TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra("state"))) {
-            String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(intent.getStringExtra("incoming_number"), false);
-            SharedConfig.getPreferences().edit().putString("last_call_phone_number", strStripExceptNumbers).putLong("last_call_time", System.currentTimeMillis()).apply();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, strStripExceptNumbers);
+            String strD = oe.b.d(intent.getStringExtra("incoming_number"), false);
+            SharedConfig.getPreferences().edit().putString("last_call_phone_number", strD).putLong("last_call_time", System.currentTimeMillis()).apply();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, strD);
         }
     }
 }

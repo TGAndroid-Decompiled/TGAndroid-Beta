@@ -7,13 +7,12 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES20;
 import android.view.Surface;
-import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
+import lh.y7;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
@@ -28,8 +27,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i, int i2, int i3, int i4, int i5, float f, boolean z, Integer num, Integer num2, StoryEntry.HDRInfo hDRInfo, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, str3, arrayList, cropState, i, i2, i3, i4, i5, f, z, num, num2, hDRInfo, convertVideoParams);
+    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i10, int i11, int i12, int i13, int i14, float f10, boolean z10, Integer num, Integer num2, y7 y7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, str3, arrayList, cropState, i10, i11, i12, i13, i14, f10, z10, num, num2, y7Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         SurfaceTexture surfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -40,7 +39,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
 
     private void checkEglError(String str) {
         if (EGL14.eglGetError() != 12288) {
-            throw new RuntimeException(zzii.m("EGL error encountered (see log) at: ", str));
+            throw new RuntimeException(s3.c.e("EGL error encountered (see log) at: ", str));
         }
     }
 
@@ -52,8 +51,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
                     if (!this.mFrameAvailable) {
                         throw new RuntimeException("Surface frame wait timed out");
                     }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (InterruptedException e9) {
+                    throw new RuntimeException(e9);
                 }
             }
             this.mFrameAvailable = false;
@@ -61,12 +60,12 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         this.mSurfaceTexture.updateTexImage();
     }
 
-    public void changeFragmentShader(String str, String str2, boolean z) {
-        this.mTextureRender.changeFragmentShader(str, str2, z);
+    public void changeFragmentShader(String str, String str2, boolean z10) {
+        this.mTextureRender.changeFragmentShader(str, str2, z10);
     }
 
-    public void drawImage(long j) {
-        this.mTextureRender.drawFrame(this.mSurfaceTexture, j);
+    public void drawImage(long j10) {
+        this.mTextureRender.drawFrame(this.mSurfaceTexture, j10);
     }
 
     public Surface getSurface() {
@@ -106,8 +105,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     public boolean supportsEXTYUV() {
         try {
             return GLES20.glGetString(7939).contains("GL_EXT_YUV_target");
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return false;
         }
     }

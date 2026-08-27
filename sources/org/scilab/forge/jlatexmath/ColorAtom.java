@@ -21,9 +21,9 @@ public class ColorAtom extends Atom implements Row {
         this.color = color2;
     }
 
-    private static Color convColor(float f, float f2, float f3, float f4) {
-        float f5 = 1.0f - f4;
-        return new Color((1.0f - f) * f5, (1.0f - f2) * f5, (1.0f - f3) * f5);
+    private static Color convColor(float f10, float f11, float f12, float f13) {
+        float f14 = 1.0f - f13;
+        return new Color((1.0f - f10) * f14, (1.0f - f11) * f14, (1.0f - f12) * f14);
     }
 
     public static Color getColor(String str) {
@@ -41,10 +41,10 @@ public class ColorAtom extends Atom implements Row {
                             String strTrim2 = stringTokenizer.nextToken().trim();
                             String strTrim3 = stringTokenizer.nextToken().trim();
                             String strTrim4 = stringTokenizer.nextToken().trim();
-                            float f = Float.parseFloat(strTrim2);
-                            float f2 = Float.parseFloat(strTrim3);
-                            float f3 = Float.parseFloat(strTrim4);
-                            return (f == ((float) ((int) f)) && f2 == ((float) ((int) f2)) && f3 == ((float) ((int) f3)) && strTrim2.indexOf(46) == -1 && strTrim3.indexOf(46) == -1 && strTrim4.indexOf(46) == -1) ? new Color((int) Math.min(255.0f, Math.max(0.0f, f)), (int) Math.min(255.0f, Math.max(0.0f, f2)), (int) Math.min(255.0f, Math.max(0.0f, f3))) : new Color(Math.min(1.0f, Math.max(0.0f, f)), Math.min(1.0f, Math.max(0.0f, f2)), Math.min(1.0f, Math.max(0.0f, f3)));
+                            float f10 = Float.parseFloat(strTrim2);
+                            float f11 = Float.parseFloat(strTrim3);
+                            float f12 = Float.parseFloat(strTrim4);
+                            return (f10 == ((float) ((int) f10)) && f11 == ((float) ((int) f11)) && f12 == ((float) ((int) f12)) && strTrim2.indexOf(46) == -1 && strTrim3.indexOf(46) == -1 && strTrim4.indexOf(46) == -1) ? new Color((int) Math.min(255.0f, Math.max(0.0f, f10)), (int) Math.min(255.0f, Math.max(0.0f, f11)), (int) Math.min(255.0f, Math.max(0.0f, f12))) : new Color(Math.min(1.0f, Math.max(0.0f, f10)), Math.min(1.0f, Math.max(0.0f, f11)), Math.min(1.0f, Math.max(0.0f, f12)));
                         } catch (NumberFormatException unused) {
                             return Color.black;
                         }

@@ -9,14 +9,7 @@ public class VideoFrame implements RefCounted {
     private final long timestampNs;
 
     public interface Buffer extends RefCounted {
-
-        public abstract class CC {
-            public static int $default$getBufferType(Buffer buffer) {
-                return 0;
-            }
-        }
-
-        Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6);
+        Buffer cropAndScale(int i10, int i11, int i12, int i13, int i14, int i15);
 
         int getBufferType();
 
@@ -34,13 +27,6 @@ public class VideoFrame implements RefCounted {
     }
 
     public interface I420Buffer extends Buffer {
-
-        public abstract class CC {
-            public static int $default$getBufferType(I420Buffer i420Buffer) {
-                return 1;
-            }
-        }
-
         @Override
         int getBufferType();
 
@@ -59,20 +45,14 @@ public class VideoFrame implements RefCounted {
 
     public interface TextureBuffer extends Buffer {
 
-        public abstract class CC {
-            public static TextureBuffer $default$applyTransformMatrix(TextureBuffer textureBuffer, Matrix matrix, int i, int i2) {
-                throw new UnsupportedOperationException("Not implemented");
-            }
-        }
-
         public enum Type {
             OES(36197),
             RGB(3553);
 
             private final int glTarget;
 
-            Type(int i) {
-                this.glTarget = i;
+            Type(int i10) {
+                this.glTarget = i10;
             }
 
             public int getGlTarget() {
@@ -80,7 +60,7 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i, int i2);
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i10, int i11);
 
         int getTextureId();
 
@@ -93,16 +73,16 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i, long j) {
+    public VideoFrame(Buffer buffer, int i10, long j10) {
         if (buffer == null) {
             throw new IllegalArgumentException("buffer not allowed to be null");
         }
-        if (i % 90 != 0) {
+        if (i10 % 90 != 0) {
             throw new IllegalArgumentException("rotation must be a multiple of 90");
         }
         this.buffer = buffer;
-        this.rotation = i;
-        this.timestampNs = j;
+        this.rotation = i10;
+        this.timestampNs = j10;
     }
 
     public Buffer getBuffer() {

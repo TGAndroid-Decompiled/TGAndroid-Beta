@@ -1,10 +1,9 @@
 package org.telegram.messenger.video;
 
-import com.googlecode.mp4parser.AbstractBox;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-public class HevcConfigurationBox extends AbstractBox {
+public class HevcConfigurationBox extends com.googlecode.mp4parser.a {
     public static final String TYPE = "hvcC";
     private HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord;
 

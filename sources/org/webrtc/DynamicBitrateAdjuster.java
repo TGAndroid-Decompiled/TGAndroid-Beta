@@ -19,46 +19,47 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     }
 
     @Override
-    public void reportEncodedFrame(int i) {
+    public void reportEncodedFrame(int i10) {
         double d = this.targetFramerateFps;
         if (d == 0.0d) {
             return;
         }
-        double d2 = ((double) this.targetBitrateBps) / 8.0d;
-        double d3 = (((double) i) - (d2 / d)) + this.deviationBytes;
-        this.deviationBytes = d3;
+        int i11 = this.targetBitrateBps;
+        double d10 = (((double) i10) - ((((double) i11) / 8.0d) / d)) + this.deviationBytes;
+        this.deviationBytes = d10;
         this.timeSinceLastAdjustmentMs = (1000.0d / d) + this.timeSinceLastAdjustmentMs;
-        double d4 = 3.0d * d2;
-        double dMin = Math.min(d3, d4);
+        double d11 = ((double) i11) / 8.0d;
+        double d12 = 3.0d * d11;
+        double dMin = Math.min(d10, d12);
         this.deviationBytes = dMin;
-        double dMax = Math.max(dMin, -d4);
+        double dMax = Math.max(dMin, -d12);
         this.deviationBytes = dMax;
         if (this.timeSinceLastAdjustmentMs <= 3000.0d) {
             return;
         }
-        if (dMax > d2) {
-            int i2 = this.bitrateAdjustmentScaleExp - ((int) ((dMax / d2) + 0.5d));
-            this.bitrateAdjustmentScaleExp = i2;
-            this.bitrateAdjustmentScaleExp = Math.max(i2, -20);
-            this.deviationBytes = d2;
+        if (dMax > d11) {
+            int i12 = this.bitrateAdjustmentScaleExp - ((int) ((dMax / d11) + 0.5d));
+            this.bitrateAdjustmentScaleExp = i12;
+            this.bitrateAdjustmentScaleExp = Math.max(i12, -20);
+            this.deviationBytes = d11;
         } else {
-            double d5 = -d2;
-            if (dMax < d5) {
-                int i3 = this.bitrateAdjustmentScaleExp + ((int) (((-dMax) / d2) + 0.5d));
-                this.bitrateAdjustmentScaleExp = i3;
-                this.bitrateAdjustmentScaleExp = Math.min(i3, 20);
-                this.deviationBytes = d5;
+            double d13 = -d11;
+            if (dMax < d13) {
+                int i13 = this.bitrateAdjustmentScaleExp + ((int) (((-dMax) / d11) + 0.5d));
+                this.bitrateAdjustmentScaleExp = i13;
+                this.bitrateAdjustmentScaleExp = Math.min(i13, 20);
+                this.deviationBytes = d13;
             }
         }
         this.timeSinceLastAdjustmentMs = 0.0d;
     }
 
     @Override
-    public void setTargets(int i, double d) {
-        int i2 = this.targetBitrateBps;
-        if (i2 > 0 && i < i2) {
-            this.deviationBytes = (this.deviationBytes * ((double) i)) / ((double) i2);
+    public void setTargets(int i10, double d) {
+        int i11 = this.targetBitrateBps;
+        if (i11 > 0 && i10 < i11) {
+            this.deviationBytes = (this.deviationBytes * ((double) i10)) / ((double) i11);
         }
-        super.setTargets(i, d);
+        super.setTargets(i10, d);
     }
 }

@@ -2,9 +2,8 @@ package org.telegram.messenger;
 
 import android.os.Bundle;
 import android.util.Log;
-import androidx.collection.ArrayMap;
 import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
+import com.google.firebase.messaging.r;
 
 public class GcmPushListenerService extends FirebaseMessagingService {
     public static void lambda$onNewToken$0(String str) {
@@ -16,25 +15,24 @@ public class GcmPushListenerService extends FirebaseMessagingService {
     }
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(r rVar) {
         long jLongValue;
-        String string = remoteMessage.bundle.getString("from");
-        ArrayMap arrayMap = remoteMessage.data;
-        Bundle bundle = remoteMessage.bundle;
-        if (arrayMap == null) {
-            ArrayMap arrayMap2 = new ArrayMap(0);
+        Bundle bundle = rVar.f4615a;
+        String string = bundle.getString("from");
+        if (rVar.f4616b == null) {
+            a0.f fVar = new a0.f(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (obj instanceof String) {
                     String str2 = (String) obj;
                     if (!str.startsWith("google.") && !str.startsWith("gcm.") && !str.equals("from") && !str.equals("message_type") && !str.equals("collapse_key")) {
-                        arrayMap2.put(str, str2);
+                        fVar.put(str, str2);
                     }
                 }
             }
-            remoteMessage.data = arrayMap2;
+            rVar.f4616b = fVar;
         }
-        ArrayMap arrayMap3 = remoteMessage.data;
+        a0.f fVar2 = rVar.f4616b;
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             jLongValue = ((Long) obj2).longValue();
@@ -49,13 +47,13 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             jLongValue = 0;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("FCM received data: " + arrayMap3 + " from: " + string);
+            FileLog.d("FCM received data: " + fVar2 + " from: " + string);
         }
-        PushListenerController.processRemoteMessage(2, (String) arrayMap3.get("p"), jLongValue);
+        PushListenerController.processRemoteMessage(2, (String) fVar2.get("p"), jLongValue);
     }
 
     @Override
     public void onNewToken(String str) {
-        AndroidUtilities.runOnUIThread(new FileLog$$ExternalSyntheticLambda1(str, 4));
+        AndroidUtilities.runOnUIThread(new u1(str, 4));
     }
 }

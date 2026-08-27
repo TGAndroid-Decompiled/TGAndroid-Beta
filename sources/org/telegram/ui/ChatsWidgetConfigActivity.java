@@ -2,57 +2,41 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.TelegramMediaSession$$ExternalSyntheticOutline0;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.INavigationLayout;
 
 public class ChatsWidgetConfigActivity extends ExternalActionActivity {
-    private int creatingAppWidgetId = 0;
-
-    public void lambda$handleIntent$0(ArrayList arrayList) {
-        Intent intent = new Intent();
-        intent.putExtra("appWidgetId", this.creatingAppWidgetId);
-        setResult(-1, intent);
-        finish();
-    }
+    public static final int B = 0;
+    public int A = 0;
 
     @Override
-    public boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
-        if (!checkPasscode(intent, z, z2, z3, i, i2)) {
-            return false;
-        }
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
-        }
-        if (this.creatingAppWidgetId == 0) {
-            finish();
-            return true;
-        }
-        TelegramMediaSession$$ExternalSyntheticOutline0.m("onlySelect", "dialogsType", 10, true).putBoolean("allowSwitchAccount", true);
-        EditWidgetActivity editWidgetActivity = new EditWidgetActivity(0, this.creatingAppWidgetId);
-        editWidgetActivity.setDelegate(new BoostsActivity$$ExternalSyntheticLambda4(this, 12));
-        if (AndroidUtilities.isTablet()) {
-            if (((ActionBarLayout) this.layersActionBarLayout).getFragmentStack().isEmpty()) {
-                INavigationLayout iNavigationLayout = this.layersActionBarLayout;
-                iNavigationLayout.getClass();
-                ((ActionBarLayout) iNavigationLayout).addFragmentToStack(-1, editWidgetActivity);
+    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i10, int i11) {
+        if (c(intent, z10, z11, z12, i10, i11)) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                this.A = extras.getInt("appWidgetId", 0);
             }
-        } else if (((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty()) {
-            INavigationLayout iNavigationLayout2 = this.actionBarLayout;
-            iNavigationLayout2.getClass();
-            ((ActionBarLayout) iNavigationLayout2).addFragmentToStack(-1, editWidgetActivity);
+            if (this.A == 0) {
+                finish();
+                return;
+            }
+            org.telegram.messenger.y1.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            py pyVar = new py(0, this.A);
+            pyVar.f41452y = new c1(this, 25);
+            if (AndroidUtilities.isTablet()) {
+                if (this.d.getFragmentStack().isEmpty()) {
+                    this.d.c(-1, pyVar);
+                }
+            } else if (this.f35472c.getFragmentStack().isEmpty()) {
+                this.f35472c.c(-1, pyVar);
+            }
+            if (!AndroidUtilities.isTablet()) {
+                this.f35473e.setVisibility(8);
+            }
+            this.f35472c.c0();
+            if (AndroidUtilities.isTablet()) {
+                this.d.c0();
+            }
+            intent.setAction(null);
         }
-        if (!AndroidUtilities.isTablet()) {
-            this.backgroundTablet.setVisibility(8);
-        }
-        ((ActionBarLayout) this.actionBarLayout).showLastFragment();
-        if (AndroidUtilities.isTablet()) {
-            ((ActionBarLayout) this.layersActionBarLayout).showLastFragment();
-        }
-        intent.setAction(null);
-        return true;
     }
 }

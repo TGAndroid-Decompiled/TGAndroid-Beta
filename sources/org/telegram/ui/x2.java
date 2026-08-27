@@ -1,0 +1,66 @@
+package org.telegram.ui;
+
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import org.telegram.messenger.AndroidUtilities;
+
+public final class x2 extends HorizontalScrollView {
+
+    public final d70 f44258a;
+
+    public final y2 f44259b;
+
+    public x2(y2 y2Var, Context context, d70 d70Var) {
+        super(context);
+        this.f44259b = y2Var;
+        this.f44258a = d70Var;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean zOnInterceptTouchEvent = super.onInterceptTouchEvent(motionEvent);
+        this.f44259b.f44680e.getMeasuredWidth();
+        getMeasuredWidth();
+        AndroidUtilities.dp(36.0f);
+        return zOnInterceptTouchEvent;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        y2 y2Var = this.f44259b;
+        y2Var.f44680e.measure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight(), 0), i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), y2Var.f44680e.getMeasuredHeight());
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        d70 d70Var = this.f44258a;
+        if (d70Var.d != null) {
+            d70Var.d = null;
+            d70Var.f37288f = null;
+        }
+        this.f44259b.a();
+        org.telegram.ui.Cells.j9 j9Var = ((m4) d70Var).K0;
+        if (j9Var == null || !j9Var.y()) {
+            return;
+        }
+        j9Var.x();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f44259b.f44680e.getMeasuredWidth() <= getMeasuredWidth() - AndroidUtilities.dp(36.0f)) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean overScrollBy(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, boolean z10) {
+        m4.T(this.f44258a);
+        return super.overScrollBy(i10, i11, i12, i13, i14, i15, i16, i17, z10);
+    }
+}

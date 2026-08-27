@@ -4,16 +4,6 @@ import android.media.MediaRecorder;
 
 public interface CameraVideoCapturer extends VideoCapturer {
 
-    public abstract class CC {
-        public static void $default$addMediaRecorderToCamera(CameraVideoCapturer cameraVideoCapturer, MediaRecorder mediaRecorder, MediaRecorderHandler mediaRecorderHandler) {
-            throw new UnsupportedOperationException("Deprecated and not implemented.");
-        }
-
-        public static void $default$removeMediaRecorderFromCamera(CameraVideoCapturer cameraVideoCapturer, MediaRecorderHandler mediaRecorderHandler) {
-            throw new UnsupportedOperationException("Deprecated and not implemented.");
-        }
-    }
-
     public interface CameraEventsHandler {
         void onCameraClosed();
 
@@ -74,9 +64,9 @@ public interface CameraVideoCapturer extends VideoCapturer {
         }
 
         public static int access$104(CameraStatistics cameraStatistics) {
-            int i = cameraStatistics.freezePeriodCount + 1;
-            cameraStatistics.freezePeriodCount = i;
-            return i;
+            int i10 = cameraStatistics.freezePeriodCount + 1;
+            cameraStatistics.freezePeriodCount = i10;
+            return i10;
         }
 
         private void checkThread() {
@@ -96,7 +86,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
     }
 
     public interface CameraSwitchHandler {
-        void onCameraSwitchDone(boolean z);
+        void onCameraSwitchDone(boolean z10);
 
         void onCameraSwitchError(String str);
     }

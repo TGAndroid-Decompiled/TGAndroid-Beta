@@ -5,13 +5,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 
 public interface VoIPServiceState {
-
-    public abstract class CC {
-        public static long $default$getCallDuration(VoIPServiceState voIPServiceState) {
-            return 0L;
-        }
-    }
-
     void acceptIncomingCall();
 
     void declineIncomingCall();

@@ -48,9 +48,9 @@ public class WebRtcAudioManager {
             private final int maxRingVolume;
             private final int maxVoiceCallVolume;
 
-            public LogVolumeTask(int i, int i2) {
-                this.maxRingVolume = i;
-                this.maxVoiceCallVolume = i2;
+            public LogVolumeTask(int i10, int i11) {
+                this.maxRingVolume = i10;
+                this.maxVoiceCallVolume = i11;
             }
 
             @Override
@@ -85,19 +85,19 @@ public class WebRtcAudioManager {
         }
     }
 
-    public WebRtcAudioManager(long j) {
+    public WebRtcAudioManager(long j10) {
         Logging.d("WebRtcAudioManager", "ctor" + WebRtcAudioUtils.getThreadInfo());
-        this.nativeAudioManager = j;
+        this.nativeAudioManager = j10;
         AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
         this.audioManager = audioManager;
         this.volumeLogger = new VolumeLogger(audioManager);
         storeAudioParameters();
-        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j);
+        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j10);
         WebRtcAudioUtils.logAudioState("WebRtcAudioManager");
     }
 
-    private static void assertTrue(boolean z) {
-        if (!z) {
+    private static void assertTrue(boolean z10) {
+        if (!z10) {
             throw new AssertionError("Expected condition to be true");
         }
     }
@@ -123,12 +123,12 @@ public class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    private static int getMinInputFrameSize(int i, int i2) {
-        return AudioRecord.getMinBufferSize(i, i2 == 1 ? 16 : 12, 2) / (i2 * 2);
+    private static int getMinInputFrameSize(int i10, int i11) {
+        return AudioRecord.getMinBufferSize(i10, i11 == 1 ? 16 : 12, 2) / (i11 * 2);
     }
 
-    private static int getMinOutputFrameSize(int i, int i2) {
-        return AudioTrack.getMinBufferSize(i, i2 == 1 ? 4 : 12, 2) / (i2 * 2);
+    private static int getMinOutputFrameSize(int i10, int i11) {
+        return AudioTrack.getMinBufferSize(i10, i11 == 1 ? 4 : 12, 2) / (i11 * 2);
     }
 
     private int getNativeOutputSampleRate() {
@@ -206,21 +206,21 @@ public class WebRtcAudioManager {
         return Build.VERSION.SDK_INT >= 23 && ContextUtils.getApplicationContext().getPackageManager().hasSystemFeature("android.hardware.audio.pro");
     }
 
-    private native void nativeCacheAudioParameters(int i, int i2, int i3, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, int i4, int i5, long j);
+    private native void nativeCacheAudioParameters(int i10, int i11, int i12, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, boolean z16, int i13, int i14, long j10);
 
-    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z) {
+    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z10) {
         blacklistDeviceForOpenSLESUsageIsOverridden = true;
-        blacklistDeviceForOpenSLESUsage = z;
+        blacklistDeviceForOpenSLESUsage = z10;
     }
 
-    public static synchronized void setStereoInput(boolean z) {
-        Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z + ')');
-        useStereoInput = z;
+    public static synchronized void setStereoInput(boolean z10) {
+        Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z10 + ')');
+        useStereoInput = z10;
     }
 
-    public static synchronized void setStereoOutput(boolean z) {
-        Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z + ')');
-        useStereoOutput = z;
+    public static synchronized void setStereoOutput(boolean z10) {
+        Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z10 + ')');
+        useStereoOutput = z10;
     }
 
     private void storeAudioParameters() {

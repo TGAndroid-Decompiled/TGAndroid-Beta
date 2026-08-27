@@ -4,25 +4,27 @@ public class RuleAtom extends Atom {
     private static final float MAX_LENGTH = 4096.0f;
     private float h;
     private int hunit;
-    private float r;
+
+    private float f19601r;
     private int runit;
-    private float w;
+
+    private float f19602w;
     private int wunit;
 
-    public RuleAtom(int i, float f, int i2, float f2, int i3, float f3) {
-        this.wunit = i;
-        this.hunit = i2;
-        this.runit = i3;
-        this.w = f;
-        this.h = f2;
-        this.r = f3;
+    public RuleAtom(int i10, float f10, int i11, float f11, int i12, float f12) {
+        this.wunit = i10;
+        this.hunit = i11;
+        this.runit = i12;
+        this.f19602w = f10;
+        this.h = f11;
+        this.f19601r = f12;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float factor = SpaceAtom.getFactor(this.wunit, teXEnvironment) * this.w;
+        float factor = SpaceAtom.getFactor(this.wunit, teXEnvironment) * this.f19602w;
         float factor2 = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
-        float factor3 = SpaceAtom.getFactor(this.runit, teXEnvironment) * this.r;
+        float factor3 = SpaceAtom.getFactor(this.runit, teXEnvironment) * this.f19601r;
         if (Float.isInfinite(factor) || Float.isNaN(factor) || factor > 4096.0f) {
             factor = 4096.0f;
         }

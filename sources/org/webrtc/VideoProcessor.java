@@ -2,23 +2,6 @@ package org.webrtc;
 
 public interface VideoProcessor extends CapturerObserver {
 
-    public abstract class CC {
-        public static void $default$onFrameCaptured(VideoProcessor videoProcessor, VideoFrame videoFrame, FrameAdaptationParameters frameAdaptationParameters) {
-            VideoFrame videoFrameApplyFrameAdaptationParameters = applyFrameAdaptationParameters(videoFrame, frameAdaptationParameters);
-            if (videoFrameApplyFrameAdaptationParameters != null) {
-                videoProcessor.onFrameCaptured(videoFrameApplyFrameAdaptationParameters);
-                videoFrameApplyFrameAdaptationParameters.release();
-            }
-        }
-
-        public static VideoFrame applyFrameAdaptationParameters(VideoFrame videoFrame, FrameAdaptationParameters frameAdaptationParameters) {
-            if (frameAdaptationParameters.drop) {
-                return null;
-            }
-            return new VideoFrame(videoFrame.getBuffer().cropAndScale(frameAdaptationParameters.cropX, frameAdaptationParameters.cropY, frameAdaptationParameters.cropWidth, frameAdaptationParameters.cropHeight, frameAdaptationParameters.scaleWidth, frameAdaptationParameters.scaleHeight), videoFrame.getRotation(), frameAdaptationParameters.timestampNs);
-        }
-    }
-
     public static class FrameAdaptationParameters {
         public final int cropHeight;
         public final int cropWidth;
@@ -29,15 +12,15 @@ public interface VideoProcessor extends CapturerObserver {
         public final int scaleWidth;
         public final long timestampNs;
 
-        public FrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z) {
-            this.cropX = i;
-            this.cropY = i2;
-            this.cropWidth = i3;
-            this.cropHeight = i4;
-            this.scaleWidth = i5;
-            this.scaleHeight = i6;
-            this.timestampNs = j;
-            this.drop = z;
+        public FrameAdaptationParameters(int i10, int i11, int i12, int i13, int i14, int i15, long j10, boolean z10) {
+            this.cropX = i10;
+            this.cropY = i11;
+            this.cropWidth = i12;
+            this.cropHeight = i13;
+            this.scaleWidth = i14;
+            this.scaleHeight = i15;
+            this.timestampNs = j10;
+            this.drop = z10;
         }
     }
 

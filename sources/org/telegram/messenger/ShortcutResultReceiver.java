@@ -14,7 +14,7 @@ public class ShortcutResultReceiver extends BroadcastReceiver {
         int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
         Utilities.Callback<Boolean> callbackRemove = MediaDataController.getInstance(intExtra).shortcutCallbacks.remove(intent.getStringExtra("req_id"));
         if (callbackRemove != null) {
-            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda257(10, callbackRemove));
+            AndroidUtilities.runOnUIThread(new r7(10, callbackRemove));
         }
     }
 }

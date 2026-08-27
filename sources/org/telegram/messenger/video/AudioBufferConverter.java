@@ -1,51 +1,48 @@
 package org.telegram.messenger.video;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
-import com.android.billingclient.api.zzcm;
+import e7.v;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
-import org.telegram.messenger.video.remix.AudioRemixer;
-import org.telegram.messenger.video.resample.AudioResampler;
 
 public class AudioBufferConverter {
     private static final int BYTES_PER_SHORT = 2;
     private static final String TAG = "AudioBufferConverter";
-    private final AudioRemixer mRemixer = new zzcm();
-    private final AudioResampler mResampler = new zzcm();
+    private final kf.a mRemixer = new w9.d(11);
+    private final lf.a mResampler = new v(13);
 
-    private void checkChannels(int i, int i2) {
-        if (i == 6 && (i2 == 1 || i2 == 2)) {
+    private void checkChannels(int i10, int i11) {
+        if (i10 == 6 && (i11 == 1 || i11 == 2)) {
             return;
         }
-        if (i != 1 && i != 2) {
-            throw new UnsupportedOperationException(Fragment$$ExternalSyntheticOutline0.m(i, "Input channel count (", ") not supported."));
+        if (i10 != 1 && i10 != 2) {
+            throw new UnsupportedOperationException(i0.a.l(i10, "Input channel count (", ") not supported."));
         }
-        if (i2 != 1 && i2 != 2) {
-            throw new UnsupportedOperationException(Fragment$$ExternalSyntheticOutline0.m(i2, "Output channel count (", ") not supported."));
+        if (i11 != 1 && i11 != 2) {
+            throw new UnsupportedOperationException(i0.a.l(i11, "Output channel count (", ") not supported."));
         }
     }
 
-    private ShortBuffer createBuffer(int i) {
-        ShortBuffer shortBufferAsShortBuffer = ByteBuffer.allocateDirect(i * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+    private ShortBuffer createBuffer(int i10) {
+        ShortBuffer shortBufferAsShortBuffer = ByteBuffer.allocateDirect(i10 * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
         shortBufferAsShortBuffer.clear();
-        shortBufferAsShortBuffer.limit(i);
+        shortBufferAsShortBuffer.limit(i10);
         return shortBufferAsShortBuffer;
     }
 
-    public int calculateRequiredOutputSize(int i, int i2, int i3, int i4, int i5) {
-        checkChannels(i3, i5);
-        return (int) Math.ceil((((double) this.mRemixer.getRemixedSize(i, i3, i5)) * ((double) i4)) / ((double) i2));
+    public int calculateRequiredOutputSize(int i10, int i11, int i12, int i13, int i14) {
+        checkChannels(i12, i14);
+        return (int) Math.ceil((((double) this.mRemixer.C1(i10, i12, i14)) * ((double) i13)) / ((double) i11));
     }
 
-    public ShortBuffer convert(ShortBuffer shortBuffer, int i, int i2, int i3, int i4) {
-        checkChannels(i2, i4);
-        int remixedSize = this.mRemixer.getRemixedSize(shortBuffer.remaining(), i2, i4);
-        ShortBuffer shortBufferCreateBuffer = createBuffer(remixedSize);
-        this.mRemixer.remix(shortBuffer, i2, shortBufferCreateBuffer, i4);
+    public ShortBuffer convert(ShortBuffer shortBuffer, int i10, int i11, int i12, int i13) {
+        checkChannels(i11, i13);
+        int iC1 = this.mRemixer.C1(shortBuffer.remaining(), i11, i13);
+        ShortBuffer shortBufferCreateBuffer = createBuffer(iC1);
+        this.mRemixer.D0(shortBuffer, i11, shortBufferCreateBuffer, i13);
         shortBufferCreateBuffer.rewind();
-        ShortBuffer shortBufferCreateBuffer2 = createBuffer(((int) Math.ceil((((double) remixedSize) * ((double) i3)) / ((double) i))) + 10);
-        this.mResampler.resample(shortBufferCreateBuffer, i, shortBufferCreateBuffer2, i3, i4);
+        ShortBuffer shortBufferCreateBuffer2 = createBuffer(((int) Math.ceil((((double) iC1) * ((double) i12)) / ((double) i10))) + 10);
+        this.mResampler.c0(shortBufferCreateBuffer, i10, shortBufferCreateBuffer2, i12, i13);
         shortBufferCreateBuffer2.limit(shortBufferCreateBuffer2.position());
         shortBufferCreateBuffer2.rewind();
         return shortBufferCreateBuffer2;

@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import a9.p;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,17 +42,17 @@ public class TeXSymbolParser {
     public Map<String, SymbolAtom> readSymbols() {
         HashMap map = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i = 0; i < elementsByTagName.getLength(); i++) {
-            Element element = (Element) elementsByTagName.item(i);
+        for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
+            Element element = (Element) elementsByTagName.item(i10);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
-            boolean z = attribute != null && attribute.equals("true");
+            boolean z10 = attribute != null && attribute.equals("true");
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num == null) {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", Fragment$$ExternalSyntheticOutline0.m("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", p.m("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
-            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
+            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
         }
         return map;
     }
@@ -64,8 +64,8 @@ public class TeXSymbolParser {
             documentBuilderFactoryNewInstance.setIgnoringComments(true);
             this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
             setTypeMappings();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e9) {
+            throw new XMLResourceParseException(str, e9);
         }
     }
 }

@@ -4,11 +4,6 @@ import org.scilab.forge.jlatexmath.AlphabetRegistration;
 
 public class CyrillicRegistration implements AlphabetRegistration {
     @Override
-    public Object getPackage() {
-        return this;
-    }
-
-    @Override
     public String getTeXFontFileName() {
         return "fonts/language_cyrillic.xml";
     }
@@ -16,5 +11,10 @@ public class CyrillicRegistration implements AlphabetRegistration {
     @Override
     public Character.UnicodeBlock[] getUnicodeBlock() {
         return new Character.UnicodeBlock[]{Character.UnicodeBlock.CYRILLIC};
+    }
+
+    @Override
+    public Object getPackage() {
+        return this;
     }
 }

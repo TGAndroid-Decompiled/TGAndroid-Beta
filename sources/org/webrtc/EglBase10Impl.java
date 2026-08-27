@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-import androidx.recyclerview.widget.DiffUtil;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -79,10 +78,6 @@ class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void addCallback(SurfaceHolder.Callback callback) {
-        }
-
-        @Override
         public Surface getSurface() {
             return this.surface;
         }
@@ -103,19 +98,8 @@ class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void removeCallback(SurfaceHolder.Callback callback) {
-        }
-
-        @Override
-        public void setFixedSize(int i, int i2) {
-        }
-
-        @Override
-        public void setFormat(int i) {
-        }
-
-        @Override
-        public void setKeepScreenOn(boolean z) {
+        public Canvas lockCanvas(Rect rect) {
+            return null;
         }
 
         @Override
@@ -123,8 +107,24 @@ class EglBase10Impl implements EglBase10 {
         }
 
         @Override
+        public void addCallback(SurfaceHolder.Callback callback) {
+        }
+
+        @Override
+        public void removeCallback(SurfaceHolder.Callback callback) {
+        }
+
+        @Override
+        public void setFormat(int i10) {
+        }
+
+        @Override
+        public void setKeepScreenOn(boolean z10) {
+        }
+
+        @Override
         @Deprecated
-        public void setType(int i) {
+        public void setType(int i10) {
         }
 
         @Override
@@ -132,8 +132,7 @@ class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public Canvas lockCanvas(Rect rect) {
-            return null;
+        public void setFixedSize(int i10, int i11) {
         }
     }
 
@@ -146,9 +145,9 @@ class EglBase10Impl implements EglBase10 {
         EGLDisplay eglDisplay = getEglDisplay();
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(egl10, eglDisplay, iArr);
-        int openGlesVersionFromConfig = EglBase.CC.getOpenGlesVersionFromConfig(iArr);
-        Logging.d("EglBase10Impl", "Using OpenGL ES version " + openGlesVersionFromConfig);
-        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, openGlesVersionFromConfig);
+        int iK = e.k(iArr);
+        Logging.d("EglBase10Impl", "Using OpenGL ES version " + iK);
+        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, iK);
     }
 
     private void checkIsNotReleased() {
@@ -157,12 +156,12 @@ class EglBase10Impl implements EglBase10 {
         }
     }
 
-    private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {
+    private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i10) {
         EGLContext eGLContextEglCreateContext;
         if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
             throw new RuntimeException("Invalid sharedContext");
         }
-        int[] iArr = {12440, i, 12344};
+        int[] iArr = {12440, i10, 12344};
         if (eGLContext == null) {
             eGLContext = EGL10.EGL_NO_CONTEXT;
         }
@@ -175,13 +174,13 @@ class EglBase10Impl implements EglBase10 {
         throw new RuntimeException("Failed to create EGL context: 0x" + Integer.toHexString(this.egl.eglGetError()));
     }
 
-    private void createSurfaceInternal(Object obj, boolean z) {
+    private void createSurfaceInternal(Object obj, boolean z10) {
         if (!(obj instanceof SurfaceHolder) && !(obj instanceof SurfaceTexture)) {
             throw new IllegalStateException("Input must be either a SurfaceHolder or SurfaceTexture");
         }
         checkIsNotReleased();
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z) {
+        if (z10) {
             if (this.eglBackgroundSurface != eGLSurface) {
                 throw new RuntimeException("Already has an EGLSurface");
             }
@@ -243,21 +242,21 @@ class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void createPbufferSurface(int i, int i2) {
+    public void createPbufferSurface(int i10, int i11) {
         checkIsNotReleased();
         EGLSurface eGLSurface = this.eglSurface;
         EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
         if (eGLSurface != eGLSurface2) {
             throw new RuntimeException("Already has an EGLSurface");
         }
-        EGLSurface eGLSurfaceEglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i, 12374, i2, 12344});
+        EGLSurface eGLSurfaceEglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i10, 12374, i11, 12344});
         this.eglSurface = eGLSurfaceEglCreatePbufferSurface;
         if (eGLSurfaceEglCreatePbufferSurface != eGLSurface2) {
             return;
         }
-        StringBuilder sbM = DiffUtil.m("Failed to create pixel buffer surface with size ", i, "x", i2, ": 0x");
-        sbM.append(Integer.toHexString(this.egl.eglGetError()));
-        throw new RuntimeException(sbM.toString());
+        StringBuilder sbP = com.google.android.recaptcha.internal.a.p("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+        sbP.append(Integer.toHexString(this.egl.eglGetError()));
+        throw new RuntimeException(sbP.toString());
     }
 
     @Override
@@ -350,9 +349,9 @@ class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void releaseSurface(boolean z) {
+    public void releaseSurface(boolean z10) {
         EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-        if (z) {
+        if (z10) {
             EGLSurface eGLSurface2 = this.eglBackgroundSurface;
             if (eGLSurface2 != eGLSurface) {
                 this.egl.eglDestroySurface(this.eglDisplay, eGLSurface2);
@@ -383,8 +382,8 @@ class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(boolean z) {
-        EGLSurface eGLSurface = z ? this.eglBackgroundSurface : this.eglSurface;
+    public void swapBuffers(boolean z10) {
+        EGLSurface eGLSurface = z10 ? this.eglBackgroundSurface : this.eglSurface;
         checkIsNotReleased();
         if (eGLSurface == EGL10.EGL_NO_SURFACE) {
             throw new RuntimeException("No EGLSurface - can't swap buffers");
@@ -400,7 +399,7 @@ class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void swapBuffers(long j, boolean z) {
-        swapBuffers(z);
+    public void swapBuffers(long j10, boolean z10) {
+        swapBuffers(z10);
     }
 }

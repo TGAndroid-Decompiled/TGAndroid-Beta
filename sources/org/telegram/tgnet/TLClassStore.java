@@ -39,12 +39,12 @@ public class TLClassStore {
         return store;
     }
 
-    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i, boolean z) {
-        Class cls = this.classStore.get(i);
+    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i10, boolean z10) {
+        Class cls = this.classStore.get(i10);
         if (cls != null) {
             try {
                 TLObject tLObject = (TLObject) cls.newInstance();
-                tLObject.readParams(nativeByteBuffer, z);
+                tLObject.readParams(nativeByteBuffer, z10);
                 return tLObject;
             } catch (Throwable th) {
                 FileLog.e(th);

@@ -2,29 +2,28 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.Paint.PersistColorPalette;
 
 public class AccountInstance {
     private static volatile AccountInstance[] Instance = new AccountInstance[4];
     private int currentAccount;
 
-    public AccountInstance(int i) {
-        this.currentAccount = i;
+    public AccountInstance(int i10) {
+        this.currentAccount = i10;
     }
 
-    public static AccountInstance getInstance(int i) {
+    public static AccountInstance getInstance(int i10) {
         AccountInstance accountInstance;
-        AccountInstance accountInstance2 = Instance[i];
+        AccountInstance accountInstance2 = Instance[i10];
         if (accountInstance2 != null) {
             return accountInstance2;
         }
         synchronized (AccountInstance.class) {
             try {
-                accountInstance = Instance[i];
+                accountInstance = Instance[i10];
                 if (accountInstance == null) {
                     AccountInstance[] accountInstanceArr = Instance;
-                    AccountInstance accountInstance3 = new AccountInstance(i);
-                    accountInstanceArr[i] = accountInstance3;
+                    AccountInstance accountInstance3 = new AccountInstance(i10);
+                    accountInstanceArr[i10] = accountInstance3;
                     accountInstance = accountInstance3;
                 }
             } catch (Throwable th) {
@@ -34,8 +33,8 @@ public class AccountInstance {
         return accountInstance;
     }
 
-    public PersistColorPalette getColorPalette() {
-        return PersistColorPalette.getInstance(this.currentAccount);
+    public yf.r0 getColorPalette() {
+        return yf.r0.e(this.currentAccount);
     }
 
     public ConnectionsManager getConnectionsManager() {

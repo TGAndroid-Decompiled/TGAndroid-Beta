@@ -3,9 +3,10 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import org.telegram.ui.Components.ForegroundDetector;
+import org.telegram.ui.Components.t00;
+import org.telegram.ui.Components.u00;
 
-public class ANRDetector implements ForegroundDetector.Listener {
+public class ANRDetector implements t00 {
     private static final int MSG_UI_PING = 1;
     private static final long TIMEOUT_MS = 5000;
     private final Runnable anrDetected;
@@ -30,10 +31,10 @@ public class ANRDetector implements ForegroundDetector.Listener {
 
     public ANRDetector(Runnable runnable) {
         this.anrDetected = runnable;
-        ForegroundDetector foregroundDetector = ForegroundDetector.getInstance();
-        this.foreground = foregroundDetector.isForeground();
-        foregroundDetector.addListener(this);
-        Thread thread = new Thread(new ANRDetector$$ExternalSyntheticLambda0(this, 0), "ANRDetector");
+        u00 u00Var = u00.getInstance();
+        this.foreground = u00Var.isForeground();
+        u00Var.addListener(this);
+        Thread thread = new Thread(new d1(this, 11), "ANRDetector");
         this.detectorThread = thread;
         thread.start();
     }
@@ -50,16 +51,16 @@ public class ANRDetector implements ForegroundDetector.Listener {
                 if (this.destroyed) {
                     return;
                 }
-                int i = this.generation;
-                int i2 = this.nextPingId + 1;
-                this.nextPingId = i2;
-                this.mainHandler.obtainMessage(1, i2, i).sendToTarget();
+                int i10 = this.generation;
+                int i11 = this.nextPingId + 1;
+                this.nextPingId = i11;
+                this.mainHandler.obtainMessage(1, i11, i10).sendToTarget();
                 try {
                     Thread.sleep(5000L);
                     if (this.destroyed) {
                         return;
                     }
-                    if (this.foreground && this.generation == i && this.acknowledgedPingId != i2 && !this.anrReported) {
+                    if (this.foreground && this.generation == i10 && this.acknowledgedPingId != i11 && !this.anrReported) {
                         this.anrReported = true;
                         try {
                             this.anrDetected.run();
@@ -83,7 +84,7 @@ public class ANRDetector implements ForegroundDetector.Listener {
                 this.foreground = false;
                 this.generation++;
                 this.lock.notifyAll();
-                ForegroundDetector.getInstance().removeListener(this);
+                u00.getInstance().removeListener(this);
                 this.mainHandler.removeMessages(1);
                 this.detectorThread.interrupt();
             } catch (Throwable th) {

@@ -1,16 +1,7 @@
 package org.telegram.tgnet;
 
 public interface ResultCallback<T> {
-
-    public abstract class CC {
-        public static void $default$onError(ResultCallback resultCallback, Throwable th) {
-        }
-
-        public static void $default$onError(ResultCallback resultCallback, TLRPC.TL_error tL_error) {
-        }
-    }
-
-    void onComplete(T t);
+    void onComplete(T t10);
 
     void onError(Throwable th);
 

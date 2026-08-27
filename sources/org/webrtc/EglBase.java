@@ -2,88 +2,18 @@ package org.webrtc;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
 
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
     public static final int EGL_RECORDABLE_ANDROID = 12610;
     public static final Object lock = new Object();
-    public static final int[] CONFIG_PLAIN = CC.configBuilder().createConfigAttributes();
-    public static final int[] CONFIG_RGBA = CC.configBuilder().setHasAlphaChannel(true).createConfigAttributes();
-    public static final int[] CONFIG_PIXEL_BUFFER = CC.configBuilder().setSupportsPixelBuffer(true).createConfigAttributes();
-    public static final int[] CONFIG_PIXEL_RGBA_BUFFER = CC.configBuilder().setHasAlphaChannel(true).setSupportsPixelBuffer(true).createConfigAttributes();
-    public static final int[] CONFIG_RECORDABLE = CC.configBuilder().setIsRecordable(true).createConfigAttributes();
-
-    public abstract class CC {
-        static {
-            Object obj = EglBase.lock;
-        }
-
-        public static ConfigBuilder configBuilder() {
-            return new ConfigBuilder();
-        }
-
-        public static EglBase create(Context context, int[] iArr) {
-            if (context == null) {
-                return EglBase14Impl.isEGL14Supported() ? createEgl14(iArr) : createEgl10(iArr);
-            }
-            if (context instanceof EglBase14.Context) {
-                return createEgl14((EglBase14.Context) context, iArr);
-            }
-            if (context instanceof EglBase10.Context) {
-                return createEgl10((EglBase10.Context) context, iArr);
-            }
-            throw new IllegalArgumentException("Unrecognized Context");
-        }
-
-        public static EglBase10 createEgl10(int[] iArr) {
-            return new EglBase10Impl(null, iArr);
-        }
-
-        public static EglBase14 createEgl14(int[] iArr) {
-            return new EglBase14Impl(null, iArr);
-        }
-
-        public static int getOpenGlesVersionFromConfig(int[] iArr) {
-            for (int i = 0; i < iArr.length - 1; i++) {
-                if (iArr[i] == 12352) {
-                    int i2 = iArr[i + 1];
-                    if (i2 != 4) {
-                        return i2 != 64 ? 1 : 3;
-                    }
-                    return 2;
-                }
-            }
-            return 1;
-        }
-
-        public static EglBase10 createEgl10(EglBase10.Context context, int[] iArr) {
-            return new EglBase10Impl(context == null ? null : context.getRawContext(), iArr);
-        }
-
-        public static EglBase14 createEgl14(EglBase14.Context context, int[] iArr) {
-            return new EglBase14Impl(context == null ? null : context.getRawContext(), iArr);
-        }
-
-        public static EglBase10 createEgl10(EGLContext eGLContext, int[] iArr) {
-            return new EglBase10Impl(eGLContext, iArr);
-        }
-
-        public static EglBase14 createEgl14(android.opengl.EGLContext eGLContext, int[] iArr) {
-            return new EglBase14Impl(eGLContext, iArr);
-        }
-
-        public static EglBase create() {
-            return create(null, EglBase.CONFIG_PLAIN);
-        }
-
-        public static EglBase create(Context context) {
-            return create(context, EglBase.CONFIG_PLAIN);
-        }
-    }
+    public static final int[] CONFIG_PLAIN = e.a().createConfigAttributes();
+    public static final int[] CONFIG_RGBA = e.a().setHasAlphaChannel(true).createConfigAttributes();
+    public static final int[] CONFIG_PIXEL_BUFFER = e.a().setSupportsPixelBuffer(true).createConfigAttributes();
+    public static final int[] CONFIG_PIXEL_RGBA_BUFFER = e.a().setHasAlphaChannel(true).setSupportsPixelBuffer(true).createConfigAttributes();
+    public static final int[] CONFIG_RECORDABLE = e.a().setIsRecordable(true).createConfigAttributes();
 
     public static class ConfigBuilder {
         private boolean hasAlphaChannel;
@@ -103,8 +33,8 @@ public interface EglBase {
                 arrayList.add(12321);
                 arrayList.add(8);
             }
-            int i = this.openGlesVersion;
-            if (i == 2 || i == 3) {
+            int i10 = this.openGlesVersion;
+            if (i10 == 2 || i10 == 3) {
                 arrayList.add(12352);
                 arrayList.add(Integer.valueOf(this.openGlesVersion == 3 ? 64 : 4));
             }
@@ -118,32 +48,32 @@ public interface EglBase {
             }
             arrayList.add(12344);
             int[] iArr = new int[arrayList.size()];
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                iArr[i2] = ((Integer) arrayList.get(i2)).intValue();
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                iArr[i11] = ((Integer) arrayList.get(i11)).intValue();
             }
             return iArr;
         }
 
-        public ConfigBuilder setHasAlphaChannel(boolean z) {
-            this.hasAlphaChannel = z;
+        public ConfigBuilder setHasAlphaChannel(boolean z10) {
+            this.hasAlphaChannel = z10;
             return this;
         }
 
-        public ConfigBuilder setIsRecordable(boolean z) {
-            this.isRecordable = z;
+        public ConfigBuilder setIsRecordable(boolean z10) {
+            this.isRecordable = z10;
             return this;
         }
 
-        public ConfigBuilder setOpenGlesVersion(int i) {
-            if (i < 1 || i > 3) {
-                throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, "OpenGL ES version ", " not supported"));
+        public ConfigBuilder setOpenGlesVersion(int i10) {
+            if (i10 < 1 || i10 > 3) {
+                throw new IllegalArgumentException(i0.a.l(i10, "OpenGL ES version ", " not supported"));
             }
-            this.openGlesVersion = i;
+            this.openGlesVersion = i10;
             return this;
         }
 
-        public ConfigBuilder setSupportsPixelBuffer(boolean z) {
-            this.supportsPixelBuffer = z;
+        public ConfigBuilder setSupportsPixelBuffer(boolean z10) {
+            this.supportsPixelBuffer = z10;
             return this;
         }
     }
@@ -158,7 +88,7 @@ public interface EglBase {
 
     void createDummyPbufferSurface();
 
-    void createPbufferSurface(int i, int i2);
+    void createPbufferSurface(int i10, int i11);
 
     void createSurface(SurfaceTexture surfaceTexture);
 
@@ -178,13 +108,13 @@ public interface EglBase {
 
     void release();
 
-    void releaseSurface(boolean z);
+    void releaseSurface(boolean z10);
 
     int surfaceHeight();
 
     int surfaceWidth();
 
-    void swapBuffers(long j, boolean z);
+    void swapBuffers(long j10, boolean z10);
 
-    void swapBuffers(boolean z);
+    void swapBuffers(boolean z10);
 }

@@ -1,19 +1,18 @@
 package org.telegram.tgnet.tl;
 
-import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
+import a9.p;
 import java.util.ArrayList;
+import lh.o9;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.SharedConfig$$ExternalSyntheticLambda5;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.TLRPC$TL_config$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_invoice$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.Vector$$ExternalSyntheticLambda2;
-import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.tgnet.l;
+import org.telegram.tgnet.o;
+import org.telegram.tgnet.u;
 
 public class TL_stories {
 
@@ -21,14 +20,14 @@ public class TL_stories {
         public ArrayList<TL_storyAlbum> albums;
         public long hash;
 
-        public static Albums TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static Albums TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_albums;
-            if (i != -1013417414) {
-                tL_albums = i != 1448008427 ? null : new TL_albumsNotModified();
+            if (i10 != -1013417414) {
+                tL_albums = i10 != 1448008427 ? null : new TL_albumsNotModified();
             } else {
                 tL_albums = new TL_albums();
             }
-            return (Albums) TLObject.TLdeserialize(Albums.class, tL_albums, inputSerializedData, i, z);
+            return (Albums) TLObject.TLdeserialize(Albums.class, tL_albums, inputSerializedData, i10, z10);
         }
     }
 
@@ -40,21 +39,22 @@ public class TL_stories {
         public boolean gift;
         public boolean giveaway;
         public int giveaway_msg_id;
-        public String id;
+
+        public String f22612id;
         public int multiplier;
         public long stars;
         public boolean unclaimed;
         public String used_gift_slug;
         public long user_id = -1;
 
-        public static Boost TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static Boost TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_boost_layer186;
-            if (i != 706514033) {
-                tL_boost_layer186 = i != 1262359766 ? null : new TL_boost();
+            if (i10 != 706514033) {
+                tL_boost_layer186 = i10 != 1262359766 ? null : new TL_boost();
             } else {
                 tL_boost_layer186 = new TL_boost_layer186();
             }
-            return (Boost) TLObject.TLdeserialize(Boost.class, tL_boost_layer186, inputSerializedData, i, z);
+            return (Boost) TLObject.TLdeserialize(Boost.class, tL_boost_layer186, inputSerializedData, i10, z10);
         }
     }
 
@@ -65,9 +65,9 @@ public class TL_stories {
         public boolean flipped;
         public TLRPC.Reaction reaction;
 
-        public static MediaArea TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static MediaArea TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_mediaAreaWeather2;
-            switch (i) {
+            switch (i10) {
                 case -2057362882:
                     tL_mediaAreaWeather2 = new TL_mediaAreaWeather2();
                     break;
@@ -108,7 +108,7 @@ public class TL_stories {
                     tL_mediaAreaWeather2 = null;
                     break;
             }
-            return (MediaArea) TLObject.TLdeserialize(MediaArea.class, tL_mediaAreaWeather2, inputSerializedData, i, z);
+            return (MediaArea) TLObject.TLdeserialize(MediaArea.class, tL_mediaAreaWeather2, inputSerializedData, i10, z10);
         }
     }
 
@@ -117,18 +117,21 @@ public class TL_stories {
         public double h;
         public double radius;
         public double rotation;
-        public double w;
-        public double x;
-        public double y;
 
-        public static MediaAreaCoordinates TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public double f22613w;
+
+        public double f22614x;
+
+        public double f22615y;
+
+        public static MediaAreaCoordinates TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_mediaAreaCoordinates;
-            if (i != -808853502) {
-                tL_mediaAreaCoordinates = i != 64088654 ? null : new TL_mediaAreaCoordinates_layer181();
+            if (i10 != -808853502) {
+                tL_mediaAreaCoordinates = i10 != 64088654 ? null : new TL_mediaAreaCoordinates_layer181();
             } else {
                 tL_mediaAreaCoordinates = new TL_mediaAreaCoordinates();
             }
-            return (MediaAreaCoordinates) TLObject.TLdeserialize(MediaAreaCoordinates.class, tL_mediaAreaCoordinates, inputSerializedData, i, z);
+            return (MediaAreaCoordinates) TLObject.TLdeserialize(MediaAreaCoordinates.class, tL_mediaAreaCoordinates, inputSerializedData, i10, z10);
         }
     }
 
@@ -139,31 +142,32 @@ public class TL_stories {
         public TLRPC.Peer peer;
         public ArrayList<StoryItem> stories = new ArrayList<>();
 
-        public static PeerStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static PeerStories TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_peerStories_layer162;
-            if (i != -2045664768) {
-                tL_peerStories_layer162 = i != -1707742823 ? null : new TL_peerStories();
+            if (i10 != -2045664768) {
+                tL_peerStories_layer162 = i10 != -1707742823 ? null : new TL_peerStories();
             } else {
                 tL_peerStories_layer162 = new TL_peerStories_layer162();
             }
-            return (PeerStories) TLObject.TLdeserialize(PeerStories.class, tL_peerStories_layer162, inputSerializedData, i, z);
+            return (PeerStories) TLObject.TLdeserialize(PeerStories.class, tL_peerStories_layer162, inputSerializedData, i10, z10);
         }
     }
 
     public static class PrepaidGiveaway extends TLObject {
         public int boosts;
         public int date;
-        public long id;
+
+        public long f22616id;
         public int quantity;
 
-        public static PrepaidGiveaway TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static PrepaidGiveaway TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_prepaidStarsGiveaway;
-            if (i != -1700956192) {
-                tL_prepaidStarsGiveaway = i != -1303143084 ? null : new TL_prepaidGiveaway();
+            if (i10 != -1700956192) {
+                tL_prepaidStarsGiveaway = i10 != -1303143084 ? null : new TL_prepaidGiveaway();
             } else {
                 tL_prepaidStarsGiveaway = new TL_prepaidStarsGiveaway();
             }
-            return (PrepaidGiveaway) TLObject.TLdeserialize(PrepaidGiveaway.class, tL_prepaidStarsGiveaway, inputSerializedData, i, z);
+            return (PrepaidGiveaway) TLObject.TLdeserialize(PrepaidGiveaway.class, tL_prepaidStarsGiveaway, inputSerializedData, i10, z10);
         }
     }
 
@@ -174,8 +178,8 @@ public class TL_stories {
         public boolean modified;
         public int story_id;
 
-        public static StoryFwdHeader TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (StoryFwdHeader) TLObject.TLdeserialize(StoryFwdHeader.class, i != -1205411504 ? null : new TL_storyFwdHeader(), inputSerializedData, i, z);
+        public static StoryFwdHeader TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (StoryFwdHeader) TLObject.TLdeserialize(StoryFwdHeader.class, i10 != -1205411504 ? null : new TL_storyFwdHeader(), inputSerializedData, i10, z10);
         }
     }
 
@@ -195,7 +199,8 @@ public class TL_stories {
         public int flags;
         public TLRPC.Peer from_id;
         public StoryFwdHeader fwd_from;
-        public int id;
+
+        public int f22617id;
         public boolean isPublic;
         public boolean justUploaded;
         public long lastUpdateTime;
@@ -206,7 +211,7 @@ public class TL_stories {
         public TLRPC.Document music;
         public boolean noforwards;
         public boolean out;
-        public StoryPrivacyBottomSheet.StoryPrivacy parsedPrivacy;
+        public o9 parsedPrivacy;
         public boolean pinned;
         public boolean selected_contacts;
         public TLRPC.Reaction sent_reaction;
@@ -218,9 +223,9 @@ public class TL_stories {
         public ArrayList<MediaArea> media_areas = new ArrayList<>();
         public ArrayList<TLRPC.PrivacyRule> privacy = new ArrayList<>();
 
-        public static StoryItem TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static StoryItem TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_storyItem_layer174;
-            switch (i) {
+            switch (i10) {
                 case -1352440415:
                     tL_storyItem_layer174 = new TL_storyItem_layer174();
                     break;
@@ -249,7 +254,7 @@ public class TL_stories {
                     tL_storyItem_layer174 = null;
                     break;
             }
-            return (StoryItem) TLObject.TLdeserialize(StoryItem.class, tL_storyItem_layer174, inputSerializedData, i, z);
+            return (StoryItem) TLObject.TLdeserialize(StoryItem.class, tL_storyItem_layer174, inputSerializedData, i10, z10);
         }
     }
 
@@ -258,16 +263,16 @@ public class TL_stories {
         public TLRPC.Peer peer_id;
         public StoryItem story;
 
-        public static StoryReaction TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static StoryReaction TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_storyReactionPublicForward;
-            if (i == -1146411453) {
+            if (i10 == -1146411453) {
                 tL_storyReactionPublicForward = new TL_storyReactionPublicForward();
-            } else if (i != -808644845) {
-                tL_storyReactionPublicForward = i != 1620104917 ? null : new TL_storyReaction();
+            } else if (i10 != -808644845) {
+                tL_storyReactionPublicForward = i10 != 1620104917 ? null : new TL_storyReaction();
             } else {
                 tL_storyReactionPublicForward = new TL_storyReactionPublicRepost();
             }
-            return (StoryReaction) TLObject.TLdeserialize(StoryReaction.class, tL_storyReactionPublicForward, inputSerializedData, i, z);
+            return (StoryReaction) TLObject.TLdeserialize(StoryReaction.class, tL_storyReactionPublicForward, inputSerializedData, i10, z10);
         }
     }
 
@@ -282,16 +287,16 @@ public class TL_stories {
         public StoryItem story;
         public long user_id;
 
-        public static StoryView TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static StoryView TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_storyViewPublicForward;
-            if (i == -1870436597) {
+            if (i10 == -1870436597) {
                 tL_storyViewPublicForward = new TL_storyViewPublicForward();
-            } else if (i != -1329730875) {
-                tL_storyViewPublicForward = i != -1116418231 ? null : new TL_storyViewPublicRepost();
+            } else if (i10 != -1329730875) {
+                tL_storyViewPublicForward = i10 != -1116418231 ? null : new TL_storyViewPublicRepost();
             } else {
                 tL_storyViewPublicForward = new TL_storyView();
             }
-            return (StoryView) TLObject.TLdeserialize(StoryView.class, tL_storyViewPublicForward, inputSerializedData, i, z);
+            return (StoryView) TLObject.TLdeserialize(StoryView.class, tL_storyViewPublicForward, inputSerializedData, i10, z10);
         }
     }
 
@@ -304,16 +309,16 @@ public class TL_stories {
         public ArrayList<Long> recent_viewers = new ArrayList<>();
         public ArrayList<TLRPC.ReactionCount> reactions = new ArrayList<>();
 
-        public static StoryViews TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static StoryViews TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_storyViews;
-            if (i == -1923523370) {
+            if (i10 == -1923523370) {
                 tL_storyViews = new TL_storyViews();
-            } else if (i != -968094825) {
-                tL_storyViews = i != -748199729 ? null : new TL_storyViews_layer160();
+            } else if (i10 != -968094825) {
+                tL_storyViews = i10 != -748199729 ? null : new TL_storyViews_layer160();
             } else {
                 tL_storyViews = new TL_storyViews_layer161();
             }
-            return (StoryViews) TLObject.TLdeserialize(StoryViews.class, tL_storyViews, inputSerializedData, i, z);
+            return (StoryViews) TLObject.TLdeserialize(StoryViews.class, tL_storyViews, inputSerializedData, i10, z10);
         }
     }
 
@@ -328,14 +333,14 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
         public String next_offset = "";
 
-        public static StoryViewsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static StoryViewsList TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_storyViewsList_layer167;
-            if (i != 1189722604) {
-                tL_storyViewsList_layer167 = i != 1507299269 ? null : new TL_storyViewsList();
+            if (i10 != 1189722604) {
+                tL_storyViewsList_layer167 = i10 != 1507299269 ? null : new TL_storyViewsList();
             } else {
                 tL_storyViewsList_layer167 = new TL_storyViewsList_layer167();
             }
-            return (StoryViewsList) TLObject.TLdeserialize(StoryViewsList.class, tL_storyViewsList_layer167, inputSerializedData, i, z);
+            return (StoryViewsList) TLObject.TLdeserialize(StoryViewsList.class, tL_storyViewsList_layer167, inputSerializedData, i10, z10);
         }
     }
 
@@ -343,9 +348,9 @@ public class TL_stories {
         public static final int constructor = -1013417414;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.hash = inputSerializedData.readInt64(z);
-            this.albums = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(0), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.hash = inputSerializedData.readInt64(z10);
+            this.albums = Vector.deserialize(inputSerializedData, new d(3), z10);
         }
 
         @Override
@@ -356,46 +361,33 @@ public class TL_stories {
         }
     }
 
-    public static class TL_albumsNotModified extends Albums {
-        public static final int constructor = 1448008427;
-
-        @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1448008427);
-        }
-    }
-
     public static class TL_boost extends Boost {
         public static final int constructor = 1262359766;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.gift = TLObject.hasFlag(int32, 2);
             this.giveaway = TLObject.hasFlag(this.flags, 4);
             this.unclaimed = TLObject.hasFlag(this.flags, 8);
-            this.id = inputSerializedData.readString(z);
+            this.f22612id = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.user_id = inputSerializedData.readInt64(z);
+                this.user_id = inputSerializedData.readInt64(z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.giveaway_msg_id = inputSerializedData.readInt32(z);
+                this.giveaway_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.expires = inputSerializedData.readInt32(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expires = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.used_gift_slug = inputSerializedData.readString(z);
+                this.used_gift_slug = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
-                this.multiplier = inputSerializedData.readInt32(z);
+                this.multiplier = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
-                this.stars = inputSerializedData.readInt64(z);
+                this.stars = inputSerializedData.readInt64(z10);
             }
         }
 
@@ -409,7 +401,7 @@ public class TL_stories {
             int flag3 = TLObject.setFlag(flag2, 8, this.unclaimed);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.id);
+            outputSerializedData.writeString(this.f22612id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
@@ -434,26 +426,26 @@ public class TL_stories {
         public static final int constructor = 706514033;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.gift = TLObject.hasFlag(int32, 2);
             this.giveaway = TLObject.hasFlag(this.flags, 4);
             this.unclaimed = TLObject.hasFlag(this.flags, 8);
-            this.id = inputSerializedData.readString(z);
+            this.f22612id = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.user_id = inputSerializedData.readInt64(z);
+                this.user_id = inputSerializedData.readInt64(z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.giveaway_msg_id = inputSerializedData.readInt32(z);
+                this.giveaway_msg_id = inputSerializedData.readInt32(z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.expires = inputSerializedData.readInt32(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expires = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.used_gift_slug = inputSerializedData.readString(z);
+                this.used_gift_slug = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
-                this.multiplier = inputSerializedData.readInt32(z);
+                this.multiplier = inputSerializedData.readInt32(z10);
             }
         }
 
@@ -467,7 +459,7 @@ public class TL_stories {
             int flag3 = TLObject.setFlag(flag2, 8, this.unclaimed);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.id);
+            outputSerializedData.writeString(this.f22612id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
@@ -500,8 +492,8 @@ public class TL_stories {
         }
 
         @Override
-        public TL_storyAlbum deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_storyAlbum.TLdeserialize(inputSerializedData, i, z);
+        public TL_storyAlbum deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_storyAlbum.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -518,8 +510,8 @@ public class TL_stories {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -527,13 +519,13 @@ public class TL_stories {
         public static final int constructor = 1070138683;
         public String link;
 
-        public static TL_exportedStoryLink TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_exportedStoryLink) TLObject.TLdeserialize(TL_exportedStoryLink.class, 1070138683 != i ? null : new TL_exportedStoryLink(), inputSerializedData, i, z);
+        public static TL_exportedStoryLink TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_exportedStoryLink) TLObject.TLdeserialize(TL_exportedStoryLink.class, 1070138683 != i10 ? null : new TL_exportedStoryLink(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.link = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.link = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -552,20 +544,20 @@ public class TL_stories {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_foundStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_foundStories) TLObject.TLdeserialize(TL_foundStories.class, -488736969 != i ? null : new TL_foundStories(), inputSerializedData, i, z);
+        public static TL_foundStories TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_foundStories) TLObject.TLdeserialize(TL_foundStories.class, -488736969 != i10 ? null : new TL_foundStories(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.stories = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(4), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.stories = Vector.deserialize(inputSerializedData, new d(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -587,14 +579,14 @@ public class TL_stories {
         public TLRPC.Peer peer;
         public StoryItem storyItem;
 
-        public static TL_foundStory TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_foundStory) TLObject.TLdeserialize(TL_foundStory.class, -394605632 != i ? null : new TL_foundStory(), inputSerializedData, i, z);
+        public static TL_foundStory TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_foundStory) TLObject.TLdeserialize(TL_foundStory.class, -394605632 != i10 ? null : new TL_foundStory(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.storyItem = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.storyItem = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -613,22 +605,22 @@ public class TL_stories {
         public String state;
         public String street;
 
-        public static TL_geoPointAddress TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_geoPointAddress) TLObject.TLdeserialize(TL_geoPointAddress.class, -565420653 != i ? null : new TL_geoPointAddress(), inputSerializedData, i, z);
+        public static TL_geoPointAddress TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_geoPointAddress) TLObject.TLdeserialize(TL_geoPointAddress.class, -565420653 != i10 ? null : new TL_geoPointAddress(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.country_iso2 = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.country_iso2 = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.state = inputSerializedData.readString(z);
+                this.state = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.city = inputSerializedData.readString(z);
+                this.city = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.street = inputSerializedData.readString(z);
+                this.street = inputSerializedData.readString(z10);
             }
         }
 
@@ -649,16 +641,16 @@ public class TL_stories {
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder("geo{country=");
-            sb.append(this.country_iso2);
-            sb.append(", ");
+            StringBuilder sb2 = new StringBuilder("geo{country=");
+            sb2.append(this.country_iso2);
+            sb2.append(", ");
             String str = "";
-            sb.append(this.state != null ? MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder("state="), this.state, ", ") : "");
-            sb.append(this.city != null ? MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder("city="), this.city, ", ") : "");
+            sb2.append(this.state != null ? p.p(new StringBuilder("state="), this.state, ", ") : "");
+            sb2.append(this.city != null ? p.p(new StringBuilder("city="), this.city, ", ") : "");
             if (this.street != null) {
                 str = "street=" + this.street;
             }
-            return MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(sb, str, "}");
+            return p.p(sb2, str, "}");
         }
     }
 
@@ -675,8 +667,8 @@ public class TL_stories {
         }
 
         @Override
-        public Albums deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Albums.TLdeserialize(inputSerializedData, i, z);
+        public Albums deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Albums.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -684,15 +676,16 @@ public class TL_stories {
         public static final int constructor = -1179482081;
         public int flags;
         public boolean forwards_first;
-        public int id;
+
+        public int f22618id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
         public TLRPC.Reaction reaction;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_storyReactionsList.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_storyReactionsList.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -702,7 +695,7 @@ public class TL_stories {
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22618id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.reaction.serializeToStream(outputSerializedData);
             }
@@ -719,10 +712,10 @@ public class TL_stories {
         public int msg_id;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.channel = TLRPC.InputChannel.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.msg_id = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.channel = TLRPC.InputChannel.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.msg_id = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -740,10 +733,10 @@ public class TL_stories {
         public String result_id;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.query_id = inputSerializedData.readInt64(z);
-            this.result_id = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.query_id = inputSerializedData.readInt64(z10);
+            this.result_id = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -761,10 +754,10 @@ public class TL_stories {
         public int msg_id;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.channel_id = inputSerializedData.readInt64(z);
-            this.msg_id = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.channel_id = inputSerializedData.readInt64(z10);
+            this.msg_id = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -780,15 +773,15 @@ public class TL_stories {
         public static final int constructor = -808853502;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.x = inputSerializedData.readDouble(z);
-            this.y = inputSerializedData.readDouble(z);
-            this.w = inputSerializedData.readDouble(z);
-            this.h = inputSerializedData.readDouble(z);
-            this.rotation = inputSerializedData.readDouble(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.f22614x = inputSerializedData.readDouble(z10);
+            this.f22615y = inputSerializedData.readDouble(z10);
+            this.f22613w = inputSerializedData.readDouble(z10);
+            this.h = inputSerializedData.readDouble(z10);
+            this.rotation = inputSerializedData.readDouble(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.radius = inputSerializedData.readDouble(z);
+                this.radius = inputSerializedData.readDouble(z10);
             }
         }
 
@@ -796,9 +789,9 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-808853502);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeDouble(this.x);
-            outputSerializedData.writeDouble(this.y);
-            outputSerializedData.writeDouble(this.w);
+            outputSerializedData.writeDouble(this.f22614x);
+            outputSerializedData.writeDouble(this.f22615y);
+            outputSerializedData.writeDouble(this.f22613w);
             outputSerializedData.writeDouble(this.h);
             outputSerializedData.writeDouble(this.rotation);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -811,20 +804,20 @@ public class TL_stories {
         public static final int constructor = 64088654;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.x = inputSerializedData.readDouble(z);
-            this.y = inputSerializedData.readDouble(z);
-            this.w = inputSerializedData.readDouble(z);
-            this.h = inputSerializedData.readDouble(z);
-            this.rotation = inputSerializedData.readDouble(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.f22614x = inputSerializedData.readDouble(z10);
+            this.f22615y = inputSerializedData.readDouble(z10);
+            this.f22613w = inputSerializedData.readDouble(z10);
+            this.h = inputSerializedData.readDouble(z10);
+            this.rotation = inputSerializedData.readDouble(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(64088654);
-            outputSerializedData.writeDouble(this.x);
-            outputSerializedData.writeDouble(this.y);
-            outputSerializedData.writeDouble(this.w);
+            outputSerializedData.writeDouble(this.f22614x);
+            outputSerializedData.writeDouble(this.f22615y);
+            outputSerializedData.writeDouble(this.f22613w);
             outputSerializedData.writeDouble(this.h);
             outputSerializedData.writeDouble(this.rotation);
         }
@@ -836,12 +829,12 @@ public class TL_stories {
         public TLRPC.GeoPoint geo;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.address = TL_geoPointAddress.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.address = TL_geoPointAddress.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -861,9 +854,9 @@ public class TL_stories {
         public static final int constructor = -544523486;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -879,9 +872,9 @@ public class TL_stories {
         public String slug;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.slug = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.slug = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -896,13 +889,13 @@ public class TL_stories {
         public static final int constructor = 340088945;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.dark = TLObject.hasFlag(int32, 1);
             this.flipped = TLObject.hasFlag(this.flags, 2);
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -923,9 +916,9 @@ public class TL_stories {
         public String url;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.url = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.url = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -946,14 +939,14 @@ public class TL_stories {
         public String venue_type;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.title = inputSerializedData.readString(z);
-            this.address = inputSerializedData.readString(z);
-            this.provider = inputSerializedData.readString(z);
-            this.venue_id = inputSerializedData.readString(z);
-            this.venue_type = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.geo = TLRPC.GeoPoint.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.title = inputSerializedData.readString(z10);
+            this.address = inputSerializedData.readString(z10);
+            this.provider = inputSerializedData.readString(z10);
+            this.venue_id = inputSerializedData.readString(z10);
+            this.venue_type = inputSerializedData.readString(z10);
         }
 
         @Override
@@ -976,11 +969,11 @@ public class TL_stories {
         public double temperature_c;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.emoji = inputSerializedData.readString(z);
-            this.temperature_c = inputSerializedData.readDouble(z);
-            this.color = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.emoji = inputSerializedData.readString(z10);
+            this.temperature_c = inputSerializedData.readDouble(z10);
+            this.color = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -999,13 +992,13 @@ public class TL_stories {
         public int temperature_c;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.dark = TLObject.hasFlag(int32, 1);
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.emoji = inputSerializedData.readString(z);
-            this.temperature_c = inputSerializedData.readInt32(z);
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.emoji = inputSerializedData.readString(z10);
+            this.temperature_c = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -1026,13 +1019,13 @@ public class TL_stories {
         public double temperature_c;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.dark = TLObject.hasFlag(int32, 1);
-            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.emoji = inputSerializedData.readString(z);
-            this.temperature_c = inputSerializedData.readDouble(z);
+            this.coordinates = MediaAreaCoordinates.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.emoji = inputSerializedData.readString(z10);
+            this.temperature_c = inputSerializedData.readDouble(z10);
         }
 
         @Override
@@ -1056,21 +1049,21 @@ public class TL_stories {
         public TLRPC.Peer peer;
         public int slot;
 
-        public static TL_myBoost TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_myBoost) TLObject.TLdeserialize(TL_myBoost.class, constructor != i ? null : new TL_myBoost(), inputSerializedData, i, z);
+        public static TL_myBoost TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_myBoost) TLObject.TLdeserialize(TL_myBoost.class, constructor != i10 ? null : new TL_myBoost(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.slot = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.slot = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.date = inputSerializedData.readInt32(z);
-            this.expires = inputSerializedData.readInt32(z);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expires = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.cooldown_until_date = inputSerializedData.readInt32(z);
+                this.cooldown_until_date = inputSerializedData.readInt32(z10);
             }
         }
 
@@ -1094,13 +1087,13 @@ public class TL_stories {
         public static final int constructor = -1707742823;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.max_read_id = inputSerializedData.readInt32(z);
+                this.max_read_id = inputSerializedData.readInt32(z10);
             }
-            this.stories = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(5), z);
+            this.stories = Vector.deserialize(inputSerializedData, new d(5), z10);
         }
 
         @Override
@@ -1119,16 +1112,16 @@ public class TL_stories {
         public static final int constructor = -2045664768;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            long int64 = inputSerializedData.readInt64(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            long int64 = inputSerializedData.readInt64(z10);
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             this.peer = tL_peerUser;
             tL_peerUser.user_id = int64;
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.max_read_id = inputSerializedData.readInt32(z);
+                this.max_read_id = inputSerializedData.readInt32(z10);
             }
-            this.stories = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(5), z);
+            this.stories = Vector.deserialize(inputSerializedData, new d(5), z10);
         }
 
         @Override
@@ -1150,8 +1143,8 @@ public class TL_stories {
         public ArrayList<Integer> slots = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_premium_myBoosts.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_premium_myBoosts.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1173,19 +1166,19 @@ public class TL_stories {
         public ArrayList<Boost> boosts = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_premium_boostsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_premium_boostsList) TLObject.TLdeserialize(TL_premium_boostsList.class, constructor != i ? null : new TL_premium_boostsList(), inputSerializedData, i, z);
+        public static TL_premium_boostsList TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_premium_boostsList) TLObject.TLdeserialize(TL_premium_boostsList.class, constructor != i10 ? null : new TL_premium_boostsList(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.boosts = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(6), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.boosts = Vector.deserialize(inputSerializedData, new d(6), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -1215,33 +1208,33 @@ public class TL_stories {
         public ArrayList<PrepaidGiveaway> prepaid_giveaways = new ArrayList<>();
         public ArrayList<Integer> my_boost_slots = new ArrayList<>();
 
-        public static TL_premium_boostsStatus TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_premium_boostsStatus) TLObject.TLdeserialize(TL_premium_boostsStatus.class, constructor != i ? null : new TL_premium_boostsStatus(), inputSerializedData, i, z);
+        public static TL_premium_boostsStatus TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_premium_boostsStatus) TLObject.TLdeserialize(TL_premium_boostsStatus.class, constructor != i10 ? null : new TL_premium_boostsStatus(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.my_boost = TLObject.hasFlag(int32, 4);
-            this.level = inputSerializedData.readInt32(z);
-            this.current_level_boosts = inputSerializedData.readInt32(z);
-            this.boosts = inputSerializedData.readInt32(z);
+            this.level = inputSerializedData.readInt32(z10);
+            this.current_level_boosts = inputSerializedData.readInt32(z10);
+            this.boosts = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.gift_boosts = inputSerializedData.readInt32(z);
+                this.gift_boosts = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_level_boosts = inputSerializedData.readInt32(z);
+                this.next_level_boosts = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.premium_audience = TL_stats.TL_statsPercentValue.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.premium_audience = TL_stats.TL_statsPercentValue.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.boost_url = inputSerializedData.readString(z);
+            this.boost_url = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.prepaid_giveaways = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(7), z);
+                this.prepaid_giveaways = Vector.deserialize(inputSerializedData, new d(7), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.my_boost_slots = Vector.deserializeInt(inputSerializedData, z);
+                this.my_boost_slots = Vector.deserializeInt(inputSerializedData, z10);
             }
         }
 
@@ -1282,8 +1275,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_premium_boostsList.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_premium_boostsList.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1303,8 +1296,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_premium_boostsStatus.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_premium_boostsStatus.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1318,8 +1311,8 @@ public class TL_stories {
         public static int constructor = 199719754;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_premium_myBoosts.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_premium_myBoosts.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1334,15 +1327,15 @@ public class TL_stories {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_premium_myBoosts TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_premium_myBoosts) TLObject.TLdeserialize(TL_premium_myBoosts.class, constructor != i ? null : new TL_premium_myBoosts(), inputSerializedData, i, z);
+        public static TL_premium_myBoosts TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_premium_myBoosts) TLObject.TLdeserialize(TL_premium_myBoosts.class, constructor != i10 ? null : new TL_premium_myBoosts(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.my_boosts = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(8), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.my_boosts = Vector.deserialize(inputSerializedData, new d(8), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -1359,17 +1352,17 @@ public class TL_stories {
         public int months;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt64(z);
-            this.months = inputSerializedData.readInt32(z);
-            this.quantity = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.f22616id = inputSerializedData.readInt64(z10);
+            this.months = inputSerializedData.readInt32(z10);
+            this.quantity = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1303143084);
-            outputSerializedData.writeInt64(this.id);
+            outputSerializedData.writeInt64(this.f22616id);
             outputSerializedData.writeInt32(this.months);
             outputSerializedData.writeInt32(this.quantity);
             outputSerializedData.writeInt32(this.date);
@@ -1381,18 +1374,18 @@ public class TL_stories {
         public long stars;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt64(z);
-            this.stars = inputSerializedData.readInt64(z);
-            this.quantity = inputSerializedData.readInt32(z);
-            this.boosts = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.f22616id = inputSerializedData.readInt64(z10);
+            this.stars = inputSerializedData.readInt64(z10);
+            this.quantity = inputSerializedData.readInt32(z10);
+            this.boosts = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1700956192);
-            outputSerializedData.writeInt64(this.id);
+            outputSerializedData.writeInt64(this.f22616id);
             outputSerializedData.writeInt64(this.stars);
             outputSerializedData.writeInt32(this.quantity);
             outputSerializedData.writeInt32(this.boosts);
@@ -1406,9 +1399,9 @@ public class TL_stories {
         public StoryItem story;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -1432,8 +1425,8 @@ public class TL_stories {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -1478,15 +1471,15 @@ public class TL_stories {
             if (bool != null) {
                 outputSerializedData.writeBool(bool.booleanValue());
             }
-            Long l = this.send_paid_messages_stars;
-            if (l != null) {
-                outputSerializedData.writeInt64(l.longValue());
+            Long l10 = this.send_paid_messages_stars;
+            if (l10 != null) {
+                outputSerializedData.writeInt64(l10.longValue());
             }
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -1494,22 +1487,23 @@ public class TL_stories {
         public static final int constructor = 927985472;
         public boolean dark;
         public int flags;
-        public int id;
+
+        public int f22619id;
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stats_storyStats.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stats_storyStats.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(927985472);
-            int i = this.dark ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int i10 = this.dark ? this.flags | 1 : this.flags & (-2);
+            this.flags = i10;
+            outputSerializedData.writeInt32(i10);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22619id);
         }
     }
 
@@ -1518,14 +1512,14 @@ public class TL_stories {
         public TL_stats.StatsGraph reactions_by_emotion_graph;
         public TL_stats.StatsGraph views_graph;
 
-        public static TL_stats_storyStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_stats_storyStats) TLObject.TLdeserialize(TL_stats_storyStats.class, 1355613820 != i ? null : new TL_stats_storyStats(), inputSerializedData, i, z);
+        public static TL_stats_storyStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_stats_storyStats) TLObject.TLdeserialize(TL_stats_storyStats.class, 1355613820 != i10 ? null : new TL_stats_storyStats(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.views_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.reactions_by_emotion_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.views_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.reactions_by_emotion_graph = TL_stats.StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -1542,19 +1536,19 @@ public class TL_stories {
         public int cooldown_until_date;
         public int flags;
 
-        public static TL_storiesStealthMode TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_storiesStealthMode) TLObject.TLdeserialize(TL_storiesStealthMode.class, 1898850301 != i ? null : new TL_storiesStealthMode(), inputSerializedData, i, z);
+        public static TL_storiesStealthMode TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_storiesStealthMode) TLObject.TLdeserialize(TL_storiesStealthMode.class, 1898850301 != i10 ? null : new TL_storiesStealthMode(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             if (TLObject.hasFlag(int32, 1)) {
-                this.active_until_date = inputSerializedData.readInt32(z);
+                this.active_until_date = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.cooldown_until_date = inputSerializedData.readInt32(z);
+                this.cooldown_until_date = inputSerializedData.readInt32(z10);
             }
         }
 
@@ -1578,8 +1572,8 @@ public class TL_stories {
         public boolean past;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1605,16 +1599,16 @@ public class TL_stories {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.has_more = TLObject.hasFlag(int32, 1);
-            this.count = inputSerializedData.readInt32(z);
-            this.state = inputSerializedData.readString(z);
-            this.peer_stories = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(9), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
-            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.count = inputSerializedData.readInt32(z10);
+            this.state = inputSerializedData.readString(z10);
+            this.peer_stories = Vector.deserialize(inputSerializedData, new d(9), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
+            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -1639,10 +1633,10 @@ public class TL_stories {
         public TL_storiesStealthMode stealth_mode;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.state = inputSerializedData.readString(z);
-            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.state = inputSerializedData.readString(z10);
+            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -1659,8 +1653,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return canSendStoryCount.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return canSendStoryCount.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1672,19 +1666,20 @@ public class TL_stories {
 
     public static class TL_stories_deleteStories extends TLObject {
         public static final int constructor = -1369842849;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22620id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserializeInt(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserializeInt(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1369842849);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22620id);
         }
     }
 
@@ -1692,7 +1687,8 @@ public class TL_stories {
         public static final int constructor = 744728363;
         public String caption;
         public int flags;
-        public int id;
+
+        public int f22621id;
         public TLRPC.InputMedia media;
         public TLRPC.InputDocument music;
         public TLRPC.InputPeer peer;
@@ -1701,8 +1697,8 @@ public class TL_stories {
         public ArrayList<TLRPC.InputPrivacyRule> privacy_rules = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1710,7 +1706,7 @@ public class TL_stories {
             outputSerializedData.writeInt32(744728363);
             outputSerializedData.writeInt32(this.flags);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22621id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.media.serializeToStream(outputSerializedData);
             }
@@ -1734,19 +1730,20 @@ public class TL_stories {
 
     public static class TL_stories_exportStoryLink extends TLObject {
         public static final int constructor = 2072899360;
-        public int id;
+
+        public int f22622id;
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_exportedStoryLink.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_exportedStoryLink.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2072899360);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22622id);
         }
     }
 
@@ -1767,8 +1764,8 @@ public class TL_stories {
         }
 
         @Override
-        public TL_stories_stories deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_stories.TLdeserialize(inputSerializedData, i, z);
+        public TL_stories_stories deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_stories.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -1776,8 +1773,8 @@ public class TL_stories {
         public static final int constructor = -1688541191;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1794,8 +1791,8 @@ public class TL_stories {
         public String state;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return stories_AllStories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return stories_AllStories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1816,8 +1813,8 @@ public class TL_stories {
         public static final int constructor = -1519744160;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.messages_Chats.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.messages_Chats.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1828,17 +1825,18 @@ public class TL_stories {
 
     public static class TL_stories_getPeerMaxIDs extends TLMethod<Vector<TLRPC.TL_recentStory>> {
         public static final int constructor = 2018087280;
-        public ArrayList<TLRPC.InputPeer> id = new ArrayList<>();
+
+        public ArrayList<TLRPC.InputPeer> f22623id = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2018087280);
-            Vector.serialize(outputSerializedData, this.id);
+            Vector.serialize(outputSerializedData, this.f22623id);
         }
 
         @Override
-        public Vector<TLRPC.TL_recentStory> deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new TL_stories$TL_albums$$ExternalSyntheticLambda0(10));
+        public Vector<TLRPC.TL_recentStory> deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new d(10));
         }
     }
 
@@ -1847,8 +1845,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_peerStories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_peerStories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1865,8 +1863,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_stories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_stories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1885,8 +1883,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_stories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_stories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1900,37 +1898,39 @@ public class TL_stories {
 
     public static class TL_stories_getStoriesByID extends TLObject {
         public static final int constructor = 1467271796;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22624id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_stories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_stories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1467271796);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22624id);
         }
     }
 
     public static class TL_stories_getStoriesViews extends TLObject {
         public static final int constructor = 685862088;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22625id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_stories_storyViews.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_stories_storyViews.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(685862088);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22625id);
         }
     }
 
@@ -1938,17 +1938,19 @@ public class TL_stories {
         public static final int constructor = 2127707223;
         public int flags;
         public boolean forwards_first;
-        public int id;
+
+        public int f22626id;
         public boolean just_contacts;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
-        public String q;
+
+        public String f22627q;
         public boolean reactions_first;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return StoryViewsList.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return StoryViewsList.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1963,9 +1965,9 @@ public class TL_stories {
             outputSerializedData.writeInt32(flag3);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 2)) {
-                outputSerializedData.writeString(this.q);
+                outputSerializedData.writeString(this.f22627q);
             }
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22626id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -1973,19 +1975,20 @@ public class TL_stories {
 
     public static class TL_stories_incrementStoryViews extends TLObject {
         public static final int constructor = -1308456197;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22628id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1308456197);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22628id);
         }
     }
 
@@ -1995,15 +1998,15 @@ public class TL_stories {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_stories_peerStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_stories_peerStories) TLObject.TLdeserialize(TL_stories_peerStories.class, -890861720 != i ? null : new TL_stories_peerStories(), inputSerializedData, i, z);
+        public static TL_stories_peerStories TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_stories_peerStories) TLObject.TLdeserialize(TL_stories_peerStories.class, -890861720 != i10 ? null : new TL_stories_peerStories(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.stories = PeerStories.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.stories = PeerStories.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -2021,8 +2024,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserializeInt(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserializeInt(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -2035,7 +2038,8 @@ public class TL_stories {
 
     public static class TL_stories_report extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = 433646405;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22629id = new ArrayList<>();
         public String message;
         public byte[] option;
         public TLRPC.InputPeer peer;
@@ -2044,14 +2048,14 @@ public class TL_stories {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(433646405);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serialize(outputSerializedData, new Vector$$ExternalSyntheticLambda2(outputSerializedData, 1), this.id);
+            Vector.serialize(outputSerializedData, new u(outputSerializedData, 1), this.f22629id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }
 
         @Override
-        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i, z);
+        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -2065,8 +2069,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_foundStories.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_foundStories.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -2096,8 +2100,8 @@ public class TL_stories {
         public int story_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -2132,8 +2136,8 @@ public class TL_stories {
         public ArrayList<TLRPC.InputPrivacyRule> privacy_rules = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -2188,20 +2192,20 @@ public class TL_stories {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_stories_stories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_stories_stories) TLObject.TLdeserialize(TL_stories_stories.class, 1673780490 != i ? null : new TL_stories_stories(), inputSerializedData, i, z);
+        public static TL_stories_stories TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_stories_stories) TLObject.TLdeserialize(TL_stories_stories.class, 1673780490 != i10 ? null : new TL_stories_stories(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.stories = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.stories = Vector.deserialize(inputSerializedData, new d(5), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.pinned_to_top = Vector.deserializeInt(inputSerializedData, z);
+                this.pinned_to_top = Vector.deserializeInt(inputSerializedData, z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -2223,14 +2227,14 @@ public class TL_stories {
         public ArrayList<StoryViews> views = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_stories_storyViews TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_stories_storyViews) TLObject.TLdeserialize(TL_stories_storyViews.class, -560009955 != i ? null : new TL_stories_storyViews(), inputSerializedData, i, z);
+        public static TL_stories_storyViews TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_stories_storyViews) TLObject.TLdeserialize(TL_stories_storyViews.class, -560009955 != i10 ? null : new TL_stories_storyViews(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.views = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.views = Vector.deserialize(inputSerializedData, new d(11), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
         }
 
         @Override
@@ -2247,8 +2251,8 @@ public class TL_stories {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -2266,20 +2270,20 @@ public class TL_stories {
         public TLRPC.Document icon_video;
         public String title;
 
-        public static TL_storyAlbum TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_storyAlbum) TLObject.TLdeserialize(TL_storyAlbum.class, i != -1826262950 ? null : new TL_storyAlbum(), inputSerializedData, i, z);
+        public static TL_storyAlbum TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_storyAlbum) TLObject.TLdeserialize(TL_storyAlbum.class, i10 != -1826262950 ? null : new TL_storyAlbum(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
-            this.album_id = inputSerializedData.readInt32(z);
-            this.title = inputSerializedData.readString(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
+            this.album_id = inputSerializedData.readInt32(z10);
+            this.title = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(int32, 1)) {
-                this.icon_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.icon_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(int32, 2)) {
-                this.icon_video = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.icon_video = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2303,18 +2307,18 @@ public class TL_stories {
         public static final int constructor = -1205411504;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.modified = TLObject.hasFlag(int32, 8);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.from = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.from = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.from_name = inputSerializedData.readString(z);
+                this.from_name = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.story_id = inputSerializedData.readInt32(z);
+                this.story_id = inputSerializedData.readInt32(z10);
             }
         }
 
@@ -2340,8 +2344,8 @@ public class TL_stories {
         public static final int constructor = 379894076;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2352,39 +2356,39 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 262144)) {
-                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 131072)) {
-                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(12), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new d(12), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 32768)) {
-                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
-                this.albums = Vector.deserializeInt(inputSerializedData, z);
+                this.albums = Vector.deserializeInt(inputSerializedData, z10);
             }
             if (TLObject.hasFlag(this.flags, 1048576)) {
-                this.music = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.music = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2412,7 +2416,7 @@ public class TL_stories {
             int flag10 = TLObject.setFlag(flag9, 524288, this.albums != null);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -2453,14 +2457,14 @@ public class TL_stories {
         public static final int constructor = 1374088783;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.id = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.f22617id = inputSerializedData.readInt32(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1374088783);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
         }
     }
 
@@ -2469,14 +2473,14 @@ public class TL_stories {
         public boolean live;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.close_friends = TLObject.hasFlag(int32, 256);
             this.live = TLObject.hasFlag(this.flags, 512);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expire_date = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -2487,7 +2491,7 @@ public class TL_stories {
             int flag2 = TLObject.setFlag(flag, 512, this.live);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
         }
@@ -2497,8 +2501,8 @@ public class TL_stories {
         public static final int constructor = 1445635639;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2508,21 +2512,21 @@ public class TL_stories {
             this.edited = TLObject.hasFlag(this.flags, 2048);
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2546,7 +2550,7 @@ public class TL_stories {
             int flag8 = TLObject.setFlag(flag7, 8192, this.selected_contacts);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2569,8 +2573,8 @@ public class TL_stories {
         public static final int constructor = 1153718222;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2581,27 +2585,27 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(12), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new d(12), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 32768)) {
-                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2627,7 +2631,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeInt32(this.expire_date);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -2656,8 +2660,8 @@ public class TL_stories {
         public static final int constructor = -1352440415;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2668,30 +2672,30 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 131072)) {
-                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(12), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new d(12), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 32768)) {
-                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2717,7 +2721,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 131072)) {
                 this.fwd_from.serializeToStream(outputSerializedData);
@@ -2749,8 +2753,8 @@ public class TL_stories {
         public static final int constructor = 2041735716;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2761,33 +2765,33 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 262144)) {
-                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 131072)) {
-                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(12), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new d(12), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 32768)) {
-                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -2813,7 +2817,7 @@ public class TL_stories {
             int flag9 = TLObject.setFlag(flag8, 65536, this.out);
             this.flags = flag9;
             outputSerializedData.writeInt32(flag9);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -2848,8 +2852,8 @@ public class TL_stories {
         public static final int constructor = -302947087;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.pinned = TLObject.hasFlag(int32, 32);
             this.isPublic = TLObject.hasFlag(this.flags, 128);
@@ -2860,36 +2864,36 @@ public class TL_stories {
             this.contacts = TLObject.hasFlag(this.flags, 4096);
             this.selected_contacts = TLObject.hasFlag(this.flags, 8192);
             this.out = TLObject.hasFlag(this.flags, 65536);
-            this.id = inputSerializedData.readInt32(z);
-            this.date = inputSerializedData.readInt32(z);
+            this.f22617id = inputSerializedData.readInt32(z10);
+            this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 262144)) {
-                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 131072)) {
-                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.fwd_from = StoryFwdHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
-            this.expire_date = inputSerializedData.readInt32(z);
+            this.expire_date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.caption = inputSerializedData.readString(z);
+                this.caption = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new SharedConfig$$ExternalSyntheticLambda5(11), z);
+                this.entities = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(28), z10);
             }
-            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 16384)) {
-                this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(12), z);
+                this.media_areas = Vector.deserialize(inputSerializedData, new d(12), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TL_iv$RichMessage$$ExternalSyntheticLambda0(16), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new c(15), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 32768)) {
-                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.sent_reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
-                this.albums = Vector.deserializeInt(inputSerializedData, z);
+                this.albums = Vector.deserializeInt(inputSerializedData, z10);
             }
         }
 
@@ -2917,7 +2921,7 @@ public class TL_stories {
             int flag10 = TLObject.setFlag(flag9, 524288, this.albums != null);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.id);
+            outputSerializedData.writeInt32(this.f22617id);
             outputSerializedData.writeInt32(this.date);
             if (TLObject.hasFlag(this.flags, 262144)) {
                 this.from_id.serializeToStream(outputSerializedData);
@@ -2957,10 +2961,10 @@ public class TL_stories {
         public TLRPC.Reaction reaction;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.date = inputSerializedData.readInt32(z);
-            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.date = inputSerializedData.readInt32(z10);
+            this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -2976,8 +2980,8 @@ public class TL_stories {
         public static final int constructor = -1146411453;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -2991,9 +2995,9 @@ public class TL_stories {
         public static final int constructor = -808644845;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            StoryItem storyItemTLdeserialize = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            StoryItem storyItemTLdeserialize = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.story = storyItemTLdeserialize;
             if (storyItemTLdeserialize != null) {
                 storyItemTLdeserialize.dialogId = DialogObject.getPeerDialogId(this.peer_id);
@@ -3017,19 +3021,19 @@ public class TL_stories {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_storyReactionsList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_storyReactionsList) TLObject.TLdeserialize(TL_storyReactionsList.class, -1436583780 != i ? null : new TL_storyReactionsList(), inputSerializedData, i, z);
+        public static TL_storyReactionsList TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (TL_storyReactionsList) TLObject.TLdeserialize(TL_storyReactionsList.class, -1436583780 != i10 ? null : new TL_storyReactionsList(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.reactions = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(13), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.reactions = Vector.deserialize(inputSerializedData, new d(13), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
         }
 
@@ -3051,15 +3055,15 @@ public class TL_stories {
         public static final int constructor = -1329730875;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.blocked = TLObject.hasFlag(int32, 1);
             this.blocked_my_stories_from = TLObject.hasFlag(this.flags, 2);
-            this.user_id = inputSerializedData.readInt64(z);
-            this.date = inputSerializedData.readInt32(z);
+            this.user_id = inputSerializedData.readInt64(z10);
+            this.date = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.reaction = TLRPC.Reaction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -3083,12 +3087,12 @@ public class TL_stories {
         public static final int constructor = -1870436597;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.blocked = TLObject.hasFlag(int32, 1);
             this.blocked_my_stories_from = TLObject.hasFlag(this.flags, 2);
-            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.message = TLRPC.Message.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -3107,13 +3111,13 @@ public class TL_stories {
         public static final int constructor = -1116418231;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.blocked = TLObject.hasFlag(int32, 1);
             this.blocked_my_stories_from = TLObject.hasFlag(this.flags, 2);
-            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -3133,31 +3137,31 @@ public class TL_stories {
         public static final int constructor = -1923523370;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            int int32 = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int int32 = inputSerializedData.readInt32(z10);
             this.flags = int32;
             this.has_viewers = TLObject.hasFlag(int32, 2);
-            this.views_count = inputSerializedData.readInt32(z);
+            this.views_count = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.forwards_count = inputSerializedData.readInt32(z);
+                this.forwards_count = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.reactions = Vector.deserialize(inputSerializedData, new TLRPC$TL_invoice$$ExternalSyntheticLambda0(22), z);
+                this.reactions = Vector.deserialize(inputSerializedData, new o(22), z10);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.reactions_count = inputSerializedData.readInt32(z);
+                this.reactions_count = inputSerializedData.readInt32(z10);
             }
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z);
+                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z10);
             }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1923523370);
-            int i = this.has_viewers ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int i10 = this.has_viewers ? this.flags | 2 : this.flags & (-3);
+            this.flags = i10;
+            outputSerializedData.writeInt32(i10);
             outputSerializedData.writeInt32(this.views_count);
             if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeInt32(this.forwards_count);
@@ -3178,17 +3182,17 @@ public class TL_stories {
         public static final int constructor = 1507299269;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.views_count = inputSerializedData.readInt32(z);
-            this.forwards_count = inputSerializedData.readInt32(z);
-            this.reactions_count = inputSerializedData.readInt32(z);
-            this.views = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(14), z);
-            this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(11), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.views_count = inputSerializedData.readInt32(z10);
+            this.forwards_count = inputSerializedData.readInt32(z10);
+            this.reactions_count = inputSerializedData.readInt32(z10);
+            this.views = Vector.deserialize(inputSerializedData, new d(14), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new l(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
         }
 
@@ -3213,14 +3217,14 @@ public class TL_stories {
         public static final int constructor = 1189722604;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.count = inputSerializedData.readInt32(z);
-            this.reactions_count = inputSerializedData.readInt32(z);
-            this.views = Vector.deserialize(inputSerializedData, new TL_stories$TL_albums$$ExternalSyntheticLambda0(14), z);
-            this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_config$$ExternalSyntheticLambda0(5), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.count = inputSerializedData.readInt32(z10);
+            this.reactions_count = inputSerializedData.readInt32(z10);
+            this.views = Vector.deserialize(inputSerializedData, new d(14), z10);
+            this.users = Vector.deserialize(inputSerializedData, new l(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.next_offset = inputSerializedData.readString(z);
+                this.next_offset = inputSerializedData.readString(z10);
             }
         }
 
@@ -3242,11 +3246,11 @@ public class TL_stories {
         public static final int constructor = -748199729;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.views_count = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.views_count = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z);
+                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z10);
             }
         }
 
@@ -3265,12 +3269,12 @@ public class TL_stories {
         public static final int constructor = -968094825;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.flags = inputSerializedData.readInt32(z);
-            this.views_count = inputSerializedData.readInt32(z);
-            this.reactions_count = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.views_count = inputSerializedData.readInt32(z10);
+            this.reactions_count = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z);
+                this.recent_viewers = Vector.deserializeLong(inputSerializedData, z10);
             }
         }
 
@@ -3288,19 +3292,20 @@ public class TL_stories {
 
     public static class TL_togglePinnedToTop extends TLObject {
         public static final int constructor = 187268763;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22630id = new ArrayList<>();
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(187268763);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22630id);
         }
     }
 
@@ -3335,8 +3340,8 @@ public class TL_stories {
         }
 
         @Override
-        public TL_storyAlbum deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TL_storyAlbum.TLdeserialize(inputSerializedData, i, z);
+        public TL_storyAlbum deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_storyAlbum.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -3346,9 +3351,9 @@ public class TL_stories {
         public TLRPC.Peer peer;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.max_id = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.max_id = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -3364,8 +3369,8 @@ public class TL_stories {
         public TL_storiesStealthMode stealth_mode;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.stealth_mode = TL_storiesStealthMode.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -3381,9 +3386,9 @@ public class TL_stories {
         public StoryItem story;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.story = StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
         @Override
@@ -3398,13 +3403,13 @@ public class TL_stories {
         public static final int constructor = -1014513586;
         public int count_remains;
 
-        public static canSendStoryCount TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (canSendStoryCount) TLObject.TLdeserialize(canSendStoryCount.class, -1014513586 != i ? null : new canSendStoryCount(), inputSerializedData, i, z);
+        public static canSendStoryCount TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (canSendStoryCount) TLObject.TLdeserialize(canSendStoryCount.class, -1014513586 != i10 ? null : new canSendStoryCount(), inputSerializedData, i10, z10);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.count_remains = inputSerializedData.readInt32(z);
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.count_remains = inputSerializedData.readInt32(z10);
         }
 
         @Override
@@ -3415,34 +3420,48 @@ public class TL_stories {
     }
 
     public static abstract class stories_AllStories extends TLObject {
-        public static stories_AllStories TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+        public static stories_AllStories TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_stories_allStoriesNotModified;
-            if (i != 291044926) {
-                tL_stories_allStoriesNotModified = i != 1862033025 ? null : new TL_stories_allStories();
+            if (i10 != 291044926) {
+                tL_stories_allStoriesNotModified = i10 != 1862033025 ? null : new TL_stories_allStories();
             } else {
                 tL_stories_allStoriesNotModified = new TL_stories_allStoriesNotModified();
             }
-            return (stories_AllStories) TLObject.TLdeserialize(stories_AllStories.class, tL_stories_allStoriesNotModified, inputSerializedData, i, z);
+            return (stories_AllStories) TLObject.TLdeserialize(stories_AllStories.class, tL_stories_allStoriesNotModified, inputSerializedData, i10, z10);
         }
     }
 
     public static class togglePinned extends TLObject {
         public static final int constructor = -1703566865;
-        public ArrayList<Integer> id = new ArrayList<>();
+
+        public ArrayList<Integer> f22631id = new ArrayList<>();
         public TLRPC.InputPeer peer;
         public boolean pinned;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserializeInt(inputSerializedData, i, z);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserializeInt(inputSerializedData, i10, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1703566865);
             this.peer.serializeToStream(outputSerializedData);
-            Vector.serializeInt(outputSerializedData, this.id);
+            Vector.serializeInt(outputSerializedData, this.f22631id);
             outputSerializedData.writeBool(this.pinned);
+        }
+    }
+
+    public static class TL_albumsNotModified extends Albums {
+        public static final int constructor = 1448008427;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1448008427);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
         }
     }
 }

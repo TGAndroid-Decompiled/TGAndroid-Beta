@@ -29,9 +29,9 @@ public abstract class Box {
     }
 
     private static void countBoxAllocation() {
-        int i = boxBudgetUsed + 1;
-        boxBudgetUsed = i;
-        if (i > 100000) {
+        int i10 = boxBudgetUsed + 1;
+        boxBudgetUsed = i10;
+        if (i10 > 100000) {
             throw new ParseException("Formula is too large to lay out!");
         }
     }
@@ -47,39 +47,39 @@ public abstract class Box {
         box.elderParent = this.elderParent;
     }
 
-    public abstract void draw(Graphics2D graphics2D, float f, float f2);
+    public abstract void draw(Graphics2D graphics2D, float f10, float f11);
 
-    public void drawDebug(Graphics2D graphics2D, float f, float f2, boolean z) {
+    public void drawDebug(Graphics2D graphics2D, float f10, float f11, boolean z10) {
         if (DEBUG) {
             Stroke stroke = graphics2D.getStroke();
             if (this.markForDEBUG != null) {
                 Color color = graphics2D.getColor();
                 graphics2D.setColor(this.markForDEBUG);
-                float f3 = this.height;
-                graphics2D.fill(new Rectangle2D.Float(f, f2 - f3, this.width, f3 + this.depth));
+                float f12 = this.height;
+                graphics2D.fill(new Rectangle2D.Float(f10, f11 - f12, this.width, f12 + this.depth));
                 graphics2D.setColor(color);
             }
             graphics2D.setStroke(new BasicStroke((float) Math.abs(1.0d / graphics2D.getTransform().getScaleX()), 0, 0));
-            float f4 = this.width;
-            if (f4 < 0.0f) {
-                f += f4;
-                this.width = -f4;
+            float f13 = this.width;
+            if (f13 < 0.0f) {
+                f10 += f13;
+                this.width = -f13;
             }
-            float f5 = this.height;
-            graphics2D.draw(new Rectangle2D.Float(f, f2 - f5, this.width, f5 + this.depth));
-            if (z) {
+            float f14 = this.height;
+            graphics2D.draw(new Rectangle2D.Float(f10, f11 - f14, this.width, f14 + this.depth));
+            if (z10) {
                 Color color2 = graphics2D.getColor();
                 graphics2D.setColor(Color.RED);
-                float f6 = this.depth;
-                if (f6 > 0.0f) {
-                    graphics2D.fill(new Rectangle2D.Float(f, f2, this.width, f6));
+                float f15 = this.depth;
+                if (f15 > 0.0f) {
+                    graphics2D.fill(new Rectangle2D.Float(f10, f11, this.width, f15));
                     graphics2D.setColor(color2);
-                    graphics2D.draw(new Rectangle2D.Float(f, f2, this.width, this.depth));
-                } else if (f6 < 0.0f) {
-                    graphics2D.fill(new Rectangle2D.Float(f, f2 + f6, this.width, -f6));
+                    graphics2D.draw(new Rectangle2D.Float(f10, f11, this.width, this.depth));
+                } else if (f15 < 0.0f) {
+                    graphics2D.fill(new Rectangle2D.Float(f10, f11 + f15, this.width, -f15));
                     graphics2D.setColor(color2);
-                    float f7 = this.depth;
-                    graphics2D.draw(new Rectangle2D.Float(f, f2 + f7, this.width, -f7));
+                    float f16 = this.depth;
+                    graphics2D.draw(new Rectangle2D.Float(f10, f11 + f16, this.width, -f16));
                 } else {
                     graphics2D.setColor(color2);
                 }
@@ -122,37 +122,37 @@ public abstract class Box {
         this.width = -this.width;
     }
 
-    public void setDepth(float f) {
-        this.depth = f;
+    public void setDepth(float f10) {
+        this.depth = f10;
     }
 
     public void setElderParent(Box box) {
         this.elderParent = box;
     }
 
-    public void setHeight(float f) {
-        this.height = f;
+    public void setHeight(float f10) {
+        this.height = f10;
     }
 
     public void setParent(Box box) {
         this.parent = box;
     }
 
-    public void setShift(float f) {
-        this.shift = f;
+    public void setShift(float f10) {
+        this.shift = f10;
     }
 
-    public void setWidth(float f) {
-        this.width = f;
+    public void setWidth(float f10) {
+        this.width = f10;
     }
 
-    public void startDraw(Graphics2D graphics2D, float f, float f2) {
+    public void startDraw(Graphics2D graphics2D, float f10, float f11) {
         this.prevColor = graphics2D.getColor();
         Color color = this.background;
         if (color != null) {
             graphics2D.setColor(color);
-            float f3 = this.height;
-            graphics2D.fill(new Rectangle2D.Float(f, f2 - f3, this.width, f3 + this.depth));
+            float f12 = this.height;
+            graphics2D.fill(new Rectangle2D.Float(f10, f11 - f12, this.width, f12 + this.depth));
         }
         Color color2 = this.foreground;
         if (color2 == null) {
@@ -160,7 +160,7 @@ public abstract class Box {
         } else {
             graphics2D.setColor(color2);
         }
-        drawDebug(graphics2D, f, f2);
+        drawDebug(graphics2D, f10, f11);
     }
 
     public Box(Color color, Color color2) {
@@ -175,16 +175,16 @@ public abstract class Box {
         this.background = color2;
     }
 
-    public void add(int i, Box box) {
+    public void add(int i10, Box box) {
         countBoxAllocation();
-        this.children.add(i, box);
+        this.children.add(i10, box);
         box.parent = this;
         box.elderParent = this.elderParent;
     }
 
-    public void drawDebug(Graphics2D graphics2D, float f, float f2) {
+    public void drawDebug(Graphics2D graphics2D, float f10, float f11) {
         if (DEBUG) {
-            drawDebug(graphics2D, f, f2, true);
+            drawDebug(graphics2D, f10, f11, true);
         }
     }
 }

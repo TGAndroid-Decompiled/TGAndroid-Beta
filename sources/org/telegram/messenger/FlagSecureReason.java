@@ -24,12 +24,12 @@ public class FlagSecureReason {
         return (map == null || map.get(window) == null) ? false : true;
     }
 
-    private void update(int i) {
+    private void update(int i10) {
         if (currentSecureReasons == null) {
             currentSecureReasons = new HashMap<>();
         }
         Integer num = currentSecureReasons.get(this.window);
-        int iMax = Math.max(0, (num == null ? 0 : num.intValue()) + i);
+        int iMax = Math.max(0, (num == null ? 0 : num.intValue()) + i10);
         if (iMax <= 0) {
             currentSecureReasons.remove(this.window);
         } else {
@@ -68,10 +68,10 @@ public class FlagSecureReason {
 
     public void invalidate() {
         FlagSecureCondition flagSecureCondition;
-        boolean z = this.attached && (flagSecureCondition = this.condition) != null && flagSecureCondition.run();
-        if (z != this.value) {
-            this.value = z;
-            update(z ? 1 : -1);
+        boolean z10 = this.attached && (flagSecureCondition = this.condition) != null && flagSecureCondition.run();
+        if (z10 != this.value) {
+            this.value = z10;
+            update(z10 ? 1 : -1);
         }
     }
 }

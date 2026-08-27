@@ -32,12 +32,12 @@ public class YuvConverter {
         }
 
         @Override
-        public void onPrepareShader(GlShader glShader, float[] fArr, int i, int i2, int i3, int i4) {
+        public void onPrepareShader(GlShader glShader, float[] fArr, int i10, int i11, int i12, int i13) {
             GLES20.glUniform4fv(this.coeffsLoc, 1, this.coeffs, 0);
-            int i5 = this.xUnitLoc;
-            float f = this.stepSize;
-            float f2 = i;
-            GLES20.glUniform2f(i5, (fArr[0] * f) / f2, (f * fArr[1]) / f2);
+            int i14 = this.xUnitLoc;
+            float f10 = this.stepSize;
+            float f11 = i10;
+            GLES20.glUniform2f(i14, (fArr[0] * f10) / f11, (f10 * fArr[1]) / f11);
         }
 
         public void setPlaneU() {
@@ -61,98 +61,98 @@ public class YuvConverter {
     }
 
     public VideoFrame.I420Buffer convert(VideoFrame.TextureBuffer textureBuffer) {
-        int i;
-        int i2;
+        int i10;
+        int i11;
         ByteBuffer byteBuffer;
-        int i3;
+        int i12;
         this.threadChecker.checkIsOnValidThread();
         VideoFrame.TextureBuffer textureBuffer2 = (VideoFrame.TextureBuffer) this.videoFrameDrawer.prepareBufferForViewportSize(textureBuffer, textureBuffer.getWidth(), textureBuffer.getHeight());
         int width = textureBuffer2.getWidth();
         int height = textureBuffer2.getHeight();
-        int i4 = ((width + 7) / 8) * 8;
-        int i5 = (height + 1) / 2;
-        int i6 = height + i5;
-        ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i4 * i6);
-        int i7 = i4 / 4;
+        int i13 = ((width + 7) / 8) * 8;
+        int i14 = (height + 1) / 2;
+        int i15 = height + i14;
+        ByteBuffer byteBufferNativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i13 * i15);
+        int i16 = i13 / 4;
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
         matrix.preScale(1.0f, -1.0f);
         matrix.preTranslate(-0.5f, -0.5f);
         try {
-            this.i420TextureFrameBuffer.setSize(i7, i6);
+            this.i420TextureFrameBuffer.setSize(i16, i15);
             GLES20.glBindFramebuffer(36160, this.i420TextureFrameBuffer.getFrameBufferId());
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
-            i = i4;
-            i3 = 0;
+            i10 = i13;
+            i12 = 0;
             try {
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i7, height, false);
+                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i16, height, false);
                 this.shaderCallbacks.setPlaneU();
                 try {
-                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i7 / 2, i5, false);
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i16 / 2, i14, false);
                     this.shaderCallbacks.setPlaneV();
-                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i7 / 2, height, i7 / 2, i5, false);
-                    i2 = i5;
+                    VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i16 / 2, height, i16 / 2, i14, false);
+                    i11 = i14;
                     try {
                         byteBuffer = byteBufferNativeAllocateByteBuffer;
                         try {
                             GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
                             GlUtil.checkNoGLES2Error("YuvConverter.convert");
                             GLES20.glBindFramebuffer(36160, 0);
-                        } catch (Exception e) {
-                            e = e;
+                        } catch (Exception e9) {
+                            e = e9;
                             FileLog.e(e);
                         }
-                    } catch (Exception e2) {
-                        e = e2;
+                    } catch (Exception e10) {
+                        e = e10;
                         byteBuffer = byteBufferNativeAllocateByteBuffer;
                         FileLog.e(e);
-                        int i8 = i * height;
-                        int i9 = i / 2;
-                        int i10 = i8 + i9;
-                        byteBuffer.position(i3);
-                        byteBuffer.limit(i8);
+                        int i17 = i10 * height;
+                        int i18 = i10 / 2;
+                        int i19 = i17 + i18;
+                        byteBuffer.position(i12);
+                        byteBuffer.limit(i17);
                         ByteBuffer byteBufferSlice = byteBuffer.slice();
-                        byteBuffer.position(i8);
-                        int i11 = ((i2 - 1) * i) + i9;
-                        byteBuffer.limit(i8 + i11);
+                        byteBuffer.position(i17);
+                        int i20 = ((i11 - 1) * i10) + i18;
+                        byteBuffer.limit(i17 + i20);
                         ByteBuffer byteBufferSlice2 = byteBuffer.slice();
-                        byteBuffer.position(i10);
-                        byteBuffer.limit(i10 + i11);
+                        byteBuffer.position(i19);
+                        byteBuffer.limit(i19 + i20);
                         ByteBuffer byteBufferSlice3 = byteBuffer.slice();
                         textureBuffer2.release();
-                        return JavaI420Buffer.wrap(width, height, byteBufferSlice, i, byteBufferSlice2, i, byteBufferSlice3, i, new YuvConverter$$ExternalSyntheticLambda0(0, byteBuffer));
+                        return JavaI420Buffer.wrap(width, height, byteBufferSlice, i10, byteBufferSlice2, i10, byteBufferSlice3, i10, new j(1, byteBuffer));
                     }
-                } catch (Exception e3) {
-                    e = e3;
-                    i2 = i5;
+                } catch (Exception e11) {
+                    e = e11;
+                    i11 = i14;
                 }
-            } catch (Exception e4) {
-                e = e4;
-                i2 = i5;
+            } catch (Exception e12) {
+                e = e12;
+                i11 = i14;
             }
-        } catch (Exception e5) {
-            e = e5;
-            i = i4;
-            i2 = i5;
+        } catch (Exception e13) {
+            e = e13;
+            i10 = i13;
+            i11 = i14;
             byteBuffer = byteBufferNativeAllocateByteBuffer;
-            i3 = 0;
+            i12 = 0;
         }
-        int i12 = i * height;
-        int i13 = i / 2;
-        int i14 = i12 + i13;
-        byteBuffer.position(i3);
-        byteBuffer.limit(i12);
-        ByteBuffer byteBufferSlice4 = byteBuffer.slice();
+        int i110 = i10 * height;
+        int i111 = i10 / 2;
+        int i112 = i110 + i111;
         byteBuffer.position(i12);
-        int i15 = ((i2 - 1) * i) + i13;
-        byteBuffer.limit(i12 + i15);
+        byteBuffer.limit(i110);
+        ByteBuffer byteBufferSlice4 = byteBuffer.slice();
+        byteBuffer.position(i110);
+        int i21 = ((i11 - 1) * i10) + i111;
+        byteBuffer.limit(i110 + i21);
         ByteBuffer byteBufferSlice5 = byteBuffer.slice();
-        byteBuffer.position(i14);
-        byteBuffer.limit(i14 + i15);
+        byteBuffer.position(i112);
+        byteBuffer.limit(i112 + i21);
         ByteBuffer byteBufferSlice6 = byteBuffer.slice();
         textureBuffer2.release();
-        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i, byteBufferSlice5, i, byteBufferSlice6, i, new YuvConverter$$ExternalSyntheticLambda0(0, byteBuffer));
+        return JavaI420Buffer.wrap(width, height, byteBufferSlice4, i10, byteBufferSlice5, i10, byteBufferSlice6, i10, new j(1, byteBuffer));
     }
 
     public void release() {

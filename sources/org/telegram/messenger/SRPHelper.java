@@ -16,20 +16,20 @@ public class SRPHelper {
         }
         byte[] bArr2 = new byte[256];
         System.arraycopy(byteArray, 0, bArr2, 256 - byteArray.length, byteArray.length);
-        for (int i = 0; i < 256 - byteArray.length; i++) {
-            bArr2[i] = 0;
+        for (int i10 = 0; i10 < 256 - byteArray.length; i10++) {
+            bArr2[i10] = 0;
         }
         return bArr2;
     }
 
     public static BigInteger getV(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-        BigInteger bigIntegerValueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.g);
+        BigInteger bigIntegerValueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22506g);
         getBigIntegerBytes(bigIntegerValueOf);
-        return bigIntegerValueOf.modPow(new BigInteger(1, getX(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)), new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p));
+        return bigIntegerValueOf.modPow(new BigInteger(1, getX(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow)), new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p));
     }
 
     public static byte[] getVBytes(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-        if (Utilities.isGoodPrime(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.g)) {
+        if (Utilities.isGoodPrime(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22506g)) {
             return getBigIntegerBytes(getV(bArr, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow));
         }
         return null;
@@ -44,14 +44,14 @@ public class SRPHelper {
         return Utilities.computeSHA256(bArr4, bArrComputePBKDF2, bArr4);
     }
 
-    public static TLRPC.TL_inputCheckPasswordSRP startCheck(byte[] bArr, long j, byte[] bArr2, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-        if (bArr == null || bArr2 == null || bArr2.length == 0 || !Utilities.isGoodPrime(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.g)) {
+    public static TLRPC.TL_inputCheckPasswordSRP startCheck(byte[] bArr, long j10, byte[] bArr2, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
+        if (bArr == null || bArr2 == null || bArr2.length == 0 || !Utilities.isGoodPrime(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22506g)) {
             return null;
         }
-        BigInteger bigIntegerValueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.g);
+        BigInteger bigIntegerValueOf = BigInteger.valueOf(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22506g);
         byte[] bigIntegerBytes = getBigIntegerBytes(bigIntegerValueOf);
-        BigInteger bigInteger = new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p);
-        BigInteger bigInteger2 = new BigInteger(1, Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p, bigIntegerBytes));
+        BigInteger bigInteger = new BigInteger(1, tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p);
+        BigInteger bigInteger2 = new BigInteger(1, Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p, bigIntegerBytes));
         BigInteger bigInteger3 = new BigInteger(1, bArr);
         byte[] bArr3 = new byte[256];
         Utilities.random.nextBytes(bArr3);
@@ -75,15 +75,15 @@ public class SRPHelper {
             return null;
         }
         byte[] bArrComputeSHA256 = Utilities.computeSHA256(getBigIntegerBytes(bigIntegerSubtract.modPow(bigInteger4.add(bigInteger7.multiply(bigInteger3)), bigInteger)));
-        byte[] bArrComputeSHA257 = Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p);
+        byte[] bArrComputeSHA257 = Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.f22507p);
         byte[] bArrComputeSHA258 = Utilities.computeSHA256(bigIntegerBytes);
-        for (int i = 0; i < bArrComputeSHA257.length; i++) {
-            bArrComputeSHA257[i] = (byte) (bArrComputeSHA258[i] ^ bArrComputeSHA257[i]);
+        for (int i10 = 0; i10 < bArrComputeSHA257.length; i10++) {
+            bArrComputeSHA257[i10] = (byte) (bArrComputeSHA258[i10] ^ bArrComputeSHA257[i10]);
         }
         TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordSRP();
         tL_inputCheckPasswordSRP.M1 = Utilities.computeSHA256(bArrComputeSHA257, Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1), Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2), bigIntegerBytes2, bigIntegerBytes3, bArrComputeSHA256);
         tL_inputCheckPasswordSRP.A = bigIntegerBytes2;
-        tL_inputCheckPasswordSRP.srp_id = j;
+        tL_inputCheckPasswordSRP.srp_id = j10;
         return tL_inputCheckPasswordSRP;
     }
 }

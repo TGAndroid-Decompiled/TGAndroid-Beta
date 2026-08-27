@@ -2,24 +2,6 @@ package org.webrtc;
 
 public interface VideoEncoder {
 
-    public abstract class CC {
-        public static long $default$createNativeVideoEncoder(VideoEncoder videoEncoder) {
-            return 0L;
-        }
-
-        public static EncoderInfo $default$getEncoderInfo(VideoEncoder videoEncoder) {
-            return new EncoderInfo(1, false);
-        }
-
-        public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
-            return new ResolutionBitrateLimits[0];
-        }
-
-        public static boolean $default$isHardwareEncoder(VideoEncoder videoEncoder) {
-            return true;
-        }
-    }
-
     public static class BitrateAllocation {
         public final int[][] bitratesBbs;
 
@@ -28,13 +10,13 @@ public interface VideoEncoder {
         }
 
         public int getSum() {
-            int i = 0;
+            int i10 = 0;
             for (int[] iArr : this.bitratesBbs) {
-                for (int i2 : iArr) {
-                    i += i2;
+                for (int i11 : iArr) {
+                    i10 += i11;
                 }
             }
-            return i;
+            return i10;
         }
     }
 
@@ -45,8 +27,8 @@ public interface VideoEncoder {
     public static class Capabilities {
         public final boolean lossNotification;
 
-        public Capabilities(boolean z) {
-            this.lossNotification = z;
+        public Capabilities(boolean z10) {
+            this.lossNotification = z10;
         }
     }
 
@@ -77,9 +59,9 @@ public interface VideoEncoder {
         public final boolean applyAlignmentToAllSimulcastLayers;
         public final int requestedResolutionAlignment;
 
-        public EncoderInfo(int i, boolean z) {
-            this.requestedResolutionAlignment = i;
-            this.applyAlignmentToAllSimulcastLayers = z;
+        public EncoderInfo(int i10, boolean z10) {
+            this.requestedResolutionAlignment = i10;
+            this.applyAlignmentToAllSimulcastLayers = z10;
         }
 
         public boolean getApplyAlignmentToAllSimulcastLayers() {
@@ -107,11 +89,11 @@ public interface VideoEncoder {
         public final int minBitrateBps;
         public final int minStartBitrateBps;
 
-        public ResolutionBitrateLimits(int i, int i2, int i3, int i4) {
-            this.frameSizePixels = i;
-            this.minStartBitrateBps = i2;
-            this.minBitrateBps = i3;
-            this.maxBitrateBps = i4;
+        public ResolutionBitrateLimits(int i10, int i11, int i12, int i13) {
+            this.frameSizePixels = i10;
+            this.minStartBitrateBps = i11;
+            this.minBitrateBps = i12;
+            this.maxBitrateBps = i13;
         }
 
         public int getFrameSizePixels() {
@@ -142,18 +124,18 @@ public interface VideoEncoder {
         public final int width;
 
         @Deprecated
-        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z) {
-            this(i, i2, i3, i4, i5, i6, z, new Capabilities(false));
+        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10) {
+            this(i10, i11, i12, i13, i14, i15, z10, new Capabilities(false));
         }
 
-        public Settings(int i, int i2, int i3, int i4, int i5, int i6, boolean z, Capabilities capabilities) {
-            this.numberOfCores = i;
-            this.width = i2;
-            this.height = i3;
-            this.startBitrate = i4;
-            this.maxFramerate = i5;
-            this.numberOfSimulcastStreams = i6;
-            this.automaticResizeOn = z;
+        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Capabilities capabilities) {
+            this.numberOfCores = i10;
+            this.width = i11;
+            this.height = i12;
+            this.startBitrate = i13;
+            this.maxFramerate = i14;
+            this.numberOfSimulcastStreams = i15;
+            this.automaticResizeOn = z10;
             this.capabilities = capabilities;
         }
     }
@@ -176,7 +158,7 @@ public interface VideoEncoder {
 
     VideoCodecStatus release();
 
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i);
+    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i10);
 
     VideoCodecStatus setRates(RateControlParameters rateControlParameters);
 
@@ -186,10 +168,10 @@ public interface VideoEncoder {
         public final Integer low;
         public final boolean on;
 
-        public ScalingSettings(int i, int i2) {
+        public ScalingSettings(int i10, int i11) {
             this.on = true;
-            this.low = Integer.valueOf(i);
-            this.high = Integer.valueOf(i2);
+            this.low = Integer.valueOf(i10);
+            this.high = Integer.valueOf(i11);
         }
 
         public String toString() {
@@ -206,17 +188,17 @@ public interface VideoEncoder {
         }
 
         @Deprecated
-        public ScalingSettings(boolean z) {
-            this.on = z;
+        public ScalingSettings(boolean z10) {
+            this.on = z10;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
-        public ScalingSettings(boolean z, int i, int i2) {
-            this.on = z;
-            this.low = Integer.valueOf(i);
-            this.high = Integer.valueOf(i2);
+        public ScalingSettings(boolean z10, int i10, int i11) {
+            this.on = z10;
+            this.low = Integer.valueOf(i10);
+            this.high = Integer.valueOf(i11);
         }
     }
 }

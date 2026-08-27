@@ -1,32 +1,29 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import a9.p;
+import s3.c;
 
 public class NewEnvironmentMacro extends NewCommandMacro {
-    public static void addNewEnvironment(String str, String str2, String str3, int i) {
-        String strM$1 = Fragment$$ExternalSyntheticOutline0.m$1(str, "@env");
-        StringBuilder sb = new StringBuilder();
-        sb.append(str2);
-        sb.append(" #");
-        int i2 = i + 1;
-        sb.append(i2);
-        sb.append(" ");
-        sb.append(str3);
-        NewCommandMacro.addNewCommand(strM$1, sb.toString(), i2);
+    public static void addNewEnvironment(String str, String str2, String str3, int i10) {
+        String strL = c.l(str, "@env");
+        StringBuilder sbF = c.f(str2, " #");
+        int i11 = i10 + 1;
+        sbF.append(i11);
+        sbF.append(" ");
+        sbF.append(str3);
+        NewCommandMacro.addNewCommand(strL, sbF.toString(), i11);
     }
 
-    public static void addReNewEnvironment(String str, String str2, String str3, int i) {
+    public static void addReNewEnvironment(String str, String str2, String str3, int i10) {
         if (NewCommandMacro.macrocode.get(str + "@env") == null) {
-            throw new ParseException(Fragment$$ExternalSyntheticOutline0.m("Environment ", str, "is not defined ! Use newenvironment instead ..."));
+            throw new ParseException(p.m("Environment ", str, "is not defined ! Use newenvironment instead ..."));
         }
-        String strM$1 = Fragment$$ExternalSyntheticOutline0.m$1(str, "@env");
-        StringBuilder sb = new StringBuilder();
-        sb.append(str2);
-        sb.append(" #");
-        int i2 = i + 1;
-        sb.append(i2);
-        sb.append(" ");
-        sb.append(str3);
-        NewCommandMacro.addReNewCommand(strM$1, sb.toString(), i2);
+        String strL = c.l(str, "@env");
+        StringBuilder sbF = c.f(str2, " #");
+        int i11 = i10 + 1;
+        sbF.append(i11);
+        sbF.append(" ");
+        sbF.append(str3);
+        NewCommandMacro.addReNewCommand(strL, sbF.toString(), i11);
     }
 }

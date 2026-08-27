@@ -14,17 +14,17 @@ public abstract class CacheFetcher<Args, R> {
         this(240000);
     }
 
-    private void cacheResult(Pair<Integer, Args> pair, R r) {
+    private void cacheResult(Pair<Integer, Args> pair, R r10) {
         if (useCache(pair.second)) {
             if (this.cachedResults == null) {
                 this.cachedResults = new HashMap<>();
             }
-            this.cachedResults.put(pair, r);
+            this.cachedResults.put(pair, r10);
         }
     }
 
-    private void callCallbacks(Pair<Integer, Args> pair, R r, boolean z) {
-        AndroidUtilities.runOnUIThread(new CacheFetcher$$ExternalSyntheticLambda0(this, pair, r, z, 0));
+    private void callCallbacks(Pair<Integer, Args> pair, R r10, boolean z10) {
+        AndroidUtilities.runOnUIThread(new qj(this, pair, r10, z10, 1));
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {
@@ -40,28 +40,28 @@ public abstract class CacheFetcher<Args, R> {
         return (map == null || map.get(pair) == null) ? false : true;
     }
 
-    public void lambda$callCallbacks$3(Pair pair, Object obj, boolean z) {
+    public void lambda$callCallbacks$3(Pair pair, Object obj, boolean z10) {
         ArrayList<Utilities.Callback<R>> arrayList;
         HashMap<Pair<Integer, Args>, ArrayList<Utilities.Callback<R>>> map = this.loadingCallbacks;
         if (map == null || (arrayList = map.get(pair)) == null) {
             return;
         }
         int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Utilities.Callback<R> callback = arrayList.get(i);
-            i++;
+        int i10 = 0;
+        while (i10 < size) {
+            Utilities.Callback<R> callback = arrayList.get(i10);
+            i10++;
             callback.run(obj);
         }
-        if (z) {
+        if (z10) {
             arrayList.clear();
         }
-        if (z) {
+        if (z10) {
             this.loadingCallbacks.remove(pair);
         }
     }
 
-    public void lambda$fetch$0(Pair pair, Object obj, int i, Object obj2, Boolean bool, Object obj3, Long l, Boolean bool2) {
+    public void lambda$fetch$0(Pair pair, Object obj, int i10, Object obj2, Boolean bool, Object obj3, Long l10, Boolean bool2) {
         Object obj4;
         if (bool2.booleanValue()) {
             saveLastRequested(pair);
@@ -73,7 +73,7 @@ public abstract class CacheFetcher<Args, R> {
         }
         if (obj3 != null) {
             obj4 = obj3;
-            setLocal(i, obj2, obj4, l.longValue());
+            setLocal(i10, obj2, obj4, l10.longValue());
             cacheResult(pair, obj4);
         } else {
             obj4 = obj3;
@@ -81,7 +81,7 @@ public abstract class CacheFetcher<Args, R> {
         callCallbacks(pair, obj4, true);
     }
 
-    public void lambda$fetch$1(final Pair pair, final Object obj, final int i, Long l, final Object obj2) {
+    public void lambda$fetch$1(final Pair pair, final Object obj, final int i10, Long l10, final Object obj2) {
         if (!shouldRequest(pair)) {
             cacheResult(pair, obj2);
             callCallbacks(pair, obj2, true);
@@ -91,13 +91,10 @@ public abstract class CacheFetcher<Args, R> {
             cacheResult(pair, obj2);
             callCallbacks(pair, obj2, false);
         }
-        getRemote(i, obj, l.longValue(), new Utilities.Callback4() {
+        getRemote(i10, obj, l10.longValue(), new Utilities.Callback4() {
             @Override
             public final void run(Object obj3, Object obj4, Object obj5, Object obj6) {
-                CacheFetcher cacheFetcher = this.f$0;
-                int i2 = i;
-                Object obj7 = obj;
-                cacheFetcher.lambda$fetch$0(pair, obj2, i2, obj7, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
+                this.f21114a.lambda$fetch$0(pair, obj2, i10, obj, (Boolean) obj3, obj4, (Long) obj5, (Boolean) obj6);
             }
         });
     }
@@ -120,7 +117,7 @@ public abstract class CacheFetcher<Args, R> {
         if (callback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda0(this, pair, callback, 10));
+        AndroidUtilities.runOnUIThread(new f0(this, pair, callback, 9));
     }
 
     private void saveLastRequested(Pair<Integer, Args> pair) {
@@ -147,8 +144,8 @@ public abstract class CacheFetcher<Args, R> {
         return false;
     }
 
-    public void fetch(final int i, final Args args, Utilities.Callback<R> callback) {
-        final Pair<Integer, Args> pair = new Pair<>(Integer.valueOf(i), args);
+    public void fetch(final int i10, final Args args, Utilities.Callback<R> callback) {
+        final Pair<Integer, Args> pair = new Pair<>(Integer.valueOf(i10), args);
         if (isLoading(pair)) {
             saveCallback(pair, callback);
             return;
@@ -156,10 +153,10 @@ public abstract class CacheFetcher<Args, R> {
         R cachedResult = getCachedResult(pair);
         if (cachedResult == null || shouldRequest(pair)) {
             saveCallback(pair, callback);
-            getLocal(i, args, new Utilities.Callback2() {
+            getLocal(i10, args, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$fetch$1(pair, args, i, (Long) obj, obj2);
+                    this.f21207a.lambda$fetch$1(pair, args, i10, (Long) obj, obj2);
                 }
             });
         } else if (callback != null) {
@@ -167,25 +164,22 @@ public abstract class CacheFetcher<Args, R> {
         }
     }
 
-    public void forceRequest(int i, Args args) {
+    public void forceRequest(int i10, Args args) {
         if (this.lastRequestedRemotely == null) {
             return;
         }
-        Pair pair = new Pair(Integer.valueOf(i), args);
+        Pair pair = new Pair(Integer.valueOf(i10), args);
         this.lastRequestedRemotely.remove(pair);
         if (saveLastTimeRequested()) {
             setSavedLastTimeRequested(pair.hashCode(), 0L);
         }
     }
 
-    public void getLocal(int i, Args args, Utilities.Callback2<Long, R> callback2) {
+    public void getLocal(int i10, Args args, Utilities.Callback2<Long, R> callback2) {
         callback2.run(0L, null);
     }
 
-    public void getRemote(int i, Args args, long j, Utilities.Callback4<Boolean, R, Long, Boolean> callback4) {
-    }
-
-    public long getSavedLastTimeRequested(int i) {
+    public long getSavedLastTimeRequested(int i10) {
         return 0L;
     }
 
@@ -193,17 +187,20 @@ public abstract class CacheFetcher<Args, R> {
         return false;
     }
 
-    public void setLocal(int i, Args args, R r, long j) {
-    }
-
-    public void setSavedLastTimeRequested(int i, long j) {
-    }
-
     public boolean useCache(Args args) {
         return true;
     }
 
-    public CacheFetcher(int i) {
-        this.requestRemotelyTimeout = i;
+    public CacheFetcher(int i10) {
+        this.requestRemotelyTimeout = i10;
+    }
+
+    public void setSavedLastTimeRequested(int i10, long j10) {
+    }
+
+    public void getRemote(int i10, Args args, long j10, Utilities.Callback4<Boolean, R, Long, Boolean> callback4) {
+    }
+
+    public void setLocal(int i10, Args args, R r10, long j10) {
     }
 }

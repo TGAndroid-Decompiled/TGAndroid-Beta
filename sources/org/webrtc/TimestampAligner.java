@@ -15,11 +15,11 @@ public class TimestampAligner {
 
     private static native long nativeCreateTimestampAligner();
 
-    private static native void nativeReleaseTimestampAligner(long j);
+    private static native void nativeReleaseTimestampAligner(long j10);
 
     private static native long nativeRtcTimeNanos();
 
-    private static native long nativeTranslateTimestamp(long j, long j2);
+    private static native long nativeTranslateTimestamp(long j10, long j11);
 
     public void dispose() {
         checkNativeAlignerExists();
@@ -27,8 +27,8 @@ public class TimestampAligner {
         this.nativeTimestampAligner = 0L;
     }
 
-    public long translateTimestamp(long j) {
+    public long translateTimestamp(long j10) {
         checkNativeAlignerExists();
-        return nativeTranslateTimestamp(this.nativeTimestampAligner, j);
+        return nativeTranslateTimestamp(this.nativeTimestampAligner, j10);
     }
 }

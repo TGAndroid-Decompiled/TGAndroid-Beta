@@ -6,10 +6,9 @@ import android.media.audiofx.AudioEffect;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
 import android.text.TextUtils;
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
-import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
+import lh.k7;
 
 public class AudioRecordJNI {
     private AcousticEchoCanceler aec;
@@ -23,12 +22,12 @@ public class AudioRecordJNI {
     private boolean running;
     private Thread thread;
 
-    public AudioRecordJNI(long j) {
-        this.nativeInst = j;
+    public AudioRecordJNI(long j10) {
+        this.nativeInst = j10;
     }
 
-    private int getBufferSize(int i, int i2) {
-        return Math.max(AudioRecord.getMinBufferSize(i2, 16, 2), i);
+    private int getBufferSize(int i10, int i11) {
+        return Math.max(AudioRecord.getMinBufferSize(i11, 16, 2), i10);
     }
 
     private static boolean isGoodAudioEffect(AudioEffect audioEffect) {
@@ -77,8 +76,8 @@ public class AudioRecordJNI {
                     break;
                 }
                 nativeCallback(this.buffer);
-            } catch (Exception e) {
-                VLog.e(e);
+            } catch (Exception e9) {
+                VLog.e(e9);
             }
         }
         VLog.i("audiorecord thread exits");
@@ -91,8 +90,8 @@ public class AudioRecordJNI {
         }
         try {
             return Pattern.compile(string);
-        } catch (Exception e) {
-            VLog.e(e);
+        } catch (Exception e9) {
+            VLog.e(e9);
             return null;
         }
     }
@@ -104,13 +103,13 @@ public class AudioRecordJNI {
             throw new IllegalStateException("thread already started");
         }
         this.running = true;
-        Thread thread = new Thread(new ClickHelper$$ExternalSyntheticLambda0(13, this, this.needResampling ? ByteBuffer.allocateDirect(1764) : null));
+        Thread thread = new Thread(new k7(23, this, this.needResampling ? ByteBuffer.allocateDirect(1764) : null));
         this.thread = thread;
         thread.start();
     }
 
-    private boolean tryInit(int i, int i2) {
-        int i3;
+    private boolean tryInit(int i10, int i11) {
+        int i12;
         AudioRecord audioRecord = this.audioRecord;
         if (audioRecord != null) {
             try {
@@ -118,38 +117,38 @@ public class AudioRecordJNI {
             } catch (Exception unused) {
             }
         }
-        VLog.i(Fragment$$ExternalSyntheticOutline0.m(i, i2, "Trying to initialize AudioRecord with source=", " and sample rate="));
+        VLog.i(a9.p.j(i10, i11, "Trying to initialize AudioRecord with source=", " and sample rate="));
         try {
-            i3 = i2;
+            i12 = i11;
             try {
-                this.audioRecord = new AudioRecord(i, i3, 16, 2, getBufferSize(this.bufferSize, 48000));
-            } catch (Exception e) {
-                e = e;
+                this.audioRecord = new AudioRecord(i10, i12, 16, 2, getBufferSize(this.bufferSize, 48000));
+            } catch (Exception e9) {
+                e = e9;
                 VLog.e("AudioRecord init failed!", e);
             }
-        } catch (Exception e2) {
-            e = e2;
-            i3 = i2;
+        } catch (Exception e10) {
+            e = e10;
+            i12 = i11;
         }
-        this.needResampling = i3 != 48000;
+        this.needResampling = i12 != 48000;
         AudioRecord audioRecord2 = this.audioRecord;
         return audioRecord2 != null && audioRecord2.getState() == 1;
     }
 
     public int getEnabledEffectsMask() {
         AcousticEchoCanceler acousticEchoCanceler = this.aec;
-        int i = (acousticEchoCanceler == null || !acousticEchoCanceler.getEnabled()) ? 0 : 1;
+        int i10 = (acousticEchoCanceler == null || !acousticEchoCanceler.getEnabled()) ? 0 : 1;
         NoiseSuppressor noiseSuppressor = this.ns;
-        return (noiseSuppressor == null || !noiseSuppressor.getEnabled()) ? i : i | 2;
+        return (noiseSuppressor == null || !noiseSuppressor.getEnabled()) ? i10 : i10 | 2;
     }
 
-    public void init(int i, int i2, int i3, int i4) {
+    public void init(int i10, int i11, int i12, int i13) {
         if (this.audioRecord != null) {
             throw new IllegalStateException("already inited");
         }
-        this.bufferSize = i4;
+        this.bufferSize = i13;
         boolean zTryInit = tryInit(7, 48000);
-        boolean z = true;
+        boolean z10 = true;
         if (!zTryInit) {
             zTryInit = tryInit(1, 48000);
         }
@@ -192,9 +191,9 @@ public class AudioRecordJNI {
                     this.aec = acousticEchoCancelerCreate;
                     if (acousticEchoCancelerCreate != null) {
                         if (!Instance.getGlobalServerConfig().useSystemAec || !isGoodAudioEffect(this.aec)) {
-                            z = false;
+                            z10 = false;
                         }
-                        acousticEchoCancelerCreate.setEnabled(z);
+                        acousticEchoCancelerCreate.setEnabled(z10);
                     }
                 } else {
                     VLog.w("AcousticEchoCanceler is not available on this device");
@@ -202,7 +201,7 @@ public class AudioRecordJNI {
             } catch (Throwable th3) {
                 VLog.e("error creating AcousticEchoCanceler", th3);
             }
-            this.buffer = ByteBuffer.allocateDirect(i4);
+            this.buffer = ByteBuffer.allocateDirect(i13);
         }
     }
 
@@ -212,8 +211,8 @@ public class AudioRecordJNI {
         if (thread != null) {
             try {
                 thread.join();
-            } catch (InterruptedException e) {
-                VLog.e(e);
+            } catch (InterruptedException e9) {
+                VLog.e(e9);
             }
             this.thread = null;
         }
@@ -254,8 +253,8 @@ public class AudioRecordJNI {
                     this.audioRecord.startRecording();
                 }
                 return true;
-            } catch (Exception e) {
-                VLog.e("Error initializing AudioRecord", e);
+            } catch (Exception e9) {
+                VLog.e("Error initializing AudioRecord", e9);
             }
         }
         return false;

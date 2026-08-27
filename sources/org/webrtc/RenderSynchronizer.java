@@ -29,13 +29,13 @@ public final class RenderSynchronizer {
         void onRenderWindowOpen();
     }
 
-    public RenderSynchronizer(float f) {
+    public RenderSynchronizer(float f10) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(TimeUnit.SECONDS.toNanos(1L) / f);
+        this.targetFrameIntervalNanos = Math.round(TimeUnit.SECONDS.toNanos(1L) / f10);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
-        handler.post(new RenderSynchronizer$$ExternalSyntheticLambda1(this, 1));
+        handler.post(new n(this, 1));
         Logging.d("RenderSynchronizer", "Created");
     }
 
@@ -53,10 +53,10 @@ public final class RenderSynchronizer {
     }
 
     public void lambda$registerListener$1() {
-        this.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(this));
+        this.choreographer.postFrameCallback(new o(this));
     }
 
-    public void onDisplayRefreshCycleBegin(long j) {
+    public void onDisplayRefreshCycleBegin(long j10) {
         synchronized (this.lock) {
             try {
                 if (this.listeners.isEmpty()) {
@@ -64,12 +64,12 @@ public final class RenderSynchronizer {
                     this.isListening = false;
                     return;
                 }
-                this.choreographer.postFrameCallback(new RenderSynchronizer$$ExternalSyntheticLambda2(this));
-                long j2 = j - this.lastOpenedTimeNanos;
-                long j3 = j - this.lastRefreshTimeNanos;
-                this.lastRefreshTimeNanos = j;
-                if (Math.abs(j2 - this.targetFrameIntervalNanos) < Math.abs((j2 - this.targetFrameIntervalNanos) + j3)) {
-                    this.lastOpenedTimeNanos = j;
+                this.choreographer.postFrameCallback(new o(this));
+                long j11 = j10 - this.lastOpenedTimeNanos;
+                long j12 = j10 - this.lastRefreshTimeNanos;
+                this.lastRefreshTimeNanos = j10;
+                if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + j12)) {
+                    this.lastOpenedTimeNanos = j10;
                     openRenderWindow();
                 } else if (this.renderWindowOpen) {
                     closeRenderWindow();
@@ -102,7 +102,7 @@ public final class RenderSynchronizer {
                 if (!this.isListening) {
                     Logging.d("RenderSynchronizer", "First listener, subscribing to frame callbacks");
                     this.isListening = true;
-                    this.mainThreadHandler.post(new RenderSynchronizer$$ExternalSyntheticLambda1(this, 0));
+                    this.mainThreadHandler.post(new n(this, 0));
                 }
             } catch (Throwable th) {
                 throw th;

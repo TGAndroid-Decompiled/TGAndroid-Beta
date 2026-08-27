@@ -42,8 +42,8 @@ public class PeerConnection {
             this.bitMask = num;
         }
 
-        public static AdapterType fromNativeIndex(int i) {
-            return BY_BITMASK.get(Integer.valueOf(i));
+        public static AdapterType fromNativeIndex(int i10) {
+            return BY_BITMASK.get(Integer.valueOf(i10));
         }
     }
 
@@ -72,8 +72,8 @@ public class PeerConnection {
         DISCONNECTED,
         CLOSED;
 
-        public static IceConnectionState fromNativeIndex(int i) {
-            return values()[i];
+        public static IceConnectionState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -82,8 +82,8 @@ public class PeerConnection {
         GATHERING,
         COMPLETE;
 
-        public static IceGatheringState fromNativeIndex(int i) {
-            return values()[i];
+        public static IceGatheringState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -276,6 +276,42 @@ public class PeerConnection {
         ECDSA
     }
 
+    public interface Observer {
+        void onAddStream(MediaStream mediaStream);
+
+        void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreamArr);
+
+        void onConnectionChange(PeerConnectionState peerConnectionState);
+
+        void onDataChannel(DataChannel dataChannel);
+
+        void onIceCandidate(IceCandidate iceCandidate);
+
+        void onIceCandidateError(IceCandidateErrorEvent iceCandidateErrorEvent);
+
+        void onIceCandidatesRemoved(IceCandidate[] iceCandidateArr);
+
+        void onIceConnectionChange(IceConnectionState iceConnectionState);
+
+        void onIceConnectionReceivingChange(boolean z10);
+
+        void onIceGatheringChange(IceGatheringState iceGatheringState);
+
+        void onRemoveStream(MediaStream mediaStream);
+
+        void onRemoveTrack(RtpReceiver rtpReceiver);
+
+        void onRenegotiationNeeded();
+
+        void onSelectedCandidatePairChanged(CandidatePairChangeEvent candidatePairChangeEvent);
+
+        void onSignalingChange(SignalingState signalingState);
+
+        void onStandardizedIceConnectionChange(IceConnectionState iceConnectionState);
+
+        void onTrack(RtpTransceiver rtpTransceiver);
+    }
+
     public enum PeerConnectionState {
         NEW,
         CONNECTING,
@@ -284,8 +320,8 @@ public class PeerConnection {
         FAILED,
         CLOSED;
 
-        public static PeerConnectionState fromNativeIndex(int i) {
-            return values()[i];
+        public static PeerConnectionState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -517,8 +553,8 @@ public class PeerConnection {
         HAVE_REMOTE_PRANSWER,
         CLOSED;
 
-        public static SignalingState fromNativeIndex(int i) {
-            return values()[i];
+        public static SignalingState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -540,17 +576,17 @@ public class PeerConnection {
         return nativeCreatePeerConnectionObserver(observer);
     }
 
-    private native boolean nativeAddIceCandidate(String str, int i, String str2);
+    private native boolean nativeAddIceCandidate(String str, int i10, String str2);
 
-    private native void nativeAddIceCandidateWithObserver(String str, int i, String str2, AddIceObserver addIceObserver);
+    private native void nativeAddIceCandidateWithObserver(String str, int i10, String str2, AddIceObserver addIceObserver);
 
-    private native boolean nativeAddLocalStream(long j);
+    private native boolean nativeAddLocalStream(long j10);
 
-    private native RtpSender nativeAddTrack(long j, List<String> list);
+    private native RtpSender nativeAddTrack(long j10, List<String> list);
 
     private native RtpTransceiver nativeAddTransceiverOfType(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
-    private native RtpTransceiver nativeAddTransceiverWithTrack(long j, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
+    private native RtpTransceiver nativeAddTransceiverWithTrack(long j10, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit);
 
     private native void nativeClose();
 
@@ -566,7 +602,7 @@ public class PeerConnection {
 
     private native RtpSender nativeCreateSender(String str, String str2);
 
-    private static native void nativeFreeOwnedPeerConnection(long j);
+    private static native void nativeFreeOwnedPeerConnection(long j10);
 
     private native RtcCertificatePem nativeGetCertificate();
 
@@ -588,23 +624,23 @@ public class PeerConnection {
 
     private native void nativeNewGetStats(RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsReceiver(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsReceiver(long j10, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native void nativeNewGetStatsSender(long j, RTCStatsCollectorCallback rTCStatsCollectorCallback);
+    private native void nativeNewGetStatsSender(long j10, RTCStatsCollectorCallback rTCStatsCollectorCallback);
 
-    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j);
+    private native boolean nativeOldGetStats(StatsObserver statsObserver, long j10);
 
     private native boolean nativeRemoveIceCandidates(IceCandidate[] iceCandidateArr);
 
-    private native void nativeRemoveLocalStream(long j);
+    private native void nativeRemoveLocalStream(long j10);
 
-    private native boolean nativeRemoveTrack(long j);
+    private native boolean nativeRemoveTrack(long j10);
 
     private native void nativeRestartIce();
 
-    private native void nativeSetAudioPlayout(boolean z);
+    private native void nativeSetAudioPlayout(boolean z10);
 
-    private native void nativeSetAudioRecording(boolean z);
+    private native void nativeSetAudioRecording(boolean z10);
 
     private native boolean nativeSetBitrate(Integer num, Integer num2, Integer num3);
 
@@ -618,7 +654,7 @@ public class PeerConnection {
 
     private native SignalingState nativeSignalingState();
 
-    private native boolean nativeStartRtcEventLog(int i, int i2);
+    private native boolean nativeStartRtcEventLog(int i10, int i11);
 
     private native void nativeStopRtcEventLog();
 
@@ -778,12 +814,12 @@ public class PeerConnection {
         nativeRestartIce();
     }
 
-    public void setAudioPlayout(boolean z) {
-        nativeSetAudioPlayout(z);
+    public void setAudioPlayout(boolean z10) {
+        nativeSetAudioPlayout(z10);
     }
 
-    public void setAudioRecording(boolean z) {
-        nativeSetAudioRecording(z);
+    public void setAudioRecording(boolean z10) {
+        nativeSetAudioRecording(z10);
     }
 
     public boolean setBitrate(Integer num, Integer num2, Integer num3) {
@@ -806,20 +842,20 @@ public class PeerConnection {
         return nativeSignalingState();
     }
 
-    public boolean startRtcEventLog(int i, int i2) {
-        return nativeStartRtcEventLog(i, i2);
+    public boolean startRtcEventLog(int i10, int i11) {
+        return nativeStartRtcEventLog(i10, i11);
     }
 
     public void stopRtcEventLog() {
         nativeStopRtcEventLog();
     }
 
-    public PeerConnection(long j) {
+    public PeerConnection(long j10) {
         this.localStreams = new ArrayList();
         this.senders = new ArrayList();
         this.receivers = new ArrayList();
         this.transceivers = new ArrayList();
-        this.nativePeerConnection = j;
+        this.nativePeerConnection = j10;
     }
 
     public void addIceCandidate(IceCandidate iceCandidate, AddIceObserver addIceObserver) {
@@ -886,64 +922,5 @@ public class PeerConnection {
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
         throw new NullPointerException("No MediaType specified for addTransceiver.");
-    }
-
-    public interface Observer {
-        void onAddStream(MediaStream mediaStream);
-
-        void onAddTrack(RtpReceiver rtpReceiver, MediaStream[] mediaStreamArr);
-
-        void onConnectionChange(PeerConnectionState peerConnectionState);
-
-        void onDataChannel(DataChannel dataChannel);
-
-        void onIceCandidate(IceCandidate iceCandidate);
-
-        void onIceCandidateError(IceCandidateErrorEvent iceCandidateErrorEvent);
-
-        void onIceCandidatesRemoved(IceCandidate[] iceCandidateArr);
-
-        void onIceConnectionChange(IceConnectionState iceConnectionState);
-
-        void onIceConnectionReceivingChange(boolean z);
-
-        void onIceGatheringChange(IceGatheringState iceGatheringState);
-
-        void onRemoveStream(MediaStream mediaStream);
-
-        void onRemoveTrack(RtpReceiver rtpReceiver);
-
-        void onRenegotiationNeeded();
-
-        void onSelectedCandidatePairChanged(CandidatePairChangeEvent candidatePairChangeEvent);
-
-        void onSignalingChange(SignalingState signalingState);
-
-        void onStandardizedIceConnectionChange(IceConnectionState iceConnectionState);
-
-        void onTrack(RtpTransceiver rtpTransceiver);
-
-        public abstract class CC {
-            public static void $default$onConnectionChange(Observer observer, PeerConnectionState peerConnectionState) {
-            }
-
-            public static void $default$onIceCandidateError(Observer observer, IceCandidateErrorEvent iceCandidateErrorEvent) {
-            }
-
-            public static void $default$onRemoveTrack(Observer observer, RtpReceiver rtpReceiver) {
-            }
-
-            public static void $default$onSelectedCandidatePairChanged(Observer observer, CandidatePairChangeEvent candidatePairChangeEvent) {
-            }
-
-            public static void $default$onStandardizedIceConnectionChange(Observer observer, IceConnectionState iceConnectionState) {
-            }
-
-            public static void $default$onTrack(Observer observer, RtpTransceiver rtpTransceiver) {
-            }
-
-            public static void $default$onAddTrack(Observer observer, RtpReceiver rtpReceiver, MediaStream[] mediaStreamArr) {
-            }
-        }
     }
 }

@@ -16,10 +16,10 @@ public final class Images {
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();
         double dSqr = 0.0d;
-        for (int i = 0; i < height; i++) {
-            for (int i2 = 0; i2 < width; i2++) {
-                Color color = new Color(bufferedImage.getRGB(i2, i));
-                Color color2 = new Color(bufferedImage2.getRGB(i2, i));
+        for (int i10 = 0; i10 < height; i10++) {
+            for (int i11 = 0; i11 < width; i11++) {
+                Color color = new Color(bufferedImage.getRGB(i11, i10));
+                Color color2 = new Color(bufferedImage2.getRGB(i11, i10));
                 dSqr += sqr(color.getRed() - color2.getRed()) + sqr(color.getBlue() - color2.getBlue()) + sqr(color.getGreen() - color2.getGreen()) + sqr(color.getAlpha() - color2.getAlpha());
             }
         }

@@ -1,7 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,106 +8,194 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 
 public class NumberTextView extends View {
-    private boolean addNumber;
-    private ObjectAnimator animator;
-    private boolean center;
-    private int currentNumber;
-    private ArrayList<StaticLayout> letters;
-    private ArrayList<StaticLayout> oldLetters;
-    private float oldTextWidth;
-    private OnTextWidthProgressChangedListener onTextWidthProgressChangedListener;
-    private float progress;
-    private TextPaint textPaint;
-    private float textWidth;
 
-    public interface OnTextWidthProgressChangedListener {
-        void onTextWidthProgress(float f, float f2, float f3);
-    }
+    public final ArrayList f26408a;
+
+    public final ArrayList f26409b;
+
+    public final TextPaint f26410c;
+    public ObjectAnimator d;
+
+    public float f26411e;
+
+    public int f26412f;
+    public boolean h;
+
+    public boolean f26413n;
+
+    public float f26414r;
+
+    public float f26415s;
 
     public NumberTextView(Context context) {
         super(context);
-        this.letters = new ArrayList<>();
-        this.oldLetters = new ArrayList<>();
-        this.textPaint = new TextPaint(1);
-        this.progress = 0.0f;
-        this.currentNumber = 1;
+        this.f26408a = new ArrayList();
+        this.f26409b = new ArrayList();
+        this.f26410c = new TextPaint(1);
+        this.f26411e = 0.0f;
+        this.f26412f = 1;
+    }
+
+    public final void a(int i10, boolean z10) {
+        String string;
+        String string2;
+        boolean z11;
+        int i11;
+        String str;
+        if (this.f26412f == i10 && z10) {
+            return;
+        }
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
+        }
+        ArrayList arrayList = this.f26409b;
+        arrayList.clear();
+        ArrayList arrayList2 = this.f26408a;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        if (this.h) {
+            Locale locale = Locale.US;
+            string = i0.a.k(this.f26412f, "#");
+            string2 = i0.a.k(i10, "#");
+            if (i10 < this.f26412f) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+        } else {
+            Locale locale2 = Locale.US;
+            int i12 = this.f26412f;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(i12);
+            string = sb2.toString();
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append(i10);
+            string2 = sb3.toString();
+            if (i10 > this.f26412f) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+        }
+        TextPaint textPaint = this.f26410c;
+        this.f26414r = textPaint.measureText(string2);
+        float fMeasureText = textPaint.measureText(string);
+        this.f26415s = fMeasureText;
+        boolean z12 = this.f26413n && this.f26414r != fMeasureText;
+        this.f26412f = i10;
+        this.f26411e = 0.0f;
+        int i13 = 0;
+        while (i13 < string2.length()) {
+            int i14 = i13 + 1;
+            String strSubstring = string2.substring(i13, i14);
+            String strSubstring2 = (arrayList.isEmpty() || i13 >= string.length()) ? null : string.substring(i13, i14);
+            if (z12 || strSubstring2 == null || !strSubstring2.equals(strSubstring)) {
+                if (z12 && strSubstring2 == null) {
+                    i11 = i14;
+                    str = strSubstring;
+                    arrayList.add(new StaticLayout("", textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                } else {
+                    i11 = i14;
+                    str = strSubstring;
+                }
+                arrayList2.add(new StaticLayout(str, textPaint, (int) Math.ceil(textPaint.measureText(str)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            } else {
+                arrayList2.add((StaticLayout) arrayList.get(i13));
+                arrayList.set(i13, null);
+                i11 = i14;
+            }
+            i13 = i11;
+        }
+        if (z10 && !arrayList.isEmpty()) {
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z11 ? -1.0f : 1.0f, 0.0f);
+            this.d = objectAnimatorOfFloat;
+            objectAnimatorOfFloat.setDuration(this.h ? 180L : 150L);
+            this.d.addListener(new sz(this, 7));
+            this.d.start();
+        }
+        invalidate();
     }
 
     public float getOldTextWidth() {
-        return this.oldTextWidth;
+        return this.f26415s;
     }
 
     public float getProgress() {
-        return this.progress;
+        return this.f26411e;
     }
 
     public float getTextWidth() {
-        return this.textWidth;
+        return this.f26414r;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    public final void onDraw(Canvas canvas) {
         float measuredWidth;
         float lineWidth;
-        if (this.letters.isEmpty()) {
+        ArrayList arrayList = this.f26408a;
+        if (arrayList.isEmpty()) {
             return;
         }
-        float height = this.letters.get(0).getHeight();
-        float fDp = this.addNumber ? AndroidUtilities.dp(4.0f) : height;
-        if (this.center) {
-            measuredWidth = (getMeasuredWidth() - this.textWidth) / 2.0f;
-            lineWidth = ((getMeasuredWidth() - this.oldTextWidth) / 2.0f) - measuredWidth;
+        float height = ((StaticLayout) arrayList.get(0)).getHeight();
+        float fDp = this.h ? AndroidUtilities.dp(4.0f) : height;
+        if (this.f26413n) {
+            measuredWidth = (getMeasuredWidth() - this.f26414r) / 2.0f;
+            lineWidth = ((getMeasuredWidth() - this.f26415s) / 2.0f) - measuredWidth;
         } else {
             measuredWidth = 0.0f;
             lineWidth = 0.0f;
         }
         canvas.save();
         canvas.translate(getPaddingLeft() + measuredWidth, (getMeasuredHeight() - height) / 2.0f);
-        int iMax = Math.max(this.letters.size(), this.oldLetters.size());
-        int i = 0;
-        while (i < iMax) {
+        int size = arrayList.size();
+        ArrayList arrayList2 = this.f26409b;
+        int iMax = Math.max(size, arrayList2.size());
+        int i10 = 0;
+        while (i10 < iMax) {
             canvas.save();
-            StaticLayout staticLayout = i < this.oldLetters.size() ? this.oldLetters.get(i) : null;
-            StaticLayout staticLayout2 = i < this.letters.size() ? this.letters.get(i) : null;
-            float f = this.progress;
-            if (f > 0.0f) {
+            StaticLayout staticLayout = i10 < arrayList2.size() ? (StaticLayout) arrayList2.get(i10) : null;
+            StaticLayout staticLayout2 = i10 < arrayList.size() ? (StaticLayout) arrayList.get(i10) : null;
+            float f10 = this.f26411e;
+            TextPaint textPaint = this.f26410c;
+            if (f10 > 0.0f) {
                 if (staticLayout != null) {
-                    this.textPaint.setAlpha((int) (f * 255.0f));
+                    textPaint.setAlpha((int) (f10 * 255.0f));
                     canvas.save();
-                    canvas.translate(lineWidth, (this.progress - 1.0f) * fDp);
+                    canvas.translate(lineWidth, (this.f26411e - 1.0f) * fDp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     if (staticLayout2 != null) {
-                        this.textPaint.setAlpha((int) ((1.0f - this.progress) * 255.0f));
-                        canvas.translate(0.0f, this.progress * fDp);
+                        textPaint.setAlpha((int) ((1.0f - this.f26411e) * 255.0f));
+                        canvas.translate(0.0f, this.f26411e * fDp);
                     }
                 } else {
-                    this.textPaint.setAlpha(255);
+                    textPaint.setAlpha(255);
                 }
-            } else if (f < 0.0f) {
+            } else if (f10 < 0.0f) {
                 if (staticLayout != null) {
-                    this.textPaint.setAlpha((int) ((-f) * 255.0f));
+                    textPaint.setAlpha((int) ((-f10) * 255.0f));
                     canvas.save();
-                    canvas.translate(lineWidth, (this.progress + 1.0f) * fDp);
+                    canvas.translate(lineWidth, (this.f26411e + 1.0f) * fDp);
                     staticLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (staticLayout2 != null) {
-                    if (i == iMax - 1 || staticLayout != null) {
-                        this.textPaint.setAlpha((int) ((this.progress + 1.0f) * 255.0f));
-                        canvas.translate(0.0f, this.progress * fDp);
+                    if (i10 == iMax - 1 || staticLayout != null) {
+                        textPaint.setAlpha((int) ((this.f26411e + 1.0f) * 255.0f));
+                        canvas.translate(0.0f, this.f26411e * fDp);
                     } else {
-                        this.textPaint.setAlpha(255);
+                        textPaint.setAlpha(255);
                     }
                 }
             } else if (staticLayout2 != null) {
-                this.textPaint.setAlpha(255);
+                textPaint.setAlpha(255);
             }
             if (staticLayout2 != null) {
                 staticLayout2.draw(canvas);
@@ -119,134 +205,42 @@ public class NumberTextView extends View {
             if (staticLayout2 != null && staticLayout != null) {
                 lineWidth = (staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0)) + lineWidth;
             }
-            i++;
+            i10++;
         }
         canvas.restore();
     }
 
-    public void setAddNumber() {
-        this.addNumber = true;
+    public void setCenterAlign(boolean z10) {
+        this.f26413n = z10;
     }
 
-    public void setCenterAlign(boolean z) {
-        this.center = z;
-    }
-
-    public void setNumber(int i, boolean z) {
-        String string;
-        String string2;
-        boolean z2;
-        if (this.currentNumber == i && z) {
+    public void setProgress(float f10) {
+        if (this.f26411e == f10) {
             return;
         }
-        ObjectAnimator objectAnimator = this.animator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-            this.animator = null;
-        }
-        this.oldLetters.clear();
-        this.oldLetters.addAll(this.letters);
-        this.letters.clear();
-        if (this.addNumber) {
-            Locale locale = Locale.US;
-            string = Fragment$$ExternalSyntheticOutline0.m(this.currentNumber, "#");
-            string2 = Fragment$$ExternalSyntheticOutline0.m(i, "#");
-            if (i < this.currentNumber) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-        } else {
-            Locale locale2 = Locale.US;
-            int i2 = this.currentNumber;
-            StringBuilder sb = new StringBuilder();
-            sb.append(i2);
-            string = sb.toString();
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(i);
-            string2 = sb2.toString();
-            if (i > this.currentNumber) {
-                z2 = true;
-            } else {
-                z2 = false;
-            }
-        }
-        this.textWidth = this.textPaint.measureText(string2);
-        float fMeasureText = this.textPaint.measureText(string);
-        this.oldTextWidth = fMeasureText;
-        boolean z3 = this.center && this.textWidth != fMeasureText;
-        this.currentNumber = i;
-        this.progress = 0.0f;
-        int i3 = 0;
-        while (i3 < string2.length()) {
-            int i4 = i3 + 1;
-            String strSubstring = string2.substring(i3, i4);
-            String strSubstring2 = (this.oldLetters.isEmpty() || i3 >= string.length()) ? null : string.substring(i3, i4);
-            if (z3 || strSubstring2 == null || !strSubstring2.equals(strSubstring)) {
-                if (z3 && strSubstring2 == null) {
-                    this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-                }
-                TextPaint textPaint = this.textPaint;
-                this.letters.add(new StaticLayout(strSubstring, textPaint, (int) Math.ceil(textPaint.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-            } else {
-                this.letters.add(this.oldLetters.get(i3));
-                this.oldLetters.set(i3, null);
-            }
-            i3 = i4;
-        }
-        if (!z || this.oldLetters.isEmpty()) {
-            OnTextWidthProgressChangedListener onTextWidthProgressChangedListener = this.onTextWidthProgressChangedListener;
-            if (onTextWidthProgressChangedListener != null) {
-                onTextWidthProgressChangedListener.onTextWidthProgress(this.oldTextWidth, this.textWidth, this.progress);
-            }
-        } else {
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z2 ? -1.0f : 1.0f, 0.0f);
-            this.animator = objectAnimatorOfFloat;
-            objectAnimatorOfFloat.setDuration(this.addNumber ? 180L : 150L);
-            this.animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    NumberTextView.this.animator = null;
-                    NumberTextView.this.oldLetters.clear();
-                }
-            });
-            this.animator.start();
-        }
+        this.f26411e = f10;
         invalidate();
     }
 
-    public void setOnTextWidthProgressChangedListener(OnTextWidthProgressChangedListener onTextWidthProgressChangedListener) {
-        this.onTextWidthProgressChangedListener = onTextWidthProgressChangedListener;
-    }
-
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        OnTextWidthProgressChangedListener onTextWidthProgressChangedListener = this.onTextWidthProgressChangedListener;
-        if (onTextWidthProgressChangedListener != null) {
-            onTextWidthProgressChangedListener.onTextWidthProgress(this.oldTextWidth, this.textWidth, f);
-        }
+    public void setTextColor(int i10) {
+        this.f26410c.setColor(i10);
         invalidate();
     }
 
-    public void setTextColor(int i) {
-        this.textPaint.setColor(i);
-        invalidate();
-    }
-
-    public void setTextSize(int i) {
-        this.textPaint.setTextSize(AndroidUtilities.dp(i));
-        this.oldLetters.clear();
-        this.letters.clear();
-        setNumber(this.currentNumber, false);
+    public void setTextSize(int i10) {
+        this.f26410c.setTextSize(AndroidUtilities.dp(i10));
+        this.f26409b.clear();
+        this.f26408a.clear();
+        a(this.f26412f, false);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.textPaint.setTypeface(typeface);
-        this.oldLetters.clear();
-        this.letters.clear();
-        setNumber(this.currentNumber, false);
+        this.f26410c.setTypeface(typeface);
+        this.f26409b.clear();
+        this.f26408a.clear();
+        a(this.f26412f, false);
+    }
+
+    public void setOnTextWidthProgressChangedListener(gc0 gc0Var) {
     }
 }

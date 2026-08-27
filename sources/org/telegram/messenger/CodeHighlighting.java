@@ -22,8 +22,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.xz0;
 
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
@@ -43,9 +42,9 @@ public class CodeHighlighting {
         private String patternSource;
         private int patternSourceFlags;
 
-        public CachedPattern(String str, int i) {
+        public CachedPattern(String str, int i10) {
             this.patternSource = str;
-            this.patternSourceFlags = i;
+            this.patternSourceFlags = i10;
         }
 
         public Pattern getPattern() {
@@ -61,36 +60,36 @@ public class CodeHighlighting {
         public int group;
         public int start;
 
-        public CachedToSpan(int i, int i2, int i3) {
-            this.group = i;
-            this.start = i2;
-            this.end = i3;
+        public CachedToSpan(int i10, int i11, int i12) {
+            this.group = i10;
+            this.start = i11;
+            this.end = i12;
         }
     }
 
     public static class ColorSpan extends CharacterStyle {
         public int group;
 
-        public ColorSpan(int i) {
-            this.group = i;
+        public ColorSpan(int i10) {
+            this.group = i10;
         }
 
         public int getColorKey() {
             switch (this.group) {
                 case 1:
-                    return Theme.key_code_keyword;
+                    return org.telegram.ui.ActionBar.g6.Ik;
                 case 2:
-                    return Theme.key_code_operator;
+                    return org.telegram.ui.ActionBar.g6.Jk;
                 case 3:
-                    return Theme.key_code_constant;
+                    return org.telegram.ui.ActionBar.g6.Kk;
                 case 4:
-                    return Theme.key_code_string;
+                    return org.telegram.ui.ActionBar.g6.Lk;
                 case 5:
-                    return Theme.key_code_number;
+                    return org.telegram.ui.ActionBar.g6.Mk;
                 case 6:
-                    return Theme.key_code_comment;
+                    return org.telegram.ui.ActionBar.g6.Nk;
                 case 7:
-                    return Theme.key_code_function;
+                    return org.telegram.ui.ActionBar.g6.Ok;
                 default:
                     return -1;
             }
@@ -98,7 +97,7 @@ public class CodeHighlighting {
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.setColor(Theme.getColor(null, getColorKey(), false));
+            textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, getColorKey(), false));
         }
     }
 
@@ -137,23 +136,23 @@ public class CodeHighlighting {
             return node3;
         }
 
-        public void removeRange(Node node, int i) {
+        public void removeRange(Node node, int i10) {
             Node node2 = node.next;
-            int i2 = 0;
-            while (i2 < i && node2 != this.tail) {
+            int i11 = 0;
+            while (i11 < i10 && node2 != this.tail) {
                 node2 = node2.next;
-                i2++;
+                i11++;
             }
             node.next = node2;
             node2.prev = node;
-            this.length -= i2;
+            this.length -= i11;
         }
 
         public StringToken[] toArray() {
             StringToken[] stringTokenArr = new StringToken[this.length];
             Node node = this.head.next;
-            for (int i = 0; i < this.length && node != this.tail; i++) {
-                stringTokenArr[i] = node.value;
+            for (int i10 = 0; i10 < this.length && node != this.tail; i10++) {
+                stringTokenArr[i10] = node.value;
                 node = node.next;
             }
             return stringTokenArr;
@@ -193,13 +192,13 @@ public class CodeHighlighting {
         }
 
         @Override
-        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
-            return !this.ready ? (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 0)) : (T[]) super.getSpans(i, i2, cls);
+        public <T> T[] getSpans(int i10, int i11, Class<T> cls) {
+            return !this.ready ? (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 0)) : (T[]) super.getSpans(i10, i11, cls);
         }
 
         @Override
-        public int nextSpanTransition(int i, int i2, Class cls) {
-            return !this.ready ? i2 : super.nextSpanTransition(i, i2, cls);
+        public int nextSpanTransition(int i10, int i11, Class cls) {
+            return !this.ready ? i11 : super.nextSpanTransition(i10, i11, cls);
         }
 
         public void unlock() {
@@ -234,15 +233,15 @@ public class CodeHighlighting {
         }
 
         @Override
-        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
+        public <T> T[] getSpans(int i10, int i11, Class<T> cls) {
             SpannableStringBuilder spannableStringBuilder;
-            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? (T[]) super.getSpans(i, i2, cls) : (T[]) spannableStringBuilder.getSpans(i, i2, cls);
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? (T[]) super.getSpans(i10, i11, cls) : (T[]) spannableStringBuilder.getSpans(i10, i11, cls);
         }
 
         @Override
-        public int nextSpanTransition(int i, int i2, Class cls) {
+        public int nextSpanTransition(int i10, int i11, Class cls) {
             SpannableStringBuilder spannableStringBuilder;
-            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.nextSpanTransition(i, i2, cls) : spannableStringBuilder.nextSpanTransition(i, i2, cls);
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.nextSpanTransition(i10, i11, cls) : spannableStringBuilder.nextSpanTransition(i10, i11, cls);
         }
     }
 
@@ -299,15 +298,15 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final TextStyleSpan.TextStyleRun style;
+        public final xz0 style;
 
-        public Span(boolean z, int i, TextStyleSpan.TextStyleRun textStyleRun, String str, String str2) {
-            this.smallerSize = z;
+        public Span(boolean z10, int i10, xz0 xz0Var, String str, String str2) {
+            this.smallerSize = z10;
             this.lng = str;
             this.code = str2;
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(str2 == null ? 0 : str2.length());
-            this.currentType = i;
-            this.style = textStyleRun;
+            this.currentType = i10;
+            this.style = xz0Var;
         }
 
         @Override
@@ -315,17 +314,17 @@ public class CodeHighlighting {
             if (this.smallerSize) {
                 textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
             }
-            int i = this.currentType;
-            if (i == 2) {
+            int i10 = this.currentType;
+            if (i10 == 2) {
                 textPaint.setColor(-1);
-            } else if (i == 1) {
-                textPaint.setColor(Theme.getColor(null, Theme.key_chat_messageTextOut, false));
+            } else if (i10 == 1) {
+                textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.fc, false));
             } else {
-                textPaint.setColor(Theme.getColor(null, Theme.key_chat_messageTextIn, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23077ec, false));
             }
-            TextStyleSpan.TextStyleRun textStyleRun = this.style;
-            if (textStyleRun != null) {
-                textStyleRun.applyStyle(textPaint);
+            xz0 xz0Var = this.style;
+            if (xz0Var != null) {
+                xz0Var.a(textPaint);
             } else {
                 textPaint.setTypeface(Typeface.MONOSPACE);
                 textPaint.setUnderlineText(false);
@@ -341,13 +340,13 @@ public class CodeHighlighting {
         }
 
         public String readString() throws IOException {
-            int i = this.is.read();
-            if (i >= 254) {
-                i = this.is.read() | (this.is.read() << 8) | (this.is.read() << 16);
+            int i10 = this.is.read();
+            if (i10 >= 254) {
+                i10 = this.is.read() | (this.is.read() << 8) | (this.is.read() << 16);
             }
-            byte[] bArr = new byte[i];
-            for (int i2 = 0; i2 < i; i2++) {
-                bArr[i2] = (byte) this.is.read();
+            byte[] bArr = new byte[i10];
+            for (int i11 = 0; i11 < i10; i11++) {
+                bArr[i11] = (byte) this.is.read();
             }
             return new String(bArr, StandardCharsets.US_ASCII);
         }
@@ -361,28 +360,28 @@ public class CodeHighlighting {
         }
     }
 
-    private static void colorize(Spannable spannable, int i, int i2, StringToken[] stringTokenArr, int i3, ArrayList<CachedToSpan> arrayList) {
+    private static void colorize(Spannable spannable, int i10, int i11, StringToken[] stringTokenArr, int i12, ArrayList<CachedToSpan> arrayList) {
         Spannable spannable2;
         ArrayList<CachedToSpan> arrayList2;
         if (stringTokenArr == null) {
             return;
         }
-        int i4 = 0;
-        int length = i;
-        while (i4 < stringTokenArr.length && length < i2) {
-            StringToken stringToken = stringTokenArr[i4];
+        int i13 = 0;
+        int length = i10;
+        while (i13 < stringTokenArr.length && length < i11) {
+            StringToken stringToken = stringTokenArr[i13];
             if (stringToken != null) {
                 if (stringToken.string != null) {
-                    int i5 = stringToken.group;
-                    if (i3 != -1) {
-                        i5 = i3;
+                    int i14 = stringToken.group;
+                    if (i12 != -1) {
+                        i14 = i12;
                     }
-                    if (i5 == -1) {
+                    if (i14 == -1) {
                         length += stringToken.length();
                         spannable2 = spannable;
                         arrayList2 = arrayList;
                     } else {
-                        arrayList.add(new CachedToSpan(i5, length, stringToken.length() + length));
+                        arrayList.add(new CachedToSpan(i14, length, stringToken.length() + length));
                     }
                 } else {
                     if (stringToken.inside != null) {
@@ -399,7 +398,7 @@ public class CodeHighlighting {
                 spannable2 = spannable;
                 arrayList2 = arrayList;
             }
-            i4++;
+            i13++;
             spannable = spannable2;
             arrayList = arrayList2;
         }
@@ -412,15 +411,15 @@ public class CodeHighlighting {
         if (tokenPatternArr == null) {
             return null;
         }
-        for (int i = 0; i < tokenPatternArr.length; i++) {
-            CachedPattern cachedPattern = tokenPatternArr[i].pattern;
+        for (int i10 = 0; i10 < tokenPatternArr.length; i10++) {
+            CachedPattern cachedPattern = tokenPatternArr[i10].pattern;
             if (cachedPattern != null && "REST".equals(cachedPattern.patternSource)) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                     Collections.addAll(arrayList, tokenPatternArr);
                 }
-                arrayList.remove(tokenPatternArr[i]);
-                if (!TextUtils.isEmpty(tokenPatternArr[i].insideLanguage) && (map = compiledPatterns) != null && (tokenPatternArr2 = map.get(tokenPatternArr[i].insideLanguage)) != null) {
+                arrayList.remove(tokenPatternArr[i10]);
+                if (!TextUtils.isEmpty(tokenPatternArr[i10].insideLanguage) && (map = compiledPatterns) != null && (tokenPatternArr2 = map.get(tokenPatternArr[i10].insideLanguage)) != null) {
                     Collections.addAll(arrayList, tokenPatternArr2);
                 }
             }
@@ -460,18 +459,18 @@ public class CodeHighlighting {
         return hashSet;
     }
 
-    public static int getTextSizeDecrement(int i) {
-        if (i > 120) {
+    public static int getTextSizeDecrement(int i10) {
+        if (i10 > 120) {
             return 5;
         }
-        return i > 50 ? 3 : 2;
+        return i10 > 50 ? 3 : 2;
     }
 
-    public static void highlight(Spannable spannable, int i, int i2, String str, int i3, TextStyleSpan.TextStyleRun textStyleRun, boolean z) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, xz0 xz0Var, boolean z10) {
         if (spannable == null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new ImageLoader$5$$ExternalSyntheticLambda6(spannable, i, i2, str, 1));
+        Utilities.searchQueue.postRunnable(new y4(spannable, i10, i11, str, 1));
     }
 
     public static void highlightEditable(CharSequence charSequence, String str, Utilities.Callback<SpannableString> callback) {
@@ -485,7 +484,7 @@ public class CodeHighlighting {
         if (TextUtils.isEmpty(str) || spannableString.length() == 0) {
             callback.run(spannableString);
         } else {
-            Utilities.searchQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda10(spannableString.toString(), str, spannableString, callback));
+            Utilities.searchQueue.postRunnable(new lk(spannableString.toString(), str, spannableString, callback, 4));
         }
     }
 
@@ -496,51 +495,51 @@ public class CodeHighlighting {
 
     public static void lambda$highlight$4(ArrayList arrayList, Spannable spannable) {
         long jCurrentTimeMillis = System.currentTimeMillis();
-        for (int i = 0; i < arrayList.size(); i++) {
-            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i10);
             spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
         }
         FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
     }
 
-    public static void lambda$highlight$5(Spannable spannable, int i, int i2, String str) throws Throwable {
+    public static void lambda$highlight$5(Spannable spannable, int i10, int i11, String str) throws Throwable {
         if (compiledPatterns == null) {
             parse();
         }
         long jCurrentTimeMillis = System.currentTimeMillis();
         StringToken[][] stringTokenArr = new StringToken[1][];
         try {
-            String string = spannable.subSequence(i, i2).toString();
+            String string = spannable.subSequence(i10, i11).toString();
             HashMap<String, TokenPattern[]> map = compiledPatterns;
             stringTokenArr[0] = tokenize(string, map == null ? null : map.get(str), 0).toArray();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
         }
         FileLog.d("[CodeHighlighter] tokenize took " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
         long jCurrentTimeMillis2 = System.currentTimeMillis();
         ArrayList arrayList = new ArrayList();
-        colorize(spannable, i, i2, stringTokenArr[0], -1, arrayList);
+        colorize(spannable, i10, i11, stringTokenArr[0], -1, arrayList);
         FileLog.d("[CodeHighlighter] colorize took " + (System.currentTimeMillis() - jCurrentTimeMillis2) + "ms");
         if (arrayList.isEmpty()) {
             return;
         }
         if (!(spannable instanceof LockedSpannableString)) {
-            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda5(21, arrayList, spannable));
+            AndroidUtilities.runOnUIThread(new e3(21, arrayList, spannable));
             return;
         }
         long jCurrentTimeMillis3 = System.currentTimeMillis();
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i3);
+        for (int i12 = 0; i12 < arrayList.size(); i12++) {
+            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i12);
             spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
         }
         FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - jCurrentTimeMillis3) + "ms in another thread");
-        AndroidUtilities.runOnUIThread(new ANRDetector$$ExternalSyntheticLambda0((LockedSpannableString) spannable, 15));
+        AndroidUtilities.runOnUIThread(new d1((LockedSpannableString) spannable, 15));
     }
 
     public static void lambda$highlightEditable$0(ArrayList arrayList, SpannableString spannableString, Utilities.Callback callback) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i10);
             spannableString.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
         }
         callback.run(spannableString);
@@ -557,15 +556,15 @@ public class CodeHighlighting {
             spannableString2 = spannableString;
             try {
                 colorize(spannableString2, 0, spannableString.length(), tokenize(str, map == null ? null : map.get(str2), 0).toArray(), -1, arrayList);
-            } catch (Exception e) {
-                e = e;
+            } catch (Exception e9) {
+                e = e9;
                 FileLog.e(e);
             }
-        } catch (Exception e2) {
-            e = e2;
+        } catch (Exception e10) {
+            e = e10;
             spannableString2 = spannableString;
         }
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda0(arrayList, spannableString2, callback, 13));
+        AndroidUtilities.runOnUIThread(new f0(arrayList, (Object) spannableString2, (Object) callback, 12));
     }
 
     public static void lambda$prepare$2() throws Throwable {
@@ -574,28 +573,28 @@ public class CodeHighlighting {
         }
     }
 
-    private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i, RematchOptions rematchOptions, TokenPattern tokenPattern, int i2) {
-        int i3;
+    private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i10, RematchOptions rematchOptions, TokenPattern tokenPattern, int i11) {
+        int i12;
         Match matchMatchPattern;
-        int i4;
+        int i13;
         String strSubstring;
         String strSubstring2;
         int length;
         Node nodeAddAfter;
         TokenPattern[] tokenPatternArr2;
-        int i5;
+        int i14;
         String str2;
         StringToken stringToken;
         Node nodeAddAfter2;
-        int i6;
+        int i15;
         TokenPattern[] tokenPatternArr3 = tokenPatternArr;
-        if (tokenPatternArr3 == null || i2 > 20) {
+        if (tokenPatternArr3 == null || i11 > 20) {
             return;
         }
         int length2 = tokenPatternArr3.length;
-        int i7 = 0;
-        while (i7 < length2) {
-            TokenPattern tokenPattern2 = tokenPatternArr3[i7];
+        int i16 = 0;
+        while (i16 < length2) {
+            TokenPattern tokenPattern2 = tokenPatternArr3[i16];
             if (tokenPattern2 == tokenPattern) {
                 return;
             }
@@ -603,7 +602,7 @@ public class CodeHighlighting {
                 return;
             }
             Node node2 = node.next;
-            int length3 = i;
+            int length3 = i10;
             while (node2 != linkedList.tail) {
                 if (rematchOptions != null && length3 >= rematchOptions.reach) {
                     return;
@@ -620,12 +619,12 @@ public class CodeHighlighting {
                         if (matchMatchPattern == null || matchMatchPattern.index >= str.length()) {
                             break;
                         }
-                        int i8 = matchMatchPattern.index;
-                        int i9 = matchMatchPattern.length + i8;
+                        int i17 = matchMatchPattern.index;
+                        int i18 = matchMatchPattern.length + i17;
                         int length4 = node2.value.length();
                         while (true) {
                             length3 += length4;
-                            if (i8 < length3) {
+                            if (i17 < length3) {
                                 break;
                             }
                             node2 = node2.next;
@@ -635,18 +634,18 @@ public class CodeHighlighting {
                         StringToken stringToken3 = node2.value;
                         if (stringToken3.string != null && !stringToken3.token) {
                             int length5 = length3;
-                            int i10 = 1;
-                            for (Node node3 = node2; node3 != linkedList.tail && (length5 < i9 || !node3.value.token); node3 = node3.next) {
-                                i10++;
+                            int i19 = 1;
+                            for (Node node3 = node2; node3 != linkedList.tail && (length5 < i18 || !node3.value.token); node3 = node3.next) {
+                                i19++;
                                 length5 += node3.value.length();
                             }
                             strSubstring3 = str.substring(length3, length5);
                             matchMatchPattern.index -= length3;
-                            i4 = i10 - 1;
-                            i3 = 0;
-                            int i11 = matchMatchPattern.index;
-                            strSubstring = strSubstring3.substring(i3, i11);
-                            strSubstring2 = strSubstring3.substring(i11 + matchMatchPattern.length);
+                            i13 = i19 - 1;
+                            i12 = 0;
+                            int i20 = matchMatchPattern.index;
+                            strSubstring = strSubstring3.substring(i12, i20);
+                            strSubstring2 = strSubstring3.substring(i20 + matchMatchPattern.length);
                             length = strSubstring3.length() + length3;
                             if (rematchOptions != null && length > rematchOptions.reach) {
                                 rematchOptions.reach = length;
@@ -656,16 +655,16 @@ public class CodeHighlighting {
                                 nodeAddAfter = linkedList.addAfter(nodeAddAfter, new StringToken(strSubstring));
                                 length3 += strSubstring.length();
                             }
-                            linkedList.removeRange(nodeAddAfter, i4);
+                            linkedList.removeRange(nodeAddAfter, i13);
                             tokenPatternArr2 = tokenPattern2.insideTokenPatterns;
                             if (tokenPatternArr2 != null) {
-                                i5 = length3;
-                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                i14 = length3;
+                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i11 + 1), matchMatchPattern.length);
                             } else {
-                                i5 = length3;
+                                i14 = length3;
                                 str2 = tokenPattern2.insideLanguage;
                                 if (str2 != null) {
-                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i11 + 1), matchMatchPattern.length);
                                 } else {
                                     stringToken = new StringToken(tokenPattern2.group, matchMatchPattern.string);
                                 }
@@ -674,26 +673,26 @@ public class CodeHighlighting {
                             if (strSubstring2.length() > 0) {
                                 linkedList.addAfter(nodeAddAfter2, new StringToken(strSubstring2));
                             }
-                            if (i4 > 1) {
+                            if (i13 > 1) {
                                 RematchOptions rematchOptions2 = new RematchOptions();
                                 rematchOptions2.cause = tokenPattern2;
                                 rematchOptions2.reach = length;
-                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i5, rematchOptions2, tokenPattern, i2 + 1);
-                                if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
-                                    rematchOptions.reach = i6;
+                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i14, rematchOptions2, tokenPattern, i11 + 1);
+                                if (rematchOptions != null && (i15 = rematchOptions2.reach) > rematchOptions.reach) {
+                                    rematchOptions.reach = i15;
                                 }
                             }
                             node2 = nodeAddAfter2;
-                            length3 = i5;
+                            length3 = i14;
                         }
                     } else {
-                        i3 = 0;
+                        i12 = 0;
                         matchMatchPattern = matchPattern(tokenPattern2, 0, strSubstring3);
                         if (matchMatchPattern != null) {
-                            i4 = 1;
-                            int i12 = matchMatchPattern.index;
-                            strSubstring = strSubstring3.substring(i3, i12);
-                            strSubstring2 = strSubstring3.substring(i12 + matchMatchPattern.length);
+                            i13 = 1;
+                            int i21 = matchMatchPattern.index;
+                            strSubstring = strSubstring3.substring(i12, i21);
+                            strSubstring2 = strSubstring3.substring(i21 + matchMatchPattern.length);
                             length = strSubstring3.length() + length3;
                             if (rematchOptions != null) {
                                 rematchOptions.reach = length;
@@ -703,16 +702,16 @@ public class CodeHighlighting {
                                 nodeAddAfter = linkedList.addAfter(nodeAddAfter, new StringToken(strSubstring));
                                 length3 += strSubstring.length();
                             }
-                            linkedList.removeRange(nodeAddAfter, i4);
+                            linkedList.removeRange(nodeAddAfter, i13);
                             tokenPatternArr2 = tokenPattern2.insideTokenPatterns;
                             if (tokenPatternArr2 != null) {
-                                i5 = length3;
-                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                i14 = length3;
+                                stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, tokenPatternArr2, tokenPattern2, i11 + 1), matchMatchPattern.length);
                             } else {
-                                i5 = length3;
+                                i14 = length3;
                                 str2 = tokenPattern2.insideLanguage;
                                 if (str2 != null) {
-                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i2 + 1), matchMatchPattern.length);
+                                    stringToken = new StringToken(tokenPattern2.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern2, i11 + 1), matchMatchPattern.length);
                                 } else {
                                     stringToken = new StringToken(tokenPattern2.group, matchMatchPattern.string);
                                 }
@@ -721,17 +720,17 @@ public class CodeHighlighting {
                             if (strSubstring2.length() > 0) {
                                 linkedList.addAfter(nodeAddAfter2, new StringToken(strSubstring2));
                             }
-                            if (i4 > 1) {
+                            if (i13 > 1) {
                                 RematchOptions rematchOptions3 = new RematchOptions();
                                 rematchOptions3.cause = tokenPattern2;
                                 rematchOptions3.reach = length;
-                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i5, rematchOptions3, tokenPattern, i2 + 1);
+                                matchGrammar(str, linkedList, tokenPatternArr, nodeAddAfter2.prev, i14, rematchOptions3, tokenPattern, i11 + 1);
                                 if (rematchOptions != null) {
-                                    rematchOptions.reach = i6;
+                                    rematchOptions.reach = i15;
                                 }
                             }
                             node2 = nodeAddAfter2;
-                            length3 = i5;
+                            length3 = i14;
                         }
                     }
                 }
@@ -740,15 +739,15 @@ public class CodeHighlighting {
                 str = str;
                 linkedList = linkedList;
             }
-            i7++;
+            i16++;
             tokenPatternArr3 = tokenPatternArr;
         }
     }
 
-    private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
+    private static Match matchPattern(TokenPattern tokenPattern, int i10, String str) {
         try {
             Matcher matcher = tokenPattern.pattern.getPattern().matcher(str);
-            matcher.region(i, str.length());
+            matcher.region(i10, str.length());
             if (!matcher.find()) {
                 return null;
             }
@@ -758,132 +757,130 @@ public class CodeHighlighting {
                 match.index = (matcher.end(1) - matcher.start(1)) + match.index;
             }
             int iEnd = matcher.end();
-            int i2 = match.index;
-            int i3 = iEnd - i2;
-            match.length = i3;
-            match.string = str.substring(i2, i3 + i2);
+            int i11 = match.index;
+            int i12 = iEnd - i11;
+            match.length = i12;
+            match.string = str.substring(i11, i12 + i11);
             return match;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
     private static void parse() throws Throwable {
-        GZIPInputStream gZIPInputStream;
         InputStream inputStreamOpen;
-        BufferedInputStream bufferedInputStream;
-        ?? r6;
-        GZIPInputStream gZIPInputStream2;
+        ?? gZIPInputStream;
+        ?? bufferedInputStream;
         Throwable th;
-        BufferedInputStream bufferedInputStream2;
-        ?? r1 = 0;
-        gZIPInputStream = null;
-        r1 = 0;
-        GZIPInputStream gZIPInputStream3 = null;
+        ?? r10 = 0;
+        r10 = 0;
         try {
-            long jCurrentTimeMillis = System.currentTimeMillis();
-            inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("codelng.gzip");
             try {
-                gZIPInputStream2 = new GZIPInputStream(inputStreamOpen, 65536);
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("codelng.gzip");
                 try {
-                    BufferedInputStream bufferedInputStream3 = new BufferedInputStream(gZIPInputStream2, 65536);
+                    gZIPInputStream = new GZIPInputStream(inputStreamOpen, 65536);
                     try {
-                        StreamReader streamReader = new StreamReader(bufferedInputStream3);
-                        HashMap map = new HashMap();
-                        int uint8 = streamReader.readUint8();
-                        for (int i = 0; i < uint8; i++) {
-                            int uint9 = streamReader.readUint8();
-                            int uint10 = streamReader.readUint8();
-                            String[] strArr = new String[uint10];
-                            for (int i2 = 0; i2 < uint10; i2++) {
-                                strArr[i2] = streamReader.readString();
-                            }
-                            map.put(Integer.valueOf(uint9), strArr);
-                        }
-                        int uint16 = streamReader.readUint16();
-                        ParsedPattern[] parsedPatternArr = new ParsedPattern[uint16];
-                        for (int i3 = 0; i3 < uint16; i3++) {
-                            parsedPatternArr[i3] = new ParsedPattern();
-                            int uint11 = streamReader.readUint8();
-                            ParsedPattern parsedPattern = parsedPatternArr[i3];
-                            parsedPattern.multiline = (uint11 & 1) != 0;
-                            parsedPattern.caseInsensitive = (uint11 & 2) != 0;
-                            parsedPattern.pattern = streamReader.readString();
-                        }
-                        if (compiledPatterns == null) {
-                            compiledPatterns = new HashMap<>();
-                        }
-                        if (languages == null) {
-                            languages = new HashSet<>();
-                        }
-                        int i4 = 0;
-                        while (i4 < uint8) {
-                            int uint12 = streamReader.readUint8();
-                            TokenPattern[] tokens = readTokens(streamReader, parsedPatternArr, map);
-                            String[] strArr2 = (String[]) map.get(Integer.valueOf(uint12));
-                            int length = strArr2.length;
-                            int i5 = 0;
-                            while (i5 < length) {
-                                compiledPatterns.put(strArr2[i5], tokens);
-                                i5++;
-                                streamReader = streamReader;
-                            }
-                            StreamReader streamReader2 = streamReader;
-                            if (strArr2.length > 0 && !"plain".equals(strArr2[0]) && !strArr2[0].endsWith("like") && !strArr2[0].startsWith("markup")) {
-                                languages.add(strArr2[0]);
-                            }
-                            i4++;
-                            streamReader = streamReader2;
-                        }
-                        FileLog.d("[CodeHighlighter] Successfully read " + uint8 + " languages, " + uint16 + " patterns in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms from codelng.gzip");
+                        bufferedInputStream = new BufferedInputStream(gZIPInputStream, 65536);
                         try {
-                            gZIPInputStream2.close();
-                            bufferedInputStream3.close();
-                            if (inputStreamOpen != null) {
-                                inputStreamOpen.close();
-                            }
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                    } catch (Exception e2) {
-                        e = e2;
-                        bufferedInputStream2 = bufferedInputStream3;
-                        gZIPInputStream3 = gZIPInputStream2;
-                        bufferedInputStream = bufferedInputStream2;
-                        try {
-                            FileLog.e(e);
-                            if (gZIPInputStream3 != null) {
-                                try {
-                                    gZIPInputStream3.close();
-                                } catch (Exception e3) {
-                                    FileLog.e(e3);
-                                    return;
+                            StreamReader streamReader = new StreamReader(bufferedInputStream);
+                            HashMap map = new HashMap();
+                            int uint8 = streamReader.readUint8();
+                            for (int i10 = 0; i10 < uint8; i10++) {
+                                int uint9 = streamReader.readUint8();
+                                int uint10 = streamReader.readUint8();
+                                String[] strArr = new String[uint10];
+                                for (int i11 = 0; i11 < uint10; i11++) {
+                                    strArr[i11] = streamReader.readString();
                                 }
+                                map.put(Integer.valueOf(uint9), strArr);
                             }
-                            if (bufferedInputStream != null) {
-                                bufferedInputStream.close();
+                            int uint16 = streamReader.readUint16();
+                            ParsedPattern[] parsedPatternArr = new ParsedPattern[uint16];
+                            for (int i12 = 0; i12 < uint16; i12++) {
+                                parsedPatternArr[i12] = new ParsedPattern();
+                                int uint11 = streamReader.readUint8();
+                                ParsedPattern parsedPattern = parsedPatternArr[i12];
+                                parsedPattern.multiline = (uint11 & 1) != 0;
+                                parsedPattern.caseInsensitive = (uint11 & 2) != 0;
+                                parsedPattern.pattern = streamReader.readString();
                             }
+                            if (compiledPatterns == null) {
+                                compiledPatterns = new HashMap<>();
+                            }
+                            if (languages == null) {
+                                languages = new HashSet<>();
+                            }
+                            int i13 = 0;
+                            while (i13 < uint8) {
+                                int uint12 = streamReader.readUint8();
+                                TokenPattern[] tokens = readTokens(streamReader, parsedPatternArr, map);
+                                String[] strArr2 = (String[]) map.get(Integer.valueOf(uint12));
+                                int length = strArr2.length;
+                                int i14 = 0;
+                                while (i14 < length) {
+                                    compiledPatterns.put(strArr2[i14], tokens);
+                                    i14++;
+                                    streamReader = streamReader;
+                                }
+                                StreamReader streamReader2 = streamReader;
+                                if (strArr2.length > 0 && !"plain".equals(strArr2[0]) && !strArr2[0].endsWith("like") && !strArr2[0].startsWith("markup")) {
+                                    languages.add(strArr2[0]);
+                                }
+                                i13++;
+                                streamReader = streamReader2;
+                            }
+                            FileLog.d("[CodeHighlighter] Successfully read " + uint8 + " languages, " + uint16 + " patterns in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms from codelng.gzip");
+                            gZIPInputStream.close();
+                            bufferedInputStream.close();
                             if (inputStreamOpen != null) {
                                 inputStreamOpen.close();
                             }
-                        } catch (Throwable th2) {
-                            th = th2;
-                            gZIPInputStream = gZIPInputStream3;
-                            r1 = bufferedInputStream;
-                            r6 = r1;
-                            gZIPInputStream2 = gZIPInputStream;
-                            th = th;
-                            if (gZIPInputStream2 != null) {
-                                try {
-                                    gZIPInputStream2.close();
-                                } catch (Exception e4) {
-                                    FileLog.e(e4);
+                        } catch (Exception e9) {
+                            e = e9;
+                            r10 = gZIPInputStream;
+                            bufferedInputStream = bufferedInputStream;
+                            try {
+                                FileLog.e(e);
+                                if (r10 != 0) {
+                                    r10.close();
+                                }
+                                if (bufferedInputStream != 0) {
+                                    bufferedInputStream.close();
+                                }
+                                if (inputStreamOpen != null) {
+                                    inputStreamOpen.close();
+                                }
+                            } catch (Throwable th2) {
+                                th = th2;
+                                gZIPInputStream = r10;
+                                th = th;
+                                if (gZIPInputStream != 0) {
+                                    try {
+                                        gZIPInputStream.close();
+                                    } catch (Exception e10) {
+                                        FileLog.e(e10);
+                                        throw th;
+                                    }
+                                }
+                                if (bufferedInputStream != 0) {
+                                    bufferedInputStream.close();
+                                }
+                                if (inputStreamOpen == null) {
                                     throw th;
                                 }
+                                inputStreamOpen.close();
+                                throw th;
                             }
-                            if (r6 != 0) {
-                                r6.close();
+                        } catch (Throwable th3) {
+                            th = th3;
+                            th = th;
+                            if (gZIPInputStream != 0) {
+                                gZIPInputStream.close();
+                            }
+                            if (bufferedInputStream != 0) {
+                                bufferedInputStream.close();
                             }
                             if (inputStreamOpen == null) {
                                 throw th;
@@ -891,58 +888,44 @@ public class CodeHighlighting {
                             inputStreamOpen.close();
                             throw th;
                         }
-                    } catch (Throwable th3) {
-                        th = th3;
-                        r6 = bufferedInputStream3;
-                        th = th;
-                        if (gZIPInputStream2 != null) {
-                            gZIPInputStream2.close();
-                        }
-                        if (r6 != 0) {
-                            r6.close();
-                        }
-                        if (inputStreamOpen == null) {
-                            throw th;
-                        }
-                        inputStreamOpen.close();
+                    } catch (Exception e11) {
+                        e = e11;
+                        bufferedInputStream = 0;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        bufferedInputStream = 0;
+                    }
+                } catch (Exception e12) {
+                    e = e12;
+                    bufferedInputStream = 0;
+                } catch (Throwable th5) {
+                    th = th5;
+                    gZIPInputStream = 0;
+                    bufferedInputStream = gZIPInputStream;
+                    th = th;
+                    if (gZIPInputStream != 0) {
+                        gZIPInputStream.close();
+                    }
+                    if (bufferedInputStream != 0) {
+                        bufferedInputStream.close();
+                    }
+                    if (inputStreamOpen == null) {
                         throw th;
                     }
-                } catch (Exception e5) {
-                    e = e5;
-                    bufferedInputStream2 = null;
-                } catch (Throwable th4) {
-                    th = th4;
-                    r6 = 0;
-                }
-            } catch (Exception e6) {
-                e = e6;
-                bufferedInputStream = null;
-            } catch (Throwable th5) {
-                th = th5;
-                gZIPInputStream = null;
-                r6 = r1;
-                gZIPInputStream2 = gZIPInputStream;
-                th = th;
-                if (gZIPInputStream2 != null) {
-                    gZIPInputStream2.close();
-                }
-                if (r6 != 0) {
-                    r6.close();
-                }
-                if (inputStreamOpen == null) {
+                    inputStreamOpen.close();
                     throw th;
                 }
-                inputStreamOpen.close();
-                throw th;
+            } catch (Exception e13) {
+                FileLog.e(e13);
             }
-        } catch (Exception e7) {
-            e = e7;
+        } catch (Exception e14) {
+            e = e14;
             inputStreamOpen = null;
-            bufferedInputStream = null;
+            bufferedInputStream = 0;
         } catch (Throwable th6) {
             th = th6;
-            gZIPInputStream = null;
             inputStreamOpen = null;
+            gZIPInputStream = 0;
         }
     }
 
@@ -950,48 +933,48 @@ public class CodeHighlighting {
         if (compiledPatterns != null) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new Emoji$$ExternalSyntheticLambda1(8));
+        Utilities.searchQueue.postRunnable(new w1(7));
     }
 
     private static TokenPattern[] readTokens(StreamReader streamReader, ParsedPattern[] parsedPatternArr, HashMap<Integer, String[]> map) {
         int uint8 = streamReader.readUint8();
         TokenPattern[] tokenPatternArr = new TokenPattern[uint8];
-        for (int i = 0; i < uint8; i++) {
+        for (int i10 = 0; i10 < uint8; i10++) {
             int uint9 = streamReader.readUint8();
-            int i2 = uint9 & 3;
-            int i3 = (uint9 >> 2) & 7;
-            boolean z = (uint9 & 32) != 0;
-            boolean z2 = (uint9 & 64) != 0;
+            int i11 = uint9 & 3;
+            int i12 = (uint9 >> 2) & 7;
+            boolean z10 = (uint9 & 32) != 0;
+            boolean z11 = (uint9 & 64) != 0;
             int uint16 = streamReader.readUint16();
-            if (i2 == 0) {
-                tokenPatternArr[i] = new TokenPattern(i3, parsedPatternArr[uint16].getCachedPattern());
-            } else if (i2 == 1) {
-                if (i3 == 0) {
-                    tokenPatternArr[i] = new TokenPattern(parsedPatternArr[uint16].getCachedPattern(), readTokens(streamReader, parsedPatternArr, map));
+            if (i11 == 0) {
+                tokenPatternArr[i10] = new TokenPattern(i12, parsedPatternArr[uint16].getCachedPattern());
+            } else if (i11 == 1) {
+                if (i12 == 0) {
+                    tokenPatternArr[i10] = new TokenPattern(parsedPatternArr[uint16].getCachedPattern(), readTokens(streamReader, parsedPatternArr, map));
                 } else {
-                    tokenPatternArr[i] = new TokenPattern(i3, parsedPatternArr[uint16].getCachedPattern(), readTokens(streamReader, parsedPatternArr, map));
+                    tokenPatternArr[i10] = new TokenPattern(i12, parsedPatternArr[uint16].getCachedPattern(), readTokens(streamReader, parsedPatternArr, map));
                 }
-            } else if (i2 == 2) {
-                tokenPatternArr[i] = new TokenPattern(parsedPatternArr[uint16].getCachedPattern(), map.get(Integer.valueOf(streamReader.readUint8()))[0]);
+            } else if (i11 == 2) {
+                tokenPatternArr[i10] = new TokenPattern(parsedPatternArr[uint16].getCachedPattern(), map.get(Integer.valueOf(streamReader.readUint8()))[0]);
             }
-            if (z) {
-                tokenPatternArr[i].greedy = true;
+            if (z10) {
+                tokenPatternArr[i10].greedy = true;
             }
-            if (z2) {
-                tokenPatternArr[i].lookbehind = true;
+            if (z11) {
+                tokenPatternArr[i10].lookbehind = true;
             }
         }
         return tokenPatternArr;
     }
 
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, int i) {
-        return tokenize(str, tokenPatternArr, null, i);
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, int i10) {
+        return tokenize(str, tokenPatternArr, null, i10);
     }
 
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern, int i) {
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern, int i10) {
         LinkedList linkedList = new LinkedList();
         linkedList.addAfter(linkedList.head, new StringToken(str));
-        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern, i);
+        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern, i10);
         return linkedList;
     }
 
@@ -1003,9 +986,9 @@ public class CodeHighlighting {
         public boolean lookbehind;
         public final CachedPattern pattern;
 
-        public TokenPattern(int i, CachedPattern cachedPattern) {
+        public TokenPattern(int i10, CachedPattern cachedPattern) {
             this.pattern = cachedPattern;
-            this.group = i;
+            this.group = i10;
         }
 
         public TokenPattern(CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
@@ -1020,8 +1003,8 @@ public class CodeHighlighting {
             this.insideLanguage = str;
         }
 
-        public TokenPattern(int i, CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
-            this.group = i;
+        public TokenPattern(int i10, CachedPattern cachedPattern, TokenPattern... tokenPatternArr) {
+            this.group = i10;
             this.pattern = cachedPattern;
             this.insideTokenPatterns = tokenPatternArr;
         }
@@ -1034,9 +1017,9 @@ public class CodeHighlighting {
         final String string;
         final boolean token;
 
-        public StringToken(int i, String str) {
+        public StringToken(int i10, String str) {
             this.token = true;
-            this.group = i;
+            this.group = i10;
             this.string = str;
             this.inside = null;
             this.insideLength = 0;
@@ -1047,12 +1030,12 @@ public class CodeHighlighting {
             return str != null ? str.length() : this.insideLength;
         }
 
-        public StringToken(int i, LinkedList linkedList, int i2) {
+        public StringToken(int i10, LinkedList linkedList, int i11) {
             this.token = true;
-            this.group = i;
+            this.group = i10;
             this.string = null;
             this.inside = linkedList;
-            this.insideLength = i2;
+            this.insideLength = i11;
         }
 
         public StringToken(String str) {

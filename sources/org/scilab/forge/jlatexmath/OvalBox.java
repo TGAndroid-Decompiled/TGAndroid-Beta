@@ -11,19 +11,19 @@ public class OvalBox extends FramedBox {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        this.box.draw(graphics2D, this.space + f + this.thickness, f2);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        this.box.draw(graphics2D, this.space + f10 + this.thickness, f11);
         Stroke stroke = graphics2D.getStroke();
         graphics2D.setStroke(new BasicStroke(this.thickness, 0, 0));
-        float f3 = this.thickness;
-        float f4 = f3 / 2.0f;
-        float fMin = Math.min(this.width - f3, (this.height + this.depth) - f3) * 0.5f;
-        float f5 = f + f4;
-        float f6 = this.height;
-        float f7 = (f2 - f6) + f4;
-        float f8 = this.width;
-        float f9 = this.thickness;
-        graphics2D.draw(new RoundRectangle2D.Float(f5, f7, f8 - f9, (f6 + this.depth) - f9, fMin, fMin));
+        float f12 = this.thickness;
+        float f13 = f12 / 2.0f;
+        float fMin = Math.min(this.width - f12, (this.height + this.depth) - f12) * 0.5f;
+        float f14 = f10 + f13;
+        float f15 = this.height;
+        float f16 = (f11 - f15) + f13;
+        float f17 = this.width;
+        float f18 = this.thickness;
+        graphics2D.draw(new RoundRectangle2D.Float(f14, f16, f17 - f18, (f15 + this.depth) - f18, fMin, fMin));
         graphics2D.setStroke(stroke);
     }
 

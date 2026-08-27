@@ -8,10 +8,10 @@ public class KeepAliveJob extends JobIntentService {
     private static volatile CountDownLatch countDownLatch;
     private static volatile boolean startingJob;
     private static final Object sync = new Object();
-    private static Runnable finishJobByTimeoutRunnable = new Emoji$$ExternalSyntheticLambda1(9);
+    private static Runnable finishJobByTimeoutRunnable = new w1(9);
 
     public static void finishJob() {
-        Utilities.globalQueue.postRunnable(new Emoji$$ExternalSyntheticLambda1(9));
+        Utilities.globalQueue.postRunnable(new w1(9));
     }
 
     public static void finishJobInternal() {
@@ -52,7 +52,7 @@ public class KeepAliveJob extends JobIntentService {
     }
 
     public static void startJob() {
-        Utilities.globalQueue.postRunnable(new Emoji$$ExternalSyntheticLambda1(10));
+        Utilities.globalQueue.postRunnable(new w1(10));
     }
 
     @Override

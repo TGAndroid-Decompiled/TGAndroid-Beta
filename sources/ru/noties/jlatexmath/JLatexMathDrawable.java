@@ -41,8 +41,8 @@ public class JLatexMathDrawable extends Drawable {
             this.latex = str;
         }
 
-        public Builder align(int i) {
-            this.align = i;
+        public Builder align(int i10) {
+            this.align = i10;
             return this;
         }
 
@@ -55,33 +55,33 @@ public class JLatexMathDrawable extends Drawable {
             return new JLatexMathDrawable(this);
         }
 
-        public Builder color(int i) {
-            this.color = i;
+        public Builder color(int i10) {
+            this.color = i10;
+            return this;
+        }
+
+        public Builder padding(int i10) {
+            this.insets = new Insets(i10, i10, i10, i10);
+            return this;
+        }
+
+        public Builder textSize(float f10) {
+            this.textSize = f10;
+            return this;
+        }
+
+        public Builder background(int i10) {
+            this.background = new ColorDrawable(i10);
+            return this;
+        }
+
+        public Builder padding(int i10, int i11, int i12, int i13) {
+            this.insets = new Insets(i11, i10, i13, i12);
             return this;
         }
 
         @Deprecated
-        public Builder fitCanvas(boolean z) {
-            return this;
-        }
-
-        public Builder padding(int i) {
-            this.insets = new Insets(i, i, i, i);
-            return this;
-        }
-
-        public Builder textSize(float f) {
-            this.textSize = f;
-            return this;
-        }
-
-        public Builder background(int i) {
-            this.background = new ColorDrawable(i);
-            return this;
-        }
-
-        public Builder padding(int i, int i2, int i3, int i4) {
-            this.insets = new Insets(i2, i, i4, i3);
+        public Builder fitCanvas(boolean z10) {
             return this;
         }
     }
@@ -108,7 +108,7 @@ public class JLatexMathDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        int i;
+        int i10;
         Rect bounds = getBounds();
         int iSave = canvas.save();
         try {
@@ -118,18 +118,18 @@ public class JLatexMathDrawable extends Drawable {
             }
             int iWidth = bounds.width();
             int iHeight = bounds.height();
-            int i2 = this.iconWidth;
-            float fMin = (i2 > iWidth || this.iconHeight > iHeight) ? Math.min(iWidth / i2, iHeight / this.iconHeight) : 1.0f;
-            int i3 = (int) ((this.iconWidth * fMin) + 0.5f);
-            int i4 = (iHeight - ((int) ((this.iconHeight * fMin) + 0.5f))) / 2;
-            int i5 = this.align;
-            if (i5 == 1) {
-                i = (iWidth - i3) / 2;
+            int i11 = this.iconWidth;
+            float fMin = (i11 > iWidth || this.iconHeight > iHeight) ? Math.min(iWidth / i11, iHeight / this.iconHeight) : 1.0f;
+            int i12 = (int) ((this.iconWidth * fMin) + 0.5f);
+            int i13 = (iHeight - ((int) ((this.iconHeight * fMin) + 0.5f))) / 2;
+            int i14 = this.align;
+            if (i14 == 1) {
+                i10 = (iWidth - i12) / 2;
             } else {
-                i = i5 == 2 ? iWidth - i3 : 0;
+                i10 = i14 == 2 ? iWidth - i12 : 0;
             }
-            if (i4 != 0 || i != 0) {
-                canvas.translate(i, i4);
+            if (i13 != 0 || i10 != 0) {
+                canvas.translate(i10, i13);
             }
             if (Float.compare(fMin, 1.0f) != 0) {
                 canvas.scale(fMin, fMin);
@@ -170,7 +170,7 @@ public class JLatexMathDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i) {
+    public void setAlpha(int i10) {
     }
 
     @Override

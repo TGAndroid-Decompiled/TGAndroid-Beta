@@ -5,9 +5,9 @@ public class TypedAtom extends Atom {
     private final int leftType;
     private final int rightType;
 
-    public TypedAtom(int i, int i2, Atom atom) {
-        this.leftType = i;
-        this.rightType = i2;
+    public TypedAtom(int i10, int i11, Atom atom) {
+        this.leftType = i10;
+        this.rightType = i11;
         this.atom = atom;
         this.type_limits = atom.type_limits;
     }

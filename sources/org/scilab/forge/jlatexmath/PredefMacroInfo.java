@@ -1,16 +1,17 @@
 package org.scilab.forge.jlatexmath;
 
 class PredefMacroInfo extends MacroInfo {
-    private int id;
 
-    public PredefMacroInfo(int i, int i2, int i3) {
-        super(i2, i3);
-        this.id = i;
+    private int f19596id;
+
+    public PredefMacroInfo(int i10, int i11, int i12) {
+        super(i11, i12);
+        this.f19596id = i10;
     }
 
-    private static final Object invokeID(int i, TeXParser teXParser, String[] strArr) {
+    private static final Object invokeID(int i10, TeXParser teXParser, String[] strArr) {
         try {
-            switch (i) {
+            switch (i10) {
                 case 0:
                     return PredefMacros.newcommand_macro(teXParser, strArr);
                 case 1:
@@ -527,18 +528,18 @@ class PredefMacroInfo extends MacroInfo {
                 default:
                     return null;
             }
-        } catch (Exception e) {
-            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + e.getMessage());
+        } catch (Exception e9) {
+            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + e9.getMessage());
         }
     }
 
     @Override
     public Object invoke(TeXParser teXParser, String[] strArr) {
-        return invokeID(this.id, teXParser, strArr);
+        return invokeID(this.f19596id, teXParser, strArr);
     }
 
-    public PredefMacroInfo(int i, int i2) {
-        super(i2);
-        this.id = i;
+    public PredefMacroInfo(int i10, int i11) {
+        super(i11);
+        this.f19596id = i10;
     }
 }

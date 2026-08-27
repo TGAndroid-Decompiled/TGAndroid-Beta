@@ -1,5 +1,5 @@
 package org.telegram.tgnet;
 
 public interface RequestTimeDelegate {
-    void run(long j);
+    void run(long j10);
 }

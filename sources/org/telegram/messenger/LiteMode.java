@@ -5,12 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
-import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 
 public class LiteMode {
     private static int BATTERY_HIGH = 10;
@@ -96,15 +93,15 @@ public class LiteMode {
         return getValue(false);
     }
 
-    public static boolean isEnabled(int i) {
-        if (i == 64 && AndroidUtilities.isTablet()) {
+    public static boolean isEnabled(int i10) {
+        if (i10 == 64 && AndroidUtilities.isTablet()) {
             return true;
         }
-        return (preprocessFlag(i) & getValue()) > 0;
+        return (preprocessFlag(i10) & getValue()) > 0;
     }
 
-    public static boolean isEnabledSetting(int i) {
-        return (i & getValue(true)) > 0;
+    public static boolean isEnabledSetting(int i10) {
+        return (i10 & getValue(true)) > 0;
     }
 
     public static boolean isPowerSaverApplied() {
@@ -112,107 +109,107 @@ public class LiteMode {
         return lastPowerSaverApplied;
     }
 
-    public static void lambda$onPowerSaverApplied$0(boolean z) {
+    public static void lambda$onPowerSaverApplied$0(boolean z10) {
         for (Utilities.Callback<Boolean> callback : onPowerSaverAppliedListeners) {
             if (callback != null) {
-                callback.run(Boolean.valueOf(z));
+                callback.run(Boolean.valueOf(z10));
             }
         }
     }
 
     public static void loadPreference() {
-        int i = PRESET_HIGH;
-        int i2 = BATTERY_HIGH;
+        int i10 = PRESET_HIGH;
+        int i11 = BATTERY_HIGH;
         if (SharedConfig.getDevicePerformanceClass() == 0) {
-            i = PRESET_LOW;
-            i2 = BATTERY_LOW;
+            i10 = PRESET_LOW;
+            i11 = BATTERY_LOW;
         } else if (SharedConfig.getDevicePerformanceClass() == 1) {
-            i = PRESET_MEDIUM;
-            i2 = BATTERY_MEDIUM;
+            i10 = PRESET_MEDIUM;
+            i11 = BATTERY_MEDIUM;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         if (!globalMainSettings.contains("lite_mode6")) {
             if (globalMainSettings.contains("lite_mode5")) {
-                i = globalMainSettings.getInt("lite_mode5", i) & (-262145);
-                globalMainSettings.edit().putInt("lite_mode6", i).apply();
+                i10 = globalMainSettings.getInt("lite_mode5", i10) & (-262145);
+                globalMainSettings.edit().putInt("lite_mode6", i10).apply();
             } else if (globalMainSettings.contains("lite_mode4")) {
-                i = globalMainSettings.getInt("lite_mode4", i);
-                globalMainSettings.edit().putInt("lite_mode5", i).apply();
+                i10 = globalMainSettings.getInt("lite_mode4", i10);
+                globalMainSettings.edit().putInt("lite_mode5", i10).apply();
             } else if (globalMainSettings.contains("lite_mode3")) {
-                i = globalMainSettings.getInt("lite_mode3", i) | 131072;
-                globalMainSettings.edit().putInt("lite_mode5", i).apply();
+                i10 = globalMainSettings.getInt("lite_mode3", i10) | 131072;
+                globalMainSettings.edit().putInt("lite_mode5", i10).apply();
             } else if (globalMainSettings.contains("lite_mode2")) {
-                i = globalMainSettings.getInt("lite_mode2", i) | 65536;
-                globalMainSettings.edit().putInt("lite_mode3", i).apply();
+                i10 = globalMainSettings.getInt("lite_mode2", i10) | 65536;
+                globalMainSettings.edit().putInt("lite_mode3", i10).apply();
             } else if (globalMainSettings.contains("lite_mode")) {
-                i = globalMainSettings.getInt("lite_mode", i);
-                if (i == 4095) {
-                    i = PRESET_HIGH;
+                i10 = globalMainSettings.getInt("lite_mode", i10);
+                if (i10 == 4095) {
+                    i10 = PRESET_HIGH;
                 }
             } else {
                 if (globalMainSettings.contains("light_mode")) {
-                    i = (globalMainSettings.getInt("light_mode", SharedConfig.getDevicePerformanceClass() == 0 ? 1 : 0) & 1) > 0 ? PRESET_LOW : PRESET_HIGH;
+                    i10 = (globalMainSettings.getInt("light_mode", SharedConfig.getDevicePerformanceClass() == 0 ? 1 : 0) & 1) > 0 ? PRESET_LOW : PRESET_HIGH;
                 }
                 if (globalMainSettings.contains("loopStickers")) {
-                    i = globalMainSettings.getBoolean("loopStickers", true) ? i | 2 : i & (-3);
+                    i10 = globalMainSettings.getBoolean("loopStickers", true) ? i10 | 2 : i10 & (-3);
                 }
                 if (globalMainSettings.contains("autoplay_video")) {
-                    i = (globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false)) ? i | 1024 : i & (-1025);
+                    i10 = (globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false)) ? i10 | 1024 : i10 & (-1025);
                 }
                 if (globalMainSettings.contains("autoplay_gif")) {
-                    i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | 2048 : i & (-2049);
+                    i10 = globalMainSettings.getBoolean("autoplay_gif", true) ? i10 | 2048 : i10 & (-2049);
                 }
                 if (globalMainSettings.contains("chatBlur")) {
-                    i = globalMainSettings.getBoolean("chatBlur", true) ? i | 256 : i & (-257);
+                    i10 = globalMainSettings.getBoolean("chatBlur", true) ? i10 | 256 : i10 & (-257);
                 }
             }
         }
-        int i3 = value;
-        int i4 = globalMainSettings.getInt("lite_mode6", i);
-        value = i4;
+        int i12 = value;
+        int i13 = globalMainSettings.getInt("lite_mode6", i10);
+        value = i13;
         if (loaded) {
-            onFlagsUpdate(i3, i4);
+            onFlagsUpdate(i12, i13);
         }
-        powerSaverLevel = globalMainSettings.getInt("lite_mode_battery_level", i2);
+        powerSaverLevel = globalMainSettings.getInt("lite_mode_battery_level", i11);
         loaded = true;
     }
 
-    private static void onFlagsUpdate(int i, int i2) {
-        int i3 = (~i) & i2;
-        if ((i3 & 28700) > 0) {
-            AnimatedEmojiDrawable.updateAll();
+    private static void onFlagsUpdate(int i10, int i11) {
+        int i12 = (~i10) & i11;
+        if ((i12 & 28700) > 0) {
+            org.telegram.ui.Components.k5.u();
         }
-        int i4 = i3 & 32;
-        if (i4 > 0) {
+        int i13 = i12 & 32;
+        if (i13 > 0) {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
-        if (i4 > 0) {
-            Theme.reloadWallpaper(true);
+        if (i13 > 0) {
+            org.telegram.ui.ActionBar.g6.o1(true);
         }
     }
 
-    private static void onPowerSaverApplied(boolean z) {
-        if (z) {
+    private static void onPowerSaverApplied(boolean z10) {
+        if (z10) {
             onFlagsUpdate(getValue(true), PRESET_POWER_SAVER);
         } else {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new LiteMode$$ExternalSyntheticLambda0(z, 0));
+            AndroidUtilities.runOnUIThread(new y3(2, z10));
         }
     }
 
-    private static int preprocessFlag(int i) {
-        if ((i & 16388) > 0) {
-            i = (i & (-16389)) | (UserConfig.hasPremiumOnAccounts() ? 4 : 16384);
+    private static int preprocessFlag(int i10) {
+        if ((i10 & 16388) > 0) {
+            i10 = (i10 & (-16389)) | (UserConfig.hasPremiumOnAccounts() ? 4 : 16384);
         }
-        if ((i & 8200) > 0) {
-            i = (i & (-8201)) | (UserConfig.hasPremiumOnAccounts() ? 8 : 8192);
+        if ((i10 & 8200) > 0) {
+            i10 = (i10 & (-8201)) | (UserConfig.hasPremiumOnAccounts() ? 8 : 8192);
         }
-        if ((i & 4112) > 0) {
-            return (i & (-4113)) | (UserConfig.hasPremiumOnAccounts() ? 16 : 4096);
+        if ((i10 & 4112) > 0) {
+            return (i10 & (-4113)) | (UserConfig.hasPremiumOnAccounts() ? 16 : 4096);
         }
-        return i;
+        return i10;
     }
 
     public static void removeOnPowerSaverAppliedListener(Utilities.Callback<Boolean> callback) {
@@ -226,25 +223,25 @@ public class LiteMode {
         MessagesController.getGlobalMainSettings().edit().putInt("lite_mode6", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
-    public static void setAllFlags(int i) {
-        value = i;
+    public static void setAllFlags(int i10) {
+        value = i10;
         savePreference();
     }
 
-    public static void setPowerSaverLevel(int i) {
-        powerSaverLevel = MathUtils.clamp(i, 0, 100);
+    public static void setPowerSaverLevel(int i10) {
+        powerSaverLevel = h7.n.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }
 
-    public static void toggleFlag(int i) {
-        toggleFlag(i, !isEnabled(i));
+    public static void toggleFlag(int i10) {
+        toggleFlag(i10, !isEnabled(i10));
     }
 
     public static void updatePresets(TLRPC.TL_jsonObject tL_jsonObject) {
         TLRPC.JSONValue jSONValue;
-        for (int i = 0; i < tL_jsonObject.value.size(); i++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
+        for (int i10 = 0; i10 < tL_jsonObject.value.size(); i10++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i10);
             if ("settings_mask".equals(tL_jsonObjectValue.key)) {
                 TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
                 if (jSONValue2 instanceof TLRPC.TL_jsonArray) {
@@ -253,8 +250,8 @@ public class LiteMode {
                         PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
                         PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
                         PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    } catch (Exception e9) {
+                        FileLog.e(e9);
                     }
                 } else if ("battery_low".equals(tL_jsonObjectValue.key)) {
                     jSONValue = tL_jsonObjectValue.value;
@@ -264,8 +261,8 @@ public class LiteMode {
                             BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
                             BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
                             BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
-                        } catch (Exception e2) {
-                            FileLog.e(e2);
+                        } catch (Exception e10) {
+                            FileLog.e(e10);
                         }
                     }
                 }
@@ -282,14 +279,14 @@ public class LiteMode {
         loadPreference();
     }
 
-    public static int getValue(boolean z) {
+    public static int getValue(boolean z10) {
         if (!loaded) {
             loadPreference();
         }
-        if (!z) {
+        if (!z10) {
             int batteryLevel = getBatteryLevel();
-            int i = powerSaverLevel;
-            if (batteryLevel <= i && i > 0) {
+            int i10 = powerSaverLevel;
+            if (batteryLevel <= i10 && i10 > 0) {
                 if (!lastPowerSaverApplied) {
                     lastPowerSaverApplied = true;
                     onPowerSaverApplied(true);
@@ -304,12 +301,12 @@ public class LiteMode {
         return value;
     }
 
-    public static void toggleFlag(int i, boolean z) {
+    public static void toggleFlag(int i10, boolean z10) {
         int value2;
-        if (z) {
-            value2 = i | getValue(true);
+        if (z10) {
+            value2 = i10 | getValue(true);
         } else {
-            value2 = (~i) & getValue(true);
+            value2 = (~i10) & getValue(true);
         }
         setAllFlags(value2);
     }

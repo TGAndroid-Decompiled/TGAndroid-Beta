@@ -5,92 +5,64 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.Base64;
-import androidx.credentials.CreateCredentialResponse;
-import androidx.credentials.CreatePublicKeyCredentialRequest;
-import androidx.credentials.Credential;
-import androidx.credentials.CredentialManager;
-import androidx.credentials.CredentialManagerCallback;
-import androidx.credentials.CredentialManagerImpl;
-import androidx.credentials.CredentialProvider;
-import androidx.credentials.GetCredentialRequest;
-import androidx.credentials.GetCredentialResponse;
-import androidx.credentials.GetPublicKeyCredentialOption;
-import androidx.credentials.exceptions.CreateCredentialCancellationException;
-import androidx.credentials.exceptions.CreateCredentialInterruptedException;
-import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException;
-import androidx.credentials.exceptions.GetCredentialCancellationException;
-import androidx.credentials.exceptions.GetCredentialCustomException;
-import androidx.credentials.exceptions.GetCredentialException;
-import androidx.credentials.exceptions.GetCredentialInterruptedException;
-import androidx.credentials.exceptions.NoCredentialException;
-import com.google.android.play.integrity.internal.az;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Executor;
-import kotlin.Result;
-import kotlin.collections.CollectionsKt;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.EmptyCoroutineContext;
-import kotlin.jvm.internal.Intrinsics;
 import org.json.JSONObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
 
 public class PasskeysController {
 
-    public class AnonymousClass1 implements CredentialManagerCallback {
+    public class AnonymousClass1 implements v0.i {
         final Context val$context;
         final int val$currentAccount;
         final Utilities.Callback3 val$done;
 
-        public AnonymousClass1(Utilities.Callback3 callback3, Context context, int i) {
+        public AnonymousClass1(Utilities.Callback3 callback3, Context context, int i10) {
             this.val$done = callback3;
             this.val$context = context;
-            this.val$currentAccount = i;
+            this.val$currentAccount = i10;
         }
 
-        public static void lambda$onResult$0(AlertDialog alertDialog, Utilities.Callback3 callback3, long j, TLRPC.auth_Authorization auth_authorization, TLRPC.TL_error tL_error) {
-            alertDialog.dismiss();
+        public static void lambda$onResult$0(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback3 callback3, long j10, TLRPC.auth_Authorization auth_authorization, TLRPC.TL_error tL_error) {
+            b2Var.dismiss();
             if (tL_error != null) {
-                callback3.run(Long.valueOf(j), null, tL_error.text);
+                callback3.run(Long.valueOf(j10), null, tL_error.text);
             } else {
-                callback3.run(Long.valueOf(j), auth_authorization, null);
+                callback3.run(Long.valueOf(j10), auth_authorization, null);
             }
         }
 
-        public static void lambda$onResult$1(int i, int i2, Utilities.Callback3 callback3, long j, DialogInterface dialogInterface) {
-            ConnectionsManager.getInstance(i).cancelRequest(i2, true);
-            callback3.run(Long.valueOf(j), null, "CANCELLED");
+        public static void lambda$onResult$1(int i10, int i11, Utilities.Callback3 callback3, long j10, DialogInterface dialogInterface) {
+            ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
+            callback3.run(Long.valueOf(j10), null, "CANCELLED");
         }
 
         @Override
-        public void onError(GetCredentialException getCredentialException) {
-            if (getCredentialException instanceof NoCredentialException) {
+        public void onError(w0.i iVar) {
+            if (iVar instanceof w0.k) {
                 this.val$done.run(0L, null, "EMPTY");
                 return;
             }
-            if (getCredentialException instanceof GetCredentialCancellationException) {
+            if (iVar instanceof w0.g) {
                 this.val$done.run(0L, null, "CANCELLED");
-            } else if (getCredentialException instanceof GetCredentialInterruptedException) {
+            } else if (iVar instanceof w0.j) {
                 this.val$done.run(0L, null, "CANCELLED");
-            } else if (getCredentialException != null) {
-                this.val$done.run(0L, null, getCredentialException.getMessage());
+            } else if (iVar != null) {
+                this.val$done.run(0L, null, iVar.getMessage());
             }
         }
 
         @Override
-        public void onResult(GetCredentialResponse getCredentialResponse) {
-            Credential credential = getCredentialResponse.credential;
+        public void onResult(v0.p pVar) {
+            b8.a aVar = pVar.f48668a;
             TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
             finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
             try {
-                JSONObject jSONObject = new JSONObject(((Bundle) credential.data).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-                finishpasskeylogin.credential.id = jSONObject.getString("id");
+                JSONObject jSONObject = new JSONObject(((Bundle) aVar.f2040a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
+                finishpasskeylogin.credential.f22589id = jSONObject.getString("id");
                 finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
                 JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                 TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
@@ -101,68 +73,55 @@ public class PasskeysController {
                 inputpasskeyresponselogin.signature = Base64.decode(jSONObject2.getString("signature"), 8);
                 String str = new String(Base64.decode(jSONObject2.getString("userHandle"), 8));
                 inputpasskeyresponselogin.user_handle = str;
-                int i = Integer.parseInt(str.split(":")[0]);
-                final long j = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
+                int i10 = Integer.parseInt(str.split(":")[0]);
+                final long j10 = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
                 finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-                AlertDialog alertDialog = new AlertDialog(this.val$context, 3, null);
-                AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
-                AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
-                AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-                if (i != ConnectionsManager.getInstance(this.val$currentAccount).getCurrentDatacenterId()) {
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(this.val$context, 3, null);
+                b2Var.q(500L);
+                if (i10 != ConnectionsManager.getInstance(this.val$currentAccount).getCurrentDatacenterId()) {
                     int currentDatacenterId = ConnectionsManager.getInstance(this.val$currentAccount).getCurrentDatacenterId();
                     long currentAuthKeyId = ConnectionsManager.getInstance(this.val$currentAccount).getCurrentAuthKeyId();
-                    ConnectionsManager.getInstance(this.val$currentAccount).setDefaultDatacenterId(i);
+                    ConnectionsManager.getInstance(this.val$currentAccount).setDefaultDatacenterId(i10);
                     finishpasskeylogin.flags = 1 | finishpasskeylogin.flags;
                     finishpasskeylogin.from_dc_id = currentDatacenterId;
                     finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
                 }
-                final int iSendRequestTyped = ConnectionsManager.getInstance(this.val$currentAccount).sendRequestTyped(finishpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new BotForumHelper$$ExternalSyntheticLambda3(alertDialog, this.val$done, j, 1), i, 72);
-                final int i2 = this.val$currentAccount;
+                final int iSendRequestTyped = ConnectionsManager.getInstance(this.val$currentAccount).sendRequestTyped(finishpasskeylogin, new a(), new lh(b2Var, this.val$done, j10, 0), i10, 72);
+                final int i11 = this.val$currentAccount;
                 final Utilities.Callback3 callback3 = this.val$done;
-                alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        PasskeysController.AnonymousClass1.lambda$onResult$1(i2, iSendRequestTyped, callback3, j, dialogInterface);
+                        PasskeysController.AnonymousClass1.lambda$onResult$1(i11, iSendRequestTyped, callback3, j10, dialogInterface);
                     }
                 });
-            } catch (Exception e) {
-                FileLog.e(e);
-                this.val$done.run(0L, null, e.getMessage());
+            } catch (Exception e9) {
+                FileLog.e(e9);
+                this.val$done.run(0L, null, e9.getMessage());
             }
         }
     }
 
     public static String bytesToHex(byte[] bArr) {
-        StringBuilder sb = new StringBuilder(bArr.length * 2);
-        for (byte b : bArr) {
-            sb.append(String.format("%02x", Byte.valueOf(b)));
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        for (byte b10 : bArr) {
+            sb2.append(String.format("%02x", Byte.valueOf(b10)));
         }
-        return sb.toString();
+        return sb2.toString();
     }
 
-    public static void create(final Context context, final int i, final Utilities.Callback2<TL_account.Passkey, String> callback2) {
+    public static void create(Context context, int i10, Utilities.Callback2<TL_account.Passkey, String> callback2) {
         if (BuildVars.SUPPORTS_PASSKEYS) {
-            Intrinsics.checkNotNullParameter(context, "context");
-            final CredentialManagerImpl credentialManagerImpl = new CredentialManagerImpl(context, 0);
-            final AlertDialog alertDialog = new AlertDialog(context, 3, null);
-            AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
-            AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
-            AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
-                @Override
-                public final void run(Object obj, Object obj2) {
-                    AlertDialog alertDialog2 = alertDialog;
-                    CredentialManagerImpl credentialManagerImpl2 = credentialManagerImpl;
-                    Context context2 = context;
-                    int i2 = i;
-                    PasskeysController.lambda$create$9(alertDialog2, callback2, credentialManagerImpl2, context2, i2, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
-                }
-            });
+            kotlin.jvm.internal.j.e(context, "context");
+            v0.j jVar = new v0.j(context);
+            org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 3, null);
+            b2Var.q(500L);
+            ConnectionsManager.getInstance(i10).sendRequestTyped(new TL_account.initPasskeyRegistration(), new a(), new gh(b2Var, callback2, jVar, context, i10));
         }
     }
 
-    public static <T> Continuation ktxCallback(Utilities.Callback2<T, Throwable> callback2) {
-        return ktxCallback(EmptyCoroutineContext.INSTANCE, callback2);
+    public static <T> rc.c ktxCallback(Utilities.Callback2<T, Throwable> callback2) {
+        return ktxCallback(rc.i.f46899a, callback2);
     }
 
     public static void lambda$create$2(Utilities.Callback2 callback2, Throwable th) {
@@ -173,8 +132,8 @@ public class PasskeysController {
         callback2.run(null, exc.getMessage());
     }
 
-    public static void lambda$create$4(AlertDialog alertDialog, Utilities.Callback2 callback2, TL_account.Passkey passkey, TLRPC.TL_error tL_error) {
-        alertDialog.dismiss();
+    public static void lambda$create$4(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, TL_account.Passkey passkey, TLRPC.TL_error tL_error) {
+        b2Var.dismiss();
         if (tL_error != null) {
             callback2.run(null, tL_error.text);
         } else {
@@ -182,54 +141,52 @@ public class PasskeysController {
         }
     }
 
-    public static void lambda$create$5(int i, int i2, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(i).cancelRequest(i2, true);
+    public static void lambda$create$5(int i10, int i11, Utilities.Callback2 callback2, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
         callback2.run(null, "CANCELLED");
     }
 
-    public static void lambda$create$6(Context context, final int i, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
-        AlertDialog alertDialog = new AlertDialog(context, 3, null);
-        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
-        AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
-        AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(registerpasskey, new AiTonesController$$ExternalSyntheticLambda0(), new ChatThemeController$$ExternalSyntheticLambda9(3, alertDialog, callback2));
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+    public static void lambda$create$6(Context context, final int i10, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
+        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 3, null);
+        b2Var.q(500L);
+        final int iSendRequestTyped = ConnectionsManager.getInstance(i10).sendRequestTyped(registerpasskey, new a(), new c1(3, b2Var, callback2));
+        b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                PasskeysController.lambda$create$5(i, iSendRequestTyped, callback2, dialogInterface);
+                PasskeysController.lambda$create$5(i10, iSendRequestTyped, callback2, dialogInterface);
             }
         });
     }
 
-    public static void lambda$create$7(final Utilities.Callback2 callback2, Context context, int i, CreateCredentialResponse createCredentialResponse, Throwable th) {
-        if ((th instanceof CreateCredentialCancellationException) || (th instanceof CreateCredentialInterruptedException)) {
-            final int i2 = 1;
+    public static void lambda$create$7(final Utilities.Callback2 callback2, Context context, int i10, v0.c cVar, Throwable th) {
+        if ((th instanceof w0.b) || (th instanceof w0.e)) {
+            final int i11 = 0;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    switch (i2) {
+                    switch (i11) {
                         case 0:
-                            callback2.run(null, "EMPTY");
+                            callback2.run(null, "CANCELLED");
                             break;
                         default:
-                            callback2.run(null, "CANCELLED");
+                            callback2.run(null, "EMPTY");
                             break;
                     }
                 }
             });
             return;
         }
-        if (th instanceof CreateCredentialNoCreateOptionException) {
-            final int i3 = 0;
+        if (th instanceof w0.f) {
+            final int i12 = 1;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    switch (i3) {
+                    switch (i12) {
                         case 0:
-                            callback2.run(null, "EMPTY");
+                            callback2.run(null, "CANCELLED");
                             break;
                         default:
-                            callback2.run(null, "CANCELLED");
+                            callback2.run(null, "EMPTY");
                             break;
                     }
                 }
@@ -238,15 +195,15 @@ public class PasskeysController {
         }
         if (th != null) {
             FileLog.e(th);
-            AndroidUtilities.runOnUIThread(new UserConfig$$ExternalSyntheticLambda3(6, callback2, th));
+            AndroidUtilities.runOnUIThread(new sg(5, callback2, th));
             return;
         }
         TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
         try {
-            JSONObject jSONObject = new JSONObject(createCredentialResponse.data.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+            JSONObject jSONObject = new JSONObject(cVar.f48660a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
             TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
             registerpasskey.credential = inputpasskeycredentialpublickey;
-            inputpasskeycredentialpublickey.id = jSONObject.getString("id");
+            inputpasskeycredentialpublickey.f22589id = jSONObject.getString("id");
             registerpasskey.credential.raw_id = jSONObject.getString("rawId");
             JSONObject jSONObject2 = jSONObject.getJSONObject("response");
             TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
@@ -256,10 +213,10 @@ public class PasskeysController {
             inputpasskeyresponseregister.attestation_object = Base64.decode(jSONObject2.getString("attestationObject"), 8);
             FileLog.d("AAGUID: " + bytesToHex(Arrays.copyOfRange(inputpasskeyresponseregister.attestation_object, 67, 83)));
             registerpasskey.credential.response = inputpasskeyresponseregister;
-            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda14(context, i, registerpasskey, callback2, 17));
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new PasskeysController$$ExternalSyntheticLambda6(callback2, e, 0));
+            AndroidUtilities.runOnUIThread(new h0(context, i10, registerpasskey, callback2, 17));
+        } catch (Exception e9) {
+            FileLog.e(e9);
+            AndroidUtilities.runOnUIThread(new jh(callback2, e9, 0));
         }
     }
 
@@ -267,26 +224,26 @@ public class PasskeysController {
         callback2.run(null, exc.getMessage());
     }
 
-    public static void lambda$create$9(AlertDialog alertDialog, Utilities.Callback2 callback2, CredentialManager credentialManager, Context context, int i, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
-        alertDialog.dismiss();
+    public static void lambda$create$9(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, v0.h hVar, Context context, int i10, TL_account.passkeyRegistrationOptions passkeyregistrationoptions, TLRPC.TL_error tL_error) {
+        b2Var.dismiss();
         if (tL_error != null) {
             callback2.run(null, tL_error.text);
             return;
         }
         try {
             try {
-                ((CredentialManagerImpl) credentialManager).createCredential(context, new CreatePublicKeyCredentialRequest(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new PasskeysController$$ExternalSyntheticLambda8(context, i, callback2)));
-            } catch (Exception e) {
-                FileLog.e(e);
-                AndroidUtilities.runOnUIThread(new PasskeysController$$ExternalSyntheticLambda6(callback2, e, 1));
+                ((v0.j) hVar).b(context, new v0.e(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new kh(context, i10, callback2)));
+            } catch (Exception e9) {
+                FileLog.e(e9);
+                AndroidUtilities.runOnUIThread(new jh(callback2, e9, 1));
             }
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            callback2.run(null, e2.getMessage());
+        } catch (Exception e10) {
+            FileLog.e(e10);
+            callback2.run(null, e10.getMessage());
         }
     }
 
-    public static void lambda$login$10(boolean[] zArr, Utilities.Callback3 callback3, boolean z, CredentialManager credentialManager, Context context, int i, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
+    public static void lambda$login$10(boolean[] zArr, Utilities.Callback3 callback3, boolean z10, v0.h hVar, Context context, int i10, Runnable[] runnableArr, TL_account.passkeyLoginOptions passkeyloginoptions, TLRPC.TL_error tL_error) {
         if (zArr[0]) {
             return;
         }
@@ -295,34 +252,34 @@ public class PasskeysController {
             return;
         }
         try {
-            GetPublicKeyCredentialOption getPublicKeyCredentialOption = new GetPublicKeyCredentialOption(new JSONObject(passkeyloginoptions.options.data).getJSONObject("publicKey").toString());
+            v0.q qVar = new v0.q(new JSONObject(passkeyloginoptions.options.data).getJSONObject("publicKey").toString());
             ArrayList arrayList = new ArrayList();
-            arrayList.add(getPublicKeyCredentialOption);
-            GetCredentialRequest getCredentialRequest = new GetCredentialRequest(CollectionsKt.toList(arrayList), !z);
+            arrayList.add(qVar);
+            v0.o oVar = new v0.o(qc.g.m(arrayList), !z10);
             try {
                 CancellationSignal cancellationSignal = new CancellationSignal();
                 Executor executor = context.getMainExecutor();
-                AnonymousClass1 anonymousClass1 = new AnonymousClass1(callback3, context, i);
-                ((CredentialManagerImpl) credentialManager).getClass();
-                Intrinsics.checkNotNullParameter(executor, "executor");
-                CredentialProvider bestAvailableProvider$default = az.getBestAvailableProvider$default(new az(context), getCredentialRequest);
-                if (bestAvailableProvider$default == null) {
-                    anonymousClass1.onError((Object) new GetCredentialCustomException("getCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
+                AnonymousClass1 anonymousClass1 = new AnonymousClass1(callback3, context, i10);
+                ((v0.j) hVar).getClass();
+                kotlin.jvm.internal.j.e(executor, "executor");
+                v0.k kVarB = androidx.biometric.s.b(new androidx.biometric.s(context, 2), oVar);
+                if (kVarB == null) {
+                    anonymousClass1.onError((Object) new w0.h("getCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
                 } else {
-                    bestAvailableProvider$default.onGetCredential(context, getCredentialRequest, cancellationSignal, executor, anonymousClass1);
+                    kVarB.onGetCredential(context, oVar, cancellationSignal, executor, anonymousClass1);
                 }
-                runnableArr[0] = new SecretChatHelper$$ExternalSyntheticLambda22(cancellationSignal, 4);
-            } catch (Exception e) {
-                callback3.run(0L, null, e.getMessage());
+                runnableArr[0] = new rg(cancellationSignal, 3);
+            } catch (Exception e9) {
+                callback3.run(0L, null, e9.getMessage());
             }
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            callback3.run(0L, null, e2.getMessage());
+        } catch (Exception e10) {
+            FileLog.e(e10);
+            callback3.run(0L, null, e10.getMessage());
         }
     }
 
-    public static void lambda$login$11(int i, int i2) {
-        ConnectionsManager.getInstance(i).cancelRequest(i2, true);
+    public static void lambda$login$11(int i10, int i11) {
+        ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
     }
 
     public static void lambda$login$12(boolean[] zArr, Runnable[] runnableArr) {
@@ -333,41 +290,37 @@ public class PasskeysController {
         }
     }
 
-    public static Runnable login(final Context context, final int i, final boolean z, final Utilities.Callback3<Long, TLRPC.auth_Authorization, String> callback3) {
+    public static Runnable login(final Context context, final int i10, final boolean z10, final Utilities.Callback3<Long, TLRPC.auth_Authorization, String> callback3) {
         if (!BuildVars.SUPPORTS_PASSKEYS) {
             return null;
         }
-        Intrinsics.checkNotNullParameter(context, "context");
-        final CredentialManagerImpl credentialManagerImpl = new CredentialManagerImpl(context, 0);
+        kotlin.jvm.internal.j.e(context, "context");
+        final v0.j jVar = new v0.j(context);
         final boolean[] zArr = new boolean[1];
         final Runnable[] runnableArr = new Runnable[1];
         TL_account.initPasskeyLogin initpasskeylogin = new TL_account.initPasskeyLogin();
         initpasskeylogin.api_id = BuildVars.APP_ID;
         initpasskeylogin.api_hash = BuildVars.APP_HASH;
-        runnableArr[0] = new GroupCallSheet$$ExternalSyntheticLambda5(i, ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+        runnableArr[0] = new hh(i10, ConnectionsManager.getInstance(i10).sendRequestTyped(initpasskeylogin, new a(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                boolean[] zArr2 = zArr;
-                CredentialManagerImpl credentialManagerImpl2 = credentialManagerImpl;
-                Context context2 = context;
-                Runnable[] runnableArr2 = runnableArr;
-                PasskeysController.lambda$login$10(zArr2, callback3, z, credentialManagerImpl2, context2, i, runnableArr2, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$login$10(zArr, callback3, z10, jVar, context, i10, runnableArr, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
             }
-        }, 8), 1);
-        return new PasskeysController$$ExternalSyntheticLambda2(zArr, runnableArr, 0);
+        }, 8), 0);
+        return new pc(zArr, runnableArr, 1);
     }
 
-    public static <T> Continuation ktxCallback(final CoroutineContext coroutineContext, final Utilities.Callback2<T, Throwable> callback2) {
-        return new Continuation() {
+    public static <T> rc.c ktxCallback(final rc.h hVar, final Utilities.Callback2<T, Throwable> callback2) {
+        return new rc.c() {
             @Override
-            public CoroutineContext getContext() {
-                return coroutineContext;
+            public rc.h getContext() {
+                return hVar;
             }
 
             @Override
             public void resumeWith(Object obj) {
-                if (obj instanceof Result.Failure) {
-                    callback2.run(null, ((Result.Failure) obj).exception);
+                if (obj instanceof pc.e) {
+                    callback2.run(null, ((pc.e) obj).f45690a);
                 } else {
                     callback2.run(obj, null);
                 }

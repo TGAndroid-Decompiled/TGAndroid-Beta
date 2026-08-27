@@ -6,16 +6,16 @@ import java.util.Iterator;
 public class VideoTrack extends MediaStreamTrack {
     private final IdentityHashMap<VideoSink, Long> sinks;
 
-    public VideoTrack(long j) {
-        super(j);
+    public VideoTrack(long j10) {
+        super(j10);
         this.sinks = new IdentityHashMap<>();
     }
 
-    private static native void nativeAddSink(long j, long j2);
+    private static native void nativeAddSink(long j10, long j11);
 
-    private static native void nativeFreeSink(long j);
+    private static native void nativeFreeSink(long j10);
 
-    private static native void nativeRemoveSink(long j, long j2);
+    private static native void nativeRemoveSink(long j10, long j11);
 
     private static native long nativeWrapSink(VideoSink videoSink);
 

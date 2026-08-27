@@ -1,0 +1,29 @@
+package j8;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import h7.r8;
+import java.util.ArrayList;
+import java.util.List;
+
+public final class y extends z5.a {
+    public static final Parcelable.Creator<y> CREATOR = new c(20);
+
+    public final int f12855a;
+
+    public final List f12856b;
+
+    public y(int i10, ArrayList arrayList) {
+        this.f12855a = i10;
+        this.f12856b = arrayList;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int iQ = r8.q(parcel, 20293);
+        r8.s(parcel, 2, 4);
+        parcel.writeInt(this.f12855a);
+        r8.p(parcel, 3, this.f12856b);
+        r8.r(parcel, iQ);
+    }
+}

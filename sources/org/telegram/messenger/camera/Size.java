@@ -1,18 +1,16 @@
 package org.telegram.messenger.camera;
 
-import com.google.android.gms.internal.mlkit_language_id_common.zzig;
-
 public final class Size {
     public final int mHeight;
     public final int mWidth;
 
-    public Size(int i, int i2) {
-        this.mWidth = i;
-        this.mHeight = i2;
+    public Size(int i10, int i11) {
+        this.mWidth = i10;
+        this.mHeight = i11;
     }
 
     private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException(zzig.m("Invalid Size: \"", str, "\""));
+        throw new NumberFormatException(a9.p.m("Invalid Size: \"", str, "\""));
     }
 
     public static Size parseSize(String str) {
@@ -55,9 +53,9 @@ public final class Size {
     }
 
     public int hashCode() {
-        int i = this.mHeight;
-        int i2 = this.mWidth;
-        return i ^ ((i2 >>> 16) | (i2 << 16));
+        int i10 = this.mHeight;
+        int i11 = this.mWidth;
+        return i10 ^ ((i11 >>> 16) | (i11 << 16));
     }
 
     public String toString() {

@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
-import androidx.core.util.Consumer;
 
 public interface ILocationServiceProvider {
     public static final int PRIORITY_BALANCED_POWER_ACCURACY = 1;
@@ -17,7 +16,7 @@ public interface ILocationServiceProvider {
     public interface IAPIConnectionCallbacks {
         void onConnected(Bundle bundle);
 
-        void onConnectionSuspended(int i);
+        void onConnectionSuspended(int i10);
     }
 
     public interface IAPIOnConnectionFailedListener {
@@ -29,11 +28,11 @@ public interface ILocationServiceProvider {
     }
 
     public interface ILocationRequest {
-        void setFastestInterval(long j);
+        void setFastestInterval(long j10);
 
-        void setInterval(long j);
+        void setInterval(long j10);
 
-        void setPriority(int i);
+        void setPriority(int i10);
     }
 
     public interface IMapApiClient {
@@ -42,11 +41,11 @@ public interface ILocationServiceProvider {
         void disconnect();
     }
 
-    void checkLocationSettings(ILocationRequest iLocationRequest, Consumer consumer);
+    void checkLocationSettings(ILocationRequest iLocationRequest, q0.a aVar);
 
     boolean checkServices();
 
-    void getLastLocation(Consumer consumer);
+    void getLastLocation(q0.a aVar);
 
     void init(Context context);
 

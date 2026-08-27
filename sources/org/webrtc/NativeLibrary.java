@@ -30,10 +30,10 @@ class NativeLibrary {
     }
 
     public static boolean isLoaded() {
-        boolean z;
+        boolean z10;
         synchronized (lock) {
-            z = libraryLoaded;
+            z10 = libraryLoaded;
         }
-        return z;
+        return z10;
     }
 }

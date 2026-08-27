@@ -1,5 +1,5 @@
 package java.util.function;
 
 public interface LongFunction<R> {
-    R apply(long j);
+    R apply(long j10);
 }

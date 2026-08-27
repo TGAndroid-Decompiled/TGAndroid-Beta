@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import android.os.Build;
-import com.android.billingclient.api.ProductDetails;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,7 +26,7 @@ public class BuildVars {
     private static Boolean betaApp;
 
     static {
-        boolean z = true;
+        boolean z10 = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
         BUILD_VERSION_STRING = "12.10.2";
         APP_ID = 4;
@@ -41,12 +40,12 @@ public class BuildVars {
         SUPPORTS_PASSKEYS = true;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
-            boolean z2 = DEBUG_VERSION;
-            if (!z2 && !sharedPreferences.getBoolean("logsEnabled", z2)) {
-                z = false;
+            boolean z11 = DEBUG_VERSION;
+            if (!z11 && !sharedPreferences.getBoolean("logsEnabled", z11)) {
+                z10 = false;
             }
-            LOGS_ENABLED = z;
-            if (z) {
+            LOGS_ENABLED = z10;
+            if (z10) {
                 final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
@@ -66,24 +65,24 @@ public class BuildVars {
     }
 
     private static boolean hasDirectCurrency() {
-        ProductDetails productDetails;
-        if (BillingController.getInstance().isReady() && (productDetails = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            ArrayList arrayList = productDetails.zzj;
+        n2.l lVar;
+        if (BillingController.getInstance().isReady() && (lVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
+            ArrayList arrayList = lVar.h;
             int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                ArrayList arrayList2 = ((ProductDetails.SubscriptionOfferDetails) obj).zzd.mControlCategories;
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                ArrayList arrayList2 = ((n2.k) obj).f18160b.f8872a;
                 int size2 = arrayList2.size();
-                int i2 = 0;
-                while (i2 < size2) {
-                    Object obj2 = arrayList2.get(i2);
-                    i2++;
-                    ProductDetails.PricingPhase pricingPhase = (ProductDetails.PricingPhase) obj2;
+                int i11 = 0;
+                while (i11 < size2) {
+                    Object obj2 = arrayList2.get(i11);
+                    i11++;
+                    n2.j jVar = (n2.j) obj2;
                     Iterator<String> it = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
                     while (it.hasNext()) {
-                        if (Objects.equals(pricingPhase.zzc, it.next())) {
+                        if (Objects.equals(jVar.f18158c, it.next())) {
                             return true;
                         }
                     }

@@ -23,11 +23,11 @@ public class MusicBrowserService extends MediaBrowserService {
     }
 
     @Override
-    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
+    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i10, Bundle bundle) {
         if (str == null) {
             return null;
         }
-        if ((1000 == i || Process.myUid() == i || PackageValidator.isKnownCaller(this, str, i)) && !TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
+        if ((1000 == i10 || Process.myUid() == i10 || PackageValidator.isKnownCaller(this, str, i10)) && !TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
             return new MediaBrowserService.BrowserRoot("__ROOT__", TelegramMediaSession.getInstance(this).buildRootHints());
         }
         return null;
@@ -38,7 +38,7 @@ public class MusicBrowserService extends MediaBrowserService {
         TelegramMediaSession telegramMediaSession = TelegramMediaSession.getInstance(this);
         if (!telegramMediaSession.isPasscodeLocked()) {
             result.detach();
-            telegramMediaSession.loadBrowseChildren(str, new BillingController$$ExternalSyntheticLambda0(result, 9));
+            telegramMediaSession.loadBrowseChildren(str, new d(result, 9));
         } else {
             Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
             stopSelf();

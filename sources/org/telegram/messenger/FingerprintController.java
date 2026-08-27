@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.KeyPairGenerator;
@@ -10,7 +11,6 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.util.Locale;
 import javax.crypto.Cipher;
-import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
 
 public class FingerprintController {
     private static final String KEY_ALIAS = "tmessages_passcode";
@@ -30,8 +30,8 @@ public class FingerprintController {
         } catch (KeyPermanentlyInvalidatedException unused) {
             hasChangedFingerprints = Boolean.TRUE;
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         }
@@ -44,31 +44,30 @@ public class FingerprintController {
     public static void deleteInvalidKey() {
         try {
             getKeyStore().deleteEntry("tmessages_passcode");
-        } catch (KeyStoreException e) {
-            FileLog.e(e);
+        } catch (KeyStoreException e9) {
+            FileLog.e(e9);
         }
         hasChangedFingerprints = null;
         checkKeyReady(false);
     }
 
-    public static void generateNewKey(boolean z) {
+    public static void generateNewKey(boolean z10) {
         KeyPairGenerator keyPairGenerator2 = getKeyPairGenerator();
         if (keyPairGenerator2 != null) {
             try {
                 Locale locale = Locale.getDefault();
                 setLocale(Locale.ENGLISH);
-                SharedConfig$$ExternalSyntheticApiModelOutline0.m882m();
-                keyPairGenerator2.initialize(SharedConfig$$ExternalSyntheticApiModelOutline0.m().setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
+                keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new LiteMode$$ExternalSyntheticLambda0(z, 2));
-            } catch (InvalidAlgorithmParameterException e) {
-                FileLog.e(e);
-            } catch (Exception e2) {
-                if (e2.getClass().getName().equals("android.security.KeyStoreException")) {
+                AndroidUtilities.runOnUIThread(new y3(1, z10));
+            } catch (InvalidAlgorithmParameterException e9) {
+                FileLog.e(e9);
+            } catch (Exception e10) {
+                if (e10.getClass().getName().equals("android.security.KeyStoreException")) {
                     return;
                 }
-                FileLog.e(e2);
+                FileLog.e(e10);
             }
         }
     }
@@ -82,8 +81,8 @@ public class FingerprintController {
             KeyPairGenerator keyPairGenerator3 = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
             keyPairGenerator = keyPairGenerator3;
             return keyPairGenerator3;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -98,8 +97,8 @@ public class FingerprintController {
             keyStore = keyStore3;
             keyStore3.load(null);
             return keyStore;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -107,14 +106,14 @@ public class FingerprintController {
     public static boolean isKeyReady() {
         try {
             return getKeyStore().containsAlias("tmessages_passcode");
-        } catch (KeyStoreException e) {
-            FileLog.e(e);
+        } catch (KeyStoreException e9) {
+            FileLog.e(e9);
             return false;
         }
     }
 
-    public static void lambda$generateNewKey$0(boolean z) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z));
+    public static void lambda$generateNewKey$0(boolean z10) {
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z10));
     }
 
     private static void setLocale(Locale locale) {
@@ -125,14 +124,14 @@ public class FingerprintController {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
-    public static void checkKeyReady(boolean z) {
+    public static void checkKeyReady(boolean z10) {
         if (isKeyReady() || !AndroidUtilities.isKeyguardSecure()) {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        FingerprintManagerCompat.FingerprintManagerCompatImpl fingerprintManagerCompatImpl = FingerprintManagerCompat.IMPL;
-        if (fingerprintManagerCompatImpl.isHardwareDetected(context) && fingerprintManagerCompatImpl.hasEnrolledFingerprints(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new LiteMode$$ExternalSyntheticLambda0(z, 1));
+        ff.a aVar = ff.b.f6050a;
+        if (aVar.i(context) && aVar.b(ApplicationLoader.applicationContext)) {
+            Utilities.globalQueue.postRunnable(new y3(0, z10));
         }
     }
 }

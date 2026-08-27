@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
-import org.telegram.ui.Components.Reactions.HwEmojis;
 
 public class DispatchQueuePoolBackground {
     public static final String THREAD_PREFIX = "DispatchQueuePoolThreadSafety_";
@@ -28,16 +27,16 @@ public class DispatchQueuePoolBackground {
         public void run() {
             if (!DispatchQueuePoolBackground.this.queues.isEmpty()) {
                 long jElapsedRealtime = SystemClock.elapsedRealtime();
-                int i = 0;
-                while (i < DispatchQueuePoolBackground.this.queues.size()) {
-                    DispatchQueue dispatchQueue = (DispatchQueue) DispatchQueuePoolBackground.this.queues.get(i);
+                int i10 = 0;
+                while (i10 < DispatchQueuePoolBackground.this.queues.size()) {
+                    DispatchQueue dispatchQueue = (DispatchQueue) DispatchQueuePoolBackground.this.queues.get(i10);
                     if (dispatchQueue.getLastTaskTime() < jElapsedRealtime - 30000) {
                         dispatchQueue.recycle();
-                        DispatchQueuePoolBackground.this.queues.remove(i);
+                        DispatchQueuePoolBackground.this.queues.remove(i10);
                         DispatchQueuePoolBackground.access$110(DispatchQueuePoolBackground.this);
-                        i--;
+                        i10--;
                     }
-                    i++;
+                    i10++;
                 }
             }
             if (DispatchQueuePoolBackground.this.queues.isEmpty() && DispatchQueuePoolBackground.this.busyQueues.isEmpty()) {
@@ -50,20 +49,20 @@ public class DispatchQueuePoolBackground {
     };
     private int guid = Utilities.random.nextInt();
 
-    private DispatchQueuePoolBackground(int i) {
-        this.maxCount = i;
+    private DispatchQueuePoolBackground(int i10) {
+        this.maxCount = i10;
     }
 
     public static int access$110(DispatchQueuePoolBackground dispatchQueuePoolBackground) {
-        int i = dispatchQueuePoolBackground.createdCount;
-        dispatchQueuePoolBackground.createdCount = i - 1;
-        return i;
+        int i10 = dispatchQueuePoolBackground.createdCount;
+        dispatchQueuePoolBackground.createdCount = i10 - 1;
+        return i10;
     }
 
     private void execute(ArrayList<Runnable> arrayList) {
         DispatchQueue dispatchQueueRemove;
-        for (int i = 0; i < arrayList.size(); i++) {
-            Runnable runnable = arrayList.get(i);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            Runnable runnable = arrayList.get(i10);
             if (runnable != null) {
                 if (!this.busyQueues.isEmpty() && (this.totalTasksCount / 2 <= this.busyQueues.size() || (this.queues.isEmpty() && this.createdCount >= this.maxCount))) {
                     dispatchQueueRemove = this.busyQueues.remove(0);
@@ -81,12 +80,12 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(dispatchQueueRemove);
                 this.busyQueuesMap.put(dispatchQueueRemove.index, this.busyQueuesMap.get(dispatchQueueRemove.index, 0) + 1);
-                if (HwEmojis.hwEnabled) {
+                if (ig.g0.f11303b) {
                     dispatchQueueRemove.setPriority(1);
                 } else if (dispatchQueueRemove.getPriority() != 10) {
                     dispatchQueueRemove.setPriority(10);
                 }
-                dispatchQueueRemove.postRunnable(new FileLoader$$ExternalSyntheticLambda0(this, runnable, dispatchQueueRemove, 17));
+                dispatchQueueRemove.postRunnable(new f0(this, runnable, dispatchQueueRemove, 16));
             }
         }
     }
@@ -102,14 +101,14 @@ public class DispatchQueuePoolBackground {
         if (backgroundQueue == null) {
             backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
         }
-        Utilities.globalQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda44(arrayList2, 2));
+        Utilities.globalQueue.postRunnable(new e(arrayList2, 2));
     }
 
     public void lambda$execute$0(DispatchQueue dispatchQueue) {
         this.totalTasksCount--;
-        int i = this.busyQueuesMap.get(dispatchQueue.index) - 1;
-        if (i != 0) {
-            this.busyQueuesMap.put(dispatchQueue.index, i);
+        int i10 = this.busyQueuesMap.get(dispatchQueue.index) - 1;
+        if (i10 != 0) {
+            this.busyQueuesMap.put(dispatchQueue.index, i10);
             return;
         }
         this.busyQueuesMap.delete(dispatchQueue.index);
@@ -119,7 +118,7 @@ public class DispatchQueuePoolBackground {
 
     public void lambda$execute$1(Runnable runnable, DispatchQueue dispatchQueue) {
         runnable.run();
-        Utilities.globalQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda5(28, this, dispatchQueue));
+        Utilities.globalQueue.postRunnable(new e3(28, this, dispatchQueue));
     }
 
     public static void lambda$finishCollectUpdateRunnables$2(ArrayList arrayList) {
@@ -129,14 +128,14 @@ public class DispatchQueuePoolBackground {
     public static void lambda$finishCollectUpdateRunnables$3(ArrayList arrayList) {
         backgroundQueue.execute((ArrayList<Runnable>) arrayList);
         arrayList.clear();
-        AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda44(arrayList, 3));
+        AndroidUtilities.runOnUIThread(new e(arrayList, 3));
     }
 
     public static void execute(Runnable runnable) {
         execute(runnable, false);
     }
 
-    public static void execute(Runnable runnable, boolean z) {
+    public static void execute(Runnable runnable, boolean z10) {
         if (Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
             if (BuildVars.DEBUG_VERSION) {
                 FileLog.e(new RuntimeException("wrong thread"));
@@ -147,16 +146,16 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = arrayList.remove(arrayList.size() - 1);
+                updateTaskCollection = (ArrayList) com.google.android.recaptcha.internal.a.k(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }
-            if (!z) {
+            if (!z10) {
                 AndroidUtilities.runOnUIThread(finishCollectUpdateRunnable);
             }
         }
         updateTaskCollection.add(runnable);
-        if (z) {
+        if (z10) {
             Runnable runnable2 = finishCollectUpdateRunnable;
             AndroidUtilities.cancelRunOnUIThread(runnable2);
             runnable2.run();

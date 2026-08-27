@@ -14,9 +14,9 @@ public class FencedAtom extends Atom {
         this(atom, symbolAtom, null, symbolAtom2);
     }
 
-    private static void center(Box box, float f) {
+    private static void center(Box box, float f10) {
         float height = box.getHeight();
-        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f);
+        box.setShift((-(((box.getDepth() + height) / 2.0f) - height)) - f10);
     }
 
     @Override
@@ -29,8 +29,8 @@ public class FencedAtom extends Atom {
         float fMax2 = Math.max((fMax / 500.0f) * 901.0f, (fMax * 2.0f) - factor);
         HorizontalBox horizontalBox = new HorizontalBox();
         if (this.middle != null) {
-            for (int i = 0; i < this.middle.size(); i++) {
-                MiddleAtom middleAtom = this.middle.get(i);
+            for (int i10 = 0; i10 < this.middle.size(); i10++) {
+                MiddleAtom middleAtom = this.middle.get(i10);
                 Atom atom = middleAtom.base;
                 if (atom instanceof SymbolAtom) {
                     Box boxCreate = DelimiterFactory.create(((SymbolAtom) atom).getName(), teXEnvironment, fMax2);

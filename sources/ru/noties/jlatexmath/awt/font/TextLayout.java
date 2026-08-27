@@ -22,16 +22,16 @@ public class TextLayout {
         this.bounds = new Rectangle2D.Float(rect.left, rect.top, rect.width(), rect.height());
     }
 
-    public void draw(Graphics2D graphics2D, int i, int i2) {
+    public void draw(Graphics2D graphics2D, int i10, int i11) {
         Font font = graphics2D.getFont();
         Font font2 = this.font;
-        boolean z = font2 != font;
-        if (z) {
+        boolean z10 = font2 != font;
+        if (z10) {
             graphics2D.setFont(font2);
         }
         char[] cArr = this.chars;
-        graphics2D.drawChars(cArr, 0, cArr.length, i, i2);
-        if (z) {
+        graphics2D.drawChars(cArr, 0, cArr.length, i10, i11);
+        if (z10) {
             graphics2D.setFont(font);
         }
     }

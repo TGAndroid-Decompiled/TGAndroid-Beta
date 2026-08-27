@@ -11,32 +11,32 @@ public class UnderOverAtom extends Atom {
     private final float underSpace;
     private final int underUnit;
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i, float f, boolean z, boolean z2) {
-        SpaceAtom.checkUnit(i);
+    public UnderOverAtom(Atom atom, Atom atom2, int i10, float f10, boolean z10, boolean z11) {
+        SpaceAtom.checkUnit(i10);
         this.base = atom;
-        if (z2) {
+        if (z11) {
             this.under = null;
             this.underSpace = 0.0f;
             this.underUnit = 0;
             this.underScriptSize = false;
             this.over = atom2;
-            this.overUnit = i;
-            this.overSpace = f;
-            this.overScriptSize = z;
+            this.overUnit = i10;
+            this.overSpace = f10;
+            this.overScriptSize = z10;
             return;
         }
         this.under = atom2;
-        this.underUnit = i;
-        this.underSpace = f;
-        this.underScriptSize = z;
+        this.underUnit = i10;
+        this.underSpace = f10;
+        this.underScriptSize = z10;
         this.overSpace = 0.0f;
         this.over = null;
         this.overUnit = 0;
         this.overScriptSize = false;
     }
 
-    private static Box changeWidth(Box box, float f) {
-        return (box == null || Math.abs(f - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f, 2);
+    private static Box changeWidth(Box box, float f10) {
+        return (box == null || Math.abs(f10 - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f10, 2);
     }
 
     @Override
@@ -86,17 +86,17 @@ public class UnderOverAtom extends Atom {
         return this.base.getRightType();
     }
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i, float f, boolean z, Atom atom3, int i2, float f2, boolean z2) {
-        SpaceAtom.checkUnit(i);
-        SpaceAtom.checkUnit(i2);
+    public UnderOverAtom(Atom atom, Atom atom2, int i10, float f10, boolean z10, Atom atom3, int i11, float f11, boolean z11) {
+        SpaceAtom.checkUnit(i10);
+        SpaceAtom.checkUnit(i11);
         this.base = atom;
         this.under = atom2;
-        this.underUnit = i;
-        this.underSpace = f;
-        this.underScriptSize = z;
+        this.underUnit = i10;
+        this.underSpace = f10;
+        this.underScriptSize = z10;
         this.over = atom3;
-        this.overUnit = i2;
-        this.overSpace = f2;
-        this.overScriptSize = z2;
+        this.overUnit = i11;
+        this.overSpace = f11;
+        this.overScriptSize = z11;
     }
 }

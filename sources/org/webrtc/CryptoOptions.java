@@ -14,23 +14,23 @@ public final class CryptoOptions {
             return new CryptoOptions(this.enableGcmCryptoSuites, this.enableAes128Sha1_32CryptoCipher, this.enableEncryptedRtpHeaderExtensions, this.requireFrameEncryption);
         }
 
-        public Builder setEnableAes128Sha1_32CryptoCipher(boolean z) {
-            this.enableAes128Sha1_32CryptoCipher = z;
+        public Builder setEnableAes128Sha1_32CryptoCipher(boolean z10) {
+            this.enableAes128Sha1_32CryptoCipher = z10;
             return this;
         }
 
-        public Builder setEnableEncryptedRtpHeaderExtensions(boolean z) {
-            this.enableEncryptedRtpHeaderExtensions = z;
+        public Builder setEnableEncryptedRtpHeaderExtensions(boolean z10) {
+            this.enableEncryptedRtpHeaderExtensions = z10;
             return this;
         }
 
-        public Builder setEnableGcmCryptoSuites(boolean z) {
-            this.enableGcmCryptoSuites = z;
+        public Builder setEnableGcmCryptoSuites(boolean z10) {
+            this.enableGcmCryptoSuites = z10;
             return this;
         }
 
-        public Builder setRequireFrameEncryption(boolean z) {
-            this.requireFrameEncryption = z;
+        public Builder setRequireFrameEncryption(boolean z10) {
+            this.requireFrameEncryption = z10;
             return this;
         }
 
@@ -45,8 +45,8 @@ public final class CryptoOptions {
             return this.requireFrameEncryption;
         }
 
-        private SFrame(boolean z) {
-            this.requireFrameEncryption = z;
+        private SFrame(boolean z10) {
+            this.requireFrameEncryption = z10;
         }
     }
 
@@ -67,10 +67,10 @@ public final class CryptoOptions {
             return this.enableGcmCryptoSuites;
         }
 
-        private Srtp(boolean z, boolean z2, boolean z3) {
-            this.enableGcmCryptoSuites = z;
-            this.enableAes128Sha1_32CryptoCipher = z2;
-            this.enableEncryptedRtpHeaderExtensions = z3;
+        private Srtp(boolean z10, boolean z11, boolean z12) {
+            this.enableGcmCryptoSuites = z10;
+            this.enableAes128Sha1_32CryptoCipher = z11;
+            this.enableEncryptedRtpHeaderExtensions = z12;
         }
     }
 
@@ -86,8 +86,8 @@ public final class CryptoOptions {
         return this.srtp;
     }
 
-    private CryptoOptions(boolean z, boolean z2, boolean z3, boolean z4) {
-        this.srtp = new Srtp(z, z2, z3);
-        this.sframe = new SFrame(z4);
+    private CryptoOptions(boolean z10, boolean z11, boolean z12, boolean z13) {
+        this.srtp = new Srtp(z10, z11, z12);
+        this.sframe = new SFrame(z13);
     }
 }

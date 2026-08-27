@@ -83,12 +83,12 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                boolean z;
-                if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z = ((TLRPC.TL_jsonBool) jSONValue).value) == this.value) {
+                boolean z10;
+                if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z10 = ((TLRPC.TL_jsonBool) jSONValue).value) == this.value) {
                     return false;
                 }
-                this.value = z;
-                editor.putBoolean(this.name, z);
+                this.value = z10;
+                editor.putBoolean(this.name, z10);
                 return true;
             }
 
@@ -97,9 +97,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getBoolean(this.name, this.defaultValue);
             }
 
-            private Internal(String str, boolean z) {
+            private Internal(String str, boolean z10) {
                 this.name = str;
-                this.defaultValue = z;
+                this.defaultValue = z10;
             }
         }
 
@@ -107,8 +107,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigBoolean(String str, boolean z) {
-            this.handler = new Internal(str, z);
+        private ConfigBoolean(String str, boolean z10) {
+            this.handler = new Internal(str, z10);
         }
     }
 
@@ -171,9 +171,9 @@ public class AppGlobalConfig {
                 if (d == this.value) {
                     return false;
                 }
-                int i = (int) d;
-                this.value = i;
-                editor.putInt(this.name, i);
+                int i10 = (int) d;
+                this.value = i10;
+                editor.putInt(this.name, i10);
                 return true;
             }
 
@@ -182,9 +182,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getInt(this.name, this.defaultValue);
             }
 
-            private Internal(String str, int i) {
+            private Internal(String str, int i10) {
                 this.name = str;
-                this.defaultValue = i;
+                this.defaultValue = i10;
             }
         }
 
@@ -192,8 +192,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigInt(String str, int i) {
-            this.handler = new Internal(str, i);
+        private ConfigInt(String str, int i10) {
+            this.handler = new Internal(str, i10);
         }
     }
 
@@ -220,9 +220,9 @@ public class AppGlobalConfig {
                 if (d == this.value) {
                     return false;
                 }
-                long j = (long) d;
-                this.value = j;
-                editor.putLong(this.name, j);
+                long j10 = (long) d;
+                this.value = j10;
+                editor.putLong(this.name, j10);
                 return true;
             }
 
@@ -231,9 +231,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getLong(this.name, this.defaultValue);
             }
 
-            private Internal(String str, long j) {
+            private Internal(String str, long j10) {
                 this.name = str;
-                this.defaultValue = j;
+                this.defaultValue = j10;
             }
         }
 
@@ -241,8 +241,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigLong(String str, long j) {
-            this.handler = new Internal(str, j);
+        private ConfigLong(String str, long j10) {
+            this.handler = new Internal(str, j10);
         }
     }
 
@@ -301,8 +301,8 @@ public class AppGlobalConfig {
             return timeUnit.convert(this.handler.value, this.timeUnit);
         }
 
-        private ConfigTime(String str, TimeUnit timeUnit, long j) {
-            this.handler = new ConfigLong.Internal(str, j);
+        private ConfigTime(String str, TimeUnit timeUnit, long j10) {
+            this.handler = new ConfigLong.Internal(str, j10);
             this.timeUnit = timeUnit;
         }
     }
@@ -367,12 +367,12 @@ public class AppGlobalConfig {
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
     }
 
-    public static AppGlobalConfig getInstance(int i) {
-        return MessagesController.getInstance(i).config;
+    public static AppGlobalConfig getInstance(int i10) {
+        return MessagesController.getInstance(i10).config;
     }
 
-    private ConfigBoolean ofBoolean(String str, boolean z) {
-        ConfigBoolean configBoolean = new ConfigBoolean(str, z);
+    private ConfigBoolean ofBoolean(String str, boolean z10) {
+        ConfigBoolean configBoolean = new ConfigBoolean(str, z10);
         this.map.put(str, configBoolean.handler);
         return configBoolean;
     }
@@ -383,14 +383,14 @@ public class AppGlobalConfig {
         return configDouble;
     }
 
-    private ConfigInt ofInt(String str, int i) {
-        ConfigInt configInt = new ConfigInt(str, i);
+    private ConfigInt ofInt(String str, int i10) {
+        ConfigInt configInt = new ConfigInt(str, i10);
         this.map.put(str, configInt.handler);
         return configInt;
     }
 
-    private ConfigLong ofLong(String str, long j) {
-        ConfigLong configLong = new ConfigLong(str, j);
+    private ConfigLong ofLong(String str, long j10) {
+        ConfigLong configLong = new ConfigLong(str, j10);
         this.map.put(str, configLong.handler);
         return configLong;
     }
@@ -401,8 +401,8 @@ public class AppGlobalConfig {
         return configString;
     }
 
-    private ConfigTime ofTime(String str, long j, TimeUnit timeUnit) {
-        ConfigTime configTime = new ConfigTime(str, timeUnit, j);
+    private ConfigTime ofTime(String str, long j10, TimeUnit timeUnit) {
+        ConfigTime configTime = new ConfigTime(str, timeUnit, j10);
         this.map.put(str, configTime.handler);
         return configTime;
     }
@@ -410,8 +410,8 @@ public class AppGlobalConfig {
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
         int size = tL_jsonObject.value.size();
         boolean zApply = false;
-        for (int i = 0; i < size; i++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
+        for (int i10 = 0; i10 < size; i10++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i10);
             ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
             if (configInternal != null) {
                 zApply |= configInternal.apply(editor, tL_jsonObjectValue.value);
@@ -425,8 +425,8 @@ public class AppGlobalConfig {
         while (it.hasNext()) {
             try {
                 it.next().load(sharedPreferences);
-            } catch (ClassCastException e) {
-                FileLog.e(e);
+            } catch (ClassCastException e9) {
+                FileLog.e(e9);
             }
         }
     }

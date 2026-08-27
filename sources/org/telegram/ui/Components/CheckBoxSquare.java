@@ -9,157 +9,149 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.Theme;
 
 public class CheckBoxSquare extends View {
-    private static final float progressBounceDiff = 0.2f;
-    private boolean attachedToWindow;
-    private ObjectAnimator checkAnimator;
-    private Bitmap drawBitmap;
-    private Canvas drawCanvas;
-    private boolean isAlert;
-    private boolean isChecked;
-    private boolean isDisabled;
-    private int key1;
-    private int key2;
-    private int key3;
-    private float progress;
-    private RectF rectF;
-    private final Theme.ResourcesProvider resourcesProvider;
 
-    public CheckBoxSquare(Context context, boolean z) {
-        this(context, z, null);
+    public final RectF f26318a;
+
+    public final Bitmap f26319b;
+
+    public final Canvas f26320c;
+    public float d;
+
+    public ObjectAnimator f26321e;
+
+    public boolean f26322f;
+    public boolean h;
+
+    public boolean f26323n;
+
+    public final boolean f26324r;
+
+    public int f26325s;
+    public int v;
+
+    public int f26326w;
+
+    public final org.telegram.ui.ActionBar.c6 f26327x;
+
+    public CheckBoxSquare(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(context);
+        this.f26327x = c6Var;
+        if (org.telegram.ui.ActionBar.g6.f23263p0 == null) {
+            org.telegram.ui.ActionBar.g6.P(context);
+        }
+        boolean z11 = this.f26324r;
+        this.f26325s = z11 ? org.telegram.ui.ActionBar.g6.f23422y5 : org.telegram.ui.ActionBar.g6.Y6;
+        this.v = z11 ? org.telegram.ui.ActionBar.g6.f23390w5 : org.telegram.ui.ActionBar.g6.W6;
+        this.f26326w = z11 ? org.telegram.ui.ActionBar.g6.f23405x5 : org.telegram.ui.ActionBar.g6.X6;
+        this.f26318a = new RectF();
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Bitmap.Config.ARGB_4444);
+        this.f26319b = bitmapCreateBitmap;
+        this.f26320c = new Canvas(bitmapCreateBitmap);
+        this.f26324r = z10;
     }
 
-    private void animateToCheckedState(boolean z) {
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-        this.checkAnimator = objectAnimatorOfFloat;
-        objectAnimatorOfFloat.setDuration(300L);
-        this.checkAnimator.start();
-    }
-
-    private void cancelCheckAnimator() {
-        ObjectAnimator objectAnimator = this.checkAnimator;
+    public final void a(boolean z10, boolean z11) {
+        if (z10 == this.h) {
+            return;
+        }
+        this.h = z10;
+        if (this.f26322f && z11) {
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z10 ? 1.0f : 0.0f);
+            this.f26321e = objectAnimatorOfFloat;
+            objectAnimatorOfFloat.setDuration(300L);
+            this.f26321e.start();
+            return;
+        }
+        ObjectAnimator objectAnimator = this.f26321e;
         if (objectAnimator != null) {
             objectAnimator.cancel();
         }
+        setProgress(z10 ? 1.0f : 0.0f);
     }
 
     public float getProgress() {
-        return this.progress;
-    }
-
-    public int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
+        return this.d;
     }
 
     @Override
-    public void onAttachedToWindow() {
+    public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.attachedToWindow = true;
+        this.f26322f = true;
     }
 
     @Override
-    public void onDetachedFromWindow() {
+    public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.attachedToWindow = false;
+        this.f26322f = false;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        float f;
-        float f2;
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        float f11;
         if (getVisibility() != 0) {
             return;
         }
-        int themedColor = getThemedColor(this.key1);
-        int themedColor2 = getThemedColor(this.key2);
-        float f3 = this.progress;
-        if (f3 <= 0.5f) {
-            f = f3 / 0.5f;
-            Theme.checkboxSquare_backgroundPaint.setColor(Color.rgb(Color.red(themedColor) + ((int) ((Color.red(themedColor2) - Color.red(themedColor)) * f)), Color.green(themedColor) + ((int) ((Color.green(themedColor2) - Color.green(themedColor)) * f)), Color.blue(themedColor) + ((int) ((Color.blue(themedColor2) - Color.blue(themedColor)) * f))));
-            f2 = f;
+        int i10 = this.f26325s;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f26327x;
+        int iV0 = org.telegram.ui.ActionBar.g6.v0(i10, c6Var);
+        int iV1 = org.telegram.ui.ActionBar.g6.v0(this.v, c6Var);
+        float f12 = this.d;
+        if (f12 <= 0.5f) {
+            f11 = f12 / 0.5f;
+            org.telegram.ui.ActionBar.g6.f23263p0.setColor(Color.rgb(Color.red(iV0) + ((int) ((Color.red(iV1) - Color.red(iV0)) * f11)), Color.green(iV0) + ((int) ((Color.green(iV1) - Color.green(iV0)) * f11)), Color.blue(iV0) + ((int) ((Color.blue(iV1) - Color.blue(iV0)) * f11))));
+            f10 = f11;
         } else {
-            f = 2.0f - (f3 / 0.5f);
-            Theme.checkboxSquare_backgroundPaint.setColor(themedColor2);
-            f2 = 1.0f;
+            org.telegram.ui.ActionBar.g6.f23263p0.setColor(iV1);
+            f10 = 2.0f - (f12 / 0.5f);
+            f11 = 1.0f;
         }
-        if (this.isDisabled) {
-            Theme.checkboxSquare_backgroundPaint.setColor(getThemedColor(this.isAlert ? Theme.key_dialogCheckboxSquareDisabled : Theme.key_checkboxSquareDisabled));
+        if (this.f26323n) {
+            org.telegram.ui.ActionBar.g6.f23263p0.setColor(org.telegram.ui.ActionBar.g6.v0(this.f26324r ? org.telegram.ui.ActionBar.g6.f23440z5 : org.telegram.ui.ActionBar.g6.Z6, c6Var));
         }
-        float fDp = AndroidUtilities.dp(1.0f) * f;
-        this.rectF.set(fDp, fDp, AndroidUtilities.dp(18.0f) - fDp, AndroidUtilities.dp(18.0f) - fDp);
-        this.drawBitmap.eraseColor(0);
-        this.drawCanvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Theme.checkboxSquare_backgroundPaint);
-        if (f2 != 1.0f) {
-            float fMin = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f2) + fDp);
-            this.rectF.set(AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(16.66f) - fMin, AndroidUtilities.dp(16.66f) - fMin);
-            this.drawCanvas.drawRoundRect(this.rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), Theme.checkboxSquare_eraserPaint);
+        float fDp = AndroidUtilities.dp(1.0f) * f10;
+        float fDp2 = AndroidUtilities.dp(18.0f) - fDp;
+        float fDp3 = AndroidUtilities.dp(18.0f) - fDp;
+        RectF rectF = this.f26318a;
+        rectF.set(fDp, fDp, fDp2, fDp3);
+        Bitmap bitmap = this.f26319b;
+        bitmap.eraseColor(0);
+        float fDp4 = AndroidUtilities.dp(4.0f);
+        float fDp5 = AndroidUtilities.dp(4.0f);
+        Paint paint = org.telegram.ui.ActionBar.g6.f23263p0;
+        Canvas canvas2 = this.f26320c;
+        canvas2.drawRoundRect(rectF, fDp4, fDp5, paint);
+        if (f11 != 1.0f) {
+            float fMin = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f11) + fDp);
+            rectF.set(AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(16.66f) - fMin, AndroidUtilities.dp(16.66f) - fMin);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.g6.f23228n0);
         }
-        if (this.progress > 0.5f) {
-            Theme.checkboxSquare_checkPaint.setColor(getThemedColor(this.key3));
-            float f4 = 1.0f - f;
-            this.drawCanvas.drawLine(AndroidUtilities.dp(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dp(7.0f) - (AndroidUtilities.dp(3.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(3.0f) * f4)), Theme.checkboxSquare_checkPaint);
-            this.drawCanvas.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(7.0f) * f4) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(7.0f) * f4)), Theme.checkboxSquare_checkPaint);
+        if (this.d > 0.5f) {
+            org.telegram.ui.ActionBar.g6.f23245o0.setColor(org.telegram.ui.ActionBar.g6.v0(this.f26326w, c6Var));
+            float f13 = 1.0f - f10;
+            canvas2.drawLine(AndroidUtilities.dp(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dp(7.0f) - (AndroidUtilities.dp(3.0f) * f13)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(3.0f) * f13)), org.telegram.ui.ActionBar.g6.f23245o0);
+            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(7.0f) * f13) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(7.0f) * f13)), org.telegram.ui.ActionBar.g6.f23245o0);
         }
-        canvas.drawBitmap(this.drawBitmap, 0.0f, 0.0f, (Paint) null);
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        if (z == this.isChecked) {
+    public void setDisabled(boolean z10) {
+        this.f26323n = z10;
+        invalidate();
+    }
+
+    public void setProgress(float f10) {
+        if (this.d == f10) {
             return;
         }
-        this.isChecked = z;
-        if (this.attachedToWindow && z2) {
-            animateToCheckedState(z);
-        } else {
-            cancelCheckAnimator();
-            setProgress(z ? 1.0f : 0.0f);
-        }
-    }
-
-    public void setColors(int i, int i2, int i3) {
-        this.key1 = i;
-        this.key2 = i2;
-        this.key3 = i3;
+        this.d = f10;
         invalidate();
-    }
-
-    public void setDisabled(boolean z) {
-        this.isDisabled = z;
-        invalidate();
-    }
-
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
-    }
-
-    public CheckBoxSquare(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.resourcesProvider = resourcesProvider;
-        if (Theme.checkboxSquare_backgroundPaint == null) {
-            Theme.createCommonResources(context);
-        }
-        boolean z2 = this.isAlert;
-        this.key1 = z2 ? Theme.key_dialogCheckboxSquareUnchecked : Theme.key_checkboxSquareUnchecked;
-        this.key2 = z2 ? Theme.key_dialogCheckboxSquareBackground : Theme.key_checkboxSquareBackground;
-        this.key3 = z2 ? Theme.key_dialogCheckboxSquareCheck : Theme.key_checkboxSquareCheck;
-        this.rectF = new RectF();
-        this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Bitmap.Config.ARGB_4444);
-        this.drawCanvas = new Canvas(this.drawBitmap);
-        this.isAlert = z;
     }
 }

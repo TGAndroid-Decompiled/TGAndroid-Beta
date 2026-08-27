@@ -4,9 +4,9 @@ import org.telegram.tgnet.TLObject;
 
 public abstract class TLMethod<T extends TLObject> extends TLObject {
     @Override
-    public final TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-        return deserializeResponseT(inputSerializedData, i, z);
+    public final TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        return deserializeResponseT(inputSerializedData, i10, z10);
     }
 
-    public abstract T deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z);
+    public abstract T deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10);
 }

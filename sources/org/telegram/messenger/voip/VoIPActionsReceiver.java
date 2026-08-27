@@ -3,7 +3,6 @@ package org.telegram.messenger.voip;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 
 public class VoIPActionsReceiver extends BroadcastReceiver {
     @Override
@@ -13,7 +12,7 @@ public class VoIPActionsReceiver extends BroadcastReceiver {
             return;
         }
         String packageName = context.getPackageName();
-        if (zzhp.m(packageName, ".END_CALL").equals(intent.getAction())) {
+        if (s3.c.l(packageName, ".END_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.decline(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
                 return;
@@ -22,7 +21,7 @@ public class VoIPActionsReceiver extends BroadcastReceiver {
                 return;
             }
         }
-        if (zzhp.m(packageName, ".DECLINE_CALL").equals(intent.getAction())) {
+        if (s3.c.l(packageName, ".DECLINE_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.decline(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
                 return;
@@ -31,7 +30,7 @@ public class VoIPActionsReceiver extends BroadcastReceiver {
                 return;
             }
         }
-        if (zzhp.m(packageName, ".ANSWER_CALL").equals(intent.getAction())) {
+        if (s3.c.l(packageName, ".ANSWER_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.answer(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
                 return;
@@ -40,7 +39,7 @@ public class VoIPActionsReceiver extends BroadcastReceiver {
                 return;
             }
         }
-        if (zzhp.m(packageName, ".HIDE_CALL").equals(intent.getAction())) {
+        if (s3.c.l(packageName, ".HIDE_CALL").equals(intent.getAction())) {
             if (intent.hasExtra("group_call_invite_msg_id")) {
                 VoIPGroupNotification.hide(context, intent.getIntExtra("currentAccount", 0), intent.getIntExtra("group_call_invite_msg_id", 0));
             } else {

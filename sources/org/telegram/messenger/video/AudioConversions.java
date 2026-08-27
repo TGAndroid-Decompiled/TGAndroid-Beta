@@ -5,19 +5,19 @@ public class AudioConversions {
     private static final int BYTES_PER_SHORT = 2;
     private static final long MICROSECONDS_PER_SECOND = 1000000;
 
-    public static long bytesToUs(int i, int i2, int i3) {
-        return (((long) i) * 1000000) / ((long) ((i2 * 2) * i3));
+    public static long bytesToUs(int i10, int i11, int i12) {
+        return (((long) i10) * 1000000) / ((long) ((i11 * 2) * i12));
     }
 
-    public static long shortsToUs(int i, int i2, int i3) {
-        return bytesToUs(i * 2, i2, i3);
+    public static long shortsToUs(int i10, int i11, int i12) {
+        return bytesToUs(i10 * 2, i11, i12);
     }
 
-    public static int usToBytes(long j, int i, int i2) {
-        return (int) Math.ceil((j * ((double) ((i * 2) * i2))) / 1000000.0d);
+    public static int usToBytes(long j10, int i10, int i11) {
+        return (int) Math.ceil((j10 * ((double) ((i10 * 2) * i11))) / 1000000.0d);
     }
 
-    public static int usToShorts(long j, int i, int i2) {
-        return usToBytes(j, i, i2) / 2;
+    public static int usToShorts(long j10, int i10, int i11) {
+        return usToBytes(j10, i10, i11) / 2;
     }
 }

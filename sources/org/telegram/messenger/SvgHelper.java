@@ -17,8 +17,6 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.SparseArray;
-import androidx.core.graphics.ColorUtils;
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -31,8 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.xml.parsers.SAXParserFactory;
-import org.telegram.messenger.wallpaper.WallpaperGiftPatternPosition;
-import org.telegram.ui.ActionBar.Theme;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -44,27 +40,33 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float x1;
-        float y1;
 
-        public Circle(float f, float f2, float f3) {
-            this.x1 = f;
-            this.y1 = f2;
-            this.rad = f3;
+        float f19636x1;
+
+        float f19637y1;
+
+        public Circle(float f10, float f11, float f12) {
+            this.f19636x1 = f10;
+            this.f19637y1 = f11;
+            this.rad = f12;
         }
     }
 
     public static class Line {
-        float x1;
-        float x2;
-        float y1;
-        float y2;
 
-        public Line(float f, float f2, float f3, float f4) {
-            this.x1 = f;
-            this.y1 = f2;
-            this.x2 = f3;
-            this.y2 = f4;
+        float f19638x1;
+
+        float f19639x2;
+
+        float f19640y1;
+
+        float f19641y2;
+
+        public Line(float f10, float f11, float f12, float f13) {
+            this.f19638x1 = f10;
+            this.f19640y1 = f11;
+            this.f19639x2 = f12;
+            this.f19641y2 = f13;
         }
     }
 
@@ -72,17 +74,17 @@ public class SvgHelper {
         private int nextCmd;
         private ArrayList<Float> numbers;
 
-        public NumberParse(ArrayList<Float> arrayList, int i) {
+        public NumberParse(ArrayList<Float> arrayList, int i10) {
             this.numbers = arrayList;
-            this.nextCmd = i;
+            this.nextCmd = i10;
         }
 
         public int getNextCmd() {
             return this.nextCmd;
         }
 
-        public float getNumber(int i) {
-            return this.numbers.get(i).floatValue();
+        public float getNumber(int i10) {
+            return this.numbers.get(i10).floatValue();
         }
     }
 
@@ -96,104 +98,108 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int n;
-        public int pos;
-        private CharSequence s;
 
-        public ParserHelper(CharSequence charSequence, int i) {
-            this.s = charSequence;
-            this.pos = i;
-            this.n = charSequence.length();
-            this.current = charSequence.charAt(i);
+        private int f19642n;
+        public int pos;
+
+        private CharSequence f19643s;
+
+        public ParserHelper(CharSequence charSequence, int i10) {
+            this.f19643s = charSequence;
+            this.pos = i10;
+            this.f19642n = charSequence.length();
+            this.current = charSequence.charAt(i10);
         }
 
         private char read() {
-            int i = this.pos;
-            int i2 = this.n;
-            if (i < i2) {
-                this.pos = i + 1;
+            int i10 = this.pos;
+            int i11 = this.f19642n;
+            if (i10 < i11) {
+                this.pos = i10 + 1;
             }
-            int i3 = this.pos;
-            if (i3 == i2) {
+            int i12 = this.pos;
+            if (i12 == i11) {
                 return (char) 0;
             }
-            return this.s.charAt(i3);
+            return this.f19643s.charAt(i12);
         }
 
-        private void reportUnexpectedCharacterError(char c) {
-            throw new RuntimeException("Unexpected char '" + c + "'.");
+        private void reportUnexpectedCharacterError(char c10) {
+            throw new RuntimeException("Unexpected char '" + c10 + "'.");
         }
 
         public void advance() {
             this.current = read();
         }
 
-        public float buildFloat(int i, int i2) {
-            if (i2 < -125 || i == 0) {
+        public float buildFloat(int i10, int i11) {
+            if (i11 < -125 || i10 == 0) {
                 return 0.0f;
             }
-            if (i2 >= 128) {
-                return i > 0 ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
+            if (i11 >= 128) {
+                return i10 > 0 ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
             }
-            if (i2 == 0) {
-                return i;
+            if (i11 == 0) {
+                return i10;
             }
-            if (i >= 67108864) {
-                i++;
+            if (i10 >= 67108864) {
+                i10++;
             }
-            return (float) (i2 > 0 ? ((double) i) * SvgHelper.pow10[i2] : ((double) i) / SvgHelper.pow10[-i2]);
+            double d = i10;
+            double[] dArr = SvgHelper.pow10;
+            return (float) (i11 > 0 ? d * dArr[i11] : d / dArr[-i11]);
         }
 
         public float nextFloat() {
             skipWhitespace();
-            float f = parseFloat();
+            float f10 = parseFloat();
             skipNumberSeparator();
-            return f;
+            return f10;
         }
 
         public float parseFloat() {
-            boolean z;
-            int i;
-            int i2;
-            int i3;
-            boolean z2;
-            char c;
-            char c2;
-            char c3;
-            char c4;
-            int i4;
-            char c5;
-            char c6;
-            char c7;
-            char c8;
-            char c9;
+            boolean z10;
+            int i10;
+            int i11;
+            int i12;
+            boolean z11;
             char c10;
-            char c11 = this.current;
-            int i5 = 0;
-            boolean z3 = true;
-            if (c11 != '+') {
-                if (c11 != '-') {
-                    z = true;
+            char c11;
+            char c12;
+            char c13;
+            int i13;
+            char c14;
+            char c15;
+            char c16;
+            char c17;
+            char c18;
+            char c19;
+            char c20 = this.current;
+            int i14 = 0;
+            boolean z12 = true;
+            if (c20 != '+') {
+                if (c20 != '-') {
+                    z10 = true;
                 } else {
-                    z = false;
+                    z10 = false;
                 }
                 switch (this.current) {
                     case '.':
-                        i = 0;
-                        i2 = 0;
-                        i3 = 0;
-                        z2 = false;
+                        i10 = 0;
+                        i11 = 0;
+                        i12 = 0;
+                        z11 = false;
                         if (this.current == '.') {
-                            c7 = read();
-                            this.current = c7;
-                            switch (c7) {
+                            c16 = read();
+                            this.current = c16;
+                            switch (c16) {
                                 case '0':
-                                    if (i == 0) {
+                                    if (i10 == 0) {
                                         while (true) {
-                                            c9 = read();
-                                            this.current = c9;
-                                            i2--;
-                                            switch (c9) {
+                                            c18 = read();
+                                            this.current = c18;
+                                            i11--;
+                                            switch (c18) {
                                                 case '0':
                                                     break;
                                                 case '1':
@@ -207,7 +213,7 @@ public class SvgHelper {
                                                 case '9':
                                                     break;
                                                 default:
-                                                    if (!z2) {
+                                                    if (!z11) {
                                                         return 0.0f;
                                                     }
                                                     break;
@@ -224,14 +230,14 @@ public class SvgHelper {
                                 case '8':
                                 case '9':
                                     while (true) {
-                                        if (i < 9) {
-                                            i++;
-                                            i2--;
-                                            i3 = (this.current - '0') + (i3 * 10);
+                                        if (i10 < 9) {
+                                            i10++;
+                                            i11--;
+                                            i12 = (this.current - '0') + (i12 * 10);
                                         }
-                                        c8 = read();
-                                        this.current = c8;
-                                        switch (c8) {
+                                        c17 = read();
+                                        this.current = c17;
+                                        switch (c17) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -247,21 +253,21 @@ public class SvgHelper {
                                     }
                                     break;
                                 default:
-                                    if (!z2) {
-                                        reportUnexpectedCharacterError(c7);
+                                    if (!z11) {
+                                        reportUnexpectedCharacterError(c16);
                                         return 0.0f;
                                     }
                                     break;
                             }
                         }
-                        c2 = this.current;
-                        if (c2 != 'E' || c2 == 'e') {
-                            c3 = read();
-                            this.current = c3;
-                            if (c3 == '+') {
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                        c11 = this.current;
+                        if (c11 != 'E' || c11 == 'e') {
+                            c12 = read();
+                            this.current = c12;
+                            if (c12 == '+') {
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -274,11 +280,11 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
-                            } else if (c3 != '-') {
-                                switch (c3) {
+                            } else if (c12 != '-') {
+                                switch (c12) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -291,14 +297,14 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c3);
+                                        reportUnexpectedCharacterError(c12);
                                         return 0.0f;
                                 }
                             } else {
-                                z3 = false;
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                                z12 = false;
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -311,16 +317,16 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
                             }
                             switch (this.current) {
                                 case '0':
                                     while (true) {
-                                        c6 = read();
-                                        this.current = c6;
-                                        switch (c6) {
+                                        c15 = read();
+                                        this.current = c15;
+                                        switch (c15) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -332,15 +338,15 @@ public class SvgHelper {
                                             case '7':
                                             case '8':
                                             case '9':
-                                                i4 = 0;
+                                                i13 = 0;
                                                 while (true) {
-                                                    if (i5 < 3) {
-                                                        i5++;
-                                                        i4 = (this.current - '0') + (i4 * 10);
+                                                    if (i14 < 3) {
+                                                        i14++;
+                                                        i13 = (this.current - '0') + (i13 * 10);
                                                     }
-                                                    c5 = read();
-                                                    this.current = c5;
-                                                    switch (c5) {
+                                                    c14 = read();
+                                                    this.current = c14;
+                                                    switch (c14) {
                                                         case '0':
                                                         case '1':
                                                         case '2':
@@ -353,7 +359,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            i5 = i4;
+                                                            i14 = i13;
                                                             break;
                                                     }
                                                 }
@@ -370,15 +376,15 @@ public class SvgHelper {
                                 case '7':
                                 case '8':
                                 case '9':
-                                    i4 = 0;
+                                    i13 = 0;
                                     while (true) {
-                                        if (i5 < 3) {
-                                            i5++;
-                                            i4 = (this.current - '0') + (i4 * 10);
+                                        if (i14 < 3) {
+                                            i14++;
+                                            i13 = (this.current - '0') + (i13 * 10);
                                         }
-                                        c5 = read();
-                                        this.current = c5;
-                                        switch (c5) {
+                                        c14 = read();
+                                        this.current = c14;
+                                        switch (c14) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -391,44 +397,44 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                i5 = i4;
+                                                i14 = i13;
                                                 break;
                                         }
                                     }
                                     break;
                             }
                         }
-                        if (!z3) {
-                            i5 = -i5;
+                        if (!z12) {
+                            i14 = -i14;
                         }
-                        int i6 = i5 + i2;
-                        if (!z) {
-                            i3 = -i3;
+                        int i15 = i14 + i11;
+                        if (!z10) {
+                            i12 = -i12;
                         }
-                        return buildFloat(i3, i6);
+                        return buildFloat(i12, i15);
                     case '/':
                     default:
                         return Float.NaN;
                     case '0':
                         while (true) {
-                            c10 = read();
-                            this.current = c10;
-                            if (c10 != '.' || c10 == 'E' || c10 == 'e') {
-                                i = 0;
-                                i2 = 0;
-                                i3 = 0;
-                                z2 = true;
+                            c19 = read();
+                            this.current = c19;
+                            if (c19 != '.' || c19 == 'E' || c19 == 'e') {
+                                i10 = 0;
+                                i11 = 0;
+                                i12 = 0;
+                                z11 = true;
                                 if (this.current == '.') {
-                                    c7 = read();
-                                    this.current = c7;
-                                    switch (c7) {
+                                    c16 = read();
+                                    this.current = c16;
+                                    switch (c16) {
                                         case '0':
-                                            if (i == 0) {
+                                            if (i10 == 0) {
                                                 while (true) {
-                                                    c9 = read();
-                                                    this.current = c9;
-                                                    i2--;
-                                                    switch (c9) {
+                                                    c18 = read();
+                                                    this.current = c18;
+                                                    i11--;
+                                                    switch (c18) {
                                                         case '0':
                                                             break;
                                                         case '1':
@@ -442,7 +448,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            if (!z2) {
+                                                            if (!z11) {
                                                                 return 0.0f;
                                                             }
                                                             break;
@@ -459,14 +465,14 @@ public class SvgHelper {
                                         case '8':
                                         case '9':
                                             while (true) {
-                                                if (i < 9) {
-                                                    i++;
-                                                    i2--;
-                                                    i3 = (this.current - '0') + (i3 * 10);
+                                                if (i10 < 9) {
+                                                    i10++;
+                                                    i11--;
+                                                    i12 = (this.current - '0') + (i12 * 10);
                                                 }
-                                                c8 = read();
-                                                this.current = c8;
-                                                switch (c8) {
+                                                c17 = read();
+                                                this.current = c17;
+                                                switch (c17) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -482,21 +488,21 @@ public class SvgHelper {
                                             }
                                             break;
                                         default:
-                                            if (!z2) {
-                                                reportUnexpectedCharacterError(c7);
+                                            if (!z11) {
+                                                reportUnexpectedCharacterError(c16);
                                                 return 0.0f;
                                             }
                                             break;
                                     }
                                 }
-                                c2 = this.current;
-                                if (c2 != 'E') {
-                                    c3 = read();
-                                    this.current = c3;
-                                    if (c3 == '+') {
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                c11 = this.current;
+                                if (c11 != 'E') {
+                                    c12 = read();
+                                    this.current = c12;
+                                    if (c12 == '+') {
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -509,11 +515,11 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
-                                    } else if (c3 != '-') {
-                                        switch (c3) {
+                                    } else if (c12 != '-') {
+                                        switch (c12) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -526,14 +532,14 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c3);
+                                                reportUnexpectedCharacterError(c12);
                                                 return 0.0f;
                                         }
                                     } else {
-                                        z3 = false;
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                        z12 = false;
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -546,16 +552,16 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
                                     }
                                     switch (this.current) {
                                         case '0':
                                             while (true) {
-                                                c6 = read();
-                                                this.current = c6;
-                                                switch (c6) {
+                                                c15 = read();
+                                                this.current = c15;
+                                                switch (c15) {
                                                     case '0':
                                                         break;
                                                     case '1':
@@ -567,15 +573,15 @@ public class SvgHelper {
                                                     case '7':
                                                     case '8':
                                                     case '9':
-                                                        i4 = 0;
+                                                        i13 = 0;
                                                         while (true) {
-                                                            if (i5 < 3) {
-                                                                i5++;
-                                                                i4 = (this.current - '0') + (i4 * 10);
+                                                            if (i14 < 3) {
+                                                                i14++;
+                                                                i13 = (this.current - '0') + (i13 * 10);
                                                             }
-                                                            c5 = read();
-                                                            this.current = c5;
-                                                            switch (c5) {
+                                                            c14 = read();
+                                                            this.current = c14;
+                                                            switch (c14) {
                                                                 case '0':
                                                                 case '1':
                                                                 case '2':
@@ -588,7 +594,7 @@ public class SvgHelper {
                                                                 case '9':
                                                                     break;
                                                                 default:
-                                                                    i5 = i4;
+                                                                    i14 = i13;
                                                                     break;
                                                             }
                                                         }
@@ -605,15 +611,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -626,19 +632,19 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
                                             break;
                                     }
                                 } else {
-                                    c3 = read();
-                                    this.current = c3;
-                                    if (c3 == '+') {
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                    c12 = read();
+                                    this.current = c12;
+                                    if (c12 == '+') {
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -651,11 +657,11 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
-                                    } else if (c3 != '-') {
-                                        switch (c3) {
+                                    } else if (c12 != '-') {
+                                        switch (c12) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -668,14 +674,14 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c3);
+                                                reportUnexpectedCharacterError(c12);
                                                 return 0.0f;
                                         }
                                     } else {
-                                        z3 = false;
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                        z12 = false;
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -688,16 +694,16 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
                                     }
                                     switch (this.current) {
                                         case '0':
                                             while (true) {
-                                                c6 = read();
-                                                this.current = c6;
-                                                switch (c6) {
+                                                c15 = read();
+                                                this.current = c15;
+                                                switch (c15) {
                                                     case '0':
                                                         break;
                                                     case '1':
@@ -709,15 +715,15 @@ public class SvgHelper {
                                                     case '7':
                                                     case '8':
                                                     case '9':
-                                                        i4 = 0;
+                                                        i13 = 0;
                                                         while (true) {
-                                                            if (i5 < 3) {
-                                                                i5++;
-                                                                i4 = (this.current - '0') + (i4 * 10);
+                                                            if (i14 < 3) {
+                                                                i14++;
+                                                                i13 = (this.current - '0') + (i13 * 10);
                                                             }
-                                                            c5 = read();
-                                                            this.current = c5;
-                                                            switch (c5) {
+                                                            c14 = read();
+                                                            this.current = c14;
+                                                            switch (c14) {
                                                                 case '0':
                                                                 case '1':
                                                                 case '2':
@@ -730,7 +736,7 @@ public class SvgHelper {
                                                                 case '9':
                                                                     break;
                                                                 default:
-                                                                    i5 = i4;
+                                                                    i14 = i13;
                                                                     break;
                                                             }
                                                         }
@@ -747,15 +753,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -768,23 +774,23 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
                                             break;
                                     }
                                 }
-                                if (!z3) {
-                                    i5 = -i5;
+                                if (!z12) {
+                                    i14 = -i14;
                                 }
-                                int i7 = i5 + i2;
-                                if (!z) {
-                                    i3 = -i3;
+                                int i16 = i14 + i11;
+                                if (!z10) {
+                                    i12 = -i12;
                                 }
-                                return buildFloat(i3, i7);
+                                return buildFloat(i12, i16);
                             }
-                            switch (c10) {
+                            switch (c19) {
                                 case '0':
                                     break;
                                 case '1':
@@ -800,19 +806,19 @@ public class SvgHelper {
                                 default:
                                     return 0.0f;
                             }
-                            i = 0;
-                            i2 = 0;
-                            i3 = 0;
+                            i10 = 0;
+                            i11 = 0;
+                            i12 = 0;
                             while (true) {
-                                if (i < 9) {
-                                    i++;
-                                    i3 = (i3 * 10) + (this.current - '0');
+                                if (i10 < 9) {
+                                    i10++;
+                                    i12 = (i12 * 10) + (this.current - '0');
                                 } else {
-                                    i2++;
+                                    i11++;
                                 }
-                                c = read();
-                                this.current = c;
-                                switch (c) {
+                                c10 = read();
+                                this.current = c10;
+                                switch (c10) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -825,18 +831,18 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                 }
-                                z2 = true;
+                                z11 = true;
                                 if (this.current == '.') {
-                                    c7 = read();
-                                    this.current = c7;
-                                    switch (c7) {
+                                    c16 = read();
+                                    this.current = c16;
+                                    switch (c16) {
                                         case '0':
-                                            if (i == 0) {
+                                            if (i10 == 0) {
                                                 while (true) {
-                                                    c9 = read();
-                                                    this.current = c9;
-                                                    i2--;
-                                                    switch (c9) {
+                                                    c18 = read();
+                                                    this.current = c18;
+                                                    i11--;
+                                                    switch (c18) {
                                                         case '0':
                                                             break;
                                                         case '1':
@@ -850,7 +856,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            if (!z2) {
+                                                            if (!z11) {
                                                                 return 0.0f;
                                                             }
                                                             break;
@@ -867,14 +873,14 @@ public class SvgHelper {
                                         case '8':
                                         case '9':
                                             while (true) {
-                                                if (i < 9) {
-                                                    i++;
-                                                    i2--;
-                                                    i3 = (this.current - '0') + (i3 * 10);
+                                                if (i10 < 9) {
+                                                    i10++;
+                                                    i11--;
+                                                    i12 = (this.current - '0') + (i12 * 10);
                                                 }
-                                                c8 = read();
-                                                this.current = c8;
-                                                switch (c8) {
+                                                c17 = read();
+                                                this.current = c17;
+                                                switch (c17) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -890,21 +896,21 @@ public class SvgHelper {
                                             }
                                             break;
                                         default:
-                                            if (!z2) {
-                                                reportUnexpectedCharacterError(c7);
+                                            if (!z11) {
+                                                reportUnexpectedCharacterError(c16);
                                                 return 0.0f;
                                             }
                                             break;
                                     }
                                 }
-                                c2 = this.current;
-                                if (c2 != 'E') {
-                                    c3 = read();
-                                    this.current = c3;
-                                    if (c3 == '+') {
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                c11 = this.current;
+                                if (c11 != 'E') {
+                                    c12 = read();
+                                    this.current = c12;
+                                    if (c12 == '+') {
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -917,11 +923,11 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
-                                    } else if (c3 != '-') {
-                                        switch (c3) {
+                                    } else if (c12 != '-') {
+                                        switch (c12) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -934,14 +940,14 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c3);
+                                                reportUnexpectedCharacterError(c12);
                                                 return 0.0f;
                                         }
                                     } else {
-                                        z3 = false;
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                        z12 = false;
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -954,16 +960,16 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
                                     }
                                     switch (this.current) {
                                         case '0':
                                             while (true) {
-                                                c6 = read();
-                                                this.current = c6;
-                                                switch (c6) {
+                                                c15 = read();
+                                                this.current = c15;
+                                                switch (c15) {
                                                     case '0':
                                                         break;
                                                     case '1':
@@ -975,15 +981,15 @@ public class SvgHelper {
                                                     case '7':
                                                     case '8':
                                                     case '9':
-                                                        i4 = 0;
+                                                        i13 = 0;
                                                         while (true) {
-                                                            if (i5 < 3) {
-                                                                i5++;
-                                                                i4 = (this.current - '0') + (i4 * 10);
+                                                            if (i14 < 3) {
+                                                                i14++;
+                                                                i13 = (this.current - '0') + (i13 * 10);
                                                             }
-                                                            c5 = read();
-                                                            this.current = c5;
-                                                            switch (c5) {
+                                                            c14 = read();
+                                                            this.current = c14;
+                                                            switch (c14) {
                                                                 case '0':
                                                                 case '1':
                                                                 case '2':
@@ -996,7 +1002,7 @@ public class SvgHelper {
                                                                 case '9':
                                                                     break;
                                                                 default:
-                                                                    i5 = i4;
+                                                                    i14 = i13;
                                                                     break;
                                                             }
                                                         }
@@ -1013,15 +1019,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -1034,19 +1040,19 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
                                             break;
                                     }
                                 } else {
-                                    c3 = read();
-                                    this.current = c3;
-                                    if (c3 == '+') {
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                    c12 = read();
+                                    this.current = c12;
+                                    if (c12 == '+') {
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -1059,11 +1065,11 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
-                                    } else if (c3 != '-') {
-                                        switch (c3) {
+                                    } else if (c12 != '-') {
+                                        switch (c12) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -1076,14 +1082,14 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c3);
+                                                reportUnexpectedCharacterError(c12);
                                                 return 0.0f;
                                         }
                                     } else {
-                                        z3 = false;
-                                        c4 = read();
-                                        this.current = c4;
-                                        switch (c4) {
+                                        z12 = false;
+                                        c13 = read();
+                                        this.current = c13;
+                                        switch (c13) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -1096,16 +1102,16 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                reportUnexpectedCharacterError(c4);
+                                                reportUnexpectedCharacterError(c13);
                                                 return 0.0f;
                                         }
                                     }
                                     switch (this.current) {
                                         case '0':
                                             while (true) {
-                                                c6 = read();
-                                                this.current = c6;
-                                                switch (c6) {
+                                                c15 = read();
+                                                this.current = c15;
+                                                switch (c15) {
                                                     case '0':
                                                         break;
                                                     case '1':
@@ -1117,15 +1123,15 @@ public class SvgHelper {
                                                     case '7':
                                                     case '8':
                                                     case '9':
-                                                        i4 = 0;
+                                                        i13 = 0;
                                                         while (true) {
-                                                            if (i5 < 3) {
-                                                                i5++;
-                                                                i4 = (this.current - '0') + (i4 * 10);
+                                                            if (i14 < 3) {
+                                                                i14++;
+                                                                i13 = (this.current - '0') + (i13 * 10);
                                                             }
-                                                            c5 = read();
-                                                            this.current = c5;
-                                                            switch (c5) {
+                                                            c14 = read();
+                                                            this.current = c14;
+                                                            switch (c14) {
                                                                 case '0':
                                                                 case '1':
                                                                 case '2':
@@ -1138,7 +1144,7 @@ public class SvgHelper {
                                                                 case '9':
                                                                     break;
                                                                 default:
-                                                                    i5 = i4;
+                                                                    i14 = i13;
                                                                     break;
                                                             }
                                                         }
@@ -1155,15 +1161,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -1176,21 +1182,21 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
                                             break;
                                     }
                                 }
-                                if (!z3) {
-                                    i5 = -i5;
+                                if (!z12) {
+                                    i14 = -i14;
                                 }
-                                int i8 = i5 + i2;
-                                if (!z) {
-                                    i3 = -i3;
+                                int i17 = i14 + i11;
+                                if (!z10) {
+                                    i12 = -i12;
                                 }
-                                return buildFloat(i3, i8);
+                                return buildFloat(i12, i17);
                             }
                         }
                     case '1':
@@ -1202,19 +1208,19 @@ public class SvgHelper {
                     case '7':
                     case '8':
                     case '9':
-                        i = 0;
-                        i2 = 0;
-                        i3 = 0;
+                        i10 = 0;
+                        i11 = 0;
+                        i12 = 0;
                         while (true) {
-                            if (i < 9) {
-                                i++;
-                                i3 = (i3 * 10) + (this.current - '0');
+                            if (i10 < 9) {
+                                i10++;
+                                i12 = (i12 * 10) + (this.current - '0');
                             } else {
-                                i2++;
+                                i11++;
                             }
-                            c = read();
-                            this.current = c;
-                            switch (c) {
+                            c10 = read();
+                            this.current = c10;
+                            switch (c10) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1227,18 +1233,18 @@ public class SvgHelper {
                                 case '9':
                                     break;
                             }
-                            z2 = true;
+                            z11 = true;
                             if (this.current == '.') {
-                                c7 = read();
-                                this.current = c7;
-                                switch (c7) {
+                                c16 = read();
+                                this.current = c16;
+                                switch (c16) {
                                     case '0':
-                                        if (i == 0) {
+                                        if (i10 == 0) {
                                             while (true) {
-                                                c9 = read();
-                                                this.current = c9;
-                                                i2--;
-                                                switch (c9) {
+                                                c18 = read();
+                                                this.current = c18;
+                                                i11--;
+                                                switch (c18) {
                                                     case '0':
                                                         break;
                                                     case '1':
@@ -1252,7 +1258,7 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        if (!z2) {
+                                                        if (!z11) {
                                                             return 0.0f;
                                                         }
                                                         break;
@@ -1269,14 +1275,14 @@ public class SvgHelper {
                                     case '8':
                                     case '9':
                                         while (true) {
-                                            if (i < 9) {
-                                                i++;
-                                                i2--;
-                                                i3 = (this.current - '0') + (i3 * 10);
+                                            if (i10 < 9) {
+                                                i10++;
+                                                i11--;
+                                                i12 = (this.current - '0') + (i12 * 10);
                                             }
-                                            c8 = read();
-                                            this.current = c8;
-                                            switch (c8) {
+                                            c17 = read();
+                                            this.current = c17;
+                                            switch (c17) {
                                                 case '0':
                                                 case '1':
                                                 case '2':
@@ -1292,21 +1298,21 @@ public class SvgHelper {
                                         }
                                         break;
                                     default:
-                                        if (!z2) {
-                                            reportUnexpectedCharacterError(c7);
+                                        if (!z11) {
+                                            reportUnexpectedCharacterError(c16);
                                             return 0.0f;
                                         }
                                         break;
                                 }
                             }
-                            c2 = this.current;
-                            if (c2 != 'E') {
-                                c3 = read();
-                                this.current = c3;
-                                if (c3 == '+') {
-                                    c4 = read();
-                                    this.current = c4;
-                                    switch (c4) {
+                            c11 = this.current;
+                            if (c11 != 'E') {
+                                c12 = read();
+                                this.current = c12;
+                                if (c12 == '+') {
+                                    c13 = read();
+                                    this.current = c13;
+                                    switch (c13) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1319,11 +1325,11 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c4);
+                                            reportUnexpectedCharacterError(c13);
                                             return 0.0f;
                                     }
-                                } else if (c3 != '-') {
-                                    switch (c3) {
+                                } else if (c12 != '-') {
+                                    switch (c12) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1336,14 +1342,14 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c3);
+                                            reportUnexpectedCharacterError(c12);
                                             return 0.0f;
                                     }
                                 } else {
-                                    z3 = false;
-                                    c4 = read();
-                                    this.current = c4;
-                                    switch (c4) {
+                                    z12 = false;
+                                    c13 = read();
+                                    this.current = c13;
+                                    switch (c13) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1356,16 +1362,16 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c4);
+                                            reportUnexpectedCharacterError(c13);
                                             return 0.0f;
                                     }
                                 }
                                 switch (this.current) {
                                     case '0':
                                         while (true) {
-                                            c6 = read();
-                                            this.current = c6;
-                                            switch (c6) {
+                                            c15 = read();
+                                            this.current = c15;
+                                            switch (c15) {
                                                 case '0':
                                                     break;
                                                 case '1':
@@ -1377,15 +1383,15 @@ public class SvgHelper {
                                                 case '7':
                                                 case '8':
                                                 case '9':
-                                                    i4 = 0;
+                                                    i13 = 0;
                                                     while (true) {
-                                                        if (i5 < 3) {
-                                                            i5++;
-                                                            i4 = (this.current - '0') + (i4 * 10);
+                                                        if (i14 < 3) {
+                                                            i14++;
+                                                            i13 = (this.current - '0') + (i13 * 10);
                                                         }
-                                                        c5 = read();
-                                                        this.current = c5;
-                                                        switch (c5) {
+                                                        c14 = read();
+                                                        this.current = c14;
+                                                        switch (c14) {
                                                             case '0':
                                                             case '1':
                                                             case '2':
@@ -1398,7 +1404,7 @@ public class SvgHelper {
                                                             case '9':
                                                                 break;
                                                             default:
-                                                                i5 = i4;
+                                                                i14 = i13;
                                                                 break;
                                                         }
                                                     }
@@ -1415,15 +1421,15 @@ public class SvgHelper {
                                     case '7':
                                     case '8':
                                     case '9':
-                                        i4 = 0;
+                                        i13 = 0;
                                         while (true) {
-                                            if (i5 < 3) {
-                                                i5++;
-                                                i4 = (this.current - '0') + (i4 * 10);
+                                            if (i14 < 3) {
+                                                i14++;
+                                                i13 = (this.current - '0') + (i13 * 10);
                                             }
-                                            c5 = read();
-                                            this.current = c5;
-                                            switch (c5) {
+                                            c14 = read();
+                                            this.current = c14;
+                                            switch (c14) {
                                                 case '0':
                                                 case '1':
                                                 case '2':
@@ -1436,19 +1442,19 @@ public class SvgHelper {
                                                 case '9':
                                                     break;
                                                 default:
-                                                    i5 = i4;
+                                                    i14 = i13;
                                                     break;
                                             }
                                         }
                                         break;
                                 }
                             } else {
-                                c3 = read();
-                                this.current = c3;
-                                if (c3 == '+') {
-                                    c4 = read();
-                                    this.current = c4;
-                                    switch (c4) {
+                                c12 = read();
+                                this.current = c12;
+                                if (c12 == '+') {
+                                    c13 = read();
+                                    this.current = c13;
+                                    switch (c13) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1461,11 +1467,11 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c4);
+                                            reportUnexpectedCharacterError(c13);
                                             return 0.0f;
                                     }
-                                } else if (c3 != '-') {
-                                    switch (c3) {
+                                } else if (c12 != '-') {
+                                    switch (c12) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1478,14 +1484,14 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c3);
+                                            reportUnexpectedCharacterError(c12);
                                             return 0.0f;
                                     }
                                 } else {
-                                    z3 = false;
-                                    c4 = read();
-                                    this.current = c4;
-                                    switch (c4) {
+                                    z12 = false;
+                                    c13 = read();
+                                    this.current = c13;
+                                    switch (c13) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1498,16 +1504,16 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            reportUnexpectedCharacterError(c4);
+                                            reportUnexpectedCharacterError(c13);
                                             return 0.0f;
                                     }
                                 }
                                 switch (this.current) {
                                     case '0':
                                         while (true) {
-                                            c6 = read();
-                                            this.current = c6;
-                                            switch (c6) {
+                                            c15 = read();
+                                            this.current = c15;
+                                            switch (c15) {
                                                 case '0':
                                                     break;
                                                 case '1':
@@ -1519,15 +1525,15 @@ public class SvgHelper {
                                                 case '7':
                                                 case '8':
                                                 case '9':
-                                                    i4 = 0;
+                                                    i13 = 0;
                                                     while (true) {
-                                                        if (i5 < 3) {
-                                                            i5++;
-                                                            i4 = (this.current - '0') + (i4 * 10);
+                                                        if (i14 < 3) {
+                                                            i14++;
+                                                            i13 = (this.current - '0') + (i13 * 10);
                                                         }
-                                                        c5 = read();
-                                                        this.current = c5;
-                                                        switch (c5) {
+                                                        c14 = read();
+                                                        this.current = c14;
+                                                        switch (c14) {
                                                             case '0':
                                                             case '1':
                                                             case '2':
@@ -1540,7 +1546,7 @@ public class SvgHelper {
                                                             case '9':
                                                                 break;
                                                             default:
-                                                                i5 = i4;
+                                                                i14 = i13;
                                                                 break;
                                                         }
                                                     }
@@ -1557,15 +1563,15 @@ public class SvgHelper {
                                     case '7':
                                     case '8':
                                     case '9':
-                                        i4 = 0;
+                                        i13 = 0;
                                         while (true) {
-                                            if (i5 < 3) {
-                                                i5++;
-                                                i4 = (this.current - '0') + (i4 * 10);
+                                            if (i14 < 3) {
+                                                i14++;
+                                                i13 = (this.current - '0') + (i13 * 10);
                                             }
-                                            c5 = read();
-                                            this.current = c5;
-                                            switch (c5) {
+                                            c14 = read();
+                                            this.current = c14;
+                                            switch (c14) {
                                                 case '0':
                                                 case '1':
                                                 case '2':
@@ -1578,43 +1584,43 @@ public class SvgHelper {
                                                 case '9':
                                                     break;
                                                 default:
-                                                    i5 = i4;
+                                                    i14 = i13;
                                                     break;
                                             }
                                         }
                                         break;
                                 }
                             }
-                            if (!z3) {
-                                i5 = -i5;
+                            if (!z12) {
+                                i14 = -i14;
                             }
-                            int i9 = i5 + i2;
-                            if (!z) {
-                                i3 = -i3;
+                            int i18 = i14 + i11;
+                            if (!z10) {
+                                i12 = -i12;
                             }
-                            return buildFloat(i3, i9);
+                            return buildFloat(i12, i18);
                         }
                 }
             }
-            z = true;
+            z10 = true;
             this.current = read();
             switch (this.current) {
                 case '.':
-                    i = 0;
-                    i2 = 0;
-                    i3 = 0;
-                    z2 = false;
+                    i10 = 0;
+                    i11 = 0;
+                    i12 = 0;
+                    z11 = false;
                     if (this.current == '.') {
-                        c7 = read();
-                        this.current = c7;
-                        switch (c7) {
+                        c16 = read();
+                        this.current = c16;
+                        switch (c16) {
                             case '0':
-                                if (i == 0) {
+                                if (i10 == 0) {
                                     while (true) {
-                                        c9 = read();
-                                        this.current = c9;
-                                        i2--;
-                                        switch (c9) {
+                                        c18 = read();
+                                        this.current = c18;
+                                        i11--;
+                                        switch (c18) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -1628,7 +1634,7 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                if (!z2) {
+                                                if (!z11) {
                                                     return 0.0f;
                                                 }
                                                 break;
@@ -1645,14 +1651,14 @@ public class SvgHelper {
                             case '8':
                             case '9':
                                 while (true) {
-                                    if (i < 9) {
-                                        i++;
-                                        i2--;
-                                        i3 = (this.current - '0') + (i3 * 10);
+                                    if (i10 < 9) {
+                                        i10++;
+                                        i11--;
+                                        i12 = (this.current - '0') + (i12 * 10);
                                     }
-                                    c8 = read();
-                                    this.current = c8;
-                                    switch (c8) {
+                                    c17 = read();
+                                    this.current = c17;
+                                    switch (c17) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1668,21 +1674,21 @@ public class SvgHelper {
                                 }
                                 break;
                             default:
-                                if (!z2) {
-                                    reportUnexpectedCharacterError(c7);
+                                if (!z11) {
+                                    reportUnexpectedCharacterError(c16);
                                     return 0.0f;
                                 }
                                 break;
                         }
                     }
-                    c2 = this.current;
-                    if (c2 != 'E') {
-                        c3 = read();
-                        this.current = c3;
-                        if (c3 == '+') {
-                            c4 = read();
-                            this.current = c4;
-                            switch (c4) {
+                    c11 = this.current;
+                    if (c11 != 'E') {
+                        c12 = read();
+                        this.current = c12;
+                        if (c12 == '+') {
+                            c13 = read();
+                            this.current = c13;
+                            switch (c13) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1695,11 +1701,11 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c4);
+                                    reportUnexpectedCharacterError(c13);
                                     return 0.0f;
                             }
-                        } else if (c3 != '-') {
-                            switch (c3) {
+                        } else if (c12 != '-') {
+                            switch (c12) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1712,14 +1718,14 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c3);
+                                    reportUnexpectedCharacterError(c12);
                                     return 0.0f;
                             }
                         } else {
-                            z3 = false;
-                            c4 = read();
-                            this.current = c4;
-                            switch (c4) {
+                            z12 = false;
+                            c13 = read();
+                            this.current = c13;
+                            switch (c13) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1732,16 +1738,16 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c4);
+                                    reportUnexpectedCharacterError(c13);
                                     return 0.0f;
                             }
                         }
                         switch (this.current) {
                             case '0':
                                 while (true) {
-                                    c6 = read();
-                                    this.current = c6;
-                                    switch (c6) {
+                                    c15 = read();
+                                    this.current = c15;
+                                    switch (c15) {
                                         case '0':
                                             break;
                                         case '1':
@@ -1753,15 +1759,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -1774,7 +1780,7 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
@@ -1791,15 +1797,15 @@ public class SvgHelper {
                             case '7':
                             case '8':
                             case '9':
-                                i4 = 0;
+                                i13 = 0;
                                 while (true) {
-                                    if (i5 < 3) {
-                                        i5++;
-                                        i4 = (this.current - '0') + (i4 * 10);
+                                    if (i14 < 3) {
+                                        i14++;
+                                        i13 = (this.current - '0') + (i13 * 10);
                                     }
-                                    c5 = read();
-                                    this.current = c5;
-                                    switch (c5) {
+                                    c14 = read();
+                                    this.current = c14;
+                                    switch (c14) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1812,19 +1818,19 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            i5 = i4;
+                                            i14 = i13;
                                             break;
                                     }
                                 }
                                 break;
                         }
                     } else {
-                        c3 = read();
-                        this.current = c3;
-                        if (c3 == '+') {
-                            c4 = read();
-                            this.current = c4;
-                            switch (c4) {
+                        c12 = read();
+                        this.current = c12;
+                        if (c12 == '+') {
+                            c13 = read();
+                            this.current = c13;
+                            switch (c13) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1837,11 +1843,11 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c4);
+                                    reportUnexpectedCharacterError(c13);
                                     return 0.0f;
                             }
-                        } else if (c3 != '-') {
-                            switch (c3) {
+                        } else if (c12 != '-') {
+                            switch (c12) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1854,14 +1860,14 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c3);
+                                    reportUnexpectedCharacterError(c12);
                                     return 0.0f;
                             }
                         } else {
-                            z3 = false;
-                            c4 = read();
-                            this.current = c4;
-                            switch (c4) {
+                            z12 = false;
+                            c13 = read();
+                            this.current = c13;
+                            switch (c13) {
                                 case '0':
                                 case '1':
                                 case '2':
@@ -1874,16 +1880,16 @@ public class SvgHelper {
                                 case '9':
                                     break;
                                 default:
-                                    reportUnexpectedCharacterError(c4);
+                                    reportUnexpectedCharacterError(c13);
                                     return 0.0f;
                             }
                         }
                         switch (this.current) {
                             case '0':
                                 while (true) {
-                                    c6 = read();
-                                    this.current = c6;
-                                    switch (c6) {
+                                    c15 = read();
+                                    this.current = c15;
+                                    switch (c15) {
                                         case '0':
                                             break;
                                         case '1':
@@ -1895,15 +1901,15 @@ public class SvgHelper {
                                         case '7':
                                         case '8':
                                         case '9':
-                                            i4 = 0;
+                                            i13 = 0;
                                             while (true) {
-                                                if (i5 < 3) {
-                                                    i5++;
-                                                    i4 = (this.current - '0') + (i4 * 10);
+                                                if (i14 < 3) {
+                                                    i14++;
+                                                    i13 = (this.current - '0') + (i13 * 10);
                                                 }
-                                                c5 = read();
-                                                this.current = c5;
-                                                switch (c5) {
+                                                c14 = read();
+                                                this.current = c14;
+                                                switch (c14) {
                                                     case '0':
                                                     case '1':
                                                     case '2':
@@ -1916,7 +1922,7 @@ public class SvgHelper {
                                                     case '9':
                                                         break;
                                                     default:
-                                                        i5 = i4;
+                                                        i14 = i13;
                                                         break;
                                                 }
                                             }
@@ -1933,15 +1939,15 @@ public class SvgHelper {
                             case '7':
                             case '8':
                             case '9':
-                                i4 = 0;
+                                i13 = 0;
                                 while (true) {
-                                    if (i5 < 3) {
-                                        i5++;
-                                        i4 = (this.current - '0') + (i4 * 10);
+                                    if (i14 < 3) {
+                                        i14++;
+                                        i13 = (this.current - '0') + (i13 * 10);
                                     }
-                                    c5 = read();
-                                    this.current = c5;
-                                    switch (c5) {
+                                    c14 = read();
+                                    this.current = c14;
+                                    switch (c14) {
                                         case '0':
                                         case '1':
                                         case '2':
@@ -1954,45 +1960,45 @@ public class SvgHelper {
                                         case '9':
                                             break;
                                         default:
-                                            i5 = i4;
+                                            i14 = i13;
                                             break;
                                     }
                                 }
                                 break;
                         }
                     }
-                    if (!z3) {
-                        i5 = -i5;
+                    if (!z12) {
+                        i14 = -i14;
                     }
-                    int i10 = i5 + i2;
-                    if (!z) {
-                        i3 = -i3;
+                    int i19 = i14 + i11;
+                    if (!z10) {
+                        i12 = -i12;
                     }
-                    return buildFloat(i3, i10);
+                    return buildFloat(i12, i19);
                 case '/':
                 default:
                     return Float.NaN;
                 case '0':
                     while (true) {
-                        c10 = read();
-                        this.current = c10;
-                        if (c10 != '.') {
+                        c19 = read();
+                        this.current = c19;
+                        if (c19 != '.') {
                         }
-                        i = 0;
-                        i2 = 0;
-                        i3 = 0;
-                        z2 = true;
+                        i10 = 0;
+                        i11 = 0;
+                        i12 = 0;
+                        z11 = true;
                         if (this.current == '.') {
-                            c7 = read();
-                            this.current = c7;
-                            switch (c7) {
+                            c16 = read();
+                            this.current = c16;
+                            switch (c16) {
                                 case '0':
-                                    if (i == 0) {
+                                    if (i10 == 0) {
                                         while (true) {
-                                            c9 = read();
-                                            this.current = c9;
-                                            i2--;
-                                            switch (c9) {
+                                            c18 = read();
+                                            this.current = c18;
+                                            i11--;
+                                            switch (c18) {
                                                 case '0':
                                                     break;
                                                 case '1':
@@ -2006,7 +2012,7 @@ public class SvgHelper {
                                                 case '9':
                                                     break;
                                                 default:
-                                                    if (!z2) {
+                                                    if (!z11) {
                                                         return 0.0f;
                                                     }
                                                     break;
@@ -2023,14 +2029,14 @@ public class SvgHelper {
                                 case '8':
                                 case '9':
                                     while (true) {
-                                        if (i < 9) {
-                                            i++;
-                                            i2--;
-                                            i3 = (this.current - '0') + (i3 * 10);
+                                        if (i10 < 9) {
+                                            i10++;
+                                            i11--;
+                                            i12 = (this.current - '0') + (i12 * 10);
                                         }
-                                        c8 = read();
-                                        this.current = c8;
-                                        switch (c8) {
+                                        c17 = read();
+                                        this.current = c17;
+                                        switch (c17) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2046,21 +2052,21 @@ public class SvgHelper {
                                     }
                                     break;
                                 default:
-                                    if (!z2) {
-                                        reportUnexpectedCharacterError(c7);
+                                    if (!z11) {
+                                        reportUnexpectedCharacterError(c16);
                                         return 0.0f;
                                     }
                                     break;
                             }
                         }
-                        c2 = this.current;
-                        if (c2 != 'E') {
-                            c3 = read();
-                            this.current = c3;
-                            if (c3 == '+') {
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                        c11 = this.current;
+                        if (c11 != 'E') {
+                            c12 = read();
+                            this.current = c12;
+                            if (c12 == '+') {
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2073,11 +2079,11 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
-                            } else if (c3 != '-') {
-                                switch (c3) {
+                            } else if (c12 != '-') {
+                                switch (c12) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2090,14 +2096,14 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c3);
+                                        reportUnexpectedCharacterError(c12);
                                         return 0.0f;
                                 }
                             } else {
-                                z3 = false;
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                                z12 = false;
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2110,16 +2116,16 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
                             }
                             switch (this.current) {
                                 case '0':
                                     while (true) {
-                                        c6 = read();
-                                        this.current = c6;
-                                        switch (c6) {
+                                        c15 = read();
+                                        this.current = c15;
+                                        switch (c15) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -2131,15 +2137,15 @@ public class SvgHelper {
                                             case '7':
                                             case '8':
                                             case '9':
-                                                i4 = 0;
+                                                i13 = 0;
                                                 while (true) {
-                                                    if (i5 < 3) {
-                                                        i5++;
-                                                        i4 = (this.current - '0') + (i4 * 10);
+                                                    if (i14 < 3) {
+                                                        i14++;
+                                                        i13 = (this.current - '0') + (i13 * 10);
                                                     }
-                                                    c5 = read();
-                                                    this.current = c5;
-                                                    switch (c5) {
+                                                    c14 = read();
+                                                    this.current = c14;
+                                                    switch (c14) {
                                                         case '0':
                                                         case '1':
                                                         case '2':
@@ -2152,7 +2158,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            i5 = i4;
+                                                            i14 = i13;
                                                             break;
                                                     }
                                                 }
@@ -2169,15 +2175,15 @@ public class SvgHelper {
                                 case '7':
                                 case '8':
                                 case '9':
-                                    i4 = 0;
+                                    i13 = 0;
                                     while (true) {
-                                        if (i5 < 3) {
-                                            i5++;
-                                            i4 = (this.current - '0') + (i4 * 10);
+                                        if (i14 < 3) {
+                                            i14++;
+                                            i13 = (this.current - '0') + (i13 * 10);
                                         }
-                                        c5 = read();
-                                        this.current = c5;
-                                        switch (c5) {
+                                        c14 = read();
+                                        this.current = c14;
+                                        switch (c14) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2190,19 +2196,19 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                i5 = i4;
+                                                i14 = i13;
                                                 break;
                                         }
                                     }
                                     break;
                             }
                         } else {
-                            c3 = read();
-                            this.current = c3;
-                            if (c3 == '+') {
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                            c12 = read();
+                            this.current = c12;
+                            if (c12 == '+') {
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2215,11 +2221,11 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
-                            } else if (c3 != '-') {
-                                switch (c3) {
+                            } else if (c12 != '-') {
+                                switch (c12) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2232,14 +2238,14 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c3);
+                                        reportUnexpectedCharacterError(c12);
                                         return 0.0f;
                                 }
                             } else {
-                                z3 = false;
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                                z12 = false;
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2252,16 +2258,16 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
                             }
                             switch (this.current) {
                                 case '0':
                                     while (true) {
-                                        c6 = read();
-                                        this.current = c6;
-                                        switch (c6) {
+                                        c15 = read();
+                                        this.current = c15;
+                                        switch (c15) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -2273,15 +2279,15 @@ public class SvgHelper {
                                             case '7':
                                             case '8':
                                             case '9':
-                                                i4 = 0;
+                                                i13 = 0;
                                                 while (true) {
-                                                    if (i5 < 3) {
-                                                        i5++;
-                                                        i4 = (this.current - '0') + (i4 * 10);
+                                                    if (i14 < 3) {
+                                                        i14++;
+                                                        i13 = (this.current - '0') + (i13 * 10);
                                                     }
-                                                    c5 = read();
-                                                    this.current = c5;
-                                                    switch (c5) {
+                                                    c14 = read();
+                                                    this.current = c14;
+                                                    switch (c14) {
                                                         case '0':
                                                         case '1':
                                                         case '2':
@@ -2294,7 +2300,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            i5 = i4;
+                                                            i14 = i13;
                                                             break;
                                                     }
                                                 }
@@ -2311,15 +2317,15 @@ public class SvgHelper {
                                 case '7':
                                 case '8':
                                 case '9':
-                                    i4 = 0;
+                                    i13 = 0;
                                     while (true) {
-                                        if (i5 < 3) {
-                                            i5++;
-                                            i4 = (this.current - '0') + (i4 * 10);
+                                        if (i14 < 3) {
+                                            i14++;
+                                            i13 = (this.current - '0') + (i13 * 10);
                                         }
-                                        c5 = read();
-                                        this.current = c5;
-                                        switch (c5) {
+                                        c14 = read();
+                                        this.current = c14;
+                                        switch (c14) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2332,21 +2338,21 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                i5 = i4;
+                                                i14 = i13;
                                                 break;
                                         }
                                     }
                                     break;
                             }
                         }
-                        if (!z3) {
-                            i5 = -i5;
+                        if (!z12) {
+                            i14 = -i14;
                         }
-                        int i11 = i5 + i2;
-                        if (!z) {
-                            i3 = -i3;
+                        int i110 = i14 + i11;
+                        if (!z10) {
+                            i12 = -i12;
                         }
-                        return buildFloat(i3, i11);
+                        return buildFloat(i12, i110);
                     }
                     break;
                 case '1':
@@ -2358,19 +2364,19 @@ public class SvgHelper {
                 case '7':
                 case '8':
                 case '9':
-                    i = 0;
-                    i2 = 0;
-                    i3 = 0;
+                    i10 = 0;
+                    i11 = 0;
+                    i12 = 0;
                     while (true) {
-                        if (i < 9) {
-                            i++;
-                            i3 = (i3 * 10) + (this.current - '0');
+                        if (i10 < 9) {
+                            i10++;
+                            i12 = (i12 * 10) + (this.current - '0');
                         } else {
-                            i2++;
+                            i11++;
                         }
-                        c = read();
-                        this.current = c;
-                        switch (c) {
+                        c10 = read();
+                        this.current = c10;
+                        switch (c10) {
                             case '0':
                             case '1':
                             case '2':
@@ -2383,18 +2389,18 @@ public class SvgHelper {
                             case '9':
                                 break;
                         }
-                        z2 = true;
+                        z11 = true;
                         if (this.current == '.') {
-                            c7 = read();
-                            this.current = c7;
-                            switch (c7) {
+                            c16 = read();
+                            this.current = c16;
+                            switch (c16) {
                                 case '0':
-                                    if (i == 0) {
+                                    if (i10 == 0) {
                                         while (true) {
-                                            c9 = read();
-                                            this.current = c9;
-                                            i2--;
-                                            switch (c9) {
+                                            c18 = read();
+                                            this.current = c18;
+                                            i11--;
+                                            switch (c18) {
                                                 case '0':
                                                     break;
                                                 case '1':
@@ -2408,7 +2414,7 @@ public class SvgHelper {
                                                 case '9':
                                                     break;
                                                 default:
-                                                    if (!z2) {
+                                                    if (!z11) {
                                                         return 0.0f;
                                                     }
                                                     break;
@@ -2425,14 +2431,14 @@ public class SvgHelper {
                                 case '8':
                                 case '9':
                                     while (true) {
-                                        if (i < 9) {
-                                            i++;
-                                            i2--;
-                                            i3 = (this.current - '0') + (i3 * 10);
+                                        if (i10 < 9) {
+                                            i10++;
+                                            i11--;
+                                            i12 = (this.current - '0') + (i12 * 10);
                                         }
-                                        c8 = read();
-                                        this.current = c8;
-                                        switch (c8) {
+                                        c17 = read();
+                                        this.current = c17;
+                                        switch (c17) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2448,21 +2454,21 @@ public class SvgHelper {
                                     }
                                     break;
                                 default:
-                                    if (!z2) {
-                                        reportUnexpectedCharacterError(c7);
+                                    if (!z11) {
+                                        reportUnexpectedCharacterError(c16);
                                         return 0.0f;
                                     }
                                     break;
                             }
                         }
-                        c2 = this.current;
-                        if (c2 != 'E') {
-                            c3 = read();
-                            this.current = c3;
-                            if (c3 == '+') {
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                        c11 = this.current;
+                        if (c11 != 'E') {
+                            c12 = read();
+                            this.current = c12;
+                            if (c12 == '+') {
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2475,11 +2481,11 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
-                            } else if (c3 != '-') {
-                                switch (c3) {
+                            } else if (c12 != '-') {
+                                switch (c12) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2492,14 +2498,14 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c3);
+                                        reportUnexpectedCharacterError(c12);
                                         return 0.0f;
                                 }
                             } else {
-                                z3 = false;
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                                z12 = false;
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2512,16 +2518,16 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
                             }
                             switch (this.current) {
                                 case '0':
                                     while (true) {
-                                        c6 = read();
-                                        this.current = c6;
-                                        switch (c6) {
+                                        c15 = read();
+                                        this.current = c15;
+                                        switch (c15) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -2533,15 +2539,15 @@ public class SvgHelper {
                                             case '7':
                                             case '8':
                                             case '9':
-                                                i4 = 0;
+                                                i13 = 0;
                                                 while (true) {
-                                                    if (i5 < 3) {
-                                                        i5++;
-                                                        i4 = (this.current - '0') + (i4 * 10);
+                                                    if (i14 < 3) {
+                                                        i14++;
+                                                        i13 = (this.current - '0') + (i13 * 10);
                                                     }
-                                                    c5 = read();
-                                                    this.current = c5;
-                                                    switch (c5) {
+                                                    c14 = read();
+                                                    this.current = c14;
+                                                    switch (c14) {
                                                         case '0':
                                                         case '1':
                                                         case '2':
@@ -2554,7 +2560,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            i5 = i4;
+                                                            i14 = i13;
                                                             break;
                                                     }
                                                 }
@@ -2571,15 +2577,15 @@ public class SvgHelper {
                                 case '7':
                                 case '8':
                                 case '9':
-                                    i4 = 0;
+                                    i13 = 0;
                                     while (true) {
-                                        if (i5 < 3) {
-                                            i5++;
-                                            i4 = (this.current - '0') + (i4 * 10);
+                                        if (i14 < 3) {
+                                            i14++;
+                                            i13 = (this.current - '0') + (i13 * 10);
                                         }
-                                        c5 = read();
-                                        this.current = c5;
-                                        switch (c5) {
+                                        c14 = read();
+                                        this.current = c14;
+                                        switch (c14) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2592,19 +2598,19 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                i5 = i4;
+                                                i14 = i13;
                                                 break;
                                         }
                                     }
                                     break;
                             }
                         } else {
-                            c3 = read();
-                            this.current = c3;
-                            if (c3 == '+') {
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                            c12 = read();
+                            this.current = c12;
+                            if (c12 == '+') {
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2617,11 +2623,11 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
-                            } else if (c3 != '-') {
-                                switch (c3) {
+                            } else if (c12 != '-') {
+                                switch (c12) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2634,14 +2640,14 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c3);
+                                        reportUnexpectedCharacterError(c12);
                                         return 0.0f;
                                 }
                             } else {
-                                z3 = false;
-                                c4 = read();
-                                this.current = c4;
-                                switch (c4) {
+                                z12 = false;
+                                c13 = read();
+                                this.current = c13;
+                                switch (c13) {
                                     case '0':
                                     case '1':
                                     case '2':
@@ -2654,16 +2660,16 @@ public class SvgHelper {
                                     case '9':
                                         break;
                                     default:
-                                        reportUnexpectedCharacterError(c4);
+                                        reportUnexpectedCharacterError(c13);
                                         return 0.0f;
                                 }
                             }
                             switch (this.current) {
                                 case '0':
                                     while (true) {
-                                        c6 = read();
-                                        this.current = c6;
-                                        switch (c6) {
+                                        c15 = read();
+                                        this.current = c15;
+                                        switch (c15) {
                                             case '0':
                                                 break;
                                             case '1':
@@ -2675,15 +2681,15 @@ public class SvgHelper {
                                             case '7':
                                             case '8':
                                             case '9':
-                                                i4 = 0;
+                                                i13 = 0;
                                                 while (true) {
-                                                    if (i5 < 3) {
-                                                        i5++;
-                                                        i4 = (this.current - '0') + (i4 * 10);
+                                                    if (i14 < 3) {
+                                                        i14++;
+                                                        i13 = (this.current - '0') + (i13 * 10);
                                                     }
-                                                    c5 = read();
-                                                    this.current = c5;
-                                                    switch (c5) {
+                                                    c14 = read();
+                                                    this.current = c14;
+                                                    switch (c14) {
                                                         case '0':
                                                         case '1':
                                                         case '2':
@@ -2696,7 +2702,7 @@ public class SvgHelper {
                                                         case '9':
                                                             break;
                                                         default:
-                                                            i5 = i4;
+                                                            i14 = i13;
                                                             break;
                                                     }
                                                 }
@@ -2713,15 +2719,15 @@ public class SvgHelper {
                                 case '7':
                                 case '8':
                                 case '9':
-                                    i4 = 0;
+                                    i13 = 0;
                                     while (true) {
-                                        if (i5 < 3) {
-                                            i5++;
-                                            i4 = (this.current - '0') + (i4 * 10);
+                                        if (i14 < 3) {
+                                            i14++;
+                                            i13 = (this.current - '0') + (i13 * 10);
                                         }
-                                        c5 = read();
-                                        this.current = c5;
-                                        switch (c5) {
+                                        c14 = read();
+                                        this.current = c14;
+                                        switch (c14) {
                                             case '0':
                                             case '1':
                                             case '2':
@@ -2734,32 +2740,32 @@ public class SvgHelper {
                                             case '9':
                                                 break;
                                             default:
-                                                i5 = i4;
+                                                i14 = i13;
                                                 break;
                                         }
                                     }
                                     break;
                             }
                         }
-                        if (!z3) {
-                            i5 = -i5;
+                        if (!z12) {
+                            i14 = -i14;
                         }
-                        int i12 = i5 + i2;
-                        if (!z) {
-                            i3 = -i3;
+                        int i111 = i14 + i11;
+                        if (!z10) {
+                            i12 = -i12;
                         }
-                        return buildFloat(i3, i12);
+                        return buildFloat(i12, i111);
                     }
             }
         }
 
         public void skipNumberSeparator() {
             while (true) {
-                int i = this.pos;
-                if (i >= this.n) {
+                int i10 = this.pos;
+                if (i10 >= this.f19642n) {
                     return;
                 }
-                char cCharAt = this.s.charAt(i);
+                char cCharAt = this.f19643s.charAt(i10);
                 if (cCharAt != '\t' && cCharAt != '\n' && cCharAt != ' ' && cCharAt != ',') {
                     return;
                 } else {
@@ -2770,8 +2776,8 @@ public class SvgHelper {
 
         public void skipWhitespace() {
             while (true) {
-                int i = this.pos;
-                if (i >= this.n || !Character.isWhitespace(this.s.charAt(i))) {
+                int i10 = this.pos;
+                if (i10 >= this.f19642n || !Character.isWhitespace(this.f19643s.charAt(i10))) {
                     return;
                 } else {
                     advance();
@@ -2789,8 +2795,8 @@ public class SvgHelper {
             String style = null;
             if (arrayList != null && !arrayList.isEmpty()) {
                 int size = this.styles.size();
-                for (int i = 0; i < size; i++) {
-                    style = this.styles.get(i).getStyle(str);
+                for (int i10 = 0; i10 < size; i10++) {
+                    style = this.styles.get(i10).getStyle(str);
                     if (style != null) {
                         break;
                     }
@@ -2799,9 +2805,9 @@ public class SvgHelper {
             return style == null ? SvgHelper.getStringAttr(str, this.atts) : style;
         }
 
-        public Float getFloat(String str, float f) {
-            Float f2 = getFloat(str);
-            return f2 == null ? Float.valueOf(f) : f2;
+        public Float getFloat(String str, float f10) {
+            Float f11 = getFloat(str);
+            return f11 == null ? Float.valueOf(f10) : f11;
         }
 
         public Integer getHex(String str) {
@@ -2858,9 +2864,9 @@ public class SvgHelper {
         RectF rect;
         float rx;
 
-        public RoundRect(RectF rectF, float f) {
+        public RoundRect(RectF rectF, float f10) {
             this.rect = rectF;
-            this.rx = f;
+            this.rx = f10;
         }
     }
 
@@ -2902,7 +2908,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private Theme.ResourcesProvider currentResourcesProvider;
+        private org.telegram.ui.ActionBar.c6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -2931,9 +2937,9 @@ public class SvgHelper {
             lite = LiteMode.isEnabled(32);
         }
 
-        public void copyCommandFromPosition(int i) {
+        public void copyCommandFromPosition(int i10) {
             ArrayList<Object> arrayList = this.commands;
-            arrayList.add(arrayList.get(i));
+            arrayList.add(arrayList.get(i10));
         }
 
         @Override
@@ -2941,46 +2947,46 @@ public class SvgHelper {
             drawInternal(canvas, false, 0, System.currentTimeMillis(), getBounds().left, getBounds().top, getBounds().width(), getBounds().height());
         }
 
-        public void drawInternal(Canvas canvas, boolean z, int i, long j, float f, float f2, float f3, float f4) {
-            long j2;
-            int i2;
-            int i3 = this.currentColorKey;
-            if (i3 >= 0) {
-                setupGradient(i3, this.currentResourcesProvider, this.colorAlpha, z);
+        public void drawInternal(Canvas canvas, boolean z10, int i10, long j10, float f10, float f11, float f12, float f13) {
+            long j11;
+            int i11;
+            int i12 = this.currentColorKey;
+            if (i12 >= 0) {
+                setupGradient(i12, this.currentResourcesProvider, this.colorAlpha, z10);
             }
-            float scale = getScale((int) f3, (int) f4);
-            if (this.placeholderGradient[i] != null) {
-                float f5 = gradientWidth;
-                if (f5 > 0.0f && lite) {
-                    if (z) {
-                        long j3 = j - lastUpdateTime;
-                        j2 = j3 <= 64 ? j3 : 64L;
-                        if (j2 > 0) {
-                            lastUpdateTime = j;
-                            totalTranslation = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(j2, f5, 1800.0f, totalTranslation);
+            float scale = getScale((int) f12, (int) f13);
+            if (this.placeholderGradient[i10] != null) {
+                float f14 = gradientWidth;
+                if (f14 > 0.0f && lite) {
+                    if (z10) {
+                        long j12 = j10 - lastUpdateTime;
+                        j11 = j12 <= 64 ? j12 : 64L;
+                        if (j11 > 0) {
+                            lastUpdateTime = j10;
+                            totalTranslation = a9.p.d(j11, f14, 1800.0f, totalTranslation);
                             while (true) {
-                                float f6 = totalTranslation;
-                                float f7 = gradientWidth * 2.0f;
-                                if (f6 < f7) {
+                                float f15 = totalTranslation;
+                                float f16 = gradientWidth;
+                                if (f15 < f16 * 2.0f) {
                                     break;
                                 } else {
-                                    totalTranslation = f6 - f7;
+                                    totalTranslation = f15 - (f16 * 2.0f);
                                 }
                             }
                         }
                     } else if (shiftRunnable == null || shiftDrawable.get() == this) {
-                        long j4 = j - lastUpdateTime;
-                        j2 = j4 <= 64 ? j4 : 64L;
-                        long j5 = j2 >= 0 ? j2 : 0L;
-                        lastUpdateTime = j;
-                        totalTranslation = Emoji$EmojiSpan$$ExternalSyntheticOutline0.m(j5, gradientWidth, 1800.0f, totalTranslation);
+                        long j13 = j10 - lastUpdateTime;
+                        j11 = j13 <= 64 ? j13 : 64L;
+                        long j14 = j11 >= 0 ? j11 : 0L;
+                        lastUpdateTime = j10;
+                        totalTranslation = a9.p.d(j14, gradientWidth, 1800.0f, totalTranslation);
                         while (true) {
-                            float f8 = totalTranslation;
-                            float f9 = gradientWidth;
-                            if (f8 < f9 / 2.0f) {
+                            float f17 = totalTranslation;
+                            float f18 = gradientWidth;
+                            if (f17 < f18 / 2.0f) {
                                 break;
                             } else {
-                                totalTranslation = f8 - f9;
+                                totalTranslation = f17 - f18;
                             }
                         }
                         shiftDrawable = new WeakReference<>(this);
@@ -2988,57 +2994,57 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        Emoji$$ExternalSyntheticLambda1 emoji$$ExternalSyntheticLambda1 = new Emoji$$ExternalSyntheticLambda1(22);
-                        shiftRunnable = emoji$$ExternalSyntheticLambda1;
-                        AndroidUtilities.runOnUIThread(emoji$$ExternalSyntheticLambda1, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        w1 w1Var = new w1(22);
+                        shiftRunnable = w1Var;
+                        AndroidUtilities.runOnUIThread(w1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
-                    if (imageReceiver == null || z) {
-                        i2 = 0;
+                    if (imageReceiver == null || z10) {
+                        i11 = 0;
                     } else {
                         int[] iArr = parentPosition;
                         imageReceiver.getParentPosition(iArr);
-                        i2 = iArr[0];
+                        i11 = iArr[0];
                     }
-                    int i4 = z ? i + 1 : 0;
-                    Matrix matrix = this.placeholderMatrix[i4];
+                    int i13 = z10 ? i10 + 1 : 0;
+                    Matrix matrix = this.placeholderMatrix[i13];
                     if (matrix != null) {
                         matrix.reset();
-                        if (z) {
-                            this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                        if (z10) {
+                            this.placeholderMatrix[i13].postTranslate(((-i11) + totalTranslation) - f10, 0.0f);
                         } else {
-                            this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                            this.placeholderMatrix[i13].postTranslate(((-i11) + totalTranslation) - f10, 0.0f);
                         }
-                        float f10 = 1.0f / scale;
-                        this.placeholderMatrix[i4].postScale(f10, f10);
-                        this.placeholderGradient[i4].setLocalMatrix(this.placeholderMatrix[i4]);
+                        float f19 = 1.0f / scale;
+                        this.placeholderMatrix[i13].postScale(f19, f19);
+                        this.placeholderGradient[i13].setLocalMatrix(this.placeholderMatrix[i13]);
                         ImageReceiver imageReceiver2 = this.parentImageReceiver;
-                        if (imageReceiver2 != null && !z) {
+                        if (imageReceiver2 != null && !z10) {
                             imageReceiver2.invalidate();
                         }
                     }
                 }
             }
             canvas.save();
-            canvas.translate(f, f2);
+            canvas.translate(f10, f11);
             if (!this.aspectFill || this.aspectCenter) {
-                canvas.translate(SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(this.width, scale, f3, 2.0f), SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(this.height, scale, f4, 2.0f));
+                canvas.translate(com.google.android.recaptcha.internal.a.w(this.width, scale, f12, 2.0f), com.google.android.recaptcha.internal.a.w(this.height, scale, f13, 2.0f));
             }
             canvas.scale(scale, scale);
             int size = this.commands.size();
-            for (int i5 = 0; i5 < size; i5++) {
-                Object obj = this.commands.get(i5);
+            for (int i14 = 0; i14 < size; i14++) {
+                Object obj = this.commands.get(i14);
                 if (obj instanceof Matrix) {
                     canvas.save();
                     canvas.concat((Matrix) obj);
                 } else if (obj == null) {
                     canvas.restore();
                 } else {
-                    Paint paint = this.overridePaintByPosition.get(i5);
+                    Paint paint = this.overridePaintByPosition.get(i14);
                     if (paint == null) {
                         paint = this.overridePaint;
                     }
-                    if (z) {
+                    if (z10) {
                         paint = this.backgroundPaint;
                     } else if (paint == null) {
                         paint = this.paints.get(obj);
@@ -3053,17 +3059,17 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.x1, line.y1, line.x2, line.y2, paint);
+                        canvas.drawLine(line.f19638x1, line.f19640y1, line.f19639x2, line.f19641y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.x1, circle.y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f19636x1, circle.f19637y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
-                        float f11 = roundRect.rx;
-                        canvas.drawRoundRect(rectF, f11, f11, paint);
+                        float f20 = roundRect.rx;
+                        canvas.drawRoundRect(rectF, f20, f20, paint);
                     }
                     paint.setAlpha(alpha);
                 }
@@ -3086,40 +3092,36 @@ public class SvgHelper {
             return -2;
         }
 
-        public float getScale(int i, int i2) {
-            float f = i / this.width;
-            float f2 = i2 / this.height;
-            return this.aspectFill ? Math.max(f, f2) : Math.min(f, f2);
+        public float getScale(int i10, int i11) {
+            float f10 = i10 / this.width;
+            float f11 = i11 / this.height;
+            return this.aspectFill ? Math.max(f10, f11) : Math.min(f10, f11);
         }
 
-        public void overrideWidthAndHeight(int i, int i2) {
-            this.width = i;
-            this.height = i2;
-        }
-
-        @Override
-        public void setAlpha(int i) {
-            this.crossfadeAlpha = i / 255.0f;
-        }
-
-        public void setAspectCenter(boolean z) {
-            this.aspectCenter = z;
-        }
-
-        public void setAspectFill(boolean z) {
-            this.aspectFill = z;
-        }
-
-        public void setColor(int i) {
-            this.overrideColor = Integer.valueOf(i);
+        public void overrideWidthAndHeight(int i10, int i11) {
+            this.width = i10;
+            this.height = i11;
         }
 
         @Override
-        public void setColorFilter(ColorFilter colorFilter) {
+        public void setAlpha(int i10) {
+            this.crossfadeAlpha = i10 / 255.0f;
         }
 
-        public void setColorKey(int i) {
-            this.currentColorKey = i;
+        public void setAspectCenter(boolean z10) {
+            this.aspectCenter = z10;
+        }
+
+        public void setAspectFill(boolean z10) {
+            this.aspectFill = z10;
+        }
+
+        public void setColor(int i10) {
+            this.overrideColor = Integer.valueOf(i10);
+        }
+
+        public void setColorKey(int i10) {
+            this.currentColorKey = i10;
         }
 
         public void setPaint(Paint paint) {
@@ -3130,15 +3132,15 @@ public class SvgHelper {
             this.parentImageReceiver = imageReceiver;
         }
 
-        public void setupGradient(int i, float f, boolean z) {
-            setupGradient(i, null, f, z);
+        public void setupGradient(int i10, float f10, boolean z10) {
+            setupGradient(i10, null, f10, z10);
         }
 
         public SvgDrawable clone() {
             SvgDrawable svgDrawable = new SvgDrawable();
-            for (int i = 0; i < this.commands.size(); i++) {
-                svgDrawable.commands.add(this.commands.get(i));
-                Paint paint = this.paints.get(this.commands.get(i));
+            for (int i10 = 0; i10 < this.commands.size(); i10++) {
+                svgDrawable.commands.add(this.commands.get(i10));
+                Paint paint = this.paints.get(this.commands.get(i10));
                 if (paint != null) {
                     Paint paint2 = new Paint();
                     paint2.setColor(paint.getColor());
@@ -3146,7 +3148,7 @@ public class SvgHelper {
                     paint2.setStrokeJoin(paint.getStrokeJoin());
                     paint2.setStrokeWidth(paint.getStrokeWidth());
                     paint2.setStyle(paint.getStyle());
-                    svgDrawable.paints.put(this.commands.get(i), paint2);
+                    svgDrawable.paints.put(this.commands.get(i10), paint2);
                 }
             }
             svgDrawable.width = this.width;
@@ -3154,72 +3156,72 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i, Theme.ResourcesProvider resourcesProvider) {
-            this.currentColorKey = i;
-            this.currentResourcesProvider = resourcesProvider;
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+            this.currentColorKey = i10;
+            this.currentResourcesProvider = c6Var;
         }
 
-        public void setPaint(Paint paint, int i) {
-            this.overridePaintByPosition.put(i, paint);
+        public void setPaint(Paint paint, int i10) {
+            this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i, Theme.ResourcesProvider resourcesProvider, float f, boolean z) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.c6 c6Var, float f10, boolean z10) {
             Shader bitmapShader;
             Integer num = this.overrideColor;
-            int color = num == null ? Theme.getColor(i, resourcesProvider) : num.intValue();
-            this.currentResourcesProvider = resourcesProvider;
+            int iV0 = num == null ? org.telegram.ui.ActionBar.g6.v0(i10, c6Var) : num.intValue();
+            this.currentResourcesProvider = c6Var;
             int[] iArr = this.currentColor;
-            if (iArr[z ? 1 : 0] != color) {
-                this.colorAlpha = f;
-                this.currentColorKey = i;
-                iArr[z ? 1 : 0] = color;
+            if (iArr[z10 ? 1 : 0] != iV0) {
+                this.colorAlpha = f10;
+                this.currentColorKey = i10;
+                iArr[z10 ? 1 : 0] = iV0;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
-                    int alphaComponent = ColorUtils.setAlphaComponent(color, 70);
-                    if (z) {
+                    int iK = i0.b.k(iV0, 70);
+                    if (z10) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
                         }
                         this.backgroundPaint.setShader(null);
-                        this.backgroundPaint.setColor(alphaComponent);
+                        this.backgroundPaint.setColor(iK);
                         return;
                     }
                     for (Paint paint : this.paints.values()) {
                         paint.setShader(null);
-                        paint.setColor(alphaComponent);
+                        paint.setColor(iK);
                     }
                     return;
                 }
                 float fDp = AndroidUtilities.dp(180.0f) / gradientWidth;
-                int iArgb = Color.argb((int) ((Color.alpha(color) / 2) * this.colorAlpha), Color.red(color), Color.green(color), Color.blue(color));
-                float f2 = (1.0f - fDp) / 2.0f;
+                int iArgb = Color.argb((int) ((Color.alpha(iV0) / 2) * this.colorAlpha), Color.red(iV0), Color.green(iV0), Color.blue(iV0));
+                float f11 = (1.0f - fDp) / 2.0f;
                 LinearGradient[] linearGradientArr = this.placeholderGradient;
-                float f3 = fDp / 2.0f;
+                float f12 = fDp / 2.0f;
                 Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-                linearGradientArr[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, iArgb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f3 + f2, 1.0f}, tileMode);
-                int i2 = Build.VERSION.SDK_INT;
-                if (i2 >= 28) {
+                linearGradientArr[z10 ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, iArgb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
+                int i11 = Build.VERSION.SDK_INT;
+                if (i11 >= 28) {
                     bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{iArgb, iArgb}, (float[]) null, tileMode);
                 } else {
                     Bitmap[] bitmapArr = this.backgroundBitmap;
-                    if (bitmapArr[z ? 1 : 0] == null) {
-                        bitmapArr[z ? 1 : 0] = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-                        this.backgroundCanvas[z ? 1 : 0] = new Canvas(this.backgroundBitmap[z ? 1 : 0]);
+                    if (bitmapArr[z10 ? 1 : 0] == null) {
+                        bitmapArr[z10 ? 1 : 0] = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+                        this.backgroundCanvas[z10 ? 1 : 0] = new Canvas(this.backgroundBitmap[z10 ? 1 : 0]);
                     }
-                    this.backgroundCanvas[z ? 1 : 0].drawColor(iArgb);
-                    bitmapShader = new BitmapShader(this.backgroundBitmap[z ? 1 : 0], tileMode, tileMode);
+                    this.backgroundCanvas[z10 ? 1 : 0].drawColor(iArgb);
+                    bitmapShader = new BitmapShader(this.backgroundBitmap[z10 ? 1 : 0], tileMode, tileMode);
                 }
-                this.placeholderMatrix[z ? 1 : 0] = new Matrix();
-                this.placeholderGradient[z ? 1 : 0].setLocalMatrix(this.placeholderMatrix[z ? 1 : 0]);
-                if (z) {
+                this.placeholderMatrix[z10 ? 1 : 0] = new Matrix();
+                this.placeholderGradient[z10 ? 1 : 0].setLocalMatrix(this.placeholderMatrix[z10 ? 1 : 0]);
+                if (z10) {
                     if (this.backgroundPaint == null) {
                         this.backgroundPaint = new Paint(1);
                     }
-                    if (i2 <= 22) {
+                    if (i11 <= 22) {
                         this.backgroundPaint.setShader(bitmapShader);
                         return;
                     } else {
-                        this.backgroundPaint.setShader(new ComposeShader(this.placeholderGradient[z ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
+                        this.backgroundPaint.setShader(new ComposeShader(this.placeholderGradient[z10 ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
                         return;
                     }
                 }
@@ -3227,7 +3229,7 @@ public class SvgHelper {
                     if (Build.VERSION.SDK_INT <= 22) {
                         paint2.setShader(bitmapShader);
                     } else {
-                        paint2.setShader(new ComposeShader(this.placeholderGradient[z ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
+                        paint2.setShader(new ComposeShader(this.placeholderGradient[z10 ? 1 : 0], bitmapShader, PorterDuff.Mode.ADD));
                     }
                 }
             }
@@ -3236,6 +3238,10 @@ public class SvgHelper {
         public void addCommand(Object obj) {
             this.commands.add(obj);
         }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
     }
 
     public interface SvgResult {
@@ -3243,48 +3249,48 @@ public class SvgHelper {
 
         SvgDrawable getDrawable();
 
-        List<WallpaperGiftPatternPosition> getGiftPatternPositions();
+        List<mf.c> getGiftPatternPositions();
     }
 
     static {
-        int i = 0;
+        int i10 = 0;
         while (true) {
             double[] dArr = pow10;
-            if (i >= dArr.length) {
+            if (i10 >= dArr.length) {
                 SPLIT_BOUNDARY = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
                 return;
             } else {
-                dArr[i] = Math.pow(10.0d, i);
-                i++;
+                dArr[i10] = Math.pow(10.0d, i10);
+                i10++;
             }
         }
     }
 
-    private static float[] arcToBeziers(double d, double d2) {
-        int iCeil = (int) Math.ceil((Math.abs(d2) * 2.0d) / 3.141592653589793d);
-        double d3 = d2 / ((double) iCeil);
-        double d4 = d3 / 2.0d;
-        double dSin = (Math.sin(d4) * 1.3333333333333333d) / (Math.cos(d4) + 1.0d);
+    private static float[] arcToBeziers(double d, double d10) {
+        int iCeil = (int) Math.ceil((Math.abs(d10) * 2.0d) / 3.141592653589793d);
+        double d11 = d10 / ((double) iCeil);
+        double d12 = d11 / 2.0d;
+        double dSin = (Math.sin(d12) * 1.3333333333333333d) / (Math.cos(d12) + 1.0d);
         float[] fArr = new float[iCeil * 6];
-        int i = 0;
-        int i2 = 0;
-        while (i < iCeil) {
-            double d5 = (((double) i) * d3) + d;
-            double dCos = Math.cos(d5);
-            double dSin2 = Math.sin(d5);
+        int i10 = 0;
+        int i11 = 0;
+        while (i10 < iCeil) {
+            double d13 = (((double) i10) * d11) + d;
+            double dCos = Math.cos(d13);
+            double dSin2 = Math.sin(d13);
             float[] fArr2 = fArr;
-            fArr2[i2] = (float) (dCos - (dSin * dSin2));
-            fArr2[i2 + 1] = (float) ((dCos * dSin) + dSin2);
-            double d6 = d5 + d3;
-            double dCos2 = Math.cos(d6);
-            double dSin3 = Math.sin(d6);
-            fArr2[i2 + 2] = (float) ((dSin * dSin3) + dCos2);
-            fArr2[i2 + 3] = (float) (dSin3 - (dSin * dCos2));
-            int i3 = i2 + 5;
-            fArr2[i2 + 4] = (float) dCos2;
-            i2 += 6;
-            fArr2[i3] = (float) dSin3;
-            i++;
+            fArr2[i11] = (float) (dCos - (dSin * dSin2));
+            fArr2[i11 + 1] = (float) ((dCos * dSin) + dSin2);
+            double d14 = d13 + d11;
+            double dCos2 = Math.cos(d14);
+            double dSin3 = Math.sin(d14);
+            fArr2[i11 + 2] = (float) ((dSin * dSin3) + dCos2);
+            fArr2[i11 + 3] = (float) (dSin3 - (dSin * dCos2));
+            int i12 = i11 + 5;
+            fArr2[i11 + 4] = (float) dCos2;
+            i11 += 6;
+            fArr2[i12] = (float) dSin3;
+            i10++;
             fArr = fArr2;
             iCeil = iCeil;
         }
@@ -3303,54 +3309,59 @@ public class SvgHelper {
 
     public static String decompress(byte[] bArr) {
         try {
-            StringBuilder sb = new StringBuilder(bArr.length * 2);
-            sb.append('M');
-            for (byte b : bArr) {
-                int i = b & 255;
-                if (i >= 192) {
-                    sb.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i - 192));
+            StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+            sb2.append('M');
+            for (byte b10 : bArr) {
+                int i10 = b10 & 255;
+                if (i10 >= 192) {
+                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i10 - 192));
                 } else {
-                    if (i >= 128) {
-                        sb.append(',');
-                    } else if (i >= 64) {
-                        sb.append('-');
+                    if (i10 >= 128) {
+                        sb2.append(',');
+                    } else if (i10 >= 64) {
+                        sb2.append('-');
                     }
-                    sb.append(b & 63);
+                    sb2.append(b10 & 63);
                 }
             }
-            sb.append('z');
-            return sb.toString();
-        } catch (Exception e) {
-            FileLog.e(e);
+            sb2.append('z');
+            return sb2.toString();
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return "";
         }
     }
 
     public static Path doPath(String str) {
-        char c;
+        char c10;
+        float f10;
+        float f11;
+        float f12;
         float fNextFloat;
         float fNextFloat2;
         float fNextFloat3;
+        float fNextFloat4;
+        String str2 = str;
         if (ApplicationLoader.isAndroidTestEnvironment()) {
             return new Path();
         }
-        int length = str.length();
-        ParserHelper parserHelper = new ParserHelper(str, 0);
+        int length = str2.length();
+        ParserHelper parserHelper = new ParserHelper(str2, 0);
         parserHelper.skipWhitespace();
         Path path = new Path();
-        char c2 = 0;
-        float f = 0.0f;
-        float f2 = 0.0f;
-        float f3 = 0.0f;
-        float f4 = 0.0f;
-        float f5 = 0.0f;
-        float f6 = 0.0f;
+        char c11 = 0;
+        float f13 = 0.0f;
+        float f14 = 0.0f;
+        float f15 = 0.0f;
+        float f16 = 0.0f;
+        float f17 = 0.0f;
+        float f18 = 0.0f;
         while (true) {
-            int i = parserHelper.pos;
-            if (i >= length) {
+            int i10 = parserHelper.pos;
+            if (i10 >= length) {
                 return path;
             }
-            char cCharAt = str.charAt(i);
+            char cCharAt = str2.charAt(i10);
             switch (cCharAt) {
                 case '+':
                 case '-':
@@ -3365,161 +3376,143 @@ public class SvgHelper {
                 case '7':
                 case '8':
                 case '9':
-                    if (c2 != 'm' && c2 != 'M') {
-                        if (c2 != 'c' && c2 != 'C' && c2 != 'l' && c2 != 'L' && c2 != 's' && c2 != 'S' && c2 != 'h' && c2 != 'H' && c2 != 'v' && c2 != 'V' && c2 != 'q' && c2 != 'Q' && c2 != 'a' && c2 != 'A' && c2 != 't' && c2 != 'T') {
+                    if (c11 != 'm' && c11 != 'M') {
+                        if (c11 == 'c' || c11 == 'C' || c11 == 'l' || c11 == 'L' || c11 == 's' || c11 == 'S' || c11 == 'h' || c11 == 'H' || c11 == 'v' || c11 == 'V' || c11 == 'q' || c11 == 'Q' || c11 == 'a' || c11 == 'A' || c11 == 't' || c11 == 'T') {
+                            c10 = c11;
                         }
-                        c = c2;
                         break;
                     } else {
-                        c = c2;
-                        c2 = (char) (c2 - 1);
+                        char c12 = c11;
+                        c11 = (char) (c11 - 1);
+                        c10 = c12;
                         break;
                     }
                 case ',':
                 case '/':
                 default:
                     parserHelper.advance();
-                    c2 = cCharAt;
-                    c = c2;
+                    c10 = cCharAt;
+                    c11 = c10;
                     break;
             }
-            boolean z = true;
-            switch (c2) {
+            boolean z10 = true;
+            switch (c11) {
                 case 'A':
                 case 'a':
-                    float fNextFloat4 = parserHelper.nextFloat();
                     float fNextFloat5 = parserHelper.nextFloat();
-                    float f7 = f3;
                     float fNextFloat6 = parserHelper.nextFloat();
-                    boolean z2 = ((int) parserHelper.nextFloat()) == 1;
-                    boolean z3 = ((int) parserHelper.nextFloat()) == 1;
+                    float f19 = f15;
                     float fNextFloat7 = parserHelper.nextFloat();
+                    boolean z11 = ((int) parserHelper.nextFloat()) == 1;
+                    z10 = ((int) parserHelper.nextFloat()) == 1;
                     float fNextFloat8 = parserHelper.nextFloat();
-                    if (c2 == 'a') {
-                        fNextFloat7 += f;
-                        fNextFloat8 += f2;
+                    float fNextFloat9 = parserHelper.nextFloat();
+                    if (c11 == 'a') {
+                        fNextFloat9 += f14;
+                        f10 = fNextFloat8 + f13;
+                    } else {
+                        f10 = fNextFloat8;
                     }
-                    float f8 = f;
-                    float f9 = f2;
-                    float f10 = fNextFloat7;
-                    boolean z4 = z2;
-                    float f11 = fNextFloat8;
-                    drawArc(path, f8, f9, f10, f11, fNextFloat4, fNextFloat5, fNextFloat6, z4, z3);
-                    f2 = f11;
-                    f = f10;
-                    fNextFloat = f7;
-                    fNextFloat2 = f4;
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    float f20 = f16;
+                    float f21 = fNextFloat9;
+                    drawArc(path, f13, f14, f10, f21, fNextFloat5, fNextFloat6, fNextFloat7, z11, z10);
+                    f13 = f10;
+                    f14 = f21;
+                    f16 = f20;
+                    f15 = f19;
+                    z10 = false;
                     break;
                 case 'C':
                 case 'c':
-                    float fNextFloat9 = parserHelper.nextFloat();
                     float fNextFloat10 = parserHelper.nextFloat();
                     float fNextFloat11 = parserHelper.nextFloat();
                     float fNextFloat12 = parserHelper.nextFloat();
                     float fNextFloat13 = parserHelper.nextFloat();
                     float fNextFloat14 = parserHelper.nextFloat();
-                    if (c2 == 'c') {
-                        fNextFloat9 += f;
-                        fNextFloat11 += f;
-                        fNextFloat13 += f;
-                        fNextFloat10 += f2;
-                        fNextFloat12 += f2;
-                        fNextFloat14 += f2;
+                    float fNextFloat15 = parserHelper.nextFloat();
+                    if (c11 == 'c') {
+                        fNextFloat10 += f13;
+                        fNextFloat12 += f13;
+                        fNextFloat14 += f13;
+                        fNextFloat11 += f14;
+                        fNextFloat13 += f14;
+                        fNextFloat15 += f14;
                     }
-                    float f12 = fNextFloat9;
-                    float f13 = fNextFloat10;
-                    float f14 = fNextFloat11;
-                    float f15 = fNextFloat12;
-                    float f16 = fNextFloat13;
-                    float f17 = fNextFloat14;
-                    path.cubicTo(f12, f13, f14, f15, f16, f17);
-                    fNextFloat = f3;
-                    f3 = f15;
-                    fNextFloat2 = f4;
-                    f = f16;
-                    f2 = f17;
-                    f4 = f14;
+                    float f22 = fNextFloat10;
+                    float f23 = fNextFloat11;
+                    f11 = fNextFloat12;
+                    f12 = fNextFloat13;
+                    fNextFloat = fNextFloat14;
+                    fNextFloat2 = fNextFloat15;
+                    path.cubicTo(f22, f23, f11, f12, fNextFloat, fNextFloat2);
+                    f17 = f11;
+                    f18 = f12;
+                    f13 = fNextFloat;
+                    f14 = fNextFloat2;
                     break;
                 case 'H':
                 case 'h':
-                    float fNextFloat15 = parserHelper.nextFloat();
-                    if (c2 == 'h') {
-                        path.rLineTo(fNextFloat15, 0.0f);
-                        f += fNextFloat15;
+                    float fNextFloat16 = parserHelper.nextFloat();
+                    if (c11 == 'h') {
+                        path.rLineTo(fNextFloat16, 0.0f);
+                        f13 += fNextFloat16;
                     } else {
-                        path.lineTo(fNextFloat15, f2);
-                        f = fNextFloat15;
+                        path.lineTo(fNextFloat16, f14);
+                        f13 = fNextFloat16;
                     }
-                    fNextFloat = f3;
-                    fNextFloat2 = f4;
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    z10 = false;
                     break;
                 case 'L':
                 case 'l':
-                    float fNextFloat16 = parserHelper.nextFloat();
-                    float fNextFloat17 = parserHelper.nextFloat();
-                    if (c2 == 'l') {
-                        path.rLineTo(fNextFloat16, fNextFloat17);
-                        f += fNextFloat16;
-                        f2 += fNextFloat17;
+                    fNextFloat3 = parserHelper.nextFloat();
+                    fNextFloat4 = parserHelper.nextFloat();
+                    if (c11 == 'l') {
+                        path.rLineTo(fNextFloat3, fNextFloat4);
+                        f13 += fNextFloat3;
+                        f14 += fNextFloat4;
                     } else {
-                        path.lineTo(fNextFloat16, fNextFloat17);
-                        f = fNextFloat16;
-                        f2 = fNextFloat17;
+                        path.lineTo(fNextFloat3, fNextFloat4);
+                        f13 = fNextFloat3;
+                        f14 = fNextFloat4;
                     }
-                    fNextFloat = f3;
-                    fNextFloat2 = f4;
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    z10 = false;
                     break;
                 case 'M':
                 case 'm':
-                    fNextFloat2 = parserHelper.nextFloat();
-                    fNextFloat = parserHelper.nextFloat();
-                    if (c2 == 'm') {
-                        f4 += fNextFloat2;
-                        f3 += fNextFloat;
-                        path.rMoveTo(fNextFloat2, fNextFloat);
-                        f = fNextFloat2 + f;
-                        f2 += fNextFloat;
-                        fNextFloat = f3;
-                        fNextFloat2 = f4;
+                    fNextFloat3 = parserHelper.nextFloat();
+                    fNextFloat4 = parserHelper.nextFloat();
+                    if (c11 == 'm') {
+                        f15 += fNextFloat3;
+                        f16 += fNextFloat4;
+                        path.rMoveTo(fNextFloat3, fNextFloat4);
+                        f13 += fNextFloat3;
+                        f14 += fNextFloat4;
                     } else {
-                        path.moveTo(fNextFloat2, fNextFloat);
-                        f = fNextFloat2;
-                        f2 = fNextFloat;
+                        path.moveTo(fNextFloat3, fNextFloat4);
+                        f13 = fNextFloat3;
+                        f15 = f13;
+                        f14 = fNextFloat4;
+                        f16 = f14;
                     }
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    z10 = false;
                     break;
                 case 'Q':
                 case 'q':
+                    float fNextFloat17 = parserHelper.nextFloat();
                     float fNextFloat18 = parserHelper.nextFloat();
                     float fNextFloat19 = parserHelper.nextFloat();
                     float fNextFloat20 = parserHelper.nextFloat();
-                    fNextFloat3 = parserHelper.nextFloat();
-                    if (c2 == 'q') {
-                        fNextFloat18 += f;
-                        fNextFloat19 += f2;
-                        fNextFloat20 += f;
-                        fNextFloat3 += f2;
+                    if (c11 == 'q') {
+                        fNextFloat17 += f13;
+                        fNextFloat18 += f14;
+                        fNextFloat19 += f13;
+                        fNextFloat20 += f14;
                     }
-                    path.quadTo(fNextFloat18, fNextFloat19, fNextFloat20, fNextFloat3);
-                    float f18 = f4;
-                    f4 = fNextFloat18;
-                    fNextFloat2 = f18;
-                    float f19 = f3;
-                    f3 = fNextFloat19;
-                    fNextFloat = f19;
-                    f = fNextFloat20;
-                    f2 = fNextFloat3;
+                    f17 = fNextFloat17;
+                    f13 = fNextFloat19;
+                    f14 = fNextFloat20;
+                    path.quadTo(f17, fNextFloat18, f13, f14);
+                    f18 = fNextFloat18;
                     break;
                 case 'S':
                 case 's':
@@ -3527,182 +3520,164 @@ public class SvgHelper {
                     float fNextFloat22 = parserHelper.nextFloat();
                     float fNextFloat23 = parserHelper.nextFloat();
                     float fNextFloat24 = parserHelper.nextFloat();
-                    if (c2 == 's') {
-                        fNextFloat21 += f;
-                        fNextFloat23 += f;
-                        fNextFloat22 += f2;
-                        fNextFloat24 += f2;
+                    if (c11 == 's') {
+                        fNextFloat21 += f13;
+                        fNextFloat23 += f13;
+                        fNextFloat22 += f14;
+                        fNextFloat24 += f14;
                     }
-                    float f20 = (f * 2.0f) - f5;
-                    float f21 = (f2 * 2.0f) - f6;
-                    float f22 = fNextFloat21;
-                    float f23 = fNextFloat22;
-                    float f24 = fNextFloat23;
-                    fNextFloat3 = fNextFloat24;
-                    path.cubicTo(f20, f21, f22, f23, f24, fNextFloat3);
-                    float f25 = f3;
-                    f3 = f23;
-                    fNextFloat = f25;
-                    f = f24;
-                    fNextFloat2 = f4;
-                    f4 = f22;
-                    f2 = fNextFloat3;
+                    fNextFloat = fNextFloat23;
+                    float f24 = (f13 * 2.0f) - f17;
+                    float f25 = (f14 * 2.0f) - f18;
+                    f11 = fNextFloat21;
+                    f12 = fNextFloat22;
+                    fNextFloat2 = fNextFloat24;
+                    path.cubicTo(f24, f25, f11, f12, fNextFloat, fNextFloat2);
+                    f17 = f11;
+                    f18 = f12;
+                    f13 = fNextFloat;
+                    f14 = fNextFloat2;
                     break;
                 case 'T':
                 case 't':
-                    float fNextFloat25 = parserHelper.nextFloat();
-                    float fNextFloat26 = parserHelper.nextFloat();
-                    if (c2 == 't') {
-                        fNextFloat25 += f;
-                        fNextFloat26 += f2;
+                    fNextFloat = parserHelper.nextFloat();
+                    fNextFloat2 = parserHelper.nextFloat();
+                    if (c11 == 't') {
+                        fNextFloat += f13;
+                        fNextFloat2 += f14;
                     }
-                    float f26 = (f * 2.0f) - f5;
-                    float f27 = (f2 * 2.0f) - f6;
-                    path.quadTo(f26, f27, fNextFloat25, fNextFloat26);
-                    f = fNextFloat25;
-                    fNextFloat2 = f4;
-                    f4 = f26;
-                    fNextFloat = f3;
-                    f3 = f27;
-                    f2 = fNextFloat26;
+                    f17 = (f13 * 2.0f) - f17;
+                    float f26 = (f14 * 2.0f) - f18;
+                    path.quadTo(f17, f26, fNextFloat, fNextFloat2);
+                    f18 = f26;
+                    f13 = fNextFloat;
+                    f14 = fNextFloat2;
                     break;
                 case 'V':
                 case 'v':
-                    float fNextFloat27 = parserHelper.nextFloat();
-                    if (c2 == 'v') {
-                        path.rLineTo(0.0f, fNextFloat27);
-                        f2 += fNextFloat27;
+                    float fNextFloat25 = parserHelper.nextFloat();
+                    if (c11 == 'v') {
+                        path.rLineTo(0.0f, fNextFloat25);
+                        f14 += fNextFloat25;
                     } else {
-                        path.lineTo(f, fNextFloat27);
-                        f2 = fNextFloat27;
+                        path.lineTo(f13, fNextFloat25);
+                        f14 = fNextFloat25;
                     }
-                    fNextFloat = f3;
-                    fNextFloat2 = f4;
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    z10 = false;
                     break;
                 case 'Z':
                 case 'z':
                     path.close();
-                    path.moveTo(f4, f3);
-                    f2 = f3;
-                    fNextFloat = f2;
-                    fNextFloat2 = f4;
-                    f = fNextFloat2;
+                    path.moveTo(f15, f16);
+                    f13 = f15;
+                    f17 = f13;
+                    f14 = f16;
+                    f18 = f14;
                     break;
                 default:
-                    fNextFloat = f3;
-                    fNextFloat2 = f4;
-                    f4 = f5;
-                    f3 = f6;
-                    z = false;
+                    z10 = false;
                     break;
             }
-            if (z) {
-                f6 = f3;
-                f5 = f4;
-            } else {
-                f5 = f;
-                f6 = f2;
+            if (!z10) {
+                f17 = f13;
+                f18 = f14;
             }
             parserHelper.skipWhitespace();
-            f4 = fNextFloat2;
-            f3 = fNextFloat;
-            c2 = c;
+            str2 = str;
+            c11 = c10;
         }
     }
 
-    private static void drawArc(Path path, float f, float f2, float f3, float f4, float f5, float f6, float f7, boolean z, boolean z2) {
-        if (f == f3 && f2 == f4) {
+    private static void drawArc(Path path, float f10, float f11, float f12, float f13, float f14, float f15, float f16, boolean z10, boolean z11) {
+        if (f10 == f12 && f11 == f13) {
             return;
         }
-        if (f5 == 0.0f || f6 == 0.0f) {
-            path.lineTo(f3, f4);
+        if (f14 == 0.0f || f15 == 0.0f) {
+            path.lineTo(f12, f13);
             return;
         }
-        float fAbs = Math.abs(f5);
-        float fAbs2 = Math.abs(f6);
-        double radians = Math.toRadians(((double) f7) % 360.0d);
+        float fAbs = Math.abs(f14);
+        float fAbs2 = Math.abs(f15);
+        double radians = Math.toRadians(((double) f16) % 360.0d);
         double dCos = Math.cos(radians);
         double dSin = Math.sin(radians);
-        double d = ((double) (f - f3)) / 2.0d;
-        double d2 = ((double) (f2 - f4)) / 2.0d;
-        double d3 = (dSin * d2) + (dCos * d);
-        double d4 = (d2 * dCos) + ((-dSin) * d);
-        double d5 = fAbs * fAbs;
-        double d6 = fAbs2 * fAbs2;
-        double d7 = d3 * d3;
-        double d8 = d4 * d4;
-        double d9 = (d8 / d6) + (d7 / d5);
-        if (d9 > 0.99999d) {
-            double dSqrt = Math.sqrt(d9) * 1.00001d;
+        double d = ((double) (f10 - f12)) / 2.0d;
+        double d10 = ((double) (f11 - f13)) / 2.0d;
+        double d11 = (dSin * d10) + (dCos * d);
+        double d12 = (d10 * dCos) + ((-dSin) * d);
+        double d13 = fAbs * fAbs;
+        double d14 = fAbs2 * fAbs2;
+        double d15 = d11 * d11;
+        double d16 = d12 * d12;
+        double d17 = (d16 / d14) + (d15 / d13);
+        if (d17 > 0.99999d) {
+            double dSqrt = Math.sqrt(d17) * 1.00001d;
             fAbs = (float) (((double) fAbs) * dSqrt);
             fAbs2 = (float) (dSqrt * ((double) fAbs2));
-            d5 = fAbs * fAbs;
-            d6 = fAbs2 * fAbs2;
+            d13 = fAbs * fAbs;
+            d14 = fAbs2 * fAbs2;
         }
-        double d10 = z == z2 ? -1.0d : 1.0d;
-        double d11 = d5 * d6;
-        double d12 = d5 * d8;
-        double d13 = d6 * d7;
-        double d14 = ((d11 - d12) - d13) / (d12 + d13);
-        if (d14 < 0.0d) {
-            d14 = 0.0d;
+        double d18 = z10 == z11 ? -1.0d : 1.0d;
+        double d19 = d13 * d14;
+        double d20 = d13 * d16;
+        double d21 = d14 * d15;
+        double d22 = ((d19 - d20) - d21) / (d20 + d21);
+        if (d22 < 0.0d) {
+            d22 = 0.0d;
         }
-        double dSqrt2 = Math.sqrt(d14) * d10;
-        double d15 = fAbs;
-        double d16 = d15 * d4;
-        double d17 = fAbs2;
-        double d18 = (d16 / d17) * dSqrt2;
-        double d19 = dSqrt2 * (-((d17 * d3) / d15));
-        double d20 = ((dCos * d18) - (dSin * d19)) + (((double) (f + f3)) / 2.0d);
-        double d21 = (dCos * d19) + (dSin * d18) + (((double) (f2 + f4)) / 2.0d);
-        double d22 = (d3 - d18) / d15;
-        double d23 = (d4 - d19) / d17;
-        double d24 = ((-d3) - d18) / d15;
-        double d25 = ((-d4) - d19) / d17;
-        double d26 = (d23 * d23) + (d22 * d22);
-        double dAcos = Math.acos(d22 / Math.sqrt(d26)) * (d23 < 0.0d ? -1.0d : 1.0d);
-        double dCheckedArcCos = ((d22 * d25) - (d23 * d24) < 0.0d ? -1.0d : 1.0d) * checkedArcCos(((d23 * d25) + (d22 * d24)) / Math.sqrt(((d25 * d25) + (d24 * d24)) * d26));
+        double dSqrt2 = Math.sqrt(d22) * d18;
+        double d23 = fAbs;
+        double d24 = d23 * d12;
+        double d25 = fAbs2;
+        double d26 = (d24 / d25) * dSqrt2;
+        double d27 = dSqrt2 * (-((d25 * d11) / d23));
+        double d28 = ((dCos * d26) - (dSin * d27)) + (((double) (f10 + f12)) / 2.0d);
+        double d29 = (dCos * d27) + (dSin * d26) + (((double) (f11 + f13)) / 2.0d);
+        double d30 = (d11 - d26) / d23;
+        double d31 = (d12 - d27) / d25;
+        double d32 = ((-d11) - d26) / d23;
+        double d33 = ((-d12) - d27) / d25;
+        double d34 = (d31 * d31) + (d30 * d30);
+        double dAcos = Math.acos(d30 / Math.sqrt(d34)) * (d31 < 0.0d ? -1.0d : 1.0d);
+        double dCheckedArcCos = ((d30 * d33) - (d31 * d32) < 0.0d ? -1.0d : 1.0d) * checkedArcCos(((d31 * d33) + (d30 * d32)) / Math.sqrt(((d33 * d33) + (d32 * d32)) * d34));
         if (dCheckedArcCos == 0.0d) {
-            path.lineTo(f3, f4);
+            path.lineTo(f12, f13);
             return;
         }
-        if (!z2 && dCheckedArcCos > 0.0d) {
+        if (!z11 && dCheckedArcCos > 0.0d) {
             dCheckedArcCos -= 6.283185307179586d;
-        } else if (z2 && dCheckedArcCos < 0.0d) {
+        } else if (z11 && dCheckedArcCos < 0.0d) {
             dCheckedArcCos += 6.283185307179586d;
         }
         float[] fArrArcToBeziers = arcToBeziers(dAcos % 6.283185307179586d, dCheckedArcCos % 6.283185307179586d);
         Matrix matrix = new Matrix();
         matrix.postScale(fAbs, fAbs2);
-        matrix.postRotate(f7);
-        matrix.postTranslate((float) d20, (float) d21);
+        matrix.postRotate(f16);
+        matrix.postTranslate((float) d28, (float) d29);
         matrix.mapPoints(fArrArcToBeziers);
-        fArrArcToBeziers[fArrArcToBeziers.length - 2] = f3;
-        fArrArcToBeziers[fArrArcToBeziers.length - 1] = f4;
-        for (int i = 0; i < fArrArcToBeziers.length; i += 6) {
-            path.cubicTo(fArrArcToBeziers[i], fArrArcToBeziers[i + 1], fArrArcToBeziers[i + 2], fArrArcToBeziers[i + 3], fArrArcToBeziers[i + 4], fArrArcToBeziers[i + 5]);
+        fArrArcToBeziers[fArrArcToBeziers.length - 2] = f12;
+        fArrArcToBeziers[fArrArcToBeziers.length - 1] = f13;
+        for (int i10 = 0; i10 < fArrArcToBeziers.length; i10 += 6) {
+            path.cubicTo(fArrArcToBeziers[i10], fArrArcToBeziers[i10 + 1], fArrArcToBeziers[i10 + 2], fArrArcToBeziers[i10 + 3], fArrArcToBeziers[i10 + 4], fArrArcToBeziers[i10 + 5]);
         }
     }
 
-    public static Bitmap getBitmap(int i, int i2, int i3, int i4) {
-        return getBitmap(i, i2, i3, i4, 1.0f);
+    public static Bitmap getBitmap(int i10, int i11, int i12, int i13) {
+        return getBitmap(i10, i11, i12, i13, 1.0f);
     }
 
-    public static Bitmap getBitmapByPathOnly(String str, int i, int i2, int i3, int i4) {
+    public static Bitmap getBitmapByPathOnly(String str, int i10, int i11, int i12, int i13) {
         try {
             Path pathDoPath = doPath(str);
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i3, i4, Bitmap.Config.ARGB_8888);
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i12, i13, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
-            canvas.scale(i3 / i, i4 / i2);
+            canvas.scale(i12 / i10, i13 / i11);
             Paint paint = new Paint();
             paint.setColor(-1);
             canvas.drawPath(pathDoPath, paint);
             return bitmapCreateBitmap;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -3741,23 +3716,23 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawableByPath(String str, int i, int i2) {
+    public static SvgDrawable getDrawableByPath(String str, int i10, int i11) {
         try {
             Path pathDoPath = doPath(str);
             SvgDrawable svgDrawable = new SvgDrawable();
             svgDrawable.commands.add(pathDoPath);
             svgDrawable.paints.put(pathDoPath, new Paint(1));
-            svgDrawable.width = i;
-            svgDrawable.height = i2;
+            svgDrawable.width = i10;
+            svgDrawable.height = i11;
             return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -3780,9 +3755,9 @@ public class SvgHelper {
 
     public static NumberParse getNumberParseAttr(String str, Attributes attributes) {
         int length = attributes.getLength();
-        for (int i = 0; i < length; i++) {
-            if (attributes.getLocalName(i).equals(str)) {
-                return parseNumbers(attributes.getValue(i));
+        for (int i10 = 0; i10 < length; i10++) {
+            if (attributes.getLocalName(i10).equals(str)) {
+                return parseNumbers(attributes.getValue(i10));
             }
         }
         return null;
@@ -3790,21 +3765,21 @@ public class SvgHelper {
 
     public static String getStringAttr(String str, Attributes attributes) {
         int length = attributes.getLength();
-        for (int i = 0; i < length; i++) {
-            if (attributes.getLocalName(i).equals(str)) {
-                return attributes.getValue(i);
+        for (int i10 = 0; i10 < length; i10++) {
+            if (attributes.getLocalName(i10).equals(str)) {
+                return attributes.getValue(i10);
             }
         }
         return null;
     }
 
-    public static SvgResult getSvgBitmap(File file, int i, int i2, boolean z) {
+    public static SvgResult getSvgBitmap(File file, int i10, int i11, boolean z10) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {
                 XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
-                if (!z) {
+                SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
+                if (!z10) {
                     sVGHandler.alphaOnly = true;
                 }
                 xMLReader.setContentHandler(sVGHandler);
@@ -3820,8 +3795,8 @@ public class SvgHelper {
                     throw th;
                 }
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -3830,27 +3805,27 @@ public class SvgHelper {
         int length = str.length();
         ArrayList arrayList = new ArrayList();
         int length2 = 0;
-        boolean z = false;
-        for (int i = 1; i < length; i++) {
-            if (z) {
-                z = false;
+        boolean z10 = false;
+        for (int i10 = 1; i10 < length; i10++) {
+            if (z10) {
+                z10 = false;
             } else {
-                char cCharAt = str.charAt(i);
+                char cCharAt = str.charAt(i10);
                 switch (cCharAt) {
                     case '\t':
                     case '\n':
                     case ' ':
                     case ',':
                     case '-':
-                        if (cCharAt != '-' || str.charAt(i - 1) != 'e') {
-                            String strSubstring = str.substring(length2, i);
+                        if (cCharAt != '-' || str.charAt(i10 - 1) != 'e') {
+                            String strSubstring = str.substring(length2, i10);
                             if (strSubstring.trim().length() > 0) {
                                 arrayList.add(Float.valueOf(Float.parseFloat(strSubstring)));
                                 if (cCharAt == '-') {
-                                    length2 = i;
+                                    length2 = i10;
                                 } else {
-                                    length2 = i + 1;
-                                    z = true;
+                                    length2 = i10 + 1;
+                                    z10 = true;
                                 }
                             } else {
                                 length2++;
@@ -3878,11 +3853,11 @@ public class SvgHelper {
                     case 't':
                     case 'v':
                     case 'z':
-                        String strSubstring2 = str.substring(length2, i);
+                        String strSubstring2 = str.substring(length2, i10);
                         if (strSubstring2.trim().length() > 0) {
                             arrayList.add(Float.valueOf(Float.parseFloat(strSubstring2)));
                         }
-                        return new NumberParse(arrayList, i);
+                        return new NumberParse(arrayList, i10);
                 }
             }
         }
@@ -4010,7 +3985,7 @@ public class SvgHelper {
         private HashMap<String, StyleSet> globalStyles;
         private boolean insideGiftRect;
         private int insideGiftRectDepth;
-        private List<WallpaperGiftPatternPosition> insideGiftRectPositions;
+        private List<mf.c> insideGiftRectPositions;
         private Paint paint;
         private Integer paintColor;
         boolean pushed;
@@ -4020,21 +3995,21 @@ public class SvgHelper {
         private ScaleMode scaleMode;
         private StringBuilder styles;
 
-        private void doColor(Properties properties, Integer num, boolean z) {
+        private void doColor(Properties properties, Integer num, boolean z10) {
             Integer num2 = this.paintColor;
             if (num2 != null) {
                 this.paint.setColor(num2.intValue());
             } else {
                 this.paint.setColor((num.intValue() & 16777215) | (-16777216));
             }
-            Float f = properties.getFloat("opacity");
-            if (f == null) {
-                f = properties.getFloat(z ? "fill-opacity" : "stroke-opacity");
+            Float f10 = properties.getFloat("opacity");
+            if (f10 == null) {
+                f10 = properties.getFloat(z10 ? "fill-opacity" : "stroke-opacity");
             }
-            if (f == null) {
+            if (f10 == null) {
                 this.paint.setAlpha(255);
             } else {
-                this.paint.setAlpha((int) (f.floatValue() * 255.0f));
+                this.paint.setAlpha((int) (f10.floatValue() * 255.0f));
             }
         }
 
@@ -4072,9 +4047,9 @@ public class SvgHelper {
                 return false;
             }
             doColor(properties, hex, false);
-            Float f = properties.getFloat("stroke-width");
-            if (f != null) {
-                this.paint.setStrokeWidth(f.floatValue());
+            Float f10 = properties.getFloat("stroke-width");
+            if (f10 != null) {
+                this.paint.setStrokeWidth(f10.floatValue());
             }
             String string = properties.getString("stroke-linecap");
             if ("round".equals(string)) {
@@ -4109,9 +4084,9 @@ public class SvgHelper {
 
         private void pushTransform(Attributes attributes) {
             String stringAttr = SvgHelper.getStringAttr("transform", attributes);
-            boolean z = stringAttr != null;
-            this.pushed = z;
-            if (z) {
+            boolean z10 = stringAttr != null;
+            this.pushed = z10;
+            if (z10) {
                 Matrix transform = SvgHelper.parseTransform(stringAttr);
                 SvgDrawable svgDrawable = this.drawable;
                 if (svgDrawable != null) {
@@ -4124,24 +4099,20 @@ public class SvgHelper {
         }
 
         @Override
-        public void characters(char[] cArr, int i, int i2) {
-            StringBuilder sb = this.styles;
-            if (sb != null) {
-                sb.append(cArr, i, i2);
+        public void characters(char[] cArr, int i10, int i11) {
+            StringBuilder sb2 = this.styles;
+            if (sb2 != null) {
+                sb2.append(cArr, i10, i11);
             }
-        }
-
-        @Override
-        public void endDocument() {
         }
 
         @Override
         public void endElement(String str, String str2, String str3) {
             int iIndexOf;
             if (this.insideGiftRect) {
-                int i = this.insideGiftRectDepth - 1;
-                this.insideGiftRectDepth = i;
-                if (i == 0) {
+                int i10 = this.insideGiftRectDepth - 1;
+                this.insideGiftRectDepth = i10;
+                if (i10 == 0) {
                     this.insideGiftRect = false;
                 }
                 return;
@@ -4154,20 +4125,20 @@ public class SvgHelper {
                     this.boundsMode = false;
                     break;
                 case "style":
-                    StringBuilder sb = this.styles;
-                    if (sb != null) {
-                        String[] strArrSplit = sb.toString().split("\\}");
-                        int i2 = 0;
+                    StringBuilder sb2 = this.styles;
+                    if (sb2 != null) {
+                        String[] strArrSplit = sb2.toString().split("\\}");
+                        int i11 = 0;
                         while (true) {
-                            if (i2 >= strArrSplit.length) {
+                            if (i11 >= strArrSplit.length) {
                                 this.styles = null;
                             } else {
-                                String strReplace = strArrSplit[i2].trim().replace("\t", "").replace("\n", "");
-                                strArrSplit[i2] = strReplace;
-                                if (strReplace.length() != 0 && strArrSplit[i2].charAt(0) == '.' && (iIndexOf = strArrSplit[i2].indexOf(123)) >= 0) {
-                                    this.globalStyles.put(strArrSplit[i2].substring(1, iIndexOf).trim(), new StyleSet(strArrSplit[i2].substring(iIndexOf + 1)));
+                                String strReplace = strArrSplit[i11].trim().replace("\t", "").replace("\n", "");
+                                strArrSplit[i11] = strReplace;
+                                if (strReplace.length() != 0 && strArrSplit[i11].charAt(0) == '.' && (iIndexOf = strArrSplit[i11].indexOf(123)) >= 0) {
+                                    this.globalStyles.put(strArrSplit[i11].substring(1, iIndexOf).trim(), new StyleSet(strArrSplit[i11].substring(iIndexOf + 1)));
                                 }
-                                i2++;
+                                i11++;
                             }
                             break;
                         }
@@ -4187,19 +4158,16 @@ public class SvgHelper {
         }
 
         @Override
-        public List<WallpaperGiftPatternPosition> getGiftPatternPositions() {
+        public List<mf.c> getGiftPatternPositions() {
             return this.insideGiftRectPositions;
-        }
-
-        @Override
-        public void startDocument() {
         }
 
         @Override
         public void startElement(String str, String str2, String str3, Attributes attributes) {
             String stringAttr;
-            int i;
-            WallpaperGiftPatternPosition wallpaperGiftPatternPosition = null;
+            int i10;
+            Float fValueOf = Float.valueOf(0.0f);
+            mf.c cVar = null;
             Object[] objArr = 0;
             Object[] objArr2 = 0;
             Object[] objArr3 = 0;
@@ -4210,22 +4178,22 @@ public class SvgHelper {
                 if (this.insideGiftRect) {
                     this.insideGiftRectDepth++;
                     if ("rect".equals(str3)) {
-                        float f = this.scale;
+                        float f10 = this.scale;
                         try {
-                            float f2 = Float.parseFloat(attributes.getValue("x"));
-                            float f3 = Float.parseFloat(attributes.getValue("y"));
-                            RectF rectF = new RectF(f2, f3, Float.parseFloat(attributes.getValue("width")) + f2, Float.parseFloat(attributes.getValue("height")) + f3);
+                            float f11 = Float.parseFloat(attributes.getValue("x"));
+                            float f12 = Float.parseFloat(attributes.getValue("y"));
+                            RectF rectF = new RectF(f11, f12, Float.parseFloat(attributes.getValue("width")) + f11, Float.parseFloat(attributes.getValue("height")) + f12);
                             Matrix transform = SvgHelper.parseTransform(attributes.getValue("transform"));
-                            transform.postScale(f, f);
-                            wallpaperGiftPatternPosition = new WallpaperGiftPatternPosition(rectF, transform);
-                        } catch (Exception e) {
-                            FileLog.e(e);
+                            transform.postScale(f10, f10);
+                            cVar = new mf.c(rectF, transform);
+                        } catch (Exception e9) {
+                            FileLog.e(e9);
                         }
-                        if (wallpaperGiftPatternPosition != null) {
+                        if (cVar != null) {
                             if (this.insideGiftRectPositions == null) {
                                 this.insideGiftRectPositions = new ArrayList();
                             }
-                            this.insideGiftRectPositions.add(wallpaperGiftPatternPosition);
+                            this.insideGiftRectPositions.add(cVar);
                             return;
                         }
                         return;
@@ -4305,8 +4273,8 @@ public class SvgHelper {
                                 pushTransform(attributes);
                                 Properties properties3 = new Properties(attributes, this.globalStyles);
                                 path.moveTo(((Float) arrayList.get(0)).floatValue(), ((Float) arrayList.get(1)).floatValue());
-                                for (int i2 = 2; i2 < arrayList.size(); i2 += 2) {
-                                    path.lineTo(((Float) arrayList.get(i2)).floatValue(), ((Float) arrayList.get(i2 + 1)).floatValue());
+                                for (int i11 = 2; i11 < arrayList.size(); i11 += 2) {
+                                    path.lineTo(((Float) arrayList.get(i11)).floatValue(), ((Float) arrayList.get(i11 + 1)).floatValue());
                                 }
                                 if (str2.equals("polygon")) {
                                     path.close();
@@ -4343,9 +4311,9 @@ public class SvgHelper {
                         Float floatAttr9 = SvgHelper.getFloatAttr("height", attributes);
                         if ((floatAttr8 == null || floatAttr9 == null) && (stringAttr = SvgHelper.getStringAttr("viewBox", attributes)) != null) {
                             String[] strArrSplit = stringAttr.split(" ");
-                            Float fValueOf = Float.valueOf(Float.parseFloat(strArrSplit[2]));
+                            Float fValueOf2 = Float.valueOf(Float.parseFloat(strArrSplit[2]));
                             floatAttr9 = Float.valueOf(Float.parseFloat(strArrSplit[3]));
-                            floatAttr8 = fValueOf;
+                            floatAttr8 = fValueOf2;
                         }
                         if (floatAttr8 == null || floatAttr9 == null) {
                             floatAttr8 = Float.valueOf(this.desiredWidth);
@@ -4357,16 +4325,16 @@ public class SvgHelper {
                             iCeil = this.desiredWidth;
                             iCeil2 = this.desiredHeight;
                         } else {
-                            int i3 = this.desiredWidth;
-                            if (i3 != 0 && (i = this.desiredHeight) != 0) {
+                            int i12 = this.desiredWidth;
+                            if (i12 != 0 && (i10 = this.desiredHeight) != 0) {
                                 if (this.scaleMode == ScaleMode.ByWidth) {
-                                    this.scale = i3 / iCeil;
+                                    this.scale = i12 / iCeil;
                                 } else {
-                                    this.scale = Math.min(i3 / iCeil, i / iCeil2);
+                                    this.scale = Math.min(i12 / iCeil, i10 / iCeil2);
                                 }
-                                float f4 = this.scale;
-                                iCeil = (int) (iCeil * f4);
-                                iCeil2 = (int) (iCeil2 * f4);
+                                float f13 = this.scale;
+                                iCeil = (int) (iCeil * f13);
+                                iCeil2 = (int) (iCeil2 * f13);
                             }
                         }
                         SvgDrawable svgDrawable7 = this.drawable;
@@ -4380,10 +4348,10 @@ public class SvgHelper {
                             bitmapCreateBitmap.eraseColor(0);
                             Canvas canvas = new Canvas(this.bitmap);
                             this.canvas = canvas;
-                            float f5 = this.scale;
-                            if (f5 != 0.0f) {
-                                float f6 = this.globalScale * f5;
-                                canvas.scale(f6, f6);
+                            float f14 = this.scale;
+                            if (f14 != 0.0f) {
+                                float f15 = this.globalScale;
+                                canvas.scale(f15 * f14, f15 * f14);
                             }
                             break;
                         }
@@ -4434,11 +4402,11 @@ public class SvgHelper {
                     case "rect":
                         Float floatAttr14 = SvgHelper.getFloatAttr("x", attributes);
                         if (floatAttr14 == null) {
-                            floatAttr14 = Float.valueOf(0.0f);
+                            floatAttr14 = fValueOf;
                         }
                         Float floatAttr15 = SvgHelper.getFloatAttr("y", attributes);
-                        if (floatAttr15 == null) {
-                            floatAttr15 = Float.valueOf(0.0f);
+                        if (floatAttr15 != null) {
+                            fValueOf = floatAttr15;
                         }
                         Float floatAttr16 = SvgHelper.getFloatAttr("width", attributes);
                         Float floatAttr17 = SvgHelper.getFloatAttr("height", attributes);
@@ -4449,30 +4417,30 @@ public class SvgHelper {
                             SvgDrawable svgDrawable11 = this.drawable;
                             if (svgDrawable11 != null) {
                                 if (floatAttr18 != null) {
-                                    svgDrawable11.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue()), floatAttr18.floatValue()), this.paint);
+                                    svgDrawable11.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), floatAttr18.floatValue()), this.paint);
                                 } else {
-                                    svgDrawable11.addCommand(new RectF(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue()), this.paint);
+                                    svgDrawable11.addCommand(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), this.paint);
                                 }
                             } else if (floatAttr18 != null) {
-                                this.rectTmp.set(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue());
+                                this.rectTmp.set(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue());
                                 this.canvas.drawRoundRect(this.rectTmp, floatAttr18.floatValue(), floatAttr18.floatValue(), this.paint);
                             } else {
-                                this.canvas.drawRect(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue(), this.paint);
+                                this.canvas.drawRect(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue(), this.paint);
                             }
                         }
                         if (doStroke(properties5)) {
                             SvgDrawable svgDrawable12 = this.drawable;
                             if (svgDrawable12 != null) {
                                 if (floatAttr18 != null) {
-                                    svgDrawable12.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue()), floatAttr18.floatValue()), this.paint);
+                                    svgDrawable12.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), floatAttr18.floatValue()), this.paint);
                                 } else {
-                                    svgDrawable12.addCommand(new RectF(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue()), this.paint);
+                                    svgDrawable12.addCommand(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), this.paint);
                                 }
                             } else if (floatAttr18 != null) {
-                                this.rectTmp.set(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue());
+                                this.rectTmp.set(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue());
                                 this.canvas.drawRoundRect(this.rectTmp, floatAttr18.floatValue(), floatAttr18.floatValue(), this.paint);
                             } else {
-                                this.canvas.drawRect(floatAttr14.floatValue(), floatAttr15.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + floatAttr15.floatValue(), this.paint);
+                                this.canvas.drawRect(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue(), this.paint);
                             }
                         }
                         popTransform();
@@ -4484,11 +4452,11 @@ public class SvgHelper {
             }
         }
 
-        private SVGHandler(int i, int i2, Integer num, boolean z, float f) {
-            this(i, i2, num, z, f, ScaleMode.Default);
+        private SVGHandler(int i10, int i11, Integer num, boolean z10, float f10) {
+            this(i10, i11, num, z10, f10, ScaleMode.Default);
         }
 
-        private SVGHandler(int i, int i2, Integer num, boolean z, float f, ScaleMode scaleMode) {
+        private SVGHandler(int i10, int i11, Integer num, boolean z10, float f10, ScaleMode scaleMode) {
             this.scale = 1.0f;
             this.paint = new Paint(1);
             this.rect = new RectF();
@@ -4498,40 +4466,48 @@ public class SvgHelper {
             this.globalStyles = new HashMap<>();
             this.insideGiftRect = false;
             this.insideGiftRectDepth = 0;
-            this.globalScale = f;
-            this.desiredWidth = i;
-            this.desiredHeight = i2;
+            this.globalScale = f10;
+            this.desiredWidth = i10;
+            this.desiredHeight = i11;
             this.paintColor = num;
             this.scaleMode = scaleMode;
-            if (z) {
+            if (z10) {
                 this.drawable = new SvgDrawable();
             }
         }
+
+        @Override
+        public void endDocument() {
+        }
+
+        @Override
+        public void startDocument() {
+        }
     }
 
-    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f) {
-        return getBitmap(i, i2, i3, i4, f, ScaleMode.Default);
+    public static Bitmap getBitmap(int i10, int i11, int i12, int i13, float f10) {
+        return getBitmap(i10, i11, i12, i13, f10, ScaleMode.Default);
     }
 
-    public static Float getFloatAttr(String str, Attributes attributes, Float f) {
+    public static Float getFloatAttr(String str, Attributes attributes, Float f10) {
         String stringAttr = getStringAttr(str, attributes);
         if (stringAttr == null) {
-            return f;
+            return f10;
         }
         if (stringAttr.endsWith("px")) {
-            stringAttr = Fragment$$ExternalSyntheticOutline0.m(2, 0, stringAttr);
+            stringAttr = com.google.android.recaptcha.internal.a.n(stringAttr, 2, 0);
         } else if (stringAttr.endsWith("mm")) {
             return null;
         }
         return Float.valueOf(Float.parseFloat(stringAttr));
     }
 
-    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f, ScaleMode scaleMode) {
+    public static Bitmap getBitmap(int i10, int i11, int i12, int i13, float f10, ScaleMode scaleMode) {
         try {
-            InputStream inputStreamOpenRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i);
+            InputStream inputStreamOpenRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i10);
             try {
                 XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i2, i3, Integer.valueOf(i4), false, f, scaleMode);
+                SVGHandler sVGHandler = new SVGHandler(i11, i12, Integer.valueOf(i13), false, f10, scaleMode);
                 xMLReader.setContentHandler(sVGHandler);
                 xMLReader.parse(new InputSource(inputStreamOpenRawResource));
                 Bitmap bitmap = sVGHandler.getBitmap();
@@ -4540,74 +4516,74 @@ public class SvgHelper {
                 }
                 return bitmap;
             } catch (Throwable th) {
-                if (inputStreamOpenRawResource != null) {
-                    try {
-                        inputStreamOpenRawResource.close();
-                        throw th;
-                    } catch (Throwable th2) {
-                        th.addSuppressed(th2);
-                        throw th;
-                    }
+                if (inputStreamOpenRawResource == null) {
+                    throw th;
                 }
-                throw th;
+                try {
+                    inputStreamOpenRawResource.close();
+                    throw th;
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                    throw th;
+                }
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawableByPath(Path path, int i, int i2) {
+    public static SvgDrawable getDrawableByPath(Path path, int i10, int i11) {
         try {
             SvgDrawable svgDrawable = new SvgDrawable();
             svgDrawable.commands.add(path);
             svgDrawable.paints.put(path, new Paint(1));
-            svgDrawable.width = i;
-            svgDrawable.height = i2;
+            svgDrawable.width = i10;
+            svgDrawable.height = i11;
             return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawable(int i, Integer num) {
+    public static SvgDrawable getDrawable(int i10, Integer num) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(0, 0, num, true, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
-            xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i)));
+            xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i10)));
             return sVGHandler.getDrawable();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(InputStream inputStream, int i, int i2, boolean z) {
+    public static Bitmap getBitmap(InputStream inputStream, int i10, int i11, boolean z10) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(inputStream));
             return sVGHandler.getBitmap();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(File file, int i, int i2, boolean z) {
-        return getBitmap(file, i, i2, z, ScaleMode.Default);
+    public static Bitmap getBitmap(File file, int i10, int i11, boolean z10) {
+        return getBitmap(file, i10, i11, z10, ScaleMode.Default);
     }
 
-    public static Bitmap getBitmap(File file, int i, int i2, boolean z, ScaleMode scaleMode) {
+    public static Bitmap getBitmap(File file, int i10, int i11, boolean z10, ScaleMode scaleMode) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {
                 XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f, scaleMode);
-                if (!z) {
+                SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f, scaleMode);
+                if (!z10) {
                     sVGHandler.alphaOnly = true;
                 }
                 xMLReader.setContentHandler(sVGHandler);
@@ -4624,21 +4600,21 @@ public class SvgHelper {
                     throw th;
                 }
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(String str, int i, int i2, boolean z) {
+    public static Bitmap getBitmap(String str, int i10, int i11, boolean z10) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getBitmap();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }

@@ -40,8 +40,8 @@ public class Logging {
 
         public final int level;
 
-        TraceLevel(int i) {
-            this.level = i;
+        TraceLevel(int i10) {
+            this.level = i10;
         }
     }
 
@@ -77,10 +77,6 @@ public class Logging {
         }
         nativeEnableLogToDebugOutput(severity.ordinal());
         loggingEnabled = true;
-    }
-
-    @Deprecated
-    public static void enableTracing(String str, EnumSet<TraceLevel> enumSet) {
     }
 
     private static String getStackTraceString(Throwable th) {
@@ -130,9 +126,9 @@ public class Logging {
 
     private static native void nativeEnableLogTimeStamps();
 
-    private static native void nativeEnableLogToDebugOutput(int i);
+    private static native void nativeEnableLogToDebugOutput(int i10);
 
-    private static native void nativeLog(int i, String str, String str2);
+    private static native void nativeLog(int i10, String str, String str2);
 
     public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);
@@ -154,5 +150,9 @@ public class Logging {
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
+    }
+
+    @Deprecated
+    public static void enableTracing(String str, EnumSet<TraceLevel> enumSet) {
     }
 }

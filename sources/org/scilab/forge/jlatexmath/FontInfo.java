@@ -37,9 +37,9 @@ public class FontInfo {
         private final char left;
         private final char right;
 
-        public CharCouple(char c, char c2) {
-            this.left = c;
-            this.right = c2;
+        public CharCouple(char c10, char c11) {
+            this.left = c10;
+            this.right = c11;
         }
 
         public boolean equals(Object obj) {
@@ -52,46 +52,46 @@ public class FontInfo {
         }
     }
 
-    public FontInfo(int i, Object obj, String str, String str2, int i2, float f, float f2, float f3, String str3, String str4, String str5, String str6, String str7) {
+    public FontInfo(int i10, Object obj, String str, String str2, int i11, float f10, float f11, float f12, String str3, String str4, String str5, String str6, String str7) {
         this.unicode = null;
-        this.fontId = i;
+        this.fontId = i10;
         this.base = obj;
         this.path = str;
         this.fontName = str2;
-        this.xHeight = f;
-        this.space = f2;
-        this.quad = f3;
+        this.xHeight = f10;
+        this.space = f11;
+        this.quad = f12;
         this.boldVersion = str3;
         this.romanVersion = str4;
         this.ssVersion = str5;
         this.ttVersion = str6;
         this.itVersion = str7;
-        if (i2 != 0) {
-            this.unicode = new HashMap<>(i2);
+        if (i11 != 0) {
+            this.unicode = new HashMap<>(i11);
         } else {
-            i2 = 256;
+            i11 = 256;
         }
-        this.metrics = new float[i2][];
-        this.nextLarger = new CharFont[i2];
-        this.extensions = new int[i2][];
-        fonts.put(Integer.valueOf(i), this);
+        this.metrics = new float[i11][];
+        this.nextLarger = new CharFont[i11];
+        this.extensions = new int[i11][];
+        fonts.put(Integer.valueOf(i10), this);
     }
 
-    public void addKern(char c, char c2, float f) {
-        this.kern.put(new CharCouple(c, c2), new Float(f));
+    public void addKern(char c10, char c11, float f10) {
+        this.kern.put(new CharCouple(c10, c11), new Float(f10));
     }
 
-    public void addLigature(char c, char c2, char c3) {
-        this.lig.put(new CharCouple(c, c2), new Character(c3));
+    public void addLigature(char c10, char c11, char c12) {
+        this.lig.put(new CharCouple(c10, c11), new Character(c12));
     }
 
     public int getBoldId() {
         return this.boldId;
     }
 
-    public int[] getExtension(char c) {
+    public int[] getExtension(char c10) {
         HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.extensions[c] : this.extensions[map.get(Character.valueOf(c)).charValue()];
+        return map == null ? this.extensions[c10] : this.extensions[map.get(Character.valueOf(c10)).charValue()];
     }
 
     public Font getFont() {
@@ -113,34 +113,34 @@ public class FontInfo {
         return this.itId;
     }
 
-    public float getKern(char c, char c2, float f) {
-        Float f2 = this.kern.get(new CharCouple(c, c2));
-        if (f2 == null) {
+    public float getKern(char c10, char c11, float f10) {
+        Float f11 = this.kern.get(new CharCouple(c10, c11));
+        if (f11 == null) {
             return 0.0f;
         }
-        return f2.floatValue() * f;
+        return f11.floatValue() * f10;
     }
 
-    public CharFont getLigature(char c, char c2) {
-        Character ch = this.lig.get(new CharCouple(c, c2));
-        if (ch == null) {
+    public CharFont getLigature(char c10, char c11) {
+        Character ch2 = this.lig.get(new CharCouple(c10, c11));
+        if (ch2 == null) {
             return null;
         }
-        return new CharFont(ch.charValue(), this.fontId);
+        return new CharFont(ch2.charValue(), this.fontId);
     }
 
-    public float[] getMetrics(char c) {
+    public float[] getMetrics(char c10) {
         HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.metrics[c] : this.metrics[map.get(Character.valueOf(c)).charValue()];
+        return map == null ? this.metrics[c10] : this.metrics[map.get(Character.valueOf(c10)).charValue()];
     }
 
-    public CharFont getNextLarger(char c) {
+    public CharFont getNextLarger(char c10) {
         HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.nextLarger[c] : this.nextLarger[map.get(Character.valueOf(c)).charValue()];
+        return map == null ? this.nextLarger[c10] : this.nextLarger[map.get(Character.valueOf(c10)).charValue()];
     }
 
-    public float getQuad(float f) {
-        return this.quad * f;
+    public float getQuad(float f10) {
+        return this.quad * f10;
     }
 
     public int getRomanId() {
@@ -151,8 +151,8 @@ public class FontInfo {
         return this.skewChar;
     }
 
-    public float getSpace(float f) {
-        return this.space * f;
+    public float getSpace(float f10) {
+        return this.space * f10;
     }
 
     public int getSsId() {
@@ -163,99 +163,99 @@ public class FontInfo {
         return this.ttId;
     }
 
-    public float getXHeight(float f) {
-        return this.xHeight * f;
+    public float getXHeight(float f10) {
+        return this.xHeight * f10;
     }
 
     public boolean hasSpace() {
         return this.space > 1.0E-7f;
     }
 
-    public void setBoldId(int i) {
-        if (i == -1) {
-            i = this.fontId;
+    public void setBoldId(int i10) {
+        if (i10 == -1) {
+            i10 = this.fontId;
         }
-        this.boldId = i;
+        this.boldId = i10;
     }
 
-    public void setExtension(char c, int[] iArr) {
+    public void setExtension(char c10, int[] iArr) {
         HashMap<Character, Character> map = this.unicode;
         if (map == null) {
-            this.extensions[c] = iArr;
+            this.extensions[c10] = iArr;
         } else {
-            if (map.containsKey(Character.valueOf(c))) {
-                this.extensions[this.unicode.get(Character.valueOf(c)).charValue()] = iArr;
+            if (map.containsKey(Character.valueOf(c10))) {
+                this.extensions[this.unicode.get(Character.valueOf(c10)).charValue()] = iArr;
                 return;
             }
             char size = (char) this.unicode.size();
-            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
+            this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
             this.extensions[size] = iArr;
         }
     }
 
-    public void setItId(int i) {
-        if (i == -1) {
-            i = this.fontId;
+    public void setItId(int i10) {
+        if (i10 == -1) {
+            i10 = this.fontId;
         }
-        this.itId = i;
+        this.itId = i10;
     }
 
-    public void setMetrics(char c, float[] fArr) {
+    public void setMetrics(char c10, float[] fArr) {
         HashMap<Character, Character> map = this.unicode;
         if (map == null) {
-            this.metrics[c] = fArr;
+            this.metrics[c10] = fArr;
         } else {
-            if (map.containsKey(Character.valueOf(c))) {
-                this.metrics[this.unicode.get(Character.valueOf(c)).charValue()] = fArr;
+            if (map.containsKey(Character.valueOf(c10))) {
+                this.metrics[this.unicode.get(Character.valueOf(c10)).charValue()] = fArr;
                 return;
             }
             char size = (char) this.unicode.size();
-            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
+            this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
             this.metrics[size] = fArr;
         }
     }
 
-    public void setNextLarger(char c, char c2, int i) {
+    public void setNextLarger(char c10, char c11, int i10) {
         HashMap<Character, Character> map = this.unicode;
         if (map == null) {
-            this.nextLarger[c] = new CharFont(c2, i);
+            this.nextLarger[c10] = new CharFont(c11, i10);
         } else {
-            if (map.containsKey(Character.valueOf(c))) {
-                this.nextLarger[this.unicode.get(Character.valueOf(c)).charValue()] = new CharFont(c2, i);
+            if (map.containsKey(Character.valueOf(c10))) {
+                this.nextLarger[this.unicode.get(Character.valueOf(c10)).charValue()] = new CharFont(c11, i10);
                 return;
             }
             char size = (char) this.unicode.size();
-            this.unicode.put(Character.valueOf(c), Character.valueOf(size));
-            this.nextLarger[size] = new CharFont(c2, i);
+            this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
+            this.nextLarger[size] = new CharFont(c11, i10);
         }
     }
 
-    public void setRomanId(int i) {
-        if (i == -1) {
-            i = this.fontId;
+    public void setRomanId(int i10) {
+        if (i10 == -1) {
+            i10 = this.fontId;
         }
-        this.romanId = i;
+        this.romanId = i10;
     }
 
-    public void setSkewChar(char c) {
-        this.skewChar = c;
+    public void setSkewChar(char c10) {
+        this.skewChar = c10;
     }
 
-    public void setSsId(int i) {
-        if (i == -1) {
-            i = this.fontId;
+    public void setSsId(int i10) {
+        if (i10 == -1) {
+            i10 = this.fontId;
         }
-        this.ssId = i;
+        this.ssId = i10;
     }
 
-    public void setTtId(int i) {
-        if (i == -1) {
-            i = this.fontId;
+    public void setTtId(int i10) {
+        if (i10 == -1) {
+            i10 = this.fontId;
         }
-        this.ttId = i;
+        this.ttId = i10;
     }
 
-    public static Font getFont(int i) {
-        return fonts.get(Integer.valueOf(i)).getFont();
+    public static Font getFont(int i10) {
+        return fonts.get(Integer.valueOf(i10)).getFont();
     }
 }

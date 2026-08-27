@@ -15,9 +15,9 @@ public class FractionAtom extends Atom {
         this(atom, atom2, true);
     }
 
-    private int checkAlignment(int i) {
-        if (i == 0 || i == 1) {
-            return i;
+    private int checkAlignment(int i10) {
+        if (i10 == 0 || i10 == 1) {
+            return i10;
         }
         return 2;
     }
@@ -53,33 +53,33 @@ public class FractionAtom extends Atom {
         VerticalBox verticalBox = new VerticalBox();
         verticalBox.add(strutBox);
         float axisHeight = teXFont.getAxisHeight(style);
-        float f = this.thickness;
-        if (f > 0.0f) {
-            float f2 = style < 2 ? 3.0f * f : f;
-            float f3 = f / 2.0f;
-            float depth = (num2 - strutBox.getDepth()) - (axisHeight + f3);
-            float height = (axisHeight - f3) - (strutBox2.getHeight() - denom2);
-            float f4 = f2 - depth;
-            float f5 = f2 - height;
-            if (f4 > 0.0f) {
-                num2 += f4;
-                depth += f4;
+        float f10 = this.thickness;
+        if (f10 > 0.0f) {
+            float f11 = style < 2 ? 3.0f * f10 : f10;
+            float f12 = f10 / 2.0f;
+            float depth = (num2 - strutBox.getDepth()) - (axisHeight + f12);
+            float height = (axisHeight - f12) - (strutBox2.getHeight() - denom2);
+            float f13 = f11 - depth;
+            float f14 = f11 - height;
+            if (f13 > 0.0f) {
+                num2 += f13;
+                depth += f13;
             }
-            if (f5 > 0.0f) {
-                denom2 += f5;
-                height += f5;
+            if (f14 > 0.0f) {
+                denom2 += f14;
+                height += f14;
             }
             verticalBox.add(new StrutBox(0.0f, depth, 0.0f, 0.0f));
             verticalBox.add(new HorizontalRule(this.thickness, strutBox.getWidth(), 0.0f));
             verticalBox.add(new StrutBox(0.0f, height, 0.0f, 0.0f));
         } else {
-            float f6 = style < 2 ? defaultRuleThickness * 7.0f : defaultRuleThickness * 3.0f;
+            float f15 = style < 2 ? defaultRuleThickness * 7.0f : defaultRuleThickness * 3.0f;
             float depth2 = (num2 - strutBox.getDepth()) - (strutBox2.getHeight() - denom2);
-            float f7 = (f6 - depth2) / 2.0f;
-            if (f7 > 0.0f) {
-                num2 += f7;
-                denom2 += f7;
-                depth2 += f7 * 2.0f;
+            float f16 = (f15 - depth2) / 2.0f;
+            if (f16 > 0.0f) {
+                num2 += f16;
+                denom2 += f16;
+                depth2 += f16 * 2.0f;
             }
             verticalBox.add(new StrutBox(0.0f, depth2, 0.0f, 0.0f));
         }
@@ -89,43 +89,43 @@ public class FractionAtom extends Atom {
         return new HorizontalBox(verticalBox, (new SpaceAtom(0, 0.12f, 0.0f, 0.0f).createBox(teXEnvironment).getWidth() * 2.0f) + verticalBox.getWidth(), 2);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z) {
-        this(atom, atom2, !z, 2, 0.0f);
+    public FractionAtom(Atom atom, Atom atom2, boolean z10) {
+        this(atom, atom2, !z10, 2, 0.0f);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z, int i, float f) {
+    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i10, float f10) {
         this.noDefault = false;
         this.numAlign = 2;
         this.denomAlign = 2;
         this.defFactorSet = false;
-        SpaceAtom.checkUnit(i);
+        SpaceAtom.checkUnit(i10);
         this.numerator = atom;
         this.denominator = atom2;
-        this.noDefault = z;
-        this.thickness = f;
-        this.unit = i;
+        this.noDefault = z10;
+        this.thickness = f10;
+        this.unit = i10;
         this.type = 7;
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z, int i, int i2) {
-        this(atom, atom2, z);
-        this.numAlign = checkAlignment(i);
-        this.denomAlign = checkAlignment(i2);
+    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i10, int i11) {
+        this(atom, atom2, z10);
+        this.numAlign = checkAlignment(i10);
+        this.denomAlign = checkAlignment(i11);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, float f, int i, int i2) {
-        this(atom, atom2, true, i, i2);
-        this.defFactor = f;
+    public FractionAtom(Atom atom, Atom atom2, float f10, int i10, int i11) {
+        this(atom, atom2, true, i10, i11);
+        this.defFactor = f10;
         this.defFactorSet = true;
     }
 
-    public FractionAtom(Atom atom, Atom atom2, int i, float f, int i2, int i3) {
-        this(atom, atom2, i, f);
-        this.numAlign = checkAlignment(i2);
-        this.denomAlign = checkAlignment(i3);
+    public FractionAtom(Atom atom, Atom atom2, int i10, float f10, int i11, int i12) {
+        this(atom, atom2, i10, f10);
+        this.numAlign = checkAlignment(i11);
+        this.denomAlign = checkAlignment(i12);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, int i, float f) {
-        this(atom, atom2, true, i, f);
+    public FractionAtom(Atom atom, Atom atom2, int i10, float f10) {
+        this(atom, atom2, true, i10, f10);
     }
 }

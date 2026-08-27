@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.text.TextUtils;
-import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 
@@ -33,19 +32,19 @@ public class UserObject {
             if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
                 return false;
             }
-            long j = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-            if (!user.contact_require_premium && user.send_paid_messages_stars == j) {
+            long j10 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+            if (!user.contact_require_premium && user.send_paid_messages_stars == j10) {
                 return false;
             }
             user.contact_require_premium = false;
             user.flags2 |= 16384;
-            user.send_paid_messages_stars = j;
+            user.send_paid_messages_stars = j10;
         }
         return true;
     }
 
-    public static boolean areGiftsDisabled(long j) {
-        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j));
+    public static boolean areGiftsDisabled(long j10) {
+        return areGiftsDisabled(MessagesController.getInstance(UserConfig.selectedAccount).getUserFull(j10));
     }
 
     public static boolean eq(TL_account.RequirementToContact requirementToContact, TL_account.RequirementToContact requirementToContact2) {
@@ -74,7 +73,7 @@ public class UserObject {
             return 0;
         }
         TLRPC.PeerColor peerColor = user.color;
-        return (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) ? (int) (user.id % 7) : peerColor.color;
+        return (!(peerColor instanceof TLRPC.TL_peerColor) || (peerColor.flags & 1) == 0) ? (int) (user.f22527id % 7) : peerColor.color;
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -125,7 +124,7 @@ public class UserObject {
         return peerColor.background_emoji_id;
     }
 
-    public static MessagesController.PeerColor getPeerColorForAvatar(int i, TLRPC.User user) {
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i10, TLRPC.User user) {
         return null;
     }
 
@@ -172,7 +171,7 @@ public class UserObject {
         return peerColor.background_emoji_id;
     }
 
-    public static String getPublicUsername(TLRPC.User user, boolean z) {
+    public static String getPublicUsername(TLRPC.User user, boolean z10) {
         if (user == null) {
             return null;
         }
@@ -180,9 +179,9 @@ public class UserObject {
             return user.username;
         }
         if (user.usernames != null) {
-            for (int i = 0; i < user.usernames.size(); i++) {
-                TLRPC.TL_username tL_username = user.usernames.get(i);
-                if (tL_username != null && (((tL_username.active && !z) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
+            for (int i10 = 0; i10 < user.usernames.size(); i10++) {
+                TLRPC.TL_username tL_username = user.usernames.get(i10);
+                if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                     return tL_username.username;
                 }
             }
@@ -213,7 +212,7 @@ public class UserObject {
         if (strRemoveRTL.length() != 0 || TextUtils.isEmpty(user.phone)) {
             return strRemoveRTL;
         }
-        return UserObject$$ExternalSyntheticOutline0.m(new StringBuilder("+"), user.phone, PhoneFormat.getInstance());
+        return y1.k(new StringBuilder("+"), user.phone, oe.b.c());
     }
 
     public static boolean hasFallbackPhoto(TLRPC.UserFull userFull) {
@@ -232,8 +231,8 @@ public class UserObject {
                 return true;
             }
             if (user.usernames != null) {
-                for (int i = 0; i < user.usernames.size(); i++) {
-                    TLRPC.TL_username tL_username = user.usernames.get(i);
+                for (int i10 = 0; i10 < user.usernames.size(); i10++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i10);
                     if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
                         return true;
                     }
@@ -244,19 +243,19 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        return user != null && user.id == 2666000;
+        return user != null && user.f22527id == 2666000;
     }
 
     public static boolean isBot(TLRPC.User user) {
         return user != null && user.bot;
     }
 
-    public static boolean isBotForum(int i, long j) {
-        return isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+    public static boolean isBotForum(int i10, long j10) {
+        return isBotForum(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
-    public static boolean isBotForumWithEditableTopics(int i, long j) {
-        return isBotForumWithEditableTopics(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+    public static boolean isBotForumWithEditableTopics(int i10, long j10) {
+        return isBotForumWithEditableTopics(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
     public static boolean isContact(TLRPC.User user) {
@@ -270,12 +269,12 @@ public class UserObject {
         return user == null || (user instanceof TLRPC.TL_userDeleted_old2) || (user instanceof TLRPC.TL_userEmpty) || user.deleted;
     }
 
-    public static boolean isReplyUser(long j) {
-        return j == 708513 || j == 1271266957;
+    public static boolean isReplyUser(long j10) {
+        return j10 == 708513 || j10 == 1271266957;
     }
 
-    public static boolean isService(long j) {
-        return j == 333000 || j == 777000 || j == 42777;
+    public static boolean isService(long j10) {
+        return j10 == 333000 || j10 == 777000 || j10 == 42777;
     }
 
     public static boolean isUserSelf(TLRPC.User user) {
@@ -287,7 +286,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f22528id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -311,14 +310,14 @@ public class UserObject {
         return null;
     }
 
-    public static String getFirstName(TLRPC.User user, boolean z) {
+    public static String getFirstName(TLRPC.User user, boolean z10) {
         if (user == null || isDeleted(user)) {
             return "DELETED";
         }
         String str = user.first_name;
         if (TextUtils.isEmpty(str)) {
             str = user.last_name;
-        } else if (!z && str.length() <= 2) {
+        } else if (!z10 && str.length() <= 2) {
             return ContactsController.formatName(user.first_name, user.last_name);
         }
         return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
@@ -328,8 +327,8 @@ public class UserObject {
         if (user == null) {
             return false;
         }
-        long j = user.id;
-        return j == 708513 || j == 1271266957;
+        long j10 = user.f22527id;
+        return j10 == 708513 || j10 == 1271266957;
     }
 
     public static boolean isBotForum(TLRPC.User user) {
@@ -381,13 +380,13 @@ public class UserObject {
             if (!(requirementToContact instanceof TL_account.requirementToContactPaidMessages)) {
                 return false;
             }
-            long j = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
-            if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == j) {
+            long j10 = ((TL_account.requirementToContactPaidMessages) requirementToContact).stars_amount;
+            if (!userFull.contact_require_premium && userFull.send_paid_messages_stars == j10) {
                 return false;
             }
             userFull.contact_require_premium = false;
             userFull.flags2 |= 16384;
-            userFull.send_paid_messages_stars = j;
+            userFull.send_paid_messages_stars = j10;
         }
         return true;
     }

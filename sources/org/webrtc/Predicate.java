@@ -3,21 +3,21 @@ package org.webrtc;
 public interface Predicate<T> {
 
     public abstract class CC {
-        public static Predicate $default$and(final Predicate predicate, final Predicate predicate2) {
+        public static Predicate a(final Predicate predicate, final Predicate predicate2) {
             return new Predicate() {
                 @Override
                 public final Predicate and(Predicate predicate3) {
-                    return CC.$default$and(this, predicate3);
+                    return CC.a(this, predicate3);
                 }
 
                 @Override
                 public final Predicate negate() {
-                    return CC.$default$negate(this);
+                    return CC.b(this);
                 }
 
                 @Override
                 public final Predicate or(Predicate predicate3) {
-                    return CC.$default$or(this, predicate3);
+                    return CC.c(this, predicate3);
                 }
 
                 @Override
@@ -27,21 +27,21 @@ public interface Predicate<T> {
             };
         }
 
-        public static Predicate $default$negate(final Predicate predicate) {
+        public static Predicate b(final Predicate predicate) {
             return new Predicate() {
                 @Override
                 public final Predicate and(Predicate predicate2) {
-                    return CC.$default$and(this, predicate2);
+                    return CC.a(this, predicate2);
                 }
 
                 @Override
                 public final Predicate negate() {
-                    return CC.$default$negate(this);
+                    return CC.b(this);
                 }
 
                 @Override
                 public final Predicate or(Predicate predicate2) {
-                    return CC.$default$or(this, predicate2);
+                    return CC.c(this, predicate2);
                 }
 
                 @Override
@@ -51,21 +51,21 @@ public interface Predicate<T> {
             };
         }
 
-        public static Predicate $default$or(final Predicate predicate, final Predicate predicate2) {
+        public static Predicate c(final Predicate predicate, final Predicate predicate2) {
             return new Predicate() {
                 @Override
                 public final Predicate and(Predicate predicate3) {
-                    return CC.$default$and(this, predicate3);
+                    return CC.a(this, predicate3);
                 }
 
                 @Override
                 public final Predicate negate() {
-                    return CC.$default$negate(this);
+                    return CC.b(this);
                 }
 
                 @Override
                 public final Predicate or(Predicate predicate3) {
-                    return CC.$default$or(this, predicate3);
+                    return CC.c(this, predicate3);
                 }
 
                 @Override
@@ -82,5 +82,5 @@ public interface Predicate<T> {
 
     Predicate<T> or(Predicate<? super T> predicate);
 
-    boolean test(T t);
+    boolean test(T t10);
 }

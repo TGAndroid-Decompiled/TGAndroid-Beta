@@ -8,16 +8,16 @@ import org.telegram.messenger.FileLog;
 public class VoIPServerConfig {
     private static JSONObject config = new JSONObject();
 
-    public static boolean getBoolean(String str, boolean z) {
-        return config.optBoolean(str, z);
+    public static boolean getBoolean(String str, boolean z10) {
+        return config.optBoolean(str, z10);
     }
 
     public static double getDouble(String str, double d) {
         return config.optDouble(str, d);
     }
 
-    public static int getInt(String str, int i) {
-        return config.optInt(str, i);
+    public static int getInt(String str, int i10) {
+        return config.optInt(str, i10);
     }
 
     public static String getString(String str, String str2) {
@@ -30,9 +30,9 @@ public class VoIPServerConfig {
         try {
             config = new JSONObject(str);
             nativeSetConfig(str);
-        } catch (JSONException e) {
+        } catch (JSONException e9) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("Error parsing VoIP config", e);
+                FileLog.e("Error parsing VoIP config", e9);
             }
         }
     }

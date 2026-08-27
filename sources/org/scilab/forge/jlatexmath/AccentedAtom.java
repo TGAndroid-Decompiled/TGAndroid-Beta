@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import a9.p;
 
 public class AccentedAtom extends Atom {
     private boolean acc;
@@ -35,21 +35,21 @@ public class AccentedAtom extends Atom {
         float width = strutBox.getWidth();
         Atom atom2 = this.underbase;
         float skew = atom2 instanceof CharSymbol ? teXFont.getSkew(((CharSymbol) atom2).getCharFont(teXFont), style) : 0.0f;
-        Char r6 = teXFont.getChar(this.accent.getName(), style);
-        while (teXFont.hasNextLarger(r6)) {
-            Char nextLarger = teXFont.getNextLarger(r6, style);
+        Char r10 = teXFont.getChar(this.accent.getName(), style);
+        while (teXFont.hasNextLarger(r10)) {
+            Char nextLarger = teXFont.getNextLarger(r10, style);
             if (nextLarger.getWidth() > width) {
                 break;
             }
-            r6 = nextLarger;
+            r10 = nextLarger;
         }
         float fMin = -SpaceAtom.getFactor(5, teXEnvironment);
         if (!this.acc) {
-            fMin = Math.min(strutBox.getHeight(), teXFont.getXHeight(style, r6.getFontCode()));
+            fMin = Math.min(strutBox.getHeight(), teXFont.getXHeight(style, r10.getFontCode()));
         }
         VerticalBox verticalBox = new VerticalBox();
-        float italic = r6.getItalic();
-        Box charBox = new CharBox(r6);
+        float italic = r10.getItalic();
+        Box charBox = new CharBox(r10);
         if (this.acc) {
             SymbolAtom symbolAtom = this.accent;
             if (this.changeSize) {
@@ -83,9 +83,9 @@ public class AccentedAtom extends Atom {
         return horizontalBox2;
     }
 
-    public AccentedAtom(Atom atom, Atom atom2, boolean z) {
+    public AccentedAtom(Atom atom, Atom atom2, boolean z10) {
         this(atom, atom2);
-        this.changeSize = z;
+        this.changeSize = z10;
     }
 
     public AccentedAtom(Atom atom, String str) {
@@ -105,7 +105,7 @@ public class AccentedAtom extends Atom {
                 return;
             }
         }
-        throw new InvalidSymbolTypeException(Fragment$$ExternalSyntheticOutline0.m("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+        throw new InvalidSymbolTypeException(p.m("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
     }
 
     public AccentedAtom(Atom atom, TeXFormula teXFormula) {

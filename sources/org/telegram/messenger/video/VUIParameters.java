@@ -1,10 +1,7 @@
 package org.telegram.messenger.video;
 
-import com.googlecode.mp4parser.h264.model.AspectRatio;
-import com.googlecode.mp4parser.h264.model.HRDParameters;
-
 public class VUIParameters {
-    public AspectRatio aspect_ratio;
+    public xb.a aspect_ratio;
     public boolean aspect_ratio_info_present_flag;
     public BitstreamRestriction bitstreamRestriction;
     public boolean chroma_loc_info_present_flag;
@@ -15,7 +12,7 @@ public class VUIParameters {
     public boolean fixed_frame_rate_flag;
     public boolean low_delay_hrd_flag;
     public int matrix_coefficients;
-    public HRDParameters nalHRDParams;
+    public xb.b nalHRDParams;
     public int num_units_in_tick;
     public boolean overscan_appropriate_flag;
     public boolean overscan_info_present_flag;
@@ -25,7 +22,7 @@ public class VUIParameters {
     public int time_scale;
     public boolean timing_info_present_flag;
     public int transfer_characteristics;
-    public HRDParameters vclHRDParams;
+    public xb.b vclHRDParams;
     public int video_format;
     public boolean video_full_range_flag;
     public boolean video_signal_type_present_flag;

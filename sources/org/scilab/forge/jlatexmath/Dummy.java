@@ -31,13 +31,13 @@ public class Dummy {
     }
 
     public int getLeftType() {
-        int i = this.type;
-        return i >= 0 ? i : this.el.getLeftType();
+        int i10 = this.type;
+        return i10 >= 0 ? i10 : this.el.getLeftType();
     }
 
     public int getRightType() {
-        int i = this.type;
-        return i >= 0 ? i : this.el.getRightType();
+        int i10 = this.type;
+        return i10 >= 0 ? i10 : this.el.getRightType();
     }
 
     public int getType() {
@@ -68,7 +68,7 @@ public class Dummy {
         }
     }
 
-    public void setType(int i) {
-        this.type = i;
+    public void setType(int i10) {
+        this.type = i10;
     }
 }

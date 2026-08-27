@@ -2,7 +2,7 @@ package org.webrtc;
 
 public abstract class WrappedNativeVideoDecoder implements VideoDecoder {
     @Override
-    public abstract long createNative(long j);
+    public abstract long createNative(long j10);
 
     @Override
     public final VideoCodecStatus decode(EncodedImage encodedImage, VideoDecoder.DecodeInfo decodeInfo) {

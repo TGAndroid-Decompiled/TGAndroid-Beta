@@ -1,10 +1,9 @@
 package org.telegram.messenger.voip;
 
+import h7.a8;
 import java.util.ArrayList;
-import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 
 public class GroupCallMessage {
     private static final int FLAG_IS_OUT = 1;
@@ -18,88 +17,80 @@ public class GroupCallMessage {
     public final TLRPC.TL_textWithEntities message;
     public final long randomId;
     public final long reactionAnimatedEmojiId;
-    public final ReactionsLayoutInBubble.VisibleReaction visibleReaction;
+    public final ig.q0 visibleReaction;
 
-    public GroupCallMessage(int i, long j, long j2, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        long j3;
+    public GroupCallMessage(int i10, long j10, long j11, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        long j12;
         TLRPC.TL_availableReaction tL_availableReaction;
-        ReactionsLayoutInBubble.VisibleReaction visibleReaction;
-        this.currentAccount = i;
-        this.fromId = j;
-        this.randomId = j2;
+        ig.q0 q0VarC;
+        this.currentAccount = i10;
+        this.fromId = j10;
+        this.randomId = j11;
         this.message = tL_textWithEntities;
         ArrayList<TLRPC.MessageEntity> arrayList = tL_textWithEntities.entities;
         if (arrayList == null || arrayList.size() != 1) {
-            j3 = 0;
+            j12 = 0;
         } else {
             TLRPC.MessageEntity messageEntity = tL_textWithEntities.entities.get(0);
             if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
-                j3 = ((TLRPC.TL_messageEntityCustomEmoji) messageEntity).document_id;
+                j12 = ((TLRPC.TL_messageEntityCustomEmoji) messageEntity).document_id;
             } else {
-                j3 = 0;
+                j12 = 0;
             }
         }
-        if (j3 != 0) {
-            visibleReaction = new ReactionsLayoutInBubble.VisibleReaction();
-            visibleReaction.documentId = j3;
-            visibleReaction.hash = j3;
+        if (j12 != 0) {
+            q0VarC = new ig.q0();
+            q0VarC.f11413g = j12;
+            q0VarC.h = j12;
         } else {
             ArrayList<TLRPC.MessageEntity> arrayList2 = tL_textWithEntities.entities;
-            if ((arrayList2 == null || arrayList2.isEmpty()) && (tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(tL_textWithEntities.text)) != null) {
-                ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = new ReactionsLayoutInBubble.VisibleReaction();
-                String str = tL_availableReaction.reaction;
-                visibleReaction2.emojicon = str;
-                visibleReaction2.hash = str.hashCode();
-                visibleReaction = visibleReaction2;
-            } else {
-                visibleReaction = null;
-            }
+            q0VarC = ((arrayList2 == null || arrayList2.isEmpty()) && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(tL_textWithEntities.text)) != null) ? ig.q0.c(tL_availableReaction) : null;
         }
-        this.reactionAnimatedEmojiId = j3;
-        this.visibleReaction = visibleReaction;
+        this.reactionAnimatedEmojiId = j12;
+        this.visibleReaction = q0VarC;
     }
 
     public boolean isOut() {
-        return BitwiseUtils.hasFlag(this.flags, 1);
+        return a8.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return BitwiseUtils.hasFlag(this.flags, 8);
+        return a8.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return BitwiseUtils.hasFlag(this.flags, 2);
+        return a8.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return BitwiseUtils.hasFlag(this.flags, 4);
+        return a8.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
         ArrayList<Runnable> arrayList = this.listeners;
         int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Runnable runnable = arrayList.get(i);
-            i++;
+        int i10 = 0;
+        while (i10 < size) {
+            Runnable runnable = arrayList.get(i10);
+            i10++;
             runnable.run();
         }
     }
 
-    public void setIsOut(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 1, z);
+    public void setIsOut(boolean z10) {
+        this.flags = a8.b(this.flags, 1, z10);
     }
 
-    public void setIsSendConfirmed(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 8, z);
+    public void setIsSendConfirmed(boolean z10) {
+        this.flags = a8.b(this.flags, 8, z10);
     }
 
-    public void setIsSendDelayed(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 2, z);
+    public void setIsSendDelayed(boolean z10) {
+        this.flags = a8.b(this.flags, 2, z10);
     }
 
-    public void setIsSendError(boolean z) {
-        this.flags = BitwiseUtils.setFlag(this.flags, 4, z);
+    public void setIsSendError(boolean z10) {
+        this.flags = a8.b(this.flags, 4, z10);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

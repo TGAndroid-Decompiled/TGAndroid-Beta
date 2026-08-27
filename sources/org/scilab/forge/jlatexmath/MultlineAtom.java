@@ -9,53 +9,53 @@ public class MultlineAtom extends Atom {
     private boolean isPartial;
     private int type;
 
-    public MultlineAtom(boolean z, ArrayOfAtoms arrayOfAtoms, int i) {
-        this.isPartial = z;
+    public MultlineAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i10) {
+        this.isPartial = z10;
         this.column = arrayOfAtoms;
-        this.type = i;
+        this.type = i10;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         ArrayOfAtoms arrayOfAtoms;
-        int i;
+        int i10;
         float textwidth = teXEnvironment.getTextwidth();
         if (textwidth != Float.POSITIVE_INFINITY) {
             if (this.type != 2) {
                 VerticalBox verticalBox = new VerticalBox();
                 Atom atom = this.column.array.get(0).get(0);
-                int i2 = this.type == 1 ? 2 : 0;
-                int i3 = atom.alignment;
-                if (i3 != -1) {
-                    i2 = i3;
+                int i11 = this.type == 1 ? 2 : 0;
+                int i12 = atom.alignment;
+                if (i12 != -1) {
+                    i11 = i12;
                 }
-                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i2));
+                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i11));
                 Box boxCreateBox = vsep_in.createBox(teXEnvironment);
-                int i4 = 1;
+                int i13 = 1;
                 while (true) {
                     arrayOfAtoms = this.column;
-                    i = arrayOfAtoms.row;
-                    if (i4 >= i - 1) {
+                    i10 = arrayOfAtoms.row;
+                    if (i13 >= i10 - 1) {
                         break;
                     }
-                    Atom atom2 = arrayOfAtoms.array.get(i4).get(0);
-                    int i5 = atom2.alignment;
-                    if (i5 == -1) {
-                        i5 = 2;
+                    Atom atom2 = arrayOfAtoms.array.get(i13).get(0);
+                    int i14 = atom2.alignment;
+                    if (i14 == -1) {
+                        i14 = 2;
                     }
                     verticalBox.add(boxCreateBox);
-                    verticalBox.add(new HorizontalBox(atom2.createBox(teXEnvironment), textwidth, i5));
-                    i4++;
+                    verticalBox.add(new HorizontalBox(atom2.createBox(teXEnvironment), textwidth, i14));
+                    i13++;
                 }
-                if (i > 1) {
-                    Atom atom3 = arrayOfAtoms.array.get(i - 1).get(0);
-                    int i6 = this.type != 1 ? 1 : 2;
-                    int i7 = atom3.alignment;
-                    if (i7 != -1) {
-                        i6 = i7;
+                if (i10 > 1) {
+                    Atom atom3 = arrayOfAtoms.array.get(i10 - 1).get(0);
+                    int i15 = this.type != 1 ? 1 : 2;
+                    int i16 = atom3.alignment;
+                    if (i16 != -1) {
+                        i15 = i16;
                     }
                     verticalBox.add(boxCreateBox);
-                    verticalBox.add(new HorizontalBox(atom3.createBox(teXEnvironment), textwidth, i6));
+                    verticalBox.add(new HorizontalBox(atom3.createBox(teXEnvironment), textwidth, i15));
                 }
                 float depth = (verticalBox.getDepth() + verticalBox.getHeight()) / 2.0f;
                 verticalBox.setHeight(depth);
@@ -66,7 +66,7 @@ public class MultlineAtom extends Atom {
         return new MatrixAtom(this.isPartial, this.column, "").createBox(teXEnvironment);
     }
 
-    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i) {
-        this(false, arrayOfAtoms, i);
+    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i10) {
+        this(false, arrayOfAtoms, i10);
     }
 }

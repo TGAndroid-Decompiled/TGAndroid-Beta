@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.app.Activity;
-import com.google.android.exoplayer2.RendererCapabilities;
 import com.google.android.recaptcha.Recaptcha;
 import com.google.android.recaptcha.RecaptchaAction;
 import com.google.android.recaptcha.RecaptchaTasksClient;
@@ -9,7 +8,6 @@ import j$.util.Objects;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.ConnectionsManager;
 
 public class CaptchaController {
@@ -21,8 +19,8 @@ public class CaptchaController {
         public String key_id;
         public HashSet<Integer> requestTokens = new HashSet<>();
 
-        public Request(int i, String str, String str2) {
-            this.currentAccount = i;
+        public Request(int i10, String str, String str2) {
+            this.currentAccount = i10;
             this.action = str;
             this.key_id = str2;
         }
@@ -31,10 +29,10 @@ public class CaptchaController {
             CaptchaController.currentRequests.remove(Integer.valueOf(hashCode()));
             int[] iArr = new int[this.requestTokens.size()];
             Iterator<Integer> it = this.requestTokens.iterator();
-            int i = 0;
+            int i10 = 0;
             while (it.hasNext()) {
-                iArr[i] = it.next().intValue();
-                i++;
+                iArr[i10] = it.next().intValue();
+                i10++;
             }
             ConnectionsManager.getInstance(this.currentAccount);
             ConnectionsManager.native_receivedCaptchaResult(this.currentAccount, iArr, str);
@@ -67,7 +65,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$0(String str, String str2, Request request, String str3) {
-        SQLitePreparedStatement$$ExternalSyntheticOutline0.m(str3, RendererCapabilities.CC.m("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
+        org.telegram.ui.Cells.pa.v(str3, i0.a.p("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
         } else {
@@ -81,7 +79,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$2(String str, String str2, Request request, RecaptchaTasksClient recaptchaTasksClient) {
-        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new CaptchaController$$ExternalSyntheticLambda0(str, str2, request, 1)).addOnFailureListener(new CaptchaController$$ExternalSyntheticLambda1(request, 1));
+        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new q0(str, str2, request, 1)).addOnFailureListener(new r0(request, 1));
     }
 
     public static void lambda$request$3(Request request, Exception exc) {
@@ -89,21 +87,21 @@ public class CaptchaController {
         request.done("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_" + formatException(exc));
     }
 
-    public static void request(int i, int i2, String str, String str2) {
-        int i3 = 0;
+    public static void request(int i10, int i11, String str, String str2) {
         if (currentRequests == null) {
             currentRequests = new HashMap<>();
         }
-        Request request = currentRequests.get(Integer.valueOf(Objects.hash(Integer.valueOf(i), str, str2)));
+        int i12 = 0;
+        Request request = currentRequests.get(Integer.valueOf(Objects.hash(Integer.valueOf(i10), str, str2)));
         if (request != null) {
-            request.requestTokens.add(Integer.valueOf(i2));
+            request.requestTokens.add(Integer.valueOf(i11));
             return;
         }
-        Request request2 = new Request(i, str, str2);
-        request2.requestTokens.add(Integer.valueOf(i2));
+        Request request2 = new Request(i10, str, str2);
+        request2.requestTokens.add(Integer.valueOf(i11));
         Activity activity = AndroidUtilities.getActivity();
         if (activity != null) {
-            Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new CaptchaController$$ExternalSyntheticLambda0(str, str2, request2, i3)).addOnFailureListener(new CaptchaController$$ExternalSyntheticLambda1(request2, i3));
+            Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new q0(str, str2, request2, i12)).addOnFailureListener(new r0(request2, i12));
         } else {
             FileLog.e("CaptchaController: no activity found");
             request2.done("RECAPTCHA_FAILED_NO_ACTIVITY");

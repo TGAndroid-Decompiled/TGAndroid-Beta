@@ -11,28 +11,28 @@ public class HorizontalBox extends Box {
     protected List<Integer> breakPositions;
     private float curPos;
 
-    public HorizontalBox(Box box, float f, int i) {
+    public HorizontalBox(Box box, float f10, int i10) {
         this.curPos = 0.0f;
-        if (f == Float.POSITIVE_INFINITY) {
+        if (f10 == Float.POSITIVE_INFINITY) {
             add(box);
             return;
         }
-        float width = f - box.getWidth();
+        float width = f10 - box.getWidth();
         if (width <= 0.0f) {
             add(box);
             return;
         }
-        if (i == 2 || i == 5) {
+        if (i10 == 2 || i10 == 5) {
             StrutBox strutBox = new StrutBox(width / 2.0f, 0.0f, 0.0f, 0.0f);
             add(strutBox);
             add(box);
             add(strutBox);
             return;
         }
-        if (i == 0) {
+        if (i10 == 0) {
             add(box);
             add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
-        } else if (i != 1) {
+        } else if (i10 != 1) {
             add(box);
         } else {
             add(new StrutBox(width, 0.0f, 0.0f, 0.0f));
@@ -52,11 +52,11 @@ public class HorizontalBox extends Box {
         super.add(box);
     }
 
-    public void addBreakPosition(int i) {
+    public void addBreakPosition(int i10) {
         if (this.breakPositions == null) {
             this.breakPositions = new ArrayList();
         }
-        this.breakPositions.add(Integer.valueOf(i));
+        this.breakPositions.add(Integer.valueOf(i10));
     }
 
     public HorizontalBox cloneBox() {
@@ -66,11 +66,11 @@ public class HorizontalBox extends Box {
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f, float f2) {
-        startDraw(graphics2D, f, f2);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        startDraw(graphics2D, f10, f11);
         for (Box box : this.children) {
-            box.draw(graphics2D, f, box.shift + f2);
-            f += box.getWidth();
+            box.draw(graphics2D, f10, box.shift + f11);
+            f10 += box.getWidth();
         }
         endDraw(graphics2D);
     }
@@ -86,27 +86,27 @@ public class HorizontalBox extends Box {
         return lastFontId;
     }
 
-    public HorizontalBox[] split(int i) {
-        return split(i, 1);
+    public HorizontalBox[] split(int i10) {
+        return split(i10, 1);
     }
 
-    public HorizontalBox[] splitRemove(int i) {
-        return split(i, 2);
+    public HorizontalBox[] splitRemove(int i10) {
+        return split(i10, 2);
     }
 
-    private HorizontalBox[] split(int i, int i2) {
+    private HorizontalBox[] split(int i10, int i11) {
         HorizontalBox horizontalBoxCloneBox = cloneBox();
         HorizontalBox horizontalBoxCloneBox2 = cloneBox();
-        for (int i3 = 0; i3 <= i; i3++) {
-            horizontalBoxCloneBox.add(this.children.get(i3));
+        for (int i12 = 0; i12 <= i10; i12++) {
+            horizontalBoxCloneBox.add(this.children.get(i12));
         }
-        for (int i4 = i2 + i; i4 < this.children.size(); i4++) {
-            horizontalBoxCloneBox2.add(this.children.get(i4));
+        for (int i13 = i11 + i10; i13 < this.children.size(); i13++) {
+            horizontalBoxCloneBox2.add(this.children.get(i13));
         }
         if (this.breakPositions != null) {
-            for (int i5 = 0; i5 < this.breakPositions.size(); i5++) {
-                if (this.breakPositions.get(i5).intValue() > i + 1) {
-                    horizontalBoxCloneBox2.addBreakPosition((this.breakPositions.get(i5).intValue() - i) - 1);
+            for (int i14 = 0; i14 < this.breakPositions.size(); i14++) {
+                if (this.breakPositions.get(i14).intValue() > i10 + 1) {
+                    horizontalBoxCloneBox2.addBreakPosition((this.breakPositions.get(i14).intValue() - i10) - 1);
                 }
             }
         }
@@ -114,9 +114,9 @@ public class HorizontalBox extends Box {
     }
 
     @Override
-    public final void add(int i, Box box) {
+    public final void add(int i10, Box box) {
         recalculate(box);
-        super.add(i, box);
+        super.add(i10, box);
     }
 
     public HorizontalBox(Box box) {

@@ -8,13 +8,13 @@ public class RtpSender {
     private long nativeRtpSender;
     private boolean ownsTrack = true;
 
-    public RtpSender(long j) {
-        this.nativeRtpSender = j;
-        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
-        if (!nativeGetMediaType(j).equalsIgnoreCase("audio")) {
+    public RtpSender(long j10) {
+        this.nativeRtpSender = j10;
+        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j10));
+        if (!nativeGetMediaType(j10).equalsIgnoreCase("audio")) {
             this.dtmfSender = null;
         } else {
-            long jNativeGetDtmfSender = nativeGetDtmfSender(j);
+            long jNativeGetDtmfSender = nativeGetDtmfSender(j10);
             this.dtmfSender = jNativeGetDtmfSender != 0 ? new DtmfSender(jNativeGetDtmfSender) : null;
         }
     }
@@ -25,25 +25,25 @@ public class RtpSender {
         }
     }
 
-    private static native long nativeGetDtmfSender(long j);
+    private static native long nativeGetDtmfSender(long j10);
 
-    private static native String nativeGetId(long j);
+    private static native String nativeGetId(long j10);
 
-    private static native String nativeGetMediaType(long j);
+    private static native String nativeGetMediaType(long j10);
 
-    private static native RtpParameters nativeGetParameters(long j);
+    private static native RtpParameters nativeGetParameters(long j10);
 
-    private static native List<String> nativeGetStreams(long j);
+    private static native List<String> nativeGetStreams(long j10);
 
-    private static native long nativeGetTrack(long j);
+    private static native long nativeGetTrack(long j10);
 
-    private static native void nativeSetFrameEncryptor(long j, long j2);
+    private static native void nativeSetFrameEncryptor(long j10, long j11);
 
-    private static native boolean nativeSetParameters(long j, RtpParameters rtpParameters);
+    private static native boolean nativeSetParameters(long j10, RtpParameters rtpParameters);
 
-    private static native void nativeSetStreams(long j, List<String> list);
+    private static native void nativeSetStreams(long j10, List<String> list);
 
-    private static native boolean nativeSetTrack(long j, long j2);
+    private static native boolean nativeSetTrack(long j10, long j11);
 
     public void dispose() {
         checkRtpSenderExists();
@@ -98,7 +98,7 @@ public class RtpSender {
         nativeSetStreams(this.nativeRtpSender, list);
     }
 
-    public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z) {
+    public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z10) {
         checkRtpSenderExists();
         if (!nativeSetTrack(this.nativeRtpSender, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack())) {
             return false;
@@ -108,7 +108,7 @@ public class RtpSender {
             mediaStreamTrack2.dispose();
         }
         this.cachedTrack = mediaStreamTrack;
-        this.ownsTrack = z;
+        this.ownsTrack = z10;
         return true;
     }
 

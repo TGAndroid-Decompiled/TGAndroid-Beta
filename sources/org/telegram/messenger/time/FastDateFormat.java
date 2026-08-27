@@ -27,20 +27,20 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
         this(str, timeZone, locale, null);
     }
 
-    public static FastDateFormat getDateInstance(int i) {
-        return (FastDateFormat) cache.getDateInstance(i, null, null);
+    public static FastDateFormat getDateInstance(int i10) {
+        return (FastDateFormat) cache.getDateInstance(i10, null, null);
     }
 
-    public static FastDateFormat getDateTimeInstance(int i, int i2) {
-        return (FastDateFormat) cache.getDateTimeInstance(i, i2, (TimeZone) null, (Locale) null);
+    public static FastDateFormat getDateTimeInstance(int i10, int i11) {
+        return (FastDateFormat) cache.getDateTimeInstance(i10, i11, (TimeZone) null, (Locale) null);
     }
 
     public static FastDateFormat getInstance() {
         return (FastDateFormat) cache.getInstance();
     }
 
-    public static FastDateFormat getTimeInstance(int i) {
-        return (FastDateFormat) cache.getTimeInstance(i, null, null);
+    public static FastDateFormat getTimeInstance(int i10) {
+        return (FastDateFormat) cache.getTimeInstance(i10, null, null);
     }
 
     public StringBuffer applyRules(Calendar calendar, StringBuffer stringBuffer) {
@@ -101,25 +101,25 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
         this.parser = new FastDateParser(str, timeZone, locale, date);
     }
 
-    public static FastDateFormat getDateInstance(int i, Locale locale) {
-        return (FastDateFormat) cache.getDateInstance(i, null, locale);
+    public static FastDateFormat getDateInstance(int i10, Locale locale) {
+        return (FastDateFormat) cache.getDateInstance(i10, null, locale);
     }
 
-    public static FastDateFormat getDateTimeInstance(int i, int i2, Locale locale) {
-        return (FastDateFormat) cache.getDateTimeInstance(i, i2, (TimeZone) null, locale);
+    public static FastDateFormat getDateTimeInstance(int i10, int i11, Locale locale) {
+        return (FastDateFormat) cache.getDateTimeInstance(i10, i11, (TimeZone) null, locale);
     }
 
     public static FastDateFormat getInstance(String str) {
         return (FastDateFormat) cache.getInstance(str, null, null);
     }
 
-    public static FastDateFormat getTimeInstance(int i, Locale locale) {
-        return (FastDateFormat) cache.getTimeInstance(i, null, locale);
+    public static FastDateFormat getTimeInstance(int i10, Locale locale) {
+        return (FastDateFormat) cache.getTimeInstance(i10, null, locale);
     }
 
     @Override
-    public String format(long j) {
-        return this.printer.format(j);
+    public String format(long j10) {
+        return this.printer.format(j10);
     }
 
     @Override
@@ -127,20 +127,20 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
         return this.parser.parse(str, parsePosition);
     }
 
-    public static FastDateFormat getDateInstance(int i, TimeZone timeZone) {
-        return (FastDateFormat) cache.getDateInstance(i, timeZone, null);
+    public static FastDateFormat getDateInstance(int i10, TimeZone timeZone) {
+        return (FastDateFormat) cache.getDateInstance(i10, timeZone, null);
     }
 
-    public static FastDateFormat getDateTimeInstance(int i, int i2, TimeZone timeZone) {
-        return getDateTimeInstance(i, i2, timeZone, null);
+    public static FastDateFormat getDateTimeInstance(int i10, int i11, TimeZone timeZone) {
+        return getDateTimeInstance(i10, i11, timeZone, null);
     }
 
     public static FastDateFormat getInstance(String str, TimeZone timeZone) {
         return (FastDateFormat) cache.getInstance(str, timeZone, null);
     }
 
-    public static FastDateFormat getTimeInstance(int i, TimeZone timeZone) {
-        return (FastDateFormat) cache.getTimeInstance(i, timeZone, null);
+    public static FastDateFormat getTimeInstance(int i10, TimeZone timeZone) {
+        return (FastDateFormat) cache.getTimeInstance(i10, timeZone, null);
     }
 
     @Override
@@ -148,20 +148,20 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
         return this.printer.format(date);
     }
 
-    public static FastDateFormat getDateInstance(int i, TimeZone timeZone, Locale locale) {
-        return (FastDateFormat) cache.getDateInstance(i, timeZone, locale);
+    public static FastDateFormat getDateInstance(int i10, TimeZone timeZone, Locale locale) {
+        return (FastDateFormat) cache.getDateInstance(i10, timeZone, locale);
     }
 
-    public static FastDateFormat getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
-        return (FastDateFormat) cache.getDateTimeInstance(i, i2, timeZone, locale);
+    public static FastDateFormat getDateTimeInstance(int i10, int i11, TimeZone timeZone, Locale locale) {
+        return (FastDateFormat) cache.getDateTimeInstance(i10, i11, timeZone, locale);
     }
 
     public static FastDateFormat getInstance(String str, Locale locale) {
         return (FastDateFormat) cache.getInstance(str, null, locale);
     }
 
-    public static FastDateFormat getTimeInstance(int i, TimeZone timeZone, Locale locale) {
-        return (FastDateFormat) cache.getTimeInstance(i, timeZone, locale);
+    public static FastDateFormat getTimeInstance(int i10, TimeZone timeZone, Locale locale) {
+        return (FastDateFormat) cache.getTimeInstance(i10, timeZone, locale);
     }
 
     @Override
@@ -174,8 +174,8 @@ public class FastDateFormat extends Format implements DateParser, DatePrinter {
     }
 
     @Override
-    public StringBuffer format(long j, StringBuffer stringBuffer) {
-        return this.printer.format(j, stringBuffer);
+    public StringBuffer format(long j10, StringBuffer stringBuffer) {
+        return this.printer.format(j10, stringBuffer);
     }
 
     @Override

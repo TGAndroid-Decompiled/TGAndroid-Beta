@@ -3,12 +3,12 @@ package org.scilab.forge.jlatexmath;
 public class DelimiterFactory {
     private static final float MAX_LENGTH = 4096.0f;
 
-    public static Box create(String str, TeXEnvironment teXEnvironment, float f) {
-        float f2;
-        if (Float.isInfinite(f) || Float.isNaN(f) || f < 0.0f) {
-            f = 0.0f;
+    public static Box create(String str, TeXEnvironment teXEnvironment, float f10) {
+        float f11;
+        if (Float.isInfinite(f10) || Float.isNaN(f10) || f10 < 0.0f) {
+            f10 = 0.0f;
         }
-        float fMin = Math.min(f, 4096.0f);
+        float fMin = Math.min(f10, 4096.0f);
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char nextLarger = teXFont.getChar(str, style);
@@ -16,8 +16,8 @@ public class DelimiterFactory {
         float height = metrics.getHeight();
         float depth = metrics.getDepth();
         while (true) {
-            f2 = depth + height;
-            if (f2 >= fMin || !teXFont.hasNextLarger(nextLarger)) {
+            f11 = depth + height;
+            if (f11 >= fMin || !teXFont.hasNextLarger(nextLarger)) {
                 break;
             }
             nextLarger = teXFont.getNextLarger(nextLarger, style);
@@ -25,7 +25,7 @@ public class DelimiterFactory {
             height = metrics2.getHeight();
             depth = metrics2.getDepth();
         }
-        if (f2 >= fMin) {
+        if (f11 >= fMin) {
             return new CharBox(nextLarger);
         }
         if (!teXFont.isExtensionChar(nextLarger)) {
@@ -59,21 +59,21 @@ public class DelimiterFactory {
         return verticalBox;
     }
 
-    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i) {
-        if (i > 4) {
+    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i10) {
+        if (i10 > 4) {
             return symbolAtom.createBox(teXEnvironment);
         }
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char nextLarger = teXFont.getChar(symbolAtom.getName(), style);
-        int i2 = 1;
-        while (i2 <= i && teXFont.hasNextLarger(nextLarger)) {
+        int i11 = 1;
+        while (i11 <= i10 && teXFont.hasNextLarger(nextLarger)) {
             nextLarger = teXFont.getNextLarger(nextLarger, style);
-            i2++;
+            i11++;
         }
-        if (i2 <= i && !teXFont.hasNextLarger(nextLarger)) {
+        if (i11 <= i10 && !teXFont.hasNextLarger(nextLarger)) {
             CharBox charBox = new CharBox(teXFont.getChar('A', "mathnormal", style));
-            return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i);
+            return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i10);
         }
         return new CharBox(nextLarger);
     }

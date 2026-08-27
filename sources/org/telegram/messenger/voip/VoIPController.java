@@ -3,7 +3,6 @@ package org.telegram.messenger.voip;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.NoiseSuppressor;
 import android.os.SystemClock;
-import com.google.android.exoplayer2.util.Log;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +11,7 @@ import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.MessagesController;
+import org.telegram.ui.Components.voip.e2;
 
 public class VoIPController {
     public static final int DATA_SAVING_ALWAYS = 2;
@@ -49,9 +49,9 @@ public class VoIPController {
     protected long nativeInst = nativeInit(new File(ApplicationLoader.applicationContext.getFilesDir(), "voip_persistent_state.json").getAbsolutePath());
 
     public interface ConnectionStateListener {
-        void onConnectionStateChanged(int i, boolean z);
+        void onConnectionStateChanged(int i10, boolean z10);
 
-        void onSignalBarCountChanged(int i);
+        void onSignalBarCountChanged(int i10);
     }
 
     public static class Stats {
@@ -76,69 +76,69 @@ public class VoIPController {
         return nativeGetVersion();
     }
 
-    private void handleSignalBarsChange(int i) {
+    private void handleSignalBarsChange(int i10) {
         ConnectionStateListener connectionStateListener = this.listener;
         if (connectionStateListener != null) {
-            connectionStateListener.onSignalBarCountChanged(i);
+            connectionStateListener.onSignalBarCountChanged(i10);
         }
     }
 
-    private void handleStateChange(int i) {
-        if (i == 3 && this.callStartTime == 0) {
+    private void handleStateChange(int i10) {
+        if (i10 == 3 && this.callStartTime == 0) {
             this.callStartTime = SystemClock.elapsedRealtime();
         }
         ConnectionStateListener connectionStateListener = this.listener;
         if (connectionStateListener != null) {
-            connectionStateListener.onConnectionStateChanged(i, false);
+            connectionStateListener.onConnectionStateChanged(i10, false);
         }
     }
 
-    private native void nativeConnect(long j);
+    private native void nativeConnect(long j10);
 
-    private native void nativeDebugCtl(long j, int i, int i2);
+    private native void nativeDebugCtl(long j10, int i10, int i11);
 
-    private native String nativeGetDebugLog(long j);
+    private native String nativeGetDebugLog(long j10);
 
-    private native String nativeGetDebugString(long j);
+    private native String nativeGetDebugString(long j10);
 
-    private native int nativeGetLastError(long j);
+    private native int nativeGetLastError(long j10);
 
-    private native int nativeGetPeerCapabilities(long j);
+    private native int nativeGetPeerCapabilities(long j10);
 
-    private native long nativeGetPreferredRelayID(long j);
+    private native long nativeGetPreferredRelayID(long j10);
 
-    private native void nativeGetStats(long j, Stats stats);
+    private native void nativeGetStats(long j10, Stats stats);
 
     private static native String nativeGetVersion();
 
     private native long nativeInit(String str);
 
-    private static native boolean nativeNeedRate(long j);
+    private static native boolean nativeNeedRate(long j10);
 
-    private native void nativeRelease(long j);
+    private native void nativeRelease(long j10);
 
-    private native void nativeRequestCallUpgrade(long j);
+    private native void nativeRequestCallUpgrade(long j10);
 
-    private native void nativeSetAudioOutputGainControlEnabled(long j, boolean z);
+    private native void nativeSetAudioOutputGainControlEnabled(long j10, boolean z10);
 
-    private native void nativeSetConfig(long j, double d, double d2, int i, boolean z, boolean z2, boolean z3, String str, String str2, boolean z4);
+    private native void nativeSetConfig(long j10, double d, double d10, int i10, boolean z10, boolean z11, boolean z12, String str, String str2, boolean z13);
 
-    private native void nativeSetEchoCancellationStrength(long j, int i);
+    private native void nativeSetEchoCancellationStrength(long j10, int i10);
 
-    private native void nativeSetEncryptionKey(long j, byte[] bArr, boolean z);
+    private native void nativeSetEncryptionKey(long j10, byte[] bArr, boolean z10);
 
-    private native void nativeSetMicMute(long j, boolean z);
+    private native void nativeSetMicMute(long j10, boolean z10);
 
-    private static native void nativeSetNativeBufferSize(int i);
+    private static native void nativeSetNativeBufferSize(int i10);
 
-    private native void nativeSetNetworkType(long j, int i);
+    private native void nativeSetNetworkType(long j10, int i10);
 
-    private native void nativeSetProxy(long j, String str, int i, String str2, String str3);
+    private native void nativeSetProxy(long j10, String str, int i10, String str2, String str3);
 
-    private native void nativeStart(long j);
+    private native void nativeStart(long j10);
 
-    public static void setNativeBufferSize(int i) {
-        nativeSetNativeBufferSize(i);
+    public static void setNativeBufferSize(int i10) {
+        nativeSetNativeBufferSize(i10);
     }
 
     public void connect() {
@@ -146,9 +146,9 @@ public class VoIPController {
         nativeConnect(this.nativeInst);
     }
 
-    public void debugCtl(int i, int i2) {
+    public void debugCtl(int i10, int i11) {
         ensureNativeInstance();
-        nativeDebugCtl(this.nativeInst, i, i2);
+        nativeDebugCtl(this.nativeInst, i10, i11);
     }
 
     public void ensureNativeInstance() {
@@ -210,12 +210,12 @@ public class VoIPController {
         nativeRequestCallUpgrade(this.nativeInst);
     }
 
-    public void setAudioOutputGainControlEnabled(boolean z) {
+    public void setAudioOutputGainControlEnabled(boolean z10) {
         ensureNativeInstance();
-        nativeSetAudioOutputGainControlEnabled(this.nativeInst, z);
+        nativeSetAudioOutputGainControlEnabled(this.nativeInst, z10);
     }
 
-    public void setConfig(double d, double d2, int i, long j) {
+    public void setConfig(double d, double d10, int i10, long j10) {
         boolean zIsAvailable;
         boolean zIsAvailable2;
         ensureNativeInstance();
@@ -229,50 +229,50 @@ public class VoIPController {
         } catch (Throwable unused2) {
             zIsAvailable = false;
         }
-        boolean z = MessagesController.getGlobalMainSettings().getBoolean("dbg_dump_call_stats", false);
-        long j2 = this.nativeInst;
-        boolean z2 = true;
-        boolean z3 = (zIsAvailable && VoIPServerConfig.getBoolean("use_system_aec", true)) ? false : true;
+        boolean z10 = MessagesController.getGlobalMainSettings().getBoolean("dbg_dump_call_stats", false);
+        long j11 = this.nativeInst;
+        boolean z11 = true;
+        boolean z12 = (zIsAvailable && VoIPServerConfig.getBoolean("use_system_aec", true)) ? false : true;
         if (zIsAvailable2 && VoIPServerConfig.getBoolean("use_system_ns", true)) {
-            z2 = false;
+            z11 = false;
         }
-        nativeSetConfig(j2, d, d2, i, z3, z2, true, BuildVars.DEBUG_VERSION ? getLogFilePath(Log.m(j, "voip")) : getLogFilePath(j), (BuildVars.DEBUG_VERSION && z) ? getLogFilePath("voipStats") : null, BuildVars.DEBUG_VERSION);
+        nativeSetConfig(j11, d, d10, i10, z12, z11, true, BuildVars.DEBUG_VERSION ? getLogFilePath(a9.p.l(j10, "voip")) : getLogFilePath(j10), (BuildVars.DEBUG_VERSION && z10) ? getLogFilePath("voipStats") : null, BuildVars.DEBUG_VERSION);
     }
 
     public void setConnectionStateListener(ConnectionStateListener connectionStateListener) {
         this.listener = connectionStateListener;
     }
 
-    public void setEchoCancellationStrength(int i) {
+    public void setEchoCancellationStrength(int i10) {
         ensureNativeInstance();
-        nativeSetEchoCancellationStrength(this.nativeInst, i);
+        nativeSetEchoCancellationStrength(this.nativeInst, i10);
     }
 
-    public void setEncryptionKey(byte[] bArr, boolean z) {
+    public void setEncryptionKey(byte[] bArr, boolean z10) {
         if (bArr.length == 256) {
             ensureNativeInstance();
-            nativeSetEncryptionKey(this.nativeInst, bArr, z);
+            nativeSetEncryptionKey(this.nativeInst, bArr, z10);
         } else {
             throw new IllegalArgumentException("key length must be exactly 256 bytes but is " + bArr.length);
         }
     }
 
-    public void setMicMute(boolean z) {
+    public void setMicMute(boolean z10) {
         ensureNativeInstance();
-        nativeSetMicMute(this.nativeInst, z);
+        nativeSetMicMute(this.nativeInst, z10);
     }
 
-    public void setNetworkType(int i) {
+    public void setNetworkType(int i10) {
         ensureNativeInstance();
-        nativeSetNetworkType(this.nativeInst, i);
+        nativeSetNetworkType(this.nativeInst, i10);
     }
 
-    public void setProxy(String str, int i, String str2, String str3) {
+    public void setProxy(String str, int i10, String str2, String str3) {
         ensureNativeInstance();
         if (str == null) {
             throw new NullPointerException("address can't be null");
         }
-        nativeSetProxy(this.nativeInst, str, i, str2, str3);
+        nativeSetProxy(this.nativeInst, str, i10, str2, str3);
     }
 
     public void start() {
@@ -280,29 +280,26 @@ public class VoIPController {
         nativeStart(this.nativeInst);
     }
 
-    private String getLogFilePath(long j) {
-        File file = new File(ApplicationLoader.applicationContext.getCacheDir(), "voip_logs");
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+    private String getLogFilePath(long j10) {
+        File fileF = e2.f();
         if (!BuildVars.DEBUG_VERSION) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(file.listFiles()));
+            ArrayList arrayList = new ArrayList(Arrays.asList(fileF.listFiles()));
             while (arrayList.size() > 20) {
-                int i = 0;
-                File file2 = (File) arrayList.get(0);
+                int i10 = 0;
+                File file = (File) arrayList.get(0);
                 int size = arrayList.size();
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    File file3 = (File) obj;
-                    if (file3.getName().endsWith(".log") && file3.lastModified() < file2.lastModified()) {
-                        file2 = file3;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    File file2 = (File) obj;
+                    if (file2.getName().endsWith(".log") && file2.lastModified() < file.lastModified()) {
+                        file = file2;
                     }
                 }
-                file2.delete();
-                arrayList.remove(file2);
+                file.delete();
+                arrayList.remove(file);
             }
         }
-        return new File(file, j + ".log").getAbsolutePath();
+        return new File(fileF, j10 + ".log").getAbsolutePath();
     }
 }

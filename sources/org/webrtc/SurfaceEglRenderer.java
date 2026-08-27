@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda8;
 
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
     private static final String TAG = "SurfaceEglRenderer";
@@ -88,17 +87,17 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     @Override
-    public void setFpsReduction(float f) {
+    public void setFpsReduction(float f10) {
         synchronized (this.layoutLock) {
-            this.isRenderingPaused = f == 0.0f;
+            this.isRenderingPaused = f10 == 0.0f;
         }
-        super.setFpsReduction(f);
+        super.setFpsReduction(f10);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
         ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i + " size: " + i2 + "x" + i3);
+        logD("surfaceChanged: format: " + i10 + " size: " + i11 + "x" + i12);
     }
 
     @Override
@@ -111,7 +110,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new Theme$$ExternalSyntheticLambda8(countDownLatch, 18), false);
+        releaseEglSurface(new org.telegram.ui.ActionBar.p(countDownLatch, 16), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

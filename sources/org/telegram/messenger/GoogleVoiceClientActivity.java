@@ -1,11 +1,8 @@
 package org.telegram.messenger;
 
-import com.google.android.search.verification.client.SearchActionVerificationClientActivity;
-import com.google.android.search.verification.client.SearchActionVerificationClientService;
-
-public class GoogleVoiceClientActivity extends SearchActionVerificationClientActivity {
+public class GoogleVoiceClientActivity extends n8.a {
     @Override
-    public Class<? extends SearchActionVerificationClientService> getServiceClass() {
+    public Class<? extends n8.c> getServiceClass() {
         return GoogleVoiceClientService.class;
     }
 }

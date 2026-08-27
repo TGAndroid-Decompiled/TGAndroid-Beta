@@ -1,7 +1,5 @@
 package org.telegram.messenger.voip;
 
-import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.exoplayer2.util.Util;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +58,8 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String id;
+
+        public final String f21877id;
         public final String ip;
         public final String network;
         public final String port;
@@ -76,7 +75,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.id = str5;
+            this.f21877id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -88,7 +87,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f21877id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -107,19 +106,19 @@ public final class Instance {
         public final double receiveTimeout;
         public final String statsLogPath;
 
-        public Config(double d, double d2, int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str, String str2, int i2, String str3) {
+        public Config(double d, double d10, int i10, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, String str, String str2, int i11, String str3) {
             this.initializationTimeout = d;
-            this.receiveTimeout = d2;
-            this.dataSaving = i;
-            this.enableP2p = z;
-            this.enableAec = z2;
-            this.enableNs = z3;
-            this.enableAgc = z4;
-            this.enableCallUpgrade = z5;
+            this.receiveTimeout = d10;
+            this.dataSaving = i10;
+            this.enableP2p = z10;
+            this.enableAec = z11;
+            this.enableNs = z12;
+            this.enableAgc = z13;
+            this.enableCallUpgrade = z14;
             this.logPath = str;
             this.statsLogPath = str2;
-            this.maxApiLayer = i2;
-            this.enableSm = z6;
+            this.maxApiLayer = i11;
+            this.enableSm = z15;
             this.customParameters = str3;
         }
 
@@ -132,9 +131,9 @@ public final class Instance {
         public final boolean isOutgoing;
         public final byte[] value;
 
-        public EncryptionKey(byte[] bArr, boolean z) {
+        public EncryptionKey(byte[] bArr, boolean z10) {
             this.value = bArr;
-            this.isOutgoing = z;
+            this.isOutgoing = z10;
         }
 
         public String toString() {
@@ -143,7 +142,8 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long id;
+
+        public final long f21878id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -157,37 +157,37 @@ public final class Instance {
         public final int type;
         public final String username;
 
-        public Endpoint(boolean z, long j, String str, String str2, int i, int i2, byte[] bArr, boolean z2, boolean z3, String str3, String str4, boolean z4) {
-            this.isRtc = z;
-            this.id = j;
+        public Endpoint(boolean z10, long j10, String str, String str2, int i10, int i11, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
+            this.isRtc = z10;
+            this.f21878id = j10;
             this.ipv4 = str;
             this.ipv6 = str2;
-            this.port = i;
-            this.type = i2;
+            this.port = i10;
+            this.type = i11;
             this.peerTag = bArr;
-            this.turn = z2;
-            this.stun = z3;
-            if (z) {
+            this.turn = z11;
+            this.stun = z12;
+            if (z10) {
                 this.username = str3;
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                int i3 = Util.SDK_INT;
-                StringBuilder sb = new StringBuilder(bArr.length * 2);
-                for (int i4 = 0; i4 < bArr.length; i4++) {
-                    sb.append(Character.forDigit((bArr[i4] >> 4) & 15, 16));
-                    sb.append(Character.forDigit(bArr[i4] & 15, 16));
+                int i12 = d5.g0.f4795a;
+                StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+                for (int i13 = 0; i13 < bArr.length; i13++) {
+                    sb2.append(Character.forDigit((bArr[i13] >> 4) & 15, 16));
+                    sb2.append(Character.forDigit(bArr[i13] & 15, 16));
                 }
-                this.password = sb.toString();
+                this.password = sb2.toString();
             } else {
                 this.username = null;
                 this.password = null;
             }
-            this.tcp = z4;
+            this.tcp = z13;
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f21878id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -197,11 +197,11 @@ public final class Instance {
         public final byte[] persistentState;
         public final TrafficStats trafficStats;
 
-        public FinalState(byte[] bArr, String str, TrafficStats trafficStats, boolean z) {
+        public FinalState(byte[] bArr, String str, TrafficStats trafficStats, boolean z10) {
             this.persistentState = bArr;
             this.debugLog = str;
             this.trafficStats = trafficStats;
-            this.isRatingSuggested = z;
+            this.isRatingSuggested = z10;
         }
 
         public String toString() {
@@ -226,11 +226,11 @@ public final class Instance {
     }
 
     public interface OnRemoteMediaStateUpdatedListener {
-        void onMediaStateUpdated(int i, int i2);
+        void onMediaStateUpdated(int i10, int i11);
     }
 
     public interface OnSignalBarsUpdatedListener {
-        void onSignalBarsUpdated(int i);
+        void onSignalBarsUpdated(int i10);
     }
 
     public interface OnSignalingDataListener {
@@ -238,7 +238,7 @@ public final class Instance {
     }
 
     public interface OnStateUpdatedListener {
-        void onStateUpdated(int i, boolean z);
+        void onStateUpdated(int i10, boolean z10);
     }
 
     public static final class Proxy {
@@ -247,22 +247,22 @@ public final class Instance {
         public final String password;
         public final int port;
 
-        public Proxy(String str, int i, String str2, String str3) {
+        public Proxy(String str, int i10, String str2, String str3) {
             this.host = str;
-            this.port = i;
+            this.port = i10;
             this.login = str2;
             this.password = str3;
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder("Proxy{host='");
-            sb.append(this.host);
-            sb.append("', port=");
-            sb.append(this.port);
-            sb.append(", login='");
-            sb.append(this.login);
-            sb.append("', password='");
-            return MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(sb, this.password, "'}");
+            StringBuilder sb2 = new StringBuilder("Proxy{host='");
+            sb2.append(this.host);
+            sb2.append("', port=");
+            sb2.append(this.port);
+            sb2.append(", login='");
+            sb2.append(this.login);
+            sb2.append("', password='");
+            return a9.p.p(sb2, this.password, "'}");
         }
     }
 
@@ -312,11 +312,11 @@ public final class Instance {
         public final long bytesSentMobile;
         public final long bytesSentWifi;
 
-        public TrafficStats(long j, long j2, long j3, long j4) {
-            this.bytesSentWifi = j;
-            this.bytesReceivedWifi = j2;
-            this.bytesSentMobile = j3;
-            this.bytesReceivedMobile = j4;
+        public TrafficStats(long j10, long j11, long j12, long j13) {
+            this.bytesSentWifi = j10;
+            this.bytesReceivedWifi = j11;
+            this.bytesSentMobile = j12;
+            this.bytesReceivedMobile = j13;
         }
 
         public String toString() {
@@ -353,21 +353,21 @@ public final class Instance {
         return null;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i, EncryptionKey encryptionKey, VideoSink videoSink, long j, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i10, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(ApplicationLoader.applicationContext);
         }
-        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, audioLevelsCallback);
+        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, audioLevelsCallback);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
         setBufferSize(bufferSize);
         return instance;
     }
 
-    public static void setBufferSize(int i) {
-        bufferSize = i;
+    public static void setBufferSize(int i10) {
+        bufferSize = i10;
         NativeInstance nativeInstance = instance;
         if (nativeInstance != null) {
-            nativeInstance.setBufferSize(i);
+            nativeInstance.setBufferSize(i10);
         }
     }
 
@@ -378,9 +378,9 @@ public final class Instance {
             if (nativeInstance != null) {
                 nativeInstance.setGlobalServerConfig(str);
             }
-        } catch (JSONException e) {
+        } catch (JSONException e9) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("failed to parse tgvoip server config", e);
+                FileLog.e("failed to parse tgvoip server config", e9);
             }
         }
     }

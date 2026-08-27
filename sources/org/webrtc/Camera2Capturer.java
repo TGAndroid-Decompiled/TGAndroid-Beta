@@ -14,13 +14,13 @@ public class Camera2Capturer extends CameraCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i, int i2, int i3) {
-        super.changeCaptureFormat(i, i2, i3);
+    public void changeCaptureFormat(int i10, int i11, int i12) {
+        super.changeCaptureFormat(i10, i11, i12);
     }
 
     @Override
-    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
-        Camera2Session.create(createSessionCallback, events, context, this.cameraManager, surfaceTextureHelper, str, i, i2, i3);
+    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12) {
+        Camera2Session.create(createSessionCallback, events, context, this.cameraManager, surfaceTextureHelper, str, i10, i11, i12);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class Camera2Capturer extends CameraCapturer {
     }
 
     @Override
-    public void startCapture(int i, int i2, int i3) {
-        super.startCapture(i, i2, i3);
+    public void startCapture(int i10, int i11, int i12) {
+        super.startCapture(i10, i11, i12);
     }
 
     @Override

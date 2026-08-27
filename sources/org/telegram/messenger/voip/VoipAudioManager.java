@@ -1,12 +1,9 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioManager;
-import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda10;
 
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
@@ -26,17 +23,17 @@ public class VoipAudioManager {
         return (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
     }
 
-    public static void lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2 callback2, boolean z, boolean z2) {
-        callback2.run(Boolean.valueOf(z), Boolean.valueOf(z2));
+    public static void lambda$isBluetoothAndSpeakerOnAsync$1(Utilities.Callback2 callback2, boolean z10, boolean z11) {
+        callback2.run(Boolean.valueOf(z10), Boolean.valueOf(z11));
     }
 
     public void lambda$isBluetoothAndSpeakerOnAsync$2(Utilities.Callback2 callback2) {
         AudioManager audioManager = getAudioManager();
-        AndroidUtilities.runOnUIThread(new EmojiView$$ExternalSyntheticLambda10(callback2, audioManager.isBluetoothScoOn(), audioManager.isSpeakerphoneOn(), 3));
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.k(callback2, audioManager.isBluetoothScoOn(), audioManager.isSpeakerphoneOn(), 2));
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new ClickHelper$$ExternalSyntheticLambda0(21, this, callback2));
+        Utilities.globalQueue.postRunnable(new l0(1, this, callback2));
     }
 
     public boolean isSpeakerphoneOn() {
@@ -44,9 +41,9 @@ public class VoipAudioManager {
         return bool == null ? getAudioManager().isSpeakerphoneOn() : bool.booleanValue();
     }
 
-    public void setSpeakerphoneOn(boolean z) {
-        this.isSpeakerphoneOn = Boolean.valueOf(z);
-        Utilities.globalQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(getAudioManager(), z, 9));
+    public void setSpeakerphoneOn(boolean z10) {
+        this.isSpeakerphoneOn = Boolean.valueOf(z10);
+        Utilities.globalQueue.postRunnable(new fh.f(21, getAudioManager(), z10));
     }
 
     private VoipAudioManager() {

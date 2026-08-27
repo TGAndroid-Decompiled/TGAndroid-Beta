@@ -7,13 +7,11 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.TextureView;
 import android.view.View;
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.ef;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda8;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda167;
 
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
@@ -58,20 +56,20 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
     }
 
-    public void lambda$onFrameResolutionChanged$0(int i, int i2, int i3, int i4) {
+    public void lambda$onFrameResolutionChanged$0(int i10, int i11, int i12, int i13) {
         this.updateScreenRunnable = null;
-        this.videoWidth = i;
-        this.videoHeight = i2;
-        this.rotatedFrameWidth = i3;
-        this.rotatedFrameHeight = i4;
+        this.videoWidth = i10;
+        this.videoHeight = i11;
+        this.rotatedFrameWidth = i12;
+        this.rotatedFrameHeight = i13;
         updateSurfaceSize();
         requestLayout();
     }
 
-    public void lambda$updateVideoSizes$1(int i, int i2) {
+    public void lambda$updateVideoSizes$1(int i10, int i11) {
         this.updateScreenRunnable = null;
-        this.rotatedFrameWidth = i;
-        this.rotatedFrameHeight = i2;
+        this.rotatedFrameWidth = i10;
+        this.rotatedFrameHeight = i11;
         updateSurfaceSize();
         requestLayout();
     }
@@ -81,23 +79,23 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void onRotationChanged() {
-        int i;
-        int i2 = this.useCameraRotation ? OrientationHelper.cameraOrientation : 0;
-        boolean z = this.mirror;
-        if (z) {
-            i2 = 360 - i2;
+        int i10;
+        int i11 = this.useCameraRotation ? OrientationHelper.cameraOrientation : 0;
+        boolean z10 = this.mirror;
+        if (z10) {
+            i11 = 360 - i11;
         }
-        int i3 = -i2;
+        int i12 = -i11;
         if (this.useCameraRotation) {
-            int i4 = this.screenRotation;
-            if (i4 == 1) {
-                i = z ? 90 : -90;
-            } else if (i4 == 3) {
-                i = z ? 270 : -270;
+            int i13 = this.screenRotation;
+            if (i13 == 1) {
+                i10 = z10 ? 90 : -90;
+            } else if (i13 == 3) {
+                i10 = z10 ? 270 : -270;
             }
-            i3 += i;
+            i12 += i10;
         }
-        this.eglRenderer.setRotation(i3);
+        this.eglRenderer.setRotation(i12);
         this.eglRenderer.setMirror(this.mirror);
     }
 
@@ -117,30 +115,29 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             return;
         }
         float width = getWidth() / getHeight();
-        int i = this.rotatedFrameWidth;
-        int i2 = this.rotatedFrameHeight;
-        float f = i2;
-        if (i / f > width) {
-            i = (int) (f * width);
+        int i10 = this.rotatedFrameWidth;
+        int i11 = this.rotatedFrameHeight;
+        if (i10 / i11 > width) {
+            i10 = (int) (i11 * width);
         } else {
-            i2 = (int) (f / width);
+            i11 = (int) (i11 / width);
         }
-        int iMin = Math.min(getWidth(), i);
-        int iMin2 = Math.min(getHeight(), i2);
-        StringBuilder sb = new StringBuilder("updateSurfaceSize. Layout size: ");
-        sb.append(getWidth());
-        sb.append("x");
-        sb.append(getHeight());
-        sb.append(", frame size: ");
-        sb.append(this.rotatedFrameWidth);
-        sb.append("x");
-        Fragment$$ExternalSyntheticOutline0.m(sb, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
-        sb.append(iMin2);
-        sb.append(", old surface size: ");
-        sb.append(this.surfaceWidth);
-        sb.append("x");
-        sb.append(this.surfaceHeight);
-        logD(sb.toString());
+        int iMin = Math.min(getWidth(), i10);
+        int iMin2 = Math.min(getHeight(), i11);
+        StringBuilder sb2 = new StringBuilder("updateSurfaceSize. Layout size: ");
+        sb2.append(getWidth());
+        sb2.append("x");
+        sb2.append(getHeight());
+        sb2.append(", frame size: ");
+        sb2.append(this.rotatedFrameWidth);
+        sb2.append("x");
+        i0.a.x(sb2, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
+        sb2.append(iMin2);
+        sb2.append(", old surface size: ");
+        sb2.append(this.surfaceWidth);
+        sb2.append("x");
+        sb2.append(this.surfaceHeight);
+        logD(sb2.toString());
         if (iMin == this.surfaceWidth && iMin2 == this.surfaceHeight) {
             return;
         }
@@ -149,34 +146,32 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void updateVideoSizes() {
-        int i;
-        int i2;
-        int i3 = this.videoHeight;
-        if (i3 == 0 || (i = this.videoWidth) == 0) {
+        int i10;
+        int i11;
+        int i12 = this.videoHeight;
+        if (i12 == 0 || (i10 = this.videoWidth) == 0) {
             return;
         }
         if (!this.rotateTextureWithScreen) {
-            int i4 = this.textureRotation - OrientationHelper.cameraOrientation;
-            int i5 = (i4 == 0 || i4 == 180 || i4 == -180) ? this.videoWidth : this.videoHeight;
-            i3 = (i4 == 0 || i4 == 180 || i4 == -180) ? this.videoHeight : this.videoWidth;
-            i2 = i5;
+            int i13 = this.textureRotation - OrientationHelper.cameraOrientation;
+            int i14 = (i13 == 0 || i13 == 180 || i13 == -180) ? this.videoWidth : this.videoHeight;
+            i12 = (i13 == 0 || i13 == 180 || i13 == -180) ? this.videoHeight : this.videoWidth;
+            i11 = i14;
         } else if (this.useCameraRotation) {
-            int i6 = this.screenRotation;
-            i2 = i6 == 0 ? i3 : i;
-            if (i6 == 0) {
-                i3 = i;
+            int i15 = this.screenRotation;
+            i11 = i15 == 0 ? i12 : i10;
+            if (i15 == 0) {
+                i12 = i10;
             }
         } else {
-            int i7 = this.textureRotation;
-            int i8 = (i7 == 0 || i7 == 180 || i7 == -180) ? i : i3;
-            if (i7 == 0 || i7 == 180 || i7 == -180) {
-                i2 = i8;
-            } else {
-                i2 = i8;
-                i3 = i;
+            int i16 = this.textureRotation;
+            int i17 = (i16 == 0 || i16 == 180 || i16 == -180) ? i10 : i12;
+            if (i16 != 0 && i16 != 180 && i16 != -180) {
+                i12 = i10;
             }
+            i11 = i17;
         }
-        if (this.rotatedFrameWidth == i2 && this.rotatedFrameHeight == i3) {
+        if (this.rotatedFrameWidth == i11 && this.rotatedFrameHeight == i12) {
             return;
         }
         synchronized (this.eglRenderer.layoutLock) {
@@ -185,17 +180,17 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 if (runnable != null) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                SurfaceViewRenderer$$ExternalSyntheticLambda0 surfaceViewRenderer$$ExternalSyntheticLambda0 = new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i2, i3, 9);
-                this.updateScreenRunnable = surfaceViewRenderer$$ExternalSyntheticLambda0;
-                postOrRun(surfaceViewRenderer$$ExternalSyntheticLambda0);
+                h3.z zVar = new h3.z(this, i11, i12, 13);
+                this.updateScreenRunnable = zVar;
+                postOrRun(zVar);
             } catch (Throwable th) {
                 throw th;
             }
         }
     }
 
-    public void addFrameListener(EglRenderer.FrameListener frameListener, float f, RendererCommon.GlDrawer glDrawer) {
-        this.eglRenderer.addFrameListener(frameListener, f, glDrawer);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f10, RendererCommon.GlDrawer glDrawer) {
+        this.eglRenderer.addFrameListener(frameListener, f10, glDrawer);
     }
 
     public void clearFirstFrame() {
@@ -242,49 +237,50 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onFrameResolutionChanged(int i, int i2, int i3) throws Throwable {
-        int i4;
-        int i5;
+    public void onFrameResolutionChanged(int i10, int i11, int i12) throws Throwable {
+        int i13;
+        int i14;
         Throwable th;
         RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
         if (rendererEvents != null) {
-            rendererEvents.onFrameResolutionChanged(i, i2, i3);
+            rendererEvents.onFrameResolutionChanged(i10, i11, i12);
         }
-        this.textureRotation = i3;
+        this.textureRotation = i12;
         if (this.rotateTextureWithScreen) {
             if (this.isCamera) {
                 onRotationChanged();
             }
             if (this.useCameraRotation) {
-                int i6 = this.screenRotation;
-                i4 = i6 == 0 ? i2 : i;
-                if (i6 == 0) {
-                    i5 = i;
+                int i15 = this.screenRotation;
+                i13 = i15 == 0 ? i11 : i10;
+                if (i15 == 0) {
+                    i14 = i10;
                 } else {
-                    i5 = i2;
+                    i14 = i11;
                 }
             } else {
-                int i7 = this.textureRotation;
-                i4 = (i7 == 0 || i7 == 180 || i7 == -180) ? i : i2;
-                if (i7 == 0 || i7 == 180 || i7 == -180) {
-                    i5 = i2;
+                int i16 = this.textureRotation;
+                i13 = (i16 == 0 || i16 == 180 || i16 == -180) ? i10 : i11;
+                if (i16 == 0 || i16 == 180 || i16 == -180) {
+                    i14 = i11;
                 } else {
-                    i5 = i;
+                    i14 = i10;
                 }
             }
         } else {
             if (this.isCamera) {
                 this.eglRenderer.setRotation(-OrientationHelper.cameraRotation);
             }
-            int i8 = i3 - OrientationHelper.cameraOrientation;
-            i4 = (i8 == 0 || i8 == 180 || i8 == -180) ? i : i2;
-            if (i8 == 0 || i8 == 180 || i8 == -180) {
-                i5 = i2;
+            int i17 = i12 - OrientationHelper.cameraOrientation;
+            i13 = (i17 == 0 || i17 == 180 || i17 == -180) ? i10 : i11;
+            if (i17 == 0 || i17 == 180 || i17 == -180) {
+                i14 = i11;
             } else {
-                i5 = i;
+                i14 = i10;
             }
         }
-        int i9 = i4;
+        int i18 = i14;
+        int i19 = i13;
         synchronized (this.eglRenderer.layoutLock) {
             try {
                 try {
@@ -297,9 +293,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                             throw th;
                         }
                     }
-                    ChatActivity$$ExternalSyntheticLambda167 chatActivity$$ExternalSyntheticLambda167 = new ChatActivity$$ExternalSyntheticLambda167(this, i, i2, i9, i5, 2);
-                    this.updateScreenRunnable = chatActivity$$ExternalSyntheticLambda167;
-                    postOrRun(chatActivity$$ExternalSyntheticLambda167);
+                    ef efVar = new ef(this, i10, i11, i19, i18, 2);
+                    this.updateScreenRunnable = efVar;
+                    postOrRun(efVar);
                 } catch (Throwable th3) {
                     th = th3;
                     th = th;
@@ -314,13 +310,13 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onMeasure(int i, int i2) {
+    public void onMeasure(int i10, int i11) {
         ThreadUtils.checkIsOnMainThread();
         if (!this.isCamera && this.rotateTextureWithScreen) {
             updateVideoSizes();
         }
-        int i3 = this.maxTextureSize;
-        Point pointMeasure = i3 > 0 ? this.videoLayoutMeasure.measure(this.isCamera, View.MeasureSpec.makeMeasureSpec(Math.min(i3, View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i)), View.MeasureSpec.makeMeasureSpec(Math.min(this.maxTextureSize, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2)), this.rotatedFrameWidth, this.rotatedFrameHeight) : this.videoLayoutMeasure.measure(this.isCamera, i, i2, this.rotatedFrameWidth, this.rotatedFrameHeight);
+        int i12 = this.maxTextureSize;
+        Point pointMeasure = i12 > 0 ? this.videoLayoutMeasure.measure(this.isCamera, View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)), View.MeasureSpec.makeMeasureSpec(Math.min(this.maxTextureSize, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)), this.rotatedFrameWidth, this.rotatedFrameHeight) : this.videoLayoutMeasure.measure(this.isCamera, i10, i11, this.rotatedFrameWidth, this.rotatedFrameHeight);
         setMeasuredDimension(pointMeasure.x, pointMeasure.y);
         if (this.rotatedFrameWidth != 0 && this.rotatedFrameHeight != 0) {
             this.eglRenderer.setLayoutAspectRatio(getMeasuredWidth() / getMeasuredHeight());
@@ -329,12 +325,12 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         ThreadUtils.checkIsOnMainThread();
         this.surfaceHeight = 0;
         this.surfaceWidth = 0;
         updateSurfaceSize();
-        this.eglRenderer.onSurfaceTextureAvailable(surfaceTexture, i, i2);
+        this.eglRenderer.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
     }
 
     @Override
@@ -350,10 +346,10 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-        this.surfaceWidth = i;
-        this.surfaceHeight = i2;
-        this.eglRenderer.onSurfaceTextureSizeChanged(surfaceTexture, i, i2);
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.surfaceWidth = i10;
+        this.surfaceHeight = i11;
+        this.eglRenderer.onSurfaceTextureSizeChanged(surfaceTexture, i10, i11);
     }
 
     @Override
@@ -383,7 +379,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             if (textureView != null) {
                 textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
                     @Override
-                    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+                    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
                         TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
                     }
 
@@ -395,11 +391,11 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                     }
 
                     @Override
-                    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+                    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
                     }
 
                     @Override
-                    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
                     }
                 });
             } else {
@@ -409,24 +405,24 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
     }
 
-    public void setEnableHardwareScaler(boolean z) {
+    public void setEnableHardwareScaler(boolean z10) {
         ThreadUtils.checkIsOnMainThread();
-        this.enableFixedSize = z;
+        this.enableFixedSize = z10;
         updateSurfaceSize();
     }
 
-    public void setFpsReduction(float f) {
-        this.eglRenderer.setFpsReduction(f);
+    public void setFpsReduction(float f10) {
+        this.eglRenderer.setFpsReduction(f10);
     }
 
-    public void setIsCamera(boolean z) {
-        this.isCamera = z;
-        if (z) {
+    public void setIsCamera(boolean z10) {
+        this.isCamera = z10;
+        if (z10) {
             return;
         }
         OrientationHelper orientationHelper = new OrientationHelper() {
             @Override
-            public void onOrientationUpdate(int i) {
+            public void onOrientationUpdate(int i10) {
                 if (TextureViewRenderer.this.isCamera) {
                     return;
                 }
@@ -437,17 +433,17 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         orientationHelper.start();
     }
 
-    public void setMaxTextureSize(int i) {
-        this.maxTextureSize = i;
+    public void setMaxTextureSize(int i10) {
+        this.maxTextureSize = i10;
     }
 
-    public void setMirror(boolean z) {
-        if (this.mirror != z) {
-            this.mirror = z;
+    public void setMirror(boolean z10) {
+        if (this.mirror != z10) {
+            this.mirror = z10;
             if (this.rotateTextureWithScreen) {
                 onRotationChanged();
             } else {
-                this.eglRenderer.setMirror(z);
+                this.eglRenderer.setMirror(z10);
             }
             updateSurfaceSize();
             requestLayout();
@@ -459,26 +455,26 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         this.parentSink = videoSink;
     }
 
-    public void setRotateTextureWithScreen(boolean z) {
-        if (this.rotateTextureWithScreen != z) {
-            this.rotateTextureWithScreen = z;
+    public void setRotateTextureWithScreen(boolean z10) {
+        if (this.rotateTextureWithScreen != z10) {
+            this.rotateTextureWithScreen = z10;
             requestLayout();
         }
     }
 
     @Override
-    public void setRotation(float f) {
-        super.setRotation(f);
+    public void setRotation(float f10) {
+        super.setRotation(f10);
     }
 
     @Override
-    public void setRotationX(float f) {
-        super.setRotationX(f);
+    public void setRotationX(float f10) {
+        super.setRotationX(f10);
     }
 
     @Override
-    public void setRotationY(float f) {
-        super.setRotationY(f);
+    public void setRotationY(float f10) {
+        super.setRotationY(f10);
     }
 
     public void setScalingType(RendererCommon.ScalingType scalingType) {
@@ -487,15 +483,15 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         requestLayout();
     }
 
-    public void setScreenRotation(int i) {
-        this.screenRotation = i;
+    public void setScreenRotation(int i10) {
+        this.screenRotation = i10;
         onRotationChanged();
         updateVideoSizes();
     }
 
-    public void setUseCameraRotation(boolean z) {
-        if (this.useCameraRotation != z) {
-            this.useCameraRotation = z;
+    public void setUseCameraRotation(boolean z10) {
+        if (this.useCameraRotation != z10) {
+            this.useCameraRotation = z10;
             onRotationChanged();
             updateVideoSizes();
         }
@@ -503,8 +499,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
     public void updateRotation() {
         View view;
-        float f;
-        float f2;
+        float f10;
+        float f11;
         if (this.orientationHelper == null || this.rotatedFrameWidth == 0 || this.rotatedFrameHeight == 0 || (view = (View) getParent()) == null) {
             return;
         }
@@ -514,17 +510,17 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         float measuredWidth2 = view.getMeasuredWidth();
         float measuredHeight2 = view.getMeasuredHeight();
         if (orientation == 90 || orientation == 270) {
-            f = measuredWidth;
-            f2 = measuredHeight;
+            f10 = measuredWidth;
+            f11 = measuredHeight;
         } else {
-            f2 = measuredWidth;
-            f = measuredHeight;
+            f11 = measuredWidth;
+            f10 = measuredHeight;
         }
-        float fMax = f2 < f ? Math.max(f2 / measuredWidth, f / measuredHeight) : Math.min(f2 / measuredWidth, f / measuredHeight);
-        float f3 = f2 * fMax;
-        float f4 = f * fMax;
-        if (Math.abs((f3 / f4) - (measuredWidth2 / measuredHeight2)) < 0.1f) {
-            fMax *= Math.max(measuredWidth2 / f3, measuredHeight2 / f4);
+        float fMax = f11 < f10 ? Math.max(f11 / measuredWidth, f10 / measuredHeight) : Math.min(f11 / measuredWidth, f10 / measuredHeight);
+        float f12 = f11 * fMax;
+        float f13 = f10 * fMax;
+        if (Math.abs((f12 / f13) - (measuredWidth2 / measuredHeight2)) < 0.1f) {
+            fMax *= Math.max(measuredWidth2 / f12, measuredHeight2 / f13);
         }
         if (orientation == 270) {
             orientation = -90;
@@ -532,8 +528,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         animate().scaleX(fMax).scaleY(fMax).rotation(-orientation).setDuration(180L).start();
     }
 
-    public void addFrameListener(EglRenderer.FrameListener frameListener, float f) {
-        this.eglRenderer.addFrameListener(frameListener, f);
+    public void addFrameListener(EglRenderer.FrameListener frameListener, float f10) {
+        this.eglRenderer.addFrameListener(frameListener, f10);
     }
 
     public void init(EglBase.Context context, RendererCommon.RendererEvents rendererEvents, int[] iArr, RendererCommon.GlDrawer glDrawer) {
@@ -618,7 +614,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void onFirstFrameRendered() {
-            AndroidUtilities.runOnUIThread(new EglRenderer$$ExternalSyntheticLambda5(this, 2));
+            AndroidUtilities.runOnUIThread(new h(this, 2));
         }
 
         @Override
@@ -628,7 +624,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
             ThreadUtils.checkIsOnMainThread();
             createEglSurface(surfaceTexture);
         }
@@ -637,19 +633,15 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new Theme$$ExternalSyntheticLambda8(countDownLatch, 18), false);
+            releaseEglSurface(new org.telegram.ui.ActionBar.p(countDownLatch, 16), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }
 
         @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
             ThreadUtils.checkIsOnMainThread();
-            logD("surfaceChanged: size: " + i + "x" + i2);
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            logD("surfaceChanged: size: " + i10 + "x" + i11);
         }
 
         @Override
@@ -661,16 +653,20 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         @Override
-        public void setFpsReduction(float f) {
+        public void setFpsReduction(float f10) {
             synchronized (this.layoutLock) {
-                this.isRenderingPaused = f == 0.0f;
+                this.isRenderingPaused = f10 == 0.0f;
             }
-            super.setFpsReduction(f);
+            super.setFpsReduction(f10);
         }
 
         @Override
         public void init(EglBase.Context context, int[] iArr, RendererCommon.GlDrawer glDrawer) {
             init(context, (RendererCommon.RendererEvents) null, iArr, glDrawer);
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
     }
 }

@@ -29,8 +29,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacks(runnable);
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e9) {
+            FileLog.e((Throwable) e9, false);
         }
     }
 
@@ -40,8 +40,8 @@ public class DispatchQueue extends Thread {
             for (Runnable runnable : runnableArr) {
                 this.handler.removeCallbacks(runnable);
             }
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e9) {
+            FileLog.e((Throwable) e9, false);
         }
     }
 
@@ -49,8 +49,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e9) {
+            FileLog.e((Throwable) e9, false);
         }
     }
 
@@ -60,9 +60,6 @@ public class DispatchQueue extends Thread {
 
     public long getLastTaskTime() {
         return this.lastTaskTime;
-    }
-
-    public void handleMessage(Message message) {
     }
 
     public boolean isReady() {
@@ -77,8 +74,8 @@ public class DispatchQueue extends Thread {
     public boolean postToFrontRunnable(Runnable runnable) {
         try {
             this.syncLatch.await();
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e9) {
+            FileLog.e((Throwable) e9, false);
         }
         return this.handler.postAtFrontOfQueue(runnable);
     }
@@ -90,62 +87,65 @@ public class DispatchQueue extends Thread {
     @Override
     public void run() {
         Looper.prepare();
-        this.handler = new Handler(Looper.myLooper(), new DispatchQueue$$ExternalSyntheticLambda0(this, 0));
+        this.handler = new Handler(Looper.myLooper(), new z1(this, 0));
         this.syncLatch.countDown();
-        int i = this.threadPriority;
-        if (i != -1000) {
-            Process.setThreadPriority(i);
+        int i10 = this.threadPriority;
+        if (i10 != -1000) {
+            Process.setThreadPriority(i10);
         }
         Looper.loop();
     }
 
-    public void sendMessage(Message message, int i) {
+    public void sendMessage(Message message, int i10) {
         try {
             this.syncLatch.await();
-            if (i <= 0) {
+            if (i10 <= 0) {
                 this.handler.sendMessage(message);
             } else {
-                this.handler.sendMessageDelayed(message, i);
+                this.handler.sendMessageDelayed(message, i10);
             }
         } catch (Exception unused) {
         }
     }
 
-    public DispatchQueue(String str, boolean z) {
+    public DispatchQueue(String str, boolean z10) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i = indexPointer;
-        indexPointer = i + 1;
-        this.index = i;
+        int i10 = indexPointer;
+        indexPointer = i10 + 1;
+        this.index = i10;
         this.threadPriority = -1000;
         setName(str);
-        if (z) {
+        if (z10) {
             start();
         }
     }
 
-    public boolean postRunnable(Runnable runnable, long j) {
+    public boolean postRunnable(Runnable runnable, long j10) {
         try {
             this.syncLatch.await();
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
+        } catch (Exception e9) {
+            FileLog.e((Throwable) e9, false);
         }
-        if (j <= 0) {
+        if (j10 <= 0) {
             return this.handler.post(runnable);
         }
-        return this.handler.postDelayed(runnable, j);
+        return this.handler.postDelayed(runnable, j10);
     }
 
-    public DispatchQueue(String str, boolean z, int i) {
+    public DispatchQueue(String str, boolean z10, int i10) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i2 = indexPointer;
-        indexPointer = i2 + 1;
-        this.index = i2;
-        this.threadPriority = i;
+        int i11 = indexPointer;
+        indexPointer = i11 + 1;
+        this.index = i11;
+        this.threadPriority = i10;
         setName(str);
-        if (z) {
+        if (z10) {
             start();
         }
+    }
+
+    public void handleMessage(Message message) {
     }
 }

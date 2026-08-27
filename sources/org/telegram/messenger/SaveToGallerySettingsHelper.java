@@ -2,8 +2,6 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import android.util.LongSparseArray;
-import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";
@@ -19,27 +17,27 @@ public class SaveToGallerySettingsHelper {
         public long dialogId;
 
         @Override
-        public CharSequence createDescription(int i) {
-            StringBuilder sb = new StringBuilder();
+        public CharSequence createDescription(int i10) {
+            StringBuilder sb2 = new StringBuilder();
             if (!enabled()) {
-                sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
-                return sb;
+                sb2.append(LocaleController.getString(R.string.SaveToGalleryOff));
+                return sb2;
             }
             if (this.savePhoto) {
-                sb.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
+                sb2.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
             }
             if (this.saveVideo) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
+                if (sb2.length() != 0) {
+                    sb2.append(", ");
                 }
-                long j = this.limitVideo;
-                if (j > 0 && j < 4194304000L) {
-                    sb.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j, true, false)));
-                    return sb;
+                long j10 = this.limitVideo;
+                if (j10 > 0 && j10 < 4194304000L) {
+                    sb2.append(LocaleController.formatString("SaveToGalleryVideosUpTo", R.string.SaveToGalleryVideosUpTo, AndroidUtilities.formatFileSize(j10, true, false)));
+                    return sb2;
                 }
-                sb.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
+                sb2.append(LocaleController.formatString("SaveToGalleryVideos", R.string.SaveToGalleryVideos, new Object[0]));
             }
-            return sb;
+            return sb2;
         }
     }
 
@@ -48,7 +46,7 @@ public class SaveToGallerySettingsHelper {
         public boolean savePhoto;
         public boolean saveVideo;
 
-        public abstract CharSequence createDescription(int i);
+        public abstract CharSequence createDescription(int i10);
 
         public boolean enabled() {
             return this.savePhoto || this.saveVideo;
@@ -68,26 +66,26 @@ public class SaveToGallerySettingsHelper {
     public static class SharedSettings extends Settings {
         private int type;
 
-        public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i) {
-            DialogException dialogException = UserConfig.getInstance(i).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
+        public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i10) {
+            DialogException dialogException = UserConfig.getInstance(i10).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
             if (messageObject != null && (messageObject.isOutOwner() || messageObject.isSecretMedia())) {
                 return false;
             }
-            boolean z = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
+            boolean z10 = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
             long size = messageObject != null ? messageObject.getSize() : fileMeta.messageSize;
-            boolean z2 = this.saveVideo;
-            boolean z3 = this.savePhoto;
-            long j = this.limitVideo;
+            boolean z11 = this.saveVideo;
+            boolean z12 = this.savePhoto;
+            long j10 = this.limitVideo;
             if (dialogException != null) {
-                z2 = dialogException.saveVideo;
-                z3 = dialogException.savePhoto;
-                j = dialogException.limitVideo;
+                z11 = dialogException.saveVideo;
+                z12 = dialogException.savePhoto;
+                j10 = dialogException.limitVideo;
             }
-            if (z) {
-                if (z2 && (j == -1 || size < j)) {
+            if (z10) {
+                if (z11 && (j10 == -1 || size < j10)) {
                     return true;
                 }
-            } else if (z3) {
+            } else if (z12) {
                 return true;
             }
             return false;
@@ -102,39 +100,39 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(zzhp.m(str, "_save_gallery_photo"), this.savePhoto).putBoolean(zzhp.m(str, "_save_gallery_video"), this.saveVideo).putLong(zzhp.m(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(s3.c.l(str, "_save_gallery_photo"), this.savePhoto).putBoolean(s3.c.l(str, "_save_gallery_video"), this.saveVideo).putLong(s3.c.l(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override
-        public CharSequence createDescription(int i) {
-            StringBuilder sb = new StringBuilder();
+        public CharSequence createDescription(int i10) {
+            StringBuilder sb2 = new StringBuilder();
             if (enabled()) {
                 if (this.savePhoto) {
-                    sb.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
+                    sb2.append(LocaleController.getString(R.string.SaveToGalleryPhotos));
                 }
                 if (this.saveVideo) {
-                    if (sb.length() != 0) {
-                        sb.append(", ");
+                    if (sb2.length() != 0) {
+                        sb2.append(", ");
                     }
-                    sb.append(LocaleController.getString(R.string.SaveToGalleryVideos));
-                    long j = this.limitVideo;
-                    if (j > 0 && j < 4194304000L) {
-                        sb.append(" (");
-                        sb.append(AndroidUtilities.formatFileSize(this.limitVideo, true, false));
-                        sb.append(")");
+                    sb2.append(LocaleController.getString(R.string.SaveToGalleryVideos));
+                    long j10 = this.limitVideo;
+                    if (j10 > 0 && j10 < 4194304000L) {
+                        sb2.append(" (");
+                        sb2.append(AndroidUtilities.formatFileSize(this.limitVideo, true, false));
+                        sb2.append(")");
                     }
                 }
             } else {
-                sb.append(LocaleController.getString(R.string.SaveToGalleryOff));
+                sb2.append(LocaleController.getString(R.string.SaveToGalleryOff));
             }
-            LongSparseArray<DialogException> saveGalleryExceptions = UserConfig.getInstance(i).getSaveGalleryExceptions(this.type);
+            LongSparseArray<DialogException> saveGalleryExceptions = UserConfig.getInstance(i10).getSaveGalleryExceptions(this.type);
             if (saveGalleryExceptions.size() != 0) {
-                if (sb.length() != 0) {
-                    sb.append(", ");
+                if (sb2.length() != 0) {
+                    sb2.append(", ");
                 }
-                sb.append(LocaleController.formatPluralString("Exception", saveGalleryExceptions.size(), Integer.valueOf(saveGalleryExceptions.size())));
+                sb2.append(LocaleController.formatPluralString("Exception", saveGalleryExceptions.size(), Integer.valueOf(saveGalleryExceptions.size())));
             }
-            return sb;
+            return sb2;
         }
 
         @Override
@@ -144,43 +142,43 @@ public class SaveToGallerySettingsHelper {
         }
     }
 
-    public static Settings getSettings(int i) {
-        if (i == 1) {
+    public static Settings getSettings(int i10) {
+        if (i10 == 1) {
             return user;
         }
-        if (i == 2) {
+        if (i10 == 2) {
             return groups;
         }
-        if (i == 4) {
+        if (i10 == 4) {
             return channels;
         }
         return null;
     }
 
     public static void load(SharedPreferences sharedPreferences) {
-        int i = (sharedPreferences.getBoolean("save_gallery", false) && BuildVars.NO_SCOPED_STORAGE) ? 7 : sharedPreferences.getInt("save_gallery_flags", -1);
-        if (i != -1) {
+        int i10 = (sharedPreferences.getBoolean("save_gallery", false) && BuildVars.NO_SCOPED_STORAGE) ? 7 : sharedPreferences.getInt("save_gallery_flags", -1);
+        if (i10 != -1) {
             sharedPreferences.edit().remove("save_gallery").remove("save_gallery_flags").apply();
             SharedSettings sharedSettings = new SharedSettings();
             user = sharedSettings;
-            boolean z = (i & 1) != 0;
-            sharedSettings.saveVideo = z;
-            sharedSettings.savePhoto = z;
+            boolean z10 = (i10 & 1) != 0;
+            sharedSettings.saveVideo = z10;
+            sharedSettings.savePhoto = z10;
             sharedSettings.limitVideo = 104857600L;
             sharedSettings.save("user", sharedPreferences);
             SharedSettings sharedSettings2 = new SharedSettings();
             groups = sharedSettings2;
             SharedSettings sharedSettings3 = user;
-            boolean z2 = (i & 2) != 0;
-            sharedSettings3.saveVideo = z2;
-            sharedSettings2.savePhoto = z2;
+            boolean z11 = (i10 & 2) != 0;
+            sharedSettings3.saveVideo = z11;
+            sharedSettings2.savePhoto = z11;
             sharedSettings2.limitVideo = 104857600L;
             sharedSettings2.save("groups", sharedPreferences);
             SharedSettings sharedSettings4 = new SharedSettings();
             channels = sharedSettings4;
-            boolean z3 = (i & 4) != 0;
-            sharedSettings4.saveVideo = z3;
-            sharedSettings4.savePhoto = z3;
+            boolean z12 = (i10 & 4) != 0;
+            sharedSettings4.saveVideo = z12;
+            sharedSettings4.savePhoto = z12;
             sharedSettings4.limitVideo = 104857600L;
             sharedSettings4.save("channels", sharedPreferences);
         } else {
@@ -195,57 +193,57 @@ public class SaveToGallerySettingsHelper {
 
     public static LongSparseArray<DialogException> loadExceptions(SharedPreferences sharedPreferences) {
         LongSparseArray<DialogException> longSparseArray = new LongSparseArray<>();
-        int i = sharedPreferences.getInt("count", 0);
-        for (int i2 = 0; i2 < i; i2++) {
+        int i10 = sharedPreferences.getInt("count", 0);
+        for (int i11 = 0; i11 < i10; i11++) {
             DialogException dialogException = new DialogException();
-            dialogException.dialogId = sharedPreferences.getLong(i2 + "_dialog_id", 0L);
-            dialogException.savePhoto = sharedPreferences.getBoolean(i2 + "_photo", false);
-            dialogException.saveVideo = sharedPreferences.getBoolean(i2 + "_video", false);
-            dialogException.limitVideo = sharedPreferences.getLong(i2 + "_limitVideo", 104857600L);
-            long j = dialogException.dialogId;
-            if (j != 0) {
-                longSparseArray.put(j, dialogException);
+            dialogException.dialogId = sharedPreferences.getLong(i11 + "_dialog_id", 0L);
+            dialogException.savePhoto = sharedPreferences.getBoolean(i11 + "_photo", false);
+            dialogException.saveVideo = sharedPreferences.getBoolean(i11 + "_video", false);
+            dialogException.limitVideo = sharedPreferences.getLong(i11 + "_limitVideo", 104857600L);
+            long j10 = dialogException.dialogId;
+            if (j10 != 0) {
+                longSparseArray.put(j10, dialogException);
             }
         }
         return longSparseArray;
     }
 
-    public static boolean needSave(int i, FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i2) {
+    public static boolean needSave(int i10, FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i11) {
         SharedSettings sharedSettings;
-        if (i == 1) {
+        if (i10 == 1) {
             sharedSettings = user;
-        } else if (i == 4) {
+        } else if (i10 == 4) {
             sharedSettings = channels;
         } else {
-            if (i != 2) {
+            if (i10 != 2) {
                 return false;
             }
             sharedSettings = groups;
         }
-        return sharedSettings.needSave(fileMeta, messageObject, i2);
+        return sharedSettings.needSave(fileMeta, messageObject, i11);
     }
 
     public static void saveExceptions(SharedPreferences sharedPreferences, LongSparseArray<DialogException> longSparseArray) {
         sharedPreferences.edit().clear().apply();
         SharedPreferences.Editor editorEdit = sharedPreferences.edit();
         editorEdit.putInt("count", longSparseArray.size());
-        for (int i = 0; i < longSparseArray.size(); i++) {
-            DialogException dialogExceptionValueAt = longSparseArray.valueAt(i);
-            editorEdit.putLong(RendererCapabilities.CC.m(i, "_dialog_id"), dialogExceptionValueAt.dialogId);
-            editorEdit.putBoolean(i + "_photo", dialogExceptionValueAt.savePhoto);
-            editorEdit.putBoolean(i + "_video", dialogExceptionValueAt.saveVideo);
-            editorEdit.putLong(i + "_limitVideo", dialogExceptionValueAt.limitVideo);
+        for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
+            DialogException dialogExceptionValueAt = longSparseArray.valueAt(i10);
+            editorEdit.putLong(s3.c.d(i10, "_dialog_id"), dialogExceptionValueAt.dialogId);
+            editorEdit.putBoolean(i10 + "_photo", dialogExceptionValueAt.savePhoto);
+            editorEdit.putBoolean(i10 + "_video", dialogExceptionValueAt.saveVideo);
+            editorEdit.putLong(i10 + "_limitVideo", dialogExceptionValueAt.limitVideo);
         }
         editorEdit.apply();
     }
 
-    public static void saveSettings(int i) {
+    public static void saveSettings(int i10) {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        if (i == 1) {
+        if (i10 == 1) {
             user.save("user", sharedPreferences);
-        } else if (i == 2) {
+        } else if (i10 == 2) {
             groups.save("groups", sharedPreferences);
-        } else if (i == 4) {
+        } else if (i10 == 4) {
             channels.save("channels", sharedPreferences);
         }
     }

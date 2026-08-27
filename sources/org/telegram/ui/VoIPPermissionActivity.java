@@ -8,11 +8,10 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.voip.VoIPHelper;
 
 public class VoIPPermissionActivity extends Activity {
     @Override
-    public void onCreate(Bundle bundle) {
+    public final void onCreate(Bundle bundle) {
         boolean zIsVideo;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -34,27 +33,27 @@ public class VoIPPermissionActivity extends Activity {
         }
         try {
             requestPermissions((String[]) arrayList.toArray(new String[0]), zIsVideo ? 102 : 101);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
-        if (i == 101 || i == 102) {
-            boolean z = false;
-            int i2 = 0;
+    public final void onRequestPermissionsResult(int i10, String[] strArr, int[] iArr) {
+        if (i10 == 101 || i10 == 102) {
+            boolean z10 = false;
+            int i11 = 0;
             while (true) {
-                if (i2 >= iArr.length) {
-                    z = true;
+                if (i11 >= iArr.length) {
+                    z10 = true;
                     break;
-                } else if (iArr[i2] != 0) {
+                } else if (iArr[i11] != 0) {
                     break;
                 } else {
-                    i2++;
+                    i11++;
                 }
             }
-            if (iArr.length > 0 && z) {
+            if (iArr.length > 0 && z10) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().acceptIncomingCall();
                 } else {
@@ -73,7 +72,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            VoIPHelper.permissionDenied(this, i, new MainTabsLayout$$ExternalSyntheticLambda0(this, 29));
+            org.telegram.ui.Components.voip.e2.i(this, new ky0(this, 27), i10);
         }
     }
 }

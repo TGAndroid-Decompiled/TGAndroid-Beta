@@ -3,16 +3,19 @@ package org.scilab.forge.jlatexmath;
 public class Metrics {
     private final float d;
     private final float h;
-    private final float i;
-    private final float s;
-    private final float w;
 
-    public Metrics(float f, float f2, float f3, float f4, float f5, float f6) {
-        this.w = f * f5;
-        this.h = f2 * f5;
-        this.d = f3 * f5;
-        this.i = f4 * f5;
-        this.s = f6;
+    private final float f19590i;
+
+    private final float f19591s;
+
+    private final float f19592w;
+
+    public Metrics(float f10, float f11, float f12, float f13, float f14, float f15) {
+        this.f19592w = f10 * f14;
+        this.h = f11 * f14;
+        this.d = f12 * f14;
+        this.f19590i = f13 * f14;
+        this.f19591s = f15;
     }
 
     public float getDepth() {
@@ -24,14 +27,14 @@ public class Metrics {
     }
 
     public float getItalic() {
-        return this.i;
+        return this.f19590i;
     }
 
     public float getSize() {
-        return this.s;
+        return this.f19591s;
     }
 
     public float getWidth() {
-        return this.w;
+        return this.f19592w;
     }
 }

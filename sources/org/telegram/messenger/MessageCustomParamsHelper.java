@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.OutputSerializedData;
@@ -16,53 +15,53 @@ public class MessageCustomParamsHelper {
         final TLRPC.Message message;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             int int32 = inputSerializedData.readInt32(true);
             this.flags = int32;
             if ((int32 & 1) != 0) {
-                this.message.voiceTranscription = inputSerializedData.readString(z);
+                this.message.voiceTranscription = inputSerializedData.readString(z10);
             }
             TLRPC.Message message = this.message;
-            int i = this.flags;
-            message.voiceTranscriptionForce = (i & 2) != 0;
-            message.summarizedOpen = (i & 512) != 0;
-            message.voiceTranscriptionOpen = inputSerializedData.readBool(z);
-            this.message.voiceTranscriptionFinal = inputSerializedData.readBool(z);
-            this.message.voiceTranscriptionRated = inputSerializedData.readBool(z);
-            this.message.voiceTranscriptionId = inputSerializedData.readInt64(z);
-            this.message.premiumEffectWasPlayed = inputSerializedData.readBool(z);
+            int i10 = this.flags;
+            message.voiceTranscriptionForce = (i10 & 2) != 0;
+            message.summarizedOpen = (i10 & 512) != 0;
+            message.voiceTranscriptionOpen = inputSerializedData.readBool(z10);
+            this.message.voiceTranscriptionFinal = inputSerializedData.readBool(z10);
+            this.message.voiceTranscriptionRated = inputSerializedData.readBool(z10);
+            this.message.voiceTranscriptionId = inputSerializedData.readInt64(z10);
+            this.message.premiumEffectWasPlayed = inputSerializedData.readBool(z10);
             if ((this.flags & 4) != 0) {
-                this.message.originalLanguage = inputSerializedData.readString(z);
+                this.message.originalLanguage = inputSerializedData.readString(z10);
             }
             if ((this.flags & 8) != 0) {
-                this.message.translatedToLanguage = inputSerializedData.readString(z);
+                this.message.translatedToLanguage = inputSerializedData.readString(z10);
             }
             if ((this.flags & 16) != 0) {
-                this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.translatedText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if ((this.flags & 32) != 0) {
-                this.message.translatedPoll = TranslateController.PollText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.translatedPoll = TranslateController.PollText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if ((this.flags & 64) != 0) {
-                this.message.errorAllowedPriceStars = inputSerializedData.readInt64(z);
+                this.message.errorAllowedPriceStars = inputSerializedData.readInt64(z10);
             }
             if ((this.flags & 128) != 0) {
-                this.message.errorNewPriceStars = inputSerializedData.readInt64(z);
+                this.message.errorNewPriceStars = inputSerializedData.readInt64(z10);
             }
             if ((this.flags & 256) != 0) {
-                this.message.translatedVoiceTranscription = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.translatedVoiceTranscription = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
-                this.message.summaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.summaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
-                this.message.translatedSummaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.translatedSummaryText = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 4096)) {
-                this.message.translatedSummaryLanguage = inputSerializedData.readString(z);
+                this.message.translatedSummaryLanguage = inputSerializedData.readString(z10);
             }
             if (TLObject.hasFlag(this.flags, 8192)) {
-                this.message.translatedRichMessage = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+                this.message.translatedRichMessage = TL_iv.RichMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
         }
 
@@ -70,11 +69,11 @@ public class MessageCustomParamsHelper {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1);
             TLRPC.Message message = this.message;
-            int i = message.voiceTranscriptionForce ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = message.summarizedOpen ? i | 512 : i & (-513);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
+            int i10 = message.voiceTranscriptionForce ? this.flags | 2 : this.flags & (-3);
+            this.flags = i10;
+            int i11 = message.summarizedOpen ? i10 | 512 : i10 & (-513);
+            this.flags = i11;
+            outputSerializedData.writeInt32(i11);
             if ((1 & this.flags) != 0) {
                 outputSerializedData.writeString(this.message.voiceTranscription);
             }
@@ -121,25 +120,25 @@ public class MessageCustomParamsHelper {
         private Params_v1(TLRPC.Message message) {
             this.flags = 0;
             this.message = message;
-            int i = message.voiceTranscription != null ? 1 : 0;
-            this.flags = i;
-            int i2 = i | (message.voiceTranscriptionForce ? 2 : 0);
-            this.flags = i2;
-            int i3 = i2 | (message.originalLanguage != null ? 4 : 0);
-            this.flags = i3;
-            int i4 = i3 | (message.translatedToLanguage != null ? 8 : 0);
-            this.flags = i4;
-            int i5 = i4 | (message.translatedText != null ? 16 : 0);
-            this.flags = i5;
-            int i6 = i5 | (message.translatedPoll != null ? 32 : 0);
-            this.flags = i6;
-            int i7 = i6 | (message.errorAllowedPriceStars != 0 ? 64 : 0);
-            this.flags = i7;
-            int i8 = i7 | (message.errorNewPriceStars != 0 ? 128 : 0);
-            this.flags = i8;
-            int i9 = i8 | (message.translatedVoiceTranscription != null ? 256 : 0);
-            this.flags = i9;
-            int flag = TLObject.setFlag(i9, 1024, message.summaryText != null);
+            int i10 = message.voiceTranscription != null ? 1 : 0;
+            this.flags = i10;
+            int i11 = i10 | (message.voiceTranscriptionForce ? 2 : 0);
+            this.flags = i11;
+            int i12 = i11 | (message.originalLanguage != null ? 4 : 0);
+            this.flags = i12;
+            int i13 = i12 | (message.translatedToLanguage != null ? 8 : 0);
+            this.flags = i13;
+            int i14 = i13 | (message.translatedText != null ? 16 : 0);
+            this.flags = i14;
+            int i15 = i14 | (message.translatedPoll != null ? 32 : 0);
+            this.flags = i15;
+            int i16 = i15 | (message.errorAllowedPriceStars != 0 ? 64 : 0);
+            this.flags = i16;
+            int i17 = i16 | (message.errorNewPriceStars != 0 ? 128 : 0);
+            this.flags = i17;
+            int i18 = i17 | (message.translatedVoiceTranscription != null ? 256 : 0);
+            this.flags = i18;
+            int flag = TLObject.setFlag(i18, 1024, message.summaryText != null);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2048, message.translatedSummaryText != null);
             this.flags = flag2;
@@ -181,7 +180,7 @@ public class MessageCustomParamsHelper {
         }
         int int32 = nativeByteBuffer.readInt32(true);
         if (int32 != 1) {
-            throw new RuntimeException(DiffUtil.m(int32, "can't read params version = "));
+            throw new RuntimeException(i0.a.k(int32, "can't read params version = "));
         }
         new Params_v1(message).readParams(nativeByteBuffer, true);
     }
@@ -195,8 +194,8 @@ public class MessageCustomParamsHelper {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(params_v1.getObjectSize());
             params_v1.serializeToStream(nativeByteBuffer);
             return nativeByteBuffer;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e9) {
+            e9.printStackTrace();
             return null;
         }
     }

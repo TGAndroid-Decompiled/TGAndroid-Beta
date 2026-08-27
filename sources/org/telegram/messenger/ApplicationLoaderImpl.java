@@ -9,34 +9,31 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import androidx.core.content.FileProvider;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.UpdateAppAlertDialog;
-import org.telegram.ui.Components.UpdateLayout;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.r51;
 import org.telegram.ui.IUpdateLayout;
 
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
-    private String getVersionName(int i) {
-        if (i == 0) {
+    private String getVersionName(int i10) {
+        if (i10 == 0) {
             return "local-debug";
         }
-        if (i == 1) {
+        if (i10 == 1) {
             return "private";
         }
-        if (i == 4) {
+        if (i10 == 4) {
             return "public";
         }
-        if (i == 5) {
+        if (i10 == 5) {
             return "hardcore";
         }
-        if (i != 6) {
-            return i != 7 ? "unknown" : "release";
+        if (i10 != 6) {
+            return i10 != 7 ? "unknown" : "release";
         }
         return "standalone";
     }
@@ -44,11 +41,11 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public void appCenterLogInternal(Throwable th) {
         try {
-            FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) FirebaseApp.getInstance().get(FirebaseCrashlytics.class);
-            if (firebaseCrashlytics == null) {
+            b9.c cVar = (b9.c) t8.h.c().b(b9.c.class);
+            if (cVar == null) {
                 throw new NullPointerException("FirebaseCrashlytics component is not present.");
             }
-            firebaseCrashlytics.recordException(th);
+            cVar.a(th);
         } catch (Throwable th2) {
             FileLog.e(th2, false);
         }
@@ -66,7 +63,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
             return true;
         }
-        AlertsCreator.createApkRestrictedDialog(context, null).show();
+        org.telegram.ui.Components.y4.j(context, null).show();
         return false;
     }
 
@@ -82,9 +79,9 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public void checkUpdate(boolean z, Runnable runnable) {
+    public void checkUpdate(boolean z10, Runnable runnable) {
         if (isCustomUpdate()) {
-            BetaUpdaterController.getInstance().checkForUpdate(z, runnable);
+            BetaUpdaterController.getInstance().checkForUpdate(z10, runnable);
         }
     }
 
@@ -138,10 +135,6 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public void logDualCameraInternal(boolean z, boolean z2) {
-    }
-
-    @Override
     public String onGetApplicationId() {
         return "org.telegram.messenger.beta";
     }
@@ -157,29 +150,29 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    intent.setDataAndType(FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach), "application/vnd.android.package-archive");
+                    intent.setDataAndType(FileProvider.d(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach), "application/vnd.android.package-archive");
                 } else {
                     intent.setDataAndType(Uri.fromFile(pathToAttach), "application/vnd.android.package-archive");
                 }
                 try {
                     activity.startActivityForResult(intent, 500);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e9) {
+                    FileLog.e(e9);
                 }
             }
-        } catch (Exception e2) {
-            FileLog.e(e2);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
         return zExists;
     }
 
     @Override
-    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i) {
+    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new UpdateAppAlertDialog(context, betaUpdate, i).show();
+            new q51(context, betaUpdate).show();
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return true;
         }
     }
@@ -198,23 +191,23 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
                     str = str + " [TEST SERVER]";
                 }
-                FirebaseCrashlytics firebaseCrashlytics = (FirebaseCrashlytics) FirebaseApp.getInstance().get(FirebaseCrashlytics.class);
-                if (firebaseCrashlytics == null) {
+                b9.c cVar = (b9.c) t8.h.c().b(b9.c.class);
+                if (cVar == null) {
                     throw new NullPointerException("FirebaseCrashlytics component is not present.");
                 }
-                firebaseCrashlytics.setUserId(str);
-                firebaseCrashlytics.setCustomKey("version", getVersionName(4));
-                firebaseCrashlytics.setCustomKey("model", Build.MODEL);
-                firebaseCrashlytics.setCustomKey("manufacturer", Build.MANUFACTURER);
+                cVar.d(str);
+                cVar.c("version", getVersionName(4));
+                cVar.c("model", Build.MODEL);
+                cVar.c("manufacturer", Build.MANUFACTURER);
                 if (Build.VERSION.SDK_INT >= 31) {
-                    firebaseCrashlytics.setCustomKey("soc_model", Build.SOC_MODEL);
-                    firebaseCrashlytics.setCustomKey("soc_manufacturer", Build.SOC_MANUFACTURER);
+                    cVar.c("soc_model", Build.SOC_MODEL);
+                    cVar.c("soc_manufacturer", Build.SOC_MANUFACTURER);
                 }
-                firebaseCrashlytics.setCustomKey("device", Build.DEVICE);
-                firebaseCrashlytics.setCustomKey("product", Build.PRODUCT);
-                firebaseCrashlytics.setCustomKey("hardware", Build.HARDWARE);
-                firebaseCrashlytics.setCustomKey("user", Build.USER);
-                firebaseCrashlytics.setCrashlyticsCollectionEnabled();
+                cVar.c("device", Build.DEVICE);
+                cVar.c("product", Build.PRODUCT);
+                cVar.c("hardware", Build.HARDWARE);
+                cVar.c("user", Build.USER);
+                cVar.b();
             }
         } catch (Throwable th) {
             FileLog.e(th);
@@ -224,8 +217,12 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup) {
         if (isCustomUpdate()) {
-            return new UpdateLayout(activity, viewGroup);
+            return new r51(activity, viewGroup);
         }
         return null;
+    }
+
+    @Override
+    public void logDualCameraInternal(boolean z10, boolean z11) {
     }
 }

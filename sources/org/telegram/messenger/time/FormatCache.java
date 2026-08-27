@@ -71,16 +71,16 @@ abstract class FormatCache<F extends Format> {
 
     public abstract F createInstance(String str, TimeZone timeZone, Locale locale);
 
-    public F getDateInstance(int i, TimeZone timeZone, Locale locale) {
-        return (F) getDateTimeInstance(Integer.valueOf(i), (Integer) null, timeZone, locale);
+    public F getDateInstance(int i10, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance(Integer.valueOf(i10), (Integer) null, timeZone, locale);
     }
 
     public F getInstance() {
         return (F) getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
     }
 
-    public F getTimeInstance(int i, TimeZone timeZone, Locale locale) {
-        return (F) getDateTimeInstance((Integer) null, Integer.valueOf(i), timeZone, locale);
+    public F getTimeInstance(int i10, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance((Integer) null, Integer.valueOf(i10), timeZone, locale);
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
@@ -94,16 +94,16 @@ abstract class FormatCache<F extends Format> {
             locale = Locale.getDefault();
         }
         MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
-        F f = this.cInstanceCache.get(multipartKey);
-        if (f != null) {
-            return f;
+        F f10 = this.cInstanceCache.get(multipartKey);
+        if (f10 != null) {
+            return f10;
         }
-        F f2 = (F) createInstance(str, timeZone, locale);
-        F fPutIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, f2);
-        return fPutIfAbsent != null ? fPutIfAbsent : f2;
+        F f11 = (F) createInstance(str, timeZone, locale);
+        F fPutIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, f11);
+        return fPutIfAbsent != null ? fPutIfAbsent : f11;
     }
 
-    public F getDateTimeInstance(int i, int i2, TimeZone timeZone, Locale locale) {
-        return (F) getDateTimeInstance(Integer.valueOf(i), Integer.valueOf(i2), timeZone, locale);
+    public F getDateTimeInstance(int i10, int i11, TimeZone timeZone, Locale locale) {
+        return (F) getDateTimeInstance(Integer.valueOf(i10), Integer.valueOf(i11), timeZone, locale);
     }
 }

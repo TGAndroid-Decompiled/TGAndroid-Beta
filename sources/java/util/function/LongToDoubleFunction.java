@@ -1,5 +1,5 @@
 package java.util.function;
 
 public interface LongToDoubleFunction {
-    double applyAsDouble(long j);
+    double applyAsDouble(long j10);
 }

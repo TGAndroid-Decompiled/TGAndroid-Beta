@@ -9,9 +9,9 @@ public class IceCandidate {
     public final String sdpMid;
     public final String serverUrl;
 
-    public IceCandidate(String str, int i, String str2) {
+    public IceCandidate(String str, int i10, String str2) {
         this.sdpMid = str;
-        this.sdpMLineIndex = i;
+        this.sdpMLineIndex = i10;
         this.sdp = str2;
         this.serverUrl = "";
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
@@ -48,9 +48,9 @@ public class IceCandidate {
         return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
     }
 
-    public IceCandidate(String str, int i, String str2, String str3, PeerConnection.AdapterType adapterType) {
+    public IceCandidate(String str, int i10, String str2, String str3, PeerConnection.AdapterType adapterType) {
         this.sdpMid = str;
-        this.sdpMLineIndex = i;
+        this.sdpMLineIndex = i10;
         this.sdp = str2;
         this.serverUrl = str3;
         this.adapterType = adapterType;

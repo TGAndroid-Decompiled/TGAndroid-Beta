@@ -12,245 +12,359 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import lh.z7;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BetaUpdaterController$$ExternalSyntheticLambda2;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Stories.recorder.StoryEntry;
 
-public final class HttpGetFileTask extends AsyncTask {
-    public final Utilities.Callback doneCallback;
-    public Exception exception;
-    public File file;
-    public long max_size = -1;
-    public String overrideExt;
-    public final BetaUpdaterController$$ExternalSyntheticLambda2 progressCallback;
+public class HttpGetFileTask extends AsyncTask<String, Void, File> {
+    private Utilities.Callback<File> doneCallback;
+    private Exception exception;
+    private File file;
+    private long max_size = -1;
+    private String overrideExt;
+    private Utilities.Callback<Float> progressCallback;
 
-    public HttpGetFileTask(Utilities.Callback callback, BetaUpdaterController$$ExternalSyntheticLambda2 betaUpdaterController$$ExternalSyntheticLambda2) {
+    public HttpGetFileTask(Utilities.Callback<File> callback, Utilities.Callback<Float> callback2) {
         this.doneCallback = callback;
-        this.progressCallback = betaUpdaterController$$ExternalSyntheticLambda2;
+        this.progressCallback = callback2;
+    }
+
+    public void lambda$doInBackground$0(float f10) {
+        this.progressCallback.run(Float.valueOf(f10));
+    }
+
+    public void lambda$doInBackground$1() {
+        this.progressCallback.run(Float.valueOf(1.0f));
+    }
+
+    public HttpGetFileTask setDestFile(File file) {
+        this.file = file;
+        return this;
+    }
+
+    public HttpGetFileTask setMaxSize(long j10) {
+        this.max_size = j10;
+        return this;
+    }
+
+    public HttpGetFileTask setOverrideExtension(String str) {
+        this.overrideExt = str;
+        return this;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) throws Throwable {
-        long j;
-        String str;
+    public File doInBackground(String... strArr) throws Throwable {
+        long j10;
+        long contentLength;
+        int i10;
         BufferedInputStream bufferedInputStream;
         Throwable th;
         FileOutputStream fileOutputStream;
         Throwable th2;
         FileChannel channel;
-        Throwable th3;
-        int i;
-        int i2 = 0;
-        String str2 = ((String[]) objArr)[0];
-        long j2 = 0;
-        long j3 = 0;
-        int i3 = 0;
+        byte[] bArr;
+        int i11;
+        float fClamp01;
+        String extensionFromMimeType;
+        int i12;
+        String str = strArr[0];
+        long j11 = 0;
+        long j12 = 0;
+        int i13 = 0;
         while (true) {
-            if (i3 >= 5) {
+            if (i13 >= 5) {
                 this.exception = new RuntimeException("too many retries");
                 return null;
             }
-            boolean z = i3 > 0;
+            boolean z10 = i13 > 0;
             try {
-                HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str2).openConnection();
+                HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                 httpURLConnection.setRequestMethod("GET");
-                if (z) {
-                    httpURLConnection.setRequestProperty("Range", "bytes=" + j3 + "-");
+                if (z10) {
+                    httpURLConnection.setRequestProperty("Range", "bytes=" + j12 + "-");
                 }
                 httpURLConnection.setDoInput(true);
                 int responseCode = httpURLConnection.getResponseCode();
                 InputStream errorStream = (responseCode < 200 || responseCode >= 300) ? httpURLConnection.getErrorStream() : httpURLConnection.getInputStream();
                 int responseCode2 = httpURLConnection.getResponseCode();
-                j3 = j3;
-                if (z && responseCode2 != 206) {
-                    j3 = j3;
-                    FileLog.d("failed to resume, server doesn't support partial content. downloading from the beginning");
-                    try {
-                        File file = this.file;
-                        if (file != null) {
-                            try {
-                                file.delete();
-                            } catch (Exception unused) {
+                j12 = j12;
+                if (!z10 || responseCode2 == 206) {
+                    j12 = j12;
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        contentLength = httpURLConnection.getContentLengthLong();
+                    } else {
+                        contentLength = httpURLConnection.getContentLength();
+                    }
+                    long j13 = this.max_size;
+                    i10 = (j13 > j11 ? 1 : (j13 == j11 ? 0 : -1));
+                    j10 = i10;
+                    if (i10 > 0 || contentLength <= j13) {
+                        j10 = i12;
+                        if (this.file == null) {
+                            extensionFromMimeType = this.overrideExt;
+                            if (extensionFromMimeType == null) {
+                                extensionFromMimeType = MimeTypeMap.getSingleton().getExtensionFromMimeType(httpURLConnection.getContentType());
                             }
-                            this.file = null;
+                            this.file = z7.w(UserConfig.selectedAccount, extensionFromMimeType);
                         }
-                        j3 = j2;
-                        z = false;
-                    } catch (Exception e) {
-                        e = e;
-                        long j4 = j2;
-                        j = j4;
-                        j3 = j4;
-                        str = str2;
-                    }
-                }
-                j3 = j3;
-                long contentLengthLong = Build.VERSION.SDK_INT >= 24 ? httpURLConnection.getContentLengthLong() : httpURLConnection.getContentLength();
-                long j5 = this.max_size;
-                int i4 = (j5 > j2 ? 1 : (j5 == j2 ? 0 : -1));
-                j = i4;
-                if (i4 > 0 && contentLengthLong > j5) {
-                    errorStream.close();
-                    if (this.file == null) {
-                        j = i;
-                        return null;
-                    }
-                    j = i;
-                    this.file = null;
-                    return null;
-                }
-                j = i;
-                if (this.file == null) {
-                    String extensionFromMimeType = this.overrideExt;
-                    if (extensionFromMimeType == null) {
-                        extensionFromMimeType = MimeTypeMap.getSingleton().getExtensionFromMimeType(httpURLConnection.getContentType());
-                    }
-                    this.file = StoryEntry.makeCacheFile(UserConfig.selectedAccount, extensionFromMimeType);
-                }
-                try {
-                    bufferedInputStream = new BufferedInputStream(errorStream, 16384);
-                    try {
+                        bufferedInputStream = new BufferedInputStream(errorStream, 16384);
                         try {
-                            fileOutputStream = new FileOutputStream(this.file, z);
                             try {
+                                fileOutputStream = new FileOutputStream(this.file, z10);
                                 try {
-                                    channel = fileOutputStream.getChannel();
                                     try {
-                                        byte[] bArr = new byte[16384];
-                                        j2 = j2;
-                                        j3 = j3;
-                                        while (true) {
-                                            int i5 = bufferedInputStream.read(bArr);
-                                            j = j2;
-                                            BetaUpdaterController$$ExternalSyntheticLambda2 betaUpdaterController$$ExternalSyntheticLambda2 = this.progressCallback;
-                                            if (i5 == -1) {
-                                                if (betaUpdaterController$$ExternalSyntheticLambda2 != null) {
-                                                    AndroidUtilities.runOnUIThread(new AddressBarList$$ExternalSyntheticLambda4(this, 6));
+                                        channel = fileOutputStream.getChannel();
+                                        try {
+                                            bArr = new byte[16384];
+                                            j11 = j11;
+                                            j12 = j12;
+                                            while (true) {
+                                                i11 = bufferedInputStream.read(bArr);
+                                                j10 = j11;
+                                                if (i11 == -1) {
+                                                    if (this.progressCallback != null) {
+                                                        AndroidUtilities.runOnUIThread(new nh.f0(this, 25));
+                                                    }
+                                                    if (channel != null) {
+                                                        channel.close();
+                                                    }
+                                                    fileOutputStream.close();
+                                                    bufferedInputStream.close();
+                                                    if (isCancelled()) {
+                                                        return null;
+                                                    }
+                                                    return this.file;
                                                 }
-                                                if (channel != null) {
-                                                    channel.close();
-                                                }
-                                                fileOutputStream.close();
-                                                bufferedInputStream.close();
-                                                if (isCancelled()) {
-                                                    return null;
-                                                }
-                                                return this.file;
-                                            }
-                                            try {
-                                                channel.write(ByteBuffer.wrap(bArr, i2, i5));
-                                                str = str2;
-                                                j3 += (long) i5;
                                                 try {
+                                                    channel.write(ByteBuffer.wrap(bArr, 0, i11));
+                                                    j12 += (long) i11;
                                                     if (isCancelled()) {
                                                         try {
                                                             this.file.delete();
                                                             break;
-                                                        } catch (Exception e2) {
-                                                            FileLog.e(e2);
+                                                        } catch (Exception e9) {
+                                                            FileLog.e(e9);
                                                         }
                                                     } else {
-                                                        if (contentLengthLong > j) {
-                                                            float fClamp01 = Utilities.clamp01(j3 / contentLengthLong);
-                                                            if (betaUpdaterController$$ExternalSyntheticLambda2 != null) {
-                                                                AndroidUtilities.runOnUIThread(new HttpGetFileTask$$ExternalSyntheticLambda0(this, fClamp01, 0));
+                                                        if (contentLength > j10) {
+                                                            fClamp01 = Utilities.clamp01(j12 / contentLength);
+                                                            if (this.progressCallback != null) {
+                                                                AndroidUtilities.runOnUIThread(new org.telegram.ui.e0(this, fClamp01, 5));
                                                             }
                                                         }
-                                                        str2 = str;
-                                                        j2 = j;
-                                                        i2 = 0;
-                                                        j3 = j3;
+                                                        j11 = j10;
+                                                        j12 = j12;
                                                     }
-                                                } catch (Throwable th4) {
-                                                    th = th4;
-                                                    th3 = th;
-                                                    if (channel != null) {
-                                                        throw th3;
+                                                } catch (Throwable th3) {
+                                                    th = th3;
+                                                    Throwable th4 = th;
+                                                    if (channel == null) {
+                                                        throw th4;
                                                     }
                                                     try {
                                                         channel.close();
-                                                        throw th3;
+                                                        throw th4;
                                                     } catch (Throwable th5) {
-                                                        th3.addSuppressed(th5);
-                                                        throw th3;
+                                                        th4.addSuppressed(th5);
+                                                        throw th4;
                                                     }
                                                 }
-                                            } catch (Throwable th6) {
-                                                th = th6;
-                                                str = str2;
-                                                th3 = th;
-                                                if (channel != null) {
-                                                    throw th3;
-                                                }
-                                                channel.close();
-                                                throw th3;
                                             }
+                                        } catch (Throwable th6) {
+                                            th = th6;
+                                            j10 = j11;
                                         }
                                     } catch (Throwable th7) {
                                         th = th7;
-                                        j = j2;
+                                        th2 = th;
+                                        try {
+                                            fileOutputStream.close();
+                                            throw th2;
+                                        } catch (Throwable th8) {
+                                            th2.addSuppressed(th8);
+                                            throw th2;
+                                        }
                                     }
-                                } catch (Throwable th8) {
-                                    th = th8;
-                                    j = j2;
-                                    str = str2;
+                                } catch (Throwable th9) {
+                                    th = th9;
+                                    j10 = j11;
                                     th2 = th;
-                                    try {
-                                        fileOutputStream.close();
-                                        throw th2;
-                                    } catch (Throwable th9) {
-                                        th2.addSuppressed(th9);
-                                        throw th2;
-                                    }
+                                    fileOutputStream.close();
+                                    throw th2;
                                 }
                             } catch (Throwable th10) {
                                 th = th10;
-                                th2 = th;
-                                fileOutputStream.close();
-                                throw th2;
+                                th = th;
+                                try {
+                                    try {
+                                        bufferedInputStream.close();
+                                        throw th;
+                                    } catch (Throwable th11) {
+                                        th.addSuppressed(th11);
+                                        throw th;
+                                    }
+                                } catch (Exception e10) {
+                                    e = e10;
+                                }
                             }
-                        } catch (Throwable th11) {
-                            th = th11;
+                        } catch (Throwable th12) {
+                            th = th12;
+                            j10 = j11;
                             th = th;
-                            try {
-                                bufferedInputStream.close();
-                                throw th;
-                            } catch (Throwable th12) {
-                                th.addSuppressed(th12);
-                                throw th;
-                            }
+                            bufferedInputStream.close();
+                            throw th;
                         }
-                    } catch (Throwable th13) {
-                        th = th13;
-                        j = j2;
-                        str = str2;
-                        th = th;
-                        bufferedInputStream.close();
-                        throw th;
+                    } else {
+                        errorStream.close();
+                        if (this.file != null) {
+                            j10 = i12;
+                            this.file = null;
+                        } else {
+                            j10 = i12;
+                        }
                     }
-                } catch (Exception e3) {
-                    e = e3;
+                    return null;
                 }
-            } catch (Exception e4) {
-                e = e4;
-                j = j2;
-                j3 = j3;
+                j12 = j12;
+                FileLog.d("failed to resume, server doesn't support partial content. downloading from the beginning");
+                try {
+                    File file = this.file;
+                    if (file != null) {
+                        try {
+                            file.delete();
+                        } catch (Exception unused) {
+                        }
+                        this.file = null;
+                    }
+                    j12 = j11;
+                    z10 = false;
+                    j12 = j12;
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        contentLength = httpURLConnection.getContentLengthLong();
+                    } else {
+                        contentLength = httpURLConnection.getContentLength();
+                    }
+                    long j14 = this.max_size;
+                    i10 = (j14 > j11 ? 1 : (j14 == j11 ? 0 : -1));
+                    j10 = i10;
+                    if (i10 > 0) {
+                        j10 = i12;
+                        if (this.file == null) {
+                            extensionFromMimeType = this.overrideExt;
+                            if (extensionFromMimeType == null) {
+                                extensionFromMimeType = MimeTypeMap.getSingleton().getExtensionFromMimeType(httpURLConnection.getContentType());
+                            }
+                            this.file = z7.w(UserConfig.selectedAccount, extensionFromMimeType);
+                        }
+                        bufferedInputStream = new BufferedInputStream(errorStream, 16384);
+                        fileOutputStream = new FileOutputStream(this.file, z10);
+                        channel = fileOutputStream.getChannel();
+                        bArr = new byte[16384];
+                        j11 = j11;
+                        j12 = j12;
+                        while (true) {
+                            i11 = bufferedInputStream.read(bArr);
+                            j10 = j11;
+                            if (i11 == -1) {
+                                if (this.progressCallback != null) {
+                                    AndroidUtilities.runOnUIThread(new nh.f0(this, 25));
+                                }
+                                if (channel != null) {
+                                    channel.close();
+                                }
+                                fileOutputStream.close();
+                                bufferedInputStream.close();
+                                if (isCancelled()) {
+                                    return null;
+                                }
+                                return this.file;
+                            }
+                            channel.write(ByteBuffer.wrap(bArr, 0, i11));
+                            j12 += (long) i11;
+                            if (isCancelled()) {
+                                this.file.delete();
+                                break;
+                                break;
+                            }
+                            if (contentLength > j10) {
+                                fClamp01 = Utilities.clamp01(j12 / contentLength);
+                                if (this.progressCallback != null) {
+                                    AndroidUtilities.runOnUIThread(new org.telegram.ui.e0(this, fClamp01, 5));
+                                }
+                            }
+                            j11 = j10;
+                            j12 = j12;
+                        }
+                    } else {
+                        j10 = i12;
+                        if (this.file == null) {
+                            extensionFromMimeType = this.overrideExt;
+                            if (extensionFromMimeType == null) {
+                                extensionFromMimeType = MimeTypeMap.getSingleton().getExtensionFromMimeType(httpURLConnection.getContentType());
+                            }
+                            this.file = z7.w(UserConfig.selectedAccount, extensionFromMimeType);
+                        }
+                        bufferedInputStream = new BufferedInputStream(errorStream, 16384);
+                        fileOutputStream = new FileOutputStream(this.file, z10);
+                        channel = fileOutputStream.getChannel();
+                        bArr = new byte[16384];
+                        j11 = j11;
+                        j12 = j12;
+                        while (true) {
+                            i11 = bufferedInputStream.read(bArr);
+                            j10 = j11;
+                            if (i11 == -1) {
+                                if (this.progressCallback != null) {
+                                    AndroidUtilities.runOnUIThread(new nh.f0(this, 25));
+                                }
+                                if (channel != null) {
+                                    channel.close();
+                                }
+                                fileOutputStream.close();
+                                bufferedInputStream.close();
+                                if (isCancelled()) {
+                                    return null;
+                                }
+                                return this.file;
+                            }
+                            channel.write(ByteBuffer.wrap(bArr, 0, i11));
+                            j12 += (long) i11;
+                            if (isCancelled()) {
+                                this.file.delete();
+                                break;
+                                break;
+                            }
+                            if (contentLength > j10) {
+                                fClamp01 = Utilities.clamp01(j12 / contentLength);
+                                if (this.progressCallback != null) {
+                                    AndroidUtilities.runOnUIThread(new org.telegram.ui.e0(this, fClamp01, 5));
+                                }
+                            }
+                            j11 = j10;
+                            j12 = j12;
+                        }
+                    }
+                    return null;
+                } catch (Exception e11) {
+                    e = e11;
+                    j12 = j11;
+                    j10 = j12;
+                }
+            } catch (Exception e12) {
+                e = e12;
+                j10 = j11;
             }
-            str = str2;
             if (!(e instanceof ProtocolException)) {
                 this.exception = e;
                 FileLog.e(e);
                 return null;
             }
             FileLog.d("got unexpected end of stream, lets try to resume");
-            i3++;
-            str2 = str;
-            j2 = j;
-            i2 = 0;
-            j3 = j3;
+            i13++;
+            j11 = j10;
+            j12 = j12;
         }
         channel.close();
         fileOutputStream.close();
@@ -259,9 +373,8 @@ public final class HttpGetFileTask extends AsyncTask {
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        File file = (File) obj;
-        Utilities.Callback callback = this.doneCallback;
+    public void onPostExecute(File file) {
+        Utilities.Callback<File> callback = this.doneCallback;
         if (callback != null) {
             if (this.exception == null) {
                 callback.run(file);

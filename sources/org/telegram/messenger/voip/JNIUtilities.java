@@ -57,51 +57,52 @@ public class JNIUtilities {
         String hostAddress = null;
         if (Build.VERSION.SDK_INT >= 23) {
             Network activeNetwork = connectivityManager.getActiveNetwork();
-            if (activeNetwork != null && (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) != null) {
-                Iterator<LinkAddress> it = linkProperties.getLinkAddresses().iterator();
-                String hostAddress2 = null;
-                while (it.hasNext()) {
-                    InetAddress address = it.next().getAddress();
-                    if (address instanceof Inet4Address) {
-                        if (!address.isLinkLocalAddress()) {
-                            hostAddress = address.getHostAddress();
-                        }
-                    } else if ((address instanceof Inet6Address) && !address.isLinkLocalAddress() && (address.getAddress()[0] & 240) != 240) {
-                        hostAddress2 = address.getHostAddress();
-                    }
-                }
-                return new String[]{linkProperties.getInterfaceName(), hostAddress, hostAddress2};
-            }
-        } else {
-            try {
-                Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-                if (networkInterfaces != null) {
-                    while (networkInterfaces.hasMoreElements()) {
-                        NetworkInterface networkInterfaceNextElement = networkInterfaces.nextElement();
-                        if (!networkInterfaceNextElement.isLoopback() && networkInterfaceNextElement.isUp()) {
-                            Enumeration<InetAddress> inetAddresses = networkInterfaceNextElement.getInetAddresses();
-                            String hostAddress3 = null;
-                            String hostAddress4 = null;
-                            while (inetAddresses.hasMoreElements()) {
-                                InetAddress inetAddressNextElement = inetAddresses.nextElement();
-                                if (inetAddressNextElement instanceof Inet4Address) {
-                                    if (!inetAddressNextElement.isLinkLocalAddress()) {
-                                        hostAddress3 = inetAddressNextElement.getHostAddress();
-                                    }
-                                } else if ((inetAddressNextElement instanceof Inet6Address) && !inetAddressNextElement.isLinkLocalAddress() && (inetAddressNextElement.getAddress()[0] & 240) != 240) {
-                                    hostAddress4 = inetAddressNextElement.getHostAddress();
-                                }
-                            }
-                            return new String[]{networkInterfaceNextElement.getName(), hostAddress3, hostAddress4};
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
+            if (activeNetwork == null || (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) == null) {
                 return null;
             }
+            Iterator<LinkAddress> it = linkProperties.getLinkAddresses().iterator();
+            String hostAddress2 = null;
+            while (it.hasNext()) {
+                InetAddress address = it.next().getAddress();
+                if (address instanceof Inet4Address) {
+                    if (!address.isLinkLocalAddress()) {
+                        hostAddress = address.getHostAddress();
+                    }
+                } else if ((address instanceof Inet6Address) && !address.isLinkLocalAddress() && (address.getAddress()[0] & 240) != 240) {
+                    hostAddress2 = address.getHostAddress();
+                }
+            }
+            return new String[]{linkProperties.getInterfaceName(), hostAddress, hostAddress2};
         }
-        return null;
+        try {
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            if (networkInterfaces == null) {
+                return null;
+            }
+            while (networkInterfaces.hasMoreElements()) {
+                NetworkInterface networkInterfaceNextElement = networkInterfaces.nextElement();
+                if (!networkInterfaceNextElement.isLoopback() && networkInterfaceNextElement.isUp()) {
+                    Enumeration<InetAddress> inetAddresses = networkInterfaceNextElement.getInetAddresses();
+                    String hostAddress3 = null;
+                    String hostAddress4 = null;
+                    while (inetAddresses.hasMoreElements()) {
+                        InetAddress inetAddressNextElement = inetAddresses.nextElement();
+                        if (inetAddressNextElement instanceof Inet4Address) {
+                            if (!inetAddressNextElement.isLinkLocalAddress()) {
+                                hostAddress3 = inetAddressNextElement.getHostAddress();
+                            }
+                        } else if ((inetAddressNextElement instanceof Inet6Address) && !inetAddressNextElement.isLinkLocalAddress() && (inetAddressNextElement.getAddress()[0] & 240) != 240) {
+                            hostAddress4 = inetAddressNextElement.getHostAddress();
+                        }
+                    }
+                    return new String[]{networkInterfaceNextElement.getName(), hostAddress3, hostAddress4};
+                }
+            }
+            return null;
+        } catch (Exception e9) {
+            FileLog.e(e9);
+            return null;
+        }
     }
 
     public static int getMaxVideoResolution() {

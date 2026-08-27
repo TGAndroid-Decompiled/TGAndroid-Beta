@@ -1,0 +1,71 @@
+package org.telegram.ui.ActionBar;
+
+import android.util.SparseIntArray;
+import org.telegram.ui.nc1;
+
+public final class n5 extends d5 {
+    public final int R = 1;
+    public final Object S;
+
+    public n5(nc1 nc1Var, int i10, boolean z10) {
+        super(i10, true, z10, null);
+        this.S = nc1Var;
+    }
+
+    @Override
+    public int g(int i10) {
+        switch (this.R) {
+            case 0:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.S;
+                int iIndexOfKey = sparseIntArray.indexOfKey(i10);
+                return iIndexOfKey > 0 ? sparseIntArray.valueAt(iIndexOfKey) : g6.nl[i10];
+            default:
+                return super.g(i10);
+        }
+    }
+
+    @Override
+    public int h(int i10) {
+        switch (this.R) {
+            case 0:
+                return ((SparseIntArray) this.S).get(i10);
+            default:
+                return super.h(i10);
+        }
+    }
+
+    @Override
+    public void n(int i10, int i11, int i12) {
+        switch (this.R) {
+            case 1:
+                if (!((nc1) this.S).Z1) {
+                    super.n(i10, i11, i12);
+                    break;
+                }
+                break;
+            default:
+                super.n(i10, i11, i12);
+                break;
+        }
+    }
+
+    @Override
+    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
+        switch (this.R) {
+            case 1:
+                if (!((nc1) this.S).Z1) {
+                    super.o(i10, i11, i12, i13, i14, i15, z10, z11);
+                    break;
+                }
+                break;
+            default:
+                super.o(i10, i11, i12, i13, i14, i15, z10, z11);
+                break;
+        }
+    }
+
+    public n5(boolean z10, SparseIntArray sparseIntArray) {
+        super(2, z10, false, null);
+        this.S = sparseIntArray;
+    }
+}

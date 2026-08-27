@@ -42,8 +42,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.fileLoaded) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
             synchronized (this.sync) {
                 try {
                     String str = (String) objArr[0];
@@ -78,8 +78,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public boolean onCreate() {
-        for (int i = 0; i < UserConfig.getActivatedAccountsCount(); i++) {
-            NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
+        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
         }
         return true;
     }
@@ -103,9 +103,9 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
             throw new SecurityException("trying to read internal file");
         }
         if (!file.exists()) {
-            Long l = this.fileStartTimes.get(str2);
-            long jLongValue = l != null ? l.longValue() : System.currentTimeMillis();
-            if (l == null) {
+            Long l10 = this.fileStartTimes.get(str2);
+            long jLongValue = l10 != null ? l10.longValue() : System.currentTimeMillis();
+            if (l10 == null) {
                 this.fileStartTimes.put(str2, Long.valueOf(jLongValue));
             }
             while (!file.exists()) {
@@ -144,8 +144,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public void shutdown() {
-        for (int i = 0; i < UserConfig.getActivatedAccountsCount(); i++) {
-            NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.fileLoaded);
+        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileLoaded);
         }
     }
 

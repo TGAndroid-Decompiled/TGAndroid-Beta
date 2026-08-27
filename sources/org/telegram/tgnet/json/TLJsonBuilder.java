@@ -25,8 +25,8 @@ public class TLJsonBuilder {
             TLJsonBuilder tLJsonBuilder = new TLJsonBuilder();
             serializable.serializeToJson(tLJsonBuilder);
             return tLJsonBuilder.result2;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return null;
         }
     }
@@ -34,21 +34,21 @@ public class TLJsonBuilder {
     private void write(String str, Object obj) {
         try {
             this.result2.putOpt(str, obj);
-        } catch (JSONException e) {
-            FileLog.e(e);
+        } catch (JSONException e9) {
+            FileLog.e(e9);
         }
     }
 
-    public void writeBoolean(String str, boolean z) {
-        write(str, Boolean.valueOf(z));
+    public void writeBoolean(String str, boolean z10) {
+        write(str, Boolean.valueOf(z10));
     }
 
-    public void writeInt32(String str, int i) {
-        writeString(str, Integer.toString(i, 10));
+    public void writeInt32(String str, int i10) {
+        writeString(str, Integer.toString(i10, 10));
     }
 
-    public void writeInt64(String str, long j) {
-        writeString(str, Long.toString(j, 10));
+    public void writeInt64(String str, long j10) {
+        writeString(str, Long.toString(j10, 10));
     }
 
     public void writeObject(String str, Serializable serializable) {

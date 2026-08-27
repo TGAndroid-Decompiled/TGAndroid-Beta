@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.util.LongSparseArray;
+import cg.b2;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,8 +23,6 @@ import org.telegram.tgnet.json.TLJsonBuilder;
 import org.telegram.tgnet.json.TLJsonParser;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda199;
-import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public class GroupCallMessagesController extends BaseController {
     private static volatile GroupCallMessagesController[] Instance = new GroupCallMessagesController[4];
@@ -31,7 +30,7 @@ public class GroupCallMessagesController extends BaseController {
     private final LongSparseArray<List<CallMessageListener>> callMessagesListeners;
 
     public interface CallMessageListener {
-        void onNewGroupCallMessage(long j, GroupCallMessage groupCallMessage);
+        void onNewGroupCallMessage(long j10, GroupCallMessage groupCallMessage);
 
         void onPopGroupCallMessage();
     }
@@ -54,15 +53,15 @@ public class GroupCallMessagesController extends BaseController {
                 return;
             }
             List<GroupCallMessage> list = this.messages;
-            long j = list.remove(list.size() - 1).randomId;
-            if (j != 0) {
-                this.randomIds.remove(Long.valueOf(j));
+            long j10 = list.remove(list.size() - 1).randomId;
+            if (j10 != 0) {
+                this.randomIds.remove(Long.valueOf(j10));
             }
         }
 
         public boolean push(GroupCallMessage groupCallMessage) {
-            long j = groupCallMessage.randomId;
-            if (j != 0 && !this.randomIds.add(Long.valueOf(j))) {
+            long j10 = groupCallMessage.randomId;
+            if (j10 != 0 && !this.randomIds.add(Long.valueOf(j10))) {
                 return false;
             }
             this.messages.add(0, groupCallMessage);
@@ -70,25 +69,25 @@ public class GroupCallMessagesController extends BaseController {
         }
     }
 
-    private GroupCallMessagesController(int i) {
-        super(i);
+    private GroupCallMessagesController(int i10) {
+        super(i10);
         this.callMessagesListeners = new LongSparseArray<>();
         this.callMessagesList = new LongSparseArray<>();
     }
 
-    public static GroupCallMessagesController getInstance(int i) {
+    public static GroupCallMessagesController getInstance(int i10) {
         GroupCallMessagesController groupCallMessagesController;
-        GroupCallMessagesController groupCallMessagesController2 = Instance[i];
+        GroupCallMessagesController groupCallMessagesController2 = Instance[i10];
         if (groupCallMessagesController2 != null) {
             return groupCallMessagesController2;
         }
         synchronized (GroupCallMessagesController.class) {
             try {
-                groupCallMessagesController = Instance[i];
+                groupCallMessagesController = Instance[i10];
                 if (groupCallMessagesController == null) {
                     GroupCallMessagesController[] groupCallMessagesControllerArr = Instance;
-                    GroupCallMessagesController groupCallMessagesController3 = new GroupCallMessagesController(i);
-                    groupCallMessagesControllerArr[i] = groupCallMessagesController3;
+                    GroupCallMessagesController groupCallMessagesController3 = new GroupCallMessagesController(i10);
+                    groupCallMessagesControllerArr[i10] = groupCallMessagesController3;
                     groupCallMessagesController = groupCallMessagesController3;
                 }
             } catch (Throwable th) {
@@ -98,41 +97,43 @@ public class GroupCallMessagesController extends BaseController {
         return groupCallMessagesController;
     }
 
-    private byte[] groupCallMessageDecrypt(long j, long j2, byte[] bArr) {
+    private byte[] groupCallMessageDecrypt(long j10, long j11, byte[] bArr) {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.id != j) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f22390id != j10) {
             return null;
         }
         long callId = conferenceCall.getCallId();
         if (callId == -1) {
             return null;
         }
-        return groupCallMessageDecryptImpl(callId, j2, bArr);
+        return groupCallMessageDecryptImpl(callId, j11, bArr);
     }
 
-    private static native byte[] groupCallMessageDecryptImpl(long j, long j2, byte[] bArr);
+    private static native byte[] groupCallMessageDecryptImpl(long j10, long j11, byte[] bArr);
 
-    private static native byte[] groupCallMessageEncryptImpl(long j, byte[] bArr);
+    private static native byte[] groupCallMessageEncryptImpl(long j10, byte[] bArr);
 
-    public void lambda$processUpdate$3(long j, long j2, byte[] bArr) {
-        TLRPC.TL_groupCallMessage tL_groupCallMessageTLJsonDeserialize;
+    public void lambda$processUpdate$3(long j10, long j11, byte[] bArr) {
+        TLRPC.TL_groupCallMessage tL_groupCallMessageTLJsonDeserialize = null;
         try {
-            byte[] bArrGroupCallMessageDecrypt = groupCallMessageDecrypt(j, j2, bArr);
-            tL_groupCallMessageTLJsonDeserialize = bArrGroupCallMessageDecrypt != null ? TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(bArrGroupCallMessageDecrypt)))) : null;
-        } catch (Exception e) {
-            FileLog.e(e);
+            byte[] bArrGroupCallMessageDecrypt = groupCallMessageDecrypt(j10, j11, bArr);
+            if (bArrGroupCallMessageDecrypt != null) {
+                tL_groupCallMessageTLJsonDeserialize = TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(bArrGroupCallMessageDecrypt))));
+            }
+        } catch (Exception e9) {
+            FileLog.e(e9);
         }
         if (tL_groupCallMessageTLJsonDeserialize != null) {
-            AndroidUtilities.runOnUIThread(new GroupCallMessagesController$$ExternalSyntheticLambda2(this, j, new GroupCallMessage(this.currentAccount, j2, tL_groupCallMessageTLJsonDeserialize.random_id, tL_groupCallMessageTLJsonDeserialize.message), 1));
+            AndroidUtilities.runOnUIThread(new f(this, j10, new GroupCallMessage(this.currentAccount, j11, tL_groupCallMessageTLJsonDeserialize.random_id, tL_groupCallMessageTLJsonDeserialize.message), 1));
             return;
         }
         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_groupCallMessage.message = tL_textWithEntities;
         tL_textWithEntities.text = LocaleController.getString(R.string.GroupCalMessageDecryptionError);
-        AndroidUtilities.runOnUIThread(new GroupCallMessagesController$$ExternalSyntheticLambda2(this, j, new GroupCallMessage(this.currentAccount, j2, 0L, tL_groupCallMessage.message), 2));
+        AndroidUtilities.runOnUIThread(new f(this, j10, new GroupCallMessage(this.currentAccount, j11, 0L, tL_groupCallMessage.message), 2));
     }
 
     public static void lambda$sendCallMessage$4(GroupCallMessage groupCallMessage) {
@@ -153,19 +154,19 @@ public class GroupCallMessagesController extends BaseController {
             groupCallMessage.setIsSendConfirmed(true);
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
-        AndroidUtilities.runOnUIThread(new GroupCallMessagesController$$ExternalSyntheticLambda0(groupCallMessage, 0));
+        AndroidUtilities.runOnUIThread(new e(groupCallMessage, 0));
     }
 
-    public void lambda$pushMessageToList$6(long j) {
-        MessagesList messagesList = this.callMessagesList.get(j);
+    public void lambda$pushMessageToList$6(long j10) {
+        MessagesList messagesList = this.callMessagesList.get(j10);
         if (messagesList == null) {
             return;
         }
         messagesList.pop();
         if (messagesList.isEmpty()) {
-            this.callMessagesList.remove(j);
+            this.callMessagesList.remove(j10);
         }
-        List<CallMessageListener> list = this.callMessagesListeners.get(j);
+        List<CallMessageListener> list = this.callMessagesListeners.get(j10);
         if (list != null) {
             Iterator<CallMessageListener> it = list.iterator();
             while (it.hasNext()) {
@@ -181,47 +182,47 @@ public class GroupCallMessagesController extends BaseController {
         }
     }
 
-    public void lambda$processUpdate$2(long j, GroupCallMessage groupCallMessage) {
-        MessagesList messagesList = this.callMessagesList.get(j);
+    public void lambda$processUpdate$2(long j10, GroupCallMessage groupCallMessage) {
+        MessagesList messagesList = this.callMessagesList.get(j10);
         if (messagesList == null) {
             messagesList = new MessagesList();
-            this.callMessagesList.put(j, messagesList);
+            this.callMessagesList.put(j10, messagesList);
         }
         if (messagesList.push(groupCallMessage)) {
-            List<CallMessageListener> list = this.callMessagesListeners.get(j);
+            List<CallMessageListener> list = this.callMessagesListeners.get(j10);
             if (list != null) {
                 Iterator<CallMessageListener> it = list.iterator();
                 while (it.hasNext()) {
-                    it.next().onNewGroupCallMessage(j, groupCallMessage);
+                    it.next().onNewGroupCallMessage(j10, groupCallMessage);
                 }
             }
             List<CallMessageListener> list2 = this.callMessagesListeners.get(0L);
             if (list2 != null) {
                 Iterator<CallMessageListener> it2 = list2.iterator();
                 while (it2.hasNext()) {
-                    it2.next().onNewGroupCallMessage(j, groupCallMessage);
+                    it2.next().onNewGroupCallMessage(j10, groupCallMessage);
                 }
             }
-            AndroidUtilities.runOnUIThread(new RichEditor$$ExternalSyntheticLambda48(this, j, 6), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
+            AndroidUtilities.runOnUIThread(new b2(this, j10, 17), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
         }
     }
 
-    public List<GroupCallMessage> getCallMessages(long j) {
-        MessagesList messagesList = this.callMessagesList.get(j);
+    public List<GroupCallMessage> getCallMessages(long j10) {
+        MessagesList messagesList = this.callMessagesList.get(j10);
         return messagesList != null ? new ArrayList(messagesList.messages) : new ArrayList();
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j = tL_updateGroupCallMessage.call.id;
+        long j10 = tL_updateGroupCallMessage.call.f22397id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.message.from_id);
-        long j2 = tL_updateGroupCallMessage.message.id;
+        long j11 = tL_updateGroupCallMessage.message.f22391id;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new GroupCallMessagesController$$ExternalSyntheticLambda2(this, j, new GroupCallMessage(this.currentAccount, peerDialogId, j2, tL_updateGroupCallMessage.message.message), 0));
+        AndroidUtilities.runOnUIThread(new f(this, j10, new GroupCallMessage(this.currentAccount, peerDialogId, j11, tL_updateGroupCallMessage.message.message), 0));
     }
 
-    public boolean sendCallMessage(long j, TLRPC.TL_textWithEntities tL_textWithEntities, long j2, TLRPC.InputGroupCall inputGroupCall) {
+    public boolean sendCallMessage(long j10, TLRPC.TL_textWithEntities tL_textWithEntities, long j11, TLRPC.InputGroupCall inputGroupCall) {
         TLObject tLObject;
         TLRPC.GroupCall groupCall;
         byte[] bArrGroupCallMessageEncryptImpl;
@@ -232,7 +233,7 @@ public class GroupCallMessagesController extends BaseController {
         long nextRandomId = getSendMessagesHelper().getNextRandomId();
         if (sharedInstance.isConference()) {
             ConferenceCall conferenceCall = sharedInstance.conference;
-            if (conferenceCall == null || (groupCall = conferenceCall.groupCall) == null || groupCall.id != j2) {
+            if (conferenceCall == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f22390id != j11) {
                 return false;
             }
             long callId = conferenceCall.getCallId();
@@ -257,42 +258,42 @@ public class GroupCallMessagesController extends BaseController {
             sendgroupcallmessage.random_id = nextRandomId;
             tLObject = sendgroupcallmessage;
         }
-        GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j, nextRandomId, tL_textWithEntities);
+        GroupCallMessage groupCallMessage = new GroupCallMessage(this.currentAccount, j10, nextRandomId, tL_textWithEntities);
         groupCallMessage.setIsOut(true);
-        lambda$processUpdate$2(j2, groupCallMessage);
-        GroupCallMessagesController$$ExternalSyntheticLambda0 groupCallMessagesController$$ExternalSyntheticLambda0 = new GroupCallMessagesController$$ExternalSyntheticLambda0(groupCallMessage, 1);
-        AndroidUtilities.runOnUIThread(groupCallMessagesController$$ExternalSyntheticLambda0, 1000L);
-        getConnectionsManager().sendRequest(tLObject, new VoIPService$$ExternalSyntheticLambda77(this, groupCallMessagesController$$ExternalSyntheticLambda0, groupCallMessage, 2));
+        lambda$processUpdate$2(j11, groupCallMessage);
+        e eVar = new e(groupCallMessage, 1);
+        AndroidUtilities.runOnUIThread(eVar, 1000L);
+        getConnectionsManager().sendRequest(tLObject, new m(this, eVar, groupCallMessage, 1));
         return true;
     }
 
-    public void subscribeToCallMessages(long j, CallMessageListener callMessageListener) {
-        List<CallMessageListener> arrayList = this.callMessagesListeners.get(j);
+    public void subscribeToCallMessages(long j10, CallMessageListener callMessageListener) {
+        List<CallMessageListener> arrayList = this.callMessagesListeners.get(j10);
         if (arrayList == null) {
             arrayList = new ArrayList<>();
-            this.callMessagesListeners.put(j, arrayList);
+            this.callMessagesListeners.put(j10, arrayList);
         }
         arrayList.add(callMessageListener);
     }
 
-    public void unsubscribeFromCallMessages(long j, CallMessageListener callMessageListener) {
-        List<CallMessageListener> list = this.callMessagesListeners.get(j);
+    public void unsubscribeFromCallMessages(long j10, CallMessageListener callMessageListener) {
+        List<CallMessageListener> list = this.callMessagesListeners.get(j10);
         if (list == null) {
             return;
         }
         list.remove(callMessageListener);
         if (list.isEmpty()) {
-            this.callMessagesListeners.remove(j);
+            this.callMessagesListeners.remove(j10);
         }
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j = tL_updateGroupCallEncryptedMessage.call.id;
+        long j10 = tL_updateGroupCallEncryptedMessage.call.f22397id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new StarGiftSheet$$ExternalSyntheticLambda199(this, j, peerDialogId, bArr, 10));
+        Utilities.globalQueue.postRunnable(new e5.w(this, j10, peerDialogId, bArr, 11));
     }
 }

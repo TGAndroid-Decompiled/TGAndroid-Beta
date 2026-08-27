@@ -1,234 +1,208 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import androidx.dynamicanimation.animation.FloatPropertyCompat;
-import androidx.dynamicanimation.animation.SpringAnimation;
-import androidx.dynamicanimation.animation.SpringForce;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-public class AnimatedPhoneNumberEditText extends HintEditText {
-    private static final float SPRING_MULTIPLIER = 100.0f;
-    private static final boolean USE_NUMBERS_ANIMATION = false;
-    private ObjectAnimator animator;
-    private Runnable hintAnimationCallback;
-    private List<Float> hintAnimationValues;
-    private List<SpringAnimation> hintAnimations;
-    private HintFadeProperty hintFadeProperty;
-    private ArrayList<StaticLayout> letters;
-    private ArrayList<StaticLayout> oldLetters;
-    private String oldText;
-    private float progress;
-    private TextPaint textPaint;
-    private String wasHint;
-    private Boolean wasHintVisible;
+public class AnimatedPhoneNumberEditText extends u30 {
+    public String A;
+    public hh.t5 B;
 
-    public final class HintFadeProperty extends FloatPropertyCompat {
-        public HintFadeProperty() {
-            super("hint_fade");
-        }
+    public final ArrayList f26062e;
 
-        @Override
-        public float getValue(Integer num) {
-            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
-                return ((Float) AnimatedPhoneNumberEditText.this.hintAnimationValues.get(num.intValue())).floatValue() * 100.0f;
-            }
-            return 0.0f;
-        }
+    public final ArrayList f26063f;
+    public final TextPaint h;
 
-        @Override
-        public void setValue(Integer num, float f) {
-            if (num.intValue() < AnimatedPhoneNumberEditText.this.hintAnimationValues.size()) {
-                AnimatedPhoneNumberEditText.this.hintAnimationValues.set(num.intValue(), Float.valueOf(f / 100.0f));
-                AnimatedPhoneNumberEditText.this.invalidate();
-            }
-        }
-    }
+    public ObjectAnimator f26064n;
+
+    public float f26065r;
+
+    public String f26066s;
+    public final o1.d v;
+
+    public final ArrayList f26067w;
+
+    public final ArrayList f26068x;
+
+    public Boolean f26069y;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
-        this.letters = new ArrayList<>();
-        this.oldLetters = new ArrayList<>();
-        this.textPaint = new TextPaint(1);
-        this.oldText = "";
-        this.hintFadeProperty = new HintFadeProperty();
-        this.hintAnimationValues = new ArrayList();
-        this.hintAnimations = new ArrayList();
+        this.f26062e = new ArrayList();
+        this.f26063f = new ArrayList();
+        this.h = new TextPaint(1);
+        this.f26066s = "";
+        this.v = new o1.d(this, 1);
+        this.f26067w = new ArrayList();
+        this.f26068x = new ArrayList();
     }
 
-    public void lambda$setHintText$0(boolean z, String str) {
-        this.hintAnimationValues.clear();
-        Iterator<SpringAnimation> it = this.hintAnimations.iterator();
-        while (it.hasNext()) {
-            it.next().cancel();
+    public static void j(AnimatedPhoneNumberEditText animatedPhoneNumberEditText, boolean z10, String str) {
+        animatedPhoneNumberEditText.f26067w.clear();
+        ArrayList arrayList = animatedPhoneNumberEditText.f26068x;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((o1.j) obj).c();
         }
-        if (z) {
+        if (z10) {
             return;
         }
         super.setHintText(str);
     }
 
-    private void runHintAnimation(int i, boolean z, Runnable runnable) {
-        Runnable runnable2 = this.hintAnimationCallback;
-        if (runnable2 != null) {
-            removeCallbacks(runnable2);
-        }
-        for (int i2 = 0; i2 < i; i2++) {
-            float f = 0.0f;
-            float f2 = z ? 0.0f : 1.0f;
-            if (z) {
-                f = 1.0f;
-            }
-            SpringAnimation springAnimation = new SpringAnimation(Integer.valueOf(i2), this.hintFadeProperty);
-            float f3 = f * 100.0f;
-            SpringForce springForce = new SpringForce(f3);
-            springForce.setStiffness(500.0f);
-            springForce.setDampingRatio(1.0f);
-            springForce.mFinalPosition = f3;
-            springAnimation.mSpring = springForce;
-            springAnimation.mValue = 100.0f * f2;
-            springAnimation.mStartValueIsSet = true;
-            this.hintAnimations.add(springAnimation);
-            this.hintAnimationValues.add(Float.valueOf(f2));
-            postDelayed(new ShareAlert$23$$ExternalSyntheticLambda0(springAnimation, 20), ((long) i2) * 5);
-        }
-        this.hintAnimationCallback = runnable;
-        postDelayed(runnable, (((long) i) * 5) + 150);
-    }
-
     @Override
     public String getHintText() {
-        return this.wasHint;
+        return this.A;
     }
 
     public float getProgress() {
-        return this.progress;
+        return this.f26065r;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public void onPreDrawHintCharacter(int i, Canvas canvas, float f, float f2) {
-        if (i < this.hintAnimationValues.size()) {
-            this.hintPaint.setAlpha((int) (this.hintAnimationValues.get(i).floatValue() * 255.0f));
+    public final void i(int i10) {
+        ArrayList arrayList = this.f26067w;
+        if (i10 < arrayList.size()) {
+            this.f32955b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
         }
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
     }
 
     @Override
     public void setHintText(String str) {
         boolean zIsEmpty;
         boolean zIsEmpty2 = TextUtils.isEmpty(str);
-        boolean z = !zIsEmpty2;
-        Boolean bool = this.wasHintVisible;
-        if (bool == null || bool.booleanValue() != z) {
-            this.hintAnimationValues.clear();
-            Iterator<SpringAnimation> it = this.hintAnimations.iterator();
-            while (it.hasNext()) {
-                it.next().cancel();
+        boolean z10 = !zIsEmpty2;
+        Boolean bool = this.f26069y;
+        ArrayList arrayList = this.f26067w;
+        ArrayList arrayList2 = this.f26068x;
+        if (bool == null || bool.booleanValue() != z10) {
+            arrayList.clear();
+            int size = arrayList2.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList2.get(i10);
+                i10++;
+                ((o1.j) obj).c();
             }
-            this.hintAnimations.clear();
-            this.wasHintVisible = Boolean.valueOf(z);
+            arrayList2.clear();
+            this.f26069y = Boolean.valueOf(z10);
             zIsEmpty = TextUtils.isEmpty(getText());
         } else {
             zIsEmpty = false;
         }
-        String str2 = !zIsEmpty2 ? str : this.wasHint;
+        String str2 = !zIsEmpty2 ? str : this.A;
         if (str2 == null) {
             str2 = "";
         }
-        this.wasHint = str;
+        this.A = str;
         if (!zIsEmpty2 || !zIsEmpty) {
             super.setHintText(str);
         }
         if (zIsEmpty) {
-            runHintAnimation(str2.length(), z, new MediaActivity$$ExternalSyntheticLambda0(this, z, str, 2));
+            int length = str2.length();
+            hh.t5 t5Var = new hh.t5(this, z10, str, 14);
+            Runnable runnable = this.B;
+            if (runnable != null) {
+                removeCallbacks(runnable);
+            }
+            for (int i11 = 0; i11 < length; i11++) {
+                float f10 = 0.0f;
+                float f11 = !zIsEmpty2 ? 0.0f : 1.0f;
+                if (!zIsEmpty2) {
+                    f10 = 1.0f;
+                }
+                o1.j jVar = new o1.j(Integer.valueOf(i11), this.v);
+                float f12 = f10 * 100.0f;
+                o1.k kVar = new o1.k(f12);
+                kVar.b(500.0f);
+                kVar.a(1.0f);
+                kVar.f19154i = f12;
+                jVar.f19147u = kVar;
+                jVar.f19138b = 100.0f * f11;
+                jVar.f19139c = true;
+                arrayList2.add(jVar);
+                arrayList.add(Float.valueOf(f11));
+                postDelayed(new bg(jVar, 7), ((long) i11) * 5);
+            }
+            this.B = t5Var;
+            postDelayed(t5Var, (((long) length) * 5) + 150);
         }
     }
 
     public void setNewText(String str) {
-        if (this.oldLetters == null || this.letters == null || Objects.equals(this.oldText, str)) {
+        ArrayList arrayList;
+        TextPaint textPaint;
+        ArrayList arrayList2 = this.f26063f;
+        if (arrayList2 == null || (arrayList = this.f26062e) == null || Objects.equals(this.f26066s, str)) {
             return;
         }
-        ObjectAnimator objectAnimator = this.animator;
+        ObjectAnimator objectAnimator = this.f26064n;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.animator = null;
+            this.f26064n = null;
         }
-        this.oldLetters.clear();
-        this.oldLetters.addAll(this.letters);
-        this.letters.clear();
-        int i = 0;
-        boolean z = TextUtils.isEmpty(this.oldText) && !TextUtils.isEmpty(str);
-        this.progress = 0.0f;
-        while (i < str.length()) {
-            int i2 = i + 1;
-            String strSubstring = str.substring(i, i2);
-            String strSubstring2 = (this.oldLetters.isEmpty() || i >= this.oldText.length()) ? null : this.oldText.substring(i, i2);
-            if (z || strSubstring2 == null || !strSubstring2.equals(strSubstring)) {
-                if (z && strSubstring2 == null) {
-                    this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+        arrayList2.clear();
+        arrayList2.addAll(arrayList);
+        arrayList.clear();
+        int i10 = 0;
+        boolean z10 = TextUtils.isEmpty(this.f26066s) && !TextUtils.isEmpty(str);
+        this.f26065r = 0.0f;
+        while (i10 < str.length()) {
+            int i11 = i10 + 1;
+            String strSubstring = str.substring(i10, i11);
+            String strSubstring2 = (arrayList2.isEmpty() || i10 >= this.f26066s.length()) ? null : this.f26066s.substring(i10, i11);
+            if (z10 || strSubstring2 == null || !strSubstring2.equals(strSubstring)) {
+                TextPaint textPaint2 = this.h;
+                if (z10 && strSubstring2 == null) {
+                    textPaint = textPaint2;
+                    arrayList2.add(new StaticLayout("", textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                } else {
+                    textPaint = textPaint2;
                 }
-                TextPaint textPaint = this.textPaint;
-                this.letters.add(new StaticLayout(strSubstring, textPaint, (int) Math.ceil(textPaint.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                arrayList.add(new StaticLayout(strSubstring, textPaint, (int) Math.ceil(textPaint.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             } else {
-                this.letters.add(this.oldLetters.get(i));
-                this.oldLetters.set(i, null);
+                arrayList.add((StaticLayout) arrayList2.get(i10));
+                arrayList2.set(i10, null);
             }
-            i = i2;
+            i10 = i11;
         }
-        if (!this.oldLetters.isEmpty()) {
+        if (!arrayList2.isEmpty()) {
             ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
-            this.animator = objectAnimatorOfFloat;
+            this.f26064n = objectAnimatorOfFloat;
             objectAnimatorOfFloat.setDuration(150L);
-            this.animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    AnimatedPhoneNumberEditText.this.animator = null;
-                    AnimatedPhoneNumberEditText.this.oldLetters.clear();
-                }
-            });
-            this.animator.start();
+            this.f26064n.addListener(new org.telegram.ui.am(this, 5));
+            this.f26064n.start();
         }
-        this.oldText = str;
+        this.f26066s = str;
         invalidate();
     }
 
-    public void setProgress(float f) {
-        if (this.progress == f) {
+    public void setProgress(float f10) {
+        if (this.f26065r == f10) {
             return;
         }
-        this.progress = f;
+        this.f26065r = f10;
         invalidate();
     }
 
     @Override
-    public void setTextColor(int i) {
-        super.setTextColor(i);
-        this.textPaint.setColor(i);
+    public void setTextColor(int i10) {
+        super.setTextColor(i10);
+        this.h.setColor(i10);
     }
 
     @Override
-    public void setTextSize(int i, float f) {
-        super.setTextSize(i, f);
-        this.textPaint.setTextSize(TypedValue.applyDimension(i, f, getResources().getDisplayMetrics()));
+    public final void setTextSize(int i10, float f10) {
+        super.setTextSize(i10, f10);
+        this.h.setTextSize(TypedValue.applyDimension(i10, f10, getResources().getDisplayMetrics()));
     }
 }

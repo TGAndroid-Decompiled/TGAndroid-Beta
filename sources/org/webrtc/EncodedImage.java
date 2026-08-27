@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import androidx.recyclerview.widget.DiffUtil;
 import java.nio.ByteBuffer;
 import java.util.concurrent.TimeUnit;
 
@@ -36,23 +35,23 @@ public class EncodedImage implements RefCounted {
         }
 
         @Deprecated
-        public Builder setCaptureTimeMs(long j) {
-            this.captureTimeNs = TimeUnit.MILLISECONDS.toNanos(j);
+        public Builder setCaptureTimeMs(long j10) {
+            this.captureTimeNs = TimeUnit.MILLISECONDS.toNanos(j10);
             return this;
         }
 
-        public Builder setCaptureTimeNs(long j) {
-            this.captureTimeNs = j;
+        public Builder setCaptureTimeNs(long j10) {
+            this.captureTimeNs = j10;
             return this;
         }
 
-        public Builder setEncodedHeight(int i) {
-            this.encodedHeight = i;
+        public Builder setEncodedHeight(int i10) {
+            this.encodedHeight = i10;
             return this;
         }
 
-        public Builder setEncodedWidth(int i) {
-            this.encodedWidth = i;
+        public Builder setEncodedWidth(int i10) {
+            this.encodedWidth = i10;
             return this;
         }
 
@@ -66,8 +65,8 @@ public class EncodedImage implements RefCounted {
             return this;
         }
 
-        public Builder setRotation(int i) {
-            this.rotation = i;
+        public Builder setRotation(int i10) {
+            this.rotation = i10;
             return this;
         }
 
@@ -82,17 +81,17 @@ public class EncodedImage implements RefCounted {
 
         private final int nativeIndex;
 
-        FrameType(int i) {
-            this.nativeIndex = i;
+        FrameType(int i10) {
+            this.nativeIndex = i10;
         }
 
-        public static FrameType fromNativeIndex(int i) {
+        public static FrameType fromNativeIndex(int i10) {
             for (FrameType frameType : values()) {
-                if (frameType.getNative() == i) {
+                if (frameType.getNative() == i10) {
                     return frameType;
                 }
             }
-            throw new IllegalArgumentException(DiffUtil.m(i, "Unknown native frame type: "));
+            throw new IllegalArgumentException(i0.a.k(i10, "Unknown native frame type: "));
         }
 
         public int getNative() {
@@ -142,14 +141,14 @@ public class EncodedImage implements RefCounted {
         this.refCountDelegate.retain();
     }
 
-    private EncodedImage(ByteBuffer byteBuffer, Runnable runnable, int i, int i2, long j, FrameType frameType, int i3, Integer num) {
+    private EncodedImage(ByteBuffer byteBuffer, Runnable runnable, int i10, int i11, long j10, FrameType frameType, int i12, Integer num) {
         this.buffer = byteBuffer;
-        this.encodedWidth = i;
-        this.encodedHeight = i2;
-        this.captureTimeMs = TimeUnit.NANOSECONDS.toMillis(j);
-        this.captureTimeNs = j;
+        this.encodedWidth = i10;
+        this.encodedHeight = i11;
+        this.captureTimeMs = TimeUnit.NANOSECONDS.toMillis(j10);
+        this.captureTimeNs = j10;
         this.frameType = frameType;
-        this.rotation = i3;
+        this.rotation = i12;
         this.qp = num;
         this.refCountDelegate = new RefCountDelegate(runnable);
     }

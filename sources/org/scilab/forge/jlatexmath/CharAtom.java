@@ -1,23 +1,24 @@
 package org.scilab.forge.jlatexmath;
 
 public class CharAtom extends CharSymbol {
-    private final char c;
+
+    private final char f19583c;
     private boolean mathMode;
     private String textStyle;
 
-    public CharAtom(char c, String str, boolean z) {
-        this.c = c;
+    public CharAtom(char c10, String str, boolean z10) {
+        this.f19583c = c10;
         this.textStyle = str;
-        this.mathMode = z;
+        this.mathMode = z10;
     }
 
-    private Char getChar(TeXFont teXFont, int i, boolean z) {
-        char upperCase = this.c;
-        if (z && Character.isLowerCase(upperCase)) {
-            upperCase = Character.toUpperCase(this.c);
+    private Char getChar(TeXFont teXFont, int i10, boolean z10) {
+        char upperCase = this.f19583c;
+        if (z10 && Character.isLowerCase(upperCase)) {
+            upperCase = Character.toUpperCase(this.f19583c);
         }
         String str = this.textStyle;
-        return str == null ? teXFont.getDefaultChar(upperCase, i) : teXFont.getChar(upperCase, str, i);
+        return str == null ? teXFont.getDefaultChar(upperCase, i10) : teXFont.getChar(upperCase, str, i10);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class CharAtom extends CharSymbol {
         }
         boolean smallCap = teXEnvironment.getSmallCap();
         CharBox charBox = new CharBox(getChar(teXEnvironment.getTeXFont(), teXEnvironment.getStyle(), smallCap));
-        return (smallCap && Character.isLowerCase(this.c)) ? new ScaleBox(charBox, 0.800000011920929d, 0.800000011920929d) : charBox;
+        return (smallCap && Character.isLowerCase(this.f19583c)) ? new ScaleBox(charBox, 0.800000011920929d, 0.800000011920929d) : charBox;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class CharAtom extends CharSymbol {
     }
 
     public char getCharacter() {
-        return this.c;
+        return this.f19583c;
     }
 
     public boolean isMathMode() {
@@ -45,10 +46,10 @@ public class CharAtom extends CharSymbol {
     }
 
     public String toString() {
-        return "CharAtom: '" + this.c + "'";
+        return "CharAtom: '" + this.f19583c + "'";
     }
 
-    public CharAtom(char c, String str) {
-        this(c, str, false);
+    public CharAtom(char c10, String str) {
+        this(c10, str, false);
     }
 }

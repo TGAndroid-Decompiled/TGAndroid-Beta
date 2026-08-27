@@ -1,50 +1,48 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
-import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.TLRPC;
 
 public class MessageSuggestionParams {
-    public final AmountUtils$Amount amount;
+    public final hf.a amount;
     public final long time;
 
-    private MessageSuggestionParams(AmountUtils$Amount amountUtils$Amount, long j) {
-        this.amount = amountUtils$Amount;
-        this.time = j;
+    private MessageSuggestionParams(hf.a aVar, long j10) {
+        this.amount = aVar;
+        this.time = j10;
     }
 
     public static MessageSuggestionParams empty() {
-        return new MessageSuggestionParams(AmountUtils$Amount.fromDecimal(0L, AmountUtils$Currency.STARS), 0L);
+        return new MessageSuggestionParams(hf.a.g(0L, hf.b.f8921a), 0L);
     }
 
     public static MessageSuggestionParams of(TLRPC.SuggestedPost suggestedPost) {
-        return suggestedPost == null ? empty() : new MessageSuggestionParams(AmountUtils$Amount.of(suggestedPost.price), suggestedPost.schedule_date);
+        return suggestedPost == null ? empty() : new MessageSuggestionParams(hf.a.l(suggestedPost.price), suggestedPost.schedule_date);
     }
 
     public boolean isEmpty() {
-        AmountUtils$Amount amountUtils$Amount = this.amount;
-        return (amountUtils$Amount == null || amountUtils$Amount.isZero()) && this.time <= 0;
+        hf.a aVar = this.amount;
+        return (aVar == null || aVar.k()) && this.time <= 0;
     }
 
     public TLRPC.SuggestedPost toTl() {
         TLRPC.SuggestedPost suggestedPost = new TLRPC.SuggestedPost();
-        AmountUtils$Amount amountUtils$Amount = this.amount;
-        if (amountUtils$Amount != null && !amountUtils$Amount.isZero()) {
-            suggestedPost.price = this.amount.toTl();
+        hf.a aVar = this.amount;
+        if (aVar != null && !aVar.k()) {
+            suggestedPost.price = this.amount.o();
         }
-        long j = this.time;
-        if (j > 0) {
-            suggestedPost.schedule_date = (int) j;
+        long j10 = this.time;
+        if (j10 > 0) {
+            suggestedPost.schedule_date = (int) j10;
             suggestedPost.flags |= 1;
         }
         return suggestedPost;
     }
 
     public static MessageSuggestionParams of(TLRPC.TL_messageActionSuggestedPostApproval tL_messageActionSuggestedPostApproval) {
-        return of(AmountUtils$Amount.of(tL_messageActionSuggestedPostApproval.price), tL_messageActionSuggestedPostApproval.schedule_date);
+        return of(hf.a.l(tL_messageActionSuggestedPostApproval.price), tL_messageActionSuggestedPostApproval.schedule_date);
     }
 
-    public static MessageSuggestionParams of(AmountUtils$Amount amountUtils$Amount, long j) {
-        return new MessageSuggestionParams(amountUtils$Amount, j);
+    public static MessageSuggestionParams of(hf.a aVar, long j10) {
+        return new MessageSuggestionParams(aVar, j10);
     }
 }

@@ -6,258 +6,114 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.DrawerLayoutContainer;
-import org.telegram.ui.ActionBar.INavigationLayout;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ActivityWindowEmptyBackgroundDrawable;
-import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.Components.ThemeEditorView;
 
-public class BubbleActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate {
-    public static BubbleActivity instance;
-    public INavigationLayout actionBarLayout;
-    private long dialogId;
-    protected DrawerLayoutContainer drawerLayoutContainer;
-    private boolean finished;
-    private Runnable lockRunnable;
-    private final ArrayList<BaseFragment> mainFragmentsStack = new ArrayList<>();
-    private Intent passcodeSaveIntent;
-    private int passcodeSaveIntentAccount;
-    private boolean passcodeSaveIntentIsNew;
-    private boolean passcodeSaveIntentIsRestore;
-    private int passcodeSaveIntentState;
-    private PasscodeView passcodeView;
-
-    private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws FileNotFoundException {
-        ChatActivity chatActivity;
-        if (!z3 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
-            showPasscodeActivity();
-            this.passcodeSaveIntent = intent;
-            this.passcodeSaveIntentIsNew = z;
-            this.passcodeSaveIntentIsRestore = z2;
-            this.passcodeSaveIntentAccount = i;
-            this.passcodeSaveIntentState = i2;
-            UserConfig.getInstance(i).saveConfig(false);
-            return false;
-        }
-        int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
-        this.currentAccount = intExtra;
-        if (!UserConfig.isValidAccount(intExtra)) {
-            finish();
-            return false;
-        }
-        if (intent.getAction() == null || !intent.getAction().startsWith("com.tmessages.openchat")) {
-            chatActivity = null;
-        } else {
-            long longExtra = intent.getLongExtra("chatId", 0L);
-            long longExtra2 = intent.getLongExtra("userId", 0L);
-            Bundle bundle = new Bundle();
-            if (longExtra2 != 0) {
-                this.dialogId = longExtra2;
-                bundle.putLong("user_id", longExtra2);
-            } else {
-                this.dialogId = -longExtra;
-                bundle.putLong("chat_id", longExtra);
-            }
-            chatActivity = new ChatActivity(bundle);
-            chatActivity.setInBubbleMode(true);
-            chatActivity.setCurrentAccount(this.currentAccount);
-        }
-        if (chatActivity == null) {
-            finish();
-            return false;
-        }
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(this.dialogId));
-        ((ActionBarLayout) this.actionBarLayout).removeAllFragments();
-        INavigationLayout iNavigationLayout = this.actionBarLayout;
-        iNavigationLayout.getClass();
-        ((ActionBarLayout) iNavigationLayout).addFragmentToStack(-1, chatActivity);
-        AccountInstance.getInstance(this.currentAccount).getNotificationsController().setOpenedInBubble(this.dialogId, true);
-        AccountInstance.getInstance(this.currentAccount).getConnectionsManager().setAppPaused(false, false);
-        ((ActionBarLayout) this.actionBarLayout).showLastFragment();
-        return true;
-    }
-
-    public void lambda$showPasscodeActivity$0(PasscodeView passcodeView) throws FileNotFoundException {
-        BubbleActivity bubbleActivity;
-        SharedConfig.isWaitingForPasscodeEnter = false;
-        Intent intent = this.passcodeSaveIntent;
-        if (intent != null) {
-            bubbleActivity = this;
-            bubbleActivity.handleIntent(intent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
-            bubbleActivity.passcodeSaveIntent = null;
-        } else {
-            bubbleActivity = this;
-        }
-        ((ActionBarLayout) bubbleActivity.actionBarLayout).showLastFragment();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
-    }
-
-    private void onFinish() {
-        if (this.finished) {
-            return;
-        }
-        Runnable runnable = this.lockRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.lockRunnable = null;
-        }
-        this.finished = true;
-        instance = null;
-    }
-
-    private void onPasscodePause() {
-        Runnable runnable = this.lockRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.lockRunnable = null;
-        }
-        if (SharedConfig.passcodeHash.isEmpty()) {
-            SharedConfig.lastPauseTime = 0;
-        } else {
-            SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
-            Runnable runnable2 = new Runnable() {
-                @Override
-                public void run() throws FileNotFoundException {
-                    if (BubbleActivity.this.lockRunnable == this) {
-                        if (AndroidUtilities.needShowPasscode(true)) {
-                            if (BuildVars.LOGS_ENABLED) {
-                                FileLog.d("lock app");
-                            }
-                            BubbleActivity.this.showPasscodeActivity();
-                        } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.d("didn't pass lock check");
-                        }
-                        BubbleActivity.this.lockRunnable = null;
-                    }
-                }
-            };
-            this.lockRunnable = runnable2;
-            if (SharedConfig.appLocked) {
-                AndroidUtilities.runOnUIThread(runnable2, 1000L);
-            } else {
-                int i = SharedConfig.autoLockIn;
-                if (i != 0) {
-                    AndroidUtilities.runOnUIThread(runnable2, (((long) i) * 1000) + 1000);
-                }
-            }
-        }
-        SharedConfig.saveConfig();
-    }
-
-    private void onPasscodeResume() throws FileNotFoundException {
-        Runnable runnable = this.lockRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.lockRunnable = null;
-        }
-        if (AndroidUtilities.needShowPasscode(true)) {
-            showPasscodeActivity();
-        }
-        if (SharedConfig.lastPauseTime != 0) {
-            SharedConfig.lastPauseTime = 0;
-            SharedConfig.saveConfig();
-        }
-    }
-
-    public void showPasscodeActivity() throws FileNotFoundException {
-        if (this.passcodeView == null) {
-            return;
-        }
-        SharedConfig.appLocked = true;
-        if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
-            SecretMediaViewer.getInstance().closePhoto(false, false);
-        } else if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
-            PhotoViewer.getInstance().closePhoto(false, true);
-        } else if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
-            ArticleViewer.getInstance().close(false, true);
-        }
-        this.passcodeView.onShow(true, false);
-        SharedConfig.isWaitingForPasscodeEnter = true;
-        this.passcodeView.setDelegate(new BoostsActivity$$ExternalSyntheticLambda4(this, 2));
-    }
+public class BubbleActivity extends h5 implements org.telegram.ui.ActionBar.y4 {
+    public static BubbleActivity W;
+    public boolean L;
+    public final ArrayList M = new ArrayList();
+    public org.telegram.ui.Components.dd0 N;
+    public ActionBarLayout O;
+    public org.telegram.ui.ActionBar.x3 P;
+    public Intent Q;
+    public boolean R;
+    public int S;
+    public boolean T;
+    public w5 U;
+    public long V;
 
     @Override
-    public boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout) {
+    public final boolean h(org.telegram.ui.ActionBar.n2 n2Var, ActionBarLayout actionBarLayout) {
         return true;
     }
 
     @Override
-    public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
-        if (((ActionBarLayout) iNavigationLayout).getFragmentStack().size() > 1) {
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(ActionBarLayout actionBarLayout) {
+        if (actionBarLayout.getFragmentStack().size() > 1) {
             return true;
         }
-        onFinish();
+        if (!this.L) {
+            w5 w5Var = this.U;
+            if (w5Var != null) {
+                AndroidUtilities.cancelRunOnUIThread(w5Var);
+                this.U = null;
+            }
+            this.L = true;
+            W = null;
+        }
         finish();
         return false;
     }
 
     @Override
-    public boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout) {
+    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.z4 z4Var) {
+        org.telegram.ui.ActionBar.n2 n2Var = z4Var.f23999a;
         return true;
     }
 
     @Override
-    public void onActivityResult(int i, int i2, Intent intent) {
-        super.onActivityResult(i, i2, intent);
-        ThemeEditorView themeEditorView = ThemeEditorView.getInstance();
-        if (themeEditorView != null) {
-            themeEditorView.onActivityResult(i, i2, intent);
+    public final void onActivityResult(int i10, int i11, Intent intent) {
+        org.telegram.ui.Components.w71 w71Var;
+        super.onActivityResult(i10, i11, intent);
+        ThemeEditorView themeEditorView = ThemeEditorView.f26549n;
+        if (themeEditorView != null && (w71Var = themeEditorView.f26558k) != null) {
+            w71Var.a(i10, i11, intent);
         }
-        if (((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty()) {
+        if (this.O.getFragmentStack().isEmpty()) {
             return;
         }
-        ((BaseFragment) Theme.ResourcesProvider.CC.m((ActionBarLayout) this.actionBarLayout, 1, ((ActionBarLayout) this.actionBarLayout).getFragmentStack())).onActivityResultFragment(i, i2, intent);
+        ((org.telegram.ui.ActionBar.n2) this.O.getFragmentStack().get(this.O.getFragmentStack().size() - 1)).onActivityResultFragment(i10, i11, intent);
     }
 
     @Override
-    public void onBackPressed() throws FileNotFoundException {
-        if (this.mainFragmentsStack.size() == 1) {
+    public final void onBackPressed() {
+        if (this.M.size() == 1) {
             super.onBackPressed();
             return;
         }
-        if (this.passcodeView.getVisibility() == 0) {
+        if (this.N.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.getInstance().isVisible()) {
-            PhotoViewer.getInstance().closePhoto(true, false);
+        } else if (PhotoViewer.t1().Q1()) {
+            PhotoViewer.t1().G0(true, false);
         } else {
-            ((ActionBarLayout) this.actionBarLayout).onBackPressed();
+            this.O.G();
         }
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) {
+    public final void onConfigurationChanged(Configuration configuration) {
         AndroidUtilities.checkDisplaySize(this, configuration);
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         super.onConfigurationChanged(configuration);
     }
 
     @Override
-    public void onCreate(Bundle bundle) throws FileNotFoundException {
+    public final void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
-        getWindow().setBackgroundDrawable(new ActivityWindowEmptyBackgroundDrawable());
+        getWindow().setBackgroundDrawable(new org.telegram.ui.Cells.m0(2));
         if (!SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
                 AndroidUtilities.logFlagSecure();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e9) {
+                FileLog.e(e9);
             }
         }
         super.onCreate(bundle);
@@ -265,123 +121,205 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
-        Theme.createDialogsResources(this);
-        Theme.createChatResources(this);
+        org.telegram.ui.ActionBar.g6.R(this);
+        org.telegram.ui.ActionBar.g6.J(this, false);
         ActionBarLayout actionBarLayout = new ActionBarLayout(this, false);
-        this.actionBarLayout = actionBarLayout;
+        this.O = actionBarLayout;
         actionBarLayout.setInBubbleMode(true);
-        ((ActionBarLayout) this.actionBarLayout).setRemoveActionBarExtraHeight(true);
-        DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
-        this.drawerLayoutContainer = drawerLayoutContainer;
-        setContentView(drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
+        this.O.setRemoveActionBarExtraHeight(true);
+        org.telegram.ui.ActionBar.x3 x3Var = new org.telegram.ui.ActionBar.x3(this);
+        this.P = x3Var;
+        setContentView(x3Var, new ViewGroup.LayoutParams(-1, -1));
         RelativeLayout relativeLayout = new RelativeLayout(this);
-        this.drawerLayoutContainer.addView(relativeLayout, LayoutHelper.createFrame(-1, -1.0f));
-        relativeLayout.addView(((ActionBarLayout) this.actionBarLayout).getView(), LayoutHelper.createRelative(-1, -1));
-        this.drawerLayoutContainer.setParentActionBarLayout(this.actionBarLayout);
-        ((ActionBarLayout) this.actionBarLayout).setDrawerLayoutContainer(this.drawerLayoutContainer);
-        ((ActionBarLayout) this.actionBarLayout).setFragmentStack(this.mainFragmentsStack);
-        ((ActionBarLayout) this.actionBarLayout).setDelegate(this);
-        PasscodeView passcodeView = new PasscodeView(this);
-        this.passcodeView = passcodeView;
-        this.drawerLayoutContainer.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
+        this.P.addView(relativeLayout, h7.z5.c(-1.0f, -1));
+        relativeLayout.addView(this.O.getView(), h7.z5.w(-1, -1));
+        this.P.setParentActionBarLayout(this.O);
+        this.O.setDrawerLayoutContainer(this.P);
+        this.O.setFragmentStack(this.M);
+        this.O.setDelegate(this);
+        org.telegram.ui.Components.dd0 dd0Var = new org.telegram.ui.Components.dd0(this);
+        this.N = dd0Var;
+        this.P.addView(dd0Var, h7.z5.c(-1.0f, -1));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeOtherAppActivities, this);
-        ((ActionBarLayout) this.actionBarLayout).removeAllFragments();
-        handleIntent(getIntent(), false, bundle != null, false, UserConfig.selectedAccount, 0);
-        instance = this;
+        this.O.X();
+        y(getIntent(), false, bundle != null, false, UserConfig.selectedAccount);
+        W = this;
     }
 
     @Override
-    public void onDestroy() {
+    public final void onDestroy() {
         super.onDestroy();
-        int i = this.currentAccount;
-        if (i != -1) {
-            AccountInstance.getInstance(i).getNotificationsController().setOpenedInBubble(this.dialogId, false);
-            AccountInstance.getInstance(this.currentAccount).getConnectionsManager().setAppPaused(false, false);
+        int i10 = this.K;
+        if (i10 != -1) {
+            AccountInstance.getInstance(i10).getNotificationsController().setOpenedInBubble(this.V, false);
+            AccountInstance.getInstance(this.K).getConnectionsManager().setAppPaused(false, false);
         }
-        onFinish();
-        instance = null;
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        ((ActionBarLayout) this.actionBarLayout).onLowMemory();
-    }
-
-    @Override
-    public void onMeasureOverride(int[] iArr) {
-    }
-
-    @Override
-    public void onNewIntent(Intent intent) throws FileNotFoundException {
-        super.onNewIntent(intent);
-        handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        ((ActionBarLayout) this.actionBarLayout).onPause();
-        ApplicationLoader.externalInterfacePaused = true;
-        onPasscodePause();
-        PasscodeView passcodeView = this.passcodeView;
-        if (passcodeView != null) {
-            passcodeView.onPause();
-        }
-        instance = null;
-    }
-
-    @Override
-    public boolean onPreIme() {
-        return false;
-    }
-
-    @Override
-    public void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z) {
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
-        super.onRequestPermissionsResult(i, strArr, iArr);
-        if (checkPermissionsResult(i, strArr, iArr)) {
-            if (!((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty()) {
-                ((BaseFragment) Theme.ResourcesProvider.CC.m((ActionBarLayout) this.actionBarLayout, 1, ((ActionBarLayout) this.actionBarLayout).getFragmentStack())).onRequestPermissionsResultFragment(i, strArr, iArr);
+        if (!this.L) {
+            w5 w5Var = this.U;
+            if (w5Var != null) {
+                AndroidUtilities.cancelRunOnUIThread(w5Var);
+                this.U = null;
             }
-            VoIPFragment.onRequestPermissionsResult(i, strArr, iArr);
+            this.L = true;
+            W = null;
         }
+        W = null;
     }
 
     @Override
-    public void onResume() throws FileNotFoundException {
-        super.onResume();
-        ((ActionBarLayout) this.actionBarLayout).onResume();
-        ApplicationLoader.externalInterfacePaused = false;
-        onPasscodeResume();
-        if (this.passcodeView.getVisibility() != 0) {
-            ((ActionBarLayout) this.actionBarLayout).onResume();
+    public final void onLowMemory() {
+        super.onLowMemory();
+        this.O.J();
+    }
+
+    @Override
+    public final void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        y(intent, true, false, false, UserConfig.selectedAccount);
+    }
+
+    @Override
+    public final void onPause() {
+        super.onPause();
+        this.O.L();
+        ApplicationLoader.externalInterfacePaused = true;
+        w5 w5Var = this.U;
+        if (w5Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(w5Var);
+            this.U = null;
+        }
+        if (SharedConfig.passcodeHash.isEmpty()) {
+            SharedConfig.lastPauseTime = 0;
         } else {
-            ((ActionBarLayout) this.actionBarLayout).dismissDialogs();
-            this.passcodeView.onResume();
+            SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
+            w5 w5Var2 = new w5(this, 0);
+            this.U = w5Var2;
+            if (SharedConfig.appLocked) {
+                AndroidUtilities.runOnUIThread(w5Var2, 1000L);
+            } else {
+                int i10 = SharedConfig.autoLockIn;
+                if (i10 != 0) {
+                    AndroidUtilities.runOnUIThread(w5Var2, (((long) i10) * 1000) + 1000);
+                }
+            }
         }
-        instance = this;
+        SharedConfig.saveConfig();
+        org.telegram.ui.Components.dd0 dd0Var = this.N;
+        if (dd0Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(dd0Var.N);
+        }
+        W = null;
     }
 
     @Override
-    public void onThemeProgress(float f) {
-    }
-
-    public void presentFragment(BaseFragment baseFragment) {
-        INavigationLayout iNavigationLayout = this.actionBarLayout;
-        iNavigationLayout.getClass();
-        ((ActionBarLayout) iNavigationLayout).presentFragment(new INavigationLayout.NavigationParams(baseFragment));
+    public final void onRequestPermissionsResult(int i10, String[] strArr, int[] iArr) {
+        super.onRequestPermissionsResult(i10, strArr, iArr);
+        if (u(i10, strArr, iArr)) {
+            if (!this.O.getFragmentStack().isEmpty()) {
+                ((org.telegram.ui.ActionBar.n2) this.O.getFragmentStack().get(this.O.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i10, strArr, iArr);
+            }
+            lh1.q(i10, iArr);
+        }
     }
 
     @Override
-    public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
+    public final void onResume() {
+        super.onResume();
+        this.O.M();
+        ApplicationLoader.externalInterfacePaused = false;
+        w5 w5Var = this.U;
+        if (w5Var != null) {
+            AndroidUtilities.cancelRunOnUIThread(w5Var);
+            this.U = null;
+        }
+        if (AndroidUtilities.needShowPasscode(true)) {
+            z();
+        }
+        if (SharedConfig.lastPauseTime != 0) {
+            SharedConfig.lastPauseTime = 0;
+            SharedConfig.saveConfig();
+        }
+        if (this.N.getVisibility() != 0) {
+            this.O.M();
+        } else {
+            this.O.n();
+            this.N.i();
+        }
+        W = this;
     }
 
-    public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2) {
-        return ((ActionBarLayout) this.actionBarLayout).presentFragment$1(baseFragment, z, z2);
+    public final void y(Intent intent, boolean z10, boolean z11, boolean z12, int i10) {
+        rn rnVar;
+        if (!z12 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
+            z();
+            this.Q = intent;
+            this.R = z10;
+            this.T = z11;
+            this.S = i10;
+            UserConfig.getInstance(i10).saveConfig(false);
+            return;
+        }
+        int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
+        this.K = intExtra;
+        if (!UserConfig.isValidAccount(intExtra)) {
+            finish();
+            return;
+        }
+        if (intent.getAction() == null || !intent.getAction().startsWith("com.tmessages.openchat")) {
+            rnVar = null;
+        } else {
+            long longExtra = intent.getLongExtra("chatId", 0L);
+            long longExtra2 = intent.getLongExtra("userId", 0L);
+            Bundle bundle = new Bundle();
+            if (longExtra2 != 0) {
+                this.V = longExtra2;
+                bundle.putLong("user_id", longExtra2);
+            } else {
+                this.V = -longExtra;
+                bundle.putLong("chat_id", longExtra);
+            }
+            rnVar = new rn(bundle);
+            rnVar.setInBubbleMode(true);
+            rnVar.setCurrentAccount(this.K);
+        }
+        if (rnVar == null) {
+            finish();
+            return;
+        }
+        NotificationCenter.getInstance(this.K).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(this.V));
+        this.O.X();
+        this.O.c(-1, rnVar);
+        AccountInstance.getInstance(this.K).getNotificationsController().setOpenedInBubble(this.V, true);
+        AccountInstance.getInstance(this.K).getConnectionsManager().setAppPaused(false, false);
+        this.O.c0();
+    }
+
+    public final void z() {
+        if (this.N == null) {
+            return;
+        }
+        SharedConfig.appLocked = true;
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f36160s) {
+            SecretMediaViewer.f().e(false, false);
+        } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+            PhotoViewer.t1().G0(false, true);
+        } else if (m4.I() && m4.x().R) {
+            m4.x().o(false, true);
+        }
+        this.N.j(false, -1, -1, null);
+        SharedConfig.isWaitingForPasscodeEnter = true;
+        this.N.setDelegate(new c1(this, 6));
+    }
+
+    @Override
+    public final void a(float f10) {
+    }
+
+    @Override
+    public final void e(int[] iArr) {
+    }
+
+    @Override
+    public final void b(ActionBarLayout actionBarLayout, boolean z10) {
     }
 }

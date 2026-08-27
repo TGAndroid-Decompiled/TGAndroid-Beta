@@ -50,13 +50,13 @@ public class XiaomiUtilities {
         return intent;
     }
 
-    public static boolean isCustomPermissionGranted(int i) {
+    public static boolean isCustomPermissionGranted(int i10) {
         try {
             AppOpsManager appOpsManager = (AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops");
             Class cls = Integer.TYPE;
-            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
-        } catch (Exception e) {
-            FileLog.e(e);
+            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i10), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
+        } catch (Exception e9) {
+            FileLog.e(e9);
             return true;
         }
     }

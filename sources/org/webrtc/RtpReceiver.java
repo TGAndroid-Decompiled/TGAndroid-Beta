@@ -9,9 +9,9 @@ public class RtpReceiver {
         void onFirstPacketReceived(MediaStreamTrack.MediaType mediaType);
     }
 
-    public RtpReceiver(long j) {
-        this.nativeRtpReceiver = j;
-        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j));
+    public RtpReceiver(long j10) {
+        this.nativeRtpReceiver = j10;
+        this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j10));
     }
 
     private void checkRtpReceiverExists() {
@@ -20,23 +20,23 @@ public class RtpReceiver {
         }
     }
 
-    private static native String nativeGetId(long j);
+    private static native String nativeGetId(long j10);
 
-    private static native RtpParameters nativeGetParameters(long j);
+    private static native RtpParameters nativeGetParameters(long j10);
 
-    private static native long nativeGetTrack(long j);
+    private static native long nativeGetTrack(long j10);
 
-    private static native void nativeSetFrameDecryptor(long j, long j2);
+    private static native void nativeSetFrameDecryptor(long j10, long j11);
 
-    private static native long nativeSetObserver(long j, Observer observer);
+    private static native long nativeSetObserver(long j10, Observer observer);
 
-    private static native void nativeUnsetObserver(long j, long j2);
+    private static native void nativeUnsetObserver(long j10, long j11);
 
     public void SetObserver(Observer observer) {
         checkRtpReceiverExists();
-        long j = this.nativeObserver;
-        if (j != 0) {
-            nativeUnsetObserver(this.nativeRtpReceiver, j);
+        long j10 = this.nativeObserver;
+        if (j10 != 0) {
+            nativeUnsetObserver(this.nativeRtpReceiver, j10);
         }
         this.nativeObserver = nativeSetObserver(this.nativeRtpReceiver, observer);
     }
@@ -44,9 +44,9 @@ public class RtpReceiver {
     public void dispose() {
         checkRtpReceiverExists();
         this.cachedTrack.dispose();
-        long j = this.nativeObserver;
-        if (j != 0) {
-            nativeUnsetObserver(this.nativeRtpReceiver, j);
+        long j10 = this.nativeObserver;
+        if (j10 != 0) {
+            nativeUnsetObserver(this.nativeRtpReceiver, j10);
             this.nativeObserver = 0L;
         }
         JniCommon.nativeReleaseRef(this.nativeRtpReceiver);

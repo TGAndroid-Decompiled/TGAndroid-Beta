@@ -12,24 +12,24 @@ public class VideoSource extends MediaSource {
         public final int height;
         public final int width;
 
-        public AspectRatio(int i, int i2) {
-            this.width = i;
-            this.height = i2;
+        public AspectRatio(int i10, int i11) {
+            this.width = i10;
+            this.height = i11;
         }
     }
 
-    public VideoSource(long j) {
-        super(j);
+    public VideoSource(long j10) {
+        super(j10);
         this.videoProcessorLock = new Object();
         this.capturerObserver = new CapturerObserver() {
             @Override
-            public void onCapturerStarted(boolean z) {
-                VideoSource.this.nativeAndroidVideoTrackSource.setState(z);
+            public void onCapturerStarted(boolean z10) {
+                VideoSource.this.nativeAndroidVideoTrackSource.setState(z10);
                 synchronized (VideoSource.this.videoProcessorLock) {
                     try {
-                        VideoSource.this.isCapturerRunning = z;
+                        VideoSource.this.isCapturerRunning = z10;
                         if (VideoSource.this.videoProcessor != null) {
-                            VideoSource.this.videoProcessor.onCapturerStarted(z);
+                            VideoSource.this.videoProcessor.onCapturerStarted(z10);
                         }
                     } catch (Throwable th) {
                         throw th;
@@ -61,10 +61,10 @@ public class VideoSource extends MediaSource {
                             VideoSource.this.videoProcessor.onFrameCaptured(videoFrame, frameAdaptationParametersAdaptFrame);
                             return;
                         }
-                        VideoFrame videoFrameApplyFrameAdaptationParameters = VideoProcessor.CC.applyFrameAdaptationParameters(videoFrame, frameAdaptationParametersAdaptFrame);
-                        if (videoFrameApplyFrameAdaptationParameters != null) {
-                            VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrameApplyFrameAdaptationParameters);
-                            videoFrameApplyFrameAdaptationParameters.release();
+                        VideoFrame videoFrameB = d0.b(videoFrame, frameAdaptationParametersAdaptFrame);
+                        if (videoFrameB != null) {
+                            VideoSource.this.nativeAndroidVideoTrackSource.onFrameCaptured(videoFrameB);
+                            videoFrameB.release();
                         }
                     } catch (Throwable th) {
                         throw th;
@@ -72,7 +72,7 @@ public class VideoSource extends MediaSource {
                 }
             }
         };
-        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j);
+        this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j10);
     }
 
     public void lambda$setVideoProcessor$0(VideoFrame videoFrame) {
@@ -80,13 +80,13 @@ public class VideoSource extends MediaSource {
     }
 
     public void lambda$setVideoProcessor$1(VideoFrame videoFrame) {
-        runWithReference(new EglRenderer$$ExternalSyntheticLambda2(6, this, videoFrame));
+        runWithReference(new s(6, this, videoFrame));
     }
 
-    public void adaptOutputFormat(int i, int i2, int i3) {
-        int iMax = Math.max(i, i2);
-        int iMin = Math.min(i, i2);
-        adaptOutputFormat(iMax, iMin, iMin, iMax, i3);
+    public void adaptOutputFormat(int i10, int i11, int i12) {
+        int iMax = Math.max(i10, i11);
+        int iMin = Math.min(i10, i11);
+        adaptOutputFormat(iMax, iMin, iMin, iMax, i12);
     }
 
     @Override
@@ -103,8 +103,8 @@ public class VideoSource extends MediaSource {
         return getNativeMediaSource();
     }
 
-    public void setIsScreencast(boolean z) {
-        this.nativeAndroidVideoTrackSource.setIsScreencast(z);
+    public void setIsScreencast(boolean z10) {
+        this.nativeAndroidVideoTrackSource.setIsScreencast(z10);
     }
 
     public void setVideoProcessor(VideoProcessor videoProcessor) {
@@ -119,7 +119,7 @@ public class VideoSource extends MediaSource {
                 }
                 this.videoProcessor = videoProcessor;
                 if (videoProcessor != null) {
-                    videoProcessor.setSink(new VideoSource$$ExternalSyntheticLambda1(this, 0));
+                    videoProcessor.setSink(new a(this, 2));
                     if (this.isCapturerRunning) {
                         videoProcessor.onCapturerStarted(true);
                     }
@@ -130,8 +130,8 @@ public class VideoSource extends MediaSource {
         }
     }
 
-    public void adaptOutputFormat(int i, int i2, int i3, int i4, int i5) {
-        adaptOutputFormat(new AspectRatio(i, i2), Integer.valueOf(i * i2), new AspectRatio(i3, i4), Integer.valueOf(i3 * i4), Integer.valueOf(i5));
+    public void adaptOutputFormat(int i10, int i11, int i12, int i13, int i14) {
+        adaptOutputFormat(new AspectRatio(i10, i11), Integer.valueOf(i10 * i11), new AspectRatio(i12, i13), Integer.valueOf(i12 * i13), Integer.valueOf(i14));
     }
 
     public void adaptOutputFormat(AspectRatio aspectRatio, Integer num, AspectRatio aspectRatio2, Integer num2, Integer num3) {

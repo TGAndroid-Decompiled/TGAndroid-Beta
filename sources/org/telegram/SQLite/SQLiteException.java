@@ -4,9 +4,9 @@ public class SQLiteException extends Exception {
     private static final long serialVersionUID = -2398298479089615621L;
     public final int errorCode;
 
-    public SQLiteException(int i, String str) {
+    public SQLiteException(int i10, String str) {
         super(str);
-        this.errorCode = i;
+        this.errorCode = i10;
     }
 
     public SQLiteException(String str) {

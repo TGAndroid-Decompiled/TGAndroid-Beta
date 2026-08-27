@@ -15,11 +15,11 @@ class H264Utils {
     public static final String H264_PROFILE_CONSTRAINED_BASELINE = "42e0";
     public static final String H264_PROFILE_CONSTRAINED_HIGH = "640c";
 
-    public static Map<String, String> getDefaultH264Params(boolean z) {
+    public static Map<String, String> getDefaultH264Params(boolean z10) {
         HashMap map = new HashMap();
         map.put("level-asymmetry-allowed", "1");
         map.put("packetization-mode", "1");
-        map.put("profile-level-id", z ? "640c1f" : "42e01f");
+        map.put("profile-level-id", z10 ? "640c1f" : "42e01f");
         return map;
     }
 

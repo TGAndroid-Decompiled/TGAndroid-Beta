@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.content.Context;
 import android.os.SystemClock;
-import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -44,40 +43,40 @@ public class FileVideoCapturer implements VideoCapturer {
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
             while (true) {
-                int i = this.mediaFile.read();
-                if (i == -1) {
-                    throw new RuntimeException(zzii.m("Found end of file before end of header for file: ", str));
+                int i10 = this.mediaFile.read();
+                if (i10 == -1) {
+                    throw new RuntimeException(s3.c.e("Found end of file before end of header for file: ", str));
                 }
-                if (i == 10) {
+                if (i10 == 10) {
                     this.videoStart = this.mediaFileChannel.position();
                     String strSubstring = "";
-                    int i2 = 0;
-                    int i3 = 0;
-                    for (String str2 : sb.toString().split("[ ]")) {
+                    int i11 = 0;
+                    int i12 = 0;
+                    for (String str2 : sb2.toString().split("[ ]")) {
                         char cCharAt = str2.charAt(0);
                         if (cCharAt == 'C') {
                             strSubstring = str2.substring(1);
                         } else if (cCharAt == 'H') {
-                            i3 = Integer.parseInt(str2.substring(1));
+                            i12 = Integer.parseInt(str2.substring(1));
                         } else if (cCharAt == 'W') {
-                            i2 = Integer.parseInt(str2.substring(1));
+                            i11 = Integer.parseInt(str2.substring(1));
                         }
                     }
                     Logging.d("VideoReaderY4M", "Color space: " + strSubstring);
                     if (!strSubstring.equals("420") && !strSubstring.equals("420mpeg2")) {
                         throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
                     }
-                    if (i2 % 2 == 1 || i3 % 2 == 1) {
+                    if (i11 % 2 == 1 || i12 % 2 == 1) {
                         throw new IllegalArgumentException("Does not support odd width or height");
                     }
-                    this.frameWidth = i2;
-                    this.frameHeight = i3;
-                    Logging.d("VideoReaderY4M", "frame dim: (" + i2 + ", " + i3 + ")");
+                    this.frameWidth = i11;
+                    this.frameHeight = i12;
+                    Logging.d("VideoReaderY4M", "frame dim: (" + i11 + ", " + i12 + ")");
                     return;
                 }
-                sb.append((char) i);
+                sb2.append((char) i10);
             }
         }
 
@@ -85,8 +84,8 @@ public class FileVideoCapturer implements VideoCapturer {
         public void close() {
             try {
                 this.mediaFile.close();
-            } catch (IOException e) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e);
+            } catch (IOException e9) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e9);
             }
         }
 
@@ -101,11 +100,11 @@ public class FileVideoCapturer implements VideoCapturer {
             javaI420BufferAllocate.getStrideU();
             javaI420BufferAllocate.getStrideV();
             try {
-                int i = FRAME_DELIMETER_LENGTH;
-                ByteBuffer byteBufferAllocate = ByteBuffer.allocate(i);
-                if (this.mediaFileChannel.read(byteBufferAllocate) < i) {
+                int i10 = FRAME_DELIMETER_LENGTH;
+                ByteBuffer byteBufferAllocate = ByteBuffer.allocate(i10);
+                if (this.mediaFileChannel.read(byteBufferAllocate) < i10) {
                     this.mediaFileChannel.position(this.videoStart);
-                    if (this.mediaFileChannel.read(byteBufferAllocate) < i) {
+                    if (this.mediaFileChannel.read(byteBufferAllocate) < i10) {
                         throw new RuntimeException("Error looping video");
                     }
                 }
@@ -117,8 +116,8 @@ public class FileVideoCapturer implements VideoCapturer {
                     return new VideoFrame(javaI420BufferAllocate, 0, nanos);
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException e9) {
+                throw new RuntimeException(e9);
             }
         }
     }
@@ -126,14 +125,10 @@ public class FileVideoCapturer implements VideoCapturer {
     public FileVideoCapturer(String str) throws IOException {
         try {
             this.videoReader = new VideoReaderY4M(str);
-        } catch (IOException e) {
+        } catch (IOException e9) {
             Logging.d("FileVideoCapturer", "Could not open video file: " + str);
-            throw e;
+            throw e9;
         }
-    }
-
-    @Override
-    public void changeCaptureFormat(int i, int i2, int i3) {
     }
 
     @Override
@@ -152,8 +147,8 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void startCapture(int i, int i2, int i3) {
-        this.timer.schedule(this.tickTask, 0L, 1000 / i3);
+    public void startCapture(int i10, int i11, int i12) {
+        this.timer.schedule(this.tickTask, 0L, 1000 / i12);
     }
 
     @Override
@@ -165,5 +160,9 @@ public class FileVideoCapturer implements VideoCapturer {
         VideoFrame nextFrame = this.videoReader.getNextFrame();
         this.capturerObserver.onFrameCaptured(nextFrame);
         nextFrame.release();
+    }
+
+    @Override
+    public void changeCaptureFormat(int i10, int i11, int i12) {
     }
 }

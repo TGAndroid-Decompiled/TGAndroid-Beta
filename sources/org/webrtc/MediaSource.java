@@ -10,19 +10,19 @@ public class MediaSource {
         ENDED,
         MUTED;
 
-        public static State fromNativeIndex(int i) {
-            return values()[i];
+        public static State fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
-    public MediaSource(final long j) {
+    public MediaSource(final long j10) {
         this.refCountDelegate = new RefCountDelegate(new Runnable() {
             @Override
             public final void run() {
-                JniCommon.nativeReleaseRef(j);
+                JniCommon.nativeReleaseRef(j10);
             }
         });
-        this.nativeSource = j;
+        this.nativeSource = j10;
     }
 
     private void checkMediaSourceExists() {
@@ -31,7 +31,7 @@ public class MediaSource {
         }
     }
 
-    private static native State nativeGetState(long j);
+    private static native State nativeGetState(long j10);
 
     public void dispose() {
         checkMediaSourceExists();

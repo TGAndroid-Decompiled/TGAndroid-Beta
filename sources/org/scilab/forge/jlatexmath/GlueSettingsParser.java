@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import a9.p;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,26 +27,26 @@ public class GlueSettingsParser {
             documentBuilderFactoryNewInstance.setIgnoringComments(true);
             this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream("GlueSettings.xml")).getDocumentElement();
             parseGlueTypes();
-        } catch (Exception e) {
-            throw new XMLResourceParseException("GlueSettings.xml", e);
+        } catch (Exception e9) {
+            throw new XMLResourceParseException("GlueSettings.xml", e9);
         }
     }
 
     private static void checkMapping(Object obj, String str, String str2, String str3) {
         if (obj == null) {
-            throw new XMLResourceParseException("GlueSettings.xml", str, str2, Fragment$$ExternalSyntheticOutline0.m("has an unknown value '", str3, "'!"));
+            throw new XMLResourceParseException("GlueSettings.xml", str, str2, p.m("has an unknown value '", str3, "'!"));
         }
     }
 
     private Glue createGlue(Element element, String str) {
         String[] strArr = {"space", "stretch", "shrink"};
         float[] fArr = new float[3];
-        for (int i = 0; i < 3; i++) {
+        for (int i10 = 0; i10 < 3; i10++) {
             try {
-                String attribute = element.getAttribute(strArr[i]);
-                fArr[i] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
+                String attribute = element.getAttribute(strArr[i10]);
+                fArr[i10] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], Fragment$$ExternalSyntheticOutline0.m("has an invalid real value '", (String) null, "'!"));
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i10], p.m("has an invalid real value '", null, "'!"));
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);
@@ -61,45 +61,45 @@ public class GlueSettingsParser {
     }
 
     private void parseGlueTypes() {
-        int i;
+        int i10;
         ArrayList arrayList = new ArrayList();
-        int i2 = 0;
+        int i11 = 0;
         Element element = (Element) this.root.getElementsByTagName("GlueTypes").item(0);
-        int i3 = -1;
+        int i12 = -1;
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("GlueType");
-            i = 0;
-            for (int i4 = 0; i4 < elementsByTagName.getLength(); i4++) {
-                Element element2 = (Element) elementsByTagName.item(i4);
+            i10 = 0;
+            for (int i13 = 0; i13 < elementsByTagName.getLength(); i13++) {
+                Element element2 = (Element) elementsByTagName.item(i13);
                 String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element2);
                 Glue glueCreateGlue = createGlue(element2, attrValueAndCheckIfNotNull);
                 if (attrValueAndCheckIfNotNull.equalsIgnoreCase("default")) {
-                    i3 = i;
+                    i12 = i10;
                 }
                 arrayList.add(glueCreateGlue);
-                i++;
+                i10++;
             }
         } else {
-            i = 0;
+            i10 = 0;
         }
-        if (i3 < 0) {
+        if (i12 < 0) {
             arrayList.add(new Glue(0.0f, 0.0f, 0.0f, "default"));
-            i3 = i;
+            i12 = i10;
         }
         Glue[] glueArr = (Glue[]) arrayList.toArray(new Glue[arrayList.size()]);
         this.glueTypes = glueArr;
-        if (i3 > 0) {
-            Glue glue = glueArr[i3];
-            glueArr[i3] = glueArr[0];
+        if (i12 > 0) {
+            Glue glue = glueArr[i12];
+            glueArr[i12] = glueArr[0];
             glueArr[0] = glue;
         }
         while (true) {
             Glue[] glueArr2 = this.glueTypes;
-            if (i2 >= glueArr2.length) {
+            if (i11 >= glueArr2.length) {
                 return;
             }
-            this.glueTypeMappings.put(glueArr2[i2].getName(), Integer.valueOf(i2));
-            i2++;
+            this.glueTypeMappings.put(glueArr2[i11].getName(), Integer.valueOf(i11));
+            i11++;
         }
     }
 
@@ -127,21 +127,21 @@ public class GlueSettingsParser {
         Element element = (Element) this.root.getElementsByTagName("GlueTable").item(0);
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("Glue");
-            int i = 0;
-            while (i < elementsByTagName.getLength()) {
-                Element element2 = (Element) elementsByTagName.item(i);
+            int i10 = 0;
+            while (i10 < elementsByTagName.getLength()) {
+                Element element2 = (Element) elementsByTagName.item(i10);
                 String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("lefttype", element2);
                 String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("righttype", element2);
                 String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("gluetype", element2);
                 NodeList elementsByTagName2 = element2.getElementsByTagName("Style");
-                int i2 = 0;
-                while (i2 < elementsByTagName2.getLength()) {
-                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i2));
+                int i11 = 0;
+                while (i11 < elementsByTagName2.getLength()) {
+                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i11));
                     int[][][] iArr2 = iArr;
                     Integer num = this.typeMappings.get(attrValueAndCheckIfNotNull);
                     NodeList nodeList = elementsByTagName;
                     Integer num2 = this.typeMappings.get(attrValueAndCheckIfNotNull2);
-                    int i3 = i;
+                    int i12 = i10;
                     Integer num3 = this.styleMappings.get(attrValueAndCheckIfNotNull4);
                     NodeList nodeList2 = elementsByTagName2;
                     Integer num4 = this.glueTypeMappings.get(attrValueAndCheckIfNotNull3);
@@ -150,13 +150,13 @@ public class GlueSettingsParser {
                     checkMapping(num4, "Glue", "gluetype", attrValueAndCheckIfNotNull3);
                     checkMapping(num3, "Style", "name", attrValueAndCheckIfNotNull4);
                     iArr2[num.intValue()][num2.intValue()][num3.intValue()] = num4.intValue();
-                    i2++;
+                    i11++;
                     iArr = iArr2;
                     elementsByTagName = nodeList;
-                    i = i3;
+                    i10 = i12;
                     elementsByTagName2 = nodeList2;
                 }
-                i++;
+                i10++;
             }
         }
         return iArr;

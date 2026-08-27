@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
-import com.google.android.gms.internal.mlkit_language_id_common.zzig;
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
@@ -32,8 +31,8 @@ public class GlShader {
         }
     }
 
-    private static int compileShader(int i, String str) {
-        int iGlCreateShader = GLES20.glCreateShader(i);
+    private static int compileShader(int i10, String str) {
+        int iGlCreateShader = GLES20.glCreateShader(i10);
         if (iGlCreateShader == 0) {
             throw new RuntimeException("glCreateShader() failed. GLES20 error: " + GLES20.glGetError());
         }
@@ -50,40 +49,40 @@ public class GlShader {
     }
 
     public int getAttribLocation(String str) {
-        int i = this.program;
-        if (i == -1) {
+        int i10 = this.program;
+        if (i10 == -1) {
             throw new RuntimeException("The program has been released");
         }
-        int iGlGetAttribLocation = GLES20.glGetAttribLocation(i, str);
+        int iGlGetAttribLocation = GLES20.glGetAttribLocation(i10, str);
         if (iGlGetAttribLocation >= 0) {
             return iGlGetAttribLocation;
         }
-        throw new RuntimeException(zzig.m("Could not locate '", str, "' in program"));
+        throw new RuntimeException(a9.p.m("Could not locate '", str, "' in program"));
     }
 
     public int getUniformLocation(String str) {
-        int i = this.program;
-        if (i == -1) {
+        int i10 = this.program;
+        if (i10 == -1) {
             throw new RuntimeException("The program has been released");
         }
-        int iGlGetUniformLocation = GLES20.glGetUniformLocation(i, str);
+        int iGlGetUniformLocation = GLES20.glGetUniformLocation(i10, str);
         if (iGlGetUniformLocation >= 0) {
             return iGlGetUniformLocation;
         }
-        throw new RuntimeException(zzig.m("Could not locate uniform '", str, "' in program"));
+        throw new RuntimeException(a9.p.m("Could not locate uniform '", str, "' in program"));
     }
 
     public void release() {
         Logging.d("GlShader", "Deleting shader.");
-        int i = this.program;
-        if (i != -1) {
-            GLES20.glDeleteProgram(i);
+        int i10 = this.program;
+        if (i10 != -1) {
+            GLES20.glDeleteProgram(i10);
             this.program = -1;
         }
     }
 
-    public void setVertexAttribArray(String str, int i, FloatBuffer floatBuffer) {
-        setVertexAttribArray(str, i, 0, floatBuffer);
+    public void setVertexAttribArray(String str, int i10, FloatBuffer floatBuffer) {
+        setVertexAttribArray(str, i10, 0, floatBuffer);
     }
 
     public void useProgram() {
@@ -96,13 +95,13 @@ public class GlShader {
         GlUtil.checkNoGLES2Error("glUseProgram");
     }
 
-    public void setVertexAttribArray(String str, int i, int i2, FloatBuffer floatBuffer) {
+    public void setVertexAttribArray(String str, int i10, int i11, FloatBuffer floatBuffer) {
         if (this.program == -1) {
             throw new RuntimeException("The program has been released");
         }
         int attribLocation = getAttribLocation(str);
         GLES20.glEnableVertexAttribArray(attribLocation);
-        GLES20.glVertexAttribPointer(attribLocation, i, 5126, false, i2, (Buffer) floatBuffer);
+        GLES20.glVertexAttribPointer(attribLocation, i10, 5126, false, i11, (Buffer) floatBuffer);
         GlUtil.checkNoGLES2Error("setVertexAttribArray");
     }
 }

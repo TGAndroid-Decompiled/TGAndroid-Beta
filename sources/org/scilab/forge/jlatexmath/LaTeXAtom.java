@@ -25,14 +25,14 @@ public class LaTeXAtom extends Atom {
         CharBox charBox = new CharBox(teXEnvironmentCopy.getTeXFont().getChar('A', "mathnormal", teXEnvironmentCopy.supStyle().getStyle()));
         charBox.setShift(-width);
         horizontalBox.add(charBox);
-        float f = scaleFactor * (-0.15f);
-        horizontalBox.add(new SpaceAtom(0, f, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
+        float f10 = scaleFactor * (-0.15f);
+        horizontalBox.add(new SpaceAtom(0, f10, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
         horizontalBox.add(rowAtom.getLastAtom().createBox(teXEnvironmentCopy));
-        horizontalBox.add(new SpaceAtom(0, f, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
+        horizontalBox.add(new SpaceAtom(0, f10, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
         Box boxCreateBox = rowAtom.getLastAtom().createBox(teXEnvironmentCopy);
         boxCreateBox.setShift(width2);
         horizontalBox.add(boxCreateBox);
-        horizontalBox.add(new SpaceAtom(0, f, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
+        horizontalBox.add(new SpaceAtom(0, f10, 0.0f, 0.0f).createBox(teXEnvironmentCopy));
         horizontalBox.add(rowAtom.getLastAtom().createBox(teXEnvironmentCopy));
         return horizontalBox;
     }
