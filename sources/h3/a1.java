@@ -1,17 +1,12 @@
 package h3;
-
 public final class a1 {
-
-    public long f7767a;
-
-    public long f7768b;
-
-    public long f7769c;
+    public long f9335a;
+    public long f9336b;
+    public long f9337c;
     public float d;
-
-    public float f7770e;
+    public float f9338e;
 
     public b1 a() {
-        return new b1(this.f7767a, this.f7768b, this.f7769c, this.d, this.f7770e);
+        return new b1(this.f9335a, this.f9336b, this.f9337c, this.d, this.f9338e);
     }
 }

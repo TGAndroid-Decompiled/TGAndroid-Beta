@@ -1,18 +1,17 @@
 package h7;
-
-public final class j3 implements r9.d {
-
-    public static final j3 f8424a = new j3();
+public final class j3 implements q9.d {
+    public static final j3 f9976a = new Object();
 
     static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(d.class, com.google.android.recaptcha.internal.a.j(4, com.google.android.recaptcha.internal.a.r(d.class, com.google.android.recaptcha.internal.a.j(3, com.google.android.recaptcha.internal.a.r(d.class, com.google.android.recaptcha.internal.a.j(2, com.google.android.recaptcha.internal.a.r(d.class, new a(1)))))))));
+        e2.c.u(e2.c.s(h0.class, e2.c.j(10, e2.c.s(h0.class, e2.c.j(9, e2.c.s(h0.class, e2.c.j(8, e2.c.s(h0.class, e2.c.j(7, e2.c.s(h0.class, e2.c.j(6, e2.c.s(h0.class, e2.c.j(5, e2.c.s(h0.class, e2.c.j(4, e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))))))))))))))))));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj != null) {
-            throw new ClassCastException();
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        throw null;
+        throw new ClassCastException();
     }
 }

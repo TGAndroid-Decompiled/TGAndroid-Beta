@@ -1,4 +1,7 @@
 package org.telegram.ui.Components;
 
-public final class sy extends wg.a {
+import android.widget.FrameLayout;
+public final class sy {
+    public int f32565a;
+    public FrameLayout f32566b;
 }

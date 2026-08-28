@@ -1,40 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.util.Property;
-
 public abstract class l6 extends Property {
+    public final int f30383a;
 
-    public final int f30301a;
-
-    public l6(String str, int i10) {
+    public l6(String str, int i9) {
         super(Float.class, str);
-        this.f30301a = i10;
-        switch (i10) {
+        this.f30383a = i9;
+        switch (i9) {
             case 1:
                 super(Integer.class, str);
-                break;
+                return;
             default:
-                break;
+                return;
         }
     }
 
-    public void a(Object obj, Float f10) {
-        c(obj, f10.floatValue());
-    }
+    public abstract void a(int i9, Object obj);
 
-    public abstract void b(int i10, Object obj);
-
-    public abstract void c(Object obj, float f10);
+    public abstract void b(Object obj, float f10);
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f30301a) {
+        switch (this.f30383a) {
             case 0:
-                c(obj, ((Float) obj2).floatValue());
-                break;
+                b(obj, ((Float) obj2).floatValue());
+                return;
             default:
-                b(((Integer) obj2).intValue(), obj);
-                break;
+                a(((Integer) obj2).intValue(), obj);
+                return;
         }
     }
 }

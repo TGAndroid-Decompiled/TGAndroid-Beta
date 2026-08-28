@@ -2,22 +2,16 @@ package m5;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import h7.r8;
+import g7.p8;
 import java.util.Arrays;
+public final class x extends y5.a {
+    public static final Parcelable.Creator<x> CREATOR = new v(3);
+    public final w f17486a;
+    public final w f17487b;
 
-public final class x extends z5.a {
-    public static final Parcelable.Creator<x> CREATOR = new w(2);
-
-    public final float f17862a;
-
-    public final float f17863b;
-
-    public final float f17864c;
-
-    public x(float f10, float f11, float f12) {
-        this.f17862a = f10;
-        this.f17863b = f11;
-        this.f17864c = f12;
+    public x(w wVar, w wVar2) {
+        this.f17486a = wVar;
+        this.f17487b = wVar2;
     }
 
     public final boolean equals(Object obj) {
@@ -28,22 +22,21 @@ public final class x extends z5.a {
             return false;
         }
         x xVar = (x) obj;
-        return this.f17862a == xVar.f17862a && this.f17863b == xVar.f17863b && this.f17864c == xVar.f17864c;
+        if (q5.a.d(this.f17486a, xVar.f17486a) && q5.a.d(this.f17487b, xVar.f17487b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.f17862a), Float.valueOf(this.f17863b), Float.valueOf(this.f17864c)});
+        return Arrays.hashCode(new Object[]{this.f17486a, this.f17487b});
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int iQ = r8.q(parcel, 20293);
-        r8.s(parcel, 2, 4);
-        parcel.writeFloat(this.f17862a);
-        r8.s(parcel, 3, 4);
-        parcel.writeFloat(this.f17863b);
-        r8.s(parcel, 4, 4);
-        parcel.writeFloat(this.f17864c);
-        r8.r(parcel, iQ);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.k(parcel, 2, this.f17486a, i9);
+        p8.k(parcel, 3, this.f17487b, i9);
+        p8.r(parcel, q10);
     }
 }

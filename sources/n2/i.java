@@ -2,96 +2,87 @@ package n2;
 
 import java.util.ArrayList;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 public final class i {
-
-    public final String f18150a;
-
-    public final long f18151b;
-
-    public final String f18152c;
+    public final String f18322a;
+    public final long f18323b;
+    public final String f18324c;
     public final String d;
+    public final ArrayList f18325e;
+    public final String f18326f;
+    public final d7.u f18327g;
 
-    public final ArrayList f18153e;
-
-    public final String f18154f;
-
-    public final za.b f18155g;
-
-    public i(JSONObject jSONObject) throws JSONException {
-        this.f18150a = jSONObject.optString("formattedPrice");
-        this.f18151b = jSONObject.optLong("priceAmountMicros");
-        this.f18152c = jSONObject.optString("priceCurrencyCode");
-        String strOptString = jSONObject.optString("offerIdToken");
-        za.b bVar = null;
-        this.d = true == strOptString.isEmpty() ? null : strOptString;
+    public i(JSONObject jSONObject) {
+        this.f18322a = jSONObject.optString("formattedPrice");
+        this.f18323b = jSONObject.optLong("priceAmountMicros");
+        this.f18324c = jSONObject.optString("priceCurrencyCode");
+        String optString = jSONObject.optString("offerIdToken");
+        d7.u uVar = null;
+        this.d = true == optString.isEmpty() ? null : optString;
         jSONObject.optString("offerId").getClass();
         jSONObject.optString("purchaseOptionId").getClass();
         jSONObject.optInt("offerType");
-        JSONArray jSONArrayOptJSONArray = jSONObject.optJSONArray("offerTags");
-        this.f18153e = new ArrayList();
-        if (jSONArrayOptJSONArray != null) {
-            for (int i10 = 0; i10 < jSONArrayOptJSONArray.length(); i10++) {
-                this.f18153e.add(jSONArrayOptJSONArray.getString(i10));
+        JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
+        this.f18325e = new ArrayList();
+        if (optJSONArray != null) {
+            for (int i9 = 0; i9 < optJSONArray.length(); i9++) {
+                this.f18325e.add(optJSONArray.getString(i9));
             }
         }
         if (jSONObject.has("fullPriceMicros")) {
             jSONObject.optLong("fullPriceMicros");
         }
-        JSONObject jSONObjectOptJSONObject = jSONObject.optJSONObject("discountDisplayInfo");
-        if (jSONObjectOptJSONObject != null) {
-            if (jSONObjectOptJSONObject.has("percentageDiscount")) {
-                jSONObjectOptJSONObject.optInt("percentageDiscount");
+        JSONObject optJSONObject = jSONObject.optJSONObject("discountDisplayInfo");
+        if (optJSONObject != null) {
+            if (optJSONObject.has("percentageDiscount")) {
+                optJSONObject.optInt("percentageDiscount");
             }
-            JSONObject jSONObjectOptJSONObject2 = jSONObjectOptJSONObject.optJSONObject("discountAmount");
-            if (jSONObjectOptJSONObject2 != null) {
-                jSONObjectOptJSONObject2.optString("formattedDiscountAmount");
-                jSONObjectOptJSONObject2.optLong("discountAmountMicros");
-                jSONObjectOptJSONObject2.optString("discountAmountCurrencyCode");
-            }
-        }
-        JSONObject jSONObjectOptJSONObject3 = jSONObject.optJSONObject("validTimeWindow");
-        if (jSONObjectOptJSONObject3 != null) {
-            if (jSONObjectOptJSONObject3.has("startTimeMillis")) {
-                jSONObjectOptJSONObject3.optLong("startTimeMillis");
-            }
-            if (jSONObjectOptJSONObject3.has("endTimeMillis")) {
-                jSONObjectOptJSONObject3.optLong("endTimeMillis");
+            JSONObject optJSONObject2 = optJSONObject.optJSONObject("discountAmount");
+            if (optJSONObject2 != null) {
+                optJSONObject2.optString("formattedDiscountAmount");
+                optJSONObject2.optLong("discountAmountMicros");
+                optJSONObject2.optString("discountAmountCurrencyCode");
             }
         }
-        JSONObject jSONObjectOptJSONObject4 = jSONObject.optJSONObject("limitedQuantityInfo");
-        if (jSONObjectOptJSONObject4 != null) {
-            jSONObjectOptJSONObject4.getInt("maximumQuantity");
-            jSONObjectOptJSONObject4.getInt("remainingQuantity");
+        JSONObject optJSONObject3 = jSONObject.optJSONObject("validTimeWindow");
+        if (optJSONObject3 != null) {
+            if (optJSONObject3.has("startTimeMillis")) {
+                optJSONObject3.optLong("startTimeMillis");
+            }
+            if (optJSONObject3.has("endTimeMillis")) {
+                optJSONObject3.optLong("endTimeMillis");
+            }
         }
-        this.f18154f = jSONObject.optString("serializedDocid");
-        JSONObject jSONObjectOptJSONObject5 = jSONObject.optJSONObject("preorderDetails");
-        if (jSONObjectOptJSONObject5 != null) {
-            jSONObjectOptJSONObject5.getLong("preorderReleaseTimeMillis");
-            jSONObjectOptJSONObject5.getLong("preorderPresaleEndTimeMillis");
+        JSONObject optJSONObject4 = jSONObject.optJSONObject("limitedQuantityInfo");
+        if (optJSONObject4 != null) {
+            optJSONObject4.getInt("maximumQuantity");
+            optJSONObject4.getInt("remainingQuantity");
         }
-        JSONObject jSONObjectOptJSONObject6 = jSONObject.optJSONObject("rentalDetails");
-        if (jSONObjectOptJSONObject6 != null) {
-            jSONObjectOptJSONObject6.getString("rentalPeriod");
-            jSONObjectOptJSONObject6.optString("rentalExpirationPeriod").getClass();
+        this.f18326f = jSONObject.optString("serializedDocid");
+        JSONObject optJSONObject5 = jSONObject.optJSONObject("preorderDetails");
+        if (optJSONObject5 != null) {
+            optJSONObject5.getLong("preorderReleaseTimeMillis");
+            optJSONObject5.getLong("preorderPresaleEndTimeMillis");
         }
-        JSONObject jSONObjectOptJSONObject7 = jSONObject.optJSONObject("autoPayDetails");
-        if (jSONObjectOptJSONObject7 != null) {
-            bVar = new za.b(15);
-            jSONObjectOptJSONObject7.getString("type");
+        JSONObject optJSONObject6 = jSONObject.optJSONObject("rentalDetails");
+        if (optJSONObject6 != null) {
+            optJSONObject6.getString("rentalPeriod");
+            optJSONObject6.optString("rentalExpirationPeriod").getClass();
         }
-        this.f18155g = bVar;
-        JSONArray jSONArrayOptJSONArray2 = jSONObject.optJSONArray("pricingPhases");
-        if (jSONArrayOptJSONArray2 == null) {
-            return;
+        JSONObject optJSONObject7 = jSONObject.optJSONObject("autoPayDetails");
+        if (optJSONObject7 != null) {
+            uVar = new d7.u(16);
+            optJSONObject7.getString("type");
         }
-        ArrayList arrayList = new ArrayList();
-        for (int i11 = 0; i11 < jSONArrayOptJSONArray2.length(); i11++) {
-            JSONObject jSONObjectOptJSONObject8 = jSONArrayOptJSONArray2.optJSONObject(i11);
-            if (jSONObjectOptJSONObject8 != null) {
-                arrayList.add(new j(jSONObjectOptJSONObject8));
+        this.f18327g = uVar;
+        JSONArray optJSONArray2 = jSONObject.optJSONArray("pricingPhases");
+        if (optJSONArray2 != null) {
+            ArrayList arrayList = new ArrayList();
+            for (int i10 = 0; i10 < optJSONArray2.length(); i10++) {
+                JSONObject optJSONObject8 = optJSONArray2.optJSONObject(i10);
+                if (optJSONObject8 != null) {
+                    arrayList.add(new j(optJSONObject8));
+                }
             }
         }
     }

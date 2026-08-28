@@ -1,21 +1,16 @@
 package h0;
-
 public final class g implements d {
-
-    public final o0.e f7719a;
-
-    public final o0.e f7720b;
-
-    public final int f7721c;
+    public final o0.d f9287a;
+    public final o0.d f9288b;
+    public final int f9289c;
     public final int d;
+    public final String f9290e;
 
-    public final String f7722e;
-
-    public g(o0.e eVar, o0.e eVar2, int i10, int i11, String str) {
-        this.f7719a = eVar;
-        this.f7720b = eVar2;
-        this.d = i10;
-        this.f7721c = i11;
-        this.f7722e = str;
+    public g(o0.d dVar, o0.d dVar2, int i9, int i10, String str) {
+        this.f9287a = dVar;
+        this.f9288b = dVar2;
+        this.d = i9;
+        this.f9289c = i10;
+        this.f9290e = str;
     }
 }

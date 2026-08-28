@@ -1,22 +1,61 @@
 package org.telegram.ui;
 
-import android.media.MediaFormat;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.SurfaceView;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+public final class ps0 extends c5.c {
+    public final PhotoViewer h;
 
-public final class ps0 implements e5.m {
-
-    public final PhotoViewer f41425a;
-
-    public ps0(PhotoViewer photoViewer) {
-        this.f41425a = photoViewer;
+    public ps0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.h = photoViewer;
     }
 
     @Override
-    public final void a(long j10, long j11, h3.t0 t0Var, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.m61 m61Var;
-        PhotoViewer photoViewer = this.f41425a;
-        if (photoViewer.F4 && (m61Var = photoViewer.B2) != null) {
-            AndroidUtilities.runOnUIThread(new ff0(28, this, m61Var));
+    public final void draw(Canvas canvas) {
+        if (this.h.O8) {
+            return;
         }
+        super.draw(canvas);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        PhotoViewer photoViewer = this.h;
+        if (view == photoViewer.A3 && photoViewer.f35602c4) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        PhotoViewer photoViewer = this.h;
+        ImageView imageView = photoViewer.f35755t3;
+        if (imageView != null) {
+            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+            layoutParams.width = getMeasuredWidth();
+            layoutParams.height = getMeasuredHeight();
+        }
+        TextureView textureView = photoViewer.f35790x2;
+        if (textureView instanceof org.telegram.ui.Components.y51) {
+            textureView.setPivotX(textureView.getMeasuredWidth() / 2);
+            photoViewer.A2.setPivotX(photoViewer.f35790x2.getMeasuredWidth() / 2);
+        } else {
+            if (textureView != null) {
+                textureView.setPivotX(0.0f);
+            }
+            SurfaceView surfaceView = photoViewer.f35800y2;
+            if (surfaceView != null) {
+                surfaceView.setPivotX(0.0f);
+            }
+            photoViewer.A2.setPivotX(0.0f);
+        }
+        photoViewer.y0();
     }
 }

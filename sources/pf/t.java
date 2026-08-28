@@ -1,98 +1,111 @@
 package pf;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import f2.o1;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Cells.h2;
-import org.telegram.ui.Cells.k4;
-import org.telegram.ui.Components.lk0;
-import org.telegram.ui.Components.yk0;
+import org.telegram.tgnet.tl.TL_account;
+public final class t implements RequestDelegate {
+    public final int f45776a;
+    public final u f45777b;
 
-public class t extends yk0 {
-
-    public final Context f45913c;
-    public final int d;
-
-    public final boolean f45914e;
-
-    public final boolean f45915f;
-    public final c6 h;
-
-    public t(int i10, Context context, c6 c6Var, boolean z10, boolean z11) {
-        this.f45914e = z10;
-        this.f45913c = context;
-        this.d = i10;
-        this.f45915f = z11;
-        this.h = c6Var;
+    public t(u uVar, int i9) {
+        this.f45776a = i9;
+        this.f45777b = uVar;
     }
 
     @Override
-    public final boolean D(o1 o1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return MediaDataController.getInstance(this.d).hints.size();
-    }
-
-    @Override
-    public void v(o1 o1Var, int i10) {
-        TLRPC.Chat chat;
-        String strI;
-        k4 k4Var = (k4) o1Var.f5789a;
-        int i11 = this.d;
-        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
-        new TLRPC.TL_dialog();
-        TLRPC.Peer peer = tL_topPeer.peer;
-        long j10 = peer.user_id;
-        TLRPC.User user = null;
-        if (j10 != 0) {
-            user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_topPeer.peer.user_id));
-            chat = null;
-        } else {
-            long j11 = peer.channel_id;
-            if (j11 != 0) {
-                j10 = -j11;
-                chat = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
-            } else {
-                long j12 = peer.chat_id;
-                if (j12 != 0) {
-                    j10 = -j12;
-                    chat = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
-                } else {
-                    chat = null;
-                    j10 = 0;
-                }
-            }
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f45776a) {
+            case 0:
+                final u uVar = this.f45777b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i9 = r3;
+                        TLObject tLObject2 = tLObject;
+                        u uVar2 = uVar;
+                        switch (i9) {
+                            case 0:
+                                int i10 = uVar2.f45789a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    uVar2.f45790b.add(tL_businessChatLink);
+                                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
+                                    uVar2.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = uVar2.f45790b;
+                                int i11 = uVar2.f45789a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    MessagesController.getInstance(i11).putUsers(businesschatlinks.users, false);
+                                    MessagesController.getInstance(i11).putChats(businesschatlinks.chats, false);
+                                    MessagesStorage.getInstance(i11).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    uVar2.f();
+                                } else {
+                                    FileLog.e(new RuntimeException("Unexpected response from server!"));
+                                }
+                                uVar2.f45791c = false;
+                                uVar2.d = true;
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final u uVar2 = this.f45777b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i9 = r3;
+                        TLObject tLObject2 = tLObject;
+                        u uVar22 = uVar2;
+                        switch (i9) {
+                            case 0:
+                                int i10 = uVar22.f45789a;
+                                if (tLObject2 instanceof TL_account.TL_businessChatLink) {
+                                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) tLObject2;
+                                    uVar22.f45790b.add(tL_businessChatLink);
+                                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinkCreated, tL_businessChatLink);
+                                    uVar22.f();
+                                    return;
+                                }
+                                return;
+                            default:
+                                ArrayList arrayList = uVar22.f45790b;
+                                int i11 = uVar22.f45789a;
+                                if (tLObject2 instanceof TL_account.businessChatLinks) {
+                                    TL_account.businessChatLinks businesschatlinks = (TL_account.businessChatLinks) tLObject2;
+                                    arrayList.clear();
+                                    arrayList.addAll(businesschatlinks.links);
+                                    MessagesController.getInstance(i11).putUsers(businesschatlinks.users, false);
+                                    MessagesController.getInstance(i11).putChats(businesschatlinks.chats, false);
+                                    MessagesStorage.getInstance(i11).putUsersAndChats(businesschatlinks.users, businesschatlinks.chats, true, true);
+                                    NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                                    uVar22.f();
+                                } else {
+                                    FileLog.e(new RuntimeException("Unexpected response from server!"));
+                                }
+                                uVar22.f45791c = false;
+                                uVar22.d = true;
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        k4Var.setTag(Long.valueOf(j10));
-        if (user != null) {
-            strI = UserObject.getFirstName(user);
-        } else if (chat != null) {
-            strI = chat.monoforum ? wf.c.i(chat, i11, false) : chat.title;
-        } else {
-            strI = "";
-        }
-        k4Var.a(j10, strI);
-    }
-
-    @Override
-    public final o1 x(ViewGroup viewGroup, int i10) {
-        boolean z10 = this.f45914e;
-        k4 k4Var = new k4(this.f45913c, this.h, z10);
-        if (this.f45915f && !k4Var.f24580x) {
-            k4Var.f24580x = true;
-            NotificationCenter.getInstance(k4Var.h).listen(k4Var, NotificationCenter.userIsPremiumBlockedUpadted, new h2(k4Var, 1));
-        }
-        k4Var.setLayoutParams(new f2.y0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));
-        return new lk0(k4Var);
     }
 }

@@ -1,31 +1,38 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.TLObject;
 public final class c7 implements Runnable {
+    public final int f19922a;
+    public final MediaDataController f19923b;
+    public final TLObject f19924c;
 
-    public final int f19889a;
-
-    public final MediaDataController f19890b;
-
-    public final long f19891c;
-
-    public c7(MediaDataController mediaDataController, long j10, int i10) {
-        this.f19889a = i10;
-        this.f19890b = mediaDataController;
-        this.f19891c = j10;
+    public c7(MediaDataController mediaDataController, TLObject tLObject, int i9) {
+        this.f19922a = i9;
+        this.f19923b = mediaDataController;
+        this.f19924c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f19889a) {
+        switch (this.f19922a) {
             case 0:
-                this.f19890b.lambda$loadPinnedMessages$161(this.f19891c);
-                break;
+                this.f19923b.lambda$checkPremiumGiftStickers$75(this.f19924c);
+                return;
             case 1:
-                this.f19890b.lambda$increasePeerRaiting$157(this.f19891c);
-                break;
+                this.f19923b.lambda$loadReactions$13(this.f19924c);
+                return;
+            case 2:
+                this.f19923b.lambda$checkTonGiftStickers$77(this.f19924c);
+                return;
+            case 3:
+                this.f19923b.lambda$checkDefaultTopicIcons$81(this.f19924c);
+                return;
+            case 4:
+                this.f19923b.lambda$clearRecentStickers$18(this.f19924c);
+                return;
             default:
-                this.f19890b.lambda$clearBotKeyboard$194(this.f19891c);
-                break;
+                this.f19923b.lambda$checkGenericAnimations$79(this.f19924c);
+                return;
         }
     }
 }

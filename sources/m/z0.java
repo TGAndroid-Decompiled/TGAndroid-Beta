@@ -1,21 +1,19 @@
 package m;
-
-public final class z0 extends ae.b {
-
-    public final a1 f17533c;
+public final class z0 extends fa.c {
+    public final a1 d;
 
     public z0(a1 a1Var) {
-        super(a1Var, 26);
-        this.f17533c = a1Var;
+        super(a1Var, 28);
+        this.d = a1Var;
     }
 
     @Override
-    public final void p(int i10) {
-        super/*android.widget.TextView*/.setLastBaselineToBottomHeight(i10);
+    public final void f(int i9) {
+        super/*android.widget.TextView*/.setLastBaselineToBottomHeight(i9);
     }
 
     @Override
-    public final void z(int i10) {
-        super/*android.widget.TextView*/.setFirstBaselineToTopHeight(i10);
+    public final void o(int i9) {
+        super/*android.widget.TextView*/.setFirstBaselineToTopHeight(i9);
     }
 }

@@ -1,39 +1,47 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class dk extends org.telegram.ui.Components.dd {
+    public final boolean f37555e;
+    public final qn f37556f;
 
-public final class dk implements Runnable {
-
-    public final int f37432a;
-
-    public final rn f37433b;
-
-    public dk(rn rnVar, int i10) {
-        this.f37432a = i10;
-        this.f37433b = rnVar;
+    public dk(qn qnVar, Context context, boolean z10) {
+        super(context);
+        this.f37556f = qnVar;
+        this.f37555e = z10;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.og ogVar;
-        FrameLayout frameLayout;
-        switch (this.f37432a) {
-            case 0:
-                rn rnVar = this.f37433b;
-                AnimatorSet animatorSet = rnVar.R9;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    rnVar.R9.start();
-                    break;
-                }
-                break;
-            default:
-                rn rnVar2 = this.f37433b;
-                if (rnVar2.K2 == this && (ogVar = rnVar2.I0) != null && (frameLayout = rnVar2.J2) != null) {
-                    ogVar.i(frameLayout, false, true);
-                    break;
-                }
-                break;
+    public final void d() {
+        int i9;
+        if (this.f37555e) {
+            i9 = AndroidUtilities.dp(4.0f);
+        } else {
+            i9 = 0;
+        }
+        int i10 = org.telegram.ui.ActionBar.f6.f23324ve;
+        qn qnVar = this.f37556f;
+        setBackground(org.telegram.ui.ActionBar.f6.W(AndroidUtilities.dp(19.0f), 436207615 & qnVar.getThemedColor(i10), i9, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
+        getImageView().setColorFilter(new PorterDuffColorFilter(qnVar.getThemedColor(i10), PorterDuff.Mode.MULTIPLY));
+        getTextView().setTextColor(qnVar.getThemedColor(i10));
+    }
+
+    @Override
+    public final void setEditButton(boolean z10) {
+        int i9;
+        super.setEditButton(z10);
+        if (this.f37555e) {
+            TextView textView = getTextView();
+            if (z10) {
+                i9 = AndroidUtilities.dp(116.0f);
+            } else {
+                i9 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i9);
         }
     }
 }

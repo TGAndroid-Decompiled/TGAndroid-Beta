@@ -1,26 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class bo0 extends FrameLayout {
+    public final ve f27260a;
 
-public final class bo0 extends f2.b1 {
-
-    public final re f27187a;
-
-    public bo0(re reVar) {
-        this.f27187a = reVar;
+    public bo0(ve veVar, Context context) {
+        super(context);
+        this.f27260a = veVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        re reVar = this.f27187a;
-        View view = reVar.f28417u;
-        boolean z10 = reVar.f28418w.I0() != 0;
-        Boolean bool = reVar.f28419x;
-        if (bool == null || z10 != bool.booleanValue()) {
-            view.animate().cancel();
-            view.animate().alpha(z10 ? 1.0f : 0.0f).setDuration(150L).start();
-            reVar.f28419x = Boolean.valueOf(z10);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ve veVar = this.f27260a;
+        View contentView = veVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + veVar.E, iArr[1] + veVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
         }
+        if (!veVar.A && !veVar.D) {
+            veVar.D = true;
+            veVar.l(new o1.j[0]);
+        }
+        return true;
     }
 }

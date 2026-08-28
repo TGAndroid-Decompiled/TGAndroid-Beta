@@ -1,30 +1,16 @@
 package i3;
 
 import android.media.metrics.LogSessionId;
-import d5.g0;
-
 public final class k {
-
-    public final j f10562a;
+    public static final int f10920b = 0;
+    public final LogSessionId f10921a;
 
     static {
-        if (g0.f4795a < 31) {
-            new k();
-        } else {
-            int i10 = j.f10560b;
-        }
-    }
-
-    public k() {
-        this((j) null);
-        d5.a.i(g0.f4795a < 31);
+        LogSessionId unused;
+        unused = LogSessionId.LOG_SESSION_ID_NONE;
     }
 
     public k(LogSessionId logSessionId) {
-        this(new j(logSessionId));
-    }
-
-    public k(j jVar) {
-        this.f10562a = jVar;
+        this.f10921a = logSessionId;
     }
 }

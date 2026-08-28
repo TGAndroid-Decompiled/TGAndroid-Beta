@@ -1,67 +1,55 @@
 package r5;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;
-import java.util.regex.Pattern;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
-
+import q5.b;
 public abstract class a {
+    public static final b f47075a = new b("MetadataUtils", null);
+    public static final String[] f47076b;
+    public static final String f47077c;
 
-    public static final Pattern f46766a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-
-    public static final Random f46767b = new Random(SystemClock.elapsedRealtime());
-
-    public static String a(String str, JSONObject jSONObject) {
-        if (jSONObject == null || !jSONObject.has(str)) {
-            return null;
-        }
-        return jSONObject.optString(str);
+    static {
+        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
+        f47076b = strArr;
+        f47077c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
     }
 
-    public static void b(String str) {
-        if (TextUtils.isEmpty(str)) {
-            throw new IllegalArgumentException("Namespace cannot be null or empty");
-        }
-        if (str.length() > 128) {
-            throw new IllegalArgumentException("Invalid namespace length");
-        }
-        if (!str.startsWith("urn:x-cast:")) {
-            throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
-        }
-        if (str.length() == 11) {
-            throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
-        }
+    public static java.util.Calendar a(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: r5.a.a(java.lang.String):java.util.Calendar");
     }
 
-    public static ArrayList c(int[] iArr) {
-        ArrayList arrayList = new ArrayList();
-        int length = iArr.length;
-        int iF = 0;
-        while (iF < length) {
-            iF = i0.a.f(iArr[iF], iF, 1, arrayList);
-        }
-        return arrayList;
-    }
-
-    public static boolean d(Object obj, Object obj2) {
-        if (obj == null && obj2 == null) {
-            return true;
-        }
-        return (obj == null || obj2 == null || !obj.equals(obj2)) ? false : true;
-    }
-
-    public static int[] e(AbstractCollection abstractCollection) {
-        int[] iArr = new int[abstractCollection.size()];
-        Iterator it = abstractCollection.iterator();
-        int i10 = 0;
+    public static JSONArray b(List list) {
+        list.getClass();
+        JSONArray jSONArray = new JSONArray();
+        Iterator it = list.iterator();
         while (it.hasNext()) {
-            iArr[i10] = ((Integer) it.next()).intValue();
-            i10++;
+            w5.a aVar = (w5.a) it.next();
+            aVar.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", aVar.f48764b.toString());
+                jSONObject.put("width", aVar.f48765c);
+                jSONObject.put("height", aVar.d);
+            } catch (JSONException unused) {
+            }
+            jSONArray.put(jSONObject);
         }
-        return iArr;
+        return jSONArray;
+    }
+
+    public static void c(List list, JSONArray jSONArray) {
+        try {
+            list.clear();
+            for (int i9 = 0; i9 < jSONArray.length(); i9++) {
+                try {
+                    list.add(new w5.a(jSONArray.getJSONObject(i9)));
+                } catch (IllegalArgumentException unused) {
+                }
+            }
+        } catch (JSONException unused2) {
+        }
     }
 }

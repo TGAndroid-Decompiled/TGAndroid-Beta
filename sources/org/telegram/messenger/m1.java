@@ -1,47 +1,58 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
+import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.ui.gy;
-
 public final class m1 implements Runnable {
+    public final int f20930a;
+    public final ContactsController f20931b;
+    public final ArrayList f20932c;
+    public final HashMap d;
+    public final HashMap f20933e;
 
-    public final int f20923a = 0;
-
-    public final boolean f20924b;
-
-    public final boolean f20925c;
-    public final boolean d;
-
-    public final Object f20926e;
-
-    public final Object f20927f;
-
-    public m1(ContactsController contactsController, HashMap map, boolean z10, boolean z11, boolean z12) {
-        this.f20926e = contactsController;
-        this.f20927f = map;
-        this.f20924b = z10;
-        this.f20925c = z11;
-        this.d = z12;
+    public m1(ArrayList arrayList, HashMap hashMap, HashMap hashMap2, ContactsController contactsController) {
+        this.f20930a = 1;
+        this.f20931b = contactsController;
+        this.f20932c = arrayList;
+        this.d = hashMap;
+        this.f20933e = hashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f20923a) {
+        switch (this.f20930a) {
             case 0:
-                ((ContactsController) this.f20926e).lambda$syncPhoneBookByAlert$7((HashMap) this.f20927f, this.f20924b, this.f20925c, this.d);
-                break;
+                ArrayList arrayList = this.f20932c;
+                HashMap hashMap = this.f20933e;
+                this.f20931b.lambda$performSyncPhoneBook$15(this.d, arrayList, hashMap);
+                return;
+            case 1:
+                HashMap hashMap2 = this.d;
+                HashMap hashMap3 = this.f20933e;
+                this.f20931b.lambda$mergePhonebookAndTelegramContacts$40(this.f20932c, hashMap2, hashMap3);
+                return;
+            case 2:
+                ArrayList arrayList2 = this.f20932c;
+                HashMap hashMap4 = this.f20933e;
+                this.f20931b.lambda$performSyncPhoneBook$21(this.d, arrayList2, hashMap4);
+                return;
+            case 3:
+                ArrayList arrayList3 = this.f20932c;
+                HashMap hashMap5 = this.f20933e;
+                this.f20931b.lambda$performSyncPhoneBook$17(this.d, arrayList3, hashMap5);
+                return;
             default:
-                gy.h0((gy) this.f20926e, this.f20924b, this.f20925c, this.d, (Activity) this.f20927f);
-                break;
+                ArrayList arrayList4 = this.f20932c;
+                HashMap hashMap6 = this.f20933e;
+                this.f20931b.lambda$performSyncPhoneBook$23(this.d, arrayList4, hashMap6);
+                return;
         }
     }
 
-    public m1(gy gyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.f20926e = gyVar;
-        this.f20924b = z10;
-        this.f20925c = z11;
-        this.d = z12;
-        this.f20927f = activity;
+    public m1(ContactsController contactsController, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i9) {
+        this.f20930a = i9;
+        this.f20931b = contactsController;
+        this.d = hashMap;
+        this.f20932c = arrayList;
+        this.f20933e = hashMap2;
     }
 }

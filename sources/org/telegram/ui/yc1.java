@@ -10,68 +10,61 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-
 public final class yc1 implements View.OnClickListener {
-
-    public final rh0 f44771a;
-
-    public final rn f44772b;
-
-    public final org.telegram.ui.Components.zk0 f44773c;
+    public final ph0 f44821a;
+    public final qn f44822b;
+    public final org.telegram.ui.Components.wk0 f44823c;
     public final LinearLayout d;
-
-    public final org.telegram.ui.Components.b70 f44774e;
-
-    public final org.telegram.ui.Components.b70 f44775f;
+    public final org.telegram.ui.Components.x60 f44824e;
+    public final org.telegram.ui.Components.x60 f44825f;
     public final dd1 h;
 
-    public yc1(dd1 dd1Var, rh0 rh0Var, rn rnVar, org.telegram.ui.Components.zk0 zk0Var, LinearLayout linearLayout, org.telegram.ui.Components.b70 b70Var, org.telegram.ui.Components.b70 b70Var2) {
+    public yc1(dd1 dd1Var, ph0 ph0Var, qn qnVar, org.telegram.ui.Components.wk0 wk0Var, LinearLayout linearLayout, org.telegram.ui.Components.x60 x60Var, org.telegram.ui.Components.x60 x60Var2) {
         this.h = dd1Var;
-        this.f44771a = rh0Var;
-        this.f44772b = rnVar;
-        this.f44773c = zk0Var;
+        this.f44821a = ph0Var;
+        this.f44822b = qnVar;
+        this.f44823c = wk0Var;
         this.d = linearLayout;
-        this.f44774e = b70Var;
-        this.f44775f = b70Var2;
+        this.f44824e = x60Var;
+        this.f44825f = x60Var2;
     }
 
     @Override
     public final void onClick(View view) {
-        rh0 rh0Var = this.f44771a;
-        ArrayList arrayList = rh0Var.f41934b;
-        ArrayList arrayList2 = rh0Var.f41935c;
-        if (arrayList2.isEmpty()) {
-            return;
-        }
-        int size = arrayList2.size();
-        dd1 dd1Var = this.h;
-        rn rnVar = this.f44772b;
-        if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-            TLObject tLObject = (TLObject) arrayList2.get(0);
-            if (tLObject == null) {
+        ph0 ph0Var = this.f44821a;
+        ArrayList arrayList = ph0Var.f41525b;
+        ArrayList arrayList2 = ph0Var.f41526c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            dd1 dd1Var = this.h;
+            qn qnVar = this.f44822b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f22527id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f22380id);
+                }
+                qnVar.presentFragment(new ProfileActivity(bundle, null));
+                dd1Var.c(false);
                 return;
             }
-            Bundle bundle = new Bundle();
-            if (tLObject instanceof TLRPC.User) {
-                bundle.putLong("user_id", ((TLRPC.User) tLObject).f22527id);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f22380id);
+            if (SharedConfig.messageSeenHintCount > 0 && qnVar.T0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                org.telegram.ui.Components.gc t10 = new org.telegram.ui.Components.oc(org.telegram.ui.Components.cb.a(dd1Var.getContext()), dd1Var.f37503a).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                qnVar.f41955j1 = t10;
+                t10.f28737j = 4000;
+                t10.j();
+                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }
-            rnVar.presentFragment(new ProfileActivity(bundle, null));
-            dd1Var.c(false);
-            return;
+            org.telegram.ui.Components.wk0 wk0Var = this.f44823c;
+            wk0Var.requestLayout();
+            this.d.requestLayout();
+            wk0Var.getAdapter().l();
+            this.f44824e.K(this.f44825f);
         }
-        if (SharedConfig.messageSeenHintCount > 0 && rnVar.T0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-            org.telegram.ui.Components.ec ecVarT = new org.telegram.ui.Components.mc(org.telegram.ui.Components.ab.a(dd1Var.getContext()), dd1Var.f37363a).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-            rnVar.f42091j1 = ecVarT;
-            ecVarT.f28020j = 4000;
-            ecVarT.j();
-            SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-        }
-        org.telegram.ui.Components.zk0 zk0Var = this.f44773c;
-        zk0Var.requestLayout();
-        this.d.requestLayout();
-        zk0Var.getAdapter().l();
-        this.f44774e.K(this.f44775f);
     }
 }

@@ -1,31 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
+import android.content.Context;
+public final class g71 extends f2.n0 {
+    public final of.g0 f28676r;
 
-public abstract class g71 {
-    public abstract void b(View view, int i10, int i11);
-
-    public boolean c(int i10) {
-        return false;
+    public g71(of.g0 g0Var, Context context) {
+        super(context);
+        this.f28676r = g0Var;
     }
 
-    public abstract View d(int i10);
-
-    public abstract int e();
-
-    public CharSequence g(int i10) {
-        return "";
-    }
-
-    public int h(int i10) {
-        return 0;
-    }
-
-    public void a(ArrayList arrayList) {
-    }
-
-    public int f(int i10) {
-        return i10;
+    @Override
+    public final void g(android.view.View r6, f2.l1 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g71.g(android.view.View, f2.l1):void");
     }
 }

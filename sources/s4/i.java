@@ -1,93 +1,93 @@
 package s4;
 
-import d5.g0;
+import d5.f0;
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
-import lh.p;
+import kh.p;
 import r4.k;
-import r4.l;
-
-public abstract class i implements r4.h {
-
-    public final ArrayDeque f47790a = new ArrayDeque();
-
-    public final ArrayDeque f47791b;
-
-    public final PriorityQueue f47792c;
+public abstract class i implements r4.g {
+    public final ArrayDeque f47426a = new ArrayDeque();
+    public final ArrayDeque f47427b;
+    public final PriorityQueue f47428c;
     public g d;
-
-    public long f47793e;
-
-    public long f47794f;
+    public long f47429e;
+    public long f47430f;
 
     public i() {
-        for (int i10 = 0; i10 < 10; i10++) {
-            this.f47790a.add(new g());
+        for (int i9 = 0; i9 < 10; i9++) {
+            this.f47426a.add(new r4.j());
         }
-        this.f47791b = new ArrayDeque();
-        for (int i11 = 0; i11 < 2; i11++) {
-            ArrayDeque arrayDeque = this.f47791b;
+        this.f47427b = new ArrayDeque();
+        for (int i10 = 0; i10 < 2; i10++) {
+            ArrayDeque arrayDeque = this.f47427b;
             p pVar = new p(this, 29);
-            h hVar = new h();
-            hVar.f47789c = pVar;
-            arrayDeque.add(hVar);
+            ?? obj = new Object();
+            obj.f47425c = pVar;
+            arrayDeque.add(obj);
         }
-        this.f47792c = new PriorityQueue();
+        this.f47428c = new PriorityQueue();
     }
 
     @Override
     public final void a(long j10) {
-        this.f47793e = j10;
+        this.f47429e = j10;
     }
 
-    public abstract a5.b b();
+    public abstract j b();
 
     public abstract void c(g gVar);
 
     @Override
-    public l dequeueOutputBuffer() {
-        ArrayDeque arrayDeque = this.f47791b;
+    public k dequeueOutputBuffer() {
+        ArrayDeque arrayDeque = this.f47427b;
         if (arrayDeque.isEmpty()) {
             return null;
         }
         while (true) {
-            PriorityQueue priorityQueue = this.f47792c;
-            if (priorityQueue.isEmpty()) {
+            PriorityQueue priorityQueue = this.f47428c;
+            if (!priorityQueue.isEmpty()) {
+                int i9 = f0.f4349a;
+                if (((g) priorityQueue.peek()).d <= this.f47429e) {
+                    g gVar = (g) priorityQueue.poll();
+                    boolean isEndOfStream = gVar.isEndOfStream();
+                    ArrayDeque arrayDeque2 = this.f47426a;
+                    if (isEndOfStream) {
+                        k kVar = (k) arrayDeque.pollFirst();
+                        kVar.addFlag(4);
+                        gVar.clear();
+                        arrayDeque2.add(gVar);
+                        return kVar;
+                    }
+                    c(gVar);
+                    if (e()) {
+                        j b10 = b();
+                        k kVar2 = (k) arrayDeque.pollFirst();
+                        kVar2.a(gVar.d, b10, Long.MAX_VALUE);
+                        gVar.clear();
+                        arrayDeque2.add(gVar);
+                        return kVar2;
+                    }
+                    gVar.clear();
+                    arrayDeque2.add(gVar);
+                } else {
+                    return null;
+                }
+            } else {
                 return null;
             }
-            g gVar = (g) priorityQueue.peek();
-            int i10 = g0.f4795a;
-            if (gVar.d > this.f47793e) {
-                return null;
-            }
-            g gVar2 = (g) priorityQueue.poll();
-            boolean zIsEndOfStream = gVar2.isEndOfStream();
-            ArrayDeque arrayDeque2 = this.f47790a;
-            if (zIsEndOfStream) {
-                l lVar = (l) arrayDeque.pollFirst();
-                lVar.addFlag(4);
-                gVar2.clear();
-                arrayDeque2.add(gVar2);
-                return lVar;
-            }
-            c(gVar2);
-            if (e()) {
-                a5.b bVarB = b();
-                l lVar2 = (l) arrayDeque.pollFirst();
-                lVar2.a(gVar2.d, bVarB, Long.MAX_VALUE);
-                gVar2.clear();
-                arrayDeque2.add(gVar2);
-                return lVar2;
-            }
-            gVar2.clear();
-            arrayDeque2.add(gVar2);
         }
     }
 
     @Override
     public final Object dequeueInputBuffer() {
-        d5.a.i(this.d == null);
-        ArrayDeque arrayDeque = this.f47790a;
+        boolean z10;
+        if (this.d == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d5.a.i(z10);
+        ArrayDeque arrayDeque = this.f47426a;
         if (arrayDeque.isEmpty()) {
             return null;
         }
@@ -101,17 +101,17 @@ public abstract class i implements r4.h {
     @Override
     public void flush() {
         ArrayDeque arrayDeque;
-        this.f47794f = 0L;
-        this.f47793e = 0L;
+        this.f47430f = 0L;
+        this.f47429e = 0L;
         while (true) {
-            PriorityQueue priorityQueue = this.f47792c;
-            boolean zIsEmpty = priorityQueue.isEmpty();
-            arrayDeque = this.f47790a;
-            if (zIsEmpty) {
+            PriorityQueue priorityQueue = this.f47428c;
+            boolean isEmpty = priorityQueue.isEmpty();
+            arrayDeque = this.f47426a;
+            if (isEmpty) {
                 break;
             }
             g gVar = (g) priorityQueue.poll();
-            int i10 = g0.f4795a;
+            int i9 = f0.f4349a;
             gVar.clear();
             arrayDeque.add(gVar);
         }
@@ -125,17 +125,23 @@ public abstract class i implements r4.h {
 
     @Override
     public final void queueInputBuffer(Object obj) {
-        k kVar = (k) obj;
-        d5.a.f(kVar == this.d);
-        g gVar = (g) kVar;
+        boolean z10;
+        r4.j jVar = (r4.j) obj;
+        if (jVar == this.d) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d5.a.f(z10);
+        g gVar = (g) jVar;
         if (gVar.isDecodeOnly()) {
             gVar.clear();
-            this.f47790a.add(gVar);
+            this.f47426a.add(gVar);
         } else {
-            long j10 = this.f47794f;
-            this.f47794f = 1 + j10;
-            gVar.f47788r = j10;
-            this.f47792c.add(gVar);
+            long j10 = this.f47430f;
+            this.f47430f = 1 + j10;
+            gVar.f47424r = j10;
+            this.f47428c.add(gVar);
         }
         this.d = null;
     }

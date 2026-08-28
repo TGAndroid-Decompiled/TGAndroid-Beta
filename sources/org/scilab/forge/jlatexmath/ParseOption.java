@@ -3,23 +3,22 @@ package org.scilab.forge.jlatexmath;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
-
 public final class ParseOption {
     public static final Map<String, String> parseMap(String str) {
-        HashMap map = new HashMap();
+        HashMap hashMap = new HashMap();
         if (str != null && str.length() != 0) {
             StringTokenizer stringTokenizer = new StringTokenizer(str, ",");
             while (stringTokenizer.hasMoreTokens()) {
-                String[] strArrSplit = stringTokenizer.nextToken().trim().split("=");
-                if (strArrSplit != null) {
-                    if (strArrSplit.length == 2) {
-                        map.put(strArrSplit[0].trim(), strArrSplit[1].trim());
-                    } else if (strArrSplit.length == 1) {
-                        map.put(strArrSplit[0].trim(), null);
+                String[] split = stringTokenizer.nextToken().trim().split("=");
+                if (split != null) {
+                    if (split.length == 2) {
+                        hashMap.put(split[0].trim(), split[1].trim());
+                    } else if (split.length == 1) {
+                        hashMap.put(split[0].trim(), null);
                     }
                 }
             }
         }
-        return map;
+        return hashMap;
     }
 }

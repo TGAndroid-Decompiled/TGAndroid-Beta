@@ -1,4 +1,3 @@
 package u8;
-
-public interface a {
+public @interface a {
 }

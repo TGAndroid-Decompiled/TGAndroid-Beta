@@ -3,7 +3,6 @@ package org.webrtc.audio;
 import android.media.AudioTrack;
 import android.os.Build;
 import org.webrtc.Logging;
-
 class LowLatencyAudioBufferManager {
     private static final String TAG = "LowLatencyAudioBufferManager";
     private int prevUnderrunCount = 0;
@@ -25,18 +24,16 @@ class LowLatencyAudioBufferManager {
                 this.keepLoweringBufferSize = false;
                 this.prevUnderrunCount = underrunCount;
                 this.ticksUntilNextDecrease = 10;
-                return;
-            }
-            if (this.keepLoweringBufferSize) {
-                int i10 = this.ticksUntilNextDecrease - 1;
-                this.ticksUntilNextDecrease = i10;
-                if (i10 <= 0) {
+            } else if (this.keepLoweringBufferSize) {
+                int i9 = this.ticksUntilNextDecrease - 1;
+                this.ticksUntilNextDecrease = i9;
+                if (i9 <= 0) {
                     int playbackRate2 = audioTrack.getPlaybackRate() / 100;
                     int bufferSizeInFrames2 = audioTrack.getBufferSizeInFrames();
-                    int iMax = Math.max(playbackRate2, bufferSizeInFrames2 - playbackRate2);
-                    if (iMax != bufferSizeInFrames2) {
-                        Logging.d("LowLatencyAudioBufferManager", "Lowering AudioTrack buffer size from " + bufferSizeInFrames2 + " to " + iMax);
-                        audioTrack.setBufferSizeInFrames(iMax);
+                    int max = Math.max(playbackRate2, bufferSizeInFrames2 - playbackRate2);
+                    if (max != bufferSizeInFrames2) {
+                        Logging.d("LowLatencyAudioBufferManager", "Lowering AudioTrack buffer size from " + bufferSizeInFrames2 + " to " + max);
+                        audioTrack.setBufferSizeInFrames(max);
                     }
                     this.ticksUntilNextDecrease = 10;
                 }

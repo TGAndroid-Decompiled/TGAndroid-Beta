@@ -10,44 +10,40 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import g7.o7;
-
+import f7.t7;
 public class v extends ImageButton {
+    public final n f17110a;
+    public final d5.w f17111b;
+    public boolean f17112c;
 
-    public final n f17485a;
-
-    public final d5.x f17486b;
-
-    public boolean f17487c;
-
-    public v(Context context, AttributeSet attributeSet, int i10) {
-        super(context, attributeSet, i10);
+    public v(Context context, AttributeSet attributeSet, int i9) {
+        super(context, attributeSet, i9);
         e3.a(context);
-        this.f17487c = false;
+        this.f17112c = false;
         d3.a(this, getContext());
         n nVar = new n(this);
-        this.f17485a = nVar;
-        nVar.d(attributeSet, i10);
-        d5.x xVar = new d5.x(this);
-        this.f17486b = xVar;
-        xVar.h(attributeSet, i10);
+        this.f17110a = nVar;
+        nVar.d(attributeSet, i9);
+        d5.w wVar = new d5.w(this);
+        this.f17111b = wVar;
+        wVar.h(attributeSet, i9);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             nVar.a();
         }
-        d5.x xVar = this.f17486b;
-        if (xVar != null) {
-            xVar.d();
+        d5.w wVar = this.f17111b;
+        if (wVar != null) {
+            wVar.d();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             return nVar.b();
         }
@@ -55,7 +51,7 @@ public class v extends ImageButton {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             return nVar.c();
         }
@@ -64,17 +60,17 @@ public class v extends ImageButton {
 
     public ColorStateList getSupportImageTintList() {
         f3 f3Var;
-        d5.x xVar = this.f17486b;
-        if (xVar == null || (f3Var = (f3) xVar.f4851c) == null) {
+        d5.w wVar = this.f17111b;
+        if (wVar == null || (f3Var = (f3) wVar.f4403c) == null) {
             return null;
         }
-        return (ColorStateList) f3Var.f17321c;
+        return (ColorStateList) f3Var.f16946c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
         f3 f3Var;
-        d5.x xVar = this.f17486b;
-        if (xVar == null || (f3Var = (f3) xVar.f4851c) == null) {
+        d5.w wVar = this.f17111b;
+        if (wVar == null || (f3Var = (f3) wVar.f4403c) == null) {
             return null;
         }
         return (PorterDuff.Mode) f3Var.d;
@@ -82,123 +78,125 @@ public class v extends ImageButton {
 
     @Override
     public final boolean hasOverlappingRendering() {
-        return !(((ImageView) this.f17486b.f4850b).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering();
+        if (!(((ImageView) this.f17111b.f4402b).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             nVar.e();
         }
     }
 
     @Override
-    public void setBackgroundResource(int i10) {
-        super.setBackgroundResource(i10);
-        n nVar = this.f17485a;
+    public void setBackgroundResource(int i9) {
+        super.setBackgroundResource(i9);
+        n nVar = this.f17110a;
         if (nVar != null) {
-            nVar.f(i10);
+            nVar.f(i9);
         }
     }
 
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        d5.x xVar = this.f17486b;
-        if (xVar != null) {
-            xVar.d();
+        d5.w wVar = this.f17111b;
+        if (wVar != null) {
+            wVar.d();
         }
     }
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        d5.x xVar = this.f17486b;
-        if (xVar != null && drawable != null && !this.f17487c) {
-            xVar.f4849a = drawable.getLevel();
+        d5.w wVar = this.f17111b;
+        if (wVar != null && drawable != null && !this.f17112c) {
+            wVar.f4401a = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
-        if (xVar != null) {
-            xVar.d();
-            if (this.f17487c) {
-                return;
-            }
-            ImageView imageView = (ImageView) xVar.f4850b;
-            if (imageView.getDrawable() != null) {
-                imageView.getDrawable().setLevel(xVar.f4849a);
+        if (wVar != null) {
+            wVar.d();
+            if (!this.f17112c) {
+                ImageView imageView = (ImageView) wVar.f4402b;
+                if (imageView.getDrawable() != null) {
+                    imageView.getDrawable().setLevel(wVar.f4401a);
+                }
             }
         }
     }
 
     @Override
-    public void setImageLevel(int i10) {
-        super.setImageLevel(i10);
-        this.f17487c = true;
+    public void setImageLevel(int i9) {
+        super.setImageLevel(i9);
+        this.f17112c = true;
     }
 
     @Override
-    public void setImageResource(int i10) {
-        d5.x xVar = this.f17486b;
-        ImageView imageView = (ImageView) xVar.f4850b;
-        if (i10 != 0) {
-            Drawable drawableB = o7.b(imageView.getContext(), i10);
-            if (drawableB != null) {
-                m1.a(drawableB);
+    public void setImageResource(int i9) {
+        d5.w wVar = this.f17111b;
+        ImageView imageView = (ImageView) wVar.f4402b;
+        if (i9 != 0) {
+            Drawable b10 = t7.b(imageView.getContext(), i9);
+            if (b10 != null) {
+                m1.a(b10);
             }
-            imageView.setImageDrawable(drawableB);
+            imageView.setImageDrawable(b10);
         } else {
             imageView.setImageDrawable(null);
         }
-        xVar.d();
+        wVar.d();
     }
 
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        d5.x xVar = this.f17486b;
-        if (xVar != null) {
-            xVar.d();
+        d5.w wVar = this.f17111b;
+        if (wVar != null) {
+            wVar.d();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             nVar.h(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        n nVar = this.f17485a;
+        n nVar = this.f17110a;
         if (nVar != null) {
             nVar.i(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        d5.x xVar = this.f17486b;
-        if (xVar != null) {
-            if (((f3) xVar.f4851c) == null) {
-                xVar.f4851c = new f3();
+        d5.w wVar = this.f17111b;
+        if (wVar != null) {
+            if (((f3) wVar.f4403c) == null) {
+                wVar.f4403c = new Object();
             }
-            f3 f3Var = (f3) xVar.f4851c;
-            f3Var.f17321c = colorStateList;
-            f3Var.f17320b = true;
-            xVar.d();
+            f3 f3Var = (f3) wVar.f4403c;
+            f3Var.f16946c = colorStateList;
+            f3Var.f16945b = true;
+            wVar.d();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        d5.x xVar = this.f17486b;
-        if (xVar != null) {
-            if (((f3) xVar.f4851c) == null) {
-                xVar.f4851c = new f3();
+        d5.w wVar = this.f17111b;
+        if (wVar != null) {
+            if (((f3) wVar.f4403c) == null) {
+                wVar.f4403c = new Object();
             }
-            f3 f3Var = (f3) xVar.f4851c;
+            f3 f3Var = (f3) wVar.f4403c;
             f3Var.d = mode;
-            f3Var.f17319a = true;
-            xVar.d();
+            f3Var.f16944a = true;
+            wVar.d();
         }
     }
 }

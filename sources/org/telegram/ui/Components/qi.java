@@ -1,59 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
+public final class qi implements TextWatcher {
+    public final vi f31953a;
 
-public final class qi extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-
-    public final org.telegram.ui.ActionBar.c6 f31909a;
-
-    public final TextView f31910b;
-
-    public final TextView f31911c;
-
-    public qi(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f31909a = c6Var;
-        setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
-        setTag(-33024);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, h7.z5.q(-1, -2, 17));
-        n9 n9Var = new n9(context);
-        n9Var.setImageDrawable(new oi0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), "utyan_empty", AndroidUtilities.dp(120.0f)));
-        linearLayout.addView(n9Var, h7.z5.t(120, 120, 17, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f31910b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        TextView textViewI = org.telegram.ui.Cells.pa.i(linearLayout, textView, h7.z5.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f31911c = textViewI;
-        textViewI.setTextSize(1, 14.0f);
-        textViewI.setGravity(17);
-        linearLayout.addView(textViewI, h7.z5.t(-1, -2, 17, 32, 0, 32, 0));
-        d();
+    public qi(vi viVar) {
+        this.f31953a = viVar;
     }
 
     @Override
-    public final void d() {
-        int i10 = org.telegram.ui.ActionBar.g6.G6;
-        org.telegram.ui.ActionBar.c6 c6Var = this.f31909a;
-        this.f31910b.setTextColor(org.telegram.ui.ActionBar.g6.v0(i10, c6Var));
-        this.f31911c.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23423y6, c6Var));
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        vi viVar = this.f31953a;
+        li liVar = viVar.f33371c0;
+        TextUtils.isEmpty(viVar.A);
+        viVar.A = editable.toString().trim();
+        li liVar2 = viVar.U;
+        AndroidUtilities.cancelRunOnUIThread(liVar2);
+        boolean z11 = true;
+        if (!TextUtils.isEmpty(viVar.A)) {
+            String str = viVar.A;
+            if (str != null && str.length() >= 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            viVar.T = z10;
+            if (!TextUtils.equals(viVar.S, viVar.A)) {
+                viVar.I.clear();
+                viVar.V = 0;
+                viVar.W = false;
+            }
+            AndroidUtilities.runOnUIThread(liVar2, 1500L);
+        }
+        AndroidUtilities.cancelRunOnUIThread(liVar);
+        if (!TextUtils.isEmpty(viVar.A)) {
+            String str2 = viVar.A;
+            viVar.f33378j0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(viVar.f27493b.F1).config.musicSearchUsername.get())) ? false : false;
+            if (!TextUtils.equals(viVar.f33370b0, viVar.A)) {
+                viVar.J.clear();
+                viVar.f33372d0 = false;
+            }
+            AndroidUtilities.runOnUIThread(liVar, 1500L);
+        }
+        viVar.O();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
     }
 }

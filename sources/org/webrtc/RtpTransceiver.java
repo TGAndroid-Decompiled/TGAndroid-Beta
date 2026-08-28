@@ -1,9 +1,12 @@
 package org.webrtc;
 
+import j3.r0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
+import org.webrtc.MediaStreamTrack;
+import org.webrtc.RtpCapabilities;
+import org.webrtc.RtpParameters;
 public class RtpTransceiver {
     private RtpReceiver cachedReceiver;
     private RtpSender cachedSender;
@@ -15,20 +18,21 @@ public class RtpTransceiver {
         RECV_ONLY(2),
         INACTIVE(3),
         STOPPED(4);
-
+        
         private final int nativeIndex;
 
-        RtpTransceiverDirection(int i10) {
-            this.nativeIndex = i10;
+        RtpTransceiverDirection(int i9) {
+            this.nativeIndex = i9;
         }
 
-        public static RtpTransceiverDirection fromNativeIndex(int i10) {
+        public static RtpTransceiverDirection fromNativeIndex(int i9) {
+            RtpTransceiverDirection[] values;
             for (RtpTransceiverDirection rtpTransceiverDirection : values()) {
-                if (rtpTransceiverDirection.getNativeIndex() == i10) {
+                if (rtpTransceiverDirection.getNativeIndex() == i9) {
                     return rtpTransceiverDirection;
                 }
             }
-            throw new IllegalArgumentException(i0.a.k(i10, "Uknown native RtpTransceiverDirection type"));
+            throw new IllegalArgumentException(r0.l(i9, "Uknown native RtpTransceiverDirection type"));
         }
 
         public int getNativeIndex() {
@@ -57,9 +61,8 @@ public class RtpTransceiver {
             return new ArrayList(this.streamIds);
         }
 
-        public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection) {
-            List list = Collections.EMPTY_LIST;
-            this(rtpTransceiverDirection, list, list);
+        public RtpTransceiverInit(org.webrtc.RtpTransceiver.RtpTransceiverDirection r2) {
+            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.RtpTransceiver.RtpTransceiverInit.<init>(org.webrtc.RtpTransceiver$RtpTransceiverDirection):void");
         }
 
         public RtpTransceiverInit(RtpTransceiverDirection rtpTransceiverDirection, List<String> list) {
@@ -80,9 +83,10 @@ public class RtpTransceiver {
     }
 
     private void checkRtpTransceiverExists() {
-        if (this.nativeRtpTransceiver == 0) {
-            throw new IllegalStateException("RtpTransceiver has been disposed.");
+        if (this.nativeRtpTransceiver != 0) {
+            return;
         }
+        throw new IllegalStateException("RtpTransceiver has been disposed.");
     }
 
     private static native RtpTransceiverDirection nativeCurrentDirection(long j10);

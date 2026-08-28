@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
-
 public final class WebRtcAudioUtils {
     private static final int DEFAULT_SAMPLE_RATE_HZ = 16000;
     private static final String TAG = "WebRtcAudioUtils";
@@ -23,8 +22,8 @@ public final class WebRtcAudioUtils {
         return Arrays.asList(BLACKLISTED_OPEN_SL_ES_MODELS).contains(Build.MODEL);
     }
 
-    private static String deviceTypeToString(int i10) {
-        switch (i10) {
+    private static String deviceTypeToString(int i9) {
+        switch (i9) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -83,7 +82,11 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized int getDefaultSampleRateHz() {
-        return defaultSampleRateHz;
+        int i9;
+        synchronized (WebRtcAudioUtils.class) {
+            i9 = defaultSampleRateHz;
+        }
+        return i9;
     }
 
     public static String getThreadInfo() {
@@ -103,7 +106,11 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized boolean isDefaultSampleRateOverridden() {
-        return isDefaultSampleRateOverridden;
+        boolean z10;
+        synchronized (WebRtcAudioUtils.class) {
+            z10 = isDefaultSampleRateOverridden;
+        }
+        return z10;
     }
 
     public static boolean isNoiseSuppressorSupported() {
@@ -115,36 +122,40 @@ public final class WebRtcAudioUtils {
     }
 
     private static void logAudioDeviceInfo(String str, AudioManager audioManager) {
-        if (Build.VERSION.SDK_INT < 23) {
-            return;
-        }
-        AudioDeviceInfo[] devices = audioManager.getDevices(3);
-        if (devices.length == 0) {
-            return;
-        }
-        Logging.d(str, "Audio Devices: ");
-        for (AudioDeviceInfo audioDeviceInfo : devices) {
-            StringBuilder sb2 = new StringBuilder("  ");
-            sb2.append(deviceTypeToString(audioDeviceInfo.getType()));
-            sb2.append(audioDeviceInfo.isSource() ? "(in): " : "(out): ");
-            if (audioDeviceInfo.getChannelCounts().length > 0) {
-                sb2.append("channels=");
-                sb2.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
-                sb2.append(", ");
+        String str2;
+        if (Build.VERSION.SDK_INT >= 23) {
+            AudioDeviceInfo[] devices = audioManager.getDevices(3);
+            if (devices.length != 0) {
+                Logging.d(str, "Audio Devices: ");
+                for (AudioDeviceInfo audioDeviceInfo : devices) {
+                    StringBuilder sb2 = new StringBuilder("  ");
+                    sb2.append(deviceTypeToString(audioDeviceInfo.getType()));
+                    if (audioDeviceInfo.isSource()) {
+                        str2 = "(in): ";
+                    } else {
+                        str2 = "(out): ";
+                    }
+                    sb2.append(str2);
+                    if (audioDeviceInfo.getChannelCounts().length > 0) {
+                        sb2.append("channels=");
+                        sb2.append(Arrays.toString(audioDeviceInfo.getChannelCounts()));
+                        sb2.append(", ");
+                    }
+                    if (audioDeviceInfo.getEncodings().length > 0) {
+                        sb2.append("encodings=");
+                        sb2.append(Arrays.toString(audioDeviceInfo.getEncodings()));
+                        sb2.append(", ");
+                    }
+                    if (audioDeviceInfo.getSampleRates().length > 0) {
+                        sb2.append("sample rates=");
+                        sb2.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
+                        sb2.append(", ");
+                    }
+                    sb2.append("id=");
+                    sb2.append(audioDeviceInfo.getId());
+                    Logging.d(str, sb2.toString());
+                }
             }
-            if (audioDeviceInfo.getEncodings().length > 0) {
-                sb2.append("encodings=");
-                sb2.append(Arrays.toString(audioDeviceInfo.getEncodings()));
-                sb2.append(", ");
-            }
-            if (audioDeviceInfo.getSampleRates().length > 0) {
-                sb2.append("sample rates=");
-                sb2.append(Arrays.toString(audioDeviceInfo.getSampleRates()));
-                sb2.append(", ");
-            }
-            sb2.append("id=");
-            sb2.append(audioDeviceInfo.getId());
-            Logging.d(str, sb2.toString());
         }
     }
 
@@ -163,21 +174,20 @@ public final class WebRtcAudioUtils {
     private static void logAudioStateVolume(String str, AudioManager audioManager) {
         int[] iArr = {0, 3, 2, 4, 5, 1};
         Logging.d(str, "Audio State: ");
-        boolean zIsVolumeFixed = isVolumeFixed(audioManager);
-        Logging.d(str, "  fixed volume=" + zIsVolumeFixed);
-        if (zIsVolumeFixed) {
-            return;
-        }
-        for (int i10 = 0; i10 < 6; i10++) {
-            int i11 = iArr[i10];
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append("  " + streamTypeToString(i11) + ": ");
-            sb2.append("volume=");
-            sb2.append(audioManager.getStreamVolume(i11));
-            sb2.append(", max=");
-            sb2.append(audioManager.getStreamMaxVolume(i11));
-            logIsStreamMute(str, audioManager, i11, sb2);
-            Logging.d(str, sb2.toString());
+        boolean isVolumeFixed = isVolumeFixed(audioManager);
+        Logging.d(str, "  fixed volume=" + isVolumeFixed);
+        if (!isVolumeFixed) {
+            for (int i9 = 0; i9 < 6; i9++) {
+                int i10 = iArr[i9];
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("  " + streamTypeToString(i10) + ": ");
+                sb2.append("volume=");
+                sb2.append(audioManager.getStreamVolume(i10));
+                sb2.append(", max=");
+                sb2.append(audioManager.getStreamMaxVolume(i10));
+                logIsStreamMute(str, audioManager, i10, sb2);
+                Logging.d(str, sb2.toString());
+            }
         }
     }
 
@@ -185,89 +195,116 @@ public final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i10, StringBuilder sb2) {
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i9, StringBuilder sb2) {
         if (Build.VERSION.SDK_INT >= 23) {
             sb2.append(", muted=");
-            sb2.append(audioManager.isStreamMute(i10));
+            sb2.append(audioManager.isStreamMute(i9));
         }
     }
 
-    public static String modeToString(int i10) {
-        if (i10 == 0) {
-            return "MODE_NORMAL";
-        }
-        if (i10 == 1) {
+    public static String modeToString(int i9) {
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    if (i9 != 3) {
+                        return "MODE_INVALID";
+                    }
+                    return "MODE_IN_COMMUNICATION";
+                }
+                return "MODE_IN_CALL";
+            }
             return "MODE_RINGTONE";
         }
-        if (i10 != 2) {
-            return i10 != 3 ? "MODE_INVALID" : "MODE_IN_COMMUNICATION";
-        }
-        return "MODE_IN_CALL";
+        return "MODE_NORMAL";
     }
 
     public static boolean runningOnEmulator() {
-        return Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_");
+        if (Build.HARDWARE.equals("goldfish") && Build.BRAND.startsWith("generic_")) {
+            return true;
+        }
+        return false;
     }
 
-    public static synchronized void setDefaultSampleRateHz(int i10) {
-        isDefaultSampleRateOverridden = true;
-        defaultSampleRateHz = i10;
+    public static synchronized void setDefaultSampleRateHz(int i9) {
+        synchronized (WebRtcAudioUtils.class) {
+            isDefaultSampleRateOverridden = true;
+            defaultSampleRateHz = i9;
+        }
     }
 
     public static synchronized void setWebRtcBasedAcousticEchoCanceler(boolean z10) {
-        useWebRtcBasedAcousticEchoCanceler = z10;
+        synchronized (WebRtcAudioUtils.class) {
+            useWebRtcBasedAcousticEchoCanceler = z10;
+        }
     }
 
     public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z10) {
-        Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
+        synchronized (WebRtcAudioUtils.class) {
+            Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
+        }
     }
 
     public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z10) {
-        useWebRtcBasedNoiseSuppressor = z10;
+        synchronized (WebRtcAudioUtils.class) {
+            useWebRtcBasedNoiseSuppressor = z10;
+        }
     }
 
-    private static String streamTypeToString(int i10) {
-        if (i10 == 0) {
-            return "STREAM_VOICE_CALL";
-        }
-        if (i10 == 1) {
+    private static String streamTypeToString(int i9) {
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    if (i9 != 3) {
+                        if (i9 != 4) {
+                            if (i9 != 5) {
+                                return "STREAM_INVALID";
+                            }
+                            return "STREAM_NOTIFICATION";
+                        }
+                        return "STREAM_ALARM";
+                    }
+                    return "STREAM_MUSIC";
+                }
+                return "STREAM_RING";
+            }
             return "STREAM_SYSTEM";
         }
-        if (i10 == 2) {
-            return "STREAM_RING";
-        }
-        if (i10 == 3) {
-            return "STREAM_MUSIC";
-        }
-        if (i10 != 4) {
-            return i10 != 5 ? "STREAM_INVALID" : "STREAM_NOTIFICATION";
-        }
-        return "STREAM_ALARM";
+        return "STREAM_VOICE_CALL";
     }
 
     public static synchronized boolean useWebRtcBasedAcousticEchoCanceler() {
-        try {
-            if (useWebRtcBasedAcousticEchoCanceler) {
-                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
+        boolean z10;
+        synchronized (WebRtcAudioUtils.class) {
+            try {
+                if (useWebRtcBasedAcousticEchoCanceler) {
+                    Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
+                }
+                z10 = useWebRtcBasedAcousticEchoCanceler;
+            } catch (Throwable th) {
+                throw th;
             }
-        } catch (Throwable th) {
-            throw th;
         }
-        return useWebRtcBasedAcousticEchoCanceler;
+        return z10;
     }
 
     public static synchronized boolean useWebRtcBasedAutomaticGainControl() {
+        synchronized (WebRtcAudioUtils.class) {
+        }
         return true;
     }
 
     public static synchronized boolean useWebRtcBasedNoiseSuppressor() {
-        try {
-            if (useWebRtcBasedNoiseSuppressor) {
-                Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
+        boolean z10;
+        synchronized (WebRtcAudioUtils.class) {
+            try {
+                if (useWebRtcBasedNoiseSuppressor) {
+                    Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
+                }
+                z10 = useWebRtcBasedNoiseSuppressor;
+            } catch (Throwable th) {
+                throw th;
             }
-        } catch (Throwable th) {
-            throw th;
         }
-        return useWebRtcBasedNoiseSuppressor;
+        return z10;
     }
 }

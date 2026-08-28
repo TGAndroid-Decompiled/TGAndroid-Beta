@@ -2,8 +2,7 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-
-public final class dy0 extends f2.k0 {
+public final class dy0 extends f2.m0 {
     public final ProfileActivity I;
 
     public dy0(ProfileActivity profileActivity) {
@@ -11,33 +10,40 @@ public final class dy0 extends f2.k0 {
     }
 
     @Override
-    public final int o0(int i10, f2.e1 e1Var, f2.l1 l1Var) {
+    public final int o0(int i9, f2.g1 g1Var, f2.n1 n1Var) {
         ProfileActivity profileActivity = this.I;
-        View viewM = profileActivity.f35935c.m(0);
-        if (viewM != null && !profileActivity.B0) {
-            int top = viewM.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f35996k2;
-            if (z10 || top <= i10) {
-                if (z10) {
-                    if (i10 >= top) {
-                        profileActivity.f35996k2 = false;
-                    } else if (profileActivity.f35921a.getScrollState() == 1 && !profileActivity.f36002l2) {
-                        i10 /= 2;
+        View m10 = profileActivity.f35932c.m(0);
+        if (m10 != null && !profileActivity.B0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f35993k2;
+            boolean z11 = true;
+            if (!z10 && top > i9) {
+                if (!profileActivity.f35984j0.T0.isEmpty() && profileActivity.f35919a0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f35986j2 && !AndroidUtilities.isTablet()) || profileActivity.E0)) {
+                    if (profileActivity.F2 != null) {
+                        z11 = false;
                     }
+                    profileActivity.f35993k2 = z11;
                 }
-            } else if (!profileActivity.f35987j0.T0.isEmpty() && profileActivity.f35922a0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f35989j2 && !AndroidUtilities.isTablet()) || profileActivity.E0)) {
-                profileActivity.f35996k2 = profileActivity.F2 == null;
+            } else if (z10) {
+                if (i9 >= top) {
+                    profileActivity.f35993k2 = false;
+                } else if (profileActivity.f35918a.getScrollState() == 1 && !profileActivity.f35999l2) {
+                    i9 /= 2;
+                }
             }
-            i10 = top;
+            i9 = top;
         }
-        if (!profileActivity.K1 || profileActivity.f35921a.K0) {
-            return super.o0(i10, e1Var, l1Var);
+        if (profileActivity.K1 && !profileActivity.f35918a.K0) {
+            return 0;
         }
-        return 0;
+        return super.o0(i9, g1Var, n1Var);
     }
 
     @Override
     public final boolean y0() {
-        return this.I.m0 != null;
+        if (this.I.m0 != null) {
+            return true;
+        }
+        return false;
     }
 }

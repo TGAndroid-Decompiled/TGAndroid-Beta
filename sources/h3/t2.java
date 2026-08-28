@@ -1,45 +1,43 @@
 package h3;
-
-import java.util.Arrays;
-
 public final class t2 implements g {
-
-    public static final String f8197f;
-    public static final String h;
-
-    public static final String f8198n;
-
-    public static final String f8199r;
-
-    public final int f8200a;
-
-    public final j4.i1 f8201b;
-
-    public final boolean f8202c;
-    public final int[] d;
-
-    public final boolean[] f8203e;
+    public static final t2 f9773b;
+    public final o8.z f9774a;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f8197f = Integer.toString(0, 36);
-        h = Integer.toString(1, 36);
-        f8198n = Integer.toString(3, 36);
-        f8199r = Integer.toString(4, 36);
+        o8.x xVar = o8.z.f19105b;
+        f9773b = new t2(o8.l0.f19056e);
+        int i9 = d5.f0.f4349a;
+        Integer.toString(0, 36);
     }
 
-    public t2(j4.i1 i1Var, boolean z10, int[] iArr, boolean[] zArr) {
-        int i10 = i1Var.f12583a;
-        this.f8200a = i10;
-        boolean z11 = false;
-        d5.a.f(i10 == iArr.length && i10 == zArr.length);
-        this.f8201b = i1Var;
-        if (z10 && i10 > 1) {
-            z11 = true;
+    public t2(o8.z zVar) {
+        this.f9774a = o8.z.u(zVar);
+    }
+
+    public final boolean a(int i9) {
+        int i10 = 0;
+        while (true) {
+            o8.z zVar = this.f9774a;
+            if (i10 >= zVar.size()) {
+                return false;
+            }
+            s2 s2Var = (s2) zVar.get(i10);
+            boolean[] zArr = s2Var.f9732e;
+            int length = zArr.length;
+            int i11 = 0;
+            while (true) {
+                if (i11 >= length) {
+                    break;
+                } else if (zArr[i11]) {
+                    if (s2Var.f9730b.f13483c == i9) {
+                        return true;
+                    }
+                } else {
+                    i11++;
+                }
+            }
+            i10++;
         }
-        this.f8202c = z11;
-        this.d = (int[]) iArr.clone();
-        this.f8203e = (boolean[]) zArr.clone();
     }
 
     public final boolean equals(Object obj) {
@@ -47,15 +45,12 @@ public final class t2 implements g {
             return true;
         }
         if (obj != null && t2.class == obj.getClass()) {
-            t2 t2Var = (t2) obj;
-            if (this.f8202c == t2Var.f8202c && this.f8201b.equals(t2Var.f8201b) && Arrays.equals(this.d, t2Var.d) && Arrays.equals(this.f8203e, t2Var.f8203e)) {
-                return true;
-            }
+            return this.f9774a.equals(((t2) obj).f9774a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f8203e) + ((Arrays.hashCode(this.d) + (((this.f8201b.hashCode() * 31) + (this.f8202c ? 1 : 0)) * 31)) * 31);
+        return this.f9774a.hashCode();
     }
 }

@@ -5,96 +5,138 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
 public final class ld implements View.OnFocusChangeListener {
+    public final int f40111a;
+    public final Object f40112b;
 
-    public final int f40048a;
-
-    public final Object f40049b;
-
-    public ld(Object obj, int i10) {
-        this.f40048a = i10;
-        this.f40049b = obj;
+    public ld(Object obj, int i9) {
+        this.f40111a = i9;
+        this.f40112b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f40048a) {
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        float f17;
+        switch (this.f40111a) {
             case 0:
-                hh.n nVar = ((fe) this.f40049b).Q0;
-                float f10 = z10 ? 1.0f : 0.0f;
-                nVar.b(f10, f10, true);
-                break;
-            case 1:
-                gy gyVar = (gy) this.f40049b;
+                gh.n nVar = ((fe) this.f40112b).Q0;
                 if (z10) {
-                    gyVar.U.b(true);
-                }
-                break;
-            case 2:
-                ig0 ig0Var = ((sd0) this.f40049b).S;
-                if (z10) {
-                    ig0Var.f39083c.setEditText((EditText) view);
-                    ig0Var.f39083c.setDispatchBackWhenEmpty(true);
-                }
-                break;
-            case 3:
-                org.telegram.ui.Components.jc0 jc0Var = (org.telegram.ui.Components.jc0) this.f40049b;
-                float f11 = z10 ? 1.0f : 0.0f;
-                jc0Var.b(f11, f11, true);
-                break;
-            case 4:
-                org.telegram.ui.Components.jc0 jc0Var2 = ((be0) this.f40049b).f36802x;
-                float f12 = z10 ? 1.0f : 0.0f;
-                jc0Var2.b(f12, f12, true);
-                break;
-            case 5:
-                org.telegram.ui.Components.jc0 jc0Var3 = ((je0) this.f40049b).f39351b;
-                float f13 = z10 ? 1.0f : 0.0f;
-                jc0Var3.b(f13, f13, true);
-                break;
-            case 6:
-                ig0 ig0Var2 = ((me0) this.f40049b).f40464y;
-                if (z10) {
-                    ig0Var2.f39083c.setEditText((EditText) view);
-                    ig0Var2.f39083c.setDispatchBackWhenEmpty(true);
-                }
-                break;
-            case 7:
-                org.telegram.ui.Components.jc0 jc0Var4 = ((xe0) this.f40049b).f44425a;
-                float f14 = z10 ? 1.0f : 0.0f;
-                jc0Var4.b(f14, f14, true);
-                break;
-            case 8:
-                ig0 ig0Var3 = ((mf0) this.f40049b).f40497o0;
-                if (z10) {
-                    ig0Var3.f39083c.setEditText((EditText) view);
-                    ig0Var3.f39083c.setDispatchBackWhenEmpty(true);
-                }
-                break;
-            case 9:
-                org.telegram.ui.Components.jc0 jc0Var5 = ((hg0) this.f40049b).f38807e;
-                float f15 = z10 ? 1.0f : 0.0f;
-                jc0Var5.b(f15, f15, true);
-                break;
-            case 10:
-                org.telegram.ui.Components.jc0 jc0Var6 = ((PasscodeActivity) this.f40049b).f35572f;
-                float f16 = z10 ? 1.0f : 0.0f;
-                jc0Var6.b(f16, f16, true);
-                break;
-            case 11:
-                tc1 tc1Var = (tc1) this.f40049b;
-                if (!z10) {
-                    tc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    f10 = 1.0f;
                 } else {
-                    tc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    f10 = 0.0f;
                 }
-                break;
+                nVar.b(f10, f10, true);
+                return;
+            case 1:
+                dy dyVar = (dy) this.f40112b;
+                if (z10) {
+                    dyVar.U.b(true);
+                    return;
+                }
+                return;
+            case 2:
+                fg0 fg0Var = ((pd0) this.f40112b).S;
+                if (z10) {
+                    fg0Var.f38263c.setEditText((EditText) view);
+                    fg0Var.f38263c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.fc0 fc0Var = (org.telegram.ui.Components.fc0) this.f40112b;
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                fc0Var.b(f11, f11, true);
+                return;
+            case 4:
+                org.telegram.ui.Components.fc0 fc0Var2 = ((yd0) this.f40112b).f44840x;
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                fc0Var2.b(f12, f12, true);
+                return;
+            case 5:
+                org.telegram.ui.Components.fc0 fc0Var3 = ((ge0) this.f40112b).f38519b;
+                if (z10) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                fc0Var3.b(f13, f13, true);
+                return;
+            case 6:
+                fg0 fg0Var2 = ((je0) this.f40112b).f39463y;
+                if (z10) {
+                    fg0Var2.f38263c.setEditText((EditText) view);
+                    fg0Var2.f38263c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.fc0 fc0Var4 = ((ue0) this.f40112b).f43228a;
+                if (z10) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                fc0Var4.b(f14, f14, true);
+                return;
+            case 8:
+                fg0 fg0Var3 = ((jf0) this.f40112b).f39488o0;
+                if (z10) {
+                    fg0Var3.f38263c.setEditText((EditText) view);
+                    fg0Var3.f38263c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.Components.fc0 fc0Var5 = ((eg0) this.f40112b).f37935e;
+                if (z10) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                fc0Var5.b(f15, f15, true);
+                return;
+            case 10:
+                org.telegram.ui.Components.fc0 fc0Var6 = ((PasscodeActivity) this.f40112b).f35569f;
+                if (z10) {
+                    f16 = 1.0f;
+                } else {
+                    f16 = 0.0f;
+                }
+                fc0Var6.b(f16, f16, true);
+                return;
+            case 11:
+                tc1 tc1Var = (tc1) this.f40112b;
+                if (z10) {
+                    tc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    return;
+                } else {
+                    tc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    return;
+                }
             default:
-                org.telegram.ui.Components.jc0 jc0Var7 = ((TwoStepVerificationActivity) this.f40049b).v;
-                float f17 = z10 ? 1.0f : 0.0f;
-                jc0Var7.b(f17, f17, true);
-                break;
+                org.telegram.ui.Components.fc0 fc0Var7 = ((TwoStepVerificationActivity) this.f40112b).v;
+                if (z10) {
+                    f17 = 1.0f;
+                } else {
+                    f17 = 0.0f;
+                }
+                fc0Var7.b(f17, f17, true);
+                return;
         }
     }
 }

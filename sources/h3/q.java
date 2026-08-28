@@ -1,14 +1,12 @@
 package h3;
 
 import android.util.Base64;
-
-public final class q implements o8.i {
-
-    public final int f8072a;
+public final class q implements n8.i {
+    public final int f9642a;
 
     @Override
     public final Object get() {
-        switch (this.f8072a) {
+        switch (this.f9642a) {
             case 0:
                 return new j(new com.google.android.exoplayer2.upstream.r(), 2500, 5000);
             default:

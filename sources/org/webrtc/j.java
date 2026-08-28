@@ -1,27 +1,24 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-
 public final class j implements Runnable {
+    public final int f45303a;
+    public final ByteBuffer f45304b;
 
-    public final int f45309a;
-
-    public final ByteBuffer f45310b;
-
-    public j(int i10, ByteBuffer byteBuffer) {
-        this.f45309a = i10;
-        this.f45310b = byteBuffer;
+    public j(int i9, ByteBuffer byteBuffer) {
+        this.f45303a = i9;
+        this.f45304b = byteBuffer;
     }
 
     @Override
     public final void run() {
-        switch (this.f45309a) {
+        switch (this.f45303a) {
             case 0:
-                JniCommon.nativeFreeByteBuffer(this.f45310b);
-                break;
+                JavaI420Buffer.a(this.f45304b);
+                return;
             default:
-                JniCommon.nativeFreeByteBuffer(this.f45310b);
-                break;
+                YuvConverter.a(this.f45304b);
+                return;
         }
     }
 }

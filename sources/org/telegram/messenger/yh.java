@@ -1,34 +1,26 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 public final class yh implements Runnable {
+    public final int f22258a;
+    public final SecretChatHelper f22259b;
+    public final ArrayList f22260c;
 
-    public final int f22261a;
-
-    public final SecretChatHelper f22262b;
-
-    public final long f22263c;
-
-    public yh(SecretChatHelper secretChatHelper, long j10, int i10) {
-        this.f22261a = i10;
-        this.f22262b = secretChatHelper;
-        this.f22263c = j10;
+    public yh(SecretChatHelper secretChatHelper, ArrayList arrayList, int i9) {
+        this.f22258a = i9;
+        this.f22259b = secretChatHelper;
+        this.f22260c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f22261a) {
+        switch (this.f22258a) {
             case 0:
-                this.f22262b.lambda$processDecryptedObject$12(this.f22263c);
-                break;
-            case 1:
-                this.f22262b.lambda$processDecryptedObject$10(this.f22263c);
-                break;
-            case 2:
-                this.f22262b.lambda$processDecryptedObject$11(this.f22263c);
-                break;
+                this.f22259b.lambda$resendMessages$14(this.f22260c);
+                return;
             default:
-                this.f22262b.lambda$processUpdateEncryption$3(this.f22263c);
-                break;
+                this.f22259b.lambda$processPendingEncMessages$0(this.f22260c);
+                return;
         }
     }
 }

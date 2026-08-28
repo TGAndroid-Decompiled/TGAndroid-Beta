@@ -4,15 +4,14 @@ import ru.noties.jlatexmath.awt.Font;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.font.TextLayout;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
-
 public class JavaFontRenderingBox extends Box {
     private static Font font = new Font("Serif", 0, 10);
     private float size;
     private TextLayout text;
 
-    public JavaFontRenderingBox(String str, int i10, float f10, Font font2, boolean z10) {
+    public JavaFontRenderingBox(String str, int i9, float f10, Font font2, boolean z10) {
         this.size = f10;
-        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i10), null);
+        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i9), null);
         this.text = textLayout;
         Rectangle2D bounds = textLayout.getBounds();
         this.height = ((-bounds.getY()) * f10) / 10.0f;
@@ -29,7 +28,7 @@ public class JavaFontRenderingBox extends Box {
         drawDebug(graphics2D, f10, f11);
         graphics2D.translate(f10, f11);
         float f12 = this.size;
-        graphics2D.scale(((double) f12) * 0.1d, ((double) f12) * 0.1d);
+        graphics2D.scale(f12 * 0.1d, f12 * 0.1d);
         this.text.draw(graphics2D, 0, 0);
         float f13 = this.size;
         graphics2D.scale(10.0f / f13, 10.0f / f13);
@@ -41,7 +40,7 @@ public class JavaFontRenderingBox extends Box {
         return 0;
     }
 
-    public JavaFontRenderingBox(String str, int i10, float f10) {
-        this(str, i10, f10, font, true);
+    public JavaFontRenderingBox(String str, int i9, float f10) {
+        this(str, i9, f10, font, true);
     }
 }

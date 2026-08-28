@@ -2,19 +2,15 @@ package y1;
 
 import android.text.TextUtils;
 import j$.util.Objects;
-
 public class d {
+    public final String f49457a;
+    public final int f49458b;
+    public final int f49459c;
 
-    public final String f49447a;
-
-    public final int f49448b;
-
-    public final int f49449c;
-
-    public d(String str, int i10, int i11) {
-        this.f49447a = str;
-        this.f49448b = i10;
-        this.f49449c = i11;
+    public d(String str, int i9, int i10) {
+        this.f49457a = str;
+        this.f49458b = i9;
+        this.f49459c = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -25,19 +21,25 @@ public class d {
             return false;
         }
         d dVar = (d) obj;
-        int i10 = dVar.f49449c;
-        String str = dVar.f49447a;
-        int i11 = dVar.f49448b;
-        int i12 = this.f49449c;
-        String str2 = this.f49447a;
-        int i13 = this.f49448b;
-        if (i13 < 0 || i11 < 0) {
-            return TextUtils.equals(str2, str) && i12 == i10;
+        int i9 = dVar.f49459c;
+        String str = dVar.f49457a;
+        int i10 = dVar.f49458b;
+        int i11 = this.f49459c;
+        String str2 = this.f49457a;
+        int i12 = this.f49458b;
+        if (i12 >= 0 && i10 >= 0) {
+            if (TextUtils.equals(str2, str) && i12 == i10 && i11 == i9) {
+                return true;
+            }
+            return false;
+        } else if (TextUtils.equals(str2, str) && i11 == i9) {
+            return true;
+        } else {
+            return false;
         }
-        return TextUtils.equals(str2, str) && i13 == i11 && i12 == i10;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f49447a, Integer.valueOf(this.f49449c));
+        return Objects.hash(this.f49457a, Integer.valueOf(this.f49459c));
     }
 }

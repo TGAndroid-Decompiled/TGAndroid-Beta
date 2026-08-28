@@ -4,42 +4,35 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import com.google.android.gms.common.api.m;
-import e7.p;
-import java.util.Iterator;
+import d7.p;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import k5.d;
-
+import org.telegram.ui.fm;
 public final class a implements Runnable {
-
-    public static Handler f49324f;
-
-    public final d f49328e;
-
-    public volatile int f49326b = 1;
-
-    public final AtomicBoolean f49327c = new AtomicBoolean();
+    public static Handler f48844f;
+    public final d f48848e;
+    public volatile int f48846b = 1;
+    public final AtomicBoolean f48847c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-
-    public final b f49325a = new b(this, new p(this, 10));
+    public final b f48845a = new b(this, new p(this, 10));
 
     public a(d dVar) {
-        this.f49328e = dVar;
+        this.f48848e = dVar;
     }
 
     public final void a() {
-        d dVar = this.f49328e;
-        Iterator it = dVar.f14473j.iterator();
-        int i10 = 0;
-        while (it.hasNext()) {
-            if (((m) it.next()).d(dVar)) {
-                i10++;
+        d dVar = this.f48848e;
+        int i9 = 0;
+        for (m mVar : dVar.f14652j) {
+            if (mVar.d(dVar)) {
+                i9++;
             }
         }
         try {
-            dVar.f14472i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e9) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e9);
+            dVar.f14651i.tryAcquire(i9, 5L, TimeUnit.SECONDS);
+        } catch (InterruptedException e10) {
+            Log.i("GACSignInLoader", "Unexpected InterruptedException", e10);
             Thread.currentThread().interrupt();
         }
     }
@@ -48,19 +41,19 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f49324f == null) {
-                    f49324f = new Handler(Looper.getMainLooper());
+                if (f48844f == null) {
+                    f48844f = new Handler(Looper.getMainLooper());
                 }
-                handler = f49324f;
+                handler = f48844f;
             } catch (Throwable th) {
                 throw th;
             }
         }
-        handler.post(new o0.m(9, this, obj));
+        handler.post(new fm(8, this, obj));
     }
 
     @Override
     public final void run() {
-        this.f49328e.b();
+        this.f48848e.b();
     }
 }

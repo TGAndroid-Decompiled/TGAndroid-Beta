@@ -1,28 +1,26 @@
 package org.telegram.messenger;
 
-public final class t0 implements Runnable {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class t0 implements RequestDelegate {
+    public final int f21523a;
+    public final ChatMessagesMetadataController f21524b;
 
-    public final int f21593a;
-
-    public final ChatObject.Call f21594b;
-
-    public t0(ChatObject.Call call, int i10) {
-        this.f21593a = i10;
-        this.f21594b = call;
+    public t0(ChatMessagesMetadataController chatMessagesMetadataController, int i9) {
+        this.f21523a = i9;
+        this.f21524b = chatMessagesMetadataController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21593a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f21523a) {
             case 0:
-                this.f21594b.lambda$new$0();
-                break;
-            case 1:
-                this.f21594b.checkQueue();
-                break;
+                this.f21524b.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                return;
             default:
-                this.f21594b.lambda$createRtmpStreamParticipant$1();
-                break;
+                this.f21524b.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                return;
         }
     }
 }

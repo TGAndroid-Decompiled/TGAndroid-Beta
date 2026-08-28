@@ -1,11 +1,7 @@
 package org.telegram.ui.Components;
-
-public interface gb {
-    void a(ec ecVar);
-
-    void b();
-
-    void c();
-
-    void d();
+public final class gb extends gc {
+    @Override
+    public final gc j() {
+        return this;
+    }
 }

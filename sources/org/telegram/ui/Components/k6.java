@@ -3,37 +3,35 @@ package org.telegram.ui.Components;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
-
 public final class k6 extends l6 {
+    public final int f29973b;
 
-    public final int f30003b;
-
-    public k6(String str, int i10) {
+    public k6(String str, int i9) {
         super(str, 1);
-        this.f30003b = i10;
+        this.f29973b = i9;
     }
 
     @Override
-    public final void b(int i10, Object obj) {
-        switch (this.f30003b) {
+    public final void a(int i9, Object obj) {
+        switch (this.f29973b) {
             case 0:
-                ((Paint) obj).setAlpha(i10);
-                break;
+                ((Paint) obj).setAlpha(i9);
+                return;
             case 1:
-                ((Paint) obj).setColor(i10);
-                break;
+                ((Paint) obj).setColor(i9);
+                return;
             case 2:
-                ((Drawable) obj).setAlpha(i10);
-                break;
+                ((Drawable) obj).setAlpha(i9);
+                return;
             default:
-                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
-                break;
+                ((ShapeDrawable) obj).getPaint().setAlpha(i9);
+                return;
         }
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f30003b) {
+        switch (this.f29973b) {
             case 0:
                 return Integer.valueOf(((Paint) obj).getAlpha());
             case 1:

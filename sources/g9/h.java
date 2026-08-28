@@ -1,26 +1,17 @@
 package g9;
+public final class h implements q9.d {
+    public static final h f7533a = new Object();
 
-import a9.p;
-
-public final class h {
-
-    public static final h f6809c = new h(0, 0);
-
-    public final int f6810a;
-
-    public final int f6811b;
-
-    public h(int i10, int i11) {
-        this.f6810a = i10;
-        this.f6811b = i11;
+    static {
+        q9.c.c("clsId");
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(h.class.getSimpleName());
-        sb2.append("[position = ");
-        sb2.append(this.f6810a);
-        sb2.append(", length = ");
-        return p.k(this.f6811b, "]", sb2);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

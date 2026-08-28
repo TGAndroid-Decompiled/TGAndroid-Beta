@@ -1,12 +1,10 @@
 package l4;
-
 public interface l {
+    public static final ya.b f16686q = new ya.b(13);
 
-    public static final za.b f15443o = new za.b(12);
-
-    long g();
-
-    long i();
+    long c();
 
     boolean next();
+
+    long p();
 }

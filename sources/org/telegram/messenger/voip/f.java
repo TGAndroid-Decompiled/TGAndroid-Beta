@@ -1,33 +1,29 @@
 package org.telegram.messenger.voip;
-
 public final class f implements Runnable {
-
-    public final int f21905a;
-
-    public final GroupCallMessagesController f21906b;
-
-    public final long f21907c;
+    public final int f21881a;
+    public final GroupCallMessagesController f21882b;
+    public final long f21883c;
     public final GroupCallMessage d;
 
-    public f(GroupCallMessagesController groupCallMessagesController, long j10, GroupCallMessage groupCallMessage, int i10) {
-        this.f21905a = i10;
-        this.f21906b = groupCallMessagesController;
-        this.f21907c = j10;
+    public f(GroupCallMessagesController groupCallMessagesController, long j10, GroupCallMessage groupCallMessage, int i9) {
+        this.f21881a = i9;
+        this.f21882b = groupCallMessagesController;
+        this.f21883c = j10;
         this.d = groupCallMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f21905a) {
+        switch (this.f21881a) {
             case 0:
-                this.f21906b.lambda$processUpdate$0(this.f21907c, this.d);
-                break;
+                GroupCallMessagesController.a(this.f21882b, this.f21883c, this.d);
+                return;
             case 1:
-                this.f21906b.lambda$processUpdate$1(this.f21907c, this.d);
-                break;
+                GroupCallMessagesController.f(this.f21882b, this.f21883c, this.d);
+                return;
             default:
-                this.f21906b.lambda$processUpdate$2(this.f21907c, this.d);
-                break;
+                GroupCallMessagesController.g(this.f21882b, this.f21883c, this.d);
+                return;
         }
     }
 }

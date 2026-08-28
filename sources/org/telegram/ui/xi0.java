@@ -1,46 +1,33 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class xi0 extends fg.m {
+    public boolean F;
+    public final bj0 G;
 
-public final class xi0 implements View.OnClickListener {
-
-    public final int f44472a;
-
-    public final dj0 f44473b;
-
-    public xi0(dj0 dj0Var, int i10) {
-        this.f44472a = i10;
-        this.f44473b = dj0Var;
+    public xi0(bj0 bj0Var, Context context, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, b6Var);
+        this.G = bj0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f44472a) {
-            case 0:
-                dj0 dj0Var = this.f44473b;
-                cj0 cj0Var = dj0Var.m0;
-                HashSet hashSet = dj0Var.Z;
-                if (hashSet.size() != 0 && cj0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : dj0Var.f37421e0.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f22527id))) {
-                            arrayList.add(Long.valueOf(user.f22527id));
-                        }
-                    }
-                    cj0Var.a(arrayList);
-                    dj0Var.dismiss();
-                    break;
-                }
-                break;
-            default:
-                dj0 dj0Var2 = this.f44473b;
-                dj0Var2.Z.clear();
-                dj0Var2.U.d.b(true);
-                dj0Var2.U(true, false);
-                break;
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
+        bj0 bj0Var = this.G;
+        bj0Var.f36886h0 = dp;
+        bj0Var.f36885g0.G();
+        if (this.F != bj0Var.isKeyboardVisible()) {
+            boolean isKeyboardVisible = bj0Var.isKeyboardVisible();
+            this.F = isKeyboardVisible;
+            if (isKeyboardVisible) {
+                org.telegram.ui.Components.wk0 wk0Var = bj0Var.d;
+                rh.n nVar = new rh.n(bj0Var.getContext(), 2, 0.6f);
+                nVar.f5443a = 1;
+                nVar.f47269p = AndroidUtilities.dp(36.0f);
+                wk0Var.getLayoutManager().w0(nVar);
+            }
         }
     }
 }

@@ -1,32 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class ct implements Utilities.Callback0Return {
+    public final int f27563a;
+    public final Object f27564b;
 
-public final class ct implements ViewTreeObserver.OnPreDrawListener {
-
-    public final int f27538a;
-
-    public final View f27539b;
-
-    public ct(int i10, View view) {
-        this.f27538a = i10;
-        this.f27539b = view;
+    public ct(Object obj, int i9) {
+        this.f27563a = i9;
+        this.f27564b = obj;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f27538a) {
+    public final Object run() {
+        boolean z10;
+        Editable text;
+        ei0[] ei0VarArr;
+        int i9 = this.f27563a;
+        Object obj = this.f27564b;
+        switch (i9) {
             case 0:
-                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f27539b).floatingActionMode;
-                if (g4Var != null) {
-                    g4Var.e();
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                int i10 = EditTextBoldCursor.f26373a;
+                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((ei0VarArr = (ei0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), ei0.class)) == null || ei0VarArr.length == 0)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                break;
+                return Boolean.valueOf(z10);
             default:
-                ((z60) this.f27539b).invalidate();
-                break;
+                return ((d40) obj).getCloseIntoObject();
         }
-        return true;
     }
 }

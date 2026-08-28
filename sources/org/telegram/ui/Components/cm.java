@@ -1,156 +1,194 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.os.Build;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class cm extends org.telegram.ui.rt0 {
+    public ArrayList f27511a = new ArrayList();
+    public final gm f27512b;
 
-public final class cm {
-
-    public long f27489i;
-
-    public wl f27491k;
-
-    public float f27494n;
-
-    public float f27495o;
-
-    public float f27496p;
-
-    public float f27497q;
-
-    public float f27498r;
-
-    public float f27499s;
-
-    public pz0 f27501u;
-    public long v;
-
-    public final org.telegram.ui.ActionBar.d5 f27503x;
-
-    public final m.f3 f27504y;
-
-    public final dm f27505z;
-
-    public float f27483a = 0.0f;
-
-    public int f27484b = 0;
-
-    public long f27485c = 0;
-    public float d = 0.0f;
-
-    public float f27486e = 0.0f;
-
-    public float f27487f = 0.0f;
-
-    public float f27488g = 0.0f;
-    public final ArrayList h = new ArrayList();
-
-    public final er f27490j = er.f28125j;
-
-    public final int f27492l = AndroidUtilities.dp(4.0f);
-
-    public final int f27493m = AndroidUtilities.dp(2.0f) / 2;
-
-    public final RectF f27500t = new RectF();
-
-    public final Paint f27502w = new Paint(1);
-
-    public cm(dm dmVar) {
-        this.f27505z = dmVar;
-        org.telegram.ui.ActionBar.c6 c6Var = dmVar.L.f28086n;
-        Drawable drawable = c6Var != null ? c6Var.getDrawable("drawableMsgOutMedia") : null;
-        this.f27503x = (org.telegram.ui.ActionBar.d5) (drawable == null ? org.telegram.ui.ActionBar.g6.O0("drawableMsgOutMedia") : drawable);
-        this.f27504y = new m.f3();
+    public cm(gm gmVar) {
+        this.f27512b = gmVar;
     }
 
-    public static void a(cm cmVar, wl wlVar, boolean z10) {
-        ArrayList arrayList = cmVar.h;
-        cmVar.f27491k = wlVar;
-        if (wlVar == null) {
-            return;
-        }
-        HashMap map = wlVar.f34281b;
-        wlVar.a();
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = jElapsedRealtime - cmVar.f27485c;
-        long j11 = 200;
-        if (j10 < 200) {
-            float f10 = j10 / 200.0f;
-            cmVar.f27488g = AndroidUtilities.lerp(cmVar.f27488g, cmVar.f27486e, f10);
-            cmVar.f27487f = AndroidUtilities.lerp(cmVar.f27487f, cmVar.d, f10);
-        } else {
-            cmVar.f27488g = cmVar.f27486e;
-            cmVar.f27487f = cmVar.d;
-        }
-        cmVar.d = wlVar.f34282c / 1000.0f;
-        cmVar.f27486e = wlVar.f34284f;
-        cmVar.f27485c = z10 ? jElapsedRealtime : 0L;
-        cmVar.f27489i = 0L;
-        ArrayList arrayList2 = new ArrayList(map.keySet());
-        int size = arrayList2.size();
-        int i10 = 0;
-        while (true) {
-            bm bmVar = null;
-            if (i10 >= size) {
-                break;
-            }
-            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList2.get(i10);
-            MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) map.get(photoEntry);
-            long j12 = j11;
-            int i11 = i10;
-            cmVar.f27489i = Math.max(cmVar.f27489i, photoEntry.starsAmount);
-            int size2 = arrayList.size();
-            for (int i12 = 0; i12 < size2; i12++) {
-                bm bmVar2 = (bm) arrayList.get(i12);
-                if (bmVar2.f27138b == photoEntry) {
-                    bmVar = bmVar2;
-                    break;
-                }
-            }
-            if (bmVar == null) {
-                bm bmVar3 = new bm(cmVar);
-                bm.a(bmVar3, photoEntry);
-                bm.b(bmVar3, wlVar, groupedMessagePosition, z10);
-                arrayList.add(bmVar3);
-            } else {
-                bm.b(bmVar, wlVar, groupedMessagePosition, z10);
-            }
-            i10 = i11 + 1;
-            j11 = j12;
-        }
-        long j13 = j11;
-        int size3 = arrayList.size();
-        int i13 = 0;
-        while (i13 < size3) {
-            bm bmVar4 = (bm) arrayList.get(i13);
-            if (!map.containsKey(bmVar4.f27138b)) {
-                if (bmVar4.f27145k > 0.0f || bmVar4.h + j13 > jElapsedRealtime) {
-                    bm.b(bmVar4, null, null, z10);
-                } else {
-                    eh.j jVar = bmVar4.f27153s;
-                    if (jVar != null) {
-                        jVar.b(bmVar4.O.f27505z);
-                        bmVar4.f27153s = null;
+    @Override
+    public final void D() {
+        gm gmVar = this.f27512b;
+        gmVar.c();
+        gmVar.i(gmVar.L.L, false);
+    }
+
+    @Override
+    public final org.telegram.ui.bu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i9, boolean z10, boolean z11) {
+        MediaController.PhotoEntry photoEntry;
+        ArrayList arrayList;
+        gm gmVar = this.f27512b;
+        ArrayList arrayList2 = gmVar.f28798b;
+        hm hmVar = gmVar.L;
+        if (i9 >= 0 && i9 < this.f27511a.size() && x(i9) && (photoEntry = (MediaController.PhotoEntry) this.f27511a.get(i9)) != null) {
+            int size = arrayList2.size();
+            fm fmVar = null;
+            em emVar = null;
+            for (int i10 = 0; i10 < size; i10++) {
+                fmVar = (fm) arrayList2.get(i10);
+                if (fmVar != null && (arrayList = fmVar.h) != null) {
+                    int size2 = arrayList.size();
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 >= size2) {
+                            break;
+                        }
+                        em emVar2 = (em) arrayList.get(i11);
+                        if (emVar2 != null && emVar2.f28063b == photoEntry && emVar2.f28070k > 0.5d) {
+                            emVar = (em) arrayList.get(i11);
+                            break;
+                        }
+                        i11++;
                     }
-                    arrayList.remove(i13);
-                    i13--;
-                    size3--;
+                    if (emVar != null) {
+                        break;
+                    }
                 }
             }
-            i13++;
+            if (fmVar != null && emVar != null) {
+                org.telegram.ui.bu0 bu0Var = new org.telegram.ui.bu0();
+                int[] iArr = new int[2];
+                gmVar.getLocationInWindow(iArr);
+                if (Build.VERSION.SDK_INT < 26) {
+                    iArr[0] = iArr[0] - hmVar.f27493b.getLeftInset();
+                }
+                bu0Var.f36979b = iArr[0];
+                bu0Var.f36980c = iArr[1] + ((int) fmVar.f28490a);
+                bu0Var.f36986k = 1.0f;
+                bu0Var.d = gmVar;
+                ImageReceiver imageReceiver = emVar.f28064c;
+                bu0Var.f36978a = imageReceiver;
+                bu0Var.f36981e = imageReceiver.getBitmapSafe();
+                bu0Var.h = r5;
+                RectF rectF = emVar.f28076q;
+                int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
+                bu0Var.f36985j = (int) (-gmVar.getY());
+                bu0Var.f36984i = gmVar.getHeight() - ((int) (((-gmVar.getY()) + hmVar.f29124r.getHeight()) - hmVar.f27493b.l1()));
+                return bu0Var;
+            }
         }
-        cmVar.f27505z.invalidate();
+        return null;
     }
 
-    public final float b() {
-        Point point = AndroidUtilities.displaySize;
-        return this.f27505z.L.getPreviewScale() * AndroidUtilities.lerp(this.f27488g, this.f27486e, this.f27490j.getInterpolation(Math.min(1.0f, (SystemClock.elapsedRealtime() - this.f27485c) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
+    @Override
+    public final int H() {
+        return this.f27512b.h.size();
+    }
+
+    @Override
+    public final int Q(Object obj) {
+        int indexOf;
+        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
+        gm gmVar = this.f27512b;
+        if (gmVar.h.size() <= 1 || (indexOf = gmVar.h.indexOf(valueOf)) < 0) {
+            return -1;
+        }
+        gmVar.h.remove(indexOf);
+        gmVar.c();
+        return indexOf;
+    }
+
+    @Override
+    public final int R(int i9) {
+        MediaController.PhotoEntry photoEntry;
+        if (i9 < 0 || i9 >= this.f27511a.size() || (photoEntry = (MediaController.PhotoEntry) this.f27511a.get(i9)) == null) {
+            return -1;
+        }
+        return this.f27512b.h.indexOf(Integer.valueOf(photoEntry.imageId));
+    }
+
+    @Override
+    public final void W(int i9) {
+        MediaController.PhotoEntry photoEntry;
+        ArrayList arrayList;
+        boolean z10;
+        if (i9 >= 0 && i9 < this.f27511a.size() && (photoEntry = (MediaController.PhotoEntry) this.f27511a.get(i9)) != null) {
+            int i10 = photoEntry.imageId;
+            gm gmVar = this.f27512b;
+            gmVar.invalidate();
+            for (int i11 = 0; i11 < gmVar.f28798b.size(); i11++) {
+                fm fmVar = (fm) gmVar.f28798b.get(i11);
+                if (fmVar != null && (arrayList = fmVar.h) != null) {
+                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                        em emVar = (em) arrayList.get(i12);
+                        if (emVar != null && emVar.f28063b.imageId == i10) {
+                            em.a(emVar, photoEntry);
+                        }
+                    }
+                    am amVar = fmVar.f28498k;
+                    if (amVar != null && amVar.f26867g != null) {
+                        z10 = false;
+                        for (int i13 = 0; i13 < fmVar.f28498k.f26867g.size(); i13++) {
+                            if (((MediaController.PhotoEntry) fmVar.f28498k.f26867g.get(i13)).imageId == i10) {
+                                fmVar.f28498k.f26867g.set(i13, photoEntry);
+                                z10 = true;
+                            }
+                        }
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        fm.a(fmVar, fmVar.f28498k, true);
+                    }
+                }
+            }
+            gmVar.g();
+            gmVar.invalidate();
+        }
+    }
+
+    @Override
+    public final ArrayList c() {
+        return this.f27512b.h;
+    }
+
+    @Override
+    public final int k(int i9, VideoEditedInfo videoEditedInfo) {
+        if (i9 < 0 || i9 >= this.f27511a.size()) {
+            return -1;
+        }
+        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f27511a.get(i9)).imageId);
+        gm gmVar = this.f27512b;
+        int indexOf = gmVar.h.indexOf(valueOf);
+        if (indexOf >= 0) {
+            if (gmVar.h.size() <= 1) {
+                return -1;
+            }
+            gmVar.h.remove(indexOf);
+            gmVar.c();
+            return indexOf;
+        }
+        gmVar.h.add(valueOf);
+        gmVar.c();
+        return gmVar.h.size() - 1;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final HashMap v() {
+        return this.f27512b.d;
+    }
+
+    @Override
+    public final boolean x(int i9) {
+        if (i9 >= 0 && i9 < this.f27511a.size()) {
+            return this.f27512b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f27511a.get(i9)).imageId));
+        }
+        return false;
     }
 }

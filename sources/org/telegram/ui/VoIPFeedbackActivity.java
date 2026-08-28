@@ -3,7 +3,6 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-
 public class VoIPFeedbackActivity extends Activity {
     @Override
     public final void finish() {

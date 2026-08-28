@@ -1,19 +1,20 @@
 package org.scilab.forge.jlatexmath;
 
+import org.scilab.forge.jlatexmath.TeXFormula;
 import ru.noties.jlatexmath.awt.Font;
-
 public class JavaFontRenderingAtom extends Atom {
     private TeXFormula.FontInfos fontInfos;
     private String str;
     private int type;
 
-    public JavaFontRenderingAtom(String str, int i10) {
+    public JavaFontRenderingAtom(String str, int i9) {
         this.str = str;
-        this.type = i10;
+        this.type = i9;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
+        int i9;
         Font font;
         Font font2;
         Font font3;
@@ -21,7 +22,12 @@ public class JavaFontRenderingAtom extends Atom {
             return new JavaFontRenderingBox(this.str, this.type, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()));
         }
         DefaultTeXFont defaultTeXFont = (DefaultTeXFont) teXEnvironment.getTeXFont();
-        int i10 = (defaultTeXFont.isIt ? 2 : 0) | (defaultTeXFont.isBold ? 1 : 0);
+        if (defaultTeXFont.isIt) {
+            i9 = 2;
+        } else {
+            i9 = 0;
+        }
+        int i10 = i9 | (defaultTeXFont.isBold ? 1 : 0);
         boolean z10 = defaultTeXFont.isRoman;
         if (defaultTeXFont.isSs) {
             TeXFormula.FontInfos fontInfos = this.fontInfos;

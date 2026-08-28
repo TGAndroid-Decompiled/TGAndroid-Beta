@@ -1,63 +1,72 @@
 package pf;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.qn;
+public final class n0 implements b2, Utilities.Callback5 {
+    public final int f45720a;
+    public final o0 f45721b;
 
-public final class n0 implements Comparator {
-
-    public final ArrayList f45886a;
-
-    public final ArrayList f45887b;
-
-    public n0(ArrayList arrayList, ArrayList arrayList2) {
-        this.f45886a = arrayList;
-        this.f45887b = arrayList2;
+    public n0(o0 o0Var, int i9) {
+        this.f45720a = i9;
+        this.f45721b = o0Var;
     }
 
-    public final int a(t0 t0Var) {
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f45886a;
-            if (i11 >= arrayList.size()) {
-                while (true) {
-                    ArrayList arrayList2 = this.f45887b;
-                    if (i10 >= Math.min(20, arrayList2.size())) {
-                        return -1;
-                    }
-                    if (((TLRPC.Document) arrayList2.get(i10)).f22386id == t0Var.f45916a.f22386id) {
-                        return (arrayList2.size() - i10) + 1000000;
-                    }
-                    i10++;
-                }
-            } else {
-                if (((TLRPC.Document) arrayList.get(i11)).f22386id == t0Var.f45916a.f22386id) {
-                    return i11 + 2000000;
-                }
-                i11++;
-            }
+    @Override
+    public void f(c2 c2Var, int i9) {
+        switch (this.f45720a) {
+            case 0:
+                this.f45721b.W();
+                return;
+            default:
+                this.f45721b.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        t0 t0Var = (t0) obj;
-        t0 t0Var2 = (t0) obj2;
-        boolean zIsAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(t0Var.f45916a, true);
-        if (zIsAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(t0Var2.f45916a, true)) {
-            int iA = a(t0Var);
-            int iA2 = a(t0Var2);
-            if (iA > iA2) {
-                return -1;
+    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        l41 l41Var = (l41) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        o0 o0Var = this.f45721b;
+        if (!o0Var.d.h(l41Var)) {
+            int i9 = l41Var.d;
+            if (i9 != 2 && l41Var.f48814a != 17) {
+                if (i9 == 1) {
+                    o0Var.f45737s = !o0Var.f45737s;
+                    o0Var.f45732c.U2.N(true);
+                    o0Var.U(true);
+                    return;
+                } else if (i9 == 3) {
+                    x xVar = o0Var.d;
+                    o0Var.v = true;
+                    xVar.h = true;
+                    o0Var.f45732c.U2.N(true);
+                    o0Var.U(true);
+                    return;
+                } else if (i9 == 4) {
+                    x xVar2 = o0Var.d;
+                    o0Var.v = false;
+                    xVar2.h = false;
+                    o0Var.f45732c.U2.N(true);
+                    o0Var.U(true);
+                    return;
+                } else {
+                    return;
+                }
             }
-            if (iA >= iA2) {
-                return 0;
-            }
-        } else if (zIsAnimatedStickerDocument) {
-            return -1;
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", o0Var.getUserConfig().getClientUserId());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "hello");
+            o0Var.presentFragment(new qn(bundle));
         }
-        return 1;
     }
 }

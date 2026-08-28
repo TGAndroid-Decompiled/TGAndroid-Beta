@@ -1,26 +1,114 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class up extends Drawable {
+    public final Drawable f33101a;
+    public Path f33102b;
+    public final RectF f33103c;
+    public final RectF d;
+    public boolean f33104e;
+    public final float[] f33105f;
 
-public abstract class up implements InputFilter {
+    public up(Drawable drawable) {
+        eg.a aVar = new eg.a(this, 6);
+        this.f33103c = new RectF();
+        this.d = new RectF();
+        this.f33104e = false;
+        this.f33105f = new float[8];
+        Drawable drawable2 = this.f33101a;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f33101a = drawable;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f33101a.setCallback(aVar);
+        }
+    }
 
-    public final int f33163a;
-
-    public up(int i10) {
-        this.f33163a = i10;
+    public final void a() {
+        if (!this.f33104e) {
+            return;
+        }
+        Path path = this.f33102b;
+        if (path == null) {
+            this.f33102b = new Path();
+        } else {
+            path.rewind();
+        }
+        Rect bounds = getBounds();
+        RectF rectF = this.f33103c;
+        rectF.set(bounds);
+        float f10 = rectF.left;
+        RectF rectF2 = this.d;
+        rectF.left = f10 + rectF2.left;
+        rectF.top += rectF2.top;
+        rectF.right -= rectF2.right;
+        rectF.bottom -= rectF2.bottom;
+        this.f33102b.addRoundRect(rectF, this.f33105f, Path.Direction.CW);
     }
 
     @Override
-    public CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        int iCodePointCount = this.f33163a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i12, i13));
-        if (iCodePointCount <= 0) {
-            return "";
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f33101a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            if (!this.f33104e) {
+                canvas.save();
+                canvas.clipRect(getBounds());
+                this.f33101a.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            canvas.save();
+            a();
+            canvas.clipPath(this.f33102b);
+            this.f33101a.draw(canvas);
+            canvas.restore();
         }
-        if (iCodePointCount >= Character.codePointCount(charSequence, i10, i11)) {
-            return null;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        Drawable drawable = this.f33101a;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
         }
-        int i14 = iCodePointCount + i10;
-        return (Character.isHighSurrogate(charSequence.charAt(i14 + (-1))) && (i14 = i14 + (-1)) == i10) ? "" : charSequence.subSequence(i10, i14);
+        return super.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        Drawable drawable = this.f33101a;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
+        }
+        return super.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        Drawable drawable = this.f33101a;
+        if (drawable != null) {
+            drawable.setAlpha(i9);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f33101a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
     }
 }

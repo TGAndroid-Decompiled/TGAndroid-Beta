@@ -1,30 +1,15 @@
 package kd;
 
-public final class e extends f {
-
-    public final Throwable f15181a;
-
-    public e(Throwable th) {
-        this.f15181a = th;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof e) {
-            return kotlin.jvm.internal.j.a(this.f15181a, ((e) obj).f15181a);
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        Throwable th = this.f15181a;
-        if (th != null) {
-            return th.hashCode();
-        }
-        return 0;
-    }
+import kotlin.jvm.internal.p;
+public final class e extends sc.c {
+    public p f14767a;
+    public Object f14768b;
+    public int f14769c;
 
     @Override
-    public final String toString() {
-        return "Closed(" + this.f15181a + ')';
+    public final Object invokeSuspend(Object obj) {
+        this.f14768b = obj;
+        this.f14769c |= Integer.MIN_VALUE;
+        return n.a(null, null, this);
     }
 }

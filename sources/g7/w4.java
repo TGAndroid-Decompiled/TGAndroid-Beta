@@ -1,18 +1,17 @@
 package g7;
-
-public final class w4 implements r9.d {
-
-    public static final w4 f6629a = new w4();
+public final class w4 implements q9.d {
+    public static final w4 f7396a = new Object();
 
     static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(2, com.google.android.recaptcha.internal.a.q(i.class, new e(1)))));
+        e2.c.u(e2.c.r(d.class, e2.c.i(3, e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))))));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj != null) {
-            throw new ClassCastException();
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        throw null;
+        throw new ClassCastException();
     }
 }

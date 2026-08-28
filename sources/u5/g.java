@@ -1,99 +1,60 @@
 package u5;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageInstaller;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import o0.m;
-import org.telegram.ui.i6;
+import java.util.concurrent.atomic.AtomicBoolean;
+public abstract class g {
+    public static boolean f48113b = false;
+    public static boolean f48114c = false;
+    public static final int f48115e = 0;
+    public static final AtomicBoolean f48112a = new AtomicBoolean();
+    public static final AtomicBoolean d = new AtomicBoolean();
 
-public final class g implements Runnable {
-
-    public final int f48408a;
-
-    public final i f48409b;
-
-    public g(i iVar, int i10) {
-        this.f48408a = i10;
-        this.f48409b = iVar;
-    }
-
-    private final void a() {
-        i iVar = this.f48409b;
-        synchronized (iVar) {
-            if (iVar.f48411a == 1) {
-                iVar.a("Timed out while binding");
-            }
-        }
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f48408a) {
-            case 0:
-                break;
-            case 1:
-                a();
-                return;
-            default:
-                this.f48409b.a("Service disconnected");
-                return;
-        }
-        while (true) {
-            i iVar = this.f48409b;
-            synchronized (iVar) {
+    public static boolean a(Context context) {
+        try {
+            if (!f48114c) {
                 try {
-                    if (iVar.f48411a != 2) {
-                        return;
+                    PackageInfo b10 = g6.c.a(context).b(64, "com.google.android.gms");
+                    h.c(context);
+                    if (b10 != null && !h.f(b10, false) && h.f(b10, true)) {
+                        f48113b = true;
+                    } else {
+                        f48113b = false;
                     }
-                    if (iVar.d.isEmpty()) {
-                        iVar.c();
-                        return;
-                    }
-                    j jVar = (j) iVar.d.poll();
-                    iVar.f48414e.put(jVar.f48416a, jVar);
-                    ((ScheduledExecutorService) iVar.f48415f.f48423c).schedule(new m(8, iVar, jVar), 30L, TimeUnit.SECONDS);
-                    if (Log.isLoggable("MessengerIpcClient", 3)) {
-                        Log.d("MessengerIpcClient", "Sending ".concat(String.valueOf(jVar)));
-                    }
-                    k kVar = iVar.f48415f;
-                    Messenger messenger = iVar.f48412b;
-                    int i10 = jVar.f48418c;
-                    Context context = (Context) kVar.f48422b;
-                    Message messageObtain = Message.obtain();
-                    messageObtain.what = i10;
-                    messageObtain.arg1 = jVar.f48416a;
-                    messageObtain.replyTo = messenger;
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("oneWay", jVar.a());
-                    bundle.putString("pkg", context.getPackageName());
-                    bundle.putBundle("data", jVar.d);
-                    messageObtain.setData(bundle);
-                    try {
-                        i6 i6Var = iVar.f48413c;
-                        Messenger messenger2 = (Messenger) i6Var.f38984b;
-                        if (messenger2 != null) {
-                            messenger2.send(messageObtain);
-                        } else {
-                            f fVar = (f) i6Var.f38985c;
-                            if (fVar == null) {
-                                throw new IllegalStateException("Both messengers are null");
-                            }
-                            Messenger messenger3 = fVar.f48407a;
-                            messenger3.getClass();
-                            messenger3.send(messageObtain);
-                        }
-                    } catch (RemoteException e9) {
-                        iVar.a(e9.getMessage());
-                    }
-                } catch (Throwable th) {
-                    throw th;
+                    f48114c = true;
+                } catch (PackageManager.NameNotFoundException e10) {
+                    Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e10);
+                    f48114c = true;
                 }
             }
+            if (!f48113b && "user".equals(Build.TYPE)) {
+                return false;
+            }
+            return true;
+        } catch (Throwable th) {
+            f48114c = true;
+            throw th;
+        }
+    }
+
+    public static int b(android.content.Context r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: u5.g.b(android.content.Context, int):int");
+    }
+
+    public static boolean c(Context context) {
+        try {
+            for (PackageInstaller.SessionInfo sessionInfo : context.getPackageManager().getPackageInstaller().getAllSessions()) {
+                if ("com.google.android.gms".equals(sessionInfo.getAppPackageName())) {
+                    return true;
+                }
+            }
+            return context.getPackageManager().getApplicationInfo("com.google.android.gms", 8192).enabled;
+        } catch (PackageManager.NameNotFoundException | Exception unused) {
+            return false;
         }
     }
 }

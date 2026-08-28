@@ -1,39 +1,37 @@
 package org.telegram.messenger;
 
 import android.content.Intent;
-
+import org.telegram.messenger.NotificationBadge;
 public final class k implements Runnable {
+    public final int f20737a;
+    public final Intent f20738b;
 
-    public final int f20722a;
-
-    public final Intent f20723b;
-
-    public k(Intent intent, int i10) {
-        this.f20722a = i10;
-        this.f20723b = intent;
+    public k(Intent intent, int i9) {
+        this.f20737a = i9;
+        this.f20738b = intent;
     }
 
     @Override
     public final void run() {
-        switch (this.f20722a) {
+        switch (this.f20737a) {
             case 0:
-                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f20723b);
-                break;
+                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f20738b);
+                return;
             case 1:
-                NotificationBadge.AdwHomeBadger.lambda$executeBadge$0(this.f20723b);
-                break;
+                NotificationBadge.AdwHomeBadger.a(this.f20738b);
+                return;
             case 2:
-                NotificationBadge.ApexHomeBadger.lambda$executeBadge$0(this.f20723b);
-                break;
+                NotificationBadge.ApexHomeBadger.a(this.f20738b);
+                return;
             case 3:
-                NotificationBadge.AsusHomeBadger.lambda$executeBadge$0(this.f20723b);
-                break;
+                NotificationBadge.AsusHomeBadger.a(this.f20738b);
+                return;
             case 4:
-                NotificationBadge.DefaultBadger.lambda$executeBadge$0(this.f20723b);
-                break;
+                NotificationBadge.DefaultBadger.a(this.f20738b);
+                return;
             default:
-                NotificationBadge.SonyHomeBadger.lambda$executeBadgeByBroadcast$0(this.f20723b);
-                break;
+                NotificationBadge.SonyHomeBadger.a(this.f20738b);
+                return;
         }
     }
 }

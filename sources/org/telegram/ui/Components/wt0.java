@@ -1,165 +1,211 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MessageObject;
-
-public final class wt0 {
-
-    public boolean f34330g;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class wt0 implements NotificationCenter.NotificationCenterDelegate {
+    public final NotificationCenter.ObserversGroup A;
+    public boolean f34365f;
     public boolean h;
+    public final tt0[] f34366n;
+    public final long f34367r;
+    public final long f34368s;
+    public long v;
+    public final org.telegram.ui.ActionBar.o2 f34369w;
+    public boolean f34371y;
+    public int[] f34361a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public int[] f34362b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] f34363c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final int[] f34364e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    public final ArrayList f34370x = new ArrayList();
 
-    public int f34333k;
+    public wt0(org.telegram.ui.ActionBar.o2 o2Var) {
+        int i9;
+        TLRPC.ChatFull chatFull;
+        this.f34369w = o2Var;
+        if (o2Var instanceof rg) {
+            rg rgVar = (rg) o2Var;
+            long a2 = rgVar.a();
+            this.f34367r = a2;
+            this.v = rgVar.H();
+            this.f34368s = rgVar.b();
+            if (a2 != o2Var.getUserConfig().getClientUserId()) {
+                o2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a2, new Utilities.Callback(this) {
+                    public final wt0 f34004b;
 
-    public int f34335m;
+                    {
+                        this.f34004b = this;
+                    }
 
-    public int f34336n;
-
-    public boolean f34337o;
-
-    public int f34338p;
-
-    public boolean f34340r;
-
-    public int f34342t;
-
-    public int f34343u;
-    public boolean v;
-
-    public boolean f34344w;
-
-    public final ArrayList f34325a = new ArrayList();
-
-    public final SparseArray[] f34326b = {new SparseArray(), new SparseArray()};
-
-    public final ArrayList f34327c = new ArrayList();
-    public final HashMap d = new HashMap();
-
-    public final ArrayList f34328e = new ArrayList();
-
-    public final int[] f34329f = {0, 0};
-
-    public final boolean[] f34331i = {false, true};
-
-    public final int[] f34332j = {0, 0};
-
-    public boolean f34334l = true;
-
-    public int f34339q = 0;
-
-    public final ArrayList f34341s = new ArrayList();
-
-    public f2.d1 f34345x = new f2.d1();
-
-    public final boolean a(MessageObject messageObject, int i10, boolean z10, boolean z11) {
-        SparseArray[] sparseArrayArr = this.f34326b;
-        if (sparseArrayArr[i10].indexOfKey(messageObject.getId()) >= 0) {
-            return false;
-        }
-        String str = messageObject.monthKey;
-        HashMap map = this.d;
-        ArrayList arrayList = (ArrayList) map.get(str);
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-            map.put(messageObject.monthKey, arrayList);
-            ArrayList arrayList2 = this.f34327c;
-            if (z10) {
-                arrayList2.add(0, messageObject.monthKey);
+                    @Override
+                    public final void run(Object obj) {
+                        Boolean bool = (Boolean) obj;
+                        switch (r2) {
+                            case 0:
+                                wt0 wt0Var = this.f34004b;
+                                ArrayList arrayList = wt0Var.f34370x;
+                                boolean booleanValue = bool.booleanValue();
+                                wt0Var.f34365f = booleanValue;
+                                wt0Var.h = true;
+                                if (booleanValue) {
+                                    int size = arrayList.size();
+                                    for (int i10 = 0; i10 < size; i10++) {
+                                        ((xt0) arrayList.get(i10)).L();
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                wt0 wt0Var2 = this.f34004b;
+                                ArrayList arrayList2 = wt0Var2.f34370x;
+                                boolean booleanValue2 = bool.booleanValue();
+                                wt0Var2.f34365f = booleanValue2;
+                                wt0Var2.h = true;
+                                if (booleanValue2) {
+                                    int size2 = arrayList2.size();
+                                    for (int i11 = 0; i11 < size2; i11++) {
+                                        ((xt0) arrayList2.get(i11)).L();
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+        } else if (o2Var instanceof ProfileActivity) {
+            ProfileActivity profileActivity = (ProfileActivity) o2Var;
+            if (profileActivity.f35941d1) {
+                this.f34367r = profileActivity.getUserConfig().getClientUserId();
+                this.f34368s = profileActivity.a();
             } else {
-                arrayList2.add(messageObject.monthKey);
+                long a3 = profileActivity.a();
+                this.f34367r = a3;
+                this.f34368s = profileActivity.f35934c1;
+                TLRPC.ChatFull chatFull2 = profileActivity.f36032q2;
+                if (chatFull2 != null) {
+                    c(chatFull2);
+                }
+                if (a3 != o2Var.getUserConfig().getClientUserId()) {
+                    o2Var.getMessagesController().getSavedMessagesController().hasSavedMessages(a3, new Utilities.Callback(this) {
+                        public final wt0 f34004b;
+
+                        {
+                            this.f34004b = this;
+                        }
+
+                        @Override
+                        public final void run(Object obj) {
+                            Boolean bool = (Boolean) obj;
+                            switch (r2) {
+                                case 0:
+                                    wt0 wt0Var = this.f34004b;
+                                    ArrayList arrayList = wt0Var.f34370x;
+                                    boolean booleanValue = bool.booleanValue();
+                                    wt0Var.f34365f = booleanValue;
+                                    wt0Var.h = true;
+                                    if (booleanValue) {
+                                        int size = arrayList.size();
+                                        for (int i10 = 0; i10 < size; i10++) {
+                                            ((xt0) arrayList.get(i10)).L();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    wt0 wt0Var2 = this.f34004b;
+                                    ArrayList arrayList2 = wt0Var2.f34370x;
+                                    boolean booleanValue2 = bool.booleanValue();
+                                    wt0Var2.f34365f = booleanValue2;
+                                    wt0Var2.h = true;
+                                    if (booleanValue2) {
+                                        int size2 = arrayList2.size();
+                                        for (int i11 = 0; i11 < size2; i11++) {
+                                            ((xt0) arrayList2.get(i11)).L();
+                                        }
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                }
+            }
+        } else if (o2Var instanceof k90) {
+            this.f34367r = ((k90) o2Var).f30035e;
+        } else if (o2Var instanceof org.telegram.ui.dy) {
+            this.f34367r = o2Var.getUserConfig().getClientUserId();
+        }
+        if (this.v == 0 && DialogObject.isChatDialog(this.f34367r) && (chatFull = o2Var.getMessagesController().getChatFull(-this.f34367r)) != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0) {
+                this.v = -j10;
             }
         }
-        ArrayList arrayList3 = this.f34325a;
-        if (z10) {
-            arrayList.add(0, messageObject);
-            arrayList3.add(0, messageObject);
+        this.f34366n = new tt0[9];
+        int i10 = 0;
+        while (true) {
+            tt0[] tt0VarArr = this.f34366n;
+            if (i10 >= tt0VarArr.length) {
+                break;
+            }
+            tt0VarArr[i10] = new tt0();
+            tt0 tt0Var = this.f34366n[i10];
+            if (DialogObject.isEncryptedDialog(this.f34367r)) {
+                i9 = Integer.MIN_VALUE;
+            } else {
+                i9 = Integer.MAX_VALUE;
+            }
+            tt0Var.f32795j[0] = i9;
+            this.f34366n[i10].f32795j[1] = Integer.MAX_VALUE;
+            i10++;
+        }
+        a();
+        org.telegram.ui.ActionBar.o2 o2Var2 = this.f34369w;
+        if (o2Var2 == null) {
+            this.A = null;
         } else {
-            arrayList.add(messageObject);
-            arrayList3.add(messageObject);
-        }
-        sparseArrayArr[i10].put(messageObject.getId(), messageObject);
-        int[] iArr = this.f34332j;
-        if (z11) {
-            iArr[i10] = Math.max(messageObject.getId(), iArr[i10]);
-            this.f34333k = Math.min(messageObject.getId(), this.f34333k);
-        } else if (messageObject.getId() > 0) {
-            iArr[i10] = Math.min(messageObject.getId(), iArr[i10]);
-            this.f34333k = Math.max(messageObject.getId(), this.f34333k);
-        }
-        if (!this.v && messageObject.isVideo()) {
-            this.v = true;
-        }
-        if (!this.f34344w && messageObject.isPhoto()) {
-            this.f34344w = true;
-        }
-        return true;
-    }
-
-    public final MessageObject b(int i10, int i11) {
-        SparseArray[] sparseArrayArr = this.f34326b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i11].get(i10);
-        if (messageObject == null) {
-            return null;
-        }
-        String str = messageObject.monthKey;
-        HashMap map = this.d;
-        ArrayList arrayList = (ArrayList) map.get(str);
-        if (arrayList == null) {
-            return null;
-        }
-        arrayList.remove(messageObject);
-        this.f34325a.remove(messageObject);
-        sparseArrayArr[i11].remove(messageObject.getId());
-        if (arrayList.isEmpty()) {
-            map.remove(messageObject.monthKey);
-            this.f34327c.remove(messageObject.monthKey);
-        }
-        int[] iArr = this.f34329f;
-        int i12 = iArr[i11] - 1;
-        iArr[i11] = i12;
-        if (i12 < 0) {
-            iArr[i11] = 0;
-        }
-        return messageObject;
-    }
-
-    public final ArrayList c() {
-        return this.f34340r ? this.f34341s : this.f34325a;
-    }
-
-    public final int d() {
-        return this.f34340r ? this.f34342t : this.f34335m;
-    }
-
-    public final int e() {
-        int[] iArr = this.f34329f;
-        return iArr[0] + iArr[1];
-    }
-
-    public final void f(int i10, int i11, int i12) {
-        SparseArray[] sparseArrayArr = this.f34326b;
-        MessageObject messageObject = (MessageObject) sparseArrayArr[i10].get(i11);
-        if (messageObject != null) {
-            sparseArrayArr[i10].remove(i11);
-            sparseArrayArr[i10].put(i12, messageObject);
-            messageObject.messageOwner.f22401id = i12;
-            int[] iArr = this.f34332j;
-            iArr[i10] = Math.min(i12, iArr[i10]);
+            this.A = o2Var2.getNotificationCenter().createObserversGroup(this).add(NotificationCenter.mediaCountsDidLoad).add(NotificationCenter.mediaCountDidLoad).add(NotificationCenter.didReceiveNewMessages).add(NotificationCenter.messageReceivedByServer).add(NotificationCenter.mediaDidLoad).add(NotificationCenter.messagesDeleted).add(NotificationCenter.replaceMessagesObjects).add(NotificationCenter.chatInfoDidLoad).add(NotificationCenter.fileLoaded).add(NotificationCenter.storiesListUpdated).add(NotificationCenter.savedMessagesDialogsUpdate);
         }
     }
 
-    public final void g(boolean z10) {
-        if (this.f34340r == z10) {
-            return;
+    public final void a() {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f34369w;
+        if (o2Var != null) {
+            o2Var.getMediaDataController().getMediaCounts(this.f34367r, this.f34368s, o2Var.getClassGuid());
+            if (this.v != 0) {
+                o2Var.getMediaDataController().getMediaCounts(this.v, this.f34368s, o2Var.getClassGuid());
+            }
         }
-        this.f34340r = z10;
-        if (z10) {
-            this.f34342t = this.f34335m;
-            this.f34343u = this.f34336n;
-            ArrayList arrayList = this.f34341s;
-            arrayList.clear();
-            arrayList.addAll(this.f34325a);
+    }
+
+    public final void b(org.telegram.ui.ActionBar.o2 o2Var) {
+        if (o2Var == this.f34369w) {
+            this.f34370x.clear();
+            NotificationCenter.ObserversGroup observersGroup = this.A;
+            if (observersGroup != null) {
+                observersGroup.removeAllObservers();
+            }
         }
+    }
+
+    public final void c(TLRPC.ChatFull chatFull) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f34369w;
+        if (o2Var != null && chatFull != null) {
+            long j10 = chatFull.migrated_from_chat_id;
+            if (j10 != 0 && this.v == 0) {
+                this.v = -j10;
+                o2Var.getMediaDataController().getMediaCounts(this.v, this.f34368s, o2Var.getClassGuid());
+            }
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int r25, int r26, java.lang.Object... r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wt0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

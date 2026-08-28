@@ -1,129 +1,120 @@
 package zf;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import lh.p6;
-import lh.r5;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.da;
+import android.graphics.Shader;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+public class z0 {
+    public final b6 f50788a;
+    public LinearGradient d;
+    public final int f50793g;
+    public final int h;
+    public final int f50794i;
+    public final int f50795j;
+    public boolean f50798m;
+    public boolean f50799n;
+    public float f50789b = 0.5f;
+    public float f50790c = 0.5f;
+    public final Matrix f50791e = new Matrix();
+    public final Paint f50792f = new Paint(1);
+    public final int[] f50797l = new int[5];
+    public float f50800o = 1.0f;
+    public float f50801p = 1.5f;
+    public float f50802q = 0.0f;
+    public final int f50796k = -1;
 
-public final class z0 extends org.telegram.ui.Cells.s1 {
-    public final da Be;
-    public final float[] Ce;
-    public final Path De;
-    public final Paint Ee;
-    public final Rect Fe;
-    public final RectF Ge;
-    public final a1 He;
-
-    public z0(a1 a1Var, Context context, int i10, com.google.firebase.messaging.m mVar) {
-        super(context, i10, false, null, mVar);
-        this.He = a1Var;
-        this.Be = new da(a1Var.d, this, 10, false);
-        this.Ce = new float[8];
-        this.De = new Path();
-        Paint paint = new Paint();
-        this.Ee = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.Fe = new Rect();
-        this.Ge = new RectF();
+    public z0(int i9, int i10, int i11, int i12, b6 b6Var) {
+        this.f50788a = b6Var;
+        this.f50793g = i9;
+        this.h = i10;
+        this.f50794i = i11;
+        this.f50795j = i12;
     }
 
-    @Override
-    public final Paint L2(String str) {
-        if ("paintChatActionBackground".equals(str)) {
-            this.He.h.f50392r0 = true;
-            Paint paintC = this.Be.c(1.0f);
-            if (paintC != null) {
-                return paintC;
-            }
-        }
-        return super.L2(str);
-    }
-
-    @Override
-    public final boolean Z1(Canvas canvas) {
-        p6 p6Var;
-        float[] fArr;
-        ImageReceiver photoImage = getPhotoImage();
-        a1 a1Var = this.He;
-        r5 r5Var = a1Var.h;
-        if (!a1Var.f50335f || photoImage == null || (((p6Var = a1Var.f50334e) == null || !p6Var.f16531g || !p6Var.d || !r5Var.f50394t0) && !r5Var.f50391q0 && (r5Var.f50393s0 == null || !r5Var.I0.E0))) {
-            return super.Z1(canvas);
-        }
-        int i10 = 0;
-        while (true) {
-            int length = photoImage.getRoundRadius().length;
-            fArr = this.Ce;
-            if (i10 >= length) {
-                break;
-            }
-            int i11 = i10 * 2;
-            fArr[i11] = photoImage.getRoundRadius()[i10];
-            fArr[i11 + 1] = photoImage.getRoundRadius()[i10];
-            i10++;
-        }
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(photoImage.getImageX(), photoImage.getImageY(), photoImage.getImageX2(), photoImage.getImageY2());
-        Path path = this.De;
-        path.rewind();
-        path.addRoundRect(rectF, fArr, Path.Direction.CW);
-        TextureView textureView = r5Var.f50393s0;
-        if (textureView == null || !r5Var.I0.E0) {
-            canvas.drawPath(path, this.Ee);
-            return true;
-        }
-        Bitmap bitmap = textureView.getBitmap();
-        if (bitmap == null) {
-            return super.Z1(canvas);
-        }
-        canvas.save();
-        canvas.clipPath(path);
-        canvas.translate(-getX(), -getY());
-        float fMax = Math.max(photoImage.getImageWidth() / r5Var.f50395u0, photoImage.getImageHeight() / r5Var.f50396v0);
-        canvas.translate(photoImage.getCenterX() - ((r5Var.f50395u0 * fMax) / 2.0f), photoImage.getCenterY() - ((r5Var.f50396v0 * fMax) / 2.0f));
-        canvas.scale((r5Var.f50395u0 / r5Var.f50393s0.getWidth()) * fMax, (r5Var.f50396v0 / r5Var.f50393s0.getHeight()) * fMax);
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        Rect rect = this.Fe;
-        rect.set(0, 0, width, height);
-        float width2 = r5Var.f50393s0.getWidth();
-        float height2 = r5Var.f50393s0.getHeight();
-        RectF rectF2 = this.Ge;
-        rectF2.set(0.0f, 0.0f, width2, height2);
-        canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
-        canvas.restore();
-        return true;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        a1 a1Var = this.He;
-        p6 p6Var = a1Var.f50334e;
-        if ((p6Var != null && p6Var.f16531g && p6Var.d) || a1Var.h.f50391q0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+    public final void a() {
+        int b10;
+        int b11;
+        int b12;
+        int b13 = b(this.f50793g);
+        int b14 = b(this.h);
+        int i9 = this.f50794i;
+        if (i9 < 0) {
+            b10 = 0;
         } else {
-            canvas2 = canvas;
-            canvas2.save();
+            b10 = b(i9);
         }
-        R1(canvas2);
-        canvas2.restore();
+        int i10 = this.f50795j;
+        if (i10 < 0) {
+            b11 = 0;
+        } else {
+            b11 = b(i10);
+        }
+        int i11 = this.f50796k;
+        if (i11 < 0) {
+            b12 = 0;
+        } else {
+            b12 = b(i11);
+        }
+        LinearGradient linearGradient = this.d;
+        int[] iArr = this.f50797l;
+        if (linearGradient != null && iArr[0] == b13 && iArr[1] == b14 && iArr[2] == b10 && iArr[3] == b11 && iArr[4] == b12) {
+            return;
+        }
+        iArr[0] = b13;
+        iArr[1] = b14;
+        iArr[2] = b10;
+        iArr[3] = b11;
+        iArr[4] = b12;
+        if (b10 == 0) {
+            this.d = new LinearGradient(0.0f, this.f50800o * 100.0f, this.f50801p * 100.0f, this.f50802q * 100.0f, new int[]{iArr[0], iArr[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        } else if (b11 == 0) {
+            this.d = new LinearGradient(0.0f, this.f50800o * 100.0f, this.f50801p * 100.0f, this.f50802q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
+        } else if (b12 == 0) {
+            this.d = new LinearGradient(0.0f, this.f50800o * 100.0f, this.f50801p * 100.0f, this.f50802q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            this.d = new LinearGradient(0.0f, this.f50800o * 100.0f, this.f50801p * 100.0f, this.f50802q * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3], iArr[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.d.setLocalMatrix(this.f50791e);
+        this.f50792f.setShader(this.d);
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final int b(int i9) {
+        int c10 = c(i9);
+        if (this.f50799n) {
+            return Color.argb(Color.alpha(c10), Color.red(c10) - 15, Color.green(c10) - 15, Color.blue(c10) - 15);
+        }
+        return c10;
+    }
+
+    public int c(int i9) {
+        return f6.v0(i9, this.f50788a);
+    }
+
+    public final void d(int i9, float f10, int i10, int i11, float f11, int i12) {
+        a();
+        boolean z10 = this.f50798m;
+        Matrix matrix = this.f50791e;
+        if (z10) {
+            matrix.reset();
+            matrix.postScale((i11 - i9) / 100.0f, (i12 - i10) / 100.0f, this.f50789b * 100.0f, this.f50790c * 100.0f);
+            matrix.postTranslate(f10, f11);
+            this.d.setLocalMatrix(matrix);
+            return;
+        }
+        int i13 = i12 - i10;
+        int i14 = i13 + i13;
+        a();
+        matrix.reset();
+        matrix.postScale((i11 - i9) / 100.0f, i14 / 100.0f, 75.0f, 50.0f);
+        matrix.postTranslate(f10, (-i14) + f11);
+        this.d.setLocalMatrix(matrix);
+    }
+
+    public final void e(RectF rectF) {
+        d((int) rectF.left, 0.0f, (int) rectF.top, (int) rectF.right, 0.0f, (int) rectF.bottom);
     }
 }

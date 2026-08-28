@@ -7,42 +7,78 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
-
 public final class e extends InputConnectionWrapper {
-
-    public final f f48001a;
+    public final f f47590a;
 
     public e(InputConnection inputConnection, f fVar) {
         super(inputConnection, false);
-        this.f48001a = fVar;
+        this.f47590a = fVar;
     }
 
     @Override
-    public final boolean performPrivateCommand(String str, Bundle bundle) throws Throwable {
+    public final boolean performPrivateCommand(String str, Bundle bundle) {
         boolean z10;
+        String str2;
         ResultReceiver resultReceiver;
-        f fVar = this.f48001a;
-        boolean zD = false;
-        zD = false;
-        zD = false;
-        zD = false;
+        String str3;
+        String str4;
+        String str5;
+        String str6;
+        String str7;
+        f fVar = this.f47590a;
+        boolean z11 = false;
+        z11 = false;
+        z11 = false;
+        z11 = false;
         if (bundle != null) {
-            if (!TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
-                z10 = TextUtils.equals("android.support.v13.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str);
+            if (TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
+                z10 = false;
+            } else {
+                z10 = TextUtils.equals("android.support.v13.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str) ? true : true;
+            }
+            if (z10) {
+                str2 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+            } else {
+                str2 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
             }
             try {
-                resultReceiver = (ResultReceiver) bundle.getParcelable(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER");
+                resultReceiver = (ResultReceiver) bundle.getParcelable(str2);
+                if (z10) {
+                    str3 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+                } else {
+                    str3 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+                }
                 try {
-                    Uri uri = (Uri) bundle.getParcelable(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_URI" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI");
-                    ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION");
-                    Uri uri2 = (Uri) bundle.getParcelable(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI");
-                    int i10 = bundle.getInt(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS");
-                    Bundle bundle2 = (Bundle) bundle.getParcelable(z10 ? "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS" : "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS");
+                    Uri uri = (Uri) bundle.getParcelable(str3);
+                    if (z10) {
+                        str4 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+                    } else {
+                        str4 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+                    }
+                    ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(str4);
+                    if (z10) {
+                        str5 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    } else {
+                        str5 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    }
+                    Uri uri2 = (Uri) bundle.getParcelable(str5);
+                    if (z10) {
+                        str6 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    } else {
+                        str6 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    }
+                    int i9 = bundle.getInt(str6);
+                    if (z10) {
+                        str7 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    } else {
+                        str7 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    }
+                    Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
                     if (uri != null && clipDescription != null) {
-                        zD = fVar.d(new j(uri, clipDescription, uri2), i10, bundle2);
+                        z11 = fVar.h(new j(uri, clipDescription, uri2), i9, bundle2);
                     }
                     if (resultReceiver != null) {
-                        resultReceiver.send(zD ? 1 : 0, null);
+                        resultReceiver.send(z11 ? 1 : 0, null);
                     }
                 } catch (Throwable th) {
                     th = th;
@@ -56,7 +92,7 @@ public final class e extends InputConnectionWrapper {
                 resultReceiver = null;
             }
         }
-        if (zD) {
+        if (z11) {
             return true;
         }
         return super.performPrivateCommand(str, bundle);

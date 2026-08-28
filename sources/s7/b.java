@@ -1,7 +1,3 @@
 package s7;
-
-public interface b {
-    void onCancel();
-
-    void onFinish();
+public final class b extends b7.a {
 }

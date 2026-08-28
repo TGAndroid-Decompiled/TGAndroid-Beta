@@ -1,4 +1,5 @@
 package v8;
 
-public @interface a {
+import s8.c;
+public class a extends c {
 }

@@ -14,15 +14,16 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k61;
 import org.telegram.ui.LaunchActivity;
-
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
     public static final int AUTODOWNLOAD_TYPE_AUDIO = 2;
     public static final int AUTODOWNLOAD_TYPE_DOCUMENT = 8;
@@ -69,10 +70,10 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public class DownloadingDocumentEntry {
         int hash;
-
-        long f19610id;
+        long f19637id;
 
         private DownloadingDocumentEntry() {
+            DownloadController.this = r1;
         }
     }
 
@@ -88,8 +89,11 @@ public class DownloadController extends BaseController implements NotificationCe
         void onSuccessDownload(String str);
     }
 
-    public DownloadController(int i10) {
-        super(i10);
+    public DownloadController(int i9) {
+        super(i9);
+        Integer num;
+        Integer valueOf;
+        Integer valueOf2;
         this.lastCheckMask = 0;
         this.photoDownloadQueue = new ArrayList<>();
         this.audioDownloadQueue = new ArrayList<>();
@@ -109,6 +113,10 @@ public class DownloadController extends BaseController implements NotificationCe
         this.recentDownloadingFiles = new ArrayList<>();
         this.unviewedDownloads = new SparseArray<>();
         this.clearUnviewedDownloadsRunnale = new Runnable() {
+            {
+                DownloadController.this = this;
+            }
+
             @Override
             public void run() {
                 DownloadController.this.clearUnviewedDownloads();
@@ -121,48 +129,51 @@ public class DownloadController extends BaseController implements NotificationCe
         preset.preloadStories = false;
         this.mediumPreset = new Preset(mainSettings.getString("preset1", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
         this.highPreset = new Preset(mainSettings.getString("preset2", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
-        boolean zContains = mainSettings.contains("newConfig");
-        if (zContains || !getUserConfig().isClientActivated()) {
-            this.mobilePreset = new Preset(mainSettings.getString("mobilePreset", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
-            this.wifiPreset = new Preset(mainSettings.getString("wifiPreset", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
-            this.roamingPreset = new Preset(mainSettings.getString("roamingPreset", "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0"), "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0");
-            this.currentMobilePreset = mainSettings.getInt("currentMobilePreset", 3);
-            this.currentWifiPreset = mainSettings.getInt("currentWifiPreset", 3);
-            this.currentRoamingPreset = mainSettings.getInt("currentRoamingPreset", 3);
-            if (!zContains) {
-                mainSettings.edit().putBoolean("newConfig", true).commit();
-            }
-        } else {
+        boolean contains = mainSettings.contains("newConfig");
+        if (!contains && getUserConfig().isClientActivated()) {
             int[] iArr = new int[4];
             int[] iArr2 = new int[4];
             int[] iArr3 = new int[4];
             long[] jArr = new long[7];
             long[] jArr2 = new long[7];
             long[] jArr3 = new long[7];
-            int i11 = 0;
-            for (int i12 = 4; i11 < i12; i12 = 4) {
-                int i13 = i11;
+            int i10 = 0;
+            for (int i11 = 4; i10 < i11; i11 = 4) {
+                int i12 = i10;
                 StringBuilder sb2 = new StringBuilder("mobileDataDownloadMask");
-                Object objValueOf = "";
-                if (i13 != 0) {
-                    objValueOf = Integer.valueOf(i13);
-                }
-                sb2.append(objValueOf);
-                String string = sb2.toString();
-                if (i13 == 0 || mainSettings.contains(string)) {
-                    iArr[i13] = mainSettings.getInt(string, 13);
-                    StringBuilder sb3 = new StringBuilder("wifiDownloadMask");
-                    sb3.append(i13 == 0 ? "" : Integer.valueOf(i13));
-                    iArr2[i13] = mainSettings.getInt(sb3.toString(), 13);
-                    StringBuilder sb4 = new StringBuilder("roamingDownloadMask");
-                    sb4.append(i13 == 0 ? objValueOf : Integer.valueOf(i13));
-                    iArr3[i13] = mainSettings.getInt(sb4.toString(), 1);
+                Object obj = "";
+                if (i12 == 0) {
+                    num = "";
                 } else {
-                    iArr[i13] = iArr[0];
-                    iArr2[i13] = iArr2[0];
-                    iArr3[i13] = iArr3[0];
+                    num = "";
+                    obj = Integer.valueOf(i12);
                 }
-                i11 = i13 + 1;
+                sb2.append(obj);
+                String sb3 = sb2.toString();
+                if (i12 != 0 && !mainSettings.contains(sb3)) {
+                    iArr[i12] = iArr[0];
+                    iArr2[i12] = iArr2[0];
+                    iArr3[i12] = iArr3[0];
+                } else {
+                    iArr[i12] = mainSettings.getInt(sb3, 13);
+                    StringBuilder sb4 = new StringBuilder("wifiDownloadMask");
+                    if (i12 == 0) {
+                        valueOf = num;
+                    } else {
+                        valueOf = Integer.valueOf(i12);
+                    }
+                    sb4.append(valueOf);
+                    iArr2[i12] = mainSettings.getInt(sb4.toString(), 13);
+                    StringBuilder sb5 = new StringBuilder("roamingDownloadMask");
+                    if (i12 == 0) {
+                        valueOf2 = num;
+                    } else {
+                        valueOf2 = Integer.valueOf(i12);
+                    }
+                    sb5.append(valueOf2);
+                    iArr3[i12] = mainSettings.getInt(sb5.toString(), 1);
+                }
+                i10 = i12 + 1;
             }
             jArr[2] = mainSettings.getLong("mobileMaxDownloadSize2", this.mediumPreset.sizes[1]);
             jArr[3] = mainSettings.getLong("mobileMaxDownloadSize3", this.mediumPreset.sizes[2]);
@@ -174,21 +185,35 @@ public class DownloadController extends BaseController implements NotificationCe
             this.mobilePreset = new Preset(iArr, this.mediumPreset.sizes[0], jArr[2], jArr[3], true, true, z10, false, 100, false);
             this.wifiPreset = new Preset(iArr2, this.highPreset.sizes[0], jArr2[2], jArr2[3], true, true, z10, false, 100, true);
             this.roamingPreset = new Preset(iArr3, this.lowPreset.sizes[0], jArr3[2], jArr3[3], false, false, z10, true, 50, true);
-            SharedPreferences.Editor editorEdit = mainSettings.edit();
-            editorEdit.putBoolean("newConfig", true);
-            editorEdit.putString("mobilePreset", this.mobilePreset.toString());
-            editorEdit.putString("wifiPreset", this.wifiPreset.toString());
-            editorEdit.putString("roamingPreset", this.roamingPreset.toString());
+            SharedPreferences.Editor edit = mainSettings.edit();
+            edit.putBoolean("newConfig", true);
+            edit.putString("mobilePreset", this.mobilePreset.toString());
+            edit.putString("wifiPreset", this.wifiPreset.toString());
+            edit.putString("roamingPreset", this.roamingPreset.toString());
             this.currentMobilePreset = 3;
-            editorEdit.putInt("currentMobilePreset", 3);
+            edit.putInt("currentMobilePreset", 3);
             this.currentWifiPreset = 3;
-            editorEdit.putInt("currentWifiPreset", 3);
+            edit.putInt("currentWifiPreset", 3);
             this.currentRoamingPreset = 3;
-            editorEdit.putInt("currentRoamingPreset", 3);
-            editorEdit.commit();
+            edit.putInt("currentRoamingPreset", 3);
+            edit.commit();
+        } else {
+            this.mobilePreset = new Preset(mainSettings.getString("mobilePreset", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
+            this.wifiPreset = new Preset(mainSettings.getString("wifiPreset", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
+            this.roamingPreset = new Preset(mainSettings.getString("roamingPreset", "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0"), "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0");
+            this.currentMobilePreset = mainSettings.getInt("currentMobilePreset", 3);
+            this.currentWifiPreset = mainSettings.getInt("currentWifiPreset", 3);
+            this.currentRoamingPreset = mainSettings.getInt("currentRoamingPreset", 3);
+            if (!contains) {
+                mainSettings.edit().putBoolean("newConfig", true).commit();
+            }
         }
-        AndroidUtilities.runOnUIThread(new a2(this, 1));
+        AndroidUtilities.runOnUIThread(new z1(this, 1));
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+            {
+                DownloadController.this = this;
+            }
+
             @Override
             public void onReceive(Context context, Intent intent) {
                 DownloadController.this.checkAutodownloadSettings();
@@ -205,131 +230,35 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    private int canDownloadMediaInternal(MessageObject messageObject) {
-        TLRPC.Message message;
-        int i10;
-        char c10;
-        Preset currentMobilePreset;
-        int i11;
-        long jMax;
-        long messageSize;
-        if (messageObject == null || (message = messageObject.messageOwner) == null) {
-            return 0;
-        }
-        if (message.media instanceof TLRPC.TL_messageMediaStory) {
-            return canPreloadStories() ? 2 : 0;
-        }
-        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
-        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
-            i10 = 4;
-        } else if (MessageObject.isVoiceMessage(message)) {
-            i10 = 2;
-        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
-            i10 = 1;
-        } else {
-            if (MessageObject.getDocument(message) == null) {
-                return 0;
-            }
-            i10 = 8;
-        }
-        TLRPC.Peer peer = message.peer_id;
-        if (peer == null) {
-            c10 = 1;
-        } else {
-            if (peer.user_id != 0) {
-                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
-                    c10 = 1;
-                }
-            } else if (peer.chat_id == 0) {
-                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
-                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
-                    c10 = 3;
-                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                c10 = 2;
-            }
-            c10 = 0;
-        }
-        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        if (autodownloadNetworkType == 1) {
-            if (!this.wifiPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentWiFiPreset();
-        } else if (autodownloadNetworkType == 2) {
-            if (!this.roamingPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentRoamingPreset();
-        } else {
-            if (!this.mobilePreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentMobilePreset();
-        }
-        int i12 = currentMobilePreset.mask[c10];
-        if (i10 == 2) {
-            i11 = 0;
-            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i10)]);
-        } else {
-            i11 = 0;
-            jMax = currentMobilePreset.sizes[typeToIndex(i10)];
-        }
-        k61 k61Var = messageObject.highestQuality;
-        if (k61Var != null) {
-            messageSize = k61Var.f30012g.size;
-        } else {
-            k61 k61Var2 = messageObject.thumbQuality;
-            messageSize = k61Var2 != null ? k61Var2.f30012g.size : MessageObject.getMessageSize(message);
-        }
-        if (zIsVideoMessage && currentMobilePreset.preloadVideo && messageSize > jMax && jMax > 2097152) {
-            if ((i12 & i10) != 0) {
-                return 2;
-            }
-            return i11;
-        }
-        if ((i10 == 1 || (messageSize != 0 && messageSize <= jMax)) && (i10 == 2 || (i12 & i10) != 0)) {
-            return 1;
-        }
-        return i11;
+    private int canDownloadMediaInternal(org.telegram.messenger.MessageObject r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMediaInternal(org.telegram.messenger.MessageObject):int");
     }
 
-    private void checkDownloadFinished(String str, int i10) {
+    private void checkDownloadFinished(String str, int i9) {
         DownloadObject downloadObject = this.downloadQueueKeys.get(str);
         if (downloadObject != null) {
             this.downloadQueueKeys.remove(str);
-            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f19611id), Integer.valueOf(downloadObject.type)));
-            if (i10 == 0 || i10 == 2) {
-                getMessagesStorage().removeFromDownloadQueue(downloadObject.f19611id, downloadObject.type, false);
+            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f19638id), Integer.valueOf(downloadObject.type)));
+            if (i9 == 0 || i9 == 2) {
+                getMessagesStorage().removeFromDownloadQueue(downloadObject.f19638id, downloadObject.type, false);
             }
-            int i11 = downloadObject.type;
-            if (i11 == 1) {
+            int i10 = downloadObject.type;
+            if (i10 == 1) {
                 this.photoDownloadQueue.remove(downloadObject);
                 if (this.photoDownloadQueue.isEmpty()) {
                     newDownloadObjectsAvailable(1);
-                    return;
                 }
-                return;
-            }
-            if (i11 == 2) {
+            } else if (i10 == 2) {
                 this.audioDownloadQueue.remove(downloadObject);
                 if (this.audioDownloadQueue.isEmpty()) {
                     newDownloadObjectsAvailable(2);
-                    return;
                 }
-                return;
-            }
-            if (i11 == 4) {
+            } else if (i10 == 4) {
                 this.videoDownloadQueue.remove(downloadObject);
                 if (this.videoDownloadQueue.isEmpty()) {
                     newDownloadObjectsAvailable(4);
-                    return;
                 }
-                return;
-            }
-            if (i11 == 8) {
+            } else if (i10 == 8) {
                 this.documentDownloadQueue.remove(downloadObject);
                 if (this.documentDownloadQueue.isEmpty()) {
                     newDownloadObjectsAvailable(8);
@@ -338,64 +267,64 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public static DownloadController getInstance(int i10) {
+    public static DownloadController getInstance(int i9) {
         DownloadController downloadController;
-        DownloadController downloadController2 = Instance[i10];
-        if (downloadController2 != null) {
-            return downloadController2;
-        }
-        synchronized (DownloadController.class) {
-            try {
-                downloadController = Instance[i10];
-                if (downloadController == null) {
-                    DownloadController[] downloadControllerArr = Instance;
-                    DownloadController downloadController3 = new DownloadController(i10);
-                    downloadControllerArr[i10] = downloadController3;
-                    downloadController = downloadController3;
+        DownloadController downloadController2 = Instance[i9];
+        if (downloadController2 == null) {
+            synchronized (DownloadController.class) {
+                try {
+                    downloadController = Instance[i9];
+                    if (downloadController == null) {
+                        DownloadController[] downloadControllerArr = Instance;
+                        DownloadController downloadController3 = new DownloadController(i9);
+                        downloadControllerArr[i9] = downloadController3;
+                        downloadController = downloadController3;
+                    }
+                } catch (Throwable th) {
+                    throw th;
                 }
-            } catch (Throwable th) {
-                throw th;
             }
+            return downloadController;
         }
-        return downloadController;
+        return downloadController2;
     }
 
     public static float getProgress(long[] jArr) {
-        if (jArr == null || jArr.length < 2) {
+        if (jArr != null && jArr.length >= 2) {
+            long j10 = jArr[1];
+            if (j10 != 0) {
+                return Math.min(1.0f, ((float) jArr[0]) / ((float) j10));
+            }
             return 0.0f;
         }
-        long j10 = jArr[1];
-        if (j10 == 0) {
-            return 0.0f;
-        }
-        return Math.min(1.0f, jArr[0] / j10);
+        return 0.0f;
     }
 
     public void lambda$clearRecentDownloadedFiles$12() {
         try {
             getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE state = 1").stepThis().dispose();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
     public void lambda$deleteRecentFiles$13(ArrayList arrayList) {
         try {
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                sQLitePreparedStatementExecuteFast.requery();
-                sQLitePreparedStatementExecuteFast.bindInteger(1, ((MessageObject) arrayList.get(i10)).getDocument().dc_id);
-                sQLitePreparedStatementExecuteFast.bindLong(2, ((MessageObject) arrayList.get(i10)).getDocument().f22386id);
-                sQLitePreparedStatementExecuteFast.step();
+            SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                executeFast.requery();
+                executeFast.bindInteger(1, ((MessageObject) arrayList.get(i9)).getDocument().dc_id);
+                executeFast.bindLong(2, ((MessageObject) arrayList.get(i9)).getDocument().f22386id);
+                executeFast.step();
                 try {
-                    FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i10)).messageOwner).delete();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                    FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i9)).messageOwner).delete();
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                 }
             }
-            sQLitePreparedStatementExecuteFast.dispose();
-        } catch (Exception e10) {
-            FileLog.e(e10);
+            executeFast.dispose();
+        } catch (Exception e11) {
+            FileLog.e(e11);
         }
     }
 
@@ -410,12 +339,13 @@ public class DownloadController extends BaseController implements NotificationCe
             this.lowPreset.preloadStories = false;
             this.mediumPreset.set(autodownloadsettings.medium);
             this.highPreset.set(autodownloadsettings.high);
-            int i10 = 0;
-            while (i10 < 3) {
-                if (i10 == 0) {
+            for (int i9 = 0; i9 < 3; i9++) {
+                if (i9 == 0) {
                     preset = this.mobilePreset;
+                } else if (i9 == 1) {
+                    preset = this.wifiPreset;
                 } else {
-                    preset = i10 == 1 ? this.wifiPreset : this.roamingPreset;
+                    preset = this.roamingPreset;
                 }
                 if (preset.equals(this.lowPreset)) {
                     preset.set(autodownloadsettings.low);
@@ -425,16 +355,15 @@ public class DownloadController extends BaseController implements NotificationCe
                 } else if (preset.equals(this.highPreset)) {
                     preset.set(autodownloadsettings.high);
                 }
-                i10++;
             }
-            SharedPreferences.Editor editorEdit = MessagesController.getMainSettings(this.currentAccount).edit();
-            editorEdit.putString("mobilePreset", this.mobilePreset.toString());
-            editorEdit.putString("wifiPreset", this.wifiPreset.toString());
-            editorEdit.putString("roamingPreset", this.roamingPreset.toString());
-            editorEdit.putString("preset0", this.lowPreset.toString());
-            editorEdit.putString("preset1", this.mediumPreset.toString());
-            editorEdit.putString("preset2", this.highPreset.toString());
-            editorEdit.commit();
+            SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
+            edit.putString("mobilePreset", this.mobilePreset.toString());
+            edit.putString("wifiPreset", this.wifiPreset.toString());
+            edit.putString("roamingPreset", this.roamingPreset.toString());
+            edit.putString("preset0", this.lowPreset.toString());
+            edit.putString("preset1", this.mediumPreset.toString());
+            edit.putString("preset2", this.highPreset.toString());
+            edit.commit();
             this.lowPreset.toString();
             this.mediumPreset.toString();
             this.highPreset.toString();
@@ -443,7 +372,7 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadAutoDownloadConfig$2(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new d2(0, this, tLObject));
+        AndroidUtilities.runOnUIThread(new c2(0, this, tLObject));
     }
 
     public void lambda$loadDownloadingFiles$10(ArrayList arrayList, ArrayList arrayList2) {
@@ -458,28 +387,28 @@ public class DownloadController extends BaseController implements NotificationCe
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         ArrayList arrayList3 = new ArrayList();
         try {
-            SQLiteCursor sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
-            while (sQLiteCursorQueryFinalized.next()) {
-                NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
-                int iIntValue = sQLiteCursorQueryFinalized.intValue(1);
-                if (nativeByteBufferByteBufferValue != null) {
-                    TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
-                    if (messageTLdeserialize != null) {
-                        messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
-                        MessageObject messageObject = new MessageObject(this.currentAccount, messageTLdeserialize, false, false);
+            SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT data, state FROM downloading_documents ORDER BY date DESC", new Object[0]);
+            while (queryFinalized.next()) {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                int intValue = queryFinalized.intValue(1);
+                if (byteBufferValue != null) {
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    if (TLdeserialize != null) {
+                        TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(this.currentAccount).clientUserId);
+                        MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, false);
                         arrayList3.add(messageObject);
-                        if (iIntValue == 0) {
+                        if (intValue == 0) {
                             arrayList.add(messageObject);
                         } else {
                             arrayList2.add(messageObject);
                         }
                     }
-                    nativeByteBufferByteBufferValue.reuse();
+                    byteBufferValue.reuse();
                 }
             }
-            sQLiteCursorQueryFinalized.dispose();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            queryFinalized.dispose();
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
         getFileLoader().checkMediaExistance(arrayList);
         getFileLoader().checkMediaExistance(arrayList2);
@@ -497,76 +426,88 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$onDownloadComplete$6(MessageObject messageObject) {
+        int i9;
         try {
             Locale locale = Locale.ENGLISH;
-            getMessagesStorage().getDatabase().executeFast("UPDATE downloading_documents SET state = 1, date = " + System.currentTimeMillis() + " WHERE hash = " + messageObject.getDocument().dc_id + " AND id = " + messageObject.getDocument().f22386id).stepThis().dispose();
-            SQLiteCursor sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT COUNT(*) FROM downloading_documents WHERE state = 1", new Object[0]);
-            int iIntValue = sQLiteCursorQueryFinalized.next() ? sQLiteCursorQueryFinalized.intValue(0) : 0;
-            sQLiteCursorQueryFinalized.dispose();
-            SQLiteCursor sQLiteCursorQueryFinalized2 = getMessagesStorage().getDatabase().queryFinalized("SELECT state FROM downloading_documents WHERE state = 1", new Object[0]);
-            if (sQLiteCursorQueryFinalized2.next()) {
-                sQLiteCursorQueryFinalized2.intValue(0);
+            long currentTimeMillis = System.currentTimeMillis();
+            int i10 = messageObject.getDocument().dc_id;
+            long j10 = messageObject.getDocument().f22386id;
+            getMessagesStorage().getDatabase().executeFast("UPDATE downloading_documents SET state = 1, date = " + currentTimeMillis + " WHERE hash = " + i10 + " AND id = " + j10).stepThis().dispose();
+            SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT COUNT(*) FROM downloading_documents WHERE state = 1", new Object[0]);
+            if (queryFinalized.next()) {
+                i9 = queryFinalized.intValue(0);
+            } else {
+                i9 = 0;
             }
-            sQLiteCursorQueryFinalized2.dispose();
-            if (iIntValue > 100) {
-                SQLiteCursor sQLiteCursorQueryFinalized3 = getMessagesStorage().getDatabase().queryFinalized("SELECT hash, id FROM downloading_documents WHERE state = 1 ORDER BY date ASC LIMIT " + (100 - iIntValue), new Object[0]);
+            queryFinalized.dispose();
+            SQLiteCursor queryFinalized2 = getMessagesStorage().getDatabase().queryFinalized("SELECT state FROM downloading_documents WHERE state = 1", new Object[0]);
+            if (queryFinalized2.next()) {
+                queryFinalized2.intValue(0);
+            }
+            queryFinalized2.dispose();
+            if (i9 > 100) {
+                SQLiteDatabase database = getMessagesStorage().getDatabase();
+                SQLiteCursor queryFinalized3 = database.queryFinalized("SELECT hash, id FROM downloading_documents WHERE state = 1 ORDER BY date ASC LIMIT " + (100 - i9), new Object[0]);
                 ArrayList arrayList = new ArrayList();
-                while (sQLiteCursorQueryFinalized3.next()) {
+                while (queryFinalized3.next()) {
                     DownloadingDocumentEntry downloadingDocumentEntry = new DownloadingDocumentEntry();
-                    downloadingDocumentEntry.hash = sQLiteCursorQueryFinalized3.intValue(0);
-                    downloadingDocumentEntry.f19610id = sQLiteCursorQueryFinalized3.longValue(1);
+                    downloadingDocumentEntry.hash = queryFinalized3.intValue(0);
+                    downloadingDocumentEntry.f19637id = queryFinalized3.longValue(1);
                     arrayList.add(downloadingDocumentEntry);
                 }
-                sQLiteCursorQueryFinalized3.dispose();
-                SQLitePreparedStatement sQLitePreparedStatementExecuteFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    sQLitePreparedStatementExecuteFast.requery();
-                    sQLitePreparedStatementExecuteFast.bindInteger(1, ((DownloadingDocumentEntry) arrayList.get(i10)).hash);
-                    sQLitePreparedStatementExecuteFast.bindLong(2, ((DownloadingDocumentEntry) arrayList.get(i10)).f19610id);
-                    sQLitePreparedStatementExecuteFast.step();
+                queryFinalized3.dispose();
+                SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    executeFast.requery();
+                    executeFast.bindInteger(1, ((DownloadingDocumentEntry) arrayList.get(i11)).hash);
+                    executeFast.bindLong(2, ((DownloadingDocumentEntry) arrayList.get(i11)).f19637id);
+                    executeFast.step();
                 }
-                sQLitePreparedStatementExecuteFast.dispose();
+                executeFast.dispose();
             }
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
     public void lambda$onDownloadComplete$7(TLRPC.Document document, MessageObject messageObject) {
-        for (int i10 = 0; i10 < this.downloadingFiles.size(); i10++) {
-            if (this.downloadingFiles.get(i10).getDocument() != null && this.downloadingFiles.get(i10).getDocument().f22386id == document.f22386id) {
-                this.downloadingFiles.remove(i10);
-                for (int i11 = 0; i11 < this.recentDownloadingFiles.size(); i11++) {
-                    if (this.recentDownloadingFiles.get(i11).getDocument() != null && this.recentDownloadingFiles.get(i11).getDocument().f22386id == document.f22386id) {
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-                        getMessagesStorage().getStorageQueue().postRunnable(new b2(this, messageObject, 2));
-                        return;
+        for (int i9 = 0; i9 < this.downloadingFiles.size(); i9++) {
+            if (this.downloadingFiles.get(i9).getDocument() != null && this.downloadingFiles.get(i9).getDocument().f22386id == document.f22386id) {
+                this.downloadingFiles.remove(i9);
+                int i10 = 0;
+                while (true) {
+                    if (i10 < this.recentDownloadingFiles.size()) {
+                        if (this.recentDownloadingFiles.get(i10).getDocument() != null && this.recentDownloadingFiles.get(i10).getDocument().f22386id == document.f22386id) {
+                            break;
+                        }
+                        i10++;
+                    } else {
+                        this.recentDownloadingFiles.add(0, messageObject);
+                        putToUnviewedDownloads(messageObject);
+                        break;
                     }
                 }
-                this.recentDownloadingFiles.add(0, messageObject);
-                putToUnviewedDownloads(messageObject);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-                getMessagesStorage().getStorageQueue().postRunnable(new b2(this, messageObject, 2));
+                getMessagesStorage().getStorageQueue().postRunnable(new a2(this, messageObject, 2));
                 return;
             }
         }
     }
 
-    public void lambda$onDownloadFail$8(MessageObject messageObject, int i10) {
+    public void lambda$onDownloadFail$8(MessageObject messageObject, int i9) {
         TLRPC.Document document = messageObject.getDocument();
-        for (int i11 = 0; i11 < this.downloadingFiles.size(); i11++) {
-            TLRPC.Document document2 = this.downloadingFiles.get(i11).getDocument();
+        for (int i10 = 0; i10 < this.downloadingFiles.size(); i10++) {
+            TLRPC.Document document2 = this.downloadingFiles.get(i10).getDocument();
             if (document2 == null || (document != null && document2.f22386id == document.f22386id)) {
-                this.downloadingFiles.remove(i11);
+                this.downloadingFiles.remove(i10);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-                if (i10 == 0) {
+                if (i9 == 0) {
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.formatString("MessageNotFound", R.string.MessageNotFound, new Object[0]));
                     return;
+                } else if (i9 == -1) {
+                    LaunchActivity.E(2);
+                    return;
                 } else {
-                    if (i10 == -1) {
-                        LaunchActivity.E(2);
-                        return;
-                    }
                     return;
                 }
             }
@@ -575,13 +516,13 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public void lambda$onDownloadFail$9(MessageObject messageObject) {
         try {
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
-            sQLitePreparedStatementExecuteFast.bindInteger(1, messageObject.getDocument().dc_id);
-            sQLitePreparedStatementExecuteFast.bindLong(2, messageObject.getDocument().f22386id);
-            sQLitePreparedStatementExecuteFast.step();
-            sQLitePreparedStatementExecuteFast.dispose();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
+            executeFast.bindInteger(1, messageObject.getDocument().dc_id);
+            executeFast.bindLong(2, messageObject.getDocument().f22386id);
+            executeFast.step();
+            executeFast.dispose();
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
@@ -589,17 +530,17 @@ public class DownloadController extends BaseController implements NotificationCe
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageObject.messageOwner.getObjectSize());
             messageObject.messageOwner.serializeToStream(nativeByteBuffer);
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
-            sQLitePreparedStatementExecuteFast.bindByteBuffer(1, nativeByteBuffer);
-            sQLitePreparedStatementExecuteFast.bindInteger(2, messageObject.getDocument().dc_id);
-            sQLitePreparedStatementExecuteFast.bindLong(3, messageObject.getDocument().f22386id);
-            sQLitePreparedStatementExecuteFast.bindLong(4, System.currentTimeMillis());
-            sQLitePreparedStatementExecuteFast.bindInteger(4, 0);
-            sQLitePreparedStatementExecuteFast.step();
-            sQLitePreparedStatementExecuteFast.dispose();
+            SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
+            executeFast.bindByteBuffer(1, nativeByteBuffer);
+            executeFast.bindInteger(2, messageObject.getDocument().dc_id);
+            executeFast.bindLong(3, messageObject.getDocument().f22386id);
+            executeFast.bindLong(4, System.currentTimeMillis());
+            executeFast.bindInteger(4, 0);
+            executeFast.step();
+            executeFast.dispose();
             nativeByteBuffer.reuse();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
@@ -611,41 +552,33 @@ public class DownloadController extends BaseController implements NotificationCe
         if (document == null) {
             return;
         }
-        int i10 = 0;
+        int i9 = 0;
         while (true) {
             z10 = true;
-            if (i10 >= this.recentDownloadingFiles.size()) {
+            if (i9 < this.recentDownloadingFiles.size()) {
+                MessageObject messageObject2 = this.recentDownloadingFiles.get(i9);
+                if (messageObject2 != null && (document3 = messageObject2.getDocument()) != null && document3.f22386id == document.f22386id) {
+                    z11 = true;
+                    break;
+                }
+                i9++;
+            } else {
                 z11 = false;
                 break;
             }
-            MessageObject messageObject2 = this.recentDownloadingFiles.get(i10);
-            if (messageObject2 != null && (document3 = messageObject2.getDocument()) != null && document3.f22386id == document.f22386id) {
-                z11 = true;
-                break;
-            }
-            i10++;
         }
         if (!z11) {
-            int i11 = 0;
-            while (true) {
-                if (i11 >= this.downloadingFiles.size()) {
-                    z10 = z11;
-                    break;
-                }
-                MessageObject messageObject3 = this.downloadingFiles.get(i11);
+            for (int i10 = 0; i10 < this.downloadingFiles.size(); i10++) {
+                MessageObject messageObject3 = this.downloadingFiles.get(i10);
                 if (messageObject3 != null && (document2 = messageObject3.getDocument()) != null && document2.f22386id == document.f22386id) {
                     break;
-                } else {
-                    i11++;
                 }
             }
-        } else {
-            z10 = z11;
-            break;
         }
+        z10 = z11;
         if (!z10) {
             this.downloadingFiles.add(0, messageObject);
-            getMessagesStorage().getStorageQueue().postRunnable(new b2(this, messageObject, 0));
+            getMessagesStorage().getStorageQueue().postRunnable(new a2(this, messageObject, 0));
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
@@ -657,10 +590,10 @@ public class DownloadController extends BaseController implements NotificationCe
         this.addLaterArray.clear();
         ArrayList<FileDownloadProgressListener> arrayList = this.deleteLaterArray;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            FileDownloadProgressListener fileDownloadProgressListener = arrayList.get(i10);
-            i10++;
+        int i9 = 0;
+        while (i9 < size) {
+            FileDownloadProgressListener fileDownloadProgressListener = arrayList.get(i9);
+            i9++;
             removeLoadingFileObserver(fileDownloadProgressListener);
         }
         this.deleteLaterArray.clear();
@@ -672,17 +605,20 @@ public class DownloadController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(this.clearUnviewedDownloadsRunnale, 60000L);
     }
 
-    public static int typeToIndex(int i10) {
-        if (i10 == 1) {
+    public static int typeToIndex(int i9) {
+        if (i9 == 1) {
             return 0;
         }
-        if (i10 == 2) {
+        if (i9 == 2) {
             return 2;
         }
-        if (i10 == 4) {
+        if (i9 == 4) {
             return 1;
         }
-        return i10 == 8 ? 2 : 0;
+        if (i9 != 8) {
+            return 0;
+        }
+        return 2;
     }
 
     public void addLoadingFileObserver(String str, FileDownloadProgressListener fileDownloadProgressListener) {
@@ -694,11 +630,11 @@ public class DownloadController extends BaseController implements NotificationCe
         TLRPC.MessageMedia messageMedia;
         if (messageObject.type == 23) {
             return (!SharedConfig.isAutoplayVideo() || (storyItem = ((TLRPC.TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (messageMedia = storyItem.media) == null || messageMedia.document == null || !storyItem.isPublic) ? false : true;
-        }
-        if (messageObject.sponsoredMedia != null) {
+        } else if (messageObject.sponsoredMedia != null) {
             return true;
+        } else {
+            return !messageObject.isHiddenSensitive() && canDownloadMediaInternal(messageObject) == 1;
         }
-        return !messageObject.isHiddenSensitive() && canDownloadMediaInternal(messageObject) == 1;
     }
 
     public int canDownloadMediaType(MessageObject messageObject) {
@@ -706,25 +642,33 @@ public class DownloadController extends BaseController implements NotificationCe
         TLRPC.MessageMedia messageMedia;
         if (messageObject.type == 23) {
             return (!SharedConfig.isAutoplayVideo() || (storyItem = ((TLRPC.TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (messageMedia = storyItem.media) == null || messageMedia.document == null || !storyItem.isPublic) ? 0 : 2;
-        }
-        if (messageObject.sponsoredMedia != null) {
+        } else if (messageObject.sponsoredMedia != null) {
             return 2;
+        } else {
+            if (messageObject.isHiddenSensitive()) {
+                return 0;
+            }
+            return canDownloadMediaInternal(messageObject);
         }
-        if (messageObject.isHiddenSensitive()) {
-            return 0;
-        }
-        return canDownloadMediaInternal(messageObject);
     }
 
     public boolean canDownloadNextTrack() {
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
         if (autodownloadNetworkType == 1) {
-            return this.wifiPreset.enabled && getCurrentWiFiPreset().preloadMusic;
+            if (!this.wifiPreset.enabled || !getCurrentWiFiPreset().preloadMusic) {
+                return false;
+            }
+            return true;
+        } else if (autodownloadNetworkType == 2) {
+            if (!this.roamingPreset.enabled || !getCurrentRoamingPreset().preloadMusic) {
+                return false;
+            }
+            return true;
+        } else if (!this.mobilePreset.enabled || !getCurrentMobilePreset().preloadMusic) {
+            return false;
+        } else {
+            return true;
         }
-        if (autodownloadNetworkType == 2) {
-            return this.roamingPreset.enabled && getCurrentRoamingPreset().preloadMusic;
-        }
-        return this.mobilePreset.enabled && getCurrentMobilePreset().preloadMusic;
     }
 
     public boolean canPreloadStories() {
@@ -740,10 +684,9 @@ public class DownloadController extends BaseController implements NotificationCe
                 return false;
             }
             currentMobilePreset = getCurrentRoamingPreset();
+        } else if (!this.mobilePreset.enabled) {
+            return false;
         } else {
-            if (!this.mobilePreset.enabled) {
-                return false;
-            }
             currentMobilePreset = getCurrentMobilePreset();
         }
         return currentMobilePreset.preloadStories;
@@ -752,8 +695,8 @@ public class DownloadController extends BaseController implements NotificationCe
     public void cancelDownloading(ArrayList<Pair<Long, Integer>> arrayList) {
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         int size = arrayList.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            DownloadObject downloadObject = this.downloadQueuePairs.get(arrayList.get(i10));
+        for (int i9 = 0; i9 < size; i9++) {
+            DownloadObject downloadObject = this.downloadQueuePairs.get(arrayList.get(i9));
             if (downloadObject != null) {
                 TLObject tLObject = downloadObject.object;
                 if (tLObject instanceof TLRPC.Document) {
@@ -767,75 +710,81 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public void checkAutodownloadSettings() {
         int currentDownloadMask = getCurrentDownloadMask();
-        if (currentDownloadMask == this.lastCheckMask) {
-            return;
-        }
-        this.lastCheckMask = currentDownloadMask;
-        if ((currentDownloadMask & 1) == 0) {
-            for (int i10 = 0; i10 < this.photoDownloadQueue.size(); i10++) {
-                DownloadObject downloadObject = this.photoDownloadQueue.get(i10);
-                TLObject tLObject = downloadObject.object;
-                if (tLObject instanceof TLRPC.Photo) {
-                    getFileLoader().cancelLoadFile(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize()));
-                } else if (tLObject instanceof TLRPC.Document) {
-                    getFileLoader().cancelLoadFile((TLRPC.Document) downloadObject.object);
+        if (currentDownloadMask != this.lastCheckMask) {
+            this.lastCheckMask = currentDownloadMask;
+            if ((currentDownloadMask & 1) != 0) {
+                if (this.photoDownloadQueue.isEmpty()) {
+                    newDownloadObjectsAvailable(1);
                 }
+            } else {
+                for (int i9 = 0; i9 < this.photoDownloadQueue.size(); i9++) {
+                    DownloadObject downloadObject = this.photoDownloadQueue.get(i9);
+                    TLObject tLObject = downloadObject.object;
+                    if (tLObject instanceof TLRPC.Photo) {
+                        getFileLoader().cancelLoadFile(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize()));
+                    } else if (tLObject instanceof TLRPC.Document) {
+                        getFileLoader().cancelLoadFile((TLRPC.Document) downloadObject.object);
+                    }
+                }
+                this.photoDownloadQueue.clear();
             }
-            this.photoDownloadQueue.clear();
-        } else if (this.photoDownloadQueue.isEmpty()) {
-            newDownloadObjectsAvailable(1);
-        }
-        if ((currentDownloadMask & 2) == 0) {
-            for (int i11 = 0; i11 < this.audioDownloadQueue.size(); i11++) {
-                getFileLoader().cancelLoadFile((TLRPC.Document) this.audioDownloadQueue.get(i11).object);
+            if ((currentDownloadMask & 2) != 0) {
+                if (this.audioDownloadQueue.isEmpty()) {
+                    newDownloadObjectsAvailable(2);
+                }
+            } else {
+                for (int i10 = 0; i10 < this.audioDownloadQueue.size(); i10++) {
+                    getFileLoader().cancelLoadFile((TLRPC.Document) this.audioDownloadQueue.get(i10).object);
+                }
+                this.audioDownloadQueue.clear();
             }
-            this.audioDownloadQueue.clear();
-        } else if (this.audioDownloadQueue.isEmpty()) {
-            newDownloadObjectsAvailable(2);
-        }
-        if ((currentDownloadMask & 8) == 0) {
-            for (int i12 = 0; i12 < this.documentDownloadQueue.size(); i12++) {
-                getFileLoader().cancelLoadFile((TLRPC.Document) this.documentDownloadQueue.get(i12).object);
+            if ((currentDownloadMask & 8) != 0) {
+                if (this.documentDownloadQueue.isEmpty()) {
+                    newDownloadObjectsAvailable(8);
+                }
+            } else {
+                for (int i11 = 0; i11 < this.documentDownloadQueue.size(); i11++) {
+                    getFileLoader().cancelLoadFile((TLRPC.Document) this.documentDownloadQueue.get(i11).object);
+                }
+                this.documentDownloadQueue.clear();
             }
-            this.documentDownloadQueue.clear();
-        } else if (this.documentDownloadQueue.isEmpty()) {
-            newDownloadObjectsAvailable(8);
-        }
-        if ((currentDownloadMask & 4) == 0) {
-            for (int i13 = 0; i13 < this.videoDownloadQueue.size(); i13++) {
-                getFileLoader().cancelLoadFile((TLRPC.Document) this.videoDownloadQueue.get(i13).object);
+            if ((currentDownloadMask & 4) != 0) {
+                if (this.videoDownloadQueue.isEmpty()) {
+                    newDownloadObjectsAvailable(4);
+                }
+            } else {
+                for (int i12 = 0; i12 < this.videoDownloadQueue.size(); i12++) {
+                    getFileLoader().cancelLoadFile((TLRPC.Document) this.videoDownloadQueue.get(i12).object);
+                }
+                this.videoDownloadQueue.clear();
             }
-            this.videoDownloadQueue.clear();
-        } else if (this.videoDownloadQueue.isEmpty()) {
-            newDownloadObjectsAvailable(4);
-        }
-        int autodownloadMaskAll = getAutodownloadMaskAll();
-        if (autodownloadMaskAll == 0) {
-            getMessagesStorage().clearDownloadQueue(0);
-            return;
-        }
-        if ((autodownloadMaskAll & 1) == 0) {
-            getMessagesStorage().clearDownloadQueue(1);
-        }
-        if ((autodownloadMaskAll & 2) == 0) {
-            getMessagesStorage().clearDownloadQueue(2);
-        }
-        if ((autodownloadMaskAll & 4) == 0) {
-            getMessagesStorage().clearDownloadQueue(4);
-        }
-        if ((autodownloadMaskAll & 8) == 0) {
-            getMessagesStorage().clearDownloadQueue(8);
+            int autodownloadMaskAll = getAutodownloadMaskAll();
+            if (autodownloadMaskAll == 0) {
+                getMessagesStorage().clearDownloadQueue(0);
+                return;
+            }
+            if ((autodownloadMaskAll & 1) == 0) {
+                getMessagesStorage().clearDownloadQueue(1);
+            }
+            if ((autodownloadMaskAll & 2) == 0) {
+                getMessagesStorage().clearDownloadQueue(2);
+            }
+            if ((autodownloadMaskAll & 4) == 0) {
+                getMessagesStorage().clearDownloadQueue(4);
+            }
+            if ((autodownloadMaskAll & 8) == 0) {
+                getMessagesStorage().clearDownloadQueue(8);
+            }
         }
     }
 
-    public void checkUnviewedDownloads(int i10, long j10) {
-        MessageObject messageObject = this.unviewedDownloads.get(i10);
-        if (messageObject == null || messageObject.getDialogId() != j10) {
-            return;
-        }
-        this.unviewedDownloads.remove(i10);
-        if (this.unviewedDownloads.size() == 0) {
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
+    public void checkUnviewedDownloads(int i9, long j10) {
+        MessageObject messageObject = this.unviewedDownloads.get(i9);
+        if (messageObject != null && messageObject.getDialogId() == j10) {
+            this.unviewedDownloads.remove(i9);
+            if (this.unviewedDownloads.size() == 0) {
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
+            }
         }
     }
 
@@ -852,7 +801,7 @@ public class DownloadController extends BaseController implements NotificationCe
     public void clearRecentDownloadedFiles() {
         this.recentDownloadingFiles.clear();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-        getMessagesStorage().getStorageQueue().postRunnable(new a2(this, 0));
+        getMessagesStorage().getStorageQueue().postRunnable(new z1(this, 0));
     }
 
     public void clearUnviewedDownloads() {
@@ -860,177 +809,196 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void deleteRecentFiles(ArrayList<MessageObject> arrayList) {
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            int i11 = 0;
+        for (int i9 = 0; i9 < arrayList.size(); i9++) {
+            int i10 = 0;
             while (true) {
-                if (i11 >= this.recentDownloadingFiles.size()) {
-                    for (int i12 = 0; i12 < this.downloadingFiles.size(); i12++) {
-                        if (arrayList.get(i10).getId() == this.downloadingFiles.get(i12).getId() && this.downloadingFiles.get(i12).getDialogId() == arrayList.get(i10).getDialogId()) {
-                            this.downloadingFiles.remove(i12);
+                if (i10 < this.recentDownloadingFiles.size()) {
+                    if (arrayList.get(i9).getId() == this.recentDownloadingFiles.get(i10).getId() && this.recentDownloadingFiles.get(i10).getDialogId() == arrayList.get(i9).getDialogId()) {
+                        this.recentDownloadingFiles.remove(i10);
+                        break;
+                    }
+                    i10++;
+                } else {
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 >= this.downloadingFiles.size()) {
                             break;
                         }
+                        if (arrayList.get(i9).getId() == this.downloadingFiles.get(i11).getId() && this.downloadingFiles.get(i11).getDialogId() == arrayList.get(i9).getDialogId()) {
+                            this.downloadingFiles.remove(i11);
+                            break;
+                        }
+                        i11++;
                     }
-                    break;
                 }
-                if (arrayList.get(i10).getId() == this.recentDownloadingFiles.get(i11).getId() && this.recentDownloadingFiles.get(i11).getDialogId() == arrayList.get(i10).getDialogId()) {
-                    this.recentDownloadingFiles.remove(i11);
-                    break;
-                }
-                i11++;
             }
-            arrayList.get(i10).putInDownloadsStore = false;
-            FileLoader.getInstance(this.currentAccount).loadFile(arrayList.get(i10).getDocument(), arrayList.get(i10), 0, 0);
-            FileLoader.getInstance(this.currentAccount).cancelLoadFile(arrayList.get(i10).getDocument(), true);
+            arrayList.get(i9).putInDownloadsStore = false;
+            FileLoader.getInstance(this.currentAccount).loadFile(arrayList.get(i9).getDocument(), arrayList.get(i9), 0, 0);
+            FileLoader.getInstance(this.currentAccount).cancelLoadFile(arrayList.get(i9).getDocument(), true);
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-        getMessagesStorage().getStorageQueue().postRunnable(new e3(29, this, arrayList));
+        getMessagesStorage().getStorageQueue().postRunnable(new c3(29, this, arrayList));
     }
 
     @Override
-    public void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileLoadFailed || i10 == NotificationCenter.httpFileDidFailedLoad) {
-            String str = (String) objArr[0];
-            Integer num = (Integer) objArr[1];
-            this.listenerInProgress = true;
-            ArrayList<WeakReference<FileDownloadProgressListener>> arrayList = this.loadingFileObservers.get(str);
-            if (arrayList != null) {
-                int size = arrayList.size();
-                for (int i12 = 0; i12 < size; i12++) {
-                    WeakReference<FileDownloadProgressListener> weakReference = arrayList.get(i12);
-                    if (weakReference.get() != null) {
-                        weakReference.get().onFailedDownload(str, num.intValue() == 1);
-                        if (num.intValue() != 1) {
-                            this.observersByTag.remove(weakReference.get().getObserverTag());
-                        }
-                    }
-                }
-                if (num.intValue() != 1) {
-                    this.loadingFileObservers.remove(str);
-                }
-            }
-            this.listenerInProgress = false;
-            processLaterArrays();
-            checkDownloadFinished(str, num.intValue());
-            return;
-        }
-        if (i10 == NotificationCenter.fileLoaded || i10 == NotificationCenter.httpFileDidLoad) {
-            this.listenerInProgress = true;
-            String str2 = (String) objArr[0];
-            ArrayList<MessageObject> arrayList2 = this.loadingFileMessagesObservers.get(str2);
-            if (arrayList2 != null) {
-                int size2 = arrayList2.size();
-                for (int i13 = 0; i13 < size2; i13++) {
-                    arrayList2.get(i13).mediaExists = true;
-                }
-                this.loadingFileMessagesObservers.remove(str2);
-            }
-            ArrayList<WeakReference<FileDownloadProgressListener>> arrayList3 = this.loadingFileObservers.get(str2);
-            if (arrayList3 != null) {
-                int size3 = arrayList3.size();
-                for (int i14 = 0; i14 < size3; i14++) {
-                    WeakReference<FileDownloadProgressListener> weakReference2 = arrayList3.get(i14);
-                    if (weakReference2.get() != null) {
-                        weakReference2.get().onSuccessDownload(str2);
-                        this.observersByTag.remove(weakReference2.get().getObserverTag());
-                    }
-                }
-                this.loadingFileObservers.remove(str2);
-            }
-            this.listenerInProgress = false;
-            processLaterArrays();
-            checkDownloadFinished(str2, 0);
-            return;
-        }
-        if (i10 == NotificationCenter.fileLoadProgressChanged) {
-            this.listenerInProgress = true;
-            String str3 = (String) objArr[0];
-            ArrayList<WeakReference<FileDownloadProgressListener>> arrayList4 = this.loadingFileObservers.get(str3);
-            if (arrayList4 != null) {
-                Long l10 = (Long) objArr[1];
-                Long l11 = (Long) objArr[2];
-                int size4 = arrayList4.size();
-                for (int i15 = 0; i15 < size4; i15++) {
-                    WeakReference<FileDownloadProgressListener> weakReference3 = arrayList4.get(i15);
-                    if (weakReference3.get() != null) {
-                        weakReference3.get().onProgressDownload(str3, l10.longValue(), l11.longValue());
-                    }
-                }
-            }
-            this.listenerInProgress = false;
-            processLaterArrays();
-            return;
-        }
-        if (i10 == NotificationCenter.fileUploadProgressChanged) {
-            this.listenerInProgress = true;
-            String str4 = (String) objArr[0];
-            ArrayList<WeakReference<FileDownloadProgressListener>> arrayList5 = this.loadingFileObservers.get(str4);
-            if (arrayList5 != null) {
-                Long l12 = (Long) objArr[1];
-                Long l13 = (Long) objArr[2];
-                Boolean bool = (Boolean) objArr[3];
-                int size5 = arrayList5.size();
-                for (int i16 = 0; i16 < size5; i16++) {
-                    WeakReference<FileDownloadProgressListener> weakReference4 = arrayList5.get(i16);
-                    if (weakReference4.get() != null) {
-                        weakReference4.get().onProgressUpload(str4, l12.longValue(), l13.longValue(), bool.booleanValue());
-                    }
-                }
-            }
-            this.listenerInProgress = false;
-            processLaterArrays();
-            try {
-                ArrayList<SendMessagesHelper.DelayedMessage> delayedMessages = getSendMessagesHelper().getDelayedMessages(str4);
-                if (delayedMessages != null) {
-                    for (int i17 = 0; i17 < delayedMessages.size(); i17++) {
-                        SendMessagesHelper.DelayedMessage delayedMessage = delayedMessages.get(i17);
-                        if (delayedMessage.encryptedChat == null) {
-                            long j10 = delayedMessage.peer;
-                            int i18 = delayedMessage.topMessageId;
-                            Long l14 = (Long) this.typingTimes.f(j10);
-                            if (delayedMessage.type != 4) {
-                                delayedMessage.obj.getDocument();
-                                if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                    if (delayedMessage.obj.isRoundVideo()) {
-                                        getMessagesController().sendTyping(j10, i18, 8, 0);
-                                    } else if (delayedMessage.obj.isVideo()) {
-                                        getMessagesController().sendTyping(j10, i18, 5, 0);
-                                    } else if (delayedMessage.obj.isVoice()) {
-                                        getMessagesController().sendTyping(j10, i18, 9, 0);
-                                    } else if (delayedMessage.obj.getDocument() != null) {
-                                        getMessagesController().sendTyping(j10, i18, 3, 0);
-                                    } else if (delayedMessage.photoSize != null) {
-                                        getMessagesController().sendTyping(j10, i18, 4, 0);
-                                    }
-                                    this.typingTimes.k(Long.valueOf(System.currentTimeMillis()), j10);
-                                }
-                            } else if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                MessageObject messageObject = (MessageObject) delayedMessage.extraHashMap.get(str4 + "_i");
-                                if (messageObject != null && messageObject.isVideo()) {
-                                    getMessagesController().sendTyping(j10, i18, 5, 0);
-                                } else if (messageObject == null || messageObject.getDocument() == null) {
-                                    getMessagesController().sendTyping(j10, i18, 4, 0);
-                                } else {
-                                    getMessagesController().sendTyping(j10, i18, 3, 0);
-                                }
-                                this.typingTimes.k(Long.valueOf(System.currentTimeMillis()), j10);
+    public void didReceivedNotification(int i9, int i10, Object... objArr) {
+        boolean z10;
+        if (i9 != NotificationCenter.fileLoadFailed && i9 != NotificationCenter.httpFileDidFailedLoad) {
+            if (i9 != NotificationCenter.fileLoaded && i9 != NotificationCenter.httpFileDidLoad) {
+                if (i9 == NotificationCenter.fileLoadProgressChanged) {
+                    this.listenerInProgress = true;
+                    String str = (String) objArr[0];
+                    ArrayList<WeakReference<FileDownloadProgressListener>> arrayList = this.loadingFileObservers.get(str);
+                    if (arrayList != null) {
+                        Long l10 = (Long) objArr[1];
+                        Long l11 = (Long) objArr[2];
+                        int size = arrayList.size();
+                        for (int i11 = 0; i11 < size; i11++) {
+                            WeakReference<FileDownloadProgressListener> weakReference = arrayList.get(i11);
+                            if (weakReference.get() != null) {
+                                weakReference.get().onProgressDownload(str, l10.longValue(), l11.longValue());
                             }
                         }
                     }
+                    this.listenerInProgress = false;
+                    processLaterArrays();
+                    return;
+                } else if (i9 == NotificationCenter.fileUploadProgressChanged) {
+                    this.listenerInProgress = true;
+                    String str2 = (String) objArr[0];
+                    ArrayList<WeakReference<FileDownloadProgressListener>> arrayList2 = this.loadingFileObservers.get(str2);
+                    if (arrayList2 != null) {
+                        Long l12 = (Long) objArr[1];
+                        Long l13 = (Long) objArr[2];
+                        Boolean bool = (Boolean) objArr[3];
+                        int size2 = arrayList2.size();
+                        for (int i12 = 0; i12 < size2; i12++) {
+                            WeakReference<FileDownloadProgressListener> weakReference2 = arrayList2.get(i12);
+                            if (weakReference2.get() != null) {
+                                weakReference2.get().onProgressUpload(str2, l12.longValue(), l13.longValue(), bool.booleanValue());
+                            }
+                        }
+                    }
+                    this.listenerInProgress = false;
+                    processLaterArrays();
+                    try {
+                        ArrayList<SendMessagesHelper.DelayedMessage> delayedMessages = getSendMessagesHelper().getDelayedMessages(str2);
+                        if (delayedMessages != null) {
+                            for (int i13 = 0; i13 < delayedMessages.size(); i13++) {
+                                SendMessagesHelper.DelayedMessage delayedMessage = delayedMessages.get(i13);
+                                if (delayedMessage.encryptedChat == null) {
+                                    long j10 = delayedMessage.peer;
+                                    int i14 = delayedMessage.topMessageId;
+                                    Long l14 = (Long) this.typingTimes.f(j10);
+                                    if (delayedMessage.type == 4) {
+                                        if (l14 != null && l14.longValue() + 4000 >= System.currentTimeMillis()) {
+                                        }
+                                        HashMap<Object, Object> hashMap = delayedMessage.extraHashMap;
+                                        MessageObject messageObject = (MessageObject) hashMap.get(str2 + "_i");
+                                        if (messageObject != null && messageObject.isVideo()) {
+                                            getMessagesController().sendTyping(j10, i14, 5, 0);
+                                        } else if (messageObject != null && messageObject.getDocument() != null) {
+                                            getMessagesController().sendTyping(j10, i14, 3, 0);
+                                        } else {
+                                            getMessagesController().sendTyping(j10, i14, 4, 0);
+                                        }
+                                        this.typingTimes.k(Long.valueOf(System.currentTimeMillis()), j10);
+                                    } else {
+                                        delayedMessage.obj.getDocument();
+                                        if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
+                                            if (delayedMessage.obj.isRoundVideo()) {
+                                                getMessagesController().sendTyping(j10, i14, 8, 0);
+                                            } else if (delayedMessage.obj.isVideo()) {
+                                                getMessagesController().sendTyping(j10, i14, 5, 0);
+                                            } else if (delayedMessage.obj.isVoice()) {
+                                                getMessagesController().sendTyping(j10, i14, 9, 0);
+                                            } else if (delayedMessage.obj.getDocument() != null) {
+                                                getMessagesController().sendTyping(j10, i14, 3, 0);
+                                            } else if (delayedMessage.photoSize != null) {
+                                                getMessagesController().sendTyping(j10, i14, 4, 0);
+                                            }
+                                            this.typingTimes.k(Long.valueOf(System.currentTimeMillis()), j10);
+                                        }
+                                    }
+                                }
+                            }
+                            return;
+                        }
+                        return;
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
+                        return;
+                    }
+                } else {
+                    return;
                 }
-            } catch (Exception e9) {
-                FileLog.e(e9);
+            }
+            this.listenerInProgress = true;
+            String str3 = (String) objArr[0];
+            ArrayList<MessageObject> arrayList3 = this.loadingFileMessagesObservers.get(str3);
+            if (arrayList3 != null) {
+                int size3 = arrayList3.size();
+                for (int i15 = 0; i15 < size3; i15++) {
+                    arrayList3.get(i15).mediaExists = true;
+                }
+                this.loadingFileMessagesObservers.remove(str3);
+            }
+            ArrayList<WeakReference<FileDownloadProgressListener>> arrayList4 = this.loadingFileObservers.get(str3);
+            if (arrayList4 != null) {
+                int size4 = arrayList4.size();
+                for (int i16 = 0; i16 < size4; i16++) {
+                    WeakReference<FileDownloadProgressListener> weakReference3 = arrayList4.get(i16);
+                    if (weakReference3.get() != null) {
+                        weakReference3.get().onSuccessDownload(str3);
+                        this.observersByTag.remove(weakReference3.get().getObserverTag());
+                    }
+                }
+                this.loadingFileObservers.remove(str3);
+            }
+            this.listenerInProgress = false;
+            processLaterArrays();
+            checkDownloadFinished(str3, 0);
+            return;
+        }
+        String str4 = (String) objArr[0];
+        Integer num = (Integer) objArr[1];
+        this.listenerInProgress = true;
+        ArrayList<WeakReference<FileDownloadProgressListener>> arrayList5 = this.loadingFileObservers.get(str4);
+        if (arrayList5 != null) {
+            int size5 = arrayList5.size();
+            for (int i17 = 0; i17 < size5; i17++) {
+                WeakReference<FileDownloadProgressListener> weakReference4 = arrayList5.get(i17);
+                if (weakReference4.get() != null) {
+                    FileDownloadProgressListener fileDownloadProgressListener = weakReference4.get();
+                    if (num.intValue() == 1) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    fileDownloadProgressListener.onFailedDownload(str4, z10);
+                    if (num.intValue() != 1) {
+                        this.observersByTag.remove(weakReference4.get().getObserverTag());
+                    }
+                }
+            }
+            if (num.intValue() != 1) {
+                this.loadingFileObservers.remove(str4);
             }
         }
+        this.listenerInProgress = false;
+        processLaterArrays();
+        checkDownloadFinished(str4, num.intValue());
     }
 
     public int generateObserverTag() {
-        int i10 = this.lastTag;
-        this.lastTag = i10 + 1;
-        return i10;
+        int i9 = this.lastTag;
+        this.lastTag = i9 + 1;
+        return i9;
     }
 
     public int getAutodownloadMask() {
         int[] iArr;
+        int i9;
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
         if (autodownloadNetworkType == 1) {
             if (!this.wifiPreset.enabled) {
@@ -1042,26 +1010,29 @@ public class DownloadController extends BaseController implements NotificationCe
                 return 0;
             }
             iArr = getCurrentRoamingPreset().mask;
+        } else if (!this.mobilePreset.enabled) {
+            return 0;
         } else {
-            if (!this.mobilePreset.enabled) {
-                return 0;
-            }
             iArr = getCurrentMobilePreset().mask;
         }
         int i10 = 0;
         for (int i11 = 0; i11 < iArr.length; i11++) {
             int i12 = iArr[i11];
-            int i13 = (i12 & 1) != 0 ? 1 : 0;
+            if ((i12 & 1) != 0) {
+                i9 = 1;
+            } else {
+                i9 = 0;
+            }
             if ((i12 & 2) != 0) {
-                i13 |= 2;
+                i9 |= 2;
             }
             if ((i12 & 4) != 0) {
-                i13 |= 4;
+                i9 |= 4;
             }
             if ((i12 & 8) != 0) {
-                i13 |= 8;
+                i9 |= 8;
             }
-            i10 |= i13 << (i11 * 8);
+            i10 |= i9 << (i11 * 8);
         }
         return i10;
     }
@@ -1070,91 +1041,99 @@ public class DownloadController extends BaseController implements NotificationCe
         if (!this.mobilePreset.enabled && !this.roamingPreset.enabled && !this.wifiPreset.enabled) {
             return 0;
         }
-        int i10 = 0;
-        for (int i11 = 0; i11 < 4; i11++) {
-            if ((getCurrentMobilePreset().mask[i11] & 1) != 0 || (getCurrentWiFiPreset().mask[i11] & 1) != 0 || (getCurrentRoamingPreset().mask[i11] & 1) != 0) {
-                i10 |= 1;
+        int i9 = 0;
+        for (int i10 = 0; i10 < 4; i10++) {
+            if ((getCurrentMobilePreset().mask[i10] & 1) != 0 || (getCurrentWiFiPreset().mask[i10] & 1) != 0 || (getCurrentRoamingPreset().mask[i10] & 1) != 0) {
+                i9 |= 1;
             }
-            if ((getCurrentMobilePreset().mask[i11] & 2) != 0 || (getCurrentWiFiPreset().mask[i11] & 2) != 0 || (getCurrentRoamingPreset().mask[i11] & 2) != 0) {
-                i10 |= 2;
+            if ((getCurrentMobilePreset().mask[i10] & 2) != 0 || (getCurrentWiFiPreset().mask[i10] & 2) != 0 || (getCurrentRoamingPreset().mask[i10] & 2) != 0) {
+                i9 |= 2;
             }
-            if ((getCurrentMobilePreset().mask[i11] & 4) != 0 || (getCurrentWiFiPreset().mask[i11] & 4) != 0 || (4 & getCurrentRoamingPreset().mask[i11]) != 0) {
-                i10 |= 4;
+            if ((getCurrentMobilePreset().mask[i10] & 4) != 0 || (getCurrentWiFiPreset().mask[i10] & 4) != 0 || (4 & getCurrentRoamingPreset().mask[i10]) != 0) {
+                i9 |= 4;
             }
-            if ((getCurrentMobilePreset().mask[i11] & 8) != 0 || (getCurrentWiFiPreset().mask[i11] & 8) != 0 || (getCurrentRoamingPreset().mask[i11] & 8) != 0) {
-                i10 |= 8;
+            if ((getCurrentMobilePreset().mask[i10] & 8) != 0 || (getCurrentWiFiPreset().mask[i10] & 8) != 0 || (getCurrentRoamingPreset().mask[i10] & 8) != 0) {
+                i9 |= 8;
             }
         }
-        return i10;
+        return i9;
     }
 
     public int getCurrentDownloadMask() {
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        int i10 = 0;
+        int i9 = 0;
         if (autodownloadNetworkType == 1) {
             if (!this.wifiPreset.enabled) {
                 return 0;
             }
-            int i11 = 0;
-            while (i10 < 4) {
-                i11 |= getCurrentWiFiPreset().mask[i10];
-                i10++;
+            int i10 = 0;
+            while (i9 < 4) {
+                i10 |= getCurrentWiFiPreset().mask[i9];
+                i9++;
             }
-            return i11;
-        }
-        if (autodownloadNetworkType == 2) {
+            return i10;
+        } else if (autodownloadNetworkType == 2) {
             if (!this.roamingPreset.enabled) {
                 return 0;
             }
+            int i11 = 0;
+            while (i9 < 4) {
+                i11 |= getCurrentRoamingPreset().mask[i9];
+                i9++;
+            }
+            return i11;
+        } else if (!this.mobilePreset.enabled) {
+            return 0;
+        } else {
             int i12 = 0;
-            while (i10 < 4) {
-                i12 |= getCurrentRoamingPreset().mask[i10];
-                i10++;
+            while (i9 < 4) {
+                i12 |= getCurrentMobilePreset().mask[i9];
+                i9++;
             }
             return i12;
         }
-        if (!this.mobilePreset.enabled) {
-            return 0;
-        }
-        int i13 = 0;
-        while (i10 < 4) {
-            i13 |= getCurrentMobilePreset().mask[i10];
-            i10++;
-        }
-        return i13;
     }
 
     public Preset getCurrentMobilePreset() {
-        int i10 = this.currentMobilePreset;
-        if (i10 == 0) {
+        int i9 = this.currentMobilePreset;
+        if (i9 == 0) {
             return this.lowPreset;
         }
-        if (i10 == 1) {
+        if (i9 == 1) {
             return this.mediumPreset;
         }
-        return i10 == 2 ? this.highPreset : this.mobilePreset;
+        if (i9 == 2) {
+            return this.highPreset;
+        }
+        return this.mobilePreset;
     }
 
     public Preset getCurrentRoamingPreset() {
-        int i10 = this.currentRoamingPreset;
-        if (i10 == 0) {
+        int i9 = this.currentRoamingPreset;
+        if (i9 == 0) {
             return this.lowPreset;
         }
-        if (i10 == 1) {
+        if (i9 == 1) {
             return this.mediumPreset;
         }
-        return i10 == 2 ? this.highPreset : this.roamingPreset;
+        if (i9 == 2) {
+            return this.highPreset;
+        }
+        return this.roamingPreset;
     }
 
     public Preset getCurrentWiFiPreset() {
-        int i10 = this.currentWifiPreset;
-        if (i10 == 0) {
+        int i9 = this.currentWifiPreset;
+        if (i9 == 0) {
             return this.lowPreset;
         }
-        if (i10 == 1) {
+        if (i9 == 1) {
             return this.mediumPreset;
         }
-        return i10 == 2 ? this.highPreset : this.wifiPreset;
+        if (i9 == 2) {
+            return this.highPreset;
+        }
+        return this.wifiPreset;
     }
 
     public int getMaxVideoBitrate() {
@@ -1162,16 +1141,22 @@ public class DownloadController extends BaseController implements NotificationCe
         if (autodownloadNetworkType == 1) {
             return getCurrentWiFiPreset().maxVideoBitrate;
         }
-        return autodownloadNetworkType == 2 ? getCurrentRoamingPreset().maxVideoBitrate : getCurrentMobilePreset().maxVideoBitrate;
+        if (autodownloadNetworkType == 2) {
+            return getCurrentRoamingPreset().maxVideoBitrate;
+        }
+        return getCurrentMobilePreset().maxVideoBitrate;
     }
 
     public boolean hasUnviewedDownloads() {
-        return this.unviewedDownloads.size() > 0;
+        if (this.unviewedDownloads.size() > 0) {
+            return true;
+        }
+        return false;
     }
 
-    public boolean isDownloading(int i10) {
-        for (int i11 = 0; i11 < this.downloadingFiles.size(); i11++) {
-            if (this.downloadingFiles.get(i11).messageOwner.f22401id == i10) {
+    public boolean isDownloading(int i9) {
+        for (int i10 = 0; i10 < this.downloadingFiles.size(); i10++) {
+            if (this.downloadingFiles.get(i10).messageOwner.f22401id == i9) {
                 return true;
             }
         }
@@ -1179,100 +1164,50 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void loadAutoDownloadConfig(boolean z10) {
-        if (this.loadingAutoDownloadConfig) {
-            return;
-        }
-        if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().autoDownloadConfigLoadTime) >= 86400000) {
-            this.loadingAutoDownloadConfig = true;
-            getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new g0(this, 2));
+        if (!this.loadingAutoDownloadConfig) {
+            if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().autoDownloadConfigLoadTime) >= 86400000) {
+                this.loadingAutoDownloadConfig = true;
+                getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new g0(this, 2));
+            }
         }
     }
 
     public void loadDownloadingFiles() {
-        getMessagesStorage().getStorageQueue().postRunnable(new a2(this, 2));
+        getMessagesStorage().getStorageQueue().postRunnable(new z1(this, 2));
     }
 
-    public void newDownloadObjectsAvailable(int i10) {
+    public void newDownloadObjectsAvailable(int i9) {
         int currentDownloadMask = getCurrentDownloadMask();
-        if ((currentDownloadMask & 1) != 0 && (i10 & 1) != 0 && this.photoDownloadQueue.isEmpty()) {
+        if ((currentDownloadMask & 1) != 0 && (i9 & 1) != 0 && this.photoDownloadQueue.isEmpty()) {
             getMessagesStorage().getDownloadQueue(1);
         }
-        if ((currentDownloadMask & 2) != 0 && (i10 & 2) != 0 && this.audioDownloadQueue.isEmpty()) {
+        if ((currentDownloadMask & 2) != 0 && (i9 & 2) != 0 && this.audioDownloadQueue.isEmpty()) {
             getMessagesStorage().getDownloadQueue(2);
         }
-        if ((currentDownloadMask & 4) != 0 && (i10 & 4) != 0 && this.videoDownloadQueue.isEmpty()) {
+        if ((currentDownloadMask & 4) != 0 && (i9 & 4) != 0 && this.videoDownloadQueue.isEmpty()) {
             getMessagesStorage().getDownloadQueue(4);
         }
-        if ((currentDownloadMask & 8) == 0 || (i10 & 8) == 0 || !this.documentDownloadQueue.isEmpty()) {
-            return;
+        if ((currentDownloadMask & 8) != 0 && (i9 & 8) != 0 && this.documentDownloadQueue.isEmpty()) {
+            getMessagesStorage().getDownloadQueue(8);
         }
-        getMessagesStorage().getDownloadQueue(8);
     }
 
     public void onDownloadComplete(MessageObject messageObject) {
-        if (messageObject == null || messageObject.getDocument() == null) {
-            return;
+        if (messageObject != null && messageObject.getDocument() != null) {
+            AndroidUtilities.runOnUIThread(new b2(this, messageObject.getDocument(), messageObject, 0));
         }
-        AndroidUtilities.runOnUIThread(new c2(this, messageObject.getDocument(), messageObject, 0));
     }
 
-    public void onDownloadFail(MessageObject messageObject, int i10) {
+    public void onDownloadFail(MessageObject messageObject, int i9) {
         if (messageObject == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new r4(this, messageObject, i10, 2));
-        getMessagesStorage().getStorageQueue().postRunnable(new b2(this, messageObject, 1));
+        AndroidUtilities.runOnUIThread(new p4(this, messageObject, i9, 2));
+        getMessagesStorage().getStorageQueue().postRunnable(new a2(this, messageObject, 1));
     }
 
-    public void processDownloadObjects(int i10, ArrayList<DownloadObject> arrayList) {
-        ArrayList<DownloadObject> arrayList2;
-        TLRPC.PhotoSize photoSize;
-        String attachFileName;
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        if (i10 == 1) {
-            arrayList2 = this.photoDownloadQueue;
-        } else if (i10 == 2) {
-            arrayList2 = this.audioDownloadQueue;
-        } else {
-            arrayList2 = i10 == 4 ? this.videoDownloadQueue : this.documentDownloadQueue;
-        }
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            DownloadObject downloadObject = arrayList.get(i11);
-            TLObject tLObject = downloadObject.object;
-            String str = null;
-            TLRPC.PhotoSize closestPhotoSizeWithSize = null;
-            if (tLObject instanceof TLRPC.Document) {
-                attachFileName = FileLoader.getAttachFileName((TLRPC.Document) tLObject);
-            } else {
-                if (tLObject instanceof TLRPC.Photo) {
-                    closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
-                    attachFileName = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
-                } else {
-                    photoSize = null;
-                }
-                if (str == null && !this.downloadQueueKeys.containsKey(str)) {
-                    if (photoSize != null) {
-                        TLRPC.Photo photo = (TLRPC.Photo) downloadObject.object;
-                        getFileLoader().loadFile(ImageLocation.getForPhoto(photoSize, photo), downloadObject.parent, null, 0, downloadObject.secret ? 2 : downloadObject.forceCache ? 1 : 0);
-                    } else {
-                        TLObject tLObject2 = downloadObject.object;
-                        if (tLObject2 instanceof TLRPC.Document) {
-                            getFileLoader().loadFile((TLRPC.Document) tLObject2, downloadObject.parent, 0, downloadObject.secret ? 2 : 0);
-                        }
-                    }
-                    arrayList2.add(downloadObject);
-                    this.downloadQueueKeys.put(str, downloadObject);
-                    this.downloadQueuePairs.put(new Pair<>(Long.valueOf(downloadObject.f19611id), Integer.valueOf(downloadObject.type)), downloadObject);
-                }
-            }
-            TLRPC.PhotoSize photoSize2 = closestPhotoSizeWithSize;
-            str = attachFileName;
-            photoSize = photoSize2;
-            if (str == null) {
-            }
-        }
+    public void processDownloadObjects(int r20, java.util.ArrayList<org.telegram.messenger.DownloadObject> r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.processDownloadObjects(int, java.util.ArrayList):void");
     }
 
     public void removeLoadingFileObserver(FileDownloadProgressListener fileDownloadProgressListener) {
@@ -1284,14 +1219,14 @@ public class DownloadController extends BaseController implements NotificationCe
         if (str != null) {
             ArrayList<WeakReference<FileDownloadProgressListener>> arrayList = this.loadingFileObservers.get(str);
             if (arrayList != null) {
-                int i10 = 0;
-                while (i10 < arrayList.size()) {
-                    WeakReference<FileDownloadProgressListener> weakReference = arrayList.get(i10);
+                int i9 = 0;
+                while (i9 < arrayList.size()) {
+                    WeakReference<FileDownloadProgressListener> weakReference = arrayList.get(i9);
                     if (weakReference.get() == null || weakReference.get() == fileDownloadProgressListener) {
-                        arrayList.remove(i10);
-                        i10--;
+                        arrayList.remove(i9);
+                        i9--;
                     }
-                    i10++;
+                    i9++;
                 }
                 if (arrayList.isEmpty()) {
                     this.loadingFileObservers.remove(str);
@@ -1301,14 +1236,15 @@ public class DownloadController extends BaseController implements NotificationCe
         }
     }
 
-    public void savePresetToServer(int i10) {
+    public void savePresetToServer(int i9) {
         Preset currentRoamingPreset;
         boolean z10;
+        long j10;
         TL_account.saveAutoDownloadSettings saveautodownloadsettings = new TL_account.saveAutoDownloadSettings();
-        if (i10 == 0) {
+        if (i9 == 0) {
             currentRoamingPreset = getCurrentMobilePreset();
             z10 = this.mobilePreset.enabled;
-        } else if (i10 == 1) {
+        } else if (i9 == 1) {
             currentRoamingPreset = getCurrentWiFiPreset();
             z10 = this.wifiPreset.enabled;
         } else {
@@ -1322,6 +1258,7 @@ public class DownloadController extends BaseController implements NotificationCe
         tL_autoDownloadSettings.phonecalls_less_data = currentRoamingPreset.lessCallData;
         tL_autoDownloadSettings.video_upload_maxbitrate = currentRoamingPreset.maxVideoBitrate;
         tL_autoDownloadSettings.disabled = !z10;
+        int i10 = 0;
         int i11 = 0;
         boolean z11 = false;
         boolean z12 = false;
@@ -1343,15 +1280,26 @@ public class DownloadController extends BaseController implements NotificationCe
             }
             if (z11 && z12 && z13) {
                 break;
-            } else {
-                i11++;
             }
+            i11++;
         }
         TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings2 = saveautodownloadsettings.settings;
-        tL_autoDownloadSettings2.photo_size_max = z11 ? (int) currentRoamingPreset.sizes[0] : 0;
-        tL_autoDownloadSettings2.video_size_max = z12 ? currentRoamingPreset.sizes[1] : 0L;
-        tL_autoDownloadSettings2.file_size_max = z13 ? currentRoamingPreset.sizes[2] : 0L;
-        getConnectionsManager().sendRequest(saveautodownloadsettings, new e5(3));
+        if (z11) {
+            i10 = (int) currentRoamingPreset.sizes[0];
+        }
+        tL_autoDownloadSettings2.photo_size_max = i10;
+        long j11 = 0;
+        if (z12) {
+            j10 = currentRoamingPreset.sizes[1];
+        } else {
+            j10 = 0;
+        }
+        tL_autoDownloadSettings2.video_size_max = j10;
+        if (z13) {
+            j11 = currentRoamingPreset.sizes[2];
+        }
+        tL_autoDownloadSettings2.file_size_max = j11;
+        getConnectionsManager().sendRequest(saveautodownloadsettings, new c5(3));
     }
 
     public void startDownloadFile(TLRPC.Document document, MessageObject messageObject) {
@@ -1359,15 +1307,15 @@ public class DownloadController extends BaseController implements NotificationCe
         if (messageObject == null || (document2 = messageObject.getDocument()) == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new c2(this, document2, messageObject, 1));
+        AndroidUtilities.runOnUIThread(new b2(this, document2, messageObject, 1));
     }
 
     public void swapLoadingPriority(MessageObject messageObject, MessageObject messageObject2) {
-        int iIndexOf = this.downloadingFiles.indexOf(messageObject);
-        int iIndexOf2 = this.downloadingFiles.indexOf(messageObject2);
-        if (iIndexOf >= 0 && iIndexOf2 >= 0) {
-            this.downloadingFiles.set(iIndexOf, messageObject2);
-            this.downloadingFiles.set(iIndexOf2, messageObject);
+        int indexOf = this.downloadingFiles.indexOf(messageObject);
+        int indexOf2 = this.downloadingFiles.indexOf(messageObject2);
+        if (indexOf >= 0 && indexOf2 >= 0) {
+            this.downloadingFiles.set(indexOf, messageObject2);
+            this.downloadingFiles.set(indexOf2, messageObject);
         }
         updateFilesLoadingPriority();
     }
@@ -1413,7 +1361,7 @@ public class DownloadController extends BaseController implements NotificationCe
         public boolean preloadVideo;
         public long[] sizes;
 
-        public Preset(int[] iArr, long j10, long j11, long j12, boolean z10, boolean z11, boolean z12, boolean z13, int i10, boolean z14) {
+        public Preset(int[] iArr, long j10, long j11, long j12, boolean z10, boolean z11, boolean z12, boolean z13, int i9, boolean z14) {
             int[] iArr2 = new int[4];
             this.mask = iArr2;
             this.sizes = new long[4];
@@ -1426,16 +1374,16 @@ public class DownloadController extends BaseController implements NotificationCe
             this.preloadVideo = z10;
             this.preloadMusic = z11;
             this.lessCallData = z13;
-            this.maxVideoBitrate = i10;
+            this.maxVideoBitrate = i9;
             this.enabled = z12;
             this.preloadStories = z14;
         }
 
         public boolean equals(Preset preset) {
             int[] iArr = this.mask;
-            int i10 = iArr[0];
+            int i9 = iArr[0];
             int[] iArr2 = preset.mask;
-            if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
+            if (i9 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
                 long[] jArr = this.sizes;
                 long j10 = jArr[0];
                 long[] jArr2 = preset.sizes;
@@ -1447,16 +1395,16 @@ public class DownloadController extends BaseController implements NotificationCe
         }
 
         public boolean isEnabled() {
-            int i10 = 0;
+            int i9 = 0;
             while (true) {
                 int[] iArr = this.mask;
-                if (i10 >= iArr.length) {
+                if (i9 >= iArr.length) {
                     return false;
                 }
-                if (iArr[i10] != 0) {
+                if (iArr[i9] != 0) {
                     return true;
                 }
-                i10++;
+                i9++;
             }
         }
 
@@ -1483,29 +1431,29 @@ public class DownloadController extends BaseController implements NotificationCe
             this.preloadVideo = tL_autoDownloadSettings.video_preload_large;
             this.lessCallData = tL_autoDownloadSettings.phonecalls_less_data;
             this.maxVideoBitrate = tL_autoDownloadSettings.video_upload_maxbitrate;
-            int i10 = 0;
+            int i9 = 0;
             this.sizes[0] = Math.max(512000, tL_autoDownloadSettings.photo_size_max);
             this.sizes[1] = Math.max(512000L, tL_autoDownloadSettings.video_size_max);
             this.sizes[2] = Math.max(512000L, tL_autoDownloadSettings.file_size_max);
             while (true) {
                 int[] iArr = this.mask;
-                if (i10 < iArr.length) {
+                if (i9 < iArr.length) {
                     if (tL_autoDownloadSettings.photo_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                        iArr[i10] = iArr[i10] | 1;
+                        iArr[i9] = iArr[i9] | 1;
                     } else {
-                        iArr[i10] = iArr[i10] & (-2);
+                        iArr[i9] = iArr[i9] & (-2);
                     }
                     if (tL_autoDownloadSettings.video_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                        iArr[i10] = iArr[i10] | 4;
+                        iArr[i9] = iArr[i9] | 4;
                     } else {
-                        iArr[i10] = iArr[i10] & (-5);
+                        iArr[i9] = iArr[i9] & (-5);
                     }
                     if (tL_autoDownloadSettings.file_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                        iArr[i10] = iArr[i10] | 8;
+                        iArr[i9] = iArr[i9] | 8;
                     } else {
-                        iArr[i10] = iArr[i10] & (-9);
+                        iArr[i9] = iArr[i9] & (-9);
                     }
-                    i10++;
+                    i9++;
                 } else {
                     this.preloadStories = true;
                     return;
@@ -1514,45 +1462,45 @@ public class DownloadController extends BaseController implements NotificationCe
         }
 
         public Preset(String str, String str2) {
-            String[] strArrSplit;
+            String[] split;
             this.mask = new int[4];
             this.sizes = new long[4];
-            String[] strArrSplit2 = str.split("_");
-            if (strArrSplit2.length >= 11) {
-                this.mask[0] = Utilities.parseInt((CharSequence) strArrSplit2[0]).intValue();
-                this.mask[1] = Utilities.parseInt((CharSequence) strArrSplit2[1]).intValue();
-                this.mask[2] = Utilities.parseInt((CharSequence) strArrSplit2[2]).intValue();
-                this.mask[3] = Utilities.parseInt((CharSequence) strArrSplit2[3]).intValue();
-                this.sizes[0] = Utilities.parseInt((CharSequence) strArrSplit2[4]).intValue();
-                this.sizes[1] = Utilities.parseInt((CharSequence) strArrSplit2[5]).intValue();
-                this.sizes[2] = Utilities.parseInt((CharSequence) strArrSplit2[6]).intValue();
-                this.sizes[3] = Utilities.parseInt((CharSequence) strArrSplit2[7]).intValue();
-                this.preloadVideo = Utilities.parseInt((CharSequence) strArrSplit2[8]).intValue() == 1;
-                this.preloadMusic = Utilities.parseInt((CharSequence) strArrSplit2[9]).intValue() == 1;
-                this.enabled = Utilities.parseInt((CharSequence) strArrSplit2[10]).intValue() == 1;
-                if (strArrSplit2.length >= 12) {
-                    this.lessCallData = Utilities.parseInt((CharSequence) strArrSplit2[11]).intValue() == 1;
-                    strArrSplit = null;
+            String[] split2 = str.split("_");
+            if (split2.length >= 11) {
+                this.mask[0] = Utilities.parseInt((CharSequence) split2[0]).intValue();
+                this.mask[1] = Utilities.parseInt((CharSequence) split2[1]).intValue();
+                this.mask[2] = Utilities.parseInt((CharSequence) split2[2]).intValue();
+                this.mask[3] = Utilities.parseInt((CharSequence) split2[3]).intValue();
+                this.sizes[0] = Utilities.parseInt((CharSequence) split2[4]).intValue();
+                this.sizes[1] = Utilities.parseInt((CharSequence) split2[5]).intValue();
+                this.sizes[2] = Utilities.parseInt((CharSequence) split2[6]).intValue();
+                this.sizes[3] = Utilities.parseInt((CharSequence) split2[7]).intValue();
+                this.preloadVideo = Utilities.parseInt((CharSequence) split2[8]).intValue() == 1;
+                this.preloadMusic = Utilities.parseInt((CharSequence) split2[9]).intValue() == 1;
+                this.enabled = Utilities.parseInt((CharSequence) split2[10]).intValue() == 1;
+                if (split2.length >= 12) {
+                    this.lessCallData = Utilities.parseInt((CharSequence) split2[11]).intValue() == 1;
+                    split = null;
                 } else {
-                    strArrSplit = str2.split("_");
-                    this.lessCallData = Utilities.parseInt((CharSequence) strArrSplit[11]).intValue() == 1;
+                    split = str2.split("_");
+                    this.lessCallData = Utilities.parseInt((CharSequence) split[11]).intValue() == 1;
                 }
-                if (strArrSplit2.length >= 13) {
-                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) strArrSplit2[12]).intValue();
+                if (split2.length >= 13) {
+                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) split2[12]).intValue();
                 } else {
-                    strArrSplit = strArrSplit == null ? str2.split("_") : strArrSplit;
-                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) strArrSplit[12]).intValue();
+                    split = split == null ? str2.split("_") : split;
+                    this.maxVideoBitrate = Utilities.parseInt((CharSequence) split[12]).intValue();
                 }
-                if (strArrSplit2.length >= 14) {
-                    this.preloadStories = Utilities.parseInt((CharSequence) strArrSplit2[13]).intValue() == 1;
+                if (split2.length >= 14) {
+                    this.preloadStories = Utilities.parseInt((CharSequence) split2[13]).intValue() == 1;
                 } else {
-                    this.preloadStories = Utilities.parseInt((CharSequence) (strArrSplit == null ? str2.split("_") : strArrSplit)[13]).intValue() == 1;
+                    this.preloadStories = Utilities.parseInt((CharSequence) (split == null ? str2.split("_") : split)[13]).intValue() == 1;
                 }
             }
         }
     }
 
-    public boolean canDownloadMedia(int i10, long j10) {
+    public boolean canDownloadMedia(int i9, long j10) {
         Preset currentMobilePreset;
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
         if (autodownloadNetworkType == 1) {
@@ -1565,13 +1513,12 @@ public class DownloadController extends BaseController implements NotificationCe
                 return false;
             }
             currentMobilePreset = getCurrentRoamingPreset();
+        } else if (!this.mobilePreset.enabled) {
+            return false;
         } else {
-            if (!this.mobilePreset.enabled) {
-                return false;
-            }
             currentMobilePreset = getCurrentMobilePreset();
         }
-        return (i10 == 1 || (j10 != 0 && j10 <= currentMobilePreset.sizes[typeToIndex(i10)])) && (i10 == 2 || (i10 & currentMobilePreset.mask[1]) != 0);
+        return (i9 == 1 || (j10 != 0 && j10 <= currentMobilePreset.sizes[typeToIndex(i9)])) && (i9 == 2 || (i9 & currentMobilePreset.mask[1]) != 0);
     }
 
     public int canDownloadMediaType(MessageObject messageObject, long j10) {
@@ -1579,242 +1526,28 @@ public class DownloadController extends BaseController implements NotificationCe
         TLRPC.MessageMedia messageMedia;
         if (messageObject.type == 23) {
             return (!SharedConfig.isAutoplayVideo() || (storyItem = ((TLRPC.TL_messageMediaStory) MessageObject.getMedia(messageObject)).storyItem) == null || (messageMedia = storyItem.media) == null || messageMedia.document == null || !storyItem.isPublic) ? 0 : 2;
-        }
-        if (messageObject.sponsoredMedia != null) {
+        } else if (messageObject.sponsoredMedia != null) {
             return 2;
+        } else {
+            if (messageObject.isHiddenSensitive()) {
+                return 0;
+            }
+            return canDownloadMediaInternal(messageObject, j10);
         }
-        if (messageObject.isHiddenSensitive()) {
-            return 0;
-        }
-        return canDownloadMediaInternal(messageObject, j10);
     }
 
-    public int canDownloadMedia(TLRPC.Message message) {
-        int i10;
-        char c10;
-        Preset currentMobilePreset;
-        long jMax;
-        if (message == null || (message.media instanceof TLRPC.TL_messageMediaStory)) {
-            return canPreloadStories() ? 2 : 0;
-        }
-        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
-        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
-            i10 = 4;
-        } else if (MessageObject.isVoiceMessage(message)) {
-            i10 = 2;
-        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
-            i10 = 1;
-        } else {
-            if (MessageObject.getDocument(message) == null) {
-                return 0;
-            }
-            i10 = 8;
-        }
-        TLRPC.Peer peer = message.peer_id;
-        if (peer == null) {
-            c10 = 1;
-        } else {
-            if (peer.user_id != 0) {
-                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
-                    c10 = 1;
-                }
-            } else if (peer.chat_id != 0) {
-                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            } else {
-                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
-                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
-                    c10 = 3;
-                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            }
-            c10 = 0;
-        }
-        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        if (autodownloadNetworkType == 1) {
-            if (!this.wifiPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentWiFiPreset();
-        } else if (autodownloadNetworkType == 2) {
-            if (!this.roamingPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentRoamingPreset();
-        } else {
-            if (!this.mobilePreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentMobilePreset();
-        }
-        int i11 = currentMobilePreset.mask[c10];
-        if (i10 == 2) {
-            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i10)]);
-        } else {
-            jMax = currentMobilePreset.sizes[typeToIndex(i10)];
-        }
-        long messageSize = MessageObject.getMessageSize(message);
-        if (!zIsVideoMessage || !currentMobilePreset.preloadVideo || messageSize <= jMax || jMax <= 2097152) {
-            return ((i10 == 1 || (messageSize != 0 && messageSize <= jMax)) && (i10 == 2 || (i11 & i10) != 0)) ? 1 : 0;
-        }
-        return (i11 & i10) != 0 ? 2 : 0;
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
     }
 
-    private int canDownloadMediaInternal(MessageObject messageObject, long j10) {
-        TLRPC.Message message;
-        int i10;
-        char c10;
-        Preset currentMobilePreset;
-        long jMax;
-        if (messageObject == null || (message = messageObject.messageOwner) == null) {
-            return 0;
-        }
-        if (message.media instanceof TLRPC.TL_messageMediaStory) {
-            return canPreloadStories() ? 2 : 0;
-        }
-        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
-        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
-            i10 = 4;
-        } else if (MessageObject.isVoiceMessage(message)) {
-            i10 = 2;
-        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
-            i10 = 1;
-        } else {
-            if (MessageObject.getDocument(message) == null) {
-                return 0;
-            }
-            i10 = 8;
-        }
-        TLRPC.Peer peer = message.peer_id;
-        if (peer == null) {
-            c10 = 1;
-        } else {
-            if (peer.user_id != 0) {
-                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
-                    c10 = 1;
-                }
-            } else if (peer.chat_id != 0) {
-                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            } else {
-                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
-                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
-                    c10 = 3;
-                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            }
-            c10 = 0;
-        }
-        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        if (autodownloadNetworkType == 1) {
-            if (!this.wifiPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentWiFiPreset();
-        } else if (autodownloadNetworkType == 2) {
-            if (!this.roamingPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentRoamingPreset();
-        } else {
-            if (!this.mobilePreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentMobilePreset();
-        }
-        int i11 = currentMobilePreset.mask[c10];
-        if (i10 == 2) {
-            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i10)]);
-        } else {
-            jMax = currentMobilePreset.sizes[typeToIndex(i10)];
-        }
-        if (!zIsVideoMessage || !currentMobilePreset.preloadVideo || j10 <= jMax || jMax <= 2097152) {
-            return ((i10 == 1 || (j10 != 0 && j10 <= jMax)) && (i10 == 2 || (i11 & i10) != 0)) ? 1 : 0;
-        }
-        return (i11 & i10) != 0 ? 2 : 0;
+    private int canDownloadMediaInternal(org.telegram.messenger.MessageObject r14, long r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMediaInternal(org.telegram.messenger.MessageObject, long):int");
     }
 
     public static void lambda$savePresetToServer$3(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public int canDownloadMedia(TLRPC.Message message, TLRPC.MessageMedia messageMedia) {
-        int i10;
-        boolean z10;
-        char c10;
-        Preset currentMobilePreset;
-        long jMax;
-        if (message == null || (messageMedia instanceof TLRPC.TL_messageMediaStory)) {
-            return canPreloadStories() ? 2 : 0;
-        }
-        if (MessageObject.isVideoDocument(messageMedia.document)) {
-            i10 = 4;
-            z10 = true;
-        } else {
-            if (MessageObject.isVoiceDocument(messageMedia.document)) {
-                i10 = 2;
-            } else if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
-                i10 = 1;
-            } else {
-                if (messageMedia.document == null) {
-                    return 0;
-                }
-                i10 = 8;
-            }
-            z10 = false;
-        }
-        TLRPC.Peer peer = message.peer_id;
-        if (peer == null) {
-            c10 = 1;
-        } else {
-            if (peer.user_id != 0) {
-                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
-                    c10 = 1;
-                }
-            } else if (peer.chat_id != 0) {
-                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            } else {
-                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
-                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
-                    c10 = 3;
-                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
-                    c10 = 2;
-                }
-            }
-            c10 = 0;
-        }
-        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        if (autodownloadNetworkType == 1) {
-            if (!this.wifiPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentWiFiPreset();
-        } else if (autodownloadNetworkType == 2) {
-            if (!this.roamingPreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentRoamingPreset();
-        } else {
-            if (!this.mobilePreset.enabled) {
-                return 0;
-            }
-            currentMobilePreset = getCurrentMobilePreset();
-        }
-        int i11 = currentMobilePreset.mask[c10];
-        if (i10 == 2) {
-            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i10)]);
-        } else {
-            jMax = currentMobilePreset.sizes[typeToIndex(i10)];
-        }
-        long mediaSize = MessageObject.getMediaSize(messageMedia);
-        if (!z10 || !currentMobilePreset.preloadVideo || mediaSize <= jMax || jMax <= 2097152) {
-            return ((i10 == 1 || (mediaSize != 0 && mediaSize <= jMax)) && (i10 == 2 || (i11 & i10) != 0)) ? 1 : 0;
-        }
-        return (i11 & i10) != 0 ? 2 : 0;
+    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r14, org.telegram.tgnet.TLRPC.MessageMedia r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message, org.telegram.tgnet.TLRPC$MessageMedia):int");
     }
 }

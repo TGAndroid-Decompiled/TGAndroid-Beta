@@ -1,60 +1,23 @@
 package org.telegram.ui.Components;
+public final class et extends i6 {
+    public final int W;
+    public final EditTextBoldCursor X;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import org.telegram.messenger.AndroidUtilities;
-
-public final class et extends ShapeDrawable {
-
-    public final int f28147a = 0;
-
-    public final EditTextBoldCursor f28148b;
-
-    public et(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
-        super(rectShape);
-        this.f28148b = editTextBoldCursor;
+    public et(int i9, EditTextBoldCursor editTextBoldCursor) {
+        super(false, false, false, false);
+        this.W = i9;
+        this.X = editTextBoldCursor;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f28147a) {
+    public final void invalidateSelf() {
+        switch (this.W) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f28148b;
-                if (!editTextBoldCursor.drawInMaim) {
-                    super.draw(canvas);
-                } else {
-                    editTextBoldCursor.cursorDrawn = true;
-                }
-                break;
+                this.X.invalidate();
+                return;
             default:
-                super.draw(canvas);
-                this.f28148b.cursorDrawn = true;
-                break;
+                this.X.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f28147a) {
-            case 0:
-                return AndroidUtilities.dp(this.f28148b.cursorSize + 20);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f28147a) {
-            case 0:
-                return AndroidUtilities.dp(this.f28148b.cursorWidth);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    public et(EditTextBoldCursor editTextBoldCursor) {
-        this.f28148b = editTextBoldCursor;
     }
 }

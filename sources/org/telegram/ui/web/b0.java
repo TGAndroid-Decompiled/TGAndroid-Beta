@@ -1,38 +1,35 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import org.json.JSONObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.t9;
+import org.telegram.ui.Components.y4;
+import org.telegram.ui.qn;
+public final class b0 implements Runnable {
+    public final int f43803a;
+    public final long f43804b;
+    public final NotificationCenter.NotificationCenterDelegate f43805c;
 
-public final class b0 implements NotificationCenter.NotificationCenterDelegate {
-
-    public final z0 f43780a;
-
-    public b0(z0 z0Var) {
-        this.f43780a = z0Var;
+    public b0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j10, int i9) {
+        this.f43803a = i9;
+        this.f43805c = notificationCenterDelegate;
+        this.f43804b = j10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i10 == i12) {
-            int iIntValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (iIntValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
-                int i13 = iArr[0];
-                z0 z0Var = this.f43780a;
-                if (i13 != 0) {
-                    z0Var.v("scan_qr_popup_closed", new JSONObject());
-                    return;
-                }
-                Activity activity = z0Var.S;
-                if (activity == null) {
-                    return;
-                }
-                z0Var.f44062c0 = t9.e0(activity, 3, new n2.b0(z0Var, 13));
-            }
+    public final void run() {
+        switch (this.f43803a) {
+            case 0:
+                c0 c0Var = (c0) this.f43805c;
+                c0Var.getClass();
+                c0Var.presentFragment(qn.R9(this.f43804b));
+                return;
+            case 1:
+                qh.p pVar = (qh.p) this.f43805c;
+                y4.M(pVar.f27493b.f30099b0.getParentActivity(), this.f43804b, new n5.a0(pVar, 13), pVar.f27492a);
+                return;
+            default:
+                qh.x1 x1Var = (qh.x1) this.f43805c;
+                y4.M(x1Var.getParentActivity(), this.f43804b, new m5.c0(x1Var, 21), x1Var.getResourceProvider());
+                return;
         }
     }
 }

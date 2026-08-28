@@ -1,12 +1,44 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import android.view.ViewGroup;
+public final class y21 extends f2.r0 {
+    public Context f34842c;
+    public View d;
+    public int f34843e;
 
-public final class y21 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
+    public final void D(View view) {
+        if (this.d == view) {
+            return;
+        }
+        this.f34843e++;
+        this.d = view;
+        m(1);
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i11)), 1073741824));
+    public final int h() {
+        return 2;
+    }
+
+    @Override
+    public final int j(int i9) {
+        if (i9 == 0) {
+            return 0;
+        }
+        return this.f34843e;
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        if (i9 == 0) {
+            return new f2.q1(new an(this.f34842c, 14));
+        }
+        return new f2.q1(this.d);
+    }
+
+    @Override
+    public final void v(f2.q1 q1Var, int i9) {
     }
 }

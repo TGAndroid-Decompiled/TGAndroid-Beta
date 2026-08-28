@@ -3,244 +3,266 @@ package o4;
 import android.net.Uri;
 import android.util.Pair;
 import com.google.android.exoplayer2.upstream.y0;
-import d5.g0;
+import d5.f0;
+import g7.r6;
 import h3.t0;
-import h7.u6;
 import j$.util.DesugarCollections;
 import j4.i1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import n2.b0;
-import p8.l0;
-import p8.x;
-import p8.z;
-
+import m5.c0;
+import n5.e0;
+import o8.l0;
+import o8.x;
+import o8.z;
 public final class i {
-
-    public final j f19205a;
-
-    public final com.google.android.exoplayer2.upstream.m f19206b;
-
-    public final com.google.android.exoplayer2.upstream.m f19207c;
-    public final n1.d d;
-
-    public final Uri[] f19208e;
-
-    public final t0[] f19209f;
-
-    public final p4.c f19210g;
+    public final j f18858a;
+    public final com.google.android.exoplayer2.upstream.m f18859b;
+    public final com.google.android.exoplayer2.upstream.m f18860c;
+    public final c0 d;
+    public final Uri[] f18861e;
+    public final t0[] f18862f;
+    public final p4.c f18863g;
     public final i1 h;
+    public final List f18864i;
+    public final i3.l f18866k;
+    public boolean f18867l;
+    public j4.b f18869n;
+    public Uri f18870o;
+    public boolean f18871p;
+    public b5.t f18872q;
+    public boolean f18874s;
+    public final n2.p f18865j = new n2.p(4);
+    public byte[] f18868m = f0.f4353f;
+    public long f18873r = -9223372036854775807L;
 
-    public final List f19211i;
-
-    public final i3.k f19213k;
-
-    public boolean f19214l;
-
-    public j4.b f19216n;
-
-    public Uri f19217o;
-
-    public boolean f19218p;
-
-    public b5.s f19219q;
-
-    public boolean f19221s;
-
-    public final b0 f19212j = new b0(3);
-
-    public byte[] f19215m = g0.f4799f;
-
-    public long f19220r = -9223372036854775807L;
-
-    public i(j jVar, p4.c cVar, Uri[] uriArr, t0[] t0VarArr, m5.o oVar, y0 y0Var, n1.d dVar, List list, i3.k kVar) {
-        this.f19205a = jVar;
-        this.f19210g = cVar;
-        this.f19208e = uriArr;
-        this.f19209f = t0VarArr;
-        this.d = dVar;
-        this.f19211i = list;
-        this.f19213k = kVar;
-        com.google.android.exoplayer2.upstream.m mVarCreateDataSource = ((com.google.android.exoplayer2.upstream.l) oVar.f17823b).createDataSource();
-        this.f19206b = mVarCreateDataSource;
+    public i(j jVar, p4.c cVar, Uri[] uriArr, t0[] t0VarArr, e0 e0Var, y0 y0Var, c0 c0Var, List list, i3.l lVar) {
+        this.f18858a = jVar;
+        this.f18863g = cVar;
+        this.f18861e = uriArr;
+        this.f18862f = t0VarArr;
+        this.d = c0Var;
+        this.f18864i = list;
+        this.f18866k = lVar;
+        com.google.android.exoplayer2.upstream.m createDataSource = ((com.google.android.exoplayer2.upstream.l) e0Var.f18488b).createDataSource();
+        this.f18859b = createDataSource;
         if (y0Var != null) {
-            mVarCreateDataSource.addTransferListener(y0Var);
+            createDataSource.addTransferListener(y0Var);
         }
-        this.f19207c = ((com.google.android.exoplayer2.upstream.l) oVar.f17823b).createDataSource();
+        this.f18860c = ((com.google.android.exoplayer2.upstream.l) e0Var.f18488b).createDataSource();
         this.h = new i1("", t0VarArr);
         ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < uriArr.length; i10++) {
-            if ((t0VarArr[i10].f8187e & 16384) == 0) {
-                arrayList.add(Integer.valueOf(i10));
+        for (int i9 = 0; i9 < uriArr.length; i9++) {
+            if ((t0VarArr[i9].f9763e & 16384) == 0) {
+                arrayList.add(Integer.valueOf(i9));
             }
         }
         i1 i1Var = this.h;
-        int[] iArrE = u6.e(arrayList);
-        g gVar = new g(i1Var, iArrE);
-        gVar.f19201g = gVar.a(i1Var.d[iArrE[0]]);
-        this.f19219q = gVar;
+        int[] e10 = r6.e(arrayList);
+        ?? cVar2 = new b5.c(i1Var, e10);
+        cVar2.f18854g = cVar2.a(i1Var.d[e10[0]]);
+        this.f18872q = cVar2;
     }
 
     public final l4.l[] a(k kVar, long j10) {
-        List listUnmodifiableList;
+        int a2;
+        boolean z10;
+        List list;
         i iVar = this;
         k kVar2 = kVar;
-        int iA = kVar2 == null ? -1 : iVar.h.a(kVar2.d);
-        int length = iVar.f19219q.length();
+        if (kVar2 == null) {
+            a2 = -1;
+        } else {
+            a2 = iVar.h.a(kVar2.d);
+        }
+        int length = iVar.f18872q.length();
         l4.l[] lVarArr = new l4.l[length];
-        boolean z10 = false;
-        int i10 = 0;
-        while (i10 < length) {
-            int iJ = iVar.f19219q.j(i10);
-            Uri uri = iVar.f19208e[iJ];
-            p4.c cVar = iVar.f19210g;
-            if (cVar.c(uri)) {
-                p4.j jVarA = cVar.a(uri, z10);
-                jVarA.getClass();
-                long j11 = jVarA.h - cVar.f45379y;
-                Pair pairC = iVar.c(kVar2, iJ != iA, jVarA, j11, j10);
-                long jLongValue = ((Long) pairC.first).longValue();
-                int iIntValue = ((Integer) pairC.second).intValue();
-                long j12 = jVarA.f45404k;
-                z zVar = jVarA.f45412s;
-                z zVar2 = jVarA.f45411r;
-                int i11 = (int) (jLongValue - j12);
-                if (i11 < 0 || zVar2.size() < i11) {
-                    x xVar = z.f45604b;
-                    listUnmodifiableList = l0.f45555e;
-                } else {
-                    ArrayList arrayList = new ArrayList();
-                    if (i11 < zVar2.size()) {
-                        if (iIntValue != -1) {
-                            p4.g gVar = (p4.g) zVar2.get(i11);
-                            if (iIntValue == 0) {
-                                arrayList.add(gVar);
-                            } else if (iIntValue < gVar.f45386x.size()) {
-                                z zVar3 = gVar.f45386x;
-                                arrayList.addAll(zVar3.subList(iIntValue, zVar3.size()));
-                            }
-                            i11++;
-                        }
-                        arrayList.addAll(zVar2.subList(i11, zVar2.size()));
-                        iIntValue = 0;
-                    }
-                    if (jVarA.f45407n != -9223372036854775807L) {
-                        if (iIntValue == -1) {
-                            iIntValue = 0;
-                        }
-                        if (iIntValue < zVar.size()) {
-                            arrayList.addAll(zVar.subList(iIntValue, zVar.size()));
-                        }
-                    }
-                    listUnmodifiableList = DesugarCollections.unmodifiableList(arrayList);
-                }
-                lVarArr[i10] = new f(j11, listUnmodifiableList);
+        boolean z11 = false;
+        int i9 = 0;
+        while (i9 < length) {
+            int j11 = iVar.f18872q.j(i9);
+            Uri uri = iVar.f18861e[j11];
+            p4.c cVar = iVar.f18863g;
+            if (!cVar.c(uri)) {
+                lVarArr[i9] = l4.l.f16686q;
             } else {
-                lVarArr[i10] = l4.l.f15443o;
+                p4.j a3 = cVar.a(uri, z11);
+                a3.getClass();
+                long j12 = a3.h - cVar.f45373y;
+                if (j11 != a2) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                Pair c10 = iVar.c(kVar2, z10, a3, j12, j10);
+                long longValue = ((Long) c10.first).longValue();
+                int intValue = ((Integer) c10.second).intValue();
+                long j13 = a3.f45398k;
+                z zVar = a3.f45406s;
+                z zVar2 = a3.f45405r;
+                int i10 = (int) (longValue - j13);
+                if (i10 >= 0 && zVar2.size() >= i10) {
+                    ArrayList arrayList = new ArrayList();
+                    if (i10 < zVar2.size()) {
+                        if (intValue != -1) {
+                            p4.g gVar = (p4.g) zVar2.get(i10);
+                            if (intValue == 0) {
+                                arrayList.add(gVar);
+                            } else if (intValue < gVar.f45380x.size()) {
+                                z zVar3 = gVar.f45380x;
+                                arrayList.addAll(zVar3.subList(intValue, zVar3.size()));
+                            }
+                            i10++;
+                        }
+                        arrayList.addAll(zVar2.subList(i10, zVar2.size()));
+                        intValue = 0;
+                    }
+                    if (a3.f45401n != -9223372036854775807L) {
+                        if (intValue == -1) {
+                            intValue = 0;
+                        }
+                        if (intValue < zVar.size()) {
+                            arrayList.addAll(zVar.subList(intValue, zVar.size()));
+                        }
+                    }
+                    list = DesugarCollections.unmodifiableList(arrayList);
+                } else {
+                    x xVar = z.f19105b;
+                    list = l0.f19056e;
+                }
+                lVarArr[i9] = new f(j12, list);
             }
-            i10++;
+            i9++;
             iVar = this;
             kVar2 = kVar;
-            z10 = false;
+            z11 = false;
         }
         return lVarArr;
     }
 
     public final int b(k kVar) {
-        int i10 = kVar.A;
-        if (i10 == -1) {
+        z zVar;
+        int i9 = kVar.A;
+        if (i9 != -1) {
+            p4.j a2 = this.f18863g.a(this.f18861e[this.h.a(kVar.d)], false);
+            a2.getClass();
+            z zVar2 = a2.f45405r;
+            int i10 = (int) (kVar.f16685s - a2.f45398k);
+            if (i10 >= 0) {
+                if (i10 < zVar2.size()) {
+                    zVar = ((p4.g) zVar2.get(i10)).f45380x;
+                } else {
+                    zVar = a2.f45406s;
+                }
+                if (i9 < zVar.size()) {
+                    p4.e eVar = (p4.e) zVar.get(i9);
+                    if (eVar.f45375x) {
+                        return 0;
+                    }
+                    if (f0.a(Uri.parse(d5.a.G(a2.f45426a, eVar.f45381a)), kVar.f16661b.f2585a)) {
+                        return 1;
+                    }
+                    return 2;
+                }
+                return 2;
+            }
             return 1;
         }
-        p4.j jVarA = this.f19210g.a(this.f19208e[this.h.a(kVar.d)], false);
-        jVarA.getClass();
-        z zVar = jVarA.f45411r;
-        int i11 = (int) (kVar.f15442s - jVarA.f45404k);
-        if (i11 < 0) {
-            return 1;
-        }
-        z zVar2 = i11 < zVar.size() ? ((p4.g) zVar.get(i11)).f45386x : jVarA.f45412s;
-        if (i10 >= zVar2.size()) {
-            return 2;
-        }
-        p4.e eVar = (p4.e) zVar2.get(i10);
-        if (eVar.f45381x) {
-            return 0;
-        }
-        return g0.a(Uri.parse(d5.a.G(jVarA.f45432a, eVar.f45387a)), kVar.f15418b.f3022a) ? 1 : 2;
+        return 1;
     }
 
     public final Pair c(k kVar, boolean z10, p4.j jVar, long j10, long j11) {
+        z zVar;
+        long j12;
         boolean z11 = true;
-        int i10 = -1;
+        int i9 = -1;
         if (kVar != null) {
-            long jB = kVar.f15442s;
-            int i11 = kVar.A;
+            long j13 = kVar.f16685s;
+            int i10 = kVar.A;
             if (!z10) {
-                if (!kVar.T) {
-                    return new Pair(Long.valueOf(jB), Integer.valueOf(i11));
+                if (kVar.T) {
+                    if (i10 == -1) {
+                        j13 = kVar.b();
+                    }
+                    Long valueOf = Long.valueOf(j13);
+                    if (i10 != -1) {
+                        i9 = i10 + 1;
+                    }
+                    return new Pair(valueOf, Integer.valueOf(i9));
                 }
-                if (i11 == -1) {
-                    jB = kVar.b();
-                }
-                return new Pair(Long.valueOf(jB), Integer.valueOf(i11 != -1 ? i11 + 1 : -1));
+                return new Pair(Long.valueOf(j13), Integer.valueOf(i10));
             }
         }
-        long j12 = jVar.f45414u;
-        z zVar = jVar.f45412s;
-        long j13 = jVar.f45404k;
-        z zVar2 = jVar.f45411r;
-        long j14 = j12 + j10;
-        if (kVar != null && !this.f19218p) {
+        long j14 = jVar.f45408u;
+        z zVar2 = jVar.f45406s;
+        long j15 = jVar.f45398k;
+        z zVar3 = jVar.f45405r;
+        long j16 = j14 + j10;
+        if (kVar != null && !this.f18871p) {
             j11 = kVar.h;
         }
-        if (!jVar.f45408o && j11 >= j14) {
-            return new Pair(Long.valueOf(j13 + ((long) zVar2.size())), -1);
+        if (!jVar.f45402o && j11 >= j16) {
+            return new Pair(Long.valueOf(j15 + zVar3.size()), -1);
         }
-        long j15 = j11 - j10;
-        Long lValueOf = Long.valueOf(j15);
-        if (this.f19210g.f45378x && kVar != null) {
+        long j17 = j11 - j10;
+        Long valueOf2 = Long.valueOf(j17);
+        int i11 = 0;
+        if (this.f18863g.f45372x && kVar != null) {
             z11 = false;
         }
-        int iC = g0.c(zVar2, lValueOf, z11);
-        long j16 = ((long) iC) + j13;
-        if (iC >= 0) {
-            p4.g gVar = (p4.g) zVar2.get(iC);
-            z zVar3 = j15 < gVar.f45390e + gVar.f45389c ? gVar.f45386x : zVar;
-            for (int i12 = 0; i12 < zVar3.size(); i12++) {
-                p4.e eVar = (p4.e) zVar3.get(i12);
-                if (j15 < eVar.f45390e + eVar.f45389c) {
-                    if (!eVar.f45380w) {
-                        break;
-                    }
-                    j16 += zVar3 == zVar ? 1L : 0L;
-                    i10 = i12;
+        int c10 = f0.c(zVar3, valueOf2, z11);
+        long j18 = c10 + j15;
+        if (c10 >= 0) {
+            p4.g gVar = (p4.g) zVar3.get(c10);
+            if (j17 < gVar.f45384e + gVar.f45383c) {
+                zVar = gVar.f45380x;
+            } else {
+                zVar = zVar2;
+            }
+            while (true) {
+                if (i11 >= zVar.size()) {
                     break;
+                }
+                p4.e eVar = (p4.e) zVar.get(i11);
+                if (j17 < eVar.f45384e + eVar.f45383c) {
+                    if (eVar.f45374w) {
+                        if (zVar == zVar2) {
+                            j12 = 1;
+                        } else {
+                            j12 = 0;
+                        }
+                        j18 += j12;
+                        i9 = i11;
+                    }
+                } else {
+                    i11++;
                 }
             }
         }
-        return new Pair(Long.valueOf(j16), Integer.valueOf(i10));
+        return new Pair(Long.valueOf(j18), Integer.valueOf(i9));
     }
 
-    public final e d(Uri uri, int i10) {
+    public final e d(Uri uri, int i9) {
         if (uri == null) {
             return null;
         }
-        b0 b0Var = this.f19212j;
-        byte[] bArr = (byte[]) ((d) b0Var.f18130b).remove(uri);
+        n2.p pVar = this.f18865j;
+        byte[] bArr = (byte[]) ((d) pVar.f18343b).remove(uri);
         if (bArr != null) {
+            byte[] bArr2 = (byte[]) ((d) pVar.f18343b).put(uri, bArr);
             return null;
         }
         com.google.android.exoplayer2.upstream.q qVar = new com.google.android.exoplayer2.upstream.q(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 1);
-        t0 t0Var = this.f19209f[i10];
-        int iP = this.f19219q.p();
-        Object objR = this.f19219q.r();
-        byte[] bArr2 = this.f19215m;
-        e eVar = new e(this.f19207c, qVar, 3, t0Var, iP, objR, -9223372036854775807L, -9223372036854775807L);
-        if (bArr2 == null) {
-            bArr2 = g0.f4799f;
+        t0 t0Var = this.f18862f[i9];
+        int p6 = this.f18872q.p();
+        Object r10 = this.f18872q.r();
+        byte[] bArr3 = this.f18868m;
+        ?? eVar = new l4.e(this.f18860c, qVar, 3, t0Var, p6, r10, -9223372036854775807L, -9223372036854775807L);
+        if (bArr3 == null) {
+            bArr3 = f0.f4353f;
         }
-        eVar.f19198s = bArr2;
+        eVar.f18851s = bArr3;
         return eVar;
     }
 }

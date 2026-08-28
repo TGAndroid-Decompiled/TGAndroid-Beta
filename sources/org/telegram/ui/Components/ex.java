@@ -1,52 +1,48 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.FileLog;
-
 public final class ex implements Runnable {
-
-    public final int f28166a;
-
-    public final float f28167b;
-
-    public final int f28168c;
+    public final int f28211a;
+    public final float f28212b;
+    public final int f28213c;
     public final Object d;
 
-    public ex(Object obj, float f10, int i10, int i11) {
-        this.f28166a = i11;
+    public ex(Object obj, float f10, int i9, int i10) {
+        this.f28211a = i10;
         this.d = obj;
-        this.f28167b = f10;
-        this.f28168c = i10;
+        this.f28212b = f10;
+        this.f28213c = i9;
     }
 
     @Override
     public final void run() {
-        switch (this.f28166a) {
+        switch (this.f28211a) {
             case 0:
-                gx gxVar = (gx) this.d;
-                float f10 = this.f28167b;
-                int i10 = this.f28168c;
-                yy yyVar = gxVar.B;
+                float f10 = this.f28212b;
+                int i9 = this.f28213c;
+                wy wyVar = ((fx) this.d).B;
                 try {
-                    sh.n nVar = new sh.n(yyVar.L.getContext(), 0, f10);
-                    nVar.f5731a = i10;
-                    yyVar.M.w0(nVar);
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                    rh.n nVar = new rh.n(wyVar.L.getContext(), 0, f10);
+                    nVar.f5443a = i9;
+                    wyVar.M.w0(nVar);
                     return;
-                }
-                break;
-            default:
-                org.telegram.ui.a61 a61Var = (org.telegram.ui.a61) this.d;
-                float f11 = this.f28167b;
-                int i11 = this.f28168c;
-                try {
-                    sh.n nVar2 = new sh.n(a61Var.f36392d0.getContext(), 0, f11);
-                    nVar2.f5731a = i11;
-                    a61Var.f36413n0.w0(nVar2);
                 } catch (Exception e10) {
                     FileLog.e(e10);
+                    return;
                 }
-                break;
+            default:
+                org.telegram.ui.b61 b61Var = (org.telegram.ui.b61) this.d;
+                float f11 = this.f28212b;
+                int i10 = this.f28213c;
+                try {
+                    rh.n nVar2 = new rh.n(b61Var.f36669d0.getContext(), 0, f11);
+                    nVar2.f5443a = i10;
+                    b61Var.f36690n0.w0(nVar2);
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
         }
     }
 }

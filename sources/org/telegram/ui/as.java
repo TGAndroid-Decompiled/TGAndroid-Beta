@@ -1,55 +1,33 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-
 public final class as implements Runnable {
+    public final int f36542a;
+    public final is f36543b;
 
-    public final int f36629a;
-
-    public final js f36630b;
-
-    public final TLRPC.User f36631c;
-
-    public as(js jsVar, TLRPC.User user, int i10) {
-        this.f36629a = i10;
-        this.f36630b = jsVar;
-        this.f36631c = user;
+    public as(is isVar, int i9) {
+        this.f36542a = i9;
+        this.f36543b = isVar;
     }
 
     @Override
     public final void run() {
-        String str;
-        switch (this.f36629a) {
+        switch (this.f36542a) {
             case 0:
-                js jsVar = this.f36630b;
-                TLRPC.User user = this.f36631c;
-                if (user != null && jsVar.I == null && jsVar.J == null) {
-                    if (user.phone == null && (str = jsVar.H) != null) {
-                        user.phone = oe.b.d(str, false);
-                    }
-                    jsVar.f39484b.setText(user.first_name);
-                    org.telegram.ui.Cells.e3 e3Var = jsVar.f39484b.f24370b;
-                    e3Var.setSelection(e3Var.length());
-                    jsVar.f39485c.setText(user.last_name);
+                is isVar = this.f36543b;
+                if (isVar.F) {
+                    isVar.d.f24544b.requestFocus();
+                    AndroidUtilities.showKeyboard(isVar.d.f24544b);
+                    return;
                 }
-                TLRPC.UserFull userFull = jsVar.getMessagesController().getUserFull(jsVar.D);
-                if (userFull != null) {
-                    TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
-                    if (tL_textWithEntities != null) {
-                        jsVar.d.setText(tL_textWithEntities);
-                    } else {
-                        jsVar.d.setText("");
-                    }
-                }
-                if (jsVar.F) {
-                    jsVar.d.f24370b.requestFocus();
-                    AndroidUtilities.showKeyboard(jsVar.d.f24370b);
-                }
-                break;
+                return;
+            case 1:
+                is.Y(this.f36543b);
+                return;
             default:
-                js.V(this.f36630b, this.f36631c);
-                break;
+                is isVar2 = this.f36543b;
+                isVar2.presentFragment(qn.R9(isVar2.D), true);
+                return;
         }
     }
 }

@@ -2,7 +2,6 @@ package o5;
 
 import com.google.android.gms.cast.MediaError;
 import java.util.ArrayList;
-
 public abstract class g {
     public void a() {
     }
@@ -31,7 +30,7 @@ public abstract class g {
     public void i(int[] iArr) {
     }
 
-    public void k(m5.p[] pVarArr) {
+    public void k(m5.o[] oVarArr) {
     }
 
     public void l(int[] iArr) {
@@ -40,12 +39,12 @@ public abstract class g {
     public void n(int[] iArr) {
     }
 
-    public void j(int[] iArr, int i10) {
+    public void j(int[] iArr, int i9) {
     }
 
-    public void m(ArrayList arrayList, ArrayList arrayList2, int i10) {
+    public void m(ArrayList arrayList, ArrayList arrayList2, int i9) {
     }
 
-    public void h(String str, long j10, int i10, long j11, long j12) {
+    public void h(String str, long j10, int i9, long j11, long j12) {
     }
 }

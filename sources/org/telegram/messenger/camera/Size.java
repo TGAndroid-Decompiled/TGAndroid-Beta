@@ -1,31 +1,30 @@
 package org.telegram.messenger.camera;
-
 public final class Size {
     public final int mHeight;
     public final int mWidth;
 
-    public Size(int i10, int i11) {
-        this.mWidth = i10;
-        this.mHeight = i11;
+    public Size(int i9, int i10) {
+        this.mWidth = i9;
+        this.mHeight = i10;
     }
 
     private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException(a9.p.m("Invalid Size: \"", str, "\""));
+        throw new NumberFormatException(aa.d.o("Invalid Size: \"", str, "\""));
     }
 
     public static Size parseSize(String str) {
-        int iIndexOf = str.indexOf(42);
-        if (iIndexOf < 0) {
-            iIndexOf = str.indexOf(120);
+        int indexOf = str.indexOf(42);
+        if (indexOf < 0) {
+            indexOf = str.indexOf(120);
         }
-        if (iIndexOf < 0) {
-            throw invalidSize(str);
+        if (indexOf >= 0) {
+            try {
+                return new Size(Integer.parseInt(str.substring(0, indexOf)), Integer.parseInt(str.substring(indexOf + 1)));
+            } catch (NumberFormatException unused) {
+                throw invalidSize(str);
+            }
         }
-        try {
-            return new Size(Integer.parseInt(str.substring(0, iIndexOf)), Integer.parseInt(str.substring(iIndexOf + 1)));
-        } catch (NumberFormatException unused) {
-            throw invalidSize(str);
-        }
+        throw invalidSize(str);
     }
 
     public boolean equals(Object obj) {
@@ -53,9 +52,9 @@ public final class Size {
     }
 
     public int hashCode() {
-        int i10 = this.mHeight;
-        int i11 = this.mWidth;
-        return i10 ^ ((i11 >>> 16) | (i11 << 16));
+        int i9 = this.mHeight;
+        int i10 = this.mWidth;
+        return i9 ^ ((i10 >>> 16) | (i10 << 16));
     }
 
     public String toString() {

@@ -2,10 +2,9 @@ package r0;
 
 import android.view.View;
 import android.view.WindowInsets;
-
 public abstract class z {
     public static WindowInsets a(View view, WindowInsets windowInsets) {
-        int i10 = l0.f46616a;
+        int i9 = l0.f46926a;
         return view.dispatchApplyWindowInsets(windowInsets);
     }
 

@@ -1,43 +1,35 @@
 package org.telegram.ui.web;
 
-public final class q implements Runnable {
+import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
+public final class q implements Utilities.Callback {
+    public final int f43965a;
+    public final y0 f43966b;
 
-    public final int f43940a;
-
-    public final z0 f43941b;
-
-    public final String f43942c;
-
-    public q(z0 z0Var, String str, int i10) {
-        this.f43940a = i10;
-        this.f43941b = z0Var;
-        this.f43942c = str;
+    public q(y0 y0Var, int i9) {
+        this.f43965a = i9;
+        this.f43966b = y0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43940a) {
+    public final void run(Object obj) {
+        switch (this.f43965a) {
             case 0:
-                w0 w0Var = this.f43941b.f44057a;
-                if (w0Var != null) {
-                    w0Var.d(this.f43942c);
-                    break;
+                y0 y0Var = this.f43966b;
+                y0Var.getClass();
+                if (((Boolean) obj).booleanValue()) {
+                    y0Var.v("home_screen_added", null);
+                    return;
+                } else {
+                    y0Var.v("home_screen_failed", y0.x("UNSUPPORTED", "error"));
+                    return;
                 }
-                break;
+            case 1:
+                this.f43966b.v("location_requested", (JSONObject) obj);
+                return;
             default:
-                z0 z0Var = this.f43941b;
-                z0Var.J = false;
-                z0Var.L = 0L;
-                z0Var.P = false;
-                String str = this.f43942c;
-                z0Var.f44059b = str;
-                z0Var.c();
-                w0 w0Var2 = z0Var.f44057a;
-                if (w0Var2 != null) {
-                    w0Var2.onResume();
-                    z0Var.f44057a.loadUrl(str);
-                }
-                break;
+                this.f43966b.v("location_requested", (JSONObject) obj);
+                return;
         }
     }
 }

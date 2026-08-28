@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.List;
-
 public interface NetworkChangeDetector {
 
     public enum ConnectionType {
@@ -73,7 +72,7 @@ public interface NetworkChangeDetector {
 
         void onNetworkDisconnect(long j10);
 
-        void onNetworkPreference(List<ConnectionType> list, int i10);
+        void onNetworkPreference(List<ConnectionType> list, int i9);
     }
 
     void destroy();

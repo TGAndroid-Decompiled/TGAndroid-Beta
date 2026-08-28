@@ -3,17 +3,19 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
-public final class hp0 extends org.telegram.ui.Cells.b7 {
+public final class hp0 extends org.telegram.ui.Cells.e7 {
     public final jp0 J;
 
-    public hp0(jp0 jp0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, 0, c6Var);
+    public hp0(jp0 jp0Var, Context context, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, 0, b6Var);
         this.J = jp0Var;
     }
 
     @Override
     public final String a() {
-        return this.J.f29774f.W ? LocaleController.getString(R.string.RepostToStory) : LocaleController.getString(R.string.FwdMyStory);
+        if (this.J.f29818f.W) {
+            return LocaleController.getString(R.string.RepostToStory);
+        }
+        return LocaleController.getString(R.string.FwdMyStory);
     }
 }

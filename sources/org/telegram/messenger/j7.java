@@ -1,27 +1,31 @@
 package org.telegram.messenger;
+public final class j7 implements Runnable {
+    public final int f20664a;
+    public final MediaDataController f20665b;
+    public final long f20666c;
+    public final long d;
+    public final int[] f20667e;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-
-public final class j7 implements Comparator {
-
-    public final int f20650a;
-
-    public final ArrayList f20651b;
-
-    public j7(ArrayList arrayList, int i10) {
-        this.f20650a = i10;
-        this.f20651b = arrayList;
+    public j7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i9) {
+        this.f20664a = i9;
+        this.f20665b = mediaDataController;
+        this.f20666c = j10;
+        this.d = j11;
+        this.f20667e = iArr;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f20650a) {
+    public final void run() {
+        switch (this.f20664a) {
             case 0:
-                return MediaDataController.lambda$getEmojiSuggestions$220(this.f20651b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
+                this.f20665b.lambda$getMediaCounts$128(this.f20666c, this.d, this.f20667e);
+                return;
+            case 1:
+                this.f20665b.lambda$getMediaCounts$127(this.f20666c, this.d, this.f20667e);
+                return;
             default:
-                return MediaDataController.lambda$reorderStickers$54(this.f20651b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                this.f20665b.lambda$getMediaCounts$130(this.f20666c, this.d, this.f20667e);
+                return;
         }
     }
 }

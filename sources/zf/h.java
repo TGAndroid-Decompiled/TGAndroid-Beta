@@ -1,31 +1,20 @@
 package zf;
+public final class h {
+    public final int f50513a;
+    public final int f50514b;
+    public final String f50515c;
+    public final String d;
+    public final int f50516e;
 
-public interface h {
-    void B(boolean z10);
+    public h(int i9) {
+        this.f50513a = i9;
+    }
 
-    void C();
-
-    void c(j jVar);
-
-    void g(boolean z10);
-
-    void h(boolean z10);
-
-    boolean j(j jVar);
-
-    void k();
-
-    void m();
-
-    void o(boolean z10);
-
-    boolean r();
-
-    boolean s();
-
-    void v(float f10, float f11, float[] fArr);
-
-    int[] w(j jVar);
-
-    void y();
+    public h(int i9, int i10, String str, String str2) {
+        this.f50513a = 1;
+        this.f50514b = i9;
+        this.f50515c = str;
+        this.d = str2;
+        this.f50516e = i10;
+    }
 }

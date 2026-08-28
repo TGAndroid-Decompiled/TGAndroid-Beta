@@ -1,23 +1,22 @@
 package jb;
 
-import android.graphics.Bitmap;
+import ya.g;
+public final class a implements y8.d {
+    public static final a f14285b = new a(0);
+    public static final a f14286c = new a(1);
+    public final int f14287a;
 
-public final class a {
+    public a(int i9) {
+        this.f14287a = i9;
+    }
 
-    public final Bitmap f12880a;
-
-    public final int f12881b;
-
-    public final int f12882c;
-    public final int d;
-
-    public final int f12883e;
-
-    public a(Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f12880a = bitmap;
-        this.f12881b = i10;
-        this.f12882c = i11;
-        this.d = i12;
-        this.f12883e = i13;
+    @Override
+    public final Object H1(b3.b bVar) {
+        switch (this.f14287a) {
+            case 0:
+                return new c((g) bVar.a(g.class));
+            default:
+                return new b((c) bVar.a(c.class), (ya.d) bVar.a(ya.d.class));
+        }
     }
 }

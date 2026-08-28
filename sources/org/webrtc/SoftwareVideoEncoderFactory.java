@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import java.util.List;
-
+import org.webrtc.VideoEncoderFactory;
 public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final String TAG = "SoftwareVideoEncoderFactory";
     private final long nativeFactory = nativeCreateFactory();
@@ -14,22 +14,22 @@ public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        final long jNativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
-        if (jNativeCreateEncoder != 0) {
-            return new WrappedNativeVideoEncoder() {
-                @Override
-                public long createNativeVideoEncoder() {
-                    return jNativeCreateEncoder;
-                }
-
-                @Override
-                public boolean isHardwareEncoder() {
-                    return false;
-                }
-            };
+        final long nativeCreateEncoder = nativeCreateEncoder(this.nativeFactory, videoCodecInfo);
+        if (nativeCreateEncoder == 0) {
+            Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
+            return null;
         }
-        Logging.w("SoftwareVideoEncoderFactory", "Trying to create encoder for unsupported format. " + videoCodecInfo);
-        return null;
+        return new WrappedNativeVideoEncoder() {
+            @Override
+            public long createNativeVideoEncoder() {
+                return nativeCreateEncoder;
+            }
+
+            @Override
+            public boolean isHardwareEncoder() {
+                return false;
+            }
+        };
     }
 
     @Override

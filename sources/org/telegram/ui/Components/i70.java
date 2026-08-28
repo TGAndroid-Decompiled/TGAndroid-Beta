@@ -1,7 +1,18 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class i70 extends FrameLayout {
+    public TextView f29370a;
 
-public interface i70 {
-    void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12);
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f29370a.setText(charSequence);
+    }
 }

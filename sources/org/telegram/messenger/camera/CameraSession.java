@@ -1,5 +1,6 @@
 package org.telegram.messenger.camera;
 
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
@@ -13,7 +14,6 @@ import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
     public CameraInfo cameraInfo;
@@ -42,81 +42,89 @@ public class CameraSession {
     public ArrayList<String> availableFlashModes = new ArrayList<>();
     private int infoCameraId = -1;
     Camera.CameraInfo info = new Camera.CameraInfo();
-    private Camera.AutoFocusCallback autoFocusCallback = new k();
+    private Camera.AutoFocusCallback autoFocusCallback = new Object();
 
-    public CameraSession(CameraInfo cameraInfo, Size size, Size size2, int i10, boolean z10) {
+    public CameraSession(CameraInfo cameraInfo, Size size, Size size2, int i9, boolean z10) {
+        String str;
         this.previewSize = size;
         this.pictureSize = size2;
-        this.pictureFormat = i10;
+        this.pictureFormat = i9;
         this.cameraInfo = cameraInfo;
         this.isRound = z10;
-        this.currentFlashMode = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).getString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", "off");
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0);
+        if (this.cameraInfo.frontCamera != 0) {
+            str = "flashMode_front";
+        } else {
+            str = "flashMode";
+        }
+        this.currentFlashMode = sharedPreferences.getString(str, "off");
         OrientationEventListener orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
             @Override
-            public void onOrientationChanged(int i11) {
-                if (CameraSession.this.orientationEventListener == null || !CameraSession.this.initied || i11 == -1) {
-                    return;
+            public void onOrientationChanged(int i10) {
+                if (CameraSession.this.orientationEventListener != null && CameraSession.this.initied && i10 != -1) {
+                    CameraSession cameraSession = CameraSession.this;
+                    cameraSession.jpegOrientation = cameraSession.roundOrientation(i10, cameraSession.jpegOrientation);
+                    int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    if (CameraSession.this.lastOrientation != CameraSession.this.jpegOrientation || rotation != CameraSession.this.lastDisplayOrientation) {
+                        if (!CameraSession.this.isVideo) {
+                            CameraSession.this.configurePhotoCamera();
+                        }
+                        CameraSession.this.lastDisplayOrientation = rotation;
+                        CameraSession cameraSession2 = CameraSession.this;
+                        cameraSession2.lastOrientation = cameraSession2.jpegOrientation;
+                    }
                 }
-                CameraSession cameraSession = CameraSession.this;
-                cameraSession.jpegOrientation = cameraSession.roundOrientation(i11, cameraSession.jpegOrientation);
-                int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-                if (CameraSession.this.lastOrientation == CameraSession.this.jpegOrientation && rotation == CameraSession.this.lastDisplayOrientation) {
-                    return;
-                }
-                if (!CameraSession.this.isVideo) {
-                    CameraSession.this.configurePhotoCamera();
-                }
-                CameraSession.this.lastDisplayOrientation = rotation;
-                CameraSession cameraSession2 = CameraSession.this;
-                cameraSession2.lastOrientation = cameraSession2.jpegOrientation;
             }
         };
         this.orientationEventListener = orientationEventListener;
         if (orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-        } else {
-            this.orientationEventListener.disable();
-            this.orientationEventListener = null;
+            return;
         }
+        this.orientationEventListener.disable();
+        this.orientationEventListener = null;
     }
 
     private int getDisplayOrientation(Camera.CameraInfo cameraInfo, boolean z10) {
         int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        int i10 = 0;
+        int i9 = 0;
         if (rotation != 0) {
             if (rotation == 1) {
-                i10 = 90;
+                i9 = 90;
             } else if (rotation == 2) {
-                i10 = 180;
+                i9 = 180;
             } else if (rotation == 3) {
-                i10 = 270;
+                i9 = 270;
             }
         }
-        if (cameraInfo.facing != 1) {
-            return ((cameraInfo.orientation - i10) + 360) % 360;
+        if (cameraInfo.facing == 1) {
+            int i10 = (360 - ((cameraInfo.orientation + i9) % 360)) % 360;
+            if (!z10 && i10 == 90) {
+                i10 = 270;
+            }
+            if (!z10 && "Huawei".equals(Build.MANUFACTURER) && "angler".equals(Build.PRODUCT) && i10 == 270) {
+                return 90;
+            }
+            return i10;
         }
-        int i11 = (360 - ((cameraInfo.orientation + i10) % 360)) % 360;
-        if (!z10 && i11 == 90) {
-            i11 = 270;
-        }
-        if (!z10 && "Huawei".equals(Build.MANUFACTURER) && "angler".equals(Build.PRODUCT) && i11 == 270) {
-            return 90;
-        }
-        return i11;
+        return ((cameraInfo.orientation - i9) + 360) % 360;
     }
 
     private int getHigh() {
-        return ("LGE".equals(Build.MANUFACTURER) && "g3_tmo_us".equals(Build.PRODUCT)) ? 4 : 1;
+        if ("LGE".equals(Build.MANUFACTURER) && "g3_tmo_us".equals(Build.PRODUCT)) {
+            return 4;
+        }
+        return 1;
     }
 
-    public int roundOrientation(int i10, int i11) {
-        if (i11 != -1) {
-            int iAbs = Math.abs(i10 - i11);
-            if (Math.min(iAbs, 360 - iAbs) < 50) {
-                return i11;
+    public int roundOrientation(int i9, int i10) {
+        if (i10 != -1) {
+            int abs = Math.abs(i9 - i10);
+            if (Math.min(abs, 360 - abs) < 50) {
+                return i10;
             }
         }
-        return (((i10 + 45) / 90) * 90) % 360;
+        return (((i9 + 45) / 90) * 90) % 360;
     }
 
     private void updateCameraInfo() {
@@ -128,36 +136,44 @@ public class CameraSession {
     }
 
     public void checkFlashMode(String str) {
+        String str2;
         if (this.availableFlashModes.contains(this.currentFlashMode)) {
             return;
         }
         this.currentFlashMode = str;
         if (this.isRound) {
             configureRoundCamera(false);
-        } else {
-            configurePhotoCamera();
-            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
+            return;
         }
+        configurePhotoCamera();
+        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit();
+        if (this.cameraInfo.frontCamera != 0) {
+            str2 = "flashMode_front";
+        } else {
+            str2 = "flashMode";
+        }
+        edit.putString(str2, str).commit();
     }
 
     public void configurePhotoCamera() {
         Camera.Parameters parameters;
-        int i10;
+        int i9;
+        String str;
         try {
             Camera camera = this.cameraInfo.camera;
             if (camera != null) {
                 try {
                     parameters = camera.getParameters();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     parameters = null;
                 }
                 updateCameraInfo();
                 updateRotation();
-                int i11 = this.currentOrientation - this.displayOrientation;
-                this.diffOrientation = i11;
-                if (i11 < 0) {
-                    this.diffOrientation = i11 + 360;
+                int i10 = this.currentOrientation - this.displayOrientation;
+                this.diffOrientation = i10;
+                if (i10 < 0) {
+                    this.diffOrientation = i10 + 360;
                 }
                 if (parameters != null) {
                     parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
@@ -179,23 +195,39 @@ public class CameraSession {
                     } else if (parameters.getSupportedFocusModes().contains("continuous-picture")) {
                         parameters.setFocusMode("continuous-picture");
                     }
-                    int i12 = this.jpegOrientation;
-                    if (i12 != -1) {
+                    int i11 = this.jpegOrientation;
+                    boolean z10 = false;
+                    if (i11 != -1) {
                         Camera.CameraInfo cameraInfo = this.info;
-                        i10 = cameraInfo.facing == 1 ? ((cameraInfo.orientation - i12) + 360) % 360 : (cameraInfo.orientation + i12) % 360;
+                        if (cameraInfo.facing == 1) {
+                            i9 = ((cameraInfo.orientation - i11) + 360) % 360;
+                        } else {
+                            i9 = (cameraInfo.orientation + i11) % 360;
+                        }
                     } else {
-                        i10 = 0;
+                        i9 = 0;
                     }
                     try {
-                        parameters.setRotation(i10);
+                        parameters.setRotation(i9);
                         if (this.info.facing == 1) {
-                            this.sameTakePictureOrientation = (360 - this.displayOrientation) % 360 == i10;
+                            if ((360 - this.displayOrientation) % 360 == i9) {
+                                z10 = true;
+                            }
+                            this.sameTakePictureOrientation = z10;
                         } else {
-                            this.sameTakePictureOrientation = this.displayOrientation == i10;
+                            if (this.displayOrientation == i9) {
+                                z10 = true;
+                            }
+                            this.sameTakePictureOrientation = z10;
                         }
                     } catch (Exception unused) {
                     }
-                    parameters.setFlashMode(this.useTorch ? "torch" : this.currentFlashMode);
+                    if (this.useTorch) {
+                        str = "torch";
+                    } else {
+                        str = this.currentFlashMode;
+                    }
+                    parameters.setFlashMode(str);
                     try {
                         camera.setParameters(parameters);
                     } catch (Exception unused2) {
@@ -207,42 +239,47 @@ public class CameraSession {
         }
     }
 
-    public void configureRecorder(int i10, MediaRecorder mediaRecorder) {
-        int i11;
+    public void configureRecorder(int i9, MediaRecorder mediaRecorder) {
+        int i10;
         updateCameraInfo();
-        int i12 = this.jpegOrientation;
-        if (i12 != -1) {
+        int i11 = this.jpegOrientation;
+        if (i11 != -1) {
             Camera.CameraInfo cameraInfo = this.info;
-            i11 = cameraInfo.facing == 1 ? ((cameraInfo.orientation - i12) + 360) % 360 : (cameraInfo.orientation + i12) % 360;
-        } else {
-            i11 = 0;
-        }
-        mediaRecorder.setOrientationHint(i11);
-        int high = getHigh();
-        boolean zHasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
-        boolean zHasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
-        if (zHasProfile && (i10 == 1 || !zHasProfile2)) {
-            mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, high));
-        } else {
-            if (!zHasProfile2) {
-                throw new IllegalStateException("cannot find valid CamcorderProfile");
+            if (cameraInfo.facing == 1) {
+                i10 = ((cameraInfo.orientation - i11) + 360) % 360;
+            } else {
+                i10 = (cameraInfo.orientation + i11) % 360;
             }
+        } else {
+            i10 = 0;
+        }
+        mediaRecorder.setOrientationHint(i10);
+        int high = getHigh();
+        boolean hasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
+        boolean hasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
+        if (hasProfile && (i9 == 1 || !hasProfile2)) {
+            mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, high));
+        } else if (hasProfile2) {
             mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, 0));
+        } else {
+            throw new IllegalStateException("cannot find valid CamcorderProfile");
         }
         this.isVideo = true;
     }
 
     public boolean configureRoundCamera(boolean z10) {
         Camera.Parameters parameters;
-        int i10;
+        int i9;
+        boolean z11;
+        boolean z12;
         try {
             this.isVideo = true;
             Camera camera = this.cameraInfo.camera;
             if (camera != null) {
                 try {
                     parameters = camera.getParameters();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     parameters = null;
                 }
                 updateCameraInfo();
@@ -264,19 +301,33 @@ public class CameraSession {
                     } else if (parameters.getSupportedFocusModes().contains("auto")) {
                         parameters.setFocusMode("auto");
                     }
-                    int i11 = this.jpegOrientation;
-                    if (i11 != -1) {
+                    int i10 = this.jpegOrientation;
+                    if (i10 != -1) {
                         Camera.CameraInfo cameraInfo = this.info;
-                        i10 = cameraInfo.facing == 1 ? ((cameraInfo.orientation - i11) + 360) % 360 : (cameraInfo.orientation + i11) % 360;
+                        if (cameraInfo.facing == 1) {
+                            i9 = ((cameraInfo.orientation - i10) + 360) % 360;
+                        } else {
+                            i9 = (cameraInfo.orientation + i10) % 360;
+                        }
                     } else {
-                        i10 = 0;
+                        i9 = 0;
                     }
                     try {
-                        parameters.setRotation(i10);
+                        parameters.setRotation(i9);
                         if (this.info.facing == 1) {
-                            this.sameTakePictureOrientation = (360 - this.displayOrientation) % 360 == i10;
+                            if ((360 - this.displayOrientation) % 360 == i9) {
+                                z12 = true;
+                            } else {
+                                z12 = false;
+                            }
+                            this.sameTakePictureOrientation = z12;
                         } else {
-                            this.sameTakePictureOrientation = this.displayOrientation == i10;
+                            if (this.displayOrientation == i9) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            this.sameTakePictureOrientation = z11;
                         }
                     } catch (Exception unused) {
                     }
@@ -287,8 +338,8 @@ public class CameraSession {
                         if (parameters.getMaxNumMeteringAreas() > 0) {
                             this.meteringAreaSupported = true;
                         }
-                    } catch (Exception e10) {
-                        throw new RuntimeException(e10);
+                    } catch (Exception e11) {
+                        throw new RuntimeException(e11);
                     }
                 }
             }
@@ -317,8 +368,8 @@ public class CameraSession {
                 camera.cancelAutoFocus();
                 try {
                     parameters = camera.getParameters();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     parameters = null;
                 }
                 if (parameters != null) {
@@ -334,13 +385,13 @@ public class CameraSession {
                     try {
                         camera.setParameters(parameters);
                         camera.autoFocus(this.autoFocusCallback);
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
+                    } catch (Exception e11) {
+                        FileLog.e(e11);
                     }
                 }
             }
-        } catch (Exception e11) {
-            FileLog.e(e11);
+        } catch (Exception e12) {
+            FileLog.e(e12);
         }
     }
 
@@ -366,12 +417,13 @@ public class CameraSession {
 
     public String getNextFlashMode() {
         ArrayList<String> arrayList = this.availableFlashModes;
-        int i10 = 0;
-        while (i10 < arrayList.size()) {
-            if (arrayList.get(i10).equals(this.currentFlashMode)) {
-                return i10 < arrayList.size() + (-1) ? arrayList.get(i10 + 1) : arrayList.get(0);
+        for (int i9 = 0; i9 < arrayList.size(); i9++) {
+            if (arrayList.get(i9).equals(this.currentFlashMode)) {
+                if (i9 < arrayList.size() - 1) {
+                    return arrayList.get(i9 + 1);
+                }
+                return arrayList.get(0);
             }
-            i10++;
         }
         return this.currentFlashMode;
     }
@@ -397,13 +449,20 @@ public class CameraSession {
     }
 
     public void setCurrentFlashMode(String str) {
+        String str2;
         this.currentFlashMode = str;
         if (this.isRound) {
             configureRoundCamera(false);
-        } else {
-            configurePhotoCamera();
-            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
+            return;
         }
+        configurePhotoCamera();
+        SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit();
+        if (this.cameraInfo.frontCamera != 0) {
+            str2 = "flashMode_front";
+        } else {
+            str2 = "flashMode";
+        }
+        edit.putString(str2, str).commit();
     }
 
     public void setFlipFront(boolean z10) {
@@ -417,12 +476,11 @@ public class CameraSession {
     public void setOneShotPreviewCallback(Camera.PreviewCallback previewCallback) {
         Camera camera;
         CameraInfo cameraInfo = this.cameraInfo;
-        if (cameraInfo == null || (camera = cameraInfo.camera) == null) {
-            return;
-        }
-        try {
-            camera.setOneShotPreviewCallback(previewCallback);
-        } catch (Exception unused) {
+        if (cameraInfo != null && (camera = cameraInfo.camera) != null) {
+            try {
+                camera.setOneShotPreviewCallback(previewCallback);
+            } catch (Exception unused) {
+            }
         }
     }
 
@@ -436,20 +494,24 @@ public class CameraSession {
     }
 
     public void setTorchEnabled(boolean z10) {
+        String str;
         try {
-            String str = this.currentFlashMode;
-            String str2 = z10 ? "torch" : "off";
-            this.currentFlashMode = str2;
-            if (TextUtils.equals(str, str2)) {
-                return;
-            }
-            if (this.isRound) {
-                configureRoundCamera(false);
+            String str2 = this.currentFlashMode;
+            if (z10) {
+                str = "torch";
             } else {
-                configurePhotoCamera();
+                str = "off";
             }
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            this.currentFlashMode = str;
+            if (!TextUtils.equals(str2, str)) {
+                if (this.isRound) {
+                    configureRoundCamera(false);
+                } else {
+                    configurePhotoCamera();
+                }
+            }
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
@@ -472,57 +534,15 @@ public class CameraSession {
     }
 
     public void updateRotation() {
-        int i10;
-        if (this.cameraInfo == null) {
-            return;
-        }
-        try {
-            updateCameraInfo();
-            Camera camera = this.destroyed ? null : this.cameraInfo.camera;
-            this.displayOrientation = getDisplayOrientation(this.info, true);
-            int i11 = 0;
-            if (!"samsung".equals(Build.MANUFACTURER) || !"sf2wifixx".equals(Build.PRODUCT)) {
-                int i12 = this.displayOrientation;
-                if (i12 == 0) {
-                    i10 = 0;
-                } else if (i12 == 1) {
-                    i10 = 90;
-                } else if (i12 == 2) {
-                    i10 = 180;
-                } else if (i12 != 3) {
-                    i10 = 0;
-                } else {
-                    i10 = 270;
-                }
-                Camera.CameraInfo cameraInfo = this.info;
-                if (cameraInfo.orientation % 90 != 0) {
-                    cameraInfo.orientation = 0;
-                }
-                i11 = cameraInfo.facing == 1 ? (360 - ((cameraInfo.orientation + i10) % 360)) % 360 : ((cameraInfo.orientation - i10) + 360) % 360;
-            }
-            this.currentOrientation = i11;
-            if (camera != null) {
-                try {
-                    camera.setDisplayOrientation(i11);
-                } catch (Throwable unused) {
-                }
-            }
-            int i13 = this.currentOrientation - this.displayOrientation;
-            this.diffOrientation = i13;
-            if (i13 < 0) {
-                this.diffOrientation = i13 + 360;
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.updateRotation():void");
     }
 
     public int getDisplayOrientation() {
         try {
             updateCameraInfo();
             return getDisplayOrientation(this.info, true);
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return 0;
         }
     }

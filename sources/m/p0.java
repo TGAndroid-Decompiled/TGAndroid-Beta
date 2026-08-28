@@ -2,13 +2,12 @@ package m;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ListAdapter;
-
 public interface p0 {
     boolean a();
 
     int b();
 
-    void c(int i10);
+    void c(int i9);
 
     CharSequence d();
 
@@ -20,11 +19,11 @@ public interface p0 {
 
     void i(Drawable drawable);
 
-    void k(int i10);
+    void j(int i9);
 
-    void l(int i10);
+    void l(int i9);
 
-    void m(int i10, int i11);
+    void m(int i9, int i10);
 
     int n();
 

@@ -2,58 +2,54 @@ package l4;
 
 import com.google.android.exoplayer2.upstream.q;
 import com.google.android.exoplayer2.upstream.x0;
-import g7.l0;
+import f7.f5;
 import h3.t0;
-
 public final class j extends e {
-
-    public final d f15439s;
+    public final d f16682s;
     public g5.b v;
+    public long f16683w;
+    public volatile boolean f16684x;
 
-    public long f15440w;
+    public j(com.google.android.exoplayer2.upstream.m mVar, q qVar, t0 t0Var, int i9, Object obj, d dVar) {
+        super(mVar, qVar, 2, t0Var, i9, obj, -9223372036854775807L, -9223372036854775807L);
+        this.f16682s = dVar;
+    }
 
-    public volatile boolean f15441x;
-
-    public j(com.google.android.exoplayer2.upstream.m mVar, q qVar, t0 t0Var, int i10, Object obj, d dVar) {
-        super(mVar, qVar, 2, t0Var, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f15439s = dVar;
+    @Override
+    public final void K() {
+        this.f16684x = true;
     }
 
     @Override
     public final void a() {
-        if (this.f15440w == 0) {
-            this.f15439s.a(this.v, -9223372036854775807L, -9223372036854775807L);
+        boolean z10;
+        if (this.f16683w == 0) {
+            this.f16682s.a(this.v, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            q qVarA = this.f15418b.a(this.f15440w);
-            x0 x0Var = this.f15423r;
-            m3.h hVar = new m3.h(x0Var, qVarA.f3025e, x0Var.open(qVarA));
-            while (!this.f15441x) {
-                try {
-                    int iB = this.f15439s.f15410a.b(hVar, d.f15409s);
-                    boolean z10 = false;
-                    d5.a.i(iB != 1);
-                    if (iB == 0) {
-                        z10 = true;
-                    }
-                    if (!z10) {
-                        break;
-                    }
-                } catch (Throwable th) {
-                    this.f15440w = hVar.d - this.f15418b.f3025e;
-                    throw th;
+            q a2 = this.f16661b.a(this.f16683w);
+            x0 x0Var = this.f16666r;
+            m3.h hVar = new m3.h(x0Var, a2.f2588e, x0Var.open(a2));
+            while (!this.f16684x) {
+                int b10 = this.f16682s.f16653a.b(hVar, d.f16652s);
+                boolean z11 = false;
+                if (b10 != 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                d5.a.i(z10);
+                if (b10 == 0) {
+                    z11 = true;
+                    continue;
+                }
+                if (!z11) {
+                    break;
                 }
             }
-            this.f15440w = hVar.d - this.f15418b.f3025e;
-            l0.a(this.f15423r);
-        } catch (Throwable th2) {
-            l0.a(this.f15423r);
-            throw th2;
+            this.f16683w = hVar.d - this.f16661b.f2588e;
+        } finally {
+            f5.a(this.f16666r);
         }
-    }
-
-    @Override
-    public final void l() {
-        this.f15441x = true;
     }
 }

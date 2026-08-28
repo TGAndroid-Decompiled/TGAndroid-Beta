@@ -1,15 +1,9 @@
 package m;
-
 public final class k extends w1 {
-
-    public boolean f17358a;
-
-    public int f17359b;
-
-    public int f17360c;
+    public boolean f16983a;
+    public int f16984b;
+    public int f16985c;
     public boolean d;
-
-    public boolean f17361e;
-
-    public boolean f17362f;
+    public boolean f16986e;
+    public boolean f16987f;
 }

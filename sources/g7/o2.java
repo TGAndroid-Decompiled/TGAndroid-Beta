@@ -1,18 +1,17 @@
 package g7;
-
-public final class o2 implements r9.d {
-
-    public static final o2 f6572a = new o2();
+public final class o2 implements q9.d {
+    public static final o2 f7325a = new Object();
 
     static {
-        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(7, com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(6, com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(5, com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(4, com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(3, com.google.android.recaptcha.internal.a.q(i.class, com.google.android.recaptcha.internal.a.i(2, com.google.android.recaptcha.internal.a.q(i.class, new e(1)))))))))))))));
+        e2.c.u(e2.c.r(d.class, new a(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj != null) {
-            throw new ClassCastException();
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        throw null;
+        throw new ClassCastException();
     }
 }

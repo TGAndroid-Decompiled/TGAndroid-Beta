@@ -1,56 +1,46 @@
 package k3;
 
-import d5.g0;
+import d5.f0;
+import j3.r0;
 import java.util.Locale;
-
 public final class f {
-
-    public int f14418a;
-
-    public int f14419b;
-
-    public int f14420c;
+    public int f14597a;
+    public int f14598b;
+    public int f14599c;
     public int d;
-
-    public int f14421e;
-
-    public int f14422f;
-
-    public int f14423g;
+    public int f14600e;
+    public int f14601f;
+    public int f14602g;
     public int h;
-
-    public int f14424i;
-
-    public int f14425j;
-
-    public long f14426k;
-
-    public int f14427l;
+    public int f14603i;
+    public int f14604j;
+    public long f14605k;
+    public int f14606l;
 
     public final String toString() {
-        int i10 = this.f14418a;
-        int i11 = this.f14419b;
-        int i12 = this.f14420c;
-        int i13 = this.d;
-        int i14 = this.f14421e;
-        int i15 = this.f14422f;
-        int i16 = this.f14423g;
-        int i17 = this.h;
-        int i18 = this.f14424i;
-        int i19 = this.f14425j;
-        long j10 = this.f14426k;
-        int i20 = this.f14427l;
-        int i21 = g0.f4795a;
+        int i9 = this.f14597a;
+        int i10 = this.f14598b;
+        int i11 = this.f14599c;
+        int i12 = this.d;
+        int i13 = this.f14600e;
+        int i14 = this.f14601f;
+        int i15 = this.f14602g;
+        int i16 = this.h;
+        int i17 = this.f14603i;
+        int i18 = this.f14604j;
+        long j10 = this.f14605k;
+        int i19 = this.f14606l;
+        int i20 = f0.f4349a;
         Locale locale = Locale.US;
-        StringBuilder sbP = com.google.android.recaptcha.internal.a.p("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
-        i0.a.x(sbP, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
-        i0.a.x(sbP, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
-        i0.a.x(sbP, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
-        i0.a.x(sbP, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
-        sbP.append(j10);
-        sbP.append("\n videoFrameProcessingOffsetCount=");
-        sbP.append(i20);
-        sbP.append("\n}");
-        return sbP.toString();
+        StringBuilder o6 = e2.c.o("DecoderCounters {\n decoderInits=", i9, ",\n decoderReleases=", i10, "\n queuedInputBuffers=");
+        r0.y(o6, i11, "\n skippedInputBuffers=", i12, "\n renderedOutputBuffers=");
+        r0.y(o6, i13, "\n skippedOutputBuffers=", i14, "\n droppedBuffers=");
+        r0.y(o6, i15, "\n droppedInputBuffers=", i16, "\n maxConsecutiveDroppedBuffers=");
+        r0.y(o6, i17, "\n droppedToKeyframeEvents=", i18, "\n totalVideoFrameProcessingOffsetUs=");
+        o6.append(j10);
+        o6.append("\n videoFrameProcessingOffsetCount=");
+        o6.append(i19);
+        o6.append("\n}");
+        return o6.toString();
     }
 }

@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
 
-public interface cd0 {
-    void h(dd0 dd0Var);
+import java.util.ArrayList;
+public final class cd0 {
+    public ArrayList f27469a;
+    public float f27470b;
 }

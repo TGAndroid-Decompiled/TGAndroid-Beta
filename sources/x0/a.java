@@ -1,102 +1,100 @@
 package x0;
-
 public final class a {
+    public final String f48843a;
 
-    public final String f49323a;
-
-    public a(int i10) {
+    public a(int i9) {
         this("androidx.credentials.TYPE_ABORT_ERROR");
-        switch (i10) {
+        switch (i9) {
             case 1:
                 this("androidx.credentials.TYPE_CONSTRAINT_ERROR");
-                break;
+                return;
             case 2:
                 this("androidx.credentials.TYPE_DATA_CLONE_ERROR");
-                break;
+                return;
             case 3:
                 this("androidx.credentials.TYPE_DATA_ERROR");
-                break;
+                return;
             case 4:
                 this("androidx.credentials.TYPE_ENCODING_ERROR");
-                break;
+                return;
             case 5:
                 this("androidx.credentials.TYPE_HIERARCHY_REQUEST_ERROR");
-                break;
+                return;
             case 6:
                 this("androidx.credentials.TYPE_IN_USE_ATTRIBUTE_ERROR");
-                break;
+                return;
             case 7:
                 this("androidx.credentials.TYPE_INVALID_CHARACTER_ERROR");
-                break;
+                return;
             case 8:
                 this("androidx.credentials.TYPE_INVALID_MODIFICATION_ERROR");
-                break;
+                return;
             case 9:
                 this("androidx.credentials.TYPE_INVALID_NODE_TYPE_ERROR");
-                break;
+                return;
             case 10:
                 this("androidx.credentials.TYPE_INVALID_STATE_ERROR");
-                break;
+                return;
             case 11:
                 this("androidx.credentials.TYPE_NAMESPACE_ERROR");
-                break;
+                return;
             case 12:
                 this("androidx.credentials.TYPE_NETWORK_ERROR");
-                break;
+                return;
             case 13:
                 this("androidx.credentials.TYPE_NO_MODIFICATION_ALLOWED_ERROR");
-                break;
+                return;
             case 14:
                 this("androidx.credentials.TYPE_NOT_ALLOWED_ERROR");
-                break;
+                return;
             case 15:
                 this("androidx.credentials.TYPE_NOT_FOUND_ERROR");
-                break;
+                return;
             case 16:
                 this("androidx.credentials.TYPE_NOT_READABLE_ERROR");
-                break;
+                return;
             case 17:
                 this("androidx.credentials.TYPE_NOT_SUPPORTED_ERROR");
-                break;
+                return;
             case 18:
                 this("androidx.credentials.TYPE_OPERATION_ERROR");
-                break;
+                return;
             case 19:
                 this("androidx.credentials.TYPE_OPT_OUT_ERROR");
-                break;
+                return;
             case 20:
                 this("androidx.credentials.TYPE_QUOTA_EXCEEDED_ERROR");
-                break;
+                return;
             case 21:
                 this("androidx.credentials.TYPE_READ_ONLY_ERROR");
-                break;
+                return;
             case 22:
                 this("androidx.credentials.TYPE_SECURITY_ERROR");
-                break;
+                return;
             case 23:
                 this("androidx.credentials.TYPE_SYNTAX_ERROR");
-                break;
+                return;
             case 24:
                 this("androidx.credentials.TYPE_TIMEOUT_ERROR");
-                break;
+                return;
             case 25:
                 this("androidx.credentials.TYPE_TRANSACTION_INACTIVE_ERROR");
-                break;
+                return;
             case 26:
                 this("androidx.credentials.TYPE_UNKNOWN_ERROR");
-                break;
+                return;
             case 27:
                 this("androidx.credentials.TYPE_VERSION_ERROR");
-                break;
+                return;
             case 28:
                 this("androidx.credentials.TYPE_WRONG_DOCUMENT_ERROR");
-                break;
+                return;
             default:
-                break;
+                return;
         }
     }
 
     public a(String str) {
-        this.f49323a = str;
+        this.f48843a = str;
     }
 }

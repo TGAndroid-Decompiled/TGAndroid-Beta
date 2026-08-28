@@ -2,32 +2,37 @@ package org.telegram.ui;
 
 import android.text.style.URLSpan;
 import android.view.View;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-
 public final class lf implements Utilities.CallbackReturn {
+    public final int f40124a;
+    public final Object f40125b;
+    public final Object f40126c;
 
-    public final int f40071a;
-
-    public final Object f40072b;
-
-    public final Object f40073c;
-
-    public lf(int i10, Object obj, Object obj2) {
-        this.f40071a = i10;
-        this.f40072b = obj;
-        this.f40073c = obj2;
+    public lf(int i9, Object obj, Object obj2) {
+        this.f40124a = i9;
+        this.f40125b = obj;
+        this.f40126c = obj2;
     }
 
     @Override
     public final Object run(Object obj) {
-        switch (this.f40071a) {
+        org.telegram.ui.Cells.t1 t1Var;
+        switch (this.f40124a) {
             case 0:
-                rn rnVar = (rn) this.f40072b;
-                View view = (View) this.f40073c;
-                rnVar.U7((URLSpan) obj, false, rnVar.Z4, view instanceof org.telegram.ui.Cells.s1 ? (org.telegram.ui.Cells.s1) view : null);
+                qn qnVar = (qn) this.f40125b;
+                View view = (View) this.f40126c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                MessageObject messageObject = qnVar.Z4;
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    t1Var = (org.telegram.ui.Cells.t1) view;
+                } else {
+                    t1Var = null;
+                }
+                qnVar.U7(uRLSpan, false, messageObject, t1Var);
                 return Boolean.TRUE;
             default:
-                return ah.c.d((View) obj, (String) this.f40072b, (String) this.f40073c, null, null);
+                return zg.c.d((View) obj, (String) this.f40125b, (String) this.f40126c, null, null);
         }
     }
 }

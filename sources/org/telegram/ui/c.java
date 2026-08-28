@@ -4,40 +4,37 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+public final class c implements org.telegram.ui.ActionBar.b2 {
+    public final int f37017a;
+    public final h f37018b;
 
-public final class c implements org.telegram.ui.ActionBar.a2 {
-
-    public final int f36900a;
-
-    public final h f36901b;
-
-    public c(h hVar, int i10) {
-        this.f36900a = i10;
-        this.f36901b = hVar;
+    public c(h hVar, int i9) {
+        this.f37017a = i9;
+        this.f37018b = hVar;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f36900a) {
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f37017a) {
             case 0:
-                h hVar = this.f36901b;
+                h hVar = this.f37018b;
                 hVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
                     hVar.getParentActivity().startActivity(intent);
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     return;
                 }
-                break;
             default:
-                h hVar2 = this.f36901b;
+                h hVar2 = this.f37018b;
                 hVar2.getClass();
-                ig0 ig0Var = new ig0();
-                ig0Var.B = 2;
-                hVar2.presentFragment(ig0Var, true);
-                break;
+                fg0 fg0Var = new fg0();
+                fg0Var.B = 2;
+                hVar2.presentFragment(fg0Var, true);
+                return;
         }
     }
 }

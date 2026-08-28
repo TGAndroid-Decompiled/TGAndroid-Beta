@@ -33,7 +33,7 @@
         <item name="android:timePickerStyle">@style/Theme.TMessages.TimePicker</item>
         <item name="android:timePickerDialogTheme">@style/Theme.TMessages.Dialog.Alert</item>
         <item name="android:datePickerDialogTheme">@style/Theme.TMessages.Dialog.Alert</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">1</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>
     <style name="Theme.TMessages.Dark" parent="@style/Theme.AppCompat.DayNight">
@@ -58,7 +58,7 @@
         <item name="android:timePickerStyle">@style/Theme.TMessages.Dark.TimePicker</item>
         <item name="android:timePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
         <item name="android:datePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
-        <item name="android:windowLayoutInDisplayCutoutMode">1</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:forceDarkAllowed">true</item>
     </style>
 </resources>

@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class VCenteredAtom extends Atom {
     private final Atom atom;
 
@@ -9,9 +8,9 @@ public class VCenteredAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.atom.createBox(teXEnvironment);
-        float depth = boxCreateBox.getDepth() + boxCreateBox.getHeight();
-        boxCreateBox.setShift((-(depth / 2.0f)) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
-        return new HorizontalBox(boxCreateBox);
+        Box createBox = this.atom.createBox(teXEnvironment);
+        float depth = createBox.getDepth() + createBox.getHeight();
+        createBox.setShift((-(depth / 2.0f)) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
+        return new HorizontalBox(createBox);
     }
 }

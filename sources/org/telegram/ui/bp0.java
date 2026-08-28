@@ -1,41 +1,46 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class bp0 implements yp0 {
+    public final HashMap f36916a;
+    public final ArrayList f36917b;
+    public final ip0 f36918c;
 
-public final class bp0 implements org.telegram.ui.Components.x4, org.telegram.ui.ActionBar.l1 {
-
-    public final int f36863a;
-
-    public final jp0 f36864b;
-
-    public bp0(jp0 jp0Var, int i10) {
-        this.f36863a = i10;
-        this.f36864b = jp0Var;
+    public bp0(ip0 ip0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f36918c = ip0Var;
+        this.f36916a = hashMap;
+        this.f36917b = arrayList;
     }
 
     @Override
-    public void I(int i10, int i11, boolean z10) {
-        switch (this.f36863a) {
-            case 0:
-                jp0 jp0Var = this.f36864b;
-                jp0Var.V(jp0Var.f39462b, jp0Var.f39463c, z10, i10);
-                jp0Var.finishFragment();
-                break;
-            default:
-                jp0 jp0Var2 = this.f36864b;
-                jp0Var2.V(jp0Var2.f39462b, jp0Var2.f39463c, z10, i10);
-                jp0Var2.finishFragment();
-                break;
+    public final void b(Editable editable) {
+        ip0 ip0Var = this.f36918c;
+        org.telegram.ui.Components.ut utVar = ip0Var.I;
+        ip0Var.f39239a = editable;
+        utVar.setText(editable);
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void i(int i9, boolean z10, boolean z11) {
+        ip0 ip0Var = this.f36918c;
+        ip0Var.removeSelfFromStack();
+        if (!z10) {
+            ip0Var.U(this.f36916a, this.f36917b, z11, i9);
         }
     }
 
     @Override
-    public void k(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        jp0 jp0Var = this.f36864b;
-        jp0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = jp0Var.E) != null && n1Var.isShowing()) {
-            jp0Var.E.d(true);
-        }
+    public final void a() {
+    }
+
+    @Override
+    public final void h() {
     }
 }

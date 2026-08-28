@@ -1,85 +1,48 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
+import android.animation.ValueAnimator;
+public final class v2 implements Runnable {
+    public final int f23851a;
+    public final Object f23852b;
 
-public final class v2 extends AnimatorListenerAdapter {
-
-    public final int f23881a;
-
-    public final e3 f23882b;
-
-    public v2(e3 e3Var, int i10) {
-        this.f23881a = i10;
-        this.f23882b = e3Var;
+    public v2(Object obj, int i9) {
+        this.f23851a = i9;
+        this.f23852b = obj;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f23881a) {
+    public final void run() {
+        switch (this.f23851a) {
             case 0:
-                e3 e3Var = this.f23882b;
-                AnimatorSet animatorSet = e3Var.currentSheetAnimation;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    e3Var.currentSheetAnimation = null;
-                    e3Var.currentSheetAnimationType = 0;
-                    break;
+                f3 f3Var = (f3) this.f23852b;
+                if (f3Var.startAnimationRunnable == this && !f3.access$000(f3Var)) {
+                    f3Var.startAnimationRunnable = null;
+                    f3.access$2400(f3Var);
+                    return;
                 }
-                break;
+                return;
+            case 1:
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f23852b;
+                if (actionBarLayout.d == this) {
+                    actionBarLayout.d = null;
+                    actionBarLayout.d0(false, true, false);
+                    return;
+                }
+                return;
+            case 2:
+                q1 q1Var = (q1) this.f23852b;
+                ValueAnimator valueAnimator = q1Var.f23724m;
+                if (valueAnimator != null && !valueAnimator.isRunning()) {
+                    q1Var.f23724m.start();
+                    return;
+                }
+                return;
             default:
-                e3 e3Var2 = this.f23882b;
-                AnimatorSet animatorSet2 = e3Var2.currentSheetAnimation;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    e3Var2.currentSheetAnimation = null;
-                    e3Var2.currentSheetAnimationType = 0;
-                    break;
-                }
-                break;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f23881a;
-        e3 e3Var = this.f23882b;
-        switch (i10) {
-            case 0:
-                AnimatorSet animatorSet = e3Var.currentSheetAnimation;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    e3Var.currentSheetAnimation = null;
-                    e3Var.currentSheetAnimationType = 0;
-                    e3Var.onOpenAnimationEnd();
-                    y2 y2Var = e3Var.delegate;
-                    if (y2Var != null) {
-                        y2Var.onOpenAnimationEnd();
-                    }
-                    if (e3Var.useHardwareLayer) {
-                        e3Var.container.setLayerType(0, null);
-                    }
-                    if (e3Var.isFullscreen) {
-                        WindowManager.LayoutParams attributes = e3Var.getWindow().getAttributes();
-                        attributes.flags &= -1025;
-                        e3Var.getWindow().setAttributes(attributes);
-                    }
-                }
-                if (e3Var.pauseAllHeavyOperations) {
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                }
-                e3Var.notificationsLocker.unlock();
-                break;
-            default:
-                AnimatorSet animatorSet2 = e3Var.currentSheetAnimation;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    e3Var.currentSheetAnimation = null;
-                    e3Var.currentSheetAnimationType = 0;
-                    AndroidUtilities.runOnUIThread(new p(this, 9));
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                break;
+                t4 t4Var = (t4) this.f23852b;
+                t4Var.k();
+                t4Var.j();
+                t4Var.f23774f.setAlpha(1.0f);
+                return;
         }
     }
 }

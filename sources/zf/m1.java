@@ -1,13 +1,17 @@
 package zf;
 
-public interface m1 {
-    void D();
+import android.content.Context;
+import android.view.View;
+public final class m1 extends View {
+    public final n1 f50607a;
 
-    void a();
+    public m1(n1 n1Var, Context context) {
+        super(context);
+        this.f50607a = n1Var;
+    }
 
-    void e();
-
-    void f(int i10);
-
-    void u();
+    @Override
+    public final void draw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: zf.m1.draw(android.graphics.Canvas):void");
+    }
 }

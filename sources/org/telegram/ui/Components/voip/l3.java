@@ -2,50 +2,47 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-
 public final class l3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33663a;
+    public final n3 f33664b;
 
-    public final int f33713a;
-
-    public final n3 f33714b;
-
-    public l3(n3 n3Var, int i10) {
-        this.f33713a = i10;
-        this.f33714b = n3Var;
+    public l3(n3 n3Var, int i9) {
+        this.f33663a = i9;
+        this.f33664b = n3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33713a) {
+        switch (this.f33663a) {
             case 0:
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n3 n3Var = this.f33714b;
-                n3Var.f33760n = fFloatValue;
-                n3Var.f33757k.invalidate();
-                if (n3Var.f33760n > 1.0f && n3Var.f33764r == null) {
-                    ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(AndroidUtilities.dp(12), 0);
-                    n3Var.f33764r = valueAnimatorOfInt;
-                    valueAnimatorOfInt.addUpdateListener(new l3(n3Var, 2));
-                    n3Var.f33764r.setDuration(((long) 350) - valueAnimator.getCurrentPlayTime());
-                    n3Var.f33764r.start();
-                    break;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n3 n3Var = this.f33664b;
+                n3Var.f33710n = floatValue;
+                n3Var.f33707k.invalidate();
+                if (n3Var.f33710n > 1.0f && n3Var.f33714r == null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(12), 0);
+                    n3Var.f33714r = ofInt;
+                    ofInt.addUpdateListener(new l3(n3Var, 2));
+                    n3Var.f33714r.setDuration(350 - valueAnimator.getCurrentPlayTime());
+                    n3Var.f33714r.start();
+                    return;
                 }
-                break;
+                return;
             case 1:
-                int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                n3 n3Var2 = this.f33714b;
-                n3Var2.f33759m = iIntValue;
-                n3Var2.f33757k.invalidate();
-                break;
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                n3 n3Var2 = this.f33664b;
+                n3Var2.f33709m = intValue;
+                n3Var2.f33707k.invalidate();
+                return;
             default:
-                int iIntValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                n3 n3Var3 = this.f33714b;
-                if (n3Var3.f33755i <= n3Var3.f33761o / 2) {
-                    iIntValue2 = -iIntValue2;
+                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                n3 n3Var3 = this.f33664b;
+                if (n3Var3.f33705i <= n3Var3.f33711o / 2) {
+                    intValue2 = -intValue2;
                 }
-                n3Var3.f33762p = iIntValue2;
-                n3Var3.f33757k.invalidate();
-                break;
+                n3Var3.f33712p = intValue2;
+                n3Var3.f33707k.invalidate();
+                return;
         }
     }
 }

@@ -9,338 +9,326 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oi0;
-import org.telegram.ui.Components.ri0;
-
+import org.telegram.ui.Components.mi0;
+import org.telegram.ui.Components.pi0;
 public final class n0 {
-
-    public final oi0 f33725a = new oi0(R.raw.voice_mini, "" + R.raw.voice_mini, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
-
-    public final oi0 f33726b = new oi0(R.raw.hand_2, "" + R.raw.hand_2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
-
-    public ri0 f33727c;
+    public final mi0 f33675a;
+    public final mi0 f33676b;
+    public pi0 f33677c;
     public boolean d;
-
-    public boolean f33728e;
-
-    public boolean f33729f;
-
-    public FrameLayout f33730g;
+    public boolean f33678e;
+    public boolean f33679f;
+    public FrameLayout f33680g;
     public TLRPC.GroupCallParticipant h;
+    public boolean f33683k;
+    public final l0 f33681i = new Runnable(this) {
+        public final n0 f33648b;
 
-    public final l0 f33731i;
+        {
+            this.f33648b = this;
+        }
 
-    public final l0 f33732j;
+        @Override
+        public final void run() {
+            int i9;
+            switch (r2) {
+                case 0:
+                    n0 n0Var = this.f33648b;
+                    n0Var.f33676b.P(0, null);
+                    mi0 mi0Var = n0Var.f33675a;
+                    mi0Var.P(0, null);
+                    pi0 pi0Var = n0Var.f33677c;
+                    if (pi0Var != null) {
+                        pi0Var.setAnimation(mi0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    n0 n0Var2 = this.f33648b;
+                    mi0 mi0Var2 = n0Var2.f33676b;
+                    int nextInt = Utilities.random.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i9 = 0;
+                    } else {
+                        i9 = 240;
+                        if (nextInt < 64) {
+                            i10 = 240;
+                            i9 = 120;
+                        } else {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i9 = 540;
+                                if (nextInt == 98) {
+                                    i10 = 540;
+                                    i9 = 420;
+                                } else {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                    }
+                    mi0Var2.N(i10);
+                    mi0Var2.P(i10 - 1, n0Var2.f33681i);
+                    mi0Var2.K(i9);
+                    pi0 pi0Var2 = n0Var2.f33677c;
+                    if (pi0Var2 != null) {
+                        pi0Var2.setAnimation(mi0Var2);
+                        n0Var2.f33677c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    n0 n0Var3 = this.f33648b;
+                    n0Var3.f33678e = false;
+                    ?? r22 = n0Var3.f33680g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    n0Var3.d = false;
+                    return;
+                default:
+                    this.f33648b.c(true);
+                    return;
+            }
+        }
+    };
+    public final l0 f33682j = new Runnable(this) {
+        public final n0 f33648b;
 
-    public boolean f33733k;
+        {
+            this.f33648b = this;
+        }
 
-    public final l0 f33734l;
+        @Override
+        public final void run() {
+            int i9;
+            switch (r2) {
+                case 0:
+                    n0 n0Var = this.f33648b;
+                    n0Var.f33676b.P(0, null);
+                    mi0 mi0Var = n0Var.f33675a;
+                    mi0Var.P(0, null);
+                    pi0 pi0Var = n0Var.f33677c;
+                    if (pi0Var != null) {
+                        pi0Var.setAnimation(mi0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    n0 n0Var2 = this.f33648b;
+                    mi0 mi0Var2 = n0Var2.f33676b;
+                    int nextInt = Utilities.random.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i9 = 0;
+                    } else {
+                        i9 = 240;
+                        if (nextInt < 64) {
+                            i10 = 240;
+                            i9 = 120;
+                        } else {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i9 = 540;
+                                if (nextInt == 98) {
+                                    i10 = 540;
+                                    i9 = 420;
+                                } else {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                    }
+                    mi0Var2.N(i10);
+                    mi0Var2.P(i10 - 1, n0Var2.f33681i);
+                    mi0Var2.K(i9);
+                    pi0 pi0Var2 = n0Var2.f33677c;
+                    if (pi0Var2 != null) {
+                        pi0Var2.setAnimation(mi0Var2);
+                        n0Var2.f33677c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    n0 n0Var3 = this.f33648b;
+                    n0Var3.f33678e = false;
+                    ?? r22 = n0Var3.f33680g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    n0Var3.d = false;
+                    return;
+                default:
+                    this.f33648b.c(true);
+                    return;
+            }
+        }
+    };
+    public final l0 f33684l = new Runnable(this) {
+        public final n0 f33648b;
 
-    public final l0 f33735m;
+        {
+            this.f33648b = this;
+        }
+
+        @Override
+        public final void run() {
+            int i9;
+            switch (r2) {
+                case 0:
+                    n0 n0Var = this.f33648b;
+                    n0Var.f33676b.P(0, null);
+                    mi0 mi0Var = n0Var.f33675a;
+                    mi0Var.P(0, null);
+                    pi0 pi0Var = n0Var.f33677c;
+                    if (pi0Var != null) {
+                        pi0Var.setAnimation(mi0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    n0 n0Var2 = this.f33648b;
+                    mi0 mi0Var2 = n0Var2.f33676b;
+                    int nextInt = Utilities.random.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i9 = 0;
+                    } else {
+                        i9 = 240;
+                        if (nextInt < 64) {
+                            i10 = 240;
+                            i9 = 120;
+                        } else {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i9 = 540;
+                                if (nextInt == 98) {
+                                    i10 = 540;
+                                    i9 = 420;
+                                } else {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                    }
+                    mi0Var2.N(i10);
+                    mi0Var2.P(i10 - 1, n0Var2.f33681i);
+                    mi0Var2.K(i9);
+                    pi0 pi0Var2 = n0Var2.f33677c;
+                    if (pi0Var2 != null) {
+                        pi0Var2.setAnimation(mi0Var2);
+                        n0Var2.f33677c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    n0 n0Var3 = this.f33648b;
+                    n0Var3.f33678e = false;
+                    ?? r22 = n0Var3.f33680g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    n0Var3.d = false;
+                    return;
+                default:
+                    this.f33648b.c(true);
+                    return;
+            }
+        }
+    };
+    public final l0 f33685m = new Runnable(this) {
+        public final n0 f33648b;
+
+        {
+            this.f33648b = this;
+        }
+
+        @Override
+        public final void run() {
+            int i9;
+            switch (r2) {
+                case 0:
+                    n0 n0Var = this.f33648b;
+                    n0Var.f33676b.P(0, null);
+                    mi0 mi0Var = n0Var.f33675a;
+                    mi0Var.P(0, null);
+                    pi0 pi0Var = n0Var.f33677c;
+                    if (pi0Var != null) {
+                        pi0Var.setAnimation(mi0Var);
+                        return;
+                    }
+                    return;
+                case 1:
+                    n0 n0Var2 = this.f33648b;
+                    mi0 mi0Var2 = n0Var2.f33676b;
+                    int nextInt = Utilities.random.nextInt(100);
+                    int i10 = 120;
+                    if (nextInt < 32) {
+                        i9 = 0;
+                    } else {
+                        i9 = 240;
+                        if (nextInt < 64) {
+                            i10 = 240;
+                            i9 = 120;
+                        } else {
+                            i10 = 420;
+                            if (nextInt >= 97) {
+                                i9 = 540;
+                                if (nextInt == 98) {
+                                    i10 = 540;
+                                    i9 = 420;
+                                } else {
+                                    i10 = 720;
+                                }
+                            }
+                        }
+                    }
+                    mi0Var2.N(i10);
+                    mi0Var2.P(i10 - 1, n0Var2.f33681i);
+                    mi0Var2.K(i9);
+                    pi0 pi0Var2 = n0Var2.f33677c;
+                    if (pi0Var2 != null) {
+                        pi0Var2.setAnimation(mi0Var2);
+                        n0Var2.f33677c.d();
+                        return;
+                    }
+                    return;
+                case 2:
+                    n0 n0Var3 = this.f33648b;
+                    n0Var3.f33678e = false;
+                    ?? r22 = n0Var3.f33680g;
+                    if (r22 != 0) {
+                        r22.a();
+                    }
+                    n0Var3.d = false;
+                    return;
+                default:
+                    this.f33648b.c(true);
+                    return;
+            }
+        }
+    };
 
     public n0() {
-        final int i10 = 0;
-        this.f33731i = new Runnable(this) {
-
-            public final n0 f33698b;
-
-            {
-                this.f33698b = this;
-            }
-
-            @Override
-            public final void run() {
-                int i11;
-                switch (i10) {
-                    case 0:
-                        n0 n0Var = this.f33698b;
-                        n0Var.f33726b.P(0, null);
-                        oi0 oi0Var = n0Var.f33725a;
-                        oi0Var.P(0, null);
-                        ri0 ri0Var = n0Var.f33727c;
-                        if (ri0Var != null) {
-                            ri0Var.setAnimation(oi0Var);
-                        }
-                        break;
-                    case 1:
-                        n0 n0Var2 = this.f33698b;
-                        oi0 oi0Var2 = n0Var2.f33726b;
-                        int iNextInt = Utilities.random.nextInt(100);
-                        int i12 = 120;
-                        if (iNextInt < 32) {
-                            i11 = 0;
-                        } else {
-                            i11 = 240;
-                            if (iNextInt < 64) {
-                                i12 = 240;
-                                i11 = 120;
-                            } else {
-                                i12 = 420;
-                                if (iNextInt >= 97) {
-                                    i11 = 540;
-                                    if (iNextInt == 98) {
-                                        i12 = 540;
-                                        i11 = 420;
-                                    } else {
-                                        i12 = 720;
-                                    }
-                                }
-                            }
-                        }
-                        oi0Var2.N(i12);
-                        oi0Var2.P(i12 - 1, n0Var2.f33731i);
-                        oi0Var2.K(i11);
-                        ri0 ri0Var2 = n0Var2.f33727c;
-                        if (ri0Var2 != null) {
-                            ri0Var2.setAnimation(oi0Var2);
-                            n0Var2.f33727c.d();
-                        }
-                        break;
-                    case 2:
-                        n0 n0Var3 = this.f33698b;
-                        n0Var3.f33728e = false;
-                        ?? r10 = n0Var3.f33730g;
-                        if (r10 != 0) {
-                            r10.a();
-                        }
-                        n0Var3.d = false;
-                        break;
-                    default:
-                        this.f33698b.c(true);
-                        break;
-                }
-            }
-        };
-        final int i11 = 1;
-        this.f33732j = new Runnable(this) {
-
-            public final n0 f33698b;
-
-            {
-                this.f33698b = this;
-            }
-
-            @Override
-            public final void run() {
-                int i12;
-                switch (i11) {
-                    case 0:
-                        n0 n0Var = this.f33698b;
-                        n0Var.f33726b.P(0, null);
-                        oi0 oi0Var = n0Var.f33725a;
-                        oi0Var.P(0, null);
-                        ri0 ri0Var = n0Var.f33727c;
-                        if (ri0Var != null) {
-                            ri0Var.setAnimation(oi0Var);
-                        }
-                        break;
-                    case 1:
-                        n0 n0Var2 = this.f33698b;
-                        oi0 oi0Var2 = n0Var2.f33726b;
-                        int iNextInt = Utilities.random.nextInt(100);
-                        int i13 = 120;
-                        if (iNextInt < 32) {
-                            i12 = 0;
-                        } else {
-                            i12 = 240;
-                            if (iNextInt < 64) {
-                                i13 = 240;
-                                i12 = 120;
-                            } else {
-                                i13 = 420;
-                                if (iNextInt >= 97) {
-                                    i12 = 540;
-                                    if (iNextInt == 98) {
-                                        i13 = 540;
-                                        i12 = 420;
-                                    } else {
-                                        i13 = 720;
-                                    }
-                                }
-                            }
-                        }
-                        oi0Var2.N(i13);
-                        oi0Var2.P(i13 - 1, n0Var2.f33731i);
-                        oi0Var2.K(i12);
-                        ri0 ri0Var2 = n0Var2.f33727c;
-                        if (ri0Var2 != null) {
-                            ri0Var2.setAnimation(oi0Var2);
-                            n0Var2.f33727c.d();
-                        }
-                        break;
-                    case 2:
-                        n0 n0Var3 = this.f33698b;
-                        n0Var3.f33728e = false;
-                        ?? r10 = n0Var3.f33730g;
-                        if (r10 != 0) {
-                            r10.a();
-                        }
-                        n0Var3.d = false;
-                        break;
-                    default:
-                        this.f33698b.c(true);
-                        break;
-                }
-            }
-        };
-        final int i12 = 2;
-        this.f33734l = new Runnable(this) {
-
-            public final n0 f33698b;
-
-            {
-                this.f33698b = this;
-            }
-
-            @Override
-            public final void run() {
-                int i13;
-                switch (i12) {
-                    case 0:
-                        n0 n0Var = this.f33698b;
-                        n0Var.f33726b.P(0, null);
-                        oi0 oi0Var = n0Var.f33725a;
-                        oi0Var.P(0, null);
-                        ri0 ri0Var = n0Var.f33727c;
-                        if (ri0Var != null) {
-                            ri0Var.setAnimation(oi0Var);
-                        }
-                        break;
-                    case 1:
-                        n0 n0Var2 = this.f33698b;
-                        oi0 oi0Var2 = n0Var2.f33726b;
-                        int iNextInt = Utilities.random.nextInt(100);
-                        int i14 = 120;
-                        if (iNextInt < 32) {
-                            i13 = 0;
-                        } else {
-                            i13 = 240;
-                            if (iNextInt < 64) {
-                                i14 = 240;
-                                i13 = 120;
-                            } else {
-                                i14 = 420;
-                                if (iNextInt >= 97) {
-                                    i13 = 540;
-                                    if (iNextInt == 98) {
-                                        i14 = 540;
-                                        i13 = 420;
-                                    } else {
-                                        i14 = 720;
-                                    }
-                                }
-                            }
-                        }
-                        oi0Var2.N(i14);
-                        oi0Var2.P(i14 - 1, n0Var2.f33731i);
-                        oi0Var2.K(i13);
-                        ri0 ri0Var2 = n0Var2.f33727c;
-                        if (ri0Var2 != null) {
-                            ri0Var2.setAnimation(oi0Var2);
-                            n0Var2.f33727c.d();
-                        }
-                        break;
-                    case 2:
-                        n0 n0Var3 = this.f33698b;
-                        n0Var3.f33728e = false;
-                        ?? r10 = n0Var3.f33730g;
-                        if (r10 != 0) {
-                            r10.a();
-                        }
-                        n0Var3.d = false;
-                        break;
-                    default:
-                        this.f33698b.c(true);
-                        break;
-                }
-            }
-        };
-        final int i13 = 3;
-        this.f33735m = new Runnable(this) {
-
-            public final n0 f33698b;
-
-            {
-                this.f33698b = this;
-            }
-
-            @Override
-            public final void run() {
-                int i14;
-                switch (i13) {
-                    case 0:
-                        n0 n0Var = this.f33698b;
-                        n0Var.f33726b.P(0, null);
-                        oi0 oi0Var = n0Var.f33725a;
-                        oi0Var.P(0, null);
-                        ri0 ri0Var = n0Var.f33727c;
-                        if (ri0Var != null) {
-                            ri0Var.setAnimation(oi0Var);
-                        }
-                        break;
-                    case 1:
-                        n0 n0Var2 = this.f33698b;
-                        oi0 oi0Var2 = n0Var2.f33726b;
-                        int iNextInt = Utilities.random.nextInt(100);
-                        int i15 = 120;
-                        if (iNextInt < 32) {
-                            i14 = 0;
-                        } else {
-                            i14 = 240;
-                            if (iNextInt < 64) {
-                                i15 = 240;
-                                i14 = 120;
-                            } else {
-                                i15 = 420;
-                                if (iNextInt >= 97) {
-                                    i14 = 540;
-                                    if (iNextInt == 98) {
-                                        i15 = 540;
-                                        i14 = 420;
-                                    } else {
-                                        i15 = 720;
-                                    }
-                                }
-                            }
-                        }
-                        oi0Var2.N(i15);
-                        oi0Var2.P(i15 - 1, n0Var2.f33731i);
-                        oi0Var2.K(i14);
-                        ri0 ri0Var2 = n0Var2.f33727c;
-                        if (ri0Var2 != null) {
-                            ri0Var2.setAnimation(oi0Var2);
-                            n0Var2.f33727c.d();
-                        }
-                        break;
-                    case 2:
-                        n0 n0Var3 = this.f33698b;
-                        n0Var3.f33728e = false;
-                        ?? r10 = n0Var3.f33730g;
-                        if (r10 != 0) {
-                            r10.a();
-                        }
-                        n0Var3.d = false;
-                        break;
-                    default:
-                        this.f33698b.c(true);
-                        break;
-                }
-            }
-        };
+        int i9 = R.raw.voice_mini;
+        this.f33675a = new mi0(i9, "" + R.raw.voice_mini, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+        int i10 = R.raw.hand_2;
+        this.f33676b = new mi0(i10, "" + R.raw.hand_2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
     }
 
     public final void a(double d) {
         if (d > 1.5d) {
             boolean z10 = this.d;
-            l0 l0Var = this.f33734l;
+            l0 l0Var = this.f33684l;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(l0Var);
             }
-            if (!this.f33728e) {
-                this.f33728e = true;
-                ?? r10 = this.f33730g;
-                if (r10 != 0) {
-                    r10.a();
+            if (!this.f33678e) {
+                this.f33678e = true;
+                ?? r42 = this.f33680g;
+                if (r42 != 0) {
+                    r42.a();
                 }
             }
             AndroidUtilities.runOnUIThread(l0Var, 500L);
@@ -349,73 +337,100 @@ public final class n0 {
     }
 
     public final void b() {
-        this.f33730g = null;
-        this.f33728e = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f33734l);
-        AndroidUtilities.cancelRunOnUIThread(this.f33732j);
-        AndroidUtilities.cancelRunOnUIThread(this.f33735m);
-        this.f33725a.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        this.f33680g = null;
+        this.f33678e = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f33684l);
+        AndroidUtilities.cancelRunOnUIThread(this.f33682j);
+        AndroidUtilities.cancelRunOnUIThread(this.f33685m);
+        this.f33675a.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
     }
 
     public final void c(boolean z10) {
         TLRPC.GroupCallParticipant groupCallParticipant;
-        oi0 oi0Var;
-        boolean zN;
+        mi0 mi0Var;
         boolean z11;
-        if (this.f33727c == null || (groupCallParticipant = this.h) == null || (oi0Var = this.f33725a) == null) {
-            return;
-        }
-        boolean z12 = groupCallParticipant.muted_by_you && !groupCallParticipant.self;
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
-        TLRPC.GroupCallParticipant groupCallParticipant2 = this.h;
-        boolean z13 = jElapsedRealtime - groupCallParticipant2.lastVoiceUpdateTime < 500 ? groupCallParticipant2.hasVoiceDelayed : groupCallParticipant2.hasVoice;
-        boolean z14 = !groupCallParticipant2.self ? (!groupCallParticipant2.muted || (this.f33728e && z13)) && !z12 : VoIPService.getSharedInstance() == null || !VoIPService.getSharedInstance().isMicMute() || (this.f33728e && z13);
-        TLRPC.GroupCallParticipant groupCallParticipant3 = this.h;
-        boolean z15 = ((groupCallParticipant3.muted && !this.f33728e) || z12) && !(((z11 = groupCallParticipant3.can_self_unmute) && !z12) || z11 || groupCallParticipant3.raise_hand_rating == 0);
-        if (z15) {
-            long jElapsedRealtime2 = SystemClock.elapsedRealtime();
-            long j10 = this.h.lastRaiseHandDate;
-            long j11 = jElapsedRealtime2 - j10;
-            if (j10 != 0 && j11 <= 5000) {
-                AndroidUtilities.runOnUIThread(this.f33735m, 5000 - j11);
-            }
-            zN = oi0Var.N(136);
-        } else {
-            this.f33727c.setAnimation(oi0Var);
-            oi0Var.P(0, null);
-            if (z14 && this.f33729f) {
-                zN = oi0Var.N(36);
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        int i9;
+        boolean N;
+        boolean z15;
+        if (this.f33677c != null && (groupCallParticipant = this.h) != null && (mi0Var = this.f33675a) != null) {
+            if (groupCallParticipant.muted_by_you && !groupCallParticipant.self) {
+                z11 = true;
             } else {
-                zN = oi0Var.N(z14 ? 99 : 69);
+                z11 = false;
             }
-        }
-        if (!z10) {
-            oi0Var.L(oi0Var.f31314f - 1, false, true);
-            this.f33727c.invalidate();
-        } else if (zN) {
-            if (z15) {
-                oi0Var.K(99);
-                oi0Var.N(136);
-            } else if (z14 && this.f33729f && !z15) {
-                oi0Var.K(0);
-                oi0Var.N(36);
-            } else if (z14) {
-                oi0Var.K(69);
-                oi0Var.N(99);
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            TLRPC.GroupCallParticipant groupCallParticipant2 = this.h;
+            if (elapsedRealtime - groupCallParticipant2.lastVoiceUpdateTime < 500) {
+                z12 = groupCallParticipant2.hasVoiceDelayed;
             } else {
-                oi0Var.K(36);
-                oi0Var.N(69);
+                z12 = groupCallParticipant2.hasVoice;
             }
-            this.f33727c.d();
-            this.f33727c.invalidate();
-        }
-        this.f33727c.setAnimation(oi0Var);
-        this.f33729f = z15;
-        if (this.f33733k != z12) {
-            this.f33733k = z12;
-            ?? r10 = this.f33730g;
-            if (r10 != 0) {
-                r10.a();
+            if (!groupCallParticipant2.self ? !((!groupCallParticipant2.muted || (this.f33678e && z12)) && !z11) : !(VoIPService.getSharedInstance() == null || !VoIPService.getSharedInstance().isMicMute() || (this.f33678e && z12))) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            TLRPC.GroupCallParticipant groupCallParticipant3 = this.h;
+            if (((groupCallParticipant3.muted && !this.f33678e) || z11) && ((!(z15 = groupCallParticipant3.can_self_unmute) || z11) && !z15 && groupCallParticipant3.raise_hand_rating != 0)) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            if (z14) {
+                long elapsedRealtime2 = SystemClock.elapsedRealtime();
+                long j10 = this.h.lastRaiseHandDate;
+                long j11 = elapsedRealtime2 - j10;
+                if (j10 != 0 && j11 <= 5000) {
+                    AndroidUtilities.runOnUIThread(this.f33685m, 5000 - j11);
+                }
+                N = mi0Var.N(136);
+            } else {
+                this.f33677c.setAnimation(mi0Var);
+                mi0Var.P(0, null);
+                if (z13 && this.f33679f) {
+                    N = mi0Var.N(36);
+                } else {
+                    if (z13) {
+                        i9 = 99;
+                    } else {
+                        i9 = 69;
+                    }
+                    N = mi0Var.N(i9);
+                }
+            }
+            if (z10) {
+                if (N) {
+                    if (z14) {
+                        mi0Var.K(99);
+                        mi0Var.N(136);
+                    } else if (z13 && this.f33679f && !z14) {
+                        mi0Var.K(0);
+                        mi0Var.N(36);
+                    } else if (z13) {
+                        mi0Var.K(69);
+                        mi0Var.N(99);
+                    } else {
+                        mi0Var.K(36);
+                        mi0Var.N(69);
+                    }
+                    this.f33677c.d();
+                    this.f33677c.invalidate();
+                }
+            } else {
+                mi0Var.L(mi0Var.f30849f - 1, false, true);
+                this.f33677c.invalidate();
+            }
+            this.f33677c.setAnimation(mi0Var);
+            this.f33679f = z14;
+            if (this.f33683k != z11) {
+                this.f33683k = z11;
+                ?? r12 = this.f33680g;
+                if (r12 != 0) {
+                    r12.a();
+                }
             }
         }
     }

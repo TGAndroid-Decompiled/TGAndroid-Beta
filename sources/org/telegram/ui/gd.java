@@ -3,15 +3,14 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import org.telegram.ui.Components.RadialProgressView;
-
 public final class gd extends RadialProgressView {
     public final int G;
     public final Object H;
 
-    public gd(org.telegram.ui.Components.i40 i40Var, Context context, int i10) {
+    public gd(org.telegram.ui.Components.d40 d40Var, Context context, int i9) {
         super(context, null);
-        this.G = i10;
-        this.H = i40Var;
+        this.G = i9;
+        this.H = d40Var;
     }
 
     @Override
@@ -19,14 +18,15 @@ public final class gd extends RadialProgressView {
         switch (this.G) {
             case 3:
                 super.invalidate();
-                ut0 ut0Var = ((PhotoViewer) this.H).f35583a0;
-                if (ut0Var != null) {
-                    ut0Var.invalidate();
+                tt0 tt0Var = ((PhotoViewer) this.H).f35580a0;
+                if (tt0Var != null) {
+                    tt0Var.invalidate();
+                    return;
                 }
-                break;
+                return;
             default:
                 super.invalidate();
-                break;
+                return;
         }
     }
 
@@ -35,28 +35,29 @@ public final class gd extends RadialProgressView {
         switch (this.G) {
             case 0:
                 super.setAlpha(f10);
-                ((id) this.H).f39038f.invalidate();
-                break;
+                ((id) this.H).f39110f.invalidate();
+                return;
             case 1:
                 super.setAlpha(f10);
-                ((u60) this.H).f43136e.invalidate();
-                break;
+                ((r60) this.H).f42280e.invalidate();
+                return;
             case 2:
                 super.setAlpha(f10);
-                ((te0) this.H).h.invalidate();
-                break;
+                ((qe0) this.H).h.invalidate();
+                return;
             default:
                 super.setAlpha(f10);
-                ut0 ut0Var = ((PhotoViewer) this.H).f35583a0;
-                if (ut0Var != null) {
-                    ut0Var.invalidate();
+                tt0 tt0Var = ((PhotoViewer) this.H).f35580a0;
+                if (tt0Var != null) {
+                    tt0Var.invalidate();
+                    return;
                 }
-                break;
+                return;
         }
     }
 
-    public gd(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(contextThemeWrapper, c6Var);
+    public gd(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(contextThemeWrapper, b6Var);
         this.G = 3;
         this.H = photoViewer;
     }

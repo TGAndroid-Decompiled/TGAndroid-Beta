@@ -1,17 +1,11 @@
 package m2;
 
 import android.view.ViewGroup;
-
 public final class d extends ViewGroup.LayoutParams {
-
-    public boolean f17550a;
-
-    public int f17551b;
-
-    public float f17552c;
+    public boolean f17174a;
+    public int f17175b;
+    public float f17176c;
     public boolean d;
-
-    public int f17553e;
-
-    public int f17554f;
+    public int f17177e;
+    public int f17178f;
 }

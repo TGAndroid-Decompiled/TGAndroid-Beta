@@ -1,44 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.style.ReplacementSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.messenger.ImageReceiver;
+public final class oz0 extends ReplacementSpan {
+    public static final int f31478f = 0;
+    public ImageReceiver f31479a;
+    public int f31480b;
+    public int f31481c;
+    public final boolean d;
+    public final int f31482e;
 
-public final class oz0 extends FrameLayout {
-
-    public static final int f31448e = 0;
-
-    public TextView f31449a;
-
-    public nz0 f31450b;
-
-    public TLRPC.TL_help_termsOfService f31451c;
-    public int d;
-
-    public final void a() {
-        nz0 nz0Var = this.f31450b;
-        int i10 = this.d;
-        org.telegram.ui.ga0 ga0Var = (org.telegram.ui.ga0) nz0Var;
-        ga0Var.getClass();
-        UserConfig.getInstance(i10).unacceptedTermsOfService = null;
-        UserConfig.getInstance(i10).saveConfig(false);
-        LaunchActivity launchActivity = ga0Var.f38379a;
-        ArrayList arrayList = launchActivity.Z;
-        if (!arrayList.isEmpty()) {
-            ((org.telegram.ui.ActionBar.n2) i0.a.i(1, arrayList)).onResume();
-        }
-        launchActivity.f35544y0.animate().alpha(0.0f).setDuration(150L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new org.telegram.ui.r00(ga0Var, 15)).start();
-        TLRPC.TL_help_acceptTermsOfService tL_help_acceptTermsOfService = new TLRPC.TL_help_acceptTermsOfService();
-        tL_help_acceptTermsOfService.f22435id = this.f31451c.f22437id;
-        ConnectionsManager.getInstance(this.d).sendRequest(tL_help_acceptTermsOfService, new jh.m5(13));
+    public oz0(View view, Bitmap bitmap, int i9, int i10, int i11, int i12) {
+        this.f31480b = i9;
+        this.f31481c = i10;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f31479a = imageReceiver;
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver.setImageBitmap(bitmap);
+        imageReceiver.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
+        this.f31482e = i12;
+        this.d = true;
     }
 
-    public void setDelegate(nz0 nz0Var) {
-        this.f31450b = nz0Var;
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i9, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        int i14 = this.f31480b;
+        int i15 = this.f31481c;
+        ImageReceiver imageReceiver = this.f31479a;
+        canvas.save();
+        if (this.d) {
+            imageReceiver.setImageCoords((int) f10, i12 - (i15 - this.f31482e), i14, i15);
+        } else {
+            imageReceiver.setImageCoords((int) f10, j3.r0.d(org.telegram.messenger.l0.B(4.0f, i13, i11), i15, 2, i11), i14, i15);
+        }
+        imageReceiver.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i9, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        int i11 = this.f31481c;
+        if (fontMetricsInt != null) {
+            if (this.d) {
+                int i12 = this.f31482e;
+                int i13 = -(i11 - i12);
+                fontMetricsInt.ascent = i13;
+                fontMetricsInt.top = i13;
+                fontMetricsInt.descent = i12;
+                fontMetricsInt.bottom = i12;
+            } else {
+                int dp = ((-i11) / 2) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.ascent = dp;
+                fontMetricsInt.top = dp;
+                int dp2 = (i11 - (i11 / 2)) - AndroidUtilities.dp(4.0f);
+                fontMetricsInt.descent = dp2;
+                fontMetricsInt.bottom = dp2;
+            }
+        }
+        return this.f31480b;
     }
 }

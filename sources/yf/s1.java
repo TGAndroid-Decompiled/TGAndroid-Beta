@@ -1,40 +1,36 @@
 package yf;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-import org.telegram.messenger.AndroidUtilities;
-
-public final class s1 {
-
-    public r1 f50076a;
-
-    public final HashMap f50077b = new HashMap();
-
-    public final ArrayList f50078c = new ArrayList();
-
-    public final boolean a() {
-        return !this.f50078c.isEmpty();
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.vk0;
+public final class s1 extends vk0 {
+    @Override
+    public final boolean D(f2.q1 q1Var) {
+        return true;
     }
 
-    public final void b(UUID uuid, Runnable runnable) {
-        this.f50077b.put(uuid, runnable);
-        this.f50078c.add(uuid);
-        AndroidUtilities.runOnUIThread(new qf.b(this, 22));
+    @Override
+    public final int h() {
+        return xf.i0.c().size();
     }
 
-    public final void c() {
-        ArrayList arrayList = this.f50078c;
-        if (arrayList.size() == 0) {
-            return;
+    @Override
+    public final void v(f2.q1 q1Var, int i9) {
+        n1 n1Var = (n1) q1Var.f5501a;
+        xf.i0 i0Var = (xf.i0) xf.i0.c().get(i9);
+        n1Var.getClass();
+        n1Var.setTypeface(i0Var.d());
+        String str = i0Var.f49242c;
+        if (str == null) {
+            str = LocaleController.getString(i0Var.f49241b);
         }
-        int size = arrayList.size() - 1;
-        UUID uuid = (UUID) arrayList.get(size);
-        HashMap map = this.f50077b;
-        Runnable runnable = (Runnable) map.get(uuid);
-        map.remove(uuid);
-        arrayList.remove(size);
-        runnable.run();
-        AndroidUtilities.runOnUIThread(new qf.b(this, 22));
+        n1Var.setText(str);
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        n1 n1Var = new n1(viewGroup.getContext());
+        n1Var.setLayoutParams(new f2.a1(-1, -2));
+        return new f2.q1(n1Var);
     }
 }

@@ -2,14 +2,14 @@ package p3;
 
 import com.google.android.exoplayer2.extractor.FlacStreamMetadata;
 import com.google.android.exoplayer2.metadata.flac.PictureFrame;
-import d5.g0;
+import d5.f0;
+import d5.x;
 import d5.y;
-import d5.z;
+import g7.r;
+import g7.s;
 import h3.t1;
-import h7.r;
-import h7.s;
 import java.util.Arrays;
-import lh.p;
+import kh.p;
 import m3.h;
 import m3.k;
 import m3.l;
@@ -18,315 +18,318 @@ import m3.n;
 import m3.o;
 import m3.t;
 import m3.w;
+import o8.z;
 import z3.c;
-
 public final class b implements k {
-
-    public m f45351e;
-
-    public w f45352f;
+    public m f45345e;
+    public w f45346f;
     public c h;
-
-    public FlacStreamMetadata f45354i;
-
-    public int f45355j;
-
-    public int f45356k;
-
-    public a f45357l;
-
-    public int f45358m;
-
-    public long f45359n;
-
-    public final byte[] f45348a = new byte[42];
-
-    public final z f45349b = new z(new byte[32768], 0);
-
-    public final boolean f45350c = false;
-    public final n d = new n();
-
-    public int f45353g = 0;
+    public FlacStreamMetadata f45348i;
+    public int f45349j;
+    public int f45350k;
+    public a f45351l;
+    public int f45352m;
+    public long f45353n;
+    public final byte[] f45342a = new byte[42];
+    public final y f45343b = new y(new byte[32768], 0);
+    public final boolean f45344c = false;
+    public final n d = new Object();
+    public int f45347g = 0;
 
     @Override
-    public final int b(l lVar, n nVar) throws Throwable {
+    public final int b(l lVar, n nVar) {
         t oVar;
         long j10;
-        boolean zA;
-        int i10 = this.f45353g;
-        boolean z10 = true;
-        if (i10 == 0) {
-            boolean z11 = !this.f45350c;
-            ((h) lVar).f17614f = 0;
-            h hVar = (h) lVar;
-            long jI = hVar.i();
-            c cVarA = s.a(lVar, z11);
-            hVar.t((int) (hVar.i() - jI));
-            this.h = cVarA;
-            this.f45353g = 1;
-            return 0;
-        }
-        byte[] bArr = this.f45348a;
-        if (i10 == 1) {
-            ((h) lVar).g(bArr, 0, bArr.length, false);
-            ((h) lVar).f17614f = 0;
-            this.f45353g = 2;
-            return 0;
-        }
-        if (i10 == 2) {
-            z zVar = new z(4);
-            ((h) lVar).d(zVar.f4858a, 0, 4, false);
-            if (zVar.s() != 1716281667) {
+        boolean z10;
+        boolean z11;
+        int i9 = this.f45347g;
+        boolean z12 = true;
+        if (i9 != 0) {
+            byte[] bArr = this.f45342a;
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    int i10 = 7;
+                    if (i9 != 3) {
+                        long j11 = 0;
+                        if (i9 != 4) {
+                            if (i9 == 5) {
+                                this.f45346f.getClass();
+                                this.f45348i.getClass();
+                                a aVar = this.f45351l;
+                                if (aVar != null && aVar.f45341c != null) {
+                                    return aVar.b(lVar, nVar);
+                                }
+                                if (this.f45353n == -1) {
+                                    FlacStreamMetadata flacStreamMetadata = this.f45348i;
+                                    ((h) lVar).f17238f = 0;
+                                    h hVar = (h) lVar;
+                                    hVar.a(1, false);
+                                    byte[] bArr2 = new byte[1];
+                                    hVar.g(bArr2, 0, 1, false);
+                                    if ((bArr2[0] & 1) == 1) {
+                                        z11 = true;
+                                    } else {
+                                        z11 = false;
+                                    }
+                                    hVar.a(2, false);
+                                    if (!z11) {
+                                        i10 = 6;
+                                    }
+                                    y yVar = new y(i10);
+                                    byte[] bArr3 = yVar.f4410a;
+                                    int i11 = 0;
+                                    while (i11 < i10) {
+                                        int e10 = hVar.e(i11, i10 - i11, bArr3);
+                                        if (e10 == -1) {
+                                            break;
+                                        }
+                                        i11 += e10;
+                                    }
+                                    yVar.B(i11);
+                                    hVar.f17238f = 0;
+                                    try {
+                                        long x10 = yVar.x();
+                                        if (!z11) {
+                                            x10 *= flacStreamMetadata.maxBlockSizeSamples;
+                                        }
+                                        j11 = x10;
+                                    } catch (NumberFormatException unused) {
+                                        z12 = false;
+                                    }
+                                    if (z12) {
+                                        this.f45353n = j11;
+                                    } else {
+                                        throw t1.a(null, null);
+                                    }
+                                } else {
+                                    y yVar2 = this.f45343b;
+                                    int i12 = yVar2.f4412c;
+                                    if (i12 < 32768) {
+                                        int read = ((h) lVar).read(yVar2.f4410a, i12, 32768 - i12);
+                                        if (read != -1) {
+                                            z12 = false;
+                                        }
+                                        if (!z12) {
+                                            yVar2.B(i12 + read);
+                                        } else if (yVar2.a() == 0) {
+                                            FlacStreamMetadata flacStreamMetadata2 = this.f45348i;
+                                            int i13 = f0.f4349a;
+                                            this.f45346f.e((this.f45353n * 1000000) / flacStreamMetadata2.sampleRate, 1, this.f45352m, 0, null);
+                                            return -1;
+                                        }
+                                    } else {
+                                        z12 = false;
+                                    }
+                                    int i14 = yVar2.f4411b;
+                                    int i15 = this.f45352m;
+                                    int i16 = this.f45349j;
+                                    if (i15 < i16) {
+                                        yVar2.D(Math.min(i16 - i15, yVar2.a()));
+                                    }
+                                    this.f45348i.getClass();
+                                    int i17 = yVar2.f4411b;
+                                    while (true) {
+                                        int i18 = yVar2.f4412c - 16;
+                                        n nVar2 = this.d;
+                                        if (i17 <= i18) {
+                                            yVar2.C(i17);
+                                            if (r.a(yVar2, this.f45348i, this.f45350k, nVar2)) {
+                                                yVar2.C(i17);
+                                                j10 = nVar2.f17244a;
+                                                break;
+                                            }
+                                            i17++;
+                                        } else {
+                                            if (z12) {
+                                                while (true) {
+                                                    int i19 = yVar2.f4412c;
+                                                    if (i17 <= i19 - this.f45349j) {
+                                                        yVar2.C(i17);
+                                                        try {
+                                                            z10 = r.a(yVar2, this.f45348i, this.f45350k, nVar2);
+                                                        } catch (IndexOutOfBoundsException unused2) {
+                                                            z10 = false;
+                                                        }
+                                                        if (yVar2.f4411b > yVar2.f4412c) {
+                                                            z10 = false;
+                                                        }
+                                                        if (z10) {
+                                                            yVar2.C(i17);
+                                                            j10 = nVar2.f17244a;
+                                                            break;
+                                                        }
+                                                        i17++;
+                                                    } else {
+                                                        yVar2.C(i19);
+                                                        break;
+                                                    }
+                                                }
+                                            } else {
+                                                yVar2.C(i17);
+                                            }
+                                            j10 = -1;
+                                        }
+                                    }
+                                    int i20 = yVar2.f4411b - i14;
+                                    yVar2.C(i14);
+                                    this.f45346f.a(i20, yVar2);
+                                    int i21 = this.f45352m + i20;
+                                    this.f45352m = i21;
+                                    if (j10 != -1) {
+                                        FlacStreamMetadata flacStreamMetadata3 = this.f45348i;
+                                        int i22 = f0.f4349a;
+                                        this.f45346f.e((this.f45353n * 1000000) / flacStreamMetadata3.sampleRate, 1, i21, 0, null);
+                                        this.f45352m = 0;
+                                        this.f45353n = j10;
+                                    }
+                                    if (yVar2.a() < 16) {
+                                        int a2 = yVar2.a();
+                                        byte[] bArr4 = yVar2.f4410a;
+                                        System.arraycopy(bArr4, yVar2.f4411b, bArr4, 0, a2);
+                                        yVar2.C(0);
+                                        yVar2.B(a2);
+                                    }
+                                }
+                                return 0;
+                            }
+                            throw new IllegalStateException();
+                        }
+                        ((h) lVar).f17238f = 0;
+                        y yVar3 = new y(2);
+                        h hVar2 = (h) lVar;
+                        hVar2.g(yVar3.f4410a, 0, 2, false);
+                        int w8 = yVar3.w();
+                        if ((w8 >> 2) == 16382) {
+                            hVar2.f17238f = 0;
+                            this.f45350k = w8;
+                            m mVar = this.f45345e;
+                            int i23 = f0.f4349a;
+                            long j12 = hVar2.d;
+                            long j13 = hVar2.f17236c;
+                            this.f45348i.getClass();
+                            FlacStreamMetadata flacStreamMetadata4 = this.f45348i;
+                            if (flacStreamMetadata4.seekTable != null) {
+                                oVar = new o(flacStreamMetadata4, j12, 0);
+                            } else if (j13 != -1 && flacStreamMetadata4.totalSamples > 0) {
+                                a aVar2 = new a(new p(flacStreamMetadata4, 15), new a6.a(flacStreamMetadata4, this.f45350k), flacStreamMetadata4.getDurationUs(), flacStreamMetadata4.totalSamples, j12, j13, flacStreamMetadata4.getApproxBytesPerFrame(), Math.max(6, flacStreamMetadata4.minFrameSize));
+                                this.f45351l = aVar2;
+                                oVar = aVar2.f45339a;
+                            } else {
+                                oVar = new o(flacStreamMetadata4.getDurationUs());
+                            }
+                            mVar.y(oVar);
+                            this.f45347g = 5;
+                            return 0;
+                        }
+                        hVar2.f17238f = 0;
+                        throw t1.a("First frame does not start with sync code.", null);
+                    }
+                    FlacStreamMetadata flacStreamMetadata5 = this.f45348i;
+                    boolean z13 = false;
+                    while (!z13) {
+                        ((h) lVar).f17238f = 0;
+                        byte[] bArr5 = new byte[4];
+                        x xVar = new x(bArr5, 4);
+                        h hVar3 = (h) lVar;
+                        hVar3.g(bArr5, 0, 4, false);
+                        boolean h = xVar.h();
+                        int i24 = xVar.i(7);
+                        int i25 = xVar.i(24) + 4;
+                        if (i24 == 0) {
+                            byte[] bArr6 = new byte[38];
+                            hVar3.d(bArr6, 0, 38, false);
+                            flacStreamMetadata5 = new FlacStreamMetadata(bArr6, 4);
+                        } else if (flacStreamMetadata5 != null) {
+                            if (i24 == 3) {
+                                y yVar4 = new y(i25);
+                                hVar3.d(yVar4.f4410a, 0, i25, false);
+                                flacStreamMetadata5 = flacStreamMetadata5.copyWithSeekTable(s.b(yVar4));
+                            } else if (i24 == 4) {
+                                y yVar5 = new y(i25);
+                                hVar3.d(yVar5.f4410a, 0, i25, false);
+                                yVar5.D(4);
+                                flacStreamMetadata5 = flacStreamMetadata5.copyWithVorbisComments(Arrays.asList(g7.t.b(yVar5, false, false).f17270a));
+                            } else if (i24 == 6) {
+                                y yVar6 = new y(i25);
+                                hVar3.d(yVar6.f4410a, 0, i25, false);
+                                yVar6.D(4);
+                                flacStreamMetadata5 = flacStreamMetadata5.copyWithPictureFrames(z.y(PictureFrame.fromPictureBlock(yVar6)));
+                            } else {
+                                hVar3.u(i25);
+                            }
+                        } else {
+                            throw new IllegalArgumentException();
+                        }
+                        int i26 = f0.f4349a;
+                        this.f45348i = flacStreamMetadata5;
+                        z13 = h;
+                    }
+                    this.f45348i.getClass();
+                    this.f45349j = Math.max(this.f45348i.minFrameSize, 6);
+                    w wVar = this.f45346f;
+                    int i27 = f0.f4349a;
+                    wVar.c(this.f45348i.getFormat(bArr, this.h));
+                    this.f45347g = 4;
+                    return 0;
+                }
+                y yVar7 = new y(4);
+                ((h) lVar).d(yVar7.f4410a, 0, 4, false);
+                if (yVar7.s() == 1716281667) {
+                    this.f45347g = 3;
+                    return 0;
+                }
                 throw t1.a("Failed to read FLAC stream marker.", null);
             }
-            this.f45353g = 3;
+            ((h) lVar).g(bArr, 0, bArr.length, false);
+            ((h) lVar).f17238f = 0;
+            this.f45347g = 2;
             return 0;
         }
-        if (i10 == 3) {
-            FlacStreamMetadata flacStreamMetadataCopyWithPictureFrames = this.f45354i;
-            boolean z12 = false;
-            while (!z12) {
-                ((h) lVar).f17614f = 0;
-                byte[] bArr2 = new byte[4];
-                y yVar = new y(bArr2, 4);
-                h hVar2 = (h) lVar;
-                hVar2.g(bArr2, 0, 4, false);
-                boolean zH = yVar.h();
-                int i11 = yVar.i(7);
-                int i12 = yVar.i(24) + 4;
-                if (i11 == 0) {
-                    byte[] bArr3 = new byte[38];
-                    hVar2.d(bArr3, 0, 38, false);
-                    flacStreamMetadataCopyWithPictureFrames = new FlacStreamMetadata(bArr3, 4);
-                } else {
-                    if (flacStreamMetadataCopyWithPictureFrames == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    if (i11 == 3) {
-                        z zVar2 = new z(i12);
-                        hVar2.d(zVar2.f4858a, 0, i12, false);
-                        flacStreamMetadataCopyWithPictureFrames = flacStreamMetadataCopyWithPictureFrames.copyWithSeekTable(s.b(zVar2));
-                    } else if (i11 == 4) {
-                        z zVar3 = new z(i12);
-                        hVar2.d(zVar3.f4858a, 0, i12, false);
-                        zVar3.D(4);
-                        flacStreamMetadataCopyWithPictureFrames = flacStreamMetadataCopyWithPictureFrames.copyWithVorbisComments(Arrays.asList(h7.t.b(zVar3, false, false).f17646a));
-                    } else if (i11 == 6) {
-                        z zVar4 = new z(i12);
-                        hVar2.d(zVar4.f4858a, 0, i12, false);
-                        zVar4.D(4);
-                        flacStreamMetadataCopyWithPictureFrames = flacStreamMetadataCopyWithPictureFrames.copyWithPictureFrames(p8.z.y(PictureFrame.fromPictureBlock(zVar4)));
-                    } else {
-                        hVar2.t(i12);
-                    }
-                }
-                int i13 = g0.f4795a;
-                this.f45354i = flacStreamMetadataCopyWithPictureFrames;
-                z12 = zH;
-            }
-            this.f45354i.getClass();
-            this.f45355j = Math.max(this.f45354i.minFrameSize, 6);
-            w wVar = this.f45352f;
-            int i14 = g0.f4795a;
-            wVar.c(this.f45354i.getFormat(bArr, this.h));
-            this.f45353g = 4;
-            return 0;
-        }
-        long j11 = 0;
-        if (i10 == 4) {
-            ((h) lVar).f17614f = 0;
-            z zVar5 = new z(2);
-            h hVar3 = (h) lVar;
-            hVar3.g(zVar5.f4858a, 0, 2, false);
-            int iW = zVar5.w();
-            if ((iW >> 2) != 16382) {
-                hVar3.f17614f = 0;
-                throw t1.a("First frame does not start with sync code.", null);
-            }
-            hVar3.f17614f = 0;
-            this.f45356k = iW;
-            m mVar = this.f45351e;
-            int i15 = g0.f4795a;
-            long j12 = hVar3.d;
-            long j13 = hVar3.f17612c;
-            this.f45354i.getClass();
-            FlacStreamMetadata flacStreamMetadata = this.f45354i;
-            if (flacStreamMetadata.seekTable != null) {
-                oVar = new o(flacStreamMetadata, j12, 0);
-            } else if (j13 == -1 || flacStreamMetadata.totalSamples <= 0) {
-                oVar = new o(flacStreamMetadata.getDurationUs());
-            } else {
-                a aVar = new a(new p(flacStreamMetadata, 15), new b6.a(flacStreamMetadata, this.f45356k), flacStreamMetadata.getDurationUs(), flacStreamMetadata.totalSamples, j12, j13, flacStreamMetadata.getApproxBytesPerFrame(), Math.max(6, flacStreamMetadata.minFrameSize));
-                this.f45357l = aVar;
-                oVar = aVar.f45345a;
-            }
-            mVar.n(oVar);
-            this.f45353g = 5;
-            return 0;
-        }
-        if (i10 != 5) {
-            throw new IllegalStateException();
-        }
-        this.f45352f.getClass();
-        this.f45354i.getClass();
-        a aVar2 = this.f45357l;
-        if (aVar2 != null && aVar2.f45347c != null) {
-            return aVar2.b(lVar, nVar);
-        }
-        if (this.f45359n == -1) {
-            FlacStreamMetadata flacStreamMetadata2 = this.f45354i;
-            ((h) lVar).f17614f = 0;
-            h hVar4 = (h) lVar;
-            hVar4.a(1, false);
-            byte[] bArr4 = new byte[1];
-            hVar4.g(bArr4, 0, 1, false);
-            boolean z13 = (bArr4[0] & 1) == 1;
-            hVar4.a(2, false);
-            int i16 = z13 ? 7 : 6;
-            z zVar6 = new z(i16);
-            byte[] bArr5 = zVar6.f4858a;
-            int i17 = 0;
-            while (i17 < i16) {
-                int iE = hVar4.e(i17, i16 - i17, bArr5);
-                if (iE == -1) {
-                    break;
-                }
-                i17 += iE;
-            }
-            zVar6.B(i17);
-            hVar4.f17614f = 0;
-            try {
-                long jX = zVar6.x();
-                if (!z13) {
-                    jX *= (long) flacStreamMetadata2.maxBlockSizeSamples;
-                }
-                j11 = jX;
-            } catch (NumberFormatException unused) {
-                z10 = false;
-            }
-            if (!z10) {
-                throw t1.a(null, null);
-            }
-            this.f45359n = j11;
-        } else {
-            z zVar7 = this.f45349b;
-            int i18 = zVar7.f4860c;
-            if (i18 < 32768) {
-                int i19 = ((h) lVar).read(zVar7.f4858a, i18, 32768 - i18);
-                z10 = i19 == -1;
-                if (!z10) {
-                    zVar7.B(i18 + i19);
-                } else if (zVar7.a() == 0) {
-                    long j14 = this.f45359n * 1000000;
-                    FlacStreamMetadata flacStreamMetadata3 = this.f45354i;
-                    int i20 = g0.f4795a;
-                    this.f45352f.e(j14 / ((long) flacStreamMetadata3.sampleRate), 1, this.f45358m, 0, null);
-                    return -1;
-                }
-            } else {
-                z10 = false;
-            }
-            int i21 = zVar7.f4859b;
-            int i22 = this.f45358m;
-            int i23 = this.f45355j;
-            if (i22 < i23) {
-                zVar7.D(Math.min(i23 - i22, zVar7.a()));
-            }
-            this.f45354i.getClass();
-            int i24 = zVar7.f4859b;
-            while (true) {
-                int i25 = zVar7.f4860c - 16;
-                n nVar2 = this.d;
-                if (i24 > i25) {
-                    if (z10) {
-                        while (true) {
-                            int i26 = zVar7.f4860c;
-                            if (i24 <= i26 - this.f45355j) {
-                                zVar7.C(i24);
-                                try {
-                                    zA = r.a(zVar7, this.f45354i, this.f45356k, nVar2);
-                                } catch (IndexOutOfBoundsException unused2) {
-                                    zA = false;
-                                }
-                                if (zVar7.f4859b > zVar7.f4860c) {
-                                    zA = false;
-                                }
-                                if (zA) {
-                                    zVar7.C(i24);
-                                    j10 = nVar2.f17620a;
-                                    break;
-                                }
-                                i24++;
-                            } else {
-                                zVar7.C(i26);
-                            }
-                        }
-                    } else {
-                        zVar7.C(i24);
-                    }
-                    j10 = -1;
-                    break;
-                }
-                zVar7.C(i24);
-                if (r.a(zVar7, this.f45354i, this.f45356k, nVar2)) {
-                    zVar7.C(i24);
-                    j10 = nVar2.f17620a;
-                    break;
-                }
-                i24++;
-            }
-            int i27 = zVar7.f4859b - i21;
-            zVar7.C(i21);
-            this.f45352f.a(i27, zVar7);
-            int i28 = this.f45358m + i27;
-            this.f45358m = i28;
-            if (j10 != -1) {
-                long j15 = this.f45359n * 1000000;
-                FlacStreamMetadata flacStreamMetadata4 = this.f45354i;
-                int i29 = g0.f4795a;
-                this.f45352f.e(j15 / ((long) flacStreamMetadata4.sampleRate), 1, i28, 0, null);
-                this.f45358m = 0;
-                this.f45359n = j10;
-            }
-            if (zVar7.a() < 16) {
-                int iA = zVar7.a();
-                byte[] bArr6 = zVar7.f4858a;
-                System.arraycopy(bArr6, zVar7.f4859b, bArr6, 0, iA);
-                zVar7.C(0);
-                zVar7.B(iA);
-            }
-        }
+        ((h) lVar).f17238f = 0;
+        h hVar4 = (h) lVar;
+        long k10 = hVar4.k();
+        c a3 = s.a(lVar, !this.f45344c);
+        hVar4.u((int) (hVar4.k() - k10));
+        this.h = a3;
+        this.f45347g = 1;
         return 0;
     }
 
     @Override
     public final void c(m mVar) {
-        this.f45351e = mVar;
-        this.f45352f = mVar.C(0, 1);
-        mVar.A();
+        this.f45345e = mVar;
+        this.f45346f = mVar.I(0, 1);
+        mVar.B();
     }
 
     @Override
-    public final boolean f(l lVar) throws Throwable {
+    public final boolean f(l lVar) {
         s.a(lVar, false);
-        z zVar = new z(4);
-        ((h) lVar).g(zVar.f4858a, 0, 4, false);
-        return zVar.s() == 1716281667;
+        y yVar = new y(4);
+        ((h) lVar).g(yVar.f4410a, 0, 4, false);
+        if (yVar.s() != 1716281667) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public final void g(long j10, long j11) {
+        long j12 = 0;
         if (j10 == 0) {
-            this.f45353g = 0;
+            this.f45347g = 0;
         } else {
-            a aVar = this.f45357l;
+            a aVar = this.f45351l;
             if (aVar != null) {
                 aVar.d(j11);
             }
         }
-        this.f45359n = j11 != 0 ? -1L : 0L;
-        this.f45358m = 0;
-        this.f45349b.z(0);
+        if (j11 != 0) {
+            j12 = -1;
+        }
+        this.f45353n = j12;
+        this.f45352m = 0;
+        this.f45343b.z(0);
     }
 
     @Override

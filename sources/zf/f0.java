@@ -1,104 +1,85 @@
 package zf;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import g7.e6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ys0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.h5;
+public final class f0 extends FrameLayout {
+    public final ImageView f50501a;
+    public final h5 f50502b;
+    public final bh.g f50503c;
+    public final h5 d;
+    public e0 f50504e;
+    public d0 f50505f;
 
-public final class f0 extends d {
-    public final Paint h;
-
-    public long f50405n;
-
-    public float f50406r;
-
-    public float f50407s;
-    public final ys0 v;
-
-    public f0(ys0 ys0Var, Context context, e0 e0Var) {
-        super(context, e0Var);
-        this.v = ys0Var;
-        Paint paint = new Paint();
-        this.h = paint;
-        setWillNotDraw(false);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(-1);
+    public f0(j0 j0Var, Context context, b6 b6Var) {
+        super(context);
+        int i9;
+        int i10;
+        int i11;
+        float f10;
+        float f11;
+        i9 = ((f3) j0Var).backgroundPaddingLeft;
+        i10 = ((f3) j0Var).backgroundPaddingLeft;
+        setPadding(i9, 0, i10, 0);
+        ImageView imageView = new ImageView(context);
+        this.f50501a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(f6.v0(f6.Lj, b6Var), PorterDuff.Mode.SRC_IN));
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(imageView, e6.d(24, 24.0f, i11 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
+        h5 h5Var = new h5(context);
+        this.f50502b = h5Var;
+        h5Var.setWidthWrapContent(true);
+        h5Var.setTextColor(f6.v0(f6.f23108j5, b6Var));
+        h5Var.setTextSize(14);
+        boolean z10 = LocaleController.isRTL;
+        int i12 = (z10 ? 5 : 3) | 16;
+        if (z10) {
+            f10 = 30.0f;
+        } else {
+            f10 = 60.0f;
+        }
+        if (z10) {
+            f11 = 60.0f;
+        } else {
+            f11 = 30.0f;
+        }
+        addView(h5Var, e6.d(-2, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        h5 h5Var2 = new h5(context);
+        this.d = h5Var2;
+        h5Var2.setTextColor(-1);
+        h5Var2.setWidthWrapContent(true);
+        h5Var2.setTypeface(AndroidUtilities.bold());
+        h5Var2.setTextSize(14);
+        bh.g gVar = new bh.g(this, context, b6Var);
+        this.f50503c = gVar;
+        gVar.setWillNotDraw(false);
+        gVar.addView(h5Var2, e6.e(-2, -2, 17));
+        addView(gVar, e6.c(-1.0f, -1));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int stickyX;
-        int stickyY;
+    public final void onMeasure(int i9, int i10) {
         float f10;
-        float f11;
-        Canvas canvas2;
-        super.onDraw(canvas);
-        long jMin = Math.min(16L, System.currentTimeMillis() - this.f50405n);
-        this.f50405n = System.currentTimeMillis();
-        ys0 ys0Var = this.v;
-        j jVar = ys0Var.O0;
-        if (jVar == null || jVar.f50464r || !jVar.f50463n) {
-            stickyX = 0;
-            stickyY = 0;
+        if (this.f50505f != null) {
+            f10 = 49.0f;
         } else {
-            stickyX = jVar.getStickyX();
-            stickyY = ys0Var.O0.getStickyY();
+            f10 = 36.0f;
         }
-        if (stickyX != 0) {
-            float f12 = this.f50406r;
-            if (f12 != 1.0f) {
-                this.f50406r = Math.min(1.0f, (jMin / 150.0f) + f12);
-                invalidate();
-            } else if (stickyX == 0) {
-                f10 = this.f50406r;
-                if (f10 != 0.0f) {
-                    this.f50406r = Math.max(0.0f, f10 - (jMin / 150.0f));
-                    invalidate();
-                }
-            }
-        } else if (stickyX == 0) {
-            f10 = this.f50406r;
-            if (f10 != 0.0f) {
-                this.f50406r = Math.max(0.0f, f10 - (jMin / 150.0f));
-                invalidate();
-            }
-        }
-        if (stickyY != 0) {
-            float f13 = this.f50407s;
-            if (f13 != 1.0f) {
-                this.f50407s = Math.min(1.0f, (jMin / 150.0f) + f13);
-                invalidate();
-            } else if (stickyY == 0) {
-                f11 = this.f50407s;
-                if (f11 != 0.0f) {
-                    this.f50407s = Math.max(0.0f, f11 - (jMin / 150.0f));
-                    invalidate();
-                }
-            }
-        } else if (stickyY == 0) {
-            f11 = this.f50407s;
-            if (f11 != 0.0f) {
-                this.f50407s = Math.max(0.0f, f11 - (jMin / 150.0f));
-                invalidate();
-            }
-        }
-        float f14 = this.f50407s;
-        Paint paint = this.h;
-        if (f14 != 0.0f) {
-            paint.setAlpha((int) (f14 * 255.0f));
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            canvas2 = canvas;
-            canvas2.drawLine(0.0f, measuredHeight, getMeasuredWidth(), measuredHeight, paint);
-        } else {
-            canvas2 = canvas;
-        }
-        float f15 = this.f50406r;
-        if (f15 != 0.0f) {
-            paint.setAlpha((int) (f15 * 255.0f));
-            float measuredWidth = getMeasuredWidth() / 2.0f;
-            canvas2.drawLine(measuredWidth, 0.0f, measuredWidth, getMeasuredHeight(), paint);
-        }
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f10), 1073741824));
     }
 }

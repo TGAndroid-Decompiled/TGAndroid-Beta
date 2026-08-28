@@ -1,60 +1,61 @@
 package org.telegram.ui;
 
-import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import java.util.regex.Pattern;
 import org.telegram.ui.Components.EditTextBoldCursor;
-
 public final class tl0 implements TextWatcher {
+    public final int f43028a;
+    public final Object f43029b;
+    public String f43030c;
+    public final Object d;
 
-    public boolean f42963a;
-
-    public final EditTextBoldCursor f42964b;
-
-    public final String f42965c;
-    public final xm0 d;
-
-    public tl0(xm0 xm0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.d = xm0Var;
-        this.f42964b = editTextBoldCursor;
-        this.f42965c = str;
+    public tl0(wm0 wm0Var, EditTextBoldCursor editTextBoldCursor, String str, int i9) {
+        this.f43028a = i9;
+        this.d = wm0Var;
+        this.f43029b = editTextBoldCursor;
+        this.f43030c = str;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (this.f42963a) {
-            return;
-        }
-        boolean z10 = true;
-        this.f42963a = true;
-        int i10 = 0;
-        while (true) {
-            if (i10 >= editable.length()) {
-                z10 = false;
-                break;
-            }
-            char cCharAt = editable.charAt(i10);
-            if ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && !((cCharAt >= '0' && cCharAt <= '9') || cCharAt == '-' || cCharAt == ' '))) {
-                break;
-            } else {
-                i10++;
-            }
-        }
-        this.f42963a = false;
-        EditTextBoldCursor editTextBoldCursor = this.f42964b;
-        if (z10) {
-            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
-        } else {
-            xm0.J0(this.d, editTextBoldCursor, this.f42965c, editable, false);
+    public final void afterTextChanged(android.text.Editable r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tl0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        switch (this.f43028a) {
+            case 0:
+            case 1:
+                return;
+            default:
+                this.f43030c = charSequence.toString();
+                return;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        int i12 = this.f43028a;
     }
 
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public tl0(xf.w wVar) {
+        this.f43028a = 2;
+        this.d = wVar;
+        this.f43029b = Pattern.compile("^[0-9a-fA-F]*$");
+    }
+
+    private final void a(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void e(int i9, int i10, int i11, CharSequence charSequence) {
     }
 }

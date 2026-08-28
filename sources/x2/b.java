@@ -1,34 +1,30 @@
 package x2;
 
-import a9.p;
 import android.content.Context;
-
 public final class b extends c {
-
-    public final Context f49332a;
-
-    public final f3.a f49333b;
-
-    public final f3.a f49334c;
+    public final Context f48852a;
+    public final f3.a f48853b;
+    public final f3.a f48854c;
     public final String d;
 
     public b(Context context, f3.a aVar, f3.a aVar2, String str) {
-        if (context == null) {
-            throw new NullPointerException("Null applicationContext");
-        }
-        this.f49332a = context;
-        if (aVar == null) {
+        if (context != null) {
+            this.f48852a = context;
+            if (aVar != null) {
+                this.f48853b = aVar;
+                if (aVar2 != null) {
+                    this.f48854c = aVar2;
+                    if (str != null) {
+                        this.d = str;
+                        return;
+                    }
+                    throw new NullPointerException("Null backendName");
+                }
+                throw new NullPointerException("Null monotonicClock");
+            }
             throw new NullPointerException("Null wallClock");
         }
-        this.f49333b = aVar;
-        if (aVar2 == null) {
-            throw new NullPointerException("Null monotonicClock");
-        }
-        this.f49334c = aVar2;
-        if (str == null) {
-            throw new NullPointerException("Null backendName");
-        }
-        this.d = str;
+        throw new NullPointerException("Null applicationContext");
     }
 
     public final boolean equals(Object obj) {
@@ -37,7 +33,7 @@ public final class b extends c {
         }
         if (obj instanceof c) {
             b bVar = (b) ((c) obj);
-            if (this.f49332a.equals(bVar.f49332a) && this.f49333b.equals(bVar.f49333b) && this.f49334c.equals(bVar.f49334c) && this.d.equals(bVar.d)) {
+            if (this.f48852a.equals(bVar.f48852a) && this.f48853b.equals(bVar.f48853b) && this.f48854c.equals(bVar.f48854c) && this.d.equals(bVar.d)) {
                 return true;
             }
         }
@@ -45,17 +41,17 @@ public final class b extends c {
     }
 
     public final int hashCode() {
-        return ((((((this.f49332a.hashCode() ^ 1000003) * 1000003) ^ this.f49333b.hashCode()) * 1000003) ^ this.f49334c.hashCode()) * 1000003) ^ this.d.hashCode();
+        return ((((((this.f48852a.hashCode() ^ 1000003) * 1000003) ^ this.f48853b.hashCode()) * 1000003) ^ this.f48854c.hashCode()) * 1000003) ^ this.d.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("CreationContext{applicationContext=");
-        sb2.append(this.f49332a);
+        sb2.append(this.f48852a);
         sb2.append(", wallClock=");
-        sb2.append(this.f49333b);
+        sb2.append(this.f48853b);
         sb2.append(", monotonicClock=");
-        sb2.append(this.f49334c);
+        sb2.append(this.f48854c);
         sb2.append(", backendName=");
-        return p.p(sb2, this.d, "}");
+        return aa.d.r(sb2, this.d, "}");
     }
 }

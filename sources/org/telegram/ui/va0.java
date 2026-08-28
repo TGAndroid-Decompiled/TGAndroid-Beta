@@ -1,66 +1,67 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Emoji;
+public final class va0 implements TextWatcher {
+    public final int f43418a;
+    public final bb0 f43419b;
 
-public final class va0 implements org.telegram.ui.Components.x4, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.cv0 {
-
-    public final int f43395a;
-
-    public final fb0 f43396b;
-
-    public va0(fb0 fb0Var, int i10) {
-        this.f43395a = i10;
-        this.f43396b = fb0Var;
+    public va0(bb0 bb0Var, int i9) {
+        this.f43418a = i9;
+        this.f43419b = bb0Var;
     }
 
     @Override
-    public void I(int i10, int i11, boolean z10) {
-        this.f43396b.V(i10);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        fb0 fb0Var = this.f43396b;
-        fb0Var.P.a(fb0Var.f38057e);
-        fb0Var.finishFragment();
-    }
-
-    @Override
-    public void j(int i10) {
-        switch (this.f43395a) {
-            case 2:
-                fb0 fb0Var = this.f43396b;
-                ArrayList arrayList = fb0Var.L;
-                if (i10 >= arrayList.size()) {
-                    fb0Var.f38062w.setText("");
-                } else {
-                    fb0Var.f38062w.setText(LocaleController.formatDateAudio(fb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
-                }
-                break;
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f43418a) {
+            case 0:
+                Emoji.replaceEmoji(editable, this.f43419b.G.getPaint().getFontMetricsInt(), false);
+                return;
             default:
-                fb0 fb0Var2 = this.f43396b;
-                fb0Var2.B.clearFocus();
-                fb0Var2.K = true;
-                ArrayList arrayList2 = fb0Var2.N;
-                if (i10 < arrayList2.size()) {
-                    fb0Var2.B.setText(((Integer) arrayList2.get(i10)).toString());
-                } else {
-                    fb0Var2.B.setText("");
+                bb0 bb0Var = this.f43419b;
+                if (!bb0Var.K) {
+                    if (editable.toString().equals("0")) {
+                        bb0Var.B.setText("");
+                        return;
+                    }
+                    try {
+                        int parseInt = Integer.parseInt(editable.toString());
+                        if (parseInt > 100000) {
+                            bb0Var.W();
+                            return;
+                        } else {
+                            bb0Var.V(parseInt);
+                            return;
+                        }
+                    } catch (NumberFormatException unused) {
+                        bb0Var.W();
+                        return;
+                    }
                 }
-                fb0Var2.K = false;
-                break;
+                return;
         }
     }
 
     @Override
-    public void m() {
-        int i10 = this.f43395a;
+    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        int i12 = this.f43418a;
     }
 
-    private final void a() {
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        int i12 = this.f43418a;
     }
 
-    private final void b() {
+    private final void a(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i9, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i9, int i10, int i11, CharSequence charSequence) {
     }
 }

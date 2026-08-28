@@ -1,100 +1,82 @@
 package h3;
 
 import java.util.List;
-
 public final class w1 {
-
-    public static final j4.c0 f8219s = new j4.c0(new Object());
-
-    public final s2 f8220a;
-
-    public final j4.c0 f8221b;
-
-    public final long f8222c;
+    public static final j4.d0 f9788s = new j4.d0(new Object());
+    public final r2 f9789a;
+    public final j4.d0 f9790b;
+    public final long f9791c;
     public final long d;
-
-    public final int f8223e;
-
-    public final n f8224f;
-
-    public final boolean f8225g;
+    public final int f9792e;
+    public final n f9793f;
+    public final boolean f9794g;
     public final j4.j1 h;
+    public final b5.a0 f9795i;
+    public final List f9796j;
+    public final j4.d0 f9797k;
+    public final boolean f9798l;
+    public final int f9799m;
+    public final x1 f9800n;
+    public final boolean f9801o;
+    public volatile long f9802p;
+    public volatile long f9803q;
+    public volatile long f9804r;
 
-    public final b5.z f8226i;
-
-    public final List f8227j;
-
-    public final j4.c0 f8228k;
-
-    public final boolean f8229l;
-
-    public final int f8230m;
-
-    public final x1 f8231n;
-
-    public final boolean f8232o;
-
-    public volatile long f8233p;
-
-    public volatile long f8234q;
-
-    public volatile long f8235r;
-
-    public w1(s2 s2Var, j4.c0 c0Var, long j10, long j11, int i10, n nVar, boolean z10, j4.j1 j1Var, b5.z zVar, List list, j4.c0 c0Var2, boolean z11, int i11, x1 x1Var, long j12, long j13, long j14, boolean z12) {
-        this.f8220a = s2Var;
-        this.f8221b = c0Var;
-        this.f8222c = j10;
+    public w1(r2 r2Var, j4.d0 d0Var, long j10, long j11, int i9, n nVar, boolean z10, j4.j1 j1Var, b5.a0 a0Var, List list, j4.d0 d0Var2, boolean z11, int i10, x1 x1Var, long j12, long j13, long j14, boolean z12) {
+        this.f9789a = r2Var;
+        this.f9790b = d0Var;
+        this.f9791c = j10;
         this.d = j11;
-        this.f8223e = i10;
-        this.f8224f = nVar;
-        this.f8225g = z10;
+        this.f9792e = i9;
+        this.f9793f = nVar;
+        this.f9794g = z10;
         this.h = j1Var;
-        this.f8226i = zVar;
-        this.f8227j = list;
-        this.f8228k = c0Var2;
-        this.f8229l = z11;
-        this.f8230m = i11;
-        this.f8231n = x1Var;
-        this.f8233p = j12;
-        this.f8234q = j13;
-        this.f8235r = j14;
-        this.f8232o = z12;
+        this.f9795i = a0Var;
+        this.f9796j = list;
+        this.f9797k = d0Var2;
+        this.f9798l = z11;
+        this.f9799m = i10;
+        this.f9800n = x1Var;
+        this.f9802p = j12;
+        this.f9803q = j13;
+        this.f9804r = j14;
+        this.f9801o = z12;
     }
 
-    public static w1 h(b5.z zVar) {
-        o2 o2Var = s2.f8156a;
+    public static w1 h(b5.a0 a0Var) {
+        o2 o2Var = r2.f9692a;
         j4.j1 j1Var = j4.j1.d;
-        p8.l0 l0Var = p8.l0.f45555e;
+        o8.l0 l0Var = o8.l0.f19056e;
         x1 x1Var = x1.d;
-        j4.c0 c0Var = f8219s;
-        return new w1(o2Var, c0Var, -9223372036854775807L, 0L, 1, null, false, j1Var, zVar, l0Var, c0Var, false, 0, x1Var, 0L, 0L, 0L, false);
+        j4.d0 d0Var = f9788s;
+        return new w1(o2Var, d0Var, -9223372036854775807L, 0L, 1, null, false, j1Var, a0Var, l0Var, d0Var, false, 0, x1Var, 0L, 0L, 0L, false);
     }
 
-    public final w1 a(j4.c0 c0Var) {
-        return new w1(this.f8220a, this.f8221b, this.f8222c, this.d, this.f8223e, this.f8224f, this.f8225g, this.h, this.f8226i, this.f8227j, c0Var, this.f8229l, this.f8230m, this.f8231n, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+    public final w1 a(j4.d0 d0Var) {
+        return new w1(this.f9789a, this.f9790b, this.f9791c, this.d, this.f9792e, this.f9793f, this.f9794g, this.h, this.f9795i, this.f9796j, d0Var, this.f9798l, this.f9799m, this.f9800n, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 
-    public final w1 b(j4.c0 c0Var, long j10, long j11, long j12, long j13, j4.j1 j1Var, b5.z zVar, List list) {
-        return new w1(this.f8220a, c0Var, j11, j12, this.f8223e, this.f8224f, this.f8225g, j1Var, zVar, list, this.f8228k, this.f8229l, this.f8230m, this.f8231n, this.f8233p, j13, j10, this.f8232o);
+    public final w1 b(j4.d0 d0Var, long j10, long j11, long j12, long j13, j4.j1 j1Var, b5.a0 a0Var, List list) {
+        return new w1(this.f9789a, d0Var, j11, j12, this.f9792e, this.f9793f, this.f9794g, j1Var, a0Var, list, this.f9797k, this.f9798l, this.f9799m, this.f9800n, this.f9802p, j13, j10, this.f9801o);
     }
 
-    public final w1 c(int i10, boolean z10) {
-        return new w1(this.f8220a, this.f8221b, this.f8222c, this.d, this.f8223e, this.f8224f, this.f8225g, this.h, this.f8226i, this.f8227j, this.f8228k, z10, i10, this.f8231n, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+    public final w1 c(int i9, boolean z10) {
+        return new w1(this.f9789a, this.f9790b, this.f9791c, this.d, this.f9792e, this.f9793f, this.f9794g, this.h, this.f9795i, this.f9796j, this.f9797k, z10, i9, this.f9800n, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 
     public final w1 d(n nVar) {
-        return new w1(this.f8220a, this.f8221b, this.f8222c, this.d, this.f8223e, nVar, this.f8225g, this.h, this.f8226i, this.f8227j, this.f8228k, this.f8229l, this.f8230m, this.f8231n, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+        return new w1(this.f9789a, this.f9790b, this.f9791c, this.d, this.f9792e, nVar, this.f9794g, this.h, this.f9795i, this.f9796j, this.f9797k, this.f9798l, this.f9799m, this.f9800n, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 
     public final w1 e(x1 x1Var) {
-        return new w1(this.f8220a, this.f8221b, this.f8222c, this.d, this.f8223e, this.f8224f, this.f8225g, this.h, this.f8226i, this.f8227j, this.f8228k, this.f8229l, this.f8230m, x1Var, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+        return new w1(this.f9789a, this.f9790b, this.f9791c, this.d, this.f9792e, this.f9793f, this.f9794g, this.h, this.f9795i, this.f9796j, this.f9797k, this.f9798l, this.f9799m, x1Var, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 
-    public final w1 f(int i10) {
-        return new w1(this.f8220a, this.f8221b, this.f8222c, this.d, i10, this.f8224f, this.f8225g, this.h, this.f8226i, this.f8227j, this.f8228k, this.f8229l, this.f8230m, this.f8231n, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+    public final w1 f(int i9) {
+        return new w1(this.f9789a, this.f9790b, this.f9791c, this.d, i9, this.f9793f, this.f9794g, this.h, this.f9795i, this.f9796j, this.f9797k, this.f9798l, this.f9799m, this.f9800n, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 
-    public final w1 g(s2 s2Var) {
-        return new w1(s2Var, this.f8221b, this.f8222c, this.d, this.f8223e, this.f8224f, this.f8225g, this.h, this.f8226i, this.f8227j, this.f8228k, this.f8229l, this.f8230m, this.f8231n, this.f8233p, this.f8234q, this.f8235r, this.f8232o);
+    public final w1 g(r2 r2Var) {
+        return new w1(r2Var, this.f9790b, this.f9791c, this.d, this.f9792e, this.f9793f, this.f9794g, this.h, this.f9795i, this.f9796j, this.f9797k, this.f9798l, this.f9799m, this.f9800n, this.f9802p, this.f9803q, this.f9804r, this.f9801o);
     }
 }

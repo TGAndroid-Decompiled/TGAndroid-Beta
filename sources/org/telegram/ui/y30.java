@@ -1,50 +1,46 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
+public final class y30 extends nu0 {
+    public final o50 T;
 
-public final class y30 extends TextView {
-
-    public final RectF f44697a;
-
-    public final Paint f44698b;
-
-    public y30(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f44697a = new RectF();
-        Paint paint = new Paint(1);
-        this.f44698b = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(-16711936);
+    public y30(o50 o50Var, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = o50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth();
-        float measuredHeight = getMeasuredHeight();
-        RectF rectF = this.f44697a;
-        rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f44698b);
-        super.dispatchDraw(canvas);
+    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        o50 o50Var = this.T;
+        i30 i30Var = o50Var.f40883b;
+        j30 j30Var = o50Var.f40985y2;
+        if (f10 > 0.0f) {
+            float x10 = j30Var.getX();
+            viewGroup = ((org.telegram.ui.ActionBar.f3) o50Var).containerView;
+            float x11 = viewGroup.getX() + x10;
+            float y10 = j30Var.getY();
+            viewGroup2 = ((org.telegram.ui.ActionBar.f3) o50Var).containerView;
+            float y11 = viewGroup2.getY() + y10;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(x11, y11, i30Var.getMeasuredWidth() + x11, i30Var.getMeasuredHeight() + y11);
+            canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
+            canvas.translate(x11, y11);
+            j30Var.draw(canvas);
+            canvas.restore();
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.f44698b;
-        paint.setColor(-16711936);
-        float measuredWidth = getMeasuredWidth();
-        float measuredHeight = getMeasuredHeight();
-        RectF rectF = this.f44697a;
-        rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
+    public final void e() {
+        i30 i30Var = this.T.f40883b;
+        super.e();
+        for (int i9 = 0; i9 < i30Var.getChildCount(); i9++) {
+            i30Var.getChildAt(i9).invalidate();
+        }
     }
 }

@@ -4,77 +4,76 @@ import android.os.Looper;
 import android.util.AndroidRuntimeException;
 import android.view.Choreographer;
 import java.util.ArrayList;
-
 public final class j extends h {
-
-    public k f19147u;
+    public k f18800u;
     public float v;
 
-    public j(hb.a aVar) {
+    public j(gb.a aVar) {
         super(aVar);
-        this.f19147u = null;
+        this.f18800u = null;
         this.v = Float.MAX_VALUE;
     }
 
     public final void f() {
-        k kVar = this.f19147u;
-        if (kVar == null) {
-            throw new UnsupportedOperationException("Incomplete SpringAnimation: Either final position or a spring force needs to be set.");
-        }
-        double d = (float) kVar.f19154i;
-        if (d > this.f19142g) {
+        k kVar = this.f18800u;
+        if (kVar != null) {
+            double d = (float) kVar.f18807i;
+            if (d <= this.f18795g) {
+                if (d >= this.h) {
+                    double abs = Math.abs(this.f18797j * 0.75f);
+                    kVar.d = abs;
+                    kVar.f18804e = abs * 62.5d;
+                    if (Looper.myLooper() == Looper.getMainLooper()) {
+                        boolean z10 = this.f18794f;
+                        if (!z10 && !z10) {
+                            this.f18794f = true;
+                            if (!this.f18792c) {
+                                this.f18791b = this.f18793e.a(this.d);
+                            }
+                            float f10 = this.f18791b;
+                            if (f10 <= this.f18795g && f10 >= this.h) {
+                                ThreadLocal threadLocal = b.f18772f;
+                                if (threadLocal.get() == null) {
+                                    threadLocal.set(new b());
+                                }
+                                b bVar = (b) threadLocal.get();
+                                ArrayList arrayList = bVar.f18774b;
+                                if (arrayList.size() == 0) {
+                                    if (bVar.d == null) {
+                                        bVar.d = new j4.c(bVar.f18775c);
+                                    }
+                                    j4.c cVar = bVar.d;
+                                    ((Choreographer) cVar.f13432c).postFrameCallback((a) cVar.d);
+                                }
+                                if (!arrayList.contains(this)) {
+                                    arrayList.add(this);
+                                    return;
+                                }
+                                return;
+                            }
+                            throw new IllegalArgumentException("Starting value need to be in between min value and max value");
+                        }
+                        return;
+                    }
+                    throw new AndroidRuntimeException("Animations may only be started on the main thread");
+                }
+                throw new UnsupportedOperationException("Final position of the spring cannot be less than the min value.");
+            }
             throw new UnsupportedOperationException("Final position of the spring cannot be greater than the max value.");
         }
-        if (d < this.h) {
-            throw new UnsupportedOperationException("Final position of the spring cannot be less than the min value.");
-        }
-        double dAbs = Math.abs(this.f19144j * 0.75f);
-        kVar.d = dAbs;
-        kVar.f19151e = dAbs * 62.5d;
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            throw new AndroidRuntimeException("Animations may only be started on the main thread");
-        }
-        boolean z10 = this.f19141f;
-        if (z10 || z10) {
-            return;
-        }
-        this.f19141f = true;
-        if (!this.f19139c) {
-            this.f19138b = this.f19140e.a(this.d);
-        }
-        float f10 = this.f19138b;
-        if (f10 > this.f19142g || f10 < this.h) {
-            throw new IllegalArgumentException("Starting value need to be in between min value and max value");
-        }
-        ThreadLocal threadLocal = b.f19119f;
-        if (threadLocal.get() == null) {
-            threadLocal.set(new b());
-        }
-        b bVar = (b) threadLocal.get();
-        ArrayList arrayList = bVar.f19121b;
-        if (arrayList.size() == 0) {
-            if (bVar.d == null) {
-                bVar.d = new j9.a(bVar.f19122c);
-            }
-            j9.a aVar = bVar.d;
-            ((Choreographer) aVar.f12864c).postFrameCallback((a) aVar.d);
-        }
-        if (arrayList.contains(this)) {
-            return;
-        }
-        arrayList.add(this);
+        throw new UnsupportedOperationException("Incomplete SpringAnimation: Either final position or a spring force needs to be set.");
     }
 
     public j(Object obj, i iVar) {
         super(obj, iVar);
-        this.f19147u = null;
+        this.f18800u = null;
         this.v = Float.MAX_VALUE;
     }
 
     public j(Object obj, i iVar, float f10) {
         super(obj, iVar);
-        this.f19147u = null;
+        this.f18800u = null;
         this.v = Float.MAX_VALUE;
-        this.f19147u = new k(f10);
+        this.f18800u = new k(f10);
     }
 }

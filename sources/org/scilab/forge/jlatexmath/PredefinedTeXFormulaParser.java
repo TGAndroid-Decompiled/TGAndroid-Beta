@@ -6,7 +6,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ru.noties.jlatexmath.JLatexMathAndroid;
-
 public class PredefinedTeXFormulaParser {
     public static final String RESOURCE_NAME = "PredefinedTeXFormulas.xml";
     private Element root;
@@ -15,28 +14,28 @@ public class PredefinedTeXFormulaParser {
     public PredefinedTeXFormulaParser(InputStream inputStream, String str) {
         try {
             this.type = str;
-            DocumentBuilderFactory documentBuilderFactoryNewInstance = DocumentBuilderFactory.newInstance();
-            documentBuilderFactoryNewInstance.setIgnoringElementContentWhitespace(true);
-            documentBuilderFactoryNewInstance.setIgnoringComments(true);
-            this.root = documentBuilderFactoryNewInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e9) {
-            throw new XMLResourceParseException("", e9);
+            DocumentBuilderFactory newInstance = DocumentBuilderFactory.newInstance();
+            newInstance.setIgnoringElementContentWhitespace(true);
+            newInstance.setIgnoringComments(true);
+            this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
+        } catch (Exception e10) {
+            throw new XMLResourceParseException("", e10);
         }
     }
 
     private static String getAttrValueAndCheckIfNotNull(String str, Element element) {
         String attribute = element.getAttribute(str);
-        if (attribute.equals("")) {
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
+        if (!attribute.equals("")) {
+            return attribute;
         }
-        return attribute;
+        throw new XMLResourceParseException("PredefinedTeXFormulas.xml", element.getTagName(), str, null);
     }
 
     public void parse(Map map) {
         if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", this.root))) {
             NodeList elementsByTagName = this.root.getElementsByTagName(this.type);
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                Element element = (Element) elementsByTagName.item(i10);
+            for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                Element element = (Element) elementsByTagName.item(i9);
                 if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", element))) {
                     String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
                     if ("TeXFormula".equals(this.type)) {

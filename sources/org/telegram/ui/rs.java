@@ -1,96 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ContactsController;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class rs extends f2.d1 {
+    public boolean f42483a;
+    public boolean f42484b;
+    public final ContactsActivity f42485c;
 
-public final class rs extends pf.d {
-    public final ContactsActivity H;
-
-    public rs(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.h hVar, int i11) {
-        super(context, i10, z10, hVar, i11);
-        this.H = contactsActivity;
+    public rs(ContactsActivity contactsActivity) {
+        this.f42485c = contactsActivity;
     }
 
     @Override
-    public final int R() {
-        int size;
-        boolean z10;
-        boolean zIsEmpty;
-        boolean z11 = false;
-        this.E = false;
-        int i10 = this.B;
-        int i11 = this.f45761r;
-        int i12 = this.v;
-        int i13 = 1;
-        if (i10 != 2) {
-            size = (i12 == 2 ? ContactsController.getInstance(i11).sortedUsersMutualSectionsArray : ContactsController.getInstance(i11).sortedUsersSectionsArray).size();
-            if (size == 0) {
-                this.E = true;
+    public final void a(RecyclerView recyclerView, int i9) {
+        if (i9 == 1) {
+            ContactsActivity contactsActivity = this.f42485c;
+            if ((contactsActivity.B && contactsActivity.A) || contactsActivity.V.f30664r.isFocused()) {
+                AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-            if (i12 == 0) {
-                size++;
-            }
-            z10 = this.A;
-            if (z10) {
-                size++;
-            }
-            zIsEmpty = ContactsController.getInstance(i11).phoneBookContacts.isEmpty();
-            this.F = !zIsEmpty;
-            if (this.E && this.f45763w && !z10 && i12 == 0) {
-                z11 = true;
-            }
-            this.G = z11;
-            if (z11) {
-                i13 = size;
-            } else if (!zIsEmpty) {
-                i13 = 2;
-            }
-            ContactsActivity contactsActivity = this.H;
-            ContactsActivity.e0(contactsActivity);
-            contactsActivity.m0();
-            contactsActivity.l0();
-            return i13;
-        }
-        this.E = this.f45765y.isEmpty();
-        size = 1;
-        if (i12 == 0) {
-            size++;
-        }
-        z10 = this.A;
-        if (z10) {
-            size++;
-        }
-        zIsEmpty = ContactsController.getInstance(i11).phoneBookContacts.isEmpty();
-        this.F = !zIsEmpty;
-        if (this.E) {
-            z11 = true;
-        }
-        this.G = z11;
-        if (z11) {
-            i13 = size;
-        } else if (!zIsEmpty) {
-            i13 = 2;
-        }
-        ContactsActivity contactsActivity2 = this.H;
-        ContactsActivity.e0(contactsActivity2);
-        contactsActivity2.m0();
-        contactsActivity2.l0();
-        return i13;
-    }
-
-    @Override
-    public final void l() {
-        X(false);
-        ContactsActivity contactsActivity = this.H;
-        org.telegram.ui.Components.zk0 zk0Var = contactsActivity.f35423f;
-        if (zk0Var == null || zk0Var.getAdapter() != this) {
+            this.f42484b = true;
             return;
         }
-        int iH = h();
-        if (contactsActivity.D) {
-            contactsActivity.f35423f.setFastScrollVisible(iH != 2);
+        this.f42484b = false;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i9, int i10) {
+        int i11;
+        ig.e eVar;
+        boolean z10;
+        ContactsActivity contactsActivity = this.f42485c;
+        int L0 = contactsActivity.f35428n.L0();
+        boolean z11 = false;
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i11 = childAt.getTop();
         } else {
-            contactsActivity.f35423f.setFastScrollVisible(iH != 0);
+            i11 = 0;
         }
+        if (contactsActivity.f35440w != null && !contactsActivity.B) {
+            if (i10 > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (i10 != 0 && this.f42483a && (z10 || this.f42484b)) {
+                contactsActivity.f35441x = !z10;
+                ContactsActivity.d0(contactsActivity);
+            }
+            this.f42483a = true;
+        }
+        contactsActivity.U.b((L0 != 0 || i11 < contactsActivity.f35420f.getPaddingTop()) ? true : true, true);
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = contactsActivity.f35431p0) != null) {
+            eVar.f(i9, i10);
+            contactsActivity.f0();
+        }
+        ContactsActivity.c0(contactsActivity);
     }
 }

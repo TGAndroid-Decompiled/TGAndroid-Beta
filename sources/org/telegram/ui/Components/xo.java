@@ -1,71 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class xo implements ResultCallback {
+    public final ChatThemeController f34729a;
+    public final cp f34730b;
 
-public final class xo implements org.telegram.ui.ActionBar.h6 {
-
-    public boolean f34661a = false;
-
-    public final ap f34662b;
-
-    public xo(ap apVar) {
-        this.f34662b = apVar;
+    public xo(cp cpVar, ChatThemeController chatThemeController) {
+        this.f34730b = cpVar;
+        this.f34729a = chatThemeController;
     }
 
     @Override
-    public final void a(float f10) {
-        ArrayList arrayList;
-        ap apVar = this.f34662b;
-        yo yoVar = apVar.h;
-        if (f10 == 0.0f && !this.f34661a) {
-            if (yoVar != null && (arrayList = yoVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((zo) obj).f35318c = apVar.J ? 1 : 0;
-                }
-            }
-            if (!apVar.L) {
-                for (int i11 = 0; i11 < yoVar.h(); i11++) {
-                    ((zo) yoVar.d.get(i11)).getClass();
-                }
-            }
-            this.f34661a = true;
-        }
-        oi0 oi0Var = apVar.B;
-        int i12 = org.telegram.ui.ActionBar.g6.Oh;
-        oi0Var.setColorFilter(new PorterDuffColorFilter(apVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        apVar.setOverlayNavBarColor(apVar.getThemedColor(org.telegram.ui.ActionBar.g6.f22999a7));
-        if (apVar.L) {
-            for (int i13 = 0; i13 < yoVar.h(); i13++) {
-                ((zo) yoVar.d.get(i13)).getClass();
-            }
-        }
-        if (f10 == 1.0f && this.f34661a) {
-            apVar.L = false;
-            this.f34661a = false;
-        }
-        apVar.E();
-        ag.y1 y1Var = apVar.V;
-        if (y1Var != null) {
-            int iDp = AndroidUtilities.dp(0.0f);
-            int themedColor = apVar.getThemedColor(org.telegram.ui.ActionBar.g6.f23053d6);
-            int iK = i0.b.k(apVar.getThemedColor(i12), 76);
-            y1Var.setBackground(org.telegram.ui.ActionBar.g6.i0(iDp, iDp, iDp, iDp, themedColor, iK, iK));
-        }
-        j6 j6Var = apVar.W;
-        if (j6Var != null) {
-            j6Var.setTextColor(apVar.getThemedColor(i12));
-        }
-        apVar.setBackgroundColor(apVar.getThemedColor(org.telegram.ui.ActionBar.g6.f23124h5));
+    public final void onComplete(Object obj) {
+        int i9;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.b4> emojiThemes = this.f34729a.getEmojiThemes(7);
+        cp cpVar = this.f34730b;
+        i9 = ((org.telegram.ui.ActionBar.f3) cpVar).currentAccount;
+        NotificationCenter.getInstance(i9).doOnIdle(new org.telegram.ui.wq(27, this, emojiThemes));
+        cpVar.X = false;
     }
 
     @Override
-    public final void b() {
+    public final void onError(Throwable th) {
+        org.telegram.tgnet.k.a(this, th);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f34730b.getContext(), tL_error.text, 0).show();
     }
 }

@@ -8,10 +8,9 @@ import android.text.Spannable;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.TextView;
-
 public abstract class c0 {
     public static boolean a(DragEvent dragEvent, TextView textView, Activity activity) {
-        r0.e dVar;
+        r0.e eVar;
         activity.requestDragAndDropPermissions(dragEvent);
         int offsetForPosition = textView.getOffsetForPosition(dragEvent.getX(), dragEvent.getY());
         textView.beginBatchEdit();
@@ -19,33 +18,35 @@ public abstract class c0 {
             Selection.setSelection((Spannable) textView.getText(), offsetForPosition);
             ClipData clipData = dragEvent.getClipData();
             if (Build.VERSION.SDK_INT >= 31) {
-                dVar = new r0.d(clipData, 3);
+                eVar = new r0.d(clipData, 3);
             } else {
                 r0.f fVar = new r0.f();
-                fVar.f46585b = clipData;
-                fVar.f46586c = 3;
-                dVar = fVar;
+                fVar.f46895b = clipData;
+                fVar.f46896c = 3;
+                eVar = fVar;
             }
-            r0.j0.i(textView, dVar.build());
-            return true;
-        } finally {
+            r0.j0.i(textView, eVar.build());
             textView.endBatchEdit();
+            return true;
+        } catch (Throwable th) {
+            textView.endBatchEdit();
+            throw th;
         }
     }
 
     public static boolean b(DragEvent dragEvent, View view, Activity activity) {
-        r0.e dVar;
+        r0.e eVar;
         activity.requestDragAndDropPermissions(dragEvent);
         ClipData clipData = dragEvent.getClipData();
         if (Build.VERSION.SDK_INT >= 31) {
-            dVar = new r0.d(clipData, 3);
+            eVar = new r0.d(clipData, 3);
         } else {
             r0.f fVar = new r0.f();
-            fVar.f46585b = clipData;
-            fVar.f46586c = 3;
-            dVar = fVar;
+            fVar.f46895b = clipData;
+            fVar.f46896c = 3;
+            eVar = fVar;
         }
-        r0.j0.i(view, dVar.build());
+        r0.j0.i(view, eVar.build());
         return true;
     }
 }

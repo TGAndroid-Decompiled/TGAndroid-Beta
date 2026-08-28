@@ -3,9 +3,8 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.os.Build;
 import j$.util.Objects;
+import java.lang.Thread;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 public class BuildVars {
     public static String APP_HASH = null;
     public static int APP_ID = 0;
@@ -26,8 +25,14 @@ public class BuildVars {
     private static Boolean betaApp;
 
     static {
-        boolean z10 = true;
-        NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
+        boolean z10;
+        boolean z11 = true;
+        if (Build.VERSION.SDK_INT <= 29) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        NO_SCOPED_STORAGE = z10;
         BUILD_VERSION_STRING = "12.10.2";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
@@ -40,12 +45,12 @@ public class BuildVars {
         SUPPORTS_PASSKEYS = true;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
-            boolean z11 = DEBUG_VERSION;
-            if (!z11 && !sharedPreferences.getBoolean("logsEnabled", z11)) {
-                z10 = false;
+            boolean z12 = DEBUG_VERSION;
+            if (!z12 && !sharedPreferences.getBoolean("logsEnabled", z12)) {
+                z11 = false;
             }
-            LOGS_ENABLED = z10;
-            if (z10) {
+            LOGS_ENABLED = z11;
+            if (z11) {
                 final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
@@ -61,7 +66,10 @@ public class BuildVars {
         if (ApplicationLoader.isStandaloneBuild()) {
             return "w0lkcmTZkKh";
         }
-        return DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
+        if (DEBUG_VERSION) {
+            return "O2P2z+/jBpJ";
+        }
+        return "oLeq9AcOZkT";
     }
 
     private static boolean hasDirectCurrency() {
@@ -69,20 +77,19 @@ public class BuildVars {
         if (BillingController.getInstance().isReady() && (lVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
             ArrayList arrayList = lVar.h;
             int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ArrayList arrayList2 = ((n2.k) obj).f18160b.f8872a;
+            int i9 = 0;
+            while (i9 < size) {
+                Object obj = arrayList.get(i9);
+                i9++;
+                ArrayList arrayList2 = (ArrayList) ((n2.k) obj).f18332b.f17378b;
                 int size2 = arrayList2.size();
-                int i11 = 0;
-                while (i11 < size2) {
-                    Object obj2 = arrayList2.get(i11);
-                    i11++;
+                int i10 = 0;
+                while (i10 < size2) {
+                    Object obj2 = arrayList2.get(i10);
+                    i10++;
                     n2.j jVar = (n2.j) obj2;
-                    Iterator<String> it = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
-                    while (it.hasNext()) {
-                        if (Objects.equals(jVar.f18158c, it.next())) {
+                    for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
+                        if (Objects.equals(jVar.f18330c, str)) {
                             return true;
                         }
                     }
@@ -93,8 +100,14 @@ public class BuildVars {
     }
 
     public static boolean isBetaApp() {
+        boolean z10;
         if (betaApp == null) {
-            betaApp = Boolean.valueOf(ApplicationLoader.applicationContext != null && "org.telegram.messenger.beta".equals(ApplicationLoader.applicationContext.getPackageName()));
+            if (ApplicationLoader.applicationContext != null && "org.telegram.messenger.beta".equals(ApplicationLoader.applicationContext.getPackageName())) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            betaApp = Boolean.valueOf(z10);
         }
         return betaApp.booleanValue();
     }
@@ -111,10 +124,13 @@ public class BuildVars {
     }
 
     public static boolean useInvoiceBilling() {
-        if (BillingController.billingClientEmpty || ApplicationLoader.isStandaloneBuild()) {
+        if (!BillingController.billingClientEmpty && !ApplicationLoader.isStandaloneBuild()) {
+            isBetaApp();
+            if (!isHuaweiStoreApp() && !hasDirectCurrency()) {
+                return false;
+            }
             return true;
         }
-        isBetaApp();
-        return isHuaweiStoreApp() || hasDirectCurrency();
+        return true;
     }
 }

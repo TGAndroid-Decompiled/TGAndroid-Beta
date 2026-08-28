@@ -1,44 +1,27 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
+import android.animation.ValueAnimator;
+public final class kn implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39874a;
+    public final org.telegram.ui.Components.jb0 f39875b;
 
-public final class kn implements Runnable {
-
-    public final int f39811a;
-
-    public final pn f39812b;
-
-    public kn(pn pnVar, int i10) {
-        this.f39811a = i10;
-        this.f39812b = pnVar;
+    public kn(org.telegram.ui.Components.jb0 jb0Var, int i9) {
+        this.f39874a = i9;
+        this.f39875b = jb0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39811a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39874a) {
             case 0:
-                SparseIntArray sparseIntArray = new SparseIntArray();
-                pn pnVar = this.f39812b;
-                pnVar.f41394e = sparseIntArray;
-                rn rnVar = pnVar.R;
-                org.telegram.ui.ActionBar.d5 d5Var = (org.telegram.ui.ActionBar.d5) rnVar.getThemedDrawable("drawableMsgOut");
-                pnVar.E = d5Var;
-                d5Var.H = ((org.telegram.ui.ActionBar.n2) rnVar).parentLayout.getMessageDrawableOutStart();
-                org.telegram.ui.ActionBar.d5 d5Var2 = (org.telegram.ui.ActionBar.d5) rnVar.getThemedDrawable("drawableMsgOutMedia");
-                pnVar.F = d5Var2;
-                d5Var2.H = ((org.telegram.ui.ActionBar.n2) rnVar).parentLayout.getMessageDrawableOutMediaStart();
-                pnVar.E.I = 0.0f;
-                pnVar.F.I = 0.0f;
-                rnVar.uc();
-                pnVar.k(0.0f);
-                break;
+                this.f39875b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f39875b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             default:
-                pn pnVar2 = this.f39812b;
-                pnVar2.E.H = null;
-                pnVar2.F.H = null;
-                pnVar2.f41394e = null;
-                pnVar2.k(1.0f);
-                break;
+                this.f39875b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

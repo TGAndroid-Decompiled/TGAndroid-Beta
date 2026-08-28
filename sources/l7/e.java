@@ -1,8 +1,12 @@
 package l7;
 
-import com.google.android.gms.common.api.j;
+import i8.j0;
+public final class e extends a7.a {
+    public final j0 f16694b;
 
-public final class e extends j implements w7.e {
-
-    public static final com.google.android.gms.common.api.e f15448k = new com.google.android.gms.common.api.e("RecaptchaBase.API", new a6.b(9), new com.google.android.gms.common.api.d());
+    public e(j0 j0Var) {
+        super(7);
+        this.f16694b = j0Var;
+        attachInterface(this, "com.google.android.gms.safetynet.internal.ISafetyNetCallbacks");
+    }
 }

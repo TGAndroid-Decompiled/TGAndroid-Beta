@@ -4,207 +4,206 @@ import h3.s0;
 import h3.t0;
 import java.util.Collections;
 import java.util.List;
-
 public final class g implements h {
-
-    public final int f49063a;
-
-    public boolean f49064b;
-
-    public long f49065c;
+    public final int f48557a;
+    public boolean f48558b;
+    public long f48559c;
     public int d;
-
-    public int f49066e;
-
-    public final Object f49067f;
-
-    public Object f49068g;
+    public int f48560e;
+    public final Object f48561f;
+    public Object f48562g;
 
     public g(List list) {
-        this.f49063a = 0;
-        this.f49067f = list;
-        this.f49068g = new m3.w[list.size()];
-        this.f49065c = -9223372036854775807L;
+        this.f48557a = 0;
+        this.f48561f = list;
+        this.f48562g = new m3.w[list.size()];
+        this.f48559c = -9223372036854775807L;
     }
 
     @Override
-    public final void b(d5.z zVar) {
+    public final void g(d5.y yVar) {
+        m3.w[] wVarArr;
         boolean z10;
         boolean z11;
-        switch (this.f49063a) {
+        switch (this.f48557a) {
             case 0:
-                if (this.f49064b) {
+                if (this.f48558b) {
                     if (this.d == 2) {
-                        if (zVar.a() == 0) {
+                        if (yVar.a() == 0) {
                             z11 = false;
                         } else {
-                            if (zVar.r() != 32) {
-                                this.f49064b = false;
+                            if (yVar.r() != 32) {
+                                this.f48558b = false;
                             }
                             this.d--;
-                            z11 = this.f49064b;
+                            z11 = this.f48558b;
                         }
                         if (!z11) {
+                            return;
                         }
                     }
                     if (this.d == 1) {
-                        if (zVar.a() == 0) {
+                        if (yVar.a() == 0) {
                             z10 = false;
                         } else {
-                            if (zVar.r() != 0) {
-                                this.f49064b = false;
+                            if (yVar.r() != 0) {
+                                this.f48558b = false;
                             }
                             this.d--;
-                            z10 = this.f49064b;
+                            z10 = this.f48558b;
                         }
                         if (!z10) {
+                            return;
                         }
                     }
-                    int i10 = zVar.f4859b;
-                    int iA = zVar.a();
-                    for (m3.w wVar : (m3.w[]) this.f49068g) {
-                        zVar.C(i10);
-                        wVar.a(iA, zVar);
+                    int i9 = yVar.f4411b;
+                    int a2 = yVar.a();
+                    for (m3.w wVar : (m3.w[]) this.f48562g) {
+                        yVar.C(i9);
+                        wVar.a(a2, yVar);
                     }
-                    this.f49066e += iA;
+                    this.f48560e += a2;
+                    return;
                 }
-                break;
+                return;
             default:
-                d5.z zVar2 = (d5.z) this.f49067f;
-                d5.a.j((m3.w) this.f49068g);
-                if (this.f49064b) {
-                    int iA2 = zVar.a();
-                    int i11 = this.f49066e;
-                    if (i11 < 10) {
-                        int iMin = Math.min(iA2, 10 - i11);
-                        System.arraycopy(zVar.f4858a, zVar.f4859b, zVar2.f4858a, this.f49066e, iMin);
-                        if (this.f49066e + iMin == 10) {
-                            zVar2.C(0);
-                            if (73 == zVar2.r() && 68 == zVar2.r() && 51 == zVar2.r()) {
-                                zVar2.D(3);
-                                this.d = zVar2.q() + 10;
+                d5.y yVar2 = (d5.y) this.f48561f;
+                d5.a.j((m3.w) this.f48562g);
+                if (this.f48558b) {
+                    int a3 = yVar.a();
+                    int i10 = this.f48560e;
+                    if (i10 < 10) {
+                        int min = Math.min(a3, 10 - i10);
+                        System.arraycopy(yVar.f4410a, yVar.f4411b, yVar2.f4410a, this.f48560e, min);
+                        if (this.f48560e + min == 10) {
+                            yVar2.C(0);
+                            if (73 == yVar2.r() && 68 == yVar2.r() && 51 == yVar2.r()) {
+                                yVar2.D(3);
+                                this.d = yVar2.q() + 10;
                             } else {
                                 d5.a.K("Id3Reader", "Discarding invalid ID3 tag");
-                                this.f49064b = false;
+                                this.f48558b = false;
+                                return;
                             }
                         }
                     }
-                    int iMin2 = Math.min(iA2, this.d - this.f49066e);
-                    ((m3.w) this.f49068g).a(iMin2, zVar);
-                    this.f49066e += iMin2;
-                    break;
+                    int min2 = Math.min(a3, this.d - this.f48560e);
+                    ((m3.w) this.f48562g).a(min2, yVar);
+                    this.f48560e += min2;
+                    return;
                 }
-                break;
+                return;
         }
     }
 
     @Override
-    public final void c() {
-        switch (this.f49063a) {
+    public final void h() {
+        switch (this.f48557a) {
             case 0:
-                this.f49064b = false;
-                this.f49065c = -9223372036854775807L;
-                break;
+                this.f48558b = false;
+                this.f48559c = -9223372036854775807L;
+                return;
             default:
-                this.f49064b = false;
-                this.f49065c = -9223372036854775807L;
-                break;
+                this.f48558b = false;
+                this.f48559c = -9223372036854775807L;
+                return;
         }
     }
 
     @Override
-    public final void d() {
-        int i10;
-        switch (this.f49063a) {
+    public final void i() {
+        int i9;
+        switch (this.f48557a) {
             case 0:
-                if (this.f49064b) {
-                    if (this.f49065c != -9223372036854775807L) {
-                        for (m3.w wVar : (m3.w[]) this.f49068g) {
-                            wVar.e(this.f49065c, 1, this.f49066e, 0, null);
+                if (this.f48558b) {
+                    if (this.f48559c != -9223372036854775807L) {
+                        for (m3.w wVar : (m3.w[]) this.f48562g) {
+                            wVar.e(this.f48559c, 1, this.f48560e, 0, null);
                         }
                     }
-                    this.f49064b = false;
+                    this.f48558b = false;
+                    return;
                 }
-                break;
+                return;
             default:
-                d5.a.j((m3.w) this.f49068g);
-                if (this.f49064b && (i10 = this.d) != 0 && this.f49066e == i10) {
-                    long j10 = this.f49065c;
+                d5.a.j((m3.w) this.f48562g);
+                if (this.f48558b && (i9 = this.d) != 0 && this.f48560e == i9) {
+                    long j10 = this.f48559c;
                     if (j10 != -9223372036854775807L) {
-                        ((m3.w) this.f49068g).e(j10, 1, i10, 0, null);
+                        ((m3.w) this.f48562g).e(j10, 1, i9, 0, null);
                     }
-                    this.f49064b = false;
-                    break;
+                    this.f48558b = false;
+                    return;
                 }
-                break;
+                return;
         }
     }
 
     @Override
-    public final void e(m3.m mVar, e0 e0Var) {
-        switch (this.f49063a) {
+    public final void j(m3.m mVar, d0 d0Var) {
+        switch (this.f48557a) {
             case 0:
-                m3.w[] wVarArr = (m3.w[]) this.f49068g;
-                for (int i10 = 0; i10 < wVarArr.length; i10++) {
-                    d0 d0Var = (d0) ((List) this.f49067f).get(i10);
-                    e0Var.a();
-                    e0Var.b();
-                    m3.w wVarC = mVar.C(e0Var.d, 3);
+                m3.w[] wVarArr = (m3.w[]) this.f48562g;
+                for (int i9 = 0; i9 < wVarArr.length; i9++) {
+                    c0 c0Var = (c0) ((List) this.f48561f).get(i9);
+                    d0Var.a();
+                    d0Var.b();
+                    m3.w I = mVar.I(d0Var.d, 3);
                     s0 s0Var = new s0();
-                    e0Var.b();
-                    s0Var.f8123a = e0Var.f49053e;
-                    s0Var.f8135o = "application/dvbsubs";
-                    s0Var.f8137q = Collections.singletonList(d0Var.f49030b);
-                    s0Var.f8125c = d0Var.f49029a;
-                    wVarC.c(new t0(s0Var));
-                    wVarArr[i10] = wVarC;
+                    d0Var.b();
+                    s0Var.f9693a = d0Var.f48528e;
+                    s0Var.f9705o = "application/dvbsubs";
+                    s0Var.f9707q = Collections.singletonList(c0Var.f48514b);
+                    s0Var.f9695c = c0Var.f48513a;
+                    I.c(new t0(s0Var));
+                    wVarArr[i9] = I;
                 }
-                break;
+                return;
             default:
-                e0Var.a();
-                e0Var.b();
-                m3.w wVarC2 = mVar.C(e0Var.d, 5);
-                this.f49068g = wVarC2;
+                d0Var.a();
+                d0Var.b();
+                m3.w I2 = mVar.I(d0Var.d, 5);
+                this.f48562g = I2;
                 s0 s0Var2 = new s0();
-                e0Var.b();
-                s0Var2.f8123a = e0Var.f49053e;
-                s0Var2.f8135o = "application/id3";
-                wVarC2.c(new t0(s0Var2));
-                break;
+                d0Var.b();
+                s0Var2.f9693a = d0Var.f48528e;
+                s0Var2.f9705o = "application/id3";
+                I2.c(new t0(s0Var2));
+                return;
         }
     }
 
     @Override
-    public final void f(int i10, long j10) {
-        switch (this.f49063a) {
+    public final void k(int i9, long j10) {
+        switch (this.f48557a) {
             case 0:
-                if ((i10 & 4) != 0) {
-                    this.f49064b = true;
+                if ((i9 & 4) != 0) {
+                    this.f48558b = true;
                     if (j10 != -9223372036854775807L) {
-                        this.f49065c = j10;
+                        this.f48559c = j10;
                     }
-                    this.f49066e = 0;
+                    this.f48560e = 0;
                     this.d = 2;
-                    break;
+                    return;
                 }
-                break;
+                return;
             default:
-                if ((i10 & 4) != 0) {
-                    this.f49064b = true;
+                if ((i9 & 4) != 0) {
+                    this.f48558b = true;
                     if (j10 != -9223372036854775807L) {
-                        this.f49065c = j10;
+                        this.f48559c = j10;
                     }
                     this.d = 0;
-                    this.f49066e = 0;
-                    break;
+                    this.f48560e = 0;
+                    return;
                 }
-                break;
+                return;
         }
     }
 
     public g() {
-        this.f49063a = 1;
-        this.f49067f = new d5.z(10);
-        this.f49065c = -9223372036854775807L;
+        this.f48557a = 1;
+        this.f48561f = new d5.y(10);
+        this.f48559c = -9223372036854775807L;
     }
 }

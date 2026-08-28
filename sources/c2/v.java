@@ -1,40 +1,63 @@
 package c2;
 
-public abstract class v {
-    public abstract void e(z zVar);
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public final class v {
+    public static final v f2236c = new v(new Bundle(), null);
+    public final Bundle f2237a;
+    public List f2238b;
 
-    public void h(b0 b0Var, z zVar, int i10) {
-        g(zVar);
+    public v(Bundle bundle, ArrayList arrayList) {
+        this.f2237a = bundle;
+        this.f2238b = arrayList;
     }
 
-    public void j(b0 b0Var, z zVar, int i10) {
-        i();
+    public static v b(Bundle bundle) {
+        if (bundle == null) {
+            return null;
+        }
+        return new v(bundle, null);
     }
 
-    public void a() {
+    public final void a() {
+        if (this.f2238b == null) {
+            ArrayList<String> stringArrayList = this.f2237a.getStringArrayList("controlCategories");
+            this.f2238b = stringArrayList;
+            if (stringArrayList == null || stringArrayList.isEmpty()) {
+                this.f2238b = Collections.EMPTY_LIST;
+            }
+        }
     }
 
-    public void b() {
+    public final ArrayList c() {
+        a();
+        return new ArrayList(this.f2238b);
     }
 
-    public void c() {
+    public final boolean d() {
+        a();
+        return this.f2238b.isEmpty();
     }
 
-    public void i() {
+    public final boolean equals(Object obj) {
+        if (obj instanceof v) {
+            v vVar = (v) obj;
+            a();
+            vVar.a();
+            return this.f2238b.equals(vVar.f2238b);
+        }
+        return false;
     }
 
-    public void d(z zVar) {
+    public final int hashCode() {
+        a();
+        return this.f2238b.hashCode();
     }
 
-    public void f(z zVar) {
-    }
-
-    public void g(z zVar) {
-    }
-
-    public void k(z zVar) {
-    }
-
-    public void l(e0 e0Var) {
+    public final String toString() {
+        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
     }
 }

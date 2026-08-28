@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -39,44 +38,50 @@ public class FileVideoCapturer implements VideoCapturer {
         private final FileChannel mediaFileChannel;
         private final long videoStart;
 
-        public VideoReaderY4M(String str) throws IOException {
+        public VideoReaderY4M(String str) {
+            String[] split;
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
             StringBuilder sb2 = new StringBuilder();
             while (true) {
-                int i10 = this.mediaFile.read();
-                if (i10 == -1) {
-                    throw new RuntimeException(s3.c.e("Found end of file before end of header for file: ", str));
-                }
-                if (i10 == 10) {
-                    this.videoStart = this.mediaFileChannel.position();
-                    String strSubstring = "";
-                    int i11 = 0;
-                    int i12 = 0;
-                    for (String str2 : sb2.toString().split("[ ]")) {
-                        char cCharAt = str2.charAt(0);
-                        if (cCharAt == 'C') {
-                            strSubstring = str2.substring(1);
-                        } else if (cCharAt == 'H') {
-                            i12 = Integer.parseInt(str2.substring(1));
-                        } else if (cCharAt == 'W') {
-                            i11 = Integer.parseInt(str2.substring(1));
+                int read = this.mediaFile.read();
+                if (read != -1) {
+                    if (read == 10) {
+                        this.videoStart = this.mediaFileChannel.position();
+                        String str2 = "";
+                        int i9 = 0;
+                        int i10 = 0;
+                        for (String str3 : sb2.toString().split("[ ]")) {
+                            char charAt = str3.charAt(0);
+                            if (charAt != 'C') {
+                                if (charAt != 'H') {
+                                    if (charAt == 'W') {
+                                        i9 = Integer.parseInt(str3.substring(1));
+                                    }
+                                } else {
+                                    i10 = Integer.parseInt(str3.substring(1));
+                                }
+                            } else {
+                                str2 = str3.substring(1);
+                            }
                         }
-                    }
-                    Logging.d("VideoReaderY4M", "Color space: " + strSubstring);
-                    if (!strSubstring.equals("420") && !strSubstring.equals("420mpeg2")) {
-                        throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
-                    }
-                    if (i11 % 2 == 1 || i12 % 2 == 1) {
+                        Logging.d("VideoReaderY4M", "Color space: " + str2);
+                        if (!str2.equals("420") && !str2.equals("420mpeg2")) {
+                            throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
+                        }
+                        if (i9 % 2 != 1 && i10 % 2 != 1) {
+                            this.frameWidth = i9;
+                            this.frameHeight = i10;
+                            Logging.d("VideoReaderY4M", "frame dim: (" + i9 + ", " + i10 + ")");
+                            return;
+                        }
                         throw new IllegalArgumentException("Does not support odd width or height");
                     }
-                    this.frameWidth = i11;
-                    this.frameHeight = i12;
-                    Logging.d("VideoReaderY4M", "frame dim: (" + i11 + ", " + i12 + ")");
-                    return;
+                    sb2.append((char) read);
+                } else {
+                    throw new RuntimeException(ta.b.d("Found end of file before end of header for file: ", str));
                 }
-                sb2.append((char) i10);
             }
         }
 
@@ -84,50 +89,50 @@ public class FileVideoCapturer implements VideoCapturer {
         public void close() {
             try {
                 this.mediaFile.close();
-            } catch (IOException e9) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e9);
+            } catch (IOException e10) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e10);
             }
         }
 
         @Override
         public VideoFrame getNextFrame() {
             long nanos = TimeUnit.MILLISECONDS.toNanos(SystemClock.elapsedRealtime());
-            JavaI420Buffer javaI420BufferAllocate = JavaI420Buffer.allocate(this.frameWidth, this.frameHeight);
-            ByteBuffer dataY = javaI420BufferAllocate.getDataY();
-            ByteBuffer dataU = javaI420BufferAllocate.getDataU();
-            ByteBuffer dataV = javaI420BufferAllocate.getDataV();
-            javaI420BufferAllocate.getStrideY();
-            javaI420BufferAllocate.getStrideU();
-            javaI420BufferAllocate.getStrideV();
+            JavaI420Buffer allocate = JavaI420Buffer.allocate(this.frameWidth, this.frameHeight);
+            ByteBuffer dataY = allocate.getDataY();
+            ByteBuffer dataU = allocate.getDataU();
+            ByteBuffer dataV = allocate.getDataV();
+            allocate.getStrideY();
+            allocate.getStrideU();
+            allocate.getStrideV();
             try {
-                int i10 = FRAME_DELIMETER_LENGTH;
-                ByteBuffer byteBufferAllocate = ByteBuffer.allocate(i10);
-                if (this.mediaFileChannel.read(byteBufferAllocate) < i10) {
+                int i9 = FRAME_DELIMETER_LENGTH;
+                ByteBuffer allocate2 = ByteBuffer.allocate(i9);
+                if (this.mediaFileChannel.read(allocate2) < i9) {
                     this.mediaFileChannel.position(this.videoStart);
-                    if (this.mediaFileChannel.read(byteBufferAllocate) < i10) {
+                    if (this.mediaFileChannel.read(allocate2) < i9) {
                         throw new RuntimeException("Error looping video");
                     }
                 }
-                String str = new String(byteBufferAllocate.array(), Charset.forName("US-ASCII"));
+                String str = new String(allocate2.array(), Charset.forName("US-ASCII"));
                 if (str.equals("FRAME\n")) {
                     this.mediaFileChannel.read(dataY);
                     this.mediaFileChannel.read(dataU);
                     this.mediaFileChannel.read(dataV);
-                    return new VideoFrame(javaI420BufferAllocate, 0, nanos);
+                    return new VideoFrame(allocate, 0, nanos);
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
-            } catch (IOException e9) {
-                throw new RuntimeException(e9);
+            } catch (IOException e10) {
+                throw new RuntimeException(e10);
             }
         }
     }
 
-    public FileVideoCapturer(String str) throws IOException {
+    public FileVideoCapturer(String str) {
         try {
             this.videoReader = new VideoReaderY4M(str);
-        } catch (IOException e9) {
+        } catch (IOException e10) {
             Logging.d("FileVideoCapturer", "Could not open video file: " + str);
-            throw e9;
+            throw e10;
         }
     }
 
@@ -147,8 +152,8 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void startCapture(int i10, int i11, int i12) {
-        this.timer.schedule(this.tickTask, 0L, 1000 / i12);
+    public void startCapture(int i9, int i10, int i11) {
+        this.timer.schedule(this.tickTask, 0L, 1000 / i11);
     }
 
     @Override
@@ -163,6 +168,6 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i10, int i11, int i12) {
+    public void changeCaptureFormat(int i9, int i10, int i11) {
     }
 }

@@ -1,11 +1,5 @@
 package org.telegram.ui.Components;
 
-public interface xg0 {
-    void a();
-
-    void b(boolean z10);
-
-    void c();
-
-    void d();
+import android.view.View;
+public final class xg0 extends View {
 }

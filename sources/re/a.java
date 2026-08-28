@@ -1,49 +1,58 @@
 package re;
 
-import android.content.Context;
-import android.util.SparseArray;
+import android.graphics.Bitmap;
 import java.io.BufferedInputStream;
-import java.io.IOException;
-import n2.b0;
-import org.telegram.tgnet.SerializedData;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.RandomAccessFile;
+import te.l;
+public abstract class a {
+    public String f47136a;
+    public long f47137b;
+    public String f47138c;
+    public String d;
+    public String f47139e;
+    public String f47140f;
+    public short f47141g;
+    public String h;
+    public String f47142i;
+    public short f47143j;
+    public short f47144k;
+    public String f47145l;
+    public String f47146m;
+    public String f47147n;
+    public Bitmap f47148o;
+    public Bitmap f47149p;
+    public File f47150q;
 
-public final class a {
-
-    public static final a f46919b = new a();
-
-    public final SparseArray f46920a;
-
-    public a() {
-        this.f46920a = new SparseArray();
-    }
-
-    public static void a(Context context, int i10, SparseArray sparseArray) throws IOException {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().openRawResource(i10));
+    public static a a(File file) {
+        byte b10;
         try {
-            SerializedData serializedData = new SerializedData(bufferedInputStream);
-            while (serializedData.remaining() > 0) {
-                sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
+            byte[] bArr = new byte[12];
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            randomAccessFile.readFully(bArr, 0, 8);
+            randomAccessFile.close();
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
+                return new se.a(bufferedInputStream);
             }
-            bufferedInputStream.close();
-        } catch (Throwable th) {
-            try {
-                bufferedInputStream.close();
-            } catch (Throwable th2) {
-                th.addSuppressed(th2);
+            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
+                b bVar = new b(file);
+                if (!bVar.f47152s) {
+                    return bVar;
+                }
+                return null;
             }
-            throw th;
-        }
-    }
-
-    public final String b(String str) {
-        if (str == null) {
+            if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
+                b bVar2 = new b(file);
+                if (!bVar2.f47152s) {
+                    return bVar2;
+                }
+                return null;
+            }
+            return new l(bufferedInputStream, file.length());
+        } catch (Exception unused) {
             return null;
         }
-        return (String) this.f46920a.get(str.hashCode());
-    }
-
-    public a(b0 b0Var) {
-        SparseArray sparseArray = (SparseArray) b0Var.f18130b;
-        this.f46920a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

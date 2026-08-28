@@ -1,23 +1,24 @@
 package j3;
 
 import java.util.Arrays;
-
 public final class h {
-
-    public static final h f12342e = new h(-1, -1, -1);
-
-    public final int f12343a;
-
-    public final int f12344b;
-
-    public final int f12345c;
+    public static final h f13246e = new h(-1, -1, -1);
+    public final int f13247a;
+    public final int f13248b;
+    public final int f13249c;
     public final int d;
 
-    public h(int i10, int i11, int i12) {
-        this.f12343a = i10;
-        this.f12344b = i11;
-        this.f12345c = i12;
-        this.d = d5.g0.D(i12) ? d5.g0.w(i12, i11) : -1;
+    public h(int i9, int i10, int i11) {
+        int i12;
+        this.f13247a = i9;
+        this.f13248b = i10;
+        this.f13249c = i11;
+        if (d5.f0.D(i11)) {
+            i12 = d5.f0.w(i11, i10);
+        } else {
+            i12 = -1;
+        }
+        this.d = i12;
     }
 
     public final boolean equals(Object obj) {
@@ -28,14 +29,17 @@ public final class h {
             return false;
         }
         h hVar = (h) obj;
-        return this.f12343a == hVar.f12343a && this.f12344b == hVar.f12344b && this.f12345c == hVar.f12345c;
+        if (this.f13247a == hVar.f13247a && this.f13248b == hVar.f13248b && this.f13249c == hVar.f13249c) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f12343a), Integer.valueOf(this.f12344b), Integer.valueOf(this.f12345c)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f13247a), Integer.valueOf(this.f13248b), Integer.valueOf(this.f13249c)});
     }
 
     public final String toString() {
-        return "AudioFormat[sampleRate=" + this.f12343a + ", channelCount=" + this.f12344b + ", encoding=" + this.f12345c + ']';
+        return "AudioFormat[sampleRate=" + this.f13247a + ", channelCount=" + this.f13248b + ", encoding=" + this.f13249c + ']';
     }
 }

@@ -1,36 +1,32 @@
 package c2;
-
-import ag.h1;
-
 public final class c implements Runnable {
+    public final int f2123a;
+    public final androidx.emoji2.text.o f2124b;
+    public final int f2125c;
 
-    public final int f2240a;
-
-    public final h1 f2241b;
-
-    public final int f2242c;
-
-    public c(h1 h1Var, int i10, int i11) {
-        this.f2240a = i11;
-        this.f2241b = h1Var;
-        this.f2242c = i10;
+    public c(androidx.emoji2.text.o oVar, int i9, int i10) {
+        this.f2123a = i10;
+        this.f2124b = oVar;
+        this.f2125c = i9;
     }
 
     @Override
     public final void run() {
-        switch (this.f2240a) {
+        switch (this.f2123a) {
             case 0:
-                z zVar = ((e) ((a5.n) this.f2241b.f415f).d).d;
-                if (zVar != null) {
-                    zVar.j(this.f2242c);
+                a0 a0Var = ((e) ((a5.m) this.f2124b.f873f).d).d;
+                if (a0Var != null) {
+                    a0Var.j(this.f2125c);
+                    return;
                 }
-                break;
+                return;
             default:
-                z zVar2 = ((e) ((a5.n) this.f2241b.f415f).d).d;
-                if (zVar2 != null) {
-                    zVar2.k(this.f2242c);
+                a0 a0Var2 = ((e) ((a5.m) this.f2124b.f873f).d).d;
+                if (a0Var2 != null) {
+                    a0Var2.k(this.f2125c);
+                    return;
                 }
-                break;
+                return;
         }
     }
 }

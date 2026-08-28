@@ -1,10 +1,10 @@
 package org.scilab.forge.jlatexmath;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import ru.noties.jlatexmath.awt.Graphics2D;
-
-class VerticalBox extends Box {
+public class VerticalBox extends Box {
     private float leftMostPos;
     private float rightMostPos;
 
@@ -21,9 +21,9 @@ class VerticalBox extends Box {
         if (f12 <= 0.0f) {
             f12 = 0.0f;
         }
-        float fMax = Math.max(f10, f11 + f12);
-        this.rightMostPos = fMax;
-        this.width = fMax - this.leftMostPos;
+        float max = Math.max(f10, f11 + f12);
+        this.rightMostPos = max;
+        this.width = max - this.leftMostPos;
     }
 
     @Override
@@ -40,11 +40,13 @@ class VerticalBox extends Box {
 
     @Override
     public void draw(Graphics2D graphics2D, float f10, float f11) {
-        float depth = f11 - this.height;
-        for (Box box : this.children) {
-            float height = box.getHeight() + depth;
-            box.draw(graphics2D, (box.getShift() + f10) - this.leftMostPos, height);
-            depth = box.getDepth() + height;
+        float f12 = f11 - this.height;
+        Iterator<Box> it = this.children.iterator();
+        while (it.hasNext()) {
+            Box next = it.next();
+            float height = next.getHeight() + f12;
+            next.draw(graphics2D, (next.getShift() + f10) - this.leftMostPos, height);
+            f12 = next.getDepth() + height;
         }
     }
 
@@ -52,33 +54,31 @@ class VerticalBox extends Box {
     public int getLastFontId() {
         LinkedList<Box> linkedList = this.children;
         ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
-        int lastFontId = -1;
-        while (lastFontId == -1 && listIterator.hasPrevious()) {
-            lastFontId = listIterator.previous().getLastFontId();
+        int i9 = -1;
+        while (i9 == -1 && listIterator.hasPrevious()) {
+            i9 = listIterator.previous().getLastFontId();
         }
-        return lastFontId;
+        return i9;
     }
 
     public int getSize() {
         return this.children.size();
     }
 
-    public VerticalBox(Box box, float f10, int i10) {
+    public VerticalBox(Box box, float f10, int i9) {
         this();
         add(box);
-        if (i10 == 2) {
+        if (i9 == 2) {
             float f11 = f10 / 2.0f;
             StrutBox strutBox = new StrutBox(0.0f, f11, 0.0f, 0.0f);
             super.add(0, strutBox);
             this.height += f11;
             this.depth += f11;
             super.add(strutBox);
-            return;
-        }
-        if (i10 == 3) {
+        } else if (i9 == 3) {
             this.depth += f10;
             super.add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
-        } else if (i10 == 4) {
+        } else if (i9 == 4) {
             this.height += f10;
             super.add(0, new StrutBox(0.0f, f10, 0.0f, 0.0f));
         }
@@ -92,9 +92,9 @@ class VerticalBox extends Box {
     }
 
     @Override
-    public void add(int i10, Box box) {
-        super.add(i10, box);
-        if (i10 == 0) {
+    public void add(int i9, Box box) {
+        super.add(i9, box);
+        if (i9 == 0) {
             this.depth = box.depth + this.height + this.depth;
             this.height = box.height;
         } else {

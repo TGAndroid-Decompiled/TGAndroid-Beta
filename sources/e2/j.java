@@ -6,25 +6,20 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-
 public final class j {
-
-    public final int f5178a;
-
-    public final int f5179b;
-
-    public final long f5180c;
+    public final int f4819a;
+    public final int f4820b;
+    public final long f4821c;
     public final long d;
 
-    public j(long j10, int i10, int i11, long j11) {
-        this.f5178a = i10;
-        this.f5179b = i11;
-        this.f5180c = j10;
+    public j(long j10, int i9, int i10, long j11) {
+        this.f4819a = i9;
+        this.f4820b = i10;
+        this.f4821c = j10;
         this.d = j11;
     }
 
-    public static j a(File file) throws IOException {
+    public static j a(File file) {
         DataInputStream dataInputStream = new DataInputStream(new FileInputStream(file));
         try {
             j jVar = new j(dataInputStream.readLong(), dataInputStream.readInt(), dataInputStream.readInt(), dataInputStream.readLong());
@@ -33,21 +28,20 @@ public final class j {
         } catch (Throwable th) {
             try {
                 dataInputStream.close();
-                throw th;
             } catch (Throwable th2) {
                 th.addSuppressed(th2);
-                throw th;
             }
+            throw th;
         }
     }
 
-    public final void b(File file) throws IOException {
+    public final void b(File file) {
         file.delete();
         DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
         try {
-            dataOutputStream.writeInt(this.f5178a);
-            dataOutputStream.writeInt(this.f5179b);
-            dataOutputStream.writeLong(this.f5180c);
+            dataOutputStream.writeInt(this.f4819a);
+            dataOutputStream.writeInt(this.f4820b);
+            dataOutputStream.writeLong(this.f4821c);
             dataOutputStream.writeLong(this.d);
             dataOutputStream.close();
         } catch (Throwable th) {
@@ -66,7 +60,7 @@ public final class j {
         }
         if (obj != null && (obj instanceof j)) {
             j jVar = (j) obj;
-            if (this.f5179b == jVar.f5179b && this.f5180c == jVar.f5180c && this.f5178a == jVar.f5178a && this.d == jVar.d) {
+            if (this.f4820b == jVar.f4820b && this.f4821c == jVar.f4821c && this.f4819a == jVar.f4819a && this.d == jVar.d) {
                 return true;
             }
         }
@@ -74,6 +68,6 @@ public final class j {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f5179b), Long.valueOf(this.f5180c), Integer.valueOf(this.f5178a), Long.valueOf(this.d));
+        return Objects.hash(Integer.valueOf(this.f4820b), Long.valueOf(this.f4821c), Integer.valueOf(this.f4819a), Long.valueOf(this.d));
     }
 }

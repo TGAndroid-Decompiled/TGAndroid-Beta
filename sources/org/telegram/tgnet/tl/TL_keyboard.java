@@ -8,16 +8,16 @@ import org.telegram.tgnet.TLParseException;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.q;
-
+import org.telegram.tgnet.tl.TL_iv;
 public class TL_keyboard {
 
     public static abstract class ButtonType extends ButtonTypeProto {
-        public static ButtonType TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (ButtonType) TLObject.TLdeserialize(ButtonType.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static ButtonType TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (ButtonType) TLObject.TLdeserialize(ButtonType.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static ButtonType fromConstructor(int i10) {
-            switch (i10) {
+        private static ButtonType fromConstructor(int i9) {
+            switch (i9) {
                 case -1678843584:
                     return new TL_buttonTypeRequestGeoLocation();
                 case -1429209212:
@@ -42,12 +42,12 @@ public class TL_keyboard {
     }
 
     public static abstract class InlineButtonType extends ButtonTypeProto {
-        public static InlineButtonType TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (InlineButtonType) TLObject.TLdeserialize(InlineButtonType.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static InlineButtonType TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (InlineButtonType) TLObject.TLdeserialize(InlineButtonType.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static InlineButtonType fromConstructor(int i10) {
-            switch (i10) {
+        private static InlineButtonType fromConstructor(int i9) {
+            switch (i9) {
                 case -1820901387:
                     return new TL_inlineButtonTypeSwitchInline();
                 case -1721647948:
@@ -84,20 +84,20 @@ public class TL_keyboard {
         public String text;
         public ButtonType type;
 
-        public static KeyboardButton TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            KeyboardInlineButton keyboardInlineButtonFromConstructor = KeyboardInlineButton.fromConstructor(i10);
-            if (keyboardInlineButtonFromConstructor == null) {
-                return (KeyboardButton) TLObject.TLdeserialize(KeyboardButton.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static KeyboardButton TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            KeyboardInlineButton fromConstructor = KeyboardInlineButton.fromConstructor(i9);
+            if (fromConstructor != null) {
+                fromConstructor.readParams(inputSerializedData, z10);
+                TL_keyboardButton_layer223 tL_keyboardButton_layer223 = new TL_keyboardButton_layer223();
+                tL_keyboardButton_layer223.text = fromConstructor.text;
+                tL_keyboardButton_layer223.type = new TL_buttonTypeDefault();
+                return tL_keyboardButton_layer223;
             }
-            keyboardInlineButtonFromConstructor.readParams(inputSerializedData, z10);
-            TL_keyboardButton_layer223 tL_keyboardButton_layer223 = new TL_keyboardButton_layer223();
-            tL_keyboardButton_layer223.text = keyboardInlineButtonFromConstructor.text;
-            tL_keyboardButton_layer223.type = new TL_buttonTypeDefault();
-            return tL_keyboardButton_layer223;
+            return (KeyboardButton) TLObject.TLdeserialize(KeyboardButton.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        public static KeyboardButton fromConstructor(int i10) {
-            switch (i10) {
+        public static KeyboardButton fromConstructor(int i9) {
+            switch (i9) {
                 case -1598009252:
                     return new TL_keyboardButtonSimpleWebView_layer223();
                 case -1560655744:
@@ -162,8 +162,14 @@ public class TL_keyboard {
         public static final int constructor = 2002815875;
         public ArrayList<KeyboardButton> buttons = new ArrayList<>();
 
-        public static KeyboardButtonRow TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (KeyboardButtonRow) TLObject.TLdeserialize(KeyboardButtonRow.class, 2002815875 != i10 ? null : new KeyboardButtonRow(), inputSerializedData, i10, z10);
+        public static KeyboardButtonRow TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            KeyboardButtonRow keyboardButtonRow;
+            if (2002815875 != i9) {
+                keyboardButtonRow = null;
+            } else {
+                keyboardButtonRow = new KeyboardButtonRow();
+            }
+            return (KeyboardButtonRow) TLObject.TLdeserialize(KeyboardButtonRow.class, keyboardButtonRow, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -186,15 +192,21 @@ public class TL_keyboard {
         public int flags;
         public long icon;
 
-        public static KeyboardButtonStyle TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (KeyboardButtonStyle) TLObject.TLdeserialize(KeyboardButtonStyle.class, i10 != 1339896880 ? null : new KeyboardButtonStyle(), inputSerializedData, i10, z10);
+        public static KeyboardButtonStyle TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            KeyboardButtonStyle keyboardButtonStyle;
+            if (i9 != 1339896880) {
+                keyboardButtonStyle = null;
+            } else {
+                keyboardButtonStyle = new KeyboardButtonStyle();
+            }
+            return (KeyboardButtonStyle) TLObject.TLdeserialize(KeyboardButtonStyle.class, keyboardButtonStyle, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.bg_primary = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.bg_primary = TLObject.hasFlag(readInt32, 1);
             this.bg_danger = TLObject.hasFlag(this.flags, 2);
             this.bg_success = TLObject.hasFlag(this.flags, 4);
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -224,24 +236,27 @@ public class TL_keyboard {
         public String text;
         public InlineButtonType type;
 
-        public static KeyboardInlineButton TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            KeyboardButton keyboardButtonFromConstructor = KeyboardButton.fromConstructor(i10);
-            if (keyboardButtonFromConstructor == null) {
-                return (KeyboardInlineButton) TLObject.TLdeserialize(KeyboardInlineButton.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static KeyboardInlineButton TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            KeyboardButton fromConstructor = KeyboardButton.fromConstructor(i9);
+            if (fromConstructor != null) {
+                fromConstructor.readParams(inputSerializedData, z10);
+                TL_keyboardInlineButton tL_keyboardInlineButton = new TL_keyboardInlineButton();
+                tL_keyboardInlineButton.text = fromConstructor.text;
+                tL_keyboardInlineButton.type = new TL_inlineButtonTypeDisabled();
+                return tL_keyboardInlineButton;
             }
-            keyboardButtonFromConstructor.readParams(inputSerializedData, z10);
-            TL_keyboardInlineButton tL_keyboardInlineButton = new TL_keyboardInlineButton();
-            tL_keyboardInlineButton.text = keyboardButtonFromConstructor.text;
-            tL_keyboardInlineButton.type = new TL_inlineButtonTypeDisabled();
-            return tL_keyboardInlineButton;
+            return (KeyboardInlineButton) TLObject.TLdeserialize(KeyboardInlineButton.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        public static KeyboardInlineButton fromConstructor(int i10) {
-            return i10 == 297902882 ? new TL_keyboardInlineButton() : fromConstructorLegacy(i10);
+        public static KeyboardInlineButton fromConstructor(int i9) {
+            if (i9 == 297902882) {
+                return new TL_keyboardInlineButton();
+            }
+            return fromConstructorLegacy(i9);
         }
 
-        private static KeyboardInlineButton fromConstructorLegacy(int i10) {
-            switch (i10) {
+        private static KeyboardInlineButton fromConstructorLegacy(int i9) {
+            switch (i9) {
                 case -1983540999:
                     return new TL_keyboardButtonGame_layer228();
                 case -1816527947:
@@ -311,18 +326,18 @@ public class TL_keyboard {
     public static abstract class KeyboardInlineButtonRow extends TLObject {
         public ArrayList<KeyboardInlineButton> buttons = new ArrayList<>();
 
-        public static KeyboardInlineButtonRow TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (KeyboardInlineButtonRow) TLObject.TLdeserialize(KeyboardInlineButtonRow.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static KeyboardInlineButtonRow TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (KeyboardInlineButtonRow) TLObject.TLdeserialize(KeyboardInlineButtonRow.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        public static KeyboardInlineButtonRow fromConstructor(int i10) {
-            if (i10 == 423758582) {
-                return new TL_keyboardInlineButtonRow();
+        public static KeyboardInlineButtonRow fromConstructor(int i9) {
+            if (i9 != 423758582) {
+                if (i9 != 2002815875) {
+                    return null;
+                }
+                return new TL_keyboardInlineButtonRow_layer228();
             }
-            if (i10 != 2002815875) {
-                return null;
-            }
-            return new TL_keyboardInlineButtonRow_layer228();
+            return new TL_keyboardInlineButtonRow();
         }
     }
 
@@ -333,8 +348,14 @@ public class TL_keyboard {
         public TL_iv.RichText text;
         public InlineButtonType type;
 
-        public static PageButton TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (PageButton) TLObject.TLdeserialize(PageButton.class, i10 != 1764381832 ? null : new PageButton(), inputSerializedData, i10, z10);
+        public static PageButton TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            PageButton pageButton;
+            if (i9 != 1764381832) {
+                pageButton = null;
+            } else {
+                pageButton = new PageButton();
+            }
+            return (PageButton) TLObject.TLdeserialize(PageButton.class, pageButton, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -368,8 +389,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(1764381832);
-            int flag = TLObject.setFlag(this.flags, 1, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.text.serializeToStream(outputSerializedData);
@@ -393,15 +421,21 @@ public class TL_keyboard {
         public int flags;
         public boolean link;
 
-        public static RichButtonStyle TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (RichButtonStyle) TLObject.TLdeserialize(RichButtonStyle.class, i10 != 63312061 ? null : new RichButtonStyle(), inputSerializedData, i10, z10);
+        public static RichButtonStyle TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            RichButtonStyle richButtonStyle;
+            if (i9 != 63312061) {
+                richButtonStyle = null;
+            } else {
+                richButtonStyle = new RichButtonStyle();
+            }
+            return (RichButtonStyle) TLObject.TLdeserialize(RichButtonStyle.class, richButtonStyle, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.bg_primary = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.bg_primary = TLObject.hasFlag(readInt32, 1);
             this.bg_danger = TLObject.hasFlag(this.flags, 2);
             this.bg_success = TLObject.hasFlag(this.flags, 4);
             this.link = TLObject.hasFlag(this.flags, 8);
@@ -454,9 +488,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1)) {
                 this.quiz = inputSerializedData.readBool(z10);
             }
         }
@@ -495,9 +529,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.requires_password = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.requires_password = TLObject.hasFlag(readInt32, 1);
             this.data = inputSerializedData.readByteArray(z10);
         }
 
@@ -536,9 +570,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.same_peer = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.same_peer = TLObject.hasFlag(readInt32, 1);
             this.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.peer_types = Vector.deserialize(inputSerializedData, new q(17), z10);
@@ -548,9 +582,13 @@ public class TL_keyboard {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1820901387);
+            boolean z10 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.same_peer);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.peer_types != null);
+            if (this.peer_types == null) {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 2, z10);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeString(this.query);
@@ -585,9 +623,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1)) {
                 this.fwd_text = inputSerializedData.readString(z10);
             }
             this.url = inputSerializedData.readString(z10);
@@ -596,8 +634,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1076875870);
-            int flag = TLObject.setFlag(this.flags, 1, this.fwd_text != null);
+            int i9 = this.flags;
+            if (this.fwd_text != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -655,9 +700,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.name_requested = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.name_requested = TLObject.hasFlag(readInt32, 1);
             this.username_requested = TLObject.hasFlag(this.flags, 2);
             this.photo_requested = TLObject.hasFlag(this.flags, 4);
             this.button_id = inputSerializedData.readInt32(z10);
@@ -694,9 +739,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.request_write_access = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.request_write_access = TLObject.hasFlag(readInt32, 1);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.fwd_text = inputSerializedData.readString(z10);
             }
@@ -708,12 +753,22 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1721647948);
+            boolean z11 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.request_write_access);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.fwd_text != null);
+            if (this.fwd_text != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 2, z10);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.bot != null);
+            if (this.bot == null) {
+                z11 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 4, z11);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
             if (TLObject.hasFlag(this.flags, 2)) {
@@ -753,9 +808,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.name_requested = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.name_requested = TLObject.hasFlag(readInt32, 1);
             this.mType.username_requested = TLObject.hasFlag(this.flags, 2);
             this.mType.photo_requested = TLObject.hasFlag(this.flags, 4);
             this.text = inputSerializedData.readString(z10);
@@ -799,9 +854,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.name_requested = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.name_requested = TLObject.hasFlag(readInt32, 1);
             this.mType.username_requested = TLObject.hasFlag(this.flags, 2);
             this.mType.photo_requested = TLObject.hasFlag(this.flags, 4);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -822,13 +877,17 @@ public class TL_keyboard {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(45580630);
+            boolean z10 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.mType.name_requested);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.mType.username_requested);
             this.flags = flag2;
             int flag3 = TLObject.setFlag(flag2, 4, this.mType.photo_requested);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 1024, this.style != null);
+            if (this.style == null) {
+                z10 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 1024, z10);
             this.flags = flag4;
             outputSerializedData.writeInt32(flag4);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -849,9 +908,11 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.request_write_access = TLObject.hasFlag(int32, 1);
+            boolean z11;
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            boolean z12 = true;
+            this.mType.request_write_access = TLObject.hasFlag(readInt32, 1);
             this.text = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.mType.fwd_text = inputSerializedData.readString(z10);
@@ -861,9 +922,19 @@ public class TL_keyboard {
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth = this.mType;
             tL_inputInlineButtonTypeUrlAuth.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth.flags, 1, tL_inputInlineButtonTypeUrlAuth.request_write_access);
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth2 = this.mType;
-            tL_inputInlineButtonTypeUrlAuth2.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth2.flags, 2, tL_inputInlineButtonTypeUrlAuth2.fwd_text != null);
+            int i9 = tL_inputInlineButtonTypeUrlAuth2.flags;
+            if (tL_inputInlineButtonTypeUrlAuth2.fwd_text != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            tL_inputInlineButtonTypeUrlAuth2.flags = TLObject.setFlag(i9, 2, z11);
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth3 = this.mType;
-            tL_inputInlineButtonTypeUrlAuth3.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth3.flags, 4, tL_inputInlineButtonTypeUrlAuth3.bot != null);
+            int i10 = tL_inputInlineButtonTypeUrlAuth3.flags;
+            if (tL_inputInlineButtonTypeUrlAuth3.bot == null) {
+                z12 = false;
+            }
+            tL_inputInlineButtonTypeUrlAuth3.flags = TLObject.setFlag(i10, 4, z12);
         }
 
         @Override
@@ -894,11 +965,13 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            boolean z11;
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
+            boolean z12 = true;
             this.mType.request_write_access = TLObject.hasFlag(this.flags, 1);
             this.text = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
@@ -909,17 +982,31 @@ public class TL_keyboard {
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth = this.mType;
             tL_inputInlineButtonTypeUrlAuth.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth.flags, 1, tL_inputInlineButtonTypeUrlAuth.request_write_access);
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth2 = this.mType;
-            tL_inputInlineButtonTypeUrlAuth2.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth2.flags, 2, tL_inputInlineButtonTypeUrlAuth2.fwd_text != null);
+            int i9 = tL_inputInlineButtonTypeUrlAuth2.flags;
+            if (tL_inputInlineButtonTypeUrlAuth2.fwd_text != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            tL_inputInlineButtonTypeUrlAuth2.flags = TLObject.setFlag(i9, 2, z11);
             TL_inputInlineButtonTypeUrlAuth tL_inputInlineButtonTypeUrlAuth3 = this.mType;
-            tL_inputInlineButtonTypeUrlAuth3.flags = TLObject.setFlag(tL_inputInlineButtonTypeUrlAuth3.flags, 4, tL_inputInlineButtonTypeUrlAuth3.bot != null);
+            int i10 = tL_inputInlineButtonTypeUrlAuth3.flags;
+            if (tL_inputInlineButtonTypeUrlAuth3.bot == null) {
+                z12 = false;
+            }
+            tL_inputInlineButtonTypeUrlAuth3.flags = TLObject.setFlag(i10, 4, z12);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1744911986);
+            boolean z10 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.mType.request_write_access);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 1024, this.style != null);
+            if (this.style == null) {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 1024, z10);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -967,9 +1054,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -978,8 +1065,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(2103314375);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1005,9 +1099,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1016,8 +1110,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(795322159);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1057,9 +1158,9 @@ public class TL_keyboard {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.type = new TL_inlineButtonTypeBuy();
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1067,8 +1168,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(1067792645);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1106,9 +1214,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.requires_password = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.requires_password = TLObject.hasFlag(readInt32, 1);
             this.text = inputSerializedData.readString(z10);
             this.mType.data = inputSerializedData.readByteArray(z10);
             TL_inlineButtonTypeCallback tL_inlineButtonTypeCallback = this.mType;
@@ -1138,9 +1246,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.requires_password = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.requires_password = TLObject.hasFlag(readInt32, 1);
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
@@ -1153,9 +1261,13 @@ public class TL_keyboard {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-433338016);
+            boolean z10 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.mType.requires_password);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 1024, this.style != null);
+            if (this.style == null) {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 1024, z10);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1198,9 +1310,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1209,8 +1321,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1127960816);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1250,9 +1369,9 @@ public class TL_keyboard {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.type = new TL_inlineButtonTypeGame();
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1260,8 +1379,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1983540999);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1300,9 +1426,9 @@ public class TL_keyboard {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.type = new TL_buttonTypeRequestGeoLocation();
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1310,8 +1436,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1438582451);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1379,9 +1512,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1392,8 +1525,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(1527715317);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1435,9 +1575,9 @@ public class TL_keyboard {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.type = new TL_buttonTypeRequestPhone();
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1445,8 +1585,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(1098841487);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1464,10 +1611,10 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.flags = int32 & 1;
-            if (TLObject.hasFlag(int32, 1)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.flags = readInt32 & 1;
+            if (TLObject.hasFlag(readInt32, 1)) {
                 this.mType.quiz = inputSerializedData.readBool(z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1496,15 +1643,15 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             TL_buttonTypeRequestPoll tL_buttonTypeRequestPoll = this.mType;
-            int i10 = this.flags;
-            tL_buttonTypeRequestPoll.flags = i10 & 1;
-            if (TLObject.hasFlag(i10, 1)) {
+            int i9 = this.flags;
+            tL_buttonTypeRequestPoll.flags = i9 & 1;
+            if (TLObject.hasFlag(i9, 1)) {
                 this.mType.quiz = inputSerializedData.readBool(z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1512,8 +1659,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(2047989634);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1558,9 +1712,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1569,8 +1723,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-514047120);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1589,9 +1750,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.same_peer = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.mType.same_peer = TLObject.hasFlag(readInt32, 1);
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
@@ -1617,9 +1778,10 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.mType.same_peer = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            boolean z11 = true;
+            this.mType.same_peer = TLObject.hasFlag(readInt32, 1);
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
@@ -1628,7 +1790,11 @@ public class TL_keyboard {
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline2 = this.mType;
-            tL_inlineButtonTypeSwitchInline2.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline2.flags, 2, tL_inlineButtonTypeSwitchInline2.peer_types != null);
+            int i9 = tL_inlineButtonTypeSwitchInline2.flags;
+            if (tL_inlineButtonTypeSwitchInline2.peer_types == null) {
+                z11 = false;
+            }
+            tL_inlineButtonTypeSwitchInline2.flags = TLObject.setFlag(i9, 2, z11);
         }
 
         @Override
@@ -1658,11 +1824,12 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
+            boolean z11 = true;
             this.mType.same_peer = TLObject.hasFlag(this.flags, 1);
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
@@ -1672,15 +1839,23 @@ public class TL_keyboard {
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline2 = this.mType;
-            tL_inlineButtonTypeSwitchInline2.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline2.flags, 2, tL_inlineButtonTypeSwitchInline2.peer_types != null);
+            int i9 = tL_inlineButtonTypeSwitchInline2.flags;
+            if (tL_inlineButtonTypeSwitchInline2.peer_types == null) {
+                z11 = false;
+            }
+            tL_inlineButtonTypeSwitchInline2.flags = TLObject.setFlag(i9, 2, z11);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1726768644);
+            boolean z10 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.mType.same_peer);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 1024, this.style != null);
+            if (this.style == null) {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 1024, z10);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1738,9 +1913,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1754,10 +1929,21 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-183499015);
-            int flag = TLObject.setFlag(this.flags, 1, this.mType.fwd_text != null);
+            int i9 = this.flags;
+            boolean z11 = false;
+            if (this.mType.fwd_text != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 1024, this.style != null);
+            if (this.style != null) {
+                z11 = true;
+            }
+            int flag2 = TLObject.setFlag(flag, 1024, z11);
             this.flags = flag2;
             outputSerializedData.writeInt32(flag2);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1804,9 +1990,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1815,8 +2001,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-670292500);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1859,9 +2052,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1870,8 +2063,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1057137399);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1914,9 +2114,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1925,8 +2125,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-398020192);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -1964,9 +2171,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -1975,8 +2182,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(2098662655);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -2001,9 +2215,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -2012,8 +2226,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(297902882);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -2047,13 +2268,13 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            ArrayList arrayListDeserialize = Vector.deserialize(inputSerializedData, new c(0), z10);
-            this.buttons = new ArrayList<>(arrayListDeserialize.size());
-            int size = arrayListDeserialize.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayListDeserialize.get(i10);
-                i10++;
+            ArrayList deserialize = Vector.deserialize(inputSerializedData, new c(0), z10);
+            this.buttons = new ArrayList<>(deserialize.size());
+            int size = deserialize.size();
+            int i9 = 0;
+            while (i9 < size) {
+                Object obj = deserialize.get(i9);
+                i9++;
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof KeyboardInlineButton) {
                     this.buttons.add((KeyboardInlineButton) tLObject);
@@ -2073,9 +2294,9 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            if (TLObject.hasFlag(int32, 1024)) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1024)) {
                 this.style = KeyboardButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             this.text = inputSerializedData.readString(z10);
@@ -2084,8 +2305,15 @@ public class TL_keyboard {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1675883435);
-            int flag = TLObject.setFlag(this.flags, 1024, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1024, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1024)) {
@@ -2099,23 +2327,23 @@ public class TL_keyboard {
     private TL_keyboard() {
     }
 
-    public static TLObject TLdeserializeLegacy(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        KeyboardButton keyboardButtonFromConstructor = KeyboardButton.fromConstructor(i10);
-        if (keyboardButtonFromConstructor != null) {
-            keyboardButtonFromConstructor.readParams(inputSerializedData, z10);
-            return keyboardButtonFromConstructor;
+    public static TLObject TLdeserializeLegacy(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        KeyboardButton fromConstructor = KeyboardButton.fromConstructor(i9);
+        if (fromConstructor != null) {
+            fromConstructor.readParams(inputSerializedData, z10);
+            return fromConstructor;
         }
-        KeyboardInlineButton keyboardInlineButtonFromConstructor = KeyboardInlineButton.fromConstructor(i10);
-        if (keyboardInlineButtonFromConstructor != null) {
-            keyboardInlineButtonFromConstructor.readParams(inputSerializedData, z10);
-            return keyboardInlineButtonFromConstructor;
+        KeyboardInlineButton fromConstructor2 = KeyboardInlineButton.fromConstructor(i9);
+        if (fromConstructor2 != null) {
+            fromConstructor2.readParams(inputSerializedData, z10);
+            return fromConstructor2;
         }
-        TLParseException.doThrowOrLog(inputSerializedData, KeyboardButtonProto.class.getName(), i10, z10);
+        TLParseException.doThrowOrLog(inputSerializedData, KeyboardButtonProto.class.getName(), i9, z10);
         return null;
     }
 
-    public static TLObject access$400(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLdeserializeLegacy(inputSerializedData, i10, z10);
+    public static TLObject access$400(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        return TLdeserializeLegacy(inputSerializedData, i9, z10);
     }
 
     public static class TL_buttonTypeDefault extends ButtonType {

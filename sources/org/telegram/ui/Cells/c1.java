@@ -1,63 +1,46 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
+import android.util.Property;
+import android.view.View;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.iu0;
+public final class c1 extends Property {
+    public final int f24180a;
 
-public final class c1 implements Runnable {
-
-    public final int f24149a;
-
-    public final s1 f24150b;
-
-    public c1(int i10, s1 s1Var) {
-        this.f24149a = i10;
-        this.f24150b = s1Var;
+    public c1(Class cls, String str, int i9) {
+        super(cls, str);
+        this.f24180a = i9;
     }
 
     @Override
-    public final void run() {
-        boolean zD3;
-        switch (this.f24149a) {
+    public final Object get(Object obj) {
+        switch (this.f24180a) {
             case 0:
-                j1 j1Var = this.f24150b.Fc;
-                if (j1Var != null) {
-                    j1Var.u();
-                }
-                break;
+                return Float.valueOf(((t1) obj).f25611ve);
+            case 1:
+                return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
+            case 2:
+                return Float.valueOf(((uj0) obj).v);
             default:
-                s1 s1Var = this.f24150b;
-                c1 c1Var = s1Var.f25410kd;
-                MessageObject messageObject = s1Var.f25546u7;
-                if (messageObject != null && (zD3 = s1Var.d3(messageObject)) != s1Var.S3) {
-                    s1Var.S3 = zD3;
-                    if (zD3) {
-                        MessageObject messageObject2 = s1Var.f25546u7;
-                        s1Var.f25546u7 = null;
-                        s1Var.W3(messageObject2, s1Var.G, s1Var.B, s1Var.A, s1Var.C, false);
-                    } else {
-                        AndroidUtilities.runOnUIThread(c1Var, 1000L);
-                        s1Var.Sc = true;
-                        int iDp = s1Var.F8 - AndroidUtilities.dp(91.0f);
-                        s1Var.P3 = new StaticLayout(TextUtils.ellipsize(LocaleController.getString(R.string.AttachLiveLocation), org.telegram.ui.ActionBar.g6.H2, iDp, TextUtils.TruncateAt.END), org.telegram.ui.ActionBar.g6.H2, iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    }
-                }
-                if (!s1Var.S3) {
-                    RectF rectF = s1Var.Y4;
-                    s1Var.invalidate(((int) rectF.left) - 5, ((int) rectF.top) - 5, ((int) rectF.right) + 5, ((int) rectF.bottom) + 5);
-                    if (s1Var.Sc) {
-                        AndroidUtilities.runOnUIThread(c1Var, 1000L);
-                    }
-                } else {
-                    s1Var.invalidate();
-                    s1Var.Sc = false;
-                }
-                break;
+                return Float.valueOf(((iu0) obj).f39285a);
+        }
+    }
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f24180a) {
+            case 0:
+                ((t1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
+                return;
+            case 1:
+                ((View) obj).setTranslationY(((Integer) obj2).intValue());
+                return;
+            case 2:
+                ((uj0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                return;
+            default:
+                ((iu0) obj).b(((Float) obj2).floatValue());
+                return;
         }
     }
 }

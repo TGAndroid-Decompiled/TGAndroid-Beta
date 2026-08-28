@@ -1,12 +1,11 @@
 package org.scilab.forge.jlatexmath;
 
-import a9.p;
+import aa.d;
 import ru.noties.jlatexmath.awt.BasicStroke;
 import ru.noties.jlatexmath.awt.Color;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Stroke;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
-
 public class GeoGebraLogoBox extends Box {
     private static final Color gray = new Color(102, 102, 102);
     private static final Color blue = new Color(153, 153, 255);
@@ -34,7 +33,7 @@ public class GeoGebraLogoBox extends Box {
         Color color = graphics2D.getColor();
         Stroke stroke = graphics2D.getStroke();
         float f12 = this.height;
-        graphics2D.translate(p.d(f12, 0.25f, 2.15f, f10), f11 - (f12 * 0.81395346f));
+        graphics2D.translate(d.d(f12, 0.25f, 2.15f, f10), f11 - (f12 * 0.81395346f));
         graphics2D.setColor(gray);
         graphics2D.setStroke(st);
         float f13 = this.height;

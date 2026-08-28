@@ -6,48 +6,46 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
 public final class k3 extends j1.b {
-
-    public static final int f23607r = 0;
-
-    public final RectF f23608o;
-
-    public final Rect f23609p;
-
-    public final m3 f23610q;
+    public static final int f23606r = 0;
+    public final RectF f23607o;
+    public final Rect f23608p;
+    public final m3 f23609q;
 
     public k3(m3 m3Var, m3 m3Var2) {
         super(m3Var2);
-        this.f23610q = m3Var;
-        this.f23608o = new RectF();
-        this.f23609p = new Rect();
+        this.f23609q = m3Var;
+        this.f23607o = new RectF();
+        this.f23608p = new Rect();
     }
 
     @Override
     public final int g(float f10, float f11) {
-        j3 j3VarC;
-        m3 m3Var = this.f23610q;
-        if (!m3Var.f23658b) {
+        j3 c10;
+        m3 m3Var = this.f23609q;
+        if (m3Var.f23658b) {
+            ArrayList<l3> tabs = m3Var.getTabs();
+            if (!tabs.isEmpty() && (c10 = m3Var.c(tabs.get(0))) != null) {
+                float c11 = c10.c();
+                RectF rectF = this.f23607o;
+                m3Var.d(rectF, c11);
+                Rect bounds = c10.f23535k.getBounds();
+                if (!bounds.isEmpty() && bounds.contains((int) (f10 - rectF.left), (int) (f11 - rectF.centerY()))) {
+                    return 2;
+                }
+                if (rectF.contains(f10, f11)) {
+                    return 1;
+                }
+                return -1;
+            }
             return -1;
         }
-        ArrayList<l3> tabs = m3Var.getTabs();
-        if (tabs.isEmpty() || (j3VarC = m3Var.c(tabs.get(0))) == null) {
-            return -1;
-        }
-        float fC = j3VarC.c();
-        RectF rectF = this.f23608o;
-        m3Var.d(rectF, fC);
-        Rect bounds = j3VarC.f23536k.getBounds();
-        if (bounds.isEmpty() || !bounds.contains((int) (f10 - rectF.left), (int) (f11 - rectF.centerY()))) {
-            return rectF.contains(f10, f11) ? 1 : -1;
-        }
-        return 2;
+        return -1;
     }
 
     @Override
     public final void h(ArrayList arrayList) {
-        m3 m3Var = this.f23610q;
+        m3 m3Var = this.f23609q;
         if (m3Var.f23658b) {
             ArrayList<l3> tabs = m3Var.getTabs();
             if (tabs.isEmpty() || m3Var.c(tabs.get(0)) == null) {
@@ -59,18 +57,17 @@ public final class k3 extends j1.b {
     }
 
     @Override
-    public final boolean k(int i10, int i11) {
-        if (i11 == 16) {
-            m3 m3Var = this.f23610q;
+    public final boolean k(int i9, int i10) {
+        if (i10 == 16) {
+            m3 m3Var = this.f23609q;
             ArrayList<l3> tabs = m3Var.getTabs();
             if (!tabs.isEmpty()) {
                 l3 l3Var = tabs.get(0);
-                if (i10 == 1) {
+                if (i9 == 1) {
                     m3Var.b();
                     return true;
-                }
-                if (i10 == 2) {
-                    m3Var.g(l3Var, new cg.h(2));
+                } else if (i9 == 2) {
+                    m3Var.g(l3Var, new bg.k(2));
                     return true;
                 }
             }
@@ -79,46 +76,57 @@ public final class k3 extends j1.b {
     }
 
     @Override
-    public final void l(int i10, s0.c cVar) {
-        String string;
-        String string2;
-        m3 m3Var = this.f23610q;
+    public final void l(int i9, s0.d dVar) {
+        l3 l3Var;
+        String str;
+        String str2;
+        m3 m3Var = this.f23609q;
         ArrayList<l3> tabs = m3Var.getTabs();
-        l3 l3Var = tabs.isEmpty() ? null : tabs.get(0);
-        j3 j3VarC = l3Var != null ? m3Var.c(l3Var) : null;
-        cVar.i("android.widget.Button");
-        cVar.b(s0.b.f47649c);
-        Rect rect = this.f23609p;
-        if (j3VarC == null) {
-            rect.set(0, 0, 1, 1);
-            cVar.h(rect);
-            cVar.j("");
-            cVar.p(false);
-            return;
-        }
-        float fC = j3VarC.c();
-        RectF rectF = this.f23608o;
-        m3Var.d(rectF, fC);
-        String strB = l3Var.b() != null ? l3Var.b() : "";
-        if (i10 != 2) {
-            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            cVar.h(rect);
-            if (TextUtils.isEmpty(strB)) {
-                string = LocaleController.getString(R.string.Open);
-            } else {
-                string = LocaleController.getString(R.string.Open) + ", " + strB;
-            }
-            cVar.j(string);
-            return;
-        }
-        Rect bounds = j3VarC.f23536k.getBounds();
-        rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
-        cVar.h(rect);
-        if (TextUtils.isEmpty(strB)) {
-            string2 = LocaleController.getString(R.string.Close);
+        j3 j3Var = null;
+        if (tabs.isEmpty()) {
+            l3Var = null;
         } else {
-            string2 = LocaleController.getString(R.string.Close) + ", " + strB;
+            l3Var = tabs.get(0);
         }
-        cVar.j(string2);
+        if (l3Var != null) {
+            j3Var = m3Var.c(l3Var);
+        }
+        dVar.i("android.widget.Button");
+        dVar.b(s0.c.f47285c);
+        String str3 = "";
+        Rect rect = this.f23608p;
+        if (j3Var == null) {
+            rect.set(0, 0, 1, 1);
+            dVar.h(rect);
+            dVar.j("");
+            dVar.p(false);
+            return;
+        }
+        float c10 = j3Var.c();
+        RectF rectF = this.f23607o;
+        m3Var.d(rectF, c10);
+        if (l3Var.b() != null) {
+            str3 = l3Var.b();
+        }
+        if (i9 == 2) {
+            Rect bounds = j3Var.f23535k.getBounds();
+            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
+            dVar.h(rect);
+            if (TextUtils.isEmpty(str3)) {
+                str2 = LocaleController.getString(R.string.Close);
+            } else {
+                str2 = LocaleController.getString(R.string.Close) + ", " + str3;
+            }
+            dVar.j(str2);
+            return;
+        }
+        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        dVar.h(rect);
+        if (TextUtils.isEmpty(str3)) {
+            str = LocaleController.getString(R.string.Open);
+        } else {
+            str = LocaleController.getString(R.string.Open) + ", " + str3;
+        }
+        dVar.j(str);
     }
 }

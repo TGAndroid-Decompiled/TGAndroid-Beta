@@ -1,49 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class ph0 extends AnimatorListenerAdapter {
+    public final int f31663a;
+    public final qh0 f31664b;
 
-public final class ph0 extends LinearLayout {
-
-    public boolean f31610a;
-
-    public final sh0 f31611b;
-
-    public ph0(sh0 sh0Var, Activity activity) {
-        super(activity);
-        this.f31611b = sh0Var;
-        this.f31610a = false;
+    public ph0(qh0 qh0Var, int i9) {
+        this.f31663a = i9;
+        this.f31664b = qh0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        sh0 sh0Var = this.f31611b;
-        fc0 fc0Var = sh0Var.D;
-        fc0 fc0Var2 = sh0Var.C;
-        this.f31610a = true;
-        Point point = AndroidUtilities.displaySize;
-        int i12 = point.x > point.y ? 3 : 5;
-        fc0Var2.setItemCount(i12);
-        fc0Var.setItemCount(i12);
-        fc0Var2.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
-        fc0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * i12;
-        this.f31610a = false;
-        int size = View.MeasureSpec.getSize(i10);
-        sh0Var.J = size;
-        if (size != 0) {
-            sh0Var.c(false);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f31663a) {
+            case 1:
+                qh0 qh0Var = this.f31664b;
+                AnimatorSet animatorSet = qh0Var.f31949s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    qh0Var.f31949s = null;
+                    qh0Var.getClass();
+                    return;
+                }
+                return;
+            case 2:
+                qh0 qh0Var2 = this.f31664b;
+                AnimatorSet animatorSet2 = qh0Var2.f31949s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    qh0Var2.f31949s = null;
+                    qh0Var2.getClass();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f31610a) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        int i9 = this.f31663a;
+        qh0 qh0Var = this.f31664b;
+        switch (i9) {
+            case 0:
+                AnimatorSet animatorSet = qh0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    qh0Var.h = null;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = qh0Var.f31949s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    qh0Var.f31949s = null;
+                    if (qh0Var.f31950w) {
+                        qh0Var.setLayerType(0, null);
+                    }
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = qh0Var.f31949s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    qh0Var.f31949s = null;
+                    AndroidUtilities.runOnUIThread(new ib0(this, 14));
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
         }
-        super.requestLayout();
     }
 }

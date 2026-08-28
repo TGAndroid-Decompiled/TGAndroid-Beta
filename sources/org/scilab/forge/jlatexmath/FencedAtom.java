@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import java.util.List;
-
 public class FencedAtom extends Atom {
     private static final int DELIMITER_FACTOR = 901;
     private static final float DELIMITER_SHORTFALL = 5.0f;
@@ -22,46 +21,45 @@ public class FencedAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         TeXFont teXFont = teXEnvironment.getTeXFont();
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
-        float factor = SpaceAtom.getFactor(3, teXEnvironment) * 5.0f;
+        Box createBox = this.base.createBox(teXEnvironment);
         float axisHeight = teXFont.getAxisHeight(teXEnvironment.getStyle());
-        float fMax = Math.max(boxCreateBox.getHeight() - axisHeight, boxCreateBox.getDepth() + axisHeight);
-        float fMax2 = Math.max((fMax / 500.0f) * 901.0f, (fMax * 2.0f) - factor);
+        float max = Math.max(createBox.getHeight() - axisHeight, createBox.getDepth() + axisHeight);
+        float max2 = Math.max((max / 500.0f) * 901.0f, (max * 2.0f) - (SpaceAtom.getFactor(3, teXEnvironment) * 5.0f));
         HorizontalBox horizontalBox = new HorizontalBox();
         if (this.middle != null) {
-            for (int i10 = 0; i10 < this.middle.size(); i10++) {
-                MiddleAtom middleAtom = this.middle.get(i10);
+            for (int i9 = 0; i9 < this.middle.size(); i9++) {
+                MiddleAtom middleAtom = this.middle.get(i9);
                 Atom atom = middleAtom.base;
                 if (atom instanceof SymbolAtom) {
-                    Box boxCreate = DelimiterFactory.create(((SymbolAtom) atom).getName(), teXEnvironment, fMax2);
-                    center(boxCreate, axisHeight);
-                    middleAtom.box = boxCreate;
+                    Box create = DelimiterFactory.create(((SymbolAtom) atom).getName(), teXEnvironment, max2);
+                    center(create, axisHeight);
+                    middleAtom.box = create;
                 }
             }
             if (this.middle.size() != 0) {
-                boxCreateBox = this.base.createBox(teXEnvironment);
+                createBox = this.base.createBox(teXEnvironment);
             }
         }
         SymbolAtom symbolAtom = this.left;
         if (symbolAtom != null) {
-            Box boxCreate2 = DelimiterFactory.create(symbolAtom.getName(), teXEnvironment, fMax2);
-            center(boxCreate2, axisHeight);
-            horizontalBox.add(boxCreate2);
+            Box create2 = DelimiterFactory.create(symbolAtom.getName(), teXEnvironment, max2);
+            center(create2, axisHeight);
+            horizontalBox.add(create2);
         }
         Atom atom2 = this.base;
         if (!(atom2 instanceof SpaceAtom)) {
             horizontalBox.add(Glue.get(4, atom2.getLeftType(), teXEnvironment));
         }
-        horizontalBox.add(boxCreateBox);
+        horizontalBox.add(createBox);
         Atom atom3 = this.base;
         if (!(atom3 instanceof SpaceAtom)) {
             horizontalBox.add(Glue.get(atom3.getRightType(), 5, teXEnvironment));
         }
         SymbolAtom symbolAtom2 = this.right;
         if (symbolAtom2 != null) {
-            Box boxCreate3 = DelimiterFactory.create(symbolAtom2.getName(), teXEnvironment, fMax2);
-            center(boxCreate3, axisHeight);
-            horizontalBox.add(boxCreate3);
+            Box create3 = DelimiterFactory.create(symbolAtom2.getName(), teXEnvironment, max2);
+            center(create3, axisHeight);
+            horizontalBox.add(create3);
         }
         return horizontalBox;
     }

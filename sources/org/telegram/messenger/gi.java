@@ -1,67 +1,39 @@
 package org.telegram.messenger;
-
-import java.util.HashMap;
-import org.telegram.tgnet.TLObject;
-
 public final class gi implements Runnable {
+    public final int f20408a;
+    public final CharSequence f20409b;
+    public final AccountInstance f20410c;
+    public final long d;
+    public final long f20411e;
+    public final boolean f20412f;
+    public final int h;
+    public final int f20413n;
+    public final long f20414r;
 
-    public final int f20402a;
-
-    public final SendMessagesHelper f20403b;
-
-    public final TLObject f20404c;
-    public final MessageObject d;
-
-    public final String f20405e;
-
-    public final SendMessagesHelper.DelayedMessage f20406f;
-    public final boolean h;
-
-    public final SendMessagesHelper.DelayedMessage f20407n;
-
-    public final Object f20408r;
-
-    public final HashMap f20409s;
-    public final boolean v;
-
-    public gi(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap map, boolean z11, int i10) {
-        this.f20402a = i10;
-        this.f20403b = sendMessagesHelper;
-        this.f20404c = tLObject;
-        this.d = messageObject;
-        this.f20405e = str;
-        this.f20406f = delayedMessage;
-        this.h = z10;
-        this.f20407n = delayedMessage2;
-        this.f20408r = obj;
-        this.f20409s = map;
-        this.v = z11;
+    public gi(CharSequence charSequence, AccountInstance accountInstance, long j10, long j11, boolean z10, int i9, int i10, long j12, int i11) {
+        this.f20408a = i11;
+        this.f20409b = charSequence;
+        this.f20410c = accountInstance;
+        this.d = j10;
+        this.f20411e = j11;
+        this.f20412f = z10;
+        this.h = i9;
+        this.f20413n = i10;
+        this.f20414r = j12;
     }
 
     @Override
     public final void run() {
-        switch (this.f20402a) {
+        switch (this.f20408a) {
             case 0:
-                HashMap map = this.f20409s;
-                boolean z10 = this.v;
-                Object obj = this.f20408r;
-                String str = this.f20405e;
-                this.f20403b.lambda$performSendMessageRequest$77(this.f20404c, this.d, str, this.f20406f, this.h, this.f20407n, obj, map, z10);
-                break;
+                SendMessagesHelper.lambda$prepareSendingText$126(this.f20409b, this.f20410c, this.d, this.f20411e, this.f20412f, this.h, this.f20413n, this.f20414r);
+                return;
             case 1:
-                HashMap map2 = this.f20409s;
-                boolean z11 = this.v;
-                Object obj2 = this.f20408r;
-                String str2 = this.f20405e;
-                this.f20403b.lambda$performSendMessageRequest$78(this.f20404c, this.d, str2, this.f20406f, this.h, this.f20407n, obj2, map2, z11);
-                break;
+                SendMessagesHelper.lambda$prepareSendingText$124(this.f20409b, this.f20410c, this.d, this.f20411e, this.f20412f, this.h, this.f20413n, this.f20414r);
+                return;
             default:
-                HashMap map3 = this.f20409s;
-                boolean z12 = this.v;
-                Object obj3 = this.f20408r;
-                String str3 = this.f20405e;
-                this.f20403b.lambda$performSendMessageRequest$82(this.f20404c, this.d, str3, this.f20406f, this.h, this.f20407n, obj3, map3, z12);
-                break;
+                SendMessagesHelper.lambda$prepareSendingText$125(this.f20409b, this.f20410c, this.d, this.f20411e, this.f20412f, this.h, this.f20413n, this.f20414r);
+                return;
         }
     }
 }

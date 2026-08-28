@@ -1,152 +1,337 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Build;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import j$.util.Objects;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-
-public final class k71 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-
-    public final org.telegram.ui.Components.n9 f39644a;
-
-    public final ik f39645b;
-
-    public final org.telegram.ui.Components.voip.h f39646c;
+import org.telegram.tgnet.tl.TL_account;
+public final class k71 extends org.telegram.ui.Components.vk0 {
+    public final Context f39765c;
     public final SessionsActivity d;
 
     public k71(SessionsActivity sessionsActivity, Context context) {
-        super(context);
         this.d = sessionsActivity;
-        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f39646c = hVar;
-        org.telegram.ui.Components.n9 n9Var = new org.telegram.ui.Components.n9(context);
-        this.f39644a = n9Var;
-        addView(n9Var, h7.z5.d(120, 120.0f, 1, 0.0f, 16.0f, 0.0f, 0.0f));
-        hVar.f33594j = false;
-        hVar.f33598n = 1.2f;
-        n9Var.setOnClickListener(new y7(this, 2));
-        int i10 = org.telegram.ui.ActionBar.g6.G6;
-        org.telegram.ui.ActionBar.g6.w0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.g6.f23053d6;
-        org.telegram.ui.ActionBar.g6.w0(null, i11, false);
-        int i12 = org.telegram.ui.ActionBar.g6.Oh;
-        org.telegram.ui.ActionBar.g6.w0(null, i12, false);
-        org.telegram.ui.ActionBar.g6.w0(null, i11, false);
-        org.telegram.ui.Components.p80 p80Var = new org.telegram.ui.Components.p80(context, null);
-        addView(p80Var, h7.z5.d(-1, -2.0f, 0, 36.0f, 152.0f, 36.0f, 0.0f));
-        p80Var.setGravity(1);
-        p80Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, i10, false));
-        p80Var.setTextSize(1, 15.0f);
-        p80Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.J6, false));
-        p80Var.setHighlightColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.K6, false));
-        String string = LocaleController.getString(R.string.AuthAnotherClientInfo4);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-        int iIndexOf = string.indexOf(42);
-        int i13 = iIndexOf + 1;
-        int iIndexOf2 = string.indexOf(42, i13);
-        if (iIndexOf != -1 && iIndexOf2 != -1 && iIndexOf != iIndexOf2) {
-            p80Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-            spannableStringBuilder.replace(iIndexOf2, iIndexOf2 + 1, (CharSequence) "");
-            spannableStringBuilder.replace(iIndexOf, i13, (CharSequence) "");
-            spannableStringBuilder.setSpan(new org.telegram.ui.Components.r41(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), (org.telegram.ui.Components.xz0) null), iIndexOf, iIndexOf2 - 1, 33);
-        }
-        String string2 = spannableStringBuilder.toString();
-        int iIndexOf3 = string2.indexOf(42);
-        int i14 = iIndexOf3 + 1;
-        int iIndexOf4 = string2.indexOf(42, i14);
-        if (iIndexOf3 != -1 && iIndexOf4 != -1 && iIndexOf3 != iIndexOf4) {
-            p80Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-            spannableStringBuilder.replace(iIndexOf4, iIndexOf4 + 1, (CharSequence) "");
-            spannableStringBuilder.replace(iIndexOf3, i14, (CharSequence) "");
-            spannableStringBuilder.setSpan(new org.telegram.ui.Components.r41(LocaleController.getString(R.string.AuthAnotherWebClientUrl), (org.telegram.ui.Components.xz0) null), iIndexOf3, iIndexOf4 - 1, 33);
-        }
-        p80Var.setText(spannableStringBuilder);
-        ik ikVar = new ik(this, context, 3);
-        this.f39645b = ikVar;
-        ikVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        ikVar.setGravity(17);
-        ikVar.setTextSize(1, 14.0f);
-        ikVar.setTypeface(AndroidUtilities.bold());
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-        spannableStringBuilder2.append((CharSequence) ".  ").append((CharSequence) LocaleController.getString(R.string.LinkDesktopDevice));
-        spannableStringBuilder2.setSpan(new org.telegram.ui.Components.cq(0, getContext().getDrawable(R.drawable.msg_mini_qr)), 0, 1, 0);
-        ikVar.setText(spannableStringBuilder2);
-        ikVar.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Sh, false));
-        int iDp = AndroidUtilities.dp(24.0f);
-        int iW0 = org.telegram.ui.ActionBar.g6.w0(null, i12, false);
-        int iW1 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Qh, false);
-        ikVar.setBackground(org.telegram.ui.ActionBar.g6.i0(iDp, iDp, iDp, iDp, iW0, iW1, iW1));
-        ikVar.setOnClickListener(new v21(this, 6));
-        addView(ikVar, h7.z5.d(-1, 48.0f, 80, 16.0f, 15.0f, 16.0f, 16.0f));
-        b();
+        this.f39765c = context;
+        C(true);
     }
 
-    public static void a(k71 k71Var) {
-        SessionsActivity sessionsActivity = k71Var.d;
-        if (sessionsActivity.getParentActivity() == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 23 && sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-            sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-        } else {
-            t9.e0(sessionsActivity.getParentActivity(), 2, new i71(sessionsActivity));
-        }
-    }
-
-    public final void b() {
+    @Override
+    public final boolean D(f2.q1 q1Var) {
+        int i9;
+        int i10;
+        int b10 = q1Var.b();
         SessionsActivity sessionsActivity = this.d;
-        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(((org.telegram.ui.ActionBar.n2) sessionsActivity).currentAccount).getStickerSetByName("tg_placeholders_android");
-        if (stickerSetByName == null) {
-            stickerSetByName = MediaDataController.getInstance(((org.telegram.ui.ActionBar.n2) sessionsActivity).currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
+        i9 = sessionsActivity.terminateAllSessionsRow;
+        if (b10 != i9) {
+            if (b10 < sessionsActivity.G || b10 >= sessionsActivity.H) {
+                if (b10 < sessionsActivity.I || b10 >= sessionsActivity.J) {
+                    if ((b10 < sessionsActivity.C || b10 >= sessionsActivity.D) && b10 != sessionsActivity.f36183y) {
+                        i10 = sessionsActivity.ttlRow;
+                        if (b10 != i10) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    return true;
+                }
+                return true;
+            }
+            return true;
         }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-        TLRPC.Document document = (tL_messages_stickerSet == null || tL_messages_stickerSet.documents.size() <= 6) ? null : tL_messages_stickerSet.documents.get(6);
-        SvgHelper.SvgDrawable svgThumb = document != null ? DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.g6.f23037c7, 0.2f) : null;
-        if (svgThumb != null) {
-            svgThumb.overrideWidthAndHeight(512, 512);
-        }
-        if (document == null) {
-            MediaDataController.getInstance(((org.telegram.ui.ActionBar.n2) sessionsActivity).currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tL_messages_stickerSet == null);
-            return;
-        }
-        ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.n9 n9Var = this.f39644a;
-        n9Var.i(forDocument, "130_130", "tgs", svgThumb, tL_messages_stickerSet);
-        n9Var.getImageReceiver().setAutoRepeat(2);
+        return true;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
-            b();
+    public final int h() {
+        return this.d.O;
+    }
+
+    @Override
+    public final long i(int i9) {
+        int i10;
+        int i11;
+        int hash;
+        SessionsActivity sessionsActivity = this.d;
+        i10 = sessionsActivity.terminateAllSessionsRow;
+        if (i9 == i10) {
+            hash = Objects.hash(0, 0);
+        } else if (i9 == sessionsActivity.A) {
+            hash = Objects.hash(0, 1);
+        } else if (i9 == sessionsActivity.K) {
+            hash = Objects.hash(0, 2);
+        } else if (i9 == sessionsActivity.E) {
+            hash = Objects.hash(0, 3);
+        } else if (i9 == sessionsActivity.N) {
+            hash = Objects.hash(0, 4);
+        } else if (i9 == sessionsActivity.Q) {
+            hash = Objects.hash(0, 5);
+        } else if (i9 == sessionsActivity.L) {
+            hash = Objects.hash(0, 6);
+        } else if (i9 == sessionsActivity.f36182x) {
+            hash = Objects.hash(0, 7);
+        } else if (i9 == sessionsActivity.F) {
+            hash = Objects.hash(0, 8);
+        } else if (i9 == sessionsActivity.B) {
+            hash = Objects.hash(0, 9);
+        } else if (i9 == sessionsActivity.P) {
+            hash = Objects.hash(0, 10);
+        } else if (i9 == sessionsActivity.f36183y) {
+            hash = Objects.hash(0, 11);
+        } else {
+            int i12 = sessionsActivity.G;
+            if (i9 >= i12 && i9 < sessionsActivity.H) {
+                TLObject tLObject = (TLObject) sessionsActivity.f36176e.get(i9 - i12);
+                if (tLObject instanceof TLRPC.TL_authorization) {
+                    hash = Objects.hash(1, Long.valueOf(((TLRPC.TL_authorization) tLObject).hash));
+                } else {
+                    if (tLObject instanceof TLRPC.TL_webAuthorization) {
+                        hash = Objects.hash(1, Long.valueOf(((TLRPC.TL_webAuthorization) tLObject).hash));
+                    }
+                    hash = Objects.hash(0, -1);
+                }
+            } else {
+                int i13 = sessionsActivity.I;
+                if (i9 >= i13 && i9 < sessionsActivity.J) {
+                    hash = Objects.hash(3, Long.valueOf(((TL_account.TL_connectedBot) sessionsActivity.h.get(i9 - i13)).bot_id));
+                } else {
+                    int i14 = sessionsActivity.C;
+                    if (i9 >= i14 && i9 < sessionsActivity.D) {
+                        TLObject tLObject2 = (TLObject) sessionsActivity.f36177f.get(i9 - i14);
+                        if (tLObject2 instanceof TLRPC.TL_authorization) {
+                            hash = Objects.hash(2, Long.valueOf(((TLRPC.TL_authorization) tLObject2).hash));
+                        } else {
+                            if (tLObject2 instanceof TLRPC.TL_webAuthorization) {
+                                hash = Objects.hash(2, Long.valueOf(((TLRPC.TL_webAuthorization) tLObject2).hash));
+                            }
+                            hash = Objects.hash(0, -1);
+                        }
+                    } else if (i9 != sessionsActivity.M) {
+                        i11 = sessionsActivity.ttlRow;
+                        if (i9 == i11) {
+                            hash = Objects.hash(0, 13);
+                        }
+                        hash = Objects.hash(0, -1);
+                    } else {
+                        hash = Objects.hash(0, 12);
+                    }
+                }
+            }
+        }
+        return hash;
+    }
+
+    @Override
+    public final int j(int i9) {
+        int i10;
+        int i11;
+        SessionsActivity sessionsActivity = this.d;
+        i10 = sessionsActivity.terminateAllSessionsRow;
+        if (i9 != i10) {
+            if (i9 != sessionsActivity.A && i9 != sessionsActivity.K && i9 != sessionsActivity.E && i9 != sessionsActivity.N && i9 != sessionsActivity.Q && i9 != sessionsActivity.L) {
+                if (i9 != sessionsActivity.f36182x && i9 != sessionsActivity.F && i9 != sessionsActivity.B && i9 != sessionsActivity.P) {
+                    if (i9 != sessionsActivity.f36183y) {
+                        if (i9 < sessionsActivity.G || i9 >= sessionsActivity.H) {
+                            if (i9 < sessionsActivity.I || i9 >= sessionsActivity.J) {
+                                if (i9 < sessionsActivity.C || i9 >= sessionsActivity.D) {
+                                    if (i9 != sessionsActivity.M) {
+                                        i11 = sessionsActivity.ttlRow;
+                                        if (i9 == i11) {
+                                            return 6;
+                                        }
+                                        return 0;
+                                    }
+                                    return 5;
+                                }
+                                return 4;
+                            }
+                            return 4;
+                        }
+                        return 4;
+                    }
+                    return 4;
+                }
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.q1 q1Var, int i9) {
+        int i10;
+        String formatPluralString;
+        int i11;
+        int i12 = q1Var.f5505f;
+        boolean z10 = false;
+        if (i12 != 0) {
+            if (i12 != 1) {
+                if (i12 != 2) {
+                    if (i12 != 5) {
+                        if (i12 != 6) {
+                            org.telegram.ui.Cells.t6 t6Var = (org.telegram.ui.Cells.t6) q1Var.f5501a;
+                            SessionsActivity sessionsActivity = this.d;
+                            if (i9 == sessionsActivity.f36183y) {
+                                TLRPC.TL_authorization tL_authorization = sessionsActivity.f36178n;
+                                if (tL_authorization == null) {
+                                    t6Var.f25702w = sessionsActivity.d;
+                                    t6Var.f25701s = true;
+                                    Context context = ApplicationLoader.applicationContext;
+                                    if (AndroidUtilities.isTablet()) {
+                                        i11 = R.drawable.device_tablet_android;
+                                    } else {
+                                        i11 = R.drawable.device_phone_android;
+                                    }
+                                    Drawable mutate = context.getDrawable(i11).mutate();
+                                    mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.J7, false), PorterDuff.Mode.SRC_IN));
+                                    org.telegram.ui.Components.fq fqVar = new org.telegram.ui.Components.fq(org.telegram.ui.ActionBar.f6.K(AndroidUtilities.dp(42.0f), org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.R7, false)), mutate);
+                                    org.telegram.ui.Components.o9 o9Var = t6Var.f25698f;
+                                    if (o9Var != null) {
+                                        o9Var.setImageDrawable(fqVar);
+                                    } else {
+                                        t6Var.h.setImageDrawable(fqVar);
+                                    }
+                                    t6Var.invalidate();
+                                    return;
+                                }
+                                t6Var.c(tL_authorization, (sessionsActivity.f36176e.isEmpty() && this.d.f36177f.isEmpty() && this.d.M == -1) ? true : true);
+                                return;
+                            }
+                            int i13 = sessionsActivity.G;
+                            if (i9 >= i13 && i9 < sessionsActivity.H) {
+                                TLObject tLObject = (TLObject) sessionsActivity.f36176e.get(i9 - i13);
+                                if (i9 != this.d.H - 1) {
+                                    z10 = true;
+                                }
+                                t6Var.c(tLObject, z10);
+                                return;
+                            }
+                            int i14 = sessionsActivity.I;
+                            if (i9 >= i14 && i9 < sessionsActivity.J) {
+                                int i15 = i9 - i14;
+                                ArrayList arrayList = sessionsActivity.h;
+                                if (arrayList != null && i15 >= 0 && i15 < arrayList.size()) {
+                                    TL_account.TL_connectedBot tL_connectedBot = (TL_account.TL_connectedBot) this.d.h.get(i15);
+                                    SessionsActivity sessionsActivity2 = this.d;
+                                    if (i9 != sessionsActivity2.J - 1 && i9 != sessionsActivity2.H - 1) {
+                                        z10 = true;
+                                    }
+                                    t6Var.c(tL_connectedBot, z10);
+                                    return;
+                                }
+                                return;
+                            }
+                            int i16 = sessionsActivity.C;
+                            if (i9 >= i16 && i9 < sessionsActivity.D) {
+                                TLObject tLObject2 = (TLObject) sessionsActivity.f36177f.get(i9 - i16);
+                                if (i9 != this.d.D - 1) {
+                                    z10 = true;
+                                }
+                                t6Var.c(tLObject2, z10);
+                                return;
+                            }
+                            return;
+                        }
+                        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) q1Var.f5501a;
+                        int i17 = this.d.v;
+                        if (i17 > 30 && i17 <= 183) {
+                            formatPluralString = LocaleController.formatPluralString("Months", i17 / 30, new Object[0]);
+                        } else if (i17 == 365) {
+                            formatPluralString = LocaleController.formatPluralString("Years", i17 / 365, new Object[0]);
+                        } else {
+                            formatPluralString = LocaleController.formatPluralString("Weeks", i17 / 7, new Object[0]);
+                        }
+                        baVar.c(LocaleController.getString(R.string.IfInactiveFor), formatPluralString, true, false);
+                        return;
+                    }
+                    return;
+                }
+                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) q1Var.f5501a;
+                SessionsActivity sessionsActivity3 = this.d;
+                if (i9 == sessionsActivity3.f36182x) {
+                    m4Var.setText(LocaleController.getString(R.string.CurrentSession));
+                    return;
+                } else if (i9 == sessionsActivity3.F) {
+                    if (sessionsActivity3.f36181w == 0) {
+                        m4Var.setText(LocaleController.getString(R.string.OtherSessions));
+                        return;
+                    } else {
+                        m4Var.setText(LocaleController.getString(R.string.OtherWebSessions));
+                        return;
+                    }
+                } else if (i9 == sessionsActivity3.B) {
+                    m4Var.setText(LocaleController.getString(R.string.LoginAttempts));
+                    return;
+                } else if (i9 == sessionsActivity3.P) {
+                    m4Var.setText(LocaleController.getString(R.string.TerminateOldSessionHeader));
+                    return;
+                } else {
+                    return;
+                }
+            }
+            org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) q1Var.f5501a;
+            b9Var.setFixedSize(0);
+            SessionsActivity sessionsActivity4 = this.d;
+            if (i9 == sessionsActivity4.A) {
+                if (sessionsActivity4.f36181w == 0) {
+                    b9Var.setText(LocaleController.getString(R.string.ClearOtherSessionsHelp));
+                    return;
+                } else {
+                    b9Var.setText(LocaleController.getString(R.string.ClearOtherWebSessionsHelp));
+                    return;
+                }
+            } else if (i9 == sessionsActivity4.K) {
+                if (sessionsActivity4.f36181w == 0) {
+                    if (sessionsActivity4.f36176e.isEmpty()) {
+                        b9Var.setText("");
+                        return;
+                    } else {
+                        b9Var.setText(LocaleController.getString(R.string.SessionsListInfo));
+                        return;
+                    }
+                }
+                b9Var.setText(LocaleController.getString(R.string.TerminateWebSessionInfo));
+                return;
+            } else if (i9 == sessionsActivity4.E) {
+                b9Var.setText(LocaleController.getString(R.string.LoginAttemptsInfo));
+                return;
+            } else if (i9 == sessionsActivity4.N || i9 == sessionsActivity4.Q || i9 == sessionsActivity4.L) {
+                b9Var.setText("");
+                b9Var.setFixedSize(12);
+                return;
+            } else {
+                return;
+            }
+        }
+        org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) q1Var.f5501a;
+        i10 = this.d.terminateAllSessionsRow;
+        if (i9 == i10) {
+            int i18 = org.telegram.ui.ActionBar.f6.f23212p7;
+            p8Var.e(i18, i18);
+            p8Var.setTag(Integer.valueOf(i18));
+            if (this.d.f36181w == 0) {
+                p8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllSessions), false);
+            } else {
+                p8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllWebSessions), false);
+            }
+        } else if (i9 == this.d.M) {
+            int i19 = org.telegram.ui.ActionBar.f6.f23229q6;
+            p8Var.e(i19, i19);
+            p8Var.setTag(Integer.valueOf(i19));
+            p8Var.m(R.drawable.msg_qrcode, LocaleController.getString(R.string.AuthAnotherClient), !this.d.f36176e.isEmpty());
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        b();
-        NotificationCenter.getInstance(((org.telegram.ui.ActionBar.n2) this.d).currentAccount).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(((org.telegram.ui.ActionBar.n2) this.d).currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(276.0f), 1073741824));
+    public final f2.q1 x(android.view.ViewGroup r26, int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.k71.x(android.view.ViewGroup, int):f2.q1");
     }
 }

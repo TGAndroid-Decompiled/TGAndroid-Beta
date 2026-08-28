@@ -3,10 +3,9 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.u00;
-
-public class ANRDetector implements t00 {
+import org.telegram.ui.Components.q00;
+import org.telegram.ui.Components.r00;
+public class ANRDetector implements q00 {
     private static final int MSG_UI_PING = 1;
     private static final long TIMEOUT_MS = 5000;
     private final Runnable anrDetected;
@@ -19,6 +18,10 @@ public class ANRDetector implements t00 {
     private final Object lock = new Object();
     private volatile int acknowledgedPingId = -1;
     private final Handler mainHandler = new Handler(Looper.getMainLooper()) {
+        {
+            ANRDetector.this = this;
+        }
+
         @Override
         public void handleMessage(Message message) {
             if (message.what != 1) {
@@ -31,12 +34,16 @@ public class ANRDetector implements t00 {
 
     public ANRDetector(Runnable runnable) {
         this.anrDetected = runnable;
-        u00 u00Var = u00.getInstance();
-        this.foreground = u00Var.isForeground();
-        u00Var.addListener(this);
-        Thread thread = new Thread(new d1(this, 11), "ANRDetector");
+        r00 r00Var = r00.getInstance();
+        this.foreground = r00Var.isForeground();
+        r00Var.addListener(this);
+        Thread thread = new Thread(new e1(this, 11), "ANRDetector");
         this.detectorThread = thread;
         thread.start();
+    }
+
+    public static void a(ANRDetector aNRDetector) {
+        aNRDetector.run();
     }
 
     public void run() {
@@ -48,19 +55,19 @@ public class ANRDetector implements t00 {
                     } catch (InterruptedException unused) {
                     }
                 }
-                if (this.destroyed) {
-                    return;
-                }
-                int i10 = this.generation;
-                int i11 = this.nextPingId + 1;
-                this.nextPingId = i11;
-                this.mainHandler.obtainMessage(1, i11, i10).sendToTarget();
-                try {
-                    Thread.sleep(5000L);
+                if (!this.destroyed) {
+                    int i9 = this.generation;
+                    int i10 = this.nextPingId + 1;
+                    this.nextPingId = i10;
+                    this.mainHandler.obtainMessage(1, i10, i9).sendToTarget();
+                    try {
+                        Thread.sleep(5000L);
+                    } catch (InterruptedException unused2) {
+                    }
                     if (this.destroyed) {
                         return;
                     }
-                    if (this.foreground && this.generation == i10 && this.acknowledgedPingId != i11 && !this.anrReported) {
+                    if (this.foreground && this.generation == i9 && this.acknowledgedPingId != i10 && !this.anrReported) {
                         this.anrReported = true;
                         try {
                             this.anrDetected.run();
@@ -68,7 +75,8 @@ public class ANRDetector implements t00 {
                             FileLog.e(th);
                         }
                     }
-                } catch (InterruptedException unused2) {
+                } else {
+                    return;
                 }
             }
         }
@@ -84,7 +92,7 @@ public class ANRDetector implements t00 {
                 this.foreground = false;
                 this.generation++;
                 this.lock.notifyAll();
-                u00.getInstance().removeListener(this);
+                r00.getInstance().removeListener(this);
                 this.mainHandler.removeMessages(1);
                 this.detectorThread.interrupt();
             } catch (Throwable th) {

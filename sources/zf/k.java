@@ -1,78 +1,141 @@
 package zf;
 
-import android.view.View;
-import hh.x8;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ys0;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildVars;
+import org.telegram.tgnet.TLRPC;
+public final class k {
+    public final TLRPC.TL_premiumGiftOption f50558a;
+    public final TLRPC.TL_premiumGiftCodeOption f50559b;
+    public final TLRPC.TL_premiumGiftOption f50560c;
+    public final TLRPC.TL_premiumGiftCodeOption d;
+    public int f50561e;
+    public long f50562f;
+    public long f50563g;
+    public n2.l h;
 
-public final class k implements View.OnClickListener {
-
-    public final int f50474a;
-
-    public final l0 f50475b;
-
-    public k(l0 l0Var, int i10) {
-        this.f50474a = i10;
-        this.f50475b = l0Var;
+    public k(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
+        this.f50558a = tL_premiumGiftOption;
+        this.f50559b = null;
+        this.f50560c = null;
+        this.d = null;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f50474a) {
-            case 0:
-                l0 l0Var = this.f50475b;
-                if (!l0Var.P0) {
-                    l0Var.B0(0);
-                } else {
-                    l0Var.r0(null, true);
-                }
-                break;
-            case 1:
-                l0 l0Var2 = this.f50475b;
-                int i10 = l0Var2.f50508c1;
-                l0Var2.B0(1);
-                l0Var2.postDelayed(new n(l0Var2, 1), 350L);
-                v vVar = new v(l0Var2.getContext(), l0Var2.M1, false, false);
-                vVar.f16294y = new q(l0Var2);
-                vVar.q0(new eg.o(l0Var2, 5));
-                vVar.setOnDismissListener(new x8(l0Var2, i10));
-                vVar.show();
-                PhotoViewer photoViewer = ((ys0) l0Var2).f44893k2;
-                if (photoViewer.B2 != null) {
-                    photoViewer.D2 = false;
-                    photoViewer.u0();
-                    photoViewer.B2.C();
-                    break;
-                }
-                break;
-            case 2:
-                l0 l0Var3 = this.f50475b;
-                j jVar = l0Var3.O0;
-                if ((jVar instanceof v2) && !l0Var3.P0) {
-                    v2 v2Var = (v2) jVar;
-                    l0Var3.P0 = true;
-                    v2Var.q();
-                    View focusedView = v2Var.getFocusedView();
-                    focusedView.requestFocus();
-                    AndroidUtilities.showKeyboard(focusedView);
-                }
-                org.telegram.ui.ActionBar.n1 n1Var = l0Var3.N1;
-                if (n1Var != null && n1Var.isShowing()) {
-                    l0Var3.N1.d(true);
-                    break;
-                }
-                break;
-            case 3:
-                l0.b0(this.f50475b);
-                break;
-            default:
-                l0 l0Var4 = this.f50475b;
-                l0Var4.B0(2);
-                if (!(l0Var4.O0 instanceof v2)) {
-                    l0Var4.j0(true);
-                }
-                break;
+    public final String a() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f50558a;
+        if (tL_premiumGiftOption != null) {
+            if (BuildVars.useInvoiceBilling() || tL_premiumGiftOption.store_product == null) {
+                return tL_premiumGiftOption.currency;
+            }
+        } else {
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f50559b;
+            if (tL_premiumGiftCodeOption != null && (BuildVars.useInvoiceBilling() || tL_premiumGiftCodeOption.store_product == null)) {
+                return tL_premiumGiftCodeOption.currency;
+            }
         }
+        n2.l lVar = this.h;
+        if (lVar == null) {
+            return "";
+        }
+        return lVar.a().f18324c;
+    }
+
+    public final int b() {
+        if (this.f50561e == 0) {
+            if (f() == 0) {
+                return 0;
+            }
+            if (this.f50563g != 0) {
+                int f10 = (int) ((1.0d - (f() / this.f50563g)) * 100.0d);
+                this.f50561e = f10;
+                if (f10 == 0) {
+                    this.f50561e = -1;
+                }
+            }
+        }
+        return this.f50561e;
+    }
+
+    public final String c() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption;
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption;
+        if (!BuildVars.useInvoiceBilling() && (((tL_premiumGiftOption = this.f50558a) == null || tL_premiumGiftOption.store_product != null) && ((tL_premiumGiftCodeOption = this.f50559b) == null || tL_premiumGiftCodeOption.store_product != null))) {
+            if (this.h == null) {
+                return "";
+            }
+            return BillingController.getInstance().formatCurrency(e(), a(), 6);
+        }
+        return BillingController.getInstance().formatCurrency(e(), a());
+    }
+
+    public final int d() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f50558a;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.months;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f50559b;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.months;
+        }
+        return 1;
+    }
+
+    public final long e() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f50558a;
+        if (tL_premiumGiftOption != null) {
+            if (BuildVars.useInvoiceBilling() || tL_premiumGiftOption.store_product == null) {
+                return tL_premiumGiftOption.amount;
+            }
+        } else {
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f50559b;
+            if (tL_premiumGiftCodeOption != null && (BuildVars.useInvoiceBilling() || tL_premiumGiftCodeOption.store_product == null)) {
+                return tL_premiumGiftCodeOption.amount;
+            }
+        }
+        n2.l lVar = this.h;
+        if (lVar == null) {
+            return 0L;
+        }
+        return lVar.a().f18323b;
+    }
+
+    public final long f() {
+        if (this.f50562f == 0) {
+            long e10 = e();
+            if (e10 != 0) {
+                this.f50562f = e10 / d();
+            }
+        }
+        return this.f50562f;
+    }
+
+    public final long g() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f50560c;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.amount;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.d;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.amount;
+        }
+        return 0L;
+    }
+
+    public final String h() {
+        TLRPC.TL_premiumGiftOption tL_premiumGiftOption = this.f50558a;
+        if (tL_premiumGiftOption != null) {
+            return tL_premiumGiftOption.store_product;
+        }
+        TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = this.f50559b;
+        if (tL_premiumGiftCodeOption != null) {
+            return tL_premiumGiftCodeOption.store_product;
+        }
+        return null;
+    }
+
+    public k(TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2) {
+        this.f50558a = null;
+        this.f50559b = tL_premiumGiftCodeOption;
+        this.f50560c = null;
+        this.d = e2.c.v(tL_premiumGiftCodeOption2) ? tL_premiumGiftCodeOption2 : null;
     }
 }

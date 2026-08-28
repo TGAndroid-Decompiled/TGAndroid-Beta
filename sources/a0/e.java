@@ -3,9 +3,7 @@ package a0;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
-
 public final class e implements Collection {
-
     public final f f10a;
 
     public e(f fVar) {
@@ -29,14 +27,16 @@ public final class e implements Collection {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f10a.a(obj) >= 0;
+        if (this.f10a.a(obj) >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        Iterator it = collection.iterator();
-        while (it.hasNext()) {
-            if (!contains(it.next())) {
+        for (Object obj : collection) {
+            if (!contains(obj)) {
                 return false;
             }
         }
@@ -56,28 +56,28 @@ public final class e implements Collection {
     @Override
     public final boolean remove(Object obj) {
         f fVar = this.f10a;
-        int iA = fVar.a(obj);
-        if (iA < 0) {
-            return false;
+        int a2 = fVar.a(obj);
+        if (a2 >= 0) {
+            fVar.f(a2);
+            return true;
         }
-        fVar.f(iA);
-        return true;
+        return false;
     }
 
     @Override
     public final boolean removeAll(Collection collection) {
         f fVar = this.f10a;
-        int i10 = fVar.f28c;
-        int i11 = 0;
+        int i9 = fVar.f28c;
+        int i10 = 0;
         boolean z10 = false;
-        while (i11 < i10) {
-            if (collection.contains(fVar.h(i11))) {
-                fVar.f(i11);
-                i11--;
+        while (i10 < i9) {
+            if (collection.contains(fVar.h(i10))) {
+                fVar.f(i10);
                 i10--;
+                i9--;
                 z10 = true;
             }
-            i11++;
+            i10++;
         }
         return z10;
     }
@@ -85,17 +85,17 @@ public final class e implements Collection {
     @Override
     public final boolean retainAll(Collection collection) {
         f fVar = this.f10a;
-        int i10 = fVar.f28c;
-        int i11 = 0;
+        int i9 = fVar.f28c;
+        int i10 = 0;
         boolean z10 = false;
-        while (i11 < i10) {
-            if (!collection.contains(fVar.h(i11))) {
-                fVar.f(i11);
-                i11--;
+        while (i10 < i9) {
+            if (!collection.contains(fVar.h(i10))) {
+                fVar.f(i10);
                 i10--;
+                i9--;
                 z10 = true;
             }
-            i11++;
+            i10++;
         }
         return z10;
     }
@@ -108,10 +108,10 @@ public final class e implements Collection {
     @Override
     public final Object[] toArray() {
         f fVar = this.f10a;
-        int i10 = fVar.f28c;
-        Object[] objArr = new Object[i10];
-        for (int i11 = 0; i11 < i10; i11++) {
-            objArr[i11] = fVar.h(i11);
+        int i9 = fVar.f28c;
+        Object[] objArr = new Object[i9];
+        for (int i10 = 0; i10 < i9; i10++) {
+            objArr[i10] = fVar.h(i10);
         }
         return objArr;
     }
@@ -119,15 +119,15 @@ public final class e implements Collection {
     @Override
     public final Object[] toArray(Object[] objArr) {
         f fVar = this.f10a;
-        int i10 = fVar.f28c;
-        if (objArr.length < i10) {
-            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i10);
+        int i9 = fVar.f28c;
+        if (objArr.length < i9) {
+            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i9);
         }
-        for (int i11 = 0; i11 < i10; i11++) {
-            objArr[i11] = fVar.h(i11);
+        for (int i10 = 0; i10 < i9; i10++) {
+            objArr[i10] = fVar.h(i10);
         }
-        if (objArr.length > i10) {
-            objArr[i10] = null;
+        if (objArr.length > i9) {
+            objArr[i9] = null;
         }
         return objArr;
     }

@@ -1,31 +1,47 @@
 package k7;
 
-import java.io.Serializable;
-
-public final class f extends i7.f implements Serializable {
-
-    public final Object f14561b;
-
-    public final i7.e f14562c;
-
-    public f(Object obj, i7.e eVar) {
-        super(1, false);
-        this.f14561b = obj;
-        this.f14562c = eVar;
+import android.os.IBinder;
+import android.os.IInterface;
+import kotlin.jvm.internal.i;
+import x5.g;
+public final class f extends g {
+    @Override
+    public final boolean C() {
+        return false;
     }
 
     @Override
-    public final Object getKey() {
-        return this.f14561b;
+    public final int l() {
+        return 17895000;
     }
 
     @Override
-    public final Object getValue() {
-        return this.f14562c;
+    public final IInterface q(IBinder iBinder) {
+        i.e(iBinder, "iBinder");
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+        if (queryLocalInterface instanceof c) {
+            return (c) queryLocalInterface;
+        }
+        return new c(iBinder);
     }
 
     @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final u5.c[] r() {
+        return v7.f.f48365c;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.recaptchabase.service.START";
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

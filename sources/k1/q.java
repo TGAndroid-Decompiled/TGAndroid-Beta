@@ -2,34 +2,26 @@ package k1;
 
 import java.io.Serializable;
 import java.util.Iterator;
-
-public final class q extends tc.c {
-
-    public z f14289a;
-
-    public Object f14290b;
-
-    public Serializable f14291c;
+public final class q extends sc.c {
+    public z f14468a;
+    public Object f14469b;
+    public Serializable f14470c;
     public Object d;
-
-    public s f14292e;
-
-    public Iterator f14293f;
+    public s f14471e;
+    public Iterator f14472f;
     public Object h;
+    public final z f14473n;
+    public int f14474r;
 
-    public final z f14294n;
-
-    public int f14295r;
-
-    public q(z zVar, tc.c cVar) {
+    public q(z zVar, sc.c cVar) {
         super(cVar);
-        this.f14294n = zVar;
+        this.f14473n = zVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
         this.h = obj;
-        this.f14295r |= Integer.MIN_VALUE;
-        return this.f14294n.d(this);
+        this.f14474r |= Integer.MIN_VALUE;
+        return this.f14473n.c(this);
     }
 }

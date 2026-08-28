@@ -5,40 +5,39 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
 public final class f {
-
-    public final String f5599a;
-
-    public final HashMap f5600b = new HashMap();
+    public final String f5294a;
+    public final HashMap f5295b = new HashMap();
 
     public f(String str) {
-        this.f5599a = str;
+        this.f5294a = str;
     }
 
     public final File a(Uri uri) {
         String encodedPath = uri.getEncodedPath();
-        int iIndexOf = encodedPath.indexOf(47, 1);
-        if (iIndexOf == -1) {
-            throw new IllegalArgumentException("Unable to find path from root: " + uri);
-        }
-        String strDecode = Uri.decode(encodedPath.substring(1, iIndexOf));
-        String strDecode2 = Uri.decode(encodedPath.substring(iIndexOf + 1));
-        File file = (File) this.f5600b.get(strDecode);
-        if (file == null) {
+        int indexOf = encodedPath.indexOf(47, 1);
+        if (indexOf != -1) {
+            String decode = Uri.decode(encodedPath.substring(1, indexOf));
+            String decode2 = Uri.decode(encodedPath.substring(indexOf + 1));
+            File file = (File) this.f5295b.get(decode);
+            if (file != null) {
+                File file2 = new File(file, decode2);
+                try {
+                    File canonicalFile = file2.getCanonicalFile();
+                    String path = canonicalFile.getPath();
+                    String path2 = file.getPath();
+                    String a2 = FileProvider.a(path);
+                    String a3 = FileProvider.a(path2);
+                    if (a2.startsWith(a3 + '/')) {
+                        return canonicalFile;
+                    }
+                    throw new SecurityException("Resolved path jumped beyond configured root");
+                } catch (IOException unused) {
+                    throw new IllegalArgumentException("Failed to resolve canonical path for " + file2);
+                }
+            }
             throw new IllegalArgumentException("Unable to find configured root for " + uri);
         }
-        File file2 = new File(file, strDecode2);
-        try {
-            File canonicalFile = file2.getCanonicalFile();
-            String path = canonicalFile.getPath();
-            String path2 = file.getPath();
-            if (FileProvider.a(path).startsWith(FileProvider.a(path2) + '/')) {
-                return canonicalFile;
-            }
-            throw new SecurityException("Resolved path jumped beyond configured root");
-        } catch (IOException unused) {
-            throw new IllegalArgumentException("Failed to resolve canonical path for " + file2);
-        }
+        throw new IllegalArgumentException("Unable to find path from root: " + uri);
     }
 }

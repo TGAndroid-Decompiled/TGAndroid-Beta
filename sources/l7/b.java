@@ -1,10 +1,18 @@
 package l7;
 
-import android.os.IInterface;
-import com.google.android.gms.common.api.Status;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class b {
+    public static final int f16690a = 0;
 
-public interface b extends IInterface {
-    void Y(Status status, w7.b bVar);
+    static {
+        b.class.getClassLoader();
+    }
 
-    void b0(Status status, w7.d dVar);
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
+    }
 }

@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class GeoGebraLogoAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {

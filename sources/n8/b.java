@@ -1,74 +1,37 @@
 package n8;
+public final class b extends a {
+    public final char f18509a;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.util.Log;
-
-public final class b implements ServiceConnection {
-
-    public m8.c f18444a;
-
-    public final c f18445b;
-
-    public b(c cVar) {
-        this.f18445b = cVar;
+    public b(char c10) {
+        this.f18509a = c10;
     }
 
-    public static boolean a(b bVar) {
-        return bVar.f18444a != null;
-    }
-
-    public final boolean b(Intent intent, Bundle bundle) {
-        m8.c cVar = this.f18444a;
-        if (cVar != null) {
-            m8.a aVar = (m8.a) cVar;
-            Parcel parcelObtain = Parcel.obtain();
-            parcelObtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = s2.a.f47660a;
-            if (intent == null) {
-                parcelObtain.writeInt(0);
-            } else {
-                parcelObtain.writeInt(1);
-                intent.writeToParcel(parcelObtain, 0);
-            }
-            parcelObtain.writeInt(1);
-            bundle.writeToParcel(parcelObtain, 0);
-            Parcel parcelE0 = aVar.E0(parcelObtain, 1);
-            boolean z10 = parcelE0.readInt() != 0;
-            parcelE0.recycle();
-            if (z10) {
-                return true;
-            }
+    @Override
+    public final boolean a(char c10) {
+        if (c10 == this.f18509a) {
+            return true;
         }
         return false;
     }
 
-    @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        m8.c aVar;
-        if (this.f18445b.dbg) {
-            Log.d("SAVerificationClientS", "onServiceConnected");
+    public final String toString() {
+        char[] cArr = new char[6];
+        cArr[0] = '\\';
+        cArr[1] = 'u';
+        cArr[2] = 0;
+        cArr[3] = 0;
+        cArr[4] = 0;
+        cArr[5] = 0;
+        char c10 = this.f18509a;
+        for (int i9 = 0; i9 < 4; i9++) {
+            cArr[5 - i9] = "0123456789ABCDEF".charAt(c10 & 15);
+            c10 = (char) (c10 >> 4);
         }
-        int i10 = m8.b.f17880a;
-        if (iBinder == null) {
-            aVar = null;
-        } else {
-            IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.search.verification.api.ISearchActionVerificationService");
-            aVar = iInterfaceQueryLocalInterface instanceof m8.c ? (m8.c) iInterfaceQueryLocalInterface : new m8.a(iBinder);
-        }
-        this.f18444a = aVar;
-    }
-
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        this.f18444a = null;
-        if (this.f18445b.dbg) {
-            Log.d("SAVerificationClientS", "onServiceDisconnected");
-        }
+        String copyValueOf = String.copyValueOf(cArr);
+        StringBuilder sb2 = new StringBuilder(String.valueOf(copyValueOf).length() + 18);
+        sb2.append("CharMatcher.is('");
+        sb2.append(copyValueOf);
+        sb2.append("')");
+        return sb2.toString();
     }
 }

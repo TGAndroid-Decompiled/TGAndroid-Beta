@@ -1,21 +1,49 @@
 package gh;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.mc;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class m1 implements Runnable {
+    public final int f8531a = 0;
+    public final k5 f8532b;
+    public final TLRPC.TL_error f8533c;
+    public final TwoStepVerificationActivity d;
+    public final TLObject f8534e;
 
-public final class m1 extends m6 {
-
-    public final k2 f7427t0;
-
-    public m1(k2 k2Var, Context context, int i10, TL_stars.StarGift starGift, long j10, a1 a1Var, boolean z10, boolean z11) {
-        super(context, i10, starGift, null, j10, a1Var, z10, z11);
-        this.f7427t0 = k2Var;
+    public m1(k5 k5Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
+        this.f8532b = k5Var;
+        this.f8533c = tL_error;
+        this.f8534e = tLObject;
+        this.d = twoStepVerificationActivity;
     }
 
     @Override
-    public final mc X() {
-        k2 k2Var = this.f7427t0;
-        return new mc(k2Var.container, k2Var.resourcesProvider);
+    public final void run() {
+        switch (this.f8531a) {
+            case 0:
+                k5 k5Var = this.f8532b;
+                k5Var.getClass();
+                if (this.f8533c == null) {
+                    TL_account.Password password = (TL_account.Password) this.f8534e;
+                    TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+                    twoStepVerificationActivity.E = password;
+                    TwoStepVerificationActivity.l0(password);
+                    k5Var.M1(twoStepVerificationActivity.k0(), twoStepVerificationActivity);
+                    return;
+                }
+                return;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.d;
+                k5.W0(this.f8532b, this.f8533c, this.f8534e, twoStepVerificationActivity2);
+                return;
+        }
+    }
+
+    public m1(k5 k5Var, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject) {
+        this.f8532b = k5Var;
+        this.f8533c = tL_error;
+        this.d = twoStepVerificationActivity;
+        this.f8534e = tLObject;
     }
 }

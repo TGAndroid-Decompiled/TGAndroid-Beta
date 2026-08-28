@@ -1,44 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import org.telegram.tgnet.TLRPC;
+public final class qn implements g8 {
+    public final org.telegram.ui.ActionBar.o1[] f31990a;
+    public final tn f31991b;
 
-public final class qn extends AnimatorListenerAdapter {
-
-    public final int f31928a;
-
-    public final rn f31929b;
-
-    public qn(rn rnVar, int i10) {
-        this.f31928a = i10;
-        this.f31929b = rnVar;
+    public qn(tn tnVar, org.telegram.ui.ActionBar.o1[] o1VarArr) {
+        this.f31991b = tnVar;
+        this.f31990a = o1VarArr;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f31928a) {
-            case 0:
-                this.f31929b.M = null;
-                break;
-            default:
-                super.onAnimationCancel(animator);
-                break;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31928a) {
-            case 0:
-                rn rnVar = this.f31929b;
-                if (rnVar.M == animator) {
-                    rnVar.getSubtitleTextView().setVisibility(4);
-                    rnVar.M = null;
+    public final void V0(int i9, int i10) {
+        int i11;
+        org.telegram.ui.qn qnVar = this.f31991b.C;
+        if (qnVar != null) {
+            qnVar.getMessagesController().setDialogHistoryTTL(qnVar.a(), i9);
+            TLRPC.ChatFull chatFull = qnVar.V7;
+            TLRPC.UserFull userFull = qnVar.W7;
+            if (userFull != null || chatFull != null) {
+                qnVar.Q7();
+                UndoView undoView = qnVar.f42093u3;
+                if (undoView != null) {
+                    long a2 = qnVar.a();
+                    TLRPC.User i12 = qnVar.i();
+                    if (userFull != null) {
+                        i11 = userFull.ttl_period;
+                    } else {
+                        i11 = chatFull.ttl_period;
+                    }
+                    undoView.k(a2, i10, i12, Integer.valueOf(i11), null, null);
                 }
-                break;
-            default:
-                this.f31929b.M = null;
-                break;
+            }
         }
+    }
+
+    @Override
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.o1 o1Var = this.f31990a[0];
+        if (o1Var != null) {
+            o1Var.dismiss();
+        }
+    }
+
+    @Override
+    public final void h1() {
     }
 }

@@ -1,33 +1,30 @@
 package pc;
 
-import kotlin.jvm.internal.j;
+import g7.m6;
+import java.util.RandomAccess;
+public final class b extends c implements RandomAccess {
+    public final c f45531a;
+    public final int f45532b;
+    public final int f45533c;
 
-public final class b implements Comparable {
-
-    public static final b f45686b = new b();
-
-    public final int f45687a = 131348;
+    public b(c cVar, int i9, int i10) {
+        this.f45531a = cVar;
+        this.f45532b = i9;
+        m6.a(i9, i10, cVar.i());
+        this.f45533c = i10 - i9;
+    }
 
     @Override
-    public final int compareTo(Object obj) {
-        b other = (b) obj;
-        j.e(other, "other");
-        return this.f45687a - other.f45687a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final Object get(int i9) {
+        int i10 = this.f45533c;
+        if (i9 >= 0 && i9 < i10) {
+            return this.f45531a.get(this.f45532b + i9);
         }
-        b bVar = obj instanceof b ? (b) obj : null;
-        return bVar != null && this.f45687a == bVar.f45687a;
+        throw new IndexOutOfBoundsException(aa.d.k(i9, i10, "index: ", ", size: "));
     }
 
-    public final int hashCode() {
-        return this.f45687a;
-    }
-
-    public final String toString() {
-        return "2.1.20";
+    @Override
+    public final int i() {
+        return this.f45533c;
     }
 }

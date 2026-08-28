@@ -1,144 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import android.view.View;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
+public final class sg0 implements m2.e {
+    public final ah0 f32461a;
 
-public final class sg0 implements Runnable {
-
-    public final int f32438a;
-
-    public final tg0 f32439b;
-
-    public sg0(tg0 tg0Var, int i10) {
-        this.f32438a = i10;
-        this.f32439b = tg0Var;
+    public sg0(ah0 ah0Var) {
+        this.f32461a = ah0Var;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        hh0[] hh0VarArr;
-        int i11;
-        hh0[] hh0VarArr2;
-        switch (this.f32438a) {
-            case 0:
-                tg0 tg0Var = this.f32439b;
-                synchronized (tg0Var.f32771b) {
-                    hh0[] hh0VarArr3 = tg0Var.f32772c;
-                    hh0 hh0Var = hh0VarArr3[0];
-                    hh0[] hh0VarArr4 = tg0Var.d;
-                    i10 = 2;
-                    hh0VarArr = new hh0[]{hh0Var, hh0VarArr4[0], hh0VarArr3[1], hh0VarArr4[1], hh0VarArr3[2], hh0VarArr4[2]};
-                    break;
-                }
-                boolean z10 = false;
-                for (int i12 = 0; i12 < 6; i12 += 2) {
-                    hh0 hh0Var2 = hh0VarArr[i12];
-                    hh0 hh0Var3 = hh0VarArr[i12 + 1];
-                    if (hh0Var2 != null && !hh0Var2.f29021c && hh0Var2.f29023f) {
-                        hh0Var2.f29022e = true;
-                        if (hh0Var3 != null) {
-                            Bitmap bitmap = hh0Var3.f29020b;
-                            if (hh0Var3.d || bitmap.getWidth() != hh0Var2.f29020b.getWidth() || bitmap.getHeight() != hh0Var2.f29020b.getHeight()) {
-                                if (hh0Var3 != null) {
-                                    hh0Var3.a();
-                                }
-                                hh0Var3 = new hh0();
-                                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(hh0Var2.f29020b.getWidth(), hh0Var2.f29020b.getHeight(), Bitmap.Config.ARGB_8888);
-                                hh0Var3.f29020b = bitmapCreateBitmap;
-                                hh0Var3.f29019a = new Canvas(bitmapCreateBitmap);
-                                synchronized (tg0Var.f32771b) {
-                                    hh0[] hh0VarArr5 = tg0Var.d;
-                                    i11 = 0;
-                                    while (true) {
-                                        hh0VarArr2 = tg0Var.f32772c;
-                                        if (i11 < hh0VarArr2.length) {
-                                            i11 = 0;
-                                        } else if (hh0VarArr2[i11] == hh0Var2) {
-                                            i11++;
-                                        }
-                                    }
-                                    hh0VarArr5[i11] = hh0Var3;
-                                }
+    public final void b(int i9) {
+        boolean z10;
+        ah0 ah0Var = this.f32461a;
+        int i10 = ah0Var.f26805k1;
+        int i11 = 0;
+        if (i9 >= i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i9 != i10) {
+            ah0Var.getClass();
+            ah0Var.f26805k1 = i9;
+        }
+        MessagesController.DialogPhotos dialogPhotos = ah0Var.O0;
+        if (dialogPhotos != null) {
+            zg0 zg0Var = ah0Var.f26814z0;
+            if (zg0Var != null) {
+                i11 = zg0Var.j();
+            }
+            dialogPhotos.loadAfter(i9 - i11, z10);
+        }
+    }
+
+    @Override
+    public final void c(float f10, int i9, int i10) {
+        ImageLocation imageLocation;
+        ah0 ah0Var = this.f32461a;
+        ah0Var.B(f10, i9);
+        if (i10 == 0) {
+            int k10 = ah0Var.f26814z0.k(i9);
+            if (ah0Var.f26799e1) {
+                k10--;
+            }
+            ah0Var.getCurrentItemView();
+            int childCount = ah0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = ah0Var.getChildAt(i11);
+                if (childAt instanceof o9) {
+                    zg0 zg0Var = ah0Var.f26814z0;
+                    int k11 = zg0Var.k(zg0Var.d.indexOf(childAt));
+                    if (ah0Var.f26799e1) {
+                        k11--;
+                    }
+                    ImageReceiver imageReceiver = ((o9) childAt).getImageReceiver();
+                    boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
+                    if (k11 >= 0 && k11 < ah0Var.S0.size()) {
+                        if (k11 == k10) {
+                            if (!allowStartAnimation) {
+                                imageReceiver.setAllowStartAnimation(true);
+                                imageReceiver.startAnimation();
                             }
-                        } else {
-                            if (hh0Var3 != null) {
-                                hh0Var3.a();
+                            ImageLocation imageLocation2 = (ImageLocation) ah0Var.S0.get(k11);
+                            if (imageLocation2 != null) {
+                                FileLoader.getInstance(ah0Var.H0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
                             }
-                            hh0Var3 = new hh0();
-                            Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(hh0Var2.f29020b.getWidth(), hh0Var2.f29020b.getHeight(), Bitmap.Config.ARGB_8888);
-                            hh0Var3.f29020b = bitmapCreateBitmap2;
-                            hh0Var3.f29019a = new Canvas(bitmapCreateBitmap2);
-                            synchronized (tg0Var.f32771b) {
-                                hh0[] hh0VarArr6 = tg0Var.d;
-                                i11 = 0;
-                                while (true) {
-                                    hh0VarArr2 = tg0Var.f32772c;
-                                    if (i11 < hh0VarArr2.length) {
-                                        i11 = 0;
-                                    } else if (hh0VarArr2[i11] == hh0Var2) {
-                                        i11++;
-                                    }
-                                }
-                                hh0VarArr6[i11] = hh0Var3;
+                        } else if (allowStartAnimation) {
+                            x5 animation = imageReceiver.getAnimation();
+                            if (animation != null && (imageLocation = (ImageLocation) ah0Var.S0.get(k11)) != null) {
+                                animation.y(imageLocation.videoSeekTo, false, true);
                             }
+                            imageReceiver.setAllowStartAnimation(false);
+                            imageReceiver.stopAnimation();
                         }
-                        Bitmap bitmap2 = hh0Var2.f29020b;
-                        Utilities.stackBlurBitmap(bitmap2, Math.max(10, bitmap2.getWidth() / 180));
-                        synchronized (tg0Var.f32771b) {
-                            if (!hh0Var3.d) {
-                                hh0Var3.f29023f = false;
-                                hh0Var3.f29020b.eraseColor(0);
-                            }
-                            hh0Var3.f29019a.drawBitmap(bitmap2, 0.0f, 0.0f, (Paint) null);
-                            hh0Var3.f29023f = true;
-                            Bitmap bitmap3 = hh0Var3.f29020b;
-                            int i13 = 0;
-                            while (true) {
-                                hh0[] hh0VarArr7 = tg0Var.f32772c;
-                                if (i13 >= hh0VarArr7.length) {
-                                    i13 = 0;
-                                } else if (hh0VarArr7[i13] != hh0Var2) {
-                                    i13++;
-                                }
-                            }
-                            tg0Var.b(bitmap3, i13);
-                        }
-                        if (!hh0Var2.d) {
-                            hh0Var2.f29023f = false;
-                            hh0Var2.f29020b.eraseColor(0);
-                        }
-                        hh0Var2.f29022e = false;
-                        if (!hh0Var2.d && hh0Var2.f29021c) {
-                            hh0Var2.d = true;
-                            hh0Var2.f29020b.recycle();
-                        }
-                        z10 = true;
                     }
                 }
-                if (z10 && tg0Var.f32773e && tg0Var.h != null) {
-                    tg0Var.postInvalidateOnAnimation();
-                }
-                if (tg0Var.f32773e && (tg0Var.B || tg0Var.D)) {
-                    AndroidUtilities.runOnUIThread(new sg0(tg0Var, i10));
-                    return;
-                } else {
-                    tg0Var.f32773e = false;
-                    return;
-                }
-            case 1:
-                tg0 tg0Var2 = this.f32439b;
-                tg0Var2.D = true;
-                tg0Var2.postInvalidateOnAnimation();
-                return;
-            default:
-                tg0 tg0Var3 = this.f32439b;
-                tg0Var3.d();
-                ih0.f29367a.postRunnable(tg0Var3.f32777s);
-                return;
+            }
         }
+    }
+
+    @Override
+    public final void d(int i9) {
     }
 }

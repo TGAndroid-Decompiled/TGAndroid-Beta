@@ -4,8 +4,11 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
+import j3.r0;
 import java.util.concurrent.Callable;
-
+import org.webrtc.EglBase;
+import org.webrtc.TextureBufferImpl;
+import org.webrtc.VideoFrame;
 public class SurfaceTextureHelper {
     private static final String TAG = "SurfaceTextureHelper";
     private final EglBase eglBase;
@@ -45,8 +48,8 @@ public class SurfaceTextureHelper {
             public SurfaceTextureHelper call() {
                 try {
                     return new SurfaceTextureHelper(context, handler, z10, yuvConverter, frameRefMonitor);
-                } catch (RuntimeException e9) {
-                    Logging.e("SurfaceTextureHelper", str + " create failure", e9);
+                } catch (RuntimeException e10) {
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e10);
                     return null;
                 }
             }
@@ -55,10 +58,9 @@ public class SurfaceTextureHelper {
 
     public void lambda$dispose$6() {
         this.isQuitting = true;
-        if (this.isTextureInUse) {
-            return;
+        if (!this.isTextureInUse) {
+            release();
         }
-        release();
     }
 
     public void lambda$forceFrame$3() {
@@ -83,13 +85,13 @@ public class SurfaceTextureHelper {
         }
     }
 
-    public void lambda$setFrameRotation$4(int i10) {
-        this.frameRotation = i10;
+    public void lambda$setFrameRotation$4(int i9) {
+        this.frameRotation = i9;
     }
 
-    public void lambda$setTextureSize$2(int i10, int i11) {
-        this.textureWidth = i10;
-        this.textureHeight = i11;
+    public void lambda$setTextureSize$2(int i9, int i10) {
+        this.textureWidth = i9;
+        this.textureHeight = i10;
         tryDeliverTextureFrame();
     }
 
@@ -99,21 +101,23 @@ public class SurfaceTextureHelper {
     }
 
     private void release() {
-        if (this.handler.getLooper().getThread() != Thread.currentThread()) {
-            throw new IllegalStateException("Wrong thread.");
-        }
-        if (this.isTextureInUse || !this.isQuitting) {
+        if (this.handler.getLooper().getThread() == Thread.currentThread()) {
+            if (!this.isTextureInUse && this.isQuitting) {
+                this.yuvConverter.release();
+                GLES20.glDeleteTextures(1, new int[]{this.oesTextureId}, 0);
+                this.surfaceTexture.release();
+                this.eglBase.release();
+                this.handler.getLooper().quit();
+                TimestampAligner timestampAligner = this.timestampAligner;
+                if (timestampAligner != null) {
+                    timestampAligner.dispose();
+                    return;
+                }
+                return;
+            }
             throw new IllegalStateException("Unexpected release.");
         }
-        this.yuvConverter.release();
-        GLES20.glDeleteTextures(1, new int[]{this.oesTextureId}, 0);
-        this.surfaceTexture.release();
-        this.eglBase.release();
-        this.handler.getLooper().quit();
-        TimestampAligner timestampAligner = this.timestampAligner;
-        if (timestampAligner != null) {
-            timestampAligner.dispose();
-        }
+        throw new IllegalStateException("Wrong thread.");
     }
 
     public void returnTextureFrame() {
@@ -125,34 +129,35 @@ public class SurfaceTextureHelper {
     }
 
     private void tryDeliverTextureFrame() {
-        if (this.handler.getLooper().getThread() != Thread.currentThread()) {
-            throw new IllegalStateException("Wrong thread.");
-        }
-        if (this.isQuitting || !this.hasPendingTexture || this.isTextureInUse || this.listener == null) {
+        if (this.handler.getLooper().getThread() == Thread.currentThread()) {
+            if (!this.isQuitting && this.hasPendingTexture && !this.isTextureInUse && this.listener != null) {
+                if (this.textureWidth != 0 && this.textureHeight != 0) {
+                    this.isTextureInUse = true;
+                    this.hasPendingTexture = false;
+                    updateTexImage();
+                    float[] fArr = new float[16];
+                    this.surfaceTexture.getTransformMatrix(fArr);
+                    long timestamp = this.surfaceTexture.getTimestamp();
+                    TimestampAligner timestampAligner = this.timestampAligner;
+                    if (timestampAligner != null) {
+                        timestamp = timestampAligner.translateTimestamp(timestamp);
+                    }
+                    TextureBufferImpl textureBufferImpl = new TextureBufferImpl(this.textureWidth, this.textureHeight, VideoFrame.TextureBuffer.Type.OES, this.oesTextureId, RendererCommon.convertMatrixToAndroidGraphicsMatrix(fArr), this.handler, this.yuvConverter, this.textureRefCountMonitor);
+                    FrameRefMonitor frameRefMonitor = this.frameRefMonitor;
+                    if (frameRefMonitor != null) {
+                        frameRefMonitor.onNewBuffer(textureBufferImpl);
+                    }
+                    VideoFrame videoFrame = new VideoFrame(textureBufferImpl, this.frameRotation, timestamp);
+                    this.listener.onFrame(videoFrame);
+                    videoFrame.release();
+                    return;
+                }
+                Logging.w("SurfaceTextureHelper", "Texture size has not been set.");
+                return;
+            }
             return;
         }
-        if (this.textureWidth == 0 || this.textureHeight == 0) {
-            Logging.w("SurfaceTextureHelper", "Texture size has not been set.");
-            return;
-        }
-        this.isTextureInUse = true;
-        this.hasPendingTexture = false;
-        updateTexImage();
-        float[] fArr = new float[16];
-        this.surfaceTexture.getTransformMatrix(fArr);
-        long timestamp = this.surfaceTexture.getTimestamp();
-        TimestampAligner timestampAligner = this.timestampAligner;
-        if (timestampAligner != null) {
-            timestamp = timestampAligner.translateTimestamp(timestamp);
-        }
-        TextureBufferImpl textureBufferImpl = new TextureBufferImpl(this.textureWidth, this.textureHeight, VideoFrame.TextureBuffer.Type.OES, this.oesTextureId, RendererCommon.convertMatrixToAndroidGraphicsMatrix(fArr), this.handler, this.yuvConverter, this.textureRefCountMonitor);
-        FrameRefMonitor frameRefMonitor = this.frameRefMonitor;
-        if (frameRefMonitor != null) {
-            frameRefMonitor.onNewBuffer(textureBufferImpl);
-        }
-        VideoFrame videoFrame = new VideoFrame(textureBufferImpl, this.frameRotation, timestamp);
-        this.listener.onFrame(videoFrame);
-        videoFrame.release();
+        throw new IllegalStateException("Wrong thread.");
     }
 
     public void updateTexImage() {
@@ -185,27 +190,29 @@ public class SurfaceTextureHelper {
         return this.isTextureInUse;
     }
 
-    public void setFrameRotation(int i10) {
-        this.handler.post(new i(this, i10, 1));
+    public void setFrameRotation(int i9) {
+        this.handler.post(new i(this, i9, 1));
     }
 
-    public void setTextureSize(int i10, int i11) {
-        if (i10 <= 0) {
-            throw new IllegalArgumentException(i0.a.k(i10, "Texture width must be positive, but was "));
+    public void setTextureSize(int i9, int i10) {
+        if (i9 > 0) {
+            if (i10 > 0) {
+                this.surfaceTexture.setDefaultBufferSize(i9, i10);
+                this.handler.post(new h3.y(this, i9, i10, 12));
+                return;
+            }
+            throw new IllegalArgumentException(r0.l(i10, "Texture height must be positive, but was "));
         }
-        if (i11 <= 0) {
-            throw new IllegalArgumentException(i0.a.k(i11, "Texture height must be positive, but was "));
-        }
-        this.surfaceTexture.setDefaultBufferSize(i10, i11);
-        this.handler.post(new h3.z(this, i10, i11, 11));
+        throw new IllegalArgumentException(r0.l(i9, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
-        if (this.listener != null || this.pendingListener != null) {
-            throw new IllegalStateException("SurfaceTextureHelper listener has already been set.");
+        if (this.listener == null && this.pendingListener == null) {
+            this.pendingListener = videoSink;
+            this.handler.post(this.setListenerRunnable);
+            return;
         }
-        this.pendingListener = videoSink;
-        this.handler.post(this.setListenerRunnable);
+        throw new IllegalStateException("SurfaceTextureHelper listener has already been set.");
     }
 
     public void stopListening() {
@@ -221,6 +228,10 @@ public class SurfaceTextureHelper {
 
     private SurfaceTextureHelper(EglBase.Context context, Handler handler, boolean z10, YuvConverter yuvConverter, FrameRefMonitor frameRefMonitor) {
         this.textureRefCountMonitor = new TextureBufferImpl.RefCountMonitor() {
+            {
+                SurfaceTextureHelper.this = this;
+            }
+
             @Override
             public void onDestroy(TextureBufferImpl textureBufferImpl) {
                 SurfaceTextureHelper.this.returnTextureFrame();
@@ -244,6 +255,10 @@ public class SurfaceTextureHelper {
             }
         };
         this.setListenerRunnable = new Runnable() {
+            {
+                SurfaceTextureHelper.this = this;
+            }
+
             @Override
             public void run() {
                 Logging.d("SurfaceTextureHelper", "Setting listener to " + SurfaceTextureHelper.this.pendingListener);
@@ -256,33 +271,34 @@ public class SurfaceTextureHelper {
                 }
             }
         };
-        if (handler.getLooper().getThread() != Thread.currentThread()) {
-            throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");
+        if (handler.getLooper().getThread() == Thread.currentThread()) {
+            this.handler = handler;
+            this.timestampAligner = z10 ? new TimestampAligner() : null;
+            this.yuvConverter = yuvConverter;
+            this.frameRefMonitor = frameRefMonitor;
+            EglBase d = e.d(context, EglBase.CONFIG_PIXEL_BUFFER);
+            this.eglBase = d;
+            try {
+                d.createDummyPbufferSurface();
+                d.makeCurrent();
+                int generateTexture = GlUtil.generateTexture(36197);
+                this.oesTextureId = generateTexture;
+                SurfaceTexture surfaceTexture = new SurfaceTexture(generateTexture);
+                this.surfaceTexture = surfaceTexture;
+                setOnFrameAvailableListener(surfaceTexture, new SurfaceTexture.OnFrameAvailableListener() {
+                    @Override
+                    public final void onFrameAvailable(SurfaceTexture surfaceTexture2) {
+                        SurfaceTextureHelper.this.lambda$new$0(surfaceTexture2);
+                    }
+                }, handler);
+                return;
+            } catch (RuntimeException e10) {
+                this.eglBase.release();
+                handler.getLooper().quit();
+                throw e10;
+            }
         }
-        this.handler = handler;
-        this.timestampAligner = z10 ? new TimestampAligner() : null;
-        this.yuvConverter = yuvConverter;
-        this.frameRefMonitor = frameRefMonitor;
-        EglBase eglBaseD = e.d(context, EglBase.CONFIG_PIXEL_BUFFER);
-        this.eglBase = eglBaseD;
-        try {
-            eglBaseD.createDummyPbufferSurface();
-            eglBaseD.makeCurrent();
-            int iGenerateTexture = GlUtil.generateTexture(36197);
-            this.oesTextureId = iGenerateTexture;
-            SurfaceTexture surfaceTexture = new SurfaceTexture(iGenerateTexture);
-            this.surfaceTexture = surfaceTexture;
-            setOnFrameAvailableListener(surfaceTexture, new SurfaceTexture.OnFrameAvailableListener() {
-                @Override
-                public final void onFrameAvailable(SurfaceTexture surfaceTexture2) {
-                    this.f45320a.lambda$new$0(surfaceTexture2);
-                }
-            }, handler);
-        } catch (RuntimeException e9) {
-            this.eglBase.release();
-            handler.getLooper().quit();
-            throw e9;
-        }
+        throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");
     }
 
     public static SurfaceTextureHelper create(String str, EglBase.Context context) {

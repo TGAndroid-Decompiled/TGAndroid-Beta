@@ -1,60 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
+public final class fd extends org.telegram.ui.Components.pi0 {
+    public final int f38210r;
+    public final Object f38211s;
 
-public final class fd extends org.telegram.ui.Components.ri0 {
-
-    public final int f38072r;
-
-    public final Object f38073s;
-
-    public fd(Object obj, Context context, int i10) {
+    public fd(Object obj, Context context, int i9) {
         super(context);
-        this.f38072r = i10;
-        this.f38073s = obj;
+        this.f38210r = i9;
+        this.f38211s = obj;
     }
 
     @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f38072r) {
+    public void invalidate(int i9, int i10, int i11, int i12) {
+        switch (this.f38210r) {
             case 0:
-                super.invalidate(i10, i11, i12, i13);
-                ((id) this.f38073s).f39038f.invalidate();
-                break;
+                super.invalidate(i9, i10, i11, i12);
+                ((id) this.f38211s).f39110f.invalidate();
+                return;
             case 1:
             default:
-                super.invalidate(i10, i11, i12, i13);
-                break;
+                super.invalidate(i9, i10, i11, i12);
+                return;
             case 2:
-                super.invalidate(i10, i11, i12, i13);
-                ((u60) this.f38073s).f43136e.invalidate();
-                break;
+                super.invalidate(i9, i10, i11, i12);
+                ((r60) this.f38211s).f42280e.invalidate();
+                return;
             case 3:
-                super.invalidate(i10, i11, i12, i13);
-                ((te0) this.f38073s).h.invalidate();
-                break;
+                super.invalidate(i9, i10, i11, i12);
+                ((qe0) this.f38211s).h.invalidate();
+                return;
         }
     }
 
     @Override
     public final void invalidate() {
-        switch (this.f38072r) {
+        switch (this.f38210r) {
             case 0:
                 super.invalidate();
-                ((id) this.f38073s).f39038f.invalidate();
-                break;
+                ((id) this.f38211s).f39110f.invalidate();
+                return;
             case 1:
                 super.invalidate();
-                ((org.telegram.ui.Components.e20) this.f38073s).invalidate();
-                break;
+                ((org.telegram.ui.Components.b20) this.f38211s).invalidate();
+                return;
             case 2:
                 super.invalidate();
-                ((u60) this.f38073s).f43136e.invalidate();
-                break;
+                ((r60) this.f38211s).f42280e.invalidate();
+                return;
             default:
                 super.invalidate();
-                ((te0) this.f38073s).h.invalidate();
-                break;
+                ((qe0) this.f38211s).h.invalidate();
+                return;
         }
     }
 }

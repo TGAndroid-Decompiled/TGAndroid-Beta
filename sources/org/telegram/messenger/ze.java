@@ -1,49 +1,26 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.MessagesStorage;
 public final class ze implements Runnable {
+    public final int f22338a;
+    public final MessagesStorage.IntCallback f22339b;
+    public final int[] f22340c;
 
-    public final int f22345a = 2;
-
-    public final MessagesStorage f22346b;
-
-    public final boolean f22347c;
-    public final int d;
-
-    public final long f22348e;
-
-    public ze(MessagesStorage messagesStorage, int i10, boolean z10, long j10) {
-        this.f22346b = messagesStorage;
-        this.d = i10;
-        this.f22347c = z10;
-        this.f22348e = j10;
+    public ze(MessagesStorage.IntCallback intCallback, int[] iArr, int i9) {
+        this.f22338a = i9;
+        this.f22339b = intCallback;
+        this.f22340c = iArr;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f22345a) {
+    public final void run() {
+        switch (this.f22338a) {
             case 0:
-                this.f22346b.lambda$markMessagesAsDeleted$231(this.f22348e, this.d, this.f22347c);
-                break;
-            case 1:
-                this.f22346b.lambda$removeFromDownloadQueue$182(this.f22347c, this.d, this.f22348e);
-                break;
+                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f22339b, this.f22340c);
+                return;
             default:
-                this.f22346b.lambda$loadPendingTasks$31(this.d, this.f22347c, this.f22348e);
-                break;
+                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f22339b, this.f22340c);
+                return;
         }
-    }
-
-    public ze(MessagesStorage messagesStorage, long j10, int i10, boolean z10) {
-        this.f22346b = messagesStorage;
-        this.f22348e = j10;
-        this.d = i10;
-        this.f22347c = z10;
-    }
-
-    public ze(MessagesStorage messagesStorage, boolean z10, int i10, long j10) {
-        this.f22346b = messagesStorage;
-        this.f22347c = z10;
-        this.d = i10;
-        this.f22348e = j10;
     }
 }

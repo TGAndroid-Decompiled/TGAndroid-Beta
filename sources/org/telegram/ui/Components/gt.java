@@ -1,37 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class gt implements Utilities.Callback {
+    public final mt f28865a;
+    public final int f28866b;
+    public final int f28867c;
 
-public final class gt implements DialogInterface.OnShowListener {
-
-    public final int f28809a;
-
-    public final EditTextBoldCursor f28810b;
-
-    public gt(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f28809a = i10;
-        this.f28810b = editTextBoldCursor;
+    public gt(mt mtVar, int i9, int i10) {
+        this.f28865a = mtVar;
+        this.f28866b = i9;
+        this.f28867c = i10;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f28809a) {
-            case 0:
-                hh.o oVar = (hh.o) this.f28810b;
-                oVar.requestFocus();
-                AndroidUtilities.showKeyboard(oVar);
-                break;
-            case 1:
-                hh.o oVar2 = (hh.o) this.f28810b;
-                oVar2.requestFocus();
-                AndroidUtilities.showKeyboard(oVar2);
-                break;
-            default:
-                z3 z3Var = (z3) this.f28810b;
-                z3Var.requestFocus();
-                AndroidUtilities.showKeyboard(z3Var);
-                break;
-        }
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        mt mtVar = this.f28865a;
+        Editable text = mtVar.getText();
+        int i9 = this.f28866b;
+        text.replace(i9, this.f28867c, charSequence);
+        mtVar.setSelection(i9, charSequence.length() + i9);
     }
 }

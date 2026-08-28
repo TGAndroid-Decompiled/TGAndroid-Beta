@@ -2,7 +2,7 @@ package org.telegram.messenger.video;
 
 import java.nio.ByteBuffer;
 import java.util.List;
-
+import org.telegram.messenger.video.HevcDecoderConfigurationRecord;
 public class HevcConfigurationBox extends com.googlecode.mp4parser.a {
     public static final String TYPE = "hvcC";
     private HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord;
@@ -26,7 +26,10 @@ public class HevcConfigurationBox extends com.googlecode.mp4parser.a {
         }
         HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord = this.hevcDecoderConfigurationRecord;
         HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord2 = ((HevcConfigurationBox) obj).hevcDecoderConfigurationRecord;
-        return hevcDecoderConfigurationRecord == null ? hevcDecoderConfigurationRecord2 == null : hevcDecoderConfigurationRecord.equals(hevcDecoderConfigurationRecord2);
+        if (hevcDecoderConfigurationRecord == null ? hevcDecoderConfigurationRecord2 == null : hevcDecoderConfigurationRecord.equals(hevcDecoderConfigurationRecord2)) {
+            return true;
+        }
+        return false;
     }
 
     public List<HevcDecoderConfigurationRecord.Array> getArrays() {

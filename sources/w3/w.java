@@ -1,22 +1,15 @@
 package w3;
-
 public final class w {
-
-    public final h f49221a;
-
-    public final d5.f0 f49222b;
-
-    public final d5.y f49223c = new d5.y(new byte[64], 64);
+    public final h f48715a;
+    public final d5.e0 f48716b;
+    public final d5.x f48717c = new d5.x(new byte[64], 64);
     public boolean d;
+    public boolean f48718e;
+    public boolean f48719f;
+    public long f48720g;
 
-    public boolean f49224e;
-
-    public boolean f49225f;
-
-    public long f49226g;
-
-    public w(h hVar, d5.f0 f0Var) {
-        this.f49221a = hVar;
-        this.f49222b = f0Var;
+    public w(h hVar, d5.e0 e0Var) {
+        this.f48715a = hVar;
+        this.f48716b = e0Var;
     }
 }

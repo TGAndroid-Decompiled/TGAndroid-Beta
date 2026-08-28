@@ -1,5 +1,4 @@
 package ru.noties.jlatexmath.android;
-
 public final class R {
 
     public static final class attr {

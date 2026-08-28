@@ -1,32 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class cn0 extends js {
+    public final org.telegram.ui.dy Z;
+    public final org.telegram.ui.mx f27516a0;
 
-public final class cn0 extends pf.z {
-    public final org.telegram.ui.gy E0;
-    public final Context F0;
-    public final org.telegram.ui.px G0;
-
-    public cn0(org.telegram.ui.px pxVar, Context context, org.telegram.ui.gy gyVar, int i10, int i11, f2.l lVar, boolean z10, org.telegram.ui.gy gyVar2, Context context2) {
-        super(context, gyVar, i10, i11, lVar, z10);
-        this.G0 = pxVar;
-        this.E0 = gyVar2;
-        this.F0 = context2;
+    public cn0(org.telegram.ui.mx mxVar, wk0 wk0Var, Context context, int i9, int i10, org.telegram.ui.dy dyVar) {
+        super(wk0Var, context, i9, i10);
+        this.f27516a0 = mxVar;
+        this.Z = dyVar;
     }
 
     @Override
-    public final void l() {
-        hh.f1 f1Var;
-        int i10 = this.f46009x0;
-        super.l();
-        org.telegram.ui.px pxVar = this.G0;
-        if (!pxVar.E0 && (f1Var = pxVar.R) != null) {
-            f1Var.u0(0);
-            pxVar.E0 = true;
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        super.N(z10);
+        um0 um0Var = this.f27516a0.f29137c0;
+        if (!this.S && !this.T && (arrayList = this.L) != null && arrayList.isEmpty() && (arrayList2 = this.M) != null && arrayList2.isEmpty() && (arrayList3 = this.O) != null && arrayList3.isEmpty() && (arrayList4 = this.N) != null && arrayList4.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        if (h() != 0 || i10 == 0 || this.f46012z0 > 0) {
+        um0Var.e(z11, z10);
+        if (TextUtils.isEmpty(this.X)) {
+            um0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
+            um0Var.f28885e.setVisibility(0);
+            um0Var.f28885e.setText(LocaleController.getString(R.string.NoChannelsMessage));
             return;
         }
-        pxVar.S.e(false, false);
+        um0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        um0Var.f28885e.setVisibility(8);
     }
 }

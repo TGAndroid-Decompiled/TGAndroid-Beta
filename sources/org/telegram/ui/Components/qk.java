@@ -1,38 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
+public final class qk extends f2.d1 {
+    public final xk f31980a;
 
-public final class qk extends FrameLayout {
-
-    public final HashMap f31919a;
-
-    public final tk f31920b;
-
-    public qk(tk tkVar, Context context) {
-        super(context);
-        this.f31920b = tkVar;
-        this.f31919a = new HashMap();
+    public qk(xk xkVar) {
+        this.f31980a = xkVar;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f31920b.D;
-        if (iMap == null) {
-            return;
+    @Override
+    public final void a(RecyclerView recyclerView, int i9) {
+        boolean z10;
+        ik0 ik0Var;
+        xk xkVar = this.f31980a;
+        gh.f1 f1Var = xkVar.L;
+        ki kiVar = xkVar.f27493b;
+        if (i9 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        IMapsProvider.IProjection projection = iMap.getProjection();
-        for (Map.Entry entry : this.f31919a.entrySet()) {
-            IMapsProvider.IMarker iMarker = (IMapsProvider.IMarker) entry.getKey();
-            View view = (View) entry.getValue();
-            Point screenLocation = projection.toScreenLocation(iMarker.getPosition());
-            view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-            view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+        xkVar.H = z10;
+        if (!z10 && xkVar.F != null) {
+            xkVar.F = null;
         }
+        if (i9 == 0) {
+            int dp = AndroidUtilities.dp(13.0f);
+            int backgroundPaddingTop = kiVar.getBackgroundPaddingTop();
+            if (((kiVar.X1[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (ik0Var = (ik0) f1Var.K(0)) != null) {
+                View view = ik0Var.f5501a;
+                if (view.getTop() > xkVar.f34713w0 - xkVar.f34711v0) {
+                    f1Var.v0(0, view.getTop() - (xkVar.f34713w0 - xkVar.f34711v0), null);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i9, int i10) {
+        xk xkVar = this.f31980a;
+        xkVar.d0();
+        if (xkVar.F != null) {
+            xkVar.G += i10;
+        }
+        xkVar.f27493b.X1(xkVar, i10);
     }
 }

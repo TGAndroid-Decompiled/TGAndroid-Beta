@@ -1,33 +1,42 @@
 package gh;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.wq0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.qn;
+public final class t2 implements Runnable {
+    public final int f8909a;
+    public final k5 f8910b;
+    public final qn f8911c;
+    public final long d;
 
-public final class t2 implements ud.b, Utilities.Callback2Return {
-
-    public final wq0 f7532a;
-
-    public t2(wq0 wq0Var) {
-        this.f7532a = wq0Var;
+    public t2(k5 k5Var, qn qnVar, long j10, int i9) {
+        this.f8909a = i9;
+        this.f8910b = k5Var;
+        this.f8911c = qnVar;
+        this.d = j10;
     }
 
     @Override
-    public void o(int i10, float f10, float f11, ud.c cVar) {
-        this.f7532a.l();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        wq0 wq0Var = this.f7532a;
-        wq0Var.i();
-        if (((Integer) obj).intValue() != -1) {
-            return Boolean.FALSE;
+    public final void run() {
+        int i9 = this.f8909a;
+        long j10 = this.d;
+        qn qnVar = this.f8911c;
+        k5 k5Var = this.f8910b;
+        switch (i9) {
+            case 0:
+                gc M = oc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, k5Var.C1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M.f28747t = true;
+                M.j();
+                return;
+            default:
+                gc M2 = oc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, k5Var.C1(), DialogObject.getShortName(j10))), R.raw.forward);
+                M2.f28747t = true;
+                M2.j();
+                return;
         }
-        wq0Var.h(null, new n2(wq0Var, 0));
-        return Boolean.TRUE;
-    }
-
-    @Override
-    public void A(float f10, int i10) {
     }
 }

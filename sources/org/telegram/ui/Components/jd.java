@@ -1,32 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
+public final class jd implements View.OnClickListener {
+    public final int f29717a;
+    public final ChatActivityEnterView f29718b;
 
-public final class jd implements View.OnLongClickListener {
-
-    public final int f29675a;
-
-    public final ChatActivityEnterView f29676b;
-
-    public jd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29675a = i10;
-        this.f29676b = chatActivityEnterView;
+    public jd(ChatActivityEnterView chatActivityEnterView, int i9) {
+        this.f29717a = i9;
+        this.f29718b = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        int i10 = this.f29675a;
-        ChatActivityEnterView chatActivityEnterView = this.f29676b;
-        switch (i10) {
-            case 0:
-                int i11 = ChatActivityEnterView.f26070i5;
-                return chatActivityEnterView.F0(view);
-            default:
-                bf bfVar = chatActivityEnterView.A0;
-                if (bfVar == null || bfVar.length() <= 0) {
-                    return false;
-                }
-                return chatActivityEnterView.F0(view);
-        }
+    public final void onClick(android.view.View r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jd.onClick(android.view.View):void");
     }
 }

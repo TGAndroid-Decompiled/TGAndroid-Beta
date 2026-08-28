@@ -1,16 +1,16 @@
 package u6;
-
 public abstract class b {
-
-    public static final v5.c f48425a;
-
-    public static final v5.c[] f48426b;
+    public static final u5.c f48131a;
+    public static final u5.c[] f48132b;
+    public static final u5.c f48133c;
+    public static final u5.c[] d;
 
     static {
-        v5.c cVar = new v5.c("sms_code_autofill", 2L);
-        v5.c cVar2 = new v5.c("sms_code_browser", 2L);
-        v5.c cVar3 = new v5.c("sms_retrieve", 1L);
-        f48425a = cVar3;
-        f48426b = new v5.c[]{cVar, cVar2, cVar3, new v5.c("user_consent", 3L)};
+        u5.c cVar = new u5.c("CLIENT_TELEMETRY", 1L);
+        f48131a = cVar;
+        f48132b = new u5.c[]{cVar};
+        u5.c cVar2 = new u5.c("moduleinstall", 7L);
+        f48133c = cVar2;
+        d = new u5.c[]{cVar2};
     }
 }

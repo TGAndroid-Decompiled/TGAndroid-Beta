@@ -5,52 +5,50 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-
 public final class ep0 implements TextWatcher {
+    public final rp0 f28102a;
 
-    public final sp0 f28115a;
-
-    public ep0(sp0 sp0Var) {
-        this.f28115a = sp0Var;
+    public ep0(rp0 rp0Var) {
+        this.f28102a = rp0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        sp0 sp0Var = this.f28115a;
-        jp0 jp0Var = sp0Var.G;
-        iw0 iw0Var = sp0Var.M;
-        p10 p10Var = sp0Var.f32545u0;
-        if (!TextUtils.isEmpty(p10Var.f31468r.getText())) {
-            sp0Var.K0(false);
+        rp0 rp0Var = this.f28102a;
+        jp0 jp0Var = rp0Var.G;
+        gw0 gw0Var = rp0Var.M;
+        m10 m10Var = rp0Var.f32267u0;
+        if (!TextUtils.isEmpty(m10Var.f30664r.getText())) {
+            rp0Var.K0(false);
         }
-        if (sp0Var.f32548w0) {
-            String string = p10Var.f31468r.getText().toString();
-            if (string.length() != 0) {
-                if (iw0Var != null) {
-                    iw0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        if (rp0Var.f32270w0) {
+            String obj = m10Var.f30664r.getText().toString();
+            if (obj.length() != 0) {
+                if (gw0Var != null) {
+                    gw0Var.d.setText(LocaleController.getString(R.string.NoResult));
                 }
-            } else if (sp0Var.B.getAdapter() != jp0Var) {
-                int iF0 = sp0.F0(sp0Var);
-                iw0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                iw0Var.e(false, true);
-                sp0Var.K0(false);
+            } else if (rp0Var.B.getAdapter() != jp0Var) {
+                int E0 = rp0.E0(rp0Var);
+                gw0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                gw0Var.e(false, true);
+                rp0Var.K0(false);
                 jp0Var.l();
-                if (iF0 > 0) {
-                    sp0Var.D.h1(0, -iF0);
+                if (E0 > 0) {
+                    rp0Var.D.h1(0, -E0);
                 }
             }
-            op0 op0Var = sp0Var.I;
-            if (op0Var != null) {
-                op0Var.E(string);
+            np0 np0Var = rp0Var.I;
+            if (np0Var != null) {
+                np0Var.E(obj);
             }
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
     }
 }

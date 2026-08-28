@@ -1,242 +1,209 @@
 package t9;
 
-import android.util.Base64;
-import android.util.JsonWriter;
-import java.io.IOException;
-import java.io.Writer;
+import f7.l;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Map;
-import r9.g;
+public final class e implements q9.e {
+    public static final Charset f47737f = Charset.forName("UTF-8");
+    public static final q9.c f47738g = new q9.c("key", ta.b.g(ta.b.f(d.class, new a(1))));
+    public static final q9.c h = new q9.c("value", ta.b.g(ta.b.f(d.class, new a(2))));
+    public static final s9.a f47739i = new s9.a(1);
+    public OutputStream f47740a;
+    public final HashMap f47741b;
+    public final HashMap f47742c;
+    public final q9.d d;
+    public final l f47743e = new l(this, 4);
 
-public final class e implements r9.e, g {
+    public e(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, q9.d dVar) {
+        this.f47740a = byteArrayOutputStream;
+        this.f47741b = hashMap;
+        this.f47742c = hashMap2;
+        this.d = dVar;
+    }
 
-    public final boolean f48146a = true;
-
-    public final JsonWriter f48147b;
-
-    public final Map f48148c;
-    public final Map d;
-
-    public final r9.d f48149e;
-
-    public final boolean f48150f;
-
-    public e(Writer writer, Map map, Map map2, r9.d dVar, boolean z10) {
-        this.f48147b = new JsonWriter(writer);
-        this.f48148c = map;
-        this.d = map2;
-        this.f48149e = dVar;
-        this.f48150f = z10;
+    public static int j(q9.c cVar) {
+        d dVar = (d) cVar.b(d.class);
+        if (dVar != null) {
+            return ((a) dVar).f47734a;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
     @Override
-    public final r9.e a(r9.c cVar, Object obj) throws IOException {
-        i(obj, cVar.f46877a);
+    public final q9.e a(q9.c cVar, boolean z10) {
+        f(cVar, z10 ? 1 : 0, true);
         return this;
     }
 
     @Override
-    public final g b(String str) throws IOException {
-        j();
-        this.f48147b.value(str);
+    public final q9.e b(q9.c cVar, double d) {
+        e(cVar, d, true);
         return this;
     }
 
     @Override
-    public final r9.e c(r9.c cVar, long j10) throws IOException {
-        String str = cVar.f46877a;
-        j();
-        JsonWriter jsonWriter = this.f48147b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(j10);
+    public final q9.e c(q9.c cVar, int i9) {
+        f(cVar, i9, true);
         return this;
     }
 
     @Override
-    public final r9.e d(r9.c cVar, int i10) throws IOException {
-        String str = cVar.f46877a;
-        j();
-        JsonWriter jsonWriter = this.f48147b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(i10);
-        return this;
-    }
-
-    @Override
-    public final r9.e e(r9.c cVar, double d) throws IOException {
-        String str = cVar.f46877a;
-        j();
-        JsonWriter jsonWriter = this.f48147b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(d);
-        return this;
-    }
-
-    @Override
-    public final g f(boolean z10) throws IOException {
-        j();
-        this.f48147b.value(z10);
-        return this;
-    }
-
-    @Override
-    public final r9.e g(r9.c cVar, boolean z10) throws IOException {
-        String str = cVar.f46877a;
-        j();
-        JsonWriter jsonWriter = this.f48147b;
-        jsonWriter.name(str);
-        j();
-        jsonWriter.value(z10);
-        return this;
-    }
-
-    public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f48147b;
-        if (obj == null) {
-            jsonWriter.nullValue();
+    public final q9.e d(q9.c cVar, long j10) {
+        if (j10 == 0) {
             return this;
         }
-        if (obj instanceof Number) {
-            jsonWriter.value((Number) obj);
+        d dVar = (d) cVar.b(d.class);
+        if (dVar != null) {
+            k(((a) dVar).f47734a << 3);
+            l(j10);
             return this;
         }
-        int i10 = 0;
-        if (!obj.getClass().isArray()) {
-            if (obj instanceof Collection) {
-                jsonWriter.beginArray();
-                Iterator it = ((Collection) obj).iterator();
-                while (it.hasNext()) {
-                    h(it.next());
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    public final void e(q9.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
+            return;
+        }
+        k((j(cVar) << 3) | 1);
+        this.f47740a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    public final void f(q9.c cVar, int i9, boolean z10) {
+        if (z10 && i9 == 0) {
+            return;
+        }
+        d dVar = (d) cVar.b(d.class);
+        if (dVar != null) {
+            k(((a) dVar).f47734a << 3);
+            k(i9);
+            return;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    @Override
+    public final q9.e g(q9.c cVar, Object obj) {
+        h(cVar, obj, true);
+        return this;
+    }
+
+    public final void h(q9.c cVar, Object obj, boolean z10) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z10 || charSequence.length() != 0) {
+                    k((j(cVar) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(f47737f);
+                    k(bytes.length);
+                    this.f47740a.write(bytes);
                 }
-                jsonWriter.endArray();
-                return this;
-            }
-            if (obj instanceof Map) {
-                jsonWriter.beginObject();
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    h(cVar, obj2, false);
+                }
+            } else if (obj instanceof Map) {
                 for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    Object key = entry.getKey();
-                    try {
-                        i(entry.getValue(), (String) key);
-                    } catch (ClassCastException e9) {
-                        throw new r9.b(String.format("Only String keys are currently supported in maps, got %s of type %s instead.", key, key.getClass()), e9);
-                    }
+                    i(f47739i, cVar, entry, false);
                 }
-                jsonWriter.endObject();
-                return this;
-            }
-            r9.d dVar = (r9.d) this.f48148c.get(obj.getClass());
-            if (dVar != null) {
-                jsonWriter.beginObject();
-                dVar.a(obj, this);
-                jsonWriter.endObject();
-                return this;
-            }
-            r9.f fVar = (r9.f) this.d.get(obj.getClass());
-            if (fVar != null) {
-                fVar.a(obj, this);
-                return this;
-            }
-            if (!(obj instanceof Enum)) {
-                jsonWriter.beginObject();
-                this.f48149e.a(obj, this);
-                jsonWriter.endObject();
-                return this;
-            }
-            if (obj instanceof f) {
-                int iA = ((f) obj).a();
-                j();
-                jsonWriter.value(iA);
-                return this;
-            }
-            String strName = ((Enum) obj).name();
-            j();
-            jsonWriter.value(strName);
-            return this;
-        }
-        if (obj instanceof byte[]) {
-            j();
-            jsonWriter.value(Base64.encodeToString((byte[]) obj, 2));
-            return this;
-        }
-        jsonWriter.beginArray();
-        if (obj instanceof int[]) {
-            int[] iArr = (int[]) obj;
-            int length = iArr.length;
-            while (i10 < length) {
-                jsonWriter.value(iArr[i10]);
-                i10++;
-            }
-        } else if (obj instanceof long[]) {
-            long[] jArr = (long[]) obj;
-            int length2 = jArr.length;
-            while (i10 < length2) {
-                long j10 = jArr[i10];
-                j();
-                jsonWriter.value(j10);
-                i10++;
-            }
-        } else if (obj instanceof double[]) {
-            double[] dArr = (double[]) obj;
-            int length3 = dArr.length;
-            while (i10 < length3) {
-                jsonWriter.value(dArr[i10]);
-                i10++;
-            }
-        } else if (obj instanceof boolean[]) {
-            boolean[] zArr = (boolean[]) obj;
-            int length4 = zArr.length;
-            while (i10 < length4) {
-                jsonWriter.value(zArr[i10]);
-                i10++;
-            }
-        } else if (obj instanceof Number[]) {
-            Number[] numberArr = (Number[]) obj;
-            int length5 = numberArr.length;
-            while (i10 < length5) {
-                h(numberArr[i10]);
-                i10++;
-            }
-        } else {
-            Object[] objArr = (Object[]) obj;
-            int length6 = objArr.length;
-            while (i10 < length6) {
-                h(objArr[i10]);
-                i10++;
+            } else if (obj instanceof Double) {
+                e(cVar, ((Double) obj).doubleValue(), z10);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z10 || floatValue != 0.0f) {
+                    k((j(cVar) << 3) | 5);
+                    this.f47740a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                long longValue = ((Number) obj).longValue();
+                if (!z10 || longValue != 0) {
+                    d dVar = (d) cVar.b(d.class);
+                    if (dVar != null) {
+                        k(((a) dVar).f47734a << 3);
+                        l(longValue);
+                        return;
+                    }
+                    throw new RuntimeException("Field has no @Protobuf config");
+                }
+            } else if (obj instanceof Boolean) {
+                f(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z10 && bArr.length == 0) {
+                    return;
+                }
+                k((j(cVar) << 3) | 2);
+                k(bArr.length);
+                this.f47740a.write(bArr);
+            } else {
+                q9.d dVar2 = (q9.d) this.f47741b.get(obj.getClass());
+                if (dVar2 != null) {
+                    i(dVar2, cVar, obj, z10);
+                    return;
+                }
+                q9.f fVar = (q9.f) this.f47742c.get(obj.getClass());
+                if (fVar != null) {
+                    l lVar = this.f47743e;
+                    lVar.f5735b = false;
+                    lVar.d = cVar;
+                    lVar.f5736c = z10;
+                    fVar.a(obj, lVar);
+                } else if (obj instanceof b) {
+                    f(cVar, ((b) obj).a(), true);
+                } else if (obj instanceof Enum) {
+                    f(cVar, ((Enum) obj).ordinal(), true);
+                } else {
+                    i(this.d, cVar, obj, z10);
+                }
             }
         }
-        jsonWriter.endArray();
-        return this;
     }
 
-    public final e i(Object obj, String str) throws IOException {
-        boolean z10 = this.f48150f;
-        JsonWriter jsonWriter = this.f48147b;
-        if (z10) {
-            if (obj == null) {
-                return this;
+    public final void i(q9.d dVar, q9.c cVar, Object obj, boolean z10) {
+        f7.f fVar = new f7.f(4);
+        fVar.f5655b = 0L;
+        try {
+            OutputStream outputStream = this.f47740a;
+            this.f47740a = fVar;
+            dVar.a(obj, this);
+            this.f47740a = outputStream;
+            long j10 = fVar.f5655b;
+            fVar.close();
+            if (z10 && j10 == 0) {
+                return;
             }
-            j();
-            jsonWriter.name(str);
-            h(obj);
-            return this;
+            k((j(cVar) << 3) | 2);
+            l(j10);
+            dVar.a(obj, this);
+        } catch (Throwable th) {
+            try {
+                fVar.close();
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+            }
+            throw th;
         }
-        j();
-        jsonWriter.name(str);
-        if (obj == null) {
-            jsonWriter.nullValue();
-            return this;
-        }
-        h(obj);
-        return this;
     }
 
-    public final void j() {
-        if (!this.f48146a) {
-            throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");
+    public final void k(int i9) {
+        while ((i9 & (-128)) != 0) {
+            this.f47740a.write((i9 & 127) | 128);
+            i9 >>>= 7;
         }
+        this.f47740a.write(i9 & 127);
+    }
+
+    public final void l(long j10) {
+        while (((-128) & j10) != 0) {
+            this.f47740a.write((((int) j10) & 127) | 128);
+            j10 >>>= 7;
+        }
+        this.f47740a.write(((int) j10) & 127);
     }
 }

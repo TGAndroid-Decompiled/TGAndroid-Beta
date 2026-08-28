@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.ViewTreeObserver;
 import android.widget.ListAdapter;
-
 public final class n0 extends e2 implements p0 {
     public CharSequence O;
     public k0 P;
@@ -35,25 +34,25 @@ public final class n0 extends e2 implements p0 {
     }
 
     @Override
-    public final void l(int i10) {
-        this.R = i10;
+    public final void l(int i9) {
+        this.R = i9;
     }
 
     @Override
-    public final void m(int i10, int i11) {
+    public final void m(int i9, int i10) {
         ViewTreeObserver viewTreeObserver;
         y yVar = this.K;
-        boolean zIsShowing = yVar.isShowing();
+        boolean isShowing = yVar.isShowing();
         r();
         yVar.setInputMethodMode(2);
         g();
-        s1 s1Var = this.f17307c;
+        s1 s1Var = this.f16932c;
         s1Var.setChoiceMode(1);
-        h0.d(s1Var, i10);
-        h0.c(s1Var, i11);
+        h0.d(s1Var, i9);
+        h0.c(s1Var, i10);
         q0 q0Var = this.S;
         int selectedItemPosition = q0Var.getSelectedItemPosition();
-        s1 s1Var2 = this.f17307c;
+        s1 s1Var2 = this.f16932c;
         if (yVar.isShowing() && s1Var2 != null) {
             s1Var2.setListSelectionHidden(false);
             s1Var2.setSelection(selectedItemPosition);
@@ -61,12 +60,11 @@ public final class n0 extends e2 implements p0 {
                 s1Var2.setItemChecked(selectedItemPosition, true);
             }
         }
-        if (zIsShowing || (viewTreeObserver = q0Var.getViewTreeObserver()) == null) {
-            return;
+        if (!isShowing && (viewTreeObserver = q0Var.getViewTreeObserver()) != null) {
+            androidx.mediarouter.app.k kVar = new androidx.mediarouter.app.k(this, 4);
+            viewTreeObserver.addOnGlobalLayoutListener(kVar);
+            yVar.setOnDismissListener(new m0(this, kVar));
         }
-        l.d dVar = new l.d(this, 3);
-        viewTreeObserver.addOnGlobalLayoutListener(dVar);
-        yVar.setOnDismissListener(new m0(this, dVar));
     }
 
     @Override
@@ -76,16 +74,21 @@ public final class n0 extends e2 implements p0 {
     }
 
     public final void r() {
+        int i9;
         int i10;
         q0 q0Var = this.S;
-        Rect rect = q0Var.f17434n;
+        Rect rect = q0Var.f17059n;
         y yVar = this.K;
         Drawable background = yVar.getBackground();
         if (background != null) {
             background.getPadding(rect);
-            i10 = w3.a(q0Var) ? rect.right : -rect.left;
+            if (w3.a(q0Var)) {
+                i9 = rect.right;
+            } else {
+                i9 = -rect.left;
+            }
         } else {
-            i10 = 0;
+            i9 = 0;
             rect.right = 0;
             rect.left = 0;
         }
@@ -94,17 +97,22 @@ public final class n0 extends e2 implements p0 {
         int width = q0Var.getWidth();
         int i11 = q0Var.h;
         if (i11 == -2) {
-            int iA = q0Var.a(this.P, yVar.getBackground());
+            int a2 = q0Var.a(this.P, yVar.getBackground());
             int i12 = (q0Var.getContext().getResources().getDisplayMetrics().widthPixels - rect.left) - rect.right;
-            if (iA > i12) {
-                iA = i12;
+            if (a2 > i12) {
+                a2 = i12;
             }
-            q(Math.max(iA, (width - paddingLeft) - paddingRight));
+            q(Math.max(a2, (width - paddingLeft) - paddingRight));
         } else if (i11 == -1) {
             q((width - paddingLeft) - paddingRight);
         } else {
             q(i11);
         }
-        this.f17309f = w3.a(q0Var) ? (((width - paddingRight) - this.f17308e) - this.R) + i10 : paddingLeft + this.R + i10;
+        if (w3.a(q0Var)) {
+            i10 = (((width - paddingRight) - this.f16933e) - this.R) + i9;
+        } else {
+            i10 = paddingLeft + this.R + i9;
+        }
+        this.f16934f = i10;
     }
 }

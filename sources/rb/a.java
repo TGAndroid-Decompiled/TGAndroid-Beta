@@ -1,13 +1,10 @@
 package rb;
+public final class a {
+    public final byte[] f47108a;
+    public final byte[] f47109b;
 
-import lb.j;
-
-public final class a extends j {
-
-    public final float f46883c;
-
-    public a(float f10, float f11, float f12) {
-        super(f10, f11);
-        this.f46883c = f12;
+    public a(byte[] bArr, byte[] bArr2) {
+        this.f47108a = bArr;
+        this.f47109b = bArr2;
     }
 }

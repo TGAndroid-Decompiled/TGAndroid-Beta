@@ -1,40 +1,37 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class o40 extends org.telegram.ui.ActionBar.o1 {
+    public final o50 f40878o;
 
-public final class o40 extends org.telegram.ui.ActionBar.k {
-
-    public final org.telegram.ui.Components.fp f40985p1;
-
-    public final s50 f40986q1;
-
-    public o40(s50 s50Var, LaunchActivity launchActivity, org.telegram.ui.Components.fp fpVar) {
-        super(launchActivity, null);
-        this.f40986q1 = s50Var;
-        this.f40985p1 = fpVar;
+    public o40(o50 o50Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f40878o = o50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            int alpha = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            org.telegram.ui.Components.fp fpVar = this.f40985p1;
-            fpVar.f28426f = alpha;
-            fpVar.draw(canvas);
-            canvas.restore();
-            invalidate();
+    public final void dismiss() {
+        d(true);
+        o50 o50Var = this.f40878o;
+        if (o50Var.f40887b3 != this) {
+            return;
         }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            ((org.telegram.ui.ActionBar.e3) this.f40986q1).containerView.invalidate();
+        o50Var.f40887b3 = null;
+        AnimatorSet animatorSet = o50Var.a3;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            o50Var.a3 = null;
         }
+        o50Var.U.X = true;
+        o50Var.a3 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(ObjectAnimator.ofInt(o50Var.S2, org.telegram.ui.Components.m6.f30701b, 0));
+        o50Var.a3.playTogether(arrayList);
+        o50Var.a3.setDuration(220L);
+        o50Var.a3.addListener(new org.telegram.ui.Components.y11(this, 27));
+        o50Var.a3.start();
     }
 }

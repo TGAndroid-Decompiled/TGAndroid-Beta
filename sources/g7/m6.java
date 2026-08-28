@@ -1,18 +1,14 @@
 package g7;
-
-public final class m6 {
-
-    public final f8 f6559a;
-
-    public final l6 f6560b;
-
-    public final j6 f6561c;
-    public final h7 d;
-
-    public m6(com.google.firebase.messaging.t tVar) {
-        this.f6559a = (f8) tVar.f4619b;
-        this.f6560b = (l6) tVar.f4620c;
-        this.f6561c = (j6) tVar.d;
-        this.d = (h7) tVar.f4621e;
+public abstract class m6 {
+    public static void a(int i9, int i10, int i11) {
+        if (i9 >= 0 && i10 <= i11) {
+            if (i9 <= i10) {
+                return;
+            }
+            throw new IllegalArgumentException(aa.d.k(i9, i10, "fromIndex: ", " > toIndex: "));
+        }
+        StringBuilder o6 = e2.c.o("fromIndex: ", i9, ", toIndex: ", i10, ", size: ");
+        o6.append(i11);
+        throw new IndexOutOfBoundsException(o6.toString());
     }
 }

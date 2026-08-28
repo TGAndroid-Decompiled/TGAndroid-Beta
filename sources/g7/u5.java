@@ -1,46 +1,17 @@
 package g7;
+public final class u5 implements q9.d {
+    public static final u5 f7381a = new Object();
 
-public abstract class u5 {
-    public static void a(int i10, int i11) {
-        String strA;
-        if (i10 < 0 || i10 >= i11) {
-            if (i10 < 0) {
-                strA = v5.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-            } else {
-                if (i11 < 0) {
-                    throw new IllegalArgumentException(i0.a.k(i11, "negative size: "));
-                }
-                strA = v5.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-            }
-            throw new IndexOutOfBoundsException(strA);
-        }
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))));
     }
 
-    public static void b(int i10, int i11) {
-        if (i10 < 0 || i10 > i11) {
-            throw new IndexOutOfBoundsException(d(i10, i11, "index"));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-    }
-
-    public static void c(int i10, int i11, int i12) {
-        String strD;
-        if (i10 < 0 || i11 < i10 || i11 > i12) {
-            if (i10 < 0 || i10 > i12) {
-                strD = d(i10, i12, "start index");
-            } else {
-                strD = (i11 < 0 || i11 > i12) ? d(i11, i12, "end index") : v5.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            }
-            throw new IndexOutOfBoundsException(strD);
-        }
-    }
-
-    public static String d(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return v5.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return v5.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(i0.a.k(i11, "negative size: "));
+        throw new ClassCastException();
     }
 }

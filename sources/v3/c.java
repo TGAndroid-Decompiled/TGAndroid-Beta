@@ -1,78 +1,75 @@
 package v3;
 
 import com.google.android.exoplayer2.extractor.FlacStreamMetadata;
-import d5.z;
+import d5.y;
+import g7.r;
+import g7.s;
 import h3.t0;
-import h7.r;
-import h7.s;
-import j4.u0;
+import j4.v0;
 import java.util.Arrays;
 import m3.p;
-import org.telegram.ui.i6;
-
+import org.telegram.ui.Cells.e3;
 public final class c extends i {
-
-    public FlacStreamMetadata f48749n;
-
-    public u0 f48750o;
+    public FlacStreamMetadata f48322n;
+    public v0 f48323o;
 
     @Override
-    public final long b(z zVar) {
-        byte[] bArr = zVar.f4858a;
-        if (bArr[0] != -1) {
-            return -1L;
+    public final long b(y yVar) {
+        byte[] bArr = yVar.f4410a;
+        if (bArr[0] == -1) {
+            int i9 = (bArr[2] & 255) >> 4;
+            if (i9 == 6 || i9 == 7) {
+                yVar.D(4);
+                yVar.x();
+            }
+            int b10 = r.b(i9, yVar);
+            yVar.C(0);
+            return b10;
         }
-        int i10 = (bArr[2] & 255) >> 4;
-        if (i10 == 6 || i10 == 7) {
-            zVar.D(4);
-            zVar.x();
-        }
-        int iB = r.b(i10, zVar);
-        zVar.C(0);
-        return iB;
+        return -1L;
     }
 
     @Override
-    public final boolean c(z zVar, long j10, i6 i6Var) {
-        byte[] bArr = zVar.f4858a;
-        FlacStreamMetadata flacStreamMetadata = this.f48749n;
+    public final boolean c(y yVar, long j10, e3 e3Var) {
+        byte[] bArr = yVar.f4410a;
+        FlacStreamMetadata flacStreamMetadata = this.f48322n;
         if (flacStreamMetadata == null) {
             FlacStreamMetadata flacStreamMetadata2 = new FlacStreamMetadata(bArr, 17);
-            this.f48749n = flacStreamMetadata2;
-            i6Var.f38984b = flacStreamMetadata2.getFormat(Arrays.copyOfRange(bArr, 9, zVar.f4860c), null);
+            this.f48322n = flacStreamMetadata2;
+            e3Var.f24286b = flacStreamMetadata2.getFormat(Arrays.copyOfRange(bArr, 9, yVar.f4412c), null);
             return true;
         }
         byte b10 = bArr[0];
-        if ((b10 & 127) != 3) {
-            if (b10 != -1) {
-                return true;
+        if ((b10 & Byte.MAX_VALUE) == 3) {
+            p b11 = s.b(yVar);
+            FlacStreamMetadata copyWithSeekTable = flacStreamMetadata.copyWithSeekTable(b11);
+            this.f48322n = copyWithSeekTable;
+            ?? obj = new Object();
+            obj.f13590c = copyWithSeekTable;
+            obj.d = b11;
+            obj.f13588a = -1L;
+            obj.f13589b = -1L;
+            this.f48323o = obj;
+            return true;
+        } else if (b10 != -1) {
+            return true;
+        } else {
+            v0 v0Var = this.f48323o;
+            if (v0Var != null) {
+                v0Var.f13588a = j10;
+                e3Var.f24287c = v0Var;
             }
-            u0 u0Var = this.f48750o;
-            if (u0Var != null) {
-                u0Var.f12685a = j10;
-                i6Var.f38985c = u0Var;
-            }
-            ((t0) i6Var.f38984b).getClass();
+            ((t0) e3Var.f24286b).getClass();
             return false;
         }
-        p pVarB = s.b(zVar);
-        FlacStreamMetadata flacStreamMetadataCopyWithSeekTable = flacStreamMetadata.copyWithSeekTable(pVarB);
-        this.f48749n = flacStreamMetadataCopyWithSeekTable;
-        u0 u0Var2 = new u0();
-        u0Var2.f12687c = flacStreamMetadataCopyWithSeekTable;
-        u0Var2.d = pVarB;
-        u0Var2.f12685a = -1L;
-        u0Var2.f12686b = -1L;
-        this.f48750o = u0Var2;
-        return true;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f48749n = null;
-            this.f48750o = null;
+            this.f48322n = null;
+            this.f48323o = null;
         }
     }
 }

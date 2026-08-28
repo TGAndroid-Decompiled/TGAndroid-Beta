@@ -1,34 +1,41 @@
 package m3;
 
-import d5.g0;
-
+import d5.f0;
 public final class r implements t {
-
-    public final long[] f17629a;
-
-    public final long[] f17630b;
-
-    public final long f17631c;
+    public final long[] f17253a;
+    public final long[] f17254b;
+    public final long f17255c;
     public final boolean d;
 
     public r(long j10, long[] jArr, long[] jArr2) {
-        d5.a.f(jArr.length == jArr2.length);
-        int length = jArr2.length;
-        boolean z10 = length > 0;
-        this.d = z10;
-        if (!z10 || jArr2[0] <= 0) {
-            this.f17629a = jArr;
-            this.f17630b = jArr2;
+        boolean z10;
+        boolean z11;
+        if (jArr.length == jArr2.length) {
+            z10 = true;
         } else {
-            int i10 = length + 1;
-            long[] jArr3 = new long[i10];
-            this.f17629a = jArr3;
-            long[] jArr4 = new long[i10];
-            this.f17630b = jArr4;
+            z10 = false;
+        }
+        d5.a.f(z10);
+        int length = jArr2.length;
+        if (length > 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.d = z11;
+        if (z11 && jArr2[0] > 0) {
+            int i9 = length + 1;
+            long[] jArr3 = new long[i9];
+            this.f17253a = jArr3;
+            long[] jArr4 = new long[i9];
+            this.f17254b = jArr4;
             System.arraycopy(jArr, 0, jArr3, 1, length);
             System.arraycopy(jArr2, 0, jArr4, 1, length);
+        } else {
+            this.f17253a = jArr;
+            this.f17254b = jArr2;
         }
-        this.f17631c = j10;
+        this.f17255c = j10;
     }
 
     @Override
@@ -39,23 +46,23 @@ public final class r implements t {
     @Override
     public final s h(long j10) {
         if (!this.d) {
-            u uVar = u.f17634c;
+            u uVar = u.f17258c;
             return new s(uVar, uVar);
         }
-        long[] jArr = this.f17630b;
-        int iE = g0.e(jArr, j10, true);
-        long j11 = jArr[iE];
-        long[] jArr2 = this.f17629a;
-        u uVar2 = new u(j11, jArr2[iE]);
-        if (j11 == j10 || iE == jArr.length - 1) {
-            return new s(uVar2, uVar2);
+        long[] jArr = this.f17254b;
+        int e10 = f0.e(jArr, j10, true);
+        long j11 = jArr[e10];
+        long[] jArr2 = this.f17253a;
+        u uVar2 = new u(j11, jArr2[e10]);
+        if (j11 != j10 && e10 != jArr.length - 1) {
+            int i9 = e10 + 1;
+            return new s(uVar2, new u(jArr[i9], jArr2[i9]));
         }
-        int i10 = iE + 1;
-        return new s(uVar2, new u(jArr[i10], jArr2[i10]));
+        return new s(uVar2, uVar2);
     }
 
     @Override
     public final long i() {
-        return this.f17631c;
+        return this.f17255c;
     }
 }

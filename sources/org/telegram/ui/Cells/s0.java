@@ -1,48 +1,46 @@
 package org.telegram.ui.Cells;
 
 import java.util.ArrayList;
-
 public final class s0 implements Runnable {
+    public final int f25138a;
+    public final w0 f25139b;
 
-    public final int f25251a;
-
-    public final v0 f25252b;
-
-    public s0(v0 v0Var, int i10) {
-        this.f25251a = i10;
-        this.f25252b = v0Var;
+    public s0(w0 w0Var, int i9) {
+        this.f25138a = i9;
+        this.f25139b = w0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25251a) {
+        switch (this.f25138a) {
             case 0:
-                this.f25252b.K();
-                break;
+                this.f25139b.J();
+                return;
             case 1:
-                v0 v0Var = this.f25252b;
-                t0 t0Var = v0Var.T0;
+                w0 w0Var = this.f25139b;
+                t0 t0Var = w0Var.T0;
                 if (t0Var != null) {
-                    t0Var.q1(v0Var);
+                    t0Var.p1(w0Var);
+                    return;
                 }
-                break;
+                return;
             case 2:
-                v0 v0Var2 = this.f25252b;
-                v0Var2.post(new s0(v0Var2, 4));
-                break;
+                w0 w0Var2 = this.f25139b;
+                w0Var2.post(new s0(w0Var2, 4));
+                return;
             case 3:
-                this.f25252b.requestLayout();
-                break;
+                this.f25139b.requestLayout();
+                return;
             default:
-                v0 v0Var3 = this.f25252b;
-                v0Var3.C = false;
-                v0Var3.getMessageObject().isSpoilersRevealed = true;
-                ArrayList arrayList = v0Var3.f25746g1.f630e;
+                w0 w0Var3 = this.f25139b;
+                w0Var3.C = false;
+                w0Var3.getMessageObject().isSpoilersRevealed = true;
+                ArrayList arrayList = w0Var3.f25843g1.f25722c;
                 if (arrayList != null) {
                     arrayList.clear();
                 }
-                v0Var3.invalidate();
-                break;
+                w0Var3.invalidate();
+                return;
         }
     }
 }

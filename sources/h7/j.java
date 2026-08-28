@@ -1,58 +1,128 @@
 package h7;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Map;
+public final class j extends AbstractSet {
+    public final int f9966a;
+    public final n f9967b;
 
-public abstract class j {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int iIndexOf;
-        String strJ;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i11 >= length) {
-                break;
-            }
-            Object obj = objArr[i11];
-            if (obj == null) {
-                strJ = "null";
-            } else {
-                try {
-                    strJ = obj.toString();
-                } catch (Exception e9) {
-                    String strW = a9.p.w(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(strW), (Throwable) e9);
-                    strJ = org.telegram.ui.Cells.pa.j("<", strW, " threw ", e9.getClass().getName(), ">");
+    public j(n nVar, int i9) {
+        this.f9966a = i9;
+        this.f9967b = nVar;
+    }
+
+    @Override
+    public final void clear() {
+        switch (this.f9966a) {
+            case 0:
+                this.f9967b.clear();
+                return;
+            default:
+                this.f9967b.clear();
+                return;
+        }
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        switch (this.f9966a) {
+            case 0:
+                n nVar = this.f9967b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().contains(obj);
                 }
-            }
-            objArr[i11] = strJ;
-            i11++;
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    int e10 = nVar.e(entry.getKey());
+                    if (e10 != -1) {
+                        Object[] objArr = nVar.d;
+                        objArr.getClass();
+                        if (f7.a8.a(objArr[e10], entry.getValue())) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                return this.f9967b.containsKey(obj);
         }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i12 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i10 >= length2 || (iIndexOf = str.indexOf("%s", i12)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i12, iIndexOf);
-            sb2.append(objArr[i10]);
-            i10++;
-            i12 = iIndexOf + 2;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        switch (this.f9966a) {
+            case 0:
+                n nVar = this.f9967b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().iterator();
+                }
+                return new i(nVar, 1);
+            default:
+                n nVar2 = this.f9967b;
+                Map a3 = nVar2.a();
+                if (a3 != null) {
+                    return a3.keySet().iterator();
+                }
+                return new i(nVar2, 0);
         }
-        sb2.append((CharSequence) str, i12, str.length());
-        if (i10 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i10]);
-            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
-                sb2.append(", ");
-                sb2.append(objArr[i13]);
-            }
-            sb2.append(']');
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        switch (this.f9966a) {
+            case 0:
+                n nVar = this.f9967b;
+                Map a2 = nVar.a();
+                if (a2 != null) {
+                    return a2.entrySet().remove(obj);
+                }
+                if (obj instanceof Map.Entry) {
+                    Map.Entry entry = (Map.Entry) obj;
+                    if (!nVar.c()) {
+                        int d = nVar.d();
+                        Object key = entry.getKey();
+                        Object value = entry.getValue();
+                        Object obj2 = nVar.f10032a;
+                        obj2.getClass();
+                        int[] iArr = nVar.f10033b;
+                        iArr.getClass();
+                        Object[] objArr = nVar.f10034c;
+                        objArr.getClass();
+                        Object[] objArr2 = nVar.d;
+                        objArr2.getClass();
+                        int a3 = f7.w7.a(key, value, d, obj2, iArr, objArr, objArr2);
+                        if (a3 != -1) {
+                            nVar.b(a3, d);
+                            nVar.f10036f--;
+                            nVar.f10035e += 32;
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            default:
+                n nVar2 = this.f9967b;
+                Map a10 = nVar2.a();
+                if (a10 != null) {
+                    return a10.keySet().remove(obj);
+                }
+                if (nVar2.g(obj) == n.f10031s) {
+                    return false;
+                }
+                return true;
         }
-        return sb2.toString();
+    }
+
+    @Override
+    public final int size() {
+        switch (this.f9966a) {
+            case 0:
+                return this.f9967b.size();
+            default:
+                return this.f9967b.size();
+        }
     }
 }

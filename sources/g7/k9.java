@@ -1,146 +1,28 @@
 package g7;
+public final class k9 {
+    public final String f7268a;
+    public final String f7269b;
+    public final String f7270c;
+    public final String d;
+    public final ta f7271e;
+    public final String f7272f;
+    public final Boolean f7273g;
+    public final Boolean h;
+    public final Boolean f7274i;
+    public final Integer f7275j;
+    public final Integer f7276k;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-
-public abstract class k9 extends h9 implements List, RandomAccess {
-
-    public static final i9 f6537b = new i9(m9.f6562e, 0);
-
-    @Override
-    public final void add(int i10, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return indexOf(obj) >= 0;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof List) {
-            List list = (List) obj;
-            int size = size();
-            if (size == list.size()) {
-                if (list instanceof RandomAccess) {
-                    for (int i10 = 0; i10 < size; i10++) {
-                        Object obj2 = get(i10);
-                        Object obj3 = list.get(i10);
-                        if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                        }
-                    }
-                    return true;
-                }
-                i9 i9VarListIterator = listIterator(0);
-                Iterator it = list.iterator();
-                while (i9VarListIterator.hasNext()) {
-                    if (it.hasNext() && ((next = i9VarListIterator.next()) == (next2 = it.next()) || (next != null && next.equals(next2)))) {
-                    }
-                }
-                if (!it.hasNext()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int iHashCode = 1;
-        for (int i10 = 0; i10 < size; i10++) {
-            iHashCode = (iHashCode * 31) + get(i10).hashCode();
-        }
-        return iHashCode;
-    }
-
-    @Override
-    public int i(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (obj.equals(get(i10))) {
-                return i10;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public k9 subList(int i10, int i11) {
-        c7.b(i10, i11, size());
-        int i12 = i11 - i10;
-        if (i12 == size()) {
-            return this;
-        }
-        return i12 == 0 ? m9.f6562e : new j9(this, i10, i12);
-    }
-
-    @Override
-    public final i9 listIterator(int i10) {
-        int size = size();
-        if (i10 < 0 || i10 > size) {
-            throw new IndexOutOfBoundsException(c7.c(i10, size, "index"));
-        }
-        return isEmpty() ? f6537b : new i9(this, i10);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object set(int i10, Object obj) {
-        throw new UnsupportedOperationException();
+    public k9(f7.f8 f8Var) {
+        this.f7268a = f8Var.f5661a;
+        this.f7269b = f8Var.f5662b;
+        this.f7270c = f8Var.f5663c;
+        this.d = f8Var.d;
+        this.f7271e = (ta) f8Var.f5669k;
+        this.f7272f = f8Var.f5664e;
+        this.f7273g = (Boolean) f8Var.f5665f;
+        this.h = (Boolean) f8Var.f5666g;
+        this.f7274i = (Boolean) f8Var.h;
+        this.f7275j = f8Var.f5667i;
+        this.f7276k = (Integer) f8Var.f5668j;
     }
 }

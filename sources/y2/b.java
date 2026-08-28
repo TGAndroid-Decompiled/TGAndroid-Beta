@@ -1,4 +1,3 @@
 package y2;
-
-public interface b extends oc.a {
+public interface b extends nc.a {
 }

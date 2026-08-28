@@ -1,7 +1,9 @@
 package org.webrtc;
 
 import javax.microedition.khronos.egl.EGLContext;
-
+import org.webrtc.EglBase;
+import org.webrtc.EglBase10;
+import org.webrtc.EglBase14;
 public abstract class e {
     static {
         Object obj = EglBase.lock;
@@ -21,15 +23,18 @@ public abstract class e {
 
     public static EglBase d(EglBase.Context context, int[] iArr) {
         if (context == null) {
-            return EglBase14Impl.isEGL14Supported() ? j(iArr) : g(iArr);
-        }
-        if (context instanceof EglBase14.Context) {
+            if (EglBase14Impl.isEGL14Supported()) {
+                return j(iArr);
+            }
+            return g(iArr);
+        } else if (context instanceof EglBase14.Context) {
             return i((EglBase14.Context) context, iArr);
+        } else {
+            if (context instanceof EglBase10.Context) {
+                return f((EglBase10.Context) context, iArr);
+            }
+            throw new IllegalArgumentException("Unrecognized Context");
         }
-        if (context instanceof EglBase10.Context) {
-            return f((EglBase10.Context) context, iArr);
-        }
-        throw new IllegalArgumentException("Unrecognized Context");
     }
 
     public static EglBase10 e(EGLContext eGLContext, int[] iArr) {
@@ -37,7 +42,13 @@ public abstract class e {
     }
 
     public static EglBase10 f(EglBase10.Context context, int[] iArr) {
-        return new EglBase10Impl(context == null ? null : context.getRawContext(), iArr);
+        EGLContext rawContext;
+        if (context == null) {
+            rawContext = null;
+        } else {
+            rawContext = context.getRawContext();
+        }
+        return new EglBase10Impl(rawContext, iArr);
     }
 
     public static EglBase10 g(int[] iArr) {
@@ -49,7 +60,13 @@ public abstract class e {
     }
 
     public static EglBase14 i(EglBase14.Context context, int[] iArr) {
-        return new EglBase14Impl(context == null ? null : context.getRawContext(), iArr);
+        android.opengl.EGLContext rawContext;
+        if (context == null) {
+            rawContext = null;
+        } else {
+            rawContext = context.getRawContext();
+        }
+        return new EglBase14Impl(rawContext, iArr);
     }
 
     public static EglBase14 j(int[] iArr) {
@@ -57,11 +74,14 @@ public abstract class e {
     }
 
     public static int k(int[] iArr) {
-        for (int i10 = 0; i10 < iArr.length - 1; i10++) {
-            if (iArr[i10] == 12352) {
-                int i11 = iArr[i10 + 1];
-                if (i11 != 4) {
-                    return i11 != 64 ? 1 : 3;
+        for (int i9 = 0; i9 < iArr.length - 1; i9++) {
+            if (iArr[i9] == 12352) {
+                int i10 = iArr[i9 + 1];
+                if (i10 != 4) {
+                    if (i10 != 64) {
+                        return 1;
+                    }
+                    return 3;
                 }
                 return 2;
             }

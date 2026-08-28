@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
-
 public class StrutBox extends Box {
     public StrutBox(float f10, float f11, float f12, float f13) {
         this.width = f10;

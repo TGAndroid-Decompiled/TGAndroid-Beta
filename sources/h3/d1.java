@@ -1,32 +1,27 @@
 package h3;
 
 import android.net.Uri;
-
+import fh.y5;
 public final class d1 implements g {
-
-    public static final d1 f7806c = new d1(new a5.n(18, false));
+    public static final d1 f9375c = new d1(new a5.m(20, false));
     public static final String d;
-
-    public static final String f7807e;
-
-    public static final String f7808f;
-    public static final f9.z h;
-
-    public final Uri f7809a;
-
-    public final String f7810b;
+    public static final String f9376e;
+    public static final String f9377f;
+    public static final y5 h;
+    public final Uri f9378a;
+    public final String f9379b;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         d = Integer.toString(0, 36);
-        f7807e = Integer.toString(1, 36);
-        f7808f = Integer.toString(2, 36);
-        h = new f9.z(23);
+        f9376e = Integer.toString(1, 36);
+        f9377f = Integer.toString(2, 36);
+        h = new y5(19);
     }
 
-    public d1(a5.n nVar) {
-        this.f7809a = (Uri) nVar.f100b;
-        this.f7810b = (String) nVar.f101c;
+    public d1(a5.m mVar) {
+        this.f9378a = (Uri) mVar.f98b;
+        this.f9379b = (String) mVar.f99c;
     }
 
     public final boolean equals(Object obj) {
@@ -37,13 +32,26 @@ public final class d1 implements g {
             return false;
         }
         d1 d1Var = (d1) obj;
-        return d5.g0.a(this.f7809a, d1Var.f7809a) && d5.g0.a(this.f7810b, d1Var.f7810b);
+        if (d5.f0.a(this.f9378a, d1Var.f9378a) && d5.f0.a(this.f9379b, d1Var.f9379b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        Uri uri = this.f7809a;
-        int iHashCode = (uri == null ? 0 : uri.hashCode()) * 31;
-        String str = this.f7810b;
-        return iHashCode + (str != null ? str.hashCode() : 0);
+        int hashCode;
+        int i9 = 0;
+        Uri uri = this.f9378a;
+        if (uri == null) {
+            hashCode = 0;
+        } else {
+            hashCode = uri.hashCode();
+        }
+        int i10 = hashCode * 31;
+        String str = this.f9379b;
+        if (str != null) {
+            i9 = str.hashCode();
+        }
+        return i10 + i9;
     }
 }

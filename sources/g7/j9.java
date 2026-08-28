@@ -1,48 +1,78 @@
 package g7;
 
-public final class j9 extends k9 {
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Collection;
+public abstract class j9 extends AbstractCollection implements Serializable {
+    public static final Object[] f7260a = new Object[0];
 
-    public final transient int f6518c;
-    public final transient int d;
-
-    public final k9 f6519e;
-
-    public j9(k9 k9Var, int i10, int i11) {
-        this.f6519e = k9Var;
-        this.f6518c = i10;
-        this.d = i11;
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final Object get(int i10) {
-        c7.a(i10, this.d);
-        return this.f6519e.get(i10 + this.f6518c);
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int n() {
-        return this.f6519e.o() + this.f6518c + this.d;
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract int i(Object[] objArr);
+
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int o() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] p() {
+        return null;
     }
 
     @Override
-    public final int o() {
-        return this.f6519e.o() + this.f6518c;
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final Object[] p() {
-        return this.f6519e.p();
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final k9 subList(int i10, int i11) {
-        c7.b(i10, i11, this.d);
-        int i12 = this.f6518c;
-        return this.f6519e.subList(i10 + i12, i11 + i12);
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final int size() {
-        return this.d;
+    public final Object[] toArray() {
+        return toArray(f7260a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] p6 = p();
+            if (p6 == null) {
+                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
+            } else {
+                return Arrays.copyOfRange(p6, o(), n(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        i(objArr);
+        return objArr;
     }
 }

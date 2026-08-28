@@ -1,45 +1,22 @@
 package org.telegram.ui.Components;
+public final class ze implements o1.g {
+    public boolean f35283a = false;
+    public final float f35284b;
+    public final mu0 f35285c;
 
-import android.content.Context;
-import android.graphics.Paint;
-
-public final class ze extends nh.w {
-
-    public boolean f35229s;
-    public final ChatActivityEnterView v;
-
-    public ze(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.v = chatActivityEnterView;
-        this.f19008a = null;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f19012f = true;
-        this.f19009b = new d5.p();
-        hh.f1 f1Var = new hh.f1(this, context, 3);
-        this.f19010c = f1Var;
-        f1Var.setOverScrollMode(2);
-        f1Var.setClipToPadding(false);
-        f1Var.setClipToOutline(true);
-        f1Var.j(new ag.z2(this, 15));
-        addView(f1Var);
-        paint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Ii, false));
-        lg.d dVar = this.f19014r;
-        if (dVar != null) {
-            dVar.u();
-        }
-        invalidate();
-        setClipChildren(false);
-        this.f35229s = false;
+    public ze(float f10, mu0 mu0Var) {
+        this.f35284b = f10;
+        this.f35285c = mu0Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f35229s) {
-            return;
+    public final void a(o1.h hVar, float f10, float f11) {
+        if (!this.f35283a && f10 >= this.f35284b) {
+            this.f35283a = true;
+            try {
+                this.f35285c.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
         }
-        this.f35229s = true;
-        this.v.B1();
     }
 }

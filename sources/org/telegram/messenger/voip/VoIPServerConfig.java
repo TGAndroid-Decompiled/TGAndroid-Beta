@@ -4,7 +4,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class VoIPServerConfig {
     private static JSONObject config = new JSONObject();
 
@@ -16,8 +15,8 @@ public class VoIPServerConfig {
         return config.optDouble(str, d);
     }
 
-    public static int getInt(String str, int i10) {
-        return config.optInt(str, i10);
+    public static int getInt(String str, int i9) {
+        return config.optInt(str, i9);
     }
 
     public static String getString(String str, String str2) {
@@ -30,9 +29,9 @@ public class VoIPServerConfig {
         try {
             config = new JSONObject(str);
             nativeSetConfig(str);
-        } catch (JSONException e9) {
+        } catch (JSONException e10) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("Error parsing VoIP config", e9);
+                FileLog.e("Error parsing VoIP config", e10);
             }
         }
     }

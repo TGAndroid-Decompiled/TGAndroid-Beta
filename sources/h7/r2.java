@@ -1,12 +1,17 @@
 package h7;
-
-import java.util.logging.Logger;
-
-public abstract class r2 {
-
-    public static final int f8526a = 0;
+public final class r2 implements q9.d {
+    public static final r2 f10082a = new Object();
 
     static {
-        Logger.getLogger(r2.class.getName());
+        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

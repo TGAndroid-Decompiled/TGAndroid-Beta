@@ -1,39 +1,41 @@
 package h3;
 
 import android.net.Uri;
-import g7.p7;
+import f7.u7;
 import java.util.Arrays;
 import java.util.List;
-
 public final class c1 {
+    public final Uri f9362a;
+    public final String f9363b;
+    public final List f9364c;
+    public final String d;
+    public final o8.z f9365e;
+    public final Object f9366f;
 
-    public final Uri f7795a;
-
-    public final List f7796b;
-
-    public final p8.z f7797c;
-
-    public c1(Uri uri, p7 p7Var, List list, p8.z zVar) {
-        this.f7795a = uri;
-        this.f7796b = list;
-        this.f7797c = zVar;
-        p8.x xVar = p8.z.f45604b;
-        p8.l.a(4, "initialCapacity");
-        Object[] objArrCopyOf = new Object[4];
+    public c1(Uri uri, String str, u7 u7Var, List list, String str2, o8.z zVar, Object obj) {
+        this.f9362a = uri;
+        this.f9363b = str;
+        this.f9364c = list;
+        this.d = str2;
+        this.f9365e = zVar;
+        o8.x xVar = o8.z.f19105b;
+        o8.l.a(4, "initialCapacity");
+        Object[] objArr = new Object[4];
+        int i9 = 0;
         int i10 = 0;
-        int i11 = 0;
-        while (i10 < zVar.size()) {
-            ((e1) zVar.get(i10)).getClass();
-            e1 e1Var = new e1();
-            int i12 = i11 + 1;
-            if (objArrCopyOf.length < i12) {
-                objArrCopyOf = Arrays.copyOf(objArrCopyOf, p8.w.d(objArrCopyOf.length, i12));
+        while (i9 < zVar.size()) {
+            ((e1) zVar.get(i9)).getClass();
+            Object obj2 = new Object();
+            int i11 = i10 + 1;
+            if (objArr.length < i11) {
+                objArr = Arrays.copyOf(objArr, o8.w.d(objArr.length, i11));
             }
-            objArrCopyOf[i11] = e1Var;
-            i10++;
-            i11 = i12;
+            objArr[i10] = obj2;
+            i9++;
+            i10 = i11;
         }
-        p8.z.s(i11, objArrCopyOf);
+        o8.z.s(i10, objArr);
+        this.f9366f = obj;
     }
 
     public final boolean equals(Object obj) {
@@ -44,14 +46,35 @@ public final class c1 {
             return false;
         }
         c1 c1Var = (c1) obj;
-        if (!this.f7795a.equals(c1Var.f7795a)) {
-            return false;
+        if (this.f9362a.equals(c1Var.f9362a) && d5.f0.a(this.f9363b, c1Var.f9363b) && d5.f0.a(null, null) && this.f9364c.equals(c1Var.f9364c) && d5.f0.a(this.d, c1Var.d) && this.f9365e.equals(c1Var.f9365e) && d5.f0.a(this.f9366f, c1Var.f9366f)) {
+            return true;
         }
-        int i10 = d5.g0.f4795a;
-        return d5.g0.a(null, null) && this.f7796b.equals(c1Var.f7796b) && this.f7797c.equals(c1Var.f7797c);
+        return false;
     }
 
     public final int hashCode() {
-        return (this.f7797c.hashCode() + ((this.f7796b.hashCode() + (this.f7795a.hashCode() * 923521)) * 961)) * 31;
+        int hashCode;
+        int hashCode2;
+        int hashCode3 = this.f9362a.hashCode() * 31;
+        int i9 = 0;
+        String str = this.f9363b;
+        if (str == null) {
+            hashCode = 0;
+        } else {
+            hashCode = str.hashCode();
+        }
+        int hashCode4 = (this.f9364c.hashCode() + ((hashCode3 + hashCode) * 29791)) * 31;
+        String str2 = this.d;
+        if (str2 == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str2.hashCode();
+        }
+        int hashCode5 = (this.f9365e.hashCode() + ((hashCode4 + hashCode2) * 31)) * 31;
+        Object obj = this.f9366f;
+        if (obj != null) {
+            i9 = obj.hashCode();
+        }
+        return hashCode5 + i9;
     }
 }

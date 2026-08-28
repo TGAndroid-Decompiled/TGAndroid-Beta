@@ -1,52 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.util.TypedValue;
+public class p30 extends EditTextBoldCursor {
+    public final TextPaint f31530b;
+    public String f31531c;
+    public final Rect d;
 
-public final class p30 extends AnimatorListenerAdapter {
+    public p30(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f31530b = textPaint;
+        this.d = new Rect();
+        textPaint.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.H6, false));
+    }
 
-    public final int f31486a;
-
-    public final boolean f31487b;
-
-    public final q30 f31488c;
-
-    public p30(q30 q30Var, boolean z10, int i10) {
-        this.f31486a = i10;
-        this.f31488c = q30Var;
-        this.f31487b = z10;
+    public String getHintText() {
+        return this.f31531c;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.sn snVar;
-        hh.f1 f1Var;
-        switch (this.f31486a) {
-            case 0:
-                float f10 = this.f31487b ? 1.0f : 0.0f;
-                q30 q30Var = this.f31488c;
-                q30Var.f31773w = f10;
-                q30Var.f31768e.setTranslationY(f10 * AndroidUtilities.dp(48.0f));
-                q30Var.f31768e.setPadding(0, 0, 0, (int) (q30Var.f31773w * AndroidUtilities.dp(48.0f)));
-                break;
-            default:
-                boolean z10 = this.f31487b;
-                float f11 = z10 ? 1.0f : 0.0f;
-                q30 q30Var2 = this.f31488c;
-                q30Var2.A = f11;
-                q30Var2.f31770n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, f11));
-                q30Var2.f31770n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, q30Var2.A));
-                org.telegram.ui.yj yjVar = q30Var2.f31769f;
-                if (yjVar != null && (snVar = yjVar.f42977a) != null && (f1Var = snVar.H3) != null) {
-                    f1Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, q30Var2.A));
-                    q30Var2.f31769f.f42977a.H3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, q30Var2.A));
+    public void onDraw(Canvas canvas) {
+        float measureText;
+        Canvas canvas2;
+        if (this.f31531c != null && length() < this.f31531c.length()) {
+            int i9 = 0;
+            float f10 = 0.0f;
+            while (i9 < this.f31531c.length()) {
+                int length = length();
+                TextPaint textPaint = this.f31530b;
+                if (i9 < length) {
+                    measureText = getPaint().measureText(getText(), i9, i9 + 1);
+                } else {
+                    measureText = textPaint.measureText(this.f31531c, i9, i9 + 1);
                 }
-                q30Var2.h.setAlpha(q30Var2.A);
-                if (!z10) {
-                    q30Var2.h.setVisibility(8);
+                if (i9 < length()) {
+                    f10 += measureText;
+                    canvas2 = canvas;
+                } else {
+                    int color = textPaint.getColor();
+                    canvas.save();
+                    String str = this.f31531c;
+                    int length2 = str.length();
+                    Rect rect = this.d;
+                    textPaint.getTextBounds(str, 0, length2, rect);
+                    float height = (rect.height() + getHeight()) / 2.0f;
+                    i(i9);
+                    canvas2 = canvas;
+                    canvas2.drawText(this.f31531c, i9, i9 + 1, f10, height, (Paint) textPaint);
+                    f10 += measureText;
+                    canvas2.restore();
+                    textPaint.setColor(color);
                 }
-                break;
+                i9++;
+                canvas = canvas2;
+            }
         }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        invalidate();
+    }
+
+    public void setHintText(String str) {
+        this.f31531c = str;
+        invalidate();
+        setText(getText());
+    }
+
+    @Override
+    public void setTextSize(int i9, float f10) {
+        super.setTextSize(i9, f10);
+        this.f31530b.setTextSize(TypedValue.applyDimension(i9, f10, getResources().getDisplayMetrics()));
+    }
+
+    public void i(int i9) {
     }
 }

@@ -1,123 +1,84 @@
 package i8;
 
-import android.app.Service;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.Looper;
+import android.net.Uri;
 import android.util.Log;
-import com.google.android.gms.tasks.Task;
-import java.util.List;
+import com.google.android.gms.common.data.DataHolder;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.ui.Cells.j2;
+public final class k extends v5.a {
+    public final int d;
+    public final int f11000e;
 
-public abstract class k extends Service implements c {
-    public static final String BIND_LISTENER_INTENT_ACTION = "com.google.android.gms.wearable.BIND_LISTENER";
-    private ComponentName zza;
-    private p zzb;
-    private IBinder zzc;
-    private Intent zzd;
-    private Looper zze;
-    private boolean zzg;
-    private final Object zzf = new Object();
-    private j8.d zzh = new j8.d(new k5.i(this, 18));
+    public k(DataHolder dataHolder, int i9, int i10, int i11) {
+        super(dataHolder, i9);
+        this.d = i11;
+        this.f11000e = i10;
+    }
 
-    public Looper getLooper() {
-        if (this.zze == null) {
-            HandlerThread handlerThread = new HandlerThread("WearableListenerService");
-            handlerThread.start();
-            this.zze = handlerThread.getLooper();
+    public final String toString() {
+        String str;
+        Object valueOf;
+        switch (this.d) {
+            case 0:
+                DataHolder dataHolder = this.f48356a;
+                int i9 = this.f48357b;
+                dataHolder.c(i9, "event_type");
+                if (dataHolder.d[this.f48358c].getInt(i9, dataHolder.f2957c.getInt("event_type")) == 1) {
+                    str = "changed";
+                } else {
+                    int i10 = this.f48357b;
+                    dataHolder.c(i10, "event_type");
+                    if (dataHolder.d[this.f48358c].getInt(i10, dataHolder.f2957c.getInt("event_type")) == 2) {
+                        str = "deleted";
+                    } else {
+                        str = "unknown";
+                    }
+                }
+                return j2.h("DataEventRef{ type=", str, ", dataitem=", new k(dataHolder, this.f48357b, this.f11000e, 1).toString(), " }");
+            default:
+                boolean isLoggable = Log.isLoggable("DataItem", 3);
+                DataHolder dataHolder2 = this.f48356a;
+                int i11 = this.f48357b;
+                dataHolder2.c(i11, "data");
+                byte[] blob = dataHolder2.d[this.f48358c].getBlob(i11, dataHolder2.f2957c.getInt("data"));
+                int i12 = this.f11000e;
+                HashMap hashMap = new HashMap(i12);
+                for (int i13 = 0; i13 < i12; i13++) {
+                    v5.a aVar = new v5.a(dataHolder2, this.f48357b + i13);
+                    DataHolder dataHolder3 = aVar.f48356a;
+                    int i14 = aVar.f48357b;
+                    dataHolder3.c(i14, "asset_key");
+                    if (dataHolder3.d[aVar.f48358c].getString(i14, dataHolder3.f2957c.getInt("asset_key")) != null) {
+                        int i15 = aVar.f48357b;
+                        dataHolder3.c(i15, "asset_key");
+                        hashMap.put(dataHolder3.d[aVar.f48358c].getString(i15, dataHolder3.f2957c.getInt("asset_key")), aVar);
+                    }
+                }
+                StringBuilder sb2 = new StringBuilder("DataItemRef{ ");
+                int i16 = this.f48357b;
+                dataHolder2.c(i16, "path");
+                sb2.append("uri=".concat(String.valueOf(Uri.parse(dataHolder2.d[this.f48358c].getString(i16, dataHolder2.f2957c.getInt("path"))))));
+                if (blob == null) {
+                    valueOf = "null";
+                } else {
+                    valueOf = Integer.valueOf(blob.length);
+                }
+                sb2.append(", dataSz=".concat(valueOf.toString()));
+                int size = hashMap.size();
+                sb2.append(", numAssets=" + size);
+                if (isLoggable && !hashMap.isEmpty()) {
+                    sb2.append(", assets=[");
+                    String str2 = "";
+                    for (Map.Entry entry : hashMap.entrySet()) {
+                        String id2 = ((h8.f) entry.getValue()).getId();
+                        sb2.append(str2 + ((String) entry.getKey()) + ": " + id2);
+                        str2 = ", ";
+                    }
+                    sb2.append("]");
+                }
+                sb2.append(" }");
+                return sb2.toString();
         }
-        return this.zze;
-    }
-
-    @Override
-    public final android.os.IBinder onBind(android.content.Intent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: i8.k.onBind(android.content.Intent):android.os.IBinder");
-    }
-
-    @Override
-    public void onChannelClosed(b bVar, int i10, int i11) {
-    }
-
-    @Override
-    public void onChannelOpened(b bVar) {
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        this.zza = new ComponentName(this, getClass().getName());
-        if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onCreate: ".concat(String.valueOf(this.zza)));
-        }
-        this.zzb = new p(this, getLooper());
-        Intent intent = new Intent("com.google.android.gms.wearable.BIND_LISTENER");
-        this.zzd = intent;
-        intent.setComponent(this.zza);
-        this.zzc = new m(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        if (Log.isLoggable("WearableLS", 3)) {
-            Log.d("WearableLS", "onDestroy: ".concat(String.valueOf(this.zza)));
-        }
-        synchronized (this.zzf) {
-            this.zzg = true;
-            p pVar = this.zzb;
-            if (pVar == null) {
-                throw new IllegalStateException("onDestroy: mServiceHandler not set, did you override onCreate() but forget to call super.onCreate()? component=".concat(String.valueOf(this.zza)));
-            }
-            pVar.getLooper().quit();
-            pVar.a("quit");
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onInputClosed(b bVar, int i10, int i11) {
-    }
-
-    public abstract void onMessageReceived(g gVar);
-
-    @Override
-    public void onOutputClosed(b bVar, int i10, int i11) {
-    }
-
-    public Task<byte[]> onRequest(String str, String str2, byte[] bArr) {
-        return null;
-    }
-
-    public void onChannelClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onChannelOpened(d dVar) {
-    }
-
-    public void onInputClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onOutputClosed(d dVar, int i10, int i11) {
-    }
-
-    public void onCapabilityChanged(a aVar) {
-    }
-
-    public void onConnectedNodes(List<h> list) {
-    }
-
-    public void onDataChanged(e eVar) {
-    }
-
-    public void onEntityUpdate(l lVar) {
-    }
-
-    public void onNotificationReceived(n nVar) {
-    }
-
-    public void onPeerConnected(h hVar) {
-    }
-
-    public void onPeerDisconnected(h hVar) {
     }
 }

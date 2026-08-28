@@ -1,56 +1,84 @@
 package o5;
 
-import android.util.Log;
-import c2.t0;
-import com.google.android.gms.common.api.Status;
-import lh.h2;
+import android.os.Parcelable;
+import com.google.android.gms.identity.intents.model.UserAddress;
+import com.google.android.gms.identitycredentials.GetCredentialRequest;
+import q5.y;
+public final class p implements Parcelable.Creator {
+    public final int f19005a;
 
-public final class p {
-
-    public final int f19352a;
-
-    public final c f19353b;
-
-    public p(c cVar, int i10) {
-        this.f19352a = i10;
-        this.f19353b = cVar;
+    public p(int i9) {
+        this.f19005a = i9;
     }
 
-    public final void a(com.google.android.gms.common.api.q qVar) {
-        m mVar = (m) qVar;
-        switch (this.f19352a) {
+    @Override
+    public final java.lang.Object createFromParcel(android.os.Parcel r20) {
+        throw new UnsupportedOperationException("Method not decompiled: o5.p.createFromParcel(android.os.Parcel):java.lang.Object");
+    }
+
+    @Override
+    public final Object[] newArray(int i9) {
+        switch (this.f19005a) {
             case 0:
-                Status statusI = mVar.i();
-                int i10 = statusI.f3186a;
-                c cVar = this.f19353b;
-                if (i10 != 0) {
-                    r5.b bVar = cVar.f19305a;
-                    Log.w(bVar.f46768a, bVar.d("Error fetching queue item ids, statusCode=" + i10 + ", statusMessage=" + statusI.f3187b, new Object[0]));
-                }
-                cVar.f19314l = null;
-                if (!cVar.h.isEmpty()) {
-                    t0 t0Var = cVar.f19311i;
-                    h2 h2Var = cVar.f19312j;
-                    t0Var.removeCallbacks(h2Var);
-                    t0Var.postDelayed(h2Var, 500L);
-                }
-                break;
+                return new b[i9];
+            case 1:
+                return new d[i9];
+            case 2:
+                return new o7.d[i9];
+            case 3:
+                return new o7.e[i9];
+            case 4:
+                return new o7.f[i9];
+            case 5:
+                return new o7.g[i9];
+            case 6:
+                return new o7.h[i9];
+            case 7:
+                return new UserAddress[i9];
+            case 8:
+                return new y[i9];
+            case 9:
+                return new q5.d[i9];
+            case 10:
+                return new q5.c[i9];
+            case 11:
+                return new q6.a[i9];
+            case 12:
+                return new q6.b[i9];
+            case 13:
+                return new q6.c[i9];
+            case 14:
+                return new q6.d[i9];
+            case 15:
+                return new q6.e[i9];
+            case 16:
+                return new q6.f[i9];
+            case 17:
+                return new q6.g[i9];
+            case 18:
+                return new q6.h[i9];
+            case 19:
+                return new q6.i[i9];
+            case 20:
+                return new q6.j[i9];
+            case 21:
+                return new GetCredentialRequest[i9];
+            case 22:
+                return new q6.k[i9];
+            case 23:
+                return new q6.l[i9];
+            case 24:
+                return new q6.m[i9];
+            case 25:
+                return new q6.n[i9];
+            case 26:
+                return new q6.o[i9];
+            case 27:
+                return new q6.p[i9];
+            case 28:
+                return new q6.q[i9];
             default:
-                Status statusI2 = mVar.i();
-                int i11 = statusI2.f3186a;
-                c cVar2 = this.f19353b;
-                if (i11 != 0) {
-                    r5.b bVar2 = cVar2.f19305a;
-                    Log.w(bVar2.f46768a, bVar2.d("Error fetching queue items, statusCode=" + i11 + ", statusMessage=" + statusI2.f3187b, new Object[0]));
-                }
-                cVar2.f19313k = null;
-                if (!cVar2.h.isEmpty()) {
-                    t0 t0Var2 = cVar2.f19311i;
-                    h2 h2Var2 = cVar2.f19312j;
-                    t0Var2.removeCallbacks(h2Var2);
-                    t0Var2.postDelayed(h2Var2, 500L);
-                }
-                break;
+                return new q7.g[i9];
         }
     }
 }

@@ -3,117 +3,100 @@ package o1;
 import android.os.Looper;
 import android.util.AndroidRuntimeException;
 import java.util.ArrayList;
-
 public abstract class h {
-
-    public static final c f19129m = new c(1);
-
-    public static final c f19130n = new c(2);
-
-    public static final c f19131o = new c(3);
-
-    public static final c f19132p = new c(4);
-
-    public static final c f19133q = new c(5);
-
-    public static final c f19134r = new c(6);
-
-    public static final c f19135s = new c(7);
-
-    public static final c f19136t = new c(0);
-
-    public float f19137a;
-
-    public float f19138b;
-
-    public boolean f19139c;
+    public static final c f18782m = new c(1);
+    public static final c f18783n = new c(2);
+    public static final c f18784o = new c(3);
+    public static final c f18785p = new c(4);
+    public static final c f18786q = new c(5);
+    public static final c f18787r = new c(6);
+    public static final c f18788s = new c(7);
+    public static final c f18789t = new c(0);
+    public float f18790a;
+    public float f18791b;
+    public boolean f18792c;
     public final Object d;
-
-    public final i f19140e;
-
-    public boolean f19141f;
-
-    public float f19142g;
+    public final i f18793e;
+    public boolean f18794f;
+    public float f18795g;
     public float h;
+    public long f18796i;
+    public float f18797j;
+    public final ArrayList f18798k;
+    public final ArrayList f18799l;
 
-    public long f19143i;
-
-    public float f19144j;
-
-    public final ArrayList f19145k;
-
-    public final ArrayList f19146l;
-
-    public h(hb.a aVar) {
-        this.f19137a = 0.0f;
-        this.f19138b = Float.MAX_VALUE;
-        this.f19139c = false;
-        this.f19141f = false;
-        this.f19142g = Float.MAX_VALUE;
+    public h(gb.a aVar) {
+        this.f18790a = 0.0f;
+        this.f18791b = Float.MAX_VALUE;
+        this.f18792c = false;
+        this.f18794f = false;
+        this.f18795g = Float.MAX_VALUE;
         this.h = -3.4028235E38f;
-        this.f19143i = 0L;
-        this.f19145k = new ArrayList();
-        this.f19146l = new ArrayList();
+        this.f18796i = 0L;
+        this.f18798k = new ArrayList();
+        this.f18799l = new ArrayList();
         this.d = null;
-        this.f19140e = new d(aVar, 0);
-        this.f19144j = 1.0f;
+        this.f18793e = new d(aVar, 0);
+        this.f18797j = 1.0f;
     }
 
     public final void a(f fVar) {
-        ArrayList arrayList = this.f19145k;
-        if (arrayList.contains(fVar)) {
-            return;
+        ArrayList arrayList = this.f18798k;
+        if (!arrayList.contains(fVar)) {
+            arrayList.add(fVar);
         }
-        arrayList.add(fVar);
     }
 
     public final void b(g gVar) {
-        if (this.f19141f) {
-            throw new UnsupportedOperationException("Error: Update listeners must be added beforethe animation.");
-        }
-        ArrayList arrayList = this.f19146l;
-        if (arrayList.contains(gVar)) {
+        if (!this.f18794f) {
+            ArrayList arrayList = this.f18799l;
+            if (!arrayList.contains(gVar)) {
+                arrayList.add(gVar);
+                return;
+            }
             return;
         }
-        arrayList.add(gVar);
+        throw new UnsupportedOperationException("Error: Update listeners must be added beforethe animation.");
     }
 
     public final void c() {
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            throw new AndroidRuntimeException("Animations may only be canceled on the main thread");
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            if (this.f18794f) {
+                d(true);
+                return;
+            }
+            return;
         }
-        if (this.f19141f) {
-            d(true);
-        }
+        throw new AndroidRuntimeException("Animations may only be canceled on the main thread");
     }
 
     public final void d(boolean z10) {
         ArrayList arrayList;
-        int i10 = 0;
-        this.f19141f = false;
-        ThreadLocal threadLocal = b.f19119f;
+        int i9 = 0;
+        this.f18794f = false;
+        ThreadLocal threadLocal = b.f18772f;
         if (threadLocal.get() == null) {
             threadLocal.set(new b());
         }
         b bVar = (b) threadLocal.get();
-        bVar.f19120a.remove(this);
-        ArrayList arrayList2 = bVar.f19121b;
-        int iIndexOf = arrayList2.indexOf(this);
-        if (iIndexOf >= 0) {
-            arrayList2.set(iIndexOf, null);
-            bVar.f19123e = true;
+        bVar.f18773a.remove(this);
+        ArrayList arrayList2 = bVar.f18774b;
+        int indexOf = arrayList2.indexOf(this);
+        if (indexOf >= 0) {
+            arrayList2.set(indexOf, null);
+            bVar.f18776e = true;
         }
-        this.f19143i = 0L;
-        this.f19139c = false;
+        this.f18796i = 0L;
+        this.f18792c = false;
         while (true) {
-            arrayList = this.f19145k;
-            if (i10 >= arrayList.size()) {
+            arrayList = this.f18798k;
+            if (i9 >= arrayList.size()) {
                 break;
             }
-            if (arrayList.get(i10) != null) {
-                ((f) arrayList.get(i10)).a(this, z10, this.f19138b, this.f19137a);
+            if (arrayList.get(i9) != null) {
+                ((f) arrayList.get(i9)).a(this, z10, this.f18791b, this.f18790a);
             }
-            i10++;
+            i9++;
         }
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             if (arrayList.get(size) == null) {
@@ -124,17 +107,17 @@ public abstract class h {
 
     public final void e(float f10) {
         ArrayList arrayList;
-        this.f19140e.b(this.d, f10);
-        int i10 = 0;
+        this.f18793e.b(this.d, f10);
+        int i9 = 0;
         while (true) {
-            arrayList = this.f19146l;
-            if (i10 >= arrayList.size()) {
+            arrayList = this.f18799l;
+            if (i9 >= arrayList.size()) {
                 break;
             }
-            if (arrayList.get(i10) != null) {
-                ((g) arrayList.get(i10)).a(this, this.f19138b, this.f19137a);
+            if (arrayList.get(i9) != null) {
+                ((g) arrayList.get(i9)).a(this, this.f18791b, this.f18790a);
             }
-            i10++;
+            i9++;
         }
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             if (arrayList.get(size) == null) {
@@ -144,29 +127,29 @@ public abstract class h {
     }
 
     public h(Object obj, i iVar) {
-        this.f19137a = 0.0f;
-        this.f19138b = Float.MAX_VALUE;
-        this.f19139c = false;
-        this.f19141f = false;
-        this.f19142g = Float.MAX_VALUE;
+        this.f18790a = 0.0f;
+        this.f18791b = Float.MAX_VALUE;
+        this.f18792c = false;
+        this.f18794f = false;
+        this.f18795g = Float.MAX_VALUE;
         this.h = -3.4028235E38f;
-        this.f19143i = 0L;
-        this.f19145k = new ArrayList();
-        this.f19146l = new ArrayList();
+        this.f18796i = 0L;
+        this.f18798k = new ArrayList();
+        this.f18799l = new ArrayList();
         this.d = obj;
-        this.f19140e = iVar;
-        if (iVar != f19133q && iVar != f19134r && iVar != f19135s) {
-            if (iVar == f19136t) {
-                this.f19144j = 0.00390625f;
+        this.f18793e = iVar;
+        if (iVar != f18786q && iVar != f18787r && iVar != f18788s) {
+            if (iVar == f18789t) {
+                this.f18797j = 0.00390625f;
                 return;
-            } else if (iVar != f19131o && iVar != f19132p) {
-                this.f19144j = 1.0f;
+            } else if (iVar != f18784o && iVar != f18785p) {
+                this.f18797j = 1.0f;
                 return;
             } else {
-                this.f19144j = 0.00390625f;
+                this.f18797j = 0.00390625f;
                 return;
             }
         }
-        this.f19144j = 0.1f;
+        this.f18797j = 0.1f;
     }
 }

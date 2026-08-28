@@ -1,26 +1,36 @@
 package ja;
 
+import java.util.regex.Pattern;
 public final class d {
+    public final y9.d f14259a;
+    public final j4.c f14260b;
+    public final k f14261c;
+    public final qd.d d = qd.e.a();
 
-    public static final d f12876a;
-
-    public static final d f12877b;
-
-    public static final d[] f12878c;
-
-    static {
-        d dVar = new d("CRASHLYTICS", 0);
-        f12876a = dVar;
-        d dVar2 = new d("PERFORMANCE", 1);
-        f12877b = dVar2;
-        f12878c = new d[]{dVar, dVar2, new d("MATT_SAYS_HI", 2)};
+    public d(qc.h hVar, y9.d dVar, ha.b bVar, j4.c cVar, k1.f fVar) {
+        this.f14259a = dVar;
+        this.f14260b = cVar;
+        this.f14261c = new k(fVar);
     }
 
-    public static d valueOf(String str) {
-        return (d) Enum.valueOf(d.class, str);
+    public static String b(String str) {
+        Pattern compile = Pattern.compile("/");
+        kotlin.jvm.internal.i.d(compile, "compile(...)");
+        String replaceAll = compile.matcher(str).replaceAll("");
+        kotlin.jvm.internal.i.d(replaceAll, "replaceAll(...)");
+        return replaceAll;
     }
 
-    public static d[] values() {
-        return (d[]) f12878c.clone();
+    public final Boolean a() {
+        e eVar = this.f14261c.f14284b;
+        if (eVar != null) {
+            return eVar.f14262a;
+        }
+        kotlin.jvm.internal.i.h("sessionConfigs");
+        throw null;
+    }
+
+    public final java.lang.Object c(qc.c r25) {
+        throw new UnsupportedOperationException("Method not decompiled: ja.d.c(qc.c):java.lang.Object");
     }
 }

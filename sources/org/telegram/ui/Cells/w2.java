@@ -1,45 +1,41 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class w2 extends AnimatorListenerAdapter {
+    public final int f25887a;
+    public final x2 f25888b;
 
-public final class w2 implements View.OnClickListener {
-
-    public final int f25843a;
-
-    public final FrameLayout f25844b;
-
-    public final Object f25845c;
-
-    public w2(FrameLayout frameLayout, Object obj, int i10) {
-        this.f25843a = i10;
-        this.f25844b = frameLayout;
-        this.f25845c = obj;
+    public w2(x2 x2Var, int i9) {
+        this.f25887a = i9;
+        this.f25888b = x2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f25843a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25887a) {
             case 0:
-                x2 x2Var = (x2) this.f25844b;
-                View.OnClickListener onClickListener = (View.OnClickListener) this.f25845c;
-                if (x2Var.getAlpha() > 0.5f && onClickListener != null) {
-                    onClickListener.onClick(view);
-                    break;
+                x2 x2Var = this.f25888b;
+                Runnable runnable = x2Var.f25931b;
+                if (runnable != null) {
+                    runnable.run();
                 }
-                break;
+                if (animator == x2Var.f25933e) {
+                    x2Var.f25933e = null;
+                    return;
+                }
+                return;
             default:
-                lh.d dVar = (lh.d) this.f25844b;
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.f25845c;
-                if (dVar.B <= 0) {
-                    e3Var.dismiss();
-                } else {
-                    AndroidUtilities.shakeViewSpring(dVar, 3.0f);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                x2 x2Var2 = this.f25888b;
+                Runnable runnable2 = x2Var2.f25931b;
+                if (runnable2 != null) {
+                    runnable2.run();
                 }
-                break;
+                if (animator == x2Var2.f25933e) {
+                    x2Var2.f25933e = null;
+                    return;
+                }
+                return;
         }
     }
 }

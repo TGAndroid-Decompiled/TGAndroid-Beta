@@ -6,15 +6,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 import java.util.List;
-
 public interface b5 {
-    n2 getBackgroundFragment();
+    o2 getBackgroundFragment();
 
-    e3 getBottomSheet();
+    f3 getBottomSheet();
 
     List getFragmentStack();
 
-    n2 getLastFragment();
+    o2 getLastFragment();
 
     d5 getMessageDrawableOutMediaStart();
 
@@ -26,7 +25,7 @@ public interface b5 {
 
     List getPulledDialogs();
 
-    n2 getSafeLastFragment();
+    o2 getSafeLastFragment();
 
     float getThemeAnimationValue();
 
@@ -40,7 +39,7 @@ public interface b5 {
 
     void setDrawerLayoutContainer(x3 x3Var);
 
-    void setFragmentPanTranslationOffset(int i10);
+    void setFragmentPanTranslationOffset(int i9);
 
     void setFragmentStack(List list);
 
@@ -50,7 +49,7 @@ public interface b5 {
 
     void setIsSheet(boolean z10);
 
-    void setNavigationBarColor(int i10);
+    void setNavigationBarColor(int i9);
 
     void setPulledDialogs(List list);
 

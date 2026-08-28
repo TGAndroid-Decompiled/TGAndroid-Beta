@@ -1,25 +1,21 @@
 package g5;
 
 import java.util.Arrays;
-import y5.l;
-
+import x5.l;
 public final class c implements com.google.android.gms.common.api.b {
-
-    public static final c f6391c;
-
-    public final boolean f6392a;
-
-    public final String f6393b;
+    public static final c f7113c;
+    public final boolean f7114a;
+    public final String f7115b;
 
     static {
         b bVar = new b(0);
-        bVar.f6389b = Boolean.FALSE;
-        f6391c = new c(bVar);
+        bVar.f7111b = Boolean.FALSE;
+        f7113c = new c(bVar);
     }
 
     public c(b bVar) {
-        this.f6392a = ((Boolean) bVar.f6389b).booleanValue();
-        this.f6393b = (String) bVar.f6390c;
+        this.f7114a = ((Boolean) bVar.f7111b).booleanValue();
+        this.f7115b = (String) bVar.f7112c;
     }
 
     public final boolean equals(Object obj) {
@@ -30,10 +26,13 @@ public final class c implements com.google.android.gms.common.api.b {
             return false;
         }
         c cVar = (c) obj;
-        return l.l(null, null) && this.f6392a == cVar.f6392a && l.l(this.f6393b, cVar.f6393b);
+        if (l.l(null, null) && this.f7114a == cVar.f7114a && l.l(this.f7115b, cVar.f7115b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f6392a), this.f6393b});
+        return Arrays.hashCode(new Object[]{null, Boolean.valueOf(this.f7114a), this.f7115b});
     }
 }

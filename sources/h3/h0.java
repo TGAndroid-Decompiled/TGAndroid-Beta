@@ -6,46 +6,44 @@ import android.view.SurfaceHolder;
 import android.view.TextureView;
 import java.util.ArrayList;
 import org.telegram.messenger.DispatchQueue;
-import org.telegram.ui.Components.m61;
-
-public final class h0 implements j3.o, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-
-    public final k0 f7870a;
+import org.telegram.ui.Components.k61;
+public final class h0 implements j3.n, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
+    public final k0 f9440a;
 
     public h0(k0 k0Var) {
-        this.f7870a = k0Var;
+        this.f9440a = k0Var;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        k0 k0Var = this.f7870a;
-        DispatchQueue dispatchQueue = k0Var.f7981l0;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i9, int i10) {
+        k0 k0Var = this.f9440a;
+        DispatchQueue dispatchQueue = k0Var.f9551l0;
         if (dispatchQueue != null) {
-            dispatchQueue.postRunnable(new f0(this, surfaceTexture, i10, i11, 0));
+            dispatchQueue.postRunnable(new e0(this, surfaceTexture, i9, i10, 0));
             return;
         }
         Surface surface = new Surface(surfaceTexture);
         k0Var.g0(surface);
         k0Var.S = surface;
-        k0Var.a0(i10, i11);
+        k0Var.a0(i9, i10);
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        k0 k0Var = this.f7870a;
+        k0 k0Var = this.f9440a;
         ArrayList arrayList = k0Var.m0;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            if (((m61) ((e5.s) obj)).F.onSurfaceDestroyed(surfaceTexture)) {
+        int i9 = 0;
+        while (i9 < size) {
+            Object obj = arrayList.get(i9);
+            i9++;
+            if (((k61) ((e5.t) obj)).F.onSurfaceDestroyed(surfaceTexture)) {
                 return false;
             }
         }
-        DispatchQueue dispatchQueue = k0Var.f7981l0;
+        DispatchQueue dispatchQueue = k0Var.f9551l0;
         if (dispatchQueue != null) {
-            dispatchQueue.postRunnable(new f2.r(this, surfaceTexture));
+            dispatchQueue.postRunnable(new fh.o1(this, surfaceTexture));
             return true;
         }
         k0Var.g0(null);
@@ -54,42 +52,42 @@ public final class h0 implements j3.o, SurfaceHolder.Callback, TextureView.Surfa
     }
 
     @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        k0 k0Var = this.f7870a;
-        DispatchQueue dispatchQueue = k0Var.f7981l0;
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i9, int i10) {
+        k0 k0Var = this.f9440a;
+        DispatchQueue dispatchQueue = k0Var.f9551l0;
         if (dispatchQueue != null) {
-            dispatchQueue.postRunnable(new z(this, surfaceTexture, i10, i11));
+            dispatchQueue.postRunnable(new y(this, surfaceTexture, i9, i10));
         } else {
-            k0Var.a0(i10, i11);
+            k0Var.a0(i9, i10);
         }
     }
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        k0 k0Var = this.f7870a;
-        DispatchQueue dispatchQueue = k0Var.f7981l0;
+        k0 k0Var = this.f9440a;
+        DispatchQueue dispatchQueue = k0Var.f9551l0;
         if (dispatchQueue != null) {
-            dispatchQueue.postRunnable(new d5.u(17, this, surfaceTexture));
+            dispatchQueue.postRunnable(new g0(0, this, surfaceTexture));
             return;
         }
         ArrayList arrayList = k0Var.m0;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((m61) ((e5.s) obj)).F.onSurfaceTextureUpdated(surfaceTexture);
+        int i9 = 0;
+        while (i9 < size) {
+            Object obj = arrayList.get(i9);
+            i9++;
+            ((k61) ((e5.t) obj)).F.onSurfaceTextureUpdated(surfaceTexture);
         }
     }
 
     @Override
-    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f7870a.a0(i11, i12);
+    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i9, int i10, int i11) {
+        this.f9440a.a0(i10, i11);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        k0 k0Var = this.f7870a;
+        k0 k0Var = this.f9440a;
         if (k0Var.U) {
             k0Var.g0(surfaceHolder.getSurface());
         }
@@ -97,7 +95,7 @@ public final class h0 implements j3.o, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        k0 k0Var = this.f7870a;
+        k0 k0Var = this.f9440a;
         if (k0Var.U) {
             k0Var.g0(null);
         }

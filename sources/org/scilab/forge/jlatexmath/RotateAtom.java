@@ -1,16 +1,13 @@
 package org.scilab.forge.jlatexmath;
 
 import java.util.Map;
-
 public class RotateAtom extends Atom {
     private double angle;
     private Atom base;
     private int option;
-
-    private float f19599x;
+    private float f19626x;
     private int xunit;
-
-    private float f19600y;
+    private float f19627y;
     private int yunit;
 
     public RotateAtom(Atom atom, String str, String str2) {
@@ -26,7 +23,7 @@ public class RotateAtom extends Atom {
         if (this.option != -1) {
             return new RotateBox(this.base.createBox(teXEnvironment), this.angle, this.option);
         }
-        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, SpaceAtom.getFactor(this.xunit, teXEnvironment) * this.f19599x, SpaceAtom.getFactor(this.yunit, teXEnvironment) * this.f19600y);
+        return new RotateBox(this.base.createBox(teXEnvironment), this.angle, SpaceAtom.getFactor(this.xunit, teXEnvironment) * this.f19626x, SpaceAtom.getFactor(this.yunit, teXEnvironment) * this.f19627y);
     }
 
     public RotateAtom(Atom atom, double d, String str) {
@@ -34,26 +31,26 @@ public class RotateAtom extends Atom {
         this.type = atom.type;
         this.base = atom;
         this.angle = d;
-        Map<String, String> map = ParseOption.parseMap(str);
-        if (map.containsKey("origin")) {
-            this.option = RotateBox.getOrigin(map.get("origin"));
+        Map<String, String> parseMap = ParseOption.parseMap(str);
+        if (parseMap.containsKey("origin")) {
+            this.option = RotateBox.getOrigin(parseMap.get("origin"));
             return;
         }
-        if (map.containsKey("x")) {
-            float[] length = SpaceAtom.getLength(map.get("x"));
+        if (parseMap.containsKey("x")) {
+            float[] length = SpaceAtom.getLength(parseMap.get("x"));
             this.xunit = (int) length[0];
-            this.f19599x = length[1];
+            this.f19626x = length[1];
         } else {
             this.xunit = 3;
-            this.f19599x = 0.0f;
+            this.f19626x = 0.0f;
         }
-        if (map.containsKey("y")) {
-            float[] length2 = SpaceAtom.getLength(map.get("y"));
+        if (parseMap.containsKey("y")) {
+            float[] length2 = SpaceAtom.getLength(parseMap.get("y"));
             this.yunit = (int) length2[0];
-            this.f19600y = length2[1];
-        } else {
-            this.yunit = 3;
-            this.f19600y = 0.0f;
+            this.f19627y = length2[1];
+            return;
         }
+        this.yunit = 3;
+        this.f19627y = 0.0f;
     }
 }

@@ -1,20 +1,28 @@
 package j3;
 
-import h3.x1;
+import android.media.AudioTrack;
+public final class g0 extends AudioTrack.StreamEventCallback {
+    public final h0 f13245a;
 
-public final class g0 {
+    public g0(h0 h0Var) {
+        this.f13245a = h0Var;
+    }
 
-    public final x1 f12339a;
+    @Override
+    public final void onDataRequest(AudioTrack audioTrack, int i9) {
+        i0 i0Var;
+        q qVar;
+        if (audioTrack.equals(this.f13245a.f13252c.f13277u) && (qVar = (i0Var = this.f13245a.f13252c).f13274r) != null && i0Var.U) {
+            qVar.D();
+        }
+    }
 
-    public final boolean f12340b;
-
-    public final long f12341c;
-    public final long d;
-
-    public g0(x1 x1Var, boolean z10, long j10, long j11) {
-        this.f12339a = x1Var;
-        this.f12340b = z10;
-        this.f12341c = j10;
-        this.d = j11;
+    @Override
+    public final void onTearDown(AudioTrack audioTrack) {
+        i0 i0Var;
+        q qVar;
+        if (audioTrack.equals(this.f13245a.f13252c.f13277u) && (qVar = (i0Var = this.f13245a.f13252c).f13274r) != null && i0Var.U) {
+            qVar.D();
+        }
     }
 }

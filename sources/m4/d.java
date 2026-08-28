@@ -6,24 +6,25 @@ import com.google.android.exoplayer2.upstream.l0;
 import com.google.android.exoplayer2.upstream.n0;
 import com.google.android.exoplayer2.upstream.q0;
 import com.google.android.exoplayer2.upstream.t0;
-import j4.g0;
-import j4.p;
+import j4.h0;
 import java.io.IOException;
-
 public final class d implements l0 {
-
-    public final g f17666a;
+    public final g f17290a;
 
     public d(g gVar) {
-        this.f17666a = gVar;
+        this.f17290a = gVar;
     }
 
     public void a() {
         long j10;
-        g gVar = this.f17666a;
-        synchronized (d5.a.f4769i) {
+        g gVar = this.f17290a;
+        synchronized (d5.a.f4327i) {
             try {
-                j10 = d5.a.f4770j ? d5.a.f4771k : -9223372036854775807L;
+                if (d5.a.f4328j) {
+                    j10 = d5.a.f4329k;
+                } else {
+                    j10 = -9223372036854775807L;
+                }
             } catch (Throwable th) {
                 throw th;
             }
@@ -33,40 +34,40 @@ public final class d implements l0 {
     }
 
     @Override
-    public void d(n0 n0Var, long j10, long j11, boolean z10) {
+    public void e(n0 n0Var, long j10, long j11, boolean z10) {
         t0 t0Var = (t0) n0Var;
-        long j12 = t0Var.f3043a;
-        Uri uri = t0Var.d.f3090c;
-        p pVar = new p();
-        g gVar = this.f17666a;
-        gVar.f17680n.getClass();
-        gVar.f17683q.d(pVar, t0Var.f3045c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        long j12 = t0Var.f2606a;
+        Uri uri = t0Var.d.f2653c;
+        ?? obj = new Object();
+        g gVar = this.f17290a;
+        gVar.f17304n.getClass();
+        gVar.f17307q.d(obj, t0Var.f2608c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     @Override
-    public k0 h(n0 n0Var, IOException iOException, int i10) {
+    public k0 h(n0 n0Var, IOException iOException, int i9) {
         t0 t0Var = (t0) n0Var;
-        g gVar = this.f17666a;
-        g0 g0Var = gVar.f17683q;
-        long j10 = t0Var.f3043a;
-        Uri uri = t0Var.d.f3090c;
-        g0Var.i(new p(), t0Var.f3045c, iOException, true);
-        gVar.f17680n.getClass();
+        g gVar = this.f17290a;
+        h0 h0Var = gVar.f17307q;
+        long j10 = t0Var.f2606a;
+        Uri uri = t0Var.d.f2653c;
+        h0Var.i(new Object(), t0Var.f2608c, iOException, true);
+        gVar.f17304n.getClass();
         d5.a.p("DashMediaSource", "Failed to resolve time offset.", iOException);
         gVar.u(true);
-        return q0.f3028e;
+        return q0.f2591e;
     }
 
     @Override
-    public void l(n0 n0Var, long j10, long j11) {
+    public void m(n0 n0Var, long j10, long j11) {
         t0 t0Var = (t0) n0Var;
-        g gVar = this.f17666a;
-        long j12 = t0Var.f3043a;
-        Uri uri = t0Var.d.f3090c;
-        p pVar = new p();
-        gVar.f17680n.getClass();
-        gVar.f17683q.f(pVar, t0Var.f3045c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        gVar.L = ((Long) t0Var.f3047f).longValue() - j10;
+        g gVar = this.f17290a;
+        long j12 = t0Var.f2606a;
+        Uri uri = t0Var.d.f2653c;
+        ?? obj = new Object();
+        gVar.f17304n.getClass();
+        gVar.f17307q.f(obj, t0Var.f2608c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.L = ((Long) t0Var.f2610f).longValue() - j10;
         gVar.u(true);
     }
 }

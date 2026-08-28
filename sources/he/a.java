@@ -1,77 +1,44 @@
 package he;
 
-import ge.c;
-import je.g;
-import je.p;
-import je.s;
+import d7.u;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public abstract class a {
+    public static final Pattern f10511a = Pattern.compile("[\\\\&]");
+    public static final Pattern f10512b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f10513c;
+    public static final u d;
 
-public final class a implements me.a {
-
-    public final char f8918a;
-
-    public a(int i10) {
-        this('*');
-        switch (i10) {
-            case 1:
-                this('_');
-                break;
-            default:
-                break;
-        }
+    static {
+        Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
+        f10513c = Pattern.compile("[ \t\r\n]+");
+        d = new u(9);
     }
 
-    @Override
-    public final char a() {
-        return this.f8918a;
-    }
-
-    @Override
-    public final void b(s sVar, s sVar2, int i10) {
-        String.valueOf(this.f8918a);
-        g gVar = i10 == 1 ? new g(0) : new g(3);
-        p pVar = (p) sVar.f12927f;
-        while (pVar != null && pVar != sVar2) {
-            p pVar2 = (p) pVar.f12927f;
-            gVar.b(pVar);
-            pVar = pVar2;
-        }
-        gVar.g();
-        p pVar3 = (p) sVar.f12927f;
-        gVar.f12927f = pVar3;
-        if (pVar3 != null) {
-            pVar3.f12926e = gVar;
-        }
-        gVar.f12926e = sVar;
-        sVar.f12927f = gVar;
-        p pVar4 = (p) sVar.f12924b;
-        gVar.f12924b = pVar4;
-        if (((p) gVar.f12927f) == null) {
-            pVar4.d = gVar;
-        }
-    }
-
-    @Override
-    public final int c(c cVar, c cVar2) {
-        if (cVar.d || cVar2.f6854c) {
-            int i10 = cVar2.h;
-            if (i10 % 3 != 0 && (cVar.h + i10) % 3 == 0) {
-                return 0;
+    public static String a(String str) {
+        if (f10511a.matcher(str).find()) {
+            Matcher matcher = f10512b.matcher(str);
+            if (matcher.find()) {
+                StringBuilder sb2 = new StringBuilder(str.length() + 16);
+                int i9 = 0;
+                do {
+                    sb2.append((CharSequence) str, i9, matcher.start());
+                    String group = matcher.group();
+                    d.getClass();
+                    if (group.charAt(0) == '\\') {
+                        sb2.append((CharSequence) group, 1, group.length());
+                    } else {
+                        sb2.append(b.a(group));
+                    }
+                    i9 = matcher.end();
+                } while (matcher.find());
+                if (i9 != str.length()) {
+                    sb2.append((CharSequence) str, i9, str.length());
+                }
+                return sb2.toString();
             }
+            return str;
         }
-        return (cVar.f6857g < 2 || cVar2.f6857g < 2) ? 1 : 2;
-    }
-
-    @Override
-    public final int d() {
-        return 1;
-    }
-
-    @Override
-    public final char e() {
-        return this.f8918a;
-    }
-
-    public a(char c10) {
-        this.f8918a = c10;
+        return str;
     }
 }

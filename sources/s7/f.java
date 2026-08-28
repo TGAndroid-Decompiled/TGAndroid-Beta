@@ -1,4 +1,3 @@
 package s7;
-
-public interface f {
+public final class f extends b7.a {
 }

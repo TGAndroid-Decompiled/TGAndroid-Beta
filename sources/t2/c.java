@@ -1,16 +1,13 @@
 package t2;
-
-import a9.p;
-
 public final class c {
-
-    public final String f48011a;
+    public final String f47600a;
 
     public c(String str) {
-        if (str == null) {
-            throw new NullPointerException("name is null");
+        if (str != null) {
+            this.f47600a = str;
+            return;
         }
-        this.f48011a = str;
+        throw new NullPointerException("name is null");
     }
 
     public final boolean equals(Object obj) {
@@ -20,14 +17,14 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f48011a.equals(((c) obj).f48011a);
+        return this.f47600a.equals(((c) obj).f47600a);
     }
 
     public final int hashCode() {
-        return this.f48011a.hashCode() ^ 1000003;
+        return this.f47600a.hashCode() ^ 1000003;
     }
 
     public final String toString() {
-        return p.p(new StringBuilder("Encoding{name=\""), this.f48011a, "\"}");
+        return aa.d.r(new StringBuilder("Encoding{name=\""), this.f47600a, "\"}");
     }
 }

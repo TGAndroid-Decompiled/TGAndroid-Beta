@@ -2,7 +2,9 @@ package e7;
 
 import j$.lang.Iterable$CC;
 import j$.util.Collection;
+import j$.util.Spliterator;
 import j$.util.Spliterators;
+import j$.util.stream.Stream;
 import java.io.Serializable;
 import java.util.AbstractCollection;
 import java.util.Arrays;
@@ -11,10 +13,8 @@ import java.util.function.Consumer;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-
 public abstract class a extends AbstractCollection implements Serializable, Collection {
-
-    public static final Object[] f5314a = new Object[0];
+    public static final Object[] f4970a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -38,21 +38,15 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     public abstract int i(Object[] objArr);
 
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
+    public abstract int n();
 
-    public int o() {
-        throw new UnsupportedOperationException();
-    }
+    public abstract int o();
 
-    public Object[] p() {
-        return null;
-    }
+    public abstract Object[] p();
 
     @Override
     public Stream parallelStream() {
-        return j$.util.stream.Stream.Wrapper.convert(parallelStream());
+        return Stream.Wrapper.convert(parallelStream());
     }
 
     @Override
@@ -77,17 +71,19 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     @Override
     public Spliterator spliterator() {
-        return j$.util.Spliterator.Wrapper.convert(spliterator());
+        return Spliterator.Wrapper.convert(spliterator());
     }
 
     @Override
-    public Stream stream() {
-        return j$.util.stream.Stream.Wrapper.convert(stream());
+    public java.util.stream.Stream stream() {
+        return Stream.Wrapper.convert(stream());
     }
 
     @Override
     public Object[] toArray(IntFunction intFunction) {
-        return toArray((Object[]) intFunction.apply(0));
+        Object[] array;
+        array = toArray((Object[]) intFunction.apply(0));
+        return array;
     }
 
     @Override
@@ -107,7 +103,7 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     @Override
     public final Object[] toArray() {
-        return toArray(f5314a);
+        return toArray(f4970a);
     }
 
     @Override
@@ -116,14 +112,14 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
         int size = size();
         int length = objArr.length;
         if (length < size) {
-            Object[] objArrP = p();
-            if (objArrP == null) {
+            Object[] p6 = p();
+            if (p6 == null) {
                 if (length != 0) {
                     objArr = Arrays.copyOf(objArr, 0);
                 }
                 objArr = Arrays.copyOf(objArr, size);
             } else {
-                return Arrays.copyOfRange(objArrP, o(), n(), objArr.getClass());
+                return Arrays.copyOfRange(p6, o(), n(), objArr.getClass());
             }
         } else if (length > size) {
             objArr[size] = null;

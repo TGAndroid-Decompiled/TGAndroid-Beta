@@ -1,38 +1,43 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stories;
-
-public final class w4 extends org.telegram.ui.Components.n9 {
-    public final org.telegram.ui.ActionBar.c6 C;
-    public final y4 D;
-
-    public w4(y4 y4Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.D = y4Var;
-        this.C = c6Var;
-    }
+import org.telegram.ui.Components.RadialProgressView;
+public final class w4 extends FrameLayout {
+    public RadialProgressView f25896a;
+    public TextView f25897b;
+    public ImageView f25898c;
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        y4 y4Var = this.D;
-        if (y4Var.f25994r == null) {
-            super.onDraw(canvas);
-            return;
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(56.0f) * 2.5f), 1073741824));
+    }
+
+    public void setLoading(boolean z10) {
+        int i9;
+        int i10;
+        RadialProgressView radialProgressView = this.f25896a;
+        int i11 = 4;
+        if (z10) {
+            i9 = 0;
+        } else {
+            i9 = 4;
         }
-        int iDp = AndroidUtilities.dp(1.0f);
-        float f10 = iDp;
-        y4Var.J.F.set(f10, f10, getMeasuredWidth() - iDp, getMeasuredHeight() - iDp);
-        jh.h7 h7Var = y4Var.J;
-        h7Var.f13391a = false;
-        h7Var.f13392b = false;
-        h7Var.v = true;
-        h7Var.f13403o = false;
-        h7Var.J = this.C;
-        TL_stories.StoryItem storyItem = y4Var.f25994r;
-        h7Var.d = storyItem;
-        jh.l7.h(storyItem.dialogId, canvas, this.f30898a, h7Var);
+        radialProgressView.setVisibility(i9);
+        TextView textView = this.f25897b;
+        if (z10) {
+            i10 = 4;
+        } else {
+            i10 = 0;
+        }
+        textView.setVisibility(i10);
+        ImageView imageView = this.f25898c;
+        if (!z10) {
+            i11 = 0;
+        }
+        imageView.setVisibility(i11);
     }
 }

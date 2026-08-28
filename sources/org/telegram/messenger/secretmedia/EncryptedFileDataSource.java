@@ -10,8 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
-import s3.c;
-
+import ta.b;
 public final class EncryptedFileDataSource extends g {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -32,8 +31,8 @@ public final class EncryptedFileDataSource extends g {
     public void close() {
         try {
             this.fileInputStream.close();
-        } catch (IOException e9) {
-            e9.printStackTrace();
+        } catch (IOException e10) {
+            e10.printStackTrace();
         }
         if (this.opened) {
             this.opened = false;
@@ -54,53 +53,51 @@ public final class EncryptedFileDataSource extends g {
     }
 
     @Override
-    public long open(q qVar) throws n {
-        Uri uri = qVar.f3022a;
-        long j10 = qVar.f3026f;
-        long j11 = qVar.f3025e;
+    public long open(q qVar) {
+        Uri uri = qVar.f2585a;
+        long j10 = qVar.f2589f;
+        long j11 = qVar.f2588e;
         this.uri = uri;
-        File file = new File(qVar.f3022a.getPath());
-        try {
-            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), c.l(file.getName(), ".key")));
-            this.fileInputStream = encryptedFileInputStream;
-            encryptedFileInputStream.skip(j11);
-            int length = (int) file.length();
-            transferInitializing(qVar);
-            long j12 = length;
-            if (j11 > j12) {
-                throw new n(2008);
-            }
-            int i10 = (int) (j12 - j11);
-            this.bytesRemaining = i10;
+        File file = new File(qVar.f2585a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), b.j(file.getName(), ".key")));
+        this.fileInputStream = encryptedFileInputStream;
+        encryptedFileInputStream.skip(j11);
+        transferInitializing(qVar);
+        long length = (int) file.length();
+        if (j11 <= length) {
+            int i9 = (int) (length - j11);
+            this.bytesRemaining = i9;
             if (j10 != -1) {
-                this.bytesRemaining = (int) Math.min(i10, j10);
+                this.bytesRemaining = (int) Math.min(i9, j10);
             }
             this.opened = true;
             transferStarted(qVar);
-            return j10 != -1 ? j10 : this.bytesRemaining;
-        } catch (Throwable unused) {
-            throw new n(2008);
+            if (j10 != -1) {
+                return j10;
+            }
+            return this.bytesRemaining;
         }
+        throw new n(2008);
     }
 
     @Override
-    public int read(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
+    public int read(byte[] bArr, int i9, int i10) {
+        if (i10 == 0) {
             return 0;
         }
-        int i12 = this.bytesRemaining;
-        if (i12 == 0) {
+        int i11 = this.bytesRemaining;
+        if (i11 == 0) {
             return -1;
         }
-        int iMin = Math.min(i11, i12);
+        int min = Math.min(i10, i11);
         try {
-            this.fileInputStream.read(bArr, i10, iMin);
-        } catch (IOException e9) {
-            e9.printStackTrace();
+            this.fileInputStream.read(bArr, i9, min);
+        } catch (IOException e10) {
+            e10.printStackTrace();
         }
-        this.bytesRemaining -= iMin;
-        bytesTransferred(iMin);
-        return iMin;
+        this.bytesRemaining -= min;
+        bytesTransferred(min);
+        return min;
     }
 
     @Deprecated

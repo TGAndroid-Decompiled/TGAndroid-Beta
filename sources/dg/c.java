@@ -1,37 +1,54 @@
 package dg;
 
-import ag.h0;
-import cg.f1;
-import org.telegram.messenger.y1;
-import org.telegram.ui.gy;
+import android.content.Context;
+import org.telegram.messenger.Emoji;
+import org.telegram.ui.ActionBar.h5;
+public final class c extends h5 {
+    public final int I0;
 
-public final class c implements Runnable {
-
-    public final int f4938a;
-
-    public final e f4939b;
-
-    public c(e eVar, int i10) {
-        this.f4938a = i10;
-        this.f4939b = eVar;
+    public c(Context context, int i9) {
+        super(context);
+        this.I0 = i9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4938a) {
+    public boolean k(CharSequence charSequence) {
+        switch (this.I0) {
             case 0:
-                this.f4939b.E();
-                break;
+                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+            case 1:
+            case 2:
             default:
-                StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
-                e eVar = this.f4939b;
-                sb2.append(eVar.h);
-                String string = sb2.toString();
-                gy gyVar = new gy(y1.e(3, "onlySelect", "dialogsType", true));
-                gyVar.f38621y2 = new h0(15, eVar, string);
-                eVar.f4944e.presentFragment(gyVar);
-                ((f1) eVar).f2680r.dismiss();
-                break;
+                return super.k(charSequence);
+            case 3:
+                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+            case 4:
+                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+        }
+    }
+
+    @Override
+    public boolean l(CharSequence charSequence, boolean z10) {
+        switch (this.I0) {
+            case 2:
+                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), z10);
+            case 5:
+                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+            default:
+                return super.l(charSequence, z10);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i9, int i10) {
+        switch (this.I0) {
+            case 1:
+                super.onMeasure(i9, i10);
+                setPivotY(getMeasuredHeight() / 2.0f);
+                return;
+            default:
+                super.onMeasure(i9, i10);
+                return;
         }
     }
 }

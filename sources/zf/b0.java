@@ -1,28 +1,25 @@
 package zf;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import org.telegram.ui.ys0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class b0 extends View {
+    public final int f50466a;
 
-public final class b0 extends yf.b1 {
-    public final Bitmap A;
-    public final ys0 B;
-
-    public b0(ys0 ys0Var, Context context, yf.p0 p0Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, p0Var, bitmap, null, null);
-        this.B = ys0Var;
-        this.A = bitmap2;
+    public b0(Context context, int i9) {
+        super(context);
+        this.f50466a = i9;
     }
 
     @Override
-    public final void g(yf.m mVar) {
-        int iIndexOf = yf.m.f49979a.indexOf(mVar);
-        int i10 = iIndexOf + 1;
-        if (i10 <= 1 || this.A != null) {
-            iIndexOf = i10;
+    public final void onMeasure(int i9, int i10) {
+        switch (this.f50466a) {
+            case 0:
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+                return;
         }
-        ys0 ys0Var = this.B;
-        ys0Var.f50528p1.b(iIndexOf);
-        ys0Var.l(mVar);
     }
 }

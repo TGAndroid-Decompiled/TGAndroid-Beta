@@ -2,51 +2,37 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-
+import org.telegram.messenger.AndroidUtilities;
 public final class u5 extends Drawable {
-
-    public final RectF f23843a = new RectF();
-
-    public final int f23844b;
-
-    public final int f23845c;
-    public final int d;
-
-    public final int f23846e;
-
-    public final float f23847f;
-
-    public u5(int i10, int i11, int i12, int i13, float f10) {
-        this.f23844b = i10;
-        this.f23845c = i11;
-        this.d = i12;
-        this.f23846e = i13;
-        this.f23847f = f10;
-    }
+    public static Paint f23832c;
+    public Paint f23833a;
+    public float f23834b;
 
     @Override
     public final void draw(Canvas canvas) {
+        int dp;
         Rect bounds = getBounds();
-        RectF rectF = this.f23843a;
-        rectF.set(bounds);
-        rectF.left += this.f23844b;
-        rectF.top += this.f23845c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.f23846e;
-        float f10 = this.f23847f;
-        canvas.drawRoundRect(rectF, f10, f10, g6.f23434z);
+        float f10 = this.f23834b;
+        if (Math.abs(f10 - (-1.0f)) < 0.01f) {
+            dp = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
+            dp = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            dp = AndroidUtilities.dp(f10);
+        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), dp, this.f23833a);
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void setAlpha(int i9) {
     }
 
     @Override

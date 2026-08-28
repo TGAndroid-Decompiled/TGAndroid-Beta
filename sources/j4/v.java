@@ -1,47 +1,52 @@
 package j4;
 
 import h3.p2;
+import h3.q2;
 import h3.r2;
-import h3.s2;
+public final class v extends o {
+    public static final Object f13586e = new Object();
+    public final Object f13587c;
+    public final Object d;
 
-public final class v extends s2 {
-
-    public final h3.f1 f12688b;
-
-    public v(h3.f1 f1Var) {
-        this.f12688b = f1Var;
+    public v(r2 r2Var, Object obj, Object obj2) {
+        super(r2Var);
+        this.f13587c = obj;
+        this.d = obj2;
     }
 
     @Override
     public final int b(Object obj) {
-        return obj == u.f12683e ? 0 : -1;
+        Object obj2;
+        if (f13586e.equals(obj) && (obj2 = this.d) != null) {
+            obj = obj2;
+        }
+        return this.f13526b.b(obj);
     }
 
     @Override
-    public final p2 f(int i10, p2 p2Var, boolean z10) {
-        p2Var.h(z10 ? 0 : null, z10 ? u.f12683e : null, 0, -9223372036854775807L, 0L, k4.b.f14448f, true);
+    public final p2 f(int i9, p2 p2Var, boolean z10) {
+        this.f13526b.f(i9, p2Var, z10);
+        if (d5.f0.a(p2Var.f9638b, this.d) && z10) {
+            p2Var.f9638b = f13586e;
+        }
         return p2Var;
     }
 
     @Override
-    public final int h() {
-        return 1;
+    public final Object l(int i9) {
+        Object l10 = this.f13526b.l(i9);
+        if (d5.f0.a(l10, this.d)) {
+            return f13586e;
+        }
+        return l10;
     }
 
     @Override
-    public final Object l(int i10) {
-        return u.f12683e;
-    }
-
-    @Override
-    public final r2 m(int i10, r2 r2Var, long j10) {
-        r2Var.b(r2.D, this.f12688b, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        r2Var.f8120w = true;
-        return r2Var;
-    }
-
-    @Override
-    public final int o() {
-        return 1;
+    public final q2 m(int i9, q2 q2Var, long j10) {
+        this.f13526b.m(i9, q2Var, j10);
+        if (d5.f0.a(q2Var.f9658a, this.f13587c)) {
+            q2Var.f9658a = q2.D;
+        }
+        return q2Var;
     }
 }

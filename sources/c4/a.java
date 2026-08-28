@@ -2,21 +2,20 @@ package c4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
+import c.c;
+import d5.f0;
 import h3.g1;
 import h3.t0;
+import j3.r0;
 import z3.b;
-
 public class a implements b {
-    public static final Parcelable.Creator<a> CREATOR = new w.a(24);
-
-    public final String f2440a;
-
-    public final String f2441b;
+    public static final Parcelable.Creator<a> CREATOR = new c(2);
+    public final String f2307a;
+    public final String f2308b;
 
     public a(String str, String str2) {
-        this.f2440a = str;
-        this.f2441b = str2;
+        this.f2307a = str;
+        this.f2308b = str2;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class a implements b {
         }
         if (obj != null && getClass() == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f2440a.equals(aVar.f2440a) && this.f2441b.equals(aVar.f2441b)) {
+            if (this.f2307a.equals(aVar.f2307a) && this.f2308b.equals(aVar.f2308b)) {
                 return true;
             }
         }
@@ -48,75 +47,82 @@ public class a implements b {
     }
 
     public final int hashCode() {
-        return this.f2441b.hashCode() + i0.a.g(527, 31, this.f2440a);
+        return this.f2308b.hashCode() + r0.f(527, 31, this.f2307a);
     }
 
     @Override
     public final void populateMediaMetadata(g1 g1Var) {
-        String str = this.f2440a;
+        String str = this.f2307a;
         str.getClass();
-        byte b10 = -1;
+        char c10 = 65535;
         switch (str.hashCode()) {
             case 62359119:
                 if (str.equals("ALBUM")) {
-                    b10 = 0;
+                    c10 = 0;
+                    break;
                 }
                 break;
             case 79833656:
                 if (str.equals("TITLE")) {
-                    b10 = 1;
+                    c10 = 1;
+                    break;
                 }
                 break;
             case 428414940:
                 if (str.equals("DESCRIPTION")) {
-                    b10 = 2;
+                    c10 = 2;
+                    break;
                 }
                 break;
             case 1746739798:
                 if (str.equals("ALBUMARTIST")) {
-                    b10 = 3;
+                    c10 = 3;
+                    break;
                 }
                 break;
             case 1939198791:
                 if (str.equals("ARTIST")) {
-                    b10 = 4;
+                    c10 = 4;
+                    break;
                 }
                 break;
         }
-        String str2 = this.f2441b;
-        switch (b10) {
+        String str2 = this.f2308b;
+        switch (c10) {
             case 0:
-                g1Var.f7843c = str2;
-                break;
+                g1Var.f9413c = str2;
+                return;
             case 1:
-                g1Var.f7841a = str2;
-                break;
+                g1Var.f9411a = str2;
+                return;
             case 2:
-                g1Var.f7846g = str2;
-                break;
+                g1Var.f9416g = str2;
+                return;
             case 3:
                 g1Var.d = str2;
-                break;
+                return;
             case 4:
-                g1Var.f7842b = str2;
-                break;
+                g1Var.f9412b = str2;
+                return;
+            default:
+                return;
         }
     }
 
     public final String toString() {
-        return "VC: " + this.f2440a + "=" + this.f2441b;
+        return "VC: " + this.f2307a + "=" + this.f2308b;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f2440a);
-        parcel.writeString(this.f2441b);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeString(this.f2307a);
+        parcel.writeString(this.f2308b);
     }
 
     public a(Parcel parcel) {
-        String string = parcel.readString();
-        int i10 = g0.f4795a;
-        this.f2440a = string;
-        this.f2441b = parcel.readString();
+        String readString = parcel.readString();
+        int i9 = f0.f4349a;
+        this.f2307a = readString;
+        this.f2308b = parcel.readString();
     }
 }

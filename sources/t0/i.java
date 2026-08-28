@@ -2,7 +2,6 @@ package t0;
 
 import android.content.ClipDescription;
 import android.net.Uri;
-
 public interface i {
     Uri c();
 
@@ -10,9 +9,9 @@ public interface i {
 
     Uri g();
 
-    ClipDescription k();
+    ClipDescription j();
 
-    Object l();
+    Object k();
 
-    void o();
+    void m();
 }

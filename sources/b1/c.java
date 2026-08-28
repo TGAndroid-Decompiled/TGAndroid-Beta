@@ -1,33 +1,29 @@
 package b1;
 
-import ad.l;
-import kotlin.jvm.internal.q;
-import pc.i;
+import kotlin.jvm.internal.p;
+import oc.i;
+import zc.l;
+public final class c implements zc.a {
+    public final int f1391a;
+    public final l f1392b;
+    public final p f1393c;
 
-public final class c implements ad.a {
-
-    public final int f1887a;
-
-    public final l f1888b;
-
-    public final q f1889c;
-
-    public c(l lVar, q qVar, int i10) {
-        this.f1887a = i10;
-        this.f1888b = lVar;
-        this.f1889c = qVar;
+    public c(l lVar, p pVar, int i9) {
+        this.f1391a = i9;
+        this.f1392b = lVar;
+        this.f1393c = pVar;
     }
 
     @Override
     public final Object invoke() {
-        switch (this.f1887a) {
+        switch (this.f1391a) {
             case 0:
-                this.f1888b.invoke(this.f1889c.f15253a);
+                this.f1392b.invoke(this.f1393c.f16499a);
                 break;
             default:
-                this.f1888b.invoke(this.f1889c.f15253a);
+                this.f1392b.invoke(this.f1393c.f16499a);
                 break;
         }
-        return i.f45696a;
+        return i.f19197a;
     }
 }

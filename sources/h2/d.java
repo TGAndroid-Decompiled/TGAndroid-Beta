@@ -1,6 +1,7 @@
 package h2;
 
 import a0.g;
+import a0.k;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,86 +14,73 @@ import android.util.Log;
 import android.util.Xml;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
-
 public abstract class d {
-
-    public static volatile ArrayList f7754a;
-
-    public static final Object f7755b = new Object();
+    public static volatile ArrayList f9322a;
+    public static final Object f9323b = new Object();
 
     public static String a(XmlResourceParser xmlResourceParser, String str) {
         String attributeValue = xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
-        return attributeValue == null ? xmlResourceParser.getAttributeValue(null, str) : attributeValue;
+        if (attributeValue == null) {
+            return xmlResourceParser.getAttributeValue(null, str);
+        }
+        return attributeValue;
     }
 
     public static String b(XmlPullParser xmlPullParser, String str) {
         String attributeValue = xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
-        return attributeValue == null ? xmlPullParser.getAttributeValue(null, str) : attributeValue;
+        if (attributeValue == null) {
+            return xmlPullParser.getAttributeValue(null, str);
+        }
+        return attributeValue;
     }
 
     public static a0.f c(File file, Context context) {
-        f fVarF;
-        a0.f fVar = new a0.f(0);
+        f f10;
+        ?? kVar = new k(0);
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            try {
-                if (file.exists()) {
-                    XmlPullParser xmlPullParserNewPullParser = Xml.newPullParser();
-                    xmlPullParserNewPullParser.setInput(fileInputStream, "UTF_8");
-                    while (true) {
-                        int next = xmlPullParserNewPullParser.next();
-                        if (next == 1) {
-                            break;
-                        }
-                        if (next == 2 && xmlPullParserNewPullParser.getName().equals("target") && (fVarF = f(xmlPullParserNewPullParser, context)) != null) {
-                            fVar.put(fVarF.f7761c.f6332b, fVarF);
-                        }
-                        file.delete();
-                        Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e);
-                        return fVar;
+            if (file.exists()) {
+                XmlPullParser newPullParser = Xml.newPullParser();
+                newPullParser.setInput(fileInputStream, "UTF_8");
+                while (true) {
+                    int next = newPullParser.next();
+                    if (next == 1) {
+                        break;
+                    } else if (next == 2 && newPullParser.getName().equals("target") && (f10 = f(newPullParser, context)) != null) {
+                        kVar.put(f10.f9329c.f7054b, f10);
                     }
                 }
-                fileInputStream.close();
-                return fVar;
-            } catch (Throwable th) {
-                try {
-                    fileInputStream.close();
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
-                }
-                throw th;
             }
-        } catch (Exception e9) {
+            fileInputStream.close();
+            return kVar;
+        } catch (Exception e10) {
             file.delete();
-            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e9);
-            return fVar;
+            Log.e("ShortcutInfoCompatSaver", "Failed to load saved values from file " + file.getAbsolutePath() + ". Old state removed, new added", e10);
+            return kVar;
         }
     }
 
-    public static c d(XmlResourceParser xmlResourceParser) throws XmlPullParserException, IOException {
-        String strA = a(xmlResourceParser, "targetClass");
+    public static c d(XmlResourceParser xmlResourceParser) {
+        String a2 = a(xmlResourceParser, "targetClass");
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         while (true) {
             int next = xmlResourceParser.next();
             if (next != 1) {
-                if (next != 2) {
-                    if (next == 3 && xmlResourceParser.getName().equals("share-target")) {
-                        break;
-                    }
-                } else {
+                if (next == 2) {
                     String name = xmlResourceParser.getName();
                     name.getClass();
-                    if (name.equals("data")) {
+                    if (!name.equals("data")) {
+                        if (name.equals("category")) {
+                            arrayList2.add(a(xmlResourceParser, "name"));
+                        }
+                    } else {
                         a(xmlResourceParser, "scheme");
                         a(xmlResourceParser, "host");
                         a(xmlResourceParser, "port");
@@ -100,147 +88,151 @@ public abstract class d {
                         a(xmlResourceParser, "pathPattern");
                         a(xmlResourceParser, "pathPrefix");
                         arrayList.add(new b(a(xmlResourceParser, "mimeType")));
-                    } else if (name.equals("category")) {
-                        arrayList2.add(a(xmlResourceParser, "name"));
                     }
+                } else if (next == 3 && xmlResourceParser.getName().equals("share-target")) {
+                    break;
                 }
             } else {
                 break;
             }
         }
-        if (arrayList.isEmpty() || strA == null || arrayList2.isEmpty()) {
-            return null;
+        if (!arrayList.isEmpty() && a2 != null && !arrayList2.isEmpty()) {
+            return new c((b[]) arrayList.toArray(new b[arrayList.size()]), a2, (String[]) arrayList2.toArray(new String[arrayList2.size()]));
         }
-        return new c((b[]) arrayList.toArray(new b[arrayList.size()]), strA, (String[]) arrayList2.toArray(new String[arrayList2.size()]));
+        return null;
     }
 
     public static ArrayList e(Context context) {
-        c cVarD;
+        c d;
         ArrayList arrayList = new ArrayList();
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.LAUNCHER");
         intent.setPackage(context.getPackageName());
-        List<ResolveInfo> listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 128);
-        if (listQueryIntentActivities != null) {
-            Iterator<ResolveInfo> it = listQueryIntentActivities.iterator();
-            while (it.hasNext()) {
-                ActivityInfo activityInfo = it.next().activityInfo;
+        List<ResolveInfo> queryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 128);
+        if (queryIntentActivities != null) {
+            for (ResolveInfo resolveInfo : queryIntentActivities) {
+                ActivityInfo activityInfo = resolveInfo.activityInfo;
                 Bundle bundle = activityInfo.metaData;
                 if (bundle != null && bundle.containsKey("android.app.shortcuts")) {
                     ArrayList arrayList2 = new ArrayList();
-                    XmlResourceParser xmlResourceParserLoadXmlMetaData = activityInfo.loadXmlMetaData(context.getPackageManager(), "android.app.shortcuts");
-                    if (xmlResourceParserLoadXmlMetaData == null) {
+                    XmlResourceParser loadXmlMetaData = activityInfo.loadXmlMetaData(context.getPackageManager(), "android.app.shortcuts");
+                    if (loadXmlMetaData != null) {
+                        while (true) {
+                            try {
+                                int next = loadXmlMetaData.next();
+                                if (next == 1) {
+                                    break;
+                                } else if (next == 2 && loadXmlMetaData.getName().equals("share-target") && (d = d(loadXmlMetaData)) != null) {
+                                    arrayList2.add(d);
+                                }
+                            } catch (Exception e10) {
+                                Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e10);
+                            }
+                        }
+                        loadXmlMetaData.close();
+                        arrayList.addAll(arrayList2);
+                    } else {
                         throw new IllegalArgumentException("Failed to open android.app.shortcuts meta-data resource of " + activityInfo.name);
                     }
-                    while (true) {
-                        try {
-                            int next = xmlResourceParserLoadXmlMetaData.next();
-                            if (next == 1) {
-                                break;
-                            }
-                            if (next == 2 && xmlResourceParserLoadXmlMetaData.getName().equals("share-target") && (cVarD = d(xmlResourceParserLoadXmlMetaData)) != null) {
-                                arrayList2.add(cVarD);
-                            }
-                        } catch (Exception e9) {
-                            Log.e("ShareTargetXmlParser", "Failed to parse the Xml resource: ", e9);
-                        }
-                    }
-                    xmlResourceParserLoadXmlMetaData.close();
-                    arrayList.addAll(arrayList2);
                 }
             }
         }
         return arrayList;
     }
 
-    public static f f(XmlPullParser xmlPullParser, Context context) throws XmlPullParserException, IOException {
+    public static f f(XmlPullParser xmlPullParser, Context context) {
+        ComponentName unflattenFromString;
         Intent intent;
         if (!xmlPullParser.getName().equals("target")) {
             return null;
         }
-        String strB = b(xmlPullParser, "id");
-        String strB2 = b(xmlPullParser, "short_label");
-        if (TextUtils.isEmpty(strB) || TextUtils.isEmpty(strB2)) {
+        String b10 = b(xmlPullParser, "id");
+        String b11 = b(xmlPullParser, "short_label");
+        if (TextUtils.isEmpty(b10) || TextUtils.isEmpty(b11)) {
             return null;
         }
-        int i10 = Integer.parseInt(b(xmlPullParser, "rank"));
-        String strB3 = b(xmlPullParser, "long_label");
-        String strB4 = b(xmlPullParser, "disabled_message");
-        String strB5 = b(xmlPullParser, "component");
-        ComponentName componentNameUnflattenFromString = TextUtils.isEmpty(strB5) ? null : ComponentName.unflattenFromString(strB5);
-        String strB6 = b(xmlPullParser, "icon_resource_name");
-        String strB7 = b(xmlPullParser, "icon_bitmap_path");
+        int parseInt = Integer.parseInt(b(xmlPullParser, "rank"));
+        String b12 = b(xmlPullParser, "long_label");
+        String b13 = b(xmlPullParser, "disabled_message");
+        String b14 = b(xmlPullParser, "component");
+        if (TextUtils.isEmpty(b14)) {
+            unflattenFromString = null;
+        } else {
+            unflattenFromString = ComponentName.unflattenFromString(b14);
+        }
+        String b15 = b(xmlPullParser, "icon_resource_name");
+        String b16 = b(xmlPullParser, "icon_bitmap_path");
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
         while (true) {
             int next = xmlPullParser.next();
             if (next != 1) {
-                if (next != 2) {
-                    if (next == 3 && xmlPullParser.getName().equals("target")) {
-                        break;
-                    }
-                } else {
+                if (next == 2) {
                     String name = xmlPullParser.getName();
                     name.getClass();
-                    if (name.equals("intent")) {
-                        String strB8 = b(xmlPullParser, "action");
-                        String strB9 = b(xmlPullParser, "targetPackage");
-                        String strB10 = b(xmlPullParser, "targetClass");
-                        if (strB8 == null) {
+                    if (!name.equals("intent")) {
+                        if (name.equals("categories")) {
+                            String b17 = b(xmlPullParser, "name");
+                            if (!TextUtils.isEmpty(b17)) {
+                                hashSet.add(b17);
+                            }
+                        }
+                    } else {
+                        String b18 = b(xmlPullParser, "action");
+                        String b19 = b(xmlPullParser, "targetPackage");
+                        String b20 = b(xmlPullParser, "targetClass");
+                        if (b18 == null) {
                             intent = null;
                         } else {
-                            intent = new Intent(strB8);
-                            if (!TextUtils.isEmpty(strB9) && !TextUtils.isEmpty(strB10)) {
-                                intent.setClassName(strB9, strB10);
+                            intent = new Intent(b18);
+                            if (!TextUtils.isEmpty(b19) && !TextUtils.isEmpty(b20)) {
+                                intent.setClassName(b19, b20);
                             }
                         }
                         if (intent != null) {
                             arrayList.add(intent);
                         }
-                    } else if (name.equals("categories")) {
-                        String strB11 = b(xmlPullParser, "name");
-                        if (!TextUtils.isEmpty(strB11)) {
-                            hashSet.add(strB11);
-                        }
                     }
+                } else if (next == 3 && xmlPullParser.getName().equals("target")) {
+                    break;
                 }
             } else {
                 break;
             }
         }
-        g0.c cVar = new g0.c();
-        cVar.f6331a = context;
-        cVar.f6332b = strB;
-        cVar.f6334e = strB2;
-        cVar.f6341m = i10;
-        if (!TextUtils.isEmpty(strB3)) {
-            cVar.f6335f = strB3;
+        ?? obj = new Object();
+        obj.f7053a = context;
+        obj.f7054b = b10;
+        obj.f7056e = b11;
+        obj.f7063m = parseInt;
+        if (!TextUtils.isEmpty(b12)) {
+            obj.f7057f = b12;
         }
-        if (!TextUtils.isEmpty(strB4)) {
-            cVar.f6336g = strB4;
+        if (!TextUtils.isEmpty(b13)) {
+            obj.f7058g = b13;
         }
-        if (componentNameUnflattenFromString != null) {
-            cVar.d = componentNameUnflattenFromString;
+        if (unflattenFromString != null) {
+            obj.d = unflattenFromString;
         }
         if (!arrayList.isEmpty()) {
-            cVar.f6333c = (Intent[]) arrayList.toArray(new Intent[0]);
+            obj.f7055c = (Intent[]) arrayList.toArray(new Intent[0]);
         }
         if (!hashSet.isEmpty()) {
             g gVar = new g(0);
             gVar.addAll(hashSet);
-            cVar.f6338j = gVar;
+            obj.f7060j = gVar;
         }
-        if (TextUtils.isEmpty(cVar.f6334e)) {
-            throw new IllegalArgumentException("Shortcut must have a non-empty label");
-        }
-        Intent[] intentArr = cVar.f6333c;
-        if (intentArr == null || intentArr.length == 0) {
+        if (!TextUtils.isEmpty(obj.f7056e)) {
+            Intent[] intentArr = obj.f7055c;
+            if (intentArr != null && intentArr.length != 0) {
+                return new f(obj, b15, b16);
+            }
             throw new IllegalArgumentException("Shortcut must have an intent");
         }
-        return new f(cVar, strB6, strB7);
+        throw new IllegalArgumentException("Shortcut must have a non-empty label");
     }
 
-    public static void g(XmlSerializer xmlSerializer, String str, String str2) throws IOException {
+    public static void g(XmlSerializer xmlSerializer, String str, String str2) {
         if (TextUtils.isEmpty(str2)) {
             return;
         }
@@ -248,18 +240,19 @@ public abstract class d {
     }
 
     public static void h(XmlSerializer xmlSerializer, f fVar) {
+        Intent[] intentArr;
         xmlSerializer.startTag(null, "target");
-        g0.c cVar = fVar.f7761c;
-        String str = fVar.f7760b;
-        String str2 = fVar.f7759a;
-        g(xmlSerializer, "id", cVar.f6332b);
-        g(xmlSerializer, "short_label", cVar.f6334e.toString());
-        g(xmlSerializer, "rank", Integer.toString(cVar.f6341m));
-        if (!TextUtils.isEmpty(cVar.f6335f)) {
-            g(xmlSerializer, "long_label", cVar.f6335f.toString());
+        g0.c cVar = fVar.f9329c;
+        String str = fVar.f9328b;
+        String str2 = fVar.f9327a;
+        g(xmlSerializer, "id", cVar.f7054b);
+        g(xmlSerializer, "short_label", cVar.f7056e.toString());
+        g(xmlSerializer, "rank", Integer.toString(cVar.f7063m));
+        if (!TextUtils.isEmpty(cVar.f7057f)) {
+            g(xmlSerializer, "long_label", cVar.f7057f.toString());
         }
-        if (!TextUtils.isEmpty(cVar.f6336g)) {
-            g(xmlSerializer, "disabled_message", cVar.f6336g.toString());
+        if (!TextUtils.isEmpty(cVar.f7058g)) {
+            g(xmlSerializer, "disabled_message", cVar.f7058g.toString());
         }
         ComponentName componentName = cVar.d;
         if (componentName != null) {
@@ -271,8 +264,8 @@ public abstract class d {
         if (!TextUtils.isEmpty(str)) {
             g(xmlSerializer, "icon_bitmap_path", str);
         }
-        Intent[] intentArr = cVar.f6333c;
-        for (Intent intent : (Intent[]) Arrays.copyOf(intentArr, intentArr.length)) {
+        Intent[] intentArr2 = cVar.f7055c;
+        for (Intent intent : (Intent[]) Arrays.copyOf(intentArr2, intentArr2.length)) {
             xmlSerializer.startTag(null, "intent");
             g(xmlSerializer, "action", intent.getAction());
             if (intent.getComponent() != null) {
@@ -281,7 +274,7 @@ public abstract class d {
             }
             xmlSerializer.endTag(null, "intent");
         }
-        for (String str3 : cVar.f6338j) {
+        for (String str3 : cVar.f7060j) {
             if (!TextUtils.isEmpty(str3)) {
                 xmlSerializer.startTag(null, "categories");
                 g(xmlSerializer, "name", str3);

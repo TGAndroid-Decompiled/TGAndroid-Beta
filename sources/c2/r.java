@@ -1,13 +1,12 @@
 package c2;
-
 public abstract class r {
-    public abstract void f(int i10);
+    public abstract void f(int i9);
 
-    public void h(int i10) {
+    public void h(int i9) {
         g();
     }
 
-    public abstract void i(int i10);
+    public abstract void i(int i9);
 
     public void d() {
     }

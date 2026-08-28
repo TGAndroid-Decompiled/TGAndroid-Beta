@@ -1,80 +1,55 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Paint;
+import android.animation.AnimatorSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.rl;
-
+import org.telegram.ui.Components.ce0;
+import org.telegram.ui.Components.de0;
 public final class v5 extends FrameLayout {
+    public TextView f25792a;
+    public TextView f25793b;
+    public de0 f25794c;
+    public AnimatorSet d;
+    public m.i3 f25795e;
 
-    public t5[] f25805a;
-
-    public MediaController.AlbumEntry[] f25806b;
-
-    public int f25807c;
-    public u5 d;
-
-    public Paint f25808e;
-
-    public final void a(int i10, MediaController.AlbumEntry albumEntry) {
-        t5[] t5VarArr = this.f25805a;
-        this.f25806b[i10] = albumEntry;
-        if (albumEntry == null) {
-            t5VarArr[i10].setVisibility(4);
-            return;
+    public final void a(String str, int i9, float f10) {
+        TextView textView = this.f25792a;
+        TextView textView2 = this.f25793b;
+        AnimatorSet animatorSet = this.d;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.d = null;
         }
-        t5 t5Var = t5VarArr[i10];
-        org.telegram.ui.Components.n9 n9Var = t5Var.f25671a;
-        org.telegram.ui.Components.n9 n9Var2 = t5Var.f25671a;
-        n9Var.q(0, true);
-        MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
-        if (photoEntry == null || photoEntry.path == null) {
-            n9Var2.setImageDrawable(org.telegram.ui.ActionBar.g6.R4);
+        AndroidUtilities.cancelRunOnUIThread(this.f25795e);
+        textView2.setTag(null);
+        textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        if (f10 > 0.0f) {
+            textView2.setText("+" + ((int) f10));
         } else {
-            n9Var2.p(photoEntry.orientation, photoEntry.invert, true);
-            if (albumEntry.coverPhoto.isVideo) {
-                n9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.g6.R4);
-            } else {
-                n9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.g6.R4);
-            }
+            textView2.setText("" + ((int) f10));
         }
-        t5Var.f25672b.setText(albumEntry.bucketName);
-        t5Var.f25673c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+        textView2.setAlpha(0.0f);
+        textView.setAlpha(1.0f);
+        de0 de0Var = this.f25794c;
+        de0Var.h = i9;
+        de0Var.f27729n = 100;
+        de0Var.a((int) f10, false);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View[] viewArr = this.f25805a;
-        int iZ = AndroidUtilities.isTablet() ? rl.z(4.0f, this.f25807c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f25807c : rl.z(4.0f, this.f25807c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f25807c;
-        for (int i12 = 0; i12 < this.f25807c; i12++) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
-            layoutParams.topMargin = AndroidUtilities.dp(4.0f);
-            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + iZ) * i12;
-            layoutParams.width = iZ;
-            layoutParams.height = iZ;
-            layoutParams.gravity = 51;
-            viewArr[i12].setLayoutParams(layoutParams);
-        }
-        super.onMeasure(i10, rl.B(4.0f, iZ, 1073741824));
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public void setAlbumsCount(int i10) {
-        int i11 = 0;
-        while (true) {
-            t5[] t5VarArr = this.f25805a;
-            if (i11 >= t5VarArr.length) {
-                this.f25807c = i10;
-                return;
-            } else {
-                t5VarArr[i11].setVisibility(i11 < i10 ? 0 : 4);
-                i11++;
-            }
-        }
+    public void setSeekBarDelegate(ce0 ce0Var) {
+        this.f25794c.setDelegate(new j9(this, ce0Var));
     }
 
-    public void setDelegate(u5 u5Var) {
-        this.d = u5Var;
+    @Override
+    public void setTag(Object obj) {
+        super.setTag(obj);
+        this.f25794c.setTag(obj);
     }
 }

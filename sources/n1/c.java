@@ -1,46 +1,41 @@
 package n1;
 
-import ad.p;
-import h7.k6;
+import g7.y5;
 import j$.util.DesugarCollections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import kotlin.jvm.internal.j;
-import tc.i;
-
+import sc.i;
+import zc.p;
 public final class c extends i implements p {
-
-    public final int f18084a;
-
-    public int f18085b;
-
-    public Object f18086c;
+    public final int f18259a;
+    public int f18260b;
+    public Object f18261c;
     public final i d;
 
-    public c(p pVar, rc.c cVar, int i10) {
+    public c(p pVar, qc.c cVar, int i9) {
         super(2, cVar);
-        this.f18084a = i10;
-        switch (i10) {
+        this.f18259a = i9;
+        switch (i9) {
             case 1:
                 this.d = (i) pVar;
                 super(2, cVar);
-                break;
+                return;
             default:
                 this.d = (i) pVar;
-                break;
+                return;
         }
     }
 
     @Override
-    public final rc.c create(Object obj, rc.c cVar) {
-        switch (this.f18084a) {
+    public final qc.c create(Object obj, qc.c cVar) {
+        switch (this.f18259a) {
             case 0:
                 c cVar2 = new c(this.d, cVar, 0);
-                cVar2.f18086c = obj;
+                cVar2.f18261c = obj;
                 return cVar2;
             default:
                 c cVar3 = new c(this.d, cVar, 1);
-                cVar3.f18086c = obj;
+                cVar3.f18261c = obj;
                 return cVar3;
         }
     }
@@ -48,55 +43,59 @@ public final class c extends i implements p {
     @Override
     public final Object invoke(Object obj, Object obj2) {
         b bVar = (b) obj;
-        rc.c cVar = (rc.c) obj2;
-        switch (this.f18084a) {
+        qc.c cVar = (qc.c) obj2;
+        switch (this.f18259a) {
             case 0:
-                break;
+                return ((c) create(bVar, cVar)).invokeSuspend(oc.i.f19197a);
+            default:
+                return ((c) create(bVar, cVar)).invokeSuspend(oc.i.f19197a);
         }
-        return ((c) create(bVar, cVar)).invokeSuspend(pc.i.f45696a);
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f18084a) {
+        switch (this.f18259a) {
             case 0:
-                sc.a aVar = sc.a.f47847a;
-                int i10 = this.f18085b;
-                if (i10 == 0) {
-                    k6.b(obj);
-                    b bVar = (b) this.f18086c;
-                    this.f18085b = 1;
-                    obj = this.d.invoke(bVar, this);
+                rc.a aVar = rc.a.f47127a;
+                int i9 = this.f18260b;
+                if (i9 != 0) {
+                    if (i9 == 1) {
+                        y5.b(obj);
+                    } else {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                } else {
+                    y5.b(obj);
+                    this.f18260b = 1;
+                    obj = this.d.invoke((b) this.f18261c, this);
                     if (obj == aVar) {
                         return aVar;
                     }
-                } else {
-                    if (i10 != 1) {
-                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                    }
-                    k6.b(obj);
                 }
-                b bVar2 = (b) obj;
-                bVar2.f18083b.set(true);
-                return bVar2;
+                b bVar = (b) obj;
+                bVar.f18258b.set(true);
+                return bVar;
             default:
-                sc.a aVar2 = sc.a.f47847a;
-                int i11 = this.f18085b;
-                if (i11 != 0) {
-                    if (i11 != 1) {
-                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                rc.a aVar2 = rc.a.f47127a;
+                int i10 = this.f18260b;
+                if (i10 != 0) {
+                    if (i10 == 1) {
+                        b bVar2 = (b) this.f18261c;
+                        y5.b(obj);
+                        return bVar2;
                     }
-                    b bVar3 = (b) this.f18086c;
-                    k6.b(obj);
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                y5.b(obj);
+                Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f18261c).f18257a);
+                kotlin.jvm.internal.i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
+                b bVar3 = new b(new LinkedHashMap(unmodifiableMap), false);
+                this.f18261c = bVar3;
+                this.f18260b = 1;
+                if (this.d.invoke(bVar3, this) != aVar2) {
                     return bVar3;
                 }
-                k6.b(obj);
-                Map mapUnmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f18086c).f18082a);
-                j.d(mapUnmodifiableMap, "unmodifiableMap(preferencesMap)");
-                b bVar4 = new b(new LinkedHashMap(mapUnmodifiableMap), false);
-                this.f18086c = bVar4;
-                this.f18085b = 1;
-                return this.d.invoke(bVar4, this) == aVar2 ? aVar2 : bVar4;
+                return aVar2;
         }
     }
 }

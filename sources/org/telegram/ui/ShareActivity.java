@@ -17,12 +17,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-
 public class ShareActivity extends Activity {
-
-    public static final int f36187b = 0;
-
-    public org.telegram.ui.Components.sp0 f36188a;
+    public static final int f36184b = 0;
+    public org.telegram.ui.Components.rp0 f36185a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -34,59 +31,59 @@ public class ShareActivity extends Activity {
         super.onCreate(bundle);
         setContentView(new View(this), new ViewGroup.LayoutParams(-1, -1));
         Intent intent = getIntent();
-        if (intent == null || !"android.intent.action.VIEW".equals(intent.getAction()) || intent.getData() == null) {
+        if (intent != null && "android.intent.action.VIEW".equals(intent.getAction()) && intent.getData() != null) {
+            Uri data = intent.getData();
+            String scheme = data.getScheme();
+            String uri = data.toString();
+            String queryParameter = data.getQueryParameter("hash");
+            if ("tgb".equals(scheme) && uri.toLowerCase().startsWith("tgb://share_game_score") && !TextUtils.isEmpty(queryParameter)) {
+                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
+                String string = sharedPreferences.getString(queryParameter + "_m", null);
+                if (TextUtils.isEmpty(string)) {
+                    finish();
+                    return;
+                }
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+                TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+                if (TLdeserialize == null) {
+                    finish();
+                    return;
+                }
+                TLdeserialize.readAttachPath(serializedData, 0L);
+                serializedData.cleanup();
+                String string2 = sharedPreferences.getString(queryParameter + "_link", null);
+                MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
+                messageObject.messageOwner.with_my_score = true;
+                try {
+                    org.telegram.ui.Components.rp0 N0 = org.telegram.ui.Components.rp0.N0(this, messageObject, null, false, string2);
+                    this.f36185a = N0;
+                    N0.setCanceledOnTouchOutside(true);
+                    this.f36185a.setOnDismissListener(new r5(this, 16));
+                    this.f36185a.show();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    finish();
+                    return;
+                }
+            }
             finish();
             return;
         }
-        Uri data = intent.getData();
-        String scheme = data.getScheme();
-        String string = data.toString();
-        String queryParameter = data.getQueryParameter("hash");
-        if (!"tgb".equals(scheme) || !string.toLowerCase().startsWith("tgb://share_game_score") || TextUtils.isEmpty(queryParameter)) {
-            finish();
-            return;
-        }
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-        String string2 = sharedPreferences.getString(queryParameter + "_m", null);
-        if (TextUtils.isEmpty(string2)) {
-            finish();
-            return;
-        }
-        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string2));
-        TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(serializedData, serializedData.readInt32(false), false);
-        if (messageTLdeserialize == null) {
-            finish();
-            return;
-        }
-        messageTLdeserialize.readAttachPath(serializedData, 0L);
-        serializedData.cleanup();
-        String string3 = sharedPreferences.getString(queryParameter + "_link", null);
-        MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, messageTLdeserialize, false, true);
-        messageObject.messageOwner.with_my_score = true;
-        try {
-            org.telegram.ui.Components.sp0 sp0VarN0 = org.telegram.ui.Components.sp0.N0(this, messageObject, null, false, string3);
-            this.f36188a = sp0VarN0;
-            sp0VarN0.setCanceledOnTouchOutside(true);
-            this.f36188a.setOnDismissListener(new s5(this, 16));
-            this.f36188a.show();
-        } catch (Exception e9) {
-            FileLog.e(e9);
-            finish();
-        }
+        finish();
     }
 
     @Override
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.sp0 sp0Var = this.f36188a;
-            if (sp0Var == null || !sp0Var.isShowing()) {
-                return;
+            org.telegram.ui.Components.rp0 rp0Var = this.f36185a;
+            if (rp0Var != null && rp0Var.isShowing()) {
+                this.f36185a.dismiss();
+                this.f36185a = null;
             }
-            this.f36188a.dismiss();
-            this.f36188a = null;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 }

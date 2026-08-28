@@ -1,52 +1,49 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
-
 public final class p1 implements Runnable {
+    public final int f31500a;
+    public final EditTextBoldCursor f31501b;
 
-    public final int f31460a;
-
-    public final EditTextBoldCursor f31461b;
-
-    public p1(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f31460a = i10;
-        this.f31461b = editTextBoldCursor;
+    public p1(int i9, EditTextBoldCursor editTextBoldCursor) {
+        this.f31500a = i9;
+        this.f31501b = editTextBoldCursor;
     }
 
     @Override
     public final void run() {
-        switch (this.f31460a) {
+        switch (this.f31500a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f31461b;
+                EditTextBoldCursor editTextBoldCursor = this.f31501b;
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor);
-                break;
+                return;
             case 1:
-                AndroidUtilities.showKeyboard(this.f31461b);
-                break;
+                AndroidUtilities.showKeyboard(this.f31501b);
+                return;
             case 2:
-                AndroidUtilities.showKeyboard(this.f31461b);
-                break;
+                AndroidUtilities.showKeyboard(this.f31501b);
+                return;
             case 3:
-                AndroidUtilities.showKeyboard(this.f31461b);
-                break;
+                AndroidUtilities.showKeyboard(this.f31501b);
+                return;
             case 4:
-                AndroidUtilities.showKeyboard(this.f31461b);
-                break;
+                AndroidUtilities.showKeyboard(this.f31501b);
+                return;
             case 5:
-                AndroidUtilities.showKeyboard(this.f31461b);
-                break;
+                AndroidUtilities.showKeyboard(this.f31501b);
+                return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor2 = this.f31461b;
+                EditTextBoldCursor editTextBoldCursor2 = this.f31501b;
                 editTextBoldCursor2.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor2);
-                break;
+                return;
             default:
-                EditTextBoldCursor editTextBoldCursor3 = this.f31461b;
+                EditTextBoldCursor editTextBoldCursor3 = this.f31501b;
                 editTextBoldCursor3.requestFocus();
                 editTextBoldCursor3.setSelection(0, editTextBoldCursor3.length());
                 AndroidUtilities.showKeyboard(editTextBoldCursor3);
-                break;
+                return;
         }
     }
 }

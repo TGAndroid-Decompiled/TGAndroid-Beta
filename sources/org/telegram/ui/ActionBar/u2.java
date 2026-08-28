@@ -1,51 +1,41 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class u2 extends TextView {
+    public final f3 f23815a;
 
-public final class u2 implements Runnable {
-
-    public final int f23825a;
-
-    public final Object f23826b;
-
-    public u2(Object obj, int i10) {
-        this.f23825a = i10;
-        this.f23826b = obj;
+    public u2(f3 f3Var, Context context) {
+        super(context);
+        this.f23815a = f3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23825a) {
-            case 0:
-                e3 e3Var = (e3) this.f23826b;
-                if (e3Var.startAnimationRunnable == this && !e3Var.dismissed) {
-                    e3Var.startAnimationRunnable = null;
-                    e3.access$2400(e3Var);
-                    break;
+    public final void onMeasure(int i9, int i10) {
+        boolean z10;
+        View view;
+        View view2;
+        super.onMeasure(i9, i10);
+        f3 f3Var = this.f23815a;
+        z10 = f3Var.multipleLinesTitle;
+        if (z10) {
+            int measuredHeight = getMeasuredHeight();
+            view = f3Var.customView;
+            if (view != null) {
+                view2 = f3Var.customView;
+                ((ViewGroup.MarginLayoutParams) view2.getLayoutParams()).topMargin = measuredHeight;
+            } else if (f3Var.containerView != null) {
+                for (int i11 = 1; i11 < f3Var.containerView.getChildCount(); i11++) {
+                    View childAt = f3Var.containerView.getChildAt(i11);
+                    if (childAt instanceof y2) {
+                        ((ViewGroup.MarginLayoutParams) childAt.getLayoutParams()).topMargin = measuredHeight;
+                        measuredHeight = AndroidUtilities.dp(48.0f) + measuredHeight;
+                    }
                 }
-                break;
-            case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f23826b;
-                if (actionBarLayout.d == this) {
-                    actionBarLayout.d = null;
-                    actionBarLayout.d0(false, true, false);
-                    break;
-                }
-                break;
-            case 2:
-                p1 p1Var = (p1) this.f23826b;
-                ValueAnimator valueAnimator = p1Var.f23717m;
-                if (valueAnimator != null && !valueAnimator.isRunning()) {
-                    p1Var.f23717m.start();
-                    break;
-                }
-                break;
-            default:
-                t4 t4Var = (t4) this.f23826b;
-                t4Var.k();
-                t4Var.j();
-                t4Var.f23786f.setAlpha(1.0f);
-                break;
+            }
         }
     }
 }

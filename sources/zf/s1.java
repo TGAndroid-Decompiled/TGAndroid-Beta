@@ -1,38 +1,38 @@
 package zf;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.lk0;
-import org.telegram.ui.Components.yk0;
+import android.graphics.RectF;
+import org.telegram.messenger.Utilities;
+public final class s1 {
+    public float f50692a;
+    public float f50693b;
+    public float f50694c;
+    public float d;
+    public long f50695e;
+    public float f50696f;
+    public final t1 f50697g;
 
-public final class s1 extends yk0 {
-    @Override
-    public final boolean D(f2.o1 o1Var) {
-        return true;
+    public s1(t1 t1Var) {
+        this.f50697g = t1Var;
     }
 
-    @Override
-    public final int h() {
-        return yf.i0.c().size();
-    }
-
-    @Override
-    public final void v(f2.o1 o1Var, int i10) {
-        n1 n1Var = (n1) o1Var.f5789a;
-        yf.i0 i0Var = (yf.i0) yf.i0.c().get(i10);
-        n1Var.getClass();
-        n1Var.setTypeface(i0Var.d());
-        String string = i0Var.f49950c;
-        if (string == null) {
-            string = LocaleController.getString(i0Var.f49949b);
+    public final void a(long j10, boolean z10) {
+        RectF rectF;
+        t1 t1Var = this.f50697g;
+        RectF rectF2 = t1Var.f50699a;
+        this.f50695e = j10 + t1Var.h + Utilities.fastRandom.nextInt(1000);
+        if (z10) {
+            rectF = t1Var.f50700b;
+        } else {
+            rectF = rectF2;
         }
-        n1Var.setText(string);
-    }
-
-    @Override
-    public final f2.o1 x(ViewGroup viewGroup, int i10) {
-        n1 n1Var = new n1(viewGroup.getContext());
-        n1Var.setLayoutParams(new f2.y0(-1, -2));
-        return new lk0(n1Var);
+        float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
+        float f10 = rectF.top;
+        this.f50692a = abs;
+        this.f50693b = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + f10;
+        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f50693b - rectF2.centerY());
+        this.f50694c = (float) Math.sin(atan2);
+        this.d = (float) Math.cos(atan2);
+        Utilities.fastRandom.nextInt(50);
+        this.f50696f = 0.0f;
     }
 }

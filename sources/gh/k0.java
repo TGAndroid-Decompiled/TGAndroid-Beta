@@ -1,80 +1,54 @@
 package gh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
+public final class k0 implements MessagesStorage.IntCallback {
+    public final int f8380a;
+    public final Object f8381b;
 
-public final class k0 extends hh.e5 {
-
-    public final Path f7371w0;
-
-    public final float[] f7372x0;
-
-    public final int f7373y0;
-
-    public final p0 f7374z0;
-
-    public k0(p0 p0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, f2.r rVar, ag.l2 l2Var, ag.l2 l2Var2, ag.l2 l2Var3, ag.l2 l2Var4, ag.l2 l2Var5, ag.l2 l2Var6, int i10) {
-        super(context, c6Var, rVar, l2Var, null, l2Var2, l2Var3, l2Var4, l2Var5, l2Var6);
-        this.f7374z0 = p0Var;
-        this.f7373y0 = i10;
-        this.f7371w0 = new Path();
-        this.f7372x0 = new float[8];
+    public k0(Object obj, int i9) {
+        this.f8380a = i9;
+        this.f8381b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.clipPath(this.f7371w0);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f9174b) {
-            return true;
+    public final void run(int i9) {
+        gf.b bVar;
+        gf.b bVar2;
+        gf.b bVar3;
+        switch (this.f8380a) {
+            case 0:
+                o0 o0Var = (o0) this.f8381b;
+                o0Var.getClass();
+                if (i9 == 0) {
+                    bVar = gf.b.f7749a;
+                } else {
+                    bVar = gf.b.f7750b;
+                }
+                o0Var.T(gf.a.i(0L, bVar), true, false, true);
+                o0Var.Z.setText("");
+                return;
+            case 1:
+                t0 t0Var = (t0) this.f8381b;
+                t0Var.getClass();
+                if (i9 == 0) {
+                    bVar2 = gf.b.f7749a;
+                } else {
+                    bVar2 = gf.b.f7750b;
+                }
+                t0Var.q(gf.a.i(0L, bVar2), true, false, true);
+                t0Var.h.setText("");
+                return;
+            default:
+                o4 o4Var = (o4) this.f8381b;
+                o4Var.getClass();
+                if (i9 == 0) {
+                    bVar3 = gf.b.f7749a;
+                } else {
+                    bVar3 = gf.b.f7750b;
+                }
+                o4Var.f8682q = bVar3;
+                o4Var.a(true);
+                return;
         }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final int getFinalHeight() {
-        return AndroidUtilities.dp(this.f7373y0);
-    }
-
-    @Override
-    public final float getRealHeight() {
-        return AndroidUtilities.dp(this.f7373y0);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        m0 m0Var = this.f7374z0.Y;
-        if (m0Var != null) {
-            m0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final void j(int i10) {
-        this.f7374z0.Y.setRibbonColor(i10);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float fDp = AndroidUtilities.dp(12.0f);
-        float[] fArr = this.f7372x0;
-        fArr[3] = fDp;
-        fArr[2] = fDp;
-        fArr[1] = fDp;
-        fArr[0] = fDp;
-        Path path = this.f7371w0;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, i10, i11, this.f7372x0, Path.Direction.CW);
     }
 }

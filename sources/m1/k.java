@@ -1,19 +1,17 @@
 package m1;
 
-import androidx.datastore.preferences.protobuf.a1;
-import androidx.datastore.preferences.protobuf.u;
+import androidx.datastore.preferences.protobuf.b1;
 import androidx.datastore.preferences.protobuf.v;
-import androidx.datastore.preferences.protobuf.w;
-import androidx.datastore.preferences.protobuf.w0;
-
-public final class k extends w {
+import androidx.datastore.preferences.protobuf.x;
+import androidx.datastore.preferences.protobuf.x0;
+public final class k extends x {
     public static final int BOOLEAN_FIELD_NUMBER = 1;
     private static final k DEFAULT_INSTANCE;
     public static final int DOUBLE_FIELD_NUMBER = 7;
     public static final int FLOAT_FIELD_NUMBER = 2;
     public static final int INTEGER_FIELD_NUMBER = 3;
     public static final int LONG_FIELD_NUMBER = 4;
-    private static volatile w0 PARSER = null;
+    private static volatile x0 PARSER = null;
     public static final int STRING_FIELD_NUMBER = 5;
     public static final int STRING_SET_FIELD_NUMBER = 6;
     private int bitField0_;
@@ -23,7 +21,7 @@ public final class k extends w {
     static {
         k kVar = new k();
         DEFAULT_INSTANCE = kVar;
-        w.h(k.class, kVar);
+        x.h(k.class, kVar);
     }
 
     public static void i(k kVar, long j10) {
@@ -58,9 +56,9 @@ public final class k extends w {
         kVar.value_ = Float.valueOf(f10);
     }
 
-    public static void o(k kVar, int i10) {
+    public static void o(k kVar, int i9) {
         kVar.valueCase_ = 3;
-        kVar.value_ = Integer.valueOf(i10);
+        kVar.value_ = Integer.valueOf(i9);
     }
 
     public static k q() {
@@ -68,43 +66,44 @@ public final class k extends w {
     }
 
     public static i y() {
-        return (i) ((u) DEFAULT_INSTANCE.d(5));
+        return (i) ((v) DEFAULT_INSTANCE.d(5));
     }
 
     @Override
-    public final Object d(int i10) {
-        w0 vVar;
-        switch (j.b(i10)) {
+    public final Object d(int i9) {
+        x0 x0Var;
+        switch (j.b(i9)) {
             case 0:
                 return (byte) 1;
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0007\u0001\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001:\u0000\u00024\u0000\u00037\u0000\u00045\u0000\u0005;\u0000\u0006<\u0000\u00073\u0000", new Object[]{"value_", "valueCase_", "bitField0_", h.class});
+                return new b1(DEFAULT_INSTANCE, "\u0001\u0007\u0001\u0001\u0001\u0007\u0007\u0000\u0000\u0000\u0001:\u0000\u00024\u0000\u00037\u0000\u00045\u0000\u0005;\u0000\u0006<\u0000\u00073\u0000", new Object[]{"value_", "valueCase_", "bitField0_", h.class});
             case 3:
                 return new k();
             case 4:
-                return new i(DEFAULT_INSTANCE);
+                return new v(DEFAULT_INSTANCE);
             case 5:
                 return DEFAULT_INSTANCE;
             case 6:
-                w0 w0Var = PARSER;
-                if (w0Var != null) {
-                    return w0Var;
-                }
-                synchronized (k.class) {
-                    try {
-                        vVar = PARSER;
-                        if (vVar == null) {
-                            vVar = new v();
-                            PARSER = vVar;
+                x0 x0Var2 = PARSER;
+                if (x0Var2 == null) {
+                    synchronized (k.class) {
+                        try {
+                            x0 x0Var3 = PARSER;
+                            x0Var = x0Var3;
+                            if (x0Var3 == null) {
+                                ?? obj = new Object();
+                                PARSER = obj;
+                                x0Var = obj;
+                            }
+                        } catch (Throwable th) {
+                            throw th;
                         }
-                    } catch (Throwable th) {
-                        throw th;
                     }
-                    break;
+                    return x0Var;
                 }
-                return vVar;
+                return x0Var2;
             default:
                 throw new UnsupportedOperationException();
         }
@@ -146,11 +145,17 @@ public final class k extends w {
     }
 
     public final String v() {
-        return this.valueCase_ == 5 ? (String) this.value_ : "";
+        if (this.valueCase_ == 5) {
+            return (String) this.value_;
+        }
+        return "";
     }
 
     public final h w() {
-        return this.valueCase_ == 6 ? (h) this.value_ : h.j();
+        if (this.valueCase_ == 6) {
+            return (h) this.value_;
+        }
+        return h.j();
     }
 
     public final int x() {

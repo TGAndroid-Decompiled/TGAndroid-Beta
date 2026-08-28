@@ -1,13 +1,10 @@
 package v2;
-
-public final class c implements r9.d {
-
-    public static final c f48685a = new c();
-
-    public static final r9.c f48686b = r9.c.c("logRequest");
+public final class c implements q9.d {
+    public static final c f48258a = new Object();
+    public static final q9.c f48259b = q9.c.c("logRequest");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((r9.e) obj2).a(f48686b, ((i) ((o) obj)).f48715a);
+        ((q9.e) obj2).g(f48259b, ((i) ((o) obj)).f48288a);
     }
 }

@@ -1,50 +1,45 @@
 package e5;
 
-import d5.g0;
+import d5.f0;
 import h3.h0;
-import h3.k0;
-import h3.q2;
-import j4.c0;
-
+import j4.d0;
 public final class v implements Runnable {
+    public final int f4940a = 0;
+    public final we.b f4941b;
+    public final long f4942c;
+    public final int d;
 
-    public final int f5300a;
-
-    public final xe.b f5301b;
-
-    public final k3.f f5302c;
-
-    public v(xe.b bVar, k3.f fVar, int i10) {
-        this.f5300a = i10;
-        this.f5301b = bVar;
-        this.f5302c = fVar;
+    public v(we.b bVar, int i9, long j10) {
+        this.f4941b = bVar;
+        this.d = i9;
+        this.f4942c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f5300a) {
+        int i9 = this.f4940a;
+        int i10 = this.d;
+        long j10 = this.f4942c;
+        we.b bVar = this.f4941b;
+        switch (i9) {
             case 0:
-                xe.b bVar = this.f5301b;
-                k3.f fVar = this.f5302c;
-                synchronized (fVar) {
-                }
-                h0 h0Var = (h0) bVar.f49393c;
-                int i10 = g0.f4795a;
-                k0 k0Var = h0Var.f7870a;
-                i3.f fVar2 = k0Var.f7987r;
-                i3.a aVarI = fVar2.i((c0) fVar2.d.f4605e);
-                fVar2.l(aVarI, 1020, new h3.x(aVarI, fVar, 16));
-                k0Var.P = null;
-                break;
+                int i11 = f0.f4349a;
+                i3.f fVar = ((h0) bVar.f48794c).f9440a.f9557r;
+                i3.a i12 = fVar.i((d0) fVar.d.f4163e);
+                fVar.l(i12, 1018, new i3.d(i12, i10, j10));
+                return;
             default:
-                xe.b bVar2 = this.f5301b;
-                k3.f fVar3 = this.f5302c;
-                h0 h0Var2 = (h0) bVar2.f49393c;
-                int i11 = g0.f4795a;
-                i3.f fVar4 = h0Var2.f7870a.f7987r;
-                i3.a aVarK = fVar4.k();
-                fVar4.l(aVarK, 1015, new q2(aVarK, fVar3, 23));
-                break;
+                int i13 = f0.f4349a;
+                i3.f fVar2 = ((h0) bVar.f48794c).f9440a.f9557r;
+                i3.a i14 = fVar2.i((d0) fVar2.d.f4163e);
+                fVar2.l(i14, 1021, new i3.d(i14, j10, i10));
+                return;
         }
+    }
+
+    public v(we.b bVar, long j10, int i9) {
+        this.f4941b = bVar;
+        this.f4942c = j10;
+        this.d = i9;
     }
 }

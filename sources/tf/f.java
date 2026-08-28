@@ -1,89 +1,77 @@
 package tf;
+public final class f {
+    public boolean f47862a;
+    public float f47863b;
+    public float f47864c;
+    public float d;
+    public float f47865e;
+    public float f47866f;
+    public float f47867g;
+    public boolean h;
+    public int f47868i;
+    public float f47869j;
+    public float f47870k;
+    public float f47871l;
+    public float f47872m;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import android.graphics.Path;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-
-public class f {
-
-    public final sf.a f48195a;
-
-    public final Paint f48196b;
-
-    public final Paint f48197c;
-    public final Paint d;
-
-    public final Path f48198e;
-
-    public final Path f48199f;
-
-    public final Path f48200g;
-    public ValueAnimator h;
-
-    public ValueAnimator f48201i;
-
-    public int f48202j;
-
-    public final float[] f48203k;
-
-    public final float[] f48204l;
-
-    public int f48205m;
-
-    public boolean f48206n;
-
-    public float f48207o;
-
-    public final c6 f48208p;
-
-    public f(sf.a aVar, boolean z10, c6 c6Var) {
-        Paint paint = new Paint(1);
-        this.f48196b = paint;
-        Paint paint2 = new Paint(1);
-        this.f48197c = paint2;
-        Paint paint3 = new Paint(1);
-        this.d = paint3;
-        this.f48198e = new Path();
-        this.f48199f = new Path();
-        this.f48200g = new Path();
-        this.f48206n = true;
-        this.f48207o = 1.0f;
-        this.f48208p = c6Var;
-        this.f48195a = aVar;
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        if (!rf.g.f46949w1) {
-            paint2.setStrokeJoin(Paint.Join.ROUND);
-        }
-        paint2.setColor(aVar.h);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint.setStyle(style);
-        paint.setColor(aVar.h);
-        paint3.setStrokeWidth(AndroidUtilities.dpf2(10.0f));
-        paint3.setStyle(style);
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        paint3.setColor(aVar.h);
-        long[] jArr = aVar.f47874a;
-        this.f48203k = new float[z10 ? jArr.length * 8 : jArr.length << 2];
-        long[] jArr2 = aVar.f47874a;
-        this.f48204l = new float[z10 ? jArr2.length * 8 : jArr2.length << 2];
+    public final f clone() {
+        ?? obj = new Object();
+        obj.f47862a = this.f47862a;
+        obj.f47863b = this.f47863b;
+        obj.f47864c = this.f47864c;
+        obj.d = this.d;
+        obj.f47865e = this.f47865e;
+        obj.f47866f = this.f47866f;
+        obj.f47867g = this.f47867g;
+        obj.h = this.h;
+        obj.f47868i = this.f47868i;
+        obj.f47869j = this.f47869j;
+        obj.f47870k = this.f47870k;
+        obj.f47871l = this.f47871l;
+        obj.f47872m = this.f47872m;
+        return obj;
     }
 
-    public void a() {
-        sf.a aVar = this.f48195a;
-        int i10 = aVar.f47879g;
-        c6 c6Var = this.f48208p;
-        if (i10 < 0 || !g6.c1(i10)) {
-            this.f48205m = i0.b.f(g6.v0(g6.f23053d6, c6Var)) < 0.5d ? aVar.f47880i : aVar.h;
-        } else {
-            this.f48205m = g6.v0(aVar.f47879g, c6Var);
+    public final int b() {
+        return this.f47868i;
+    }
+
+    public final boolean c() {
+        return this.f47862a;
+    }
+
+    public final boolean d() {
+        return this.h;
+    }
+
+    public final void e(boolean z10, float f10, float f11, float f12, int i9, float f13, float f14, float f15, float f16, float f17, float f18, float f19, boolean z11) {
+        this.f47862a = z10;
+        this.f47863b = f10;
+        this.f47864c = f11;
+        this.f47866f = f13;
+        this.f47867g = f12;
+        this.f47868i = i9;
+        while (true) {
+            int i10 = this.f47868i;
+            if (i10 >= 0) {
+                break;
+            }
+            this.f47868i = i10 + 360;
         }
-        this.f48197c.setColor(this.f48205m);
-        this.f48196b.setColor(this.f48205m);
-        this.d.setColor(this.f48205m);
+        while (true) {
+            int i11 = this.f47868i;
+            if (i11 >= 360) {
+                this.f47868i = i11 - 360;
+            } else {
+                this.f47869j = f16;
+                this.f47870k = f17;
+                this.d = f18;
+                this.f47865e = f19;
+                this.f47871l = f14;
+                this.f47872m = f15;
+                this.h = z11;
+                return;
+            }
+        }
     }
 }

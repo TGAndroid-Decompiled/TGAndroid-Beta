@@ -1,6 +1,11 @@
 package i6;
 
-import android.os.IInterface;
+import dalvik.system.DelegateLastClassLoader;
+public abstract class a {
+    public static DelegateLastClassLoader a(ClassLoader classLoader, String str) {
+        return new DelegateLastClassLoader(str, classLoader);
+    }
 
-public interface a extends IInterface {
+    public static void b() {
+    }
 }

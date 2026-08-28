@@ -1,19 +1,16 @@
 package a0;
 
-import androidx.datastore.preferences.protobuf.d1;
-import androidx.datastore.preferences.protobuf.h1;
+import androidx.datastore.preferences.protobuf.e1;
+import androidx.datastore.preferences.protobuf.i1;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
-
 public class a extends AbstractSet {
-
     public final int f0a;
-
     public final Map f1b;
 
-    public a(Map map, int i10) {
-        this.f0a = i10;
+    public a(Map map, int i9) {
+        this.f0a = i9;
         this.f1b = map;
     }
 
@@ -22,11 +19,11 @@ public class a extends AbstractSet {
         switch (this.f0a) {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
-                if (contains(entry)) {
-                    return false;
+                if (!contains(entry)) {
+                    ((e1) this.f1b).f((Comparable) entry.getKey(), entry.getValue());
+                    return true;
                 }
-                ((d1) this.f1b).f((Comparable) entry.getKey(), entry.getValue());
-                return true;
+                return false;
             default:
                 return super.add(obj);
         }
@@ -36,11 +33,11 @@ public class a extends AbstractSet {
     public void clear() {
         switch (this.f0a) {
             case 1:
-                ((d1) this.f1b).clear();
-                break;
+                ((e1) this.f1b).clear();
+                return;
             default:
                 super.clear();
-                break;
+                return;
         }
     }
 
@@ -49,9 +46,12 @@ public class a extends AbstractSet {
         switch (this.f0a) {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
-                Object obj2 = ((d1) this.f1b).get(entry.getKey());
+                Object obj2 = ((e1) this.f1b).get(entry.getKey());
                 Object value = entry.getValue();
-                return obj2 == value || (obj2 != null && obj2.equals(value));
+                if (obj2 != value && (obj2 == null || !obj2.equals(value))) {
+                    return false;
+                }
+                return true;
             default:
                 return super.contains(obj);
         }
@@ -63,7 +63,7 @@ public class a extends AbstractSet {
             case 0:
                 return new d((f) this.f1b);
             default:
-                return new h1((d1) this.f1b);
+                return new i1((e1) this.f1b);
         }
     }
 
@@ -72,11 +72,11 @@ public class a extends AbstractSet {
         switch (this.f0a) {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
-                if (!contains(entry)) {
-                    return false;
+                if (contains(entry)) {
+                    ((e1) this.f1b).remove(entry.getKey());
+                    return true;
                 }
-                ((d1) this.f1b).remove(entry.getKey());
-                return true;
+                return false;
             default:
                 return super.remove(obj);
         }
@@ -88,7 +88,7 @@ public class a extends AbstractSet {
             case 0:
                 return ((f) this.f1b).f28c;
             default:
-                return ((d1) this.f1b).size();
+                return ((e1) this.f1b).size();
         }
     }
 }

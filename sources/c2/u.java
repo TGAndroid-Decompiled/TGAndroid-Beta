@@ -2,66 +2,44 @@ package c2;
 
 import android.os.Bundle;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public final class u {
+    public ArrayList f2235a;
 
-    public static final u f2348c = new u(new Bundle(), null);
-
-    public final Bundle f2349a;
-
-    public List f2350b;
-
-    public u(Bundle bundle, ArrayList arrayList) {
-        this.f2349a = bundle;
-        this.f2350b = arrayList;
-    }
-
-    public static u b(Bundle bundle) {
-        if (bundle != null) {
-            return new u(bundle, null);
-        }
-        return null;
-    }
-
-    public final void a() {
-        if (this.f2350b == null) {
-            ArrayList<String> stringArrayList = this.f2349a.getStringArrayList("controlCategories");
-            this.f2350b = stringArrayList;
-            if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f2350b = Collections.EMPTY_LIST;
-            }
+    public u(int i9) {
+        switch (i9) {
+            case 2:
+                this.f2235a = new ArrayList();
+                return;
+            default:
+                this.f2235a = new ArrayList();
+                new ArrayList();
+                new ArrayList();
+                return;
         }
     }
 
-    public final ArrayList c() {
-        a();
-        return new ArrayList(this.f2350b);
-    }
-
-    public final boolean d() {
-        a();
-        return this.f2350b.isEmpty();
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof u)) {
-            return false;
+    public v a() {
+        if (this.f2235a == null) {
+            return v.f2236c;
         }
-        u uVar = (u) obj;
-        a();
-        uVar.a();
-        return this.f2350b.equals(uVar.f2350b);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("controlCategories", this.f2235a);
+        return new v(bundle, this.f2235a);
     }
 
-    public final int hashCode() {
-        a();
-        return this.f2350b.hashCode();
+    public void b(StringBuilder sb2) {
+        String str;
+        if (((Boolean) e2.c.k(1, this.f2235a)).booleanValue()) {
+            str = "</ol>";
+        } else {
+            str = "</ul>";
+        }
+        sb2.append(str);
     }
 
-    public final String toString() {
-        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
+    public void c(StringBuilder sb2) {
+        while (!this.f2235a.isEmpty()) {
+            b(sb2);
+        }
     }
 }

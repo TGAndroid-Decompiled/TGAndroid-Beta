@@ -1,78 +1,82 @@
 package org.telegram.ui.Cells;
 
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.style.ImageSpan;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.xz0;
+import org.telegram.ui.Components.h21;
+public final class v6 extends ImageSpan {
+    public static h21 f25796b;
+    public final int f25797a = 1;
 
-public abstract class v6 extends LinearLayout {
-
-    public TextView f25809a;
-
-    public p80 f25810b;
-
-    public TextView f25811c;
-    public TextView d;
-
-    public int f25812e;
-
-    public int f25813f;
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public v6(Drawable drawable) {
+        super(drawable);
     }
 
-    public void setType(int i10) {
-        int i11 = this.f25813f;
-        TextView textView = this.f25811c;
-        p80 p80Var = this.f25810b;
-        TextView textView2 = this.f25809a;
-        TextView textView3 = this.d;
-        this.f25812e = i10;
-        if (i10 != 0) {
-            if (i10 == 1) {
-                textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
-                p80Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
-                textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
-                textView3.setVisibility(0);
-                textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i9, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        switch (this.f25797a) {
+            case 0:
+                Drawable drawable = getDrawable();
+                canvas.save();
+                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+                int i14 = fontMetricsInt.descent;
+                canvas.translate(f10, ((i12 + i14) - ((i14 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+                if (LocaleController.isRTL) {
+                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+                }
+                drawable.draw(canvas);
+                canvas.restore();
                 return;
-            }
-            if (i10 == 2) {
-                textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-                p80Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
-                textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
-                textView3.setVisibility(8);
+            default:
+                super.draw(canvas, charSequence, i9, i10, f10, i11, i12, i13, paint);
                 return;
-            }
-            return;
         }
-        textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, org.telegram.messenger.y1.k(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, oe.b.c())));
-        String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-        int iIndexOf = string.indexOf("**");
-        int iLastIndexOf = string.lastIndexOf("**");
-        if (iIndexOf >= 0 && iLastIndexOf >= 0 && iIndexOf != iLastIndexOf) {
-            spannableStringBuilder.replace(iLastIndexOf, iLastIndexOf + 2, (CharSequence) "");
-            spannableStringBuilder.replace(iIndexOf, iIndexOf + 2, (CharSequence) "");
-            try {
-                spannableStringBuilder.setSpan(new r41(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (xz0) null), iIndexOf, iLastIndexOf - 2, 33);
-            } catch (Exception e9) {
-                FileLog.e(e9);
-            }
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i9, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f25797a) {
+            case 0:
+                Rect bounds = getDrawable().getBounds();
+                if (fontMetricsInt != null) {
+                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                    int i11 = fontMetricsInt2.descent;
+                    int i12 = fontMetricsInt2.ascent;
+                    int i13 = ((i11 - i12) / 2) + i12;
+                    int i14 = (bounds.bottom - bounds.top) / 2;
+                    int i15 = i13 - i14;
+                    fontMetricsInt.ascent = i15;
+                    fontMetricsInt.top = i15;
+                    int i16 = i13 + i14;
+                    fontMetricsInt.bottom = i16;
+                    fontMetricsInt.descent = i16;
+                }
+                return bounds.right;
+            default:
+                return super.getSize(paint, charSequence, i9, i10, fontMetricsInt);
         }
-        p80Var.setText(spannableStringBuilder);
-        textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
-        textView3.setVisibility(0);
-        textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        switch (this.f25797a) {
+            case 1:
+                float textSize = textPaint.getTextSize() * 0.89f;
+                int i9 = (int) (0.02f * textSize);
+                getDrawable().setBounds(0, i9, (int) textSize, ((int) (textSize * 1.25f)) + i9);
+                super.updateDrawState(textPaint);
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                return;
+        }
+    }
+
+    public v6() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.v6.<init>():void");
     }
 }

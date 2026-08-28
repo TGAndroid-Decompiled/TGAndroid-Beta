@@ -3,7 +3,6 @@ package z1;
 import android.app.Notification;
 import android.media.session.MediaSession;
 import android.support.v4.media.session.MediaSessionCompat$Token;
-
 public abstract class a {
     public static Notification.MediaStyle a() {
         return new Notification.MediaStyle();
@@ -14,7 +13,7 @@ public abstract class a {
             e(mediaStyle, iArr);
         }
         if (mediaSessionCompat$Token != null) {
-            c(mediaStyle, (MediaSession.Token) mediaSessionCompat$Token.f796b);
+            c(mediaStyle, (MediaSession.Token) mediaSessionCompat$Token.f288b);
         }
         return mediaStyle;
     }

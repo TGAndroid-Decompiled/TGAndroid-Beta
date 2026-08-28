@@ -1,66 +1,329 @@
 package qb;
 
-import d5.p;
-import n2.v;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 public final class e {
+    public static final d f46132e = new Object();
+    public final lb.b f46133a;
+    public boolean f46135c;
+    public final ArrayList f46134b = new ArrayList();
+    public final int[] d = new int[5];
 
-    public static final int[] f46196e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
-
-    public static final e[] f46197f = a();
-
-    public final int f46198a;
-
-    public final int[] f46199b;
-
-    public final v[] f46200c;
-    public final int d;
-
-    public e(int i10, int[] iArr, v... vVarArr) {
-        this.f46198a = i10;
-        this.f46199b = iArr;
-        this.f46200c = vVarArr;
-        v vVar = vVarArr[0];
-        int i11 = vVar.f18186b;
-        int i12 = 0;
-        for (p pVar : (p[]) vVar.f18187c) {
-            i12 += (pVar.f4822b + i11) * pVar.f4821a;
-        }
-        this.d = i12;
+    public e(lb.b bVar) {
+        this.f46133a = bVar;
     }
 
-    public static e[] a() {
-        return new e[]{new e(1, new int[0], new v(7, new p[]{new p(1, 19)}), new v(10, new p[]{new p(1, 16)}), new v(13, new p[]{new p(1, 13)}), new v(17, new p[]{new p(1, 9)})), new e(2, new int[]{6, 18}, new v(10, new p[]{new p(1, 34)}), new v(16, new p[]{new p(1, 28)}), new v(22, new p[]{new p(1, 22)}), new v(28, new p[]{new p(1, 16)})), new e(3, new int[]{6, 22}, new v(15, new p[]{new p(1, 55)}), new v(26, new p[]{new p(1, 44)}), new v(18, new p[]{new p(2, 17)}), new v(22, new p[]{new p(2, 13)})), new e(4, new int[]{6, 26}, new v(20, new p[]{new p(1, 80)}), new v(18, new p[]{new p(2, 32)}), new v(26, new p[]{new p(2, 24)}), new v(16, new p[]{new p(4, 9)})), new e(5, new int[]{6, 30}, new v(26, new p[]{new p(1, 108)}), new v(24, new p[]{new p(2, 43)}), new v(18, new p[]{new p(2, 15), new p(2, 16)}), new v(22, new p[]{new p(2, 11), new p(2, 12)})), new e(6, new int[]{6, 34}, new v(18, new p[]{new p(2, 68)}), new v(16, new p[]{new p(4, 27)}), new v(24, new p[]{new p(4, 19)}), new v(28, new p[]{new p(4, 15)})), new e(7, new int[]{6, 22, 38}, new v(20, new p[]{new p(2, 78)}), new v(18, new p[]{new p(4, 31)}), new v(18, new p[]{new p(2, 14), new p(4, 15)}), new v(26, new p[]{new p(4, 13), new p(1, 14)})), new e(8, new int[]{6, 24, 42}, new v(24, new p[]{new p(2, 97)}), new v(22, new p[]{new p(2, 38), new p(2, 39)}), new v(22, new p[]{new p(4, 18), new p(2, 19)}), new v(26, new p[]{new p(4, 14), new p(2, 15)})), new e(9, new int[]{6, 26, 46}, new v(30, new p[]{new p(2, 116)}), new v(22, new p[]{new p(3, 36), new p(2, 37)}), new v(20, new p[]{new p(4, 16), new p(4, 17)}), new v(24, new p[]{new p(4, 12), new p(4, 13)})), new e(10, new int[]{6, 28, 50}, new v(18, new p[]{new p(2, 68), new p(2, 69)}), new v(26, new p[]{new p(4, 43), new p(1, 44)}), new v(24, new p[]{new p(6, 19), new p(2, 20)}), new v(28, new p[]{new p(6, 15), new p(2, 16)})), new e(11, new int[]{6, 30, 54}, new v(20, new p[]{new p(4, 81)}), new v(30, new p[]{new p(1, 50), new p(4, 51)}), new v(28, new p[]{new p(4, 22), new p(4, 23)}), new v(24, new p[]{new p(3, 12), new p(8, 13)})), new e(12, new int[]{6, 32, 58}, new v(24, new p[]{new p(2, 92), new p(2, 93)}), new v(22, new p[]{new p(6, 36), new p(2, 37)}), new v(26, new p[]{new p(4, 20), new p(6, 21)}), new v(28, new p[]{new p(7, 14), new p(4, 15)})), new e(13, new int[]{6, 34, 62}, new v(26, new p[]{new p(4, 107)}), new v(22, new p[]{new p(8, 37), new p(1, 38)}), new v(24, new p[]{new p(8, 20), new p(4, 21)}), new v(22, new p[]{new p(12, 11), new p(4, 12)})), new e(14, new int[]{6, 26, 46, 66}, new v(30, new p[]{new p(3, 115), new p(1, 116)}), new v(24, new p[]{new p(4, 40), new p(5, 41)}), new v(20, new p[]{new p(11, 16), new p(5, 17)}), new v(24, new p[]{new p(11, 12), new p(5, 13)})), new e(15, new int[]{6, 26, 48, 70}, new v(22, new p[]{new p(5, 87), new p(1, 88)}), new v(24, new p[]{new p(5, 41), new p(5, 42)}), new v(30, new p[]{new p(5, 24), new p(7, 25)}), new v(24, new p[]{new p(11, 12), new p(7, 13)})), new e(16, new int[]{6, 26, 50, 74}, new v(24, new p[]{new p(5, 98), new p(1, 99)}), new v(28, new p[]{new p(7, 45), new p(3, 46)}), new v(24, new p[]{new p(15, 19), new p(2, 20)}), new v(30, new p[]{new p(3, 15), new p(13, 16)})), new e(17, new int[]{6, 30, 54, 78}, new v(28, new p[]{new p(1, 107), new p(5, 108)}), new v(28, new p[]{new p(10, 46), new p(1, 47)}), new v(28, new p[]{new p(1, 22), new p(15, 23)}), new v(28, new p[]{new p(2, 14), new p(17, 15)})), new e(18, new int[]{6, 30, 56, 82}, new v(30, new p[]{new p(5, 120), new p(1, 121)}), new v(26, new p[]{new p(9, 43), new p(4, 44)}), new v(28, new p[]{new p(17, 22), new p(1, 23)}), new v(28, new p[]{new p(2, 14), new p(19, 15)})), new e(19, new int[]{6, 30, 58, 86}, new v(28, new p[]{new p(3, 113), new p(4, 114)}), new v(26, new p[]{new p(3, 44), new p(11, 45)}), new v(26, new p[]{new p(17, 21), new p(4, 22)}), new v(26, new p[]{new p(9, 13), new p(16, 14)})), new e(20, new int[]{6, 34, 62, 90}, new v(28, new p[]{new p(3, 107), new p(5, 108)}), new v(26, new p[]{new p(3, 41), new p(13, 42)}), new v(30, new p[]{new p(15, 24), new p(5, 25)}), new v(28, new p[]{new p(15, 15), new p(10, 16)})), new e(21, new int[]{6, 28, 50, 72, 94}, new v(28, new p[]{new p(4, 116), new p(4, 117)}), new v(26, new p[]{new p(17, 42)}), new v(28, new p[]{new p(17, 22), new p(6, 23)}), new v(30, new p[]{new p(19, 16), new p(6, 17)})), new e(22, new int[]{6, 26, 50, 74, 98}, new v(28, new p[]{new p(2, 111), new p(7, 112)}), new v(28, new p[]{new p(17, 46)}), new v(30, new p[]{new p(7, 24), new p(16, 25)}), new v(24, new p[]{new p(34, 13)})), new e(23, new int[]{6, 30, 54, 78, 102}, new v(30, new p[]{new p(4, 121), new p(5, 122)}), new v(28, new p[]{new p(4, 47), new p(14, 48)}), new v(30, new p[]{new p(11, 24), new p(14, 25)}), new v(30, new p[]{new p(16, 15), new p(14, 16)})), new e(24, new int[]{6, 28, 54, 80, 106}, new v(30, new p[]{new p(6, 117), new p(4, 118)}), new v(28, new p[]{new p(6, 45), new p(14, 46)}), new v(30, new p[]{new p(11, 24), new p(16, 25)}), new v(30, new p[]{new p(30, 16), new p(2, 17)})), new e(25, new int[]{6, 32, 58, 84, 110}, new v(26, new p[]{new p(8, 106), new p(4, 107)}), new v(28, new p[]{new p(8, 47), new p(13, 48)}), new v(30, new p[]{new p(7, 24), new p(22, 25)}), new v(30, new p[]{new p(22, 15), new p(13, 16)})), new e(26, new int[]{6, 30, 58, 86, 114}, new v(28, new p[]{new p(10, 114), new p(2, 115)}), new v(28, new p[]{new p(19, 46), new p(4, 47)}), new v(28, new p[]{new p(28, 22), new p(6, 23)}), new v(30, new p[]{new p(33, 16), new p(4, 17)})), new e(27, new int[]{6, 34, 62, 90, 118}, new v(30, new p[]{new p(8, 122), new p(4, 123)}), new v(28, new p[]{new p(22, 45), new p(3, 46)}), new v(30, new p[]{new p(8, 23), new p(26, 24)}), new v(30, new p[]{new p(12, 15), new p(28, 16)})), new e(28, new int[]{6, 26, 50, 74, 98, 122}, new v(30, new p[]{new p(3, 117), new p(10, 118)}), new v(28, new p[]{new p(3, 45), new p(23, 46)}), new v(30, new p[]{new p(4, 24), new p(31, 25)}), new v(30, new p[]{new p(11, 15), new p(31, 16)})), new e(29, new int[]{6, 30, 54, 78, 102, 126}, new v(30, new p[]{new p(7, 116), new p(7, 117)}), new v(28, new p[]{new p(21, 45), new p(7, 46)}), new v(30, new p[]{new p(1, 23), new p(37, 24)}), new v(30, new p[]{new p(19, 15), new p(26, 16)})), new e(30, new int[]{6, 26, 52, 78, 104, 130}, new v(30, new p[]{new p(5, 115), new p(10, 116)}), new v(28, new p[]{new p(19, 47), new p(10, 48)}), new v(30, new p[]{new p(15, 24), new p(25, 25)}), new v(30, new p[]{new p(23, 15), new p(25, 16)})), new e(31, new int[]{6, 30, 56, 82, 108, 134}, new v(30, new p[]{new p(13, 115), new p(3, 116)}), new v(28, new p[]{new p(2, 46), new p(29, 47)}), new v(30, new p[]{new p(42, 24), new p(1, 25)}), new v(30, new p[]{new p(23, 15), new p(28, 16)})), new e(32, new int[]{6, 34, 60, 86, 112, 138}, new v(30, new p[]{new p(17, 115)}), new v(28, new p[]{new p(10, 46), new p(23, 47)}), new v(30, new p[]{new p(10, 24), new p(35, 25)}), new v(30, new p[]{new p(19, 15), new p(35, 16)})), new e(33, new int[]{6, 30, 58, 86, 114, 142}, new v(30, new p[]{new p(17, 115), new p(1, 116)}), new v(28, new p[]{new p(14, 46), new p(21, 47)}), new v(30, new p[]{new p(29, 24), new p(19, 25)}), new v(30, new p[]{new p(11, 15), new p(46, 16)})), new e(34, new int[]{6, 34, 62, 90, 118, 146}, new v(30, new p[]{new p(13, 115), new p(6, 116)}), new v(28, new p[]{new p(14, 46), new p(23, 47)}), new v(30, new p[]{new p(44, 24), new p(7, 25)}), new v(30, new p[]{new p(59, 16), new p(1, 17)})), new e(35, new int[]{6, 30, 54, 78, 102, 126, 150}, new v(30, new p[]{new p(12, 121), new p(7, 122)}), new v(28, new p[]{new p(12, 47), new p(26, 48)}), new v(30, new p[]{new p(39, 24), new p(14, 25)}), new v(30, new p[]{new p(22, 15), new p(41, 16)})), new e(36, new int[]{6, 24, 50, 76, 102, 128, 154}, new v(30, new p[]{new p(6, 121), new p(14, 122)}), new v(28, new p[]{new p(6, 47), new p(34, 48)}), new v(30, new p[]{new p(46, 24), new p(10, 25)}), new v(30, new p[]{new p(2, 15), new p(64, 16)})), new e(37, new int[]{6, 28, 54, 80, 106, 132, 158}, new v(30, new p[]{new p(17, 122), new p(4, 123)}), new v(28, new p[]{new p(29, 46), new p(14, 47)}), new v(30, new p[]{new p(49, 24), new p(10, 25)}), new v(30, new p[]{new p(24, 15), new p(46, 16)})), new e(38, new int[]{6, 32, 58, 84, 110, 136, 162}, new v(30, new p[]{new p(4, 122), new p(18, 123)}), new v(28, new p[]{new p(13, 46), new p(32, 47)}), new v(30, new p[]{new p(48, 24), new p(14, 25)}), new v(30, new p[]{new p(42, 15), new p(32, 16)})), new e(39, new int[]{6, 26, 54, 82, 110, 138, 166}, new v(30, new p[]{new p(20, 117), new p(4, 118)}), new v(28, new p[]{new p(40, 47), new p(7, 48)}), new v(30, new p[]{new p(43, 24), new p(22, 25)}), new v(30, new p[]{new p(10, 15), new p(67, 16)})), new e(40, new int[]{6, 30, 58, 86, 114, 142, 170}, new v(30, new p[]{new p(19, 118), new p(6, 119)}), new v(28, new p[]{new p(18, 47), new p(31, 48)}), new v(30, new p[]{new p(34, 24), new p(34, 25)}), new v(30, new p[]{new p(20, 15), new p(61, 16)}))};
+    public static float a(int i9, int[] iArr) {
+        return ((i9 - iArr[4]) - iArr[3]) - (iArr[2] / 2.0f);
     }
 
-    public static e b(int i10) {
-        int i11 = Integer.MAX_VALUE;
-        int i12 = 0;
-        for (int i13 = 0; i13 < 34; i13++) {
-            int i14 = f46196e[i13];
-            if (i14 == i10) {
-                return c(i13 + 7);
-            }
-            int iBitCount = Integer.bitCount(i14 ^ i10);
-            if (iBitCount < i11) {
-                i12 = i13 + 7;
-                i11 = iBitCount;
+    public static boolean b(int[] iArr) {
+        int i9 = 0;
+        int i10 = 0;
+        while (true) {
+            if (i9 < 5) {
+                int i11 = iArr[i9];
+                if (i11 == 0) {
+                    break;
+                }
+                i10 += i11;
+                i9++;
+            } else if (i10 >= 7) {
+                float f10 = i10 / 7.0f;
+                float f11 = f10 / 2.0f;
+                if (Math.abs(f10 - iArr[0]) >= f11 || Math.abs(f10 - iArr[1]) >= f11 || Math.abs((f10 * 3.0f) - iArr[2]) >= 3.0f * f11 || Math.abs(f10 - iArr[3]) >= f11 || Math.abs(f10 - iArr[4]) >= f11) {
+                    break;
+                }
+                return true;
             }
         }
-        if (i11 <= 3) {
-            return c(i12);
-        }
-        return null;
+        return false;
     }
 
-    public static e c(int i10) {
-        if (i10 < 1 || i10 > 40) {
-            throw new IllegalArgumentException();
-        }
-        return f46197f[i10 - 1];
+    public static double e(c cVar, c cVar2) {
+        double d = cVar.f14748a - cVar2.f14748a;
+        double d9 = cVar.f14749b - cVar2.f14749b;
+        return (d9 * d9) + (d * d);
     }
 
-    public final String toString() {
-        return String.valueOf(this.f46198a);
+    public final boolean c(int i9, int i10, int[] iArr) {
+        char c10;
+        float f10;
+        char c11;
+        ArrayList arrayList;
+        c cVar;
+        float f11;
+        float f12;
+        int i11;
+        int i12;
+        int i13;
+        int i14 = iArr[0] + iArr[1] + iArr[2] + iArr[3] + iArr[4];
+        int a2 = (int) a(i10, iArr);
+        int i15 = iArr[2];
+        lb.b bVar = this.f46133a;
+        int i16 = bVar.f16736b;
+        int i17 = bVar.f16735a;
+        int[] iArr2 = this.d;
+        Arrays.fill(iArr2, 0);
+        int i18 = i9;
+        while (i18 >= 0 && bVar.b(a2, i18)) {
+            iArr2[2] = iArr2[2] + 1;
+            i18--;
+        }
+        float f13 = Float.NaN;
+        if (i18 < 0) {
+            f10 = Float.NaN;
+            c10 = 2;
+        } else {
+            while (i18 >= 0 && !bVar.b(a2, i18)) {
+                c10 = 2;
+                int i19 = iArr2[1];
+                if (i19 > i15) {
+                    break;
+                }
+                iArr2[1] = i19 + 1;
+                i18--;
+            }
+            c10 = 2;
+            if (i18 >= 0 && iArr2[1] <= i15) {
+                while (i18 >= 0 && bVar.b(a2, i18)) {
+                    int i20 = iArr2[0];
+                    if (i20 > i15) {
+                        break;
+                    }
+                    iArr2[0] = i20 + 1;
+                    i18--;
+                }
+                if (iArr2[0] <= i15) {
+                    int i21 = i9 + 1;
+                    while (i21 < i16 && bVar.b(a2, i21)) {
+                        iArr2[c10] = iArr2[c10] + 1;
+                        i21++;
+                    }
+                    if (i21 != i16) {
+                        while (i21 < i16 && !bVar.b(a2, i21)) {
+                            int i22 = iArr2[3];
+                            if (i22 >= i15) {
+                                break;
+                            }
+                            iArr2[3] = i22 + 1;
+                            i21++;
+                        }
+                        if (i21 != i16 && iArr2[3] < i15) {
+                            while (i21 < i16 && bVar.b(a2, i21)) {
+                                int i23 = iArr2[4];
+                                if (i23 >= i15) {
+                                    break;
+                                }
+                                iArr2[4] = i23 + 1;
+                                i21++;
+                            }
+                            int i24 = iArr2[4];
+                            if (i24 < i15 && Math.abs(((((iArr2[0] + iArr2[1]) + iArr2[c10]) + iArr2[3]) + i24) - i14) * 5 < i14 * 2 && b(iArr2)) {
+                                f10 = a(i21, iArr2);
+                            }
+                        }
+                    }
+                }
+            }
+            f10 = Float.NaN;
+        }
+        if (!Float.isNaN(f10)) {
+            int i25 = (int) f10;
+            int i26 = iArr[c10];
+            Arrays.fill(iArr2, 0);
+            int i27 = a2;
+            while (i27 >= 0 && bVar.b(i27, i25)) {
+                iArr2[c10] = iArr2[c10] + 1;
+                i27--;
+            }
+            if (i27 < 0) {
+                c11 = 3;
+            } else {
+                while (i27 >= 0 && !bVar.b(i27, i25)) {
+                    c11 = 3;
+                    int i28 = iArr2[1];
+                    if (i28 > i26) {
+                        break;
+                    }
+                    iArr2[1] = i28 + 1;
+                    i27--;
+                }
+                c11 = 3;
+                if (i27 >= 0 && iArr2[1] <= i26) {
+                    while (i27 >= 0 && bVar.b(i27, i25)) {
+                        int i29 = iArr2[0];
+                        if (i29 > i26) {
+                            break;
+                        }
+                        iArr2[0] = i29 + 1;
+                        i27--;
+                    }
+                    if (iArr2[0] <= i26) {
+                        int i30 = a2 + 1;
+                        while (i30 < i17 && bVar.b(i30, i25)) {
+                            iArr2[c10] = iArr2[c10] + 1;
+                            i30++;
+                        }
+                        if (i30 != i17) {
+                            while (i30 < i17 && !bVar.b(i30, i25)) {
+                                int i31 = iArr2[c11];
+                                if (i31 >= i26) {
+                                    break;
+                                }
+                                iArr2[c11] = i31 + 1;
+                                i30++;
+                            }
+                            if (i30 != i17 && iArr2[c11] < i26) {
+                                while (i30 < i17 && bVar.b(i30, i25)) {
+                                    int i32 = iArr2[4];
+                                    if (i32 >= i26) {
+                                        break;
+                                    }
+                                    iArr2[4] = i32 + 1;
+                                    i30++;
+                                }
+                                int i33 = iArr2[4];
+                                if (i33 < i26 && Math.abs(((((iArr2[0] + iArr2[1]) + iArr2[c10]) + iArr2[c11]) + i33) - i14) * 5 < i14 && b(iArr2)) {
+                                    f13 = a(i30, iArr2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (!Float.isNaN(f13)) {
+                int i34 = (int) f13;
+                Arrays.fill(iArr2, 0);
+                int i35 = 0;
+                while (i25 >= i35 && i34 >= i35 && bVar.b(i34 - i35, i25 - i35)) {
+                    iArr2[c10] = iArr2[c10] + 1;
+                    i35++;
+                }
+                if (iArr2[c10] != 0) {
+                    while (i25 >= i35 && i34 >= i35 && !bVar.b(i34 - i35, i25 - i35)) {
+                        iArr2[1] = iArr2[1] + 1;
+                        i35++;
+                    }
+                    if (iArr2[1] != 0) {
+                        while (i25 >= i35 && i34 >= i35 && bVar.b(i34 - i35, i25 - i35)) {
+                            iArr2[0] = iArr2[0] + 1;
+                            i35++;
+                        }
+                        if (iArr2[0] != 0) {
+                            int i36 = bVar.f16736b;
+                            int i37 = 1;
+                            while (true) {
+                                int i38 = i25 + i37;
+                                if (i38 >= i36 || (i13 = i34 + i37) >= i17 || !bVar.b(i13, i38)) {
+                                    break;
+                                }
+                                iArr2[c10] = iArr2[c10] + 1;
+                                i37++;
+                            }
+                            while (true) {
+                                int i39 = i25 + i37;
+                                if (i39 >= i36 || (i12 = i34 + i37) >= i17 || bVar.b(i12, i39)) {
+                                    break;
+                                }
+                                iArr2[c11] = iArr2[c11] + 1;
+                                i37++;
+                            }
+                            if (iArr2[c11] == 0) {
+                                return false;
+                            }
+                            while (true) {
+                                int i40 = i25 + i37;
+                                if (i40 >= i36 || (i11 = i34 + i37) >= i17 || !bVar.b(i11, i40)) {
+                                    break;
+                                }
+                                iArr2[4] = iArr2[4] + 1;
+                                i37++;
+                            }
+                            if (iArr2[4] == 0) {
+                                return false;
+                            }
+                            int i41 = 0;
+                            for (int i42 = 0; i42 < 5; i42++) {
+                                int i43 = iArr2[i42];
+                                if (i43 == 0) {
+                                    return false;
+                                }
+                                i41 += i43;
+                            }
+                            if (i41 < 7) {
+                                return false;
+                            }
+                            float f14 = i41 / 7.0f;
+                            float f15 = f14 / 1.333f;
+                            if (Math.abs(f14 - iArr2[0]) >= f15 || Math.abs(f14 - iArr2[1]) >= f15 || Math.abs((f14 * 3.0f) - iArr2[c10]) >= 3.0f * f15 || Math.abs(f14 - iArr2[c11]) >= f15 || Math.abs(f14 - iArr2[4]) >= f15) {
+                                return false;
+                            }
+                            float f16 = i14 / 7.0f;
+                            int i44 = 0;
+                            while (true) {
+                                arrayList = this.f46134b;
+                                if (i44 < arrayList.size()) {
+                                    cVar = (c) arrayList.get(i44);
+                                    float f17 = cVar.f46131c;
+                                    f11 = cVar.f14748a;
+                                    f12 = cVar.f14749b;
+                                    if (Math.abs(f10 - f12) <= f16 && Math.abs(f13 - f11) <= f16) {
+                                        float abs = Math.abs(f16 - f17);
+                                        if (abs <= 1.0f || abs <= f17) {
+                                            break;
+                                        }
+                                    }
+                                    i44++;
+                                } else {
+                                    arrayList.add(new c(f13, f10, f16, 1));
+                                    return true;
+                                }
+                            }
+                            int i45 = cVar.d;
+                            int i46 = i45 + 1;
+                            float f18 = i45;
+                            float f19 = i46;
+                            arrayList.set(i44, new c(((f11 * f18) + f13) / f19, e2.c.y(f18, f12, f10, f19), e2.c.y(f18, cVar.f46131c, f16, f19), i46));
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        ArrayList arrayList = this.f46134b;
+        int size = arrayList.size();
+        int size2 = arrayList.size();
+        float f10 = 0.0f;
+        int i9 = 0;
+        float f11 = 0.0f;
+        int i10 = 0;
+        while (i10 < size2) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            c cVar = (c) obj;
+            if (cVar.d >= 2) {
+                i9++;
+                f11 += cVar.f46131c;
+            }
+        }
+        if (i9 >= 3) {
+            float f12 = f11 / size;
+            int size3 = arrayList.size();
+            int i11 = 0;
+            while (i11 < size3) {
+                Object obj2 = arrayList.get(i11);
+                i11++;
+                f10 += Math.abs(((c) obj2).f46131c - f12);
+            }
+            if (f10 <= f11 * 0.05f) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,29 +1,18 @@
 package k7;
 
-public final class a extends i7.k {
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class a {
+    public static final int f14662a = 0;
 
-    public final int f14485f;
-    public final d h;
-
-    public a(d dVar, int i10) {
-        super(dVar);
-        this.f14485f = i10;
-        this.h = dVar;
+    static {
+        a.class.getClassLoader();
     }
 
-    @Override
-    public final Object b(int i10) {
-        switch (this.f14485f) {
-            case 0:
-                Object[] objArr = this.h.f14531c;
-                objArr.getClass();
-                return objArr[i10];
-            case 1:
-                return new c(this.h, i10);
-            default:
-                Object[] objArr2 = this.h.d;
-                objArr2.getClass();
-                return objArr2[i10];
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

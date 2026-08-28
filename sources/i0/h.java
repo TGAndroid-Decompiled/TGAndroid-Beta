@@ -1,153 +1,170 @@
 package i0;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.net.Uri;
+import android.graphics.fonts.FontVariationAxis;
 import android.util.Log;
-import g7.x7;
-import g7.y7;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.util.List;
+public class h extends f {
+    public final Class f10863f;
+    public final Constructor f10864g;
+    public final Method h;
+    public final Method f10865i;
+    public final Method f10866j;
+    public final Method f10867k;
+    public final Method f10868l;
 
-public final class h extends x7 {
-
-    public static final Class f10501a;
-
-    public static final Constructor f10502b;
-
-    public static final Method f10503c;
-    public static final Method d;
-
-    static {
-        Class<?> cls;
+    public h() {
         Method method;
+        Constructor<?> constructor;
         Method method2;
-        Constructor<?> constructor = null;
+        Method method3;
+        Method method4;
+        Method method5;
+        Class<?> cls = null;
         try {
-            cls = Class.forName("android.graphics.FontFamily");
-            Constructor<?> constructor2 = cls.getConstructor(null);
-            Class<?> cls2 = Integer.TYPE;
-            method2 = cls.getMethod("addFontWeightStyle", ByteBuffer.class, cls2, List.class, cls2, Boolean.TYPE);
-            method = Typeface.class.getMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass());
-            constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e9) {
-            Log.e("TypefaceCompatApi24Impl", e9.getClass().getName(), e9);
-            cls = null;
+            Class<?> cls2 = Class.forName("android.graphics.FontFamily");
+            constructor = cls2.getConstructor(null);
+            method2 = l(cls2);
+            Class<?> cls3 = Integer.TYPE;
+            method3 = cls2.getMethod("addFontFromBuffer", ByteBuffer.class, cls3, FontVariationAxis[].class, cls3, cls3);
+            method4 = cls2.getMethod("freeze", null);
+            method5 = cls2.getMethod("abortCreation", null);
+            method = m(cls2);
+            cls = cls2;
+        } catch (ClassNotFoundException | NoSuchMethodException e10) {
+            Log.e("TypefaceCompatApi26Impl", "Unable to collect necessary methods for class ".concat(e10.getClass().getName()), e10);
             method = null;
+            constructor = null;
             method2 = null;
+            method3 = null;
+            method4 = null;
+            method5 = null;
         }
-        f10502b = constructor;
-        f10501a = cls;
-        f10503c = method2;
-        d = method;
+        this.f10863f = cls;
+        this.f10864g = constructor;
+        this.h = method2;
+        this.f10865i = method3;
+        this.f10866j = method4;
+        this.f10867k = method5;
+        this.f10868l = method;
     }
 
-    public static boolean g(Object obj, ByteBuffer byteBuffer, int i10, int i11, boolean z10) {
+    public static Method l(Class cls) {
+        Class<?> cls2 = Integer.TYPE;
+        return cls.getMethod("addFontFromAssetManager", AssetManager.class, String.class, cls2, Boolean.TYPE, cls2, cls2, cls2, FontVariationAxis[].class);
+    }
+
+    @Override
+    public final Typeface a(Context context, h0.e eVar, Resources resources, int i9) {
+        Object obj;
+        Method method = this.h;
+        if (method == null) {
+            Log.w("TypefaceCompatApi26Impl", "Unable to collect necessary private methods. Fallback to legacy implementation.");
+        }
+        if (method != null) {
+            try {
+                obj = this.f10864g.newInstance(null);
+            } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
+                obj = null;
+            }
+            if (obj != null) {
+                h0.f[] fVarArr = eVar.f9281a;
+                int length = fVarArr.length;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < length) {
+                        h0.f fVar = fVarArr[i10];
+                        Context context2 = context;
+                        if (!i(context2, obj, fVar.f9282a, fVar.f9285e, fVar.f9283b, fVar.f9284c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
+                            try {
+                                this.f10867k.invoke(obj, null);
+                                break;
+                            } catch (IllegalAccessException | InvocationTargetException unused2) {
+                            }
+                        } else {
+                            i10++;
+                            context = context2;
+                        }
+                    } else if (k(obj)) {
+                        return j(obj);
+                    }
+                }
+            }
+            return null;
+        }
+        return super.a(context, eVar, resources, i9);
+    }
+
+    @Override
+    public final android.graphics.Typeface b(android.content.Context r18, o0.i[] r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: i0.h.b(android.content.Context, o0.i[], int):android.graphics.Typeface");
+    }
+
+    @Override
+    public final Typeface e(Context context, Resources resources, int i9, String str, int i10) {
+        Object obj;
+        Method method = this.h;
+        if (method == null) {
+            Log.w("TypefaceCompatApi26Impl", "Unable to collect necessary private methods. Fallback to legacy implementation.");
+        }
+        if (method != null) {
+            try {
+                obj = this.f10864g.newInstance(null);
+            } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
+                obj = null;
+            }
+            if (obj != null) {
+                if (!i(context, obj, str, 0, -1, -1, null)) {
+                    try {
+                        this.f10867k.invoke(obj, null);
+                    } catch (IllegalAccessException | InvocationTargetException unused2) {
+                    }
+                } else if (k(obj)) {
+                    return j(obj);
+                }
+            }
+            return null;
+        }
+        return super.e(context, resources, i9, str, i10);
+    }
+
+    public final boolean i(Context context, Object obj, String str, int i9, int i10, int i11, FontVariationAxis[] fontVariationAxisArr) {
         try {
-            return ((Boolean) f10503c.invoke(obj, byteBuffer, Integer.valueOf(i10), null, Integer.valueOf(i11), Boolean.valueOf(z10))).booleanValue();
+            return ((Boolean) this.h.invoke(obj, context.getAssets(), str, 0, Boolean.FALSE, Integer.valueOf(i9), Integer.valueOf(i10), Integer.valueOf(i11), fontVariationAxisArr)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }
     }
 
-    public static Typeface h(Object obj) {
+    public Typeface j(Object obj) {
         try {
-            Object objNewInstance = Array.newInstance((Class<?>) f10501a, 1);
-            Array.set(objNewInstance, 0, obj);
-            return (Typeface) d.invoke(null, objNewInstance);
+            Object newInstance = Array.newInstance(this.f10863f, 1);
+            Array.set(newInstance, 0, obj);
+            return (Typeface) this.f10868l.invoke(null, newInstance, -1, -1);
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return null;
         }
     }
 
-    @Override
-    public final Typeface a(Context context, h0.e eVar, Resources resources, int i10) throws IllegalAccessException, InstantiationException, InvocationTargetException {
-        Object objNewInstance;
-        MappedByteBuffer map;
+    public final boolean k(Object obj) {
         try {
-            objNewInstance = f10502b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            objNewInstance = null;
+            return ((Boolean) this.f10866j.invoke(obj, null)).booleanValue();
+        } catch (IllegalAccessException | InvocationTargetException unused) {
+            return false;
         }
-        if (objNewInstance != null) {
-            for (h0.f fVar : eVar.f7713a) {
-                int i11 = fVar.f7718f;
-                File fileD = y7.d(context);
-                if (fileD != null) {
-                    try {
-                        if (y7.b(fileD, resources, i11)) {
-                            try {
-                                FileInputStream fileInputStream = new FileInputStream(fileD);
-                                try {
-                                    FileChannel channel = fileInputStream.getChannel();
-                                    map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
-                                    fileInputStream.close();
-                                    fileD.delete();
-                                } catch (Throwable th) {
-                                    try {
-                                        fileInputStream.close();
-                                    } catch (Throwable th2) {
-                                        th.addSuppressed(th2);
-                                    }
-                                    throw th;
-                                }
-                            } catch (IOException unused2) {
-                                map = null;
-                            }
-                        } else {
-                            fileD.delete();
-                        }
-                        if (map != null && g(objNewInstance, map, fVar.f7717e, fVar.f7715b, fVar.f7716c)) {
-                        }
-                    } catch (Throwable th3) {
-                        fileD.delete();
-                        throw th3;
-                    }
-                }
-                map = null;
-                if (map != null) {
-                }
-            }
-            return h(objNewInstance);
-        }
-        return null;
     }
 
-    @Override
-    public final Typeface b(Context context, o0.j[] jVarArr, int i10) {
-        Object objNewInstance;
-        try {
-            objNewInstance = f10502b.newInstance(null);
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
-            objNewInstance = null;
-        }
-        if (objNewInstance != null) {
-            a0.k kVar = new a0.k(0);
-            for (o0.j jVar : jVarArr) {
-                Uri uri = jVar.f19109a;
-                ByteBuffer byteBufferE = (ByteBuffer) kVar.get(uri);
-                if (byteBufferE == null) {
-                    byteBufferE = y7.e(context, uri);
-                    kVar.put(uri, byteBufferE);
-                }
-                if (byteBufferE != null && g(objNewInstance, byteBufferE, jVar.f19110b, jVar.f19111c, jVar.d)) {
-                }
-            }
-            Typeface typefaceH = h(objNewInstance);
-            if (typefaceH != null) {
-                return Typeface.create(typefaceH, i10);
-            }
-        }
-        return null;
+    public Method m(Class cls) {
+        Class cls2 = Integer.TYPE;
+        Method declaredMethod = Typeface.class.getDeclaredMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass(), cls2, cls2);
+        declaredMethod.setAccessible(true);
+        return declaredMethod;
     }
 }

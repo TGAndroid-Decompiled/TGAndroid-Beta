@@ -1,19 +1,15 @@
 package n4;
 
-import d5.g0;
-
+import d5.f0;
 public final class f {
-
-    public final String f18238a;
-
-    public final String f18239b;
-
-    public final String f18240c;
+    public final String f18411a;
+    public final String f18412b;
+    public final String f18413c;
 
     public f(String str, String str2, String str3) {
-        this.f18238a = str;
-        this.f18239b = str2;
-        this.f18240c = str3;
+        this.f18411a = str;
+        this.f18412b = str2;
+        this.f18413c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -22,7 +18,7 @@ public final class f {
         }
         if (obj != null && f.class == obj.getClass()) {
             f fVar = (f) obj;
-            if (g0.a(this.f18238a, fVar.f18238a) && g0.a(this.f18239b, fVar.f18239b) && g0.a(this.f18240c, fVar.f18240c)) {
+            if (f0.a(this.f18411a, fVar.f18411a) && f0.a(this.f18412b, fVar.f18412b) && f0.a(this.f18413c, fVar.f18413c)) {
                 return true;
             }
         }
@@ -30,10 +26,20 @@ public final class f {
     }
 
     public final int hashCode() {
-        int iHashCode = this.f18238a.hashCode() * 31;
-        String str = this.f18239b;
-        int iHashCode2 = (iHashCode + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f18240c;
-        return iHashCode2 + (str2 != null ? str2.hashCode() : 0);
+        int i9;
+        int hashCode = this.f18411a.hashCode() * 31;
+        int i10 = 0;
+        String str = this.f18412b;
+        if (str != null) {
+            i9 = str.hashCode();
+        } else {
+            i9 = 0;
+        }
+        int i11 = (hashCode + i9) * 31;
+        String str2 = this.f18413c;
+        if (str2 != null) {
+            i10 = str2.hashCode();
+        }
+        return i11 + i10;
     }
 }

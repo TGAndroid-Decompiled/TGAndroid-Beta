@@ -1,11 +1,12 @@
 package org.webrtc;
 
+import org.webrtc.VideoProcessor;
 public abstract class d0 {
     public static void a(VideoProcessor videoProcessor, VideoFrame videoFrame, VideoProcessor.FrameAdaptationParameters frameAdaptationParameters) {
-        VideoFrame videoFrameB = b(videoFrame, frameAdaptationParameters);
-        if (videoFrameB != null) {
-            videoProcessor.onFrameCaptured(videoFrameB);
-            videoFrameB.release();
+        VideoFrame b10 = b(videoFrame, frameAdaptationParameters);
+        if (b10 != null) {
+            videoProcessor.onFrameCaptured(b10);
+            b10.release();
         }
     }
 

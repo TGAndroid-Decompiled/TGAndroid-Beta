@@ -1,77 +1,117 @@
 package nh;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.hp;
-import org.telegram.ui.Components.i6;
-import org.telegram.ui.Components.nc;
-import org.telegram.ui.Components.y5;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.x60;
+import r0.j1;
+import r0.m1;
+public final class t implements Utilities.Callback5, r0.o, Utilities.Callback5Return {
+    public final int f18724a;
+    public final j0 f18725b;
 
-public final class t {
+    public t(j0 j0Var, int i9) {
+        this.f18724a = i9;
+        this.f18725b = j0Var;
+    }
 
-    public final RectF f18949a = new RectF();
+    @Override
+    public m1 L0(View view, m1 m1Var) {
+        j1 j1Var = m1Var.f46929a;
+        i0.b f10 = j1Var.f(527);
+        j0 j0Var = this.f18725b;
+        j0Var.P = f10;
+        j0Var.Q = j1Var.f(519);
+        j0Var.B.j(AndroidUtilities.dp(56.0f) + j0Var.P.f10849b, j0Var.P.d, false);
+        j0Var.D.invalidate();
+        return m1.f46928b;
+    }
 
-    public final y5 f18950b;
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean canRemoveBotFromCommunity;
+        long j10;
+        boolean z10;
+        boolean z11;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i9 = j0.R;
+        Object obj6 = ((l41) obj).G;
+        boolean z12 = obj6 instanceof TLRPC.Chat;
+        j0 j0Var = this.f18725b;
+        boolean z13 = false;
+        if (z12) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj6;
+            boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, j0Var.f18652f);
+            j10 = -chat.f22380id;
+            z11 = false;
+            z10 = isChannelAndNotMegaGroup;
+        } else {
+            if (obj6 instanceof TLRPC.User) {
+                TLRPC.User user = (TLRPC.User) obj6;
+                long j11 = user.f22527id;
+                boolean isBot = UserObject.isBot(user);
+                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, j0Var.f18652f);
+                j10 = j11;
+                z10 = false;
+                z11 = isBot;
+            }
+            return Boolean.valueOf(z13);
+        }
+        if (canRemoveBotFromCommunity) {
+            x60 F = x60.F(j0Var.container, null, view);
+            F.c(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new l(j0Var, z11, z10, j10, 1), true);
+            F.W(j0Var.v.d.V0(view, true));
+            F.Z();
+            z13 = true;
+        }
+        return Boolean.valueOf(z13);
+    }
 
-    public final y5 f18951c;
-    public final y5 d;
-
-    public final y5 f18952e;
-
-    public final b5 f18953f;
-
-    public final b5 f18954g;
-    public final y5 h;
-
-    public final y5 f18955i;
-
-    public final nc f18956j;
-
-    public final Paint f18957k;
-
-    public final i6 f18958l;
-
-    public int f18959m;
-
-    public final org.telegram.ui.Cells.z f18960n;
-
-    public final hp f18961o;
-
-    public final org.telegram.ui.Components.voip.h f18962p;
-
-    public t(v vVar) {
-        er erVar = er.h;
-        this.f18950b = new y5(vVar, 0L, 320L, erVar);
-        this.f18951c = new y5(vVar, 0L, 320L, erVar);
-        this.d = new y5(vVar, 0L, 320L, erVar);
-        this.f18952e = new y5(vVar, 0L, 320L, erVar);
-        this.f18953f = new b5(vVar, 320L, erVar, 0);
-        this.f18954g = new b5(vVar, 320L, erVar, 0);
-        this.h = new y5(vVar, 0L, 320L, erVar);
-        this.f18955i = new y5(vVar, 0L, 320L, erVar);
-        this.f18956j = new nc(vVar);
-        this.f18957k = new Paint(1);
-        i6 i6Var = new i6(true, false, true, false);
-        this.f18958l = i6Var;
-        org.telegram.ui.Cells.z zVarY = g6.Y(0, 9, 9);
-        this.f18960n = zVarY;
-        hp hpVar = new hp(-1);
-        this.f18961o = hpVar;
-        org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f18962p = hVar;
-        i6Var.f29239b = 17;
-        i6Var.t(AndroidUtilities.dp(14.0f));
-        i6Var.u(AndroidUtilities.bold());
-        i6Var.G = AndroidUtilities.displaySize.x * 4;
-        i6Var.n(true);
-        i6Var.setCallback(vVar);
-        hpVar.setCallback(vVar);
-        zVarY.setCallback(vVar);
-        hVar.f33596l = true;
-        hVar.f33597m = 2.0f;
+    @Override
+    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        int i9 = this.f18724a;
+        j0 j0Var = this.f18725b;
+        l41 l41Var = (l41) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) obj3;
+        switch (i9) {
+            case 0:
+                num.getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                j0Var.V(l41Var);
+                return;
+            case 1:
+            default:
+                num.intValue();
+                ((Float) obj4).floatValue();
+                ((Float) obj5).floatValue();
+                int i10 = j0.R;
+                j0Var.S(l41Var);
+                return;
+            case 2:
+                num.getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                int i11 = j0.R;
+                j0Var.V(l41Var);
+                return;
+            case 3:
+                num.getClass();
+                ((Float) obj4).getClass();
+                ((Float) obj5).getClass();
+                j0.y(j0Var, l41Var, view);
+                return;
+        }
     }
 }

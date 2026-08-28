@@ -1,68 +1,112 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-
-public final class i4 extends FrameLayout {
-
-    public final org.telegram.ui.Components.qn0 f38970a;
-
-    public final int f38971b;
-
-    public final int f38972c;
-    public int d;
-
-    public final TextPaint f38973e;
-
-    public final m4 f38974f;
-
-    public i4(m4 m4Var, Context context) {
-        super(context);
-        this.f38974f = m4Var;
-        this.f38971b = 12;
-        this.f38972c = 30;
-        setWillNotDraw(false);
-        TextPaint textPaint = new TextPaint(1);
-        this.f38973e = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        org.telegram.ui.Components.qn0 qn0Var = new org.telegram.ui.Components.qn0(context, null, false);
-        this.f38970a = qn0Var;
-        qn0Var.setReportChanges(true);
-        qn0Var.setSeparatorsCount(19);
-        qn0Var.setDelegate(new g(this, 3));
-        addView(qn0Var, h7.z5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f38970a.invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = org.telegram.ui.ActionBar.g6.I6;
-        this.f38974f.getClass();
-        int iW0 = org.telegram.ui.ActionBar.g6.w0(null, i10, false);
-        TextPaint textPaint = this.f38973e;
-        textPaint.setColor(iW0);
-        canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.d != size) {
-            int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f38971b;
-            this.f38970a.setProgress((i12 - i13) / (this.f38972c - i13));
-            this.d = size;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class i4 {
+    public static TLRPC.Document a(TLRPC.WebPage webPage, long j10) {
+        if (webPage != null && webPage.cached_page != null) {
+            TLRPC.Document document = webPage.document;
+            if (document != null && document.f22386id == j10) {
+                return document;
+            }
+            for (int i9 = 0; i9 < webPage.cached_page.documents.size(); i9++) {
+                TLRPC.Document document2 = webPage.cached_page.documents.get(i9);
+                if (document2.f22386id == j10) {
+                    return document2;
+                }
+            }
         }
+        return null;
+    }
+
+    public static TLRPC.Document b(TL_iv.RichMessage richMessage, long j10) {
+        if (richMessage == null) {
+            return null;
+        }
+        for (int i9 = 0; i9 < richMessage.documents.size(); i9++) {
+            TLRPC.Document document = richMessage.documents.get(i9);
+            if (document.f22386id == j10) {
+                return document;
+            }
+        }
+        return null;
+    }
+
+    public static File c(TLObject tLObject) {
+        FileLoader fileLoader = FileLoader.getInstance(UserConfig.selectedAccount);
+        File pathToAttach = fileLoader.getPathToAttach(tLObject, false);
+        if (pathToAttach != null && pathToAttach.exists()) {
+            return pathToAttach;
+        }
+        File pathToAttach2 = fileLoader.getPathToAttach(tLObject, true);
+        if (pathToAttach2 != null && pathToAttach2.exists()) {
+            return pathToAttach2;
+        }
+        if (pathToAttach != null) {
+            return pathToAttach;
+        }
+        return pathToAttach2;
+    }
+
+    public static TLRPC.Photo d(long j10, TLObject tLObject) {
+        if (tLObject instanceof TL_iv.RichMessage) {
+            return f((TL_iv.RichMessage) tLObject, j10);
+        }
+        if (tLObject instanceof TL_iv.Page) {
+            TL_iv.Page page = (TL_iv.Page) tLObject;
+            for (int i9 = 0; i9 < page.photos.size(); i9++) {
+                TLRPC.Photo photo = page.photos.get(i9);
+                if (photo.f22404id == j10) {
+                    return photo;
+                }
+            }
+            return null;
+        } else if (!(tLObject instanceof TLRPC.WebPage)) {
+            return null;
+        } else {
+            return e((TLRPC.WebPage) tLObject, j10);
+        }
+    }
+
+    public static TLRPC.Photo e(TLRPC.WebPage webPage, long j10) {
+        if (webPage != null && webPage.cached_page != null) {
+            TLRPC.Photo photo = webPage.photo;
+            if (photo != null && photo.f22404id == j10) {
+                return photo;
+            }
+            for (int i9 = 0; i9 < webPage.cached_page.photos.size(); i9++) {
+                TLRPC.Photo photo2 = webPage.cached_page.photos.get(i9);
+                if (photo2.f22404id == j10) {
+                    return photo2;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Photo f(TL_iv.RichMessage richMessage, long j10) {
+        if (richMessage == null) {
+            return null;
+        }
+        for (int i9 = 0; i9 < richMessage.photos.size(); i9++) {
+            TLRPC.Photo photo = richMessage.photos.get(i9);
+            if (photo.f22404id == j10) {
+                return photo;
+            }
+        }
+        return null;
+    }
+
+    public static boolean g(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
+        TLRPC.Document a2;
+        if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+            return MessageObject.isVideoDocument(a2);
+        }
+        return false;
     }
 }

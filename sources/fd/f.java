@@ -1,4 +1,3 @@
 package fd;
-
-public abstract class f {
+public abstract class f extends e {
 }

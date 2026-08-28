@@ -1,22 +1,9 @@
 package g7;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
 public abstract class q {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
+    public static void a(String str, boolean z10) {
+        if (z10) {
+            return;
         }
-        return null;
-    }
-
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-        } else {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
-        }
+        throw h3.t1.a(str, null);
     }
 }

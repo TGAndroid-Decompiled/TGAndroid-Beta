@@ -1,123 +1,79 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ag0;
-import org.telegram.ui.Components.cg0;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.vb0;
+import org.telegram.messenger.R;
+public final class v1 extends FrameLayout {
+    public final TextView f25781a;
+    public final ImageView f25782b;
+    public final FrameLayout f25783c;
+    public final org.telegram.ui.ActionBar.b6 d;
 
-public final class v1 extends org.telegram.ui.Components.j6 {
+    public v1(Context context, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context);
+        this.d = b6Var;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f25783c = frameLayout;
+        frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
+        Drawable background = frameLayout.getBackground();
+        int a2 = a(org.telegram.ui.ActionBar.f6.Fe);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        background.setColorFilter(new PorterDuffColorFilter(a2, mode));
+        addView(frameLayout, g7.e6.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f25782b = imageView;
+        imageView.setImageResource(R.drawable.ic_ab_new);
+        imageView.setColorFilter(new PorterDuffColorFilter(a(org.telegram.ui.ActionBar.f6.De), mode));
+        imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
+        frameLayout.addView(imageView, g7.e6.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f25781a = textView;
+        textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
+        textView.setTextSize(1, 14.0f);
+        textView.setTextColor(a(org.telegram.ui.ActionBar.f6.Ee));
+        textView.setTypeface(AndroidUtilities.bold());
+        addView(textView, g7.e6.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
+    }
 
-    public final int f25789s;
-    public Object v;
+    public final int a(int i9) {
+        Integer num;
+        org.telegram.ui.ActionBar.b6 b6Var = this.d;
+        if (b6Var != null) {
+            num = Integer.valueOf(b6Var.N0(i9));
+        } else {
+            num = null;
+        }
+        if (num != null) {
+            return num.intValue();
+        }
+        return org.telegram.ui.ActionBar.f6.w0(null, i9, false);
+    }
 
-    public v1(Context context, boolean z10, boolean z11, boolean z12) {
-        super(context, z10, z11, z12);
-        this.f25789s = 3;
+    public FrameLayout getBackgroundLayout() {
+        return this.f25783c;
+    }
+
+    public ImageView getImageView() {
+        return this.f25782b;
+    }
+
+    public TextView getTextView() {
+        return this.f25781a;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.f25789s) {
-            case 1:
-                super.invalidate();
-                ag0 ag0Var = (ag0) this.v;
-                cg0 cg0Var = ag0Var.d;
-                if (ag0Var == cg0Var.f27417b.getPinnedHeader()) {
-                    cg0Var.f27417b.invalidate();
-                }
-                break;
-            default:
-                super.invalidate();
-                break;
-        }
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f25789s) {
-            case 0:
-                super.onDraw(canvas);
-                ((y1) this.v).f();
-                break;
-            case 1:
-            default:
-                super.onDraw(canvas);
-                break;
-            case 2:
-                canvas.save();
-                canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
-                super.onDraw(canvas);
-                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
-                ((r51) this.v).f32089b.draw(canvas);
-                canvas.restore();
-                break;
-            case 3:
-                ShapeDrawable shapeDrawable = (ShapeDrawable) this.v;
-                shapeDrawable.setBounds(0, 0, (int) (getDrawable().d() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
-                shapeDrawable.draw(canvas);
-                super.onDraw(canvas);
-                break;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f25789s) {
-            case 4:
-                vb0 vb0Var = (vb0) this.v;
-                int size = View.MeasureSpec.getSize(i10);
-                if (size <= 0) {
-                    size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
-                }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - vb0Var.d.getPaint().measureText(vb0Var.d.getText().toString())) - vb0Var.f43406f.getPaint().measureText(vb0Var.f43406f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
-                break;
-            default:
-                super.onMeasure(i10, i11);
-                break;
-        }
-    }
-
-    @Override
-    public boolean post(Runnable runnable) {
-        switch (this.f25789s) {
-            case 1:
-                return ((org.telegram.ui.ActionBar.e3) ((ag0) this.v).d).containerView.post(runnable);
-            default:
-                return super.post(runnable);
-        }
-    }
-
-    @Override
-    public boolean postDelayed(Runnable runnable, long j10) {
-        switch (this.f25789s) {
-            case 1:
-                return ((org.telegram.ui.ActionBar.e3) ((ag0) this.v).d).containerView.postDelayed(runnable, j10);
-            default:
-                return super.postDelayed(runnable, j10);
-        }
-    }
-
-    public v1(FrameLayout frameLayout, Context context, int i10) {
-        super(context, false, false, false);
-        this.f25789s = i10;
-        this.v = frameLayout;
-    }
-
-    public v1(r51 r51Var, Context context) {
-        super(context, true, true, true);
-        this.f25789s = 2;
-        this.v = r51Var;
-    }
-
-    public v1(vb0 vb0Var, Context context) {
-        super(context, false, true, true);
-        this.f25789s = 4;
-        this.v = vb0Var;
+    public void setText(String str) {
+        this.f25781a.setText(str);
     }
 }

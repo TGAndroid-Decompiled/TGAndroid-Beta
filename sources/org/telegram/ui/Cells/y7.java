@@ -1,152 +1,38 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.view.animation.AccelerateInterpolator;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.ui.p91;
+public final class y7 extends org.telegram.ui.Components.o9 {
+    public final org.telegram.ui.ActionBar.b6 C;
+    public final a8 D;
 
-public final class y7 extends FrameLayout {
-
-    public org.telegram.ui.Components.n9 f26002a;
-
-    public TLRPC.Document f26003b;
-
-    public Object f26004c;
-    public long d;
-
-    public boolean f26005e;
-
-    public float f26006f;
-    public boolean h;
-
-    public ag.k2 f26007n;
-
-    public boolean f26008r;
-
-    public boolean f26009s;
-    public org.telegram.ui.ActionBar.c6 v;
-
-    static {
-        new AccelerateInterpolator(0.5f);
+    public y7(a8 a8Var, Context context, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context);
+        this.D = a8Var;
+        this.C = b6Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        boolean z10;
-        float f10;
-        boolean zDrawChild = super.drawChild(canvas, view, j10);
-        org.telegram.ui.Components.n9 n9Var = this.f26002a;
-        if (view == n9Var && (((z10 = this.f26005e) && this.f26006f != 0.8f) || (!z10 && this.f26006f != 1.0f))) {
-            long jCurrentTimeMillis = System.currentTimeMillis();
-            long j11 = jCurrentTimeMillis - this.d;
-            this.d = jCurrentTimeMillis;
-            if (this.f26005e) {
-                float f11 = this.f26006f;
-                if (f11 != 0.8f) {
-                    float f12 = f11 - (j11 / 400.0f);
-                    this.f26006f = f12;
-                    if (f12 < 0.8f) {
-                        this.f26006f = 0.8f;
-                    }
-                } else {
-                    f10 = (j11 / 400.0f) + this.f26006f;
-                    this.f26006f = f10;
-                    if (f10 > 1.0f) {
-                        this.f26006f = 1.0f;
-                    }
-                }
-            } else {
-                f10 = (j11 / 400.0f) + this.f26006f;
-                this.f26006f = f10;
-                if (f10 > 1.0f) {
-                    this.f26006f = 1.0f;
-                }
-            }
-            n9Var.setScaleX(this.f26006f);
-            n9Var.setScaleY(this.f26006f);
-            n9Var.invalidate();
-            invalidate();
-        }
-        return zDrawChild;
-    }
-
-    public Object getParentObject() {
-        return this.f26004c;
-    }
-
-    public MessageObject.SendAnimationData getSendAnimationData() {
-        org.telegram.ui.Components.n9 n9Var = this.f26002a;
-        ImageReceiver imageReceiver = n9Var.getImageReceiver();
-        if (!imageReceiver.hasNotThumb()) {
-            return null;
-        }
-        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-        int[] iArr = new int[2];
-        n9Var.getLocationInWindow(iArr);
-        sendAnimationData.f19620x = imageReceiver.getCenterX() + iArr[0];
-        sendAnimationData.f19621y = imageReceiver.getCenterY() + iArr[1];
-        sendAnimationData.width = imageReceiver.getImageWidth();
-        sendAnimationData.height = imageReceiver.getImageHeight();
-        return sendAnimationData;
-    }
-
-    public TLRPC.Document getSticker() {
-        return this.f26003b;
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f26003b == null) {
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        a8 a8Var = this.D;
+        p91 p91Var = a8Var.v;
+        if (p91Var != null && (p91Var.f41380a instanceof TL_stats.TL_postInteractionCountersStory)) {
+            float dp2 = AndroidUtilities.dp(1.0f);
+            a8Var.f24063r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+            ih.l7 l7Var = a8Var.f24063r;
+            l7Var.f11716a = false;
+            l7Var.f11717b = false;
+            l7Var.v = true;
+            l7Var.f11728o = false;
+            l7Var.f11738z = 1;
+            l7Var.J = this.C;
+            ih.p7.h(0L, canvas, this.f31328a, l7Var);
             return;
         }
-        String str = null;
-        for (int i10 = 0; i10 < this.f26003b.attributes.size(); i10++) {
-            TLRPC.DocumentAttribute documentAttribute = this.f26003b.attributes.get(i10);
-            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
-                String str2 = documentAttribute.alt;
-                str = (str2 == null || str2.length() <= 0) ? null : documentAttribute.alt;
-            }
-        }
-        if (str != null) {
-            StringBuilder sbF = s3.c.f(str, " ");
-            sbF.append(LocaleController.getString(R.string.AttachSticker));
-            accessibilityNodeInfo.setText(sbF.toString());
-        } else {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachSticker));
-        }
-        accessibilityNodeInfo.setEnabled(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + AndroidUtilities.dp(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f), 1073741824));
-    }
-
-    public void setClearsInputField(boolean z10) {
-        this.h = z10;
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        org.telegram.ui.Components.n9 n9Var = this.f26002a;
-        if (n9Var.getImageReceiver().getPressed() != z10) {
-            n9Var.getImageReceiver().setPressed(z10 ? 1 : 0);
-            n9Var.invalidate();
-        }
-        super.setPressed(z10);
-    }
-
-    public void setScaled(boolean z10) {
-        this.f26005e = z10;
-        this.d = System.currentTimeMillis();
-        invalidate();
+        super.onDraw(canvas);
     }
 }

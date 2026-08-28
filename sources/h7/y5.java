@@ -1,15 +1,17 @@
 package h7;
+public final class y5 implements q9.d {
+    public static final y5 f10189a = new Object();
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.y30;
+    static {
+        e2.c.u(e2.c.s(h0.class, new e0(1)));
+    }
 
-public abstract class y5 {
-    public static void a() {
-        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
-        for (y30 y30Var : y30.values()) {
-            editorEdit.remove(y30Var.f34799a);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        editorEdit.apply();
+        throw new ClassCastException();
     }
 }

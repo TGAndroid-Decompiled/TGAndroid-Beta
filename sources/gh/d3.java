@@ -1,39 +1,28 @@
 package gh;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d3 implements org.telegram.ui.ActionBar.b2 {
+    public final int f7956a;
+    public final k5 f7957b;
+    public final TL_stars.TL_starGiftUnique f7958c;
 
-public final class d3 implements TextWatcher {
-
-    public boolean f7195a;
-
-    public final b3 f7196b;
-
-    public d3(b3 b3Var) {
-        this.f7196b = b3Var;
+    public d3(k5 k5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i9) {
+        this.f7956a = i9;
+        this.f7957b = k5Var;
+        this.f7958c = tL_starGiftUnique;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        if (!this.f7195a && editable.length() > 12) {
-            this.f7195a = true;
-            editable.delete(12, editable.length());
-            b3 b3Var = this.f7196b;
-            AndroidUtilities.shakeView(b3Var);
-            try {
-                b3Var.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
-            this.f7195a = false;
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f7956a) {
+            case 0:
+                k5.N0(this.f7957b, this.f7958c, c2Var);
+                return;
+            default:
+                Context context = this.f7957b.getContext();
+                ve.e.u(context, "https://fragment.com/gift/" + this.f7958c.slug);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -2,30 +2,27 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-
 public final class jf implements View.OnClickListener {
+    public final int f39466a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f39467b;
 
-    public final int f39361a;
-
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f39362b;
-
-    public jf(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10) {
-        this.f39361a = i10;
-        this.f39362b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+    public jf(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i9) {
+        this.f39466a = i9;
+        this.f39467b = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f39361a) {
+        switch (this.f39466a) {
             case 0:
-                this.f39362b.getSwipeBack().b(true);
-                break;
+                this.f39467b.getSwipeBack().b(true);
+                return;
             case 1:
-                this.f39362b.getSwipeBack().b(true);
-                break;
+                this.f39467b.getSwipeBack().b(true);
+                return;
             default:
-                this.f39362b.getSwipeBack().b(true);
-                break;
+                this.f39467b.getSwipeBack().b(true);
+                return;
         }
     }
 }

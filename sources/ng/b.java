@@ -1,156 +1,97 @@
 package ng;
 
-import android.graphics.ColorFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import android.graphics.Shader;
+import kg.f;
+public final class b implements a {
+    public final Paint f18594a;
+    public final Matrix f18595b;
+    public BitmapShader f18596c;
+    public Bitmap d;
+    public final Matrix f18597e;
+    public Bitmap f18598f;
+    public int h;
+    public int f18599n;
 
-public final class b implements mg.c, c6 {
-
-    public final int f18522a;
-
-    public final c6 f18523b;
-
-    public b(int i10, c6 c6Var) {
-        this.f18522a = i10;
-        this.f18523b = c6Var;
+    public b() {
+        Paint paint = new Paint(3);
+        this.f18594a = paint;
+        this.f18595b = new Matrix();
+        this.f18597e = new Matrix();
+        paint.setFilterBitmap(true);
     }
 
     @Override
-    public ColorFilter F() {
-        return g6.f23371v3;
+    public final void T0(Canvas canvas, float f10, float f11, float f12, float f13) {
+        Bitmap bitmap = this.d;
+        if (bitmap != null && !bitmap.isRecycled() && this.f18596c != null) {
+            Matrix matrix = this.f18597e;
+            Matrix matrix2 = this.f18595b;
+            matrix.set(matrix2);
+            matrix.postTranslate(f10, f11);
+            this.f18596c.setLocalMatrix(matrix2);
+            canvas.drawRect(f10, f11, f12, f13, this.f18594a);
+        }
     }
 
-    @Override
-    public Paint N(String str) {
-        return g6.S0(str);
+    public final void a(Bitmap bitmap) {
+        if (this.d != bitmap) {
+            this.d = bitmap;
+            Paint paint = this.f18594a;
+            paint.setShader(null);
+            this.f18596c = null;
+            if (bitmap != null) {
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                this.f18596c = bitmapShader;
+                paint.setShader(bitmapShader);
+                c();
+            }
+        }
     }
 
-    @Override
-    public int N0(int i10) {
-        if (i10 == g6.G8) {
-            return -14145495;
+    public final void b(int i9, int i10) {
+        if (this.h == i9 && this.f18599n == i10) {
+            return;
         }
-        if (i10 == g6.E8) {
-            return -1;
-        }
-        if (i10 == g6.f23124h5) {
-            return -14737633;
-        }
-        if (i10 == g6.f23161j5) {
-            return -592138;
-        }
-        if (i10 == g6.f23300r5) {
-            return -8553091;
-        }
-        if (i10 == g6.He) {
-            return -16777216;
-        }
-        if (i10 == g6.Ke) {
-            return -1610612736;
-        }
-        if (i10 == g6.Ne || i10 == g6.Re || i10 == g6.Me) {
-            return -9539985;
-        }
-        if (i10 == g6.G6) {
-            return -1;
-        }
-        int i11 = g6.Mh;
-        if (i10 == i11) {
-            return -11754001;
-        }
-        if (i10 == g6.f23144i6) {
-            return 536870911;
-        }
-        if (i10 == g6.Fh || i10 == g6.Eh || i10 == g6.Gh) {
-            return -1;
-        }
-        if (i10 == g6.Hh) {
-            return 352321535;
-        }
-        if (i10 == g6.Je || i10 == i11) {
-            return -7895161;
-        }
-        if (i10 == g6.Ie) {
-            return 780633991;
-        }
-        if (i10 == g6.f22999a7) {
-            return -15921907;
-        }
-        if (i10 == g6.f23216m7) {
-            return -12500671;
-        }
-        if (i10 == g6.f23199l7) {
-            return -13133079;
-        }
-        if (i10 == g6.f23235n7) {
-            return -1;
-        }
-        if (i10 == g6.f23053d6) {
-            return -15198183;
-        }
-        if (i10 == g6.f23054d7) {
-            return -16777216;
-        }
-        c6 c6Var = this.f18523b;
-        return c6Var != null ? c6Var.N0(i10) : g6.w0(null, i10, false);
+        this.h = i9;
+        this.f18599n = i10;
+        c();
     }
 
-    @Override
-    public boolean a() {
-        return g6.I.q();
-    }
-
-    @Override
-    public Drawable getDrawable(String str) {
-        return null;
-    }
-
-    @Override
-    public int i(c6 c6Var, boolean z10) {
-        switch (this.f18522a) {
-            case 0:
-                if (c.c(UserConfig.selectedAccount, this.f18523b)) {
-                    return g6.l1(LiteMode.isEnabled(262144) ? 0.85f : 0.76f, g6.v0(g6.Sd, c6Var));
-                }
-                return i0.b.k(g6.v0(g6.Sd, c6Var), 255);
-            case 1:
-                if (c.c(UserConfig.selectedAccount, this.f18523b)) {
-                    return g6.l1(LiteMode.isEnabled(262144) ? 0.85f : 0.76f, g6.v0(g6.f23043ce, c6Var));
-                }
-                return i0.b.k(g6.v0(z10 ? g6.f23322s8 : g6.f23043ce, c6Var), 255);
-            default:
-                if (c.c(UserConfig.selectedAccount, this.f18523b)) {
-                    return g6.l1(LiteMode.isEnabled(262144) ? 0.85f : 0.76f, g6.v0(g6.f23043ce, c6Var));
-                }
-                return i0.b.k(g6.v0(z10 ? g6.f23322s8 : g6.f23043ce, c6Var), 255);
+    public final void c() {
+        Bitmap bitmap = this.d;
+        Matrix matrix = this.f18595b;
+        if (bitmap == null) {
+            matrix.reset();
+            return;
+        }
+        int width = bitmap.getWidth();
+        int height = this.d.getHeight();
+        int i9 = this.h;
+        int i10 = this.f18599n;
+        matrix.reset();
+        if (width > 0 && height > 0 && i9 > 0 && i10 > 0) {
+            float f10 = i9;
+            float f11 = width;
+            float f12 = i10;
+            float f13 = height;
+            float max = Math.max(f10 / f11, f12 / f13);
+            matrix.setScale(max, max);
+            matrix.postTranslate((f10 - (f11 * max)) * 0.5f, ((f12 - (f13 * max)) * 0.5f) + 0);
         }
     }
 
     @Override
-    public void m(float f10, float f11, int i10, int i11) {
-        g6.q(f10, f11, i10, i11);
+    public final kg.d y() {
+        return new f(this);
     }
 
     @Override
-    public int o1(int i10) {
-        return N0(i10);
-    }
-
-    @Override
-    public int q0(int i10) {
-        return N0(i10);
-    }
-
-    @Override
-    public boolean u0() {
-        return false;
-    }
-
-    @Override
-    public void c1(int i10, int i11) {
+    public final void t() {
     }
 }

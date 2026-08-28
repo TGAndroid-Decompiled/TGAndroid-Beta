@@ -1,60 +1,37 @@
 package s6;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import g7.g5;
-import kotlin.jvm.internal.j;
-import r6.m;
-import r6.r;
+import android.os.BadParcelableException;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j3.r0;
+public abstract class f {
+    public static final int f47457a = 0;
 
-public final class f extends b7.a implements a {
-
-    public final int f47800b;
-
-    public final TaskCompletionSource f47801c;
-
-    public f(int i10, TaskCompletionSource taskCompletionSource) {
-        super(0);
-        this.f47800b = i10;
-        this.f47801c = taskCompletionSource;
-        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
+    static {
+        f.class.getClassLoader();
     }
 
-    @Override
-    public void U(Status status, r6.e eVar) {
-        switch (this.f47800b) {
-            case 0:
-                j.e(status, "status");
-                g5.a(status, eVar, this.f47801c);
-                return;
-            default:
-                j.e(status, "status");
-                throw new UnsupportedOperationException();
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public void h(Status status, m mVar) {
-        switch (this.f47800b) {
-            case 1:
-                j.e(status, "status");
-                g5.a(status, mVar, this.f47801c);
-                return;
-            default:
-                j.e(status, "status");
-                throw new UnsupportedOperationException();
+    public static void b(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
         }
+        throw new BadParcelableException(r0.l(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    @Override
-    public void q(Status status, r6.b bVar) {
-        j.e(status, "status");
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void u0(Status status, r rVar) {
-        j.e(status, "status");
-        throw new UnsupportedOperationException();
+    public static void c(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

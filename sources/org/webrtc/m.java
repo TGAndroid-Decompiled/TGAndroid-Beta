@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.PeerConnection;
 public abstract class m {
     public static void b(PeerConnection.Observer observer, PeerConnection.PeerConnectionState peerConnectionState) {
     }

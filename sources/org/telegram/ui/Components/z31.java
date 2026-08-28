@@ -1,48 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class z31 extends f2.x {
+    public final h41 f35179c;
 
-public final class z31 extends zk0 {
-    public final g41 T2;
-    public final j41 U2;
-
-    public z31(j41 j41Var, Context context, g41 g41Var) {
-        super(context, null);
-        this.U2 = j41Var;
-        this.T2 = g41Var;
+    public z31(h41 h41Var) {
+        this.f35179c = h41Var;
     }
 
     @Override
-    public final boolean E0(float f10) {
-        return f10 >= ((float) (AndroidUtilities.dp(58.0f) + this.U2.A));
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.U2.B = true;
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return super.onInterceptTouchEvent(motionEvent) || this.T2.d(this, motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.U2.H != null) {
-            return false;
+    public final int i(int i9) {
+        h41 h41Var = this.f35179c;
+        f2.r0 adapter = h41Var.f28972n.getAdapter();
+        g41 g41Var = h41Var.f28974s;
+        if (adapter == g41Var) {
+            if ((g41Var.d.get(i9) instanceof Integer) || i9 >= g41Var.f28649w) {
+                return g41Var.v;
+            }
+            return 1;
         }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.U2.D) {
-            return;
+        of.y1 y1Var = h41Var.v;
+        SparseArray sparseArray = y1Var.f19555s;
+        if (i9 != y1Var.f19558y && (sparseArray.get(i9) == null || (sparseArray.get(i9) instanceof TLRPC.Document))) {
+            return 1;
         }
-        super.requestLayout();
+        return y1Var.f19551e.a();
     }
 }

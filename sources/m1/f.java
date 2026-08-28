@@ -1,116 +1,119 @@
 package m1;
 
-import androidx.datastore.preferences.protobuf.a1;
-import androidx.datastore.preferences.protobuf.b0;
+import androidx.datastore.preferences.protobuf.a0;
 import androidx.datastore.preferences.protobuf.b1;
+import androidx.datastore.preferences.protobuf.c0;
+import androidx.datastore.preferences.protobuf.c1;
 import androidx.datastore.preferences.protobuf.n;
-import androidx.datastore.preferences.protobuf.n0;
-import androidx.datastore.preferences.protobuf.u;
+import androidx.datastore.preferences.protobuf.o0;
 import androidx.datastore.preferences.protobuf.v;
-import androidx.datastore.preferences.protobuf.w;
-import androidx.datastore.preferences.protobuf.w0;
-import androidx.datastore.preferences.protobuf.y0;
-import androidx.datastore.preferences.protobuf.z;
+import androidx.datastore.preferences.protobuf.x;
+import androidx.datastore.preferences.protobuf.x0;
+import androidx.datastore.preferences.protobuf.z0;
 import j$.util.DesugarCollections;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
-
-public final class f extends w {
+public final class f extends x {
     private static final f DEFAULT_INSTANCE;
-    private static volatile w0 PARSER = null;
+    private static volatile x0 PARSER = null;
     public static final int PREFERENCES_FIELD_NUMBER = 1;
-    private n0 preferences_ = n0.f1281b;
+    private o0 preferences_ = o0.f789b;
 
     static {
         f fVar = new f();
         DEFAULT_INSTANCE = fVar;
-        w.h(f.class, fVar);
+        x.h(f.class, fVar);
     }
 
-    public static n0 i(f fVar) {
-        n0 n0Var = fVar.preferences_;
-        if (!n0Var.f1282a) {
-            fVar.preferences_ = n0Var.b();
+    public static o0 i(f fVar) {
+        o0 o0Var = fVar.preferences_;
+        if (!o0Var.f790a) {
+            fVar.preferences_ = o0Var.b();
         }
         return fVar.preferences_;
     }
 
     public static d k() {
-        return (d) ((u) DEFAULT_INSTANCE.d(5));
+        return (d) ((v) DEFAULT_INSTANCE.d(5));
     }
 
     public static f l(FileInputStream fileInputStream) {
+        androidx.datastore.preferences.protobuf.i iVar;
         f fVar = DEFAULT_INSTANCE;
         androidx.datastore.preferences.protobuf.h hVar = new androidx.datastore.preferences.protobuf.h(fileInputStream);
-        n nVarA = n.a();
-        w wVar = (w) fVar.d(4);
+        n a2 = n.a();
+        x xVar = (x) fVar.d(4);
         try {
-            y0 y0Var = y0.f1330c;
-            y0Var.getClass();
-            b1 b1VarA = y0Var.a(wVar.getClass());
-            androidx.datastore.preferences.protobuf.i iVar = hVar.f1243b;
-            if (iVar == null) {
-                iVar = new androidx.datastore.preferences.protobuf.i();
-                iVar.f1257c = 0;
-                Charset charset = z.f1333a;
-                iVar.d = hVar;
-                hVar.f1243b = iVar;
+            z0 z0Var = z0.f840c;
+            z0Var.getClass();
+            c1 a3 = z0Var.a(xVar.getClass());
+            androidx.datastore.preferences.protobuf.i iVar2 = hVar.f748b;
+            if (iVar2 != null) {
+                iVar = iVar2;
+            } else {
+                ?? obj = new Object();
+                obj.f760c = 0;
+                Charset charset = a0.f699a;
+                obj.d = hVar;
+                hVar.f748b = obj;
+                iVar = obj;
             }
-            b1VarA.i(wVar, iVar, nVarA);
-            b1VarA.c(wVar);
-            if (wVar.g()) {
-                return (f) wVar;
+            a3.i(xVar, iVar, a2);
+            a3.c(xVar);
+            if (xVar.g()) {
+                return (f) xVar;
             }
-            throw new b0(new a7.c().getMessage());
-        } catch (IOException e9) {
-            if (e9.getCause() instanceof b0) {
-                throw ((b0) e9.getCause());
+            throw new IOException(new androidx.car.app.j().getMessage());
+        } catch (IOException e10) {
+            if (e10.getCause() instanceof c0) {
+                throw ((c0) e10.getCause());
             }
-            throw new b0(e9.getMessage());
-        } catch (RuntimeException e10) {
-            if (e10.getCause() instanceof b0) {
-                throw ((b0) e10.getCause());
+            throw new IOException(e10.getMessage());
+        } catch (RuntimeException e11) {
+            if (e11.getCause() instanceof c0) {
+                throw ((c0) e11.getCause());
             }
-            throw e10;
+            throw e11;
         }
     }
 
     @Override
-    public final Object d(int i10) {
-        w0 vVar;
-        switch (j.b(i10)) {
+    public final Object d(int i9) {
+        x0 x0Var;
+        switch (j.b(i9)) {
             case 0:
                 return (byte) 1;
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f17542a});
+                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0001\u0000\u0000\u00012", new Object[]{"preferences_", e.f17166a});
             case 3:
                 return new f();
             case 4:
-                return new d(DEFAULT_INSTANCE);
+                return new v(DEFAULT_INSTANCE);
             case 5:
                 return DEFAULT_INSTANCE;
             case 6:
-                w0 w0Var = PARSER;
-                if (w0Var != null) {
-                    return w0Var;
-                }
-                synchronized (f.class) {
-                    try {
-                        vVar = PARSER;
-                        if (vVar == null) {
-                            vVar = new v();
-                            PARSER = vVar;
+                x0 x0Var2 = PARSER;
+                if (x0Var2 == null) {
+                    synchronized (f.class) {
+                        try {
+                            x0 x0Var3 = PARSER;
+                            x0Var = x0Var3;
+                            if (x0Var3 == null) {
+                                ?? obj = new Object();
+                                PARSER = obj;
+                                x0Var = obj;
+                            }
+                        } catch (Throwable th) {
+                            throw th;
                         }
-                    } catch (Throwable th) {
-                        throw th;
                     }
-                    break;
+                    return x0Var;
                 }
-                return vVar;
+                return x0Var2;
             default:
                 throw new UnsupportedOperationException();
         }

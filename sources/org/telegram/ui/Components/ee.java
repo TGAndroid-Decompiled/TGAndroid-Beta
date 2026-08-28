@@ -1,35 +1,68 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationsController;
+import org.telegram.messenger.R;
+public final class ee implements View.OnClickListener {
+    public final org.telegram.ui.qn f28008a;
+    public final Activity f28009b;
+    public final ChatActivityEnterView f28010c;
 
-public final class ee implements x4, rk0 {
-
-    public final ChatActivityEnterView f28037a;
-
-    public ee(ChatActivityEnterView chatActivityEnterView) {
-        this.f28037a = chatActivityEnterView;
+    public ee(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.qn qnVar, Activity activity) {
+        this.f28010c = chatActivityEnterView;
+        this.f28008a = qnVar;
+        this.f28009b = activity;
     }
 
     @Override
-    public void I(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f28037a;
-        boolean zT0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
-        ye yeVar = chatActivityEnterView.H0;
-        if (yeVar != null) {
-            yeVar.h(!zT0);
-            chatActivityEnterView.H0 = null;
+    public final void onClick(View view) {
+        long b10;
+        String str;
+        int i9;
+        int i10;
+        org.telegram.ui.qn qnVar = this.f28008a;
+        if (qnVar == null) {
+            return;
         }
-    }
-
-    @Override
-    public boolean a(int i10, View view) {
-        if (!(view instanceof nh.y)) {
-            return false;
+        ChatActivityEnterView chatActivityEnterView = this.f28010c;
+        chatActivityEnterView.f26083b2 = !chatActivityEnterView.f26083b2;
+        if (chatActivityEnterView.f26076a0 == null) {
+            chatActivityEnterView.f26076a0 = new dr(this.f28009b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.f6.Wk);
         }
-        String str = ((nh.y) view).getCommand() + " ";
-        ChatActivityEnterView chatActivityEnterView = this.f28037a;
-        chatActivityEnterView.setFieldText(str);
-        chatActivityEnterView.f26122i0.c();
-        return true;
+        chatActivityEnterView.f26076a0.a(chatActivityEnterView.f26083b2, true);
+        chatActivityEnterView.D1.setImageDrawable(chatActivityEnterView.f26076a0);
+        MessagesController.getNotificationsSettings(chatActivityEnterView.M).edit().putBoolean("silent_" + chatActivityEnterView.L2, chatActivityEnterView.f26083b2).commit();
+        NotificationsController notificationsController = NotificationsController.getInstance(chatActivityEnterView.M);
+        long j10 = chatActivityEnterView.L2;
+        if (qnVar == null) {
+            b10 = 0;
+        } else {
+            b10 = qnVar.b();
+        }
+        notificationsController.updateServerNotificationsSettings(j10, b10);
+        qnVar.Q7();
+        UndoView undoView = qnVar.f42093u3;
+        if (undoView != null) {
+            if (!chatActivityEnterView.f26083b2) {
+                i10 = 54;
+            } else {
+                i10 = 55;
+            }
+            undoView.j(i10, 0L, null);
+        }
+        ImageView imageView = chatActivityEnterView.D1;
+        if (chatActivityEnterView.f26083b2) {
+            str = "AccDescrChanSilentOn";
+            i9 = R.string.AccDescrChanSilentOn;
+        } else {
+            str = "AccDescrChanSilentOff";
+            i9 = R.string.AccDescrChanSilentOff;
+        }
+        imageView.setContentDescription(LocaleController.getString(str, i9));
+        chatActivityEnterView.G1(true);
     }
 }

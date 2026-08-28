@@ -2,47 +2,43 @@ package n2;
 
 import java.util.ArrayList;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
 public final class k {
+    public final String f18331a;
+    public final m5.c0 f18332b;
 
-    public final String f18159a;
-
-    public final hc.d f18160b;
-
-    public k(JSONObject jSONObject) throws JSONException {
+    public k(JSONObject jSONObject) {
         jSONObject.optString("basePlanId");
         jSONObject.optString("offerId").getClass();
-        this.f18159a = jSONObject.getString("offerIdToken");
-        this.f18160b = new hc.d(jSONObject.getJSONArray("pricingPhases"));
-        JSONObject jSONObjectOptJSONObject = jSONObject.optJSONObject("installmentPlanDetails");
-        if (jSONObjectOptJSONObject != null) {
-            jSONObjectOptJSONObject.getInt("commitmentPaymentsCount");
-            jSONObjectOptJSONObject.optInt("subsequentCommitmentPaymentsCount");
+        this.f18331a = jSONObject.getString("offerIdToken");
+        this.f18332b = new m5.c0(jSONObject.getJSONArray("pricingPhases"));
+        JSONObject optJSONObject = jSONObject.optJSONObject("installmentPlanDetails");
+        if (optJSONObject != null) {
+            optJSONObject.getInt("commitmentPaymentsCount");
+            optJSONObject.optInt("subsequentCommitmentPaymentsCount");
         }
-        JSONObject jSONObjectOptJSONObject2 = jSONObject.optJSONObject("transitionPlanDetails");
-        if (jSONObjectOptJSONObject2 != null) {
-            jSONObjectOptJSONObject2.getString("productId");
-            jSONObjectOptJSONObject2.optString("title");
-            jSONObjectOptJSONObject2.optString("name");
-            jSONObjectOptJSONObject2.optString("description");
-            jSONObjectOptJSONObject2.optString("basePlanId");
-            JSONObject jSONObjectOptJSONObject3 = jSONObjectOptJSONObject2.optJSONObject("pricingPhase");
-            if (jSONObjectOptJSONObject3 != null) {
-                jSONObjectOptJSONObject3.optString("billingPeriod");
-                jSONObjectOptJSONObject3.optString("priceCurrencyCode");
-                jSONObjectOptJSONObject3.optString("formattedPrice");
-                jSONObjectOptJSONObject3.optLong("priceAmountMicros");
-                jSONObjectOptJSONObject3.optInt("recurrenceMode");
-                jSONObjectOptJSONObject3.optInt("billingCycleCount");
+        JSONObject optJSONObject2 = jSONObject.optJSONObject("transitionPlanDetails");
+        if (optJSONObject2 != null) {
+            optJSONObject2.getString("productId");
+            optJSONObject2.optString("title");
+            optJSONObject2.optString("name");
+            optJSONObject2.optString("description");
+            optJSONObject2.optString("basePlanId");
+            JSONObject optJSONObject3 = optJSONObject2.optJSONObject("pricingPhase");
+            if (optJSONObject3 != null) {
+                optJSONObject3.optString("billingPeriod");
+                optJSONObject3.optString("priceCurrencyCode");
+                optJSONObject3.optString("formattedPrice");
+                optJSONObject3.optLong("priceAmountMicros");
+                optJSONObject3.optInt("recurrenceMode");
+                optJSONObject3.optInt("billingCycleCount");
             }
         }
         ArrayList arrayList = new ArrayList();
-        JSONArray jSONArrayOptJSONArray = jSONObject.optJSONArray("offerTags");
-        if (jSONArrayOptJSONArray != null) {
-            for (int i10 = 0; i10 < jSONArrayOptJSONArray.length(); i10++) {
-                arrayList.add(jSONArrayOptJSONArray.getString(i10));
+        JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
+        if (optJSONArray != null) {
+            for (int i9 = 0; i9 < optJSONArray.length(); i9++) {
+                arrayList.add(optJSONArray.getString(i9));
             }
         }
     }

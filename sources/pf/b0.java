@@ -1,57 +1,130 @@
 package pf;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.wk0;
+public final class b0 extends sk0 {
+    public final ArrayList f45568r;
+    public final int f45569s;
+    public final Context v;
+    public final e0 f45570w;
 
-public final class b0 extends f2.q {
-
-    public final g0 f45738b;
-
-    public b0(g0 g0Var) {
-        this.f45738b = g0Var;
+    public b0(e0 e0Var, Context context) {
+        this.f45570w = e0Var;
+        ArrayList arrayList = new ArrayList();
+        this.f45568r = arrayList;
+        int i9 = UserConfig.selectedAccount;
+        this.f45569s = i9;
+        this.v = context;
+        arrayList.addAll(r1.f(i9).e());
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
+    public final String F(int i9) {
+        return null;
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        g0 g0Var = this.f45738b;
-        e0 e0Var = (e0) g0Var.U2.get(i10);
-        e0 e0Var2 = (e0) g0Var.T2.get(i11);
-        if (!e0Var.b(e0Var2)) {
-            return false;
+    public final void G(wk0 wk0Var, float f10, int[] iArr) {
+        iArr[0] = 0;
+        iArr[1] = 0;
+    }
+
+    @Override
+    public final int M(int i9) {
+        if (i9 != 0 && i9 != 2) {
+            return this.f45568r.size();
         }
-        int i12 = e0Var.d;
-        if (i12 != 4) {
-            if (i12 == 6) {
-                return e0Var.f45781c.equals(e0Var2.f45781c);
+        return 1;
+    }
+
+    @Override
+    public final Object O(int i9, int i10) {
+        if (i9 != 0 && i10 >= 0) {
+            ArrayList arrayList = this.f45568r;
+            if (i10 < arrayList.size()) {
+                return arrayList.get(i10);
             }
-            return i12 == 7;
         }
-        TLObject tLObject = e0Var.f45783f;
-        if (tLObject instanceof TLRPC.User) {
-            TLObject tLObject2 = e0Var2.f45783f;
-            if (tLObject2 instanceof TLRPC.User) {
-                return ((TLRPC.User) tLObject).f22527id == ((TLRPC.User) tLObject2).f22527id;
+        return null;
+    }
+
+    @Override
+    public final int P(int i9, int i10) {
+        if (i9 == 0) {
+            return 1;
+        }
+        if (i9 == 2) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int R() {
+        return 3;
+    }
+
+    @Override
+    public final View T(int i9, View view) {
+        return null;
+    }
+
+    @Override
+    public final boolean V(int i9, int i10, f2.q1 q1Var) {
+        if (i9 != 0 && i9 != 2 && i10 < this.f45568r.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void W(int i9, int i10, f2.q1 q1Var) {
+        if (q1Var.f5505f == 0) {
+            m1 m1Var = (m1) q1Var.f5501a;
+            Object O = O(i9, i10);
+            boolean z10 = true;
+            if (i9 == 1 && i10 == M(i9) - 1) {
+                z10 = false;
+            }
+            if (O instanceof q1) {
+                q1 q1Var2 = (q1) O;
+                m1Var.a(q1Var2, null, z10);
+                m1Var.d.a(this.f45570w.f45610w.contains(Integer.valueOf(q1Var2.f45756a)), false);
             }
         }
-        if (!(tLObject instanceof TLRPC.Chat)) {
-            return false;
+    }
+
+    @Override
+    public final void l() {
+        ArrayList arrayList = this.f45568r;
+        arrayList.clear();
+        arrayList.addAll(r1.f(this.f45569s).e());
+        X(false);
+        this.f45570w.K();
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        View m1Var;
+        Context context = this.v;
+        if (i9 != 0) {
+            if (i9 != 1) {
+                m1Var = new View(context);
+                m1Var.setTag(-33024);
+            } else {
+                m1Var = new View(context);
+                m1Var.setLayoutParams(new f2.a1(-1, AndroidUtilities.dp(56.0f)));
+                m1Var.setTag(-33024);
+            }
+        } else {
+            m1Var = new m1(context, this.f45570w.f27492a, false);
         }
-        TLObject tLObject3 = e0Var2.f45783f;
-        return (tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f22380id == ((TLRPC.Chat) tLObject3).f22380id;
-    }
-
-    @Override
-    public final int d() {
-        return this.f45738b.T2.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f45738b.U2.size();
+        return new f2.q1(m1Var);
     }
 }

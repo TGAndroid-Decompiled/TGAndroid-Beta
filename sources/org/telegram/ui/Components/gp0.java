@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
-
 public interface gp0 {
-    void B();
+    void A();
 
     void h0();
 }

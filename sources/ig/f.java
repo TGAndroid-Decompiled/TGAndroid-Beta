@@ -1,60 +1,99 @@
 package ig;
 
-import ag.l2;
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import h7.z5;
+import android.graphics.Color;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.RuntimeShader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+public final class f {
+    public final RenderNode f11170a;
+    public final RuntimeShader f11171b;
+    public float f11172c;
+    public float d;
+    public float f11173e;
+    public float f11174f;
+    public float f11175g;
+    public float h;
+    public float f11176i;
+    public float f11177j;
+    public float f11178k;
+    public float f11179l;
+    public float f11180m;
+    public float f11181n;
+    public float f11182o;
+    public int f11183p;
 
-public final class f extends FrameLayout {
-
-    public static final int f11293e = 0;
-
-    public final e f11294a;
-
-    public boolean f11295b;
-
-    public boolean f11296c;
-    public Utilities.Callback d;
-
-    public f(Activity activity, c6 c6Var) {
-        super(activity);
-        e eVar = new e(this, activity);
-        this.f11294a = eVar;
-        eVar.setHapticFeedbackEnabled(true);
-        eVar.setImageResource(R.drawable.smiles_tab_clear);
-        int i10 = g6.Re;
-        eVar.setColorFilter(new PorterDuffColorFilter(c6Var != null ? c6Var.N0(i10) : g6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        eVar.setScaleType(ImageView.ScaleType.CENTER);
-        eVar.setContentDescription(LocaleController.getString(R.string.AccDescrBackspace));
-        eVar.setFocusable(true);
-        eVar.setOnClickListener(new l2(5));
-        addView(eVar, z5.e(36, 36, 17));
-        int iW0 = g6.w0(null, g6.f23144i6, false);
-        int iDp = AndroidUtilities.dp(36.0f);
-        int i11 = g6.f23053d6;
-        eVar.setBackground(g6.h0(iDp, c6Var != null ? c6Var.N0(i11) : g6.w0(null, i11, false), iW0));
-        eVar.setOutlineProvider(new gf.p0(18));
-        eVar.setElevation(AndroidUtilities.dp(1.0f));
-        eVar.setClipToOutline(true);
-        setClickable(true);
+    public f(RenderNode renderNode) {
+        this.f11170a = renderNode;
+        RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
+        this.f11171b = runtimeShader;
+        renderNode.setRenderEffect(RenderEffect.createRuntimeShaderEffect(runtimeShader, "img"));
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
-    }
-
-    public void setOnBackspace(Utilities.Callback<Boolean> callback) {
-        this.d = callback;
+    public final void a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, int i9) {
+        float f19;
+        float f20;
+        float f21;
+        float f22;
+        float width = this.f11170a.getWidth();
+        float height = this.f11170a.getHeight();
+        float f23 = (0.0f + f10) / 2.0f;
+        float f24 = (0.0f + f11) / 2.0f;
+        float f25 = f11 - 0.0f;
+        float f26 = (f10 - 0.0f) / 2.0f;
+        float f27 = f25 / 2.0f;
+        float f28 = f12 + f15;
+        if (f28 > f25) {
+            float f29 = f12 / f28;
+            f19 = f25 * f29;
+            f20 = (1.0f - f29) * f25;
+        } else {
+            f19 = f12;
+            f20 = f15;
+        }
+        float f30 = f13 + f14;
+        if (f30 > f25) {
+            float f31 = f13 / f30;
+            f22 = f25 * (1.0f - f31);
+            f21 = f25 * f31;
+        } else {
+            f21 = f13;
+            f22 = f14;
+        }
+        if (Math.abs(this.f11172c - width) <= 0.1f && Math.abs(this.d - height) <= 0.1f && Math.abs(this.f11173e - f23) <= 0.1f && Math.abs(this.f11174f - f24) <= 0.1f && Math.abs(this.f11175g - f26) <= 0.1f && Math.abs(this.h - f27) <= 0.1f && Math.abs(this.f11176i - f19) <= 0.1f && Math.abs(this.f11177j - f21) <= 0.1f && Math.abs(this.f11178k - f22) <= 0.1f && Math.abs(this.f11179l - f20) <= 0.1f && Math.abs(this.f11180m - f16) <= 0.1f && Math.abs(this.f11181n - f17) <= 0.1f && Math.abs(this.f11182o - f18) <= 0.1f && this.f11183p == i9) {
+            return;
+        }
+        this.f11183p = i9;
+        float alpha = Color.alpha(i9) / 255.0f;
+        RuntimeShader runtimeShader = this.f11171b;
+        this.f11172c = width;
+        this.d = height;
+        runtimeShader.setFloatUniform("resolution", width, height);
+        RuntimeShader runtimeShader2 = this.f11171b;
+        this.f11173e = f23;
+        this.f11174f = f24;
+        runtimeShader2.setFloatUniform("center", f23, f24);
+        RuntimeShader runtimeShader3 = this.f11171b;
+        this.f11175g = f26;
+        this.h = f27;
+        runtimeShader3.setFloatUniform("size", f26, f27);
+        RuntimeShader runtimeShader4 = this.f11171b;
+        this.f11178k = f22;
+        this.f11177j = f21;
+        this.f11179l = f20;
+        this.f11176i = f19;
+        runtimeShader4.setFloatUniform("radius", f22, f21, f20, f19);
+        RuntimeShader runtimeShader5 = this.f11171b;
+        this.f11180m = f16;
+        runtimeShader5.setFloatUniform("thickness", f16);
+        RuntimeShader runtimeShader6 = this.f11171b;
+        this.f11181n = f17;
+        runtimeShader6.setFloatUniform("refract_intensity", f17);
+        RuntimeShader runtimeShader7 = this.f11171b;
+        this.f11182o = f18;
+        runtimeShader7.setFloatUniform("refract_index", f18);
+        this.f11171b.setFloatUniform("foreground_color_premultiplied", (Color.red(i9) / 255.0f) * alpha, (Color.green(i9) / 255.0f) * alpha, (Color.blue(i9) / 255.0f) * alpha, alpha);
+        this.f11170a.setRenderEffect(RenderEffect.createRuntimeShaderEffect(this.f11171b, "img"));
     }
 }

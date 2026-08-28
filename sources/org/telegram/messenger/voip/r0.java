@@ -1,34 +1,33 @@
 package org.telegram.messenger.voip;
 
+import org.telegram.messenger.voip.VoIPService;
 public final class r0 implements Runnable {
+    public final int f21942a;
+    public final Object f21943b;
 
-    public final int f21966a;
-
-    public final Object f21967b;
-
-    public r0(Object obj, int i10) {
-        this.f21966a = i10;
-        this.f21967b = obj;
+    public r0(Object obj, int i9) {
+        this.f21942a = i9;
+        this.f21943b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f21966a) {
+        switch (this.f21942a) {
             case 0:
-                ((VoIPService.AnonymousClass1) this.f21967b).lambda$run$0();
-                break;
+                ((VoIPService.AnonymousClass1) this.f21943b).lambda$run$0();
+                return;
             case 1:
-                ((VoIPService.AnonymousClass9) this.f21967b).lambda$run$0();
-                break;
+                ((VoIPService.AnonymousClass9) this.f21943b).lambda$run$0();
+                return;
             case 2:
-                ((AudioTrackJNI) this.f21967b).lambda$startThread$0();
-                break;
+                AudioTrackJNI.a((AudioTrackJNI) this.f21943b);
+                return;
             case 3:
-                ((VoIPPendingCall) this.f21967b).lambda$new$1();
-                break;
+                VoIPPendingCall.a((VoIPPendingCall) this.f21943b);
+                return;
             default:
-                ((NativeInstance) this.f21967b).stopGroup();
-                break;
+                ((NativeInstance) this.f21943b).stopGroup();
+                return;
         }
     }
 }

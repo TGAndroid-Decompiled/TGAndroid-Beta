@@ -1,49 +1,47 @@
 package o0;
 
-import android.util.Base64;
+import android.content.Context;
+import j$.util.DesugarCollections;
+import j$.util.Objects;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+public final class e implements Callable {
+    public final int f18754a;
+    public final String f18755b;
+    public final Context f18756c;
+    public final int d;
+    public final Object f18757e;
 
-public final class e {
-
-    public final String f19094a;
-
-    public final String f19095b;
-
-    public final String f19096c;
-    public final List d;
-
-    public final String f19097e;
-
-    public e(String str, String str2, String str3, List list) {
-        str.getClass();
-        this.f19094a = str;
-        str2.getClass();
-        this.f19095b = str2;
-        this.f19096c = str3;
-        list.getClass();
-        this.d = list;
-        this.f19097e = str + "-" + str2 + "-" + str3;
+    public e(String str, Context context, Object obj, int i9, int i10) {
+        this.f18754a = i10;
+        this.f18755b = str;
+        this.f18756c = context;
+        this.f18757e = obj;
+        this.d = i9;
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append("FontRequest {mProviderAuthority: " + this.f19094a + ", mProviderPackage: " + this.f19095b + ", mQuery: " + this.f19096c + ", mCertificates:");
-        int i10 = 0;
-        while (true) {
-            List list = this.d;
-            if (i10 >= list.size()) {
-                sb2.append("}mCertificatesArray: 0");
-                return sb2.toString();
-            }
-            sb2.append(" [");
-            List list2 = (List) list.get(i10);
-            for (int i11 = 0; i11 < list2.size(); i11++) {
-                sb2.append(" \"");
-                sb2.append(Base64.encodeToString((byte[]) list2.get(i11), 0));
-                sb2.append("\"");
-            }
-            sb2.append(" ]");
-            i10++;
+    @Override
+    public final Object call() {
+        int i9 = this.f18754a;
+        int i10 = this.d;
+        Object obj = this.f18757e;
+        Context context = this.f18756c;
+        String str = this.f18755b;
+        switch (i9) {
+            case 0:
+                Object[] objArr = {(d) obj};
+                ArrayList arrayList = new ArrayList(1);
+                Object obj2 = objArr[0];
+                Objects.requireNonNull(obj2);
+                arrayList.add(obj2);
+                return g.b(str, context, DesugarCollections.unmodifiableList(arrayList), i10);
+            default:
+                try {
+                    return g.b(str, context, (List) obj, i10);
+                } catch (Throwable unused) {
+                    return new f(-3);
+                }
         }
     }
 }

@@ -2,21 +2,20 @@ package org.telegram.messenger;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 public class SharedPrefsHelper {
     private static String WEB_VIEW_SHOWN_DIALOG_FORMAT = "confirm_shown_%d_%d";
     private static SharedPreferences webViewBotsPrefs;
 
-    public static void cleanupAccount(int i10) {
+    public static void cleanupAccount(int i9) {
         SharedPreferences sharedPreferences = webViewBotsPrefs;
         if (sharedPreferences != null) {
-            SharedPreferences.Editor editorEdit = sharedPreferences.edit();
+            SharedPreferences.Editor edit = sharedPreferences.edit();
             for (String str : webViewBotsPrefs.getAll().keySet()) {
-                if (str.startsWith("confirm_shown_" + i10 + "_")) {
-                    editorEdit.remove(str);
+                if (str.startsWith("confirm_shown_" + i9 + "_")) {
+                    edit.remove(str);
                 }
             }
-            editorEdit.apply();
+            edit.apply();
         }
     }
 
@@ -28,11 +27,11 @@ public class SharedPrefsHelper {
         webViewBotsPrefs = context.getSharedPreferences("webview_bots", 0);
     }
 
-    public static boolean isWebViewConfirmShown(int i10, long j10) {
-        return webViewBotsPrefs.getBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), false);
+    public static boolean isWebViewConfirmShown(int i9, long j10) {
+        return webViewBotsPrefs.getBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i9), Long.valueOf(j10)), false);
     }
 
-    public static void setWebViewConfirmShown(int i10, long j10, boolean z10) {
-        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i10), Long.valueOf(j10)), z10).apply();
+    public static void setWebViewConfirmShown(int i9, long j10, boolean z10) {
+        webViewBotsPrefs.edit().putBoolean(String.format(WEB_VIEW_SHOWN_DIALOG_FORMAT, Integer.valueOf(i9), Long.valueOf(j10)), z10).apply();
     }
 }

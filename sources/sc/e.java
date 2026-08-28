@@ -1,11 +1,16 @@
 package sc;
 
-import h7.k6;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface e {
+    String c() default "";
 
-public final class e extends tc.c {
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        k6.b(obj);
-        return obj;
-    }
+    String f() default "";
+
+    int[] l() default {};
+
+    String m() default "";
+
+    int v() default 1;
 }

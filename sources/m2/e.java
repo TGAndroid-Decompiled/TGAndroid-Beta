@@ -1,9 +1,8 @@
 package m2;
-
 public interface e {
-    void b(int i10);
+    void b(int i9);
 
-    void c(float f10, int i10, int i11);
+    void c(float f10, int i9, int i10);
 
-    void d(int i10);
+    void d(int i9);
 }

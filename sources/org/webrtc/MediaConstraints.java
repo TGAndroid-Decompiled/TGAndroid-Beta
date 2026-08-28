@@ -2,7 +2,6 @@ package org.webrtc;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class MediaConstraints {
     public final List<KeyValuePair> mandatory = new ArrayList();
     public final List<KeyValuePair> optional = new ArrayList();

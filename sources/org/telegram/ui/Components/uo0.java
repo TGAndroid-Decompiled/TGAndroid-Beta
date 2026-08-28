@@ -8,108 +8,106 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-
 public final class uo0 extends FrameLayout {
+    public final int f33099a;
+    public final rp0 f33100b;
 
-    public final int f33161a;
-
-    public final sp0 f33162b;
-
-    public uo0(sp0 sp0Var, Context context, int i10) {
+    public uo0(rp0 rp0Var, Context context, int i9) {
         super(context);
-        this.f33161a = i10;
-        this.f33162b = sp0Var;
+        this.f33099a = i9;
+        this.f33100b = rp0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f33161a) {
+        switch (this.f33099a) {
             case 0:
-                sp0 sp0Var = this.f33162b;
-                sp0Var.T0.setBounds(0, (int) sp0Var.f32539q0, getMeasuredWidth(), getMeasuredHeight());
-                sp0Var.T0.draw(canvas);
+                rp0 rp0Var = this.f33100b;
+                rp0Var.T0.setBounds(0, (int) rp0Var.f32261q0, getMeasuredWidth(), getMeasuredHeight());
+                rp0Var.T0.draw(canvas);
                 canvas.save();
-                canvas.clipRect(0.0f, sp0Var.f32539q0, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, rp0Var.f32261q0, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
-                break;
+                return;
             default:
                 super.dispatchDraw(canvas);
-                break;
+                return;
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f33161a) {
+        switch (this.f33099a) {
             case 0:
-                sp0 sp0Var = this.f33162b;
-                uo0 uo0Var = sp0Var.f32522c;
-                float f10 = sp0Var.f32541r0;
-                if (f10 != 0.0f && f10 != uo0Var.getTop() + sp0Var.f32541r0) {
-                    ValueAnimator valueAnimator = sp0Var.f32543s0;
+                rp0 rp0Var = this.f33100b;
+                uo0 uo0Var = rp0Var.f32244c;
+                float f10 = rp0Var.f32263r0;
+                if (f10 != 0.0f && f10 != uo0Var.getTop() + rp0Var.f32263r0) {
+                    ValueAnimator valueAnimator = rp0Var.f32265s0;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    float top = sp0Var.f32541r0 - (uo0Var.getTop() + sp0Var.f32539q0);
-                    sp0Var.f32539q0 = top;
-                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    sp0Var.f32543s0 = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new v60(this, 17));
-                    sp0Var.f32543s0.setInterpolator(er.f28122f);
-                    sp0Var.f32543s0.setDuration(200L);
-                    sp0Var.f32543s0.start();
-                    sp0Var.f32541r0 = 0.0f;
+                    float top = rp0Var.f32263r0 - (uo0Var.getTop() + rp0Var.f32261q0);
+                    rp0Var.f32261q0 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    rp0Var.f32265s0 = ofFloat;
+                    ofFloat.addUpdateListener(new q60(this, 17));
+                    rp0Var.f32265s0.setInterpolator(gr.f28844f);
+                    rp0Var.f32265s0.setDuration(200L);
+                    rp0Var.f32265s0.start();
+                    rp0Var.f32263r0 = 0.0f;
                 }
-                sp0Var.O[1].setTranslationY((-(uo0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + sp0Var.f32539q0 + sp0Var.f32538p0 + ((1.0f - getAlpha()) * (uo0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
-                break;
+                rp0Var.O[1].setTranslationY((-(uo0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + rp0Var.f32261q0 + rp0Var.f32260p0 + ((1.0f - getAlpha()) * (uo0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                return;
             default:
                 super.onDraw(canvas);
-                break;
+                return;
         }
     }
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f33161a) {
+        switch (this.f33099a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f33162b.Q.m(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f33100b.Q.m(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
-                break;
+                return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                break;
+                return;
         }
     }
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f33161a) {
+        switch (this.f33099a) {
             case 0:
                 super.setAlpha(f10);
                 invalidate();
-                break;
+                return;
             default:
                 super.setAlpha(f10);
-                break;
+                return;
         }
     }
 
     @Override
-    public void setVisibility(int i10) {
-        switch (this.f33161a) {
+    public void setVisibility(int i9) {
+        switch (this.f33099a) {
             case 0:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    this.f33162b.O[1].setTranslationY(0.0f);
+                super.setVisibility(i9);
+                if (i9 != 0) {
+                    this.f33100b.O[1].setTranslationY(0.0f);
+                    return;
                 }
-                break;
+                return;
             default:
-                super.setVisibility(i10);
-                break;
+                super.setVisibility(i9);
+                return;
         }
     }
 }

@@ -1,17 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class vj extends f2.n0 {
+    public final dj f33388r;
 
-public final class vj {
+    public vj(dj djVar, Context context) {
+        super(context);
+        this.f33388r = djVar;
+    }
 
-    public int f33427a;
+    @Override
+    public final int k(int i9, View view) {
+        return org.telegram.messenger.l0.A(56.0f, ((fk) this.f33388r.V).f28459r.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i9, view));
+    }
 
-    public String f33428b;
-
-    public String f33429c = "";
-    public String d = "";
-
-    public String f33430e;
-
-    public File f33431f;
+    @Override
+    public final int m(int i9) {
+        return super.m(i9) * 2;
+    }
 }

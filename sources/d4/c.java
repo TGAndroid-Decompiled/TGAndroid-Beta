@@ -1,26 +1,22 @@
 package d4;
 
-import a9.p;
+import aa.d;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.o;
 import h3.g1;
 import h3.t0;
+import j3.r0;
 import java.util.Arrays;
-
 public final class c implements z3.b {
-    public static final Parcelable.Creator<c> CREATOR = new o(13);
-
-    public final byte[] f4760a;
-
-    public final String f4761b;
-
-    public final String f4762c;
+    public static final Parcelable.Creator<c> CREATOR = new c.c(5);
+    public final byte[] f4318a;
+    public final String f4319b;
+    public final String f4320c;
 
     public c(String str, String str2, byte[] bArr) {
-        this.f4760a = bArr;
-        this.f4761b = str;
-        this.f4762c = str2;
+        this.f4318a = bArr;
+        this.f4319b = str;
+        this.f4320c = str2;
     }
 
     @Override
@@ -32,10 +28,10 @@ public final class c implements z3.b {
         if (this == obj) {
             return true;
         }
-        if (obj == null || c.class != obj.getClass()) {
-            return false;
+        if (obj != null && c.class == obj.getClass()) {
+            return Arrays.equals(this.f4318a, ((c) obj).f4318a);
         }
-        return Arrays.equals(this.f4760a, ((c) obj).f4760a);
+        return false;
     }
 
     @Override
@@ -49,33 +45,33 @@ public final class c implements z3.b {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f4760a);
+        return Arrays.hashCode(this.f4318a);
     }
 
     @Override
     public final void populateMediaMetadata(g1 g1Var) {
-        String str = this.f4761b;
+        String str = this.f4319b;
         if (str != null) {
-            g1Var.f7841a = str;
+            g1Var.f9411a = str;
         }
     }
 
     public final String toString() {
-        return p.k(this.f4760a.length, "\"", i0.a.p("ICY: title=\"", this.f4761b, "\", url=\"", this.f4762c, "\", rawMetadata.length=\""));
+        return d.l(this.f4318a.length, "\"", r0.q("ICY: title=\"", this.f4319b, "\", url=\"", this.f4320c, "\", rawMetadata.length=\""));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeByteArray(this.f4760a);
-        parcel.writeString(this.f4761b);
-        parcel.writeString(this.f4762c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeByteArray(this.f4318a);
+        parcel.writeString(this.f4319b);
+        parcel.writeString(this.f4320c);
     }
 
     public c(Parcel parcel) {
-        byte[] bArrCreateByteArray = parcel.createByteArray();
-        bArrCreateByteArray.getClass();
-        this.f4760a = bArrCreateByteArray;
-        this.f4761b = parcel.readString();
-        this.f4762c = parcel.readString();
+        byte[] createByteArray = parcel.createByteArray();
+        createByteArray.getClass();
+        this.f4318a = createByteArray;
+        this.f4319b = parcel.readString();
+        this.f4320c = parcel.readString();
     }
 }

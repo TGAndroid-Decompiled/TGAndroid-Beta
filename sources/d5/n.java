@@ -4,33 +4,26 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import java.util.ArrayDeque;
+import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArraySet;
-
 public final class n {
-
-    public final b0 f4814a;
-
-    public final d0 f4815b;
-
-    public final l f4816c;
+    public final a0 f4369a;
+    public final c0 f4370b;
+    public final l f4371c;
     public final CopyOnWriteArraySet d;
-
-    public final ArrayDeque f4817e;
-
-    public final ArrayDeque f4818f;
-
-    public final Object f4819g;
+    public final ArrayDeque f4372e;
+    public final ArrayDeque f4373f;
+    public final Object f4374g;
     public boolean h;
+    public final boolean f4375i;
 
-    public final boolean f4820i;
-
-    public n(Looper looper, b0 b0Var, l lVar) {
-        this(new CopyOnWriteArraySet(), looper, b0Var, lVar);
+    public n(Looper looper, a0 a0Var, l lVar) {
+        this(new CopyOnWriteArraySet(), looper, a0Var, lVar);
     }
 
     public final void a(Object obj) {
         obj.getClass();
-        synchronized (this.f4819g) {
+        synchronized (this.f4374g) {
             try {
                 if (this.h) {
                     return;
@@ -44,91 +37,101 @@ public final class n {
 
     public final void b() {
         f();
-        ArrayDeque arrayDeque = this.f4818f;
-        if (arrayDeque.isEmpty()) {
-            return;
-        }
-        d0 d0Var = this.f4815b;
-        if (!d0Var.f4782a.hasMessages(0)) {
-            d0Var.getClass();
-            c0 c0VarB = d0.b();
-            Message messageObtainMessage = d0Var.f4782a.obtainMessage(0);
-            c0VarB.f4780a = messageObtainMessage;
-            Handler handler = d0Var.f4782a;
-            messageObtainMessage.getClass();
-            handler.sendMessageAtFrontOfQueue(messageObtainMessage);
-            c0VarB.a();
-        }
-        ArrayDeque arrayDeque2 = this.f4817e;
-        boolean zIsEmpty = arrayDeque2.isEmpty();
-        arrayDeque2.addAll(arrayDeque);
-        arrayDeque.clear();
-        if (zIsEmpty) {
-            while (!arrayDeque2.isEmpty()) {
-                ((Runnable) arrayDeque2.peekFirst()).run();
-                arrayDeque2.removeFirst();
+        ArrayDeque arrayDeque = this.f4373f;
+        if (!arrayDeque.isEmpty()) {
+            c0 c0Var = this.f4370b;
+            if (!c0Var.f4337a.hasMessages(0)) {
+                c0Var.getClass();
+                b0 b10 = c0.b();
+                Message obtainMessage = c0Var.f4337a.obtainMessage(0);
+                b10.f4334a = obtainMessage;
+                Handler handler = c0Var.f4337a;
+                obtainMessage.getClass();
+                handler.sendMessageAtFrontOfQueue(obtainMessage);
+                b10.a();
+            }
+            ArrayDeque arrayDeque2 = this.f4372e;
+            boolean isEmpty = arrayDeque2.isEmpty();
+            arrayDeque2.addAll(arrayDeque);
+            arrayDeque.clear();
+            if (isEmpty) {
+                while (!arrayDeque2.isEmpty()) {
+                    ((Runnable) arrayDeque2.peekFirst()).run();
+                    arrayDeque2.removeFirst();
+                }
             }
         }
     }
 
-    public final void c(int i10, k kVar) {
+    public final void c(int i9, k kVar) {
         f();
-        this.f4818f.add(new i(new CopyOnWriteArraySet(this.d), i10, kVar, 0));
+        this.f4373f.add(new i(new CopyOnWriteArraySet(this.d), i9, kVar, 0));
     }
 
     public final void d() {
         f();
-        synchronized (this.f4819g) {
+        synchronized (this.f4374g) {
             this.h = true;
         }
-        for (m mVar : this.d) {
-            l lVar = this.f4816c;
+        Iterator it = this.d.iterator();
+        while (it.hasNext()) {
+            m mVar = (m) it.next();
+            l lVar = this.f4371c;
             mVar.d = true;
-            if (mVar.f4813c) {
-                mVar.f4813c = false;
-                lVar.e(mVar.f4811a, mVar.f4812b.c());
+            if (mVar.f4368c) {
+                mVar.f4368c = false;
+                lVar.g(mVar.f4366a, mVar.f4367b.c());
             }
         }
         this.d.clear();
     }
 
-    public final void e(int i10, k kVar) {
-        c(i10, kVar);
+    public final void e(int i9, k kVar) {
+        c(i9, kVar);
         b();
     }
 
     public final void f() {
-        if (this.f4820i) {
-            a.i(Thread.currentThread() == this.f4815b.f4782a.getLooper().getThread());
+        boolean z10;
+        if (!this.f4375i) {
+            return;
         }
+        if (Thread.currentThread() == this.f4370b.f4337a.getLooper().getThread()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        a.i(z10);
     }
 
-    public n(CopyOnWriteArraySet copyOnWriteArraySet, Looper looper, b0 b0Var, l lVar) {
-        this.f4814a = b0Var;
+    public n(CopyOnWriteArraySet copyOnWriteArraySet, Looper looper, a0 a0Var, l lVar) {
+        this.f4369a = a0Var;
         this.d = copyOnWriteArraySet;
-        this.f4816c = lVar;
-        this.f4819g = new Object();
-        this.f4817e = new ArrayDeque();
-        this.f4818f = new ArrayDeque();
-        this.f4815b = b0Var.a(looper, new Handler.Callback() {
+        this.f4371c = lVar;
+        this.f4374g = new Object();
+        this.f4372e = new ArrayDeque();
+        this.f4373f = new ArrayDeque();
+        this.f4370b = a0Var.a(looper, new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
-                n nVar = this.f4810a;
-                for (m mVar : nVar.d) {
-                    l lVar2 = nVar.f4816c;
-                    if (!mVar.d && mVar.f4813c) {
-                        g gVarC = mVar.f4812b.c();
-                        mVar.f4812b = new c2.t();
-                        mVar.f4813c = false;
-                        lVar2.e(mVar.f4811a, gVarC);
+                n nVar = n.this;
+                Iterator it = nVar.d.iterator();
+                while (it.hasNext()) {
+                    m mVar = (m) it.next();
+                    l lVar2 = nVar.f4371c;
+                    if (!mVar.d && mVar.f4368c) {
+                        g c10 = mVar.f4367b.c();
+                        mVar.f4367b = new c2.t();
+                        mVar.f4368c = false;
+                        lVar2.g(mVar.f4366a, c10);
                     }
-                    if (nVar.f4815b.f4782a.hasMessages(0)) {
+                    if (nVar.f4370b.f4337a.hasMessages(0)) {
                         return true;
                     }
                 }
                 return true;
             }
         });
-        this.f4820i = true;
+        this.f4375i = true;
     }
 }

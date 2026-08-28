@@ -1,27 +1,195 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.util.SparseArray;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class uq0 extends jh.u {
+    public final eu0 C;
 
-public final class uq0 extends eu0 {
-    public final hu0 C;
-
-    public uq0(hu0 hu0Var, Context context) {
-        super(hu0Var, context, 0, true);
-        this.C = hu0Var;
+    public uq0(eu0 eu0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, long j10) {
+        super(context, o2Var, j10);
+        this.C = eu0Var;
     }
 
     @Override
-    public final void l() {
-        super.l();
-        hu0 hu0Var = this.C;
-        zs0 zs0VarW = hu0Var.W(9);
-        if (zs0VarW != null && zs0VarW.f35340r.getVisibility() == 0) {
-            hu0Var.f29109b0.l();
+    public final boolean c(MessageObject messageObject) {
+        char c10;
+        eu0 eu0Var = this.C;
+        SparseArray[] sparseArrayArr = eu0Var.V0;
+        if (messageObject.getDialogId() == eu0Var.f28136f1) {
+            c10 = 0;
+        } else {
+            c10 = 1;
         }
-        if (zs0VarW != null) {
-            pr0 pr0Var = zs0VarW.f35342w;
-            jh.j6 j6Var = this.f28155s;
-            pr0Var.e(j6Var != null && (j6Var.k() || (hu0Var.i0() && this.f28155s.g() > 0)), true);
+        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean e(MessageObject messageObject) {
+        char c10;
+        int i9;
+        int i10;
+        eu0 eu0Var = this.C;
+        ArrayList arrayList = eu0Var.J0;
+        NumberTextView numberTextView = eu0Var.f28171w0;
+        SparseArray[] sparseArrayArr = eu0Var.V0;
+        if (messageObject != null) {
+            if (messageObject.getDialogId() == eu0Var.f28136f1) {
+                c10 = 0;
+            } else {
+                c10 = 1;
+            }
+            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) < 0) {
+                if (sparseArrayArr[1].size() + sparseArrayArr[0].size() < 100) {
+                    sparseArrayArr[c10].put(messageObject.getId(), messageObject);
+                    if (!messageObject.canDeleteMessage(false, null)) {
+                        eu0Var.W0++;
+                    }
+                    if (!eu0Var.f28178y1) {
+                        AndroidUtilities.hideKeyboard(eu0Var.f28160r1.getParentActivity().getCurrentFocus());
+                        org.telegram.ui.ActionBar.w0 w0Var = eu0Var.f28139h0;
+                        int i11 = 8;
+                        if (eu0Var.W0 == 0) {
+                            i9 = 0;
+                        } else {
+                            i9 = 8;
+                        }
+                        w0Var.setVisibility(i9);
+                        org.telegram.ui.ActionBar.w0 w0Var2 = eu0Var.f28156q0;
+                        if (w0Var2 != null) {
+                            if (eu0Var.getClosestTab() != 8 && eu0Var.getClosestTab() != 13) {
+                                i10 = 0;
+                            } else {
+                                i10 = 8;
+                            }
+                            w0Var2.setVisibility(i10);
+                        }
+                        org.telegram.ui.ActionBar.w0 w0Var3 = eu0Var.f28159r0;
+                        if (w0Var3 != null) {
+                            w0Var3.setVisibility(8);
+                        }
+                        org.telegram.ui.ActionBar.w0 w0Var4 = eu0Var.f28162s0;
+                        if (w0Var4 != null) {
+                            w0Var4.setVisibility(8);
+                        }
+                        org.telegram.ui.ActionBar.w0 w0Var5 = eu0Var.f28154p0;
+                        if (w0Var5 != null) {
+                            if (eu0Var.getClosestTab() != 8 && eu0Var.getClosestTab() != 13) {
+                                i11 = 0;
+                            }
+                            w0Var5.setVisibility(i11);
+                        }
+                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), false);
+                        AnimatorSet animatorSet = new AnimatorSet();
+                        ArrayList arrayList2 = new ArrayList();
+                        for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                            View view = (View) arrayList.get(i12);
+                            AndroidUtilities.clearDrawableAnimation(view);
+                            arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.1f, 1.0f));
+                        }
+                        animatorSet.playTogether(arrayList2);
+                        animatorSet.setDuration(250L);
+                        animatorSet.start();
+                        eu0Var.X0 = false;
+                        eu0Var.b1(true);
+                    } else {
+                        numberTextView.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
+                    }
+                    j();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean g(MessageObject messageObject) {
+        char c10;
+        int i9;
+        int i10;
+        eu0 eu0Var = this.C;
+        ArrayList arrayList = eu0Var.J0;
+        SparseArray[] sparseArrayArr = eu0Var.V0;
+        if (messageObject != null) {
+            if (messageObject.getDialogId() == eu0Var.f28136f1) {
+                c10 = 0;
+            } else {
+                c10 = 1;
+            }
+            if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
+                sparseArrayArr[c10].remove(messageObject.getId());
+                if (!messageObject.canDeleteMessage(false, null)) {
+                    eu0Var.W0--;
+                }
+                if (sparseArrayArr[0].size() == 0 && sparseArrayArr[1].size() == 0) {
+                    AndroidUtilities.hideKeyboard(eu0Var.f28160r1.getParentActivity().getCurrentFocus());
+                    sparseArrayArr[0].clear();
+                    sparseArrayArr[1].clear();
+                    org.telegram.ui.ActionBar.w0 w0Var = eu0Var.f28139h0;
+                    int i11 = 8;
+                    if (eu0Var.W0 == 0) {
+                        i9 = 0;
+                    } else {
+                        i9 = 8;
+                    }
+                    w0Var.setVisibility(i9);
+                    org.telegram.ui.ActionBar.w0 w0Var2 = eu0Var.f28156q0;
+                    if (w0Var2 != null) {
+                        if (eu0Var.getClosestTab() != 8 && eu0Var.getClosestTab() != 13) {
+                            i10 = 0;
+                        } else {
+                            i10 = 8;
+                        }
+                        w0Var2.setVisibility(i10);
+                    }
+                    org.telegram.ui.ActionBar.w0 w0Var3 = eu0Var.f28159r0;
+                    if (w0Var3 != null) {
+                        w0Var3.setVisibility(8);
+                    }
+                    org.telegram.ui.ActionBar.w0 w0Var4 = eu0Var.f28162s0;
+                    if (w0Var4 != null) {
+                        w0Var4.setVisibility(8);
+                    }
+                    org.telegram.ui.ActionBar.w0 w0Var5 = eu0Var.f28154p0;
+                    if (w0Var5 != null) {
+                        if (eu0Var.getClosestTab() != 8 && eu0Var.getClosestTab() != 13) {
+                            i11 = 0;
+                        }
+                        w0Var5.setVisibility(i11);
+                    }
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    ArrayList arrayList2 = new ArrayList();
+                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                        View view = (View) arrayList.get(i12);
+                        AndroidUtilities.clearDrawableAnimation(view);
+                        arrayList2.add(ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.1f));
+                    }
+                    animatorSet.playTogether(arrayList2);
+                    animatorSet.setDuration(250L);
+                    animatorSet.start();
+                    eu0Var.X0 = false;
+                    AndroidUtilities.runOnUIThread(new tp0(this, 1), 20L);
+                } else {
+                    eu0Var.f28171w0.a(sparseArrayArr[1].size() + sparseArrayArr[0].size(), true);
+                }
+                j();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int getStartedTrackingX() {
+        return this.C.f28169v1;
     }
 }

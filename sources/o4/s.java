@@ -2,14 +2,12 @@ package o4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 public final class s implements Parcelable.Creator {
-
-    public final int f19282a;
+    public final int f18935a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f19282a) {
+        switch (this.f18935a) {
             case 0:
                 return new u(parcel);
             default:
@@ -18,12 +16,12 @@ public final class s implements Parcelable.Creator {
     }
 
     @Override
-    public final Object[] newArray(int i10) {
-        switch (this.f19282a) {
+    public final Object[] newArray(int i9) {
+        switch (this.f18935a) {
             case 0:
-                return new u[i10];
+                return new u[i9];
             default:
-                return new t[i10];
+                return new t[i9];
         }
     }
 }

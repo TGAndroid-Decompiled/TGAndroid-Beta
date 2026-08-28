@@ -1,11 +1,10 @@
 package org.telegram.messenger.car;
 
-import androidx.car.app.l;
+import androidx.car.app.m;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
 import org.telegram.messenger.NotificationCenter;
-
-public class HomeScreen extends l implements e, NotificationCenter.NotificationCenterDelegate {
+public class HomeScreen extends m implements e, NotificationCenter.NotificationCenterDelegate {
     @Override
     public final void a(t tVar) {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.pushMessagesUpdated);
@@ -14,13 +13,14 @@ public class HomeScreen extends l implements e, NotificationCenter.NotificationC
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.activeAccountChanged) {
+    public final void didReceivedNotification(int i9, int i10, Object... objArr) {
+        if (i9 != NotificationCenter.activeAccountChanged) {
+            if ((i9 != NotificationCenter.pushMessagesUpdated && i9 != NotificationCenter.notificationsCountUpdated) || !"tab_notifications".equals(null)) {
+                return;
+            }
             throw null;
         }
-        if ((i10 == NotificationCenter.pushMessagesUpdated || i10 == NotificationCenter.notificationsCountUpdated) && "tab_notifications".equals(null)) {
-            throw null;
-        }
+        throw null;
     }
 
     @Override

@@ -1,19 +1,17 @@
 package k3;
 
 import android.media.MediaCodec;
-
+import com.google.android.gms.internal.cast.i4;
 public final class c {
-
-    public final MediaCodec.CryptoInfo f14408a;
-
-    public final MediaCodec.CryptoInfo.Pattern f14409b = a9.b.a();
+    public final MediaCodec.CryptoInfo f14587a;
+    public final MediaCodec.CryptoInfo.Pattern f14588b = i4.a();
 
     public c(MediaCodec.CryptoInfo cryptoInfo) {
-        this.f14408a = cryptoInfo;
+        this.f14587a = cryptoInfo;
     }
 
-    public static void a(c cVar, int i10, int i11) {
-        cVar.f14409b.set(i10, i11);
-        cVar.f14408a.setPattern(cVar.f14409b);
+    public static void a(c cVar, int i9, int i10) {
+        cVar.f14588b.set(i9, i10);
+        cVar.f14587a.setPattern(cVar.f14588b);
     }
 }

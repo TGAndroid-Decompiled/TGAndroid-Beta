@@ -4,126 +4,116 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.se;
-
 public final class y {
-
-    public z f23957a;
-
-    public int f23958b;
-
-    public int f23959c;
+    public z f23955a;
+    public int f23956b;
+    public int f23957c;
     public CharSequence d;
-
-    public int f23960e;
-
-    public Drawable f23961f;
-
-    public int f23962g;
-    public c6 h;
-
-    public float f23963i;
-
-    public Boolean f23964j;
-
-    public Boolean f23965k;
-
-    public int f23966l;
-
-    public v0 f23967m;
-
-    public ArrayList f23968n;
-
-    public Integer f23969o;
+    public int f23958e;
+    public Drawable f23959f;
+    public int f23960g;
+    public b6 h;
+    public float f23961i;
+    public Boolean f23962j;
+    public Boolean f23963k;
+    public int f23964l;
+    public w0 f23965m;
+    public ArrayList f23966n;
+    public Integer f23967o;
 
     public final void a() {
-        z zVar = this.f23957a;
-        if (this.f23967m != null) {
-            return;
-        }
-        int childCount = zVar.getChildCount();
-        ArrayList arrayList = zVar.f23986e;
-        int i10 = 0;
-        if (arrayList != null) {
-            int iIndexOf = arrayList.indexOf(Integer.valueOf(this.f23958b));
-            for (int i11 = 0; i11 < zVar.getChildCount(); i11++) {
-                Object tag = zVar.getChildAt(i11).getTag();
-                if (tag instanceof Integer) {
-                    if (zVar.f23986e.indexOf((Integer) tag) > iIndexOf) {
-                        childCount = i11;
+        z zVar = this.f23955a;
+        if (this.f23965m == null) {
+            int childCount = zVar.getChildCount();
+            ArrayList arrayList = zVar.f24001e;
+            int i9 = 0;
+            if (arrayList != null) {
+                int indexOf = arrayList.indexOf(Integer.valueOf(this.f23956b));
+                int i10 = 0;
+                while (true) {
+                    if (i10 >= zVar.getChildCount()) {
                         break;
                     }
+                    Object tag = zVar.getChildAt(i10).getTag();
+                    if (tag instanceof Integer) {
+                        if (zVar.f24001e.indexOf((Integer) tag) > indexOf) {
+                            childCount = i10;
+                            break;
+                        }
+                    }
+                    i10++;
                 }
             }
-        }
-        v0 v0VarF = zVar.f(childCount, this.f23958b, this.f23959c, null, this.f23960e, this.f23961f, this.f23962g, null, this.h);
-        this.f23967m = v0VarF;
-        v0VarF.setVisibility(this.f23966l);
-        CharSequence charSequence = this.d;
-        if (charSequence != null) {
-            this.f23967m.setContentDescription(charSequence);
-        }
-        Boolean bool = this.f23965k;
-        if (bool != null) {
-            this.f23967m.N = bool.booleanValue();
-        }
-        Boolean bool2 = this.f23964j;
-        if (bool2 != null) {
-            this.f23967m.O = bool2.booleanValue();
-        }
-        this.f23967m.setAlpha(this.f23963i);
-        ArrayList arrayList2 = this.f23968n;
-        if (arrayList2 != null) {
-            int size = arrayList2.size();
-            while (i10 < size) {
-                Object obj = arrayList2.get(i10);
-                i10++;
-                ((Utilities.Callback) obj).run(this.f23967m);
+            w0 f10 = zVar.f(childCount, this.f23956b, this.f23957c, null, this.f23958e, this.f23959f, this.f23960g, null, this.h);
+            this.f23965m = f10;
+            f10.setVisibility(this.f23964l);
+            CharSequence charSequence = this.d;
+            if (charSequence != null) {
+                this.f23965m.setContentDescription(charSequence);
             }
-            this.f23968n = null;
+            Boolean bool = this.f23963k;
+            if (bool != null) {
+                this.f23965m.N = bool.booleanValue();
+            }
+            Boolean bool2 = this.f23962j;
+            if (bool2 != null) {
+                this.f23965m.O = bool2.booleanValue();
+            }
+            this.f23965m.setAlpha(this.f23961i);
+            ArrayList arrayList2 = this.f23966n;
+            if (arrayList2 != null) {
+                int size = arrayList2.size();
+                while (i9 < size) {
+                    Object obj = arrayList2.get(i9);
+                    i9++;
+                    ((Utilities.Callback) obj).run(this.f23965m);
+                }
+                this.f23966n = null;
+            }
         }
     }
 
     public final void b(se seVar) {
-        v0 v0Var = this.f23967m;
-        if (v0Var != null) {
-            seVar.run(v0Var);
+        w0 w0Var = this.f23965m;
+        if (w0Var != null) {
+            seVar.run(w0Var);
             return;
         }
-        if (this.f23968n == null) {
-            this.f23968n = new ArrayList();
+        if (this.f23966n == null) {
+            this.f23966n = new ArrayList();
         }
-        this.f23968n.add(seVar);
+        this.f23966n.add(seVar);
     }
 
     public final void c() {
-        this.f23965k = Boolean.FALSE;
-        v0 v0Var = this.f23967m;
-        if (v0Var != null) {
-            v0Var.N = false;
+        this.f23963k = Boolean.FALSE;
+        w0 w0Var = this.f23965m;
+        if (w0Var != null) {
+            w0Var.N = false;
         }
     }
 
     public final void d() {
-        this.f23964j = Boolean.TRUE;
-        v0 v0Var = this.f23967m;
-        if (v0Var != null) {
-            v0Var.O = true;
+        this.f23962j = Boolean.TRUE;
+        w0 w0Var = this.f23965m;
+        if (w0Var != null) {
+            w0Var.O = true;
         }
     }
 
     public final void e() {
-        this.f23969o = null;
+        this.f23967o = null;
     }
 
-    public final void f(int i10) {
-        if (this.f23966l != i10) {
-            this.f23966l = i10;
-            if (i10 == 0) {
+    public final void f(int i9) {
+        if (this.f23964l != i9) {
+            this.f23964l = i9;
+            if (i9 == 0) {
                 a();
             }
-            v0 v0Var = this.f23967m;
-            if (v0Var != null) {
-                v0Var.setVisibility(i10);
+            w0 w0Var = this.f23965m;
+            if (w0Var != null) {
+                w0Var.setVisibility(i9);
             }
         }
     }

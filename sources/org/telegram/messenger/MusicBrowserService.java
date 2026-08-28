@@ -6,7 +6,6 @@ import android.os.Process;
 import android.service.media.MediaBrowserService;
 import android.widget.Toast;
 import java.util.List;
-
 public class MusicBrowserService extends MediaBrowserService {
     private static final String MEDIA_ID_ROOT = "__ROOT__";
 
@@ -23,26 +22,26 @@ public class MusicBrowserService extends MediaBrowserService {
     }
 
     @Override
-    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i10, Bundle bundle) {
+    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i9, Bundle bundle) {
         if (str == null) {
             return null;
         }
-        if ((1000 == i10 || Process.myUid() == i10 || PackageValidator.isKnownCaller(this, str, i10)) && !TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
-            return new MediaBrowserService.BrowserRoot("__ROOT__", TelegramMediaSession.getInstance(this).buildRootHints());
+        if ((1000 != i9 && Process.myUid() != i9 && !PackageValidator.isKnownCaller(this, str, i9)) || TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
+            return null;
         }
-        return null;
+        return new MediaBrowserService.BrowserRoot("__ROOT__", TelegramMediaSession.getInstance(this).buildRootHints());
     }
 
     @Override
     public void onLoadChildren(String str, MediaBrowserService.Result<List<MediaBrowser.MediaItem>> result) {
         TelegramMediaSession telegramMediaSession = TelegramMediaSession.getInstance(this);
-        if (!telegramMediaSession.isPasscodeLocked()) {
-            result.detach();
-            telegramMediaSession.loadBrowseChildren(str, new d(result, 9));
-        } else {
+        if (telegramMediaSession.isPasscodeLocked()) {
             Toast.makeText(getApplicationContext(), LocaleController.getString(R.string.EnterYourTelegramPasscode), 1).show();
             stopSelf();
             result.detach();
+            return;
         }
+        result.detach();
+        telegramMediaSession.loadBrowseChildren(str, new d(result, 9));
     }
 }

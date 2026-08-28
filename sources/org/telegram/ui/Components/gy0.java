@@ -1,27 +1,25 @@
 package org.telegram.ui.Components;
 
-public final class gy0 extends ky0 {
-    public int d;
+import android.util.Pair;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class gy0 extends ArrayList {
+    public final Class f28895a;
+    public final Class f28896b;
 
-    @Override
-    public final int a(ty0 ty0Var, my0 my0Var, fy0 fy0Var, int i10, boolean z10) {
-        return Math.max(0, this.f30223a - fy0Var.a(my0Var, i10));
+    public gy0(Class cls, Class cls2) {
+        this.f28895a = cls;
+        this.f28896b = cls2;
     }
 
-    @Override
-    public final void b(int i10, int i11) {
-        super.b(i10, i11);
-        this.d = Math.max(this.d, i10 + i11);
-    }
-
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final int d(boolean z10) {
-        return Math.max(super.d(z10), this.d);
+    public final j4.c i() {
+        int size = size();
+        Object[] objArr = (Object[]) Array.newInstance(this.f28895a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f28896b, size);
+        for (int i9 = 0; i9 < size; i9++) {
+            objArr[i9] = ((Pair) get(i9)).first;
+            objArr2[i9] = ((Pair) get(i9)).second;
+        }
+        return new j4.c(objArr, objArr2);
     }
 }

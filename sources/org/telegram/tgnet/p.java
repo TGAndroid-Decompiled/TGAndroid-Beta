@@ -1,14 +1,13 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonParser;
-
 public final class p implements Utilities.CallbackReturn {
-
     public final int f22578a;
 
-    public p(int i10) {
-        this.f22578a = i10;
+    public p(int i9) {
+        this.f22578a = i9;
     }
 
     @Override

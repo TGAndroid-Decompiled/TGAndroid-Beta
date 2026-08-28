@@ -1,51 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import androidx.mediarouter.app.MediaRouteButton;
+import java.lang.reflect.Field;
+public abstract class bd extends MediaRouteButton {
+    public boolean f27173a;
 
-public abstract class bd extends FrameLayout {
-
-    public ag.p1 f27067a;
-
-    public zc f27068b;
-
-    public boolean f27069c;
-
-    public final void a(zc zcVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f27068b == null) {
-            this.f27068b = zcVar;
-            zcVar.setVisibility(8);
-            addView(zcVar, layoutParams);
+    public final void a() {
+        boolean b10 = b();
+        if (this.f27173a != b10) {
+            this.f27173a = b10;
+            c(b10);
         }
     }
 
-    public final void b(ag.p1 p1Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f27067a == null) {
-            this.f27067a = p1Var;
-            addView(p1Var, layoutParams);
+    public final boolean b() {
+        Field declaredField;
+        try {
+            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
+            declaredField.setAccessible(true);
+        } catch (Exception unused) {
         }
-    }
-
-    public zc getEditView() {
-        return this.f27068b;
-    }
-
-    public View getReplyView() {
-        return this.f27067a;
-    }
-
-    public void setEditMode(boolean z10) {
-        this.f27069c = z10;
-        this.f27067a.setVisibility(z10 ? 8 : 0);
-        this.f27068b.setVisibility(z10 ? 0 : 8);
-    }
-
-    public void setEditSuggestionMode(boolean z10) {
-        setEditMode(z10);
-        if (z10) {
-            this.f27067a.setVisibility(0);
+        if (((Integer) declaredField.get(this)).intValue() <= 0) {
+            return false;
         }
-        this.f27068b.f35221a[0].setOnlyIconMode(z10);
-        this.f27068b.f35221a[1].setOnlyIconMode(z10);
+        return true;
+    }
+
+    public abstract void c(boolean z10);
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        a();
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        a();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        a();
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
     }
 }

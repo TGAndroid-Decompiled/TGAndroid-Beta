@@ -1,123 +1,121 @@
 package d2;
 
+import a0.k;
 import android.graphics.Color;
 import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
-
 public final class c {
-
-    public static final a f4709f = new a(0);
-
-    public static final d f4710g = new d();
-
-    public final Object f4711a;
-
-    public final Object f4712b;
-
-    public final Object f4713c;
+    public static final a f4267f = new a(0);
+    public static final d f4268g = new Object();
+    public final Object f4269a;
+    public final Object f4270b;
+    public final Object f4271c;
     public final Cloneable d;
+    public final Object f4272e;
 
-    public final Object f4714e;
-
-    public c(int[] iArr, int i10, d[] dVarArr) {
+    public c(int[] iArr, int i9, d[] dVarArr) {
         b bVar;
-        this.f4714e = new float[3];
+        this.f4272e = new float[3];
         this.d = dVarArr;
         int[] iArr2 = new int[32768];
-        this.f4712b = iArr2;
-        for (int i11 = 0; i11 < iArr.length; i11++) {
-            int i12 = iArr[i11];
-            int iB = b(Color.blue(i12), 8, 5) | (b(Color.red(i12), 8, 5) << 10) | (b(Color.green(i12), 8, 5) << 5);
-            iArr[i11] = iB;
-            iArr2[iB] = iArr2[iB] + 1;
+        this.f4270b = iArr2;
+        for (int i10 = 0; i10 < iArr.length; i10++) {
+            int i11 = iArr[i10];
+            int b10 = b(Color.blue(i11), 8, 5) | (b(Color.red(i11), 8, 5) << 10) | (b(Color.green(i11), 8, 5) << 5);
+            iArr[i10] = b10;
+            iArr2[b10] = iArr2[b10] + 1;
         }
-        int i13 = 0;
-        for (int i14 = 0; i14 < 32768; i14++) {
-            if (iArr2[i14] > 0) {
-                int iRgb = Color.rgb(b((i14 >> 10) & 31, 5, 8), b((i14 >> 5) & 31, 5, 8), b(i14 & 31, 5, 8));
-                float[] fArr = (float[]) this.f4714e;
-                ThreadLocal threadLocal = i0.b.f10487a;
-                i0.b.b(fArr, Color.red(iRgb), Color.green(iRgb), Color.blue(iRgb));
+        int i12 = 0;
+        for (int i13 = 0; i13 < 32768; i13++) {
+            if (iArr2[i13] > 0) {
+                int rgb = Color.rgb(b((i13 >> 10) & 31, 5, 8), b((i13 >> 5) & 31, 5, 8), b(i13 & 31, 5, 8));
+                float[] fArr = (float[]) this.f4272e;
+                ThreadLocal threadLocal = i0.a.f10846a;
+                i0.a.b(fArr, Color.red(rgb), Color.green(rgb), Color.blue(rgb));
                 if (c(fArr)) {
-                    iArr2[i14] = 0;
+                    iArr2[i13] = 0;
                 }
             }
-            if (iArr2[i14] > 0) {
-                i13++;
+            if (iArr2[i13] > 0) {
+                i12++;
             }
         }
-        int[] iArr3 = new int[i13];
-        this.f4711a = iArr3;
-        int i15 = 0;
-        for (int i16 = 0; i16 < 32768; i16++) {
-            if (iArr2[i16] > 0) {
-                iArr3[i15] = i16;
-                i15++;
+        int[] iArr3 = new int[i12];
+        this.f4269a = iArr3;
+        int i14 = 0;
+        for (int i15 = 0; i15 < 32768; i15++) {
+            if (iArr2[i15] > 0) {
+                iArr3[i14] = i15;
+                i14++;
             }
         }
-        if (i13 <= i10) {
-            this.f4713c = new ArrayList();
-            for (int i17 = 0; i17 < i13; i17++) {
-                int i18 = iArr3[i17];
-                ((ArrayList) this.f4713c).add(new e(Color.rgb(b((i18 >> 10) & 31, 5, 8), b((i18 >> 5) & 31, 5, 8), b(i18 & 31, 5, 8)), iArr2[i18]));
+        if (i12 <= i9) {
+            this.f4271c = new ArrayList();
+            for (int i16 = 0; i16 < i12; i16++) {
+                int i17 = iArr3[i16];
+                ((ArrayList) this.f4271c).add(new e(Color.rgb(b((i17 >> 10) & 31, 5, 8), b((i17 >> 5) & 31, 5, 8), b(i17 & 31, 5, 8)), iArr2[i17]));
             }
             return;
         }
-        PriorityQueue<b> priorityQueue = new PriorityQueue(i10, f4709f);
-        priorityQueue.offer(new b(this, 0, ((int[]) this.f4711a).length - 1));
-        while (priorityQueue.size() < i10 && (bVar = (b) priorityQueue.poll()) != null) {
-            int i19 = bVar.f4702b;
-            int iMin = bVar.f4701a;
-            if ((i19 + 1) - iMin <= 1) {
+        PriorityQueue priorityQueue = new PriorityQueue(i9, f4267f);
+        priorityQueue.offer(new b(this, 0, ((int[]) this.f4269a).length - 1));
+        while (priorityQueue.size() < i9 && (bVar = (b) priorityQueue.poll()) != null) {
+            int i18 = bVar.f4260b;
+            int i19 = bVar.f4259a;
+            if ((i18 + 1) - i19 <= 1) {
                 break;
             }
-            c cVar = bVar.f4708j;
-            if ((i19 + 1) - iMin <= 1) {
+            c cVar = bVar.f4266j;
+            if ((i18 + 1) - i19 > 1) {
+                int i20 = bVar.f4262e - bVar.d;
+                int i21 = bVar.f4264g - bVar.f4263f;
+                int i22 = bVar.f4265i - bVar.h;
+                int i23 = (i20 < i21 || i20 < i22) ? (i21 < i20 || i21 < i22) ? -1 : -2 : -3;
+                int[] iArr4 = (int[]) cVar.f4269a;
+                int[] iArr5 = (int[]) cVar.f4270b;
+                a(i23, i19, i18, iArr4);
+                Arrays.sort(iArr4, i19, bVar.f4260b + 1);
+                a(i23, i19, bVar.f4260b, iArr4);
+                int i24 = bVar.f4261c / 2;
+                int i25 = i19;
+                int i26 = 0;
+                while (true) {
+                    int i27 = bVar.f4260b;
+                    if (i25 > i27) {
+                        break;
+                    }
+                    i26 += iArr5[iArr4[i25]];
+                    if (i26 >= i24) {
+                        i19 = Math.min(i27 - 1, i25);
+                        break;
+                    }
+                    i25++;
+                }
+                b bVar2 = new b(cVar, i19 + 1, bVar.f4260b);
+                bVar.f4260b = i19;
+                bVar.a();
+                priorityQueue.offer(bVar2);
+                priorityQueue.offer(bVar);
+            } else {
                 throw new IllegalStateException("Can not split a box with only 1 color");
             }
-            int i20 = bVar.f4704e - bVar.d;
-            int i21 = bVar.f4706g - bVar.f4705f;
-            int i22 = bVar.f4707i - bVar.h;
-            int i23 = (i20 < i21 || i20 < i22) ? (i21 < i20 || i21 < i22) ? -1 : -2 : -3;
-            int[] iArr4 = (int[]) cVar.f4711a;
-            int[] iArr5 = (int[]) cVar.f4712b;
-            a(i23, iMin, i19, iArr4);
-            Arrays.sort(iArr4, iMin, bVar.f4702b + 1);
-            a(i23, iMin, bVar.f4702b, iArr4);
-            int i24 = bVar.f4703c / 2;
-            int i25 = iMin;
-            int i26 = 0;
-            while (true) {
-                int i27 = bVar.f4702b;
-                if (i25 > i27) {
-                    break;
-                }
-                i26 += iArr5[iArr4[i25]];
-                if (i26 >= i24) {
-                    iMin = Math.min(i27 - 1, i25);
-                    break;
-                }
-                i25++;
-            }
-            b bVar2 = new b(cVar, iMin + 1, bVar.f4702b);
-            bVar.f4702b = iMin;
-            bVar.a();
-            priorityQueue.offer(bVar2);
-            priorityQueue.offer(bVar);
         }
         ArrayList arrayList = new ArrayList(priorityQueue.size());
-        for (b bVar3 : priorityQueue) {
-            c cVar2 = bVar3.f4708j;
-            int[] iArr6 = (int[]) cVar2.f4711a;
-            int[] iArr7 = (int[]) cVar2.f4712b;
+        Iterator it = priorityQueue.iterator();
+        while (it.hasNext()) {
+            b bVar3 = (b) it.next();
+            c cVar2 = bVar3.f4266j;
+            int[] iArr6 = (int[]) cVar2.f4269a;
+            int[] iArr7 = (int[]) cVar2.f4270b;
             int i28 = 0;
             int i29 = 0;
             int i30 = 0;
             int i31 = 0;
-            for (int i32 = bVar3.f4701a; i32 <= bVar3.f4702b; i32++) {
+            for (int i32 = bVar3.f4259a; i32 <= bVar3.f4260b; i32++) {
                 int i33 = iArr6[i32];
                 int i34 = iArr7[i33];
                 i29 += i34;
@@ -131,30 +129,36 @@ public final class c {
                 arrayList.add(eVar);
             }
         }
-        this.f4713c = arrayList;
+        this.f4271c = arrayList;
     }
 
-    public static void a(int i10, int i11, int i12, int[] iArr) {
-        if (i10 == -2) {
-            while (i11 <= i12) {
-                int i13 = iArr[i11];
-                iArr[i11] = (i13 & 31) | (((i13 >> 5) & 31) << 10) | (((i13 >> 10) & 31) << 5);
-                i11++;
+    public static void a(int i9, int i10, int i11, int[] iArr) {
+        if (i9 != -2) {
+            if (i9 == -1) {
+                while (i10 <= i11) {
+                    int i12 = iArr[i10];
+                    iArr[i10] = ((i12 >> 10) & 31) | ((i12 & 31) << 10) | (((i12 >> 5) & 31) << 5);
+                    i10++;
+                }
+                return;
             }
             return;
         }
-        if (i10 != -1) {
-            return;
-        }
-        while (i11 <= i12) {
-            int i14 = iArr[i11];
-            iArr[i11] = ((i14 >> 10) & 31) | ((i14 & 31) << 10) | (((i14 >> 5) & 31) << 5);
-            i11++;
+        while (i10 <= i11) {
+            int i13 = iArr[i10];
+            iArr[i10] = (i13 & 31) | (((i13 >> 5) & 31) << 10) | (((i13 >> 10) & 31) << 5);
+            i10++;
         }
     }
 
-    public static int b(int i10, int i11, int i12) {
-        return (i12 > i11 ? i10 << (i12 - i11) : i10 >> (i11 - i12)) & ((1 << i12) - 1);
+    public static int b(int i9, int i10, int i11) {
+        int i12;
+        if (i11 > i10) {
+            i12 = i9 << (i11 - i10);
+        } else {
+            i12 = i9 >> (i10 - i11);
+        }
+        return i12 & ((1 << i11) - 1);
     }
 
     public boolean c(float[] fArr) {
@@ -175,21 +179,21 @@ public final class c {
     }
 
     public c(ArrayList arrayList, List list) {
-        this.f4711a = list;
-        this.f4712b = arrayList;
+        this.f4269a = list;
+        this.f4270b = arrayList;
         this.d = new SparseBooleanArray();
-        this.f4713c = new a0.f(0);
+        this.f4271c = new k(0);
         int size = list.size();
-        int i10 = Integer.MIN_VALUE;
+        int i9 = Integer.MIN_VALUE;
         e eVar = null;
-        for (int i11 = 0; i11 < size; i11++) {
-            e eVar2 = (e) list.get(i11);
-            int i12 = eVar2.f4718e;
-            if (i12 > i10) {
+        for (int i10 = 0; i10 < size; i10++) {
+            e eVar2 = (e) list.get(i10);
+            int i11 = eVar2.f4276e;
+            if (i11 > i9) {
                 eVar = eVar2;
-                i10 = i12;
+                i9 = i11;
             }
         }
-        this.f4714e = eVar;
+        this.f4272e = eVar;
     }
 }

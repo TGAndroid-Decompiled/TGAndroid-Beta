@@ -1,63 +1,54 @@
 package h7;
 
-public abstract class d0 {
-    public static boolean a(String str, String str2) {
-        char c10;
-        int length = str.length();
-        if (str == str2) {
-            return true;
-        }
-        if (length == str2.length()) {
-            for (int i10 = 0; i10 < length; i10++) {
-                char cCharAt = str.charAt(i10);
-                char cCharAt2 = str2.charAt(i10);
-                if (cCharAt == cCharAt2 || ((c10 = (char) ((cCharAt | ' ') - 97)) < 26 && c10 == ((char) ((cCharAt2 | ' ') - 97)))) {
+import java.util.AbstractSet;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public abstract class d0 extends AbstractSet {
+    public final int f9900a;
+
+    @Override
+    public boolean removeAll(Collection collection) {
+        switch (this.f9900a) {
+            case 0:
+                return f7.z7.a(this, collection);
+            case 1:
+                return f7.w8.a(this, collection);
+            default:
+                collection.getClass();
+                if (collection instanceof o8.i0) {
+                    collection = ((o8.i0) collection).b();
                 }
-            }
-            return true;
+                boolean z10 = false;
+                if ((collection instanceof Set) && collection.size() > size()) {
+                    Iterator<E> it = iterator();
+                    while (it.hasNext()) {
+                        if (collection.contains(it.next())) {
+                            it.remove();
+                            z10 = true;
+                        }
+                    }
+                } else {
+                    for (Object obj : collection) {
+                        z10 |= remove(obj);
+                    }
+                }
+                return z10;
         }
-        return false;
     }
 
-    public static String b(String str) {
-        int length = str.length();
-        int i10 = 0;
-        while (i10 < length) {
-            char cCharAt = str.charAt(i10);
-            if (cCharAt >= 'A' && cCharAt <= 'Z') {
-                char[] charArray = str.toCharArray();
-                while (i10 < length) {
-                    char c10 = charArray[i10];
-                    if (c10 >= 'A' && c10 <= 'Z') {
-                        charArray[i10] = (char) (c10 ^ ' ');
-                    }
-                    i10++;
-                }
-                return String.valueOf(charArray);
-            }
-            i10++;
+    @Override
+    public boolean retainAll(Collection collection) {
+        switch (this.f9900a) {
+            case 0:
+                collection.getClass();
+                return super.retainAll(collection);
+            case 1:
+                collection.getClass();
+                return super.retainAll(collection);
+            default:
+                collection.getClass();
+                return super.retainAll(collection);
         }
-        return str;
-    }
-
-    public static String c(String str) {
-        int length = str.length();
-        int i10 = 0;
-        while (i10 < length) {
-            char cCharAt = str.charAt(i10);
-            if (cCharAt >= 'a' && cCharAt <= 'z') {
-                char[] charArray = str.toCharArray();
-                while (i10 < length) {
-                    char c10 = charArray[i10];
-                    if (c10 >= 'a' && c10 <= 'z') {
-                        charArray[i10] = (char) (c10 ^ ' ');
-                    }
-                    i10++;
-                }
-                return String.valueOf(charArray);
-            }
-            i10++;
-        }
-        return str;
     }
 }

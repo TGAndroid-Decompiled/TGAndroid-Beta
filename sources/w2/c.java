@@ -1,18 +1,14 @@
 package w2;
-
-public final class c implements r9.d {
-
-    public static final c f48939a = new c();
-
-    public static final r9.c f48940b = new r9.c("eventsDroppedCount", s3.c.h(s3.c.g(u9.d.class, new u9.a(1))));
-
-    public static final r9.c f48941c = new r9.c("reason", s3.c.h(s3.c.g(u9.d.class, new u9.a(3))));
+public final class c implements q9.d {
+    public static final c f48436a = new Object();
+    public static final q9.c f48437b = new q9.c("eventsDroppedCount", ta.b.g(ta.b.f(t9.d.class, new t9.a(1))));
+    public static final q9.c f48438c = new q9.c("reason", ta.b.g(ta.b.f(t9.d.class, new t9.a(3))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         z2.d dVar = (z2.d) obj;
-        r9.e eVar = (r9.e) obj2;
-        eVar.c(f48940b, dVar.f50179a);
-        eVar.a(f48941c, dVar.f50180b);
+        q9.e eVar = (q9.e) obj2;
+        eVar.d(f48437b, dVar.f50279a);
+        eVar.g(f48438c, dVar.f50280b);
     }
 }

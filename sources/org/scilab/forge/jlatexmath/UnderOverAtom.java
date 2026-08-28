@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class UnderOverAtom extends Atom {
     private final Atom base;
     private final Atom over;
@@ -11,8 +10,8 @@ public class UnderOverAtom extends Atom {
     private final float underSpace;
     private final int underUnit;
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i10, float f10, boolean z10, boolean z11) {
-        SpaceAtom.checkUnit(i10);
+    public UnderOverAtom(Atom atom, Atom atom2, int i9, float f10, boolean z10, boolean z11) {
+        SpaceAtom.checkUnit(i9);
         this.base = atom;
         if (z11) {
             this.under = null;
@@ -20,13 +19,13 @@ public class UnderOverAtom extends Atom {
             this.underUnit = 0;
             this.underScriptSize = false;
             this.over = atom2;
-            this.overUnit = i10;
+            this.overUnit = i9;
             this.overSpace = f10;
             this.overScriptSize = z10;
             return;
         }
         this.under = atom2;
-        this.underUnit = i10;
+        this.underUnit = i9;
         this.underSpace = f10;
         this.underScriptSize = z10;
         this.overSpace = 0.0f;
@@ -36,40 +35,60 @@ public class UnderOverAtom extends Atom {
     }
 
     private static Box changeWidth(Box box, float f10) {
-        return (box == null || Math.abs(f10 - box.getWidth()) <= 1.0E-7f) ? box : new HorizontalBox(box, f10, 2);
+        if (box != null && Math.abs(f10 - box.getWidth()) > 1.0E-7f) {
+            return new HorizontalBox(box, f10, 2);
+        }
+        return box;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox;
+        Box createBox;
+        Box box;
+        TeXEnvironment teXEnvironment2;
+        TeXEnvironment teXEnvironment3;
         Atom atom = this.base;
-        Box strutBox = atom == null ? new StrutBox(0.0f, 0.0f, 0.0f, 0.0f) : atom.createBox(teXEnvironment);
-        float width = strutBox.getWidth();
-        Atom atom2 = this.over;
-        Box boxCreateBox2 = null;
-        if (atom2 != null) {
-            boxCreateBox = atom2.createBox(this.overScriptSize ? teXEnvironment.subStyle() : teXEnvironment);
-            width = Math.max(width, boxCreateBox.getWidth());
+        if (atom == null) {
+            createBox = new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
         } else {
-            boxCreateBox = null;
+            createBox = atom.createBox(teXEnvironment);
+        }
+        float width = createBox.getWidth();
+        Atom atom2 = this.over;
+        Box box2 = null;
+        if (atom2 != null) {
+            if (this.overScriptSize) {
+                teXEnvironment3 = teXEnvironment.subStyle();
+            } else {
+                teXEnvironment3 = teXEnvironment;
+            }
+            box = atom2.createBox(teXEnvironment3);
+            width = Math.max(width, box.getWidth());
+        } else {
+            box = null;
         }
         Atom atom3 = this.under;
         if (atom3 != null) {
-            boxCreateBox2 = atom3.createBox(this.underScriptSize ? teXEnvironment.subStyle() : teXEnvironment);
-            width = Math.max(width, boxCreateBox2.getWidth());
+            if (this.underScriptSize) {
+                teXEnvironment2 = teXEnvironment.subStyle();
+            } else {
+                teXEnvironment2 = teXEnvironment;
+            }
+            box2 = atom3.createBox(teXEnvironment2);
+            width = Math.max(width, box2.getWidth());
         }
         VerticalBox verticalBox = new VerticalBox();
-        teXEnvironment.setLastFontId(strutBox.getLastFontId());
+        teXEnvironment.setLastFontId(createBox.getLastFontId());
         if (this.over != null) {
-            verticalBox.add(changeWidth(boxCreateBox, width));
+            verticalBox.add(changeWidth(box, width));
             verticalBox.add(new SpaceAtom(this.overUnit, 0.0f, this.overSpace, 0.0f).createBox(teXEnvironment));
         }
-        Box boxChangeWidth = changeWidth(strutBox, width);
-        verticalBox.add(boxChangeWidth);
-        float depth = (verticalBox.getDepth() + verticalBox.getHeight()) - boxChangeWidth.getDepth();
+        Box changeWidth = changeWidth(createBox, width);
+        verticalBox.add(changeWidth);
+        float depth = (verticalBox.getDepth() + verticalBox.getHeight()) - changeWidth.getDepth();
         if (this.under != null) {
             verticalBox.add(new SpaceAtom(this.overUnit, 0.0f, this.underSpace, 0.0f).createBox(teXEnvironment));
-            verticalBox.add(changeWidth(boxCreateBox2, width));
+            verticalBox.add(changeWidth(box2, width));
         }
         verticalBox.setDepth((verticalBox.getDepth() + verticalBox.getHeight()) - depth);
         verticalBox.setHeight(depth);
@@ -86,16 +105,16 @@ public class UnderOverAtom extends Atom {
         return this.base.getRightType();
     }
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i10, float f10, boolean z10, Atom atom3, int i11, float f11, boolean z11) {
+    public UnderOverAtom(Atom atom, Atom atom2, int i9, float f10, boolean z10, Atom atom3, int i10, float f11, boolean z11) {
+        SpaceAtom.checkUnit(i9);
         SpaceAtom.checkUnit(i10);
-        SpaceAtom.checkUnit(i11);
         this.base = atom;
         this.under = atom2;
-        this.underUnit = i10;
+        this.underUnit = i9;
         this.underSpace = f10;
         this.underScriptSize = z10;
         this.over = atom3;
-        this.overUnit = i11;
+        this.overUnit = i10;
         this.overSpace = f11;
         this.overScriptSize = z11;
     }

@@ -1,5 +1,4 @@
 package k2;
-
 public abstract class k {
     public boolean a() {
         return false;

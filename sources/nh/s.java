@@ -1,104 +1,63 @@
 package nh;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
-import h7.z5;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-import lh.a8;
-import lh.n6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.pa;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.g5;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+public final class s implements Utilities.Callback2 {
+    public final int f18722a;
+    public final j0 f18723b;
 
-public final class s extends org.telegram.ui.ActionBar.n2 {
-
-    public k51 f18937a;
-
-    public final ArrayList f18938b;
-
-    public final HashMap f18939c;
-
-    public s() {
-        super(null);
-        this.f18938b = new ArrayList();
-        this.f18939c = new HashMap();
-    }
-
-    public static void U(s sVar, ArrayList arrayList) {
-        HashMap map = sVar.f18939c;
-        ArrayList arrayList2 = sVar.f18938b;
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            p pVar = (p) arrayList2.get(i10);
-            SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) map.get(pVar);
-            if (spannableStringBuilder == null) {
-                spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) "a   ");
-                g5 g5Var = new g5(null, 24.0f, sVar.currentAccount);
-                g5Var.e(pVar.f18862a);
-                spannableStringBuilder.setSpan(g5Var, 0, 1, 33);
-                spannableStringBuilder.append((CharSequence) UserObject.getUserName(pVar.f18862a));
-                map.put(pVar, spannableStringBuilder);
-            }
-            n41 n41VarI = n41.i(i10, spannableStringBuilder);
-            n41VarI.K(!pVar.f18863b);
-            arrayList.add(n41VarI);
-        }
-        pa.A(R.string.PrivacyBiometryBotsInfo, arrayList);
-    }
-
-    public static void V(s sVar, n41 n41Var) {
-        int i10;
-        b51 b51Var;
-        ArrayList arrayList = sVar.f18938b;
-        if (n41Var.f49413a != 4 || (i10 = n41Var.d) < 0 || i10 >= arrayList.size()) {
-            return;
-        }
-        p pVar = (p) arrayList.get(n41Var.d);
-        pVar.f18863b = !pVar.f18863b;
-        Activity parentActivity = sVar.getParentActivity();
-        int i11 = sVar.currentAccount;
-        long j10 = pVar.f18862a.f22527id;
-        boolean z10 = pVar.f18863b;
-        WeakHashMap weakHashMap = q.f18885k;
-        SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
-        SharedPreferences.Editor editorEdit = sharedPreferences.edit();
-        editorEdit.putBoolean(j10 + "_disabled", z10);
-        if (!z10 && sharedPreferences.getString(String.valueOf(j10), null) == null) {
-            editorEdit.putString(String.valueOf(j10), "");
-        }
-        editorEdit.apply();
-        k51 k51Var = sVar.f18937a;
-        if (k51Var == null || (b51Var = k51Var.U2) == null) {
-            return;
-        }
-        b51Var.N(true);
+    public s(j0 j0Var, int i9) {
+        this.f18722a = i9;
+        this.f18723b = j0Var;
     }
 
     @Override
-    public final View createView(Context context) {
-        pa.x(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
-        this.actionBar.setActionBarMenuOnItemClick(new ag.e2(this, 4));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(g6.v0(g6.f22999a7, this.resourceProvider));
-        k51 k51Var = new k51(this, new a8(this, 6), new r(this), new r(this));
-        this.f18937a = k51Var;
-        frameLayout.addView(k51Var, z5.e(-1, -1, 119));
-        q.d(getParentActivity(), this.currentAccount, new n6(this, 4));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public final void run(Object obj, Object obj2) {
+        int i9 = this.f18722a;
+        j0 j0Var = this.f18723b;
+        switch (i9) {
+            case 0:
+                z41 z41Var = (z41) obj2;
+                j0Var.T((ArrayList) obj, true);
+                return;
+            case 1:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                j0.o(j0Var, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                j0.n(j0Var, (ArrayList) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                z41 z41Var2 = (z41) obj2;
+                int i10 = j0.R;
+                j0Var.T((ArrayList) obj, false);
+                return;
+            case 4:
+                z41 z41Var3 = (z41) obj2;
+                j0.z(j0Var, (ArrayList) obj);
+                return;
+            default:
+                ArrayList arrayList = (ArrayList) obj;
+                z41 z41Var4 = (z41) obj2;
+                q0 q0Var = j0Var.I;
+                arrayList.add(l41.D(99, (int) (AndroidUtilities.displaySize.y * 0.35f)));
+                arrayList.add(l41.D(0, AndroidUtilities.dp(48.0f)));
+                if (ChatObject.canBlockUsers(j0Var.f18652f)) {
+                    arrayList.add(l41.A(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new u(j0Var, 2)), true)));
+                } else {
+                    arrayList.add(l41.A(1, LocaleController.getString(R.string.CommunityPendingRequestsInfoNoChange)));
+                }
+                arrayList.add(l41.j(2, j0Var.H));
+                arrayList.add(l41.s(3, LocaleController.formatPluralString("CommunityPendingRequestsSuggestedHeader", q0Var.f18707l, new Object[0])));
+                q0Var.c(arrayList);
+                return;
+        }
     }
 }

@@ -1,62 +1,24 @@
 package i8;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
+import android.os.Parcel;
+import android.os.Parcelable;
+import g7.p8;
+public final class p extends y5.a {
+    public static final Parcelable.Creator<p> CREATOR = new c(11);
+    public final int f11019a;
+    public final b f11020b;
 
-public final class p extends Handler {
-
-    public boolean f10959a;
-
-    public final o f10960b;
-
-    public final k f10961c;
-
-    public p(k kVar, Looper looper) {
-        super(looper);
-        this.f10961c = kVar;
-        this.f10960b = new o();
-    }
-
-    public final synchronized void a(String str) {
-        if (this.f10959a) {
-            if (Log.isLoggable("WearableLS", 2)) {
-                Log.v("WearableLS", "unbindService: " + str + ", " + String.valueOf(this.f10961c.zza));
-            }
-            try {
-                this.f10961c.unbindService(this.f10960b);
-            } catch (RuntimeException e9) {
-                Log.e("WearableLS", "Exception when unbinding from local service", e9);
-            }
-            this.f10959a = false;
-        }
+    public p(int i9, b bVar) {
+        this.f11019a = i9;
+        this.f11020b = bVar;
     }
 
     @Override
-    public final void dispatchMessage(Message message) {
-        synchronized (this) {
-            try {
-                if (!this.f10959a) {
-                    if (Log.isLoggable("WearableLS", 2)) {
-                        Log.v("WearableLS", "bindService: ".concat(String.valueOf(this.f10961c.zza)));
-                    }
-                    k kVar = this.f10961c;
-                    kVar.bindService(kVar.zzd, this.f10960b, 1);
-                    this.f10959a = true;
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        try {
-            super.dispatchMessage(message);
-            if (hasMessages(0)) {
-            }
-        } finally {
-            if (!hasMessages(0)) {
-                a("dispatch");
-            }
-        }
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.s(parcel, 2, 4);
+        parcel.writeInt(this.f11019a);
+        p8.k(parcel, 3, this.f11020b, i9);
+        p8.r(parcel, q10);
     }
 }

@@ -1,17 +1,20 @@
 package c2;
 
 import android.media.MediaRouter;
+public final class m0 extends r {
+    public final MediaRouter.RouteInfo f2195a;
 
-public final class m0 {
+    public m0(MediaRouter.RouteInfo routeInfo) {
+        this.f2195a = routeInfo;
+    }
 
-    public final MediaRouter.RouteInfo f2309a;
+    @Override
+    public final void f(int i9) {
+        this.f2195a.requestSetVolume(i9);
+    }
 
-    public final String f2310b;
-
-    public n f2311c;
-
-    public m0(MediaRouter.RouteInfo routeInfo, String str) {
-        this.f2309a = routeInfo;
-        this.f2310b = str;
+    @Override
+    public final void i(int i9) {
+        this.f2195a.requestUpdateVolume(i9);
     }
 }

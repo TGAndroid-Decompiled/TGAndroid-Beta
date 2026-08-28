@@ -1,40 +1,37 @@
 package i;
 
 import android.graphics.drawable.Animatable;
-import g7.v7;
+import f7.h8;
+public final class a extends h8 {
+    public final int f10805a;
+    public final Animatable f10806b;
 
-public final class a extends v7 {
-
-    public final int f10446a;
-
-    public final Animatable f10447b;
-
-    public a(Animatable animatable, int i10) {
-        this.f10446a = i10;
-        this.f10447b = animatable;
+    public a(Animatable animatable, int i9) {
+        this.f10805a = i9;
+        this.f10806b = animatable;
     }
 
     @Override
     public final void c() {
-        switch (this.f10446a) {
+        switch (this.f10805a) {
             case 0:
-                this.f10447b.start();
-                break;
+                this.f10806b.start();
+                return;
             default:
-                ((k2.d) this.f10447b).start();
-                break;
+                ((k2.d) this.f10806b).start();
+                return;
         }
     }
 
     @Override
     public final void d() {
-        switch (this.f10446a) {
+        switch (this.f10805a) {
             case 0:
-                this.f10447b.stop();
-                break;
+                this.f10806b.stop();
+                return;
             default:
-                ((k2.d) this.f10447b).stop();
-                break;
+                ((k2.d) this.f10806b).stop();
+                return;
         }
     }
 }

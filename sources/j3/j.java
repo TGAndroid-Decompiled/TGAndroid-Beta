@@ -2,10 +2,8 @@ package j3;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-
 public interface j {
-
-    public static final ByteBuffer f12350a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
+    public static final ByteBuffer f13282a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
 
     ByteBuffer a();
 

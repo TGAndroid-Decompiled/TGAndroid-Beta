@@ -1,27 +1,26 @@
 package m3;
-
 public interface l extends com.google.android.exoplayer2.upstream.j {
-    void b(int i10, int i11, byte[] bArr);
+    void c(int i9, int i10, byte[] bArr);
 
-    boolean d(byte[] bArr, int i10, int i11, boolean z10);
+    boolean d(byte[] bArr, int i9, int i10, boolean z10);
 
-    int e(int i10, int i11, byte[] bArr);
+    int e(int i9, int i10, byte[] bArr);
 
-    boolean g(byte[] bArr, int i10, int i11, boolean z10);
+    boolean g(byte[] bArr, int i9, int i10, boolean z10);
 
     long getLength();
 
     long getPosition();
 
-    long i();
+    long k();
 
-    void j(int i10);
+    void n(int i9);
 
-    void q();
+    void readFully(byte[] bArr, int i9, int i10);
 
-    void readFully(byte[] bArr, int i10, int i11);
+    int skip(int i9);
 
-    int skip(int i10);
+    void t();
 
-    void t(int i10);
+    void u(int i9);
 }

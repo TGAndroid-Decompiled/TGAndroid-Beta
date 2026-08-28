@@ -3,21 +3,19 @@ package org.scilab.forge.jlatexmath;
 import ru.noties.jlatexmath.awt.Font;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
-
 public class CharBox extends Box {
     private final char[] arr = new char[1];
-
-    private final CharFont f19584cf;
+    private final CharFont f19611cf;
     private float italic;
     private final float size;
 
-    public CharBox(Char r10) {
-        this.f19584cf = r10.getCharFont();
-        this.size = r10.getMetrics().getSize();
-        this.width = r10.getWidth();
-        this.height = r10.getHeight();
-        this.depth = r10.getDepth();
-        this.italic = r10.getItalic();
+    public CharBox(Char r22) {
+        this.f19611cf = r22.getCharFont();
+        this.size = r22.getMetrics().getSize();
+        this.width = r22.getWidth();
+        this.height = r22.getHeight();
+        this.depth = r22.getDepth();
+        this.italic = r22.getItalic();
     }
 
     public void addItalicCorrectionToWidth() {
@@ -30,7 +28,7 @@ public class CharBox extends Box {
         drawDebug(graphics2D, f10, f11);
         AffineTransform transform = graphics2D.getTransform();
         graphics2D.translate(f10, f11);
-        Font font = FontInfo.getFont(this.f19584cf.fontId);
+        Font font = FontInfo.getFont(this.f19611cf.fontId);
         if (Math.abs(this.size - TeXFormula.FONT_SCALE_FACTOR) > 1.0E-7f) {
             float f12 = this.size;
             float f13 = TeXFormula.FONT_SCALE_FACTOR;
@@ -40,17 +38,17 @@ public class CharBox extends Box {
             graphics2D.setFont(font);
         }
         char[] cArr = this.arr;
-        cArr[0] = this.f19584cf.f19585c;
+        cArr[0] = this.f19611cf.f19612c;
         graphics2D.drawChars(cArr, 0, 1, 0, 0);
         graphics2D.setTransform(transform);
     }
 
     @Override
     public int getLastFontId() {
-        return this.f19584cf.fontId;
+        return this.f19611cf.fontId;
     }
 
     public String toString() {
-        return super.toString() + "=" + this.f19584cf.f19585c;
+        return super.toString() + "=" + this.f19611cf.f19612c;
     }
 }

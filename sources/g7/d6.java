@@ -1,16 +1,14 @@
 package g7;
 
-public final class d6 {
-
-    public final Long f6442a;
-
-    public final k6 f6443b;
-
-    public final Boolean f6444c;
-
-    public d6(a5.n nVar) {
-        this.f6442a = (Long) nVar.f100b;
-        this.f6443b = (k6) nVar.f101c;
-        this.f6444c = (Boolean) nVar.d;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.Components.t30;
+public abstract class d6 {
+    public static void a() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        for (t30 t30Var : t30.values()) {
+            edit.remove(t30Var.f32614a);
+        }
+        edit.apply();
     }
 }

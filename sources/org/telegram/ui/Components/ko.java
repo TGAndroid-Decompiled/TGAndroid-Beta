@@ -1,32 +1,54 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.s91;
+public final class ko implements Runnable {
+    public final int f30207a;
+    public final cp f30208b;
 
-public final class ko implements d5.d {
-
-    public final int f30159a;
-
-    public final ap f30160b;
-
-    public ko(ap apVar, int i10) {
-        this.f30159a = i10;
-        this.f30160b = apVar;
+    public ko(cp cpVar, int i9) {
+        this.f30207a = i9;
+        this.f30208b = cpVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f30159a) {
+    public final void run() {
+        switch (this.f30207a) {
             case 0:
-                ap apVar = this.f30160b;
-                apVar.f26779b0 = (TL_stories.TL_premium_boostsStatus) obj;
-                apVar.f26777a0 = true;
-                apVar.F(true);
-                apVar.Z = false;
-                break;
+                this.f30208b.h.l();
+                return;
+            case 1:
+                this.f30208b.s(true);
+                return;
+            case 2:
+                cp cpVar = this.f30208b;
+                org.telegram.ui.qn qnVar = cpVar.v;
+                org.telegram.ui.ActionBar.o2 c02 = s91.c0(qnVar.getMessagesController().getChat(Long.valueOf(-qnVar.a())), true);
+                ?? obj = new Object();
+                obj.f23653a = true;
+                c02.setResourceProvider(qnVar.getResourceProvider());
+                obj.f23655c = new hc(7);
+                obj.d = new ko(cpVar, 3);
+                obj.f23654b = new ko(cpVar, 4);
+                obj.f23656e = true;
+                cpVar.T = c02;
+                qnVar.showAsSheet(c02, obj);
+                return;
+            case 3:
+                this.f30208b.u();
+                return;
+            case 4:
+                this.f30208b.T = null;
+                return;
+            case 5:
+                this.f30208b.u();
+                return;
+            case 6:
+                this.f30208b.T = null;
+                return;
             default:
-                ap.m(this.f30160b, (ChannelBoostsController.CanApplyBoost) obj);
-                break;
+                cp cpVar2 = this.f30208b;
+                cpVar2.Q.f(cpVar2.C, true);
+                return;
         }
     }
 }

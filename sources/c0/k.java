@@ -2,50 +2,47 @@ package c0;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
-
-public final class k implements s8.a {
-
-    public final WeakReference f2215a;
-
-    public final j f2216b = new j(this);
+public final class k implements r8.a {
+    public final WeakReference f2076a;
+    public final j f2077b = new j(this);
 
     public k(i iVar) {
-        this.f2215a = new WeakReference(iVar);
+        this.f2076a = new WeakReference(iVar);
     }
 
     @Override
     public final boolean cancel(boolean z10) {
-        i iVar = (i) this.f2215a.get();
-        boolean zCancel = this.f2216b.cancel(z10);
-        if (zCancel && iVar != null) {
-            iVar.f2211a = null;
-            iVar.f2212b = null;
-            iVar.f2213c.k(null);
+        i iVar = (i) this.f2076a.get();
+        boolean cancel = this.f2077b.cancel(z10);
+        if (cancel && iVar != null) {
+            iVar.f2072a = null;
+            iVar.f2073b = null;
+            iVar.f2074c.k(null);
         }
-        return zCancel;
+        return cancel;
     }
 
     @Override
     public final Object get() {
-        return this.f2216b.get();
+        return this.f2077b.get();
     }
 
     @Override
     public final boolean isCancelled() {
-        return this.f2216b.f2208a instanceof a;
+        return this.f2077b.f2069a instanceof a;
     }
 
     @Override
     public final boolean isDone() {
-        return this.f2216b.isDone();
+        return this.f2077b.isDone();
     }
 
     public final String toString() {
-        return this.f2216b.toString();
+        return this.f2077b.toString();
     }
 
     @Override
     public final Object get(long j10, TimeUnit timeUnit) {
-        return this.f2216b.get(j10, timeUnit);
+        return this.f2077b.get(j10, timeUnit);
     }
 }

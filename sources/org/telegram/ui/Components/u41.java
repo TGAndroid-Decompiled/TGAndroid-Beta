@@ -1,37 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class u41 extends LinkMovementMethod {
+    public final UndoView f32918a;
 
-public final class u41 extends r41 {
-
-    public final int f32968e;
-
-    public final xz0 f32969f;
-
-    public u41(String str, int i10, xz0 xz0Var) {
-        super(str, (xz0) null);
-        this.f32968e = i10;
-        this.f32969f = xz0Var;
+    public u41(UndoView undoView) {
+        this.f32918a = undoView;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.f32968e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23131hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.gc, false));
-        }
-        xz0 xz0Var = this.f32969f;
-        if (xz0Var != null) {
-            xz0Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f32918a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e10) {
+            FileLog.e(e10);
+            return false;
         }
     }
 }

@@ -1,20 +1,18 @@
 package c1;
 
-import ad.p;
-import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.h;
+import zc.p;
+public final class c extends h implements p {
+    public final int f2083a;
 
-public final class c extends i implements p {
-
-    public final int f2222a;
-
-    public c(int i10, Object obj, Class cls, String str, String str2, int i11, int i12) {
-        super(i10, obj, cls, str, str2, i11);
-        this.f2222a = i12;
+    public c(int i9, Object obj, Class cls, String str, String str2, int i10, int i11) {
+        super(i9, obj, cls, str, str2, i10);
+        this.f2083a = i11;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f2222a) {
+        switch (this.f2083a) {
             case 0:
                 ((b1.a) this.receiver).getClass();
                 return b1.a.b((String) obj, (String) obj2);

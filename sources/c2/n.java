@@ -6,51 +6,67 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-
 public final class n {
-
-    public final Bundle f2312a;
+    public final Bundle f2196a;
 
     public n(Bundle bundle) {
-        this.f2312a = bundle;
+        this.f2196a = bundle;
     }
 
     public final HashSet a() {
-        Bundle bundle = this.f2312a;
-        return !bundle.containsKey("allowedPackages") ? new HashSet() : new HashSet(bundle.getStringArrayList("allowedPackages"));
+        Bundle bundle = this.f2196a;
+        if (!bundle.containsKey("allowedPackages")) {
+            return new HashSet();
+        }
+        return new HashSet(bundle.getStringArrayList("allowedPackages"));
     }
 
     public final ArrayList b() {
-        Bundle bundle = this.f2312a;
-        return !bundle.containsKey("controlFilters") ? new ArrayList() : new ArrayList(bundle.getParcelableArrayList("controlFilters"));
+        Bundle bundle = this.f2196a;
+        if (!bundle.containsKey("controlFilters")) {
+            return new ArrayList();
+        }
+        return new ArrayList(bundle.getParcelableArrayList("controlFilters"));
     }
 
     public final ArrayList c() {
-        Bundle bundle = this.f2312a;
-        return !bundle.containsKey("groupMemberIds") ? new ArrayList() : new ArrayList(bundle.getStringArrayList("groupMemberIds"));
+        Bundle bundle = this.f2196a;
+        if (!bundle.containsKey("groupMemberIds")) {
+            return new ArrayList();
+        }
+        return new ArrayList(bundle.getStringArrayList("groupMemberIds"));
     }
 
     public final String d() {
-        return this.f2312a.getString("id");
+        return this.f2196a.getString("id");
     }
 
     public final boolean e() {
-        return (TextUtils.isEmpty(d()) || TextUtils.isEmpty(this.f2312a.getString("name")) || b().contains(null)) ? false : true;
+        if (!TextUtils.isEmpty(d()) && !TextUtils.isEmpty(this.f2196a.getString("name")) && !b().contains(null)) {
+            return true;
+        }
+        return false;
     }
 
     public final String toString() {
+        Uri parse;
         StringBuilder sb2 = new StringBuilder("MediaRouteDescriptor{ id=");
         sb2.append(d());
         sb2.append(", groupMemberIds=");
         sb2.append(c());
         sb2.append(", name=");
-        Bundle bundle = this.f2312a;
+        Bundle bundle = this.f2196a;
         sb2.append(bundle.getString("name"));
         sb2.append(", description=");
         sb2.append(bundle.getString("status"));
         sb2.append(", iconUri=");
         String string = bundle.getString("iconUri");
-        sb2.append(string == null ? null : Uri.parse(string));
+        if (string == null) {
+            parse = null;
+        } else {
+            parse = Uri.parse(string);
+        }
+        sb2.append(parse);
         sb2.append(", isEnabled=");
         sb2.append(bundle.getBoolean("enabled", true));
         sb2.append(", isSystemRoute=");

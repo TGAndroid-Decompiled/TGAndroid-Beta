@@ -3,181 +3,192 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
+public final class sx0 implements org.telegram.ui.ActionBar.g6 {
+    public final int f42779a;
+    public final org.telegram.ui.ActionBar.o2 f42780b;
 
-public final class sx0 implements org.telegram.ui.ActionBar.h6 {
-
-    public final int f42710a;
-
-    public final org.telegram.ui.ActionBar.n2 f42711b;
-
-    public sx0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f42710a = i10;
-        this.f42711b = n2Var;
+    public sx0(int i9, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f42779a = i9;
+        this.f42780b = o2Var;
     }
 
     @Override
     public final void a(float f10) {
-        int i10 = this.f42710a;
+        int i9 = this.f42779a;
     }
 
     @Override
     public final void b() {
         ValueAnimator valueAnimator;
-        int i10 = this.f42710a;
+        int i9;
+        int i10 = this.f42779a;
         int i11 = 0;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f42711b;
+        org.telegram.ui.ActionBar.o2 o2Var = this.f42780b;
         switch (i10) {
             case 0:
-                ProfileActivity.V((ProfileActivity) n2Var);
-                break;
+                ProfileActivity.U((ProfileActivity) o2Var);
+                return;
             case 1:
-                t01 t01Var = (t01) n2Var;
-                org.telegram.ui.Components.zk0 zk0Var = t01Var.f42739a;
-                if (zk0Var != null) {
-                    int childCount = zk0Var.getChildCount();
+                s01 s01Var = (s01) o2Var;
+                org.telegram.ui.Components.wk0 wk0Var = s01Var.f42519a;
+                if (wk0Var != null) {
+                    int childCount = wk0Var.getChildCount();
                     while (i11 < childCount) {
-                        View childAt = t01Var.f42739a.getChildAt(i11);
-                        if (childAt instanceof org.telegram.ui.Cells.ra) {
-                            ((org.telegram.ui.Cells.ra) childAt).b();
+                        View childAt = s01Var.f42519a.getChildAt(i11);
+                        if (childAt instanceof org.telegram.ui.Cells.ua) {
+                            ((org.telegram.ui.Cells.ua) childAt).b();
                         }
                         i11++;
                     }
+                    return;
                 }
-                break;
+                return;
             case 2:
-                j11 j11Var = (j11) n2Var;
-                if (j11Var.h != null && ((valueAnimator = j11Var.D) == null || !valueAnimator.isRunning())) {
-                    j11Var.h.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, j11Var.C ? org.telegram.ui.ActionBar.g6.q6 : org.telegram.ui.ActionBar.g6.f23441z6, false));
+                k11 k11Var = (k11) o2Var;
+                if (k11Var.h != null && ((valueAnimator = k11Var.D) == null || !valueAnimator.isRunning())) {
+                    org.telegram.ui.Cells.ba baVar = k11Var.h;
+                    if (k11Var.C) {
+                        i9 = org.telegram.ui.ActionBar.f6.f23229q6;
+                    } else {
+                        i9 = org.telegram.ui.ActionBar.f6.f23386z6;
+                    }
+                    baVar.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, i9, false));
                 }
-                if (j11Var.f39223a != null) {
+                if (k11Var.f39665a != null) {
                     int i12 = 0;
                     while (true) {
-                        EditTextBoldCursor[] editTextBoldCursorArr = j11Var.f39223a;
+                        EditTextBoldCursor[] editTextBoldCursorArr = k11Var.f39665a;
                         if (i12 < editTextBoldCursorArr.length) {
-                            editTextBoldCursorArr[i12].setLineColors(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23181k6, false), org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23198l6, false), org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23269p7, false));
+                            editTextBoldCursorArr[i12].setLineColors(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23127k6, false), org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23144l6, false), org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23212p7, false));
                             i12++;
+                        } else {
+                            return;
                         }
                     }
+                } else {
+                    return;
                 }
                 break;
             case 3:
-                y11 y11Var = (y11) n2Var;
-                y11Var.getClass();
-                y11Var.setNavigationBarColor(y11Var.getThemedColor(org.telegram.ui.ActionBar.g6.f22999a7));
-                break;
+                z11 z11Var = (z11) o2Var;
+                z11Var.getClass();
+                z11Var.setNavigationBarColor(z11Var.getThemedColor(org.telegram.ui.ActionBar.f6.f22947a7));
+                return;
             case 4:
-                g21 g21Var = (g21) n2Var;
-                g21Var.f38288a.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f22999a7, false));
-                g21Var.f38290c.l();
-                break;
+                h21 h21Var = (h21) o2Var;
+                h21Var.f38655a.setBackgroundColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f22947a7, false));
+                h21Var.f38657c.l();
+                return;
             case 5:
-                q91 q91Var = (q91) n2Var;
-                r81 r81Var = q91Var.O;
-                if (r81Var != null) {
-                    int childCount2 = r81Var.getChildCount();
+                s91 s91Var = (s91) o2Var;
+                t81 t81Var = s91Var.O;
+                if (t81Var != null) {
+                    int childCount2 = t81Var.getChildCount();
                     for (int i13 = 0; i13 < childCount2; i13++) {
-                        q91.l0(q91Var.O.getChildAt(i13));
+                        s91.k0(s91Var.O.getChildAt(i13));
                     }
-                    int hiddenChildCount = q91Var.O.getHiddenChildCount();
+                    int hiddenChildCount = s91Var.O.getHiddenChildCount();
                     for (int i14 = 0; i14 < hiddenChildCount; i14++) {
-                        q91.l0(q91Var.O.V(i14));
+                        s91.k0(s91Var.O.V(i14));
                     }
-                    int cachedChildCount = q91Var.O.getCachedChildCount();
+                    int cachedChildCount = s91Var.O.getCachedChildCount();
                     for (int i15 = 0; i15 < cachedChildCount; i15++) {
-                        q91.l0(q91Var.O.P(i15));
+                        s91.k0(s91Var.O.P(i15));
                     }
-                    int attachedScrapChildCount = q91Var.O.getAttachedScrapChildCount();
+                    int attachedScrapChildCount = s91Var.O.getAttachedScrapChildCount();
                     while (i11 < attachedScrapChildCount) {
-                        q91.l0(q91Var.O.O(i11));
+                        s91.k0(s91Var.O.O(i11));
                         i11++;
                     }
-                    q91Var.O.getRecycledViewPool().a();
+                    s91Var.O.getRecycledViewPool().a();
                 }
-                rf.f fVar = q91Var.W;
+                qf.f fVar = s91Var.W;
                 if (fVar != null) {
-                    fVar.f46933g = true;
+                    fVar.f46174g = true;
+                    return;
                 }
-                break;
+                return;
             case 6:
-                ThemeActivity themeActivity = (ThemeActivity) n2Var;
-                for (int i16 = 0; i16 < themeActivity.f36230b.getChildCount(); i16++) {
-                    View childAt2 = themeActivity.f36230b.getChildAt(i16);
+                ThemeActivity themeActivity = (ThemeActivity) o2Var;
+                for (int i16 = 0; i16 < themeActivity.f36227b.getChildCount(); i16++) {
+                    View childAt2 = themeActivity.f36227b.getChildAt(i16);
                     if (childAt2 instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) childAt2).getAdapter().l();
-                    } else if (childAt2 instanceof io0) {
-                        ((io0) childAt2).a();
+                    } else if (childAt2 instanceof ho0) {
+                        ((ho0) childAt2).a();
                     }
                 }
-                for (int i17 = 0; i17 < themeActivity.f36230b.getCachedChildCount(); i17++) {
-                    View viewP = themeActivity.f36230b.P(i17);
-                    if (viewP instanceof org.telegram.ui.Cells.t) {
-                        ((org.telegram.ui.Cells.t) viewP).getAdapter().l();
-                    } else if (viewP instanceof io0) {
-                        ((io0) viewP).a();
+                for (int i17 = 0; i17 < themeActivity.f36227b.getCachedChildCount(); i17++) {
+                    View P = themeActivity.f36227b.P(i17);
+                    if (P instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) P).getAdapter().l();
+                    } else if (P instanceof ho0) {
+                        ((ho0) P).a();
                     }
                 }
-                for (int i18 = 0; i18 < themeActivity.f36230b.getHiddenChildCount(); i18++) {
-                    View viewV = themeActivity.f36230b.V(i18);
-                    if (viewV instanceof org.telegram.ui.Cells.t) {
-                        ((org.telegram.ui.Cells.t) viewV).getAdapter().l();
-                    } else if (viewV instanceof io0) {
-                        ((io0) viewV).a();
+                for (int i18 = 0; i18 < themeActivity.f36227b.getHiddenChildCount(); i18++) {
+                    View V = themeActivity.f36227b.V(i18);
+                    if (V instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) V).getAdapter().l();
+                    } else if (V instanceof ho0) {
+                        ((ho0) V).a();
                     }
                 }
-                while (i11 < themeActivity.f36230b.getAttachedScrapChildCount()) {
-                    View viewO = themeActivity.f36230b.O(i11);
-                    if (viewO instanceof org.telegram.ui.Cells.t) {
-                        ((org.telegram.ui.Cells.t) viewO).getAdapter().l();
-                    } else if (viewO instanceof io0) {
-                        ((io0) viewO).a();
+                while (i11 < themeActivity.f36227b.getAttachedScrapChildCount()) {
+                    View O = themeActivity.f36227b.O(i11);
+                    if (O instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) O).getAdapter().l();
+                    } else if (O instanceof ho0) {
+                        ((ho0) O).a();
                     }
                     i11++;
                 }
-                break;
+                return;
             case 7:
-                nc1.W((nc1) n2Var);
-                break;
+                oc1.V((oc1) o2Var);
+                return;
             case 8:
-                ld1 ld1Var = (ld1) n2Var;
-                org.telegram.ui.Components.zk0 zk0Var2 = ld1Var.f40055a;
-                if (zk0Var2 != null) {
-                    int childCount3 = zk0Var2.getChildCount();
+                kd1 kd1Var = (kd1) o2Var;
+                org.telegram.ui.Components.wk0 wk0Var2 = kd1Var.f39808a;
+                if (wk0Var2 != null) {
+                    int childCount3 = wk0Var2.getChildCount();
                     for (int i19 = 0; i19 < childCount3; i19++) {
-                        View childAt3 = ld1Var.f40055a.getChildAt(i19);
-                        if (childAt3 instanceof org.telegram.ui.Cells.d4) {
-                            ((org.telegram.ui.Cells.d4) childAt3).f(0);
+                        View childAt3 = kd1Var.f39808a.getChildAt(i19);
+                        if (childAt3 instanceof org.telegram.ui.Cells.g4) {
+                            ((org.telegram.ui.Cells.g4) childAt3).f(0);
                         }
                     }
                 }
-                org.telegram.ui.Components.zk0 zk0Var3 = ld1Var.f40056b;
-                if (zk0Var3 != null) {
-                    int childCount4 = zk0Var3.getChildCount();
+                org.telegram.ui.Components.wk0 wk0Var3 = kd1Var.f39809b;
+                if (wk0Var3 != null) {
+                    int childCount4 = wk0Var3.getChildCount();
                     for (int i20 = 0; i20 < childCount4; i20++) {
-                        View childAt4 = ld1Var.f40056b.getChildAt(i20);
-                        if (childAt4 instanceof org.telegram.ui.Cells.d4) {
-                            ((org.telegram.ui.Cells.d4) childAt4).f(0);
+                        View childAt4 = kd1Var.f39809b.getChildAt(i20);
+                        if (childAt4 instanceof org.telegram.ui.Cells.g4) {
+                            ((org.telegram.ui.Cells.g4) childAt4).f(0);
                         }
                     }
                 }
-                ld1Var.f40057c.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.g6.Oh));
-                ld1Var.B.setProgressColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23125h6, false));
-                break;
+                kd1Var.f39810c.setBackground(org.telegram.ui.ActionBar.v5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.f6.Oh));
+                kd1Var.B.setProgressColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23073h6, false));
+                return;
             case 9:
-                we1.X((we1) n2Var);
-                break;
+                we1.W((we1) o2Var);
+                return;
             default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) n2Var;
-                org.telegram.ui.Components.zk0 zk0Var4 = usersSelectActivity.d;
-                if (zk0Var4 != null) {
-                    int childCount5 = zk0Var4.getChildCount();
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) o2Var;
+                org.telegram.ui.Components.wk0 wk0Var4 = usersSelectActivity.d;
+                if (wk0Var4 != null) {
+                    int childCount5 = wk0Var4.getChildCount();
                     for (int i21 = 0; i21 < childCount5; i21++) {
                         View childAt5 = usersSelectActivity.d.getChildAt(i21);
-                        if (childAt5 instanceof org.telegram.ui.Cells.d4) {
-                            ((org.telegram.ui.Cells.d4) childAt5).f(0);
+                        if (childAt5 instanceof org.telegram.ui.Cells.g4) {
+                            ((org.telegram.ui.Cells.g4) childAt5).f(0);
                         }
                     }
+                    return;
                 }
-                break;
+                return;
         }
     }
 

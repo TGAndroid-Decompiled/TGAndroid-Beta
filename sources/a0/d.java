@@ -3,13 +3,9 @@ package a0;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
-
 public final class d implements Iterator, Map.Entry {
-
     public int f7a;
-
     public int f8b = -1;
-
     public boolean f9c;
     public final f d;
 
@@ -20,17 +16,20 @@ public final class d implements Iterator, Map.Entry {
 
     @Override
     public final boolean equals(Object obj) {
-        if (!this.f9c) {
-            throw new IllegalStateException("This container does not support retaining Map.Entry objects");
-        }
-        if (!(obj instanceof Map.Entry)) {
+        if (this.f9c) {
+            if (obj instanceof Map.Entry) {
+                Map.Entry entry = (Map.Entry) obj;
+                Object key = entry.getKey();
+                int i9 = this.f8b;
+                f fVar = this.d;
+                if (kotlin.jvm.internal.i.a(key, fVar.e(i9)) && kotlin.jvm.internal.i.a(entry.getValue(), fVar.h(this.f8b))) {
+                    return true;
+                }
+                return false;
+            }
             return false;
         }
-        Map.Entry entry = (Map.Entry) obj;
-        Object key = entry.getKey();
-        int i10 = this.f8b;
-        f fVar = this.d;
-        return kotlin.jvm.internal.j.a(key, fVar.e(i10)) && kotlin.jvm.internal.j.a(entry.getValue(), fVar.h(this.f8b));
+        throw new IllegalStateException("This container does not support retaining Map.Entry objects");
     }
 
     @Override
@@ -51,40 +50,54 @@ public final class d implements Iterator, Map.Entry {
 
     @Override
     public final boolean hasNext() {
-        return this.f8b < this.f7a;
+        if (this.f8b < this.f7a) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final int hashCode() {
-        if (!this.f9c) {
-            throw new IllegalStateException("This container does not support retaining Map.Entry objects");
+        int hashCode;
+        if (this.f9c) {
+            int i9 = this.f8b;
+            f fVar = this.d;
+            Object e10 = fVar.e(i9);
+            Object h = fVar.h(this.f8b);
+            int i10 = 0;
+            if (e10 == null) {
+                hashCode = 0;
+            } else {
+                hashCode = e10.hashCode();
+            }
+            if (h != null) {
+                i10 = h.hashCode();
+            }
+            return hashCode ^ i10;
         }
-        int i10 = this.f8b;
-        f fVar = this.d;
-        Object objE = fVar.e(i10);
-        Object objH = fVar.h(this.f8b);
-        return (objE == null ? 0 : objE.hashCode()) ^ (objH != null ? objH.hashCode() : 0);
+        throw new IllegalStateException("This container does not support retaining Map.Entry objects");
     }
 
     @Override
     public final Object next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
+        if (hasNext()) {
+            this.f8b++;
+            this.f9c = true;
+            return this;
         }
-        this.f8b++;
-        this.f9c = true;
-        return this;
+        throw new NoSuchElementException();
     }
 
     @Override
     public final void remove() {
-        if (!this.f9c) {
-            throw new IllegalStateException();
+        if (this.f9c) {
+            this.d.f(this.f8b);
+            this.f8b--;
+            this.f7a--;
+            this.f9c = false;
+            return;
         }
-        this.d.f(this.f8b);
-        this.f8b--;
-        this.f7a--;
-        this.f9c = false;
+        throw new IllegalStateException();
     }
 
     @Override

@@ -1,42 +1,45 @@
 package qf;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+public final class f {
+    public Bitmap f46169a;
+    public Canvas f46170b;
+    public final RectF f46171c = new RectF();
+    public final Paint d;
+    public final b6 f46172e;
+    public int f46173f;
+    public boolean f46174g;
 
-public final class f implements Runnable {
-
-    public final int f46285a;
-
-    public final g f46286b;
-
-    public f(g gVar, int i10) {
-        this.f46285a = i10;
-        this.f46286b = gVar;
+    public f(b6 b6Var) {
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f46173f = 0;
+        this.f46174g = true;
+        paint.setColor(0);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f46172e = b6Var;
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f46285a;
-        g gVar = this.f46286b;
-        switch (i10) {
-            case 0:
-                gVar.a();
-                break;
-            case 1:
-                gVar.getClass();
-                TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
-                int i11 = gVar.f46292a;
-                disablepeerconnectedbot.peer = MessagesController.getInstance(i11).getInputPeer(gVar.f46299s);
-                ConnectionsManager.getInstance(i11).sendRequest(disablepeerconnectedbot, null);
-                MessagesController.getNotificationsSettings(i11).edit().remove("dialog_botid" + gVar.f46299s).remove("dialog_boturl" + gVar.f46299s).remove("dialog_botflags" + gVar.f46299s).apply();
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(gVar.f46299s));
-                h.a(i11).f46313f = false;
-                break;
-            default:
-                we.e.s(gVar.getContext(), gVar.f46301x);
-                break;
+    public final Bitmap a(int i9, int i10) {
+        int i11 = (i9 + i10) << 10;
+        if (i11 != this.f46173f || this.f46174g) {
+            this.f46174g = false;
+            this.f46173f = i11;
+            this.f46169a = Bitmap.createBitmap(i10, i9, Bitmap.Config.ARGB_8888);
+            this.f46170b = new Canvas(this.f46169a);
+            RectF rectF = this.f46171c;
+            rectF.set(0.0f, 0.0f, i10, i9);
+            this.f46170b.drawColor(f6.v0(f6.f23001d6, this.f46172e));
+            this.f46170b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.d);
         }
+        return this.f46169a;
     }
 }

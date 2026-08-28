@@ -1,67 +1,28 @@
 package g9;
+public final class b implements q9.d {
+    public static final b f7459a = new Object();
+    public static final q9.c f7460b = q9.c.c("pid");
+    public static final q9.c f7461c = q9.c.c("processName");
+    public static final q9.c d = q9.c.c("reasonCode");
+    public static final q9.c f7462e = q9.c.c("importance");
+    public static final q9.c f7463f = q9.c.c("pss");
+    public static final q9.c f7464g = q9.c.c("rss");
+    public static final q9.c h = q9.c.c("timestamp");
+    public static final q9.c f7465i = q9.c.c("traceFile");
+    public static final q9.c f7466j = q9.c.c("buildIdMappingForArch");
 
-import a9.p;
-
-public final class b extends n {
-
-    public final String f6797b;
-
-    public final String f6798c;
-    public final String d;
-
-    public final String f6799e;
-
-    public final long f6800f;
-
-    public b(String str, String str2, String str3, String str4, long j10) {
-        if (str == null) {
-            throw new NullPointerException("Null rolloutId");
-        }
-        this.f6797b = str;
-        if (str2 == null) {
-            throw new NullPointerException("Null parameterKey");
-        }
-        this.f6798c = str2;
-        if (str3 == null) {
-            throw new NullPointerException("Null parameterValue");
-        }
-        this.d = str3;
-        if (str4 == null) {
-            throw new NullPointerException("Null variantId");
-        }
-        this.f6799e = str4;
-        this.f6800f = j10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof n) {
-            b bVar = (b) ((n) obj);
-            if (this.f6797b.equals(bVar.f6797b) && this.f6798c.equals(bVar.f6798c) && this.d.equals(bVar.d) && this.f6799e.equals(bVar.f6799e) && this.f6800f == bVar.f6800f) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int iHashCode = (((((((this.f6797b.hashCode() ^ 1000003) * 1000003) ^ this.f6798c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.f6799e.hashCode()) * 1000003;
-        long j10 = this.f6800f;
-        return iHashCode ^ ((int) (j10 ^ (j10 >>> 32)));
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutId=");
-        sb2.append(this.f6797b);
-        sb2.append(", parameterKey=");
-        sb2.append(this.f6798c);
-        sb2.append(", parameterValue=");
-        sb2.append(this.d);
-        sb2.append(", variantId=");
-        sb2.append(this.f6799e);
-        sb2.append(", templateVersion=");
-        return p.o(sb2, this.f6800f, "}");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        q9.e eVar = (q9.e) obj2;
+        b0 b0Var = (b0) ((g1) obj);
+        eVar.c(f7460b, b0Var.f7467a);
+        eVar.g(f7461c, b0Var.f7468b);
+        eVar.c(d, b0Var.f7469c);
+        eVar.c(f7462e, b0Var.d);
+        eVar.d(f7463f, b0Var.f7470e);
+        eVar.d(f7464g, b0Var.f7471f);
+        eVar.d(h, b0Var.f7472g);
+        eVar.g(f7465i, b0Var.h);
+        eVar.g(f7466j, b0Var.f7473i);
     }
 }

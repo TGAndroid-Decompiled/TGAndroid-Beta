@@ -1,16 +1,30 @@
 package h7;
 
+import java.util.Arrays;
 public final class j7 {
+    public final i7 f9979a;
+    public final Integer f9980b;
 
-    public final k9 f8427a;
+    public j7(g5.b bVar) {
+        this.f9979a = (i7) bVar.f7111b;
+        this.f9980b = (Integer) bVar.f7112c;
+    }
 
-    public final i7 f8428b;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof j7)) {
+            return false;
+        }
+        j7 j7Var = (j7) obj;
+        if (x5.l.l(this.f9979a, j7Var.f9979a) && x5.l.l(this.f9980b, j7Var.f9980b) && x5.l.l(null, null) && x5.l.l(null, null)) {
+            return true;
+        }
+        return false;
+    }
 
-    public final d7 f8429c;
-
-    public j7(a5.n nVar) {
-        this.f8427a = (k9) nVar.f100b;
-        this.f8428b = (i7) nVar.f101c;
-        this.f8429c = (d7) nVar.d;
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f9979a, this.f9980b, null, null});
     }
 }

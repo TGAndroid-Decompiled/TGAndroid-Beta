@@ -1,47 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import android.content.Context;
+public final class js0 extends org.telegram.ui.Components.r61 {
+    public final PhotoViewer f39623d0;
 
-public final class js0 extends org.telegram.ui.Components.i00 {
-
-    public final rr0 f39494e;
-
-    public final PhotoViewer f39495f;
-
-    public js0(PhotoViewer photoViewer, rr0 rr0Var) {
-        super(false);
-        this.f39495f = photoViewer;
-        this.f39494e = rr0Var;
+    public js0(PhotoViewer photoViewer, Context context, oq0 oq0Var) {
+        super(context, oq0Var);
+        this.f39623d0 = photoViewer;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f39495f;
-        int[] iArr = photoViewer.f35660i3;
-        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
-        String string = sb2.toString();
-        StringBuilder sb3 = new StringBuilder();
-        int[] iArr2 = photoViewer.f35669j3;
-        sb3.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
-        sb3.append(' ');
-        sb3.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, string, sb3.toString());
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        PhotoViewer.W(this.f39623d0);
     }
 
     @Override
-    public final float k() {
-        return this.f39495f.f35694m3.c();
-    }
-
-    @Override
-    public final void l(float f10) {
-        this.f39494e.b(f10);
-        PhotoViewer photoViewer = this.f39495f;
-        photoViewer.f35694m3.h(f10, false);
-        photoViewer.f35704n3.invalidate();
+    public final void setVisibility(int i9) {
+        super.setVisibility(i9);
+        if (i9 == 0) {
+            PhotoViewer.W(this.f39623d0);
+        }
     }
 }

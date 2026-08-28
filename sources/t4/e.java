@@ -1,37 +1,28 @@
 package t4;
 
 import android.util.SparseArray;
-
 public final class e {
-
-    public final int f48057a;
-
-    public final boolean f48058b;
-
-    public final int f48059c;
+    public final int f47646a;
+    public final boolean f47647b;
+    public final int f47648c;
     public final int d;
-
-    public final int f48060e;
-
-    public final int f48061f;
-
-    public final int f48062g;
+    public final int f47649e;
+    public final int f47650f;
+    public final int f47651g;
     public final int h;
+    public final int f47652i;
+    public final SparseArray f47653j;
 
-    public final int f48063i;
-
-    public final SparseArray f48064j;
-
-    public e(int i10, boolean z10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, SparseArray sparseArray) {
-        this.f48057a = i10;
-        this.f48058b = z10;
-        this.f48059c = i11;
-        this.d = i12;
-        this.f48060e = i13;
-        this.f48061f = i14;
-        this.f48062g = i15;
-        this.h = i16;
-        this.f48063i = i17;
-        this.f48064j = sparseArray;
+    public e(int i9, boolean z10, int i10, int i11, int i12, int i13, int i14, int i15, int i16, SparseArray sparseArray) {
+        this.f47646a = i9;
+        this.f47647b = z10;
+        this.f47648c = i10;
+        this.d = i11;
+        this.f47649e = i12;
+        this.f47650f = i13;
+        this.f47651g = i14;
+        this.h = i15;
+        this.f47652i = i16;
+        this.f47653j = sparseArray;
     }
 }

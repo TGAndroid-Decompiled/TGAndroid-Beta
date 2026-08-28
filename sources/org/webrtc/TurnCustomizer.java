@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class TurnCustomizer {
     private long nativeTurnCustomizer;
 
@@ -8,9 +7,10 @@ public class TurnCustomizer {
     }
 
     private void checkTurnCustomizerExists() {
-        if (this.nativeTurnCustomizer == 0) {
-            throw new IllegalStateException("TurnCustomizer has been disposed.");
+        if (this.nativeTurnCustomizer != 0) {
+            return;
         }
+        throw new IllegalStateException("TurnCustomizer has been disposed.");
     }
 
     private static native void nativeFreeTurnCustomizer(long j10);

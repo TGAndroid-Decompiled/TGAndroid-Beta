@@ -1,4 +1,3 @@
 package v8;
-
-public @interface b {
+public final class b extends a {
 }

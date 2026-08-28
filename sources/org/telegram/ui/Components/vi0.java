@@ -1,23 +1,28 @@
 package org.telegram.ui.Components;
 
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+public final class vi0 implements Runnable {
+    public final int f33385a;
+    public final ej0 f33386b;
+    public final TLObject f33387c;
 
-public final class vi0 {
+    public vi0(ej0 ej0Var, TLObject tLObject, int i9) {
+        this.f33385a = i9;
+        this.f33386b = ej0Var;
+        this.f33387c = tLObject;
+    }
 
-    public final TLObject f33424a;
-
-    public final long f33425b;
-
-    public int f33426c;
-
-    public vi0(int i10, TLObject tLObject) {
-        this.f33424a = tLObject;
-        this.f33426c = i10;
-        if (tLObject instanceof TLRPC.User) {
-            this.f33425b = ((TLRPC.User) tLObject).f22527id;
-        } else if (tLObject instanceof TLRPC.Chat) {
-            this.f33425b = -((TLRPC.Chat) tLObject).f22380id;
+    @Override
+    public final void run() {
+        switch (this.f33385a) {
+            case 0:
+                ej0 ej0Var = this.f33386b;
+                NotificationCenter.getInstance(ej0Var.f28038b).doOnIdle(new vi0(ej0Var, this.f33387c, 1));
+                return;
+            default:
+                ej0.a(this.f33386b, this.f33387c);
+                return;
         }
     }
 }

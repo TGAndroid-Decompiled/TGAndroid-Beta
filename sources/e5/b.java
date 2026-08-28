@@ -1,52 +1,46 @@
 package e5;
 
-import d5.g0;
+import d5.f0;
 import java.util.Arrays;
-
 public final class b implements h3.g {
-
-    public static final String f5227f;
+    public static final String f4868f;
     public static final String h;
-
-    public static final String f5228n;
-
-    public static final String f5229r;
-
-    public static final a9.m f5230s;
-
-    public final int f5231a;
-
-    public final int f5232b;
-
-    public final int f5233c;
+    public static final String f4869n;
+    public static final String f4870r;
+    public static final a9.b f4871s;
+    public final int f4872a;
+    public final int f4873b;
+    public final int f4874c;
     public final byte[] d;
-
-    public int f5234e;
+    public int f4875e;
 
     static {
-        int i10 = g0.f4795a;
-        f5227f = Integer.toString(0, 36);
+        int i9 = f0.f4349a;
+        f4868f = Integer.toString(0, 36);
         h = Integer.toString(1, 36);
-        f5228n = Integer.toString(2, 36);
-        f5229r = Integer.toString(3, 36);
-        f5230s = new a9.m(27);
+        f4869n = Integer.toString(2, 36);
+        f4870r = Integer.toString(3, 36);
+        f4871s = new a9.b(21);
     }
 
-    public b(int i10, int i11, int i12, byte[] bArr) {
-        this.f5231a = i10;
-        this.f5232b = i11;
-        this.f5233c = i12;
+    public b(int i9, int i10, int i11, byte[] bArr) {
+        this.f4872a = i9;
+        this.f4873b = i10;
+        this.f4874c = i11;
         this.d = bArr;
     }
 
-    public static int a(int i10) {
-        if (i10 == 1) {
+    public static int a(int i9) {
+        if (i9 == 1) {
             return 1;
         }
-        if (i10 != 9) {
-            return (i10 == 4 || i10 == 5 || i10 == 6 || i10 == 7) ? 2 : -1;
+        if (i9 == 9) {
+            return 6;
         }
-        return 6;
+        if (i9 != 4 && i9 != 5 && i9 != 6 && i9 != 7) {
+            return -1;
+        }
+        return 2;
     }
 
     public final boolean equals(Object obj) {
@@ -55,7 +49,7 @@ public final class b implements h3.g {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f5231a == bVar.f5231a && this.f5232b == bVar.f5232b && this.f5233c == bVar.f5233c && Arrays.equals(this.d, bVar.d)) {
+            if (this.f4872a == bVar.f4872a && this.f4873b == bVar.f4873b && this.f4874c == bVar.f4874c && Arrays.equals(this.d, bVar.d)) {
                 return true;
             }
         }
@@ -63,21 +57,27 @@ public final class b implements h3.g {
     }
 
     public final int hashCode() {
-        if (this.f5234e == 0) {
-            this.f5234e = Arrays.hashCode(this.d) + ((((((527 + this.f5231a) * 31) + this.f5232b) * 31) + this.f5233c) * 31);
+        if (this.f4875e == 0) {
+            this.f4875e = Arrays.hashCode(this.d) + ((((((527 + this.f4872a) * 31) + this.f4873b) * 31) + this.f4874c) * 31);
         }
-        return this.f5234e;
+        return this.f4875e;
     }
 
     public final String toString() {
+        boolean z10;
         StringBuilder sb2 = new StringBuilder("ColorInfo(");
-        sb2.append(this.f5231a);
+        sb2.append(this.f4872a);
         sb2.append(", ");
-        sb2.append(this.f5232b);
+        sb2.append(this.f4873b);
         sb2.append(", ");
-        sb2.append(this.f5233c);
+        sb2.append(this.f4874c);
         sb2.append(", ");
-        sb2.append(this.d != null);
+        if (this.d != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        sb2.append(z10);
         sb2.append(")");
         return sb2.toString();
     }

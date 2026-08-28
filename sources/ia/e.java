@@ -1,20 +1,28 @@
 package ia;
 
-public final class e implements r9.d {
+import kotlin.jvm.internal.i;
+public final class e {
+    public final String f11077a;
 
-    public static final e f10997a = new e();
+    public e(String str) {
+        this.f11077a = str;
+    }
 
-    public static final r9.c f10998b = r9.c.c("performance");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof e) && i.a(this.f11077a, ((e) obj).f11077a)) {
+            return true;
+        }
+        return false;
+    }
 
-    public static final r9.c f10999c = r9.c.c("crashlytics");
-    public static final r9.c d = r9.c.c("sessionSamplingRate");
+    public final int hashCode() {
+        return this.f11077a.hashCode();
+    }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        j jVar = (j) obj;
-        r9.e eVar = (r9.e) obj2;
-        eVar.a(f10998b, jVar.f11027a);
-        eVar.a(f10999c, jVar.f11028b);
-        eVar.e(d, jVar.f11029c);
+    public final String toString() {
+        return "SessionDetails(sessionId=" + this.f11077a + ')';
     }
 }

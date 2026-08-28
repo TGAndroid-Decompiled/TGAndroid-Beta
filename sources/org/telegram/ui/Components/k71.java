@@ -1,144 +1,64 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextPaint;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
+public final class k71 extends View {
+    public j71 f30022a;
+    public int f30023b;
+    public final RectF f30024c;
+    public CharSequence d;
+    public nz0 f30025e;
+    public boolean f30026f;
+    public ho0 h;
+    public final y5 f30027n;
+    public final m71 f30028r;
 
-public final class k71 extends yk0 {
-
-    public final int f30033c = 0;
-    public final Context d;
-
-    public final FrameLayout f30034e;
-
-    public k71(vf.i iVar, LaunchActivity launchActivity) {
-        this.f30034e = iVar;
-        this.d = launchActivity;
+    public k71(m71 m71Var, Context context) {
+        super(context);
+        this.f30028r = m71Var;
+        this.f30024c = new RectF();
+        this.f30027n = new y5(this, 360L, gr.h);
     }
 
     @Override
-    public final boolean D(f2.o1 o1Var) {
-        switch (this.f30033c) {
-            case 0:
-                return true;
-            default:
-                return m1.j.c(3)[o1Var.f5793f] == 1;
-        }
+    public int getId() {
+        return this.f30022a.f29664a;
     }
 
     @Override
-    public final int h() {
-        switch (this.f30033c) {
-            case 0:
-                return ((o71) this.f30034e).h.size();
-            default:
-                return ((vf.i) this.f30034e).A.size();
-        }
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k71.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public long i(int i10) {
-        switch (this.f30033c) {
-            case 0:
-                return ((l71) ((o71) this.f30034e).h.get(i10)).f30318a;
-            default:
-                return super.i(i10);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i9;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        j71 j71Var = this.f30022a;
+        if (j71Var != null && (i9 = this.f30028r.C) != -1 && j71Var.f29664a == i9) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        accessibilityNodeInfo.setSelected(z10);
     }
 
     @Override
-    public final int j(int i10) {
-        switch (this.f30033c) {
-            case 0:
-                return 0;
-            default:
-                return m1.j.b(((vf.a) ((vf.i) this.f30034e).A.get(i10)).f48882b);
-        }
+    public final void onMeasure(int i9, int i10) {
+        j71 j71Var = this.f30022a;
+        m71 m71Var = this.f30028r;
+        setMeasuredDimension(AndroidUtilities.dp(m71Var.f30755r * 2) + j71Var.a(m71Var.f30740c) + m71Var.E, View.MeasureSpec.getSize(i10));
     }
 
-    @Override
-    public final void v(f2.o1 o1Var, int i10) {
-        n71 n71Var;
-        switch (this.f30033c) {
-            case 0:
-                m71 m71Var = (m71) o1Var.f5789a;
-                o71 o71Var = (o71) this.f30034e;
-                l71 l71Var = (l71) o71Var.h.get(i10);
-                m71Var.f30609a = l71Var;
-                m71Var.setContentDescription(l71Var.f30319b);
-                m71Var.setAlpha(1.0f);
-                m71Var.requestLayout();
-                m71Var.setReordering(o71Var.f31217i0 && (n71Var = o71Var.f31227y) != null && ((m5.o) n71Var).q(i10));
-                break;
-            default:
-                View view = o1Var.f5789a;
-                vf.a aVar = (vf.a) ((vf.i) this.f30034e).A.get(i10);
-                int i11 = aVar.f48882b;
-                l6 l6Var = aVar.f48885f;
-                CharSequence charSequence = aVar.f48881a;
-                int iB = m1.j.b(i11);
-                if (iB == 0) {
-                    org.telegram.ui.ActionBar.x1 x1Var = (org.telegram.ui.ActionBar.x1) view;
-                    x1Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23161j5, false));
-                    x1Var.a(0, charSequence);
-                    break;
-                } else if (iB == 1) {
-                    org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) view;
-                    j4Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.L6, false));
-                    j4Var.setText(charSequence);
-                    break;
-                } else if (iB == 2) {
-                    vf.h hVar = (vf.h) view;
-                    hVar.f48904f = charSequence.toString();
-                    hVar.d = ((Float) l6Var.get(null)).floatValue();
-                    hVar.f48901b = aVar.d;
-                    hVar.f48902c = aVar.f48884e;
-                    hVar.f48903e = l6Var;
-                    hVar.invalidate();
-                    break;
-                }
-                break;
+    public void setReordering(boolean z10) {
+        if (this.f30026f == z10) {
+            return;
         }
-    }
-
-    @Override
-    public final f2.o1 x(ViewGroup viewGroup, int i10) {
-        View j4Var;
-        switch (this.f30033c) {
-            case 0:
-                return new lk0(new m71((o71) this.f30034e, this.d));
-            default:
-                int iB = m1.j.b(m1.j.c(3)[i10]);
-                Context context = this.d;
-                if (iB == 1) {
-                    j4Var = new org.telegram.ui.Cells.j4(context);
-                } else if (iB != 2) {
-                    j4Var = new org.telegram.ui.ActionBar.x1(context, null);
-                } else {
-                    vf.h hVar = new vf.h(context);
-                    hVar.setWillNotDraw(false);
-                    TextPaint textPaint = new TextPaint(1);
-                    hVar.h = textPaint;
-                    textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                    qn0 qn0Var = new qn0(context);
-                    hVar.f48900a = qn0Var;
-                    qn0Var.setReportChanges(true);
-                    qn0Var.setDelegate(new n2.b0(hVar, 24));
-                    qn0Var.setImportantForAccessibility(2);
-                    hVar.addView(qn0Var, h7.z5.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
-                    j4Var = hVar;
-                }
-                j4Var.setLayoutParams(new f2.y0(-1, -2));
-                return new lk0(j4Var);
-        }
-    }
-
-    public k71(o71 o71Var, Context context) {
-        this.f30034e = o71Var;
-        this.d = context;
+        this.f30026f = z10;
+        invalidate();
     }
 }

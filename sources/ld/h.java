@@ -1,25 +1,11 @@
 package ld;
 
-public final class h extends tc.c {
-
-    public i f15553a;
-
-    public Object f15554b;
-
-    public Object f15555c;
-    public final i d;
-
-    public int f15556e;
-
-    public h(i iVar, tc.c cVar) {
-        super(cVar);
-        this.d = iVar;
-    }
+import zc.q;
+public final class h extends kotlin.jvm.internal.h implements q {
+    public static final h f16849a = new kotlin.jvm.internal.h(3, kd.c.class, "emit", "emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", 0);
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f15555c = obj;
-        this.f15556e |= Integer.MIN_VALUE;
-        return this.d.c(null, this);
+    public final Object a(Object obj, Object obj2, sc.c cVar) {
+        return ((kd.c) obj).c(obj2, cVar);
     }
 }

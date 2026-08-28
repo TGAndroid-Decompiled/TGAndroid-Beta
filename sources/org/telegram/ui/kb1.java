@@ -1,67 +1,105 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class kb1 extends f2.d1 {
+    public final int f39796a;
+    public final Object f39797b;
 
-public final class kb1 extends FrameLayout {
+    public kb1(Object obj, int i9) {
+        this.f39796a = i9;
+        this.f39797b = obj;
+    }
 
-    public final int f39687a;
-
-    public final RectF f39688b;
-
-    public final nc1 f39689c;
-
-    public kb1(nc1 nc1Var, Context context, int i10) {
-        super(context);
-        this.f39687a = i10;
-        switch (i10) {
+    @Override
+    public void a(RecyclerView recyclerView, int i9) {
+        switch (this.f39796a) {
+            case 0:
+                if (i9 == 0) {
+                    ((oc1) this.f39797b).f41091n0 = false;
+                    return;
+                }
+                return;
             case 1:
-                this.f39689c = nc1Var;
-                super(context);
-                this.f39688b = new RectF();
-                break;
+                if (i9 == 1) {
+                    AndroidUtilities.hideKeyboard(((kd1) this.f39797b).getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            case 2:
             default:
-                this.f39689c = nc1Var;
-                this.f39688b = new RectF();
-                break;
+                return;
+            case 3:
+                if (i9 == 1) {
+                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f39797b).f36287c);
+                    return;
+                }
+                return;
+            case 4:
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f39797b;
+                boolean z10 = true;
+                if (i9 == 1) {
+                    AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
+                }
+                if (i9 == 0) {
+                    z10 = false;
+                }
+                wallpapersListActivity.f36311f0 = z10;
+                return;
         }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f39687a) {
+    public void b(RecyclerView recyclerView, int i9, int i10) {
+        int abs;
+        switch (this.f39796a) {
             case 0:
-                float measuredWidth = getMeasuredWidth();
-                float measuredHeight = getMeasuredHeight();
-                RectF rectF = this.f39688b;
-                rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
-                nc1 nc1Var = this.f39689c;
-                kb1 kb1Var = nc1Var.f40799z0;
-                cc1 cc1Var = nc1Var.f40784t0;
-                mb1 mb1Var = nc1Var.f40735a;
-                org.telegram.ui.ActionBar.g6.s(kb1Var, cc1Var, mb1Var);
-                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, mb1Var.N("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.g6.a1()) {
-                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, mb1Var.N("paintChatActionBackgroundDarken"));
-                }
-                break;
+                oc1 oc1Var = (oc1) this.f39797b;
+                oc1Var.f41097q0.f1();
+                oc1Var.f41091n0 = true;
+                return;
+            case 1:
+            case 3:
             default:
-                float measuredWidth2 = getMeasuredWidth();
-                float measuredHeight2 = getMeasuredHeight();
-                RectF rectF2 = this.f39688b;
-                rectF2.set(0.0f, 0.0f, measuredWidth2, measuredHeight2);
-                nc1 nc1Var2 = this.f39689c;
-                kb1 kb1Var2 = nc1Var2.A0;
-                cc1 cc1Var2 = nc1Var2.f40784t0;
-                mb1 mb1Var2 = nc1Var2.f40735a;
-                org.telegram.ui.ActionBar.g6.s(kb1Var2, cc1Var2, mb1Var2);
-                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, mb1Var2.N("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.g6.a1()) {
-                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, mb1Var2.N("paintChatActionBackgroundDarken"));
+                return;
+            case 2:
+                re1 re1Var = (re1) this.f39797b;
+                if (re1Var.f42401i0 && re1Var.R.N0() + 5 >= re1Var.f42399g0) {
+                    re1Var.J(re1Var.U);
                 }
-                break;
+                we1 we1Var = re1Var.f42407p0;
+                if (we1Var.f43769o0) {
+                    if (i9 != 0 || i10 != 0) {
+                        AndroidUtilities.hideKeyboard(we1Var.f43766l0.getSearchField());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f39797b;
+                if (wallpapersListActivity.D.getAdapter() == wallpapersListActivity.F) {
+                    int L0 = wallpapersListActivity.G.L0();
+                    if (L0 == -1) {
+                        abs = 0;
+                    } else {
+                        abs = Math.abs(wallpapersListActivity.G.N0() - L0) + 1;
+                    }
+                    if (abs > 0) {
+                        int B = wallpapersListActivity.G.B();
+                        if (abs != 0 && L0 + abs > B - 2) {
+                            bi1 bi1Var = wallpapersListActivity.F;
+                            if (!bi1Var.f36869f && bi1Var.f36872s == 0) {
+                                bi1Var.F(bi1Var.h, bi1Var.f36871r, true);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

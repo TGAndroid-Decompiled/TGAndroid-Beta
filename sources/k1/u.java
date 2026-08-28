@@ -1,23 +1,19 @@
 package k1;
-
-public final class u extends tc.c {
-
-    public z f14308a;
-
-    public Object f14309b;
-
-    public final z f14310c;
+public final class u extends sc.c {
+    public z f14487a;
+    public Object f14488b;
+    public final z f14489c;
     public int d;
 
-    public u(z zVar, tc.c cVar) {
+    public u(z zVar, sc.c cVar) {
         super(cVar);
-        this.f14310c = zVar;
+        this.f14489c = zVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f14309b = obj;
+        this.f14488b = obj;
         this.d |= Integer.MIN_VALUE;
-        return this.f14310c.f(this);
+        return this.f14489c.f(this);
     }
 }

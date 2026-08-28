@@ -1,24 +1,15 @@
 package h3;
-
-import android.os.SystemClock;
-import android.text.TextUtils;
-
 public final class n extends v1 {
-
-    public final int f8028c;
+    public final int f9598c;
     public final String d;
-
-    public final int f8029e;
-
-    public final t0 f8030f;
+    public final int f9599e;
+    public final t0 f9600f;
     public final int h;
-
-    public final j4.a0 f8031n;
-
-    public final boolean f8032r;
+    public final j4.b0 f9601n;
+    public final boolean f9602r;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         Integer.toString(1001, 36);
         Integer.toString(1002, 36);
         Integer.toString(1003, 36);
@@ -27,77 +18,31 @@ public final class n extends v1 {
         Integer.toString(1006, 36);
     }
 
-    public n(int i10, Exception exc, int i11) {
-        this(i10, exc, i11, null, -1, null, 4, false);
+    public n(int i9, Exception exc, int i10) {
+        this(i9, exc, i10, null, -1, null, 4, false);
     }
 
-    public final n a(j4.a0 a0Var) {
+    public final n a(j4.b0 b0Var) {
         String message = getMessage();
-        int i10 = d5.g0.f4795a;
-        return new n(message, getCause(), this.f8216a, this.f8028c, this.d, this.f8029e, this.f8030f, this.h, a0Var, this.f8217b, this.f8032r);
+        int i9 = d5.f0.f4349a;
+        return new n(message, getCause(), this.f9785a, this.f9598c, this.d, this.f9599e, this.f9600f, this.h, b0Var, this.f9786b, this.f9602r);
     }
 
-    public n(String str, Throwable th, int i10, int i11, String str2, int i12, t0 t0Var, int i13, j4.a0 a0Var, long j10, boolean z10) {
-        super(str, th, i10, j10);
-        d5.a.f(!z10 || i11 == 1);
-        d5.a.f(th != null || i11 == 3);
-        this.f8028c = i11;
+    public n(String str, Throwable th, int i9, int i10, String str2, int i11, t0 t0Var, int i12, j4.b0 b0Var, long j10, boolean z10) {
+        super(str, th, i9, j10);
+        boolean z11 = false;
+        d5.a.f(!z10 || i10 == 1);
+        d5.a.f((th != null || i10 == 3) ? true : true);
+        this.f9598c = i10;
         this.d = str2;
-        this.f8029e = i12;
-        this.f8030f = t0Var;
-        this.h = i13;
-        this.f8031n = a0Var;
-        this.f8032r = z10;
+        this.f9599e = i11;
+        this.f9600f = t0Var;
+        this.h = i12;
+        this.f9601n = b0Var;
+        this.f9602r = z10;
     }
 
-    public n(int i10, Throwable th, int i11, String str, int i12, t0 t0Var, int i13, boolean z10) {
-        String str2;
-        int i14;
-        t0 t0Var2;
-        String string;
-        String str3;
-        if (i10 == 0) {
-            str2 = str;
-            i14 = i12;
-            t0Var2 = t0Var;
-            string = "Source error";
-        } else if (i10 != 1) {
-            if (i10 != 3) {
-                string = "Unexpected runtime error";
-            } else {
-                string = "Remote error";
-            }
-            str2 = str;
-            i14 = i12;
-            t0Var2 = t0Var;
-        } else {
-            StringBuilder sb2 = new StringBuilder();
-            str2 = str;
-            sb2.append(str2);
-            sb2.append(" error, index=");
-            i14 = i12;
-            sb2.append(i14);
-            sb2.append(", format=");
-            t0Var2 = t0Var;
-            sb2.append(t0Var2);
-            sb2.append(", format_supported=");
-            int i15 = d5.g0.f4795a;
-            if (i13 == 0) {
-                str3 = "NO";
-            } else if (i13 == 1) {
-                str3 = "NO_UNSUPPORTED_TYPE";
-            } else if (i13 == 2) {
-                str3 = "NO_UNSUPPORTED_DRM";
-            } else if (i13 == 3) {
-                str3 = "NO_EXCEEDS_CAPABILITIES";
-            } else if (i13 == 4) {
-                str3 = "YES";
-            } else {
-                throw new IllegalStateException();
-            }
-            sb2.append(str3);
-            string = sb2.toString();
-        }
-        this(TextUtils.isEmpty(null) ? string : s3.c.l(string, ": null"), th, i11, i10, str2, i14, t0Var2, i13, null, SystemClock.elapsedRealtime(), z10);
+    public n(int r14, java.lang.Throwable r15, int r16, java.lang.String r17, int r18, h3.t0 r19, int r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: h3.n.<init>(int, java.lang.Throwable, int, java.lang.String, int, h3.t0, int, boolean):void");
     }
 }

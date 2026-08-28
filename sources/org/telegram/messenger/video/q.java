@@ -1,25 +1,26 @@
 package org.telegram.messenger.video;
 
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 public final class q implements Runnable {
+    public final int f21831a;
+    public final long f21832b;
+    public final Object f21833c;
 
-    public final int f21870a;
-
-    public final VideoPlayerRewinder f21871b;
-
-    public q(VideoPlayerRewinder videoPlayerRewinder, int i10) {
-        this.f21870a = i10;
-        this.f21871b = videoPlayerRewinder;
+    public q(Object obj, long j10, int i9) {
+        this.f21831a = i9;
+        this.f21833c = obj;
+        this.f21832b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21870a) {
+        switch (this.f21831a) {
             case 0:
-                this.f21871b.lambda$updateRewindSpeed$0();
-                break;
+                ((VideoPlayerHolderBase.AnonymousClass2) this.f21833c).lambda$onError$0(this.f21832b);
+                return;
             default:
-                this.f21871b.lambda$cancelRewind$1();
-                break;
+                ((VideoPlayerHolderBase) this.f21833c).lambda$seekTo$11(this.f21832b);
+                return;
         }
     }
 }

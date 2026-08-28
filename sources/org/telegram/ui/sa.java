@@ -1,37 +1,34 @@
 package org.telegram.ui;
+public final class sa implements Runnable {
+    public final int f42642a;
+    public final pb f42643b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-
-public final class sa implements kg.a {
-
-    public final int f42561a;
-
-    public final Object f42562b;
-
-    public sa(Object obj, int i10) {
-        this.f42561a = i10;
-        this.f42562b = obj;
+    public sa(pb pbVar, int i9) {
+        this.f42642a = i9;
+        this.f42643b = pbVar;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        switch (this.f42561a) {
+    public final void run() {
+        switch (this.f42642a) {
             case 0:
-                ((nb) this.f42562b).Z(canvas, rectF);
-                break;
+                pb pbVar = this.f42643b;
+                pbVar.G0 = Integer.MAX_VALUE;
+                pbVar.H0 = -1;
+                pbVar.e1();
+                pbVar.I0 = null;
+                return;
+            case 1:
+                pb pbVar2 = this.f42643b;
+                pbVar2.X0(false);
+                pbVar2.E.l();
+                return;
+            case 2:
+                this.f42643b.W0();
+                return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f42562b;
-                org.telegram.ui.Components.zk0 zk0Var = premiumPreviewFragment.f35842a;
-                pg.c.b(zk0Var, canvas, rectF, zk0Var, premiumPreviewFragment.Z);
-                break;
+                this.f42643b.U0(2);
+                return;
         }
-    }
-
-    @Override
-    public final void g(g.y yVar, RectF rectF) {
-        switch (this.f42561a) {
-        }
-        yVar.f6327b = true;
     }
 }

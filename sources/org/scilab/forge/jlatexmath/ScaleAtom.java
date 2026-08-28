@@ -1,15 +1,14 @@
 package org.scilab.forge.jlatexmath;
-
 public class ScaleAtom extends Atom {
     protected Atom base;
     private double xscl;
     private double yscl;
 
-    public ScaleAtom(Atom atom, double d, double d10) {
+    public ScaleAtom(Atom atom, double d, double d9) {
         this.type = atom.type;
         this.base = atom;
         this.xscl = d;
-        this.yscl = d10;
+        this.yscl = d9;
     }
 
     @Override

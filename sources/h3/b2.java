@@ -1,27 +1,19 @@
 package h3;
 
 import java.util.Arrays;
-
 public final class b2 implements g {
-
-    public final Object f7786a;
-
-    public final int f7787b;
-
-    public final f1 f7788c;
+    public final Object f9351a;
+    public final int f9352b;
+    public final f1 f9353c;
     public final Object d;
-
-    public final int f7789e;
-
-    public final long f7790f;
+    public final int f9354e;
+    public final long f9355f;
     public final long h;
-
-    public final int f7791n;
-
-    public final int f7792r;
+    public final int f9356n;
+    public final int f9357r;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
         Integer.toString(2, 36);
@@ -31,16 +23,16 @@ public final class b2 implements g {
         Integer.toString(6, 36);
     }
 
-    public b2(Object obj, int i10, f1 f1Var, Object obj2, int i11, long j10, long j11, int i12, int i13) {
-        this.f7786a = obj;
-        this.f7787b = i10;
-        this.f7788c = f1Var;
+    public b2(Object obj, int i9, f1 f1Var, Object obj2, int i10, long j10, long j11, int i11, int i12) {
+        this.f9351a = obj;
+        this.f9352b = i9;
+        this.f9353c = f1Var;
         this.d = obj2;
-        this.f7789e = i11;
-        this.f7790f = j10;
+        this.f9354e = i10;
+        this.f9355f = j10;
         this.h = j11;
-        this.f7791n = i12;
-        this.f7792r = i13;
+        this.f9356n = i11;
+        this.f9357r = i12;
     }
 
     public final boolean equals(Object obj) {
@@ -49,7 +41,7 @@ public final class b2 implements g {
         }
         if (obj != null && b2.class == obj.getClass()) {
             b2 b2Var = (b2) obj;
-            if (this.f7787b == b2Var.f7787b && this.f7789e == b2Var.f7789e && this.f7790f == b2Var.f7790f && this.h == b2Var.h && this.f7791n == b2Var.f7791n && this.f7792r == b2Var.f7792r && h7.e0.a(this.f7786a, b2Var.f7786a) && h7.e0.a(this.d, b2Var.d) && h7.e0.a(this.f7788c, b2Var.f7788c)) {
+            if (this.f9352b == b2Var.f9352b && this.f9354e == b2Var.f9354e && this.f9355f == b2Var.f9355f && this.h == b2Var.h && this.f9356n == b2Var.f9356n && this.f9357r == b2Var.f9357r && g7.c0.a(this.f9351a, b2Var.f9351a) && g7.c0.a(this.d, b2Var.d) && g7.c0.a(this.f9353c, b2Var.f9353c)) {
                 return true;
             }
         }
@@ -57,6 +49,6 @@ public final class b2 implements g {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f7786a, Integer.valueOf(this.f7787b), this.f7788c, this.d, Integer.valueOf(this.f7789e), Long.valueOf(this.f7790f), Long.valueOf(this.h), Integer.valueOf(this.f7791n), Integer.valueOf(this.f7792r)});
+        return Arrays.hashCode(new Object[]{this.f9351a, Integer.valueOf(this.f9352b), this.f9353c, this.d, Integer.valueOf(this.f9354e), Long.valueOf(this.f9355f), Long.valueOf(this.h), Integer.valueOf(this.f9356n), Integer.valueOf(this.f9357r)});
     }
 }

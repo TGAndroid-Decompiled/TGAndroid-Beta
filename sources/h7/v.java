@@ -1,4 +1,7 @@
 package h7;
 
-public abstract class v {
+import java.util.Collection;
+import java.util.Set;
+public interface v extends Collection {
+    Set zza();
 }

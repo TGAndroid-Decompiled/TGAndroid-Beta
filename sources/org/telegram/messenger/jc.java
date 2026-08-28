@@ -1,25 +1,33 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.TLObject;
 public final class jc implements Runnable {
+    public final int f20690a = 1;
+    public final MessagesController f20691b;
+    public final long f20692c;
+    public final TLObject d;
 
-    public final int f20669a;
-
-    public final boolean[] f20670b;
-
-    public jc(int i10, boolean[] zArr) {
-        this.f20669a = i10;
-        this.f20670b = zArr;
+    public jc(MessagesController messagesController, long j10, TLObject tLObject) {
+        this.f20691b = messagesController;
+        this.f20692c = j10;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f20669a) {
+        switch (this.f20690a) {
             case 0:
-                MessagesController.lambda$openByUserName$456(this.f20670b);
-                break;
+                this.f20691b.lambda$deleteUserPhoto$114(this.d, this.f20692c);
+                return;
             default:
-                MessagesController.lambda$openApp$497(this.f20670b);
-                break;
+                this.f20691b.lambda$loadPeerSettings$79(this.f20692c, this.d);
+                return;
         }
+    }
+
+    public jc(MessagesController messagesController, TLObject tLObject, long j10) {
+        this.f20691b = messagesController;
+        this.d = tLObject;
+        this.f20692c = j10;
     }
 }

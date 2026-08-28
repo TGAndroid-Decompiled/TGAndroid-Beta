@@ -24,14 +24,13 @@ import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-
 public class FileLog {
     private static volatile FileLog Instance = null;
     public static boolean databaseIsMalformed = false;
     private static long dumpedHeap = 0;
     private static HashSet<String> excludeRequests = null;
-    private static ma.a exclusionStrategy = null;
-    private static ma.g gson = null;
+    private static la.a exclusionStrategy = null;
+    private static la.g gson = null;
     private static boolean gsonDisabled = false;
     private static final String mtproto_tag = "MTProto";
     private static HashSet<String> privateFields = null;
@@ -48,30 +47,31 @@ public class FileLog {
     private OutputStreamWriter tlStreamWriter = null;
     private File tlRequestsFile = null;
 
-    public static class ByteArrayHexAdapter extends ma.u {
+    public static class ByteArrayHexAdapter extends la.u {
         @Override
-        public byte[] read(ua.a aVar) {
-            String strV = aVar.v();
-            int length = strV.length();
+        public byte[] read(ta.a aVar) {
+            String v = aVar.v();
+            int length = v.length();
             byte[] bArr = new byte[length / 2];
-            for (int i10 = 0; i10 < length; i10 += 2) {
-                bArr[i10 / 2] = (byte) (Character.digit(strV.charAt(i10 + 1), 16) + (Character.digit(strV.charAt(i10), 16) << 4));
+            for (int i9 = 0; i9 < length; i9 += 2) {
+                bArr[i9 / 2] = (byte) (Character.digit(v.charAt(i9 + 1), 16) + (Character.digit(v.charAt(i9), 16) << 4));
             }
             return bArr;
         }
 
         @Override
-        public void write(ua.b bVar, byte[] bArr) {
+        public void write(ta.c cVar, byte[] bArr) {
             if (bArr == null) {
-                bVar.i();
+                cVar.i();
                 return;
             }
             StringBuilder sb2 = new StringBuilder((bArr.length * 2) + 2);
             sb2.append("0x");
-            for (byte b10 : bArr) {
-                sb2.append(String.format("%02x", Integer.valueOf(b10 & 255)));
+            int length = bArr.length;
+            for (int i9 = 0; i9 < length; i9++) {
+                sb2.append(String.format("%02x", Integer.valueOf(bArr[i9] & 255)));
             }
-            bVar.r(sb2.toString());
+            cVar.r(sb2.toString());
         }
     }
 
@@ -81,18 +81,19 @@ public class FileLog {
         }
     }
 
-    public static class TLObjectDeserializer implements ma.o {
+    public static class TLObjectDeserializer implements la.o {
         private TLObjectDeserializer() {
         }
 
         @Override
-        public ma.i serialize(TLObject tLObject, Type type, ma.n nVar) {
-            ma.l lVar = new ma.l();
+        public la.i serialize(TLObject tLObject, Type type, la.n nVar) {
+            Field[] fields;
+            la.l lVar = new la.l();
             String name = tLObject.getClass().getName();
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? ma.k.f17910a : new ma.m(name));
+            lVar.o("_", name == null ? la.k.f16726a : new la.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -101,19 +102,23 @@ public class FileLog {
                             Object obj = field.get(tLObject);
                             if (obj != null) {
                                 Class<?> cls = obj.getClass();
-                                if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.x5.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
-                                    lVar.o(field.getName(), ((m5.o) nVar).z(obj));
+                                if (!cls.isInstance(DispatchQueue.class)) {
+                                    if (!cls.isInstance(org.telegram.ui.Components.x5.class)) {
+                                        if (!cls.isInstance(ColorStateList.class)) {
+                                            if (cls.isInstance(Context.class)) {
+                                            }
+                                        }
+                                    }
                                 }
-                            } else {
-                                lVar.o(field.getName(), ((m5.o) nVar).z(obj));
                             }
-                        } catch (IllegalAccessException e9) {
-                            e9.printStackTrace();
+                            lVar.o(field.getName(), ((n5.a0) nVar).j(obj));
+                        } catch (IllegalAccessException e10) {
+                            e10.printStackTrace();
                         }
                     }
                 }
-            } catch (Exception e10) {
-                e10.printStackTrace();
+            } catch (Exception e11) {
+                e11.printStackTrace();
             }
             return lVar;
         }
@@ -123,6 +128,7 @@ public class FileLog {
     }
 
     private static void checkGson() {
+        boolean z10;
         if (gson == null) {
             HashSet<String> hashSet = new HashSet<>();
             privateFields = hashSet;
@@ -142,85 +148,97 @@ public class FileLog {
             privateFields.add("constructorName");
             privateFields.add("parentRichText");
             privateFields.add("parentBlock");
-            for (int i10 = 0; i10 < 32; i10++) {
-                privateFields.add("FLAG_" + i10);
+            for (int i9 = 0; i9 < 32; i9++) {
+                HashSet<String> hashSet2 = privateFields;
+                hashSet2.add("FLAG_" + i9);
             }
-            HashSet<String> hashSet2 = new HashSet<>();
-            excludeRequests = hashSet2;
-            hashSet2.add("TL_upload_getFile");
+            HashSet<String> hashSet3 = new HashSet<>();
+            excludeRequests = hashSet3;
+            hashSet3.add("TL_upload_getFile");
             excludeRequests.add("TL_upload_getWebFile");
-            exclusionStrategy = new ma.a() {
+            exclusionStrategy = new la.a() {
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    return cls.isInstance(DispatchQueue.class) || cls.isInstance(org.telegram.ui.Components.x5.class) || cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
+                    if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.x5.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
+                        return false;
+                    }
+                    return true;
                 }
 
                 @Override
-                public boolean shouldSkipField(ma.b bVar) {
-                    HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f17893a;
-                    Field field2 = bVar.f17893a;
-                    if (hashSet3.contains(field.getName())) {
+                public boolean shouldSkipField(la.b bVar) {
+                    HashSet hashSet4 = FileLog.privateFields;
+                    Field field = bVar.f16709a;
+                    Field field2 = bVar.f16709a;
+                    if (!hashSet4.contains(field.getName())) {
+                        if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
+                            return false;
+                        }
                         return true;
                     }
-                    return "message".equalsIgnoreCase(field2.getName()) && String.class.equals(field2.getGenericType());
+                    return true;
                 }
             };
-            oa.f fVar = oa.f.f19384c;
-            HashMap map = new HashMap();
+            na.g gVar = na.g.f18535c;
+            HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            ma.c cVar = ma.g.h;
-            ma.p pVar = ma.g.f17901i;
-            ma.q qVar = ma.g.f17902j;
+            la.c cVar = la.g.h;
+            la.p pVar = la.g.f16717i;
+            la.q qVar = la.g.f16718j;
             ArrayDeque arrayDeque = new ArrayDeque();
-            ma.a aVar = exclusionStrategy;
+            la.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
-            oa.f fVarA = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f19385a);
-            fVarA.f19385a = arrayList3;
+            na.g clone = gVar.clone();
+            ArrayList arrayList3 = new ArrayList(gVar.f18536a);
+            clone.f18536a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
-            boolean z10 = byteArrayHexAdapter instanceof ma.o;
-            if (ma.i.class.isAssignableFrom(byte[].class)) {
-                throw new IllegalArgumentException("Cannot override built-in adapter for " + byte[].class);
-            }
-            if (z10) {
-                ta.a aVar2 = new ta.a(byte[].class);
-                arrayList.add(new pa.z(byteArrayHexAdapter, aVar2, aVar2.f48152b == aVar2.f48151a, null));
-            }
-            ta.a aVar3 = new ta.a(byte[].class);
-            pa.x0 x0Var = pa.h1.f45624a;
-            arrayList.add(new pa.x0(aVar3, byteArrayHexAdapter, 2));
-            RuntimeClassNameTypeAdapterFactory runtimeClassNameTypeAdapterFactoryOf = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
-            Objects.requireNonNull(runtimeClassNameTypeAdapterFactoryOf);
-            arrayList.add(runtimeClassNameTypeAdapterFactoryOf);
-            TLObjectDeserializer tLObjectDeserializer = new TLObjectDeserializer();
-            if (ma.i.class.isAssignableFrom(TLObject.class)) {
+            boolean z11 = byteArrayHexAdapter instanceof la.o;
+            if (!la.i.class.isAssignableFrom(byte[].class)) {
+                if (z11) {
+                    sa.a aVar2 = new sa.a(byte[].class);
+                    if (aVar2.f47503b == aVar2.f47502a) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    arrayList.add(new oa.z(byteArrayHexAdapter, aVar2, z10, null));
+                }
+                sa.a aVar3 = new sa.a(byte[].class);
+                oa.x0 x0Var = oa.h1.f19125a;
+                arrayList.add(new oa.x0(aVar3, byteArrayHexAdapter, 2));
+                RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
+                Objects.requireNonNull(of2);
+                arrayList.add(of2);
+                TLObjectDeserializer tLObjectDeserializer = new TLObjectDeserializer();
+                if (!la.i.class.isAssignableFrom(TLObject.class)) {
+                    arrayList2.add(new oa.z(tLObjectDeserializer, null, false, TLObject.class));
+                    ArrayList arrayList4 = new ArrayList(arrayList2.size() + arrayList.size() + 3);
+                    arrayList4.addAll(arrayList);
+                    Collections.reverse(arrayList4);
+                    ArrayList arrayList5 = new ArrayList(arrayList2);
+                    Collections.reverse(arrayList5);
+                    arrayList4.addAll(arrayList5);
+                    boolean z12 = ra.f.f47105a;
+                    gson = new la.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
+                    return;
+                }
                 throw new IllegalArgumentException("Cannot override built-in adapter for " + TLObject.class);
             }
-            arrayList2.add(new pa.z(tLObjectDeserializer, null, false, TLObject.class));
-            ArrayList arrayList4 = new ArrayList(arrayList2.size() + arrayList.size() + 3);
-            arrayList4.addAll(arrayList);
-            Collections.reverse(arrayList4);
-            ArrayList arrayList5 = new ArrayList(arrayList2);
-            Collections.reverse(arrayList5);
-            arrayList4.addAll(arrayList5);
-            boolean z11 = sa.f.f47825a;
-            gson = new ma.g(fVarA, new HashMap(map), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
+            throw new IllegalArgumentException("Cannot override built-in adapter for " + byte[].class);
         }
     }
 
     public static void cleanupLogs() {
-        File[] fileArrListFiles;
+        File[] listFiles;
         ensureInitied();
         File logsDir = AndroidUtilities.getLogsDir();
-        if (logsDir == null || (fileArrListFiles = logsDir.listFiles()) == null) {
-            return;
-        }
-        for (File file : fileArrListFiles) {
-            if ((getInstance().currentFile == null || !file.getAbsolutePath().equals(getInstance().currentFile.getAbsolutePath())) && ((getInstance().networkFile == null || !file.getAbsolutePath().equals(getInstance().networkFile.getAbsolutePath())) && (getInstance().tonlibFile == null || !file.getAbsolutePath().equals(getInstance().tonlibFile.getAbsolutePath())))) {
-                file.delete();
+        if (logsDir != null && (listFiles = logsDir.listFiles()) != null) {
+            for (File file : listFiles) {
+                if ((getInstance().currentFile == null || !file.getAbsolutePath().equals(getInstance().currentFile.getAbsolutePath())) && ((getInstance().networkFile == null || !file.getAbsolutePath().equals(getInstance().networkFile.getAbsolutePath())) && (getInstance().tonlibFile == null || !file.getAbsolutePath().equals(getInstance().tonlibFile.getAbsolutePath())))) {
+                    file.delete();
+                }
             }
         }
     }
@@ -233,56 +251,55 @@ public class FileLog {
         StringBuilder sb2 = new StringBuilder();
         Iterator<Map.Entry<Thread, StackTraceElement[]>> it = Thread.getAllStackTraces().entrySet().iterator();
         while (true) {
-            if (!it.hasNext()) {
+            if (it.hasNext()) {
+                Map.Entry<Thread, StackTraceElement[]> next = it.next();
+                StackTraceElement[] value = next.getValue();
+                sb2.append("Thread: ");
+                sb2.append(next.getKey().getName());
+                sb2.append("\n");
+                for (StackTraceElement stackTraceElement : value) {
+                    sb2.append("\tat ");
+                    sb2.append(stackTraceElement);
+                    sb2.append("\n");
+                }
+                sb2.append("\n\n");
+            } else {
                 e("ANR thread dump\n" + sb2.toString());
                 getInstance().dumpMemory(false);
                 return;
             }
-            Map.Entry<Thread, StackTraceElement[]> next = it.next();
-            Thread key = next.getKey();
-            StackTraceElement[] value = next.getValue();
-            sb2.append("Thread: ");
-            sb2.append(key.getName());
-            sb2.append("\n");
-            for (StackTraceElement stackTraceElement : value) {
-                sb2.append("\tat ");
-                sb2.append(stackTraceElement);
-                sb2.append("\n");
-            }
-            sb2.append("\n\n");
         }
     }
 
-    public static void dumpResponseAndRequest(final int i10, TLObject tLObject, TLObject tLObject2, final TLRPC.TL_error tL_error, final long j10, final long j11, final int i11) {
+    public static void dumpResponseAndRequest(final int i9, TLObject tLObject, TLObject tLObject2, final TLRPC.TL_error tL_error, final long j10, final long j11, final int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             String simpleName = tLObject.getClass().getSimpleName();
             checkGson();
-            if (excludeRequests.contains(simpleName) && tL_error == null) {
-                return;
-            }
-            try {
-                final String str = "req -> " + simpleName + " : " + gson.e(tLObject);
-                String str2 = "null";
-                if (tLObject2 != null) {
-                    str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.e(tLObject2);
-                } else if (tL_error != null) {
-                    str2 = "err -> " + tL_error.getClass().getSimpleName() + " : " + gson.e(tL_error);
-                }
-                final String str3 = str2;
-                final long jCurrentTimeMillis = System.currentTimeMillis();
-                getInstance().logQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        FileLog.lambda$dumpResponseAndRequest$0(j10, j11, i11, i10, jCurrentTimeMillis, str, str3, tL_error);
+            if (!excludeRequests.contains(simpleName) || tL_error != null) {
+                try {
+                    final String str = "req -> " + simpleName + " : " + gson.e(tLObject);
+                    String str2 = "null";
+                    if (tLObject2 != null) {
+                        str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.e(tLObject2);
+                    } else if (tL_error != null) {
+                        str2 = "err -> " + tL_error.getClass().getSimpleName() + " : " + gson.e(tL_error);
                     }
-                });
-            } catch (Throwable th) {
-                e(th, BuildVars.DEBUG_PRIVATE_VERSION);
+                    final String str3 = str2;
+                    final long currentTimeMillis = System.currentTimeMillis();
+                    getInstance().logQueue.postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            FileLog.lambda$dumpResponseAndRequest$0(j10, j11, i10, i9, currentTimeMillis, str, str3, tL_error);
+                        }
+                    });
+                } catch (Throwable th) {
+                    e(th, BuildVars.DEBUG_PRIVATE_VERSION);
+                }
             }
         }
     }
 
-    public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
+    public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i9) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             try {
                 checkGson();
@@ -291,7 +308,7 @@ public class FileLog {
                 sb2.append(tLObject.getClass().getSimpleName());
                 sb2.append(" : ");
                 sb2.append(gsonDisabled ? tLObject : gson.e(tLObject));
-                getInstance().logQueue.postRunnable(new x4(System.currentTimeMillis(), j10, i10, sb2.toString()));
+                getInstance().logQueue.postRunnable(new v4(System.currentTimeMillis(), j10, i9, sb2.toString()));
             } catch (Throwable unused) {
             }
         }
@@ -302,7 +319,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str, th);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new d2(7, str, th));
+                getInstance().logQueue.postRunnable(new c2(7, str, th));
             }
         }
     }
@@ -318,24 +335,24 @@ public class FileLog {
     public static FileLog getInstance() {
         FileLog fileLog;
         FileLog fileLog2 = Instance;
-        if (fileLog2 != null) {
-            return fileLog2;
-        }
-        synchronized (FileLog.class) {
-            try {
-                fileLog = Instance;
-                if (fileLog == null) {
-                    fileLog = new FileLog();
-                    Instance = fileLog;
-                    if (BuildVars.LOGS_ENABLED) {
-                        fileLog.init();
+        if (fileLog2 == null) {
+            synchronized (FileLog.class) {
+                try {
+                    fileLog = Instance;
+                    if (fileLog == null) {
+                        fileLog = new FileLog();
+                        Instance = fileLog;
+                        if (BuildVars.LOGS_ENABLED) {
+                            fileLog.init();
+                        }
                     }
+                } catch (Throwable th) {
+                    throw th;
                 }
-            } catch (Throwable th) {
-                throw th;
             }
+            return fileLog;
         }
-        return fileLog;
+        return fileLog2;
     }
 
     public static String getNetworkLogPath() {
@@ -347,7 +364,8 @@ public class FileLog {
             if (logsDir == null) {
                 return "";
             }
-            getInstance().networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
+            FileLog fileLog = getInstance();
+            fileLog.networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
             return getInstance().networkFile.getAbsolutePath();
         } catch (Throwable th) {
             th.printStackTrace();
@@ -364,7 +382,8 @@ public class FileLog {
             if (logsDir == null) {
                 return "";
             }
-            getInstance().tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
+            FileLog fileLog = getInstance();
+            fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
             return getInstance().tonlibFile.getAbsolutePath();
         } catch (Throwable th) {
             th.printStackTrace();
@@ -373,57 +392,58 @@ public class FileLog {
     }
 
     private void init() {
-        if (this.initied) {
-            return;
-        }
-        this.initiing = true;
-        Locale locale = Locale.US;
-        this.dateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
-        FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", locale);
-        this.fileDateFormat = fastDateFormat;
-        String str = fastDateFormat.format(System.currentTimeMillis());
-        try {
-            File logsDir = AndroidUtilities.getLogsDir();
+        File logsDir;
+        if (!this.initied) {
+            this.initiing = true;
+            Locale locale = Locale.US;
+            this.dateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
+            FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", locale);
+            this.fileDateFormat = fastDateFormat;
+            String format = fastDateFormat.format(System.currentTimeMillis());
+            try {
+                logsDir = AndroidUtilities.getLogsDir();
+            } catch (Exception e10) {
+                e10.printStackTrace();
+            }
             if (logsDir == null) {
                 return;
             }
-            this.currentFile = new File(logsDir, str + ".txt");
-            this.tlRequestsFile = new File(logsDir, str + "_mtproto.txt");
-        } catch (Exception e9) {
-            e9.printStackTrace();
+            this.currentFile = new File(logsDir, format + ".txt");
+            this.tlRequestsFile = new File(logsDir, format + "_mtproto.txt");
+            try {
+                this.logQueue = new DispatchQueue("logQueue");
+                this.currentFile.createNewFile();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(this.currentFile));
+                this.streamWriter = outputStreamWriter;
+                outputStreamWriter.write("-----start log " + format + "-----\n");
+                this.streamWriter.flush();
+                OutputStreamWriter outputStreamWriter2 = new OutputStreamWriter(new FileOutputStream(this.tlRequestsFile));
+                this.tlStreamWriter = outputStreamWriter2;
+                outputStreamWriter2.write("-----start log " + format + "-----\n");
+                this.tlStreamWriter.flush();
+            } catch (Exception e11) {
+                e11.printStackTrace();
+            }
+            this.initied = true;
         }
-        try {
-            this.logQueue = new DispatchQueue("logQueue");
-            this.currentFile.createNewFile();
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(this.currentFile));
-            this.streamWriter = outputStreamWriter;
-            outputStreamWriter.write("-----start log " + str + "-----\n");
-            this.streamWriter.flush();
-            OutputStreamWriter outputStreamWriter2 = new OutputStreamWriter(new FileOutputStream(this.tlRequestsFile));
-            this.tlStreamWriter = outputStreamWriter2;
-            outputStreamWriter2.write("-----start log " + str + "-----\n");
-            this.tlStreamWriter.flush();
-        } catch (Exception e10) {
-            e10.printStackTrace();
-        }
-        this.initied = true;
     }
 
     public static void lambda$d$6(String str) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
-            if (AndroidUtilities.isENOSPC(e9)) {
+        } catch (Exception e10) {
+            e10.printStackTrace();
+            if (AndroidUtilities.isENOSPC(e10)) {
                 LaunchActivity.E(1);
             }
         }
     }
 
-    public static void lambda$dumpResponseAndRequest$0(long j10, long j11, int i10, int i11, long j12, String str, String str2, TLRPC.TL_error tL_error) {
+    public static void lambda$dumpResponseAndRequest$0(long j10, long j11, int i9, int i10, long j12, String str, String str2, TLRPC.TL_error tL_error) {
         try {
-            String str3 = "requestMsgId=" + j10 + " requestingTime=" + (System.currentTimeMillis() - j11) + " request_token=" + i10 + " account=" + i11;
+            String str3 = "requestMsgId=" + j10 + " requestingTime=" + (System.currentTimeMillis() - j11) + " request_token=" + i9 + " account=" + i10;
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j12) + " " + str3);
             getInstance().tlStreamWriter.write("\n");
             getInstance().tlStreamWriter.write(str);
@@ -442,84 +462,99 @@ public class FileLog {
             Log.d("MTProto", str);
             Log.d("MTProto", str2);
             Log.d("MTProto", " ");
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
-    public static void lambda$dumpUnparsedMessage$1(long j10, long j11, int i10, String str) {
+    public static void lambda$dumpUnparsedMessage$1(long j10, long j11, int i9, String str) {
         try {
-            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j10) + " msgId=" + j11 + " account=" + i10);
+            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j10) + " msgId=" + j11 + " account=" + i9);
             getInstance().tlStreamWriter.write("\n");
             getInstance().tlStreamWriter.write(str);
             getInstance().tlStreamWriter.write("\n\n");
             getInstance().tlStreamWriter.flush();
-            Log.d("MTProto", "msgId=" + j11 + " account=" + i10);
+            Log.d("MTProto", "msgId=" + j11 + " account=" + i9);
             Log.d("MTProto", str);
             Log.d("MTProto", " ");
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
     public static void lambda$e$2(String str, Throwable th) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.write(th.toString());
             StackTraceElement[] stackTrace = th.getStackTrace();
-            for (StackTraceElement stackTraceElement : stackTrace) {
-                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement + "\n");
+            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+                OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i9] + "\n");
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
     public static void lambda$e$3(String str) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
     public static void lambda$e$4(Throwable th) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
-            for (StackTraceElement stackTraceElement : th.getStackTrace()) {
-                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
+            StackTraceElement[] stackTrace = th.getStackTrace();
+            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+                OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i9] + "\n");
             }
             Throwable cause = th.getCause();
             if (cause != null) {
-                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
-                for (StackTraceElement stackTraceElement2 : cause.getStackTrace()) {
-                    getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement2 + "\n");
+                OutputStreamWriter outputStreamWriter3 = getInstance().streamWriter;
+                outputStreamWriter3.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
+                StackTraceElement[] stackTrace2 = cause.getStackTrace();
+                for (int i10 = 0; i10 < stackTrace2.length; i10++) {
+                    OutputStreamWriter outputStreamWriter4 = getInstance().streamWriter;
+                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i10] + "\n");
                 }
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
     public static void lambda$fatal$5(Throwable th) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
-            for (StackTraceElement stackTraceElement : th.getStackTrace()) {
-                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: \tat " + stackTraceElement + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
+            StackTraceElement[] stackTrace = th.getStackTrace();
+            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+                OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: \tat " + stackTrace[i9] + "\n");
             }
             Throwable cause = th.getCause();
             if (cause != null) {
-                getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
-                for (StackTraceElement stackTraceElement2 : cause.getStackTrace()) {
-                    getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTraceElement2 + "\n");
+                OutputStreamWriter outputStreamWriter3 = getInstance().streamWriter;
+                outputStreamWriter3.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
+                StackTraceElement[] stackTrace2 = cause.getStackTrace();
+                for (int i10 = 0; i10 < stackTrace2.length; i10++) {
+                    OutputStreamWriter outputStreamWriter4 = getInstance().streamWriter;
+                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i10] + "\n");
                 }
             }
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             System.exit(2);
@@ -528,15 +563,19 @@ public class FileLog {
 
     public static void lambda$w$7(String str) {
         try {
-            getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
+            OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
-        } catch (Exception e9) {
-            e9.printStackTrace();
+        } catch (Exception e10) {
+            e10.printStackTrace();
         }
     }
 
     private static boolean needSent(Throwable th) {
-        return ((th instanceof InterruptedException) || (th instanceof MediaCodecVideoConvertor.ConversionCanceledException) || (th instanceof IgnoreSentException)) ? false : true;
+        if (!(th instanceof InterruptedException) && !(th instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th instanceof IgnoreSentException)) {
+            return true;
+        }
+        return false;
     }
 
     public static void w(String str) {
@@ -550,13 +589,15 @@ public class FileLog {
     }
 
     public void dumpMemory(boolean z10) {
-        if (z10 || System.currentTimeMillis() - dumpedHeap >= 30000) {
-            dumpedHeap = System.currentTimeMillis();
-            try {
-                Debug.dumpHprofData(new File(AndroidUtilities.getLogsDir(), getInstance().dateFormat.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
-            } catch (Exception e9) {
-                e(e9);
-            }
+        if (!z10 && System.currentTimeMillis() - dumpedHeap < 30000) {
+            return;
+        }
+        dumpedHeap = System.currentTimeMillis();
+        try {
+            File logsDir = AndroidUtilities.getLogsDir();
+            Debug.dumpHprofData(new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_heap.hprof").getAbsolutePath());
+        } catch (Exception e10) {
+            e(e10);
         }
     }
 
@@ -581,7 +622,7 @@ public class FileLog {
             ensureInitied();
             th.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new f3(1, th));
+                getInstance().logQueue.postRunnable(new d3(1, th));
                 return;
             }
             th.printStackTrace();
@@ -616,18 +657,18 @@ public class FileLog {
                 File file = new File(ApplicationLoader.getFilesDirFixed(), "malformed_database/");
                 file.mkdirs();
                 ArrayList<File> databaseFiles = MessagesStorage.getInstance(UserConfig.selectedAccount).getDatabaseFiles();
-                for (int i10 = 0; i10 < databaseFiles.size(); i10++) {
+                for (int i9 = 0; i9 < databaseFiles.size(); i9++) {
                     try {
-                        AndroidUtilities.copyFile(databaseFiles.get(i10), new File(file, databaseFiles.get(i10).getName()));
-                    } catch (IOException e9) {
-                        e(e9);
+                        AndroidUtilities.copyFile(databaseFiles.get(i9), new File(file, databaseFiles.get(i9).getName()));
+                    } catch (IOException e10) {
+                        e(e10);
                     }
                 }
             }
             ensureInitied();
             th.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new f3(0, th));
+                getInstance().logQueue.postRunnable(new d3(0, th));
             } else {
                 th.printStackTrace();
             }

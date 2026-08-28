@@ -1,48 +1,62 @@
 package org.telegram.messenger;
 
+import android.content.Context;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.aq0;
-
 public final class pb implements RequestDelegate {
+    public final int f21228a = 0;
+    public final Object f21229b;
+    public final long f21230c;
+    public final int d;
+    public final int f21231e;
+    public final long f21232f;
+    public final boolean f21233g;
+    public final Object h;
 
-    public final int f21245a = 0;
-
-    public final int f21246b;
-
-    public final boolean f21247c;
-    public final TLRPC.User d;
-
-    public final NotificationCenter.NotificationCenterDelegate f21248e;
-
-    public final Object f21249f;
-
-    public pb(MessagesController messagesController, int i10, TLRPC.Chat chat, TLRPC.User user, boolean z10) {
-        this.f21248e = messagesController;
-        this.f21246b = i10;
-        this.f21249f = chat;
-        this.d = user;
-        this.f21247c = z10;
+    public pb(int i9, int i10, long j10, long j11, MessagesController messagesController, TLRPC.InputPeer inputPeer, boolean z10) {
+        this.f21229b = messagesController;
+        this.f21230c = j10;
+        this.f21232f = j11;
+        this.d = i9;
+        this.f21231e = i10;
+        this.f21233g = z10;
+        this.h = inputPeer;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21245a) {
+        switch (this.f21228a) {
             case 0:
-                ((MessagesController) this.f21248e).lambda$pinMessage$130(this.f21246b, (TLRPC.Chat) this.f21249f, this.d, this.f21247c, tLObject, tL_error);
-                break;
+                ((MessagesController) this.f21229b).lambda$deleteDialog$142(this.f21230c, this.f21232f, this.d, this.f21231e, this.f21233g, (TLRPC.InputPeer) this.h, tLObject, tL_error);
+                return;
+            case 1:
+                ((MessagesController) this.f21229b).lambda$deleteMessagesRange$466(this.f21230c, this.d, this.f21231e, this.f21232f, this.f21233g, (Runnable) this.h, tLObject, tL_error);
+                return;
             default:
-                AndroidUtilities.runOnUIThread(new r1((aq0) this.f21248e, (String) this.f21249f, this.f21246b, tLObject, this.f21247c, this.d));
-                break;
+                VoIPGroupNotification.lambda$request$1(this.d, this.f21230c, this.f21232f, this.f21231e, this.f21233g, (Context) this.f21229b, (String) this.h, tLObject, tL_error);
+                return;
         }
     }
 
-    public pb(aq0 aq0Var, String str, int i10, boolean z10, TLRPC.User user) {
-        this.f21248e = aq0Var;
-        this.f21249f = str;
-        this.f21246b = i10;
-        this.f21247c = z10;
-        this.d = user;
+    public pb(Context context, int i9, long j10, String str, long j11, int i10, boolean z10) {
+        this.d = i9;
+        this.f21230c = j10;
+        this.f21232f = j11;
+        this.f21231e = i10;
+        this.f21233g = z10;
+        this.f21229b = context;
+        this.h = str;
+    }
+
+    public pb(MessagesController messagesController, long j10, int i9, int i10, long j11, boolean z10, Runnable runnable) {
+        this.f21229b = messagesController;
+        this.f21230c = j10;
+        this.d = i9;
+        this.f21231e = i10;
+        this.f21232f = j11;
+        this.f21233g = z10;
+        this.h = runnable;
     }
 }

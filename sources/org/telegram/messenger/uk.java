@@ -1,65 +1,50 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
+import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-
-public final class uk implements RequestDelegate {
-
-    public final int f21754a;
-
-    public final BaseController f21755b;
-
-    public final long f21756c;
+public final class uk implements Runnable {
+    public final int f21704a;
+    public final BaseController f21705b;
+    public final Object f21706c;
     public final Object d;
+    public final Object f21707e;
+    public final Runnable f21708f;
+    public final long h;
 
-    public uk(BaseController baseController, long j10, Object obj, int i10) {
-        this.f21754a = i10;
-        this.f21755b = baseController;
-        this.f21756c = j10;
-        this.d = obj;
+    public uk(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
+        this.f21704a = 2;
+        this.f21705b = topicsController;
+        this.f21706c = tLObject;
+        this.h = j10;
+        this.d = tL_messages_forumTopics;
+        this.f21707e = hVar;
+        this.f21708f = runnable;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21754a) {
+    public final void run() {
+        switch (this.f21704a) {
             case 0:
-                ((TranslateController) this.f21755b).lambda$pushPollToTranslate$26((TranslateController.PendingPollTranslation) this.d, this.f21756c, tLObject, tL_error);
-                break;
+                ((TranslateController) this.f21705b).lambda$translatePhoto$43((MessageObject) this.f21706c, (String) this.d, (TranslateController.MessageKey) this.f21707e, this.f21708f, this.h);
+                return;
             case 1:
-                ((TranslateController) this.f21755b).lambda$pushRichMessageToTranslate$29((TranslateController.PendingRichTranslation) this.d, this.f21756c, tLObject, tL_error);
-                break;
-            case 2:
-                ((MediaDataController) this.f21755b).lambda$loadPinnedMessageInternal$165(this.f21756c, (TLRPC.TL_messages_getMessages) this.d, tLObject, tL_error);
-                break;
-            case 3:
-                ((MessagesController) this.f21755b).lambda$updateTimerProc$155(this.f21756c, (TLRPC.TL_messages_getMessagesViews) this.d, tLObject, tL_error);
-                break;
-            case 4:
-                ((MessagesController) this.f21755b).lambda$reloadMentionsCountForChannel$221((TLRPC.InputPeer) this.d, this.f21756c, tLObject, tL_error);
-                break;
-            case 5:
-                ((MessagesController) this.f21755b).lambda$getGroupCall$63(this.f21756c, (Runnable) this.d, tLObject, tL_error);
-                break;
-            case 6:
-                ((MessagesController) this.f21755b).lambda$getSponsoredMessages$440(this.f21756c, (MessagesController.SponsoredMessagesInfo) this.d, tLObject, tL_error);
-                break;
-            case 7:
-                ((MessagesController) this.f21755b).lambda$loadUnknownChannel$330(this.f21756c, (TLRPC.TL_channel) this.d, tLObject, tL_error);
-                break;
-            case 8:
-                ((MessagesController) this.f21755b).lambda$setChatReactions$471(this.f21756c, (TLRPC.TL_messages_setChatAvailableReactions) this.d, tLObject, tL_error);
-                break;
+                ((TranslateController) this.f21705b).lambda$translatePhoto$45((MessageObject) this.f21706c, (String) this.d, (TranslateController.MessageKey) this.f21707e, this.f21708f, this.h);
+                return;
             default:
-                ((MessagesController) this.f21755b).lambda$checkLastDialogMessage$227((TLRPC.Dialog) this.d, this.f21756c, tLObject, tL_error);
-                break;
+                Runnable runnable = this.f21708f;
+                ((TopicsController) this.f21705b).lambda$reloadTopics$14((TLObject) this.f21706c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.f21707e, runnable);
+                return;
         }
     }
 
-    public uk(BaseController baseController, Object obj, long j10, int i10) {
-        this.f21754a = i10;
-        this.f21755b = baseController;
-        this.d = obj;
-        this.f21756c = j10;
+    public uk(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i9) {
+        this.f21704a = i9;
+        this.f21705b = translateController;
+        this.f21706c = messageObject;
+        this.d = str;
+        this.f21707e = messageKey;
+        this.f21708f = runnable;
+        this.h = j10;
     }
 }

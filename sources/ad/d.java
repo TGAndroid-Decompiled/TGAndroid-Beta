@@ -1,4 +1,5 @@
 package ad;
 
-public interface d extends pc.a {
+import java.io.Serializable;
+public final class d extends e implements Serializable {
 }

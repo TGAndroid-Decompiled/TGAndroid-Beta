@@ -1,62 +1,61 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import g7.e6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.zk0;
+public final class e extends FrameLayout {
+    public final ImageView f43840a;
+    public final TextView f43841b;
+    public final ImageView f43842c;
+    public final Paint d;
+    public boolean f43843e;
 
-public final class e extends m41 {
-
-    public static final int f43816a = 0;
-
-    static {
-        m41.setup(new e());
+    public e(Context context) {
+        super(context);
+        this.d = new Paint(1);
+        ImageView imageView = new ImageView(context);
+        this.f43840a = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.menu_clear_recent);
+        addView(imageView, e6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f43841b = textView;
+        textView.setTextSize(1, 16.0f);
+        addView(textView, e6.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f43842c = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(R.drawable.menu_browser_arrowup);
+        addView(imageView2, e6.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
-    public final void bindView(View view, n41 n41Var, boolean z10, b51 b51Var, k51 k51Var) {
-        f fVar = (f) view;
-        if (n41Var.G == null) {
-            fVar.setAsShowMore((l) n41Var.H);
-            return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f43843e) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.d);
         }
-        int i10 = n41Var.f30857z;
-        String string = n41Var.f30844l.toString();
-        View.OnClickListener onClickListener = n41Var.D;
-        l lVar = (l) n41Var.H;
-        ImageView imageView = fVar.f43827a;
-        imageView.setVisibility(0);
-        int i11 = lVar.B;
-        int i12 = lVar.D;
-        TextView textView = fVar.f43828b;
-        textView.setTextColor(i12);
-        int iL1 = g6.l1(0.6f, i12);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(iL1, mode));
-        ImageView imageView2 = fVar.f43829c;
-        imageView2.setColorFilter(new PorterDuffColorFilter(g6.l1(0.6f, i12), mode));
-        imageView2.setBackground(g6.Z(0, g6.l1(0.15f, i12), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-        imageView.setImageResource(i10 == 0 ? R.drawable.msg_clear_recent : R.drawable.msg_search);
-        textView.setText(string);
-        imageView2.setOnClickListener(onClickListener);
-        fVar.d.setColor(g6.l1(0.1f, lVar.D));
-        fVar.f43830e = z10;
-        fVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, zk0 zk0Var, int i10, int i11, c6 c6Var) {
-        return new f(context);
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), i10);
+    }
+
+    public void setAsShowMore(k kVar) {
+        int i9 = R.drawable.arrow_more;
+        ImageView imageView = this.f43840a;
+        imageView.setImageResource(i9);
+        imageView.setColorFilter(new PorterDuffColorFilter(kVar.D, PorterDuff.Mode.SRC_IN));
     }
 }

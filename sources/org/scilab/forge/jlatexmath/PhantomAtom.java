@@ -1,14 +1,12 @@
 package org.scilab.forge.jlatexmath;
-
 public class PhantomAtom extends Atom implements Row {
     private boolean d;
     private RowAtom elements;
     private boolean h;
-
-    private boolean f19595w;
+    private boolean f19622w;
 
     public PhantomAtom(Atom atom) {
-        this.f19595w = true;
+        this.f19622w = true;
         this.h = true;
         this.d = true;
         if (atom == null) {
@@ -20,8 +18,24 @@ public class PhantomAtom extends Atom implements Row {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.elements.createBox(teXEnvironment);
-        return new StrutBox(this.f19595w ? boxCreateBox.getWidth() : 0.0f, this.h ? boxCreateBox.getHeight() : 0.0f, this.d ? boxCreateBox.getDepth() : 0.0f, boxCreateBox.getShift());
+        float f10;
+        float f11;
+        Box createBox = this.elements.createBox(teXEnvironment);
+        float f12 = 0.0f;
+        if (this.f19622w) {
+            f10 = createBox.getWidth();
+        } else {
+            f10 = 0.0f;
+        }
+        if (this.h) {
+            f11 = createBox.getHeight();
+        } else {
+            f11 = 0.0f;
+        }
+        if (this.d) {
+            f12 = createBox.getDepth();
+        }
+        return new StrutBox(f10, f11, f12, createBox.getShift());
     }
 
     @Override
@@ -41,7 +55,7 @@ public class PhantomAtom extends Atom implements Row {
 
     public PhantomAtom(Atom atom, boolean z10, boolean z11, boolean z12) {
         this(atom);
-        this.f19595w = z10;
+        this.f19622w = z10;
         this.h = z11;
         this.d = z12;
     }

@@ -1,63 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class bs0 implements org.telegram.ui.Cells.k7 {
+    public final eu0 f27271a;
 
-public final class bs0 implements ViewTreeObserver.OnPreDrawListener {
-
-    public final int f27205a;
-
-    public final int f27206b;
-
-    public final KeyEvent.Callback f27207c;
-
-    public bs0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f27205a = i11;
-        this.f27207c = callback;
-        this.f27206b = i10;
+    public bs0(eu0 eu0Var) {
+        this.f27271a = eu0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10 = this.f27205a;
-        int i11 = this.f27206b;
-        KeyEvent.Callback callback = this.f27207c;
-        switch (i10) {
-            case 0:
-                hu0 hu0Var = (hu0) callback;
-                hu0Var.f29122g0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
-                hu0Var.U(i11);
-                break;
-            default:
-                u51 u51Var = (u51) callback;
-                hh.f1 f1Var = u51Var.d;
-                f1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = f1Var.getChildCount();
-                AnimatorSet animatorSet = new AnimatorSet();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = f1Var.getChildAt(i12);
-                    f1Var.getClass();
-                    int iR = RecyclerView.R(childAt);
-                    if (iR >= i11) {
-                        if (iR == 1 && f1Var.getAdapter() == u51Var.f32979e && (childAt instanceof org.telegram.ui.Cells.s3)) {
-                            childAt = ((org.telegram.ui.Cells.s3) childAt).getTextView();
-                        }
-                        childAt.setAlpha(0.0f);
-                        int iMin = (int) ((Math.min(f1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / f1Var.getMeasuredHeight()) * 100.0f);
-                        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
-                        objectAnimatorOfFloat.setStartDelay(iMin);
-                        objectAnimatorOfFloat.setDuration(200L);
-                        animatorSet.playTogether(objectAnimatorOfFloat);
-                    }
-                }
-                animatorSet.start();
-                break;
+    public final void a(String str, boolean z10) {
+        eu0 eu0Var = this.f27271a;
+        org.telegram.ui.ActionBar.o2 o2Var = eu0Var.f28160r1;
+        if (z10) {
+            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(o2Var.getParentActivity(), null, false, false);
+            f3Var.fixNavigationBar();
+            f3Var.title = str;
+            f3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            org.telegram.ui.v vVar = new org.telegram.ui.v(5, this, str);
+            f3Var.items = charSequenceArr;
+            f3Var.onClickListener = vVar;
+            o2Var.showDialog(f3Var);
+            return;
         }
-        return true;
+        eu0Var.R0(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        eu0 eu0Var = this.f27271a;
+        gu.I(eu0Var.f28160r1, messageObject, eu0Var.f28151n1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean f() {
+        return !this.f27271a.f28178y1;
     }
 }

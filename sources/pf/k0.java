@@ -1,30 +1,39 @@
 package pf;
 
-import android.location.Location;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.Components.l41;
+public final class k0 implements b2, Utilities.Callback5 {
+    public final int f45659a;
+    public final m0 f45660b;
 
-public final class k0 implements SendMessagesHelper.LocationProvider.LocationProviderDelegate {
-
-    public final u0 f45862a;
-
-    public k0(u0 u0Var) {
-        this.f45862a = u0Var;
+    public k0(m0 m0Var, int i9) {
+        this.f45659a = i9;
+        this.f45660b = m0Var;
     }
 
     @Override
-    public final void onLocationAcquired(Location location) {
-        u0 u0Var = this.f45862a;
-        TLRPC.User user = u0Var.f45944s0;
-        if (user == null || !user.bot_inline_geo) {
-            return;
+    public void f(c2 c2Var, int i9) {
+        switch (this.f45659a) {
+            case 0:
+                this.f45660b.Z();
+                return;
+            case 1:
+                this.f45660b.finishFragment();
+                return;
+            default:
+                this.f45660b.Z();
+                return;
         }
-        u0Var.f45947v0 = location;
-        u0Var.T(true, user, u0Var.f45937n0, "");
     }
 
     @Override
-    public final void onUnableLocationAcquire() {
-        this.f45862a.Q();
+    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        m0.V(this.f45660b, (l41) obj, (View) obj2);
     }
 }

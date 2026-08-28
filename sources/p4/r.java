@@ -1,10 +1,9 @@
 package p4;
 
 import android.net.Uri;
-import n2.v;
-
+import n2.w;
 public interface r {
     void a();
 
-    boolean c(Uri uri, v vVar, boolean z10);
+    boolean c(Uri uri, w wVar, boolean z10);
 }

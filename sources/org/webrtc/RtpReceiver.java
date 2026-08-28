@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.MediaStreamTrack;
 public class RtpReceiver {
     private MediaStreamTrack cachedTrack;
     private long nativeObserver;
@@ -15,9 +16,10 @@ public class RtpReceiver {
     }
 
     private void checkRtpReceiverExists() {
-        if (this.nativeRtpReceiver == 0) {
-            throw new IllegalStateException("RtpReceiver has been disposed.");
+        if (this.nativeRtpReceiver != 0) {
+            return;
         }
+        throw new IllegalStateException("RtpReceiver has been disposed.");
     }
 
     private static native String nativeGetId(long j10);

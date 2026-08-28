@@ -1,5 +1,4 @@
 package java.util.function;
-
 public interface IntToLongFunction {
-    long applyAsLong(int i10);
+    long applyAsLong(int i9);
 }

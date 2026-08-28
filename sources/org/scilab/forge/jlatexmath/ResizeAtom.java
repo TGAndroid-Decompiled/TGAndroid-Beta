@@ -1,12 +1,10 @@
 package org.scilab.forge.jlatexmath;
-
 public class ResizeAtom extends Atom {
     private Atom base;
     private float h;
     private int hunit;
     private boolean keepaspectratio;
-
-    private float f19598w;
+    private float f19625w;
     private int wunit;
 
     public ResizeAtom(Atom atom, String str, String str2, boolean z10) {
@@ -19,50 +17,51 @@ public class ResizeAtom extends Atom {
             this.wunit = -1;
         } else {
             this.wunit = (int) length[0];
-            this.f19598w = length[1];
+            this.f19625w = length[1];
         }
         if (length2.length != 2) {
             this.hunit = -1;
-        } else {
-            this.hunit = (int) length2[0];
-            this.h = length2[1];
+            return;
         }
+        this.hunit = (int) length2[0];
+        this.h = length2[1];
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         float factor;
         float f10;
-        double dMin;
         double d;
+        double d9;
         double d10;
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
-        int i10 = this.wunit;
-        if (i10 == -1 && this.hunit == -1) {
-            return boxCreateBox;
+        Box createBox = this.base.createBox(teXEnvironment);
+        int i9 = this.wunit;
+        if (i9 == -1 && this.hunit == -1) {
+            return createBox;
         }
-        if (i10 != -1 && this.hunit != -1) {
-            double factor2 = (SpaceAtom.getFactor(i10, teXEnvironment) * this.f19598w) / boxCreateBox.width;
-            double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / boxCreateBox.height;
+        if (i9 != -1 && this.hunit != -1) {
+            double factor2 = (SpaceAtom.getFactor(i9, teXEnvironment) * this.f19625w) / createBox.width;
+            double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / createBox.height;
             if (this.keepaspectratio) {
-                dMin = Math.min(factor2, factor3);
+                d = Math.min(factor2, factor3);
             } else {
-                d = factor3;
+                d9 = factor3;
                 d10 = factor2;
+                return new ScaleBox(createBox, d10, d9);
             }
-            return new ScaleBox(boxCreateBox, d10, d);
-        }
-        if (i10 == -1 || this.hunit != -1) {
-            factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
-            f10 = boxCreateBox.height;
         } else {
-            factor = SpaceAtom.getFactor(i10, teXEnvironment) * this.f19598w;
-            f10 = boxCreateBox.width;
+            if (i9 != -1 && this.hunit == -1) {
+                factor = SpaceAtom.getFactor(i9, teXEnvironment) * this.f19625w;
+                f10 = createBox.width;
+            } else {
+                factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
+                f10 = createBox.height;
+            }
+            d = factor / f10;
         }
-        dMin = factor / f10;
-        d10 = dMin;
-        d = d10;
-        return new ScaleBox(boxCreateBox, d10, d);
+        d10 = d;
+        d9 = d10;
+        return new ScaleBox(createBox, d10, d9);
     }
 
     @Override

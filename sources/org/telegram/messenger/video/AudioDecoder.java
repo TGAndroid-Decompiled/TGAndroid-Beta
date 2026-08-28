@@ -5,10 +5,8 @@ import android.media.MediaCrypto;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.view.Surface;
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
-
 public class AudioDecoder {
     private static final int TIMEOUT_USEC = 0;
     private boolean allInputExtracted;
@@ -30,7 +28,7 @@ public class AudioDecoder {
         public int offset = 0;
     }
 
-    public AudioDecoder(String str) throws IOException {
+    public AudioDecoder(String str) {
         this.audioIndex = -1;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
@@ -38,66 +36,73 @@ public class AudioDecoder {
         init();
     }
 
-    private void init() throws IOException {
+    private void init() {
         selectTrack();
         MediaFormat trackFormat = this.extractor.getTrackFormat(this.trackIndex);
-        MediaCodec mediaCodecCreateDecoderByType = MediaCodec.createDecoderByType(trackFormat.getString("mime"));
-        this.decoder = mediaCodecCreateDecoderByType;
-        mediaCodecCreateDecoderByType.configure(trackFormat, (Surface) null, (MediaCrypto) null, 0);
+        MediaCodec createDecoderByType = MediaCodec.createDecoderByType(trackFormat.getString("mime"));
+        this.decoder = createDecoderByType;
+        createDecoderByType.configure(trackFormat, (Surface) null, (MediaCrypto) null, 0);
         this.startTimeUs = 0L;
         try {
             this.endTimeUs = this.extractor.getTrackFormat(this.trackIndex).getLong("durationUs");
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             this.endTimeUs = -1L;
         }
     }
 
     private void selectTrack() {
-        int i10 = this.audioIndex;
-        this.trackIndex = i10;
-        if (i10 == -1) {
+        int i9 = this.audioIndex;
+        this.trackIndex = i9;
+        if (i9 == -1) {
             int trackCount = this.extractor.getTrackCount();
-            for (int i11 = 0; i11 < trackCount; i11++) {
-                String string = this.extractor.getTrackFormat(i11).getString("mime");
-                if (string != null && string.startsWith("audio/")) {
-                    this.trackIndex = i11;
+            int i10 = 0;
+            while (true) {
+                if (i10 < trackCount) {
+                    String string = this.extractor.getTrackFormat(i10).getString("mime");
+                    if (string != null && string.startsWith("audio/")) {
+                        this.trackIndex = i10;
+                        break;
+                    }
+                    i10++;
+                } else {
                     break;
                 }
             }
         }
-        int i12 = this.trackIndex;
-        if (i12 < 0) {
-            throw new RuntimeException("No audio track found in source");
+        int i11 = this.trackIndex;
+        if (i11 >= 0) {
+            this.extractor.selectTrack(i11);
+            return;
         }
-        this.extractor.selectTrack(i12);
+        throw new RuntimeException("No audio track found in source");
     }
 
     public DecodedBufferData decode() {
-        int iUsToBytes;
-        int iLimit;
-        int iDequeueInputBuffer;
+        int usToBytes;
+        int limit;
+        int dequeueInputBuffer;
         DecodedBufferData decodedBufferData = new DecodedBufferData();
         boolean z10 = false;
         while (!z10 && !this.decodingDone) {
-            if (!this.allInputExtracted && (iDequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
-                int sampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(iDequeueInputBuffer), 0);
-                if (sampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
-                    this.decoder.queueInputBuffer(iDequeueInputBuffer, 0, sampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
+            if (!this.allInputExtracted && (dequeueInputBuffer = this.decoder.dequeueInputBuffer(0L)) >= 0) {
+                int readSampleData = this.extractor.readSampleData(this.decoder.getInputBuffer(dequeueInputBuffer), 0);
+                if (readSampleData >= 0 && this.extractor.getSampleTime() <= this.endTimeUs) {
+                    this.decoder.queueInputBuffer(dequeueInputBuffer, 0, readSampleData, this.extractor.getSampleTime(), this.extractor.getSampleFlags());
                     this.extractor.advance();
                 } else if (this.loopingEnabled) {
                     this.decoder.flush();
                     this.extractor.seekTo(this.startTimeUs, 0);
                 } else {
-                    this.decoder.queueInputBuffer(iDequeueInputBuffer, 0, 0, 0L, 4);
+                    this.decoder.queueInputBuffer(dequeueInputBuffer, 0, 0, 0L, 4);
                     this.allInputExtracted = true;
                 }
             }
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-            int iDequeueOutputBuffer = this.decoder.dequeueOutputBuffer(bufferInfo, 0L);
-            if (iDequeueOutputBuffer >= 0) {
-                decodedBufferData.byteBuffer = this.decoder.getOutputBuffer(iDequeueOutputBuffer);
-                decodedBufferData.index = iDequeueOutputBuffer;
+            int dequeueOutputBuffer = this.decoder.dequeueOutputBuffer(bufferInfo, 0L);
+            if (dequeueOutputBuffer >= 0) {
+                decodedBufferData.byteBuffer = this.decoder.getOutputBuffer(dequeueOutputBuffer);
+                decodedBufferData.index = dequeueOutputBuffer;
                 decodedBufferData.size = bufferInfo.size;
                 long j10 = bufferInfo.presentationTimeUs;
                 decodedBufferData.presentationTimeUs = j10;
@@ -105,15 +110,15 @@ public class AudioDecoder {
                 decodedBufferData.offset = bufferInfo.offset;
                 long j11 = this.startTimeUs;
                 if (j10 < j11) {
-                    int iPosition = decodedBufferData.byteBuffer.position() + AudioConversions.usToBytes(j11 - j10, getSampleRate(), getChannelCount());
-                    if (iPosition <= decodedBufferData.byteBuffer.limit()) {
-                        decodedBufferData.byteBuffer.position(iPosition);
+                    int position = decodedBufferData.byteBuffer.position() + AudioConversions.usToBytes(j11 - j10, getSampleRate(), getChannelCount());
+                    if (position <= decodedBufferData.byteBuffer.limit()) {
+                        decodedBufferData.byteBuffer.position(position);
                     }
                 }
-                long jBytesToUs = AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount()) + decodedBufferData.presentationTimeUs;
+                long bytesToUs = AudioConversions.bytesToUs(decodedBufferData.size, getSampleRate(), getChannelCount()) + decodedBufferData.presentationTimeUs;
                 long j12 = this.endTimeUs;
-                if (jBytesToUs > j12 && (iUsToBytes = AudioConversions.usToBytes(jBytesToUs - j12, getSampleRate(), getChannelCount())) > 0 && (iLimit = decodedBufferData.byteBuffer.limit() - iUsToBytes) >= decodedBufferData.byteBuffer.position()) {
-                    decodedBufferData.byteBuffer.limit(iLimit);
+                if (bytesToUs > j12 && (usToBytes = AudioConversions.usToBytes(bytesToUs - j12, getSampleRate(), getChannelCount())) > 0 && (limit = decodedBufferData.byteBuffer.limit() - usToBytes) >= decodedBufferData.byteBuffer.position()) {
+                    decodedBufferData.byteBuffer.limit(limit);
                 }
                 if ((bufferInfo.flags & 4) != 0) {
                     this.decodingDone = true;
@@ -141,12 +146,12 @@ public class AudioDecoder {
     public int getChannelCount() {
         try {
             return getOutputMediaFormat().getInteger("channel-count");
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             try {
                 return getInputMediaFormat().getInteger("channel-count");
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e11) {
+                FileLog.e(e11);
                 return -1;
             }
         }
@@ -155,12 +160,12 @@ public class AudioDecoder {
     public long getDurationUs() {
         try {
             return getOutputMediaFormat().getLong("durationUs");
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             try {
                 return getInputMediaFormat().getLong("durationUs");
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e11) {
+                FileLog.e(e11);
                 return -1L;
             }
         }
@@ -173,17 +178,20 @@ public class AudioDecoder {
     public MediaFormat getInputMediaFormat() {
         try {
             return this.extractor.getTrackFormat(this.trackIndex);
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
     public MediaFormat getMediaFormat() {
         try {
-            return getOutputMediaFormat() != null ? getOutputMediaFormat() : getInputMediaFormat();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            if (getOutputMediaFormat() != null) {
+                return getOutputMediaFormat();
+            }
+            return getInputMediaFormat();
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -191,8 +199,8 @@ public class AudioDecoder {
     public MediaFormat getOutputMediaFormat() {
         try {
             return this.decoder.getOutputFormat();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -200,12 +208,12 @@ public class AudioDecoder {
     public int getSampleRate() {
         try {
             return getOutputMediaFormat().getInteger("sample-rate");
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             try {
                 return getInputMediaFormat().getInteger("sample-rate");
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e11) {
+                FileLog.e(e11);
                 return -1;
             }
         }
@@ -229,8 +237,8 @@ public class AudioDecoder {
         this.extractor.release();
     }
 
-    public void releaseOutputBuffer(int i10) {
-        this.decoder.releaseOutputBuffer(i10, false);
+    public void releaseOutputBuffer(int i9) {
+        this.decoder.releaseOutputBuffer(i9, false);
     }
 
     public void setEndTimeUs(long j10) {
@@ -259,16 +267,17 @@ public class AudioDecoder {
 
     public void start() {
         long j10 = this.startTimeUs;
-        if (j10 > this.endTimeUs) {
-            StringBuilder sb2 = new StringBuilder("StartTimeUs(");
-            sb2.append(this.startTimeUs);
-            sb2.append(") must be less than or equal to EndTimeUs(");
-            throw new RuntimeException(a9.p.o(sb2, this.endTimeUs, ")"));
+        if (j10 <= this.endTimeUs) {
+            this.extractor.seekTo(j10, 0);
+            this.decoder.start();
+            this.allInputExtracted = false;
+            this.decodingDone = false;
+            return;
         }
-        this.extractor.seekTo(j10, 0);
-        this.decoder.start();
-        this.allInputExtracted = false;
-        this.decodingDone = false;
+        StringBuilder sb2 = new StringBuilder("StartTimeUs(");
+        sb2.append(this.startTimeUs);
+        sb2.append(") must be less than or equal to EndTimeUs(");
+        throw new RuntimeException(aa.d.q(sb2, this.endTimeUs, ")"));
     }
 
     public void stop() {
@@ -276,12 +285,12 @@ public class AudioDecoder {
         this.decodingDone = true;
     }
 
-    public AudioDecoder(String str, int i10) throws IOException {
+    public AudioDecoder(String str, int i9) {
         this.audioIndex = -1;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
         mediaExtractor.setDataSource(str);
-        this.audioIndex = i10;
+        this.audioIndex = i9;
         init();
     }
 }

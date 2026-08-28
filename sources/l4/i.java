@@ -2,10 +2,9 @@ package l4;
 
 import com.google.android.exoplayer2.upstream.q;
 import com.google.android.exoplayer2.upstream.x0;
-import g7.l0;
+import f7.f5;
 import h3.t0;
 import j4.a1;
-
 public final class i extends a {
     public final int A;
     public final long B;
@@ -14,68 +13,87 @@ public final class i extends a {
     public volatile boolean E;
     public boolean F;
 
-    public i(com.google.android.exoplayer2.upstream.m mVar, q qVar, t0 t0Var, int i10, Object obj, long j10, long j11, long j12, long j13, long j14, int i11, long j15, d dVar) {
-        super(mVar, qVar, t0Var, i10, obj, j10, j11, j12, j13, j14);
-        this.A = i11;
+    public i(com.google.android.exoplayer2.upstream.m mVar, q qVar, t0 t0Var, int i9, Object obj, long j10, long j11, long j12, long j13, long j14, int i10, long j15, d dVar) {
+        super(mVar, qVar, t0Var, i9, obj, j10, j11, j12, j13, j14);
+        this.A = i10;
         this.B = j15;
         this.C = dVar;
     }
 
     @Override
+    public final void K() {
+        this.E = true;
+    }
+
+    @Override
     public final void a() {
+        boolean z10;
+        boolean z11;
+        a1[] a1VarArr;
+        long j10;
         if (this.D == 0) {
-            g5.b bVar = this.f15399x;
+            g5.b bVar = this.f16642x;
             d5.a.j(bVar);
-            long j10 = this.B;
-            for (a1 a1Var : (a1[]) bVar.f6390c) {
-                if (a1Var.F != j10) {
-                    a1Var.F = j10;
-                    a1Var.f12529z = true;
+            long j11 = this.B;
+            for (a1 a1Var : (a1[]) bVar.f7112c) {
+                if (a1Var.F != j11) {
+                    a1Var.F = j11;
+                    a1Var.f13425z = true;
                 }
             }
             d dVar = this.C;
-            long j11 = this.v;
-            long j12 = j11 == -9223372036854775807L ? -9223372036854775807L : j11 - this.B;
-            long j13 = this.f15398w;
-            dVar.a(bVar, j12, j13 != -9223372036854775807L ? j13 - this.B : -9223372036854775807L);
+            long j12 = this.v;
+            long j13 = -9223372036854775807L;
+            if (j12 == -9223372036854775807L) {
+                j10 = -9223372036854775807L;
+            } else {
+                j10 = j12 - this.B;
+            }
+            long j14 = this.f16641w;
+            if (j14 != -9223372036854775807L) {
+                j13 = j14 - this.B;
+            }
+            dVar.a(bVar, j10, j13);
         }
         try {
-            q qVarA = this.f15418b.a(this.D);
-            x0 x0Var = this.f15423r;
-            m3.h hVar = new m3.h(x0Var, qVarA.f3025e, x0Var.open(qVarA));
+            q a2 = this.f16661b.a(this.D);
+            x0 x0Var = this.f16666r;
+            m3.h hVar = new m3.h(x0Var, a2.f2588e, x0Var.open(a2));
             while (!this.E) {
-                try {
-                    int iB = this.C.f15410a.b(hVar, d.f15409s);
-                    d5.a.i(iB != 1);
-                    if (!(iB == 0)) {
-                        break;
-                    }
-                } catch (Throwable th) {
-                    this.D = hVar.d - this.f15418b.f3025e;
-                    throw th;
+                int b10 = this.C.f16653a.b(hVar, d.f16652s);
+                if (b10 != 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                d5.a.i(z10);
+                if (b10 == 0) {
+                    z11 = true;
+                    continue;
+                } else {
+                    z11 = false;
+                    continue;
+                }
+                if (!z11) {
+                    break;
                 }
             }
-            this.D = hVar.d - this.f15418b.f3025e;
-            l0.a(this.f15423r);
+            this.D = hVar.d - this.f16661b.f2588e;
+            f5.a(this.f16666r);
             this.F = !this.E;
-        } catch (Throwable th2) {
-            l0.a(this.f15423r);
-            throw th2;
+        } catch (Throwable th) {
+            f5.a(this.f16666r);
+            throw th;
         }
     }
 
     @Override
     public final long b() {
-        return this.f15442s + ((long) this.A);
+        return this.f16685s + this.A;
     }
 
     @Override
     public final boolean c() {
         return this.F;
-    }
-
-    @Override
-    public final void l() {
-        this.E = true;
     }
 }

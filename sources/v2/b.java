@@ -1,46 +1,34 @@
 package v2;
-
-public final class b implements r9.d {
-
-    public static final b f48674a = new b();
-
-    public static final r9.c f48675b = r9.c.c("sdkVersion");
-
-    public static final r9.c f48676c = r9.c.c("model");
-    public static final r9.c d = r9.c.c("hardware");
-
-    public static final r9.c f48677e = r9.c.c("device");
-
-    public static final r9.c f48678f = r9.c.c("product");
-
-    public static final r9.c f48679g = r9.c.c("osBuild");
-    public static final r9.c h = r9.c.c("manufacturer");
-
-    public static final r9.c f48680i = r9.c.c("fingerprint");
-
-    public static final r9.c f48681j = r9.c.c("locale");
-
-    public static final r9.c f48682k = r9.c.c("country");
-
-    public static final r9.c f48683l = r9.c.c("mccMnc");
-
-    public static final r9.c f48684m = r9.c.c("applicationBuild");
+public final class b implements q9.d {
+    public static final b f48247a = new Object();
+    public static final q9.c f48248b = q9.c.c("sdkVersion");
+    public static final q9.c f48249c = q9.c.c("model");
+    public static final q9.c d = q9.c.c("hardware");
+    public static final q9.c f48250e = q9.c.c("device");
+    public static final q9.c f48251f = q9.c.c("product");
+    public static final q9.c f48252g = q9.c.c("osBuild");
+    public static final q9.c h = q9.c.c("manufacturer");
+    public static final q9.c f48253i = q9.c.c("fingerprint");
+    public static final q9.c f48254j = q9.c.c("locale");
+    public static final q9.c f48255k = q9.c.c("country");
+    public static final q9.c f48256l = q9.c.c("mccMnc");
+    public static final q9.c f48257m = q9.c.c("applicationBuild");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        r9.e eVar = (r9.e) obj2;
+        q9.e eVar = (q9.e) obj2;
         h hVar = (h) ((a) obj);
-        eVar.a(f48675b, hVar.f48705a);
-        eVar.a(f48676c, hVar.f48706b);
-        eVar.a(d, hVar.f48707c);
-        eVar.a(f48677e, hVar.d);
-        eVar.a(f48678f, hVar.f48708e);
-        eVar.a(f48679g, hVar.f48709f);
-        eVar.a(h, hVar.f48710g);
-        eVar.a(f48680i, hVar.h);
-        eVar.a(f48681j, hVar.f48711i);
-        eVar.a(f48682k, hVar.f48712j);
-        eVar.a(f48683l, hVar.f48713k);
-        eVar.a(f48684m, hVar.f48714l);
+        eVar.g(f48248b, hVar.f48278a);
+        eVar.g(f48249c, hVar.f48279b);
+        eVar.g(d, hVar.f48280c);
+        eVar.g(f48250e, hVar.d);
+        eVar.g(f48251f, hVar.f48281e);
+        eVar.g(f48252g, hVar.f48282f);
+        eVar.g(h, hVar.f48283g);
+        eVar.g(f48253i, hVar.h);
+        eVar.g(f48254j, hVar.f48284i);
+        eVar.g(f48255k, hVar.f48285j);
+        eVar.g(f48256l, hVar.f48286k);
+        eVar.g(f48257m, hVar.f48287l);
     }
 }

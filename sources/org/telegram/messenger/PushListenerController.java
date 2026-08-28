@@ -10,7 +10,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
     public static final int PUSH_TYPE_FIREBASE = 2;
@@ -26,33 +25,32 @@ public class PushListenerController {
 
         public void lambda$onRequestPushToken$0(Task task) {
             SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
-            if (task.isSuccessful()) {
-                String str = (String) task.getResult();
-                if (TextUtils.isEmpty(str)) {
-                    return;
+            if (!task.isSuccessful()) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("Failed to get regid");
                 }
-                PushListenerController.sendRegistrationToServer(getPushType(), str);
+                SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
+                PushListenerController.sendRegistrationToServer(getPushType(), null);
                 return;
             }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("Failed to get regid");
+            String str = (String) task.getResult();
+            if (!TextUtils.isEmpty(str)) {
+                PushListenerController.sendRegistrationToServer(getPushType(), str);
             }
-            SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
-            PushListenerController.sendRegistrationToServer(getPushType(), null);
         }
 
         public void lambda$onRequestPushToken$1() {
             FirebaseMessaging firebaseMessaging;
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                t8.h.f(ApplicationLoader.applicationContext);
-                ga.c cVar = FirebaseMessaging.f4537l;
+                s8.h.f(ApplicationLoader.applicationContext);
+                android.support.v4.media.c cVar = FirebaseMessaging.f4095l;
                 synchronized (FirebaseMessaging.class) {
-                    firebaseMessaging = FirebaseMessaging.getInstance(t8.h.c());
+                    firebaseMessaging = FirebaseMessaging.getInstance(s8.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f4544f.execute(new a1.e(27, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f4102f.execute(new a1.e(22, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new d(this, 12));
             } catch (Throwable th) {
                 FileLog.e(th);
@@ -71,11 +69,17 @@ public class PushListenerController {
 
         @Override
         public boolean hasServices() {
+            boolean z10;
             if (this.hasServices == null) {
                 try {
-                    this.hasServices = Boolean.valueOf(v5.d.d.d(ApplicationLoader.applicationContext, v5.e.f48794a) == 0);
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                    if (u5.d.d.d(ApplicationLoader.applicationContext, u5.e.f48109a) == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    this.hasServices = Boolean.valueOf(z10);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     this.hasServices = Boolean.FALSE;
                 }
             }
@@ -85,14 +89,14 @@ public class PushListenerController {
         @Override
         public void onRequestPushToken() {
             String str = SharedConfig.pushString;
-            if (TextUtils.isEmpty(str)) {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("FCM Registration not found.");
+            if (!TextUtils.isEmpty(str)) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
+                    FileLog.d("FCM regId = " + str);
                 }
-            } else if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                FileLog.d("FCM regId = " + str);
+            } else if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new rg(this, 5));
+            Utilities.globalQueue.postRunnable(new ng(this, 5));
         }
     }
 
@@ -112,107 +116,344 @@ public class PushListenerController {
 
     private static String getReactedText(String str, Object[] objArr) {
         str.getClass();
-        switch (str) {
-            case "CHAT_REACT_CONTACT":
+        char c10 = 65535;
+        switch (str.hashCode()) {
+            case -2114646919:
+                if (str.equals("CHAT_REACT_CONTACT")) {
+                    c10 = 0;
+                    break;
+                }
+                break;
+            case -1891797827:
+                if (str.equals("REACT_GEOLIVE")) {
+                    c10 = 1;
+                    break;
+                }
+                break;
+            case -1773019340:
+                if (str.equals("REACT_STORY_HIDDEN")) {
+                    c10 = 2;
+                    break;
+                }
+                break;
+            case -1553058678:
+                if (str.equals("REACT_HIDDEN")) {
+                    c10 = 3;
+                    break;
+                }
+                break;
+            case -1415696683:
+                if (str.equals("CHAT_REACT_NOTEXT")) {
+                    c10 = 4;
+                    break;
+                }
+                break;
+            case -1375264434:
+                if (str.equals("REACT_NOTEXT")) {
+                    c10 = 5;
+                    break;
+                }
+                break;
+            case -1105974394:
+                if (str.equals("CHAT_REACT_INVOICE")) {
+                    c10 = 6;
+                    break;
+                }
+                break;
+            case -861247200:
+                if (str.equals("REACT_CONTACT")) {
+                    c10 = 7;
+                    break;
+                }
+                break;
+            case -661458538:
+                if (str.equals("CHAT_REACT_STICKER")) {
+                    c10 = '\b';
+                    break;
+                }
+                break;
+            case 51977938:
+                if (str.equals("REACT_GAME")) {
+                    c10 = '\t';
+                    break;
+                }
+                break;
+            case 52259487:
+                if (str.equals("REACT_POLL")) {
+                    c10 = '\n';
+                    break;
+                }
+                break;
+            case 52294965:
+                if (str.equals("REACT_QUIZ")) {
+                    c10 = 11;
+                    break;
+                }
+                break;
+            case 52369421:
+                if (str.equals("REACT_TEXT")) {
+                    c10 = '\f';
+                    break;
+                }
+                break;
+            case 52378406:
+                if (str.equals("REACT_TODO")) {
+                    c10 = '\r';
+                    break;
+                }
+                break;
+            case 147425325:
+                if (str.equals("REACT_INVOICE")) {
+                    c10 = 14;
+                    break;
+                }
+                break;
+            case 192842257:
+                if (str.equals("CHAT_REACT_DOC")) {
+                    c10 = 15;
+                    break;
+                }
+                break;
+            case 192844842:
+                if (str.equals("CHAT_REACT_GEO")) {
+                    c10 = 16;
+                    break;
+                }
+                break;
+            case 192844957:
+                if (str.equals("CHAT_REACT_GIF")) {
+                    c10 = 17;
+                    break;
+                }
+                break;
+            case 591941181:
+                if (str.equals("REACT_STICKER")) {
+                    c10 = 18;
+                    break;
+                }
+                break;
+            case 635226735:
+                if (str.equals("CHAT_REACT_AUDIO")) {
+                    c10 = 19;
+                    break;
+                }
+                break;
+            case 648703179:
+                if (str.equals("CHAT_REACT_PHOTO")) {
+                    c10 = 20;
+                    break;
+                }
+                break;
+            case 650764327:
+                if (str.equals("CHAT_REACT_ROUND")) {
+                    c10 = 21;
+                    break;
+                }
+                break;
+            case 654263060:
+                if (str.equals("CHAT_REACT_VIDEO")) {
+                    c10 = 22;
+                    break;
+                }
+                break;
+            case 731873318:
+                if (str.equals("CHAT_REACT_GIVEAWAY")) {
+                    c10 = 23;
+                    break;
+                }
+                break;
+            case 932558943:
+                if (str.equals("REACT_GIVEAWAY")) {
+                    c10 = 24;
+                    break;
+                }
+                break;
+            case 1149769750:
+                if (str.equals("CHAT_REACT_GEOLIVE")) {
+                    c10 = 25;
+                    break;
+                }
+                break;
+            case 1606362326:
+                if (str.equals("REACT_AUDIO")) {
+                    c10 = 26;
+                    break;
+                }
+                break;
+            case 1619838770:
+                if (str.equals("REACT_PHOTO")) {
+                    c10 = 27;
+                    break;
+                }
+                break;
+            case 1621899918:
+                if (str.equals("REACT_ROUND")) {
+                    c10 = 28;
+                    break;
+                }
+                break;
+            case 1622966773:
+                if (str.equals("REACT_STORY")) {
+                    c10 = 29;
+                    break;
+                }
+                break;
+            case 1625398651:
+                if (str.equals("REACT_VIDEO")) {
+                    c10 = 30;
+                    break;
+                }
+                break;
+            case 1664242232:
+                if (str.equals("REACT_DOC")) {
+                    c10 = 31;
+                    break;
+                }
+                break;
+            case 1664244817:
+                if (str.equals("REACT_GEO")) {
+                    c10 = ' ';
+                    break;
+                }
+                break;
+            case 1664244932:
+                if (str.equals("REACT_GIF")) {
+                    c10 = '!';
+                    break;
+                }
+                break;
+            case 1683218969:
+                if (str.equals("CHAT_REACT_GAME")) {
+                    c10 = '\"';
+                    break;
+                }
+                break;
+            case 1683500518:
+                if (str.equals("CHAT_REACT_POLL")) {
+                    c10 = '#';
+                    break;
+                }
+                break;
+            case 1683535996:
+                if (str.equals("CHAT_REACT_QUIZ")) {
+                    c10 = '$';
+                    break;
+                }
+                break;
+            case 1683610452:
+                if (str.equals("CHAT_REACT_TEXT")) {
+                    c10 = '%';
+                    break;
+                }
+                break;
+            case 1683619437:
+                if (str.equals("CHAT_REACT_TODO")) {
+                    c10 = '&';
+                    break;
+                }
+                break;
+        }
+        switch (c10) {
+            case 0:
                 return LocaleController.formatString(R.string.PushChatReactContact, objArr);
-            case "REACT_GEOLIVE":
+            case 1:
                 return LocaleController.formatString(R.string.PushReactGeoLocation, objArr);
-            case "REACT_STORY_HIDDEN":
+            case 2:
                 return LocaleController.formatString(R.string.PushReactStoryHidden, objArr);
-            case "REACT_HIDDEN":
+            case 3:
                 return LocaleController.formatString(R.string.PushReactHidden, objArr);
-            case "CHAT_REACT_NOTEXT":
+            case 4:
                 return LocaleController.formatString(R.string.PushChatReactNotext, objArr);
-            case "REACT_NOTEXT":
+            case 5:
                 return LocaleController.formatString(R.string.PushReactNoText, objArr);
-            case "CHAT_REACT_INVOICE":
+            case 6:
                 return LocaleController.formatString(R.string.PushChatReactInvoice, objArr);
-            case "REACT_CONTACT":
+            case 7:
                 return LocaleController.formatString(R.string.PushReactContect, objArr);
-            case "CHAT_REACT_STICKER":
+            case '\b':
                 return LocaleController.formatString(R.string.PushChatReactSticker, objArr);
-            case "REACT_GAME":
+            case '\t':
                 return LocaleController.formatString(R.string.PushReactGame, objArr);
-            case "REACT_POLL":
+            case '\n':
                 return LocaleController.formatString(R.string.PushReactPoll, objArr);
-            case "REACT_QUIZ":
+            case 11:
                 return LocaleController.formatString(R.string.PushReactQuiz, objArr);
-            case "REACT_TEXT":
+            case '\f':
                 return LocaleController.formatString(R.string.PushReactText, objArr);
-            case "REACT_TODO":
+            case '\r':
                 return LocaleController.formatString(R.string.PushReactTodo, objArr);
-            case "REACT_INVOICE":
+            case 14:
                 return LocaleController.formatString(R.string.PushReactInvoice, objArr);
-            case "CHAT_REACT_DOC":
+            case 15:
                 return LocaleController.formatString(R.string.PushChatReactDoc, objArr);
-            case "CHAT_REACT_GEO":
+            case 16:
                 return LocaleController.formatString(R.string.PushChatReactGeo, objArr);
-            case "CHAT_REACT_GIF":
+            case 17:
                 return LocaleController.formatString(R.string.PushChatReactGif, objArr);
-            case "REACT_STICKER":
+            case 18:
                 return LocaleController.formatString(R.string.PushReactSticker, objArr);
-            case "CHAT_REACT_AUDIO":
+            case 19:
                 return LocaleController.formatString(R.string.PushChatReactAudio, objArr);
-            case "CHAT_REACT_PHOTO":
+            case 20:
                 return LocaleController.formatString(R.string.PushChatReactPhoto, objArr);
-            case "CHAT_REACT_ROUND":
+            case 21:
                 return LocaleController.formatString(R.string.PushChatReactRound, objArr);
-            case "CHAT_REACT_VIDEO":
+            case 22:
                 return LocaleController.formatString(R.string.PushChatReactVideo, objArr);
-            case "CHAT_REACT_GIVEAWAY":
+            case 23:
                 return LocaleController.formatString(R.string.NotificationChatReactGiveaway, objArr);
-            case "REACT_GIVEAWAY":
+            case 24:
                 return LocaleController.formatString(R.string.NotificationReactGiveaway, objArr);
-            case "CHAT_REACT_GEOLIVE":
+            case 25:
                 return LocaleController.formatString(R.string.PushChatReactGeoLive, objArr);
-            case "REACT_AUDIO":
+            case 26:
                 return LocaleController.formatString(R.string.PushReactAudio, objArr);
-            case "REACT_PHOTO":
+            case 27:
                 return LocaleController.formatString(R.string.PushReactPhoto, objArr);
-            case "REACT_ROUND":
+            case 28:
                 return LocaleController.formatString(R.string.PushReactRound, objArr);
-            case "REACT_STORY":
+            case 29:
                 return LocaleController.formatString(R.string.PushReactStory, objArr);
-            case "REACT_VIDEO":
+            case 30:
                 return LocaleController.formatString(R.string.PushReactVideo, objArr);
-            case "REACT_DOC":
+            case 31:
                 return LocaleController.formatString(R.string.PushReactDoc, objArr);
-            case "REACT_GEO":
+            case ' ':
                 return LocaleController.formatString(R.string.PushReactGeo, objArr);
-            case "REACT_GIF":
+            case '!':
                 return LocaleController.formatString(R.string.PushReactGif, objArr);
-            case "CHAT_REACT_GAME":
+            case '\"':
                 return LocaleController.formatString(R.string.PushChatReactGame, objArr);
-            case "CHAT_REACT_POLL":
+            case '#':
                 return LocaleController.formatString(R.string.PushChatReactPoll, objArr);
-            case "CHAT_REACT_QUIZ":
+            case '$':
                 return LocaleController.formatString(R.string.PushChatReactQuiz, objArr);
-            case "CHAT_REACT_TEXT":
+            case '%':
                 return LocaleController.formatString(R.string.PushChatReactText, objArr);
-            case "CHAT_REACT_TODO":
+            case '&':
                 return LocaleController.formatString(R.string.PushChatReactTodo, objArr);
             default:
                 return null;
         }
     }
 
-    public static void lambda$processRemoteMessage$2(int i10, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i10).processUpdates(tL_updates, false);
+    public static void lambda$processRemoteMessage$2(int i9, TLRPC.TL_updates tL_updates) {
+        MessagesController.getInstance(i9).processUpdates(tL_updates, false);
     }
 
-    public static void lambda$processRemoteMessage$3(int i10) {
-        if (UserConfig.getInstance(i10).getClientUserId() != 0) {
-            UserConfig.getInstance(i10).clearConfig();
-            MessagesController.getInstance(i10).performLogout(0);
+    public static void lambda$processRemoteMessage$3(int i9) {
+        if (UserConfig.getInstance(i9).getClientUserId() != 0) {
+            UserConfig.getInstance(i9).clearConfig();
+            MessagesController.getInstance(i9).performLogout(0);
         }
     }
 
-    public static void lambda$processRemoteMessage$4(int i10) {
-        LocationController.getInstance(i10).setNewLocationEndWatchTime();
+    public static void lambda$processRemoteMessage$4(int i9) {
+        LocationController.getInstance(i9).setNewLocationEndWatchTime();
     }
 
-    public static void lambda$processRemoteMessage$5(int i10, long j10, int i11) {
-        MessagesController.getInstance(i10).reportMessageDelivery(j10, i11, true);
+    public static void lambda$processRemoteMessage$5(int i9, long j10, int i10) {
+        MessagesController.getInstance(i9).reportMessageDelivery(j10, i10, true);
     }
 
     public static void lambda$processRemoteMessage$6(java.lang.String r72, java.lang.String r73, long r74) {
@@ -227,86 +468,96 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new ph(0, j10, str, str2));
+        Utilities.stageQueue.postRunnable(new lh(0, j10, str, str2));
     }
 
-    public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
-        MessagesController.getInstance(i10).registerForPush(i11, str);
+    public static void lambda$sendRegistrationToServer$0(int i9, int i10, String str) {
+        MessagesController.getInstance(i9).registerForPush(i10, str);
     }
 
-    public static void lambda$sendRegistrationToServer$1(String str, int i10) {
+    public static void lambda$sendRegistrationToServer$1(String str, int i9) {
         boolean z10;
-        ConnectionsManager.setRegId(str, i10, SharedConfig.pushStringStatus);
-        if (str == null) {
-            return;
-        }
-        if (SharedConfig.pushStringGetTimeStart == 0 || SharedConfig.pushStringGetTimeEnd == 0 || (SharedConfig.pushStatSent && TextUtils.equals(SharedConfig.pushString, str))) {
-            z10 = false;
-        } else {
-            SharedConfig.pushStatSent = false;
-            z10 = true;
-        }
-        SharedConfig.pushString = str;
-        SharedConfig.pushType = i10;
-        for (int i11 = 0; i11 < 4; i11++) {
-            UserConfig userConfig = UserConfig.getInstance(i11);
-            userConfig.registeredForPush = false;
-            userConfig.saveConfig(false);
-            if (userConfig.getClientUserId() != 0) {
-                if (z10) {
-                    String str2 = i10 == 2 ? "fcm" : "hcm";
-                    TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
-                    TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                    tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
-                    tL_inputAppEvent.type = str2.concat("_token_request");
-                    tL_inputAppEvent.peer = 0L;
-                    tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
-                    tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                    TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
-                    tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
-                    tL_inputAppEvent2.type = str2.concat("_token_response");
-                    tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
-                    tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
-                    tL_help_saveAppLog.events.add(tL_inputAppEvent2);
-                    SharedConfig.pushStatSent = true;
-                    SharedConfig.saveConfig();
-                    ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
-                    z10 = false;
+        String str2;
+        ConnectionsManager.setRegId(str, i9, SharedConfig.pushStringStatus);
+        if (str != null) {
+            if (SharedConfig.pushStringGetTimeStart != 0 && SharedConfig.pushStringGetTimeEnd != 0 && (!SharedConfig.pushStatSent || !TextUtils.equals(SharedConfig.pushString, str))) {
+                SharedConfig.pushStatSent = false;
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            SharedConfig.pushString = str;
+            SharedConfig.pushType = i9;
+            for (int i10 = 0; i10 < 4; i10++) {
+                UserConfig userConfig = UserConfig.getInstance(i10);
+                userConfig.registeredForPush = false;
+                userConfig.saveConfig(false);
+                if (userConfig.getClientUserId() != 0) {
+                    if (z10) {
+                        if (i9 == 2) {
+                            str2 = "fcm";
+                        } else {
+                            str2 = "hcm";
+                        }
+                        TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                        TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                        tL_inputAppEvent.time = SharedConfig.pushStringGetTimeStart;
+                        tL_inputAppEvent.type = str2.concat("_token_request");
+                        tL_inputAppEvent.peer = 0L;
+                        tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
+                        tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                        TLRPC.TL_inputAppEvent tL_inputAppEvent2 = new TLRPC.TL_inputAppEvent();
+                        tL_inputAppEvent2.time = SharedConfig.pushStringGetTimeEnd;
+                        tL_inputAppEvent2.type = str2.concat("_token_response");
+                        tL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
+                        tL_inputAppEvent2.data = new TLRPC.TL_jsonNull();
+                        tL_help_saveAppLog.events.add(tL_inputAppEvent2);
+                        SharedConfig.pushStatSent = true;
+                        SharedConfig.saveConfig();
+                        ConnectionsManager.getInstance(i10).sendRequest(tL_help_saveAppLog, null);
+                        z10 = false;
+                    }
+                    AndroidUtilities.runOnUIThread(new p6(i10, i9, str));
                 }
-                AndroidUtilities.runOnUIThread(new r6(i11, i10, str));
             }
         }
     }
 
     private static void onDecryptError() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (UserConfig.getInstance(i10).isClientActivated()) {
-                ConnectionsManager.onInternalPushReceived(i10);
-                ConnectionsManager.getInstance(i10).resumeNetworkMaybe();
+        for (int i9 = 0; i9 < 4; i9++) {
+            if (UserConfig.getInstance(i9).isClientActivated()) {
+                ConnectionsManager.onInternalPushReceived(i9);
+                ConnectionsManager.getInstance(i9).resumeNetworkMaybe();
             }
         }
         countDownLatch.countDown();
     }
 
-    public static void processRemoteMessage(int i10, String str, long j10) {
-        String str2 = i10 == 2 ? "FCM" : "HCM";
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d(str2.concat(" PRE START PROCESSING"));
+    public static void processRemoteMessage(int i9, String str, long j10) {
+        String str2;
+        if (i9 == 2) {
+            str2 = "FCM";
+        } else {
+            str2 = "HCM";
         }
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new ph(1, j10, str2, str));
+        String str3 = str2;
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d(str3.concat(" PRE START PROCESSING"));
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        AndroidUtilities.runOnUIThread(new lh(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder sbR = a9.p.r("finished ", str2, " service, time = ");
-            sbR.append(SystemClock.elapsedRealtime() - jElapsedRealtime);
-            FileLog.d(sbR.toString());
+            StringBuilder t10 = aa.d.t("finished ", str3, " service, time = ");
+            t10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+            FileLog.d(t10.toString());
         }
     }
 
-    public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new p6(str, i10, 8));
+    public static void sendRegistrationToServer(int i9, String str) {
+        Utilities.stageQueue.postRunnable(new n6(str, i9, 8));
     }
 }

@@ -1,73 +1,55 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.app.Activity;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+public final class ws implements View.OnClickListener {
+    public final int f44254a;
+    public final ht f44255b;
 
-public final class ws implements r0.o, org.telegram.ui.Components.vj0 {
-
-    public final kt f44184a;
-
-    public ws(kt ktVar) {
-        this.f44184a = ktVar;
+    public ws(ht htVar, int i9) {
+        this.f44254a = i9;
+        this.f44255b = htVar;
     }
 
     @Override
-    public r0.m1 I0(View view, r0.m1 m1Var) {
-        this.f44184a.f39873q = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        return m1Var;
-    }
-
-    @Override
-    public boolean j() {
-        return true;
-    }
-
-    @Override
-    public boolean m() {
-        return false;
-    }
-
-    @Override
-    public void n(View view, ig.q0 q0Var, boolean z10, boolean z11) {
-        if (q0Var == null) {
-            return;
+    public final void onClick(View view) {
+        switch (this.f44254a) {
+            case 0:
+                ht htVar = this.f44255b;
+                htVar.K = false;
+                htVar.f38936z.invalidate();
+                htVar.n();
+                return;
+            case 1:
+                ht htVar2 = this.f44255b;
+                Activity activity = htVar2.f38933w;
+                if (activity instanceof LaunchActivity) {
+                    LaunchActivity launchActivity = (LaunchActivity) activity;
+                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
+                        launchActivity.O().getLastFragment().dismissCurrentDialog();
+                    }
+                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.k0(5)));
+                }
+                htVar2.K = false;
+                htVar2.f38936z.invalidate();
+                htVar2.n();
+                return;
+            case 2:
+                ht htVar3 = this.f44255b;
+                ft ftVar = htVar3.f38923l;
+                if (ftVar != null) {
+                    ftVar.K();
+                }
+                htVar3.p();
+                return;
+            default:
+                ht htVar4 = this.f44255b;
+                ft ftVar2 = htVar4.f38923l;
+                if (ftVar2 != null) {
+                    ftVar2.q();
+                }
+                htVar4.p();
+                return;
         }
-        kt ktVar = this.f44184a;
-        ig.d0 reactionsWindow = ktVar.P.getReactionsWindow();
-        if (!ktVar.f39871o.contains(q0Var.f11412f)) {
-            ktVar.f39871o.add(q0Var.f11412f);
-            if (ktVar.f39871o.size() > 7) {
-                ktVar.f39871o.remove(0);
-            }
-        } else if (ktVar.f39871o.size() <= 1) {
-            return;
-        } else {
-            ktVar.f39871o.remove(q0Var.f11412f);
-        }
-        ktVar.P.setSelectedEmojis(ktVar.f39871o);
-        if (reactionsWindow != null) {
-            ig.z zVar = reactionsWindow.f11278m;
-            ktVar.P.p(null, null, false);
-            if (zVar != null) {
-                zVar.setSelectedReactions(ktVar.f39871o);
-                zVar.setRecentReactions(ktVar.P.R);
-            }
-            reactionsWindow.d();
-        }
-    }
-
-    @Override
-    public boolean t() {
-        return false;
-    }
-
-    @Override
-    public void s() {
-    }
-
-    @Override
-    public void r(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i10, boolean z10) {
     }
 }

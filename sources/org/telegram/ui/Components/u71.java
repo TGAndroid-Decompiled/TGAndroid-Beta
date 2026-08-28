@@ -1,54 +1,51 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Point;
+import android.os.Build;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.WallpapersListActivity;
+public final class u71 {
+    public String f32948a;
+    public final Activity f32949b;
+    public final org.telegram.ui.ActionBar.o2 f32950c;
+    public final t71 d;
+    public File f32951e;
 
-public final class u71 implements org.telegram.ui.ip0 {
-
-    public final w71 f33001a;
-
-    public u71(w71 w71Var) {
-        this.f33001a = w71Var;
+    public u71(Activity activity, WallpapersListActivity wallpapersListActivity, t71 t71Var) {
+        this.f32949b = activity;
+        this.f32950c = wallpapersListActivity;
+        this.d = t71Var;
     }
 
-    @Override
-    public final void a(ArrayList arrayList) {
-        w71 w71Var = this.f33001a;
-        try {
-            if (arrayList.isEmpty()) {
-                return;
-            }
-            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
-            if (sendingMediaInfo.path != null) {
-                w71Var.f34138e = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
-                Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-                bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(w71Var.f34138e));
-                w71Var.d.b(w71Var.f34138e, bitmapLoadBitmap, true);
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
+    public final void a(int r9, int r10, android.content.Intent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u71.a(int, int, android.content.Intent):void");
     }
 
-    @Override
     public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.PICK");
-            intent.setType("image/*");
-            this.f33001a.f34136b.startActivityForResult(intent, 11);
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        org.telegram.ui.ActionBar.o2 o2Var = this.f32950c;
+        if (o2Var != null) {
+            Activity parentActivity = o2Var.getParentActivity();
+            if (parentActivity != null) {
+                int i9 = Build.VERSION.SDK_INT;
+                if (i9 >= 33) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
+                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
+                        return;
+                    }
+                } else if (i9 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
+                }
+            }
+            org.telegram.ui.ip0 ip0Var = new org.telegram.ui.ip0(2, false, false, null);
+            ip0Var.f39248x = false;
+            ip0Var.R = new s71(this);
+            o2Var.presentFragment(ip0Var);
+            return;
         }
+        Intent intent = new Intent("android.intent.action.PICK");
+        intent.setType("image/*");
+        this.f32949b.startActivityForResult(intent, 11);
     }
 }

@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class InvalidUnitException extends JMathTeXException {
     private static final long serialVersionUID = 860909774647515072L;
 

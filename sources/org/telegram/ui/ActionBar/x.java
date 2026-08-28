@@ -2,43 +2,43 @@ package org.telegram.ui.ActionBar;
 
 import android.view.KeyEvent;
 import android.view.View;
-
 public final class x implements View.OnClickListener {
+    public final int f23931a;
+    public final KeyEvent.Callback f23932b;
 
-    public final int f23938a;
-
-    public final KeyEvent.Callback f23939b;
-
-    public x(KeyEvent.Callback callback, int i10) {
-        this.f23938a = i10;
-        this.f23939b = callback;
+    public x(KeyEvent.Callback callback, int i9) {
+        this.f23931a = i9;
+        this.f23932b = callback;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f23938a) {
+        switch (this.f23931a) {
             case 0:
-                z zVar = (z) this.f23939b;
-                k kVar = zVar.f23984b;
-                v0 v0Var = (v0) view;
-                if (!v0Var.q()) {
-                    if (!v0Var.C) {
-                        zVar.o(((Integer) view.getTag()).intValue());
-                    } else {
-                        kVar.w(v0Var.L(true));
+                z zVar = (z) this.f23932b;
+                k kVar = zVar.f23999b;
+                w0 w0Var = (w0) view;
+                if (w0Var.q()) {
+                    if (kVar.f23589q0.a()) {
+                        w0Var.M(null, null);
+                        return;
                     }
-                } else if (kVar.f23590q0.a()) {
-                    v0Var.M(null, null);
+                    return;
+                } else if (w0Var.C) {
+                    kVar.v(w0Var.L(true));
+                    return;
+                } else {
+                    zVar.o(((Integer) view.getTag()).intValue());
+                    return;
                 }
-                break;
             case 1:
-                ((f2) this.f23939b).dismiss();
-                break;
+                ((g2) this.f23932b).dismiss();
+                return;
             default:
-                e3 e3Var = (e3) this.f23939b;
-                e3Var.getClass();
-                e3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
-                break;
+                f3 f3Var = (f3) this.f23932b;
+                f3Var.getClass();
+                f3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
+                return;
         }
     }
 }

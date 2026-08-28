@@ -1,12 +1,10 @@
 package jb;
-
-import java.util.ArrayList;
-
 public final class b {
+    public final c f14288a;
+    public final ya.d f14289b;
 
-    public final ArrayList f12884a;
-
-    public b(ArrayList arrayList) {
-        this.f12884a = arrayList;
+    public b(c cVar, ya.d dVar) {
+        this.f14288a = cVar;
+        this.f14289b = dVar;
     }
 }

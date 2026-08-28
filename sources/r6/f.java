@@ -1,48 +1,57 @@
 package r6;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.ResultReceiver;
-import h7.r8;
-import n6.w0;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import f7.h5;
+import kotlin.jvm.internal.i;
+import q6.l;
+import q6.q;
+public final class f extends a7.a implements a {
+    public final int f47080b;
+    public final TaskCompletionSource f47081c;
 
-public final class f extends z5.a {
-    public static final Parcelable.Creator<f> CREATOR = new w0(24);
-
-    public final String f46836a;
-
-    public final Bundle f46837b;
-
-    public final Bundle f46838c;
-    public final String d;
-
-    public final String f46839e;
-
-    public final ResultReceiver f46840f;
-
-    public f(String type, Bundle credentialData, Bundle candidateQueryData, String str, String str2, ResultReceiver resultReceiver) {
-        kotlin.jvm.internal.j.e(type, "type");
-        kotlin.jvm.internal.j.e(credentialData, "credentialData");
-        kotlin.jvm.internal.j.e(candidateQueryData, "candidateQueryData");
-        this.f46836a = type;
-        this.f46837b = credentialData;
-        this.f46838c = candidateQueryData;
-        this.d = str;
-        this.f46839e = str2;
-        this.f46840f = resultReceiver;
+    public f(int i9, TaskCompletionSource taskCompletionSource) {
+        super(0);
+        this.f47080b = i9;
+        this.f47081c = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
     }
 
     @Override
-    public final void writeToParcel(Parcel dest, int i10) {
-        kotlin.jvm.internal.j.e(dest, "dest");
-        int iQ = r8.q(dest, 20293);
-        r8.l(dest, 1, this.f46836a);
-        r8.b(dest, 2, this.f46837b);
-        r8.b(dest, 3, this.f46838c);
-        r8.l(dest, 4, this.d);
-        r8.l(dest, 5, this.f46839e);
-        r8.k(dest, 6, this.f46840f, i10);
-        r8.r(dest, iQ);
+    public void U(Status status, q6.b bVar) {
+        i.e(status, "status");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void p0(Status status, l lVar) {
+        switch (this.f47080b) {
+            case 1:
+                i.e(status, "status");
+                h5.a(status, lVar, this.f47081c);
+                return;
+            default:
+                i.e(status, "status");
+                throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override
+    public void r0(Status status, q qVar) {
+        i.e(status, "status");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void t0(Status status, q6.e eVar) {
+        switch (this.f47080b) {
+            case 0:
+                i.e(status, "status");
+                h5.a(status, eVar, this.f47081c);
+                return;
+            default:
+                i.e(status, "status");
+                throw new UnsupportedOperationException();
+        }
     }
 }

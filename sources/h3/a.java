@@ -1,101 +1,123 @@
 package h3;
 
 import android.util.Pair;
-
-public abstract class a extends s2 {
+public abstract class a extends r2 {
     public static final int d = 0;
-
-    public final int f7762b;
-
-    public final j4.g1 f7763c;
+    public final int f9330b;
+    public final j4.g1 f9331c;
 
     public a(j4.g1 g1Var) {
-        this.f7763c = g1Var;
-        this.f7762b = g1Var.getLength();
+        this.f9331c = g1Var;
+        this.f9330b = g1Var.getLength();
     }
 
     @Override
     public final int a(boolean z10) {
-        if (this.f7762b != 0) {
-            int iB = z10 ? this.f7763c.b() : 0;
-            while (x(iB).p()) {
-                iB = w(iB, z10);
-                if (iB == -1) {
-                }
-            }
-            return x(iB).a(z10) + v(iB);
+        int i9;
+        if (this.f9330b == 0) {
+            return -1;
         }
-        return -1;
+        if (z10) {
+            i9 = this.f9331c.b();
+        } else {
+            i9 = 0;
+        }
+        while (x(i9).p()) {
+            i9 = w(i9, z10);
+            if (i9 == -1) {
+                return -1;
+            }
+        }
+        return x(i9).a(z10) + v(i9);
     }
 
     @Override
     public final int b(Object obj) {
-        int iB;
+        int b10;
         if (!(obj instanceof Pair)) {
             return -1;
         }
         Pair pair = (Pair) obj;
         Object obj2 = pair.first;
         Object obj3 = pair.second;
-        int iQ = q(obj2);
-        if (iQ == -1 || (iB = x(iQ).b(obj3)) == -1) {
+        int q10 = q(obj2);
+        if (q10 == -1 || (b10 = x(q10).b(obj3)) == -1) {
             return -1;
         }
-        return u(iQ) + iB;
+        return u(q10) + b10;
     }
 
     @Override
     public final int c(boolean z10) {
-        int i10 = this.f7762b;
-        if (i10 != 0) {
-            j4.g1 g1Var = this.f7763c;
-            int iF = z10 ? g1Var.f() : i10 - 1;
-            while (x(iF).p()) {
-                if (z10) {
-                    iF = g1Var.c(iF);
-                } else {
-                    iF = iF > 0 ? iF - 1 : -1;
-                }
-                if (iF == -1) {
-                }
-            }
-            return x(iF).c(z10) + v(iF);
+        int i9;
+        int i10 = this.f9330b;
+        if (i10 == 0) {
+            return -1;
         }
-        return -1;
+        j4.g1 g1Var = this.f9331c;
+        if (z10) {
+            i9 = g1Var.f();
+        } else {
+            i9 = i10 - 1;
+        }
+        while (x(i9).p()) {
+            if (z10) {
+                i9 = g1Var.c(i9);
+                continue;
+            } else if (i9 > 0) {
+                i9--;
+                continue;
+            } else {
+                i9 = -1;
+                continue;
+            }
+            if (i9 == -1) {
+                return -1;
+            }
+        }
+        return x(i9).c(z10) + v(i9);
     }
 
     @Override
-    public final int e(int i10, int i11, boolean z10) {
-        int iS = s(i10);
-        int iV = v(iS);
-        int iE = x(iS).e(i10 - iV, i11 == 2 ? 0 : i11, z10);
-        if (iE != -1) {
-            return iV + iE;
+    public final int e(int i9, int i10, boolean z10) {
+        int i11;
+        int s10 = s(i9);
+        int v = v(s10);
+        r2 x10 = x(s10);
+        int i12 = i9 - v;
+        if (i10 == 2) {
+            i11 = 0;
+        } else {
+            i11 = i10;
         }
-        int iW = w(iS, z10);
-        while (iW != -1 && x(iW).p()) {
-            iW = w(iW, z10);
+        int e10 = x10.e(i12, i11, z10);
+        if (e10 != -1) {
+            return v + e10;
         }
-        if (iW != -1) {
-            return x(iW).a(z10) + v(iW);
+        int w8 = w(s10, z10);
+        while (w8 != -1 && x(w8).p()) {
+            w8 = w(w8, z10);
         }
-        if (i11 == 2) {
+        if (w8 != -1) {
+            return x(w8).a(z10) + v(w8);
+        } else if (i10 != 2) {
+            return -1;
+        } else {
             return a(z10);
         }
-        return -1;
     }
 
     @Override
-    public final p2 f(int i10, p2 p2Var, boolean z10) {
-        int iR = r(i10);
-        int iV = v(iR);
-        x(iR).f(i10 - u(iR), p2Var, z10);
-        p2Var.f8069c += iV;
+    public final p2 f(int i9, p2 p2Var, boolean z10) {
+        int r10 = r(i9);
+        int v = v(r10);
+        x(r10).f(i9 - u(r10), p2Var, z10);
+        p2Var.f9639c += v;
         if (z10) {
-            Object objT = t(iR);
-            Object obj = p2Var.f8068b;
+            Object t10 = t(r10);
+            Object obj = p2Var.f9638b;
             obj.getClass();
-            p2Var.f8068b = Pair.create(objT, obj);
+            p2Var.f9638b = Pair.create(t10, obj);
         }
         return p2Var;
     }
@@ -105,11 +127,11 @@ public abstract class a extends s2 {
         Pair pair = (Pair) obj;
         Object obj2 = pair.first;
         Object obj3 = pair.second;
-        int iQ = q(obj2);
-        int iV = v(iQ);
-        x(iQ).g(obj3, p2Var);
-        p2Var.f8069c += iV;
-        p2Var.f8068b = obj;
+        int q10 = q(obj2);
+        int v = v(q10);
+        x(q10).g(obj3, p2Var);
+        p2Var.f9639c += v;
+        p2Var.f9638b = obj;
         return p2Var;
     }
 
@@ -119,48 +141,48 @@ public abstract class a extends s2 {
     }
 
     @Override
-    public final Object l(int i10) {
-        int iR = r(i10);
-        return Pair.create(t(iR), x(iR).l(i10 - u(iR)));
+    public final Object l(int i9) {
+        int r10 = r(i9);
+        return Pair.create(t(r10), x(r10).l(i9 - u(r10)));
     }
 
     @Override
-    public final r2 m(int i10, r2 r2Var, long j10) {
-        int iS = s(i10);
-        int iV = v(iS);
-        int iU = u(iS);
-        x(iS).m(i10 - iV, r2Var, j10);
-        Object objT = t(iS);
-        if (!r2.D.equals(r2Var.f8112a)) {
-            objT = Pair.create(objT, r2Var.f8112a);
+    public final q2 m(int i9, q2 q2Var, long j10) {
+        int s10 = s(i9);
+        int v = v(s10);
+        int u10 = u(s10);
+        x(s10).m(i9 - v, q2Var, j10);
+        Object t10 = t(s10);
+        if (!q2.D.equals(q2Var.f9658a)) {
+            t10 = Pair.create(t10, q2Var.f9658a);
         }
-        r2Var.f8112a = objT;
-        r2Var.A += iU;
-        r2Var.B += iU;
-        return r2Var;
+        q2Var.f9658a = t10;
+        q2Var.A += u10;
+        q2Var.B += u10;
+        return q2Var;
     }
 
     public abstract int q(Object obj);
 
-    public abstract int r(int i10);
+    public abstract int r(int i9);
 
-    public abstract int s(int i10);
+    public abstract int s(int i9);
 
-    public abstract Object t(int i10);
+    public abstract Object t(int i9);
 
-    public abstract int u(int i10);
+    public abstract int u(int i9);
 
-    public abstract int v(int i10);
+    public abstract int v(int i9);
 
-    public final int w(int i10, boolean z10) {
+    public final int w(int i9, boolean z10) {
         if (z10) {
-            return this.f7763c.d(i10);
+            return this.f9331c.d(i9);
         }
-        if (i10 < this.f7762b - 1) {
-            return i10 + 1;
+        if (i9 < this.f9330b - 1) {
+            return i9 + 1;
         }
         return -1;
     }
 
-    public abstract s2 x(int i10);
+    public abstract r2 x(int i9);
 }

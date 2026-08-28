@@ -1,26 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import java.util.Comparator;
+import org.telegram.messenger.CodeHighlighting;
+public final class o1 implements Comparator {
+    public final int f24810a;
+    public final Spanned f24811b;
 
-public final class o1 extends ClickableSpan {
-
-    public final TLRPC.User f24770a;
-
-    public final p1 f24771b;
-
-    public o1(p1 p1Var, TLRPC.User user) {
-        this.f24771b = p1Var;
-        this.f24770a = user;
+    public o1(Spanned spanned, int i9) {
+        this.f24810a = i9;
+        this.f24811b = spanned;
     }
 
     @Override
-    public final void onClick(View view) {
-        s1 s1Var = this.f24771b.d;
-        j1 j1Var = s1Var.Fc;
-        if (j1Var != null) {
-            j1Var.v0(s1Var, this.f24770a, 0.0f, 0.0f);
+    public final int compare(Object obj, Object obj2) {
+        int spanStart;
+        int spanStart2;
+        switch (this.f24810a) {
+            case 0:
+                Spanned spanned = this.f24811b;
+                spanStart = spanned.getSpanStart((CodeHighlighting.Span) obj2);
+                spanStart2 = spanned.getSpanStart((CodeHighlighting.Span) obj);
+                break;
+            default:
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f24811b;
+                spanStart = spannableStringBuilder.getSpanStart((t9) obj2);
+                spanStart2 = spannableStringBuilder.getSpanStart((t9) obj);
+                break;
         }
+        return spanStart - spanStart2;
     }
 }

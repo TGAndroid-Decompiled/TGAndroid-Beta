@@ -1,93 +1,142 @@
 package sf;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import com.google.firebase.messaging.t;
+import g7.e6;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Cells.z;
+import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Components.fq;
+import org.telegram.ui.Components.ju0;
+import org.telegram.ui.te1;
+public class e extends FrameLayout {
+    public boolean A;
+    public boolean B;
+    public boolean C;
+    public Drawable D;
+    public z E;
+    public final b6 F;
+    public final ju0 G;
+    public DecimalFormat H;
+    public boolean f47535a;
+    public final LinearLayout f47536b;
+    public t[] f47537c;
+    public final TextView d;
+    public final TextView f47538e;
+    public final ImageView f47539f;
+    public final RadialProgressView h;
+    public final SimpleDateFormat f47540n;
+    public final SimpleDateFormat f47541r;
+    public final SimpleDateFormat f47542s;
+    public final SimpleDateFormat v;
+    public final SimpleDateFormat f47543w;
+    public boolean f47544x;
+    public boolean f47545y;
 
-public final class e extends b {
-
-    public long[] f47893l;
-
-    public long[][] f47894m;
-
-    public int f47895n;
-
-    public e(b bVar, long j10) {
-        this.d = new ArrayList();
-        this.f47884e = 0L;
-        this.f47885f = Long.MAX_VALUE;
-        this.f47886g = 0.0f;
-        this.h = 0.0f;
-        this.f47887i = 0;
-        this.f47888j = 0;
-        int iBinarySearch = Arrays.binarySearch(bVar.f47881a, j10);
-        int length = iBinarySearch - 4;
-        int length2 = iBinarySearch + 4;
-        if (length < 0) {
-            length2 += -length;
-            length = 0;
-        }
-        long[] jArr = bVar.f47881a;
-        if (length2 > jArr.length - 1) {
-            length -= length2 - jArr.length;
-            length2 = jArr.length - 1;
-        }
-        length = length < 0 ? 0 : length;
-        int i10 = (length2 - length) + 1;
-        this.f47881a = new long[i10];
-        this.f47882b = new float[i10];
-        this.d = new ArrayList();
-        for (int i11 = 0; i11 < bVar.d.size(); i11++) {
-            a aVar = new a();
-            aVar.f47874a = new long[i10];
-            aVar.f47876c = ((a) bVar.d.get(i11)).f47876c;
-            aVar.d = ((a) bVar.d.get(i11)).d;
-            aVar.f47879g = ((a) bVar.d.get(i11)).f47879g;
-            aVar.h = ((a) bVar.d.get(i11)).h;
-            aVar.f47880i = ((a) bVar.d.get(i11)).f47880i;
-            this.d.add(aVar);
-        }
-        int i12 = 0;
-        while (length <= length2) {
-            this.f47881a[i12] = bVar.f47881a[length];
-            for (int i13 = 0; i13 < this.d.size(); i13++) {
-                ((a) this.d.get(i13)).f47874a[i12] = ((a) bVar.d.get(i13)).f47874a[length];
-            }
-            i12++;
-            length++;
-        }
-        this.f47889k = 86400000L;
-        e();
+    public e(Context context, b6 b6Var) {
+        super(context);
+        this.f47540n = new SimpleDateFormat("E, ");
+        this.f47541r = new SimpleDateFormat("MMM dd");
+        this.f47542s = new SimpleDateFormat("d MMM yyyy");
+        this.v = new SimpleDateFormat("d MMM");
+        this.f47543w = new SimpleDateFormat(" HH:mm");
+        this.C = true;
+        this.G = new ju0(this, 6);
+        this.F = b6Var;
+        setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        this.f47536b = linearLayout;
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        TextView textView2 = new TextView(context);
+        this.f47538e = textView2;
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        ImageView imageView = new ImageView(context);
+        this.f47539f = imageView;
+        imageView.setImageResource(R.drawable.ic_chevron_right_black_18dp);
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.h = radialProgressView;
+        radialProgressView.setSize(AndroidUtilities.dp(12.0f));
+        radialProgressView.setStrokeWidth(AndroidUtilities.dp(0.5f));
+        radialProgressView.setVisibility(8);
+        addView(linearLayout, e6.d(-2, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
+        addView(textView, e6.d(-2, -2.0f, 8388611, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(textView2, e6.d(-2, -2.0f, 8388613, 4.0f, 0.0f, 4.0f, 0.0f));
+        addView(imageView, e6.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        addView(radialProgressView, e6.d(18, 18.0f, 8388661, 0.0f, 2.0f, 0.0f, 0.0f));
+        b();
     }
 
-    @Override
-    public final void e() {
-        super.e();
-        this.f47895n = 0;
-        int length = this.f47882b.length;
-        int size = this.d.size();
-        int iMax = Math.max(1, Math.round(length / 140.0f));
-        int i10 = length / iMax;
-        this.f47894m = (long[][]) Array.newInstance((Class<?>) Long.TYPE, size, i10);
-        long[] jArr = new long[size];
-        for (int i11 = 0; i11 < length; i11++) {
-            for (int i12 = 0; i12 < size; i12++) {
-                long j10 = ((a) this.d.get(i12)).f47874a[i11];
-                if (j10 > jArr[i12]) {
-                    jArr[i12] = j10;
-                }
-            }
-            if (i11 % iMax == 0) {
-                for (int i13 = 0; i13 < size; i13++) {
-                    this.f47894m[i13][this.f47895n] = jArr[i13];
-                    jArr[i13] = 0;
-                }
-                int i14 = this.f47895n + 1;
-                this.f47895n = i14;
-                if (i14 >= i10) {
-                    return;
-                }
-            }
+    public static String a(String str) {
+        if (str.length() > 0) {
+            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
         }
+        return str;
+    }
+
+    public void b() {
+        int i9 = f6.f23108j5;
+        b6 b6Var = this.F;
+        this.d.setTextColor(f6.v0(i9, b6Var));
+        this.f47538e.setTextColor(f6.v0(i9, b6Var));
+        int i10 = f6.gj;
+        this.f47539f.setColorFilter(f6.v0(i10, b6Var));
+        this.h.setProgressColor(f6.v0(i10, b6Var));
+        this.D = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
+        int dp = AndroidUtilities.dp(4.0f);
+        this.E = f6.i0(dp, dp, dp, dp, f6.v0(f6.f23072h5, b6Var), f6.v0(f6.f23092i6, b6Var), -16777216);
+        fq fqVar = new fq(this.D, this.E, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        fqVar.f28550w = true;
+        setBackground(fqVar);
+    }
+
+    public final void c(int r22, long r23, java.util.ArrayList r25, boolean r26, int r27, float r28) {
+        throw new UnsupportedOperationException("Method not decompiled: sf.e.c(int, long, java.util.ArrayList, boolean, int, float):void");
+    }
+
+    public final void d(boolean z10, boolean z11) {
+        ju0 ju0Var = this.G;
+        if (z10) {
+            AndroidUtilities.runOnUIThread(ju0Var, 300L);
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(ju0Var);
+        RadialProgressView radialProgressView = this.h;
+        if (z11) {
+            radialProgressView.setVisibility(8);
+            return;
+        }
+        this.f47539f.animate().setDuration(80L).alpha(1.0f).start();
+        if (radialProgressView.getVisibility() == 0) {
+            radialProgressView.animate().setDuration(80L).alpha(0.0f).setListener(new te1(this, 7)).start();
+        }
+    }
+
+    public void setSize(int i9) {
+        LinearLayout linearLayout = this.f47536b;
+        linearLayout.removeAllViews();
+        this.f47537c = new t[i9];
+        for (int i10 = 0; i10 < i9; i10++) {
+            this.f47537c[i10] = new t(this);
+            linearLayout.addView((LinearLayout) this.f47537c[i10].f4179e);
+        }
+    }
+
+    public void setUseWeek(boolean z10) {
+        this.f47544x = z10;
     }
 }

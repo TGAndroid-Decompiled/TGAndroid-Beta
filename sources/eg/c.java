@@ -1,55 +1,44 @@
 package eg;
 
-import android.content.Context;
-import org.telegram.messenger.Emoji;
-import org.telegram.ui.ActionBar.h5;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.qn;
+public final class c implements Runnable {
+    public final int f5145a;
+    public final d f5146b;
+    public final MessageObject f5147c;
+    public final TLRPC.TL_messageMediaGiveawayResults d;
 
-public final class c extends h5 {
-    public final int I0;
-
-    public c(Context context, int i10) {
-        super(context);
-        this.I0 = i10;
+    public c(d dVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i9) {
+        this.f5145a = i9;
+        this.f5146b = dVar;
+        this.f5147c = messageObject;
+        this.d = tL_messageMediaGiveawayResults;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        switch (this.I0) {
+    public final void run() {
+        switch (this.f5145a) {
             case 0:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 1:
-            case 2:
+                AndroidUtilities.runOnUIThread(new c(this.f5146b, this.f5147c, this.d, 1));
+                return;
             default:
-                return super.k(charSequence);
-            case 3:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            case 4:
-                return l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-        }
-    }
-
-    @Override
-    public boolean l(CharSequence charSequence, boolean z10) {
-        switch (this.I0) {
-            case 2:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), z10);
-            case 5:
-                return super.l(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-            default:
-                return super.l(charSequence, z10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.I0) {
-            case 1:
-                super.onMeasure(i10, i11);
-                setPivotY(getMeasuredHeight() / 2.0f);
-                break;
-            default:
-                super.onMeasure(i10, i11);
-                break;
+                t1 t1Var = this.f5146b.f5150c;
+                long dialogId = this.f5147c.getDialogId();
+                TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
+                if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
+                    t1Var.getDelegate().S1(t1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", tL_messageMediaGiveawayResults.channel_id);
+                bundle.putInt("message_id", tL_messageMediaGiveawayResults.launch_msg_id);
+                LaunchActivity.R().presentFragment(new qn(bundle));
+                return;
         }
     }
 }

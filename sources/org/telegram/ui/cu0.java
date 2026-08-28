@@ -1,44 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ClippingImageView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class cu0 extends org.telegram.ui.Components.g50 {
+    public final du0 d;
 
-public final class cu0 {
+    public cu0(du0 du0Var) {
+        this.d = du0Var;
+    }
 
-    public ImageReceiver f37153a;
+    @Override
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f37612s.U7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f37612s.T7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f37612s.U7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f37610n);
+        return sb2.toString();
+    }
 
-    public int f37154b;
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f37612s.U7 - 1);
+    }
 
-    public int f37155c;
-    public View d;
+    @Override
+    public final int j() {
+        return this.d.f37612s.T7;
+    }
 
-    public ImageReceiver.BitmapHolder f37156e;
-
-    public long f37157f;
-
-    public long f37158g;
-    public int[] h;
-
-    public int f37159i;
-
-    public int f37160j;
-
-    public boolean f37162l;
-
-    public ClippingImageView f37163m;
-
-    public int f37164n;
-
-    public boolean f37166p;
-
-    public int f37167q;
-
-    public boolean f37168r;
-
-    public boolean f37169s;
-
-    public float f37161k = 1.0f;
-
-    public boolean f37165o = true;
+    @Override
+    public final void k(int i9) {
+        int max;
+        if (this.d.f37612s.U7 > 0 && (max = Math.max(0, Math.min(this.d.f37612s.U7 - 1, i9))) != this.d.f37612s.T7) {
+            du0 du0Var = this.d;
+            du0Var.f37611r = du0Var.f37612s.T7;
+            this.d.f37612s.T7 = max;
+            this.d.f37612s.R0();
+            this.d.invalidate();
+            int i10 = this.d.f37612s.T7;
+            du0 du0Var2 = this.d;
+            if (i10 != du0Var2.f37611r) {
+                du0Var2.f37612s.p2(1);
+            }
+        }
+    }
 }

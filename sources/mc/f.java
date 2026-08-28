@@ -1,24 +1,21 @@
 package mc;
 
-public final class f extends k {
+import ie.p;
+import java.util.regex.Pattern;
+public final class f extends h {
+    public static final Pattern f17617e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
-    public final StringBuilder f17992c;
-    public final StringBuilder d;
-
-    public final StringBuilder f17993e;
-
-    public f() {
-        super(1, 0);
-        this.f17992c = new StringBuilder();
-        this.d = new StringBuilder();
-        this.f17993e = new StringBuilder();
+    @Override
+    public final p b() {
+        String a2 = a(f17617e);
+        if (a2 != null) {
+            return f(he.b.a(a2));
+        }
+        return null;
     }
 
     @Override
-    public final k c() {
-        k.d(this.f17992c);
-        k.d(this.d);
-        k.d(this.f17993e);
-        return this;
+    public final char d() {
+        return '&';
     }
 }

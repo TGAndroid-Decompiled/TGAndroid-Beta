@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.o;
 import org.telegram.tgnet.r;
-
+import org.telegram.tgnet.tl.TL_keyboard;
 public class TL_iv {
 
     public static abstract class Page extends TLObject {
@@ -20,7 +20,6 @@ public class TL_iv {
         public boolean part;
         public boolean rtl;
         public String url;
-
         public boolean f22599v2;
         public int views;
         public boolean web;
@@ -28,12 +27,12 @@ public class TL_iv {
         public ArrayList<TLRPC.Photo> photos = new ArrayList<>();
         public ArrayList<TLRPC.Document> documents = new ArrayList<>();
 
-        public static Page TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (Page) TLObject.TLdeserialize(Page.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static Page TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (Page) TLObject.TLdeserialize(Page.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static Page fromConstructor(int i10) {
-            switch (i10) {
+        private static Page fromConstructor(int i9) {
+            switch (i9) {
                 case -1913754556:
                     return new TL_pagePart_layer67();
                 case -1908433218:
@@ -68,12 +67,12 @@ public class TL_iv {
         public TLRPC.PhotoSize thumb;
         public TLObject thumbObject;
 
-        public static PageBlock TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (PageBlock) TLObject.TLdeserialize(PageBlock.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static PageBlock TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (PageBlock) TLObject.TLdeserialize(PageBlock.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static PageBlock fromConstructor(int i10) {
-            switch (i10) {
+        private static PageBlock fromConstructor(int i9) {
+            switch (i9) {
                 case -2143067670:
                     return new pageBlockAudio();
                 case -1879401953:
@@ -191,8 +190,14 @@ public class TL_iv {
         public RichText credit;
         public RichText text;
 
-        public static PageCaption TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (PageCaption) TLObject.TLdeserialize(PageCaption.class, 1869903447 != i10 ? null : new PageCaption(), inputSerializedData, i10, z10);
+        public static PageCaption TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            PageCaption pageCaption;
+            if (1869903447 != i9) {
+                pageCaption = null;
+            } else {
+                pageCaption = new PageCaption();
+            }
+            return (PageCaption) TLObject.TLdeserialize(PageCaption.class, pageCaption, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -214,9 +219,9 @@ public class TL_iv {
         public boolean checked;
         public int flags;
 
-        public static PageListItem TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PageListItem TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
             TLObject tL_pageListItemText_layer226;
-            switch (i10) {
+            switch (i9) {
                 case -1188055347:
                     tL_pageListItemText_layer226 = new TL_pageListItemText_layer226();
                     break;
@@ -233,7 +238,7 @@ public class TL_iv {
                     tL_pageListItemText_layer226 = null;
                     break;
             }
-            return (PageListItem) TLObject.TLdeserialize(PageListItem.class, tL_pageListItemText_layer226, inputSerializedData, i10, z10);
+            return (PageListItem) TLObject.TLdeserialize(PageListItem.class, tL_pageListItemText_layer226, inputSerializedData, i9, z10);
         }
     }
 
@@ -245,9 +250,9 @@ public class TL_iv {
         public String type;
         public int value;
 
-        public static PageListOrderedItem TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PageListOrderedItem TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
             TLObject tL_pageListOrderedItemBlocks;
-            switch (i10) {
+            switch (i9) {
                 case -1879910928:
                     tL_pageListOrderedItemBlocks = new TL_pageListOrderedItemBlocks();
                     break;
@@ -264,7 +269,7 @@ public class TL_iv {
                     tL_pageListOrderedItemBlocks = null;
                     break;
             }
-            return (PageListOrderedItem) TLObject.TLdeserialize(PageListOrderedItem.class, tL_pageListOrderedItemBlocks, inputSerializedData, i10, z10);
+            return (PageListOrderedItem) TLObject.TLdeserialize(PageListOrderedItem.class, tL_pageListOrderedItemBlocks, inputSerializedData, i9, z10);
         }
     }
 
@@ -277,15 +282,21 @@ public class TL_iv {
         public ArrayList<TLRPC.Photo> photos = new ArrayList<>();
         public ArrayList<TLRPC.Document> documents = new ArrayList<>();
 
-        public static RichMessage TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (RichMessage) TLObject.TLdeserialize(RichMessage.class, i10 != -1158439541 ? null : new RichMessage(), inputSerializedData, i10, z10);
+        public static RichMessage TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            RichMessage richMessage;
+            if (i9 != -1158439541) {
+                richMessage = null;
+            } else {
+                richMessage = new RichMessage();
+            }
+            return (RichMessage) TLObject.TLdeserialize(RichMessage.class, richMessage, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.rtl = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.rtl = TLObject.hasFlag(readInt32, 1);
             this.part = TLObject.hasFlag(this.flags, 2);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
             this.photos = Vector.deserialize(inputSerializedData, new r(3), z10);
@@ -314,12 +325,12 @@ public class TL_iv {
         public String url;
         public long webpage_id;
 
-        public static RichText TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (RichText) TLObject.TLdeserialize(RichText.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static RichText TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (RichText) TLObject.TLdeserialize(RichText.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static RichText fromConstructor(int i10) {
-            switch (i10) {
+        private static RichText fromConstructor(int i9) {
+            switch (i9) {
                 case -1769551024:
                     return new textDiff();
                 case -1678197867:
@@ -398,15 +409,21 @@ public class TL_iv {
         public ArrayList<TLRPC.InputDocument> documents = new ArrayList<>();
         public ArrayList<TLRPC.InputUser> users = new ArrayList<>();
 
-        public static TL_inputRichMessage TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (TL_inputRichMessage) TLObject.TLdeserialize(TL_inputRichMessage.class, i10 != -456898052 ? null : new TL_inputRichMessage(), inputSerializedData, i10, z10);
+        public static TL_inputRichMessage TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            TL_inputRichMessage tL_inputRichMessage;
+            if (i9 != -456898052) {
+                tL_inputRichMessage = null;
+            } else {
+                tL_inputRichMessage = new TL_inputRichMessage();
+            }
+            return (TL_inputRichMessage) TLObject.TLdeserialize(TL_inputRichMessage.class, tL_inputRichMessage, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.rtl = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.rtl = TLObject.hasFlag(readInt32, 1);
             this.noautolink = TLObject.hasFlag(this.flags, 2);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
             if (TLObject.hasFlag(this.flags, 4)) {
@@ -446,9 +463,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.part = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.f22599v2 = TLObject.hasFlag(this.flags, 4);
             this.url = inputSerializedData.readString(z10);
@@ -524,9 +541,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.checkbox = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.checkbox = TLObject.hasFlag(readInt32, 1);
             this.checked = TLObject.hasFlag(this.flags, 2);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
         }
@@ -564,9 +581,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.checkbox = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.checkbox = TLObject.hasFlag(readInt32, 1);
             this.checked = TLObject.hasFlag(this.flags, 2);
             this.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -604,9 +621,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.checkbox = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.checkbox = TLObject.hasFlag(readInt32, 1);
             this.checked = TLObject.hasFlag(this.flags, 2);
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.num = inputSerializedData.readString(z10);
@@ -622,14 +639,24 @@ public class TL_iv {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1879910928);
+            boolean z11 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.checkbox);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.checked);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.num != null);
+            if (this.num != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 4, z10);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.type != null);
+            if (this.type == null) {
+                z11 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z11);
             this.flags = flag4;
             outputSerializedData.writeInt32(flag4);
             if (TLObject.hasFlag(this.flags, 4)) {
@@ -668,9 +695,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.checkbox = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.checkbox = TLObject.hasFlag(readInt32, 1);
             this.checked = TLObject.hasFlag(this.flags, 2);
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.num = inputSerializedData.readString(z10);
@@ -686,14 +713,24 @@ public class TL_iv {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(352522633);
+            boolean z11 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.checkbox);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.checked);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.num != null);
+            if (this.num != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 4, z10);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.type != null);
+            if (this.type == null) {
+                z11 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z11);
             this.flags = flag4;
             outputSerializedData.writeInt32(flag4);
             if (TLObject.hasFlag(this.flags, 4)) {
@@ -771,9 +808,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.part = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.url = inputSerializedData.readString(z10);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
@@ -801,9 +838,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.part = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.part = TLObject.hasFlag(readInt32, 1);
             this.rtl = TLObject.hasFlag(this.flags, 2);
             this.f22599v2 = TLObject.hasFlag(this.flags, 4);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
@@ -829,7 +866,6 @@ public class TL_iv {
 
     public static class getRichMessage extends TLMethod<TLRPC.messages_Messages> {
         public static final int constructor = 1343580623;
-
         public int f22600id;
         public TLRPC.InputPeer peer;
 
@@ -841,8 +877,8 @@ public class TL_iv {
         }
 
         @Override
-        public TLRPC.messages_Messages deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.messages_Messages.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.messages_Messages deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.messages_Messages.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -850,7 +886,6 @@ public class TL_iv {
         public static final int constructor = 1464557951;
         public TLRPC.InputGeoPoint geo;
         public int h;
-
         public int f22601w;
         public int zoom;
 
@@ -952,10 +987,10 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            String string = inputSerializedData.readString(z10);
+            String readString = inputSerializedData.readString(z10);
             textPlain textplain = new textPlain();
             this.author = textplain;
-            textplain.text = string;
+            textplain.text = readString;
             this.published_date = inputSerializedData.readInt32(z10);
         }
 
@@ -975,9 +1010,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.collapsed = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.collapsed = TLObject.hasFlag(readInt32, 1);
             this.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.caption = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -1039,9 +1074,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.align_left = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.align_left = TLObject.hasFlag(readInt32, 1);
             this.align_center = TLObject.hasFlag(this.flags, 2);
             this.align_right = TLObject.hasFlag(this.flags, 4);
             this.buttons = Vector.deserialize(inputSerializedData, new c(24), z10);
@@ -1140,9 +1175,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.open = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.open = TLObject.hasFlag(readInt32, 1);
             this.blocks = Vector.deserialize(inputSerializedData, new c(22), z10);
             this.title = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
@@ -1194,14 +1229,13 @@ public class TL_iv {
         public String html;
         public long poster_photo_id;
         public String url;
-
         public int f22602w;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.full_width = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.full_width = TLObject.hasFlag(readInt32, 1);
             this.allow_scrolling = TLObject.hasFlag(this.flags, 8);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.url = inputSerializedData.readString(z10);
@@ -1316,9 +1350,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.full_width = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.full_width = TLObject.hasFlag(readInt32, 1);
             this.allow_scrolling = TLObject.hasFlag(this.flags, 8);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.url = inputSerializedData.readString(z10);
@@ -1359,9 +1393,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.full_width = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.full_width = TLObject.hasFlag(readInt32, 1);
             this.allow_scrolling = TLObject.hasFlag(this.flags, 8);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.url = inputSerializedData.readString(z10);
@@ -1561,12 +1595,12 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.ordered = inputSerializedData.readBool(z10);
-            ArrayList arrayListDeserialize = Vector.deserialize(inputSerializedData, new c(26), z10);
-            int size = arrayListDeserialize.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayListDeserialize.get(i10);
-                i10++;
+            ArrayList deserialize = Vector.deserialize(inputSerializedData, new c(26), z10);
+            int size = deserialize.size();
+            int i9 = 0;
+            while (i9 < size) {
+                Object obj = deserialize.get(i9);
+                i9++;
                 TL_pageListItemText tL_pageListItemText = new TL_pageListItemText();
                 tL_pageListItemText.text = (RichText) obj;
                 this.items.add(tL_pageListItemText);
@@ -1580,10 +1614,10 @@ public class TL_iv {
             ArrayList arrayList = new ArrayList(this.items.size());
             ArrayList<PageListItem> arrayList2 = this.items;
             int size = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size) {
-                PageListItem pageListItem = arrayList2.get(i10);
-                i10++;
+            int i9 = 0;
+            while (i9 < size) {
+                PageListItem pageListItem = arrayList2.get(i9);
+                i9++;
                 PageListItem pageListItem2 = pageListItem;
                 if (pageListItem2 instanceof TL_pageListItemText) {
                     arrayList.add(((TL_pageListItemText) pageListItem2).text);
@@ -1597,7 +1631,6 @@ public class TL_iv {
         public static final int constructor = -1538310410;
         public TLRPC.GeoPoint geo;
         public int h;
-
         public int f22603w;
         public int zoom;
 
@@ -1647,9 +1680,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.reversed = TLObject.hasFlag(int32, 4);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.reversed = TLObject.hasFlag(readInt32, 4);
             this.items = Vector.deserialize(inputSerializedData, new c(27), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.start = inputSerializedData.readInt32(z10);
@@ -1715,9 +1748,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.spoiler = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.spoiler = TLObject.hasFlag(readInt32, 2);
             this.photo_id = inputSerializedData.readInt64(z10);
             this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -1899,9 +1932,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.bordered = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.bordered = TLObject.hasFlag(readInt32, 1);
             this.striped = TLObject.hasFlag(this.flags, 2);
             this.compact = TLObject.hasFlag(this.flags, 4);
             this.title = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -1972,9 +2005,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.autoplay = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.autoplay = TLObject.hasFlag(readInt32, 1);
             this.loop = TLObject.hasFlag(this.flags, 2);
             this.spoiler = TLObject.hasFlag(this.flags, 4);
             this.video_id = inputSerializedData.readInt64(z10);
@@ -2001,9 +2034,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.autoplay = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.autoplay = TLObject.hasFlag(readInt32, 1);
             this.loop = TLObject.hasFlag(this.flags, 2);
             this.video_id = inputSerializedData.readInt64(z10);
             PageCaption pageCaption = new PageCaption();
@@ -2036,8 +2069,14 @@ public class TL_iv {
         public String url;
         public long webpage_id;
 
-        public static pageRelatedArticle TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (pageRelatedArticle) TLObject.TLdeserialize(pageRelatedArticle.class, -1282352120 != i10 ? null : new pageRelatedArticle(), inputSerializedData, i10, z10);
+        public static pageRelatedArticle TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            pageRelatedArticle pagerelatedarticle;
+            if (-1282352120 != i9) {
+                pagerelatedarticle = null;
+            } else {
+                pagerelatedarticle = new pageRelatedArticle();
+            }
+            return (pageRelatedArticle) TLObject.TLdeserialize(pageRelatedArticle.class, pagerelatedarticle, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -2098,15 +2137,21 @@ public class TL_iv {
         public boolean valign_bottom;
         public boolean valign_middle;
 
-        public static pageTableCell TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (pageTableCell) TLObject.TLdeserialize(pageTableCell.class, 878078826 != i10 ? null : new pageTableCell(), inputSerializedData, i10, z10);
+        public static pageTableCell TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            pageTableCell pagetablecell;
+            if (878078826 != i9) {
+                pagetablecell = null;
+            } else {
+                pagetablecell = new pageTableCell();
+            }
+            return (pageTableCell) TLObject.TLdeserialize(pageTableCell.class, pagetablecell, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.header = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.header = TLObject.hasFlag(readInt32, 1);
             this.align_center = TLObject.hasFlag(this.flags, 8);
             this.align_right = TLObject.hasFlag(this.flags, 16);
             this.valign_middle = TLObject.hasFlag(this.flags, 32);
@@ -2152,8 +2197,14 @@ public class TL_iv {
         public static final int constructor = -524237339;
         public ArrayList<pageTableCell> cells = new ArrayList<>();
 
-        public static pageTableRow TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (pageTableRow) TLObject.TLdeserialize(pageTableRow.class, -524237339 != i10 ? null : new pageTableRow(), inputSerializedData, i10, z10);
+        public static pageTableRow TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            pageTableRow pagetablerow;
+            if (-524237339 != i9) {
+                pagetablerow = null;
+            } else {
+                pagetablerow = new pageTableRow();
+            }
+            return (pageTableRow) TLObject.TLdeserialize(pageTableRow.class, pagetablerow, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -2318,8 +2369,15 @@ public class TL_iv {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1345872682);
-            int flag = TLObject.setFlag(this.flags, 1, this.style != null);
+            int i9 = this.flags;
+            if (this.style != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.text.serializeToStream(outputSerializedData);
@@ -2392,9 +2450,9 @@ public class TL_iv {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.relative = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.relative = TLObject.hasFlag(readInt32, 1);
             this.short_time = TLObject.hasFlag(this.flags, 2);
             this.long_time = TLObject.hasFlag(this.flags, 4);
             this.short_date = TLObject.hasFlag(this.flags, 8);
@@ -2505,7 +2563,6 @@ public class TL_iv {
         public long document_id;
         public int h;
         public long photo_id;
-
         public int f22604w;
 
         @Override
@@ -2561,7 +2618,6 @@ public class TL_iv {
         public int h;
         public String source;
         public boolean tried;
-
         public int f22605w;
 
         @Override

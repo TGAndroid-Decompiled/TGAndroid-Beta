@@ -1,42 +1,40 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Color;
-
 public class FBoxAtom extends Atom {
     public float INTERSPACE;
     protected final Atom base;
-
-    protected Color f19586bg;
+    protected Color f19613bg;
     protected Color line;
 
     public FBoxAtom(Atom atom) {
         this.INTERSPACE = 0.65f;
-        this.f19586bg = null;
+        this.f19613bg = null;
         this.line = null;
         if (atom == null) {
             this.base = new RowAtom();
-        } else {
-            this.base = atom;
-            this.type = atom.type;
+            return;
         }
+        this.base = atom;
+        this.type = atom.type;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
+        Box createBox = this.base.createBox(teXEnvironment);
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
         float factor = SpaceAtom.getFactor(0, teXEnvironment) * this.INTERSPACE;
-        Color color = this.f19586bg;
+        Color color = this.f19613bg;
         if (color == null) {
-            return new FramedBox(boxCreateBox, defaultRuleThickness, factor);
+            return new FramedBox(createBox, defaultRuleThickness, factor);
         }
         teXEnvironment.isColored = true;
-        return new FramedBox(boxCreateBox, defaultRuleThickness, factor, this.line, color);
+        return new FramedBox(createBox, defaultRuleThickness, factor, this.line, color);
     }
 
     public FBoxAtom(Atom atom, Color color, Color color2) {
         this(atom);
-        this.f19586bg = color;
+        this.f19613bg = color;
         this.line = color2;
     }
 }

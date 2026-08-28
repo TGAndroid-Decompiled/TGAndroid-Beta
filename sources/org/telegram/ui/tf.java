@@ -2,7 +2,6 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
-
 public final class tf implements Supplier {
     @Override
     public final Object get() {

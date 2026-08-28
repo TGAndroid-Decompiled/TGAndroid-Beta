@@ -4,7 +4,6 @@ import android.media.MediaCodecInfo;
 import android.os.Build;
 import java.util.HashMap;
 import java.util.Map;
-
 class MediaCodecUtils {
     static final int COLOR_QCOM_FORMATYUV420PackedSemiPlanar32m = 2141391876;
     static final int COLOR_QCOM_FORMATYVU420PackedSemiPlanar16m4ka = 2141391874;
@@ -62,18 +61,21 @@ class MediaCodecUtils {
     }
 
     public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z10) {
-        int i10 = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
-        if (i10 == 1 || i10 == 2 || i10 == 3 || i10 == 4) {
-            return new HashMap();
+        int i9 = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        if (i9 != 1 && i9 != 2 && i9 != 3 && i9 != 4) {
+            if (i9 == 5) {
+                return H264Utils.getDefaultH264Params(z10);
+            }
+            throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
         }
-        if (i10 == 5) {
-            return H264Utils.getDefaultH264Params(z10);
-        }
-        throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
+        return new HashMap();
     }
 
     public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
-        return Build.VERSION.SDK_INT >= 29 ? isHardwareAcceleratedQOrHigher(mediaCodecInfo) : !isSoftwareOnly(mediaCodecInfo);
+        if (Build.VERSION.SDK_INT >= 29) {
+            return isHardwareAcceleratedQOrHigher(mediaCodecInfo);
+        }
+        return !isSoftwareOnly(mediaCodecInfo);
     }
 
     private static boolean isHardwareAcceleratedQOrHigher(MediaCodecInfo mediaCodecInfo) {
@@ -98,10 +100,11 @@ class MediaCodecUtils {
     }
 
     public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        for (int i10 : iArr) {
-            for (int i11 : codecCapabilities.colorFormats) {
-                if (i11 == i10) {
-                    return Integer.valueOf(i11);
+        int[] iArr2;
+        for (int i9 : iArr) {
+            for (int i10 : codecCapabilities.colorFormats) {
+                if (i10 == i9) {
+                    return Integer.valueOf(i10);
                 }
             }
         }

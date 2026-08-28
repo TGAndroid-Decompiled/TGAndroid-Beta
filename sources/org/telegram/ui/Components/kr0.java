@@ -1,45 +1,40 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class kr0 implements pk0 {
+    public final ar0 f30233a;
+    public final eu0 f30234b;
 
-public final class kr0 extends f2.b1 {
-
-    public final br0 f30171a;
-
-    public final cr0 f30172b;
-
-    public final hu0 f30173c;
-
-    public kr0(hu0 hu0Var, br0 br0Var, cr0 cr0Var) {
-        this.f30173c = hu0Var;
-        this.f30171a = br0Var;
-        this.f30172b = cr0Var;
+    public kr0(eu0 eu0Var, ar0 ar0Var) {
+        this.f30234b = eu0Var;
+        this.f30233a = ar0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        this.f30173c.X0 = i10 != 0;
+    public final boolean mo5c(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kr0.mo5c(float, float, int, android.view.View):boolean");
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        hu0 hu0Var = this.f30173c;
-        wt0[] wt0VarArr = hu0Var.f29140p1;
-        cr0 cr0Var = this.f30172b;
-        br0 br0Var = this.f30171a;
-        hu0Var.G(br0Var, (zk0) recyclerView, cr0Var);
-        if (i11 != 0 && ((i13 = hu0Var.f29122g0[0].B) == 0 || i13 == 5)) {
-            wt0VarArr[0].f34325a.isEmpty();
+    public final void j() {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f30234b.f28160r1;
+        if (o2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                o2Var.finishPreviewFragment();
+            }
         }
-        if (i11 != 0 && ((i12 = br0Var.B) == 0 || hu0.p0(i12))) {
-            hu0.q(br0Var, wt0VarArr, true);
+    }
+
+    @Override
+    public final void u(float f10) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f30234b.f28160r1;
+        if (o2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                o2Var.movePreviewFragment(f10);
+            }
         }
-        br0Var.h.K0(true);
-        if (br0Var.C != null) {
-            br0Var.invalidate();
-        }
-        hu0Var.o0();
     }
 }

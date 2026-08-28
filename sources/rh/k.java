@@ -1,10 +1,9 @@
 package rh;
 
-public final class k {
-
-    public final p f47228a;
-
-    public k(p pVar) {
-        this.f47228a = pVar;
-    }
+import d5.p;
+public final class k extends p {
+    public float f47243c;
+    public float d;
+    public float f47244e;
+    public float f47245f;
 }

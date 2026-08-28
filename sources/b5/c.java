@@ -1,55 +1,55 @@
 package b5;
 
 import android.os.SystemClock;
-import d5.g0;
+import d5.f0;
 import h3.t0;
 import j4.i1;
 import java.util.Arrays;
 import java.util.List;
-
-public abstract class c implements s {
-
-    public final i1 f1931a;
-
-    public final int f1932b;
-
-    public final int[] f1933c;
+public abstract class c implements t {
+    public final i1 f1443a;
+    public final int f1444b;
+    public final int[] f1445c;
     public final t0[] d;
-
-    public final long[] f1934e;
-
-    public int f1935f;
+    public final long[] f1446e;
+    public int f1447f;
 
     public c(i1 i1Var, int[] iArr) {
-        int i10 = 0;
-        d5.a.i(iArr.length > 0);
-        i1Var.getClass();
-        this.f1931a = i1Var;
-        int length = iArr.length;
-        this.f1932b = length;
-        this.d = new t0[length];
-        for (int i11 = 0; i11 < iArr.length; i11++) {
-            this.d[i11] = i1Var.d[iArr[i11]];
+        boolean z10;
+        int i9 = 0;
+        if (iArr.length > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        Arrays.sort(this.d, new a5.f(3));
-        this.f1933c = new int[this.f1932b];
+        d5.a.i(z10);
+        i1Var.getClass();
+        this.f1443a = i1Var;
+        int length = iArr.length;
+        this.f1444b = length;
+        this.d = new t0[length];
+        for (int i10 = 0; i10 < iArr.length; i10++) {
+            this.d[i10] = i1Var.d[iArr[i10]];
+        }
+        Arrays.sort(this.d, new a5.e(2));
+        this.f1445c = new int[this.f1444b];
         while (true) {
-            int i12 = this.f1932b;
-            if (i10 >= i12) {
-                this.f1934e = new long[i12];
-                return;
+            int i11 = this.f1444b;
+            if (i9 < i11) {
+                this.f1445c[i9] = i1Var.a(this.d[i9]);
+                i9++;
             } else {
-                this.f1933c[i10] = i1Var.a(this.d[i10]);
-                i10++;
+                this.f1446e = new long[i11];
+                return;
             }
         }
     }
 
     @Override
     public final int a(t0 t0Var) {
-        for (int i10 = 0; i10 < this.f1932b; i10++) {
-            if (this.d[i10] == t0Var) {
-                return i10;
+        for (int i9 = 0; i9 < this.f1444b; i9++) {
+            if (this.d[i9] == t0Var) {
+                return i9;
             }
         }
         return -1;
@@ -57,7 +57,7 @@ public abstract class c implements s {
 
     @Override
     public final i1 b() {
-        return this.f1931a;
+        return this.f1443a;
     }
 
     @Override
@@ -66,25 +66,27 @@ public abstract class c implements s {
     }
 
     @Override
-    public final boolean e(int i10, long j10) {
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
-        boolean zF = f(i10, jElapsedRealtime);
-        int i11 = 0;
-        while (i11 < this.f1932b && !zF) {
-            zF = (i11 == i10 || f(i11, jElapsedRealtime)) ? false : true;
-            i11++;
+    public final boolean e(int i9, long j10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        boolean f10 = f(i9, elapsedRealtime);
+        for (int i10 = 0; i10 < this.f1444b && !f10; i10++) {
+            if (i10 != i9 && !f(i10, elapsedRealtime)) {
+                f10 = true;
+            } else {
+                f10 = false;
+            }
         }
-        if (!zF) {
+        if (!f10) {
             return false;
         }
-        long[] jArr = this.f1934e;
-        long j11 = jArr[i10];
-        int i12 = g0.f4795a;
-        long j12 = jElapsedRealtime + j10;
-        if (((j10 ^ j12) & (jElapsedRealtime ^ j12)) < 0) {
+        long[] jArr = this.f1446e;
+        long j11 = jArr[i9];
+        int i11 = f0.f4349a;
+        long j12 = elapsedRealtime + j10;
+        if (((j10 ^ j12) & (elapsedRealtime ^ j12)) < 0) {
             j12 = Long.MAX_VALUE;
         }
-        jArr[i10] = Math.max(j11, j12);
+        jArr[i9] = Math.max(j11, j12);
         return true;
     }
 
@@ -94,7 +96,7 @@ public abstract class c implements s {
         }
         if (obj != null && getClass() == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f1931a == cVar.f1931a && Arrays.equals(this.f1933c, cVar.f1933c)) {
+            if (this.f1443a == cVar.f1443a && Arrays.equals(this.f1445c, cVar.f1445c)) {
                 return true;
             }
         }
@@ -102,25 +104,28 @@ public abstract class c implements s {
     }
 
     @Override
-    public final boolean f(int i10, long j10) {
-        return this.f1934e[i10] > j10;
+    public final boolean f(int i9, long j10) {
+        if (this.f1446e[i9] > j10) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final t0 h(int i10) {
-        return this.d[i10];
+    public final t0 h(int i9) {
+        return this.d[i9];
     }
 
     public final int hashCode() {
-        if (this.f1935f == 0) {
-            this.f1935f = Arrays.hashCode(this.f1933c) + (System.identityHashCode(this.f1931a) * 31);
+        if (this.f1447f == 0) {
+            this.f1447f = Arrays.hashCode(this.f1445c) + (System.identityHashCode(this.f1443a) * 31);
         }
-        return this.f1935f;
+        return this.f1447f;
     }
 
     @Override
-    public final int j(int i10) {
-        return this.f1933c[i10];
+    public final int j(int i9) {
+        return this.f1445c[i9];
     }
 
     @Override
@@ -130,12 +135,12 @@ public abstract class c implements s {
 
     @Override
     public final int length() {
-        return this.f1933c.length;
+        return this.f1445c.length;
     }
 
     @Override
     public final int n() {
-        return this.f1933c[d()];
+        return this.f1445c[d()];
     }
 
     @Override
@@ -144,10 +149,10 @@ public abstract class c implements s {
     }
 
     @Override
-    public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f1932b; i11++) {
-            if (this.f1933c[i11] == i10) {
-                return i11;
+    public final int u(int i9) {
+        for (int i10 = 0; i10 < this.f1444b; i10++) {
+            if (this.f1445c[i10] == i9) {
+                return i10;
             }
         }
         return -1;

@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import java.util.Arrays;
-
+import org.webrtc.PeerConnection;
 public class IceCandidate {
     public final PeerConnection.AdapterType adapterType;
     public final String sdp;
@@ -9,9 +9,9 @@ public class IceCandidate {
     public final String sdpMid;
     public final String serverUrl;
 
-    public IceCandidate(String str, int i10, String str2) {
+    public IceCandidate(String str, int i9, String str2) {
         this.sdpMid = str;
-        this.sdpMLineIndex = i10;
+        this.sdpMLineIndex = i9;
         this.sdp = str2;
         this.serverUrl = "";
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
@@ -19,7 +19,10 @@ public class IceCandidate {
 
     private static boolean objectEquals(Object obj, Object obj2) {
         if (obj == null) {
-            return obj2 == null;
+            if (obj2 == null) {
+                return true;
+            }
+            return false;
         }
         return obj.equals(obj2);
     }
@@ -29,7 +32,10 @@ public class IceCandidate {
             return false;
         }
         IceCandidate iceCandidate = (IceCandidate) obj;
-        return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
+        if (!objectEquals(this.sdpMid, iceCandidate.sdpMid) || this.sdpMLineIndex != iceCandidate.sdpMLineIndex || !objectEquals(this.sdp, iceCandidate.sdp)) {
+            return false;
+        }
+        return true;
     }
 
     public String getSdp() {
@@ -48,9 +54,9 @@ public class IceCandidate {
         return this.sdpMid + ":" + this.sdpMLineIndex + ":" + this.sdp + ":" + this.serverUrl + ":" + this.adapterType.toString();
     }
 
-    public IceCandidate(String str, int i10, String str2, String str3, PeerConnection.AdapterType adapterType) {
+    public IceCandidate(String str, int i9, String str2, String str3, PeerConnection.AdapterType adapterType) {
         this.sdpMid = str;
-        this.sdpMLineIndex = i10;
+        this.sdpMLineIndex = i9;
         this.sdp = str2;
         this.serverUrl = str3;
         this.adapterType = adapterType;

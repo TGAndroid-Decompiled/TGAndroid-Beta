@@ -6,7 +6,6 @@ import ru.noties.jlatexmath.awt.Color;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Stroke;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
-
 public abstract class Box {
     public static boolean DEBUG = false;
     private static final int MAX_BOX_BUDGET = 100000;
@@ -29,11 +28,12 @@ public abstract class Box {
     }
 
     private static void countBoxAllocation() {
-        int i10 = boxBudgetUsed + 1;
-        boxBudgetUsed = i10;
-        if (i10 > 100000) {
-            throw new ParseException("Formula is too large to lay out!");
+        int i9 = boxBudgetUsed + 1;
+        boxBudgetUsed = i9;
+        if (i9 <= 100000) {
+            return;
         }
+        throw new ParseException("Formula is too large to lay out!");
     }
 
     public static void resetBoxBudget() {
@@ -175,9 +175,9 @@ public abstract class Box {
         this.background = color2;
     }
 
-    public void add(int i10, Box box) {
+    public void add(int i9, Box box) {
         countBoxAllocation();
-        this.children.add(i10, box);
+        this.children.add(i9, box);
         box.parent = this;
         box.elderParent = this.elderParent;
     }

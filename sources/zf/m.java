@@ -1,27 +1,4 @@
 package zf;
-
-import org.telegram.ui.ys0;
-
-public final class m implements q0.a {
-
-    public final int f50565a;
-
-    public final ys0 f50566b;
-
-    public m(ys0 ys0Var, int i10) {
-        this.f50565a = i10;
-        this.f50566b = ys0Var;
-    }
-
-    @Override
-    public final void accept(Object obj) {
-        switch (this.f50565a) {
-            case 0:
-                l0.Z(this.f50566b, (Integer) obj);
-                break;
-            default:
-                l0.c0(this.f50566b, (Integer) obj);
-                break;
-        }
-    }
+public abstract class m {
+    public static final String[] f50604a = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
 }

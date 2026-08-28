@@ -4,18 +4,14 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import d1.f;
-import h7.v;
+import g7.z;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-public final class c extends v {
-
-    public final Object f18069a = new Object();
-
-    public final ExecutorService f18070b = Executors.newFixedThreadPool(4, new b());
-
-    public volatile Handler f18071c;
+public final class c extends z {
+    public final Object f18244a = new Object();
+    public final ExecutorService f18245b = Executors.newFixedThreadPool(4, new b());
+    public volatile Handler f18246c;
 
     public static Handler a(Looper looper) {
         if (Build.VERSION.SDK_INT >= 28) {

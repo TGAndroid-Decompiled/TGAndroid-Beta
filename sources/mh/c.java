@@ -1,67 +1,43 @@
 package mh;
 
-import ag.j3;
-import ag.k3;
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import eg.o;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
+import android.view.View;
+import j$.util.Objects;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.b9;
+import org.telegram.ui.Cells.z6;
+import org.telegram.ui.Components.z41;
+import org.telegram.ui.i10;
+public final class c implements Utilities.CallbackReturn {
+    public final int f17726a;
 
-public final class c extends k3 {
-
-    public Paint[] f18059n;
-
-    public final int f18060r;
-
-    public final int f18061s;
-
-    public c(Context context, int i10, int i11) {
-        super(context);
-        this.f18060r = i10;
-        this.f18061s = i11;
-        b();
+    public c(int i9) {
+        this.f17726a = i9;
     }
 
     @Override
-    public final void a() {
-        j3 j3Var = new j3(this.f18060r);
-        this.f540a = j3Var;
-        j3Var.N = 106;
-        int i10 = 0;
-        j3Var.M = false;
-        j3Var.G = false;
-        j3Var.K = true;
-        j3Var.H = true;
-        j3Var.J = false;
-        j3Var.f509m = true;
-        j3Var.h = true;
-        if (this.f18061s == 1) {
-            j3Var.f507k = AndroidUtilities.dp(24.0f);
+    public final Object run(Object obj) {
+        boolean z10 = true;
+        switch (this.f17726a) {
+            case 0:
+                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
+            case 1:
+                MessageObject messageObject = (MessageObject) obj;
+                return Boolean.valueOf((messageObject == null || messageObject.getFactCheck() == null) ? false : false);
+            case 2:
+                MessageObject messageObject2 = (MessageObject) obj;
+                return Boolean.valueOf((messageObject2 == null || messageObject2.getEffect() == null) ? false : false);
+            case 3:
+                return LocaleController.formatPluralString("Hours", ((Integer) obj).intValue(), new Object[0]);
+            case 4:
+                return LocaleController.formatPluralString("Minutes", ((Integer) obj).intValue(), new Object[0]);
+            case 5:
+                View view = (View) obj;
+                return Boolean.valueOf(((view instanceof b9) || (view instanceof z6) || (view instanceof i10) || (view instanceof org.telegram.ui.Cells.v3) || (view instanceof org.telegram.ui.Cells.a2) || Objects.equals(view.getTag(), -33024)) ? false : false);
+            default:
+                return Boolean.valueOf(z41.K(((Integer) obj).intValue()));
         }
-        this.f18059n = new Paint[20];
-        while (true) {
-            Paint[] paintArr = this.f18059n;
-            if (i10 >= paintArr.length) {
-                j3 j3Var2 = this.f540a;
-                j3Var2.f508l = new o(this, 3);
-                j3Var2.f514r = 17;
-                j3Var2.f515s = 18;
-                j3Var2.f516t = 19;
-                j3Var2.P = g6.G6;
-                j3Var2.c();
-                return;
-            }
-            paintArr[i10] = new Paint(1);
-            this.f18059n[i10].setColorFilter(new PorterDuffColorFilter(i0.b.d(i10 / (this.f18059n.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
-            i10++;
-        }
-    }
-
-    @Override
-    public final int getStarsRectWidth() {
-        return getMeasuredWidth();
     }
 }

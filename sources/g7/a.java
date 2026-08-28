@@ -1,45 +1,41 @@
 package g7;
+public final class a implements d {
+    public final int f7121a;
 
-import java.util.Iterator;
-import java.util.Map;
-
-public final class a extends l9 {
-
-    public final transient com.google.android.gms.internal.cast.i0 f6399c;
-    public final transient Object[] d;
-
-    public final transient int f6400e = 1;
-
-    public a(com.google.android.gms.internal.cast.i0 i0Var, Object[] objArr) {
-        this.f6399c = i0Var;
-        this.d = objArr;
+    public a(int i9) {
+        this.f7121a = i9;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f6399c.get(key))) {
-                return true;
+    public final Class annotationType() {
+        return d.class;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof d) {
+                if (this.f7121a == ((a) ((d) obj)).f7121a) {
+                    Object obj2 = c.f7137a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        return q().i(objArr);
+    public final int hashCode() {
+        return (this.f7121a ^ 14552422) + (c.f7137a.hashCode() ^ 2041407134);
     }
 
     @Override
-    public final Iterator iterator() {
-        return q().listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.f6400e;
+    public final String toString() {
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f7121a + "intEncoding=" + c.f7137a + ')';
     }
 }

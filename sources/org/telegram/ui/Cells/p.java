@@ -2,11 +2,10 @@ package org.telegram.ui.Cells;
 
 import android.util.DisplayMetrics;
 import org.telegram.messenger.AndroidUtilities;
-
-public final class p extends f2.l0 {
+public final class p extends f2.n0 {
     @Override
-    public final int i(int i10, int i11, int i12, int i13, int i14) {
-        return AndroidUtilities.dp(16.0f) + (i12 - i10);
+    public final int i(int i9, int i10, int i11, int i12, int i13) {
+        return AndroidUtilities.dp(16.0f) + (i11 - i9);
     }
 
     @Override

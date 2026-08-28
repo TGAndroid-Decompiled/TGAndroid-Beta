@@ -2,61 +2,67 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+public final class na1 extends FrameLayout {
+    public final org.telegram.ui.Components.pn0 f40684a;
+    public final int f40685b;
+    public final TextPaint f40686c;
+    public final ThemeActivity d;
 
-public final class na1 extends View {
-
-    public static final int f40713c = 0;
-
-    public final Paint f40714a;
-
-    public int[] f40715b;
-
-    public na1(Context context) {
+    public na1(ThemeActivity themeActivity, Context context) {
         super(context);
-        this.f40714a = new Paint(1);
-        this.f40715b = new int[7];
+        this.d = themeActivity;
+        this.f40685b = 17;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f40686c = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.pn0 pn0Var = new org.telegram.ui.Components.pn0(context);
+        this.f40684a = pn0Var;
+        pn0Var.setReportChanges(true);
+        pn0Var.setSeparatorsCount(18);
+        pn0Var.setDelegate(new fv0(this, 3));
+        pn0Var.setImportantForAccessibility(2);
+        addView(pn0Var, g7.e6.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f40684a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float measuredWidth = getMeasuredWidth() * 0.5f;
-        float measuredHeight = getMeasuredHeight() * 0.5f;
-        float fDp = AndroidUtilities.dp(5.0f);
-        float fDp2 = AndroidUtilities.dp(20.0f) - fDp;
-        Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f40714a;
-        paint.setStyle(style);
-        int i10 = 0;
-        paint.setColor(this.f40715b[0]);
-        canvas.drawCircle(measuredWidth, measuredHeight, fDp, paint);
-        double d = 0.0d;
-        while (i10 < 6) {
-            float fSin = (((float) Math.sin(d)) * fDp2) + measuredWidth;
-            float fCos = measuredHeight - (((float) Math.cos(d)) * fDp2);
-            i10++;
-            paint.setColor(this.f40715b[i10]);
-            canvas.drawCircle(fSin, fCos, fDp, paint);
-            d += 1.0471975511965976d;
-        }
+        int w02 = org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.I6, false);
+        TextPaint textPaint = this.f40686c;
+        textPaint.setColor(w02);
+        canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(LocaleController.getString("ColorPickerMainColor", R.string.ColorPickerMainColor));
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        accessibilityNodeInfo.setEnabled(true);
+        this.f40684a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824));
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), i10);
+        this.f40684a.setProgress(SharedConfig.bubbleRadius / this.f40685b);
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i9, Bundle bundle) {
+        if (!super.performAccessibilityAction(i9, bundle) && !this.f40684a.getSeekBarAccessibilityDelegate().g(this, i9, bundle)) {
+            return false;
+        }
+        return true;
     }
 }

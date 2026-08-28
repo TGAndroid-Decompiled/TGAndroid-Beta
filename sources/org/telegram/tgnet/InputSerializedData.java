@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public interface InputSerializedData {
     TLDataSourceType getDataSourceType();
 
@@ -17,7 +16,7 @@ public interface InputSerializedData {
 
     void readBytes(byte[] bArr, boolean z10);
 
-    byte[] readData(int i10, boolean z10);
+    byte[] readData(int i9, boolean z10);
 
     double readDouble(boolean z10);
 
@@ -31,5 +30,5 @@ public interface InputSerializedData {
 
     int remaining();
 
-    void skip(int i10);
+    void skip(int i9);
 }

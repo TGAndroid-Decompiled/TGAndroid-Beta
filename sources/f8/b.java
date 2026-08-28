@@ -2,43 +2,26 @@ package f8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import h7.r8;
-
-public final class b extends z5.a {
-    public static final Parcelable.Creator<b> CREATOR = new f4.e(3);
-
-    public int f5909a;
-
-    public int f5910b;
-
-    public int f5911c;
-    public boolean d;
-
-    public boolean f5912e;
-
-    public float f5913f;
+import com.google.android.gms.identity.intents.model.UserAddress;
+import g7.p8;
+public final class b extends y5.a {
+    public static final Parcelable.Creator<b> CREATOR = new r(6);
+    public String f5914a;
+    public String f5915b;
+    public String f5916c;
+    public int d;
+    public UserAddress f5917e;
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int iQ = r8.q(parcel, 20293);
-        int i11 = this.f5909a;
-        r8.s(parcel, 2, 4);
-        parcel.writeInt(i11);
-        int i12 = this.f5910b;
-        r8.s(parcel, 3, 4);
-        parcel.writeInt(i12);
-        int i13 = this.f5911c;
-        r8.s(parcel, 4, 4);
-        parcel.writeInt(i13);
-        boolean z10 = this.d;
-        r8.s(parcel, 5, 4);
-        parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f5912e;
-        r8.s(parcel, 6, 4);
-        parcel.writeInt(z11 ? 1 : 0);
-        float f10 = this.f5913f;
-        r8.s(parcel, 7, 4);
-        parcel.writeFloat(f10);
-        r8.r(parcel, iQ);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.l(parcel, 1, this.f5914a);
+        p8.l(parcel, 2, this.f5915b);
+        p8.l(parcel, 3, this.f5916c);
+        int i10 = this.d;
+        p8.s(parcel, 4, 4);
+        parcel.writeInt(i10);
+        p8.k(parcel, 5, this.f5917e, i9);
+        p8.r(parcel, q10);
     }
 }

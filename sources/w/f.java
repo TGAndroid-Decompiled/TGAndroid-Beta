@@ -1,15 +1,10 @@
 package w;
-
 public class f extends Exception {
-    public f(String str, e eVar) {
-        StringBuilder sbF = s3.c.f(str, ", frames: ");
-        sbF.append(eVar.a());
-        super(sbF.toString());
+    public f(java.lang.String r2, w.e r3) {
+        throw new UnsupportedOperationException("Method not decompiled: w.f.<init>(java.lang.String, w.e):void");
     }
 
-    public f(String str, e eVar, Exception exc) {
-        StringBuilder sbF = s3.c.f(str, ", frames: ");
-        sbF.append(eVar.a());
-        super(sbF.toString(), exc);
+    public f(java.lang.String r2, w.e r3, java.lang.Exception r4) {
+        throw new UnsupportedOperationException("Method not decompiled: w.f.<init>(java.lang.String, w.e, java.lang.Exception):void");
     }
 }

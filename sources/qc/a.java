@@ -1,53 +1,36 @@
 package qc;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
+import g7.u6;
+import zc.p;
+public abstract class a implements f {
+    public final g f46136a;
 
-public final class a extends kotlin.jvm.internal.a implements ListIterator {
-    public final c d;
-
-    public a(c cVar, int i10) {
-        super(cVar);
-        this.d = cVar;
-        int i11 = cVar.i();
-        if (i10 < 0 || i10 > i11) {
-            throw new IndexOutOfBoundsException(a9.p.j(i10, i11, "index: ", ", size: "));
-        }
-        this.f15241b = i10;
+    public a(g gVar) {
+        this.f46136a = gVar;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public final Object fold(Object obj, p pVar) {
+        return pVar.invoke(obj, this);
     }
 
     @Override
-    public final boolean hasPrevious() {
-        return this.f15241b > 0;
+    public f get(g gVar) {
+        return u6.a(this, gVar);
     }
 
     @Override
-    public final int nextIndex() {
-        return this.f15241b;
+    public final g getKey() {
+        return this.f46136a;
     }
 
     @Override
-    public final Object previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
-        }
-        int i10 = this.f15241b - 1;
-        this.f15241b = i10;
-        return this.d.get(i10);
+    public h minusKey(g gVar) {
+        return u6.b(this, gVar);
     }
 
     @Override
-    public final int previousIndex() {
-        return this.f15241b - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public final h plus(h hVar) {
+        return u6.c(this, hVar);
     }
 }

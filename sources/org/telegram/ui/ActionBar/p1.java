@@ -1,165 +1,131 @@
 package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.content.Context;
-import android.view.ContextThemeWrapper;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.Components.er;
+import org.telegram.ui.LaunchActivity;
+public final class p1 implements ViewTreeObserver.OnPreDrawListener {
+    public final q1 f23702a;
 
-public abstract class p1 {
-
-    public static final er f23706w = sh.m.V;
-
-    public final FrameLayout f23707a;
-
-    public FrameLayout f23708b;
-
-    public ViewGroup f23709c;
-    public View d;
-
-    public boolean f23711f;
-
-    public boolean f23712g;
-
-    public View f23716l;
-
-    public ValueAnimator f23717m;
-
-    public float f23720p;
-
-    public float f23721q;
-
-    public boolean f23722r;
-
-    public boolean f23723s;
-    public boolean v;
-
-    public boolean f23710e = false;
-    public final u2 h = new u2(this, 2);
-
-    public int f23713i = -1;
-
-    public int f23714j = -1;
-
-    public int f23715k = -1;
-
-    public final AnimationNotificationsLocker f23718n = new AnimationNotificationsLocker();
-
-    public final ArrayList f23719o = new ArrayList();
-
-    public final o1 f23724t = new o1(this);
-
-    public final boolean f23725u = true;
-
-    public p1(FrameLayout frameLayout) {
-        this.f23707a = frameLayout;
-        AndroidUtilities.runOnUIThread(new p(this, 4));
+    public p1(q1 q1Var) {
+        this.f23702a = q1Var;
     }
 
-    public static Activity a(Context context) {
-        if (context instanceof Activity) {
-            return (Activity) context;
-        }
-        if (context instanceof ContextThemeWrapper) {
-            return a(((ContextThemeWrapper) context).getBaseContext());
-        }
-        return null;
-    }
-
-    public abstract boolean b();
-
-    public final void c() {
-        d();
-        View view = this.f23707a;
-        Activity activityA = a(view.getContext());
-        if (activityA != null) {
-            this.f23709c = (ViewGroup) ((ViewGroup) activityA.getWindow().getDecorView()).findViewById(16908290);
-        }
-        View view2 = this.f23708b;
-        if (view2 == null) {
-            while (true) {
-                view2 = null;
-                if (view != null) {
-                    if (!(view.getParent() instanceof x3)) {
-                        if (!(view.getParent() instanceof View)) {
-                            break;
-                        } else {
-                            view = (View) view.getParent();
-                        }
+    @Override
+    public final boolean onPreDraw() {
+        boolean z10;
+        int i9;
+        q1 q1Var = this.f23702a;
+        FrameLayout frameLayout = q1Var.f23714a;
+        int height = frameLayout.getHeight();
+        int i10 = height - q1Var.i();
+        int i11 = q1Var.f23720i;
+        if (i10 != i11 - q1Var.f23722k && height != i11 && q1Var.f23724m == null) {
+            if (q1Var.b() && Math.abs(q1Var.f23720i - height) >= AndroidUtilities.dp(20.0f)) {
+                if (q1Var.f23720i != -1 && q1Var.f23721j == q1Var.f23716c.getHeight()) {
+                    if (height < q1Var.f23716c.getBottom()) {
+                        z10 = true;
                     } else {
-                        view2 = view;
-                        break;
+                        z10 = false;
                     }
-                } else {
-                    break;
+                    q1Var.f23730s = z10;
+                    int i12 = q1Var.f23720i;
+                    if (q1Var.v) {
+                        q1Var.v = false;
+                    } else if (q1Var.f23732u) {
+                        ValueAnimator valueAnimator = q1Var.f23724m;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        int i13 = q1Var.i();
+                        ArrayList arrayList = q1Var.f23726o;
+                        arrayList.clear();
+                        FrameLayout frameLayout2 = frameLayout;
+                        while (frameLayout2 != 0) {
+                            arrayList.add(frameLayout2);
+                            if (frameLayout2 == q1Var.d) {
+                                break;
+                            } else if (frameLayout2.getParent() instanceof View) {
+                                frameLayout2 = (View) frameLayout2.getParent();
+                            } else {
+                                frameLayout2 = 0;
+                            }
+                        }
+                        LaunchActivity launchActivity = LaunchActivity.C1;
+                        if (launchActivity != null && launchActivity.P() != null) {
+                            i9 = LaunchActivity.C1.P().getExpandedHeight();
+                        } else {
+                            i9 = 0;
+                        }
+                        boolean z11 = q1Var instanceof hg.o;
+                        if (!z11) {
+                            q1Var.h(Math.max(i12, height + i9));
+                        }
+                        q1Var.d.requestLayout();
+                        q1Var.g(height, z10);
+                        float f10 = height - i12;
+                        Math.abs(f10);
+                        q1Var.f23718f = true;
+                        if (height > i12) {
+                            float f11 = f10 - i13;
+                            if (!z11) {
+                                frameLayout.setTranslationY(-f11);
+                            }
+                            q1Var.e(f11, 1.0f, z10);
+                            q1Var.f23727p = -f11;
+                            q1Var.f23728q = -i9;
+                            q1Var.f23729r = true;
+                        } else {
+                            if (!z11) {
+                                frameLayout.setTranslationY(q1Var.f23722k);
+                            }
+                            q1Var.e(-q1Var.f23722k, 0.0f, z10);
+                            q1Var.f23728q = -q1Var.f23722k;
+                            q1Var.f23727p = f10;
+                            q1Var.f23729r = false;
+                        }
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        q1Var.f23724m = ofFloat;
+                        q1Var.f23717e = false;
+                        ofFloat.addUpdateListener(new x0(q1Var, 3));
+                        q1Var.f23724m.addListener(new h(q1Var, 2));
+                        q1Var.f23724m.setDuration(250L);
+                        q1Var.f23724m.setInterpolator(q1.f23713w);
+                        q1Var.f23725n.lock();
+                        if (q1Var.f23719g) {
+                            q1Var.f23719g = false;
+                            SystemClock.elapsedRealtime();
+                            AndroidUtilities.runOnUIThread(q1Var.h, 100L);
+                        } else {
+                            q1Var.f23724m.start();
+                        }
+                    }
+                    q1Var.f23720i = height;
+                    q1Var.f23721j = q1Var.f23716c.getHeight();
+                    q1Var.f23722k = q1Var.i();
+                    return false;
                 }
+                q1Var.f23720i = height;
+                q1Var.f23721j = q1Var.f23716c.getHeight();
+                q1Var.f23722k = q1Var.i();
+                return false;
             }
+            q1Var.f23720i = height;
+            q1Var.f23721j = q1Var.f23716c.getHeight();
+            q1Var.f23722k = q1Var.i();
+            q1Var.f23717e = false;
+            return true;
         }
-        this.d = view2;
-        if (view2 != null) {
-            this.f23716l = view2;
-            view2.getViewTreeObserver().addOnPreDrawListener(this.f23724t);
+        if (q1Var.f23724m == null) {
+            q1Var.f23720i = height;
+            q1Var.f23721j = q1Var.f23716c.getHeight();
+            q1Var.f23722k = q1Var.i();
+            q1Var.f23717e = false;
         }
-    }
-
-    public final void d() {
-        ValueAnimator valueAnimator = this.f23717m;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        View view = this.f23716l;
-        if (view != null) {
-            view.getViewTreeObserver().removeOnPreDrawListener(this.f23724t);
-            this.f23716l = null;
-        }
-    }
-
-    public abstract void e(float f10, float f11, boolean z10);
-
-    public abstract void f();
-
-    public abstract void g(int i10, boolean z10);
-
-    public final void h(int i10) {
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f23719o;
-            if (i11 >= arrayList.size()) {
-                return;
-            }
-            ((View) arrayList.get(i11)).getLayoutParams().height = i10;
-            ((View) arrayList.get(i11)).requestLayout();
-            i11++;
-        }
-    }
-
-    public int i() {
-        return 0;
-    }
-
-    public final void j() {
-        ValueAnimator valueAnimator = this.f23717m;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        this.f23711f = false;
-        this.f23710e = false;
-        this.f23718n.unlock();
-        this.f23717m = null;
-        h(-1);
-        this.f23719o.clear();
-        this.d.requestLayout();
-        boolean z10 = this.f23723s;
-        e(0.0f, z10 ? 1.0f : 0.0f, z10);
-        if (!(this instanceof ig.o)) {
-            this.f23707a.setTranslationY(0.0f);
-        }
-        f();
+        return true;
     }
 }

@@ -1,13 +1,12 @@
 package j4;
-
 public interface d1 {
-    long D();
-
-    void I(long j10);
-
     boolean b();
 
-    long g();
+    long d();
 
-    boolean q(long j10);
+    boolean n(long j10);
+
+    long v();
+
+    void z(long j10);
 }

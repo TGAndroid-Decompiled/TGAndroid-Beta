@@ -1,39 +1,48 @@
 package b9;
 
-import c3.g;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import f9.b0;
-import f9.m;
-import f9.q;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
+import android.util.Log;
+import g9.b1;
+import java.util.concurrent.atomic.AtomicReference;
+import y8.p;
+public final class b {
+    public static final d f1658c = new Object();
+    public final p f1659a;
+    public final AtomicReference f1660b = new AtomicReference(null);
 
-public final class b implements Callable {
-
-    public final boolean f2048a;
-
-    public final q f2049b;
-
-    public final g f2050c;
-
-    public b(boolean z10, q qVar, g gVar) {
-        this.f2048a = z10;
-        this.f2049b = qVar;
-        this.f2050c = gVar;
+    public b(p pVar) {
+        this.f1659a = pVar;
+        pVar.a(new a1.c(this, 1));
     }
 
-    @Override
-    public final Object call() {
-        if (!this.f2048a) {
-            return null;
+    public final d a(String str) {
+        b bVar = (b) this.f1660b.get();
+        if (bVar == null) {
+            return f1658c;
         }
-        q qVar = this.f2049b;
-        ExecutorService executorService = qVar.f5980k;
-        m mVar = new m(2, qVar, this.f2050c);
-        ExecutorService executorService2 = b0.f5926a;
-        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        executorService.execute(new androidx.car.app.utils.a(mVar, executorService, taskCompletionSource, 11));
-        taskCompletionSource.getTask();
-        return null;
+        return bVar.a(str);
+    }
+
+    public final boolean b() {
+        b bVar = (b) this.f1660b.get();
+        if (bVar != null && bVar.b()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c(String str) {
+        b bVar = (b) this.f1660b.get();
+        if (bVar != null && bVar.c(str)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(String str, long j10, b1 b1Var) {
+        String d = ta.b.d("Deferring native open session: ", str);
+        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+            Log.v("FirebaseCrashlytics", d, null);
+        }
+        this.f1659a.a(new a(str, j10, b1Var, 0));
     }
 }

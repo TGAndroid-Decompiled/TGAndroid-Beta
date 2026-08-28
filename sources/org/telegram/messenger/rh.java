@@ -1,26 +1,31 @@
 package org.telegram.messenger;
+public final class rh implements Runnable {
+    public final int f21420a;
+    public final SavedMessagesController f21421b;
 
-import android.text.Spanned;
-import java.util.Comparator;
-
-public final class rh implements Comparator {
-
-    public final int f21444a;
-
-    public final Spanned f21445b;
-
-    public rh(Spanned spanned, int i10) {
-        this.f21444a = i10;
-        this.f21445b = spanned;
+    public rh(SavedMessagesController savedMessagesController, int i9) {
+        this.f21420a = i9;
+        this.f21421b = savedMessagesController;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f21444a) {
+    public final void run() {
+        switch (this.f21420a) {
             case 0:
-                return RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f21445b, (org.telegram.ui.Cells.p9) obj, (org.telegram.ui.Cells.p9) obj2);
+                this.f21421b.update();
+                return;
+            case 1:
+                SavedMessagesController.k(this.f21421b);
+                return;
+            case 2:
+                SavedMessagesController.h(this.f21421b);
+                return;
+            case 3:
+                SavedMessagesController.j(this.f21421b);
+                return;
             default:
-                return RichMessageLayout.Text.lambda$new$0(this.f21445b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                SavedMessagesController.b(this.f21421b);
+                return;
         }
     }
 }

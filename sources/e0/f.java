@@ -4,54 +4,47 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
-
 public final class f implements Application.ActivityLifecycleCallbacks {
-
-    public Object f5045a;
-
-    public Activity f5046b;
-
-    public final int f5047c;
+    public Object f4688a;
+    public Activity f4689b;
+    public final int f4690c;
     public boolean d = false;
-
-    public boolean f5048e = false;
-
-    public boolean f5049f = false;
+    public boolean f4691e = false;
+    public boolean f4692f = false;
 
     public f(Activity activity) {
-        this.f5046b = activity;
-        this.f5047c = activity.hashCode();
+        this.f4689b = activity;
+        this.f4690c = activity.hashCode();
     }
 
     @Override
     public final void onActivityDestroyed(Activity activity) {
-        if (this.f5046b == activity) {
-            this.f5046b = null;
-            this.f5048e = true;
+        if (this.f4689b == activity) {
+            this.f4689b = null;
+            this.f4691e = true;
         }
     }
 
     @Override
     public final void onActivityPaused(Activity activity) {
-        if (!this.f5048e || this.f5049f || this.d) {
-            return;
-        }
-        Object obj = this.f5045a;
-        try {
-            Object obj2 = g.f5052c.get(activity);
-            if (obj2 == obj && activity.hashCode() == this.f5047c) {
-                g.f5055g.postAtFrontOfQueue(new a9.o(g.f5051b.get(activity), obj2, false, 5));
-                this.f5049f = true;
-                this.f5045a = null;
+        if (this.f4691e && !this.f4692f && !this.d) {
+            Object obj = this.f4688a;
+            try {
+                Object obj2 = g.f4695c.get(activity);
+                if (obj2 == obj && activity.hashCode() == this.f4690c) {
+                    g.f4698g.postAtFrontOfQueue(new androidx.biometric.j(g.f4694b.get(activity), obj2, false, 4));
+                    this.f4692f = true;
+                    this.f4688a = null;
+                }
+            } catch (Throwable th) {
+                Log.e("ActivityRecreator", "Exception while fetching field values", th);
             }
-        } catch (Throwable th) {
-            Log.e("ActivityRecreator", "Exception while fetching field values", th);
         }
     }
 
     @Override
     public final void onActivityStarted(Activity activity) {
-        if (this.f5046b == activity) {
+        if (this.f4689b == activity) {
             this.d = true;
         }
     }

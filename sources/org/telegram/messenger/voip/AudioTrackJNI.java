@@ -2,7 +2,6 @@ package org.telegram.messenger.voip;
 
 import android.media.AudioTrack;
 import java.nio.ByteBuffer;
-
 public class AudioTrackJNI {
     private AudioTrack audioTrack;
     private byte[] buffer = new byte[1920];
@@ -15,73 +14,97 @@ public class AudioTrackJNI {
         this.nativeInst = j10;
     }
 
-    private int getBufferSize(int i10, int i11) {
-        return Math.max(AudioTrack.getMinBufferSize(i11, 4, 2), i10);
+    private int getBufferSize(int i9, int i10) {
+        return Math.max(AudioTrack.getMinBufferSize(i10, 4, 2), i9);
     }
 
     public void lambda$startThread$0() {
+        ByteBuffer byteBuffer;
         try {
             this.audioTrack.play();
-            ByteBuffer byteBufferAllocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1920) : null;
-            ByteBuffer byteBufferAllocateDirect2 = this.needResampling ? ByteBuffer.allocateDirect(1764) : null;
+            ByteBuffer byteBuffer2 = null;
+            if (this.needResampling) {
+                byteBuffer = ByteBuffer.allocateDirect(1920);
+            } else {
+                byteBuffer = null;
+            }
+            if (this.needResampling) {
+                byteBuffer2 = ByteBuffer.allocateDirect(1764);
+            }
             while (this.running) {
                 try {
                     if (this.needResampling) {
                         nativeCallback(this.buffer);
-                        byteBufferAllocateDirect.rewind();
-                        byteBufferAllocateDirect.put(this.buffer);
-                        Resampler.convert48to44(byteBufferAllocateDirect, byteBufferAllocateDirect2);
-                        byteBufferAllocateDirect2.rewind();
-                        byteBufferAllocateDirect2.get(this.buffer, 0, 1764);
+                        byteBuffer.rewind();
+                        byteBuffer.put(this.buffer);
+                        Resampler.convert48to44(byteBuffer, byteBuffer2);
+                        byteBuffer2.rewind();
+                        byteBuffer2.get(this.buffer, 0, 1764);
                         this.audioTrack.write(this.buffer, 0, 1764);
                     } else {
                         nativeCallback(this.buffer);
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
-                    if (!this.running) {
-                        this.audioTrack.stop();
-                        break;
-                    }
-                    continue;
-                } catch (Exception e9) {
-                    VLog.e(e9);
+                } catch (Exception e10) {
+                    VLog.e(e10);
                 }
+                if (!this.running) {
+                    this.audioTrack.stop();
+                    break;
+                }
+                continue;
             }
             VLog.i("audiotrack thread exits");
-        } catch (Exception e10) {
-            VLog.e("error starting AudioTrack", e10);
+        } catch (Exception e11) {
+            VLog.e("error starting AudioTrack", e11);
         }
     }
 
     private native void nativeCallback(byte[] bArr);
 
     private void startThread() {
-        if (this.thread != null) {
-            throw new IllegalStateException("thread already started");
+        if (this.thread == null) {
+            this.running = true;
+            Thread thread = new Thread(new r0(this, 2));
+            this.thread = thread;
+            thread.start();
+            return;
         }
-        this.running = true;
-        Thread thread = new Thread(new r0(this, 2));
-        this.thread = thread;
-        thread.start();
+        throw new IllegalStateException("thread already started");
     }
 
-    public void init(int i10, int i11, int i12, int i13) {
-        if (this.audioTrack != null) {
-            throw new IllegalStateException("already inited");
-        }
-        AudioTrack audioTrack = new AudioTrack(0, 48000, i12 == 1 ? 4 : 12, 2, getBufferSize(i13, 48000), 1);
-        this.audioTrack = audioTrack;
-        if (audioTrack.getState() != 1) {
-            VLog.w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
-            try {
-                this.audioTrack.release();
-            } catch (Throwable unused) {
+    public void init(int i9, int i10, int i11, int i12) {
+        int i13;
+        int i14;
+        if (this.audioTrack == null) {
+            int bufferSize = getBufferSize(i12, 48000);
+            if (i11 == 1) {
+                i13 = 4;
+            } else {
+                i13 = 12;
             }
-            int bufferSize = getBufferSize(i13 * 6, 44100);
-            VLog.d(i0.a.k(bufferSize, "buffer size: "));
-            this.audioTrack = new AudioTrack(0, 44100, i12 == 1 ? 4 : 12, 2, bufferSize, 1);
-            this.needResampling = true;
+            AudioTrack audioTrack = new AudioTrack(0, 48000, i13, 2, bufferSize, 1);
+            this.audioTrack = audioTrack;
+            if (audioTrack.getState() != 1) {
+                VLog.w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
+                try {
+                    this.audioTrack.release();
+                } catch (Throwable unused) {
+                }
+                int bufferSize2 = getBufferSize(i12 * 6, 44100);
+                VLog.d(j3.r0.l(bufferSize2, "buffer size: "));
+                if (i11 == 1) {
+                    i14 = 4;
+                } else {
+                    i14 = 12;
+                }
+                this.audioTrack = new AudioTrack(0, 44100, i14, 2, bufferSize2, 1);
+                this.needResampling = true;
+                return;
+            }
+            return;
         }
+        throw new IllegalStateException("already inited");
     }
 
     public void release() {
@@ -90,8 +113,8 @@ public class AudioTrackJNI {
         if (thread != null) {
             try {
                 thread.join();
-            } catch (InterruptedException e9) {
-                VLog.e(e9);
+            } catch (InterruptedException e10) {
+                VLog.e(e10);
             }
             this.thread = null;
         }

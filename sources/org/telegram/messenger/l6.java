@@ -1,60 +1,67 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-
 public final class l6 implements Runnable {
+    public final int f20846a;
+    public final boolean f20847b;
+    public final Object f20848c;
+    public final Object d;
 
-    public final int f20838a = 0;
-
-    public final boolean f20839b;
-
-    public final int f20840c;
-    public final long d;
-
-    public final int f20841e;
-
-    public final boolean f20842f;
-    public final Object h;
-
-    public final Serializable f20843n;
-
-    public final Object f20844r;
-
-    public l6(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i10, boolean z10, int i11, boolean z11, long j10) {
-        this.h = mediaController;
-        this.f20843n = file;
-        this.f20844r = tL_document;
-        this.f20840c = i10;
-        this.f20839b = z10;
-        this.f20841e = i11;
-        this.f20842f = z11;
-        this.d = j10;
+    public l6(Object obj, Object obj2, boolean z10, int i9) {
+        this.f20846a = i9;
+        this.f20848c = obj;
+        this.d = obj2;
+        this.f20847b = z10;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f20838a) {
+    public final void run() {
+        switch (this.f20846a) {
             case 0:
-                ((MediaController) this.h).lambda$stopRecordingInternal$40((File) this.f20843n, (TLRPC.TL_document) this.f20844r, this.f20840c, this.f20839b, this.f20841e, this.f20842f, this.d);
-                break;
+                ((MediaController.AnonymousClass2) this.f20848c).lambda$run$1((ByteBuffer) this.d, this.f20847b);
+                return;
+            case 1:
+                ((FileLoader) this.f20848c).lambda$cancelFileUpload$2(this.f20847b, (String) this.d);
+                return;
+            case 2:
+                ((ImageLoader) this.f20848c).lambda$cancelLoadingForImageReceiver$4(this.f20847b, (ImageReceiver) this.d);
+                return;
+            case 3:
+                ((MediaDataController) this.f20848c).lambda$loadBotKeyboard$196((MessagesStorage.TopicKey) this.d, this.f20847b);
+                return;
+            case 4:
+                ((MediaDataController) this.f20848c).lambda$buildShortcuts$143(this.f20847b, (ArrayList) this.d);
+                return;
+            case 5:
+                ((MessagesController) this.f20848c).lambda$processDialogsUpdate$229((TLRPC.messages_Dialogs) this.d, this.f20847b);
+                return;
+            case 6:
+                ((MessagesStorage) this.f20848c).lambda$updateUserInfo$130((TLRPC.UserFull) this.d, this.f20847b);
+                return;
+            case 7:
+                ((MessagesStorage) this.f20848c).lambda$putCachedPhoneBook$149((HashMap) this.d, this.f20847b);
+                return;
+            case 8:
+                ((MessagesStorage) this.f20848c).lambda$updateEncryptedChatSeq$171((TLRPC.EncryptedChat) this.d, this.f20847b);
+                return;
+            case 9:
+                ((MessagesStorage) this.f20848c).lambda$updateChatInfo$134((TLRPC.ChatFull) this.d, this.f20847b);
+                return;
             default:
-                ((MessagesStorage) this.h).lambda$updatePinnedMessages$138(this.f20839b, (HashMap) this.f20843n, this.f20840c, this.d, (ArrayList) this.f20844r, this.f20841e, this.f20842f);
-                break;
+                ((MessagesStorage) this.f20848c).lambda$deleteEphemeralMessages$206((a0.h) this.d, this.f20847b);
+                return;
         }
     }
 
-    public l6(MessagesStorage messagesStorage, boolean z10, HashMap map, int i10, long j10, ArrayList arrayList, int i11, boolean z11) {
-        this.h = messagesStorage;
-        this.f20839b = z10;
-        this.f20843n = map;
-        this.f20840c = i10;
-        this.d = j10;
-        this.f20844r = arrayList;
-        this.f20841e = i11;
-        this.f20842f = z11;
+    public l6(Object obj, boolean z10, Object obj2, int i9) {
+        this.f20846a = i9;
+        this.f20848c = obj;
+        this.f20847b = z10;
+        this.d = obj2;
     }
 }

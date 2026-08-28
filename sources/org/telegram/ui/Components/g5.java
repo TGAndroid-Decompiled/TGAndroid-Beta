@@ -9,72 +9,64 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-
 public final class g5 {
+    public HashMap f28651a;
+    public HashMap f28652b;
+    public HashSet f28653c;
+    public fg d;
+    public final int f28654e;
 
-    public HashMap f28531a;
-
-    public HashMap f28532b;
-
-    public HashSet f28533c;
-    public bg d;
-
-    public final int f28534e;
-
-    public g5(int i10) {
-        this.f28534e = i10;
+    public g5(int i9) {
+        this.f28654e = i9;
     }
 
     public static boolean a() {
-        if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
-            return true;
-        }
-        if (!BuildVars.DEBUG_VERSION) {
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            if (BuildVars.DEBUG_VERSION) {
+                FileLog.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
+                return false;
+            }
             return false;
         }
-        FileLog.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
-        return false;
+        return true;
     }
 
     public final void b(long j10, h5 h5Var) {
         TLRPC.Document document;
-        if (j10 == 0) {
-            return;
-        }
-        synchronized (this) {
-            try {
-                HashMap map = this.f28531a;
-                if (map != null && (document = (TLRPC.Document) map.get(Long.valueOf(j10))) != null) {
-                    if (h5Var != null) {
-                        h5Var.a(document);
+        if (j10 != 0) {
+            synchronized (this) {
+                try {
+                    HashMap hashMap = this.f28651a;
+                    if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j10))) != null) {
+                        if (h5Var != null) {
+                            h5Var.a(document);
+                        }
+                    } else if (a()) {
+                        if (this.f28652b == null) {
+                            this.f28652b = new HashMap();
+                        }
+                        ArrayList arrayList = (ArrayList) this.f28652b.get(Long.valueOf(j10));
+                        if (arrayList != null) {
+                            arrayList.add(h5Var);
+                            return;
+                        }
+                        ArrayList arrayList2 = new ArrayList(1);
+                        arrayList2.add(h5Var);
+                        this.f28652b.put(Long.valueOf(j10), arrayList2);
+                        if (this.f28653c == null) {
+                            this.f28653c = new HashSet();
+                        }
+                        this.f28653c.add(Long.valueOf(j10));
+                        if (this.d != null) {
+                            return;
+                        }
+                        fg fgVar = new fg(this, 5);
+                        this.d = fgVar;
+                        AndroidUtilities.runOnUIThread(fgVar);
                     }
-                    return;
+                } catch (Throwable th) {
+                    throw th;
                 }
-                if (a()) {
-                    if (this.f28532b == null) {
-                        this.f28532b = new HashMap();
-                    }
-                    ArrayList arrayList = (ArrayList) this.f28532b.get(Long.valueOf(j10));
-                    if (arrayList != null) {
-                        arrayList.add(h5Var);
-                        return;
-                    }
-                    ArrayList arrayList2 = new ArrayList(1);
-                    arrayList2.add(h5Var);
-                    this.f28532b.put(Long.valueOf(j10), arrayList2);
-                    if (this.f28533c == null) {
-                        this.f28533c = new HashSet();
-                    }
-                    this.f28533c.add(Long.valueOf(j10));
-                    if (this.d != null) {
-                        return;
-                    }
-                    bg bgVar = new bg(this, 5);
-                    this.d = bgVar;
-                    AndroidUtilities.runOnUIThread(bgVar);
-                }
-            } catch (Throwable th) {
-                throw th;
             }
         }
     }
@@ -82,11 +74,11 @@ public final class g5 {
     public final TLRPC.InputStickerSet c(long j10) {
         synchronized (this) {
             try {
-                HashMap map = this.f28531a;
-                if (map == null) {
+                HashMap hashMap = this.f28651a;
+                if (hashMap == null) {
                     return null;
                 }
-                TLRPC.Document document = (TLRPC.Document) map.get(Long.valueOf(j10));
+                TLRPC.Document document = (TLRPC.Document) hashMap.get(Long.valueOf(j10));
                 if (document == null) {
                     return null;
                 }
@@ -101,14 +93,14 @@ public final class g5 {
         ArrayList arrayList2;
         if (a()) {
             k5.x();
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10) instanceof TLRPC.Document) {
-                    TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                if (arrayList.get(i9) instanceof TLRPC.Document) {
+                    TLRPC.Document document = (TLRPC.Document) arrayList.get(i9);
                     e(document);
-                    HashMap map = this.f28532b;
-                    if (map != null && (arrayList2 = (ArrayList) map.remove(Long.valueOf(document.f22386id))) != null) {
-                        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                            h5 h5Var = (h5) arrayList2.get(i11);
+                    HashMap hashMap = this.f28652b;
+                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f22386id))) != null) {
+                        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                            h5 h5Var = (h5) arrayList2.get(i10);
                             if (h5Var != null) {
                                 h5Var.a(document);
                             }
@@ -126,10 +118,10 @@ public final class g5 {
         }
         synchronized (this) {
             try {
-                if (this.f28531a == null) {
-                    this.f28531a = new HashMap();
+                if (this.f28651a == null) {
+                    this.f28651a = new HashMap();
                 }
-                this.f28531a.put(Long.valueOf(document.f22386id), document);
+                this.f28651a.put(Long.valueOf(document.f22386id), document);
             } catch (Throwable th) {
                 throw th;
             }
@@ -142,16 +134,16 @@ public final class g5 {
         }
         synchronized (this) {
             try {
-                if (this.f28531a == null) {
-                    this.f28531a = new HashMap();
+                if (this.f28651a == null) {
+                    this.f28651a = new HashMap();
                 }
                 int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
+                int i9 = 0;
+                while (i9 < size) {
+                    Object obj = arrayList.get(i9);
+                    i9++;
                     TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f28531a.put(Long.valueOf(document.f22386id), document);
+                    this.f28651a.put(Long.valueOf(document.f22386id), document);
                 }
             } catch (Throwable th) {
                 throw th;

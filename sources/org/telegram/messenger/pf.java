@@ -1,60 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
-
+import java.util.concurrent.CountDownLatch;
 public final class pf implements Runnable {
+    public final int f21241a;
+    public final MessagesStorage f21242b;
+    public final long f21243c;
+    public final boolean[] d;
+    public final CountDownLatch f21244e;
 
-    public final int f21272a = 0;
-
-    public final boolean f21273b;
-
-    public final int f21274c;
-    public final int d;
-
-    public final long f21275e;
-
-    public final Object f21276f;
-    public final Object h;
-
-    public pf(MessagesStorage messagesStorage, long j10, ArrayList arrayList, boolean z10, int i10, int i11) {
-        this.f21276f = messagesStorage;
-        this.f21275e = j10;
-        this.h = arrayList;
-        this.f21273b = z10;
-        this.f21274c = i10;
-        this.d = i11;
+    public pf(int i9, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
+        this.f21241a = i9;
+        this.f21242b = messagesStorage;
+        this.f21243c = j10;
+        this.d = zArr;
+        this.f21244e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f21272a) {
+        switch (this.f21241a) {
             case 0:
-                ((MessagesStorage) this.f21276f).lambda$markMessagesAsDeleted$229(this.f21275e, (ArrayList) this.h, this.f21273b, this.f21274c, this.d);
-                break;
+                this.f21242b.lambda$checkMessageByRandomId$153(this.f21243c, this.d, this.f21244e);
+                return;
+            case 1:
+                this.f21242b.lambda$isMigratedChat$141(this.f21243c, this.d, this.f21244e);
+                return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f21276f;
-                CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f26077b0 = null;
-                chatActivityEnterView.q0(true);
-                org.telegram.ui.Components.bf bfVar = chatActivityEnterView.A0;
-                if (bfVar != null) {
-                    bfVar.setText("");
-                }
-                org.telegram.ui.Components.ag agVar = chatActivityEnterView.U2;
-                if (agVar != null) {
-                    agVar.w(charSequence, this.f21273b, this.f21274c, this.d, this.f21275e);
-                }
-                break;
+                this.f21242b.lambda$hasInviteMeMessage$143(this.f21243c, this.d, this.f21244e);
+                return;
         }
-    }
-
-    public pf(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        this.f21276f = chatActivityEnterView;
-        this.h = charSequence;
-        this.f21273b = z10;
-        this.f21274c = i10;
-        this.d = i11;
-        this.f21275e = j10;
     }
 }

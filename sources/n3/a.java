@@ -1,204 +1,112 @@
 package n3;
 
-import d5.g0;
-import h3.s0;
-import h3.t0;
+import d5.f0;
 import h3.t1;
-import java.io.EOFException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import m3.g;
-import m3.h;
 import m3.k;
 import m3.l;
 import m3.m;
-import m3.n;
-import m3.o;
 import m3.t;
 import m3.w;
-import o8.d;
-
+import n8.d;
 public final class a implements k {
-
-    public static final int[] f18191p = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
-
-    public static final int[] f18192q;
-
-    public static final byte[] f18193r;
-
-    public static final byte[] f18194s;
-
-    public static final int f18195t;
-
-    public final int f18197b;
-
-    public boolean f18198c;
+    public static final int[] f18364p = {13, 14, 16, 18, 20, 21, 27, 32, 6, 7, 6, 6, 1, 1, 1, 1};
+    public static final int[] f18365q;
+    public static final byte[] f18366r;
+    public static final byte[] f18367s;
+    public static final int f18368t;
+    public final int f18370b;
+    public boolean f18371c;
     public long d;
-
-    public int f18199e;
-
-    public int f18200f;
-
-    public boolean f18201g;
+    public int f18372e;
+    public int f18373f;
+    public boolean f18374g;
     public long h;
-
-    public int f18203j;
-
-    public long f18204k;
-
-    public m f18205l;
-
-    public w f18206m;
-
-    public t f18207n;
-
-    public boolean f18208o;
-
-    public final byte[] f18196a = new byte[1];
-
-    public int f18202i = -1;
+    public int f18376j;
+    public long f18377k;
+    public m f18378l;
+    public w f18379m;
+    public t f18380n;
+    public boolean f18381o;
+    public final byte[] f18369a = new byte[1];
+    public int f18375i = -1;
 
     static {
         int[] iArr = {18, 24, 33, 37, 41, 47, 51, 59, 61, 6, 1, 1, 1, 1, 1, 1};
-        f18192q = iArr;
-        int i10 = g0.f4795a;
-        Charset charset = d.f19363c;
-        f18193r = "#!AMR\n".getBytes(charset);
-        f18194s = "#!AMR-WB\n".getBytes(charset);
-        f18195t = iArr[8];
+        f18365q = iArr;
+        int i9 = f0.f4349a;
+        Charset charset = d.f18513c;
+        f18366r = "#!AMR\n".getBytes(charset);
+        f18367s = "#!AMR-WB\n".getBytes(charset);
+        f18368t = iArr[8];
     }
 
-    public a(int i10) {
-        this.f18197b = i10;
+    public a(int i9) {
+        this.f18370b = i9;
     }
 
-    public final int a(l lVar) throws t1 {
+    public final int a(l lVar) {
+        String str;
         boolean z10;
-        lVar.q();
-        byte[] bArr = this.f18196a;
-        lVar.b(0, 1, bArr);
+        lVar.t();
+        byte[] bArr = this.f18369a;
+        lVar.c(0, 1, bArr);
         byte b10 = bArr[0];
-        if ((b10 & 131) > 0) {
-            throw t1.a("Invalid padding bits for frame header " + ((int) b10), null);
+        if ((b10 & 131) <= 0) {
+            int i9 = (b10 >> 3) & 15;
+            if (i9 >= 0 && i9 <= 15 && (((z10 = this.f18371c) && (i9 < 10 || i9 > 13)) || (!z10 && (i9 < 12 || i9 > 14)))) {
+                if (z10) {
+                    return f18365q[i9];
+                }
+                return f18364p[i9];
+            }
+            StringBuilder sb2 = new StringBuilder("Illegal AMR ");
+            if (this.f18371c) {
+                str = "WB";
+            } else {
+                str = "NB";
+            }
+            sb2.append(str);
+            sb2.append(" frame type ");
+            sb2.append(i9);
+            throw t1.a(sb2.toString(), null);
         }
-        int i10 = (b10 >> 3) & 15;
-        if (i10 >= 0 && i10 <= 15 && (((z10 = this.f18198c) && (i10 < 10 || i10 > 13)) || (!z10 && (i10 < 12 || i10 > 14)))) {
-            return z10 ? f18192q[i10] : f18191p[i10];
-        }
-        StringBuilder sb2 = new StringBuilder("Illegal AMR ");
-        sb2.append(this.f18198c ? "WB" : "NB");
-        sb2.append(" frame type ");
-        sb2.append(i10);
-        throw t1.a(sb2.toString(), null);
+        throw t1.a("Invalid padding bits for frame header " + ((int) b10), null);
     }
 
     @Override
-    public final int b(l lVar, n nVar) throws t1 {
-        int i10;
-        int i11;
-        int iB;
-        int i12;
-        d5.a.j(this.f18206m);
-        int i13 = g0.f4795a;
-        if (((h) lVar).d == 0 && !d(lVar)) {
-            throw t1.a("Could not find AMR header.", null);
-        }
-        if (!this.f18208o) {
-            this.f18208o = true;
-            boolean z10 = this.f18198c;
-            String str = z10 ? "audio/amr-wb" : "audio/3gpp";
-            int i14 = z10 ? 16000 : 8000;
-            w wVar = this.f18206m;
-            s0 s0Var = new s0();
-            s0Var.f8135o = str;
-            s0Var.f8136p = f18195t;
-            s0Var.B = 1;
-            s0Var.C = i14;
-            wVar.c(new t0(s0Var));
-        }
-        if (this.f18200f == 0) {
-            try {
-                int iA = a(lVar);
-                this.f18199e = iA;
-                this.f18200f = iA;
-                if (this.f18202i == -1) {
-                    this.h = ((h) lVar).d;
-                    this.f18202i = iA;
-                }
-                if (this.f18202i == iA) {
-                    this.f18203j++;
-                }
-                iB = this.f18206m.b(lVar, this.f18200f, true);
-                if (iB == -1) {
-                    i10 = -1;
-                } else {
-                    i12 = this.f18200f - iB;
-                    this.f18200f = i12;
-                    i10 = 0;
-                    if (i12 <= 0) {
-                        this.f18206m.e(this.f18204k + this.d, 1, this.f18199e, 0, null);
-                        this.d += 20000;
-                    }
-                }
-            } catch (EOFException unused) {
-            }
-        } else {
-            iB = this.f18206m.b(lVar, this.f18200f, true);
-            if (iB == -1) {
-                i10 = -1;
-            } else {
-                i12 = this.f18200f - iB;
-                this.f18200f = i12;
-                i10 = 0;
-                if (i12 <= 0) {
-                    this.f18206m.e(this.f18204k + this.d, 1, this.f18199e, 0, null);
-                    this.d += 20000;
-                }
-            }
-        }
-        long j10 = ((h) lVar).f17612c;
-        if (!this.f18201g) {
-            if ((this.f18197b & 1) == 0 || j10 == -1 || !((i11 = this.f18202i) == -1 || i11 == this.f18199e)) {
-                o oVar = new o(-9223372036854775807L);
-                this.f18207n = oVar;
-                this.f18205l.n(oVar);
-                this.f18201g = true;
-            } else if (this.f18203j >= 20 || i10 == -1) {
-                g gVar = new g(j10, (int) ((((long) i11) * 8000000) / 20000), i11, false, this.h);
-                this.f18207n = gVar;
-                this.f18205l.n(gVar);
-                this.f18201g = true;
-            }
-        }
-        return i10;
+    public final int b(m3.l r13, m3.n r14) {
+        throw new UnsupportedOperationException("Method not decompiled: n3.a.b(m3.l, m3.n):int");
     }
 
     @Override
     public final void c(m mVar) {
-        this.f18205l = mVar;
-        this.f18206m = mVar.C(0, 1);
-        mVar.A();
+        this.f18378l = mVar;
+        this.f18379m = mVar.I(0, 1);
+        mVar.B();
     }
 
     public final boolean d(l lVar) {
-        lVar.q();
-        byte[] bArr = f18193r;
+        lVar.t();
+        byte[] bArr = f18366r;
         byte[] bArr2 = new byte[bArr.length];
-        lVar.b(0, bArr.length, bArr2);
+        lVar.c(0, bArr.length, bArr2);
         if (Arrays.equals(bArr2, bArr)) {
-            this.f18198c = false;
-            lVar.t(bArr.length);
+            this.f18371c = false;
+            lVar.u(bArr.length);
             return true;
         }
-        lVar.q();
-        byte[] bArr3 = f18194s;
+        lVar.t();
+        byte[] bArr3 = f18367s;
         byte[] bArr4 = new byte[bArr3.length];
-        lVar.b(0, bArr3.length, bArr4);
+        lVar.c(0, bArr3.length, bArr4);
         if (!Arrays.equals(bArr4, bArr3)) {
             return false;
         }
-        this.f18198c = true;
-        lVar.t(bArr3.length);
+        this.f18371c = true;
+        lVar.u(bArr3.length);
         return true;
     }
 
@@ -210,17 +118,17 @@ public final class a implements k {
     @Override
     public final void g(long j10, long j11) {
         this.d = 0L;
-        this.f18199e = 0;
-        this.f18200f = 0;
+        this.f18372e = 0;
+        this.f18373f = 0;
         if (j10 != 0) {
-            t tVar = this.f18207n;
+            t tVar = this.f18380n;
             if (tVar instanceof g) {
                 g gVar = (g) tVar;
-                this.f18204k = (Math.max(0L, j10 - gVar.f17605b) * 8000000) / ((long) gVar.f17607e);
+                this.f18377k = (Math.max(0L, j10 - gVar.f17229b) * 8000000) / gVar.f17231e;
                 return;
             }
         }
-        this.f18204k = 0L;
+        this.f18377k = 0L;
     }
 
     @Override

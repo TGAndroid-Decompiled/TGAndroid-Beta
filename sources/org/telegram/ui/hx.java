@@ -1,153 +1,75 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class hx extends UndoView {
+    public final dy f38949b0;
 
-public final class hx extends AnimatorListenerAdapter {
-
-    public final int f38901a;
-
-    public final boolean f38902b;
-
-    public final gy f38903c;
-
-    public hx(gy gyVar, boolean z10, int i10) {
-        this.f38901a = i10;
-        this.f38903c = gyVar;
-        this.f38902b = z10;
+    public hx(dy dyVar, Activity activity) {
+        super(activity);
+        this.f38949b0 = dyVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f38901a) {
-            case 0:
-                gy gyVar = this.f38903c;
-                gyVar.f38553k3.unlock();
-                if (gyVar.f38592s1 == animator) {
-                    if (this.f38902b) {
-                        gyVar.f38498a0[0].f38225a.c1();
-                    } else {
-                        cy cyVar = gyVar.f38498a0[0].f38225a;
-                        if (cyVar.f35263e1) {
-                            cyVar.f35263e1 = false;
-                            cyVar.J0(false);
-                        }
-                    }
-                    gyVar.f38592s1 = null;
+    public final boolean a() {
+        int i9 = 0;
+        while (true) {
+            cy[] cyVarArr = this.f38949b0.f37629a0;
+            if (i9 < cyVarArr.length) {
+                if (cyVarArr[i9].f37359x.k()) {
+                    return false;
                 }
-                break;
-            default:
-                super.onAnimationCancel(animator);
-                break;
+                i9++;
+            } else {
+                return true;
+            }
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.ActionBar.v0 v0Var;
-        switch (this.f38901a) {
-            case 0:
-                gy gyVar = this.f38903c;
-                gyVar.f38553k3.unlock();
-                if (gyVar.f38592s1 == animator) {
-                    gyVar.A4(false, true);
-                    boolean z10 = this.f38902b;
-                    if (z10) {
-                        gyVar.f38498a0[0].f38225a.c1();
-                        yw ywVar = gyVar.A0;
-                        if (ywVar != null) {
-                            ywVar.setVisibility(8);
-                        }
-                        gyVar.f38561m3 = true;
-                        AndroidUtilities.requestAdjustResize(gyVar.getParentActivity(), ((org.telegram.ui.ActionBar.n2) gyVar).classGuid);
-                        gyVar.f38525f0.setVisibility(8);
-                        bx bxVar = gyVar.B3;
-                        if (bxVar != null) {
-                            bxVar.setVisibility(8);
-                        }
-                    } else {
-                        gyVar.f38567n3 = false;
-                        px pxVar = gyVar.f38619y0;
-                        if (pxVar != null) {
-                            pxVar.setVisibility(8);
-                        }
-                        vx vxVar = gyVar.T;
-                        if (vxVar != null) {
-                            vxVar.c();
-                        }
-                        px pxVar2 = gyVar.f38619y0;
-                        if (pxVar2 != null) {
-                            pxVar2.f29763w0.clear();
-                            pxVar2.J();
-                        }
-                        cy cyVar = gyVar.f38498a0[0].f38225a;
-                        if (cyVar.f35263e1) {
-                            cyVar.f35263e1 = false;
-                            cyVar.J0(false);
-                        }
-                        gyVar.f38561m3 = false;
-                        bx bxVar2 = gyVar.B3;
-                        if (bxVar2 != null) {
-                            bxVar2.setVisibility(0);
-                        }
+    public final void h(int i9, long j10) {
+        if (i9 != 1 && i9 != 27) {
+            return;
+        }
+        dy dyVar = this.f38949b0;
+        dyVar.f37734u3 = 1;
+        dyVar.A4(true, true);
+        if (dyVar.N1 != null) {
+            int i10 = 0;
+            while (true) {
+                if (i10 < dyVar.N1.size()) {
+                    if (((TLRPC.Dialog) dyVar.N1.get(i10)).f22384id == j10) {
+                        break;
                     }
-                    View view = gyVar.fragmentView;
-                    if (view != null) {
-                        view.requestLayout();
-                    }
-                    gyVar.D4(z10 ? 1.0f : 0.0f);
-                    gyVar.f38498a0[0].f38225a.setVerticalScrollBarEnabled(true);
-                    px pxVar3 = gyVar.f38619y0;
-                    if (pxVar3 != null) {
-                        pxVar3.setBackground(null);
-                    }
-                    gyVar.f38592s1 = null;
-                    break;
-                }
-                break;
-            case 1:
-                gy gyVar2 = this.f38903c;
-                gyVar2.L3 = null;
-                if (!this.f38902b && (v0Var = gyVar2.f38540i0) != null) {
-                    v0Var.setVisibility(8);
-                    break;
-                }
-                break;
-            default:
-                gy gyVar3 = this.f38903c;
-                gyVar3.E = null;
-                boolean z11 = this.f38902b;
-                gyVar3.G = z11;
-                if (!z11 && !gyVar3.H) {
-                    gyVar3.A0.setVisibility(8);
-                }
-                if (z11) {
-                    gyVar3.f38599t3 = -AndroidUtilities.dp(81.0f);
-                    gyVar3.C4(-gyVar3.U3());
+                    i10++;
                 } else {
-                    gyVar3.C4(0.0f);
-                    gyVar3.f38599t3 = AndroidUtilities.dp(81.0f);
-                }
-                int i10 = 0;
-                while (true) {
-                    fy[] fyVarArr = gyVar3.f38498a0;
-                    if (i10 >= fyVarArr.length) {
-                        View view2 = gyVar3.fragmentView;
-                        if (view2 != null) {
-                            view2.requestLayout();
-                        }
-                    } else {
-                        fy fyVar = fyVarArr[i10];
-                        if (fyVar != null) {
-                            fyVar.f38225a.requestLayout();
-                        }
-                        i10++;
-                    }
+                    i10 = -1;
                     break;
                 }
-                break;
+            }
+            if (i10 >= 0) {
+                dyVar.f37629a0[0].d.l();
+                AndroidUtilities.runOnUIThread(new rl(this, i10, (TLRPC.Dialog) dyVar.N1.remove(i10), 26));
+            } else {
+                dyVar.A4(false, true);
+            }
+        }
+        dyVar.o3();
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        dy dyVar = this.f38949b0;
+        UndoView[] undoViewArr = dyVar.f37731u0;
+        if (this == undoViewArr[0]) {
+            UndoView undoView = undoViewArr[1];
+            if (undoView == null || undoView.getVisibility() != 0) {
+                dyVar.f37711q1 = Math.max(0.0f, (AndroidUtilities.dp(8.0f) + getMeasuredHeight()) - f10);
+                dyVar.X4();
+            }
         }
     }
 }

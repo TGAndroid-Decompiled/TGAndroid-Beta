@@ -1,82 +1,52 @@
 package oa;
 
-import j$.util.Objects;
-import java.io.Serializable;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class b extends la.u {
+    public static final a f19112c = new a();
+    public final Class f19113a;
+    public final o f19114b;
 
-public final class b implements ParameterizedType, Serializable {
+    public b(la.g gVar, la.u uVar, Class cls) {
+        this.f19114b = new o(gVar, uVar, cls);
+        this.f19113a = cls;
+    }
 
-    public final Type f19373a;
-
-    public final Type f19374b;
-
-    public final Type[] f19375c;
-
-    public b(Type type, Type type2, Type... typeArr) {
-        Objects.requireNonNull(type2);
-        if (type == null && (type2 instanceof Class)) {
-            Class cls = (Class) type2;
-            if (!Modifier.isStatic(cls.getModifiers()) && cls.getDeclaringClass() != null) {
-                throw new IllegalArgumentException("Must specify owner type for " + type2);
+    @Override
+    public final Object read(ta.a aVar) {
+        if (aVar.x() == 9) {
+            aVar.t();
+            return null;
+        }
+        ArrayList arrayList = new ArrayList();
+        aVar.a();
+        while (aVar.k()) {
+            arrayList.add(((la.u) this.f19114b.f19153c).read(aVar));
+        }
+        aVar.e();
+        int size = arrayList.size();
+        Class cls = this.f19113a;
+        if (cls.isPrimitive()) {
+            Object newInstance = Array.newInstance(cls, size);
+            for (int i9 = 0; i9 < size; i9++) {
+                Array.set(newInstance, i9, arrayList.get(i9));
             }
+            return newInstance;
         }
-        this.f19373a = type == null ? null : d.a(type);
-        this.f19374b = d.a(type2);
-        Type[] typeArr2 = (Type[]) typeArr.clone();
-        this.f19375c = typeArr2;
-        int length = typeArr2.length;
-        for (int i10 = 0; i10 < length; i10++) {
-            Objects.requireNonNull(this.f19375c[i10]);
-            d.c(this.f19375c[i10]);
-            Type[] typeArr3 = this.f19375c;
-            typeArr3[i10] = d.a(typeArr3[i10]);
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        return (obj instanceof ParameterizedType) && d.e(this, (ParameterizedType) obj);
+        return arrayList.toArray((Object[]) Array.newInstance(cls, size));
     }
 
     @Override
-    public final Type[] getActualTypeArguments() {
-        return (Type[]) this.f19375c.clone();
-    }
-
-    @Override
-    public final Type getOwnerType() {
-        return this.f19373a;
-    }
-
-    @Override
-    public final Type getRawType() {
-        return this.f19374b;
-    }
-
-    public final int hashCode() {
-        int iHashCode = Arrays.hashCode(this.f19375c) ^ this.f19374b.hashCode();
-        Type type = this.f19373a;
-        return iHashCode ^ (type != null ? type.hashCode() : 0);
-    }
-
-    public final String toString() {
-        Type[] typeArr = this.f19375c;
-        int length = typeArr.length;
-        Type type = this.f19374b;
-        if (length == 0) {
-            return d.k(type);
+    public final void write(ta.c cVar, Object obj) {
+        if (obj == null) {
+            cVar.i();
+            return;
         }
-        StringBuilder sb2 = new StringBuilder((length + 1) * 30);
-        sb2.append(d.k(type));
-        sb2.append("<");
-        sb2.append(d.k(typeArr[0]));
-        for (int i10 = 1; i10 < length; i10++) {
-            sb2.append(", ");
-            sb2.append(d.k(typeArr[i10]));
+        cVar.b();
+        int length = Array.getLength(obj);
+        for (int i9 = 0; i9 < length; i9++) {
+            this.f19114b.write(cVar, Array.get(obj, i9));
         }
-        sb2.append(">");
-        return sb2.toString();
+        cVar.e();
     }
 }

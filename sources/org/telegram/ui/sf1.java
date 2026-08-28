@@ -1,67 +1,79 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class sf1 implements Runnable {
+    public final int f42688a;
+    public final ag1 f42689b;
 
-public final class sf1 implements RequestDelegate {
-
-    public final int f42630a;
-
-    public final zf1 f42631b;
-
-    public sf1(zf1 zf1Var, int i10) {
-        this.f42630a = i10;
-        this.f42631b = zf1Var;
+    public sf1(ag1 ag1Var, int i9) {
+        this.f42688a = i9;
+        this.f42689b = ag1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f42630a) {
+    public final void run() {
+        switch (this.f42688a) {
             case 0:
-                final int i10 = 0;
-                final zf1 zf1Var = this.f42631b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (i10) {
-                            case 0:
-                                zf1.b0(zf1Var, tL_error, tLObject);
-                                break;
-                            default:
-                                zf1.h0(zf1Var, tL_error, tLObject);
-                                break;
-                        }
-                    }
-                });
-                break;
+                ag1 ag1Var = this.f42689b;
+                EditTextBoldCursor editTextBoldCursor = ag1Var.f36492n;
+                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
+                    ag1Var.f36492n.requestFocus();
+                    AndroidUtilities.showKeyboard(ag1Var.f36492n);
+                    return;
+                }
+                return;
             case 1:
-                AndroidUtilities.runOnUIThread(new vf1(this.f42631b, tL_error, 0));
-                break;
+                ag1 ag1Var2 = this.f42689b;
+                ld0 ld0Var = ag1Var2.f36495w;
+                if (ld0Var != null && ld0Var.getVisibility() == 0) {
+                    ag1Var2.f36495w.f42755f[0].requestFocus();
+                    return;
+                }
+                return;
             case 2:
-                AndroidUtilities.runOnUIThread(new vf1(this.f42631b, tL_error, 1));
-                break;
-            case 3:
-                AndroidUtilities.runOnUIThread(new vf1(this.f42631b, tL_error, 2));
-                break;
-            default:
-                final int i11 = 1;
-                final zf1 zf1Var2 = this.f42631b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (i11) {
-                            case 0:
-                                zf1.b0(zf1Var2, tL_error, tLObject);
-                                break;
-                            default:
-                                zf1.h0(zf1Var2, tL_error, tLObject);
-                                break;
-                        }
+                int i9 = 0;
+                while (true) {
+                    vr[] vrVarArr = this.f42689b.f36495w.f42755f;
+                    if (i9 < vrVarArr.length) {
+                        vrVarArr[i9].i(0.0f);
+                        i9++;
+                    } else {
+                        return;
                     }
-                });
-                break;
+                }
+            case 3:
+                ag1 ag1Var3 = this.f42689b;
+                EditTextBoldCursor editTextBoldCursor2 = ag1Var3.f36492n;
+                if (editTextBoldCursor2 != null) {
+                    if (editTextBoldCursor2.length() != 0) {
+                        ag1Var3.f36484b0[2].N(49);
+                        ag1Var3.f36484b0[2].Q(0.0f, false);
+                        ag1Var3.f36481a.d();
+                        return;
+                    }
+                    ag1Var3.E0(true);
+                    return;
+                }
+                return;
+            case 4:
+                ag1 ag1Var4 = this.f42689b;
+                if (ag1Var4.f36486c0 != null) {
+                    ag1Var4.E0(false);
+                    return;
+                }
+                return;
+            case 5:
+                ag1.e0(this.f42689b);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new sf1(this.f42689b, 7), 150L);
+                return;
+            default:
+                for (vr vrVar : this.f42689b.f36495w.f42755f) {
+                    vrVar.i(0.0f);
+                }
+                return;
         }
     }
 }

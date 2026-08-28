@@ -1,6 +1,5 @@
 package org.telegram.ui;
-
-public final class pw0 extends f2.l {
+public final class pw0 extends f2.n {
     public final PrivacyControlActivity F;
 
     public pw0(PrivacyControlActivity privacyControlActivity) {
@@ -8,7 +7,7 @@ public final class pw0 extends f2.l {
     }
 
     @Override
-    public final void P(f2.o1 o1Var) {
+    public final void P(f2.q1 q1Var) {
         this.F.d.invalidate();
     }
 }

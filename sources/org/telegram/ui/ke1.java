@@ -1,60 +1,96 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+public final class ke1 extends wf.b {
+    public final we1 d;
 
-public final class ke1 extends View {
-
-    public final HashMap f39708a;
-
-    public final le1 f39709b;
-
-    public ke1(le1 le1Var, Activity activity) {
-        super(activity);
-        this.f39709b = le1Var;
-        this.f39708a = new HashMap();
+    public ke1(we1 we1Var) {
+        this.d = we1Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int iDp;
-        le1 le1Var = this.f39709b;
-        we1 we1Var = le1Var.d;
-        int size = View.MeasureSpec.getSize(i10);
-        int iDp2 = AndroidUtilities.dp(64.0f);
-        int i13 = 0;
-        int i14 = 0;
-        for (int i15 = 0; i15 < le1Var.F().size(); i15++) {
-            if (le1Var.F().get(i15) != null && ((ne1) le1Var.F().get(i15)).f40813c != null) {
-                String str = ((ne1) le1Var.F().get(i15)).f40813c.title;
-                HashMap map = this.f39708a;
-                Boolean boolValueOf = (Boolean) map.get(str);
-                if (boolValueOf == null) {
-                    int iDp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (we1Var.isInPreviewMode() ? 11 : 50) + 4);
-                    if (LocaleController.isRTL) {
-                        i12 = size - iDp3;
-                        iDp = AndroidUtilities.dp((we1Var.isInPreviewMode() ? 11 : 50) + 13);
-                    } else {
-                        i12 = size - iDp3;
-                        iDp = AndroidUtilities.dp(22.0f);
-                    }
-                    boolValueOf = Boolean.valueOf(org.telegram.ui.ActionBar.g6.B0[0].measureText(str) <= ((float) ((i12 - iDp) - ((int) Math.ceil((double) org.telegram.ui.ActionBar.g6.I0.measureText("00:00"))))));
-                    map.put(str, boolValueOf);
-                }
-                int iDp4 = AndroidUtilities.dp((!boolValueOf.booleanValue() ? 20 : 0) + 64);
-                if (((ne1) le1Var.F().get(i15)).f40813c.f22432id == 1) {
-                    iDp2 = iDp4;
-                }
-                if (((ne1) le1Var.F().get(i15)).f40813c.hidden) {
-                    i13++;
-                }
-                i14 += iDp4;
-            }
+    public final boolean D(f2.q1 q1Var) {
+        int i9 = q1Var.f5505f;
+        if (i9 != 0 && i9 != 3) {
+            return false;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i13 > 0 ? (((we1Var.J.getMeasuredHeight() - we1Var.J.getPaddingTop()) - we1Var.J.getPaddingBottom()) - i14) + iDp2 : 0), 1073741824));
+        return true;
+    }
+
+    public final ArrayList F() {
+        we1 we1Var = this.d;
+        we1Var.getClass();
+        return we1Var.f43744b;
+    }
+
+    @Override
+    public final int h() {
+        return F().size() + 1;
+    }
+
+    @Override
+    public final int j(int i9) {
+        if (i9 == h() - 1) {
+            return 2;
+        }
+        return ((me1) this.d.f43744b.get(i9)).f48814a;
+    }
+
+    @Override
+    public final void l() {
+        this.d.f43747c = h();
+        super.l();
+    }
+
+    @Override
+    public final void v(f2.q1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ke1.v(f2.q1, int):void");
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        boolean z10;
+        int i10;
+        int i11;
+        int i12;
+        we1 we1Var = this.d;
+        if (i9 != 0 && i9 != 3) {
+            if (i9 == 2) {
+                je1 je1Var = new je1(this, we1Var.getParentActivity());
+                we1Var.A0 = je1Var;
+                return new f2.q1(je1Var);
+            }
+            org.telegram.ui.Components.e00 e00Var = new org.telegram.ui.Components.e00(viewGroup.getContext(), null);
+            e00Var.setViewType(24);
+            e00Var.setIsSingleCell(true);
+            e00Var.f27885w = true;
+            return new f2.q1(e00Var);
+        }
+        se1 se1Var = new se1(we1Var, viewGroup.getContext(), false);
+        if (i9 == 3) {
+            i10 = ((org.telegram.ui.ActionBar.o2) we1Var).currentAccount;
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i10, -we1Var.f43741a);
+            se1Var.setForumIcon(vf.c.d(vf.a.f48390k[0], ""));
+            if (!isBotForumWithEditableTopics) {
+                i11 = R.string.BotForumAskForStartOffNewChatTitle;
+            } else {
+                i11 = R.string.BotForumAskForStartNewChatTitle;
+            }
+            se1Var.setTitleOverride(LocaleController.getString(i11));
+            if (!isBotForumWithEditableTopics) {
+                i12 = R.string.BotForumAskForStartOffNewChatForward;
+            } else {
+                i12 = R.string.BotForumAskForStartNewChatForward;
+            }
+            se1Var.setCustomMessage(LocaleController.getString(i12));
+        }
+        z10 = ((org.telegram.ui.ActionBar.o2) we1Var).inPreviewMode;
+        se1Var.f24983g0 = z10;
+        se1Var.setArchivedPullAnimation(we1Var.f43779w);
+        return new f2.q1(se1Var);
     }
 }

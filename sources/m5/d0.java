@@ -2,50 +2,44 @@ package m5;
 
 import android.os.Parcel;
 import android.os.RemoteException;
-import java.util.Iterator;
-
 public final class d0 implements Runnable {
+    public final int f17386a;
+    public final e0 f17387b;
+    public final int f17388c;
 
-    public final int f17763a;
-
-    public final e0 f17764b;
-
-    public final int f17765c;
-
-    public d0(e0 e0Var, int i10, int i11) {
-        this.f17763a = i11;
-        this.f17764b = e0Var;
-        this.f17765c = i10;
+    public d0(e0 e0Var, int i9, int i10) {
+        this.f17386a = i10;
+        this.f17387b = e0Var;
+        this.f17388c = i9;
     }
 
     private final void a() {
-        e0 e0Var = this.f17764b;
-        f0 f0Var = e0Var.f17769b;
-        f0Var.f17782x = -1;
-        f0Var.f17783y = -1;
-        f0Var.f17779t = null;
-        f0Var.f17780u = null;
+        e0 e0Var = this.f17387b;
+        f0 f0Var = e0Var.f17392b;
+        f0Var.f17405x = -1;
+        f0Var.f17406y = -1;
+        f0Var.f17402t = null;
+        f0Var.f17403u = null;
         f0Var.v = 0.0d;
         f0Var.j();
-        f0Var.f17781w = false;
-        f0Var.f17784z = null;
-        f0 f0Var2 = e0Var.f17769b;
+        f0Var.f17404w = false;
+        f0Var.f17407z = null;
+        f0 f0Var2 = e0Var.f17392b;
         f0Var2.F = 1;
-        int i10 = this.f17765c;
+        int i9 = this.f17388c;
         synchronized (f0Var2.E) {
             try {
-                Iterator it = e0Var.f17769b.E.iterator();
-                while (it.hasNext()) {
-                    n5.r rVar = ((n5.j) it.next()).f18321a.f18304e;
-                    if (rVar != null) {
+                for (n5.i iVar : e0Var.f17392b.E) {
+                    n5.q qVar = iVar.f18495a.f18477e;
+                    if (qVar != null) {
                         try {
-                            v5.a aVar = new v5.a(i10);
-                            n5.p pVar = (n5.p) rVar;
-                            Parcel parcelM0 = pVar.M0();
-                            com.google.android.gms.internal.cast.t.c(parcelM0, aVar);
-                            pVar.Q0(parcelM0, 3);
-                        } catch (RemoteException e9) {
-                            n5.c.f18302m.a(e9, "Unable to call %s on %s.", "onDisconnected", n5.r.class.getSimpleName());
+                            u5.a aVar = new u5.a(i9);
+                            n5.o oVar = (n5.o) qVar;
+                            Parcel M0 = oVar.M0();
+                            com.google.android.gms.internal.cast.u.c(M0, aVar);
+                            oVar.Q0(M0, 3);
+                        } catch (RemoteException e10) {
+                            n5.c.f18475m.a(e10, "Unable to call %s on %s.", "onDisconnected", n5.q.class.getSimpleName());
                         }
                     }
                 }
@@ -53,62 +47,56 @@ public final class d0 implements Runnable {
                 throw th;
             }
         }
-        e0Var.f17769b.h();
-        f0 f0Var3 = e0Var.f17769b;
-        com.google.android.gms.common.api.internal.n nVar = a9.i.N(f0Var3.f3391f, f0Var3.f17770k, "castDeviceControllerListenerKey").f3318c;
-        y5.l.i(nVar, "Key must not be null");
+        e0Var.f17392b.h();
+        f0 f0Var3 = e0Var.f17392b;
+        com.google.android.gms.common.api.internal.n nVar = fa.c.D(f0Var3.f2946f, f0Var3.f17393k, "castDeviceControllerListenerKey").f2873c;
+        x5.l.i(nVar, "Key must not be null");
         f0Var3.c(nVar, 8415);
     }
 
     private final void b() {
-        e0 e0Var = this.f17764b;
-        int i10 = this.f17765c;
-        if (i10 == 0) {
-            f0 f0Var = e0Var.f17769b;
+        e0 e0Var = this.f17387b;
+        int i9 = this.f17388c;
+        if (i9 == 0) {
+            f0 f0Var = e0Var.f17392b;
             f0Var.F = 2;
-            f0Var.f17772m = true;
-            f0Var.f17773n = true;
+            f0Var.f17395m = true;
+            f0Var.f17396n = true;
             synchronized (f0Var.E) {
                 try {
-                    Iterator it = e0Var.f17769b.E.iterator();
-                    while (it.hasNext()) {
-                        ((n5.j) it.next()).a();
+                    for (n5.i iVar : e0Var.f17392b.E) {
+                        iVar.a();
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } finally {
                 }
             }
             return;
         }
-        f0 f0Var2 = e0Var.f17769b;
+        f0 f0Var2 = e0Var.f17392b;
         f0Var2.F = 1;
         synchronized (f0Var2.E) {
             try {
-                Iterator it2 = e0Var.f17769b.E.iterator();
-                while (it2.hasNext()) {
-                    n5.r rVar = ((n5.j) it2.next()).f18321a.f18304e;
-                    if (rVar != null) {
-                        try {
-                            v5.a aVar = new v5.a(i10);
-                            n5.p pVar = (n5.p) rVar;
-                            Parcel parcelM0 = pVar.M0();
-                            com.google.android.gms.internal.cast.t.c(parcelM0, aVar);
-                            pVar.Q0(parcelM0, 3);
-                        } catch (RemoteException e9) {
-                            n5.c.f18302m.a(e9, "Unable to call %s on %s.", "onConnectionFailed", n5.r.class.getSimpleName());
-                        }
-                    }
+            } catch (RemoteException e10) {
+                n5.c.f18475m.a(e10, "Unable to call %s on %s.", "onConnectionFailed", n5.q.class.getSimpleName());
+            } finally {
+            }
+            for (n5.i iVar2 : e0Var.f17392b.E) {
+                n5.q qVar = iVar2.f18495a.f18477e;
+                if (qVar != null) {
+                    u5.a aVar = new u5.a(i9);
+                    n5.o oVar = (n5.o) qVar;
+                    Parcel M0 = oVar.M0();
+                    com.google.android.gms.internal.cast.u.c(M0, aVar);
+                    oVar.Q0(M0, 3);
                 }
-            } catch (Throwable th2) {
-                throw th2;
             }
         }
-        e0Var.f17769b.h();
+        e0Var.f17392b.h();
     }
 
     @Override
     public final void run() {
-        switch (this.f17763a) {
+        switch (this.f17386a) {
             case 0:
                 a();
                 return;
@@ -116,33 +104,31 @@ public final class d0 implements Runnable {
                 b();
                 return;
             case 2:
-                this.f17764b.f17769b.D.b(this.f17765c);
+                this.f17387b.f17392b.D.b(this.f17388c);
                 return;
             default:
-                e0 e0Var = this.f17764b;
-                f0 f0Var = e0Var.f17769b;
+                e0 e0Var = this.f17387b;
+                f0 f0Var = e0Var.f17392b;
                 f0Var.F = 3;
-                int i10 = this.f17765c;
+                int i9 = this.f17388c;
                 synchronized (f0Var.E) {
                     try {
-                        Iterator it = e0Var.f17769b.E.iterator();
-                        while (it.hasNext()) {
-                            n5.r rVar = ((n5.j) it.next()).f18321a.f18304e;
-                            if (rVar != null) {
+                        for (n5.i iVar : e0Var.f17392b.E) {
+                            n5.q qVar = iVar.f18495a.f18477e;
+                            if (qVar != null) {
                                 try {
-                                    n5.p pVar = (n5.p) rVar;
-                                    Parcel parcelM0 = pVar.M0();
-                                    parcelM0.writeInt(i10);
-                                    pVar.Q0(parcelM0, 2);
-                                } catch (RemoteException e9) {
-                                    n5.c.f18302m.a(e9, "Unable to call %s on %s.", "onConnectionSuspended", n5.r.class.getSimpleName());
+                                    n5.o oVar = (n5.o) qVar;
+                                    Parcel M0 = oVar.M0();
+                                    M0.writeInt(i9);
+                                    oVar.Q0(M0, 2);
+                                } catch (RemoteException e10) {
+                                    n5.c.f18475m.a(e10, "Unable to call %s on %s.", "onConnectionSuspended", n5.q.class.getSimpleName());
                                 }
                             }
                         }
                     } catch (Throwable th) {
                         throw th;
                     }
-                    break;
                 }
                 return;
         }

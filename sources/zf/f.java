@@ -1,65 +1,42 @@
 package zf;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import g7.e6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ll;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+public final class f extends LinearLayout {
+    public final TextView f50498a;
+    public final TextView f50499b;
+    public final LimitPreviewView f50500c;
 
-public final class f implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f50403a;
-
-    public final j f50404b;
-
-    public f(j jVar, int i10) {
-        this.f50403a = i10;
-        this.f50404b = jVar;
+    public f(Context context, b6 b6Var) {
+        super(context);
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
+        TextView textView = new TextView(context);
+        this.f50498a = textView;
+        j3.r0.u(15.0f, 1, textView);
+        textView.setTextColor(f6.v0(f6.G6, b6Var));
+        addView(textView, e6.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
+        TextView textView2 = new TextView(context);
+        this.f50499b = textView2;
+        ll.n(f6.f23369y6, b6Var, textView2, 1, 14.0f);
+        addView(textView2, e6.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
+        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, b6Var, 20);
+        this.f50500c = limitPreviewView;
+        addView(limitPreviewView, e6.p(-1, -2, 0.0f, 0, 0, 8, 0, 21));
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f50403a) {
-            case 0:
-                j jVar = this.f50404b;
-                jVar.g(AndroidUtilities.lerpAngle(jVar.H, jVar.f50455e0, jVar.M.getAnimatedFraction()));
-                break;
-            case 1:
-                j jVar2 = this.f50404b;
-                jVar2.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar2.f50461j0 = fFloatValue;
-                jVar2.setAlpha(fFloatValue);
-                i iVar = jVar2.D;
-                if (iVar != null) {
-                    iVar.setScaleX(Utilities.clamp(jVar2.f50461j0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar2.f50457f0));
-                    jVar2.D.setScaleY(Utilities.clamp(jVar2.f50461j0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar2.f50457f0));
-                    jVar2.D.setAlpha(Math.max(0.0f, jVar2.f50461j0 - 0.8f) * jVar2.f50457f0 * 5.0f);
-                }
-                jVar2.invalidate();
-                break;
-            case 2:
-                j jVar3 = this.f50404b;
-                jVar3.getClass();
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar3.f50457f0 = fFloatValue2;
-                i iVar2 = jVar3.D;
-                if (iVar2 != null) {
-                    iVar2.setScaleX(Utilities.clamp(jVar3.f50461j0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, fFloatValue2));
-                    jVar3.D.setScaleY(Utilities.clamp(jVar3.f50461j0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, jVar3.f50457f0));
-                    jVar3.D.setAlpha(Math.max(0.0f, jVar3.f50461j0 - 0.8f) * jVar3.f50457f0 * 5.0f);
-                }
-                break;
-            case 3:
-                this.f50404b.k();
-                break;
-            case 4:
-                this.f50404b.k();
-                break;
-            default:
-                j jVar4 = this.f50404b;
-                float fLerpAngle = AndroidUtilities.lerpAngle(jVar4.f50455e0, jVar4.H, valueAnimator.getAnimatedFraction());
-                jVar4.K = fLerpAngle;
-                jVar4.g(fLerpAngle);
-                break;
-        }
+    public final void a(e eVar) {
+        this.f50498a.setText(eVar.f50488a);
+        this.f50499b.setText(eVar.f50489b);
+        LimitPreviewView limitPreviewView = this.f50500c;
+        limitPreviewView.v.setText(String.format("%d", Integer.valueOf(eVar.d)));
+        limitPreviewView.f26462w.setText(String.format("%d", Integer.valueOf(eVar.f50490c)));
     }
 }

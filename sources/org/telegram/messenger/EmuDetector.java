@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -11,9 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 public class EmuDetector {
     private static final String IP = "10.0.2.15";
     private static final int MIN_PROPERTIES_THRESHOLD = 5;
@@ -70,46 +67,17 @@ public class EmuDetector {
     }
 
     private boolean checkAdvanced() {
-        if (checkTelephony() || checkFiles(GENY_FILES, EmulatorTypes.GENY) || checkFiles(ANDY_FILES, EmulatorTypes.ANDY) || checkFiles(NOX_FILES, EmulatorTypes.NOX) || checkFiles(BLUE_FILES, EmulatorTypes.BLUE) || checkQEmuDrivers() || checkFiles(PIPES, EmulatorTypes.PIPES) || checkIp()) {
+        if (!checkTelephony() && !checkFiles(GENY_FILES, EmulatorTypes.GENY) && !checkFiles(ANDY_FILES, EmulatorTypes.ANDY) && !checkFiles(NOX_FILES, EmulatorTypes.NOX) && !checkFiles(BLUE_FILES, EmulatorTypes.BLUE) && !checkQEmuDrivers() && !checkFiles(PIPES, EmulatorTypes.PIPES) && !checkIp()) {
+            if (!checkQEmuProps() || !checkFiles(X86_FILES, EmulatorTypes.X86)) {
+                return false;
+            }
             return true;
         }
-        return checkQEmuProps() && checkFiles(X86_FILES, EmulatorTypes.X86);
+        return true;
     }
 
     private boolean checkBasic() {
-        boolean z10;
-        boolean z11 = false;
-        if (Build.BOARD.toLowerCase().contains("nox") || Build.BOOTLOADER.toLowerCase().contains("nox") || Build.FINGERPRINT.startsWith("generic")) {
-            z10 = true;
-        } else {
-            String str = Build.MODEL;
-            if (str.toLowerCase().contains("google_sdk") || str.toLowerCase().contains("droid4x") || str.toLowerCase().contains("emulator") || str.contains("Android SDK built for x86") || Build.MANUFACTURER.toLowerCase().contains("genymotion")) {
-                z10 = true;
-            } else {
-                String str2 = Build.HARDWARE;
-                if (str2.toLowerCase().contains("goldfish") || str2.toLowerCase().contains("vbox86") || str2.toLowerCase().contains("android_x86") || str2.toLowerCase().contains("nox") || str2.toLowerCase().contains("ranchu")) {
-                    z10 = true;
-                } else {
-                    String str3 = Build.PRODUCT;
-                    if (str3.equals("sdk") || str3.equals("google_sdk") || str3.equals("sdk_x86") || str3.equals("vbox86p") || str3.toLowerCase().contains("nox") || Build.SERIAL.toLowerCase().contains("nox")) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                }
-            }
-        }
-        if (z10) {
-            return true;
-        }
-        if (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")) {
-            z11 = true;
-        }
-        boolean z12 = z10 | z11;
-        if (z12) {
-            return true;
-        }
-        return z12 | "google_sdk".equals(Build.PRODUCT);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.EmuDetector.checkBasic():boolean");
     }
 
     private boolean checkDeviceId() {
@@ -125,10 +93,12 @@ public class EmuDetector {
     private boolean checkFiles(String[] strArr, EmulatorTypes emulatorTypes) {
         File file;
         for (String str : strArr) {
-            if (f0.e.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                file = new File(str);
-            } else if ((str.contains("/") && emulatorTypes == EmulatorTypes.NOX) || emulatorTypes == EmulatorTypes.BLUE) {
-                file = new File(Environment.getExternalStorageDirectory() + str);
+            if (f0.e.b(this.mContext, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                if ((str.contains("/") && emulatorTypes == EmulatorTypes.NOX) || emulatorTypes == EmulatorTypes.BLUE) {
+                    file = new File(Environment.getExternalStorageDirectory() + str);
+                } else {
+                    file = new File(str);
+                }
             } else {
                 file = new File(str);
             }
@@ -150,6 +120,7 @@ public class EmuDetector {
     }
 
     private boolean checkIp() {
+        String[] split;
         if (f0.e.b(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
         }
@@ -167,11 +138,11 @@ public class EmuDetector {
             inputStream.close();
         } catch (Exception unused) {
         }
-        String string = sb2.toString();
-        if (TextUtils.isEmpty(string)) {
+        String sb3 = sb2.toString();
+        if (TextUtils.isEmpty(sb3)) {
             return false;
         }
-        for (String str : string.split("\n")) {
+        for (String str : sb3.split("\n")) {
             if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains("10.0.2.15")) {
                 return true;
             }
@@ -186,9 +157,8 @@ public class EmuDetector {
     private boolean checkPackageName() {
         if (this.isCheckPackage && !this.mListPackageName.isEmpty()) {
             PackageManager packageManager = this.mContext.getPackageManager();
-            Iterator<String> it = this.mListPackageName.iterator();
-            while (it.hasNext()) {
-                Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(it.next());
+            for (String str : this.mListPackageName) {
+                Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(str);
                 if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, 65536).isEmpty()) {
                     return true;
                 }
@@ -209,16 +179,16 @@ public class EmuDetector {
 
     private boolean checkQEmuDrivers() {
         File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
-        for (int i10 = 0; i10 < 2; i10++) {
-            File file = fileArr[i10];
+        for (int i9 = 0; i9 < 2; i9++) {
+            File file = fileArr[i9];
             if (file.exists() && file.canRead()) {
                 byte[] bArr = new byte[1024];
                 try {
                     FileInputStream fileInputStream = new FileInputStream(file);
                     fileInputStream.read(bArr);
                     fileInputStream.close();
-                } catch (Exception e9) {
-                    e9.printStackTrace();
+                } catch (Exception e10) {
+                    e10.printStackTrace();
                 }
                 String str = new String(bArr);
                 for (String str2 : QEMU_DRIVERS) {
@@ -226,37 +196,45 @@ public class EmuDetector {
                         return true;
                     }
                 }
+                continue;
             }
         }
         return false;
     }
 
     private boolean checkQEmuProps() {
-        int i10 = 0;
+        Property[] propertyArr;
+        int i9 = 0;
         for (Property property : PROPERTIES) {
             String prop = getProp(this.mContext, property.name);
             String str = property.seek_value;
             if (str == null && prop != null) {
-                i10++;
+                i9++;
             }
             if (str != null && prop.contains(str)) {
-                i10++;
+                i9++;
             }
         }
-        return i10 >= 5;
+        if (i9 < 5) {
+            return false;
+        }
+        return true;
     }
 
     private boolean checkTelephony() {
         if (f0.e.b(this.mContext, "android.permission.READ_PHONE_STATE") == 0 && this.isTelephony && isSupportTelePhony()) {
-            return checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid();
+            if (checkPhoneNumber() || checkDeviceId() || checkImsi() || checkOperatorNameAndroid()) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
 
     private String getProp(Context context, String str) {
         try {
-            Class<?> clsLoadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
-            return (String) clsLoadClass.getMethod("get", String.class).invoke(clsLoadClass, str);
+            Class<?> loadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
+            return (String) loadClass.getMethod("get", String.class).invoke(loadClass, str);
         } catch (Exception unused) {
             return null;
         }
@@ -267,13 +245,13 @@ public class EmuDetector {
     }
 
     public static EmuDetector with(Context context) {
-        if (context == null) {
-            throw new IllegalArgumentException("Context must not be null.");
+        if (context != null) {
+            if (mEmulatorDetector == null) {
+                mEmulatorDetector = new EmuDetector(context.getApplicationContext());
+            }
+            return mEmulatorDetector;
         }
-        if (mEmulatorDetector == null) {
-            mEmulatorDetector = new EmuDetector(context.getApplicationContext());
-        }
-        return mEmulatorDetector;
+        throw new IllegalArgumentException("Context must not be null.");
     }
 
     public EmuDetector addPackageName(String str) {

@@ -1,62 +1,43 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class s2 extends View {
+    public final t2 f42537a;
 
-public final class s2 extends m2.a {
-
-    public final u2 f42396c;
-
-    public s2(u2 u2Var) {
-        this.f42396c = u2Var;
+    public s2(t2 t2Var, Context context) {
+        super(context);
+        this.f42537a = t2Var;
     }
 
     @Override
-    public final void a(m2.g gVar, Object obj) {
-        gVar.removeView(((r2) obj).f41784b);
-    }
-
-    @Override
-    public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.f42396c.d;
-        if (pageblockslideshow == null) {
-            return 0;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        t2 t2Var = this.f42537a;
+        if (t2Var.d == null) {
+            return;
         }
-        return pageblockslideshow.items.size();
-    }
-
-    @Override
-    public final int c(Object obj) {
-        return this.f42396c.d.items.contains(((r2) obj).f41783a) ? -1 : -2;
-    }
-
-    @Override
-    public final Object e(m2.g gVar, int i10) {
-        FrameLayout frameLayout;
-        u2 u2Var = this.f42396c;
-        k4 k4Var = u2Var.f43076w;
-        m4 m4Var = u2Var.f43077x;
-        TL_iv.PageBlock pageBlock = u2Var.d.items.get(i10);
-        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-            g2 g2Var = new g2(u2Var.getContext(), m4Var, k4Var, 1);
-            g2Var.a((TL_iv.pageBlockPhoto) pageBlock, k4Var.A.cached_page, false, true);
-            frameLayout = g2Var;
+        int b10 = t2Var.f42812b.b();
+        int dp2 = AndroidUtilities.dp(4.0f) + org.telegram.messenger.l0.D(6.0f, b10 - 1, AndroidUtilities.dp(7.0f) * b10);
+        float f10 = t2Var.v + t2Var.f42818s;
+        if (dp2 < getMeasuredWidth()) {
+            dp = (getMeasuredWidth() - dp2) / 2.0f;
         } else {
-            b3 b3Var = new b3(u2Var.getContext(), m4Var, k4Var, 1);
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            b3Var.b(pageblockvideo, (c3) m4Var.f37294y.f(pageblockvideo.video_id), false, true);
-            frameLayout = b3Var;
+            int dp3 = AndroidUtilities.dp(13.0f);
+            int measuredWidth = ((getMeasuredWidth() - AndroidUtilities.dp(8.0f)) / 2) / dp3;
+            dp = AndroidUtilities.dp(4.0f) - (Utilities.clamp(f10 - measuredWidth, Math.max(0, (b10 - (measuredWidth * 2)) - 1), 0.0f) * dp3);
         }
-        gVar.addView(frameLayout);
-        r2 r2Var = new r2();
-        r2Var.f41784b = frameLayout;
-        r2Var.f41783a = pageBlock;
-        return r2Var;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        return ((r2) obj).f41784b == view;
+        canvas.save();
+        canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        for (int i9 = 0; i9 < t2Var.d.items.size(); i9++) {
+            float max = Math.max(0.0f, 1.0f - Math.abs(i9 - f10));
+            float dp4 = (AndroidUtilities.dp(1.0f) * max) + AndroidUtilities.dp(2.0f);
+            l4.f40010x1.setAlpha((int) ((max * 95.0f) + 160.0f));
+            canvas.drawCircle(AndroidUtilities.dp(4.0f) + dp + (AndroidUtilities.dp(13.0f) * i9), getMeasuredHeight() / 2.0f, dp4, l4.f40010x1);
+        }
+        canvas.restore();
     }
 }

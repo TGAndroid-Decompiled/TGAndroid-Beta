@@ -1,64 +1,51 @@
 package org.telegram.ui;
 
-public final class ke0 implements Runnable {
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ke0 implements org.telegram.ui.ActionBar.b2 {
+    public final int f39821a;
+    public final qe0 f39822b;
 
-    public final int f39706a;
-
-    public final me0 f39707b;
-
-    public ke0(me0 me0Var, int i10) {
-        this.f39706a = i10;
-        this.f39707b = me0Var;
+    public ke0(qe0 qe0Var, int i9) {
+        this.f39821a = i9;
+        this.f39822b = qe0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39706a) {
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f39821a) {
             case 0:
-                me0 me0Var = this.f39707b;
-                org.telegram.ui.Components.ri0 ri0Var = me0Var.f40457e;
-                ri0Var.getAnimatedDrawable().L(0, false, false);
-                ri0Var.d();
-                od0 od0Var = me0Var.f40454a;
-                if (od0Var != null) {
-                    od0Var.f43279f[0].requestFocus();
-                }
-                break;
+                qe0 qe0Var = this.f39822b;
+                qe0Var.c(true);
+                qe0Var.K.u1(0, true, null, true);
+                qe0Var.o();
+                return;
             case 1:
-                me0 me0Var2 = this.f39707b;
-                int i10 = 0;
-                me0Var2.f40462w = false;
-                while (true) {
-                    wr[] wrVarArr = me0Var2.f40454a.f43279f;
-                    if (i10 < wrVarArr.length) {
-                        wrVarArr[i10].i(0.0f);
-                        i10++;
-                    }
-                    break;
-                }
-                break;
+                qe0 qe0Var2 = this.f39822b;
+                qe0Var2.K.f38275l0.popup = false;
+                qe0Var2.h(null);
+                return;
             case 2:
-                me0 me0Var3 = this.f39707b;
-                me0Var3.postDelayed(new ke0(me0Var3, 3), 150L);
-                ke0 ke0Var = me0Var3.f40463x;
-                me0Var3.removeCallbacks(ke0Var);
-                me0Var3.postDelayed(ke0Var, 3000L);
-                me0Var3.f40462w = true;
-                break;
+                qe0 qe0Var3 = this.f39822b;
+                fg0 fg0Var = qe0Var3.K;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fg0Var.getParentActivity());
+                alertDialog$Builder.f22702a.N = LocaleController.getString("TermsOfService", R.string.TermsOfService);
+                alertDialog$Builder.f22702a.P = LocaleController.getString("TosDecline", R.string.TosDecline);
+                alertDialog$Builder.k(LocaleController.getString("SignUp", R.string.SignUp), new ke0(qe0Var3, 3));
+                alertDialog$Builder.h(LocaleController.getString("Decline", R.string.Decline), new ke0(qe0Var3, 4));
+                fg0Var.showDialog(alertDialog$Builder.f22702a);
+                return;
+            case 3:
+                qe0 qe0Var4 = this.f39822b;
+                qe0Var4.K.f38275l0.popup = false;
+                qe0Var4.h(null);
+                return;
             default:
-                od0 od0Var2 = this.f39707b.f40454a;
-                int i11 = 0;
-                od0Var2.f43278e = false;
-                od0Var2.f43279f[0].requestFocus();
-                while (true) {
-                    wr[] wrVarArr2 = od0Var2.f43279f;
-                    if (i11 < wrVarArr2.length) {
-                        wrVarArr2[i11].i(0.0f);
-                        i11++;
-                    }
-                    break;
-                }
-                break;
+                qe0 qe0Var5 = this.f39822b;
+                qe0Var5.c(true);
+                qe0Var5.K.u1(0, true, null, true);
+                return;
         }
     }
 }

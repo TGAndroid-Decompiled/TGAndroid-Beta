@@ -1,70 +1,62 @@
 package g7;
-
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
-import android.widget.ProgressBar;
-
 public abstract class b0 {
-    public static ContextThemeWrapper a(Context context, boolean z10) {
-        ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(context, g(context, !z10 ? 2130968755 : 2130968615));
-        return g(contextThemeWrapper, 2130968876) != 0 ? new ContextThemeWrapper(contextThemeWrapper, e(contextThemeWrapper)) : contextThemeWrapper;
-    }
-
-    public static int b(Context context) {
-        return i0.b.e(-1, f(context, 2130968731)) >= 3.0d ? -1 : -570425344;
-    }
-
-    public static float c(Context context) {
-        TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(16842803, typedValue, true)) {
-            return typedValue.getFloat();
+    public static boolean a(String str, String str2) {
+        char c10;
+        int length = str.length();
+        if (str != str2) {
+            if (length == str2.length()) {
+                for (int i9 = 0; i9 < length; i9++) {
+                    char charAt = str.charAt(i9);
+                    char charAt2 = str2.charAt(i9);
+                    if (charAt == charAt2 || ((c10 = (char) ((charAt | ' ') - 97)) < 26 && c10 == ((char) ((charAt2 | ' ') - 97)))) {
+                    }
+                }
+                return true;
+            }
+            return false;
         }
-        return 0.5f;
+        return true;
     }
 
-    public static Drawable d(Context context, int i10) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(new int[]{i10});
-        Drawable drawableD = k8.d(o7.b(context, typedArrayObtainStyledAttributes.getResourceId(0, 0)));
-        if (h(context)) {
-            drawableD.setTint(f0.e.c(context, 2131099765));
+    public static String b(String str) {
+        int length = str.length();
+        int i9 = 0;
+        while (i9 < length) {
+            char charAt = str.charAt(i9);
+            if (charAt >= 'A' && charAt <= 'Z') {
+                char[] charArray = str.toCharArray();
+                while (i9 < length) {
+                    char c10 = charArray[i9];
+                    if (c10 >= 'A' && c10 <= 'Z') {
+                        charArray[i9] = (char) (c10 ^ ' ');
+                    }
+                    i9++;
+                }
+                return String.valueOf(charArray);
+            }
+            i9++;
         }
-        typedArrayObtainStyledAttributes.recycle();
-        return drawableD;
+        return str;
     }
 
-    public static int e(Context context) {
-        if (h(context)) {
-            return b(context) == -570425344 ? 2131755314 : 2131755315;
+    public static String c(String str) {
+        int length = str.length();
+        int i9 = 0;
+        while (i9 < length) {
+            char charAt = str.charAt(i9);
+            if (charAt >= 'a' && charAt <= 'z') {
+                char[] charArray = str.toCharArray();
+                while (i9 < length) {
+                    char c10 = charArray[i9];
+                    if (c10 >= 'a' && c10 <= 'z') {
+                        charArray[i9] = (char) (c10 ^ ' ');
+                    }
+                    i9++;
+                }
+                return String.valueOf(charArray);
+            }
+            i9++;
         }
-        return b(context) == -570425344 ? 2131755316 : 2131755313;
-    }
-
-    public static int f(Context context, int i10) {
-        TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(i10, typedValue, true);
-        return typedValue.resourceId != 0 ? context.getResources().getColor(typedValue.resourceId) : typedValue.data;
-    }
-
-    public static int g(Context context, int i10) {
-        TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(i10, typedValue, true)) {
-            return typedValue.resourceId;
-        }
-        return 0;
-    }
-
-    public static boolean h(Context context) {
-        TypedValue typedValue = new TypedValue();
-        return context.getTheme().resolveAttribute(2130968817, typedValue, true) && typedValue.data != 0;
-    }
-
-    public static void i(Context context, ProgressBar progressBar) {
-        if (progressBar.isIndeterminate()) {
-            progressBar.getIndeterminateDrawable().setColorFilter(f0.e.c(context, h(context) ? 2131099757 : 2131099756), PorterDuff.Mode.SRC_IN);
-        }
+        return str;
     }
 }

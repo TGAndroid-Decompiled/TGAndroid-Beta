@@ -1,52 +1,49 @@
 package u5;
 
-import android.os.Bundle;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Message;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.s;
+import c2.u0;
+import java.util.concurrent.atomic.AtomicBoolean;
+public final class j extends u0 {
+    public final Context f48121a;
+    public final d f48122b;
 
-public final class j {
-
-    public final int f48416a;
-
-    public final TaskCompletionSource f48417b = new TaskCompletionSource();
-
-    public final int f48418c;
-    public final Bundle d;
-
-    public final int f48419e;
-
-    public j(int i10, int i11, Bundle bundle, int i12) {
-        this.f48419e = i12;
-        this.f48416a = i10;
-        this.f48418c = i11;
-        this.d = bundle;
+    public j(u5.d r2, android.content.Context r3) {
+        throw new UnsupportedOperationException("Method not decompiled: u5.j.<init>(u5.d, android.content.Context):void");
     }
 
-    public final boolean a() {
-        switch (this.f48419e) {
-            case 0:
-                return true;
-            default:
-                return false;
+    @Override
+    public final void handleMessage(Message message) {
+        int i9;
+        PendingIntent activity;
+        int i10 = message.what;
+        if (i10 != 1) {
+            Log.w("GoogleApiAvailability", "Don't know how to handle this message: " + i10);
+            return;
         }
-    }
-
-    public final void b(s sVar) {
-        if (Log.isLoggable("MessengerIpcClient", 3)) {
-            Log.d("MessengerIpcClient", "Failing " + toString() + " with " + sVar.toString());
+        int i11 = e.f48109a;
+        d dVar = this.f48122b;
+        Context context = this.f48121a;
+        int d = dVar.d(context, i11);
+        AtomicBoolean atomicBoolean = g.f48112a;
+        if (d != 1 && d != 2 && d != 3 && d != 9) {
+            return;
         }
-        this.f48417b.setException(sVar);
-    }
-
-    public final void c(Bundle bundle) {
-        if (Log.isLoggable("MessengerIpcClient", 3)) {
-            Log.d("MessengerIpcClient", "Finishing " + toString() + " with " + String.valueOf(bundle));
+        Intent b10 = dVar.b(context, "n", d);
+        if (b10 == null) {
+            activity = null;
+        } else {
+            if (Build.VERSION.SDK_INT >= 23) {
+                i9 = 201326592;
+            } else {
+                i9 = 134217728;
+            }
+            activity = PendingIntent.getActivity(context, 0, b10, i9);
         }
-        this.f48417b.setResult(bundle);
-    }
-
-    public final String toString() {
-        return "Request { what=" + this.f48418c + " id=" + this.f48416a + " oneWay=" + a() + "}";
+        dVar.h(context, d, activity);
     }
 }

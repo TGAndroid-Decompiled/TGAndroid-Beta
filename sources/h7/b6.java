@@ -1,35 +1,17 @@
 package h7;
+public final class b6 implements q9.d {
+    public static final b6 f9889a = new Object();
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.StateListAnimator;
-import android.util.Property;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-
-public abstract class b6 {
-    public static void a(View view) {
-        b(view, 0.1f, 1.5f);
+    static {
+        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
     }
 
-    public static void b(View view, float f10, float f11) {
-        if (view == null) {
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        AnimatorSet animatorSet = new AnimatorSet();
-        Property property = View.SCALE_X;
-        float f12 = 1.0f - f10;
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, f12);
-        Property property2 = View.SCALE_Y;
-        animatorSet.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, f12));
-        animatorSet.setDuration(80L);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, 1.0f));
-        animatorSet2.setInterpolator(new OvershootInterpolator(f11));
-        animatorSet2.setDuration(350L);
-        StateListAnimator stateListAnimator = new StateListAnimator();
-        stateListAnimator.addState(new int[]{16842919}, animatorSet);
-        stateListAnimator.addState(new int[0], animatorSet2);
-        view.setStateListAnimator(stateListAnimator);
+        throw new ClassCastException();
     }
 }

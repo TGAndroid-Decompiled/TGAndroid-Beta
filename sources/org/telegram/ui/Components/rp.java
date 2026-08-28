@@ -1,116 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-
-public final class rp extends j6 {
-
-    public final Rect f32246s;
-    public Drawable v;
-
-    public boolean f32247w;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class rp extends FrameLayout {
+    public final View f32239a;
+    public final TextView f32240b;
 
     public rp(Context context) {
-        super(context, false, false, false);
-        this.f32246s = new Rect();
-    }
-
-    public Rect getClickBounds() {
-        return this.f32246s;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.v != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f32246s;
-            rect.set(bounds);
-            int iCeil = (int) Math.ceil(getDrawable().d());
-            if (getDrawable().f29239b == 3) {
-                rect.right = rect.left + iCeil;
-            } else if (getDrawable().f29239b == 5) {
-                rect.left = rect.right - iCeil;
-            } else if (getDrawable().f29239b == 17) {
-                int i10 = (rect.left + rect.right) / 2;
-                int i11 = iCeil / 2;
-                rect.left = i10 - i11;
-                rect.right = i10 + i11;
-            }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.v.setBounds(rect);
-            this.v.draw(canvas);
-        }
-        super.onDraw(canvas);
+        super(context);
+        View view = new View(context);
+        this.f32239a = view;
+        int dp = AndroidUtilities.dp(4.0f);
+        int w02 = org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.Oh, false);
+        int w03 = org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.Qh, false);
+        view.setBackground(org.telegram.ui.ActionBar.f6.i0(dp, dp, dp, dp, w02, w03, w03));
+        addView(view, g7.e6.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f32240b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.l0.q(textView, org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.Sh, false), 1, 14.0f);
+        addView(textView, g7.e6.e(-2, -2, 17));
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean zContains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && zContains) {
-            this.f32247w = true;
-            Drawable drawable = this.v;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.v.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return zContains;
-        }
-        if (motionEvent.getAction() == 1) {
-            if (this.f32247w && zContains) {
-                callOnClick();
-            }
-            this.f32247w = false;
-            Drawable drawable2 = this.v;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return zContains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f32247w = false;
-            Drawable drawable3 = this.v;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
-        }
-        return zContains;
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
 
-    @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.v || super.verifyDrawable(drawable);
+    public void setText(CharSequence charSequence) {
+        this.f32240b.setText(charSequence);
     }
 }

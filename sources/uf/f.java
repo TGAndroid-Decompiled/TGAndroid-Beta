@@ -1,89 +1,76 @@
 package uf;
 
-public final class f {
+import android.util.DisplayMetrics;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import o1.k;
+import org.telegram.messenger.AndroidUtilities;
+public final class f extends GestureDetector.SimpleOnGestureListener {
+    public float f48209a;
+    public float f48210b;
+    public final h f48211c;
 
-    public boolean f48584a;
-
-    public float f48585b;
-
-    public float f48586c;
-    public float d;
-
-    public float f48587e;
-
-    public float f48588f;
-
-    public float f48589g;
-    public boolean h;
-
-    public int f48590i;
-
-    public float f48591j;
-
-    public float f48592k;
-
-    public float f48593l;
-
-    public float f48594m;
-
-    public final f clone() {
-        f fVar = new f();
-        fVar.f48584a = this.f48584a;
-        fVar.f48585b = this.f48585b;
-        fVar.f48586c = this.f48586c;
-        fVar.d = this.d;
-        fVar.f48587e = this.f48587e;
-        fVar.f48588f = this.f48588f;
-        fVar.f48589g = this.f48589g;
-        fVar.h = this.h;
-        fVar.f48590i = this.f48590i;
-        fVar.f48591j = this.f48591j;
-        fVar.f48592k = this.f48592k;
-        fVar.f48593l = this.f48593l;
-        fVar.f48594m = this.f48594m;
-        return fVar;
+    public f(h hVar) {
+        this.f48211c = hVar;
     }
 
-    public final int b() {
-        return this.f48590i;
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
     }
 
-    public final boolean c() {
-        return this.f48584a;
-    }
-
-    public final boolean d() {
-        return this.h;
-    }
-
-    public final void e(boolean z10, float f10, float f11, float f12, int i10, float f13, float f14, float f15, float f16, float f17, float f18, float f19, boolean z11) {
-        this.f48584a = z10;
-        this.f48585b = f10;
-        this.f48586c = f11;
-        this.f48588f = f13;
-        this.f48589g = f12;
-        this.f48590i = i10;
-        while (true) {
-            int i11 = this.f48590i;
-            if (i11 >= 0) {
-                break;
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        DisplayMetrics displayMetrics;
+        float f12;
+        h hVar = this.f48211c;
+        if (hVar.f48222f && !hVar.f48223n) {
+            k kVar = hVar.f48220c.f18800u;
+            if ((f10 / 7.0f) + ((float) kVar.f18807i) >= hVar.getWidth() / 2.0f) {
+                displayMetrics = hVar.getResources().getDisplayMetrics();
+                f12 = 2.1474836E9f;
             } else {
-                this.f48590i = i11 + 360;
+                displayMetrics = hVar.getResources().getDisplayMetrics();
+                f12 = -2.1474836E9f;
             }
+            kVar.f18807i = h.a(displayMetrics, f12);
+            hVar.d.f18800u.f18807i = h.b(hVar.getResources().getDisplayMetrics(), (f11 / 10.0f) + ((float) hVar.d.f18800u.f18807i));
+            hVar.f48220c.f();
+            hVar.d.f();
+            hVar.h = true;
+            return true;
         }
-        while (true) {
-            int i12 = this.f48590i;
-            if (i12 < 360) {
-                this.f48591j = f16;
-                this.f48592k = f17;
-                this.d = f18;
-                this.f48587e = f19;
-                this.f48593l = f14;
-                this.f48594m = f15;
-                this.h = z11;
-                return;
-            }
-            this.f48590i = i12 - 360;
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        h hVar = this.f48211c;
+        int i9 = hVar.B;
+        if (!hVar.f48223n) {
+            AndroidUtilities.cancelRunOnUIThread(hVar.f48224r);
         }
+        if (!hVar.f48222f && (Math.abs(f10) >= i9 || Math.abs(f11) >= i9)) {
+            this.f48209a = (float) hVar.f48220c.f18800u.f18807i;
+            this.f48210b = (float) hVar.d.f18800u.f18807i;
+            hVar.f48222f = true;
+        }
+        if (hVar.f48222f && !hVar.f48223n) {
+            hVar.f48220c.f18800u.f18807i = (motionEvent2.getRawX() + this.f48209a) - motionEvent.getRawX();
+            hVar.d.f18800u.f18807i = (motionEvent2.getRawY() + this.f48210b) - motionEvent.getRawY();
+            hVar.f48220c.f();
+            hVar.d.f();
+        }
+        return hVar.f48222f;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        h hVar = this.f48211c;
+        if (!hVar.f48223n && !hVar.f48225s) {
+            hVar.c(true);
+            return true;
+        }
+        return false;
     }
 }

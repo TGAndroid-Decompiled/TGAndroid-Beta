@@ -1,15 +1,22 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
+import java.util.regex.Pattern;
+public final class x80 extends mc.h {
+    public static final Pattern f34601e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
 
-public final class x80 {
+    @Override
+    public final ie.p b() {
+        String a2 = a(f34601e);
+        if (a2 == null) {
+            return null;
+        }
+        ?? pVar = new ie.p();
+        pVar.f10407g = e2.c.m(a2, 1, 1);
+        return pVar;
+    }
 
-    public final TL_iv.PageBlock f34552a;
-
-    public final int f34553b;
-
-    public x80(int i10, TL_iv.PageBlock pageBlock) {
-        this.f34552a = pageBlock;
-        this.f34553b = i10;
+    @Override
+    public final char d() {
+        return '$';
     }
 }

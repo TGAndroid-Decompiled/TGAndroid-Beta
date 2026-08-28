@@ -1,85 +1,73 @@
 package g7;
-
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.Log;
-import java.lang.reflect.Method;
-
 public abstract class k8 {
-
-    public static Method f6534a;
-
-    public static boolean f6535b;
-
-    public static Method f6536c;
-    public static boolean d;
-
-    public static int a(Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            return e0.b.h(drawable);
-        }
-        if (!d) {
-            try {
-                Method declaredMethod = Drawable.class.getDeclaredMethod("getLayoutDirection", null);
-                f6536c = declaredMethod;
-                declaredMethod.setAccessible(true);
-            } catch (NoSuchMethodException e9) {
-                Log.i("DrawableCompat", "Failed to retrieve getLayoutDirection() method", e9);
-            }
-            d = true;
-        }
-        Method method = f6536c;
-        if (method == null) {
-            return 0;
-        }
+    public static w0.d a(String str, String str2) {
+        Exception a2;
         try {
-            return ((Integer) method.invoke(drawable, null)).intValue();
-        } catch (Exception e10) {
-            Log.i("DrawableCompat", "Failed to invoke getLayoutDirection() via reflection", e10);
-            f6536c = null;
-            return 0;
-        }
-    }
-
-    public static boolean b(int i10, Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            return e0.b.w(i10, drawable);
-        }
-        if (!f6535b) {
-            try {
-                Method declaredMethod = Drawable.class.getDeclaredMethod("setLayoutDirection", Integer.TYPE);
-                f6534a = declaredMethod;
-                declaredMethod.setAccessible(true);
-            } catch (NoSuchMethodException e9) {
-                Log.i("DrawableCompat", "Failed to retrieve setLayoutDirection(int) method", e9);
+            y0.a aVar = new y0.a(new x0.a(26), null);
+            if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ABORT_ERROR")) {
+                a2 = l8.a(new x0.a(0), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_CONSTRAINT_ERROR")) {
+                a2 = l8.a(new x0.a(1), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_CLONE_ERROR")) {
+                a2 = l8.a(new x0.a(2), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_ERROR")) {
+                a2 = l8.a(new x0.a(3), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ENCODING_ERROR")) {
+                a2 = l8.a(new x0.a(4), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_HIERARCHY_REQUEST_ERROR")) {
+                a2 = l8.a(new x0.a(5), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_IN_USE_ATTRIBUTE_ERROR")) {
+                a2 = l8.a(new x0.a(6), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_CHARACTER_ERROR")) {
+                a2 = l8.a(new x0.a(7), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_MODIFICATION_ERROR")) {
+                a2 = l8.a(new x0.a(8), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_NODE_TYPE_ERROR")) {
+                a2 = l8.a(new x0.a(9), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_STATE_ERROR")) {
+                a2 = l8.a(new x0.a(10), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NAMESPACE_ERROR")) {
+                a2 = l8.a(new x0.a(11), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NETWORK_ERROR")) {
+                a2 = l8.a(new x0.a(12), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NO_MODIFICATION_ALLOWED_ERROR")) {
+                a2 = l8.a(new x0.a(13), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_ALLOWED_ERROR")) {
+                a2 = l8.a(new x0.a(14), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_FOUND_ERROR")) {
+                a2 = l8.a(new x0.a(15), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_READABLE_ERROR")) {
+                a2 = l8.a(new x0.a(16), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_SUPPORTED_ERROR")) {
+                a2 = l8.a(new x0.a(17), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPERATION_ERROR")) {
+                a2 = l8.a(new x0.a(18), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPT_OUT_ERROR")) {
+                a2 = l8.a(new x0.a(19), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_QUOTA_EXCEEDED_ERROR")) {
+                a2 = l8.a(new x0.a(20), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_READ_ONLY_ERROR")) {
+                a2 = l8.a(new x0.a(21), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SECURITY_ERROR")) {
+                a2 = l8.a(new x0.a(22), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SYNTAX_ERROR")) {
+                a2 = l8.a(new x0.a(23), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TIMEOUT_ERROR")) {
+                a2 = l8.a(new x0.a(24), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TRANSACTION_INACTIVE_ERROR")) {
+                a2 = l8.a(new x0.a(25), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_UNKNOWN_ERROR")) {
+                a2 = l8.a(new x0.a(26), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_VERSION_ERROR")) {
+                a2 = l8.a(new x0.a(27), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_WRONG_DOCUMENT_ERROR")) {
+                a2 = l8.a(new x0.a(28), str2, aVar);
+            } else {
+                throw new Exception();
             }
-            f6535b = true;
+            return (w0.d) a2;
+        } catch (z0.a unused) {
+            return new w0.c(str2, str);
         }
-        Method method = f6534a;
-        if (method != null) {
-            try {
-                method.invoke(drawable, Integer.valueOf(i10));
-                return true;
-            } catch (Exception e10) {
-                Log.i("DrawableCompat", "Failed to invoke setLayoutDirection(int) via reflection", e10);
-                f6534a = null;
-            }
-        }
-        return false;
-    }
-
-    public static void c(int i10, Drawable drawable) {
-        drawable.setTint(i10);
-    }
-
-    public static Drawable d(Drawable drawable) {
-        if (Build.VERSION.SDK_INT >= 23 || (drawable instanceof j0.b)) {
-            return drawable;
-        }
-        j0.d dVar = new j0.d();
-        dVar.d = dVar.c();
-        dVar.h(drawable);
-        j0.d.a();
-        return dVar;
     }
 }

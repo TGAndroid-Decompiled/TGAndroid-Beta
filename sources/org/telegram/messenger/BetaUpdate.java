@@ -1,19 +1,21 @@
 package org.telegram.messenger;
-
 public class BetaUpdate {
     public final String changelog;
     public final String version;
     public final int versionCode;
 
-    public BetaUpdate(String str, int i10, String str2) {
+    public BetaUpdate(String str, int i9, String str2) {
         this.version = str;
-        this.versionCode = i10;
+        this.versionCode = i9;
         this.changelog = str2;
     }
 
     public boolean higherThan(BetaUpdate betaUpdate) {
         if (betaUpdate != null) {
-            return SharedConfig.versionBiggerOrEqual(this.version, betaUpdate.version) && this.versionCode > betaUpdate.versionCode;
+            if (!SharedConfig.versionBiggerOrEqual(this.version, betaUpdate.version) || this.versionCode <= betaUpdate.versionCode) {
+                return false;
+            }
+            return true;
         }
         return true;
     }

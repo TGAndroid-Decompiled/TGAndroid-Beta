@@ -1,83 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public interface d40 {
+    void D(float f10);
 
-public final class d40 implements org.telegram.ui.zp0 {
+    void J(boolean z10, boolean z11);
 
-    public boolean f27644a;
+    void O();
 
-    public final HashMap f27645b;
+    void P(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
 
-    public final ArrayList f27646c;
-    public final j40 d;
+    boolean e();
 
-    public d40(j40 j40Var, HashMap map, ArrayList arrayList) {
-        this.d = j40Var;
-        this.f27645b = map;
-        this.f27646c = arrayList;
-    }
+    org.telegram.ui.bu0 getCloseIntoObject();
 
-    @Override
-    public final boolean e() {
-        return this.d.f29570b.e();
-    }
+    String getInitialSearchString();
 
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) throws FileNotFoundException {
-        HashMap map = this.f27645b;
-        if (map.isEmpty()) {
-            return;
-        }
-        j40 j40Var = this.d;
-        if (j40Var.f29570b == null || this.f27644a || z10) {
-            return;
-        }
-        this.f27644a = true;
-        ArrayList arrayList = new ArrayList();
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f27646c;
-            if (i11 >= arrayList2.size()) {
-                j40.b(j40Var, false, arrayList);
-                return;
-            }
-            Object obj = map.get(arrayList2.get(i11));
-            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-            arrayList.add(sendingMediaInfo);
-            if (obj instanceof MediaController.SearchImage) {
-                MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                String str = searchImage.imagePath;
-                if (str != null) {
-                    sendingMediaInfo.path = str;
-                } else {
-                    sendingMediaInfo.searchImage = searchImage;
-                }
-                sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                CharSequence charSequence = searchImage.caption;
-                sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
-                sendingMediaInfo.entities = searchImage.entities;
-                sendingMediaInfo.masks = searchImage.stickers;
-                sendingMediaInfo.ttl = searchImage.ttl;
-            }
-            i11++;
-        }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void h() {
-    }
+    boolean u();
 }

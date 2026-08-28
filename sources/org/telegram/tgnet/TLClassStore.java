@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 import android.util.SparseArray;
 import org.telegram.messenger.FileLog;
-
+import org.telegram.tgnet.TLRPC;
 public class TLClassStore {
     static TLClassStore store;
     private SparseArray<Class> classStore;
@@ -39,8 +39,8 @@ public class TLClassStore {
         return store;
     }
 
-    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i10, boolean z10) {
-        Class cls = this.classStore.get(i10);
+    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i9, boolean z10) {
+        Class cls = this.classStore.get(i9);
         if (cls != null) {
             try {
                 TLObject tLObject = (TLObject) cls.newInstance();

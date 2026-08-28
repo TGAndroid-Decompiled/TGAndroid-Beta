@@ -1,28 +1,29 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLObject;
 public final class c8 implements Runnable {
+    public final int f19925a;
+    public final MediaDataController f19926b;
+    public final TLObject f19927c;
+    public final SharedPreferences d;
 
-    public final int f19892a;
-
-    public final MediaDataController f19893b;
-
-    public final boolean f19894c;
-
-    public c8(MediaDataController mediaDataController, boolean z10, int i10) {
-        this.f19892a = i10;
-        this.f19893b = mediaDataController;
-        this.f19894c = z10;
+    public c8(MediaDataController mediaDataController, TLObject tLObject, SharedPreferences sharedPreferences, int i9) {
+        this.f19925a = i9;
+        this.f19926b = mediaDataController;
+        this.f19927c = tLObject;
+        this.d = sharedPreferences;
     }
 
     @Override
     public final void run() {
-        switch (this.f19892a) {
+        switch (this.f19925a) {
             case 0:
-                this.f19893b.lambda$loadFeaturedStickers$55(this.f19894c);
-                break;
+                this.f19926b.lambda$loadRestrictedStatusEmojis$245(this.f19927c, this.d);
+                return;
             default:
-                this.f19893b.lambda$processLoadedFeaturedStickers$59(this.f19894c);
-                break;
+                this.f19926b.lambda$loadReplyIcons$243(this.f19927c, this.d);
+                return;
         }
     }
 }

@@ -1,242 +1,207 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.SystemClock;
-import android.text.Layout;
-import android.text.Spanned;
 import android.text.style.CharacterStyle;
-import android.util.Pair;
-import android.view.View;
+import android.view.ViewConfiguration;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-
+import org.telegram.messenger.LiteMode;
 public final class m80 {
+    public static final ArrayList f30761s = new ArrayList();
+    public int f30762a;
+    public int f30763b;
+    public Paint f30764c;
+    public Paint d;
+    public int f30765e;
+    public int f30766f;
+    public final CharacterStyle f30768i;
+    public final float f30769j;
+    public final float f30770k;
+    public Rect f30772m;
+    public float f30773n;
+    public final long f30776q;
+    public final ArrayList f30767g = new ArrayList();
+    public int h = 0;
+    public final Path f30771l = new Path();
+    public long f30774o = -1;
+    public long f30775p = -1;
+    public final boolean f30777r = !LiteMode.isEnabled(360928);
 
-    public View f30618a;
-
-    public org.telegram.ui.Cells.a1 f30619b;
-
-    public final ArrayList f30620c = new ArrayList();
-    public int d = 0;
-
-    public final ArrayList f30621e = new ArrayList();
-
-    public int f30622f = 0;
-
-    public m80() {
+    public m80(CharacterStyle characterStyle, org.telegram.ui.ActionBar.b6 b6Var, float f10, float f11, int i9) {
+        this.f30768i = characterStyle;
+        d(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.Ld, b6Var));
+        this.f30769j = f10;
+        this.f30770k = f11;
+        this.f30776q = Math.min(ViewConfiguration.getTapTimeout() * 1.8f, ViewConfiguration.getLongPressTimeout() * 0.8f);
     }
 
-    public static t80 i(Layout layout, CharacterStyle characterStyle, float f10) {
-        if (layout == null || characterStyle == null || !(layout.getText() instanceof Spanned)) {
-            return null;
+    public final boolean a(Canvas canvas) {
+        int dp;
+        boolean z10;
+        boolean z11;
+        float f10;
+        boolean z12;
+        boolean z13;
+        float min;
+        boolean z14 = this.f30777r;
+        if (z14) {
+            dp = 0;
+        } else {
+            dp = AndroidUtilities.dp(4.0f);
         }
-        Spanned spanned = (Spanned) layout.getText();
-        j80 j80Var = new j80(0);
-        int spanStart = spanned.getSpanStart(characterStyle);
-        int spanEnd = spanned.getSpanEnd(characterStyle);
-        j80Var.d(layout, spanStart, f10);
-        layout.getSelectionPath(spanStart, spanEnd, j80Var);
-        t80 t80Var = new t80();
-        t80Var.f32711x = j80Var;
-        t80Var.C = true;
-        t80Var.j(4.0f);
-        t80Var.k();
-        return t80Var;
+        if (this.f30762a != dp) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (this.f30764c == null) {
+            Paint paint = new Paint(1);
+            this.f30764c = paint;
+            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            this.f30764c.setColor(this.f30763b);
+            this.f30765e = Color.alpha(this.f30763b);
+        }
+        if (this.d == null) {
+            Paint paint2 = new Paint(1);
+            this.d = paint2;
+            paint2.setStyle(Paint.Style.FILL_AND_STROKE);
+            this.d.setColor(this.f30763b);
+            this.f30766f = Color.alpha(this.f30763b);
+        }
+        if (z10) {
+            this.f30762a = dp;
+            if (dp <= 0) {
+                this.f30764c.setPathEffect(null);
+                this.d.setPathEffect(null);
+            } else {
+                this.f30764c.setPathEffect(new CornerPathEffect(this.f30762a));
+                this.d.setPathEffect(new CornerPathEffect(this.f30762a));
+            }
+        }
+        Rect rect = this.f30772m;
+        float f11 = this.f30770k;
+        float f12 = this.f30769j;
+        ArrayList arrayList = this.f30767g;
+        if (rect == null && this.h > 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            ((f80) arrayList.get(0)).computeBounds(rectF, false);
+            this.f30772m = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            for (int i9 = 1; i9 < this.h; i9++) {
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                ((f80) arrayList.get(i9)).computeBounds(rectF2, false);
+                Rect rect2 = this.f30772m;
+                rect2.left = Math.min(rect2.left, (int) rectF2.left);
+                Rect rect3 = this.f30772m;
+                rect3.top = Math.min(rect3.top, (int) rectF2.top);
+                Rect rect4 = this.f30772m;
+                rect4.right = Math.max(rect4.right, (int) rectF2.right);
+                Rect rect5 = this.f30772m;
+                rect5.bottom = Math.max(rect5.bottom, (int) rectF2.bottom);
+            }
+            z11 = z14;
+            z12 = false;
+            f10 = f12;
+            z13 = true;
+            this.f30773n = (float) Math.sqrt(Math.max(Math.max(Math.pow(this.f30772m.top - f11, 2.0d) + Math.pow(this.f30772m.left - f12, 2.0d), Math.pow(this.f30772m.top - f11, 2.0d) + Math.pow(this.f30772m.right - f12, 2.0d)), Math.max(Math.pow(this.f30772m.bottom - f11, 2.0d) + Math.pow(this.f30772m.left - f12, 2.0d), Math.pow(this.f30772m.bottom - f11, 2.0d) + Math.pow(this.f30772m.right - f12, 2.0d))));
+        } else {
+            z11 = z14;
+            f10 = f12;
+            z12 = false;
+            z13 = true;
+        }
+        if (z11) {
+            for (int i10 = 0; i10 < this.h; i10++) {
+                canvas.drawPath((Path) arrayList.get(i10), this.d);
+            }
+        } else {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            if (this.f30774o < 0) {
+                this.f30774o = elapsedRealtime;
+            }
+            float interpolation = gr.f28844f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f30774o)) / ((float) this.f30776q)));
+            long j10 = this.f30775p;
+            if (j10 < 0) {
+                min = 0.0f;
+            } else {
+                min = Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j10)) / 100.0f));
+            }
+            float f13 = 1.0f - min;
+            this.f30764c.setAlpha((int) (Math.min(1.0f, interpolation * 5.0f) * this.f30765e * 0.2f * f13));
+            this.f30764c.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
+            for (int i11 = 0; i11 < this.h; i11++) {
+                ((f80) arrayList.get(i11)).a();
+                canvas.drawPath((Path) arrayList.get(i11), this.f30764c);
+            }
+            this.d.setAlpha((int) (this.f30766f * 0.8f * f13));
+            this.d.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
+            int i12 = (interpolation > 1.0f ? 1 : (interpolation == 1.0f ? 0 : -1));
+            if (i12 < 0) {
+                float f14 = interpolation * this.f30773n;
+                canvas.save();
+                Path path = this.f30771l;
+                path.reset();
+                path.addCircle(f10, f11, f14, Path.Direction.CW);
+                canvas.clipPath(path);
+                for (int i13 = 0; i13 < this.h; i13++) {
+                    canvas.drawPath((Path) arrayList.get(i13), this.d);
+                }
+                canvas.restore();
+            } else {
+                for (int i14 = 0; i14 < this.h; i14++) {
+                    canvas.drawPath((Path) arrayList.get(i14), this.d);
+                }
+            }
+            if (i12 < 0 || this.f30775p >= 0) {
+                return z13;
+            }
+        }
+        return z12;
     }
 
-    public final void a(q80 q80Var, Object obj) {
-        this.f30620c.add(new Pair(q80Var, obj));
-        this.d++;
-        h(obj, true);
-    }
-
-    public final void b(t80 t80Var, Object obj) {
-        this.f30621e.add(new Pair(t80Var, obj));
-        this.f30622f++;
-        h(obj, true);
+    public final f80 b() {
+        f80 f80Var;
+        ArrayList arrayList = f30761s;
+        if (!arrayList.isEmpty()) {
+            f80Var = (f80) arrayList.remove(0);
+        } else {
+            f80Var = new f80(0);
+        }
+        f80Var.f30219c = !this.f30777r;
+        f80Var.reset();
+        ArrayList arrayList2 = this.f30767g;
+        arrayList2.add(f80Var);
+        this.h = arrayList2.size();
+        return f80Var;
     }
 
     public final void c() {
-        d(true);
-    }
-
-    public final void d(boolean z10) {
-        if (z10) {
-            for (int i10 = 0; i10 < this.d; i10++) {
-                j(i10);
-            }
-        } else {
-            if (this.d <= 0) {
-                return;
-            }
-            int i11 = 0;
-            while (true) {
-                int i12 = this.d;
-                ArrayList arrayList = this.f30620c;
-                if (i11 >= i12) {
-                    arrayList.clear();
-                    this.d = 0;
-                    h(null, true);
-                    return;
-                } else {
-                    ((q80) ((Pair) arrayList.get(i11)).first).c();
-                    h(((Pair) arrayList.get(i11)).second, false);
-                    i11++;
-                }
-            }
-        }
-    }
-
-    public final void e() {
-        for (int i10 = 0; i10 < this.f30622f; i10++) {
-            m(i10, true);
-        }
-    }
-
-    public final boolean f(Canvas canvas) {
-        int i10 = 0;
-        boolean z10 = false;
-        while (i10 < this.f30622f) {
-            ((t80) ((Pair) this.f30621e.get(i10)).first).draw(canvas);
-            i10++;
-            z10 = true;
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            z10 = ((q80) ((Pair) this.f30620c.get(i11)).first).a(canvas) || z10;
-        }
-        return z10;
-    }
-
-    public final boolean g(Canvas canvas, Object obj) {
-        boolean z10 = false;
-        for (int i10 = 0; i10 < this.f30622f; i10++) {
-            ArrayList arrayList = this.f30621e;
-            if (((Pair) arrayList.get(i10)).second == obj) {
-                ((t80) ((Pair) arrayList.get(i10)).first).draw(canvas);
-                z10 = true;
-            }
-        }
-        for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f30620c;
-            if (((Pair) arrayList2.get(i11)).second == obj) {
-                z10 = ((q80) ((Pair) arrayList2.get(i11)).first).a(canvas) || z10;
-            }
-        }
-        h(obj, false);
-        return z10;
-    }
-
-    public final void h(Object obj, boolean z10) {
-        View view;
-        View view2;
-        if (obj instanceof View) {
-            ((View) obj).invalidate();
-        } else if (obj instanceof org.telegram.ui.f3) {
-            org.telegram.ui.f3 f3Var = (org.telegram.ui.f3) obj;
-            if (!f3Var.f37918c && (view2 = f3Var.f37917b) != null) {
-                view2.invalidate();
-            }
-        } else if (z10 && (view = this.f30618a) != null) {
-            view.invalidate();
-        }
-        org.telegram.ui.Cells.a1 a1Var = this.f30619b;
-        if (a1Var != null) {
-            a1Var.run();
-        }
-    }
-
-    public final void j(int i10) {
-        if (i10 < 0 || i10 >= this.d) {
+        ArrayList arrayList = this.f30767g;
+        if (arrayList.isEmpty()) {
             return;
         }
-        Pair pair = (Pair) this.f30620c.get(i10);
-        q80 q80Var = (q80) pair.first;
-        if (q80Var.f31848p < 0) {
-            q80Var.f31848p = Math.max(q80Var.f31847o + q80Var.f31849q, SystemClock.elapsedRealtime());
-            h(pair.second, true);
-            AndroidUtilities.runOnUIThread(new l80(this, q80Var, 1), Math.max(0L, (q80Var.f31848p - SystemClock.elapsedRealtime()) + 175));
-        }
+        f30761s.addAll(arrayList);
+        arrayList.clear();
+        this.h = 0;
     }
 
-    public final void k(q80 q80Var, boolean z10) {
-        ArrayList arrayList;
-        Pair pair;
-        if (q80Var == null) {
-            return;
+    public final void d(int i9) {
+        this.f30763b = i9;
+        Paint paint = this.f30764c;
+        if (paint != null) {
+            paint.setColor(i9);
+            this.f30765e = Color.alpha(i9);
         }
-        int i10 = 0;
-        while (true) {
-            int i11 = this.d;
-            arrayList = this.f30620c;
-            if (i10 >= i11) {
-                pair = null;
-                break;
-            } else {
-                if (((Pair) arrayList.get(i10)).first == q80Var) {
-                    pair = (Pair) arrayList.get(i10);
-                    break;
-                }
-                i10++;
-            }
+        Paint paint2 = this.d;
+        if (paint2 != null) {
+            paint2.setColor(i9);
+            this.f30766f = Color.alpha(i9);
         }
-        if (pair == null) {
-            return;
-        }
-        if (!z10) {
-            arrayList.remove(pair);
-            q80Var.c();
-            this.d = arrayList.size();
-            h(pair.second, true);
-            return;
-        }
-        if (q80Var.f31848p < 0) {
-            q80Var.f31848p = Math.max(q80Var.f31847o + q80Var.f31849q, SystemClock.elapsedRealtime());
-            h(pair.second, true);
-            AndroidUtilities.runOnUIThread(new l80(this, q80Var, 0), Math.max(0L, (q80Var.f31848p - SystemClock.elapsedRealtime()) + 175));
-        }
-    }
-
-    public final void l(t80 t80Var, boolean z10) {
-        if (t80Var == null) {
-            return;
-        }
-        for (int i10 = 0; i10 < this.f30622f; i10++) {
-            if (((Pair) this.f30621e.get(i10)).first == t80Var) {
-                m(i10, z10);
-                return;
-            }
-        }
-    }
-
-    public final void m(int i10, boolean z10) {
-        if (i10 < 0 || i10 >= this.f30622f) {
-            return;
-        }
-        ArrayList arrayList = this.f30621e;
-        Pair pair = (Pair) arrayList.get(i10);
-        if (pair == null) {
-            return;
-        }
-        t80 t80Var = (t80) pair.first;
-        if (!z10) {
-            arrayList.remove(pair);
-            t80Var.f32692b = -1L;
-            t80Var.f32693c = -1L;
-            this.f30622f = arrayList.size();
-            h(pair.second, true);
-            return;
-        }
-        if (t80Var.b()) {
-            l(t80Var, false);
-            return;
-        }
-        if (!t80Var.c()) {
-            t80Var.a();
-        }
-        AndroidUtilities.runOnUIThread(new xq(26, this, t80Var), t80Var.f32693c > 0 ? 320 - (SystemClock.elapsedRealtime() - t80Var.f32693c) : 0L);
-    }
-
-    public m80(View view) {
-        this.f30618a = view;
     }
 }

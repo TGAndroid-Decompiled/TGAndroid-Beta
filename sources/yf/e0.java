@@ -1,8 +1,20 @@
 package yf;
 
-import java.util.ArrayList;
+import org.telegram.ui.xs0;
+public final class e0 implements c {
+    public final xs0 f49792a;
 
-public final class e0 {
+    public e0(xs0 xs0Var) {
+        this.f49792a = xs0Var;
+    }
 
-    public ArrayList f49920a;
+    @Override
+    public final void a() {
+        this.f49792a.r0(null, true);
+    }
+
+    @Override
+    public final j b() {
+        return this.f49792a.O0;
+    }
 }

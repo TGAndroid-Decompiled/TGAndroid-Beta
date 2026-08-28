@@ -1,167 +1,17 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.RequestDelegate;
+public final class m implements RequestDelegate {
+    public final int f40269a;
+    public final Object f40270b;
 
-public final class m extends org.telegram.ui.ActionBar.n2 implements NotificationCenter.NotificationCenterDelegate {
-
-    public org.telegram.ui.Components.zk0 f40274a;
-
-    public l f40275b;
-
-    public boolean f40276c;
-    public TLRPC.GlobalPrivacySettings d;
-
-    public int f40277e;
-
-    public final ArrayList f40278f;
-    public final ArrayList h;
-
-    public m() {
-        super(null);
-        this.f40276c = false;
-        this.f40277e = -3;
-        this.f40278f = new ArrayList();
-        this.h = new ArrayList();
-    }
-
-    public final void U(boolean z10) {
-        ArrayList arrayList = this.f40278f;
-        arrayList.clear();
-        ArrayList arrayList2 = this.h;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        arrayList2.add(new k(0, 0, LocaleController.getString("ArchiveSettingUnmutedFolders")));
-        arrayList2.add(new k(1, 1, LocaleController.getString("ArchiveSettingUnmutedFoldersCheck")));
-        arrayList2.add(new k(2, 2, LocaleController.getString("ArchiveSettingUnmutedFoldersInfo")));
-        if (getMessagesController().getDialogFilters().size() > 1) {
-            arrayList2.add(new k(0, 3, LocaleController.getString("ArchiveSettingUnmutedChats")));
-            arrayList2.add(new k(1, 4, LocaleController.getString("ArchiveSettingUnmutedChatsCheck")));
-            arrayList2.add(new k(2, 5, LocaleController.getString("ArchiveSettingUnmutedChatsInfo")));
-        }
-        arrayList2.add(new k(0, 6, LocaleController.getString("NewChatsFromNonContacts")));
-        arrayList2.add(new k(1, 7, LocaleController.getString("NewChatsFromNonContactsCheck")));
-        arrayList2.add(new k(2, 8, LocaleController.getString("ArchiveAndMuteInfo")));
-        l lVar = this.f40275b;
-        if (lVar == null) {
-            return;
-        }
-        if (z10) {
-            lVar.E(arrayList, arrayList2);
-        } else {
-            lVar.l();
-        }
+    public m(Object obj, int i9) {
+        this.f40269a = i9;
+        this.f40270b = obj;
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.ArchiveSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new ag.e2(this, 14));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f22999a7, false));
-        org.telegram.ui.Components.zk0 zk0Var = new org.telegram.ui.Components.zk0(context, null);
-        this.f40274a = zk0Var;
-        zk0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f40274a);
-        this.f40274a.setLayoutManager(new j(1, false, 0));
-        this.f40274a.setVerticalScrollBarEnabled(false);
-        this.f40274a.setLayoutAnimation(null);
-        org.telegram.ui.Components.zk0 zk0Var2 = this.f40274a;
-        l lVar = new l(this);
-        this.f40275b = lVar;
-        zk0Var2.setAdapter(lVar);
-        f2.l lVar2 = new f2.l();
-        lVar2.n(350L);
-        lVar2.o(org.telegram.ui.Components.er.h);
-        lVar2.C = false;
-        lVar2.f5819m = false;
-        this.f40274a.setItemAnimator(lVar2);
-        frameLayout.addView(this.f40274a, h7.z5.c(-1.0f, -1));
-        this.f40274a.setOnItemClickListener(new i(this, 0));
-        getContactsController().loadGlobalPrivacySetting();
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
-        this.d = globalPrivacySettings;
-        if (globalPrivacySettings == null) {
-            this.d = new TLRPC.TL_globalPrivacySettings();
-        }
-        U(false);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 != NotificationCenter.privacyRulesUpdated) {
-            if (i10 == NotificationCenter.dialogFiltersUpdated) {
-                U(true);
-                return;
-            }
-            return;
-        }
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
-        this.d = globalPrivacySettings;
-        if (globalPrivacySettings == null) {
-            this.d = new TLRPC.TL_globalPrivacySettings();
-        }
-        if (this.f40274a != null) {
-            for (int i12 = 0; i12 < this.f40274a.getChildCount(); i12++) {
-                View childAt = this.f40274a.getChildAt(i12);
-                this.f40274a.getClass();
-                int iR = RecyclerView.R(childAt);
-                if (iR >= 0) {
-                    ArrayList arrayList = this.h;
-                    if (iR < arrayList.size()) {
-                        int i13 = ((k) arrayList.get(iR)).d;
-                        if (i13 == 1) {
-                            ((org.telegram.ui.Cells.p8) childAt).setChecked(this.d.keep_archived_unmuted);
-                        } else if (i13 == 4) {
-                            ((org.telegram.ui.Cells.p8) childAt).setChecked(this.d.keep_archived_folders);
-                        } else if (i13 == 7) {
-                            ((org.telegram.ui.Cells.p8) childAt).setChecked(this.d.archive_and_mute_new_noncontact_peers);
-                        }
-                    }
-                }
-            }
-        }
-        this.f40276c = false;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
-        super.onFragmentDestroy();
-        if (this.f40276c) {
-            TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
-            setglobalprivacysettings.settings = this.d;
-            getConnectionsManager().sendRequest(setglobalprivacysettings, new jh.m5(5));
-            this.f40276c = false;
-        }
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f40274a.setPadding(0, 0, 0, i13);
-        this.f40274a.setClipToPadding(false);
+    public final void run(org.telegram.tgnet.TLObject r19, org.telegram.tgnet.TLRPC.TL_error r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

@@ -1,70 +1,105 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.ColorFilter;
 import android.util.SparseIntArray;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class x41 extends org.telegram.ui.Components.nv {
+    public final int f44365c0;
+    public final b61 f44366d0;
 
-public final class x41 extends c51 {
-
-    public final int f44281b3;
-
-    public final a61 f44282c3;
-
-    public x41(a61 a61Var, Context context, int i10) {
-        super(a61Var, context);
-        this.f44282c3 = a61Var;
-        this.f44281b3 = i10;
+    public x41(b61 b61Var, Context context, org.telegram.ui.ActionBar.b6 b6Var, boolean z10, boolean z11, int i9, n21 n21Var, int i10, int i11) {
+        super(context, b6Var, z10, z11, false, true, i9, n21Var, i10, false);
+        this.f44366d0 = b61Var;
+        this.f44365c0 = i11;
     }
 
     @Override
-    public final void j0(int i10) {
-        a61 a61Var = this.f44282c3;
-        r41 r41Var = a61Var.f36387b0;
-        if (i10 == 0) {
-            a61Var.f36426s1 = false;
-            if (a61Var.f36383a == -1 || r41Var.getVisibility() != 0 || r41Var.getTranslationY() <= (-AndroidUtilities.dp(51.0f))) {
-                return;
-            }
-            a61.a(a61Var, r41Var.getTranslationY() > ((float) (-AndroidUtilities.dp(16.0f))) ? 0 : 1, 0);
-        }
+    public final ColorFilter getEmojiColorFilter() {
+        return this.f44366d0.f36678g1;
     }
 
     @Override
-    public final void k0(int i10, int i11) {
+    public final boolean h(int i9) {
+        int i10;
+        int i11;
+        p51 p51Var;
         int i12;
-        a61 a61Var = this.f44282c3;
-        a61Var.h();
-        if (!a61Var.f36426s1) {
-            int iI0 = a61Var.f36413n0.I0();
-            ArrayList arrayList = a61Var.f36442z0;
-            SparseIntArray sparseIntArray = a61Var.f36425s0;
-            if (iI0 != -1) {
-                if (iI0 <= ((arrayList.size() <= 40 || a61Var.f36440y0) ? arrayList.size() + (a61Var.J0 ? 1 : 0) : 40) || iI0 <= a61Var.E0.size()) {
-                    a61Var.W.j(0, true);
-                } else {
-                    for (int i13 = 0; i13 < sparseIntArray.size(); i13++) {
-                        int iKeyAt = sparseIntArray.keyAt(i13);
-                        int iValueAt = sparseIntArray.valueAt(i13);
-                        org.telegram.ui.Components.kx kxVar = iValueAt >= 0 ? (org.telegram.ui.Components.kx) a61Var.I0.get(iValueAt) : null;
-                        if (kxVar != null) {
-                            boolean z10 = kxVar.h;
-                            int size = kxVar.f30206c.size();
-                            if (!z10) {
-                                size = Math.min(24, size);
-                            }
-                            if (iI0 > iKeyAt && iI0 <= iKeyAt + 1 + size) {
-                                org.telegram.ui.Components.mv mvVar = a61Var.W;
-                                mvVar.j(((mvVar.A == null || !mvVar.V) ? 0 : 1) + (mvVar.f30759y != null ? 1 : 0) + iValueAt, true);
-                                break;
-                            }
-                        }
-                    }
+        int i13;
+        b61 b61Var = this.f44366d0;
+        SparseIntArray sparseIntArray = b61Var.f36704t0;
+        int i14 = 0;
+        if (b61Var.f36703s1) {
+            return false;
+        }
+        int i15 = this.f44365c0;
+        if (i15 == 4 && i9 == 0) {
+            b61Var.M = !b61Var.M;
+            b61Var.W.setVisibility(8);
+            org.telegram.ui.Components.nv nvVar = b61Var.V[b61Var.M ? 1 : 0];
+            b61Var.W = nvVar;
+            nvVar.setVisibility(0);
+            org.telegram.ui.Components.jv jvVar = b61Var.W.f31188x;
+            Context context = getContext();
+            if (b61Var.M) {
+                i12 = R.drawable.msg_emoji_stickers;
+            } else {
+                i12 = R.drawable.msg_emoji_smiles;
+            }
+            jvVar.setDrawable(context.getDrawable(i12));
+            org.telegram.ui.Components.jv jvVar2 = b61Var.W.f31188x;
+            if (b61Var.M) {
+                i13 = R.string.AccDescrStickers;
+            } else {
+                i13 = R.string.Emoji;
+            }
+            jvVar2.setContentDescription(LocaleController.getString(i13));
+            b61Var.B(true, false, false);
+            b61Var.f36690n0.h1(0, 0);
+            return true;
+        }
+        org.telegram.ui.Components.jv jvVar3 = this.A;
+        if (jvVar3 != null && this.U) {
+            i10 = 1;
+        } else {
+            i10 = 0;
+        }
+        int i16 = i10 + 1;
+        if (jvVar3 != null && this.U && i9 == 1) {
+            i11 = b61Var.f36689n;
+        } else {
+            if ((i15 != 4 || i9 != 0) && i9 > 0) {
+                int i17 = i9 - i16;
+                if (sparseIntArray.indexOfKey(i17) >= 0) {
+                    i11 = sparseIntArray.get(i17);
                 }
             }
+            i11 = 0;
         }
-        a61Var.C();
-        AndroidUtilities.updateViewVisibilityAnimated(a61Var.f36384a0, a61Var.f36392d0.computeVerticalScrollOffset() != 0 || (i12 = this.f44281b3) == 0 || i12 == 12 || i12 == 10 || i12 == 1 || i12 == 11 || i12 == 6, 1.0f, true);
-        a61Var.m();
+        if (i15 == 6) {
+            i14 = 7;
+        }
+        b61.a(b61Var, i11, AndroidUtilities.dp(i14 - 2));
+        b61Var.W.j(i9, true);
+        b61Var.f36669d0.H1 = true;
+        b61Var.v(null, true, true);
+        s41 s41Var = b61Var.f36664b0;
+        if (s41Var != null && (p51Var = s41Var.f41687n) != null) {
+            p51Var.F1(null);
+        }
+        return true;
+    }
+
+    @Override
+    public final void i(org.telegram.ui.Components.jv jvVar) {
+        ValueAnimator valueAnimator = this.f44366d0.Q1;
+        if (valueAnimator != null && !valueAnimator.isRunning()) {
+            return;
+        }
+        jvVar.setScaleX(0.0f);
+        jvVar.setScaleY(0.0f);
     }
 }

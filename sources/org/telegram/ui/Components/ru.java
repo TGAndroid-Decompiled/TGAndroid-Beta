@@ -1,140 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class ru extends vk0 {
+    public final dv f32289c;
 
-public final class ru extends us {
-    public int I;
-    public ArrayList J;
-    public final ArrayList K = new ArrayList();
-    public final su L;
-
-    public ru(su suVar) {
-        this.L = suVar;
+    public ru(dv dvVar) {
+        this.f32289c = dvVar;
     }
 
     @Override
-    public final void a(Canvas canvas, long j10, int i10, int i11, float f10) {
-        ArrayList arrayList = this.J;
-        if (arrayList == null) {
-            return;
+    public final boolean D(f2.q1 q1Var) {
+        if (q1Var.f5505f == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int E(int i9) {
+        int i10;
+        dv dvVar = this.f32289c;
+        nu nuVar = dvVar.f27816e;
+        if (dvVar.E) {
+            i10 = 2;
+        } else {
+            i10 = 1;
+        }
+        int i11 = 0;
+        while (true) {
+            ArrayList[] arrayListArr = nuVar.f26910c;
+            if (i11 >= arrayListArr.length || i11 == i9) {
+                break;
+            }
+            int size = arrayListArr[i11].size();
+            if (nuVar.f26910c.length > 1) {
+                size = Math.min(dvVar.f27823y.J * 2, size);
+            }
+            i10 += size + 2;
+            i11++;
+        }
+        return i10;
+    }
+
+    @Override
+    public final int h() {
+        int i9;
+        ?? r22;
+        int i10;
+        int min;
+        ArrayList arrayList;
+        dv dvVar = this.f32289c;
+        nu nuVar = dvVar.f27816e;
+        i9 = ((org.telegram.ui.ActionBar.f3) dvVar).currentAccount;
+        if (!UserConfig.getInstance(i9).isPremium() && (arrayList = nuVar.f26909b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) nuVar.f26909b.get(0))) {
+            r22 = 1;
+        } else {
+            r22 = 0;
+        }
+        dvVar.E = r22;
+        int i11 = r22 + 1;
+        if (nuVar.f26910c == null) {
+            i10 = 0;
+        } else {
+            int i12 = 0;
+            i10 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = nuVar.f26910c;
+                if (i12 >= arrayListArr.length) {
+                    break;
+                }
+                ArrayList arrayList2 = arrayListArr[i12];
+                if (arrayList2 != null) {
+                    if (arrayListArr.length == 1) {
+                        min = arrayList2.size();
+                    } else {
+                        min = Math.min(nuVar.f26912f.f27823y.J * 2, arrayList2.size());
+                    }
+                    i10 = min + i10 + 1;
+                }
+                i12++;
+            }
+        }
+        return Math.max(0, nuVar.f26910c.length - 1) + i11 + i10;
+    }
+
+    @Override
+    public final int j(int i9) {
+        dv dvVar = this.f32289c;
+        nu nuVar = dvVar.f27816e;
+        int i10 = 0;
+        if (i9 == 0) {
+            return 0;
+        }
+        int i11 = i9 - 1;
+        if (dvVar.E) {
+            if (i11 == 1) {
+                return 3;
+            }
+            if (i11 > 0) {
+                i11 = i9 - 2;
+            }
         }
         int i12 = 0;
-        boolean z10 = true;
-        boolean z11 = arrayList.size() <= 3 || SharedConfig.getDevicePerformanceClass() == 0;
-        if (!z11) {
-            while (true) {
-                if (i12 >= this.J.size()) {
-                    z10 = z11;
-                    break;
-                }
-                tu tuVar = (tu) this.J.get(i12);
-                if (tuVar.f32892e != 0.0f || tuVar.d != null || tuVar.getTranslationX() != 0.0f || tuVar.getTranslationY() != 0.0f || tuVar.getAlpha() != 1.0f) {
-                    break;
-                } else {
-                    i12++;
-                }
-            }
-        } else {
-            z10 = z11;
-            break;
-        }
-        if (!z10) {
-            super.a(canvas, j10, i10, i11, 1.0f);
-            return;
-        }
-        i(System.currentTimeMillis());
-        d(canvas, 1.0f);
-        k();
-    }
-
-    @Override
-    public final void c(Canvas canvas) {
-        int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.K;
-            if (i10 >= arrayList.size()) {
-                return;
+            ArrayList[] arrayListArr = nuVar.f26910c;
+            if (i10 >= arrayListArr.length) {
+                return 1;
             }
-            tu tuVar = (tu) arrayList.get(i10);
-            tuVar.f32890b.draw(canvas, tuVar.f32889a[this.G]);
+            if (i11 == i12) {
+                return 2;
+            }
+            int size = arrayListArr[i10].size();
+            if (nuVar.f26910c.length > 1) {
+                size = Math.min(dvVar.f27823y.J * 2, size);
+            }
+            int i13 = size + 1 + i12;
+            if (i11 == i13) {
+                return 4;
+            }
+            i12 = i13 + 1;
             i10++;
         }
     }
 
     @Override
-    public final void d(Canvas canvas, float f10) {
-        k5 k5Var;
-        if (this.J != null) {
-            for (int i10 = 0; i10 < this.J.size(); i10++) {
-                tu tuVar = (tu) this.J.get(i10);
-                t5 t5Var = tuVar.f32891c;
-                if (t5Var != null && (k5Var = (k5) this.L.f32577y.f27547b.get(t5Var.getDocumentId())) != null && k5Var.f29961k != null && tuVar.f32890b != null) {
-                    k5Var.setAlpha((int) (tuVar.getAlpha() * 255.0f * f10));
-                    float width = ((tuVar.getWidth() - tuVar.getPaddingLeft()) - tuVar.getPaddingRight()) / 2.0f;
-                    float height = ((tuVar.getHeight() - tuVar.getPaddingTop()) - tuVar.getPaddingBottom()) / 2.0f;
-                    float right = (tuVar.getRight() + tuVar.getLeft()) / 2.0f;
-                    float paddingTop = tuVar.getPaddingTop() + height;
-                    float f11 = tuVar.f32892e;
-                    float f12 = f11 != 0.0f ? 1.0f * (((1.0f - f11) * 0.2f) + 0.8f) : 1.0f;
-                    k5Var.setBounds((int) (right - ((tuVar.getScaleX() * width) * f12)), (int) (paddingTop - ((tuVar.getScaleY() * height) * f12)), (int) ((tuVar.getScaleX() * width * f12) + right), (int) ((tuVar.getScaleY() * height * f12) + paddingTop));
-                    k5Var.draw(canvas);
-                }
-            }
-        }
+    public final void v(f2.q1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ru.v(f2.q1, int):void");
     }
 
     @Override
-    public final void g() {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.K;
-            if (i10 >= arrayList.size()) {
-                ((org.telegram.ui.ActionBar.e3) this.L.f32577y).containerView.invalidate();
-                return;
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        View view;
+        View view2;
+        dv dvVar = this.f32289c;
+        if (i9 == 0) {
+            view = dvVar.d;
+        } else {
+            boolean z10 = true;
+            if (i9 == 1) {
+                ?? view3 = new View(dvVar.getContext());
+                view3.f33143a = new ImageReceiver.BackgroundThreadDrawHolder[2];
+                view2 = view3;
+            } else if (i9 == 2) {
+                Context context = dvVar.getContext();
+                if (dvVar.f27816e.f26910c.length > 1) {
+                    z10 = false;
+                }
+                view2 = new yu(dvVar, context, z10);
+            } else if (i9 == 3) {
+                view2 = new TextView(dvVar.getContext());
+            } else if (i9 == 4) {
+                View view4 = new View(dvVar.getContext());
+                int i10 = org.telegram.ui.ActionBar.f6.Ke;
+                Pattern pattern = dv.R;
+                view4.setBackgroundColor(dvVar.getThemedColor(i10));
+                f2.a1 a1Var = new f2.a1(-1, AndroidUtilities.getShadowHeight());
+                ((ViewGroup.MarginLayoutParams) a1Var).topMargin = AndroidUtilities.dp(14.0f);
+                view4.setLayoutParams(a1Var);
+                view2 = view4;
             } else {
-                ((tu) arrayList.get(i10)).f32889a[this.G].release();
-                i10++;
+                view = null;
             }
+            view = view2;
         }
-    }
-
-    @Override
-    public final void i(long j10) {
-        k5 k5Var;
-        cv cvVar = this.L.f32577y;
-        ArrayList arrayList = this.K;
-        arrayList.clear();
-        for (int i10 = 0; i10 < this.J.size(); i10++) {
-            tu tuVar = (tu) this.J.get(i10);
-            t5 t5Var = tuVar.f32891c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = tuVar.f32889a;
-            if (t5Var != null && (k5Var = (k5) cvVar.f27547b.get(t5Var.getDocumentId())) != null && k5Var.f29961k != null) {
-                k5Var.t(j10);
-                jh.y2 y2Var = k5Var.f29961k;
-                int i11 = this.G;
-                ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = y2Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
-                backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
-                drawInBackgroundThread.time = j10;
-                k5Var.setAlpha(255);
-                Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(tuVar.getPaddingLeft() + tuVar.getLeft(), tuVar.getPaddingTop(), tuVar.getRight() - tuVar.getPaddingRight(), tuVar.getMeasuredHeight() - tuVar.getPaddingBottom());
-                backgroundThreadDrawHolderArr[i11].setBounds(rect);
-                int themedColor = cvVar.getThemedColor(org.telegram.ui.ActionBar.g6.G6);
-                if (themedColor != cvVar.Q || cvVar.P == null) {
-                    cvVar.Q = themedColor;
-                    cvVar.P = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
-                }
-                k5Var.setColorFilter(cvVar.P);
-                tuVar.f32890b = k5Var.f29961k;
-                arrayList.add(tuVar);
-            }
-        }
+        return new f2.q1(view);
     }
 }

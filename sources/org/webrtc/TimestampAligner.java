@@ -1,12 +1,12 @@
 package org.webrtc;
-
 public class TimestampAligner {
     private volatile long nativeTimestampAligner = nativeCreateTimestampAligner();
 
     private void checkNativeAlignerExists() {
-        if (this.nativeTimestampAligner == 0) {
-            throw new IllegalStateException("TimestampAligner has been disposed.");
+        if (this.nativeTimestampAligner != 0) {
+            return;
         }
+        throw new IllegalStateException("TimestampAligner has been disposed.");
     }
 
     public static long getRtcTimeNanos() {

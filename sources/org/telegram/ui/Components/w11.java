@@ -1,33 +1,25 @@
 package org.telegram.ui.Components;
+public final class w11 {
+    public static final w11 f34071a;
+    public static final w11 f34072b;
+    public static final w11 f34073c;
+    public static final w11[] d;
 
-import android.animation.ValueAnimator;
-
-public final class w11 implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f34090a;
-
-    public final y11 f34091b;
-
-    public w11(y11 y11Var, int i10) {
-        this.f34090a = i10;
-        this.f34091b = y11Var;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f34071a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f34072b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f34073c = r32;
+        d = new w11[]{r02, r12, r32};
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34090a) {
-            case 0:
-                jh.a3 a3Var = this.f34091b.f34782f;
-                a3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                a3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                a3Var.invalidate();
-                break;
-            default:
-                y11 y11Var = this.f34091b;
-                y11Var.getClass();
-                y11Var.B = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y11Var.h();
-                break;
-        }
+    public static w11 valueOf(String str) {
+        return (w11) Enum.valueOf(w11.class, str);
+    }
+
+    public static w11[] values() {
+        return (w11[]) d.clone();
     }
 }

@@ -1,5 +1,4 @@
 package m3;
-
 public interface k {
     int b(l lVar, n nVar);
 

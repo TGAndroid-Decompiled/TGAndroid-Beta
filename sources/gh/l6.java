@@ -1,53 +1,45 @@
 package gh;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.zk0;
+import kh.wb;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+public final class l6 implements Runnable {
+    public final int f8494a = 0;
+    public final boolean f8495b;
+    public final long f8496c;
+    public final boolean d;
+    public final Object f8497e;
+    public final Object f8498f;
+    public final TLObject h;
+    public final TLObject f8499n;
+    public final Object f8500r;
 
-public final class l6 extends f2.w0 {
-
-    public final PointF f7418a = new PointF();
-
-    public final m6 f7419b;
-
-    public l6(m6 m6Var) {
-        this.f7419b = m6Var;
+    public l6(v7 v7Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j10, TLRPC.TL_textWithEntities tL_textWithEntities, fh.h6 h6Var) {
+        this.f8497e = v7Var;
+        this.f8498f = zArr;
+        this.h = starGift;
+        this.f8495b = z10;
+        this.d = z11;
+        this.f8496c = j10;
+        this.f8499n = tL_textWithEntities;
+        this.f8500r = h6Var;
     }
 
     @Override
-    public final void b(Canvas canvas, RecyclerView recyclerView) {
-        float f10;
-        float fMax;
-        ag.s0 s0Var;
-        float height = recyclerView.getHeight();
-        m6 m6Var = this.f7419b;
-        h6 h6Var = m6Var.f7451o0;
-        g6 g6Var = m6Var.f7441d0;
-        zk0 zk0Var = m6Var.d;
-        PointF pointF = this.f7418a;
-        if (qg.j.b(g6Var, zk0Var, pointF)) {
-            f10 = pointF.x;
-            height = Math.min(height, pointF.y);
-            fMax = Math.max(0.0f, pointF.y + g6Var.getMeasuredHeight());
-        } else {
-            f10 = 0.0f;
-            fMax = 0.0f;
-        }
-        if (qg.j.b(h6Var, zk0Var, pointF)) {
-            height = Math.min(height, pointF.y);
-            fMax = Math.max(fMax, pointF.y + h6Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
-        }
-        if (height >= fMax || (s0Var = g6Var.H) == null) {
-            return;
-        }
-        float height2 = (fMax - height) / s0Var.getHeight();
-        canvas.save();
-        canvas.clipRect(0.0f, height, recyclerView.getWidth(), fMax);
-        canvas.translate(f10, height);
-        canvas.scale(height2, height2);
-        g6Var.H.draw(canvas);
-        canvas.restore();
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: gh.l6.run():void");
+    }
+
+    public l6(wb wbVar, TLObject tLObject, TL_stories.TL_startLive tL_startLive, boolean z10, long j10, boolean z11, TLRPC.TL_error tL_error, kh.f1 f1Var) {
+        this.f8497e = wbVar;
+        this.f8498f = tLObject;
+        this.h = tL_startLive;
+        this.f8495b = z10;
+        this.f8496c = j10;
+        this.d = z11;
+        this.f8499n = tL_error;
+        this.f8500r = f1Var;
     }
 }

@@ -1,22 +1,16 @@
 package mc;
 
-public final class e extends k {
+import java.util.regex.Pattern;
+public final class e extends h {
+    public static final Pattern f17616e = i.f17626n;
 
-    public final StringBuilder f17991c;
-
-    public e() {
-        super(4, 0);
-        this.f17991c = new StringBuilder();
+    @Override
+    public final ie.p b() {
+        throw new UnsupportedOperationException("Method not decompiled: mc.e.b():ie.p");
     }
 
     @Override
-    public final k c() {
-        k.d(this.f17991c);
-        return this;
-    }
-
-    @Override
-    public final String toString() {
-        return "<!--" + this.f17991c.toString() + "-->";
+    public final char d() {
+        return ']';
     }
 }

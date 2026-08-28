@@ -1,24 +1,15 @@
 package c2;
 
+import android.os.Build;
 import android.os.Bundle;
-
 public final class e0 {
+    public int f2157a = 1;
+    public boolean f2158b;
+    public boolean f2159c;
+    public boolean d;
+    public Bundle f2160e;
 
-    public final int f2274a;
-
-    public final boolean f2275b;
-
-    public final boolean f2276c;
-    public final boolean d;
-
-    public final Bundle f2277e;
-
-    public e0(d0 d0Var) {
-        this.f2274a = d0Var.f2247a;
-        this.f2275b = d0Var.f2248b;
-        this.f2276c = d0Var.f2249c;
-        this.d = d0Var.d;
-        Bundle bundle = d0Var.f2250e;
-        this.f2277e = bundle == null ? Bundle.EMPTY : new Bundle(bundle);
+    public e0() {
+        this.f2158b = Build.VERSION.SDK_INT >= 30;
     }
 }

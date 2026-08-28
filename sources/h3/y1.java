@@ -1,34 +1,32 @@
 package h3;
 
 import android.util.SparseBooleanArray;
-
 public final class y1 implements g {
-
-    public final d5.g f8256a;
+    public final d5.g f9826a;
 
     static {
         SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
         d5.a.i(!false);
         new d5.g(sparseBooleanArray);
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         Integer.toString(0, 36);
     }
 
     public y1(d5.g gVar) {
-        this.f8256a = gVar;
+        this.f9826a = gVar;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof y1) {
-            return this.f8256a.equals(((y1) obj).f8256a);
+        if (!(obj instanceof y1)) {
+            return false;
         }
-        return false;
+        return this.f9826a.equals(((y1) obj).f9826a);
     }
 
     public final int hashCode() {
-        return this.f8256a.hashCode();
+        return this.f9826a.hashCode();
     }
 }

@@ -1,14 +1,12 @@
 package org.telegram.ui.Components;
-
-public final class uw extends org.telegram.ui.rn {
+public final class uw extends org.telegram.ui.qn {
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        org.telegram.ui.ck ckVar;
+        org.telegram.ui.ak akVar;
         super.onTransitionAnimationEnd(z10, z11);
-        if (!z10 || (ckVar = this.U) == null) {
-            return;
+        if (z10 && (akVar = this.U) != null) {
+            akVar.s1();
+            this.U.postDelayed(new np(this, 13), 100L);
         }
-        ckVar.r1();
-        this.U.postDelayed(new lp(this, 13), 100L);
     }
 }

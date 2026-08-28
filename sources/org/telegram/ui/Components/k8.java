@@ -1,31 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class k8 extends org.telegram.ui.ActionBar.f3 {
+    public final w8 f30029b;
 
-public final class k8 extends AnimatorListenerAdapter {
-
-    public final int f30035a;
-
-    public final v8 f30036b;
-
-    public k8(v8 v8Var, int i10) {
-        this.f30035a = i10;
-        this.f30036b = v8Var;
+    public k8(w8 w8Var, Activity activity) {
+        super(activity, true);
+        this.f30029b = w8Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30035a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f30036b.f33299f = false;
-                break;
-            default:
-                v8 v8Var = this.f30036b;
-                v8Var.i0(v8Var.B ? 1.0f : 0.0f, false);
-                v8Var.B = false;
-                break;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        w8 w8Var = this.f30029b;
+        w8Var.F.w1(w8Var.U);
+        w8Var.f34142f = true;
+        w8Var.fragmentView.invalidate();
+        w8Var.f34141e.animate().setListener(new org.telegram.ui.xp(this, 6)).alpha(0.0f).setDuration(200L).start();
+    }
+
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        w8 w8Var = this.f30029b;
+        AndroidUtilities.requestAdjustResize(w8Var.getParentActivity(), w8Var.getClassGuid());
+        w8Var.O = null;
     }
 }

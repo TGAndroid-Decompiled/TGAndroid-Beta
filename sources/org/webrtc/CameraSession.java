@@ -1,6 +1,5 @@
 package org.webrtc;
-
-interface CameraSession {
+public interface CameraSession {
 
     public interface CreateSessionCallback {
         void onDone(CameraSession cameraSession);

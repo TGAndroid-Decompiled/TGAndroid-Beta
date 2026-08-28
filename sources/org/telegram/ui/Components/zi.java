@@ -1,71 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class zi implements ok0, fj {
+    public final pj f35316a;
 
-public final class zi extends dz {
-    public final int U;
-    public final yh V;
-
-    public zi(yh yhVar, int i10, zk0 zk0Var, int i11) {
-        super(i10, 0, zk0Var);
-        this.U = i11;
-        this.V = yhVar;
+    public zi(pj pjVar) {
+        this.f35316a = pjVar;
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 3:
-                int iC = this.f5863n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int iHeight = rect.height() + top;
-                int iMin = Math.min(0, top);
-                int iMax = Math.max(0, iHeight - iC);
-                if (iMin == 0) {
-                    iMin = Math.min(top, iMax);
-                }
-                return new int[]{0, iMin};
-            default:
-                return super.t(view, rect);
+    public boolean a(int i9, View view) {
+        Object O;
+        pj pjVar = this.f35316a;
+        f2.r0 adapter = pjVar.f31679s.getAdapter();
+        lj ljVar = pjVar.B;
+        if (adapter == ljVar) {
+            O = ljVar.E(i9);
+        } else {
+            ij ijVar = pjVar.A;
+            O = ijVar.O(ijVar.S(i9), ijVar.Q(i9));
         }
+        if (O != null) {
+            pjVar.K((oj) view, O);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, f2.l1 l1Var, int i10) {
-        switch (this.U) {
-            case 0:
-                yi yiVar = new yi(this, recyclerView.getContext());
-                yiVar.f5731a = i10;
-                w0(yiVar);
-                break;
-            case 1:
-                rj rjVar = new rj(this, recyclerView.getContext());
-                rjVar.f5731a = i10;
-                w0(rjVar);
-                break;
-            case 2:
-                lk lkVar = new lk(this, recyclerView.getContext());
-                lkVar.f5731a = i10;
-                w0(lkVar);
-                break;
-            case 3:
-                wm wmVar = new wm(this, recyclerView.getContext());
-                wmVar.f5731a = i10;
-                w0(wmVar);
-                break;
-            default:
-                qf.a0 a0Var = new qf.a0(this, recyclerView.getContext());
-                a0Var.f5731a = i10;
-                w0(a0Var);
-                break;
-        }
+    public void b(TLRPC.User user, boolean z10, int i9, long j10) {
+        pj pjVar = this.f35316a;
+        pjVar.f27493b.dismiss(true);
+        pjVar.F.b(user, z10, i9, j10);
     }
 
-    public zi(tk tkVar, hh.f1 f1Var) {
-        super(0, 0, f1Var);
-        this.U = 2;
-        this.V = tkVar;
+    @Override
+    public void c(ArrayList arrayList, String str, boolean z10, int i9, long j10, boolean z11) {
     }
 }

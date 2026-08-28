@@ -1,29 +1,24 @@
 package x3;
 
-import c2.a1;
-import d5.g0;
+import c2.b1;
+import d5.f0;
 import m3.s;
 import m3.t;
 import m3.u;
-
 public final class d implements t {
-
-    public final a1 f49356a;
-
-    public final int f49357b;
-
-    public final long f49358c;
+    public final b1 f48876a;
+    public final int f48877b;
+    public final long f48878c;
     public final long d;
+    public final long f48879e;
 
-    public final long f49359e;
-
-    public d(a1 a1Var, int i10, long j10, long j11) {
-        this.f49356a = a1Var;
-        this.f49357b = i10;
-        this.f49358c = j10;
-        long j12 = (j11 - j10) / ((long) a1Var.f2231c);
+    public d(b1 b1Var, int i9, long j10, long j11) {
+        this.f48876a = b1Var;
+        this.f48877b = i9;
+        this.f48878c = j10;
+        long j12 = (j11 - j10) / b1Var.f2121c;
         this.d = j12;
-        this.f49359e = g0.O(j12 * ((long) i10), 1000000L, a1Var.f2230b);
+        this.f48879e = f0.O(j12 * i9, 1000000L, b1Var.f2120b);
     }
 
     @Override
@@ -33,24 +28,24 @@ public final class d implements t {
 
     @Override
     public final s h(long j10) {
-        a1 a1Var = this.f49356a;
-        long j11 = ((long) a1Var.f2230b) * j10;
-        int i10 = this.f49357b;
+        b1 b1Var = this.f48876a;
+        int i9 = this.f48877b;
+        long j11 = (b1Var.f2120b * j10) / (i9 * 1000000);
         long j12 = this.d - 1;
-        long jI = g0.i(j11 / (((long) i10) * 1000000), 0L, j12);
-        int i11 = a1Var.f2231c;
-        long j13 = this.f49358c;
-        long jO = g0.O(jI * ((long) i10), 1000000L, a1Var.f2230b);
-        u uVar = new u(jO, (((long) i11) * jI) + j13);
-        if (jO >= j10 || jI == j12) {
-            return new s(uVar, uVar);
+        long i10 = f0.i(j11, 0L, j12);
+        int i11 = b1Var.f2121c;
+        long j13 = this.f48878c;
+        long O = f0.O(i10 * i9, 1000000L, b1Var.f2120b);
+        u uVar = new u(O, (i11 * i10) + j13);
+        if (O < j10 && i10 != j12) {
+            long j14 = i10 + 1;
+            return new s(uVar, new u(f0.O(j14 * i9, 1000000L, b1Var.f2120b), (i11 * j14) + j13));
         }
-        long j14 = jI + 1;
-        return new s(uVar, new u(g0.O(j14 * ((long) i10), 1000000L, a1Var.f2230b), (((long) i11) * j14) + j13));
+        return new s(uVar, uVar);
     }
 
     @Override
     public final long i() {
-        return this.f49359e;
+        return this.f48879e;
     }
 }

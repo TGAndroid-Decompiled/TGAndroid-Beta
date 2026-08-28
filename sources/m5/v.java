@@ -1,50 +1,71 @@
 package m5;
 
-import android.os.Parcel;
 import android.os.Parcelable;
-import h7.r8;
-import java.util.Arrays;
+import com.google.android.gms.cast.CastDevice;
+import com.google.android.gms.cast.MediaError;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.cast.MediaTrack;
+public final class v implements Parcelable.Creator {
+    public final int f17482a;
 
-public final class v extends z5.a {
-
-    public final int f17858a;
-
-    public final int f17859b;
-
-    public final int f17860c;
-    public static final r5.b d = new r5.b("VideoInfo", null);
-    public static final Parcelable.Creator<v> CREATOR = new w(21);
-
-    public v(int i10, int i11, int i12) {
-        this.f17858a = i10;
-        this.f17859b = i11;
-        this.f17860c = i12;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof v)) {
-            return false;
-        }
-        v vVar = (v) obj;
-        return this.f17859b == vVar.f17859b && this.f17858a == vVar.f17858a && this.f17860c == vVar.f17860c;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f17859b), Integer.valueOf(this.f17858a), Integer.valueOf(this.f17860c)});
+    public v(int i9) {
+        this.f17482a = i9;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int iQ = r8.q(parcel, 20293);
-        r8.s(parcel, 2, 4);
-        parcel.writeInt(this.f17858a);
-        r8.s(parcel, 3, 4);
-        parcel.writeInt(this.f17859b);
-        r8.s(parcel, 4, 4);
-        parcel.writeInt(this.f17860c);
-        r8.r(parcel, iQ);
+    public final java.lang.Object createFromParcel(android.os.Parcel r43) {
+        throw new UnsupportedOperationException("Method not decompiled: m5.v.createFromParcel(android.os.Parcel):java.lang.Object");
+    }
+
+    @Override
+    public final Object[] newArray(int i9) {
+        switch (this.f17482a) {
+            case 0:
+                return new a[i9];
+            case 1:
+                return new h[i9];
+            case 2:
+                return new w[i9];
+            case 3:
+                return new x[i9];
+            case 4:
+                return new b[i9];
+            case 5:
+                return new i[i9];
+            case 6:
+                return new MediaError[i9];
+            case 7:
+                return new MediaInfo[i9];
+            case 8:
+                return new j[i9];
+            case 9:
+                return new c[i9];
+            case 10:
+                return new k[i9];
+            case 11:
+                return new l[i9];
+            case 12:
+                return new m[i9];
+            case 13:
+                return new n[i9];
+            case 14:
+                return new o[i9];
+            case 15:
+                return new q[i9];
+            case 16:
+                return new MediaTrack[i9];
+            case 17:
+                return new d[i9];
+            case 18:
+                return new r[i9];
+            case 19:
+                return new s[i9];
+            case 20:
+                return new t[i9];
+            case 21:
+                return new u[i9];
+            default:
+                return new CastDevice[i9];
+        }
     }
 }

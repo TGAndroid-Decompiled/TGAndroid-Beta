@@ -1,37 +1,34 @@
 package h7;
 
-public abstract class s6 {
-    public static int a(int i10) {
-        if (i10 == 1) {
-            return 0;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class s6 extends y5.a {
+    public static final Parcelable.Creator<s6> CREATOR = new s5(1);
+    public final int f10109a;
+    public final float f10110b;
+    public final int f10111c;
+
+    public s6(int i9, int i10, float f10, int i11) {
+        if (i9 == 1) {
+            this.f10109a = i10;
+            this.f10110b = f10;
+            this.f10111c = i11;
+            return;
         }
-        if (i10 == 2) {
-            return 1;
-        }
-        if (i10 == 4) {
-            return 2;
-        }
-        if (i10 == 8) {
-            return 3;
-        }
-        if (i10 == 16) {
-            return 4;
-        }
-        if (i10 == 32) {
-            return 5;
-        }
-        if (i10 == 64) {
-            return 6;
-        }
-        if (i10 == 128) {
-            return 7;
-        }
-        if (i10 == 256) {
-            return 8;
-        }
-        if (i10 == 512) {
-            return 9;
-        }
-        throw new IllegalArgumentException(i0.a.k(i10, "type needs to be >= FIRST and <= LAST, type="));
+        throw new IllegalArgumentException("Unknown language.");
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = g7.p8.q(parcel, 20293);
+        g7.p8.s(parcel, 2, 4);
+        parcel.writeInt(1);
+        g7.p8.s(parcel, 3, 4);
+        parcel.writeInt(this.f10109a);
+        g7.p8.s(parcel, 4, 4);
+        parcel.writeFloat(this.f10110b);
+        g7.p8.s(parcel, 5, 4);
+        parcel.writeInt(this.f10111c);
+        g7.p8.r(parcel, q10);
     }
 }

@@ -1,40 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rn0 {
+    public final co0 f42467a;
 
-public final class rn0 implements bo0 {
-
-    public final do0 f42302a;
-
-    public rn0(do0 do0Var) {
-        this.f42302a = do0Var;
+    public rn0(co0 co0Var) {
+        this.f42467a = co0Var;
     }
 
-    @Override
-    public final void a(TL_account.Password password) {
-        this.f42302a.W = password;
-    }
-
-    @Override
-    public final void b() {
-        this.f42302a.f37455b0 = null;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        do0 do0Var = this.f42302a;
-        bo0 bo0Var = do0Var.P;
-        if (bo0Var != null) {
-            bo0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+    public final void a(Exception exc) {
+        co0 co0Var = this.f42467a;
+        if (co0Var.M0) {
+            return;
         }
-        if (do0Var.O0) {
-            do0Var.removeSelfFromStack();
+        co0Var.G0(true, false);
+        co0Var.C0(false);
+        if (!(exc instanceof bc.a) && !(exc instanceof bc.b)) {
+            org.telegram.ui.Components.y4.w0(co0Var, exc.getMessage());
+        } else {
+            org.telegram.ui.Components.y4.w0(co0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
         }
-        return do0Var.P != null;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

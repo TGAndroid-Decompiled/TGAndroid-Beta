@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public abstract class Atom implements Cloneable {
     public int type = 0;
     public int type_limits = 1;

@@ -1,46 +1,36 @@
 package h7;
 
-public abstract class z {
-    public static void a(je.s sVar, je.s sVar2, int i10) {
-        if (sVar == null || sVar2 == null || sVar == sVar2) {
-            return;
-        }
-        StringBuilder sb2 = new StringBuilder(i10);
-        sb2.append(sVar.f12929g);
-        je.p pVar = (je.p) sVar.f12927f;
-        je.p pVar2 = (je.p) sVar2.f12927f;
-        while (pVar != pVar2) {
-            sb2.append(((je.s) pVar).f12929g);
-            je.p pVar3 = (je.p) pVar.f12927f;
-            pVar.g();
-            pVar = pVar3;
-        }
-        sVar.f12929g = sb2.toString();
+import java.util.Iterator;
+public final class z extends t {
+    public final transient b0 f10190c;
+    public final transient a0 d;
+
+    public z(b0 b0Var, a0 a0Var) {
+        this.f10190c = b0Var;
+        this.d = a0Var;
     }
 
-    public static void b(je.p pVar, je.p pVar2) {
-        je.s sVar = null;
-        je.s sVar2 = null;
-        int length = 0;
-        while (pVar != null) {
-            if (pVar instanceof je.s) {
-                sVar2 = (je.s) pVar;
-                if (sVar == null) {
-                    sVar = sVar2;
-                }
-                length = sVar2.f12929g.length() + length;
-            } else {
-                a(sVar, sVar2, length);
-                sVar = null;
-                sVar2 = null;
-                length = 0;
-            }
-            if (pVar == pVar2) {
-                break;
-            } else {
-                pVar = (je.p) pVar.f12927f;
-            }
+    @Override
+    public final boolean contains(Object obj) {
+        if (this.f10190c.get(obj) != null) {
+            return true;
         }
-        a(sVar, sVar2, length);
+        return false;
+    }
+
+    @Override
+    public final int i(Object[] objArr) {
+        return this.d.i(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        this.f10190c.getClass();
+        return 1;
     }
 }

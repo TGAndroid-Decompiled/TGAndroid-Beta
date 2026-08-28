@@ -1,68 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.View;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+public final class xr {
+    public int f34745a;
+    public int f34746b;
+    public nz0 f34747c;
+    public int d;
+    public int f34748e;
 
-public final class xr extends View {
-
-    public final ud.a f34684a;
-
-    public final Paint f34685b;
-
-    public final RectF f34686c;
-    public final RectF d;
-
-    public final RectF f34687e;
-
-    public final lp f34688f;
-
-    public xr(Context context) {
-        super(context);
-        this.f34684a = new ud.a(this, er.h, 380L);
-        Paint paint = new Paint(1);
-        this.f34685b = paint;
-        this.f34686c = new RectF();
-        this.d = new RectF();
-        this.f34687e = new RectF();
-        this.f34688f = new lp(this, 5);
-        paint.setColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.hl, false));
-        invalidate();
+    public static xr b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
+        ?? obj = new Object();
+        obj.f34745a = dialogFilter.f19649id;
+        obj.f34746b = dialogFilter.color;
+        String str = dialogFilter.name;
+        if (str == null) {
+            str = "";
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
+        nz0 nz0Var = new nz0(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
+        nz0Var.s(r2Var);
+        obj.f34747c = nz0Var;
+        obj.f34747c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, nz0Var.f31221a.getFontMetricsInt(), false), dialogFilter.entities, obj.f34747c.f31221a.getFontMetricsInt()));
+        obj.f34747c.p(26);
+        int dp = AndroidUtilities.dp(9.32f);
+        nz0 nz0Var2 = obj.f34747c;
+        obj.f34748e = dp + ((int) nz0Var2.f31223c);
+        nz0Var2.j();
+        int[] iArr = org.telegram.ui.ActionBar.f6.f23250r8;
+        obj.d = org.telegram.ui.ActionBar.f6.w0(null, iArr[dialogFilter.color % iArr.length], false);
+        return obj;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f34688f, 3000L);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f34688f);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10 = this.f34684a.f48497e;
-        RectF rectF = this.d;
-        RectF rectF2 = this.f34686c;
-        RectF rectF3 = this.f34687e;
-        AndroidUtilities.lerp(rectF, rectF2, f10, rectF3);
-        float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), 0, f10);
-        canvas.drawRoundRect(rectF3, fLerp, fLerp, this.f34685b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        int paddingTop = getPaddingTop();
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f34686c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        int iDp = ((currentActionBarHeight / 2) + paddingTop) - AndroidUtilities.dp(15.0f);
-        this.d.set(AndroidUtilities.dp(12.0f), iDp, AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(30.0f) + iDp);
+    public final void a(Canvas canvas) {
+        float f10;
+        Paint paint = org.telegram.ui.ActionBar.f6.A0;
+        int i9 = this.d;
+        if (org.telegram.ui.ActionBar.f6.I.q()) {
+            f10 = 0.2f;
+        } else {
+            f10 = 0.1f;
+        }
+        paint.setColor(org.telegram.ui.ActionBar.f6.l1(f10, i9));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, this.f34748e, AndroidUtilities.dp(14.66f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.f6.A0);
+        this.f34747c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
     }
 }

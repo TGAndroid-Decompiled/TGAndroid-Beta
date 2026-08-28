@@ -1,72 +1,75 @@
 package m1;
 
+import androidx.datastore.preferences.protobuf.a0;
 import androidx.datastore.preferences.protobuf.a1;
-import androidx.datastore.preferences.protobuf.e0;
-import androidx.datastore.preferences.protobuf.u;
+import androidx.datastore.preferences.protobuf.b1;
+import androidx.datastore.preferences.protobuf.f0;
 import androidx.datastore.preferences.protobuf.v;
-import androidx.datastore.preferences.protobuf.w;
-import androidx.datastore.preferences.protobuf.w0;
-import androidx.datastore.preferences.protobuf.y;
+import androidx.datastore.preferences.protobuf.x;
+import androidx.datastore.preferences.protobuf.x0;
 import androidx.datastore.preferences.protobuf.z;
-import androidx.datastore.preferences.protobuf.z0;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-public final class h extends w {
+public final class h extends x {
     private static final h DEFAULT_INSTANCE;
-    private static volatile w0 PARSER = null;
+    private static volatile x0 PARSER = null;
     public static final int STRINGS_FIELD_NUMBER = 1;
-    private y strings_ = z0.d;
+    private z strings_ = a1.d;
 
     static {
         h hVar = new h();
         DEFAULT_INSTANCE = hVar;
-        w.h(h.class, hVar);
+        x.h(h.class, hVar);
     }
 
     public static void i(h hVar, Set set) {
-        y yVar = hVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) yVar).f1211a) {
-            int size = yVar.size();
-            hVar.strings_ = yVar.e(size == 0 ? 10 : size * 2);
-        }
-        List list = hVar.strings_;
-        Charset charset = z.f1333a;
-        if (!(set instanceof e0)) {
-            if (list instanceof ArrayList) {
-                ((ArrayList) list).ensureCapacity(set.size() + list.size());
+        int i9;
+        z zVar = hVar.strings_;
+        if (!((androidx.datastore.preferences.protobuf.b) zVar).f708a) {
+            int size = zVar.size();
+            if (size == 0) {
+                i9 = 10;
+            } else {
+                i9 = size * 2;
             }
-            int size2 = list.size();
-            for (Object obj : set) {
+            hVar.strings_ = zVar.e(i9);
+        }
+        z zVar2 = hVar.strings_;
+        Charset charset = a0.f699a;
+        if (set instanceof f0) {
+            List h = ((f0) set).h();
+            f0 f0Var = (f0) zVar2;
+            int size2 = zVar2.size();
+            for (Object obj : h) {
                 if (obj == null) {
-                    String str = "Element at index " + (list.size() - size2) + " is null.";
-                    for (int size3 = list.size() - 1; size3 >= size2; size3--) {
-                        list.remove(size3);
+                    String str = "Element at index " + (f0Var.size() - size2) + " is null.";
+                    for (int size3 = f0Var.size() - 1; size3 >= size2; size3--) {
+                        f0Var.remove(size3);
                     }
                     throw new NullPointerException(str);
+                } else if (obj instanceof androidx.datastore.preferences.protobuf.g) {
+                    f0Var.g((androidx.datastore.preferences.protobuf.g) obj);
+                } else {
+                    f0Var.add((String) obj);
                 }
-                list.add(obj);
             }
             return;
         }
-        List listH = ((e0) set).h();
-        e0 e0Var = (e0) list;
-        int size4 = list.size();
-        for (Object obj2 : listH) {
+        if (zVar2 instanceof ArrayList) {
+            ((ArrayList) zVar2).ensureCapacity(set.size() + zVar2.size());
+        }
+        int size4 = zVar2.size();
+        for (Object obj2 : set) {
             if (obj2 == null) {
-                String str2 = "Element at index " + (e0Var.size() - size4) + " is null.";
-                for (int size5 = e0Var.size() - 1; size5 >= size4; size5--) {
-                    e0Var.remove(size5);
+                String str2 = "Element at index " + (zVar2.size() - size4) + " is null.";
+                for (int size5 = zVar2.size() - 1; size5 >= size4; size5--) {
+                    zVar2.remove(size5);
                 }
                 throw new NullPointerException(str2);
             }
-            if (obj2 instanceof androidx.datastore.preferences.protobuf.g) {
-                e0Var.g((androidx.datastore.preferences.protobuf.g) obj2);
-            } else {
-                e0Var.add((String) obj2);
-            }
+            zVar2.add(obj2);
         }
     }
 
@@ -75,49 +78,50 @@ public final class h extends w {
     }
 
     public static g l() {
-        return (g) ((u) DEFAULT_INSTANCE.d(5));
+        return (g) ((v) DEFAULT_INSTANCE.d(5));
     }
 
     @Override
-    public final Object d(int i10) {
-        w0 vVar;
-        switch (j.b(i10)) {
+    public final Object d(int i9) {
+        x0 x0Var;
+        switch (j.b(i9)) {
             case 0:
                 return (byte) 1;
             case 1:
                 return null;
             case 2:
-                return new a1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001a", new Object[]{"strings_"});
+                return new b1(DEFAULT_INSTANCE, "\u0001\u0001\u0000\u0000\u0001\u0001\u0001\u0000\u0001\u0000\u0001\u001a", new Object[]{"strings_"});
             case 3:
                 return new h();
             case 4:
-                return new g(DEFAULT_INSTANCE);
+                return new v(DEFAULT_INSTANCE);
             case 5:
                 return DEFAULT_INSTANCE;
             case 6:
-                w0 w0Var = PARSER;
-                if (w0Var != null) {
-                    return w0Var;
-                }
-                synchronized (h.class) {
-                    try {
-                        vVar = PARSER;
-                        if (vVar == null) {
-                            vVar = new v();
-                            PARSER = vVar;
+                x0 x0Var2 = PARSER;
+                if (x0Var2 == null) {
+                    synchronized (h.class) {
+                        try {
+                            x0 x0Var3 = PARSER;
+                            x0Var = x0Var3;
+                            if (x0Var3 == null) {
+                                ?? obj = new Object();
+                                PARSER = obj;
+                                x0Var = obj;
+                            }
+                        } catch (Throwable th) {
+                            throw th;
                         }
-                    } catch (Throwable th) {
-                        throw th;
                     }
-                    break;
+                    return x0Var;
                 }
-                return vVar;
+                return x0Var2;
             default:
                 throw new UnsupportedOperationException();
         }
     }
 
-    public final y k() {
+    public final z k() {
         return this.strings_;
     }
 }

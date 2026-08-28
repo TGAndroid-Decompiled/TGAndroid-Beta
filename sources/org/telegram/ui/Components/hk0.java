@@ -1,55 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-
-public final class hk0 extends Drawable {
-
-    public final Paint f29050a = new Paint(1);
-
-    public final View f29051b;
-
-    public final Path f29052c;
-    public final RectF d;
-
-    public final zk0 f29053e;
-
-    public hk0(zk0 zk0Var, View view, Path path, RectF rectF) {
-        this.f29053e = zk0Var;
-        this.f29051b = view;
-        this.f29052c = path;
-        this.d = rectF;
-    }
+import android.view.ViewConfiguration;
+import android.view.ViewParent;
+public final class hk0 implements View.OnTouchListener {
+    public float f29106a;
+    public float f29107b;
+    public boolean f29108c;
 
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        View view = this.f29051b;
-        canvas.translate(-view.getX(), -view.getY());
-        canvas.clipPath(this.f29052c);
-        int iV0 = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23053d6, this.f29053e.f35277l2);
-        Paint paint = this.f29050a;
-        paint.setColor(i0.b.k(iV0, paint.getAlpha()));
-        canvas.drawRect(this.d, paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f29050a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        ViewParent parent = view.getParent();
+        if (parent != null) {
+            if (motionEvent.getAction() == 0) {
+                this.f29106a = motionEvent.getX();
+                this.f29107b = motionEvent.getY();
+                this.f29108c = true;
+                parent.requestDisallowInterceptTouchEvent(true);
+            }
+            if (motionEvent.getAction() == 2) {
+                float x10 = this.f29106a - motionEvent.getX();
+                float y10 = this.f29107b - motionEvent.getY();
+                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                if (this.f29108c) {
+                    if (Math.sqrt((y10 * y10) + (x10 * x10)) > scaledTouchSlop) {
+                        this.f29108c = false;
+                        parent.requestDisallowInterceptTouchEvent(false);
+                        return false;
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                this.f29108c = false;
+                parent.requestDisallowInterceptTouchEvent(false);
+                return false;
+            }
+        }
+        return false;
     }
 }

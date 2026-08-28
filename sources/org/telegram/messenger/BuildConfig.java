@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class BuildConfig {
     public static final String BETA_URL = "null";
     public static final String BUILD_TYPE = "HA_public";

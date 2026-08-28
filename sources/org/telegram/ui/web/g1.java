@@ -1,40 +1,37 @@
 package org.telegram.ui.web;
 
+import android.util.Base64InputStream;
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FilterInputStream;
+import java.util.HashMap;
+public final class g1 {
+    public final HashMap f43861a = new HashMap();
+    public File f43862b;
+    public long f43863c;
+    public long d;
 
-public final class g1 extends FileInputStream {
-
-    public final long f43840a;
-
-    public g1(File file, long j10, long j11) {
-        super(file);
-        this.f43840a = j11;
-        if (j10 > 0 && skip(j10) != j10) {
-            throw new RuntimeException("BoundedInputStream failed to skip");
+    public final FilterInputStream a() {
+        String str;
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new f1(this.f43862b, this.f43863c, this.d));
+        HashMap hashMap = this.f43861a;
+        h1 h1Var = (h1) hashMap.get("content-transfer-encoding");
+        String str2 = null;
+        if (h1Var == null) {
+            str = null;
+        } else {
+            str = h1Var.f43877a;
         }
-    }
-
-    @Override
-    public final int read() {
-        if (getChannel().position() >= this.f43840a) {
-            return -1;
+        if ("base64".equals(str)) {
+            return new Base64InputStream(bufferedInputStream, 0);
         }
-        return super.read();
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) throws IOException {
-        long jPosition = getChannel().position();
-        long j10 = this.f43840a;
-        if (jPosition >= j10) {
-            return -1;
+        h1 h1Var2 = (h1) hashMap.get("content-transfer-encoding");
+        if (h1Var2 != null) {
+            str2 = h1Var2.f43877a;
         }
-        long jPosition2 = j10 - getChannel().position();
-        if (i11 > jPosition2) {
-            i11 = (int) jPosition2;
+        if ("quoted-printable".equalsIgnoreCase(str2)) {
+            return new i1(bufferedInputStream);
         }
-        return super.read(bArr, i10, i11);
+        return bufferedInputStream;
     }
 }

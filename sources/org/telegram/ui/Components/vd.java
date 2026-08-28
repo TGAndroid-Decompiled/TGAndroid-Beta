@@ -1,88 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class vd implements Utilities.Callback {
+    public final int f33347a = 0;
+    public final Object f33348b;
+    public final boolean f33349c;
+    public final int d;
+    public final int f33350e;
+    public final boolean f33351f;
+    public final String f33352g;
+    public final Object h;
+    public final Object f33353i;
+    public final Object f33354j;
 
-public final class vd extends Property {
-
-    public final int f33372a;
-
-    public final ChatActivityEnterView f33373b;
-
-    public vd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        super(Float.class, "emoji_button_scale");
-        this.f33372a = i10;
-        switch (i10) {
-            case 1:
-                this.f33373b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
-                break;
-            case 2:
-                this.f33373b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                break;
-            case 3:
-                this.f33373b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                break;
-            case 4:
-                this.f33373b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
-                break;
-            default:
-                this.f33373b = chatActivityEnterView;
-                break;
-        }
+    public vd(xf xfVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i9, int i10, boolean z11, String str, Object obj2) {
+        this.h = xfVar;
+        this.f33348b = obj;
+        this.f33353i = photoEntry;
+        this.f33349c = z10;
+        this.d = i9;
+        this.f33350e = i10;
+        this.f33351f = z11;
+        this.f33352g = str;
+        this.f33354j = obj2;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f33372a) {
+    public final void run(Object obj) {
+        int i9 = this.f33347a;
+        Object obj2 = this.f33353i;
+        Object obj3 = this.h;
+        switch (i9) {
             case 0:
-                return Float.valueOf(this.f33373b.h);
-            case 1:
-                return Float.valueOf(this.f33373b.A);
-            case 2:
-                return Float.valueOf(this.f33373b.f26145n);
-            case 3:
-                return Float.valueOf(this.f33373b.f26198x);
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
+                int i10 = ChatActivityEnterView.f26074i5;
+                gd gdVar = new gd(chatActivityEnterView, (TLRPC.Document) obj2, this.f33352g, (MessageObject.SendAnimationData) this.f33354j, this.f33349c, this.d, this.f33350e, this.f33348b, (Long) obj, this.f33351f);
+                if (!chatActivityEnterView.r1(gdVar)) {
+                    gdVar.run();
+                    return;
+                }
+                return;
             default:
-                return Float.valueOf(this.f33373b.C);
+                xf xfVar = (xf) obj3;
+                gd gdVar2 = new gd(xfVar, this.f33348b, (MediaController.PhotoEntry) obj2, this.f33349c, this.d, this.f33350e, this.f33351f, (Long) obj, this.f33352g, this.f33354j);
+                if (!xfVar.f34670a.r1(gdVar2)) {
+                    gdVar2.run();
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f33372a) {
-            case 0:
-                float fFloatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f33373b;
-                chatActivityEnterView.h = fFloatValue;
-                chatActivityEnterView.E1();
-                break;
-            case 1:
-                float fFloatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f33373b;
-                chatActivityEnterView2.A = fFloatValue2;
-                chatActivityEnterView2.z1();
-                break;
-            case 2:
-                float fFloatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f33373b;
-                chatActivityEnterView3.f26145n = fFloatValue3;
-                chatActivityEnterView3.E1();
-                break;
-            case 3:
-                float fFloatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f33373b;
-                chatActivityEnterView4.f26198x = fFloatValue4;
-                chatActivityEnterView4.z1();
-                break;
-            default:
-                float fFloatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f33373b;
-                chatActivityEnterView5.C = fFloatValue5;
-                chatActivityEnterView5.I1();
-                break;
-        }
+    public vd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i9, int i10, Object obj, boolean z11) {
+        this.h = chatActivityEnterView;
+        this.f33353i = document;
+        this.f33352g = str;
+        this.f33354j = sendAnimationData;
+        this.f33349c = z10;
+        this.d = i9;
+        this.f33350e = i10;
+        this.f33348b = obj;
+        this.f33351f = z11;
     }
 }

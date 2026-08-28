@@ -3,40 +3,39 @@ package r0;
 import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
-
 public class j1 {
-
-    public static final m1 f46609b;
-
-    public final m1 f46610a;
+    public static final m1 f46919b;
+    public final m1 f46920a;
 
     static {
-        c1 z0Var;
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 34) {
-            z0Var = new b1();
-        } else if (i10 >= 30) {
-            z0Var = new a1();
+        c1 y0Var;
+        int i9 = Build.VERSION.SDK_INT;
+        if (i9 >= 34) {
+            y0Var = new b1();
+        } else if (i9 >= 30) {
+            y0Var = new a1();
+        } else if (i9 >= 29) {
+            y0Var = new z0();
         } else {
-            z0Var = i10 >= 29 ? new z0() : new y0();
+            y0Var = new y0();
         }
-        f46609b = z0Var.b().f46619a.a().f46619a.b().f46619a.c();
+        f46919b = y0Var.b().f46929a.a().f46929a.b().f46929a.c();
     }
 
     public j1(m1 m1Var) {
-        this.f46610a = m1Var;
+        this.f46920a = m1Var;
     }
 
     public m1 a() {
-        return this.f46610a;
+        return this.f46920a;
     }
 
     public m1 b() {
-        return this.f46610a;
+        return this.f46920a;
     }
 
     public m1 c() {
-        return this.f46610a;
+        return this.f46920a;
     }
 
     public j e() {
@@ -51,21 +50,24 @@ public class j1 {
             return false;
         }
         j1 j1Var = (j1) obj;
-        return o() == j1Var.o() && n() == j1Var.n() && Objects.equals(k(), j1Var.k()) && Objects.equals(i(), j1Var.i()) && Objects.equals(e(), j1Var.e());
+        if (o() == j1Var.o() && n() == j1Var.n() && Objects.equals(k(), j1Var.k()) && Objects.equals(i(), j1Var.i()) && Objects.equals(e(), j1Var.e())) {
+            return true;
+        }
+        return false;
     }
 
-    public i0.c f(int i10) {
-        return i0.c.f10488e;
+    public i0.b f(int i9) {
+        return i0.b.f10847e;
     }
 
-    public i0.c g(int i10) {
-        if ((i10 & 8) == 0) {
-            return i0.c.f10488e;
+    public i0.b g(int i9) {
+        if ((i9 & 8) == 0) {
+            return i0.b.f10847e;
         }
         throw new IllegalArgumentException("Unable to query the maximum insets for IME");
     }
 
-    public i0.c h() {
+    public i0.b h() {
         return k();
     }
 
@@ -73,24 +75,24 @@ public class j1 {
         return Objects.hash(Boolean.valueOf(o()), Boolean.valueOf(n()), k(), i(), e());
     }
 
-    public i0.c i() {
-        return i0.c.f10488e;
+    public i0.b i() {
+        return i0.b.f10847e;
     }
 
-    public i0.c j() {
+    public i0.b j() {
         return k();
     }
 
-    public i0.c k() {
-        return i0.c.f10488e;
+    public i0.b k() {
+        return i0.b.f10847e;
     }
 
-    public i0.c l() {
+    public i0.b l() {
         return k();
     }
 
-    public m1 m(int i10, int i11, int i12, int i13) {
-        return f46609b;
+    public m1 m(int i9, int i10, int i11, int i12) {
+        return f46919b;
     }
 
     public boolean n() {
@@ -101,22 +103,22 @@ public class j1 {
         return false;
     }
 
-    public boolean p(int i10) {
+    public boolean p(int i9) {
         return true;
     }
 
     public void d(View view) {
     }
 
-    public void q(i0.c[] cVarArr) {
+    public void q(i0.b[] bVarArr) {
     }
 
     public void r(m1 m1Var) {
     }
 
-    public void s(i0.c cVar) {
+    public void s(i0.b bVar) {
     }
 
-    public void t(int i10) {
+    public void t(int i9) {
     }
 }

@@ -1,48 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
+import android.animation.ValueAnimator;
+public final class tr0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32782a;
+    public final xs0 f32783b;
+    public final eu0 f32784c;
 
-public final class tr0 extends f2.w {
-
-    public final int f32868c;
-    public final Object d;
-
-    public final ViewGroup f32869e;
-
-    public tr0(ViewGroup viewGroup, Object obj, int i10) {
-        this.f32868c = i10;
-        this.f32869e = viewGroup;
-        this.d = obj;
+    public tr0(eu0 eu0Var, xs0 xs0Var, int i9) {
+        this.f32782a = i9;
+        this.f32784c = eu0Var;
+        this.f32783b = xs0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        switch (this.f32868c) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f32782a) {
             case 0:
-                zs0 zs0Var = (zs0) this.d;
-                f2.q0 adapter = zs0Var.f35340r.getAdapter();
-                hu0 hu0Var = (hu0) this.f32869e;
-                bu0 bu0Var = hu0Var.E;
-                if (adapter == bu0Var) {
-                    if (bu0Var.j(i10) == 2) {
-                        return zs0Var.f35341s.J;
-                    }
-                    return 1;
-                }
-                if (hu0.v(hu0Var, adapter) == -1) {
-                    return 1;
-                }
-                ((eu0) adapter).getClass();
-                return 1;
+                this.f32784c.f28144j1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f32783b.h.invalidate();
+                return;
             default:
-                kh.i iVar = (kh.i) this.d;
-                b51 b51Var = ((k51) this.f32869e).U2;
-                if (b51Var == null) {
-                    return iVar.J;
-                }
-                n41 n41VarG = b51Var.G(i10);
-                return (n41VarG == null || (i11 = n41VarG.f30853u) == -1) ? iVar.J : i11;
+                this.f32784c.f28144j1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                this.f32783b.h.invalidate();
+                return;
         }
     }
 }

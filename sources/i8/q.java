@@ -1,30 +1,25 @@
 package i8;
 
-import j8.m0;
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+import g7.p8;
+public final class q extends y5.a {
+    public static final Parcelable.Creator<q> CREATOR = new c(12);
+    public final int f11022a;
+    public final ParcelFileDescriptor f11023b;
 
-public final class q implements Runnable {
-
-    public final int f10962a;
-
-    public final m0 f10963b;
-
-    public final m f10964c;
-
-    public q(m mVar, m0 m0Var, int i10) {
-        this.f10962a = i10;
-        this.f10964c = mVar;
-        this.f10963b = m0Var;
+    public q(int i9, ParcelFileDescriptor parcelFileDescriptor) {
+        this.f11022a = i9;
+        this.f11023b = parcelFileDescriptor;
     }
 
     @Override
-    public final void run() {
-        switch (this.f10962a) {
-            case 0:
-                this.f10964c.f10958c.onPeerConnected(this.f10963b);
-                break;
-            default:
-                this.f10964c.f10958c.onPeerDisconnected(this.f10963b);
-                break;
-        }
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.s(parcel, 2, 4);
+        parcel.writeInt(this.f11022a);
+        p8.k(parcel, 3, this.f11023b, i9);
+        p8.r(parcel, q10);
     }
 }

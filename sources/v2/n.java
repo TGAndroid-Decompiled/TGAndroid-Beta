@@ -1,14 +1,11 @@
 package v2;
-
 public final class n extends v {
-
-    public final u f48729a;
-
-    public final t f48730b;
+    public final u f48302a;
+    public final t f48303b;
 
     public n(u uVar, t tVar) {
-        this.f48729a = uVar;
-        this.f48730b = tVar;
+        this.f48302a = uVar;
+        this.f48303b = tVar;
     }
 
     public final boolean equals(Object obj) {
@@ -17,10 +14,10 @@ public final class n extends v {
         }
         if (obj instanceof v) {
             v vVar = (v) obj;
-            u uVar = this.f48729a;
-            if (uVar != null ? uVar.equals(((n) vVar).f48729a) : ((n) vVar).f48729a == null) {
-                t tVar = this.f48730b;
-                if (tVar != null ? tVar.equals(((n) vVar).f48730b) : ((n) vVar).f48730b == null) {
+            u uVar = this.f48302a;
+            if (uVar != null ? uVar.equals(((n) vVar).f48302a) : ((n) vVar).f48302a == null) {
+                t tVar = this.f48303b;
+                if (tVar != null ? tVar.equals(((n) vVar).f48303b) : ((n) vVar).f48303b == null) {
                     return true;
                 }
             }
@@ -29,13 +26,23 @@ public final class n extends v {
     }
 
     public final int hashCode() {
-        u uVar = this.f48729a;
-        int iHashCode = ((uVar == null ? 0 : uVar.hashCode()) ^ 1000003) * 1000003;
-        t tVar = this.f48730b;
-        return (tVar != null ? tVar.hashCode() : 0) ^ iHashCode;
+        int hashCode;
+        int i9 = 0;
+        u uVar = this.f48302a;
+        if (uVar == null) {
+            hashCode = 0;
+        } else {
+            hashCode = uVar.hashCode();
+        }
+        int i10 = (hashCode ^ 1000003) * 1000003;
+        t tVar = this.f48303b;
+        if (tVar != null) {
+            i9 = tVar.hashCode();
+        }
+        return i9 ^ i10;
     }
 
     public final String toString() {
-        return "NetworkConnectionInfo{networkType=" + this.f48729a + ", mobileSubtype=" + this.f48730b + "}";
+        return "NetworkConnectionInfo{networkType=" + this.f48302a + ", mobileSubtype=" + this.f48303b + "}";
     }
 }

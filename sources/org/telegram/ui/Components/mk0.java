@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 public interface mk0 {
-    int run();
+    void a(int i9, View view);
 }

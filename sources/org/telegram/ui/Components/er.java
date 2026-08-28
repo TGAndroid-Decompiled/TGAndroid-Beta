@@ -1,99 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
+import android.graphics.drawable.Drawable;
+public final class er implements Drawable.Callback {
+    public final int f28109a;
+    public final fr f28110b;
 
-public final class er implements Interpolator {
-
-    public static final er f28122f = new er(0.25d, 0.1d, 0.25d, 1.0d);
-
-    public static final er f28123g = new er(0.0d, 0.0d, 0.58d, 1.0d);
-    public static final er h = new er(0.23d, 1.0d, 0.32d, 1.0d);
-
-    public static final er f28124i = new er(0.42d, 0.0d, 1.0d, 1.0d);
-
-    public static final er f28125j = new er(0.42d, 0.0d, 0.58d, 1.0d);
-
-    public static final er f28126k = new er(0.34d, 1.56d, 0.64d, 1.0d);
-
-    public static final PathInterpolator f28127l;
-
-    public final PointF f28128a;
-
-    public final PointF f28129b;
-
-    public final PointF f28130c;
-    public final PointF d;
-
-    public final PointF f28131e;
-
-    static {
-        new PathInterpolator(g7.w7.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
-        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
-        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f28127l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
-    }
-
-    public er(float f10, float f11, float f12, float f13) {
-        PointF pointF = new PointF(f10, f11);
-        PointF pointF2 = new PointF(f12, f13);
-        this.f28130c = new PointF();
-        this.d = new PointF();
-        this.f28131e = new PointF();
-        float f14 = pointF.x;
-        if (f14 < 0.0f || f14 > 1.0f) {
-            throw new IllegalArgumentException("startX value must be in the range [0, 1]");
-        }
-        float f15 = pointF2.x;
-        if (f15 < 0.0f || f15 > 1.0f) {
-            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
-        }
-        this.f28128a = pointF;
-        this.f28129b = pointF2;
+    public er(fr frVar, int i9) {
+        this.f28109a = i9;
+        this.f28110b = frVar;
     }
 
     @Override
-    public final float getInterpolation(float f10) {
-        PointF pointF;
-        PointF pointF2;
-        PointF pointF3;
-        PointF pointF4;
-        PointF pointF5;
-        int i10 = 1;
-        float f11 = f10;
-        while (true) {
-            pointF = this.f28129b;
-            pointF2 = this.f28128a;
-            pointF3 = this.f28130c;
-            pointF4 = this.d;
-            pointF5 = this.f28131e;
-            if (i10 >= 14) {
-                break;
-            }
-            float f12 = pointF2.x * 3.0f;
-            pointF5.x = f12;
-            float f13 = ((pointF.x - pointF2.x) * 3.0f) - f12;
-            pointF4.x = f13;
-            float f14 = (1.0f - pointF5.x) - f13;
-            pointF3.x = f14;
-            float f15 = (((((f14 * f11) + pointF4.x) * f11) + pointF5.x) * f11) - f10;
-            if (Math.abs(f15) < 0.001d) {
-                break;
-            }
-            f11 -= f15 / (((((pointF3.x * 3.0f) * f11) + (pointF4.x * 2.0f)) * f11) + pointF5.x);
-            i10++;
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f28109a) {
+            case 0:
+                fr frVar = this.f28110b;
+                if (frVar.f28558c < 1.0f) {
+                    frVar.invalidateSelf();
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f28110b;
+                if (frVar2.f28558c > 0.0f) {
+                    frVar2.invalidateSelf();
+                    return;
+                }
+                return;
         }
-        float f16 = pointF2.y * 3.0f;
-        pointF5.y = f16;
-        float f17 = ((pointF.y - pointF2.y) * 3.0f) - f16;
-        pointF4.y = f17;
-        float f18 = (1.0f - pointF5.y) - f17;
-        pointF3.y = f18;
-        return ((((f18 * f11) + pointF4.y) * f11) + pointF5.y) * f11;
     }
 
-    public er(double d, double d10, double d11, double d12) {
-        this((float) d, (float) d10, (float) d11, (float) d12);
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f28109a) {
+            case 0:
+                fr frVar = this.f28110b;
+                if (frVar.f28558c < 1.0f) {
+                    frVar.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f28110b;
+                if (frVar2.f28558c > 0.0f) {
+                    frVar2.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f28109a) {
+            case 0:
+                fr frVar = this.f28110b;
+                if (frVar.f28558c < 1.0f) {
+                    frVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                fr frVar2 = this.f28110b;
+                if (frVar2.f28558c > 0.0f) {
+                    frVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

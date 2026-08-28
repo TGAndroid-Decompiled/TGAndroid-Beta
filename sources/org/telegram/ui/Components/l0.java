@@ -1,33 +1,29 @@
 package org.telegram.ui.Components;
+public final class l0 implements zb0 {
+    public final int f30283a;
+    public final bc0 f30284b;
+    public final bc0 f30285c;
+    public final bc0 d;
 
-public final class l0 implements dc0 {
-
-    public final int f30238a;
-
-    public final fc0 f30239b;
-
-    public final fc0 f30240c;
-    public final fc0 d;
-
-    public l0(fc0 fc0Var, fc0 fc0Var2, fc0 fc0Var3, int i10) {
-        this.f30238a = i10;
-        this.f30239b = fc0Var;
-        this.f30240c = fc0Var2;
-        this.d = fc0Var3;
+    public l0(bc0 bc0Var, bc0 bc0Var2, bc0 bc0Var3, int i9) {
+        this.f30283a = i9;
+        this.f30284b = bc0Var;
+        this.f30285c = bc0Var2;
+        this.d = bc0Var3;
     }
 
     @Override
-    public final void m(fc0 fc0Var, int i10) {
-        switch (this.f30238a) {
+    public final void m(bc0 bc0Var, int i9) {
+        switch (this.f30283a) {
             case 0:
-                y4.b(this.f30239b, this.f30240c, this.d);
-                break;
+                y4.b(this.f30284b, this.f30285c, this.d);
+                return;
             case 1:
-                y4.y0(this.f30239b, this.f30240c, this.d);
-                break;
+                y4.y0(this.f30284b, this.f30285c, this.d);
+                return;
             default:
-                y4.y0(this.f30239b, this.f30240c, this.d);
-                break;
+                y4.y0(this.f30284b, this.f30285c, this.d);
+                return;
         }
     }
 }

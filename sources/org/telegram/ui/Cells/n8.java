@@ -1,38 +1,22 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class n8 extends FrameLayout {
+    public TextView f24773a;
 
-public final class n8 extends AnimatorListenerAdapter {
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), i10);
+    }
 
-    public final int f24734a;
-
-    public final int f24735b;
-
-    public final p8 f24736c;
-
-    public n8(p8 p8Var, int i10, int i11) {
-        this.f24734a = i11;
-        this.f24736c = p8Var;
-        this.f24735b = i10;
+    public void setTextColor(int i9) {
+        this.f24773a.setTextColor(i9);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24734a) {
-            case 0:
-                p8 p8Var = this.f24736c;
-                p8Var.f25006r = 0;
-                p8Var.setBackgroundColor(this.f24735b);
-                p8Var.invalidate();
-                break;
-            default:
-                int i10 = this.f24735b;
-                p8 p8Var2 = this.f24736c;
-                p8Var2.setBackgroundColor(i10);
-                p8Var2.f25006r = 0;
-                p8Var2.invalidate();
-                break;
-        }
+    public final void onDraw(Canvas canvas) {
     }
 }

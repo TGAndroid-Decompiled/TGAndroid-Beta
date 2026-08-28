@@ -1,6 +1,3 @@
 package n5;
-
-import android.os.IInterface;
-
-public interface r extends IInterface {
+public final class r extends b7.a {
 }

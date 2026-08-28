@@ -1,5 +1,4 @@
 package java.util.function;
-
 public interface IntConsumer {
-    void accept(int i10);
+    void accept(int i9);
 }

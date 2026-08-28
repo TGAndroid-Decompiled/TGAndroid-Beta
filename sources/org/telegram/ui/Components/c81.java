@@ -1,289 +1,322 @@
 package org.telegram.ui.Components;
 
-import android.os.AsyncTask;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.telegram.messenger.FileLog;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.Property;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class c81 extends FrameLayout {
+    public static final int E = 0;
+    public int A;
+    public int B;
+    public final b61 C;
+    public final g81 D;
+    public final ImageReceiver f27414a;
+    public boolean f27415b;
+    public final TextPaint f27416c;
+    public StaticLayout d;
+    public StaticLayout f27417e;
+    public final Paint f27418f;
+    public final Paint h;
+    public final Paint f27419n;
+    public int f27420r;
+    public int f27421s;
+    public int v;
+    public int f27422w;
+    public boolean f27423x;
+    public AnimatorSet f27424y;
 
-public final class c81 extends AsyncTask {
+    public c81(g81 g81Var, Context context) {
+        super(context);
+        this.D = g81Var;
+        this.f27423x = true;
+        this.C = new b61(this, 4);
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f27416c = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        Paint paint = new Paint(1);
+        this.f27418f = paint;
+        paint.setColor(-15095832);
+        Paint paint2 = new Paint();
+        this.h = paint2;
+        paint2.setColor(-6975081);
+        Paint paint3 = new Paint(1);
+        this.f27419n = paint3;
+        paint3.setColor(-1);
+        this.f27414a = new ImageReceiver(this);
+    }
 
-    public final int f27376a;
+    public final void a() {
+        b61 b61Var = this.C;
+        AndroidUtilities.cancelRunOnUIThread(b61Var);
+        if (this.f27423x && this.D.f28692a.z()) {
+            AndroidUtilities.runOnUIThread(b61Var, 3000L);
+        }
+    }
 
-    public String f27377b;
+    public final void b(int i9) {
+        if (this.f27421s != i9 && i9 >= 0 && !this.D.D) {
+            this.f27421s = i9;
+            StaticLayout staticLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.f27421s), this.f27416c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.d = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                this.f27420r = (int) Math.ceil(this.d.getLineWidth(0));
+            }
+            invalidate();
+        }
+    }
 
-    public final String[] f27378c;
-    public final i81 d;
+    public final void c(int i9) {
+        if (!this.f27415b && i9 >= 0 && !this.D.D) {
+            this.v = i9;
+            this.f27417e = new StaticLayout(AndroidUtilities.formatShortDuration(this.v), this.f27416c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            invalidate();
+        }
+    }
 
-    public c81(i81 i81Var, String str, int i10) {
-        this.f27376a = i10;
-        switch (i10) {
-            case 1:
-                this.d = i81Var;
-                this.f27378c = new String[4];
-                this.f27377b = str;
-                break;
-            case 2:
-                this.d = i81Var;
-                this.f27378c = new String[2];
-                this.f27377b = str;
-                break;
-            case 3:
-                this.d = i81Var;
-                this.f27378c = new String[2];
-                this.f27377b = str;
-                break;
-            case 4:
-                this.d = i81Var;
-                this.f27378c = new String[2];
-                this.f27377b = str;
-                break;
-            default:
-                this.d = i81Var;
-                this.f27378c = new String[2];
-                this.f27377b = str;
-                break;
+    public final void d(boolean z10, boolean z11) {
+        if (this.f27423x == z10) {
+            return;
+        }
+        this.f27423x = z10;
+        AnimatorSet animatorSet = this.f27424y;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        boolean z12 = this.f27423x;
+        Property property = View.ALPHA;
+        if (z12) {
+            if (z11) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.f27424y = animatorSet2;
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 1.0f));
+                this.f27424y.setDuration(150L);
+                this.f27424y.addListener(new b81(this, 0));
+                this.f27424y.start();
+            } else {
+                setAlpha(1.0f);
+            }
+        } else if (z11) {
+            AnimatorSet animatorSet3 = new AnimatorSet();
+            this.f27424y = animatorSet3;
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f));
+            this.f27424y.setDuration(150L);
+            this.f27424y.addListener(new b81(this, 1));
+            this.f27424y.start();
+        } else {
+            setAlpha(0.0f);
+        }
+        a();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        int dp2;
+        Canvas canvas2;
+        int i9;
+        int i10;
+        int i11;
+        g81 g81Var = this.D;
+        if (g81Var.L) {
+            if (g81Var.I && g81Var.J != 0.0f) {
+                long currentTimeMillis = System.currentTimeMillis();
+                g81Var.H = currentTimeMillis;
+                float f10 = g81Var.J - (((float) (currentTimeMillis - g81Var.H)) / 150.0f);
+                g81Var.J = f10;
+                if (f10 < 0.0f) {
+                    g81Var.J = 0.0f;
+                }
+                invalidate();
+            }
+            float f11 = g81Var.J;
+            ImageReceiver imageReceiver = this.f27414a;
+            imageReceiver.setAlpha(f11);
+            imageReceiver.draw(canvas);
+        }
+        if (g81Var.f28692a.d != null && !g81Var.D) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            if (!g81Var.Q) {
+                int i12 = 10;
+                if (this.d != null) {
+                    canvas.save();
+                    float dp3 = (measuredWidth - AndroidUtilities.dp(58.0f)) - this.f27420r;
+                    if (g81Var.P) {
+                        i11 = 6;
+                    } else {
+                        i11 = 10;
+                    }
+                    canvas.translate(dp3, measuredHeight - AndroidUtilities.dp(i11 + 29));
+                    this.d.draw(canvas);
+                    canvas.restore();
+                }
+                if (this.f27417e != null) {
+                    canvas.save();
+                    float dp4 = AndroidUtilities.dp(18.0f);
+                    if (g81Var.P) {
+                        i12 = 6;
+                    }
+                    canvas.translate(dp4, measuredHeight - AndroidUtilities.dp(i12 + 29));
+                    this.f27417e.draw(canvas);
+                    canvas.restore();
+                }
+            }
+            if (this.f27421s != 0) {
+                float f12 = 7.0f;
+                int i13 = 0;
+                if (g81Var.Q) {
+                    dp = measuredHeight - AndroidUtilities.dp(3.0f);
+                    dp2 = AndroidUtilities.dp(7.0f);
+                } else if (g81Var.P) {
+                    dp = measuredHeight - AndroidUtilities.dp(29.0f);
+                    i13 = AndroidUtilities.dp(36.0f) + this.f27420r;
+                    measuredWidth = (measuredWidth - AndroidUtilities.dp(76.0f)) - this.f27420r;
+                    dp2 = AndroidUtilities.dp(28.0f);
+                } else {
+                    dp = measuredHeight - AndroidUtilities.dp(13.0f);
+                    dp2 = AndroidUtilities.dp(12.0f);
+                }
+                int i14 = measuredHeight - dp2;
+                boolean z10 = g81Var.P;
+                Paint paint = this.h;
+                if (z10) {
+                    canvas.drawRect(i13, dp, measuredWidth, AndroidUtilities.dp(3.0f) + dp, paint);
+                    canvas2 = canvas;
+                } else {
+                    canvas2 = canvas;
+                }
+                if (this.f27415b) {
+                    i9 = this.B;
+                } else {
+                    i9 = ((int) ((this.v / this.f27421s) * (measuredWidth - i13))) + i13;
+                }
+                int i15 = this.f27422w;
+                if (i15 != 0 && (i10 = this.f27421s) != 0) {
+                    float f13 = i13;
+                    float f14 = dp;
+                    float b10 = org.telegram.ui.Cells.j2.b(i15, i10, measuredWidth - i13, f13);
+                    float dp5 = AndroidUtilities.dp(3.0f) + dp;
+                    if (g81Var.P) {
+                        paint = this.f27419n;
+                    }
+                    canvas2.drawRect(f13, f14, b10, dp5, paint);
+                }
+                float f15 = i9;
+                Paint paint2 = this.f27418f;
+                canvas2.drawRect(i13, dp, f15, AndroidUtilities.dp(3.0f) + dp, paint2);
+                if (!g81Var.Q) {
+                    float f16 = i14;
+                    if (!this.f27415b) {
+                        f12 = 5.0f;
+                    }
+                    canvas2.drawCircle(f15, f16, AndroidUtilities.dp(f12), paint2);
+                }
+            }
         }
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        switch (this.f27376a) {
-            case 0:
-                String[] strArr = this.f27378c;
-                Locale locale = Locale.US;
-                String str = "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f27377b;
-                this.d.getClass();
-                String strC = i81.c(this, str, null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    Matcher matcher = i81.f29285n0.matcher(strC);
-                    if (matcher.find()) {
-                        JSONArray jSONArray = new JSONArray(matcher.group(1));
-                        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-                            JSONArray jSONArray2 = jSONArray.getJSONArray(i10);
-                            if (jSONArray2.length() != 0) {
-                                JSONObject jSONObject = jSONArray2.getJSONObject(0);
-                                if (jSONObject.has("file")) {
-                                    strArr[0] = jSONObject.getString("file");
-                                    strArr[1] = "other";
-                                }
-                            }
-                        }
-                    }
-                } catch (Exception e9) {
-                    FileLog.e(e9);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr[0];
-            case 1:
-                String[] strArr2 = this.f27378c;
-                Locale locale2 = Locale.US;
-                String str2 = "https://coub.com/api/v2/coubs/" + this.f27377b + ".json";
-                this.d.getClass();
-                String strC2 = i81.c(this, str2, null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    JSONObject jSONObject2 = new JSONObject(strC2).getJSONObject("file_versions").getJSONObject("mobile");
-                    String string = jSONObject2.getString("video");
-                    String string2 = jSONObject2.getJSONArray("audio").getString(0);
-                    if (string != null && string2 != null) {
-                        strArr2[0] = string;
-                        strArr2[1] = "other";
-                        strArr2[2] = string2;
-                        strArr2[3] = "other";
-                    }
-                    break;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr2[0];
-            case 2:
-                String[] strArr3 = this.f27378c;
-                String str3 = this.f27377b;
-                this.d.getClass();
-                String strC3 = i81.c(this, str3, null, false);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    Matcher matcher2 = i81.f29286o0.matcher(strC3);
-                    if (matcher2.find()) {
-                        strArr3[0] = new JSONObject(matcher2.group(1)).getJSONArray("quality_options").getJSONObject(0).getString("source");
-                        strArr3[1] = "other";
-                    }
-                    break;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr3[0];
-            case 3:
-                String[] strArr4 = this.f27378c;
-                HashMap map = new HashMap();
-                map.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-                int iIndexOf = this.f27377b.indexOf(38);
-                if (iIndexOf > 0) {
-                    this.f27377b = this.f27377b.substring(0, iIndexOf);
-                }
-                Locale locale3 = Locale.US;
-                String str4 = "https://api.twitch.tv/kraken/streams/" + this.f27377b + "?stream_type=all";
-                this.d.getClass();
-                String strC4 = i81.c(this, str4, map, false);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    new JSONObject(strC4).getJSONObject("stream");
-                    JSONObject jSONObject3 = new JSONObject(i81.c(this, "https://api.twitch.tv/api/channels/" + this.f27377b + "/access_token", map, false));
-                    String strEncode = URLEncoder.encode(jSONObject3.getString("sig"), "UTF-8");
-                    String strEncode2 = URLEncoder.encode(jSONObject3.getString("token"), "UTF-8");
-                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f27377b, "UTF-8");
-                    String str5 = "allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + strEncode + "&token=" + strEncode2;
-                    strArr4[0] = "https://usher.ttvnw.net/api/channel/hls/" + this.f27377b + ".m3u8?" + str5;
-                    strArr4[1] = "hls";
-                    break;
-                } catch (Exception e12) {
-                    FileLog.e(e12);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr4[0];
-            default:
-                String[] strArr5 = this.f27378c;
-                Locale locale4 = Locale.US;
-                String str6 = "https://player.vimeo.com/video/" + this.f27377b + "/config";
-                this.d.getClass();
-                String strC5 = i81.c(this, str6, null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    JSONObject jSONObject4 = new JSONObject(strC5).getJSONObject("request").getJSONObject("files");
-                    if (jSONObject4.has("hls")) {
-                        JSONObject jSONObject5 = jSONObject4.getJSONObject("hls");
-                        try {
-                            strArr5[0] = jSONObject5.getString("url");
-                        } catch (Exception unused) {
-                            strArr5[0] = jSONObject5.getJSONObject("cdns").getJSONObject(jSONObject5.getString("default_cdn")).getString("url");
-                        }
-                        strArr5[1] = "hls";
-                    } else if (jSONObject4.has("progressive")) {
-                        strArr5[1] = "other";
-                        strArr5[0] = jSONObject4.getJSONArray("progressive").getJSONObject(0).getString("url");
-                    }
-                    break;
-                } catch (Exception e13) {
-                    FileLog.e(e13);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr5[0];
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            if (!this.f27423x) {
+                d(true, true);
+                return true;
+            }
+            onTouchEvent(motionEvent);
+            return this.f27415b;
         }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        switch (this.f27376a) {
-            case 0:
-                String str = (String) obj;
-                i81 i81Var = this.d;
-                if (str != null) {
-                    i81Var.f29310w = true;
-                    i81Var.f29311x = str;
-                    i81Var.f29312y = this.f27378c[1];
-                    if (i81Var.f29309s) {
-                        i81Var.i();
-                    }
-                    i81Var.j(false, true);
-                    i81Var.f29298b0.d(true, true);
-                } else if (!isCancelled()) {
-                    i81Var.h();
-                }
-                break;
-            case 1:
-                String str2 = (String) obj;
-                i81 i81Var2 = this.d;
-                if (str2 != null) {
-                    i81Var2.f29310w = true;
-                    i81Var2.f29311x = str2;
-                    String[] strArr = this.f27378c;
-                    i81Var2.f29312y = strArr[1];
-                    i81Var2.A = strArr[2];
-                    i81Var2.B = strArr[3];
-                    if (i81Var2.f29309s) {
-                        i81Var2.i();
-                    }
-                    i81Var2.j(false, true);
-                    i81Var2.f29298b0.d(true, true);
-                } else if (!isCancelled()) {
-                    i81Var2.h();
-                }
-                break;
-            case 2:
-                String str3 = (String) obj;
-                i81 i81Var3 = this.d;
-                if (str3 != null) {
-                    i81Var3.f29310w = true;
-                    i81Var3.f29311x = str3;
-                    i81Var3.f29312y = this.f27378c[1];
-                    if (i81Var3.f29309s) {
-                        i81Var3.i();
-                    }
-                    i81Var3.j(false, true);
-                    i81Var3.f29298b0.d(true, true);
-                } else if (!isCancelled()) {
-                    i81Var3.h();
-                }
-                break;
-            case 3:
-                String str4 = (String) obj;
-                i81 i81Var4 = this.d;
-                if (str4 != null) {
-                    i81Var4.f29310w = true;
-                    i81Var4.f29311x = str4;
-                    i81Var4.f29312y = this.f27378c[1];
-                    if (i81Var4.f29309s) {
-                        i81Var4.i();
-                    }
-                    i81Var4.j(false, true);
-                    i81Var4.f29298b0.d(true, true);
-                } else if (!isCancelled()) {
-                    i81Var4.h();
-                }
-                break;
-            default:
-                String str5 = (String) obj;
-                i81 i81Var5 = this.d;
-                if (str5 != null) {
-                    i81Var5.f29310w = true;
-                    i81Var5.f29311x = str5;
-                    i81Var5.f29312y = this.f27378c[1];
-                    if (i81Var5.f29309s) {
-                        i81Var5.i();
-                    }
-                    i81Var5.j(false, true);
-                    i81Var5.f29298b0.d(true, true);
-                } else if (!isCancelled()) {
-                    i81Var5.h();
-                }
-                break;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int measuredWidth;
+        int measuredHeight;
+        int i9;
+        int i10;
+        g81 g81Var = this.D;
+        k61 k61Var = g81Var.f28692a;
+        if (g81Var.P) {
+            i9 = AndroidUtilities.dp(36.0f) + this.f27420r;
+            measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - this.f27420r;
+            measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(28.0f);
+        } else {
+            measuredWidth = getMeasuredWidth();
+            measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(12.0f);
+            i9 = 0;
         }
+        int i11 = this.f27421s;
+        if (i11 != 0) {
+            i10 = (int) ((this.v / i11) * (measuredWidth - i9));
+        } else {
+            i10 = 0;
+        }
+        int i12 = i10 + i9;
+        int action = motionEvent.getAction();
+        b61 b61Var = this.C;
+        if (action == 0) {
+            if (this.f27423x && !g81Var.Q && !g81Var.D) {
+                if (this.f27421s != 0) {
+                    int x10 = (int) motionEvent.getX();
+                    int y10 = (int) motionEvent.getY();
+                    if (x10 >= i12 - AndroidUtilities.dp(10.0f) && x10 <= AndroidUtilities.dp(10.0f) + i12 && y10 >= measuredHeight - AndroidUtilities.dp(10.0f) && y10 <= AndroidUtilities.dp(10.0f) + measuredHeight) {
+                        this.f27415b = true;
+                        this.A = x10;
+                        this.B = i12;
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        invalidate();
+                    }
+                }
+            } else {
+                d(true, true);
+            }
+            AndroidUtilities.cancelRunOnUIThread(b61Var);
+        } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+            if (motionEvent.getAction() == 2 && this.f27415b) {
+                int x11 = (int) motionEvent.getX();
+                int i13 = this.B - (this.A - x11);
+                this.B = i13;
+                this.A = x11;
+                if (i13 < i9) {
+                    this.B = i9;
+                } else if (i13 > measuredWidth) {
+                    this.B = measuredWidth;
+                }
+                c((int) (((this.B - i9) / (measuredWidth - i9)) * this.f27421s * 1000));
+                invalidate();
+            }
+        } else {
+            if (g81Var.f28707w && k61Var.z()) {
+                AndroidUtilities.runOnUIThread(b61Var, 3000L);
+            }
+            if (this.f27415b) {
+                this.f27415b = false;
+                if (g81Var.f28707w) {
+                    int i14 = (int) (((this.B - i9) / (measuredWidth - i9)) * this.f27421s);
+                    this.v = i14;
+                    k61Var.M(i14 * 1000, false);
+                }
+            }
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z10) {
+        super.requestDisallowInterceptTouchEvent(z10);
+        a();
     }
 }

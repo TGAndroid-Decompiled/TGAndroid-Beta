@@ -1,12 +1,11 @@
 package org.scilab.forge.jlatexmath;
 
-import a9.p;
-
+import aa.d;
 public class InvalidDelimiterException extends JMathTeXException {
     private static final long serialVersionUID = 212553180078002724L;
 
     public InvalidDelimiterException(String str) {
-        super(p.m("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
+        super(d.o("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
     }
 
     public InvalidDelimiterException(char c10, String str) {

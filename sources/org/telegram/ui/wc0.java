@@ -1,48 +1,29 @@
 package org.telegram.ui;
+public final class wc0 implements org.telegram.ui.ActionBar.b2 {
+    public final int f43727a;
+    public final fg0 f43728b;
 
-import android.os.Bundle;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
-import org.telegram.tgnet.TLRPC;
-
-public final class wc0 implements OnSuccessListener {
-
-    public final int f43701a = 0;
-
-    public final ig0 f43702b;
-
-    public final String f43703c;
-    public final TLRPC.auth_SentCode d;
-
-    public final Bundle f43704e;
-
-    public final boolean f43705f;
-
-    public wc0(ig0 ig0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
-        this.f43702b = ig0Var;
-        this.f43704e = bundle;
-        this.d = auth_sentcode;
-        this.f43703c = str;
-        this.f43705f = z10;
+    public wc0(fg0 fg0Var, int i9) {
+        this.f43727a = i9;
+        this.f43728b = fg0Var;
     }
 
     @Override
-    public final void onSuccess(Object obj) {
-        switch (this.f43701a) {
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f43727a) {
             case 0:
-                ig0.X(this.f43702b, this.f43704e, this.d, this.f43703c, this.f43705f, (IntegrityTokenResponse) obj);
-                break;
+                fg0 fg0Var = this.f43728b;
+                fg0Var.f38261b[fg0Var.f38259a].d();
+                fg0Var.k1(true, true);
+                return;
             default:
-                ig0.V(this.f43702b, this.f43703c, this.d, this.f43704e, this.f43705f, (x7.d) obj);
-                break;
+                fg0 fg0Var2 = this.f43728b;
+                fg0Var2.f38271h0 = true;
+                if (fg0Var2.f38259a != 0) {
+                    fg0Var2.u1(0, true, null, true);
+                    return;
+                }
+                return;
         }
-    }
-
-    public wc0(ig0 ig0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
-        this.f43702b = ig0Var;
-        this.f43703c = str;
-        this.d = auth_sentcode;
-        this.f43704e = bundle;
-        this.f43705f = z10;
     }
 }

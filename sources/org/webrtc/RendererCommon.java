@@ -2,17 +2,15 @@ package org.webrtc;
 
 import android.graphics.Matrix;
 import android.graphics.Point;
-import android.view.View;
-
 public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     public interface GlDrawer {
-        void drawOes(int i10, int i11, int i12, int i13, int i14, float[] fArr, int i15, int i16, int i17, int i18, int i19, int i20, boolean z10);
+        void drawOes(int i9, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
 
-        void drawRgb(int i10, int i11, int i12, int i13, int i14, float[] fArr, int i15, int i16, int i17, int i18, int i19, int i20, boolean z10);
+        void drawRgb(int i9, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
 
-        void drawYuv(int[] iArr, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
+        void drawYuv(int[] iArr, int i9, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z10);
 
         void release();
     }
@@ -20,7 +18,7 @@ public class RendererCommon {
     public interface RendererEvents {
         void onFirstFrameRendered();
 
-        void onFrameResolutionChanged(int i10, int i11, int i12);
+        void onFrameResolutionChanged(int i9, int i10, int i11);
     }
 
     public enum ScalingType {
@@ -39,28 +37,8 @@ public class RendererCommon {
             this.visibleFractionMismatchOrientation = RendererCommon.convertScalingTypeToVisibleFraction(scalingType);
         }
 
-        public Point measure(boolean z10, int i10, int i11, int i12, int i13) {
-            int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i10);
-            int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i11);
-            if (i12 == 0 || i13 == 0 || defaultSize == 0 || defaultSize2 == 0) {
-                return new Point(defaultSize, defaultSize2);
-            }
-            float f10 = i12 / i13;
-            float f11 = defaultSize / defaultSize2;
-            Point displaySize = RendererCommon.getDisplaySize(((f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1)) > 0) == ((f11 > 1.0f ? 1 : (f11 == 1.0f ? 0 : -1)) > 0) ? this.visibleFractionMatchOrientation : this.visibleFractionMismatchOrientation, f10, defaultSize, defaultSize2);
-            if (!z10) {
-                if (View.MeasureSpec.getMode(i10) == 1073741824) {
-                    displaySize.x = defaultSize;
-                }
-                if (View.MeasureSpec.getMode(i11) == 1073741824) {
-                    displaySize.y = defaultSize2;
-                } else {
-                    if ((f10 > 1.0f) == (f11 > 1.0f)) {
-                        displaySize.y = defaultSize2;
-                    }
-                }
-            }
-            return displaySize;
+        public android.graphics.Point measure(boolean r8, int r9, int r10, int r11, int r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.RendererCommon.VideoLayoutMeasure.measure(boolean, int, int, int, int):android.graphics.Point");
         }
 
         public void setScalingType(ScalingType scalingType) {
@@ -101,21 +79,21 @@ public class RendererCommon {
     }
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
-        int iOrdinal = scalingType.ordinal();
-        if (iOrdinal == 0) {
-            return 1.0f;
-        }
-        if (iOrdinal == 1) {
+        int ordinal = scalingType.ordinal();
+        if (ordinal != 0) {
+            if (ordinal != 1) {
+                if (ordinal == 2) {
+                    return BALANCED_VISIBLE_FRACTION;
+                }
+                throw new IllegalArgumentException();
+            }
             return 0.0f;
         }
-        if (iOrdinal == 2) {
-            return BALANCED_VISIBLE_FRACTION;
-        }
-        throw new IllegalArgumentException();
+        return 1.0f;
     }
 
-    public static Point getDisplaySize(ScalingType scalingType, float f10, int i10, int i11) {
-        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i10, i11);
+    public static Point getDisplaySize(ScalingType scalingType, float f10, int i9, int i10) {
+        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i9, i10);
     }
 
     public static float[] getLayoutMatrix(boolean z10, float f10, float f11) {
@@ -138,7 +116,10 @@ public class RendererCommon {
         return fArr;
     }
 
-    public static Point getDisplaySize(float f10, float f11, int i10, int i11) {
-        return (f10 == 0.0f || f11 == 0.0f) ? new Point(i10, i11) : new Point(Math.min(i10, Math.round((i11 / f10) * f11)), Math.min(i11, Math.round((i10 / f10) / f11)));
+    public static Point getDisplaySize(float f10, float f11, int i9, int i10) {
+        if (f10 != 0.0f && f11 != 0.0f) {
+            return new Point(Math.min(i9, Math.round((i10 / f10) * f11)), Math.min(i10, Math.round((i9 / f10) / f11)));
+        }
+        return new Point(i9, i10);
     }
 }

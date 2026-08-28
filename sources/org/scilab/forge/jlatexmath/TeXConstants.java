@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class TeXConstants {
     public static final int ALIGN_BOTTOM = 4;
     public static final int ALIGN_CENTER = 2;

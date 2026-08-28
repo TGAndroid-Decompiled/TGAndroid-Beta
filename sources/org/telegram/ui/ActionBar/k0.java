@@ -3,28 +3,25 @@ package org.telegram.ui.ActionBar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-
 public final class k0 implements TextWatcher {
+    public final w0 f23604a;
 
-    public final v0 f23605a;
-
-    public k0(v0 v0Var) {
-        this.f23605a = v0Var;
+    public k0(w0 w0Var) {
+        this.f23604a = w0Var;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        v0 v0Var = this.f23605a;
-        e5 e5Var = v0Var.D;
+    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+        w0 w0Var = this.f23604a;
+        e5 e5Var = w0Var.D;
         if (e5Var != null) {
-            e5Var.q(v0Var.f23859e);
+            e5Var.q(w0Var.f23906e);
         }
-        v0Var.j();
-        if (v0Var.f23857c0.isEmpty() || TextUtils.isEmpty(v0Var.f23859e.getText()) || v0Var.f23858d0 < 0) {
-            return;
+        w0Var.j();
+        if (!w0Var.f23904c0.isEmpty() && !TextUtils.isEmpty(w0Var.f23906e.getText()) && w0Var.f23905d0 >= 0) {
+            w0Var.f23905d0 = -1;
+            w0Var.y();
         }
-        v0Var.f23858d0 = -1;
-        v0Var.y();
     }
 
     @Override
@@ -32,6 +29,6 @@ public final class k0 implements TextWatcher {
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
     }
 }

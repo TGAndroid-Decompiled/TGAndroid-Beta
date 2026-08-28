@@ -3,8 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import s3.c;
-
+import ta.b;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -16,10 +15,11 @@ public class SQLiteDatabase {
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            if (!BuildVars.DEBUG_PRIVATE_VERSION) {
+                commitTransaction();
+            } else {
                 throw new SQLiteException("database already in transaction");
             }
-            commitTransaction();
         }
         this.inTransaction = true;
         beginTransaction(this.sqliteHandle);
@@ -27,10 +27,11 @@ public class SQLiteDatabase {
 
     public native void beginTransaction(long j10);
 
-    public void checkOpened() throws SQLiteException {
-        if (!this.isOpen) {
-            throw new SQLiteException("Database closed");
+    public void checkOpened() {
+        if (this.isOpen) {
+            return;
         }
+        throw new SQLiteException("Database closed");
     }
 
     public void close() {
@@ -38,9 +39,9 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e9) {
+            } catch (SQLiteException e10) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e9.getMessage(), e9);
+                    FileLog.e(e10.getMessage(), e10);
                 }
             }
             this.isOpen = false;
@@ -64,33 +65,34 @@ public class SQLiteDatabase {
 
     public Integer executeInt(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor sQLiteCursorQueryFinalized = queryFinalized(str, objArr);
+        SQLiteCursor queryFinalized = queryFinalized(str, objArr);
         try {
-            if (sQLiteCursorQueryFinalized.next()) {
-                return Integer.valueOf(sQLiteCursorQueryFinalized.intValue(0));
+            if (!queryFinalized.next()) {
+                queryFinalized.dispose();
+                return null;
             }
-            return null;
+            return Integer.valueOf(queryFinalized.intValue(0));
         } finally {
-            sQLiteCursorQueryFinalized.dispose();
+            queryFinalized.dispose();
         }
     }
 
-    public void explainQuery(String str, Object... objArr) throws SQLiteException {
+    public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, c.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
-        while (sQLiteCursorQuery.next()) {
-            int columnCount = sQLiteCursorQuery.getColumnCount();
+        SQLiteCursor query = new SQLitePreparedStatement(this, b.d("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        while (query.next()) {
+            int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();
-            for (int i10 = 0; i10 < columnCount; i10++) {
-                sb2.append(sQLiteCursorQuery.stringValue(i10));
+            for (int i9 = 0; i9 < columnCount; i9++) {
+                sb2.append(query.stringValue(i9));
                 sb2.append(", ");
             }
             FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());
         }
-        sQLiteCursorQuery.dispose();
+        query.dispose();
     }
 
-    public void finalize() throws Throwable {
+    public void finalize() {
         super.finalize();
         close();
     }
@@ -106,8 +108,11 @@ public class SQLiteDatabase {
         return new SQLitePreparedStatement(this, str).query(objArr);
     }
 
-    public boolean tableExists(String str) throws SQLiteException {
+    public boolean tableExists(String str) {
         checkOpened();
-        return executeInt("SELECT rowid FROM sqlite_master WHERE type='table' AND name=?;", str) != null;
+        if (executeInt("SELECT rowid FROM sqlite_master WHERE type='table' AND name=?;", str) != null) {
+            return true;
+        }
+        return false;
     }
 }

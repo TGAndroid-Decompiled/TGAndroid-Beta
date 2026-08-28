@@ -1,4 +1,5 @@
 package org.telegram.ui.Cells;
 
-public interface m7 {
+import android.widget.FrameLayout;
+public abstract class m7 extends FrameLayout {
 }

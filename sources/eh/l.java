@@ -1,55 +1,104 @@
 package eh;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
+import android.content.DialogInterface;
+import gh.o6;
+import ih.m9;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.web.e0;
+import org.telegram.ui.web.k0;
+import org.telegram.ui.web.r0;
+import org.telegram.ui.web.y0;
+import pf.h1;
+import qh.x1;
+import zf.j0;
+import zf.k1;
+public final class l implements DialogInterface.OnDismissListener {
+    public final int f5208a;
+    public final Object f5209b;
 
-public final class l implements Runnable {
-
-    public final int f5534a;
-
-    public final m f5535b;
-
-    public final int f5536c;
-
-    public l(m mVar, int i10, int i11) {
-        this.f5534a = i11;
-        this.f5535b = mVar;
-        this.f5536c = i10;
+    public l(Object obj, int i9) {
+        this.f5208a = i9;
+        this.f5209b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f5534a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        e0 e0Var;
+        switch (this.f5208a) {
             case 0:
-                m mVar = this.f5535b;
-                int i10 = mVar.f5546k;
-                xe.b[] bVarArr = mVar.f5540c;
-                int i11 = this.f5536c;
-                if (bVarArr[i11] == null) {
-                    bVarArr[i11] = new xe.b(i10);
+                ((x) this.f5209b).f5262s = null;
+                return;
+            case 1:
+                ((o6) this.f5209b).run();
+                return;
+            case 2:
+                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f5209b);
+                return;
+            case 3:
+                ((e5.u) this.f5209b).run();
+                return;
+            case 4:
+                ((ih.g) this.f5209b).run();
+                return;
+            case 5:
+                m9 m9Var = (m9) this.f5209b;
+                if (dialogInterface == m9Var.f11819q0) {
+                    m9Var.f11819q0 = null;
+                    m9Var.P();
+                    return;
                 }
-                Bitmap bitmap = mVar.f5541e;
-                if (bitmap == null) {
-                    mVar.f5541e = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-                    mVar.f5542f = new Canvas(mVar.f5541e);
-                } else {
-                    bitmap.eraseColor(0);
+                return;
+            case 6:
+                Runnable[] runnableArr = (Runnable[]) this.f5209b;
+                Runnable runnable = runnableArr[0];
+                if (runnable != null) {
+                    runnable.run();
+                    runnableArr[0] = null;
+                    return;
                 }
-                mVar.a(mVar.f5542f, mVar.f5550o);
-                Utilities.copyBitmaps(mVar.f5541e, (Bitmap) bVarArr[i11].f49392b);
-                AndroidUtilities.runOnUIThread(new l(mVar, i11, 1));
-                break;
+                return;
+            case 7:
+                y0 y0Var = ((k0) this.f5209b).f43919e.M;
+                if (y0Var != null && (e0Var = y0Var.f44074c) != null) {
+                    e0Var.y();
+                    return;
+                }
+                return;
+            case 8:
+                e0 e0Var2 = ((r0) this.f5209b).f44006b.f44015e.M.f44074c;
+                if (e0Var2 != null) {
+                    e0Var2.y();
+                    return;
+                }
+                return;
+            case 9:
+                AndroidUtilities.hideKeyboard((pf.o) this.f5209b);
+                return;
+            case 10:
+                AndroidUtilities.hideKeyboard((h1) this.f5209b);
+                return;
+            case 11:
+                ((qh.p) this.f5209b).K = null;
+                return;
+            case 12:
+                ((x1) this.f5209b).K0 = null;
+                return;
+            case 13:
+                j0 j0Var = (j0) this.f5209b;
+                j0Var.f50533b0 = false;
+                j0Var.f50550t0.W = true;
+                j0Var.A0.invalidate();
+                j0Var.f50550t0.invalidate();
+                return;
             default:
-                m mVar2 = this.f5535b;
-                int i12 = this.f5536c;
-                mVar2.d = i12;
-                mVar2.f5543g.setShader((BitmapShader) mVar2.f5540c[i12].f49393c);
-                mVar2.f5545j = false;
-                mVar2.f5551p = true;
-                break;
+                k1 k1Var = (k1) this.f5209b;
+                dg.q qVar = k1Var.f50579n0;
+                if (qVar != null) {
+                    qVar.setDialogVisible(false);
+                }
+                k1Var.m0.setPaused(false);
+                return;
         }
     }
 }

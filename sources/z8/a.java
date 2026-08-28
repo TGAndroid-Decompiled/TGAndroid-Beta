@@ -1,57 +1,30 @@
 package z8;
 
-import h7.v8;
-import j$.util.DesugarCollections;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import android.os.StrictMode;
+import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
+import xf.o0;
+public final class a implements ThreadFactory {
+    public static final ThreadFactory f50358e = Executors.defaultThreadFactory();
+    public final AtomicLong f50359a = new AtomicLong();
+    public final String f50360b;
+    public final int f50361c;
+    public final StrictMode.ThreadPolicy d;
 
-public final class a {
-
-    public final String f50218a;
-
-    public final Set f50219b;
-
-    public final Set f50220c;
-    public final int d;
-
-    public final int f50221e;
-
-    public final d f50222f;
-
-    public final Set f50223g;
-
-    public a(String str, Set set, Set set2, int i10, int i11, d dVar, Set set3) {
-        this.f50218a = str;
-        this.f50219b = DesugarCollections.unmodifiableSet(set);
-        this.f50220c = DesugarCollections.unmodifiableSet(set2);
-        this.d = i10;
-        this.f50221e = i11;
-        this.f50222f = dVar;
-        this.f50223g = DesugarCollections.unmodifiableSet(set3);
+    public a(String str, int i9, StrictMode.ThreadPolicy threadPolicy) {
+        this.f50360b = str;
+        this.f50361c = i9;
+        this.d = threadPolicy;
     }
 
-    public static ug.b a(Class cls) {
-        return new ug.b(cls, new Class[0]);
-    }
-
-    public static ug.b b(q qVar) {
-        return new ug.b(qVar, new q[0]);
-    }
-
-    public static a c(Object obj, Class cls, Class... clsArr) {
-        HashSet hashSet = new HashSet();
-        HashSet hashSet2 = new HashSet();
-        HashSet hashSet3 = new HashSet();
-        hashSet.add(q.a(cls));
-        for (Class cls2 : clsArr) {
-            v8.a(cls2, "Null interface");
-            hashSet.add(q.a(cls2));
-        }
-        return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new t0.c(obj, 7), hashSet3);
-    }
-
-    public final String toString() {
-        return "Component<" + Arrays.toString(this.f50219b.toArray()) + ">{" + this.d + ", type=" + this.f50221e + ", deps=" + Arrays.toString(this.f50220c.toArray()) + "}";
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        Thread newThread = f50358e.newThread(new o0(7, this, runnable));
+        Locale locale = Locale.ROOT;
+        long andIncrement = this.f50359a.getAndIncrement();
+        newThread.setName(this.f50360b + " Thread #" + andIncrement);
+        return newThread;
     }
 }

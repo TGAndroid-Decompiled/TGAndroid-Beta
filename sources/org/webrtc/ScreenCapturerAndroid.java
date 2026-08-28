@@ -7,7 +7,6 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import org.telegram.messenger.FileLog;
-
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private static final int DISPLAY_FLAGS = 3;
     private static final int VIRTUAL_DISPLAY_DPI = 400;
@@ -29,9 +28,10 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     private void checkNotDisposed() {
-        if (this.isDisposed) {
-            throw new RuntimeException("capturer is disposed.");
+        if (!this.isDisposed) {
+            return;
         }
+        throw new RuntimeException("capturer is disposed.");
     }
 
     private void createVirtualDisplay() {
@@ -65,10 +65,10 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void changeCaptureFormat(int i10, int i11, int i12) {
+    public synchronized void changeCaptureFormat(int i9, int i10, int i11) {
         checkNotDisposed();
-        this.width = i10;
-        this.height = i11;
+        this.width = i9;
+        this.height = i10;
         if (this.virtualDisplay == null) {
             return;
         }
@@ -91,15 +91,17 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     @Override
     public synchronized void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
         checkNotDisposed();
-        if (capturerObserver == null) {
+        if (capturerObserver != null) {
+            this.capturerObserver = capturerObserver;
+            if (surfaceTextureHelper != null) {
+                this.surfaceTextureHelper = surfaceTextureHelper;
+                this.mediaProjectionManager = (MediaProjectionManager) context.getSystemService("media_projection");
+            } else {
+                throw new RuntimeException("surfaceTextureHelper not set.");
+            }
+        } else {
             throw new RuntimeException("capturerObserver not set.");
         }
-        this.capturerObserver = capturerObserver;
-        if (surfaceTextureHelper == null) {
-            throw new RuntimeException("surfaceTextureHelper not set.");
-        }
-        this.surfaceTextureHelper = surfaceTextureHelper;
-        this.mediaProjectionManager = (MediaProjectionManager) context.getSystemService("media_projection");
     }
 
     @Override
@@ -119,23 +121,17 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void startCapture(int i10, int i11, int i12) {
-        if (this.mediaProjection != null || this.mediaProjectionManager == null) {
-            return;
-        }
-        try {
+    public synchronized void startCapture(int i9, int i10, int i11) {
+        if (this.mediaProjection == null && this.mediaProjectionManager != null) {
             checkNotDisposed();
-            this.width = i10;
-            this.height = i11;
+            this.width = i9;
+            this.height = i10;
             MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
             this.mediaProjection = mediaProjection;
             mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
             createVirtualDisplay();
             this.capturerObserver.onCapturerStarted(true);
             this.surfaceTextureHelper.startListening(this);
-        } catch (Throwable th) {
-            this.mediaProjectionCallback.onStop();
-            FileLog.e(th);
         }
     }
 

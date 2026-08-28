@@ -1,12 +1,12 @@
 package g7;
+public final class j7 {
+    public final k9 f7257a;
+    public final i7 f7258b;
+    public final d7 f7259c;
 
-import java.util.Locale;
-
-public abstract class j7 {
-    public static int a(int i10) {
-        if (i10 >= 100 || i10 < 0) {
-            return i10;
-        }
-        return Integer.parseInt(String.format(Locale.US, "%s%02d", com.google.android.recaptcha.internal.a.n(String.valueOf(e7.v.s2().get(1)), 2, 0), Integer.valueOf(i10)));
+    public j7(a5.m mVar) {
+        this.f7257a = (k9) mVar.f98b;
+        this.f7258b = (i7) mVar.f99c;
+        this.f7259c = (d7) mVar.d;
     }
 }

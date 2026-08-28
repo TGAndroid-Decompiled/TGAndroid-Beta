@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 public class MediaStream {
     private static final String TAG = "MediaStream";
     private long nativeStream;
@@ -16,9 +15,10 @@ public class MediaStream {
     }
 
     private void checkMediaStreamExists() {
-        if (this.nativeStream == 0) {
-            throw new IllegalStateException("MediaStream has been disposed.");
+        if (this.nativeStream != 0) {
+            return;
         }
+        throw new IllegalStateException("MediaStream has been disposed.");
     }
 
     private static native boolean nativeAddAudioTrackToNativeStream(long j10, long j11);
@@ -54,20 +54,20 @@ public class MediaStream {
 
     public boolean addPreservedTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            return false;
+        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            this.preservedVideoTracks.add(videoTrack);
+            return true;
         }
-        this.preservedVideoTracks.add(videoTrack);
-        return true;
+        return false;
     }
 
     public boolean addTrack(AudioTrack audioTrack) {
         checkMediaStreamExists();
-        if (!nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
-            return false;
+        if (nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
+            this.audioTracks.add(audioTrack);
+            return true;
         }
-        this.audioTracks.add(audioTrack);
-        return true;
+        return false;
     }
 
     public void dispose() {
@@ -119,11 +119,11 @@ public class MediaStream {
 
     public boolean addTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            return false;
+        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            this.videoTracks.add(videoTrack);
+            return true;
         }
-        this.videoTracks.add(videoTrack);
-        return true;
+        return false;
     }
 
     public boolean removeTrack(VideoTrack videoTrack) {

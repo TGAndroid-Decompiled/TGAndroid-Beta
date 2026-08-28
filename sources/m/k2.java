@@ -6,10 +6,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.PopupWindow;
 import java.lang.reflect.Method;
-
 public final class k2 extends e2 implements f2 {
     public static final Method P;
-    public a9.i O;
+    public k5.i O;
 
     static {
         try {
@@ -22,10 +21,10 @@ public final class k2 extends e2 implements f2 {
     }
 
     @Override
-    public final void j(l.l lVar, MenuItem menuItem) {
-        a9.i iVar = this.O;
+    public final void k(l.k kVar, MenuItem menuItem) {
+        k5.i iVar = this.O;
         if (iVar != null) {
-            iVar.j(lVar, menuItem);
+            iVar.k(kVar, menuItem);
         }
     }
 
@@ -37,10 +36,10 @@ public final class k2 extends e2 implements f2 {
     }
 
     @Override
-    public final void y(l.l lVar, l.n nVar) {
-        a9.i iVar = this.O;
+    public final void y(l.k kVar, l.m mVar) {
+        k5.i iVar = this.O;
         if (iVar != null) {
-            iVar.y(lVar, nVar);
+            iVar.y(kVar, mVar);
         }
     }
 }

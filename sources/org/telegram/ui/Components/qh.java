@@ -1,118 +1,123 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.style.ImageSpan;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
+import android.view.Menu;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class qh extends ut {
+    public boolean R;
+    public int S;
+    public int T;
+    public ValueAnimator U;
+    public final ki V;
 
-public final class qh implements TextWatcher {
-
-    public boolean f31906a;
-
-    public boolean f31907b;
-
-    public final org.telegram.ui.ActionBar.n2 f31908c;
-    public final gi d;
-
-    public qh(gi giVar, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.d = giVar;
-        this.f31908c = n2Var;
+    public qh(ki kiVar, Context context, ai aiVar, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, aiVar, null, 1, true, b6Var);
+        this.V = kiVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        int i10;
-        gi giVar = this.d;
-        j6 j6Var = giVar.f28689s;
-        ph phVar = giVar.L0;
-        int i11 = giVar.F1;
-        j6 j6Var2 = giVar.v;
-        if (this.f31907b != TextUtils.isEmpty(editable)) {
-            yh yhVar = giVar.f28696u0;
-            if (yhVar != null) {
-                yhVar.C(yhVar.getSelectedItemsCount());
+    public final void c(float f10) {
+        ki kiVar = this.V;
+        kiVar.f30105c2 = f10;
+        mh mhVar = kiVar.f30178z0;
+        mhVar.setTranslationY(f10);
+        mhVar.invalidate();
+        kiVar.g1();
+        kiVar.X1(kiVar.f30160u0, 0);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.R) {
+            mt editText = this.V.A0.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.T - editText.getScrollY()) + (this.S - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new f2.g(10, this, editText));
+            ValueAnimator valueAnimator = this.U;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-            this.f31907b = !this.f31907b;
+            this.U = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(gr.f28844f);
+            ofFloat.start();
+            this.R = false;
         }
-        boolean z11 = false;
-        if (this.f31906a) {
-            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                editable.removeSpan(imageSpan);
-            }
-            Emoji.replaceEmoji(editable, phVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f31906a = false;
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void e() {
+        super/*org.telegram.ui.ActionBar.f3*/.dismiss();
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        wy emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f34442s0 = false;
+            emojiView.f34447t2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
-        int iCodePointCount = Character.codePointCount(editable, 0, editable.length());
-        giVar.H = iCodePointCount;
-        giVar.f28645e.a(iCodePointCount > 0, true);
-        int i12 = giVar.G;
-        if (i12 <= 0 || (i10 = i12 - giVar.H) > 100) {
-            j6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new org.telegram.ui.am(this, 13));
-            j6Var.setAlpha(0.0f);
-            z10 = true;
-        } else {
-            if (i10 < -9999) {
-                i10 = -9999;
-            }
-            long j10 = i10;
-            j6Var2.c(LocaleController.formatNumber(j10, ','), j6Var2.getVisibility() == 0, true);
-            if (j6Var2.getVisibility() != 0) {
-                j6Var2.setVisibility(0);
-                j6Var2.setAlpha(0.0f);
-                j6Var2.setScaleX(0.5f);
-                j6Var2.setScaleY(0.5f);
-            }
-            j6Var2.animate().setListener(null).cancel();
-            j6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
-            if (i10 < 0) {
-                j6Var2.setTextColor(giVar.getThemedColor(org.telegram.ui.ActionBar.g6.f23269p7));
-                z10 = false;
+    }
+
+    @Override
+    public final void i(Menu menu) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.V.f30099b0;
+        if (o2Var instanceof org.telegram.ui.qn) {
+            org.telegram.ui.qn.k8(menu, ((org.telegram.ui.qn) o2Var).h, true, true, true, true);
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        ki kiVar = this.V;
+        qh qhVar = kiVar.A0;
+        if (!kiVar.f30147q1) {
+            if (motionEvent.getX() > qhVar.getEditText().getLeft() && motionEvent.getX() < qhVar.getEditText().getRight() && motionEvent.getY() > qhVar.getEditText().getTop() && motionEvent.getY() < qhVar.getEditText().getBottom()) {
+                kiVar.t1(qhVar.getEditText(), true);
             } else {
-                j6Var2.setTextColor(giVar.getThemedColor(org.telegram.ui.ActionBar.g6.f23423y6));
+                kiVar.t1(qhVar.getEditText(), false);
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        this.V.U1();
+    }
+
+    @Override
+    public final void q(int i9, int i10) {
+        ki kiVar = this.V;
+        mh mhVar = kiVar.f30178z0;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.R = true;
+            this.S = getEditText().getMeasuredHeight();
+            this.T = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.R = false;
+        }
+        if (!kiVar.Y) {
+            if (i10 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             }
-            j6Var.c(LocaleController.formatNumber(j10, ','), false, true);
-            j6Var.setAlpha(1.0f);
+            kiVar.M1(z10);
         }
-        if (giVar.Q0 != z10) {
-            giVar.Q0 = z10;
-            giVar.E0.invalidate();
-        }
-        if (!giVar.f28648e2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && giVar.H > MessagesController.getInstance(i11).captionLengthLimitDefault && giVar.H < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            giVar.f28648e2 = true;
-            giVar.O1(this.f31908c);
-        }
-        if (giVar.Y) {
-            if (phVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(phVar.getText().toString().trim())) {
-                z11 = true;
-            }
-            giVar.M1(z11);
-        }
-        giVar.d1(true);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (i12 - i11 >= 1) {
-            this.f31906a = true;
-        }
-        gi giVar = this.d;
-        if (giVar.f28709x2 == null) {
-            gi.Q(giVar);
-        }
-        if (giVar.f28709x2.getAdapter() != null) {
-            giVar.f28709x2.setReversed(true);
-            giVar.f28709x2.getAdapter().U(charSequence, giVar.L0.getEditText().getSelectionStart(), null, false, false);
-            giVar.U1();
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        kiVar.S1 = mhVar.getTop() + kiVar.R1;
+        mhVar.invalidate();
+        kiVar.U1();
     }
 }

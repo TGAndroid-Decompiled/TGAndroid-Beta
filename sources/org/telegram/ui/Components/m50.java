@@ -1,37 +1,75 @@
 package org.telegram.ui.Components;
 
-public final class m50 {
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class m50 extends FrameLayout {
+    public final RectF f30695a;
+    public boolean f30696b;
+    public Boolean f30697c;
+    public final a60 d;
 
-    public final int f30565a;
-
-    public final int f30566b;
-
-    public m50(int i10, int i11) {
-        this.f30565a = i10;
-        this.f30566b = i11;
+    public m50(a60 a60Var, Context context) {
+        super(context);
+        this.d = a60Var;
+        this.f30695a = new RectF();
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && m50.class == obj.getClass()) {
-            m50 m50Var = (m50) obj;
-            if (this.f30565a == m50Var.f30565a && this.f30566b == m50Var.f30566b) {
+    @Override
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m50.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            a60 a60Var = this.d;
+            if (a60Var.V != 0 && motionEvent.getY() < a60Var.V) {
+                a60Var.dismiss();
                 return true;
             }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        a60.N(this.d);
+    }
+
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        int i11;
+        int i12;
+        int size = View.MeasureSpec.getSize(i10);
+        a60 a60Var = this.d;
+        a60Var.W = true;
+        i11 = ((org.telegram.ui.ActionBar.f3) a60Var).backgroundPaddingLeft;
+        int i13 = AndroidUtilities.statusBarHeight;
+        i12 = ((org.telegram.ui.ActionBar.f3) a60Var).backgroundPaddingLeft;
+        setPadding(i11, i13, i12, 0);
+        a60Var.W = false;
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        this.f30696b = true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
         }
         return false;
     }
 
-    public final int hashCode() {
-        return (this.f30565a * 31) + this.f30566b;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f30565a);
-        sb2.append(", ");
-        return a9.p.k(this.f30566b, ")", sb2);
+    @Override
+    public final void requestLayout() {
+        if (this.d.W) {
+            return;
+        }
+        super.requestLayout();
     }
 }

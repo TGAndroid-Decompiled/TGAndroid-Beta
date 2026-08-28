@@ -1,40 +1,83 @@
 package h7;
 
-public final class a implements d {
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public final class a extends d0 {
+    public final Map f9863b;
+    public final h f9864c;
 
-    public final int f8292a;
-
-    public a(int i10) {
-        this.f8292a = i10;
+    public a(h hVar, Map map) {
+        super(0);
+        this.f9864c = hVar;
+        map.getClass();
+        this.f9863b = map;
     }
 
     @Override
-    public final Class annotationType() {
-        return d.class;
+    public final void clear() {
+        Iterator it = iterator();
+        while (true) {
+            c cVar = (c) it;
+            if (cVar.hasNext()) {
+                cVar.next();
+                cVar.remove();
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f9863b.containsKey(obj);
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        return this.f9863b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof d)) {
+        if (this != obj && !this.f9863b.keySet().equals(obj)) {
             return false;
         }
-        if (this.f8292a != ((a) ((d) obj)).f8292a) {
-            return false;
-        }
-        Object obj2 = c.f8309a;
-        return obj2.equals(obj2);
+        return true;
     }
 
     @Override
     public final int hashCode() {
-        return (this.f8292a ^ 14552422) + (c.f8309a.hashCode() ^ 2041407134);
+        return this.f9863b.keySet().hashCode();
     }
 
     @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f8292a + "intEncoding=" + c.f8309a + ')';
+    public final boolean isEmpty() {
+        return this.f9863b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new c(this, this.f9863b.entrySet().iterator(), 2);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        Collection collection = (Collection) this.f9863b.remove(obj);
+        if (collection != null) {
+            int size = collection.size();
+            collection.clear();
+            this.f9864c.d -= size;
+            if (size > 0) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final int size() {
+        return this.f9863b.size();
     }
 }

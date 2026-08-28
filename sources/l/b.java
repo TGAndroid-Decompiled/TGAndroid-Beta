@@ -3,10 +3,8 @@ package l;
 import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
 import m.v1;
-
 public final class b extends v1 {
-
-    public final int f15269s = 0;
+    public final int f16516s = 0;
     public final View v;
 
     public b(ActionMenuItemView actionMenuItemView) {
@@ -15,15 +13,15 @@ public final class b extends v1 {
     }
 
     @Override
-    public final c0 b() {
+    public final b0 b() {
         m.e eVar;
-        switch (this.f15269s) {
+        switch (this.f16516s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.v).f943x;
-                if (cVar == null || (eVar = ((m.f) cVar).f17317a.F) == null) {
-                    return null;
+                c cVar = ((ActionMenuItemView) this.v).f438x;
+                if (cVar != null && (eVar = ((m.f) cVar).f16942a.F) != null) {
+                    return eVar.a();
                 }
-                return eVar.a();
+                return null;
             default:
                 m.e eVar2 = ((m.h) this.v).d.E;
                 if (eVar2 == null) {
@@ -35,12 +33,15 @@ public final class b extends v1 {
 
     @Override
     public final boolean c() {
-        c0 c0VarB;
-        switch (this.f15269s) {
+        b0 b10;
+        switch (this.f16516s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
-                k kVar = actionMenuItemView.v;
-                return kVar != null && kVar.a(actionMenuItemView.f939n) && (c0VarB = b()) != null && c0VarB.a();
+                j jVar = actionMenuItemView.v;
+                if (jVar != null && jVar.a(actionMenuItemView.f434n) && (b10 = b()) != null && b10.a()) {
+                    return true;
+                }
+                return false;
             default:
                 ((m.h) this.v).d.l();
                 return true;
@@ -49,7 +50,7 @@ public final class b extends v1 {
 
     @Override
     public boolean d() {
-        switch (this.f15269s) {
+        switch (this.f16516s) {
             case 1:
                 m.i iVar = ((m.h) this.v).d;
                 if (iVar.G != null) {

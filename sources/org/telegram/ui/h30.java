@@ -1,19 +1,25 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class h30 extends q4 {
+    public final o50 Q;
 
-public final class h30 extends f2.b1 {
-
-    public final s50 f38674a;
-
-    public h30(s50 s50Var) {
-        this.f38674a = s50Var;
+    public h30(o50 o50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.Q = o50Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        s50 s50Var = this.f38674a;
-        ((org.telegram.ui.ActionBar.e3) s50Var).containerView.invalidate();
-        s50Var.W1.invalidate();
+    public final void c() {
+        o50 o50Var = this.Q;
+        AccountInstance accountInstance = o50Var.d;
+        i30 i30Var = o50Var.f40883b;
+        long dialogId = i30Var.getDialogId();
+        if (dialogId > 0) {
+            TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));
+            i30Var.H(null, ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 0), ImageLocation.getForUserOrChat(accountInstance.getCurrentAccount(), user, 1), false);
+        }
     }
 }

@@ -1,34 +1,19 @@
 package w3;
-
 public final class n {
-
-    public boolean f49109a;
-
-    public boolean f49110b;
-
-    public d5.t f49111c;
+    public boolean f48603a;
+    public boolean f48604b;
+    public d5.t f48605c;
     public int d;
-
-    public int f49112e;
-
-    public int f49113f;
-
-    public int f49114g;
+    public int f48606e;
+    public int f48607f;
+    public int f48608g;
     public boolean h;
-
-    public boolean f49115i;
-
-    public boolean f49116j;
-
-    public boolean f49117k;
-
-    public int f49118l;
-
-    public int f49119m;
-
-    public int f49120n;
-
-    public int f49121o;
-
-    public int f49122p;
+    public boolean f48609i;
+    public boolean f48610j;
+    public boolean f48611k;
+    public int f48612l;
+    public int f48613m;
+    public int f48614n;
+    public int f48615o;
+    public int f48616p;
 }

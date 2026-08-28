@@ -1,72 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class b91 {
+    public final org.telegram.ui.Components.d00 f36795a;
+    public sf.f f36796b;
+    public final int f36797c;
+    public final c91 d;
 
-public abstract class b91 extends a91 {
-    public final int v;
-
-    public final q91 f36728w;
-
-    public b91(q91 q91Var, Context context, int i10, int i11, rf.f fVar) {
-        super(context, i11, fVar, null);
-        this.f36728w = q91Var;
-        this.v = i10;
-    }
-
-    @Override
-    public final void b(c91 c91Var) {
-        q91 q91Var = this.f36728w;
-        c91Var.a(this.v, ((org.telegram.ui.ActionBar.n2) q91Var).classGuid, q91Var.f41549a.stats_dc, new org.telegram.ui.Components.x41(1, q91Var, this.f36469r));
-    }
-
-    @Override
-    public final void c() {
-        if (this.f36469r.f37023c > 0) {
-            return;
-        }
-        performClick();
-        rf.g gVar = this.f36464b;
-        if (gVar.f46978p0.C) {
-            long selectedDate = gVar.getSelectedDate();
-            if (this.f36470s == 4) {
-                c91 c91Var = this.f36469r;
-                c91Var.f37024e = new sf.e(c91Var.d, selectedDate);
-                g(false);
-                return;
-            }
-            if (this.f36469r.f37026g == null) {
-                return;
-            }
-            q91 q91Var = this.f36728w;
-            q91.Z(q91Var);
-            String str = this.f36469r.f37026g + "_" + selectedDate;
-            sf.b bVar = (sf.b) q91Var.R.get(str);
-            if (bVar != null) {
-                this.f36469r.f37024e = bVar;
-                g(false);
-                return;
-            }
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f36469r.f37026g;
-            if (selectedDate != 0) {
-                tL_loadAsyncGraph.f22611x = selectedDate;
-                tL_loadAsyncGraph.flags |= 1;
-            }
-            p91 p91Var = new p91();
-            q91Var.V = p91Var;
-            q91Var.O.getClass();
-            p91Var.f41304a = RecyclerView.R(this);
-            gVar.f46978p0.d(true, false);
-            int i10 = this.v;
-            ConnectionsManager.getInstance(i10).bindRequestToGuid(ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new lr0(this, str, p91Var, 10), null, null, 0, q91Var.f41549a.stats_dc, 1, true), ((org.telegram.ui.ActionBar.n2) q91Var).classGuid);
-        }
-    }
-
-    @Override
-    public final void f() {
-        q91.Z(this.f36728w);
+    public b91(c91 c91Var, int i9) {
+        this.d = c91Var;
+        this.f36797c = i9;
+        ?? view = new View(c91Var.getContext());
+        view.f27610c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.f27611e = textPaint;
+        view.f27612f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f27613n = paint2;
+        view.f27616w = AndroidUtilities.dp(35.0f);
+        view.f27617x = AndroidUtilities.dp(22.0f);
+        view.f27618y = AndroidUtilities.dp(8.0f);
+        view.A = AndroidUtilities.dp(3.5f);
+        view.B = new RectF();
+        view.C = 0.0f;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f36795a = view;
+        view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        c91Var.h.addView(view);
+        c91Var.f37132n.add(this);
     }
 }

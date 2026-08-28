@@ -1,7 +1,17 @@
 package g7;
+public final class n5 implements q9.d {
+    public static final n5 f7321a = new Object();
 
-public abstract class n5 {
-    public static int a(int i10) {
-        return (int) (((long) Integer.rotateLeft((int) (((long) i10) * (-862048943)), 15)) * 461845907);
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

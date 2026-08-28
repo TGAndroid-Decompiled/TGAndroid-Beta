@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.VideoEncoder;
 public abstract class x {
     public static long a(VideoEncoder videoEncoder) {
         return 0L;

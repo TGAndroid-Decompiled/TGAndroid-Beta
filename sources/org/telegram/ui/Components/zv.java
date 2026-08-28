@@ -1,37 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class zv extends wk0 {
+    public boolean T2;
+    public boolean U2;
+    public final wy V2;
 
-public final class zv extends f2.w0 {
-
-    public final yy f35392a;
-
-    public zv(yy yyVar) {
-        this.f35392a = yyVar;
+    public zv(wy wyVar, Context context) {
+        super(context, null);
+        this.V2 = wyVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.l1 l1Var) {
-        recyclerView.getClass();
-        int iR = RecyclerView.R(view);
-        yy yyVar = this.f35392a;
-        f2.q0 adapter = yyVar.f34987d0.getAdapter();
-        cy cyVar = yyVar.f35007j0;
-        if (adapter == cyVar && iR == cyVar.E) {
-            rect.set(0, 0, 0, 0);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ht q10 = org.telegram.ui.ht.q();
+        wy wyVar = this.V2;
+        boolean r10 = q10.r(motionEvent, wyVar.f34394d0, wyVar.f34393c2, this.f34260l2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        wy wyVar = this.V2;
+        if (wyVar.m0 && wyVar.f34414j0.C > 1) {
+            this.T2 = true;
+            wyVar.f34398e0.h1(0, 0);
+            wyVar.f34417k0.setVisibility(0);
+            wyVar.f34420l0.k(0, 0);
+            wyVar.m0 = false;
+            this.T2 = false;
+        }
+        super.onLayout(z10, i9, i10, i11, i12);
+        wy.f(wyVar, true);
+    }
+
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        if (!this.U2) {
+            this.V2.f34414j0.l();
+            this.U2 = true;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.T2) {
             return;
         }
-        if (iR == 0) {
-            cyVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        dy dyVar = yyVar.f34991e0;
-        cyVar.getClass();
-        rect.right = dyVar.E1(iR) ? 0 : AndroidUtilities.dp(2.0f);
+        super.requestLayout();
     }
 }

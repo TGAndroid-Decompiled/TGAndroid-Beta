@@ -6,53 +6,50 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
-
 public final class cl0 implements Utilities.Callback2 {
+    public final int f37233a;
+    public final PasskeysActivity f37234b;
 
-    public final int f37112a;
-
-    public final PasskeysActivity f37113b;
-
-    public cl0(PasskeysActivity passkeysActivity, int i10) {
-        this.f37112a = i10;
-        this.f37113b = passkeysActivity;
+    public cl0(PasskeysActivity passkeysActivity, int i9) {
+        this.f37233a = i9;
+        this.f37234b = passkeysActivity;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f37112a;
-        PasskeysActivity passkeysActivity = this.f37113b;
-        switch (i10) {
+        int i9 = this.f37233a;
+        PasskeysActivity passkeysActivity = this.f37234b;
+        switch (i9) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                ArrayList arrayList2 = passkeysActivity.f35580b;
+                org.telegram.ui.Components.z41 z41Var = (org.telegram.ui.Components.z41) obj2;
+                ArrayList arrayList2 = passkeysActivity.f35577b;
                 passkeysActivity.addPasskeyRow = -1;
                 String string = LocaleController.getString(R.string.PasskeyTopInfo);
-                int i11 = R.raw.passkey;
-                org.telegram.ui.Components.n41 n41Var = new org.telegram.ui.Components.n41(2);
-                n41Var.f30844l = string;
-                n41Var.f30843k = i11;
-                arrayList.add(n41Var);
-                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                    TL_account.Passkey passkey = (TL_account.Passkey) arrayList2.get(i12);
-                    u50 u50Var = new u50(passkeysActivity, 15);
-                    int i13 = el0.f37785a;
-                    org.telegram.ui.Components.n41 n41VarJ = org.telegram.ui.Components.n41.J(el0.class);
-                    n41VarJ.G = passkey;
-                    n41VarJ.D = u50Var;
-                    arrayList.add(n41VarJ);
+                int i10 = R.raw.passkey;
+                org.telegram.ui.Components.l41 l41Var = new org.telegram.ui.Components.l41(2);
+                l41Var.f30339l = string;
+                l41Var.f30338k = i10;
+                arrayList.add(l41Var);
+                for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                    q50 q50Var = new q50(passkeysActivity, 15);
+                    int i12 = el0.f37987a;
+                    org.telegram.ui.Components.l41 J = org.telegram.ui.Components.l41.J(el0.class);
+                    J.G = (TL_account.Passkey) arrayList2.get(i11);
+                    J.D = q50Var;
+                    arrayList.add(J);
                 }
                 if (arrayList2.size() + 1 <= passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
                     passkeysActivity.addPasskeyRow = arrayList.size();
-                    org.telegram.ui.Components.n41 n41VarC = org.telegram.ui.Components.n41.c(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd));
-                    n41VarC.f30849q = true;
-                    arrayList.add(n41VarC);
+                    org.telegram.ui.Components.l41 c10 = org.telegram.ui.Components.l41.c(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd));
+                    c10.f30344q = true;
+                    arrayList.add(c10);
                 }
-                arrayList.add(org.telegram.ui.Components.n41.B(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new zk0(passkeysActivity, 1)), true)));
-                break;
+                arrayList.add(org.telegram.ui.Components.l41.B(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new zk0(passkeysActivity, 1)), true)));
+                return;
             default:
-                PasskeysActivity.U(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
-                break;
+                PasskeysActivity.T(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
+                return;
         }
     }
 }

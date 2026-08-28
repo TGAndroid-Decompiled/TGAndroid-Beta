@@ -1,7 +1,6 @@
 package w3;
-
 public interface y {
-    void a(d5.f0 f0Var, m3.m mVar, e0 e0Var);
+    void e(d5.e0 e0Var, m3.m mVar, d0 d0Var);
 
-    void b(d5.z zVar);
+    void g(d5.y yVar);
 }

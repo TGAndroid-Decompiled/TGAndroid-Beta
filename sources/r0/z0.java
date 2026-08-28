@@ -1,57 +1,55 @@
 package r0;
 
 import android.view.WindowInsets;
-
 public class z0 extends c1 {
-
-    public final WindowInsets.Builder f46656c;
+    public final WindowInsets.Builder f46966c;
 
     public z0() {
-        this.f46656c = android.support.v4.media.session.z.g();
+        this.f46966c = android.support.v4.media.session.z.g();
     }
 
     @Override
     public m1 b() {
         a();
-        m1 m1VarH = m1.h(null, this.f46656c.build());
-        m1VarH.f46619a.q(this.f46571b);
-        return m1VarH;
+        m1 h = m1.h(null, this.f46966c.build());
+        h.f46929a.q(this.f46881b);
+        return h;
     }
 
     @Override
-    public void d(i0.c cVar) {
-        this.f46656c.setMandatorySystemGestureInsets(cVar.d());
+    public void d(i0.b bVar) {
+        this.f46966c.setMandatorySystemGestureInsets(bVar.d());
     }
 
     @Override
-    public void e(i0.c cVar) {
-        this.f46656c.setStableInsets(cVar.d());
+    public void e(i0.b bVar) {
+        this.f46966c.setStableInsets(bVar.d());
     }
 
     @Override
-    public void f(i0.c cVar) {
-        this.f46656c.setSystemGestureInsets(cVar.d());
+    public void f(i0.b bVar) {
+        this.f46966c.setSystemGestureInsets(bVar.d());
     }
 
     @Override
-    public void g(i0.c cVar) {
-        this.f46656c.setSystemWindowInsets(cVar.d());
+    public void g(i0.b bVar) {
+        this.f46966c.setSystemWindowInsets(bVar.d());
     }
 
     @Override
-    public void h(i0.c cVar) {
-        this.f46656c.setTappableElementInsets(cVar.d());
+    public void h(i0.b bVar) {
+        this.f46966c.setTappableElementInsets(bVar.d());
     }
 
     public z0(m1 m1Var) {
-        WindowInsets.Builder builderG;
         super(m1Var);
-        WindowInsets windowInsetsG = m1Var.g();
-        if (windowInsetsG != null) {
-            builderG = android.support.v4.media.session.z.h(windowInsetsG);
+        WindowInsets.Builder g10;
+        WindowInsets g11 = m1Var.g();
+        if (g11 != null) {
+            g10 = android.support.v4.media.session.z.h(g11);
         } else {
-            builderG = android.support.v4.media.session.z.g();
+            g10 = android.support.v4.media.session.z.g();
         }
-        this.f46656c = builderG;
+        this.f46966c = g10;
     }
 }

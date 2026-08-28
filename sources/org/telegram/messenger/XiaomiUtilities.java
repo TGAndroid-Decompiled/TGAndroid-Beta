@@ -4,7 +4,6 @@ import android.app.AppOpsManager;
 import android.content.Intent;
 import android.os.Process;
 import android.text.TextUtils;
-
 public class XiaomiUtilities {
     public static final int OP_ACCESS_XIAOMI_ACCOUNT = 10015;
     public static final int OP_AUTO_START = 10008;
@@ -32,14 +31,14 @@ public class XiaomiUtilities {
 
     public static int getMIUIMajorVersion() {
         String systemProperty = AndroidUtilities.getSystemProperty("ro.miui.ui.version.name");
-        if (systemProperty == null) {
-            return -1;
+        if (systemProperty != null) {
+            try {
+                return Integer.parseInt(systemProperty.replace("V", ""));
+            } catch (NumberFormatException unused) {
+                return -1;
+            }
         }
-        try {
-            return Integer.parseInt(systemProperty.replace("V", ""));
-        } catch (NumberFormatException unused) {
-            return -1;
-        }
+        return -1;
     }
 
     public static Intent getPermissionManagerIntent() {
@@ -50,13 +49,15 @@ public class XiaomiUtilities {
         return intent;
     }
 
-    public static boolean isCustomPermissionGranted(int i10) {
+    public static boolean isCustomPermissionGranted(int i9) {
         try {
-            AppOpsManager appOpsManager = (AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops");
             Class cls = Integer.TYPE;
-            return ((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke(appOpsManager, Integer.valueOf(i10), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops"), Integer.valueOf(i9), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0) {
+                return true;
+            }
+            return false;
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return true;
         }
     }

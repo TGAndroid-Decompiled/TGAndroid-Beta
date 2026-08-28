@@ -1,56 +1,61 @@
 package pf;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
+import android.location.Address;
+import android.location.Geocoder;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.pc0;
 public final class p0 implements Runnable {
+    public final int f45746a = 0;
+    public final w0 f45747b;
+    public final pc0 f45748c;
+    public final c2 d;
 
-    public final TLRPC.Chat f45896a;
-
-    public final String f45897b;
-
-    public final long f45898c;
-    public final ArrayList d;
-
-    public final a0.h f45899e;
-
-    public final MessagesController f45900f;
-    public final u0 h;
-
-    public p0(u0 u0Var, TLRPC.Chat chat, String str, long j10, ArrayList arrayList, a0.h hVar, MessagesController messagesController) {
-        this.h = u0Var;
-        this.f45896a = chat;
-        this.f45897b = str;
-        this.f45898c = j10;
-        this.d = arrayList;
-        this.f45899e = hVar;
-        this.f45900f = messagesController;
+    public p0(w0 w0Var, c2 c2Var, pc0 pc0Var) {
+        this.f45747b = w0Var;
+        this.d = c2Var;
+        this.f45748c = pc0Var;
     }
 
     @Override
     public final void run() {
-        u0 u0Var = this.h;
-        if (u0Var.A != this) {
-            return;
+        switch (this.f45746a) {
+            case 0:
+                w0 w0Var = this.f45747b;
+                w0Var.getClass();
+                this.d.dismiss();
+                w0Var.presentFragment(this.f45748c);
+                return;
+            default:
+                w0 w0Var2 = this.f45747b;
+                pc0 pc0Var = this.f45748c;
+                try {
+                    List<Address> fromLocationName = new Geocoder(w0Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(w0Var2.f45812y, 1);
+                    if (!fromLocationName.isEmpty()) {
+                        Address address = fromLocationName.get(0);
+                        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+                        tL_channelLocation.address = w0Var2.f45812y;
+                        TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                        tL_channelLocation.geo_point = tL_geoPoint;
+                        tL_geoPoint.lat = address.getLatitude();
+                        tL_channelLocation.geo_point._long = address.getLongitude();
+                        pc0Var.f41471w0 = tL_channelLocation;
+                    }
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                }
+                AndroidUtilities.runOnUIThread(new p0(w0Var2, this.d, pc0Var));
+                return;
         }
-        TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-        tL_channels_getParticipants.channel = MessagesController.getInputChannel(this.f45896a);
-        tL_channels_getParticipants.limit = 20;
-        tL_channels_getParticipants.offset = 0;
-        TLRPC.TL_channelParticipantsMentions tL_channelParticipantsMentions = new TLRPC.TL_channelParticipantsMentions();
-        int i10 = tL_channelParticipantsMentions.flags;
-        tL_channelParticipantsMentions.flags = i10 | 1;
-        tL_channelParticipantsMentions.f22379q = this.f45897b;
-        long j10 = this.f45898c;
-        if (j10 != 0) {
-            tL_channelParticipantsMentions.flags = i10 | 3;
-            tL_channelParticipantsMentions.top_msg_id = (int) j10;
-        }
-        tL_channels_getParticipants.filter = tL_channelParticipantsMentions;
-        int i11 = u0Var.f45927e0 + 1;
-        u0Var.f45927e0 = i11;
-        u0Var.f45929f0 = ConnectionsManager.getInstance(u0Var.f45928f).sendRequest(tL_channels_getParticipants, new gf.j0(this, i11, this.d, this.f45899e, this.f45900f, 13));
+    }
+
+    public p0(w0 w0Var, pc0 pc0Var, c2 c2Var) {
+        this.f45747b = w0Var;
+        this.f45748c = pc0Var;
+        this.d = c2Var;
     }
 }

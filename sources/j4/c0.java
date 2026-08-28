@@ -1,22 +1,4 @@
 package j4;
-
-public final class c0 extends a0 {
-    public c0(Object obj) {
-        super(obj, -1L);
-    }
-
-    public final c0 b(Object obj) {
-        a0 a0Var;
-        if (this.f12503a.equals(obj)) {
-            a0Var = this;
-        } else {
-            long j10 = this.d;
-            a0Var = new a0(this.f12504b, this.f12505c, this.f12506e, j10, obj);
-        }
-        return new c0(a0Var);
-    }
-
-    public c0(Object obj, long j10, int i10) {
-        super(-1, -1, i10, j10, obj);
-    }
+public interface c0 {
+    a a(h3.f1 f1Var);
 }

@@ -1,33 +1,38 @@
 package org.telegram.messenger;
 
-import android.content.DialogInterface;
+import org.telegram.tgnet.TLRPC;
+public final class va implements Runnable {
+    public final int f21751a;
+    public final MessagesController f21752b;
+    public final TLRPC.Chat f21753c;
 
-public final class va implements DialogInterface.OnCancelListener {
-
-    public final int f21789a;
-
-    public final BaseController f21790b;
-
-    public final int f21791c;
-
-    public va(BaseController baseController, int i10, int i11) {
-        this.f21789a = i11;
-        this.f21790b = baseController;
-        this.f21791c = i10;
+    public va(MessagesController messagesController, TLRPC.Chat chat, int i9) {
+        this.f21751a = i9;
+        this.f21752b = messagesController;
+        this.f21753c = chat;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f21789a) {
+    public final void run() {
+        switch (this.f21751a) {
             case 0:
-                ((MessagesController) this.f21790b).lambda$convertToGigaGroup$271(this.f21791c, dialogInterface);
-                break;
+                this.f21752b.lambda$addOrRemoveActiveVoiceChat$61(this.f21753c);
+                return;
             case 1:
-                ((MessagesController) this.f21790b).lambda$convertToMegaGroup$266(this.f21791c, dialogInterface);
-                break;
+                this.f21752b.lambda$processLoadedDialogs$218(this.f21753c);
+                return;
+            case 2:
+                this.f21752b.lambda$processUpdateArray$413(this.f21753c);
+                return;
+            case 3:
+                this.f21752b.lambda$putChat$58(this.f21753c);
+                return;
+            case 4:
+                this.f21752b.lambda$putChat$59(this.f21753c);
+                return;
             default:
-                ((SecretChatHelper) this.f21790b).lambda$startSecretChat$31(this.f21791c, dialogInterface);
-                break;
+                this.f21752b.lambda$putChat$60(this.f21753c);
+                return;
         }
     }
 }

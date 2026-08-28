@@ -1,26 +1,12 @@
 package g7;
 
-import android.content.Context;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-
+import android.content.res.Configuration;
+import android.os.Build;
 public abstract class a0 {
-    public static int a(Context context) {
-        float fraction;
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        boolean z10 = displayMetrics.widthPixels < displayMetrics.heightPixels;
-        TypedValue typedValue = new TypedValue();
-        context.getResources().getValue(z10 ? 2131165335 : 2131165334, typedValue, true);
-        int i10 = typedValue.type;
-        if (i10 == 5) {
-            fraction = typedValue.getDimension(displayMetrics);
-        } else {
-            if (i10 != 6) {
-                return -2;
-            }
-            int i11 = displayMetrics.widthPixels;
-            fraction = typedValue.getFraction(i11, i11);
+    public static n0.c a(Configuration configuration) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return new n0.c(new n0.f(androidx.emoji2.text.v.f(configuration)));
         }
-        return (int) fraction;
+        return n0.c.a(configuration.locale);
     }
 }

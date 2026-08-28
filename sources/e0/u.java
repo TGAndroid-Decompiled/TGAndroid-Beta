@@ -1,7 +1,6 @@
 package e0;
 
 import android.app.Notification;
-
 public abstract class u {
     public static Notification.MessagingStyle a(Notification.MessagingStyle messagingStyle, Notification.MessagingStyle.Message message) {
         return messagingStyle.addMessage(message);

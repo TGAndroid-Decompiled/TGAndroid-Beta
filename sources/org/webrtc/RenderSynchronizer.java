@@ -5,11 +5,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Trace;
 import android.view.Choreographer;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
-
 public final class RenderSynchronizer {
     private static final float DEFAULT_TARGET_FPS = 30.0f;
     private static final String TAG = "RenderSynchronizer";
@@ -32,7 +30,7 @@ public final class RenderSynchronizer {
     public RenderSynchronizer(float f10) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(TimeUnit.SECONDS.toNanos(1L) / f10);
+        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f10);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
         handler.post(new n(this, 1));
@@ -42,9 +40,8 @@ public final class RenderSynchronizer {
     private void closeRenderWindow() {
         this.renderWindowOpen = false;
         traceRenderWindowChange();
-        Iterator<Listener> it = this.listeners.iterator();
-        while (it.hasNext()) {
-            it.next().onRenderWindowClose();
+        for (Listener listener : this.listeners) {
+            listener.onRenderWindowClose();
         }
     }
 
@@ -66,9 +63,8 @@ public final class RenderSynchronizer {
                 }
                 this.choreographer.postFrameCallback(new o(this));
                 long j11 = j10 - this.lastOpenedTimeNanos;
-                long j12 = j10 - this.lastRefreshTimeNanos;
                 this.lastRefreshTimeNanos = j10;
-                if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + j12)) {
+                if (Math.abs(j11 - this.targetFrameIntervalNanos) < Math.abs((j11 - this.targetFrameIntervalNanos) + (j10 - this.lastRefreshTimeNanos))) {
                     this.lastOpenedTimeNanos = j10;
                     openRenderWindow();
                 } else if (this.renderWindowOpen) {
@@ -83,15 +79,20 @@ public final class RenderSynchronizer {
     private void openRenderWindow() {
         this.renderWindowOpen = true;
         traceRenderWindowChange();
-        Iterator<Listener> it = this.listeners.iterator();
-        while (it.hasNext()) {
-            it.next().onRenderWindowOpen();
+        for (Listener listener : this.listeners) {
+            listener.onRenderWindowOpen();
         }
     }
 
     private void traceRenderWindowChange() {
+        long j10;
         if (Build.VERSION.SDK_INT >= 29) {
-            Trace.setCounter("RenderWindow", this.renderWindowOpen ? 1L : 0L);
+            if (this.renderWindowOpen) {
+                j10 = 1;
+            } else {
+                j10 = 0;
+            }
+            Trace.setCounter("RenderWindow", j10);
         }
     }
 

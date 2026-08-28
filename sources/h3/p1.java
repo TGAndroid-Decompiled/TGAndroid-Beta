@@ -7,9 +7,9 @@ import android.util.Pair;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import h7.z5;
-import hh.l7;
-import hh.t5;
+import g7.e6;
+import gh.m7;
+import gh.u5;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,89 +31,94 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.mc;
-import org.telegram.ui.Components.yy;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.wy;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.fe;
-import org.telegram.ui.rn;
+import org.telegram.ui.qn;
+import org.telegram.ui.so;
+import org.telegram.ui.st;
 import org.telegram.ui.ud;
 import org.telegram.ui.uo;
-import org.telegram.ui.vt;
-import org.telegram.ui.wo;
-import org.telegram.ui.xo;
-
+import org.telegram.ui.vo;
 public final class p1 implements Runnable {
-
-    public final int f8058a;
-
-    public final Object f8059b;
-
-    public final Object f8060c;
+    public final int f9628a;
+    public final Object f9629b;
+    public final Object f9630c;
     public final Object d;
-
-    public final boolean f8061e;
-
-    public final Object f8062f;
+    public final boolean f9631e;
+    public final Object f9632f;
     public final Object h;
 
-    public p1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, boolean z10, int i10) {
-        this.f8058a = i10;
-        this.f8062f = obj;
+    public p1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, boolean z10, int i9) {
+        this.f9628a = i9;
+        this.f9632f = obj;
         this.h = obj2;
-        this.f8059b = obj3;
-        this.f8060c = obj4;
+        this.f9629b = obj3;
+        this.f9630c = obj4;
         this.d = obj5;
-        this.f8061e = z10;
+        this.f9631e = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f8058a) {
+        int i9;
+        int i10;
+        int dp;
+        int i11;
+        int i12;
+        int dp2;
+        int i13;
+        int i14;
+        switch (this.f9628a) {
             case 0:
-                g5.b bVar = (g5.b) this.f8062f;
                 Pair pair = (Pair) this.h;
-                ((s1) bVar.f6390c).h.d(((Integer) pair.first).intValue(), (j4.c0) pair.second, (j4.p) this.f8059b, (j4.x) this.f8060c, (IOException) this.d, this.f8061e);
-                break;
+                ((s1) ((g5.b) this.f9632f).f7112c).h.d(((Integer) pair.first).intValue(), (j4.d0) pair.second, (j4.q) this.f9629b, (j4.y) this.f9630c, (IOException) this.d, this.f9631e);
+                return;
             case 1:
-                j4.g0 g0Var = (j4.g0) this.f8062f;
-                this.h.d(g0Var.f12561a, g0Var.f12562b, (j4.p) this.f8059b, (j4.x) this.f8060c, (IOException) this.d, this.f8061e);
-                break;
+                j4.h0 h0Var = (j4.h0) this.f9632f;
+                int i15 = h0Var.f13464a;
+                j4.d0 d0Var = h0Var.f13465b;
+                this.h.d(i15, d0Var, (j4.q) this.f9629b, (j4.y) this.f9630c, (IOException) this.d, this.f9631e);
+                return;
             case 2:
-                ((ContactsController) this.f8062f).lambda$mergePhonebookAndTelegramContacts$41(this.f8061e, (ArrayList) this.h, (HashMap) this.f8059b, (HashMap) this.f8060c, (ArrayList) this.d);
-                break;
+                ((ContactsController) this.f9632f).lambda$mergePhonebookAndTelegramContacts$41(this.f9631e, (ArrayList) this.h, (HashMap) this.f9629b, (HashMap) this.f9630c, (ArrayList) this.d);
+                return;
             case 3:
-                ((FileLoadOperation) this.f8062f).lambda$onFinishLoadingFile$20((File) this.h, (File) this.f8059b, (File) this.f8060c, (File) this.d, this.f8061e);
-                break;
+                ((FileLoadOperation) this.f9632f).lambda$onFinishLoadingFile$20((File) this.h, (File) this.f9629b, (File) this.f9630c, (File) this.d, this.f9631e);
+                return;
             case 4:
-                ((MessagesController) this.f8062f).lambda$processDialogsUpdate$228((TLRPC.messages_Dialogs) this.h, (a0.h) this.f8059b, (a0.h) this.f8060c, this.f8061e, (LongSparseIntArray) this.d);
-                break;
+                ((MessagesController) this.f9632f).lambda$processDialogsUpdate$228((TLRPC.messages_Dialogs) this.h, (a0.h) this.f9629b, (a0.h) this.f9630c, this.f9631e, (LongSparseIntArray) this.d);
+                return;
             case 5:
-                ((SendMessagesHelper) this.f8062f).lambda$requestUrlAuth$36((TLObject) this.h, (TLRPC.TL_messages_requestUrlAuth) this.f8059b, (rn) this.f8060c, (String) this.d, this.f8061e);
-                break;
+                ((SendMessagesHelper) this.f9632f).lambda$requestUrlAuth$36((TLObject) this.h, (TLRPC.TL_messages_requestUrlAuth) this.f9629b, (qn) this.f9630c, (String) this.d, this.f9631e);
+                return;
             case 6:
-                ((CameraController) this.f8062f).lambda$recordVideo$13(this.h, (CameraController.ICameraView) this.f8059b, (File) this.f8060c, this.f8061e, (Runnable) this.d);
-                break;
+                ((CameraController) this.f9632f).lambda$recordVideo$13(this.h, (CameraController.ICameraView) this.f9629b, (File) this.f9630c, this.f9631e, (Runnable) this.d);
+                return;
             case 7:
-                fe feVar = (fe) this.f8062f;
+                fe feVar = (fe) this.f9632f;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f8059b;
-                Activity activity = (Activity) this.f8060c;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f9629b;
+                Activity activity = (Activity) this.f9630c;
                 TLObject tLObject = (TLObject) this.d;
-                boolean z10 = this.f8061e;
-                if (tL_error == null) {
-                    twoStepVerificationActivity.o0();
-                    twoStepVerificationActivity.finishFragment();
-                    if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
-                        we.e.s(feVar.getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
-                        if (z10) {
-                            feVar.c0(true);
+                boolean z10 = this.f9631e;
+                if (tL_error != null) {
+                    if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
+                        if ("SRP_ID_INVALID".equals(tL_error.text)) {
+                            ConnectionsManager.getInstance(feVar.f38238u0).sendRequest(new TL_account.getPassword(), new m7(feVar, twoStepVerificationActivity, z10, 3), 8);
+                            return;
                         }
+                        if (twoStepVerificationActivity != null) {
+                            twoStepVerificationActivity.n0();
+                            twoStepVerificationActivity.finishFragment();
+                        }
+                        oc.b0(tL_error);
+                        return;
                     }
-                    feVar.e0();
-                } else if ("PASSWORD_MISSING".equals(tL_error.text) || tL_error.text.startsWith("PASSWORD_TOO_FRESH_") || tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                     if (twoStepVerificationActivity != null) {
-                        twoStepVerificationActivity.o0();
+                        twoStepVerificationActivity.n0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
                     alertDialog$Builder.f22702a.N = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
@@ -122,161 +127,203 @@ public final class p1 implements Runnable {
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.n(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i10 = g6.f23161j5;
-                    textView.setTextColor(g6.w0(null, i10, false));
+                    int i16 = f6.f23108j5;
+                    textView.setTextColor(f6.w0(null, i16, false));
                     textView.setTextSize(1, 16.0f);
-                    textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                    if (LocaleController.isRTL) {
+                        i9 = 5;
+                    } else {
+                        i9 = 3;
+                    }
+                    textView.setGravity(i9 | 48);
                     textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
-                    linearLayout.addView(textView, z5.n(-1, -2));
+                    linearLayout.addView(textView, e6.n(-1, -2));
                     LinearLayout linearLayout2 = new LinearLayout(activity);
                     linearLayout2.setOrientation(0);
-                    linearLayout.addView(linearLayout2, z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                    linearLayout.addView(linearLayout2, e6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                     ImageView imageView = new ImageView(activity);
                     imageView.setImageResource(R.drawable.list_circle);
-                    imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                    int iW0 = g6.w0(null, i10, false);
-                    PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                    imageView.setColorFilter(new PorterDuffColorFilter(iW0, mode));
-                    TextView textView2 = new TextView(activity);
-                    textView2.setTextColor(g6.w0(null, i10, false));
-                    textView2.setTextSize(1, 16.0f);
-                    textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                    org.telegram.messenger.y1.p(R.string.EditAdminTransferAlertText1, textView2);
                     if (LocaleController.isRTL) {
-                        linearLayout2.addView(textView2, z5.n(-1, -2));
-                        linearLayout2.addView(imageView, z5.q(-2, -2, 5));
+                        i10 = AndroidUtilities.dp(11.0f);
                     } else {
-                        linearLayout2.addView(imageView, z5.n(-2, -2));
-                        linearLayout2.addView(textView2, z5.n(-1, -2));
+                        i10 = 0;
                     }
-                    LinearLayout linearLayoutF = org.telegram.messenger.y1.f(activity, 0);
-                    linearLayout.addView(linearLayoutF, z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                    int dp3 = AndroidUtilities.dp(9.0f);
+                    if (LocaleController.isRTL) {
+                        dp = 0;
+                    } else {
+                        dp = AndroidUtilities.dp(11.0f);
+                    }
+                    imageView.setPadding(i10, dp3, dp, 0);
+                    int w02 = f6.w0(null, i16, false);
+                    PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                    imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
+                    TextView textView2 = new TextView(activity);
+                    textView2.setTextColor(f6.w0(null, i16, false));
+                    textView2.setTextSize(1, 16.0f);
+                    if (LocaleController.isRTL) {
+                        i11 = 5;
+                    } else {
+                        i11 = 3;
+                    }
+                    textView2.setGravity(i11 | 48);
+                    org.telegram.messenger.l0.m(R.string.EditAdminTransferAlertText1, textView2);
+                    if (LocaleController.isRTL) {
+                        linearLayout2.addView(textView2, e6.n(-1, -2));
+                        linearLayout2.addView(imageView, e6.q(-2, -2, 5));
+                    } else {
+                        linearLayout2.addView(imageView, e6.n(-2, -2));
+                        linearLayout2.addView(textView2, e6.n(-1, -2));
+                    }
+                    LinearLayout f10 = org.telegram.messenger.l0.f(activity, 0);
+                    linearLayout.addView(f10, e6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                     ImageView imageView2 = new ImageView(activity);
                     imageView2.setImageResource(R.drawable.list_circle);
-                    imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                    imageView2.setColorFilter(new PorterDuffColorFilter(g6.w0(null, i10, false), mode));
-                    TextView textView3 = new TextView(activity);
-                    textView3.setTextColor(g6.w0(null, i10, false));
-                    textView3.setTextSize(1, 16.0f);
-                    textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                    org.telegram.messenger.y1.p(R.string.EditAdminTransferAlertText2, textView3);
                     if (LocaleController.isRTL) {
-                        linearLayoutF.addView(textView3, z5.n(-1, -2));
-                        linearLayoutF.addView(imageView2, z5.q(-2, -2, 5));
+                        i12 = AndroidUtilities.dp(11.0f);
                     } else {
-                        linearLayoutF.addView(imageView2, z5.n(-2, -2));
-                        linearLayoutF.addView(textView3, z5.n(-1, -2));
+                        i12 = 0;
+                    }
+                    int dp4 = AndroidUtilities.dp(9.0f);
+                    if (LocaleController.isRTL) {
+                        dp2 = 0;
+                    } else {
+                        dp2 = AndroidUtilities.dp(11.0f);
+                    }
+                    imageView2.setPadding(i12, dp4, dp2, 0);
+                    imageView2.setColorFilter(new PorterDuffColorFilter(f6.w0(null, i16, false), mode));
+                    TextView textView3 = new TextView(activity);
+                    textView3.setTextColor(f6.w0(null, i16, false));
+                    textView3.setTextSize(1, 16.0f);
+                    if (LocaleController.isRTL) {
+                        i13 = 5;
+                    } else {
+                        i13 = 3;
+                    }
+                    textView3.setGravity(i13 | 48);
+                    org.telegram.messenger.l0.m(R.string.EditAdminTransferAlertText2, textView3);
+                    if (LocaleController.isRTL) {
+                        f10.addView(textView3, e6.n(-1, -2));
+                        f10.addView(imageView2, e6.q(-2, -2, 5));
+                    } else {
+                        f10.addView(imageView2, e6.n(-2, -2));
+                        f10.addView(textView3, e6.n(-1, -2));
                     }
                     if ("PASSWORD_MISSING".equals(tL_error.text)) {
                         alertDialog$Builder.k(LocaleController.getString(R.string.EditAdminTransferSetPassword), new ud(feVar));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                     } else {
                         TextView textView4 = new TextView(activity);
-                        textView4.setTextColor(g6.w0(null, i10, false));
+                        textView4.setTextColor(f6.w0(null, i16, false));
                         textView4.setTextSize(1, 16.0f);
-                        textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                        if (LocaleController.isRTL) {
+                            i14 = 5;
+                        } else {
+                            i14 = 3;
+                        }
+                        textView4.setGravity(i14 | 48);
                         textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-                        linearLayout.addView(textView4, z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                        linearLayout.addView(textView4, e6.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                         alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                     }
-                    if (twoStepVerificationActivity == null) {
-                        feVar.f38097s0.showDialog(alertDialog$Builder.f22702a);
-                    } else {
-                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f22702a);
-                    }
-                } else if (!"SRP_ID_INVALID".equals(tL_error.text)) {
                     if (twoStepVerificationActivity != null) {
-                        twoStepVerificationActivity.o0();
-                        twoStepVerificationActivity.finishFragment();
+                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f22702a);
+                        return;
+                    } else {
+                        feVar.f38235s0.showDialog(alertDialog$Builder.f22702a);
+                        return;
                     }
-                    mc.b0(tL_error);
-                } else {
-                    ConnectionsManager.getInstance(feVar.f38100u0).sendRequest(new TL_account.getPassword(), new l7(feVar, twoStepVerificationActivity, z10, 2), 8);
                 }
-                break;
+                twoStepVerificationActivity.n0();
+                twoStepVerificationActivity.finishFragment();
+                if (tLObject instanceof TLRPC.TL_payments_starsRevenueWithdrawalUrl) {
+                    ve.e.s(feVar.getContext(), ((TLRPC.TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
+                    if (z10) {
+                        feVar.c0(true);
+                    }
+                }
+                feVar.e0();
+                return;
             case 8:
-                rn rnVar = (rn) this.f8062f;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.h;
-                boolean[] zArr = (boolean[]) this.f8059b;
-                MessageObject messageObject = (MessageObject) this.f8060c;
+                qn qnVar = (qn) this.f9632f;
+                org.telegram.ui.ActionBar.c2 c2Var = (org.telegram.ui.ActionBar.c2) this.h;
+                boolean[] zArr = (boolean[]) this.f9629b;
+                MessageObject messageObject = (MessageObject) this.f9630c;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) this.d;
                 try {
-                    b2Var.dismiss();
-                    break;
+                    c2Var.dismiss();
                 } catch (Throwable unused) {
                 }
                 if (!zArr[0]) {
-                    if (this.f8061e) {
-                        rnVar.createArticleViewer(false).N(messageObject, webPage, null, null);
-                    } else {
-                        try {
-                            AndroidUtilities.openForView(messageObject, rnVar.getParentActivity(), rnVar.f41983aa, false);
-                        } catch (Exception e9) {
-                            FileLog.e(e9);
-                            rnVar.z6(messageObject);
-                            return;
-                        }
+                    if (this.f9631e) {
+                        qnVar.createArticleViewer(false).N(messageObject, webPage, null, null);
+                        return;
                     }
-                    break;
+                    try {
+                        AndroidUtilities.openForView(messageObject, qnVar.getParentActivity(), qnVar.f41848aa, false);
+                        return;
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
+                        qnVar.z6(messageObject);
+                        return;
+                    }
                 }
-                break;
+                return;
             case 9:
-                uo uoVar = (uo) this.f8062f;
-                TLRPC.TL_channels_toggleUsername tL_channels_toggleUsername = (TLRPC.TL_channels_toggleUsername) this.h;
-                TLObject tLObject2 = (TLObject) this.f8059b;
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f8060c;
+                so soVar = (so) this.f9632f;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f9630c;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
-                wo woVar = uoVar.f43265a;
-                xo xoVar = woVar.W2;
-                xoVar.L.remove(tL_channels_toggleUsername.username);
-                boolean z11 = tLObject2 instanceof TLRPC.TL_boolTrue;
-                boolean z12 = this.f8061e;
+                uo uoVar = soVar.f42737a;
+                vo voVar = uoVar.W2;
+                voVar.L.remove(((TLRPC.TL_channels_toggleUsername) this.h).username);
+                boolean z11 = ((TLObject) this.f9629b) instanceof TLRPC.TL_boolTrue;
+                boolean z12 = this.f9631e;
                 if (z11) {
-                    woVar.w1(tL_username, !z12, false);
-                } else if (tL_error2 == null || !"USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error2.text)) {
-                    woVar.w1(tL_username, z12, true);
-                    xoVar.V();
+                    uoVar.w1(tL_username, !z12, false);
+                } else if (tL_error2 != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error2.text)) {
+                    AndroidUtilities.runOnUIThread(new u5(soVar, tL_username, z12, 12));
                 } else {
-                    AndroidUtilities.runOnUIThread(new t5(uoVar, tL_username, z12, 12));
+                    uoVar.w1(tL_username, z12, true);
+                    voVar.U();
                 }
-                xoVar.getMessagesController().updateUsernameActiveness(xoVar.T, tL_username.username, tL_username.active);
-                break;
+                voVar.getMessagesController().updateUsernameActiveness(voVar.T, tL_username.username, tL_username.active);
+                return;
             case 10:
-                ((yy) this.f8062f).L((wg.b) this.h, (TLObject) this.f8059b, (TLRPC.StickerSet) this.f8060c, (TLRPC.Document) this.d, this.f8061e, true);
-                break;
+                ((wy) this.f9632f).K((vg.b) this.h, (TLObject) this.f9629b, (TLRPC.StickerSet) this.f9630c, (TLRPC.Document) this.d, this.f9631e, true);
+                return;
             default:
-                vt.Q((vt) this.f8062f, (TLObject) this.h, (lh.d) this.f8059b, this.f8061e, (HashSet) this.f8060c, (TLRPC.TL_error) this.d);
-                break;
+                st.P((st) this.f9632f, (TLObject) this.h, (kh.d) this.f9629b, this.f9631e, (HashSet) this.f9630c, (TLRPC.TL_error) this.d);
+                return;
         }
     }
 
-    public p1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, Object obj5, int i10) {
-        this.f8058a = i10;
-        this.f8062f = obj;
+    public p1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, Object obj5, int i9) {
+        this.f9628a = i9;
+        this.f9632f = obj;
         this.h = obj2;
-        this.f8059b = obj3;
-        this.f8060c = obj4;
-        this.f8061e = z10;
+        this.f9629b = obj3;
+        this.f9630c = obj4;
+        this.f9631e = z10;
         this.d = obj5;
     }
 
-    public p1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, TLObject tLObject, int i10) {
-        this.f8058a = i10;
-        this.f8062f = obj;
+    public p1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, TLObject tLObject, int i9) {
+        this.f9628a = i9;
+        this.f9632f = obj;
         this.h = obj2;
-        this.f8059b = obj3;
-        this.f8061e = z10;
-        this.f8060c = obj4;
+        this.f9629b = obj3;
+        this.f9631e = z10;
+        this.f9630c = obj4;
         this.d = tLObject;
     }
 
-    public p1(ContactsController contactsController, boolean z10, ArrayList arrayList, HashMap map, HashMap map2, ArrayList arrayList2) {
-        this.f8058a = 2;
-        this.f8062f = contactsController;
-        this.f8061e = z10;
+    public p1(ContactsController contactsController, boolean z10, ArrayList arrayList, HashMap hashMap, HashMap hashMap2, ArrayList arrayList2) {
+        this.f9628a = 2;
+        this.f9632f = contactsController;
+        this.f9631e = z10;
         this.h = arrayList;
-        this.f8059b = map;
-        this.f8060c = map2;
+        this.f9629b = hashMap;
+        this.f9630c = hashMap2;
         this.d = arrayList2;
     }
 }

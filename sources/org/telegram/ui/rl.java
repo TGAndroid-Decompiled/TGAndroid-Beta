@@ -1,66 +1,121 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
+public final class rl implements Runnable {
+    public final int f42457a;
+    public final int f42458b;
+    public final Object f42459c;
+    public final Object d;
 
-public final class rl extends st0 {
-
-    public final rn f41961a;
-
-    public rl(rn rnVar) {
-        this.f41961a = rnVar;
+    public rl(int i9, Object obj, Object obj2, int i10) {
+        this.f42457a = i10;
+        this.f42458b = i9;
+        this.f42459c = obj;
+        this.d = obj2;
     }
 
-    @Override
-    public final cu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        vj vjVar;
-        ImageReceiver photoImage;
-        if (i10 >= 0) {
-            rn rnVar = this.f41961a;
-            if (i10 < rnVar.Da.size() && (vjVar = rnVar.E1) != null && vjVar.getListView() != null) {
-                int childCount = rnVar.E1.getListView().getChildCount();
-                Object obj = rnVar.Da.get(i10);
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = rnVar.E1.getListView().getChildAt(i11);
-                    if (childAt instanceof org.telegram.ui.Cells.d2) {
-                        org.telegram.ui.Cells.d2 d2Var = (org.telegram.ui.Cells.d2) childAt;
-                        if (d2Var.getResult() == obj) {
-                            photoImage = d2Var.getPhotoImage();
-                        } else {
-                            photoImage = null;
-                        }
-                    } else {
-                        photoImage = null;
-                    }
-                    if (photoImage != null) {
-                        int[] iArr = new int[2];
-                        childAt.getLocationInWindow(iArr);
-                        cu0 cu0Var = new cu0();
-                        cu0Var.f37154b = iArr[0];
-                        cu0Var.f37155c = iArr[1];
-                        cu0Var.d = rnVar.E1.getListView();
-                        cu0Var.f37153a = photoImage;
-                        cu0Var.f37156e = photoImage.getBitmapSafe();
-                        cu0Var.h = photoImage.getRoundRadius(true);
-                        return cu0Var;
-                    }
-                }
-            }
+    private final void a() {
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.y01((org.telegram.ui.Components.a11) this.f42459c, (org.telegram.ui.Components.bp) this.d, this.f42458b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 0));
+    }
+
+    private final void b() {
+        MessageObject messageObject = (MessageObject) this.f42459c;
+        org.telegram.ui.Cells.k1 k1Var = (org.telegram.ui.Cells.k1) this.d;
+        HashMap hashMap = org.telegram.ui.Components.i21.P;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(org.telegram.ui.Components.i21.o(messageObject)));
         }
-        return null;
+        if (k1Var != null) {
+            k1Var.i0(3);
+        }
+        int i9 = this.f42458b;
+        NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+        NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
     }
 
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        if (i10 >= 0) {
-            rn rnVar = this.f41961a;
-            if (i10 >= rnVar.Da.size()) {
+    private final void c() {
+        int i9;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        dy dyVar = ((hx) this.f42459c).f38949b0;
+        ArrayList arrayList = dyVar.N1;
+        if (arrayList != null && (i9 = this.f42458b) >= 0 && i9 < arrayList.size()) {
+            dyVar.N1.add(i9, dialog);
+            dyVar.f37629a0[0].q(true);
+        }
+    }
+
+    private final void e() {
+        ay ayVar = (ay) this.f42459c;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        cy cyVar = ayVar.f36576g;
+        dy dyVar = ayVar.h;
+        dyVar.O1 = true;
+        dyVar.getMessagesController().addDialogToFolder(dialog.f22384id, 0, this.f42458b, 0L);
+        dyVar.O1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = dyVar.getMessagesController().getDialogs(0);
+        int indexOf = dialogs.indexOf(dialog);
+        if (indexOf >= 0) {
+            ArrayList<TLRPC.Dialog> dialogs2 = dyVar.getMessagesController().getDialogs(1);
+            if (!dialogs2.isEmpty() || indexOf != 1) {
+                dyVar.A4(true, true);
+                cyVar.f37359x.D();
+                cyVar.q(true);
+                dyVar.o3();
+            }
+            if (dialogs2.isEmpty()) {
+                dialogs.remove(0);
+                if (indexOf == 1) {
+                    dyVar.A4(true, true);
+                    cyVar.q(true);
+                    dyVar.o3();
+                    return;
+                }
+                if (!dyVar.N1.isEmpty()) {
+                    dyVar.N1.remove(0);
+                }
+                cyVar.f37359x.D();
+                cyVar.q(true);
                 return;
             }
-            rnVar.cb((TLRPC.BotInlineResult) rnVar.Da.get(i10), z10, i11, 0L);
+            return;
         }
+        cyVar.q(false);
+    }
+
+    private final void f() {
+        o50 o50Var = (o50) this.f42459c;
+        org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.d;
+        org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+        if (c2Var == null) {
+            return;
+        }
+        c2Var.setOnCancelListener(new gh.x(o50Var, this.f42458b, 6));
+        c2VarArr[0].show();
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rl.run():void");
+    }
+
+    public rl(Object obj, int i9, Object obj2, int i10) {
+        this.f42457a = i10;
+        this.f42459c = obj;
+        this.f42458b = i9;
+        this.d = obj2;
+    }
+
+    public rl(Object obj, Object obj2, int i9, int i10) {
+        this.f42457a = i10;
+        this.f42459c = obj;
+        this.d = obj2;
+        this.f42458b = i9;
     }
 }

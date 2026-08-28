@@ -1,38 +1,23 @@
 package rc;
 
-import ad.p;
-import h7.y6;
+import g7.n7;
+public final class a {
+    public static final a f47127a;
+    public static final a[] f47128b;
 
-public abstract class a implements f {
-
-    public final g f46895a;
-
-    public a(g gVar) {
-        this.f46895a = gVar;
+    static {
+        ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
+        f47127a = r02;
+        a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
+        f47128b = aVarArr;
+        n7.a(aVarArr);
     }
 
-    @Override
-    public final Object fold(Object obj, p pVar) {
-        return pVar.invoke(obj, this);
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
     }
 
-    @Override
-    public f get(g gVar) {
-        return y6.a(this, gVar);
-    }
-
-    @Override
-    public final g getKey() {
-        return this.f46895a;
-    }
-
-    @Override
-    public h minusKey(g gVar) {
-        return y6.b(this, gVar);
-    }
-
-    @Override
-    public final h plus(h hVar) {
-        return y6.c(this, hVar);
+    public static a[] values() {
+        return (a[]) f47128b.clone();
     }
 }

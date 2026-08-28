@@ -1,64 +1,62 @@
 package j4;
-
 public final class j1 implements h3.g {
     public static final j1 d = new j1(new i1[0]);
-
-    public static final String f12592e;
-
-    public final int f12593a;
-
-    public final p8.l0 f12594b;
-
-    public int f12595c;
+    public static final String f13490e;
+    public final int f13491a;
+    public final o8.l0 f13492b;
+    public int f13493c;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f12592e = Integer.toString(0, 36);
+        int i9 = d5.f0.f4349a;
+        f13490e = Integer.toString(0, 36);
     }
 
     public j1(i1... i1VarArr) {
-        p8.l0 l0VarV = p8.z.v(i1VarArr);
-        this.f12594b = l0VarV;
-        this.f12593a = i1VarArr.length;
-        int i10 = 0;
-        while (i10 < l0VarV.d) {
-            int i11 = i10 + 1;
-            for (int i12 = i11; i12 < l0VarV.d; i12++) {
-                if (((i1) l0VarV.get(i10)).equals(l0VarV.get(i12))) {
+        o8.l0 v = o8.z.v(i1VarArr);
+        this.f13492b = v;
+        this.f13491a = i1VarArr.length;
+        int i9 = 0;
+        while (i9 < v.d) {
+            int i10 = i9 + 1;
+            for (int i11 = i10; i11 < v.d; i11++) {
+                if (((i1) v.get(i9)).equals(v.get(i11))) {
                     d5.a.p("TrackGroupArray", "", new IllegalArgumentException("Multiple identical TrackGroups added to one TrackGroupArray."));
                 }
             }
-            i10 = i11;
+            i9 = i10;
         }
     }
 
-    public final i1 a(int i10) {
-        return (i1) this.f12594b.get(i10);
+    public final i1 a(int i9) {
+        return (i1) this.f13492b.get(i9);
     }
 
     public final int b(i1 i1Var) {
-        int iIndexOf = this.f12594b.indexOf(i1Var);
-        if (iIndexOf >= 0) {
-            return iIndexOf;
+        int indexOf = this.f13492b.indexOf(i1Var);
+        if (indexOf >= 0) {
+            return indexOf;
         }
         return -1;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || j1.class != obj.getClass()) {
+        if (this != obj) {
+            if (obj != null && j1.class == obj.getClass()) {
+                j1 j1Var = (j1) obj;
+                if (this.f13491a == j1Var.f13491a && this.f13492b.equals(j1Var.f13492b)) {
+                    return true;
+                }
+                return false;
+            }
             return false;
         }
-        j1 j1Var = (j1) obj;
-        return this.f12593a == j1Var.f12593a && this.f12594b.equals(j1Var.f12594b);
+        return true;
     }
 
     public final int hashCode() {
-        if (this.f12595c == 0) {
-            this.f12595c = this.f12594b.hashCode();
+        if (this.f13493c == 0) {
+            this.f13493c = this.f13492b.hashCode();
         }
-        return this.f12595c;
+        return this.f13493c;
     }
 }

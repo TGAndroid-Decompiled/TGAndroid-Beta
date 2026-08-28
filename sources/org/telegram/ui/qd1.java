@@ -1,59 +1,52 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class qd1 extends b61 {
+    public boolean Z1;
+    public final rd1 a2;
 
-public final class qd1 extends FrameLayout {
-
-    public ValueAnimator f41638a;
-
-    public boolean f41639b;
-
-    public float f41640c;
+    public qd1(rd1 rd1Var, rd1 rd1Var2, Activity activity) {
+        super(rd1Var2, activity, false, null, 3, null);
+        this.a2 = rd1Var;
+        this.Z1 = true;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10 = ((1.0f - this.f41640c) * 0.2f) + 0.8f;
-        canvas.save();
-        canvas.scale(f10, f10, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (isPressed()) {
-            float f11 = this.f41640c;
-            if (f11 != 1.0f) {
-                this.f41640c = Utilities.clamp(f11 + 0.16f, 1.0f, 0.0f);
-                invalidate();
-            }
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        if (this.Z1) {
+            this.Z1 = false;
+            this.a2.f42373f.s(null);
         }
     }
 
     @Override
-    public final void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        super.setPressed(z10);
-        if (this.f41639b != z10) {
-            this.f41639b = z10;
-            invalidate();
-            if (z10 && (valueAnimator = this.f41638a) != null) {
-                valueAnimator.removeAllListeners();
-                this.f41638a.cancel();
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i9;
+        int i10;
+        long j10;
+        rd1 rd1Var = this.a2;
+        i9 = ((org.telegram.ui.ActionBar.o2) rd1Var).currentAccount;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(UserConfig.getInstance(i9).defaultTopicIcons)) {
+            MediaDataController mediaDataController = rd1Var.getMediaDataController();
+            i10 = ((org.telegram.ui.ActionBar.o2) rd1Var).currentAccount;
+            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i10).defaultTopicIcons);
+            if (stickerSetByEmojiOrName == null) {
+                j10 = 0;
+            } else {
+                j10 = stickerSetByEmojiOrName.set.f22407id;
             }
-            if (z10) {
-                return;
-            }
-            float f10 = this.f41640c;
-            if (f10 != 0.0f) {
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                this.f41638a = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new w01(this, 16));
-                this.f41638a.addListener(new zb1(this, 1));
-                this.f41638a.setInterpolator(new OvershootInterpolator(5.0f));
-                this.f41638a.setDuration(350L);
-                this.f41638a.start();
+            if (j10 == MediaDataController.getStickerSetId(document)) {
+                z10 = true;
             }
         }
+        rd1Var.a0(l10, z10);
     }
 }

@@ -1,39 +1,36 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-
 public final class e implements Runnable {
+    public final int f20137a;
+    public final ArrayList f20138b;
 
-    public final int f20091a;
-
-    public final ArrayList f20092b;
-
-    public e(ArrayList arrayList, int i10) {
-        this.f20091a = i10;
-        this.f20092b = arrayList;
+    public e(ArrayList arrayList, int i9) {
+        this.f20137a = i9;
+        this.f20138b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20091a) {
+        switch (this.f20137a) {
             case 0:
-                AndroidUtilities.lambda$recycleBitmaps$1(this.f20092b);
-                break;
+                AndroidUtilities.g(this.f20138b);
+                return;
             case 1:
-                AndroidUtilities.lambda$recycleBitmaps$0(this.f20092b);
-                break;
+                AndroidUtilities.B(this.f20138b);
+                return;
             case 2:
-                DispatchQueuePoolBackground.lambda$finishCollectUpdateRunnables$3(this.f20092b);
-                break;
+                DispatchQueuePoolBackground.d(this.f20138b);
+                return;
             case 3:
-                DispatchQueuePoolBackground.lambda$finishCollectUpdateRunnables$2(this.f20092b);
-                break;
+                DispatchQueuePoolBackground.b(this.f20138b);
+                return;
             case 4:
-                MessagesStorage.lambda$getWallpapers$80(this.f20092b);
-                break;
+                MessagesStorage.lambda$getWallpapers$80(this.f20138b);
+                return;
             default:
-                MessagesStorage.lambda$updateWidgets$165(this.f20092b);
-                break;
+                MessagesStorage.lambda$updateWidgets$165(this.f20138b);
+                return;
         }
     }
 }

@@ -1,20 +1,18 @@
 package ib;
-
-import i7.ka;
-import i7.ma;
-
 public final class d {
+    public boolean f11083a;
+    public boolean f11084b;
+    public boolean f11085c;
 
-    public final e f11101a;
+    public d() {
+        this.f11083a = false;
+        this.f11084b = false;
+        this.f11085c = false;
+    }
 
-    public final za.d f11102b;
-
-    public final ka f11103c;
-
-    public d(e eVar, za.d dVar) {
-        ka kaVarB = ma.b();
-        this.f11101a = eVar;
-        this.f11102b = dVar;
-        this.f11103c = kaVarB;
+    public d(boolean z10, boolean z11, boolean z12) {
+        this.f11083a = z10;
+        this.f11084b = z11;
+        this.f11085c = z12;
     }
 }

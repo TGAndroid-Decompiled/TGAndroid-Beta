@@ -1,77 +1,150 @@
 package f2;
 
 import android.view.View;
-import java.util.List;
-
+import java.util.Arrays;
 public final class i0 {
+    public final int f5383a = 0;
+    public int f5384b;
+    public boolean f5385c;
+    public boolean d;
+    public int f5386e;
+    public Object f5387f;
 
-    public boolean f5691a;
+    public i0() {
+    }
 
-    public int f5692b;
-
-    public int f5693c;
-    public int d;
-
-    public int f5694e;
-
-    public int f5695f;
-
-    public int f5696g;
-    public int h;
-
-    public int f5697i;
-
-    public int f5698j;
-
-    public List f5699k;
-
-    public boolean f5700l;
-
-    public final void a(View view) {
-        int iB;
-        int size = this.f5699k.size();
-        View view2 = null;
-        int i10 = Integer.MAX_VALUE;
-        for (int i11 = 0; i11 < size; i11++) {
-            View view3 = ((o1) this.f5699k.get(i11)).f5789a;
-            y0 y0Var = (y0) view3.getLayoutParams();
-            if (view3 != view && !y0Var.f5864a.j() && (iB = (y0Var.b() - this.d) * this.f5694e) >= 0 && iB < i10) {
-                view2 = view3;
-                if (iB == 0) {
-                    break;
-                } else {
-                    i10 = iB;
-                }
-            }
+    public void a(int i9, int i10, byte[] bArr) {
+        if (!this.f5385c) {
+            return;
         }
-        if (view2 == null) {
-            this.d = -1;
+        int i11 = i10 - i9;
+        byte[] bArr2 = (byte[]) this.f5387f;
+        int length = bArr2.length;
+        int i12 = this.f5386e;
+        if (length < i12 + i11) {
+            this.f5387f = Arrays.copyOf(bArr2, (i12 + i11) * 2);
+        }
+        System.arraycopy(bArr, i9, (byte[]) this.f5387f, this.f5386e, i11);
+        this.f5386e += i11;
+    }
+
+    public void b() {
+        int j10;
+        if (this.f5385c) {
+            j10 = ((androidx.emoji2.text.f) this.f5387f).f();
         } else {
-            this.d = ((y0) view2.getLayoutParams()).b();
+            j10 = ((androidx.emoji2.text.f) this.f5387f).j();
         }
+        this.f5386e = j10;
     }
 
-    public final boolean b(l1 l1Var) {
-        int i10 = this.d;
-        return i10 >= 0 && i10 < l1Var.b();
+    public void c(int i9, View view) {
+        int k10;
+        if (this.f5385c) {
+            int a2 = ((androidx.emoji2.text.f) this.f5387f).a(view);
+            androidx.emoji2.text.f fVar = (androidx.emoji2.text.f) this.f5387f;
+            if (Integer.MIN_VALUE == fVar.f849a) {
+                k10 = 0;
+            } else {
+                k10 = fVar.k() - fVar.f849a;
+            }
+            this.f5386e = k10 + a2;
+        } else {
+            this.f5386e = ((androidx.emoji2.text.f) this.f5387f).d(view);
+        }
+        this.f5384b = i9;
     }
 
-    public final View c(e1 e1Var) {
-        List list = this.f5699k;
-        if (list == null) {
-            View view = e1Var.j(this.d, Long.MAX_VALUE).f5789a;
-            this.d += this.f5694e;
-            return view;
+    public void d(int i9, View view) {
+        int k10;
+        androidx.emoji2.text.f fVar = (androidx.emoji2.text.f) this.f5387f;
+        if (Integer.MIN_VALUE == fVar.f849a) {
+            k10 = 0;
+        } else {
+            k10 = fVar.k() - fVar.f849a;
         }
-        int size = list.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            View view2 = ((o1) this.f5699k.get(i10)).f5789a;
-            y0 y0Var = (y0) view2.getLayoutParams();
-            if (!y0Var.f5864a.j() && this.d == y0Var.b()) {
-                a(view2);
-                return view2;
+        if (k10 >= 0) {
+            c(i9, view);
+            return;
+        }
+        this.f5384b = i9;
+        if (this.f5385c) {
+            int f10 = (((androidx.emoji2.text.f) this.f5387f).f() - k10) - ((androidx.emoji2.text.f) this.f5387f).a(view);
+            this.f5386e = ((androidx.emoji2.text.f) this.f5387f).f() - f10;
+            if (f10 > 0) {
+                int b10 = this.f5386e - ((androidx.emoji2.text.f) this.f5387f).b(view);
+                int j10 = ((androidx.emoji2.text.f) this.f5387f).j();
+                int min = b10 - (Math.min(((androidx.emoji2.text.f) this.f5387f).d(view) - j10, 0) + j10);
+                if (min < 0) {
+                    this.f5386e = Math.min(f10, -min) + this.f5386e;
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        int d = ((androidx.emoji2.text.f) this.f5387f).d(view);
+        int j11 = d - ((androidx.emoji2.text.f) this.f5387f).j();
+        this.f5386e = d;
+        if (j11 > 0) {
+            int f11 = (((androidx.emoji2.text.f) this.f5387f).f() - Math.min(0, (((androidx.emoji2.text.f) this.f5387f).f() - k10) - ((androidx.emoji2.text.f) this.f5387f).a(view))) - (((androidx.emoji2.text.f) this.f5387f).b(view) + d);
+            if (f11 < 0) {
+                this.f5386e -= Math.min(j11, -f11);
             }
         }
-        return null;
+    }
+
+    public boolean e(int i9) {
+        if (!this.f5385c) {
+            return false;
+        }
+        this.f5386e -= i9;
+        this.f5385c = false;
+        this.d = true;
+        return true;
+    }
+
+    public final void f() {
+        switch (this.f5383a) {
+            case 0:
+                this.f5384b = -1;
+                this.f5386e = Integer.MIN_VALUE;
+                this.f5385c = false;
+                this.d = false;
+                return;
+            default:
+                this.f5385c = false;
+                this.d = false;
+                return;
+        }
+    }
+
+    public void g(int i9) {
+        boolean z10 = true;
+        d5.a.i(!this.f5385c);
+        if (i9 != this.f5384b) {
+            z10 = false;
+        }
+        this.f5385c = z10;
+        if (z10) {
+            this.f5386e = 3;
+            this.d = false;
+        }
+    }
+
+    public String toString() {
+        switch (this.f5383a) {
+            case 0:
+                return "AnchorInfo{mPosition=" + this.f5384b + ", mCoordinate=" + this.f5386e + ", mLayoutFromEnd=" + this.f5385c + ", mValid=" + this.d + '}';
+            default:
+                return super.toString();
+        }
+    }
+
+    public i0(int i9) {
+        this.f5384b = i9;
+        byte[] bArr = new byte[131];
+        this.f5387f = bArr;
+        bArr[2] = 1;
     }
 }

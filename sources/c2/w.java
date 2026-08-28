@@ -1,18 +1,39 @@
 package c2;
+public abstract class w {
+    public abstract void e(a0 a0Var);
 
-public final class w {
+    public void h(c0 c0Var, a0 a0Var, int i9) {
+        g(a0Var);
+    }
 
-    public final b0 f2354a;
+    public void j(c0 c0Var, a0 a0Var, int i9) {
+        i();
+    }
 
-    public final v f2355b;
+    public void a() {
+    }
 
-    public u f2356c = u.f2348c;
-    public int d;
+    public void b() {
+    }
 
-    public long f2357e;
+    public void c() {
+    }
 
-    public w(b0 b0Var, v vVar) {
-        this.f2354a = b0Var;
-        this.f2355b = vVar;
+    public void i() {
+    }
+
+    public void d(a0 a0Var) {
+    }
+
+    public void f(a0 a0Var) {
+    }
+
+    public void g(a0 a0Var) {
+    }
+
+    public void k(a0 a0Var) {
+    }
+
+    public void l(f0 f0Var) {
     }
 }

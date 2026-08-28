@@ -1,44 +1,41 @@
 package q2;
 
-import h7.w8;
+import g7.u8;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
-
 public final class e extends com.googlecode.mp4parser.c {
-
-    public static final ae.b f46082f;
-
-    public List f46083e;
+    public static final zd.b f45918f;
+    public List f45919e;
 
     static {
-        ae.a aVar = new ae.a(e.class, "CompositionTimeToSample.java");
+        zd.a aVar = new zd.a(e.class, "CompositionTimeToSample.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "", "", "java.util.List"));
-        f46082f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
+        f45918f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.CompositionTimeToSample", "java.util.List", "entries", "void"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int iA = w8.a(p2.b.i(byteBuffer));
-        this.f46083e = new ArrayList(iA);
-        for (int i10 = 0; i10 < iA; i10++) {
-            this.f46083e.add(new d(w8.a(p2.b.i(byteBuffer)), byteBuffer.getInt()));
+        int a2 = u8.a(p2.b.i(byteBuffer));
+        this.f45919e = new ArrayList(a2);
+        for (int i9 = 0; i9 < a2; i9++) {
+            this.f45919e.add(new d(u8.a(p2.b.i(byteBuffer)), byteBuffer.getInt()));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.f46083e.size());
-        for (d dVar : this.f46083e) {
-            byteBuffer.putInt(dVar.f46080a);
-            byteBuffer.putInt(dVar.f46081b);
+        byteBuffer.putInt(this.f45919e.size());
+        for (d dVar : this.f45919e) {
+            byteBuffer.putInt(dVar.f45916a);
+            byteBuffer.putInt(dVar.f45917b);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f46083e.size() * 8) + 8;
+        return (this.f45919e.size() * 8) + 8;
     }
 }

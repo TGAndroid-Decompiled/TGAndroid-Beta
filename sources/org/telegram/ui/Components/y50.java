@@ -1,45 +1,25 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class y50 extends org.telegram.ui.Cells.va {
+    public final TextView T;
+    public final TextView U;
 
-public final class y50 implements org.telegram.ui.eb0 {
-
-    public final z50 f34819a;
-
-    public y50(z50 z50Var) {
-        this.f34819a = z50Var;
-    }
-
-    @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        org.telegram.ui.cb cbVar = this.f34819a.f35155a.f26642c.f28279f0;
-        if (cbVar != null) {
-            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
-            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
-            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
-            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
-            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
-            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.qb qbVar = cbVar.f37041a;
-            tL_channelAdminLogEvent.user_id = qbVar.getAccountInstance().getUserConfig().clientUserId;
-            if (new MessageObject(((org.telegram.ui.ActionBar.n2) qbVar).currentAccount, tL_channelAdminLogEvent, (ArrayList<MessageObject>) qbVar.f41608n0, (HashMap<String, ArrayList<MessageObject>>) qbVar.m0, qbVar.f41614s, qbVar.T, true).contentType < 0) {
-                return;
-            }
-            qbVar.R0();
-            qbVar.E.l();
-            org.telegram.ui.qb.K0(qbVar);
-        }
-    }
-
-    @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
+    public y50(Context context) {
+        super(context, 6, 0, true);
+        LinearLayout f10 = org.telegram.messenger.ll.f(context, 1);
+        TextView textView = new TextView(context);
+        this.T = textView;
+        org.telegram.messenger.l0.q(textView, org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.G6, false), 1, 16.0f);
+        f10.addView(textView, g7.e6.q(-2, -2, 5));
+        TextView textView2 = new TextView(context);
+        this.U = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23386z6, false));
+        textView2.setTextSize(1, 13.0f);
+        f10.addView(textView2, g7.e6.t(-2, -2, 5, 0, 1, 0, 0));
+        addView(f10, g7.e6.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

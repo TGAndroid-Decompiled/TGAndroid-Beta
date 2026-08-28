@@ -1,7 +1,10 @@
 package ma;
 
-public interface a {
-    boolean shouldSkipClass(Class cls);
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface a {
+    boolean nullSafe() default true;
 
-    boolean shouldSkipField(b bVar);
+    Class value();
 }

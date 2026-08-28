@@ -4,46 +4,43 @@ import android.os.Build;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+public final class ax extends vy {
+    public final wy d;
 
-public final class ax extends xy {
-    public final yy d;
-
-    public ax(yy yyVar) {
-        super(yyVar, 1);
-        this.d = yyVar;
+    public ax(wy wyVar) {
+        super(wyVar, 1);
+        this.d = wyVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f34980b0 = false;
+    public final void a(RecyclerView recyclerView, int i9) {
+        if (i9 == 0) {
+            this.d.f34387b0 = false;
         }
-        super.a(recyclerView, i10);
+        super.a(recyclerView, i9);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        jg.e eVar;
-        yy yyVar = this.d;
-        wx wxVar = yyVar.O;
-        xw xwVar = yyVar.M;
-        yyVar.W(xwVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = yyVar.f34997f2) != null) {
-            eVar.f(i10, i11);
-            yyVar.D();
+    public final void b(RecyclerView recyclerView, int i9, int i10) {
+        ig.e eVar;
+        wy wyVar = this.d;
+        vx vxVar = wyVar.O;
+        xw xwVar = wyVar.M;
+        wyVar.V(xwVar.I0());
+        if (Build.VERSION.SDK_INT >= 31 && (eVar = wyVar.f34404f2) != null) {
+            eVar.f(i9, i10);
+            wyVar.C();
         }
-        super.b(recyclerView, i10, i11);
-        if (wxVar == null || yyVar.L.getAdapter() != wxVar) {
-            return;
-        }
-        wx wxVar2 = wxVar.f34361x.f34062a;
-        if (wxVar2.B.R.B || wxVar2.A) {
-            return;
-        }
-        if (xwVar.N0() + 20 > wxVar.h()) {
-            vx vxVar = wxVar.f34361x;
-            Objects.requireNonNull(vxVar);
-            AndroidUtilities.runOnUIThread(new dw(vxVar, 1));
+        super.b(recyclerView, i9, i10);
+        if (vxVar != null && wyVar.L.getAdapter() == vxVar) {
+            vx vxVar2 = vxVar.f34019x.f33157a;
+            if (!vxVar2.B.R.B && !vxVar2.A) {
+                if (xwVar.N0() + 20 > vxVar.h()) {
+                    ux uxVar = vxVar.f34019x;
+                    Objects.requireNonNull(uxVar);
+                    AndroidUtilities.runOnUIThread(new ew(uxVar, 1));
+                }
+            }
         }
     }
 }

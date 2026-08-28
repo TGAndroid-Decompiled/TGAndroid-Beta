@@ -3,14 +3,12 @@ package q1;
 import android.graphics.Rect;
 import android.text.method.TransformationMethod;
 import android.view.View;
-import androidx.emoji2.text.l;
-
+import androidx.emoji2.text.k;
 public final class j implements TransformationMethod {
-
-    public final TransformationMethod f46078a;
+    public final TransformationMethod f45914a;
 
     public j(TransformationMethod transformationMethod) {
-        this.f46078a = transformationMethod;
+        this.f45914a = transformationMethod;
     }
 
     @Override
@@ -18,23 +16,23 @@ public final class j implements TransformationMethod {
         if (view.isInEditMode()) {
             return charSequence;
         }
-        TransformationMethod transformationMethod = this.f46078a;
+        TransformationMethod transformationMethod = this.f45914a;
         if (transformationMethod != null) {
             charSequence = transformationMethod.getTransformation(charSequence, view);
         }
-        if (charSequence == null || l.a().b() != 1) {
-            return charSequence;
+        if (charSequence != null && k.a().b() == 1) {
+            k a2 = k.a();
+            a2.getClass();
+            return a2.e(0, charSequence.length(), charSequence);
         }
-        l lVarA = l.a();
-        lVarA.getClass();
-        return lVarA.e(0, charSequence.length(), charSequence);
+        return charSequence;
     }
 
     @Override
-    public final void onFocusChanged(View view, CharSequence charSequence, boolean z10, int i10, Rect rect) {
-        TransformationMethod transformationMethod = this.f46078a;
+    public final void onFocusChanged(View view, CharSequence charSequence, boolean z10, int i9, Rect rect) {
+        TransformationMethod transformationMethod = this.f45914a;
         if (transformationMethod != null) {
-            transformationMethod.onFocusChanged(view, charSequence, z10, i10, rect);
+            transformationMethod.onFocusChanged(view, charSequence, z10, i9, rect);
         }
     }
 }

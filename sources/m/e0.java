@@ -7,107 +7,109 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import g7.k8;
-
+import f7.q8;
 public final class e0 extends z {
-
-    public final d0 f17300e;
-
-    public Drawable f17301f;
-
-    public ColorStateList f17302g;
+    public final d0 f16925e;
+    public Drawable f16926f;
+    public ColorStateList f16927g;
     public PorterDuff.Mode h;
-
-    public boolean f17303i;
-
-    public boolean f17304j;
+    public boolean f16928i;
+    public boolean f16929j;
 
     public e0(d0 d0Var) {
         super(d0Var);
-        this.f17302g = null;
+        this.f16927g = null;
         this.h = null;
-        this.f17303i = false;
-        this.f17304j = false;
-        this.f17300e = d0Var;
+        this.f16928i = false;
+        this.f16929j = false;
+        this.f16925e = d0Var;
     }
 
     @Override
-    public final void b(AttributeSet attributeSet, int i10) {
-        super.b(attributeSet, 2130968924);
-        d0 d0Var = this.f17300e;
+    public final void b(AttributeSet attributeSet, int i9) {
+        super.b(attributeSet, i9);
+        d0 d0Var = this.f16925e;
         Context context = d0Var.getContext();
-        int[] iArr = f.a.f5579g;
-        j9.a aVarG = j9.a.G(context, attributeSet, iArr, 2130968924);
-        TypedArray typedArray = (TypedArray) aVarG.f12864c;
-        r0.j0.j(d0Var, d0Var.getContext(), iArr, attributeSet, (TypedArray) aVarG.f12864c, 2130968924);
-        Drawable drawableZ = aVarG.z(0);
-        if (drawableZ != null) {
-            d0Var.setThumb(drawableZ);
+        int[] iArr = f.a.f5274g;
+        j4.c E = j4.c.E(context, attributeSet, iArr, i9);
+        TypedArray typedArray = (TypedArray) E.f13432c;
+        r0.j0.j(d0Var, d0Var.getContext(), iArr, attributeSet, (TypedArray) E.f13432c, i9);
+        Drawable x10 = E.x(0);
+        if (x10 != null) {
+            d0Var.setThumb(x10);
         }
-        Drawable drawableY = aVarG.y(1);
-        Drawable drawable = this.f17301f;
+        Drawable w8 = E.w(1);
+        Drawable drawable = this.f16926f;
         if (drawable != null) {
             drawable.setCallback(null);
         }
-        this.f17301f = drawableY;
-        if (drawableY != null) {
-            drawableY.setCallback(d0Var);
-            k8.b(d0Var.getLayoutDirection(), drawableY);
-            if (drawableY.isStateful()) {
-                drawableY.setState(d0Var.getDrawableState());
+        this.f16926f = w8;
+        if (w8 != null) {
+            w8.setCallback(d0Var);
+            q8.b(d0Var.getLayoutDirection(), w8);
+            if (w8.isStateful()) {
+                w8.setState(d0Var.getDrawableState());
             }
             f();
         }
         d0Var.invalidate();
         if (typedArray.hasValue(3)) {
             this.h = m1.b(typedArray.getInt(3, -1), this.h);
-            this.f17304j = true;
+            this.f16929j = true;
         }
         if (typedArray.hasValue(2)) {
-            this.f17302g = aVarG.x(2);
-            this.f17303i = true;
+            this.f16927g = E.v(2);
+            this.f16928i = true;
         }
-        aVarG.I();
+        E.G();
         f();
     }
 
     public final void f() {
-        Drawable drawable = this.f17301f;
+        Drawable drawable = this.f16926f;
         if (drawable != null) {
-            if (this.f17303i || this.f17304j) {
-                Drawable drawableD = k8.d(drawable.mutate());
-                this.f17301f = drawableD;
-                if (this.f17303i) {
-                    drawableD.setTintList(this.f17302g);
+            if (this.f16928i || this.f16929j) {
+                Drawable d = q8.d(drawable.mutate());
+                this.f16926f = d;
+                if (this.f16928i) {
+                    d.setTintList(this.f16927g);
                 }
-                if (this.f17304j) {
-                    this.f17301f.setTintMode(this.h);
+                if (this.f16929j) {
+                    this.f16926f.setTintMode(this.h);
                 }
-                if (this.f17301f.isStateful()) {
-                    this.f17301f.setState(this.f17300e.getDrawableState());
+                if (this.f16926f.isStateful()) {
+                    this.f16926f.setState(this.f16925e.getDrawableState());
                 }
             }
         }
     }
 
     public final void g(Canvas canvas) {
-        if (this.f17301f != null) {
-            d0 d0Var = this.f17300e;
+        int i9;
+        if (this.f16926f != null) {
+            d0 d0Var = this.f16925e;
             int max = d0Var.getMax();
+            int i10 = 1;
             if (max > 1) {
-                int intrinsicWidth = this.f17301f.getIntrinsicWidth();
-                int intrinsicHeight = this.f17301f.getIntrinsicHeight();
-                int i10 = intrinsicWidth >= 0 ? intrinsicWidth / 2 : 1;
-                int i11 = intrinsicHeight >= 0 ? intrinsicHeight / 2 : 1;
-                this.f17301f.setBounds(-i10, -i11, i10, i11);
+                int intrinsicWidth = this.f16926f.getIntrinsicWidth();
+                int intrinsicHeight = this.f16926f.getIntrinsicHeight();
+                if (intrinsicWidth >= 0) {
+                    i9 = intrinsicWidth / 2;
+                } else {
+                    i9 = 1;
+                }
+                if (intrinsicHeight >= 0) {
+                    i10 = intrinsicHeight / 2;
+                }
+                this.f16926f.setBounds(-i9, -i10, i9, i10);
                 float width = ((d0Var.getWidth() - d0Var.getPaddingLeft()) - d0Var.getPaddingRight()) / max;
-                int iSave = canvas.save();
+                int save = canvas.save();
                 canvas.translate(d0Var.getPaddingLeft(), d0Var.getHeight() / 2);
-                for (int i12 = 0; i12 <= max; i12++) {
-                    this.f17301f.draw(canvas);
+                for (int i11 = 0; i11 <= max; i11++) {
+                    this.f16926f.draw(canvas);
                     canvas.translate(width, 0.0f);
                 }
-                canvas.restoreToCount(iSave);
+                canvas.restoreToCount(save);
             }
         }
     }

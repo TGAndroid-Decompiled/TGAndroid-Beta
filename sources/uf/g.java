@@ -1,66 +1,66 @@
 package uf;
 
-import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.l6;
+import org.telegram.ui.Components.pn0;
+public final class g extends FrameLayout {
+    public pn0 f48212a;
+    public float f48213b;
+    public float f48214c;
+    public float d;
+    public l6 f48215e;
+    public String f48216f;
+    public TextPaint h;
+    public int f48217n;
 
-public final class g implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f48595a;
-
-    public final n f48596b;
-
-    public final float f48597c;
-    public final float[] d;
-
-    public final float f48598e;
-
-    public final float f48599f;
-
-    public g(n nVar, float f10, float[] fArr, float f11, float f12, int i10) {
-        this.f48595a = i10;
-        this.f48596b = nVar;
-        this.f48597c = f10;
-        this.d = fArr;
-        this.f48598e = f11;
-        this.f48599f = f12;
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f48212a.invalidate();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f48595a) {
-            case 0:
-                n nVar = this.f48596b;
-                nVar.getClass();
-                float fZ = com.google.android.recaptcha.internal.a.z(this.f48597c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
-                float[] fArr = this.d;
-                float f10 = fArr[0];
-                float f11 = fZ / f10;
-                fArr[0] = f10 * f11;
-                l.g(nVar.H, f11, this.f48598e, this.f48599f);
-                nVar.r(false);
-                break;
-            default:
-                n nVar2 = this.f48596b;
-                nVar2.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f12 = this.f48597c * fFloatValue;
-                float[] fArr2 = this.d;
-                float f13 = fArr2[1];
-                float f14 = f12 - f13;
-                fArr2[1] = f13 + f14;
-                float f15 = this.f48598e * fFloatValue;
-                float f16 = fArr2[2];
-                float f17 = f15 - f16;
-                fArr2[2] = f16 + f17;
-                l lVar = nVar2.H;
-                float f18 = fArr2[0];
-                l.f(lVar, f14 * f18, f17 * f18);
-                float f19 = ((this.f48599f - 1.0f) * fFloatValue) + 1.0f;
-                float f20 = fArr2[0];
-                float f21 = f19 / f20;
-                fArr2[0] = f20 * f21;
-                l.g(nVar2.H, f21, 0.0f, 0.0f);
-                nVar2.r(false);
-                break;
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.h;
+        textPaint.setColor(f6.w0(null, f6.G6, false));
+        canvas.drawText(this.f48216f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
+        textPaint.setColor(f6.w0(null, f6.I6, false));
+        String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
+        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f48212a.getY() + AndroidUtilities.dp(23.0f), textPaint);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f48212a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        int size = View.MeasureSpec.getSize(i9);
+        if (this.f48217n != size) {
+            pn0 pn0Var = this.f48212a;
+            float floatValue = ((Float) this.f48215e.get(null)).floatValue();
+            float f10 = this.f48213b;
+            pn0Var.setProgress((floatValue - f10) / (this.f48214c - f10));
+            this.f48217n = size;
         }
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i9, Bundle bundle) {
+        if (!super.performAccessibilityAction(i9, bundle) && !this.f48212a.getSeekBarAccessibilityDelegate().g(this, i9, bundle)) {
+            return false;
+        }
+        return true;
     }
 }

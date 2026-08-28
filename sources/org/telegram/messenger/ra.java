@@ -1,35 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import android.content.DialogInterface;
+public final class ra implements DialogInterface.OnCancelListener {
+    public final int f21394a;
+    public final BaseController f21395b;
+    public final int f21396c;
 
-public final class ra implements Runnable {
-
-    public final int f21423a;
-
-    public final MessagesController f21424b;
-
-    public final TLObject f21425c;
-    public final org.telegram.ui.ActionBar.f6 d;
-
-    public final org.telegram.ui.ActionBar.e6 f21426e;
-
-    public ra(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f21423a = i10;
-        this.f21424b = messagesController;
-        this.f21425c = tLObject;
-        this.d = f6Var;
-        this.f21426e = e6Var;
+    public ra(BaseController baseController, int i9, int i10) {
+        this.f21394a = i10;
+        this.f21395b = baseController;
+        this.f21396c = i9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f21423a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f21394a) {
             case 0:
-                this.f21424b.lambda$didReceivedNotification$46(this.f21425c, this.d, this.f21426e);
-                break;
+                ((MessagesController) this.f21395b).lambda$convertToGigaGroup$271(this.f21396c, dialogInterface);
+                return;
+            case 1:
+                ((MessagesController) this.f21395b).lambda$convertToMegaGroup$266(this.f21396c, dialogInterface);
+                return;
             default:
-                this.f21424b.lambda$didReceivedNotification$48(this.f21425c, this.d, this.f21426e);
-                break;
+                ((SecretChatHelper) this.f21395b).lambda$startSecretChat$31(this.f21396c, dialogInterface);
+                return;
         }
     }
 }

@@ -1,58 +1,95 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper;
+public final class ae extends FrameLayout {
+    public final int f26776a;
+    public final ChatActivityEnterView f26777b;
 
-public final class ae implements View.OnClickListener {
-
-    public final org.telegram.ui.rn f26733a;
-
-    public final Activity f26734b;
-
-    public final ChatActivityEnterView f26735c;
-
-    public ae(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.rn rnVar, Activity activity) {
-        this.f26735c = chatActivityEnterView;
-        this.f26733a = rnVar;
-        this.f26734b = activity;
+    public ae(ChatActivityEnterView chatActivityEnterView, Context context, int i9) {
+        super(context);
+        this.f26776a = i9;
+        this.f26777b = chatActivityEnterView;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
-        int i10;
-        org.telegram.ui.rn rnVar = this.f26733a;
-        if (rnVar == null) {
-            return;
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f26776a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f26777b;
+                mh.v3 v3Var = chatActivityEnterView.f26114g0;
+                if (v3Var != null && v3Var.getVisibility() == 0) {
+                    return chatActivityEnterView.f26114g0.dispatchTouchEvent(motionEvent);
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 1:
+                ChatActivityEnterView chatActivityEnterView2 = this.f26777b;
+                if (chatActivityEnterView2.F && chatActivityEnterView2.O4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        ChatActivityEnterView chatActivityEnterView = this.f26735c;
-        chatActivityEnterView.f26079b2 = !chatActivityEnterView.f26079b2;
-        if (chatActivityEnterView.f26072a0 == null) {
-            chatActivityEnterView.f26072a0 = new br(this.f26734b, R.drawable.input_notify_on, org.telegram.ui.ActionBar.g6.Wk);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.f26776a) {
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f26777b;
+                if (view == chatActivityEnterView.F0 && chatActivityEnterView.f26094d0) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j10);
+            default:
+                return super.drawChild(canvas, view, j10);
         }
-        chatActivityEnterView.f26072a0.a(chatActivityEnterView.f26079b2, true);
-        chatActivityEnterView.D1.setImageDrawable(chatActivityEnterView.f26072a0);
-        MessagesController.getNotificationsSettings(chatActivityEnterView.M).edit().putBoolean("silent_" + chatActivityEnterView.L2, chatActivityEnterView.f26079b2).commit();
-        NotificationsController.getInstance(chatActivityEnterView.M).updateServerNotificationsSettings(chatActivityEnterView.L2, rnVar == null ? 0L : rnVar.b());
-        rnVar.Q7();
-        UndoView undoView = rnVar.f42229u3;
-        if (undoView != null) {
-            undoView.j(!chatActivityEnterView.f26079b2 ? 54 : 55, 0L, null);
+    }
+
+    @Override
+    public void onSizeChanged(int i9, int i10, int i11, int i12) {
+        switch (this.f26776a) {
+            case 1:
+                super.onSizeChanged(i9, i10, i11, i12);
+                setPivotX(i9 - AndroidUtilities.dp(22.0f));
+                setPivotY(i10 - AndroidUtilities.dp(22.0f));
+                return;
+            default:
+                super.onSizeChanged(i9, i10, i11, i12);
+                return;
         }
-        ImageView imageView = chatActivityEnterView.D1;
-        if (chatActivityEnterView.f26079b2) {
-            str = "AccDescrChanSilentOn";
-            i10 = R.string.AccDescrChanSilentOn;
-        } else {
-            str = "AccDescrChanSilentOff";
-            i10 = R.string.AccDescrChanSilentOff;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f26776a) {
+            case 1:
+                ChatActivityEnterView chatActivityEnterView = this.f26777b;
+                if (chatActivityEnterView.F && chatActivityEnterView.O4 != BotForumHelper.SteamingSendButtonState.BLOCKING) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
-        imageView.setContentDescription(LocaleController.getString(str, i10));
-        chatActivityEnterView.F1(true);
+    }
+
+    @Override
+    public void setVisibility(int i9) {
+        switch (this.f26776a) {
+            case 2:
+                super.setVisibility(i9);
+                this.f26777b.P1(true);
+                return;
+            default:
+                super.setVisibility(i9);
+                return;
+        }
     }
 }

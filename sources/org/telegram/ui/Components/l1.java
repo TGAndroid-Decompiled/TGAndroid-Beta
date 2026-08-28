@@ -4,44 +4,42 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
-
 public final class l1 implements Runnable {
+    public final int f30299a;
+    public final ArrayList f30300b;
 
-    public final int f30243a;
-
-    public final ArrayList f30244b;
-
-    public l1(ArrayList arrayList, int i10) {
-        this.f30243a = i10;
-        this.f30244b = arrayList;
+    public l1(ArrayList arrayList, int i9) {
+        this.f30299a = i9;
+        this.f30300b = arrayList;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.ActionBar.n2 n2VarR;
-        switch (this.f30243a) {
+        org.telegram.ui.ActionBar.o2 R;
+        switch (this.f30299a) {
             case 0:
-                if (this.f30244b != null && (n2VarR = LaunchActivity.R()) != null) {
-                    org.telegram.ui.ActionBar.l2 l2Var = new org.telegram.ui.ActionBar.l2();
-                    l2Var.f23619a = true;
-                    n2VarR.showAsSheet(new PrivacyControlActivity(11, false), l2Var);
+                if (this.f30300b != null && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f23653a = true;
+                    R.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                    return;
                 }
-                break;
+                return;
             default:
-                int i10 = 0;
+                int i9 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f30244b;
-                    if (i10 < arrayList.size()) {
-                        ((View) arrayList.get(i10)).setVisibility(8);
-                        if (arrayList.get(i10) instanceof org.telegram.ui.Cells.s1) {
-                            ((org.telegram.ui.Cells.s1) arrayList.get(i10)).I3(false, false);
-                            ((org.telegram.ui.Cells.s1) arrayList.get(i10)).K3(false, false, false);
+                    ArrayList arrayList = this.f30300b;
+                    if (i9 < arrayList.size()) {
+                        ((View) arrayList.get(i9)).setVisibility(8);
+                        if (arrayList.get(i9) instanceof org.telegram.ui.Cells.t1) {
+                            ((org.telegram.ui.Cells.t1) arrayList.get(i9)).J3(false, false);
+                            ((org.telegram.ui.Cells.t1) arrayList.get(i9)).L3(false, false, false);
                         }
-                        i10++;
+                        i9++;
+                    } else {
+                        return;
                     }
-                    break;
                 }
-                break;
         }
     }
 }

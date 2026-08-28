@@ -1,13 +1,10 @@
 package h3;
-
 public abstract class v1 extends Exception implements g {
-
-    public final int f8216a;
-
-    public final long f8217b;
+    public final int f9785a;
+    public final long f9786b;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
         Integer.toString(2, 36);
@@ -15,9 +12,9 @@ public abstract class v1 extends Exception implements g {
         Integer.toString(4, 36);
     }
 
-    public v1(String str, Throwable th, int i10, long j10) {
+    public v1(String str, Throwable th, int i9, long j10) {
         super(str, th);
-        this.f8216a = i10;
-        this.f8217b = j10;
+        this.f9785a = i9;
+        this.f9786b = j10;
     }
 }

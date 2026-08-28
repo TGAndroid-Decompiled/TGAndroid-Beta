@@ -1,15 +1,14 @@
 package y3;
 
 import android.media.MediaCodecInfo;
-
 public interface u {
-    boolean B();
+    int B();
 
-    MediaCodecInfo a(int i10);
+    boolean I();
 
-    boolean e(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    MediaCodecInfo b(int i9);
 
-    boolean i(String str, MediaCodecInfo.CodecCapabilities codecCapabilities);
+    boolean p(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities);
 
-    int r();
+    boolean y(String str, MediaCodecInfo.CodecCapabilities codecCapabilities);
 }

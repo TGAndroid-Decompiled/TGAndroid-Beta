@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class TextCircledAtom extends Atom {
     private Atom at;
 
@@ -9,11 +8,11 @@ public class TextCircledAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = SymbolAtom.get("bigcirc").createBox(teXEnvironment);
-        boxCreateBox.setShift(SpaceAtom.getFactor(1, teXEnvironment) * (-0.07f));
-        HorizontalBox horizontalBox = new HorizontalBox(this.at.createBox(teXEnvironment), boxCreateBox.getWidth(), 2);
+        Box createBox = SymbolAtom.get("bigcirc").createBox(teXEnvironment);
+        createBox.setShift(SpaceAtom.getFactor(1, teXEnvironment) * (-0.07f));
+        HorizontalBox horizontalBox = new HorizontalBox(this.at.createBox(teXEnvironment), createBox.getWidth(), 2);
         horizontalBox.add(new StrutBox(-horizontalBox.getWidth(), 0.0f, 0.0f, 0.0f));
-        horizontalBox.add(boxCreateBox);
+        horizontalBox.add(createBox);
         return horizontalBox;
     }
 }

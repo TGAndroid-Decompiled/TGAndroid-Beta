@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
     private static Loggable loggable;
@@ -37,11 +36,11 @@ public class Logging {
         TRACE_INFO(4096),
         TRACE_TERSEINFO(8192),
         TRACE_ALL(65535);
-
+        
         public final int level;
 
-        TraceLevel(int i10) {
-            this.level = i10;
+        TraceLevel(int i9) {
+            this.level = i9;
         }
     }
 
@@ -72,11 +71,14 @@ public class Logging {
     }
 
     public static synchronized void enableLogToDebugOutput(Severity severity) {
-        if (loggable != null) {
-            throw new IllegalStateException("Logging to native debug output not supported while Loggable is injected. Delete the Loggable before calling this method.");
+        synchronized (Logging.class) {
+            if (loggable == null) {
+                nativeEnableLogToDebugOutput(severity.ordinal());
+                loggingEnabled = true;
+            } else {
+                throw new IllegalStateException("Logging to native debug output not supported while Loggable is injected. Delete the Loggable before calling this method.");
+            }
         }
-        nativeEnableLogToDebugOutput(severity.ordinal());
-        loggingEnabled = true;
     }
 
     private static String getStackTraceString(Throwable th) {
@@ -97,38 +99,46 @@ public class Logging {
 
     public static void log(Severity severity, String str, String str2) {
         Level level;
-        if (str == null || str2 == null) {
-            throw new IllegalArgumentException("Logging tag or message may not be null.");
-        }
-        if (loggable != null) {
-            if (severity.ordinal() < loggableSeverity.ordinal()) {
+        if (str != null && str2 != null) {
+            if (loggable != null) {
+                if (severity.ordinal() < loggableSeverity.ordinal()) {
+                    return;
+                }
+                loggable.onLogMessage(str2, severity, str);
+                return;
+            } else if (loggingEnabled) {
+                nativeLog(severity.ordinal(), str, str2);
+                return;
+            } else {
+                int ordinal = severity.ordinal();
+                if (ordinal != 1) {
+                    if (ordinal != 2) {
+                        if (ordinal != 3) {
+                            level = Level.FINE;
+                        } else {
+                            level = Level.SEVERE;
+                        }
+                    } else {
+                        level = Level.WARNING;
+                    }
+                } else {
+                    level = Level.INFO;
+                }
+                Logger logger = fallbackLogger;
+                logger.log(level, str + ": " + str2);
                 return;
             }
-            loggable.onLogMessage(str2, severity, str);
-            return;
         }
-        if (loggingEnabled) {
-            nativeLog(severity.ordinal(), str, str2);
-            return;
-        }
-        int iOrdinal = severity.ordinal();
-        if (iOrdinal == 1) {
-            level = Level.INFO;
-        } else if (iOrdinal != 2) {
-            level = iOrdinal != 3 ? Level.FINE : Level.SEVERE;
-        } else {
-            level = Level.WARNING;
-        }
-        fallbackLogger.log(level, str + ": " + str2);
+        throw new IllegalArgumentException("Logging tag or message may not be null.");
     }
 
     private static native void nativeEnableLogThreads();
 
     private static native void nativeEnableLogTimeStamps();
 
-    private static native void nativeEnableLogToDebugOutput(int i10);
+    private static native void nativeEnableLogToDebugOutput(int i9);
 
-    private static native void nativeLog(int i10, String str, String str2);
+    private static native void nativeLog(int i9, String str, String str2);
 
     public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);

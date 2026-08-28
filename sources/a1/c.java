@@ -1,8 +1,6 @@
 package a1;
 
-import a5.n;
-import a9.m;
-import ag.l0;
+import a5.m;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,29 +10,28 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import c2.y0;
+import bg.h2;
+import bg.l1;
+import bg.q2;
+import bg.x0;
+import c2.a1;
 import c2.z0;
-import cg.g1;
-import cg.i2;
-import cg.t0;
+import ch.j;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.c0;
 import com.google.firebase.messaging.e0;
 import com.google.firebase.messaging.t;
 import com.google.firebase.messaging.z;
 import d3.h;
-import d5.k;
-import dh.j;
-import e5.r;
-import gf.p;
-import gh.a0;
-import gh.k2;
-import gh.x0;
-import h3.h1;
+import e5.s;
+import ff.p;
+import fh.c0;
+import fh.o1;
+import fh.p2;
+import gh.t0;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,83 +43,95 @@ import n2.l;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Components.nk0;
+import org.telegram.ui.Components.x4;
 import org.telegram.ui.LaunchActivity;
 import r0.m1;
 import r0.o;
 import w2.i;
-
-public final class c implements OnSuccessListener, e3.b, y9.a, a2, qk0, Continuation, OnCompleteListener, dh.a, p, o, BillingController.ProductDetailsResponseListenerLegacy, k {
-
+import zf.k;
+public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Continuation, OnCompleteListener, p, o, BillingController.ProductDetailsResponseListenerLegacy, x4 {
     public final int f34a;
-
     public final Object f35b;
 
-    public c(z0 z0Var, y0 y0Var) {
-        this.f34a = 2;
-        this.f35b = z0Var;
+    public c(a1 a1Var, z0 z0Var) {
+        this.f34a = 8;
+        this.f35b = a1Var;
     }
 
     @Override
-    public m1 I0(View view, m1 m1Var) {
-        ((x0) this.f35b).h.i(m1Var);
-        return m1.f46618b;
+    public void B(int i9, int i10, boolean z10) {
+        t0 t0Var = (t0) this.f35b;
+        if (z10) {
+            long j10 = i9;
+            if (t0Var.E != j10) {
+                t0Var.E = j10;
+                t0Var.f8900r.setText(t0.o(j10));
+            }
+            t0Var.n(true);
+        }
+    }
+
+    @Override
+    public m1 L0(View view, m1 m1Var) {
+        ((fh.z0) this.f35b).h.i(m1Var);
+        return m1.f46928b;
     }
 
     public void a(Display display) {
-        r rVar = (r) this.f35b;
-        rVar.getClass();
+        s sVar = (s) this.f35b;
+        sVar.getClass();
         if (display != null) {
-            long refreshRate = (long) (1.0E9d / ((double) display.getRefreshRate()));
-            rVar.f5287k = refreshRate;
-            rVar.f5288l = (refreshRate * 80) / 100;
-        } else {
-            d5.a.K("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-            rVar.f5287k = -9223372036854775807L;
-            rVar.f5288l = -9223372036854775807L;
+            long refreshRate = (long) (1.0E9d / display.getRefreshRate());
+            sVar.f4930k = refreshRate;
+            sVar.f4931l = (refreshRate * 80) / 100;
+            return;
         }
+        d5.a.K("VideoFrameReleaseHelper", "Unable to query display refresh rate");
+        sVar.f4930k = -9223372036854775807L;
+        sVar.f4931l = -9223372036854775807L;
     }
 
     @Override
-    public void b(y9.b bVar) {
-        c9.a aVar = (c9.a) this.f35b;
+    public void c(float f10, float f11, int i9, View view) {
+        q2.P((q2) this.f35b, view);
+    }
+
+    @Override
+    public void e(x9.b bVar) {
+        b9.b bVar2 = (b9.b) this.f35b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f2564b.set((c9.a) bVar.get());
+        bVar2.f1660b.set((b9.b) bVar.get());
     }
 
     @Override
-    public void c(float f10, float f11, int i10, View view) {
-        i2.Q((i2) this.f35b, view);
-    }
-
-    @Override
-    public void f(b2 b2Var, int i10) {
+    public void f(c2 c2Var, int i9) {
         switch (this.f34a) {
-            case 8:
-                ((cg.a2) this.f35b).run();
-                break;
-            case 9:
+            case 2:
+                ((h2) this.f35b).run();
+                return;
+            case 3:
                 TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f35b;
-                n2 n2VarR = LaunchActivity.R();
-                if (n2VarR != null) {
-                    g1.T(n2VarR, tL_payments_giveawayInfoResults.gift_code_slug, null);
-                    break;
+                o2 R = LaunchActivity.R();
+                if (R != null) {
+                    l1.S(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
+                    return;
                 }
-                break;
-            case 10:
-                ((t0) this.f35b).run();
-                break;
-            case 11:
-                ((cg.a2) this.f35b).run();
-                break;
+                return;
+            case 4:
+                ((x0) this.f35b).run();
+                return;
+            case 5:
+                ((h2) this.f35b).run();
+                return;
             default:
-                ((a0) this.f35b).run();
-                break;
+                ((c0) this.f35b).run();
+                return;
         }
     }
 
@@ -132,149 +141,134 @@ public final class c implements OnSuccessListener, e3.b, y9.a, a2, qk0, Continua
     }
 
     @Override
-    public void g(long j10) {
-        ((gh.e) this.f35b).a(j10, true);
+    public void h(long j10) {
+        ((fh.e) this.f35b).a(j10, true);
     }
 
     @Override
-    public Object i() {
-        int i10 = this.f34a;
-        int i11 = 25;
-        boolean z10 = false;
+    public Object j() {
+        SQLiteDatabase a2;
+        int i9 = this.f34a;
         Object obj = this.f35b;
-        switch (i10) {
-            case 3:
+        switch (i9) {
+            case 9:
                 h hVar = (h) ((d3.c) obj);
                 hVar.getClass();
-                int i12 = z2.a.f50167e;
-                t tVar = new t(i11, z10);
-                tVar.f4620c = null;
+                int i10 = z2.a.f50267e;
+                t tVar = new t(24, false);
+                tVar.f4178c = null;
                 tVar.d = new ArrayList();
-                tVar.f4621e = null;
-                tVar.f4619b = "";
-                HashMap map = new HashMap();
-                SQLiteDatabase sQLiteDatabaseA = hVar.a();
-                sQLiteDatabaseA.beginTransaction();
+                tVar.f4179e = null;
+                tVar.f4177b = "";
+                HashMap hashMap = new HashMap();
+                a2 = hVar.a();
+                a2.beginTransaction();
                 try {
-                    z2.a aVar = (z2.a) h.h(sQLiteDatabaseA.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new l0(hVar, map, tVar, 7));
-                    sQLiteDatabaseA.setTransactionSuccessful();
+                    z2.a aVar = (z2.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, tVar, 6));
+                    a2.setTransactionSuccessful();
                     return aVar;
                 } finally {
-                    sQLiteDatabaseA.endTransaction();
                 }
-            case 4:
+            case 10:
                 h hVar2 = (h) ((d3.d) obj);
-                long jE = hVar2.f4744b.E() - hVar2.d.d;
-                SQLiteDatabase sQLiteDatabaseA2 = hVar2.a();
-                sQLiteDatabaseA2.beginTransaction();
+                long d = hVar2.f4302b.d() - hVar2.d.d;
+                a2 = hVar2.a();
+                a2.beginTransaction();
                 try {
-                    String[] strArr = {String.valueOf(jE)};
-                    Cursor cursorRawQuery = sQLiteDatabaseA2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
-                    while (cursorRawQuery.moveToNext()) {
-                        try {
-                            hVar2.e(cursorRawQuery.getInt(0), z2.c.MESSAGE_TOO_OLD, cursorRawQuery.getString(1));
-                        } catch (Throwable th) {
-                            cursorRawQuery.close();
-                            throw th;
-                        }
+                    String[] strArr = {String.valueOf(d)};
+                    Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
+                    while (rawQuery.moveToNext()) {
+                        int i11 = rawQuery.getInt(0);
+                        hVar2.e(i11, z2.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
                     }
-                    cursorRawQuery.close();
-                    int iDelete = sQLiteDatabaseA2.delete("events", "timestamp_ms < ?", strArr);
-                    sQLiteDatabaseA2.setTransactionSuccessful();
-                    sQLiteDatabaseA2.endTransaction();
-                    return Integer.valueOf(iDelete);
-                } catch (Throwable th2) {
-                    sQLiteDatabaseA2.endTransaction();
-                    throw th2;
+                    rawQuery.close();
+                    int delete = a2.delete("events", "timestamp_ms < ?", strArr);
+                    a2.setTransactionSuccessful();
+                    a2.endTransaction();
+                    return Integer.valueOf(delete);
+                } finally {
                 }
-            case 5:
-                h hVar3 = (h) ((d3.c) ((c3.g) obj).f2439i);
-                SQLiteDatabase sQLiteDatabaseA3 = hVar3.a();
-                sQLiteDatabaseA3.beginTransaction();
+            case 11:
+                h hVar3 = (h) ((d3.c) ((c3.h) obj).f2306i);
+                a2 = hVar3.a();
+                a2.beginTransaction();
                 try {
-                    sQLiteDatabaseA3.compileStatement("DELETE FROM log_event_dropped").execute();
-                    sQLiteDatabaseA3.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f4744b.E()).execute();
-                    sQLiteDatabaseA3.setTransactionSuccessful();
+                    a2.compileStatement("DELETE FROM log_event_dropped").execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f4302b.d()).execute();
+                    a2.setTransactionSuccessful();
                     return null;
                 } finally {
-                    sQLiteDatabaseA3.endTransaction();
                 }
             default:
                 t tVar2 = (t) obj;
-                Iterator it = ((Iterable) ((h) ((d3.d) tVar2.f4620c)).c(new m(i11))).iterator();
-                while (it.hasNext()) {
-                    ((n) tVar2.d).y((i) it.next(), 1, false);
+                for (i iVar : (Iterable) ((h) ((d3.d) tVar2.f4178c)).c(new a9.b(19))) {
+                    ((m) tVar2.d).A(iVar, 1, false);
                 }
                 return null;
         }
     }
 
     @Override
-    public void invoke(Object obj) {
-        ((h3.a2) obj).onMediaMetadataChanged((h1) this.f35b);
-    }
-
-    @Override
-    public void l(Canvas canvas, int i10) {
+    public void l(Canvas canvas, int i9) {
         j jVar = (j) this.f35b;
         jVar.getClass();
         canvas.save();
-        RectF rectF = jVar.f5027r;
+        RectF rectF = jVar.f2483r;
         canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
-        jVar.e(canvas, true, i10);
+        jVar.e(canvas, true, i9);
         canvas.restore();
     }
 
     @Override
     public void onComplete(Task task) {
         switch (this.f34a) {
-            case 15:
-                c0.b((Intent) this.f35b);
-                break;
             case 16:
-                ((e0) this.f35b).f4582b.trySetResult(null);
-                break;
+                com.google.firebase.messaging.c0.b((Intent) this.f35b);
+                return;
+            case 17:
+                ((e0) this.f35b).f4140b.trySetResult(null);
+                return;
             default:
                 ((ScheduledFuture) this.f35b).cancel(false);
-                break;
+                return;
         }
     }
 
     @Override
     public void onProductDetailsResponse(n2.g gVar, List list) {
-        int i10;
-        k2 k2Var = (k2) this.f35b;
-        ArrayList arrayList = k2Var.f7390j0;
+        int i9;
+        p2 p2Var = (p2) this.f35b;
+        ArrayList arrayList = p2Var.f6688j0;
         Iterator it = list.iterator();
-        long jF = 0;
+        long j10 = 0;
         while (true) {
-            i10 = 0;
+            i9 = 0;
             if (!it.hasNext()) {
                 break;
             }
             l lVar = (l) it.next();
             int size = arrayList.size();
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ag.p pVar = (ag.p) obj;
-                if (pVar.h() != null && pVar.h().equals(lVar.f18163c)) {
-                    pVar.h = lVar;
-                    if (pVar.f() <= jF) {
-                        break;
+            while (true) {
+                if (i9 < size) {
+                    Object obj = arrayList.get(i9);
+                    i9++;
+                    k kVar = (k) obj;
+                    if (kVar.h() != null && kVar.h().equals(lVar.f18335c)) {
+                        kVar.h = lVar;
+                        if (kVar.f() > j10) {
+                            j10 = kVar.f();
+                        }
                     }
-                    jF = pVar.f();
-                    break;
                 }
             }
         }
         int size2 = arrayList.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList.get(i10);
-            i10++;
-            ((ag.p) obj2).f590g = jF;
+        while (i9 < size2) {
+            Object obj2 = arrayList.get(i9);
+            i9++;
+            ((k) obj2).f50563g = j10;
         }
-        AndroidUtilities.runOnUIThread(new f2.r(k2Var, 7));
+        AndroidUtilities.runOnUIThread(new o1(p2Var, 0));
     }
 
     @Override
@@ -284,23 +278,23 @@ public final class c implements OnSuccessListener, e3.b, y9.a, a2, qk0, Continua
             case 0:
                 ((f) this.f35b).invoke(obj);
                 return;
-            case 1:
+            case 7:
                 ((b1.f) this.f35b).invoke(obj);
                 return;
-            case 13:
+            case 14:
                 z zVar = (z) obj;
-                if (!((FirebaseMessaging) this.f35b).f4543e.l() || zVar.h.a() == null) {
+                if (((FirebaseMessaging) this.f35b).f4101e.l() && zVar.h.a() != null) {
+                    synchronized (zVar) {
+                        z10 = zVar.f4204g;
+                    }
+                    if (!z10) {
+                        zVar.h(0L);
+                        return;
+                    }
                     return;
                 }
-                synchronized (zVar) {
-                    z10 = zVar.f4646g;
-                }
-                if (z10) {
-                    return;
-                }
-                zVar.h(0L);
                 return;
-            case 18:
+            case 19:
                 ((b1.f) this.f35b).invoke(obj);
                 return;
             case 20:
@@ -313,26 +307,26 @@ public final class c implements OnSuccessListener, e3.b, y9.a, a2, qk0, Continua
     }
 
     @Override
-    public Object then(Task task) throws IOException {
+    public Object then(Task task) {
         switch (this.f34a) {
-            case 14:
+            case 15:
                 ((com.google.firebase.messaging.m) this.f35b).getClass();
                 Bundle bundle = (Bundle) task.getResult(IOException.class);
-                if (bundle == null) {
-                    throw new IOException("SERVICE_NOT_AVAILABLE");
-                }
-                String string = bundle.getString("registration_id");
-                if (string != null || (string = bundle.getString("unregistered")) != null) {
-                    return string;
-                }
-                String string2 = bundle.getString("error");
-                if ("RST".equals(string2)) {
+                if (bundle != null) {
+                    String string = bundle.getString("registration_id");
+                    if (string != null || (string = bundle.getString("unregistered")) != null) {
+                        return string;
+                    }
+                    String string2 = bundle.getString("error");
+                    if (!"RST".equals(string2)) {
+                        if (string2 != null) {
+                            throw new IOException(string2);
+                        }
+                        Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
+                        throw new IOException("SERVICE_NOT_AVAILABLE");
+                    }
                     throw new IOException("INSTANCE_ID_RESET");
                 }
-                if (string2 != null) {
-                    throw new IOException(string2);
-                }
-                Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
                 throw new IOException("SERVICE_NOT_AVAILABLE");
             default:
                 ((CountDownLatch) this.f35b).countDown();
@@ -340,12 +334,12 @@ public final class c implements OnSuccessListener, e3.b, y9.a, a2, qk0, Continua
         }
     }
 
-    public c(Object obj, int i10) {
-        this.f34a = i10;
+    public c(Object obj, int i9) {
+        this.f34a = i9;
         this.f35b = obj;
     }
 
     @Override
-    public void c0(View view, float f10, float f11) {
+    public void g0(View view, float f10, float f11) {
     }
 }

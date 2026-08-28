@@ -1,58 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+public final class y30 implements org.telegram.ui.yp0 {
+    public boolean f34844a;
+    public final HashMap f34845b;
+    public final ArrayList f34846c;
+    public final e40 d;
 
-public enum y30 {
-    RoundHint2("needShowRoundHint2", 3, 0.2f),
-    RoundHintChannel2("needShowRoundHintChannel2", 3, 0.2f),
-    ChannelSuggestHint("channelsuggesthint", 3, 0.2f),
-    ChannelGiftHint("channelgifthint", 3, 0.2f),
-    GroupEmojiPackHintShown("groupEmojiPackShownHint", 1, 1.0f),
-    AccountSwitchHint("accountswitchhint", 3, 1.0f),
-    GiftMessageHint("giftMessaheHint", 3, 1.0f),
-    GuestBotPrivacy;
-
-
-    public final String f34799a;
-
-    public final int f34800b;
-
-    public final float f34801c;
-
-    y30() {
-        this.f34799a = "hints_controller_" + this;
-        this.f34800b = 3;
-        this.f34801c = 1.0f;
+    public y30(e40 e40Var, HashMap hashMap, ArrayList arrayList) {
+        this.d = e40Var;
+        this.f34845b = hashMap;
+        this.f34846c = arrayList;
     }
 
-    public final void a() {
-        MessagesController.getGlobalMainSettings().edit().putInt(this.f34799a, this.f34800b).apply();
+    @Override
+    public final boolean e() {
+        return this.d.f27910b.e();
     }
 
-    public final void b() {
-        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        String str = this.f34799a;
-        MessagesController.getGlobalMainSettings().edit().putInt(str, globalMainSettings.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (MessagesController.getGlobalMainSettings().getInt(this.f34799a, 0) < this.f34800b) {
-            float f10 = this.f34801c;
-            if (f10 >= 1.0f) {
-                return true;
-            }
-            if (f10 > 0.0f && Utilities.fastRandom.nextFloat() < f10) {
-                return true;
+    @Override
+    public final void i(int i9, boolean z10, boolean z11) {
+        String str;
+        HashMap hashMap = this.f34845b;
+        if (!hashMap.isEmpty()) {
+            e40 e40Var = this.d;
+            if (e40Var.f27910b != null && !this.f34844a && !z10) {
+                this.f34844a = true;
+                ArrayList arrayList = new ArrayList();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f34846c;
+                    if (i10 < arrayList2.size()) {
+                        Object obj = hashMap.get(arrayList2.get(i10));
+                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                        arrayList.add(sendingMediaInfo);
+                        if (obj instanceof MediaController.SearchImage) {
+                            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                            String str2 = searchImage.imagePath;
+                            if (str2 != null) {
+                                sendingMediaInfo.path = str2;
+                            } else {
+                                sendingMediaInfo.searchImage = searchImage;
+                            }
+                            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                            sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                            CharSequence charSequence = searchImage.caption;
+                            if (charSequence != null) {
+                                str = charSequence.toString();
+                            } else {
+                                str = null;
+                            }
+                            sendingMediaInfo.caption = str;
+                            sendingMediaInfo.entities = searchImage.entities;
+                            sendingMediaInfo.masks = searchImage.stickers;
+                            sendingMediaInfo.ttl = searchImage.ttl;
+                        }
+                        i10++;
+                    } else {
+                        e40.b(e40Var, false, arrayList);
+                        return;
+                    }
+                }
             }
         }
-        return false;
     }
 
-    y30(String str, int i10, float f10) {
-        this.f34799a = str;
-        this.f34800b = i10;
-        this.f34801c = f10;
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void b(Editable editable) {
+    }
+
+    @Override
+    public final void h() {
     }
 }

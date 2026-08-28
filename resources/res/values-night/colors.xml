@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="carColorBlue">#ff3674e0</color>
-    <color name="carColorGreen">#ff448b47</color>
-    <color name="carColorRed">#ffc5221f</color>
-    <color name="carColorYellow">#ffd5792d</color>
     <color name="widget_action_text">#75ade5</color>
     <color name="widget_divider">#000000</color>
     <color name="widget_edit_text">#8d949b</color>

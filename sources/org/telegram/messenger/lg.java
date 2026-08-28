@@ -1,28 +1,73 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.support.LongSparseIntArray;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.ui.Components.b21;
+public final class lg implements Runnable {
+    public final int f20898a;
+    public final Object f20899b;
+    public final Object f20900c;
+    public final long d;
+    public final Object f20901e;
 
-public final class lg implements Comparator {
-
-    public final int f20894a;
-
-    public final LongSparseIntArray f20895b;
-
-    public lg(LongSparseIntArray longSparseIntArray, int i10) {
-        this.f20894a = i10;
-        this.f20895b = longSparseIntArray;
+    public lg(Object obj, long j10, Object obj2, Object obj3, int i9) {
+        this.f20898a = i9;
+        this.f20899b = obj;
+        this.d = j10;
+        this.f20900c = obj2;
+        this.f20901e = obj3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        Long l10 = (Long) obj;
-        Long l11 = (Long) obj2;
-        switch (this.f20894a) {
-            case 0:
-                return MessagesStorage.lambda$checkLoadedRemoteFilters$68(this.f20895b, l10, l11);
-            default:
-                return MessagesStorage.lambda$resetDialogs$94(this.f20895b, l10, l11);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lg.run():void");
+    }
+
+    public lg(Object obj, Object obj2, long j10, Object obj3, int i9) {
+        this.f20898a = i9;
+        this.f20899b = obj;
+        this.f20900c = obj2;
+        this.d = j10;
+        this.f20901e = obj3;
+    }
+
+    public lg(Object obj, Object obj2, Object obj3, long j10, int i9) {
+        this.f20898a = i9;
+        this.f20899b = obj;
+        this.f20900c = obj2;
+        this.f20901e = obj3;
+        this.d = j10;
+    }
+
+    public lg(Object obj, MessagesStorage messagesStorage, long j10, Runnable runnable, int i9) {
+        this.f20898a = i9;
+        this.f20900c = obj;
+        this.f20899b = messagesStorage;
+        this.d = j10;
+        this.f20901e = runnable;
+    }
+
+    public lg(SavedMessagesController savedMessagesController, MessagesStorage messagesStorage, ArrayList arrayList, long j10) {
+        this.f20898a = 1;
+        this.f20901e = savedMessagesController;
+        this.f20899b = messagesStorage;
+        this.f20900c = arrayList;
+        this.d = j10;
+    }
+
+    public lg(b21 b21Var, HashSet hashSet, ArrayList arrayList, long j10) {
+        this.f20898a = 6;
+        this.f20899b = b21Var;
+        this.f20901e = hashSet;
+        this.f20900c = arrayList;
+        this.d = j10;
+    }
+
+    public lg(pf.r1 r1Var, MessagesStorage messagesStorage, pf.q1 q1Var, long j10) {
+        this.f20898a = 13;
+        this.f20900c = r1Var;
+        this.f20899b = messagesStorage;
+        this.f20901e = q1Var;
+        this.d = j10;
     }
 }

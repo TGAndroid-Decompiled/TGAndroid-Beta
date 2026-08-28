@@ -1,81 +1,85 @@
 package q3;
 
-import d5.z;
+import d5.y;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-public final class c extends b8.a {
-
-    public long f46164b;
-
-    public long[] f46165c;
+public final class c extends a8.a {
+    public long f46000b;
+    public long[] f46001c;
     public long[] d;
 
-    public static Serializable Q(int i10, z zVar) {
-        if (i10 == 0) {
-            return Double.valueOf(Double.longBitsToDouble(zVar.l()));
-        }
-        if (i10 == 1) {
-            return Boolean.valueOf(zVar.r() == 1);
-        }
-        if (i10 == 2) {
-            return S(zVar);
-        }
-        if (i10 != 3) {
-            if (i10 == 8) {
-                return R(zVar);
-            }
-            if (i10 != 10) {
-                if (i10 != 11) {
-                    return null;
+    public static Serializable Q(int i9, y yVar) {
+        if (i9 != 0) {
+            boolean z10 = false;
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    if (i9 != 3) {
+                        if (i9 != 8) {
+                            if (i9 != 10) {
+                                if (i9 != 11) {
+                                    return null;
+                                }
+                                Date date = new Date((long) Double.longBitsToDouble(yVar.l()));
+                                yVar.D(2);
+                                return date;
+                            }
+                            int u10 = yVar.u();
+                            ArrayList arrayList = new ArrayList(u10);
+                            for (int i10 = 0; i10 < u10; i10++) {
+                                Serializable Q = Q(yVar.r(), yVar);
+                                if (Q != null) {
+                                    arrayList.add(Q);
+                                }
+                            }
+                            return arrayList;
+                        }
+                        return R(yVar);
+                    }
+                    HashMap hashMap = new HashMap();
+                    while (true) {
+                        String S = S(yVar);
+                        int r10 = yVar.r();
+                        if (r10 == 9) {
+                            return hashMap;
+                        }
+                        Serializable Q2 = Q(r10, yVar);
+                        if (Q2 != null) {
+                            hashMap.put(S, Q2);
+                        }
+                    }
+                } else {
+                    return S(yVar);
                 }
-                Date date = new Date((long) Double.longBitsToDouble(zVar.l()));
-                zVar.D(2);
-                return date;
-            }
-            int iU = zVar.u();
-            ArrayList arrayList = new ArrayList(iU);
-            for (int i11 = 0; i11 < iU; i11++) {
-                Serializable serializableQ = Q(zVar.r(), zVar);
-                if (serializableQ != null) {
-                    arrayList.add(serializableQ);
+            } else {
+                if (yVar.r() == 1) {
+                    z10 = true;
                 }
+                return Boolean.valueOf(z10);
             }
-            return arrayList;
-        }
-        HashMap map = new HashMap();
-        while (true) {
-            String strS = S(zVar);
-            int iR = zVar.r();
-            if (iR == 9) {
-                return map;
-            }
-            Serializable serializableQ2 = Q(iR, zVar);
-            if (serializableQ2 != null) {
-                map.put(strS, serializableQ2);
-            }
+        } else {
+            return Double.valueOf(Double.longBitsToDouble(yVar.l()));
         }
     }
 
-    public static HashMap R(z zVar) {
-        int iU = zVar.u();
-        HashMap map = new HashMap(iU);
-        for (int i10 = 0; i10 < iU; i10++) {
-            String strS = S(zVar);
-            Serializable serializableQ = Q(zVar.r(), zVar);
-            if (serializableQ != null) {
-                map.put(strS, serializableQ);
+    public static HashMap R(y yVar) {
+        int u10 = yVar.u();
+        HashMap hashMap = new HashMap(u10);
+        for (int i9 = 0; i9 < u10; i9++) {
+            String S = S(yVar);
+            Serializable Q = Q(yVar.r(), yVar);
+            if (Q != null) {
+                hashMap.put(S, Q);
             }
         }
-        return map;
+        return hashMap;
     }
 
-    public static String S(z zVar) {
-        int iW = zVar.w();
-        int i10 = zVar.f4859b;
-        zVar.D(iW);
-        return new String(zVar.f4858a, i10, iW);
+    public static String S(y yVar) {
+        int w8 = yVar.w();
+        int i9 = yVar.f4411b;
+        yVar.D(w8);
+        return new String(yVar.f4410a, i9, w8);
     }
 }

@@ -1,7 +1,6 @@
 package m;
-
 public interface y0 {
-    void p(int i10);
+    void f(int i9);
 
-    void z(int i10);
+    void o(int i9);
 }

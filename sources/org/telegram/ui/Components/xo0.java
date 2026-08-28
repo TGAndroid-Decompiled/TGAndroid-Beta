@@ -5,39 +5,43 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+public final class xo0 implements of.d0 {
+    public final rp0 f34731a;
 
-public final class xo0 implements pf.x {
-
-    public final sp0 f34663a;
-
-    public xo0(sp0 sp0Var) {
-        this.f34663a = sp0Var;
+    public xo0(rp0 rp0Var) {
+        this.f34731a = rp0Var;
     }
 
     @Override
     public final void b(a0.h hVar, ArrayList arrayList) {
-        int i10 = 0;
-        while (i10 < arrayList.size()) {
-            TLObject tLObject = ((pf.y) arrayList.get(i10)).f45967a;
+        int i9;
+        int i10;
+        int i11;
+        int i12 = 0;
+        while (i12 < arrayList.size()) {
+            TLObject tLObject = ((of.e0) arrayList.get(i12)).f19279a;
             if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i10);
-                i10--;
+                arrayList.remove(i12);
+                i12--;
             }
-            i10++;
+            i12++;
         }
-        sp0 sp0Var = this.f34663a;
-        sp0Var.A0 = arrayList;
-        for (int i11 = 0; i11 < sp0Var.A0.size(); i11++) {
-            pf.y yVar = (pf.y) sp0Var.A0.get(i11);
-            TLObject tLObject2 = yVar.f45967a;
+        rp0 rp0Var = this.f34731a;
+        rp0Var.A0 = arrayList;
+        for (int i13 = 0; i13 < rp0Var.A0.size(); i13++) {
+            of.e0 e0Var = (of.e0) rp0Var.A0.get(i13);
+            TLObject tLObject2 = e0Var.f19279a;
             if (tLObject2 instanceof TLRPC.User) {
-                MessagesController.getInstance(((org.telegram.ui.ActionBar.e3) sp0Var).currentAccount).putUser((TLRPC.User) yVar.f45967a, true);
+                i11 = ((org.telegram.ui.ActionBar.f3) rp0Var).currentAccount;
+                MessagesController.getInstance(i11).putUser((TLRPC.User) e0Var.f19279a, true);
             } else if (tLObject2 instanceof TLRPC.Chat) {
-                MessagesController.getInstance(((org.telegram.ui.ActionBar.e3) sp0Var).currentAccount).putChat((TLRPC.Chat) yVar.f45967a, true);
+                i10 = ((org.telegram.ui.ActionBar.f3) rp0Var).currentAccount;
+                MessagesController.getInstance(i10).putChat((TLRPC.Chat) e0Var.f19279a, true);
             } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                MessagesController.getInstance(((org.telegram.ui.ActionBar.e3) sp0Var).currentAccount).putEncryptedChat((TLRPC.EncryptedChat) yVar.f45967a, true);
+                i9 = ((org.telegram.ui.ActionBar.f3) rp0Var).currentAccount;
+                MessagesController.getInstance(i9).putEncryptedChat((TLRPC.EncryptedChat) e0Var.f19279a, true);
             }
         }
-        sp0Var.I.l();
+        rp0Var.I.l();
     }
 }

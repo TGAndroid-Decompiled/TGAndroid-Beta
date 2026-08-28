@@ -6,7 +6,6 @@ import android.os.Message;
 import android.os.Process;
 import android.os.SystemClock;
 import java.util.concurrent.CountDownLatch;
-
 public class DispatchQueue extends Thread {
     private static final int THREAD_PRIORITY_DEFAULT = -1000;
     private static int indexPointer;
@@ -29,8 +28,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacks(runnable);
-        } catch (Exception e9) {
-            FileLog.e((Throwable) e9, false);
+        } catch (Exception e10) {
+            FileLog.e((Throwable) e10, false);
         }
     }
 
@@ -40,8 +39,8 @@ public class DispatchQueue extends Thread {
             for (Runnable runnable : runnableArr) {
                 this.handler.removeCallbacks(runnable);
             }
-        } catch (Exception e9) {
-            FileLog.e((Throwable) e9, false);
+        } catch (Exception e10) {
+            FileLog.e((Throwable) e10, false);
         }
     }
 
@@ -49,8 +48,8 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);
-        } catch (Exception e9) {
-            FileLog.e((Throwable) e9, false);
+        } catch (Exception e10) {
+            FileLog.e((Throwable) e10, false);
         }
     }
 
@@ -63,7 +62,10 @@ public class DispatchQueue extends Thread {
     }
 
     public boolean isReady() {
-        return this.syncLatch.getCount() == 0;
+        if (this.syncLatch.getCount() == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean postRunnable(Runnable runnable) {
@@ -74,8 +76,8 @@ public class DispatchQueue extends Thread {
     public boolean postToFrontRunnable(Runnable runnable) {
         try {
             this.syncLatch.await();
-        } catch (Exception e9) {
-            FileLog.e((Throwable) e9, false);
+        } catch (Exception e10) {
+            FileLog.e((Throwable) e10, false);
         }
         return this.handler.postAtFrontOfQueue(runnable);
     }
@@ -87,22 +89,22 @@ public class DispatchQueue extends Thread {
     @Override
     public void run() {
         Looper.prepare();
-        this.handler = new Handler(Looper.myLooper(), new z1(this, 0));
+        this.handler = new Handler(Looper.myLooper(), new y1(this, 0));
         this.syncLatch.countDown();
-        int i10 = this.threadPriority;
-        if (i10 != -1000) {
-            Process.setThreadPriority(i10);
+        int i9 = this.threadPriority;
+        if (i9 != -1000) {
+            Process.setThreadPriority(i9);
         }
         Looper.loop();
     }
 
-    public void sendMessage(Message message, int i10) {
+    public void sendMessage(Message message, int i9) {
         try {
             this.syncLatch.await();
-            if (i10 <= 0) {
+            if (i9 <= 0) {
                 this.handler.sendMessage(message);
             } else {
-                this.handler.sendMessageDelayed(message, i10);
+                this.handler.sendMessageDelayed(message, i9);
             }
         } catch (Exception unused) {
         }
@@ -111,9 +113,9 @@ public class DispatchQueue extends Thread {
     public DispatchQueue(String str, boolean z10) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i10 = indexPointer;
-        indexPointer = i10 + 1;
-        this.index = i10;
+        int i9 = indexPointer;
+        indexPointer = i9 + 1;
+        this.index = i9;
         this.threadPriority = -1000;
         setName(str);
         if (z10) {
@@ -124,8 +126,8 @@ public class DispatchQueue extends Thread {
     public boolean postRunnable(Runnable runnable, long j10) {
         try {
             this.syncLatch.await();
-        } catch (Exception e9) {
-            FileLog.e((Throwable) e9, false);
+        } catch (Exception e10) {
+            FileLog.e((Throwable) e10, false);
         }
         if (j10 <= 0) {
             return this.handler.post(runnable);
@@ -133,13 +135,13 @@ public class DispatchQueue extends Thread {
         return this.handler.postDelayed(runnable, j10);
     }
 
-    public DispatchQueue(String str, boolean z10, int i10) {
+    public DispatchQueue(String str, boolean z10, int i9) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i11 = indexPointer;
-        indexPointer = i11 + 1;
-        this.index = i11;
-        this.threadPriority = i10;
+        int i10 = indexPointer;
+        indexPointer = i10 + 1;
+        this.index = i10;
+        this.threadPriority = i9;
         setName(str);
         if (z10) {
             start();

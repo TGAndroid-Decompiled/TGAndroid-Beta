@@ -1,13 +1,12 @@
 package w3;
-
 public interface h {
-    void b(d5.z zVar);
+    void g(d5.y yVar);
 
-    void c();
+    void h();
 
-    void d();
+    void i();
 
-    void e(m3.m mVar, e0 e0Var);
+    void j(m3.m mVar, d0 d0Var);
 
-    void f(int i10, long j10);
+    void k(int i9, long j10);
 }

@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public interface Predicate<T> {
 
     public abstract class CC {
@@ -22,7 +21,10 @@ public interface Predicate<T> {
 
                 @Override
                 public boolean test(Object obj) {
-                    return Predicate.this.test(obj) && predicate2.test(obj);
+                    if (Predicate.this.test(obj) && predicate2.test(obj)) {
+                        return true;
+                    }
+                    return false;
                 }
             };
         }
@@ -70,7 +72,10 @@ public interface Predicate<T> {
 
                 @Override
                 public boolean test(Object obj) {
-                    return Predicate.this.test(obj) || predicate2.test(obj);
+                    if (!Predicate.this.test(obj) && !predicate2.test(obj)) {
+                        return false;
+                    }
+                    return true;
                 }
             };
         }

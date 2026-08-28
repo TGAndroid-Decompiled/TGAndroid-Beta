@@ -1,7 +1,7 @@
 package org.scilab.forge.jlatexmath.greek;
 
+import java.lang.Character;
 import org.scilab.forge.jlatexmath.AlphabetRegistration;
-
 public class GreekRegistration implements AlphabetRegistration {
     @Override
     public String getTeXFontFileName() {

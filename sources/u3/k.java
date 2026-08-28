@@ -1,71 +1,24 @@
 package u3;
 
-import android.graphics.Typeface;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import yf.g0;
-import zf.n2;
+import m3.w;
+import m3.x;
+public final class k {
+    public final o f48025a;
+    public final r f48026b;
+    public final w f48027c;
+    public final x d;
+    public int f48028e;
 
-public final class k implements o8.e, t2.g, com.google.android.exoplayer2.upstream.l, g0, z8.e, y9.a, z8.d, OnFailureListener {
-
-    public final int f48322a;
-
-    public k(int i10) {
-        this.f48322a = i10;
-    }
-
-    @Override
-    public Typeface a() {
-        switch (this.f48322a) {
-            case 9:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 10:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 11:
-                return Typeface.create("serif", 1);
-            case 12:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 13:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+    public k(o oVar, r rVar, w wVar) {
+        x xVar;
+        this.f48025a = oVar;
+        this.f48026b = rVar;
+        this.f48027c = wVar;
+        if ("audio/true-hd".equals(oVar.f48058f.B)) {
+            xVar = new x();
+        } else {
+            xVar = null;
         }
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        return (p) obj;
-    }
-
-    @Override
-    public List c(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public com.google.android.exoplayer2.upstream.m createDataSource() {
-        return new com.google.android.exoplayer2.upstream.c(ApplicationLoader.applicationContext);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        int i10 = n2.f50607n0;
-    }
-
-    @Override
-    public Object u0(af.h hVar) {
-        return FirebaseInstallationsRegistrar.lambda$getComponents$0(hVar);
-    }
-
-    @Override
-    public void b(y9.b bVar) {
-    }
-
-    @Override
-    public void d(Exception exc) {
+        this.d = xVar;
     }
 }

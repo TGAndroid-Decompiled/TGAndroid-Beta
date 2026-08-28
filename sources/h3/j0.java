@@ -1,23 +1,20 @@
 package h3;
-
 public final class j0 implements l1 {
+    public final Object f9513a;
+    public r2 f9514b;
 
-    public final Object f7943a;
-
-    public s2 f7944b;
-
-    public j0(Object obj, s2 s2Var) {
-        this.f7943a = obj;
-        this.f7944b = s2Var;
+    public j0(Object obj, r2 r2Var) {
+        this.f9513a = obj;
+        this.f9514b = r2Var;
     }
 
     @Override
     public final Object a() {
-        return this.f7943a;
+        return this.f9513a;
     }
 
     @Override
-    public final s2 b() {
-        return this.f7944b;
+    public final r2 b() {
+        return this.f9514b;
     }
 }

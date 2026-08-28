@@ -2,7 +2,8 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-
+import org.webrtc.EglBase;
+import org.webrtc.RendererCommon;
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
     private static final String TAG = "SurfaceEglRenderer";
     private int frameRotation;
@@ -88,16 +89,22 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
 
     @Override
     public void setFpsReduction(float f10) {
+        boolean z10;
         synchronized (this.layoutLock) {
-            this.isRenderingPaused = f10 == 0.0f;
+            if (f10 == 0.0f) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.isRenderingPaused = z10;
         }
         super.setFpsReduction(f10);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i9, int i10, int i11) {
         ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i10 + " size: " + i11 + "x" + i12);
+        logD("surfaceChanged: format: " + i9 + " size: " + i10 + "x" + i11);
     }
 
     @Override

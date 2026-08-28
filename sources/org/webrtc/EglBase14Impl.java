@@ -10,8 +10,8 @@ import android.opengl.EGLSurface;
 import android.opengl.GLException;
 import android.os.Build;
 import android.view.Surface;
-
-class EglBase14Impl implements EglBase14 {
+import org.webrtc.EglBase14;
+public class EglBase14Impl implements EglBase14 {
     private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
     private static final int EGLExt_SDK_VERSION = 18;
     private static final String TAG = "EglBase14Impl";
@@ -30,7 +30,10 @@ class EglBase14Impl implements EglBase14 {
 
         @Override
         public long getNativeEglContext() {
-            return EglBase14Impl.CURRENT_SDK_VERSION >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
+            if (EglBase14Impl.CURRENT_SDK_VERSION >= 21) {
+                return this.egl14Context.getNativeHandle();
+            }
+            return this.egl14Context.getHandle();
         }
 
         @Override
@@ -46,33 +49,35 @@ class EglBase14Impl implements EglBase14 {
         EGLDisplay eglDisplay = getEglDisplay();
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(eglDisplay, iArr);
-        int iK = e.k(iArr);
-        Logging.d("EglBase14Impl", "Using OpenGL ES version " + iK);
-        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, iK);
+        int k10 = e.k(iArr);
+        Logging.d("EglBase14Impl", "Using OpenGL ES version " + k10);
+        this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, k10);
     }
 
     private void checkIsNotReleased() {
-        if (this.eglDisplay == EGL14.EGL_NO_DISPLAY || this.eglContext == EGL14.EGL_NO_CONTEXT || this.eglConfig == null) {
-            throw new RuntimeException("This object has been released");
+        if (this.eglDisplay != EGL14.EGL_NO_DISPLAY && this.eglContext != EGL14.EGL_NO_CONTEXT && this.eglConfig != null) {
+            return;
         }
+        throw new RuntimeException("This object has been released");
     }
 
-    private static EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i10) {
-        EGLContext eGLContextEglCreateContext;
+    private static EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i9) {
+        EGLContext eglCreateContext;
         if (eGLContext != null && eGLContext == EGL14.EGL_NO_CONTEXT) {
             throw new RuntimeException("Invalid sharedContext");
         }
-        int[] iArr = {12440, i10, 12344};
+        int[] iArr = {12440, i9, 12344};
         if (eGLContext == null) {
             eGLContext = EGL14.EGL_NO_CONTEXT;
         }
         synchronized (EglBase.lock) {
-            eGLContextEglCreateContext = EGL14.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr, 0);
+            eglCreateContext = EGL14.eglCreateContext(eGLDisplay, eGLConfig, eGLContext, iArr, 0);
         }
-        if (eGLContextEglCreateContext != EGL14.EGL_NO_CONTEXT) {
-            return eGLContextEglCreateContext;
+        if (eglCreateContext != EGL14.EGL_NO_CONTEXT) {
+            return eglCreateContext;
         }
-        throw new GLException(EGL14.eglGetError(), "Failed to create EGL context: 0x" + Integer.toHexString(EGL14.eglGetError()));
+        int eglGetError = EGL14.eglGetError();
+        throw new GLException(eglGetError, "Failed to create EGL context: 0x" + Integer.toHexString(EGL14.eglGetError()));
     }
 
     private void createSurfaceInternal(Object obj, boolean z10) {
@@ -81,63 +86,75 @@ class EglBase14Impl implements EglBase14 {
         }
         checkIsNotReleased();
         if (z10) {
-            if (this.eglSurfaceBackground != EGL14.EGL_NO_SURFACE) {
-                throw new RuntimeException("Already has an EGLSurface");
+            if (this.eglSurfaceBackground == EGL14.EGL_NO_SURFACE) {
+                EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
+                this.eglSurfaceBackground = eglCreateWindowSurface;
+                if (eglCreateWindowSurface == EGL14.EGL_NO_SURFACE) {
+                    throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                }
+                return;
             }
-            EGLSurface eGLSurfaceEglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
-            this.eglSurfaceBackground = eGLSurfaceEglCreateWindowSurface;
-            if (eGLSurfaceEglCreateWindowSurface != EGL14.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
+        } else if (this.eglSurface == EGL14.EGL_NO_SURFACE) {
+            EGLSurface eglCreateWindowSurface2 = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
+            this.eglSurface = eglCreateWindowSurface2;
+            if (eglCreateWindowSurface2 != EGL14.EGL_NO_SURFACE) {
                 return;
             }
             throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
-        }
-        if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
+        } else {
             throw new RuntimeException("Already has an EGLSurface");
         }
-        EGLSurface eGLSurfaceEglCreateWindowSurface2 = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
-        this.eglSurface = eGLSurfaceEglCreateWindowSurface2;
-        if (eGLSurfaceEglCreateWindowSurface2 != EGL14.EGL_NO_SURFACE) {
-            return;
-        }
-        throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
     }
 
     private static EGLConfig getEglConfig(EGLDisplay eGLDisplay, int[] iArr) {
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
         int[] iArr2 = new int[1];
-        if (!EGL14.eglChooseConfig(eGLDisplay, iArr, 0, eGLConfigArr, 0, 1, iArr2, 0)) {
-            throw new GLException(EGL14.eglGetError(), "eglChooseConfig failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
-        }
-        if (iArr2[0] <= 0) {
+        if (EGL14.eglChooseConfig(eGLDisplay, iArr, 0, eGLConfigArr, 0, 1, iArr2, 0)) {
+            if (iArr2[0] > 0) {
+                EGLConfig eGLConfig = eGLConfigArr[0];
+                if (eGLConfig != null) {
+                    return eGLConfig;
+                }
+                throw new RuntimeException("eglChooseConfig returned null");
+            }
             throw new RuntimeException("Unable to find any matching EGL config");
         }
-        EGLConfig eGLConfig = eGLConfigArr[0];
-        if (eGLConfig != null) {
-            return eGLConfig;
-        }
-        throw new RuntimeException("eglChooseConfig returned null");
+        int eglGetError = EGL14.eglGetError();
+        throw new GLException(eglGetError, "eglChooseConfig failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
     }
 
     private static EGLDisplay getEglDisplay() {
-        EGLDisplay eGLDisplayEglGetDisplay = EGL14.eglGetDisplay(0);
-        if (eGLDisplayEglGetDisplay == EGL14.EGL_NO_DISPLAY) {
-            throw new GLException(EGL14.eglGetError(), "Unable to get EGL14 display: 0x" + Integer.toHexString(EGL14.eglGetError()));
+        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
+        if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
+            int[] iArr = new int[2];
+            if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
+                return eglGetDisplay;
+            }
+            int eglGetError = EGL14.eglGetError();
+            throw new GLException(eglGetError, "Unable to initialize EGL14: 0x" + Integer.toHexString(EGL14.eglGetError()));
         }
-        int[] iArr = new int[2];
-        if (EGL14.eglInitialize(eGLDisplayEglGetDisplay, iArr, 0, iArr, 1)) {
-            return eGLDisplayEglGetDisplay;
-        }
-        throw new GLException(EGL14.eglGetError(), "Unable to initialize EGL14: 0x" + Integer.toHexString(EGL14.eglGetError()));
+        int eglGetError2 = EGL14.eglGetError();
+        throw new GLException(eglGetError2, "Unable to get EGL14 display: 0x" + Integer.toHexString(EGL14.eglGetError()));
     }
 
     public static boolean isEGL14Supported() {
+        boolean z10;
         StringBuilder sb2 = new StringBuilder("SDK version: ");
-        int i10 = CURRENT_SDK_VERSION;
-        sb2.append(i10);
+        int i9 = CURRENT_SDK_VERSION;
+        sb2.append(i9);
         sb2.append(". isEGL14Supported: ");
-        sb2.append(i10 >= 18);
+        if (i9 >= 18) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        sb2.append(z10);
         Logging.d("EglBase14Impl", sb2.toString());
-        return i10 >= 18;
+        if (i9 < 18) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -151,19 +168,19 @@ class EglBase14Impl implements EglBase14 {
     }
 
     @Override
-    public void createPbufferSurface(int i10, int i11) {
+    public void createPbufferSurface(int i9, int i10) {
         checkIsNotReleased();
-        if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
-            throw new RuntimeException("Already has an EGLSurface");
+        if (this.eglSurface == EGL14.EGL_NO_SURFACE) {
+            EGLSurface eglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i9, 12374, i10, 12344}, 0);
+            this.eglSurface = eglCreatePbufferSurface;
+            if (eglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
+                return;
+            }
+            StringBuilder o6 = e2.c.o("Failed to create pixel buffer surface with size ", i9, "x", i10, ": 0x");
+            o6.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(o6.toString());
         }
-        EGLSurface eGLSurfaceEglCreatePbufferSurface = EGL14.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i10, 12374, i11, 12344}, 0);
-        this.eglSurface = eGLSurfaceEglCreatePbufferSurface;
-        if (eGLSurfaceEglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
-            return;
-        }
-        StringBuilder sbP = com.google.android.recaptcha.internal.a.p("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-        sbP.append(Integer.toHexString(EGL14.eglGetError()));
-        throw new RuntimeException(sbP.toString());
+        throw new RuntimeException("Already has an EGLSurface");
     }
 
     @Override
@@ -188,50 +205,58 @@ class EglBase14Impl implements EglBase14 {
 
     @Override
     public boolean hasBackgroundSurface() {
-        return this.eglSurfaceBackground != EGL14.EGL_NO_SURFACE;
+        if (this.eglSurfaceBackground != EGL14.EGL_NO_SURFACE) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean hasSurface() {
-        return this.eglSurface != EGL14.EGL_NO_SURFACE;
+        if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void makeBackgroundCurrent() {
         checkIsNotReleased();
-        if (this.eglSurfaceBackground == EGL14.EGL_NO_SURFACE) {
-            throw new RuntimeException("No EGLSurface - can't make current");
-        }
-        synchronized (EglBase.lock) {
-            try {
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = this.eglSurfaceBackground;
-                if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+        if (this.eglSurfaceBackground != EGL14.EGL_NO_SURFACE) {
+            synchronized (EglBase.lock) {
+                try {
+                    EGLDisplay eGLDisplay = this.eglDisplay;
+                    EGLSurface eGLSurface = this.eglSurfaceBackground;
+                    if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                        throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                    }
+                } catch (Throwable th) {
+                    throw th;
                 }
-            } catch (Throwable th) {
-                throw th;
             }
+            return;
         }
+        throw new RuntimeException("No EGLSurface - can't make current");
     }
 
     @Override
     public void makeCurrent() {
         checkIsNotReleased();
-        if (this.eglSurface == EGL14.EGL_NO_SURFACE) {
-            throw new RuntimeException("No EGLSurface - can't make current");
-        }
-        synchronized (EglBase.lock) {
-            try {
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = this.eglSurface;
-                if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+        if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
+            synchronized (EglBase.lock) {
+                try {
+                    EGLDisplay eGLDisplay = this.eglDisplay;
+                    EGLSurface eGLSurface = this.eglSurface;
+                    if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                        throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                    }
+                } catch (Throwable th) {
+                    throw th;
                 }
-            } catch (Throwable th) {
-                throw th;
             }
+            return;
         }
+        throw new RuntimeException("No EGLSurface - can't make current");
     }
 
     @Override
@@ -286,12 +311,13 @@ class EglBase14Impl implements EglBase14 {
     public void swapBuffers(boolean z10) {
         checkIsNotReleased();
         EGLSurface eGLSurface = z10 ? this.eglSurfaceBackground : this.eglSurface;
-        if (eGLSurface == EGL14.EGL_NO_SURFACE) {
-            throw new RuntimeException("No EGLSurface - can't swap buffers");
+        if (eGLSurface != EGL14.EGL_NO_SURFACE) {
+            synchronized (EglBase.lock) {
+                EGL14.eglSwapBuffers(this.eglDisplay, eGLSurface);
+            }
+            return;
         }
-        synchronized (EglBase.lock) {
-            EGL14.eglSwapBuffers(this.eglDisplay, eGLSurface);
-        }
+        throw new RuntimeException("No EGLSurface - can't swap buffers");
     }
 
     @Override

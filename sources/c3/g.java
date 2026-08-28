@@ -1,498 +1,231 @@
 package c3;
 
-import ag.h0;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import com.google.firebase.messaging.m;
-import d3.h;
-import h9.b0;
-import h9.k0;
-import j$.util.Objects;
-import j4.x0;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.Charset;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import ff.g0;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
-import k5.i;
-import m.t3;
-import m1.j;
-import org.json.JSONObject;
-import v2.k;
-import v2.t;
-import v2.u;
-import v2.w;
-import w2.l;
-import w2.n;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import kh.a8;
+import kh.r6;
+import kh.y7;
+import n5.a0;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.Cells.z1;
+import org.telegram.ui.Components.d40;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.x4;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.bu0;
+import org.telegram.ui.dy;
+import org.telegram.ui.dz0;
+import org.telegram.ui.o50;
+import org.telegram.ui.qn;
+import w2.i;
+import xf.o0;
+public final class g implements e3.b, d40, y7, x4, b2, z8.g {
+    public final int f2296a;
+    public final long f2297b;
+    public final Object f2298c;
+    public final Object d;
+    public final Object f2299e;
 
-public final class g {
-
-    public Object f2433a;
-
-    public Object f2434b;
-
-    public Object f2435c;
-    public Object d;
-
-    public Object f2436e;
-
-    public Object f2437f;
-
-    public Object f2438g;
-    public Object h;
-
-    public Object f2439i;
-
-    public static void f(String str, JSONObject jSONObject) {
-        StringBuilder sbO = com.google.android.recaptcha.internal.a.o(str);
-        sbO.append(jSONObject.toString());
-        String string = sbO.toString();
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", string, null);
-        }
+    public g(Object obj, Object obj2, long j10, Object obj3, int i9) {
+        this.f2296a = i9;
+        this.f2298c = obj;
+        this.d = obj2;
+        this.f2297b = j10;
+        this.f2299e = obj3;
     }
 
-    public b0 a() {
-        String strL = ((Integer) this.f2433a) == null ? " pid" : "";
-        if (((String) this.f2434b) == null) {
-            strL = strL.concat(" processName");
-        }
-        if (((Integer) this.f2435c) == null) {
-            strL = s3.c.l(strL, " reasonCode");
-        }
-        if (((Integer) this.d) == null) {
-            strL = s3.c.l(strL, " importance");
-        }
-        if (((Long) this.f2436e) == null) {
-            strL = s3.c.l(strL, " pss");
-        }
-        if (((Long) this.f2437f) == null) {
-            strL = s3.c.l(strL, " rss");
-        }
-        if (((Long) this.f2438g) == null) {
-            strL = s3.c.l(strL, " timestamp");
-        }
-        if (strL.isEmpty()) {
-            return new b0(((Integer) this.f2433a).intValue(), (String) this.f2434b, ((Integer) this.f2435c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f2436e).longValue(), ((Long) this.f2437f).longValue(), ((Long) this.f2438g).longValue(), (String) this.h, (List) this.f2439i);
-        }
-        throw new IllegalStateException("Missing required properties:".concat(strL));
+    @Override
+    public void B(int i9, int i10, boolean z10) {
+        qn.r0((qn) this.f2298c, (ArrayList) this.d, this.f2297b, (ll0) this.f2299e, z10, i9);
     }
 
-    public k0 b() {
-        String strL = ((Integer) this.f2433a) == null ? " arch" : "";
-        if (((String) this.f2434b) == null) {
-            strL = strL.concat(" model");
+    @Override
+    public void P(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        qn qnVar = (qn) this.f2298c;
+        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f2299e;
+        if (inputFile == null && inputFile2 == null && videoSize == null) {
+            fileLocationArr[0] = photoSize2.location;
+            fileLocationArr2[0] = photoSize.location;
+            return;
         }
-        if (((Integer) this.f2435c) == null) {
-            strL = s3.c.l(strL, " cores");
+        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+        if (inputFile != null) {
+            tL_photos_uploadProfilePhoto.file = inputFile;
+            tL_photos_uploadProfilePhoto.flags |= 1;
         }
-        if (((Long) this.d) == null) {
-            strL = s3.c.l(strL, " ram");
+        if (inputFile2 != null) {
+            tL_photos_uploadProfilePhoto.video = inputFile2;
+            int i9 = tL_photos_uploadProfilePhoto.flags;
+            tL_photos_uploadProfilePhoto.video_start_ts = d;
+            tL_photos_uploadProfilePhoto.flags = i9 | 6;
         }
-        if (((Long) this.f2436e) == null) {
-            strL = s3.c.l(strL, " diskSpace");
+        if (videoSize != null) {
+            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
+            tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        if (((Boolean) this.f2437f) == null) {
-            strL = s3.c.l(strL, " simulator");
-        }
-        if (((Integer) this.f2438g) == null) {
-            strL = s3.c.l(strL, " state");
-        }
-        if (((String) this.h) == null) {
-            strL = s3.c.l(strL, " manufacturer");
-        }
-        if (((String) this.f2439i) == null) {
-            strL = s3.c.l(strL, " modelClass");
-        }
-        if (strL.isEmpty()) {
-            return new k0(((Integer) this.f2433a).intValue(), (String) this.f2434b, ((Integer) this.f2435c).intValue(), ((Long) this.d).longValue(), ((Long) this.f2436e).longValue(), ((Boolean) this.f2437f).booleanValue(), ((Integer) this.f2438g).intValue(), (String) this.h, (String) this.f2439i);
-        }
-        throw new IllegalStateException("Missing required properties:".concat(strL));
+        qnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new g0(qnVar, fileLocationArr, str, fileLocationArr2, this.f2297b));
     }
 
-    public m9.a c(int i10) {
-        m9.a aVar = null;
-        try {
-            if (!j.a(2, i10)) {
-                JSONObject jSONObjectF = ((i) this.f2436e).F();
-                if (jSONObjectF != null) {
-                    m9.a aVarH = ((ga.c) this.f2435c).h(jSONObjectF);
-                    f("Loaded cached settings: ", jSONObjectF);
-                    ((ab.a) this.d).getClass();
-                    long jCurrentTimeMillis = System.currentTimeMillis();
-                    if (j.a(3, i10) || aVarH.f17883c >= jCurrentTimeMillis) {
-                        try {
-                            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                                Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
-                            }
-                            return aVarH;
-                        } catch (Exception e9) {
-                            e = e9;
-                            aVar = aVarH;
-                            Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
-                            return aVar;
-                        }
+    @Override
+    public ScheduledFuture a(final a0 a0Var) {
+        switch (this.f2296a) {
+            case 6:
+                z8.f fVar = (z8.f) this.f2298c;
+                return fVar.f50377b.schedule(new z8.d(fVar, (Runnable) this.d, a0Var, 1), this.f2297b, (TimeUnit) this.f2299e);
+            default:
+                final z8.f fVar2 = (z8.f) this.f2298c;
+                final Callable callable = (Callable) this.d;
+                return fVar2.f50377b.schedule(new Callable() {
+                    @Override
+                    public final Object call() {
+                        return f.this.f50376a.submit(new o0(8, callable, a0Var));
                     }
-                    if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                        Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
-                        return null;
-                    }
-                } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "No cached settings data found.", null);
-                }
-            }
-            return null;
-        } catch (Exception e10) {
-            e = e10;
+                }, this.f2297b, (TimeUnit) this.f2299e);
         }
     }
 
-    public m9.a d() {
-        return (m9.a) ((AtomicReference) this.h).get();
+    @Override
+    public boolean e() {
+        return true;
     }
 
-    public void e(w2.i iVar, int i10) {
-        byte[] bArr;
-        long j10;
-        x2.a aVar;
-        String str;
-        x2.a aVar2;
-        int i11;
-        x0 x0VarC;
-        Integer numValueOf;
-        String str2;
-        t3 t3Var;
-        final g gVar = this;
-        final w2.i iVar2 = iVar;
-        byte[] bArr2 = iVar2.f48958b;
-        e3.c cVar = (e3.c) gVar.f2437f;
-        x2.e eVarA = ((x2.d) gVar.f2434b).a(iVar2.f48957a);
-        long jMax = 0;
-        while (true) {
-            final int i12 = 0;
-            h hVar = (h) cVar;
-            if (!((Boolean) hVar.f(new e3.b(gVar) {
-
-                public final g f2428b;
-
-                {
-                    this.f2428b = gVar;
+    @Override
+    public void f(c2 c2Var, int i9) {
+        switch (this.f2296a) {
+            case 4:
+                ChatObject.Call call = (ChatObject.Call) this.f2298c;
+                Runnable runnable = (Runnable) this.f2299e;
+                boolean z10 = false;
+                z1 z1Var = ((z1[]) this.d)[0];
+                if (z1Var != null && z1Var.b()) {
+                    z10 = true;
                 }
-
-                @Override
-                public final Object i() {
-                    Boolean bool;
-                    switch (i12) {
-                        case 0:
-                            w2.i iVar3 = iVar2;
-                            h hVar2 = (h) ((d3.d) this.f2428b.f2435c);
-                            SQLiteDatabase sQLiteDatabaseA = hVar2.a();
-                            sQLiteDatabaseA.beginTransaction();
-                            try {
-                                Long lB = h.b(sQLiteDatabaseA, iVar3);
-                                if (lB == null) {
-                                    bool = Boolean.FALSE;
-                                } else {
-                                    Cursor cursorRawQuery = hVar2.a().rawQuery("SELECT 1 FROM events WHERE context_id = ? LIMIT 1", new String[]{lB.toString()});
-                                    try {
-                                        Boolean boolValueOf = Boolean.valueOf(cursorRawQuery.moveToNext());
-                                        cursorRawQuery.close();
-                                        bool = boolValueOf;
-                                    } catch (Throwable th) {
-                                        cursorRawQuery.close();
-                                        throw th;
-                                    }
-                                }
-                                sQLiteDatabaseA.setTransactionSuccessful();
-                                sQLiteDatabaseA.endTransaction();
-                                return bool;
-                            } catch (Throwable th2) {
-                                sQLiteDatabaseA.endTransaction();
-                                throw th2;
-                            }
-                        default:
-                            h hVar3 = (h) ((d3.d) this.f2428b.f2435c);
-                            hVar3.getClass();
-                            return (Iterable) hVar3.c(new h0(14, hVar3, iVar2));
-                    }
-                }
-            })).booleanValue()) {
-                hVar.f(new f(gVar, iVar2, jMax, 0));
+                o50.w1(call, z10, this.f2297b, runnable);
                 return;
-            }
-            final int i13 = 1;
-            Iterable iterable = (Iterable) hVar.f(new e3.b(gVar) {
-
-                public final g f2428b;
-
-                {
-                    this.f2428b = gVar;
+            default:
+                TLRPC.User user = (TLRPC.User) this.f2299e;
+                ProfileActivity profileActivity = ((dz0) this.f2298c).f37761b;
+                profileActivity.J1 = true;
+                Bundle i10 = aa.d.i("scrollToTopOnResume", true);
+                long j10 = -this.f2297b;
+                i10.putLong("chat_id", j10);
+                if (profileActivity.getMessagesController().checkCanOpenChat(i10, (dy) this.d)) {
+                    qn qnVar = new qn(i10);
+                    NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
+                    int i11 = NotificationCenter.closeChats;
+                    notificationCenter.removeObserver(profileActivity, i11);
+                    profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, qnVar, true, null, null);
+                    profileActivity.presentFragment(qnVar, true);
+                    return;
                 }
-
-                @Override
-                public final Object i() {
-                    Boolean bool;
-                    switch (i13) {
-                        case 0:
-                            w2.i iVar3 = iVar2;
-                            h hVar2 = (h) ((d3.d) this.f2428b.f2435c);
-                            SQLiteDatabase sQLiteDatabaseA = hVar2.a();
-                            sQLiteDatabaseA.beginTransaction();
-                            try {
-                                Long lB = h.b(sQLiteDatabaseA, iVar3);
-                                if (lB == null) {
-                                    bool = Boolean.FALSE;
-                                } else {
-                                    Cursor cursorRawQuery = hVar2.a().rawQuery("SELECT 1 FROM events WHERE context_id = ? LIMIT 1", new String[]{lB.toString()});
-                                    try {
-                                        Boolean boolValueOf = Boolean.valueOf(cursorRawQuery.moveToNext());
-                                        cursorRawQuery.close();
-                                        bool = boolValueOf;
-                                    } catch (Throwable th) {
-                                        cursorRawQuery.close();
-                                        throw th;
-                                    }
-                                }
-                                sQLiteDatabaseA.setTransactionSuccessful();
-                                sQLiteDatabaseA.endTransaction();
-                                return bool;
-                            } catch (Throwable th2) {
-                                sQLiteDatabaseA.endTransaction();
-                                throw th2;
-                            }
-                        default:
-                            h hVar3 = (h) ((d3.d) this.f2428b.f2435c);
-                            hVar3.getClass();
-                            return (Iterable) hVar3.c(new h0(14, hVar3, iVar2));
-                    }
-                }
-            });
-            if (!iterable.iterator().hasNext()) {
                 return;
-            }
-            int i14 = 3;
-            if (eVarA == null) {
-                a.a.a(iVar2, "Uploader", "Unknown backend for %s, deleting event batch for it...");
-                aVar2 = new x2.a(3, -1L);
-                bArr = bArr2;
-                j10 = jMax;
-            } else {
-                ArrayList arrayList = new ArrayList();
-                Iterator it = iterable.iterator();
-                while (it.hasNext()) {
-                    arrayList.add(((d3.b) it.next()).f4736c);
-                }
-                if (bArr2 != null) {
-                    d3.c cVar2 = (d3.c) gVar.f2439i;
-                    Objects.requireNonNull(cVar2);
-                    z2.a aVar3 = (z2.a) hVar.f(new a1.c(cVar2, i14));
-                    m mVar = new m();
-                    mVar.f4606f = new HashMap();
-                    mVar.d = Long.valueOf(((f3.a) gVar.f2438g).E());
-                    mVar.f4605e = Long.valueOf(((f3.a) gVar.h).E());
-                    mVar.f4602a = "GDT_CLIENT_METRICS";
-                    t2.c cVar3 = new t2.c("proto");
-                    aVar3.getClass();
-                    u2.b bVar = n.f48968a;
-                    bVar.getClass();
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    try {
-                        bVar.e(aVar3, byteArrayOutputStream);
-                    } catch (IOException unused) {
-                    }
-                    mVar.f4604c = new l(cVar3, byteArrayOutputStream.toByteArray());
-                    arrayList.add(((u2.c) eVarA).a(mVar.i()));
-                }
-                u2.c cVar4 = (u2.c) eVarA;
-                HashMap map = new HashMap();
-                int size = arrayList.size();
-                int i15 = 0;
-                while (i15 < size) {
-                    Object obj = arrayList.get(i15);
-                    i15++;
-                    w2.h hVar2 = (w2.h) obj;
-                    String str3 = hVar2.f48952a;
-                    if (map.containsKey(str3)) {
-                        ((List) map.get(str3)).add(hVar2);
-                    } else {
-                        ArrayList arrayList2 = new ArrayList();
-                        arrayList2.add(hVar2);
-                        map.put(str3, arrayList2);
-                    }
-                }
-                ArrayList arrayList3 = new ArrayList();
-                Iterator it2 = map.entrySet().iterator();
-                while (it2.hasNext()) {
-                    Map.Entry entry = (Map.Entry) it2.next();
-                    w2.h hVar3 = (w2.h) ((List) entry.getValue()).get(0);
-                    w wVar = w.f48737a;
-                    long jE = cVar4.f48268f.E();
-                    long jE2 = cVar4.f48267e.E();
-                    v2.j jVar = new v2.j(new v2.h(Integer.valueOf(hVar3.b("sdk-version")), hVar3.a("model"), hVar3.a("hardware"), hVar3.a("device"), hVar3.a("product"), hVar3.a("os-uild"), hVar3.a("manufacturer"), hVar3.a("fingerprint"), hVar3.a("locale"), hVar3.a("country"), hVar3.a("mcc_mnc"), hVar3.a("application_build")));
-                    try {
-                        str2 = null;
-                        numValueOf = Integer.valueOf(Integer.parseInt((String) entry.getKey()));
-                    } catch (NumberFormatException unused2) {
-                        numValueOf = null;
-                        str2 = (String) entry.getKey();
-                    }
-                    ArrayList arrayList4 = new ArrayList();
-                    for (w2.h hVar4 : (List) entry.getValue()) {
-                        Iterator it3 = it2;
-                        l lVar = hVar4.f48954c;
-                        byte[] bArr3 = bArr2;
-                        t2.c cVar5 = lVar.f48965a;
-                        byte[] bArr4 = lVar.f48966b;
-                        long j11 = jMax;
-                        if (cVar5.equals(new t2.c("proto"))) {
-                            t3Var = new t3();
-                            t3Var.d = bArr4;
-                        } else {
-                            if (cVar5.equals(new t2.c("json"))) {
-                                String str4 = new String(bArr4, Charset.forName("UTF-8"));
-                                t3 t3Var2 = new t3();
-                                t3Var2.f17476e = str4;
-                                t3Var = t3Var2;
-                            } else {
-                                String strC = a.a.c("CctTransportBackend");
-                                if (Log.isLoggable(strC, 5)) {
-                                    Log.w(strC, "Received event of unsupported encoding " + cVar5 + ". Skipping...");
-                                }
-                            }
-                            it2 = it3;
-                            bArr2 = bArr3;
-                            jMax = j11;
-                        }
-                        t3Var.f17473a = Long.valueOf(hVar4.d);
-                        t3Var.f17475c = Long.valueOf(hVar4.f48955e);
-                        String str5 = (String) hVar4.f48956f.get("tz-offset");
-                        t3Var.f17477f = Long.valueOf(str5 == null ? 0L : Long.valueOf(str5).longValue());
-                        t3Var.h = new v2.n((u) u.f48735a.get(hVar4.b("net-type")), (t) t.f48733a.get(hVar4.b("mobile-subtype")));
-                        Integer num = hVar4.f48953b;
-                        if (num != null) {
-                            t3Var.f17474b = num;
-                        }
-                        String strL = ((Long) t3Var.f17473a) == null ? " eventTimeMs" : "";
-                        if (((Long) t3Var.f17475c) == null) {
-                            strL = strL.concat(" eventUptimeMs");
-                        }
-                        if (((Long) t3Var.f17477f) == null) {
-                            strL = s3.c.l(strL, " timezoneOffsetSeconds");
-                        }
-                        if (!strL.isEmpty()) {
-                            throw new IllegalStateException("Missing required properties:".concat(strL));
-                        }
-                        arrayList4.add(new k(((Long) t3Var.f17473a).longValue(), (Integer) t3Var.f17474b, ((Long) t3Var.f17475c).longValue(), (byte[]) t3Var.d, (String) t3Var.f17476e, ((Long) t3Var.f17477f).longValue(), (v2.n) t3Var.h));
-                        it2 = it3;
-                        bArr2 = bArr3;
-                        jMax = j11;
-                    }
-                    arrayList3.add(new v2.l(jE, jE2, jVar, numValueOf, str2, arrayList4));
-                    it2 = it2;
-                }
-                bArr = bArr2;
-                j10 = jMax;
-                v2.i iVar3 = new v2.i(arrayList3);
-                URL urlB = cVar4.d;
-                if (bArr != null) {
-                    try {
-                        u2.a aVarA = u2.a.a(bArr);
-                        str = aVarA.f48260b;
-                        if (str == null) {
-                            str = null;
-                        }
-                        String str6 = aVarA.f48259a;
-                        if (str6 != null) {
-                            urlB = u2.c.b(str6);
-                        }
-                    } catch (IllegalArgumentException unused3) {
-                        aVar = new x2.a(3, -1L);
-                    }
-                } else {
-                    str = null;
-                }
-                try {
-                    u2.b bVar2 = new u2.b(urlB, iVar3, str, 0);
-                    t0.c cVar6 = new t0.c(cVar4, 1);
-                    int i16 = 5;
-                    do {
-                        x0VarC = cVar6.c(bVar2);
-                        URL url = (URL) x0VarC.f12712c;
-                        if (url != null) {
-                            a.a.a(url, "CctTransportBackend", "Following redirect to: %s");
-                            bVar2 = new u2.b(url, (v2.i) bVar2.d, (String) bVar2.f48262b, 0);
-                        } else {
-                            bVar2 = null;
-                        }
-                        if (bVar2 == null) {
-                            break;
-                        } else {
-                            i16--;
-                        }
-                    } while (i16 >= 1);
-                    int i17 = x0VarC.f12711b;
-                    if (i17 == 200) {
-                        aVar2 = new x2.a(1, x0VarC.f12710a);
-                    } else {
-                        if (i17 >= 500 || i17 == 404) {
-                            aVar = new x2.a(2, -1L);
-                        } else if (i17 == 400) {
-                            try {
-                                aVar = new x2.a(4, -1L);
-                            } catch (IOException e9) {
-                                e = e9;
-                                a.a.b("CctTransportBackend", "Could not make request to the backend", e);
-                                i11 = 2;
-                                aVar2 = new x2.a(2, -1L);
-                            }
-                        } else {
-                            aVar = new x2.a(3, -1L);
-                        }
-                        aVar2 = aVar;
-                    }
-                } catch (IOException e10) {
-                    e = e10;
-                }
-            }
-            i11 = 2;
-            int i18 = aVar2.f49330a;
-            if (i18 == i11) {
-                hVar.f(new a9.d(this, iterable, iVar, j10, 2));
-                ((a5.n) this.d).y(iVar, i10 + 1, true);
-                return;
-            }
-            gVar = this;
-            iVar2 = iVar;
-            long j12 = j10;
-            hVar.f(new h0(4, gVar, iterable));
-            if (i18 == 1) {
-                jMax = Math.max(j12, aVar2.f49331b);
-                if (bArr != null) {
-                    hVar.f(new a1.c(gVar, 5));
-                }
-            } else {
-                if (i18 == 4) {
-                    HashMap map2 = new HashMap();
-                    Iterator it4 = iterable.iterator();
-                    while (it4.hasNext()) {
-                        String str7 = ((d3.b) it4.next()).f4736c.f48952a;
-                        if (map2.containsKey(str7)) {
-                            map2.put(str7, Integer.valueOf(((Integer) map2.get(str7)).intValue() + 1));
-                        } else {
-                            map2.put(str7, 1);
-                        }
-                    }
-                    hVar.f(new h0(5, gVar, map2));
-                }
-                jMax = j12;
-            }
-            bArr2 = bArr;
         }
+    }
+
+    @Override
+    public Bitmap g(BitmapFactory.Options options) {
+        r6 r6Var = (r6) this.f2298c;
+        a8 a8Var = (a8) this.d;
+        long j10 = this.f2297b;
+        String str = (String) this.f2299e;
+        if (a8Var.K) {
+            String str2 = a8Var.N;
+            if (str2 != null) {
+                return BitmapFactory.decodeFile(str2, options);
+            }
+            try {
+                return MediaStore.Video.Thumbnails.getThumbnail(r6Var.getContext().getContentResolver(), j10, 1, options);
+            } catch (Throwable unused) {
+                r6Var.invalidate();
+                return null;
+            }
+        }
+        return BitmapFactory.decodeFile(str, options);
+    }
+
+    @Override
+    public bu0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public Object j() {
+        h hVar = (h) this.f2298c;
+        Iterable iterable = (Iterable) this.d;
+        i iVar = (i) this.f2299e;
+        d3.h hVar2 = (d3.h) ((d3.d) hVar.f2302c);
+        hVar2.getClass();
+        if (iterable.iterator().hasNext()) {
+            String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + d3.h.g(iterable);
+            SQLiteDatabase a2 = hVar2.a();
+            a2.beginTransaction();
+            try {
+                a2.compileStatement(str).execute();
+                Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE num_attempts >= 16 GROUP BY transport_name", null);
+                while (rawQuery.moveToNext()) {
+                    hVar2.e(rawQuery.getInt(0), z2.c.MAX_RETRIES_REACHED, rawQuery.getString(1));
+                }
+                rawQuery.close();
+                a2.compileStatement("DELETE FROM events WHERE num_attempts >= 16").execute();
+                a2.setTransactionSuccessful();
+            } finally {
+                a2.endTransaction();
+            }
+        }
+        hVar2.c(new d3.e(((f3.a) hVar.f2305g).d() + this.f2297b, iVar));
+        return null;
+    }
+
+    @Override
+    public boolean u() {
+        return false;
+    }
+
+    public g(Object obj, Object obj2, Object obj3, long j10, int i9) {
+        this.f2296a = i9;
+        this.f2298c = obj;
+        this.d = obj2;
+        this.f2299e = obj3;
+        this.f2297b = j10;
+    }
+
+    public g(dz0 dz0Var, long j10, dy dyVar, TLRPC.User user) {
+        this.f2296a = 5;
+        this.f2298c = dz0Var;
+        this.f2297b = j10;
+        this.d = dyVar;
+        this.f2299e = user;
+    }
+
+    @Override
+    public void O() {
+    }
+
+    @Override
+    public void D(float f10) {
+    }
+
+    @Override
+    public void J(boolean z10, boolean z11) {
     }
 }

@@ -1,77 +1,26 @@
 package org.telegram.ui;
+public final class np0 implements Runnable {
+    public final int f40783a;
+    public final boolean f40784b;
+    public final Object f40785c;
+    public final Object d;
 
-import android.view.KeyEvent;
-import android.view.View;
-
-public final class np0 implements org.telegram.ui.Components.x4, org.telegram.ui.Components.rk0, org.telegram.ui.ActionBar.l1, org.telegram.ui.ActionBar.a2 {
-
-    public final int f40894a;
-
-    public final aq0 f40895b;
-
-    public np0(aq0 aq0Var, int i10) {
-        this.f40894a = i10;
-        this.f40895b = aq0Var;
+    public np0(Object obj, Object obj2, boolean z10, int i9) {
+        this.f40783a = i9;
+        this.f40785c = obj;
+        this.d = obj2;
+        this.f40784b = z10;
     }
 
     @Override
-    public void I(int i10, int i11, boolean z10) {
-        switch (this.f40894a) {
-            case 0:
-                this.f40895b.e0(i10, z10);
-                break;
-            default:
-                this.f40895b.e0(i10, z10);
-                break;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.np0.run():void");
     }
 
-    @Override
-    public boolean a(int i10, View view) {
-        aq0 aq0Var = this.f40895b;
-        if (aq0Var.U) {
-            aq0Var.a0(view, aq0Var.F.photos.get(i10));
-            return true;
-        }
-        if (!(view instanceof org.telegram.ui.Cells.q5)) {
-            return false;
-        }
-        org.telegram.ui.Components.bl0 bl0Var = aq0Var.R;
-        boolean z10 = !((org.telegram.ui.Cells.q5) view).a();
-        aq0Var.T = z10;
-        bl0Var.d(view, i10, z10);
-        return false;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        aq0 aq0Var = this.f40895b;
-        eq0 eq0Var = aq0Var.f36616p0;
-        if (eq0Var == null) {
-            aq0Var.Z();
-            return;
-        }
-        switch (eq0Var.f37809a) {
-            case 0:
-                fq0 fq0Var = eq0Var.f37810b;
-                fq0Var.f38185a.Z();
-                fq0Var.f38186b.Z();
-                break;
-            default:
-                fq0 fq0Var2 = eq0Var.f37810b;
-                fq0Var2.f38185a.Z();
-                fq0Var2.f38186b.Z();
-                break;
-        }
-    }
-
-    @Override
-    public void k(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        aq0 aq0Var = this.f40895b;
-        aq0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = aq0Var.f36609i0) != null && n1Var.isShowing()) {
-            aq0Var.f36609i0.d(true);
-        }
+    public np0(Object obj, boolean z10, Object obj2, int i9) {
+        this.f40783a = i9;
+        this.f40785c = obj;
+        this.f40784b = z10;
+        this.d = obj2;
     }
 }

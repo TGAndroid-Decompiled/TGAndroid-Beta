@@ -1,22 +1,18 @@
 package n4;
 
-import h7.e0;
+import g7.c0;
 import java.util.Arrays;
-
 public final class b {
-
-    public final String f18214a;
-
-    public final String f18215b;
-
-    public final int f18216c;
+    public final String f18387a;
+    public final String f18388b;
+    public final int f18389c;
     public final int d;
 
-    public b(int i10, int i11, String str, String str2) {
-        this.f18214a = str;
-        this.f18215b = str2;
-        this.f18216c = i10;
-        this.d = i11;
+    public b(int i9, int i10, String str, String str2) {
+        this.f18387a = str;
+        this.f18388b = str2;
+        this.f18389c = i9;
+        this.d = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -27,10 +23,13 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        return this.f18216c == bVar.f18216c && this.d == bVar.d && e0.a(this.f18214a, bVar.f18214a) && e0.a(this.f18215b, bVar.f18215b);
+        if (this.f18389c == bVar.f18389c && this.d == bVar.d && c0.a(this.f18387a, bVar.f18387a) && c0.a(this.f18388b, bVar.f18388b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f18214a, this.f18215b, Integer.valueOf(this.f18216c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f18387a, this.f18388b, Integer.valueOf(this.f18389c), Integer.valueOf(this.d)});
     }
 }

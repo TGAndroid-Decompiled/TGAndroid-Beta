@@ -3,7 +3,6 @@ package org.scilab.forge.jlatexmath;
 import java.util.HashMap;
 import java.util.Map;
 import ru.noties.jlatexmath.awt.Font;
-
 public class FontInfo {
     public static final int NUMBER_OF_CHAR_CODES = 256;
     private static Map<Integer, FontInfo> fonts = new HashMap();
@@ -44,7 +43,10 @@ public class FontInfo {
 
         public boolean equals(Object obj) {
             CharCouple charCouple = (CharCouple) obj;
-            return this.left == charCouple.left && this.right == charCouple.right;
+            if (this.left == charCouple.left && this.right == charCouple.right) {
+                return true;
+            }
+            return false;
         }
 
         public int hashCode() {
@@ -52,9 +54,9 @@ public class FontInfo {
         }
     }
 
-    public FontInfo(int i10, Object obj, String str, String str2, int i11, float f10, float f11, float f12, String str3, String str4, String str5, String str6, String str7) {
+    public FontInfo(int i9, Object obj, String str, String str2, int i10, float f10, float f11, float f12, String str3, String str4, String str5, String str6, String str7) {
         this.unicode = null;
-        this.fontId = i10;
+        this.fontId = i9;
         this.base = obj;
         this.path = str;
         this.fontName = str2;
@@ -66,15 +68,15 @@ public class FontInfo {
         this.ssVersion = str5;
         this.ttVersion = str6;
         this.itVersion = str7;
-        if (i11 != 0) {
-            this.unicode = new HashMap<>(i11);
+        if (i10 != 0) {
+            this.unicode = new HashMap<>(i10);
         } else {
-            i11 = 256;
+            i10 = 256;
         }
-        this.metrics = new float[i11][];
-        this.nextLarger = new CharFont[i11];
-        this.extensions = new int[i11][];
-        fonts.put(Integer.valueOf(i10), this);
+        this.metrics = new float[i10];
+        this.nextLarger = new CharFont[i10];
+        this.extensions = new int[i10];
+        fonts.put(Integer.valueOf(i9), this);
     }
 
     public void addKern(char c10, char c11, float f10) {
@@ -90,8 +92,11 @@ public class FontInfo {
     }
 
     public int[] getExtension(char c10) {
-        HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.extensions[c10] : this.extensions[map.get(Character.valueOf(c10)).charValue()];
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
+            return this.extensions[c10];
+        }
+        return this.extensions[hashMap.get(Character.valueOf(c10)).charValue()];
     }
 
     public Font getFont() {
@@ -130,13 +135,19 @@ public class FontInfo {
     }
 
     public float[] getMetrics(char c10) {
-        HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.metrics[c10] : this.metrics[map.get(Character.valueOf(c10)).charValue()];
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
+            return this.metrics[c10];
+        }
+        return this.metrics[hashMap.get(Character.valueOf(c10)).charValue()];
     }
 
     public CharFont getNextLarger(char c10) {
-        HashMap<Character, Character> map = this.unicode;
-        return map == null ? this.nextLarger[c10] : this.nextLarger[map.get(Character.valueOf(c10)).charValue()];
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
+            return this.nextLarger[c10];
+        }
+        return this.nextLarger[hashMap.get(Character.valueOf(c10)).charValue()];
     }
 
     public float getQuad(float f10) {
@@ -168,94 +179,91 @@ public class FontInfo {
     }
 
     public boolean hasSpace() {
-        return this.space > 1.0E-7f;
+        if (this.space > 1.0E-7f) {
+            return true;
+        }
+        return false;
     }
 
-    public void setBoldId(int i10) {
-        if (i10 == -1) {
-            i10 = this.fontId;
+    public void setBoldId(int i9) {
+        if (i9 == -1) {
+            i9 = this.fontId;
         }
-        this.boldId = i10;
+        this.boldId = i9;
     }
 
     public void setExtension(char c10, int[] iArr) {
-        HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
             this.extensions[c10] = iArr;
-        } else {
-            if (map.containsKey(Character.valueOf(c10))) {
-                this.extensions[this.unicode.get(Character.valueOf(c10)).charValue()] = iArr;
-                return;
-            }
+        } else if (!hashMap.containsKey(Character.valueOf(c10))) {
             char size = (char) this.unicode.size();
             this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
             this.extensions[size] = iArr;
+        } else {
+            this.extensions[this.unicode.get(Character.valueOf(c10)).charValue()] = iArr;
         }
     }
 
-    public void setItId(int i10) {
-        if (i10 == -1) {
-            i10 = this.fontId;
+    public void setItId(int i9) {
+        if (i9 == -1) {
+            i9 = this.fontId;
         }
-        this.itId = i10;
+        this.itId = i9;
     }
 
     public void setMetrics(char c10, float[] fArr) {
-        HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
             this.metrics[c10] = fArr;
-        } else {
-            if (map.containsKey(Character.valueOf(c10))) {
-                this.metrics[this.unicode.get(Character.valueOf(c10)).charValue()] = fArr;
-                return;
-            }
+        } else if (!hashMap.containsKey(Character.valueOf(c10))) {
             char size = (char) this.unicode.size();
             this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
             this.metrics[size] = fArr;
+        } else {
+            this.metrics[this.unicode.get(Character.valueOf(c10)).charValue()] = fArr;
         }
     }
 
-    public void setNextLarger(char c10, char c11, int i10) {
-        HashMap<Character, Character> map = this.unicode;
-        if (map == null) {
-            this.nextLarger[c10] = new CharFont(c11, i10);
-        } else {
-            if (map.containsKey(Character.valueOf(c10))) {
-                this.nextLarger[this.unicode.get(Character.valueOf(c10)).charValue()] = new CharFont(c11, i10);
-                return;
-            }
+    public void setNextLarger(char c10, char c11, int i9) {
+        HashMap<Character, Character> hashMap = this.unicode;
+        if (hashMap == null) {
+            this.nextLarger[c10] = new CharFont(c11, i9);
+        } else if (!hashMap.containsKey(Character.valueOf(c10))) {
             char size = (char) this.unicode.size();
             this.unicode.put(Character.valueOf(c10), Character.valueOf(size));
-            this.nextLarger[size] = new CharFont(c11, i10);
+            this.nextLarger[size] = new CharFont(c11, i9);
+        } else {
+            this.nextLarger[this.unicode.get(Character.valueOf(c10)).charValue()] = new CharFont(c11, i9);
         }
     }
 
-    public void setRomanId(int i10) {
-        if (i10 == -1) {
-            i10 = this.fontId;
+    public void setRomanId(int i9) {
+        if (i9 == -1) {
+            i9 = this.fontId;
         }
-        this.romanId = i10;
+        this.romanId = i9;
     }
 
     public void setSkewChar(char c10) {
         this.skewChar = c10;
     }
 
-    public void setSsId(int i10) {
-        if (i10 == -1) {
-            i10 = this.fontId;
+    public void setSsId(int i9) {
+        if (i9 == -1) {
+            i9 = this.fontId;
         }
-        this.ssId = i10;
+        this.ssId = i9;
     }
 
-    public void setTtId(int i10) {
-        if (i10 == -1) {
-            i10 = this.fontId;
+    public void setTtId(int i9) {
+        if (i9 == -1) {
+            i9 = this.fontId;
         }
-        this.ttId = i10;
+        this.ttId = i9;
     }
 
-    public static Font getFont(int i10) {
-        return fonts.get(Integer.valueOf(i10)).getFont();
+    public static Font getFont(int i9) {
+        return fonts.get(Integer.valueOf(i9)).getFont();
     }
 }

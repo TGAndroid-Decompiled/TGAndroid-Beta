@@ -1,26 +1,24 @@
 package org.telegram.ui.Components;
+public final class yw extends f2.x {
+    public final wy f35086c;
 
-public final class yw extends f2.w {
-
-    public final yy f34968c;
-
-    public yw(yy yyVar) {
-        this.f34968c = yyVar;
+    public yw(wy wyVar) {
+        this.f35086c = wyVar;
     }
 
     @Override
-    public final int i(int i10) {
-        yy yyVar = this.f34968c;
-        gx gxVar = yyVar.N;
-        xw xwVar = yyVar.M;
-        f2.q0 adapter = yyVar.L.getAdapter();
-        wx wxVar = yyVar.O;
-        if (adapter == wxVar) {
-            int iJ = wxVar.j(i10);
-            if (iJ == 1 || iJ == 3 || iJ == 2 || iJ == 4 || iJ == 5) {
+    public final int i(int i9) {
+        wy wyVar = this.f35086c;
+        fx fxVar = wyVar.N;
+        xw xwVar = wyVar.M;
+        f2.r0 adapter = wyVar.L.getAdapter();
+        vx vxVar = wyVar.O;
+        if (adapter == vxVar) {
+            int j10 = vxVar.j(i9);
+            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
                 return xwVar.J;
             }
-        } else if ((yyVar.W && i10 == 0) || i10 == gxVar.d || i10 == gxVar.f28855c || i10 == gxVar.f28857f || gxVar.f28859r.indexOfKey(i10) >= 0 || gxVar.v.indexOfKey(i10) >= 0) {
+        } else if ((wyVar.W && i9 == 0) || i9 == fxVar.d || i9 == fxVar.f28588c || i9 == fxVar.f28590f || fxVar.f28592r.indexOfKey(i9) >= 0 || fxVar.v.indexOfKey(i9) >= 0) {
             return xwVar.J;
         }
         return 1;

@@ -4,7 +4,6 @@ import android.view.View;
 import android.window.OnBackInvokedCallback;
 import android.window.OnBackInvokedDispatcher;
 import j$.util.Objects;
-
 public abstract class j3 {
     public static OnBackInvokedDispatcher a(View view) {
         return view.findOnBackInvokedDispatcher();
@@ -12,7 +11,7 @@ public abstract class j3 {
 
     public static OnBackInvokedCallback b(Runnable runnable) {
         Objects.requireNonNull(runnable);
-        return new androidx.activity.q(runnable, 4);
+        return new androidx.activity.r(runnable, 4);
     }
 
     public static void c(Object obj, Object obj2) {

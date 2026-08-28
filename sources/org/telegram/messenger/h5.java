@@ -1,30 +1,39 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLObject;
 public final class h5 implements Runnable {
+    public final int f20455a;
+    public final LocaleController f20456b;
+    public final LocaleController.LocaleInfo f20457c;
+    public final TLObject d;
+    public final int f20458e;
+    public final Runnable f20459f;
 
-    public final int f20446a;
-
-    public final ImageLoader.HttpImageTask f20447b;
-
-    public final long f20448c;
-    public final long d;
-
-    public h5(ImageLoader.HttpImageTask httpImageTask, long j10, long j11, int i10) {
-        this.f20446a = i10;
-        this.f20447b = httpImageTask;
-        this.f20448c = j10;
-        this.d = j11;
+    public h5(LocaleController localeController, LocaleController.LocaleInfo localeInfo, TLObject tLObject, int i9, Runnable runnable, int i10) {
+        this.f20455a = i10;
+        this.f20456b = localeController;
+        this.f20457c = localeInfo;
+        this.d = tLObject;
+        this.f20458e = i9;
+        this.f20459f = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f20446a) {
+        switch (this.f20455a) {
             case 0:
-                this.f20447b.lambda$reportProgress$0(this.f20448c, this.d);
-                break;
+                this.f20456b.lambda$applyRemoteLanguage$16(this.f20457c, this.d, this.f20458e, this.f20459f);
+                return;
+            case 1:
+                this.f20456b.lambda$applyRemoteLanguage$20(this.f20457c, this.d, this.f20458e, this.f20459f);
+                return;
+            case 2:
+                this.f20456b.lambda$applyRemoteLanguage$18(this.f20457c, this.d, this.f20458e, this.f20459f);
+                return;
             default:
-                this.f20447b.lambda$reportProgress$1(this.f20448c, this.d);
-                break;
+                this.f20456b.lambda$applyRemoteLanguage$14(this.f20457c, this.d, this.f20458e, this.f20459f);
+                return;
         }
     }
 }

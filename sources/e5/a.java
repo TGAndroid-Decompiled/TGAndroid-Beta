@@ -1,84 +1,77 @@
 package e5;
 
-import d5.z;
 import h3.t1;
 import java.util.ArrayList;
-
 public final class a {
-
-    public final ArrayList f5222a;
-
-    public final int f5223b;
-
-    public final int f5224c;
+    public final ArrayList f4863a;
+    public final int f4864b;
+    public final int f4865c;
     public final int d;
+    public final float f4866e;
+    public final String f4867f;
 
-    public final float f5225e;
-
-    public final String f5226f;
-
-    public a(ArrayList arrayList, int i10, int i11, int i12, float f10, String str) {
-        this.f5222a = arrayList;
-        this.f5223b = i10;
-        this.f5224c = i11;
-        this.d = i12;
-        this.f5225e = f10;
-        this.f5226f = str;
+    public a(ArrayList arrayList, int i9, int i10, int i11, float f10, String str) {
+        this.f4863a = arrayList;
+        this.f4864b = i9;
+        this.f4865c = i10;
+        this.d = i11;
+        this.f4866e = f10;
+        this.f4867f = str;
     }
 
-    public static a a(z zVar) throws t1 {
+    public static a a(d5.y yVar) {
         String str;
+        int i9;
         int i10;
-        int i11;
         float f10;
-        byte[] bArr = d5.a.f4763a;
+        byte[] bArr = d5.a.f4321a;
         try {
-            zVar.D(4);
-            int iR = (zVar.r() & 3) + 1;
-            if (iR == 3) {
-                throw new IllegalStateException();
+            yVar.D(4);
+            int r10 = (yVar.r() & 3) + 1;
+            if (r10 != 3) {
+                ArrayList arrayList = new ArrayList();
+                int r11 = yVar.r() & 31;
+                for (int i11 = 0; i11 < r11; i11++) {
+                    int w8 = yVar.w();
+                    int i12 = yVar.f4411b;
+                    yVar.D(w8);
+                    byte[] bArr2 = yVar.f4410a;
+                    byte[] bArr3 = new byte[w8 + 4];
+                    System.arraycopy(bArr, 0, bArr3, 0, 4);
+                    System.arraycopy(bArr2, i12, bArr3, 4, w8);
+                    arrayList.add(bArr3);
+                }
+                int r12 = yVar.r();
+                for (int i13 = 0; i13 < r12; i13++) {
+                    int w10 = yVar.w();
+                    int i14 = yVar.f4411b;
+                    yVar.D(w10);
+                    byte[] bArr4 = yVar.f4410a;
+                    byte[] bArr5 = new byte[w10 + 4];
+                    System.arraycopy(bArr, 0, bArr5, 0, 4);
+                    System.arraycopy(bArr4, i14, bArr5, 4, w10);
+                    arrayList.add(bArr5);
+                }
+                if (r11 > 0) {
+                    d5.t C = d5.a.C(r10, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
+                    int i15 = C.f4391e;
+                    int i16 = C.f4392f;
+                    float f11 = C.f4393g;
+                    str = String.format("avc1.%02X%02X%02X", Integer.valueOf(C.f4388a), Integer.valueOf(C.f4389b), Integer.valueOf(C.f4390c));
+                    i9 = i15;
+                    i10 = i16;
+                    f10 = f11;
+                } else {
+                    str = null;
+                    i9 = -1;
+                    i10 = -1;
+                    f10 = 1.0f;
+                }
+                return new a(arrayList, r10, i9, i10, f10, str);
             }
-            ArrayList arrayList = new ArrayList();
-            int iR2 = zVar.r() & 31;
-            for (int i12 = 0; i12 < iR2; i12++) {
-                int iW = zVar.w();
-                int i13 = zVar.f4859b;
-                zVar.D(iW);
-                byte[] bArr2 = zVar.f4858a;
-                byte[] bArr3 = new byte[iW + 4];
-                System.arraycopy(bArr, 0, bArr3, 0, 4);
-                System.arraycopy(bArr2, i13, bArr3, 4, iW);
-                arrayList.add(bArr3);
-            }
-            int iR3 = zVar.r();
-            for (int i14 = 0; i14 < iR3; i14++) {
-                int iW2 = zVar.w();
-                int i15 = zVar.f4859b;
-                zVar.D(iW2);
-                byte[] bArr4 = zVar.f4858a;
-                byte[] bArr5 = new byte[iW2 + 4];
-                System.arraycopy(bArr, 0, bArr5, 0, 4);
-                System.arraycopy(bArr4, i15, bArr5, 4, iW2);
-                arrayList.add(bArr5);
-            }
-            if (iR2 > 0) {
-                d5.t tVarC = d5.a.C(iR, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
-                int i16 = tVarC.f4836e;
-                int i17 = tVarC.f4837f;
-                float f11 = tVarC.f4838g;
-                str = String.format("avc1.%02X%02X%02X", Integer.valueOf(tVarC.f4833a), Integer.valueOf(tVarC.f4834b), Integer.valueOf(tVarC.f4835c));
-                i10 = i16;
-                i11 = i17;
-                f10 = f11;
-            } else {
-                str = null;
-                i10 = -1;
-                i11 = -1;
-                f10 = 1.0f;
-            }
-            return new a(arrayList, iR, i10, i11, f10, str);
-        } catch (ArrayIndexOutOfBoundsException e9) {
-            throw t1.a("Error parsing AVC config", e9);
+            throw new IllegalStateException();
+        } catch (ArrayIndexOutOfBoundsException e10) {
+            throw t1.a("Error parsing AVC config", e10);
         }
     }
 }

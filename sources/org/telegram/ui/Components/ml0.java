@@ -1,35 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import org.telegram.messenger.R;
+public final class ml0 implements View.OnClickListener {
+    public final int f30885a;
+    public final sl0 f30886b;
 
-public final class ml0 implements Runnable {
-
-    public final int f30697a;
-
-    public final ol0 f30698b;
-
-    public ml0(ol0 ol0Var, int i10) {
-        this.f30697a = i10;
-        this.f30698b = ol0Var;
+    public ml0(sl0 sl0Var, int i9) {
+        this.f30885a = i9;
+        this.f30886b = sl0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30697a) {
+    public final void onClick(View view) {
+        switch (this.f30885a) {
             case 0:
-                ol0 ol0Var = this.f30698b;
-                ol0Var.getClass();
-                AndroidUtilities.runOnUIThread(new ml0(ol0Var, 2));
-                break;
+                this.f30886b.f32502f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ml0(this.f30698b, 3));
-                break;
+                this.f30886b.f32502f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
             case 2:
-                super/*android.app.Dialog*/.dismiss();
-                break;
+                this.f30886b.f32502f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 3:
+                this.f30886b.f32502f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
             default:
-                super/*android.app.Dialog*/.dismiss();
-                break;
+                this.f30886b.f32502f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
         }
     }
 }

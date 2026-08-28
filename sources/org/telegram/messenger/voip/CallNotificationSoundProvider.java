@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
-
 public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String str, String[] strArr) {
@@ -30,26 +29,26 @@ public class CallNotificationSoundProvider extends ContentProvider {
     }
 
     @Override
-    public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
-        if (!"r".equals(str)) {
-            throw new SecurityException(s3.c.e("Unexpected file mode ", str));
-        }
-        if (ApplicationLoader.applicationContext == null) {
+    public ParcelFileDescriptor openFile(Uri uri, String str) {
+        if ("r".equals(str)) {
+            if (ApplicationLoader.applicationContext != null) {
+                try {
+                    VoIPService sharedInstance = VoIPService.getSharedInstance();
+                    if (sharedInstance != null) {
+                        sharedInstance.startRingtoneAndVibration();
+                    }
+                    ParcelFileDescriptor[] createPipe = ParcelFileDescriptor.createPipe();
+                    ParcelFileDescriptor.AutoCloseOutputStream autoCloseOutputStream = new ParcelFileDescriptor.AutoCloseOutputStream(createPipe[1]);
+                    autoCloseOutputStream.write(new byte[]{82, 73, 70, 70, 41, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32, 16, 0, 0, 0, 1, 0, 1, 0, 68, -84, 0, 0, 16, -79, 2, 0, 2, 0, 16, 0, 100, 97, 116, 97, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+                    autoCloseOutputStream.close();
+                    return createPipe[0];
+                } catch (Exception e10) {
+                    throw new FileNotFoundException(e10.getMessage());
+                }
+            }
             throw new FileNotFoundException("Unexpected application state");
         }
-        try {
-            VoIPService sharedInstance = VoIPService.getSharedInstance();
-            if (sharedInstance != null) {
-                sharedInstance.startRingtoneAndVibration();
-            }
-            ParcelFileDescriptor[] parcelFileDescriptorArrCreatePipe = ParcelFileDescriptor.createPipe();
-            ParcelFileDescriptor.AutoCloseOutputStream autoCloseOutputStream = new ParcelFileDescriptor.AutoCloseOutputStream(parcelFileDescriptorArrCreatePipe[1]);
-            autoCloseOutputStream.write(new byte[]{82, 73, 70, 70, 41, 0, 0, 0, 87, 65, 86, 69, 102, 109, 116, 32, 16, 0, 0, 0, 1, 0, 1, 0, 68, -84, 0, 0, 16, -79, 2, 0, 2, 0, 16, 0, 100, 97, 116, 97, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
-            autoCloseOutputStream.close();
-            return parcelFileDescriptorArrCreatePipe[0];
-        } catch (Exception e9) {
-            throw new FileNotFoundException(e9.getMessage());
-        }
+        throw new SecurityException(ta.b.d("Unexpected file mode ", str));
     }
 
     @Override

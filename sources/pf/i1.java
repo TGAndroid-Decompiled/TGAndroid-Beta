@@ -1,15 +1,10 @@
 package pf;
 
-import java.util.ArrayList;
-
-public interface i1 {
-    boolean D0(int i10);
-
-    a0.h J();
-
-    void V0(ArrayList arrayList);
-
-    a0.h h0();
-
-    void i(int i10);
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class i1 implements InputFilter {
+    @Override
+    public final CharSequence filter(CharSequence charSequence, int i9, int i10, Spanned spanned, int i11, int i12) {
+        return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
+    }
 }

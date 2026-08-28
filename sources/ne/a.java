@@ -1,35 +1,71 @@
 package ne;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.PriorityBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
+public final class a {
+    public String f18574a;
+    public ArrayList f18575b;
+    public ArrayList f18576c;
+    public ArrayList d;
 
-public final class a extends ThreadPoolExecutor implements AutoCloseable {
-
-    public final c f18516a;
-
-    public a(c cVar, PriorityBlockingQueue priorityBlockingQueue) {
-        TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f18516a = cVar;
-        super(1, 1, 60L, timeUnit, priorityBlockingQueue);
-    }
-
-    @Override
-    public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = this.f18516a.f18520b;
-        if (countDownLatch != null) {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e9) {
-                FileLog.e(e9);
+    public final String a(String str) {
+        String str2;
+        String str3;
+        String str4;
+        String str5 = null;
+        if (str.startsWith(this.f18574a)) {
+            str4 = this.f18574a;
+            str3 = str.substring(str4.length());
+        } else {
+            ArrayList arrayList = this.f18575b;
+            int size = arrayList.size();
+            int i9 = 0;
+            while (true) {
+                if (i9 < size) {
+                    Object obj = arrayList.get(i9);
+                    i9++;
+                    str2 = (String) obj;
+                    if (str.startsWith(str2)) {
+                        break;
+                    }
+                } else {
+                    str2 = null;
+                    break;
+                }
+            }
+            if (str2 != null) {
+                str3 = str.substring(str2.length());
+                str4 = null;
+                str5 = str2;
+            } else {
+                str3 = str;
+                str4 = null;
             }
         }
-    }
-
-    @Override
-    public final void close() {
-        a9.b.h(this);
+        ArrayList arrayList2 = this.d;
+        int size2 = arrayList2.size();
+        int i10 = 0;
+        while (i10 < size2) {
+            Object obj2 = arrayList2.get(i10);
+            i10++;
+            String a2 = ((d) obj2).a(str3, str4, str5, true);
+            if (a2 != null) {
+                return a2;
+            }
+        }
+        ArrayList arrayList3 = this.d;
+        int size3 = arrayList3.size();
+        int i11 = 0;
+        while (i11 < size3) {
+            Object obj3 = arrayList3.get(i11);
+            i11++;
+            String a3 = ((d) obj3).a(str3, str4, str5, false);
+            if (a3 != null) {
+                return a3;
+            }
+        }
+        if (str4 != null && str3.length() != 0) {
+            return aa.d.z(str4, " ", str3);
+        }
+        return str;
     }
 }

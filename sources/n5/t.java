@@ -1,4 +1,4 @@
 package n5;
-
-public final class t extends c7.a implements v {
+public abstract class t extends a7.a implements u {
+    public static final int f18502b = 0;
 }

@@ -1,28 +1,36 @@
 package org.telegram.ui.Components;
+public class iy0 {
+    public int f29544a;
+    public int f29545b;
+    public int f29546c;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-public final class iy0 extends ArrayList {
-
-    public final Class f29519a;
-
-    public final Class f29520b;
-
-    public iy0(Class cls, Class cls2) {
-        this.f29519a = cls;
-        this.f29520b = cls2;
+    public iy0() {
+        c();
     }
 
-    public final j9.a i() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance((Class<?>) this.f29519a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance((Class<?>) this.f29520b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
+    public int a(ry0 ry0Var, ky0 ky0Var, dy0 dy0Var, int i9, boolean z10) {
+        return this.f29544a - dy0Var.a(ky0Var, i9);
+    }
+
+    public void b(int i9, int i10) {
+        this.f29544a = Math.max(this.f29544a, i9);
+        this.f29545b = Math.max(this.f29545b, i10);
+    }
+
+    public void c() {
+        this.f29544a = Integer.MIN_VALUE;
+        this.f29545b = Integer.MIN_VALUE;
+        this.f29546c = 2;
+    }
+
+    public int d(boolean z10) {
+        if (!z10) {
+            int i9 = this.f29546c;
+            dy0 dy0Var = ry0.N;
+            if ((i9 & 2) != 0) {
+                return 100000;
+            }
         }
-        return new j9.a(objArr, objArr2);
+        return this.f29544a + this.f29545b;
     }
 }

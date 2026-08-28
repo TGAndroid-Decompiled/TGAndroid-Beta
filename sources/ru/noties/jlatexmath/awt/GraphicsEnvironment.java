@@ -1,5 +1,4 @@
 package ru.noties.jlatexmath.awt;
-
 public class GraphicsEnvironment {
     public static GraphicsEnvironment getLocalGraphicsEnvironment() {
         return null;

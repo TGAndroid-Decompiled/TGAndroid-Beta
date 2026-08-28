@@ -1,40 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class sc0 extends AnimatorListenerAdapter {
+    public final int f32442a;
+    public final tc0 f32443b;
 
-public final class sc0 implements Runnable {
-
-    public final int f32398a;
-
-    public final dd0 f32399b;
-
-    public sc0(dd0 dd0Var, int i10) {
-        this.f32398a = i10;
-        this.f32399b = dd0Var;
+    public sc0(tc0 tc0Var, int i9) {
+        this.f32442a = i9;
+        this.f32443b = tc0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f32398a;
-        dd0 dd0Var = this.f32399b;
-        switch (i10) {
+    public final void onAnimationEnd(Animator animator) {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f32442a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = dd0Var.f27723r;
-                if (dd0Var.f27726x.getVisibility() != 0 && editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
-                    break;
-                }
-                break;
+                yc0 yc0Var = this.f32443b.d;
+                yc0Var.L = 1.0f;
+                yc0Var.f(1.0f);
+                return;
             default:
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(dd0Var.L, 0.0f);
-                valueAnimatorOfFloat.addUpdateListener(new tc0(dd0Var, 0));
-                valueAnimatorOfFloat.addListener(new sz(dd0Var, 8));
-                valueAnimatorOfFloat.setDuration(420L);
-                valueAnimatorOfFloat.setInterpolator(er.h);
-                valueAnimatorOfFloat.start();
-                break;
+                tc0 tc0Var = this.f32443b;
+                Runnable runnable = tc0Var.f32682c;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                if (SharedConfig.passcodeType == 1 && tc0Var.d.f34949x.getVisibility() != 0 && (editTextBoldCursor = tc0Var.d.f34946r) != null) {
+                    editTextBoldCursor.requestFocus();
+                    AndroidUtilities.showKeyboard(tc0Var.d.f34946r);
+                    return;
+                }
+                return;
         }
     }
 }

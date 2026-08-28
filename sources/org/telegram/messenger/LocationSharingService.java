@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import java.util.ArrayList;
+import org.telegram.messenger.LocationController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-
 public class LocationSharingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private e0.t builder;
     private Handler handler;
@@ -20,8 +21,8 @@ public class LocationSharingService extends Service implements NotificationCente
 
     private ArrayList<LocationController.SharingLocationInfo> getInfos() {
         ArrayList<LocationController.SharingLocationInfo> arrayList = new ArrayList<>();
-        for (int i10 = 0; i10 < 4; i10++) {
-            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i10).sharingLocationsUI;
+        for (int i9 = 0; i9 < 4; i9++) {
+            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i9).sharingLocationsUI;
             if (!arrayList2.isEmpty()) {
                 arrayList.addAll(arrayList2);
             }
@@ -38,8 +39,8 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     public static void lambda$onCreate$0() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            LocationController.getInstance(i10).update();
+        for (int i9 = 0; i9 < 4; i9++) {
+            LocationController.getInstance(i9).update();
         }
     }
 
@@ -49,43 +50,45 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     private void updateNotification(boolean z10) {
-        String pluralString;
+        String formatPluralString;
         String string;
-        if (this.builder == null) {
-            return;
-        }
-        ArrayList<LocationController.SharingLocationInfo> infos = getInfos();
-        if (infos.size() == 1) {
-            LocationController.SharingLocationInfo sharingLocationInfo = infos.get(0);
-            long dialogId = sharingLocationInfo.messageObject.getDialogId();
-            int i10 = sharingLocationInfo.messageObject.currentAccount;
-            if (DialogObject.isUserDialog(dialogId)) {
-                pluralString = UserObject.getFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(dialogId)));
-                string = LocaleController.getString(R.string.AttachLiveLocationIsSharing);
+        if (this.builder != null) {
+            ArrayList<LocationController.SharingLocationInfo> infos = getInfos();
+            if (infos.size() == 1) {
+                LocationController.SharingLocationInfo sharingLocationInfo = infos.get(0);
+                long dialogId = sharingLocationInfo.messageObject.getDialogId();
+                int i9 = sharingLocationInfo.messageObject.currentAccount;
+                if (DialogObject.isUserDialog(dialogId)) {
+                    formatPluralString = UserObject.getFirstName(MessagesController.getInstance(i9).getUser(Long.valueOf(dialogId)));
+                    string = LocaleController.getString(R.string.AttachLiveLocationIsSharing);
+                } else {
+                    TLRPC.Chat chat = MessagesController.getInstance(i9).getChat(Long.valueOf(-dialogId));
+                    if (chat != null) {
+                        formatPluralString = chat.title;
+                    } else {
+                        formatPluralString = "";
+                    }
+                    string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChat);
+                }
             } else {
-                TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialogId));
-                pluralString = chat != null ? chat.title : "";
-                string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChat);
+                formatPluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
+                string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChats);
             }
-        } else {
-            pluralString = LocaleController.formatPluralString("Chats", infos.size(), new Object[0]);
-            string = LocaleController.getString(R.string.AttachLiveLocationIsSharingChats);
-        }
-        String str = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), pluralString);
-        this.builder.p(str);
-        this.builder.f(str);
-        if (z10) {
-            new e0.n0(ApplicationLoader.applicationContext).d(6, this.builder.b());
+            String format = String.format(string, LocaleController.getString(R.string.AttachLiveLocation), formatPluralString);
+            this.builder.p(format);
+            this.builder.f(format);
+            if (z10) {
+                new e0.n0(ApplicationLoader.applicationContext).d(6, this.builder.b());
+            }
         }
     }
 
     @Override
-    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+    public void didReceivedNotification(int i9, int i10, Object... objArr) {
         Handler handler;
-        if (i10 != NotificationCenter.liveLocationsChanged || (handler = this.handler) == null) {
-            return;
+        if (i9 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
+            handler.post(new t5(this, 1));
         }
-        handler.post(new v5(this, 1));
     }
 
     @Override
@@ -98,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        v5 v5Var = new v5(this, 0);
-        this.runnable = v5Var;
-        handler.postDelayed(v5Var, 1000L);
+        t5 t5Var = new t5(this, 0);
+        this.runnable = t5Var;
+        handler.postDelayed(t5Var, 1000L);
     }
 
     @Override
@@ -116,13 +119,13 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     @Override
-    public int onStartCommand(Intent intent, int i10, int i11) {
+    public int onStartCommand(Intent intent, int i9, int i10) {
         if (getInfos().isEmpty()) {
             stopSelf();
         }
         try {
             if (this.builder == null) {
-                Intent intent2 = new Intent(ApplicationLoader.applicationContext, (Class<?>) LaunchActivity.class);
+                Intent intent2 = new Intent(ApplicationLoader.applicationContext, LaunchActivity.class);
                 intent2.setAction("org.tmessages.openlocations");
                 intent2.addCategory("android.intent.category.LAUNCHER");
                 PendingIntent activity = PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160);
@@ -131,12 +134,12 @@ public class LocationSharingService extends Service implements NotificationCente
                 tVar.E.when = System.currentTimeMillis();
                 e0.t tVar2 = this.builder;
                 tVar2.E.icon = R.drawable.live_loc;
-                tVar2.f5123g = activity;
+                tVar2.f4766g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.t tVar3 = this.builder;
-                tVar3.f5139y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                tVar3.f4782y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 tVar3.g(LocaleController.getString(R.string.AppName));
-                this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, (Class<?>) StopLiveLocationReceiver.class), 167772160));
+                this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }
             updateNotification(false);
             startForeground(6, this.builder.b());

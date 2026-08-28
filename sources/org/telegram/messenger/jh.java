@@ -1,28 +1,39 @@
 package org.telegram.messenger;
 
+import android.os.SystemClock;
+import org.telegram.messenger.SharedConfig;
 public final class jh implements Runnable {
+    public final int f20720a;
+    public final SharedConfig.ProxyInfo f20721b;
+    public final long f20722c;
 
-    public final int f20689a;
-
-    public final Utilities.Callback2 f20690b;
-
-    public final Exception f20691c;
-
-    public jh(Utilities.Callback2 callback2, Exception exc, int i10) {
-        this.f20689a = i10;
-        this.f20690b = callback2;
-        this.f20691c = exc;
+    public jh(SharedConfig.ProxyInfo proxyInfo, long j10, int i9) {
+        this.f20720a = i9;
+        this.f20721b = proxyInfo;
+        this.f20722c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20689a) {
+        int i9 = this.f20720a;
+        long j10 = this.f20722c;
+        SharedConfig.ProxyInfo proxyInfo = this.f20721b;
+        switch (i9) {
             case 0:
-                PasskeysController.lambda$create$3(this.f20690b, this.f20691c);
-                break;
+                ProxyRotationController.lambda$new$0(proxyInfo, j10);
+                return;
             default:
-                PasskeysController.lambda$create$8(this.f20690b, this.f20691c);
-                break;
+                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
+                proxyInfo.checking = false;
+                if (j10 == -1) {
+                    proxyInfo.available = false;
+                    proxyInfo.ping = 0L;
+                } else {
+                    proxyInfo.ping = j10;
+                    proxyInfo.available = true;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
+                return;
         }
     }
 }

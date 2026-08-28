@@ -1,36 +1,31 @@
 package org.telegram.messenger;
 
-public final class m7 implements Runnable {
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class m7 implements Utilities.Callback2 {
+    public final int f20944a;
+    public final MediaDataController f20945b;
+    public final String f20946c;
+    public final Utilities.Callback d;
 
-    public final int f20945a;
-
-    public final MediaDataController f20946b;
-
-    public final long f20947c;
-    public final long d;
-
-    public final int[] f20948e;
-
-    public m7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
-        this.f20945a = i10;
-        this.f20946b = mediaDataController;
-        this.f20947c = j10;
-        this.d = j11;
-        this.f20948e = iArr;
+    public m7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i9) {
+        this.f20944a = i9;
+        this.f20945b = mediaDataController;
+        this.f20946c = str;
+        this.d = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20945a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+        switch (this.f20944a) {
             case 0:
-                this.f20946b.lambda$getMediaCounts$128(this.f20947c, this.d, this.f20948e);
-                break;
-            case 1:
-                this.f20946b.lambda$getMediaCounts$127(this.f20947c, this.d, this.f20948e);
-                break;
+                this.f20945b.lambda$getStickerSet$32(this.f20946c, this.d, bool, tL_messages_stickerSet);
+                return;
             default:
-                this.f20946b.lambda$getMediaCounts$130(this.f20947c, this.d, this.f20948e);
-                break;
+                this.f20945b.lambda$getStickerSet$35(this.f20946c, this.d, bool, tL_messages_stickerSet);
+                return;
         }
     }
 }

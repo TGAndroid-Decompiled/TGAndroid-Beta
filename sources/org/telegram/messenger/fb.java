@@ -1,30 +1,32 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
-
 public final class fb implements Runnable {
+    public final int f20278a;
+    public final MessagesController f20279b;
+    public final a0.h f20280c;
+    public final a0.h d;
 
-    public final int f20244a;
-
-    public final MessagesController.ErrorDelegate f20245b;
-
-    public final TLRPC.TL_error f20246c;
-
-    public fb(MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, int i10) {
-        this.f20244a = i10;
-        this.f20245b = errorDelegate;
-        this.f20246c = tL_error;
+    public fb(MessagesController messagesController, a0.h hVar, a0.h hVar2, int i9) {
+        this.f20278a = i9;
+        this.f20279b = messagesController;
+        this.f20280c = hVar;
+        this.d = hVar2;
     }
 
     @Override
     public final void run() {
-        switch (this.f20244a) {
+        switch (this.f20278a) {
             case 0:
-                this.f20245b.run(this.f20246c);
-                break;
+                this.f20279b.lambda$checkDeletingTask$86(this.f20280c, this.d);
+                return;
+            case 1:
+                this.f20279b.lambda$updatePrintingStrings$170(this.f20280c, this.d);
+                return;
+            case 2:
+                this.f20279b.lambda$getNewDeleteTask$83(this.f20280c, this.d);
+                return;
             default:
-                this.f20245b.run(this.f20246c);
-                break;
+                this.f20279b.lambda$checkDeletingTask$85(this.f20280c, this.d);
+                return;
         }
     }
 }

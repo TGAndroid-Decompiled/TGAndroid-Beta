@@ -1,24 +1,41 @@
 package t9;
+public final class a implements d {
+    public final int f47734a;
 
-import java.util.Map;
-
-public final class a implements r9.d {
-
-    public final int f48137a;
+    public a(int i9) {
+        this.f47734a = i9;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f48137a) {
-            case 0:
-                throw new r9.b("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
-            case 1:
-                Map.Entry entry = (Map.Entry) obj;
-                r9.e eVar = (r9.e) obj2;
-                eVar.a(u9.e.f48460g, entry.getKey());
-                eVar.a(u9.e.h, entry.getValue());
-                return;
-            default:
-                throw new r9.b("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
+    public final Class annotationType() {
+        return d.class;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof d) {
+                if (this.f47734a == ((a) ((d) obj)).f47734a) {
+                    Object obj2 = c.f47735a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        return (14552422 ^ this.f47734a) + (c.f47735a.hashCode() ^ 2041407134);
+    }
+
+    @Override
+    public final String toString() {
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f47734a + "intEncoding=" + c.f47735a + ')';
     }
 }

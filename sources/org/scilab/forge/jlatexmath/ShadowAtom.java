@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class ShadowAtom extends FBoxAtom {
     public ShadowAtom(Atom atom) {
         super(atom);

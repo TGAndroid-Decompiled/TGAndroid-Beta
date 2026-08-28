@@ -1,8 +1,8 @@
 package org.scilab.forge.jlatexmath;
 
+import java.lang.Character;
 import org.scilab.forge.jlatexmath.cyrillic.CyrillicRegistration;
 import org.scilab.forge.jlatexmath.greek.GreekRegistration;
-
 public class WebStartAlphabetRegistration implements AlphabetRegistration {
     private Character.UnicodeBlock[] blocks;
     private AlphabetRegistration reg;
@@ -16,15 +16,14 @@ public class WebStartAlphabetRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Object getPackage() throws AlphabetRegistrationException {
+    public Object getPackage() {
         Character.UnicodeBlock[] unicodeBlockArr = this.blocks;
         if (unicodeBlockArr == AlphabetRegistration.JLM_GREEK) {
             this.reg = new GreekRegistration();
-        } else {
-            if (unicodeBlockArr != AlphabetRegistration.JLM_CYRILLIC) {
-                throw new AlphabetRegistrationException("Invalid Unicode Block");
-            }
+        } else if (unicodeBlockArr == AlphabetRegistration.JLM_CYRILLIC) {
             this.reg = new CyrillicRegistration();
+        } else {
+            throw new AlphabetRegistrationException("Invalid Unicode Block");
         }
         return this.reg;
     }

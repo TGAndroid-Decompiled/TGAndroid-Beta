@@ -2,37 +2,19 @@ package m5;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import h7.r8;
+import g7.p8;
 import java.util.Arrays;
-import org.json.JSONException;
-import org.json.JSONObject;
+public final class u extends y5.a {
+    public final int f17479a;
+    public final int f17480b;
+    public final int f17481c;
+    public static final q5.b d = new q5.b("VideoInfo", null);
+    public static final Parcelable.Creator<u> CREATOR = new v(21);
 
-public final class u extends z5.a {
-    public static final Parcelable.Creator<u> CREATOR = new w(20);
-
-    public final String f17856a;
-
-    public final String f17857b;
-
-    public u(String str, String str2) {
-        this.f17856a = str;
-        this.f17857b = str2;
-    }
-
-    public final JSONObject b() {
-        JSONObject jSONObject = new JSONObject();
-        try {
-            String str = this.f17856a;
-            if (str != null) {
-                jSONObject.put("adTagUrl", str);
-            }
-            String str2 = this.f17857b;
-            if (str2 != null) {
-                jSONObject.put("adsResponse", str2);
-            }
-        } catch (JSONException unused) {
-        }
-        return jSONObject;
+    public u(int i9, int i10, int i11) {
+        this.f17479a = i9;
+        this.f17480b = i10;
+        this.f17481c = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -43,18 +25,25 @@ public final class u extends z5.a {
             return false;
         }
         u uVar = (u) obj;
-        return r5.a.d(this.f17856a, uVar.f17856a) && r5.a.d(this.f17857b, uVar.f17857b);
+        if (this.f17480b == uVar.f17480b && this.f17479a == uVar.f17479a && this.f17481c == uVar.f17481c) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f17856a, this.f17857b});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f17480b), Integer.valueOf(this.f17479a), Integer.valueOf(this.f17481c)});
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int iQ = r8.q(parcel, 20293);
-        r8.l(parcel, 2, this.f17856a);
-        r8.l(parcel, 3, this.f17857b);
-        r8.r(parcel, iQ);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.s(parcel, 2, 4);
+        parcel.writeInt(this.f17479a);
+        p8.s(parcel, 3, 4);
+        parcel.writeInt(this.f17480b);
+        p8.s(parcel, 4, 4);
+        parcel.writeInt(this.f17481c);
+        p8.r(parcel, q10);
     }
 }

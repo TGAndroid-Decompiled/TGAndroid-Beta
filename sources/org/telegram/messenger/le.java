@@ -1,48 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_aicompose;
-import org.telegram.tgnet.tl.TL_payments;
+import java.util.ArrayList;
+public final class le implements Runnable {
+    public final int f20890a = 0;
+    public final MessagesStorage f20891b;
+    public final boolean f20892c;
+    public final ArrayList d;
 
-public final class le implements Utilities.Callback2 {
-
-    public final int f20889a;
-
-    public final Object f20890b;
-
-    public le(Object obj, int i10) {
-        this.f20889a = i10;
-        this.f20890b = obj;
+    public le(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
+        this.f20891b = messagesStorage;
+        this.d = arrayList;
+        this.f20892c = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20889a) {
+    public final void run() {
+        switch (this.f20890a) {
             case 0:
-                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f20890b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 1:
-                ((AiTonesController) this.f20890b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 2:
-                ((ChatThemeController) this.f20890b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 3:
-                ((GiftAuctionController) this.f20890b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 4:
-                ((MediaDataController) this.f20890b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 5:
-                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f20890b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
-                break;
-            case 6:
-                MessagesController.lambda$createCommunity$255((Utilities.Callback2) this.f20890b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                break;
+                this.f20891b.lambda$putEphemeralMessages$204(this.d, this.f20892c);
+                return;
             default:
-                ((SendMessagesHelper) this.f20890b).lambda$deletePollOption$27((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                break;
+                this.f20891b.lambda$putContacts$146(this.f20892c, this.d);
+                return;
         }
+    }
+
+    public le(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
+        this.f20891b = messagesStorage;
+        this.f20892c = z10;
+        this.d = arrayList;
     }
 }

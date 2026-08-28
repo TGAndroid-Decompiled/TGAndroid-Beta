@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-
+import org.telegram.messenger.NotificationCenter;
 public class NotificationImageProvider extends ContentProvider implements NotificationCenter.NotificationCenterDelegate {
     private static String authority;
     private static UriMatcher matcher;
@@ -42,8 +42,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     }
 
     @Override
-    public void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileLoaded) {
+    public void didReceivedNotification(int i9, int i10, Object... objArr) {
+        if (i9 == NotificationCenter.fileLoaded) {
             synchronized (this.sync) {
                 try {
                     String str = (String) objArr[0];
@@ -60,10 +60,10 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public String[] getStreamTypes(Uri uri, String str) {
-        if (str.startsWith("*/") || str.startsWith("image/")) {
-            return new String[]{"image/jpeg", "image/png", "image/webp"};
+        if (!str.startsWith("*/") && !str.startsWith("image/")) {
+            return null;
         }
-        return null;
+        return new String[]{"image/jpeg", "image/png", "image/webp"};
     }
 
     @Override
@@ -78,63 +78,68 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public boolean onCreate() {
-        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
-            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
+        for (int i9 = 0; i9 < UserConfig.getActivatedAccountsCount(); i9++) {
+            NotificationCenter.getInstance(i9).addObserver(this, NotificationCenter.fileLoaded);
         }
         return true;
     }
 
     @Override
-    public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
-        if (!"r".equals(str)) {
-            throw new SecurityException("Can only open files for read");
-        }
-        if (getUriMatcher().match(uri) != 1) {
-            throw new FileNotFoundException("Invalid URI");
-        }
-        List<String> pathSegments = uri.getPathSegments();
-        Integer.parseInt(pathSegments.get(1));
-        String str2 = pathSegments.get(2);
-        String queryParameter = uri.getQueryParameter("final_path");
-        String queryParameter2 = uri.getQueryParameter("fallback");
-        File file = new File(queryParameter);
-        ApplicationLoader.postInitApplication();
-        if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
-            throw new SecurityException("trying to read internal file");
-        }
-        if (!file.exists()) {
-            Long l10 = this.fileStartTimes.get(str2);
-            long jLongValue = l10 != null ? l10.longValue() : System.currentTimeMillis();
-            if (l10 == null) {
-                this.fileStartTimes.put(str2, Long.valueOf(jLongValue));
-            }
-            while (!file.exists()) {
-                if (System.currentTimeMillis() - jLongValue >= 3000) {
-                    if (BuildVars.LOGS_ENABLED) {
-                        FileLog.w("Waiting for " + str2 + " to download timed out");
+    public ParcelFileDescriptor openFile(Uri uri, String str) {
+        long currentTimeMillis;
+        if ("r".equals(str)) {
+            if (getUriMatcher().match(uri) == 1) {
+                List<String> pathSegments = uri.getPathSegments();
+                Integer.parseInt(pathSegments.get(1));
+                String str2 = pathSegments.get(2);
+                String queryParameter = uri.getQueryParameter("final_path");
+                String queryParameter2 = uri.getQueryParameter("fallback");
+                File file = new File(queryParameter);
+                ApplicationLoader.postInitApplication();
+                if (!AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
+                    if (!file.exists()) {
+                        Long l10 = this.fileStartTimes.get(str2);
+                        if (l10 != null) {
+                            currentTimeMillis = l10.longValue();
+                        } else {
+                            currentTimeMillis = System.currentTimeMillis();
+                        }
+                        if (l10 == null) {
+                            this.fileStartTimes.put(str2, Long.valueOf(currentTimeMillis));
+                        }
+                        while (!file.exists()) {
+                            if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    FileLog.w("Waiting for " + str2 + " to download timed out");
+                                }
+                                if (!TextUtils.isEmpty(queryParameter2)) {
+                                    File file2 = new File(queryParameter2);
+                                    if (!AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
+                                        return ParcelFileDescriptor.open(file2, 268435456);
+                                    }
+                                    throw new SecurityException("trying to read internal file");
+                                }
+                                throw new FileNotFoundException("Download timed out");
+                            }
+                            synchronized (this.sync) {
+                                this.waitingForFiles.add(str2);
+                                try {
+                                    this.sync.wait(1000L);
+                                } catch (InterruptedException unused) {
+                                }
+                            }
+                        }
+                        if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
+                            throw new SecurityException("trying to read internal file");
+                        }
                     }
-                    if (TextUtils.isEmpty(queryParameter2)) {
-                        throw new FileNotFoundException("Download timed out");
-                    }
-                    File file2 = new File(queryParameter2);
-                    if (AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
-                        throw new SecurityException("trying to read internal file");
-                    }
-                    return ParcelFileDescriptor.open(file2, 268435456);
+                    return ParcelFileDescriptor.open(file, 268435456);
                 }
-                synchronized (this.sync) {
-                    this.waitingForFiles.add(str2);
-                    try {
-                        this.sync.wait(1000L);
-                    } catch (InterruptedException unused) {
-                    }
-                }
-            }
-            if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
                 throw new SecurityException("trying to read internal file");
             }
+            throw new FileNotFoundException("Invalid URI");
         }
-        return ParcelFileDescriptor.open(file, 268435456);
+        throw new SecurityException("Can only open files for read");
     }
 
     @Override
@@ -144,8 +149,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public void shutdown() {
-        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
-            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileLoaded);
+        for (int i9 = 0; i9 < UserConfig.getActivatedAccountsCount(); i9++) {
+            NotificationCenter.getInstance(i9).removeObserver(this, NotificationCenter.fileLoaded);
         }
     }
 

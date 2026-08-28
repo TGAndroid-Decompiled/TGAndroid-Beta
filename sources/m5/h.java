@@ -2,19 +2,16 @@ package m5;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import h7.r8;
+import g7.p8;
 import java.util.Arrays;
-
-public final class h extends z5.a {
-    public static final Parcelable.Creator<h> CREATOR = new w(1);
-
-    public final String f17786a;
-
-    public final String f17787b;
+public final class h extends y5.a {
+    public static final Parcelable.Creator<h> CREATOR = new v(1);
+    public final String f17409a;
+    public final String f17410b;
 
     public h(String str, String str2) {
-        this.f17786a = str;
-        this.f17787b = str2;
+        this.f17409a = str;
+        this.f17410b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -25,18 +22,21 @@ public final class h extends z5.a {
             return false;
         }
         h hVar = (h) obj;
-        return y5.l.l(this.f17786a, hVar.f17786a) && y5.l.l(this.f17787b, hVar.f17787b);
+        if (x5.l.l(this.f17409a, hVar.f17409a) && x5.l.l(this.f17410b, hVar.f17410b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f17786a, this.f17787b});
+        return Arrays.hashCode(new Object[]{this.f17409a, this.f17410b});
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int iQ = r8.q(parcel, 20293);
-        r8.l(parcel, 1, this.f17786a);
-        r8.l(parcel, 2, this.f17787b);
-        r8.r(parcel, iQ);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.l(parcel, 1, this.f17409a);
+        p8.l(parcel, 2, this.f17410b);
+        p8.r(parcel, q10);
     }
 }

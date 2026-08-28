@@ -1,37 +1,68 @@
 package nh;
 
-import lh.k7;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+public final class a extends Drawable {
+    public int f18611b;
+    public int f18612c = 255;
+    public final Drawable f18610a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
 
-public final class a implements Utilities.Callback {
-
-    public final int f18524a;
-
-    public final k f18525b;
-
-    public a(k kVar, int i10) {
-        this.f18524a = i10;
-        this.f18525b = kVar;
+    @Override
+    public final void draw(Canvas canvas) {
+        float exactCenterX = getBounds().exactCenterX();
+        float exactCenterY = getBounds().exactCenterY();
+        int w02 = f6.w0(null, f6.G6, false);
+        int w03 = f6.w0(null, f6.f23001d6, false);
+        int i9 = this.f18611b;
+        Drawable drawable = this.f18610a;
+        if (i9 != w03) {
+            this.f18611b = w03;
+            drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+        }
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), f6.l0(i0.a.k(w03, this.f18612c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), f6.l0(i0.a.k(w02, this.f18612c)));
+        ff.s.d(drawable, exactCenterX, exactCenterY, 17);
+        canvas.translate(0.0f, AndroidUtilities.dp(0.66f));
+        canvas.save();
+        canvas.rotate(90.0f, exactCenterX, exactCenterY);
+        ff.s.b(canvas, drawable, 0.8f);
+        canvas.restore();
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18524a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new k7(9, this.f18525b, (TLRPC.UserFull) obj));
-                break;
-            case 1:
-                k kVar = this.f18525b;
-                kVar.U.commission_permille = ((Integer) obj).intValue();
-                kVar.I0();
-                break;
-            default:
-                k kVar2 = this.f18525b;
-                kVar2.U.duration_months = ((Integer) kVar2.W.get(((Integer) obj).intValue())).intValue();
-                kVar2.I0();
-                break;
-        }
+    public final int getAlpha() {
+        return this.f18612c;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(13.333333f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(13.333333f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        this.f18612c = i9;
+        this.f18610a.setAlpha(i9);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,31 +1,24 @@
 package v2;
-
-public final class f implements r9.d {
-
-    public static final f f48696a = new f();
-
-    public static final r9.c f48697b = r9.c.c("requestTimeMs");
-
-    public static final r9.c f48698c = r9.c.c("requestUptimeMs");
-    public static final r9.c d = r9.c.c("clientInfo");
-
-    public static final r9.c f48699e = r9.c.c("logSource");
-
-    public static final r9.c f48700f = r9.c.c("logSourceName");
-
-    public static final r9.c f48701g = r9.c.c("logEvent");
-    public static final r9.c h = r9.c.c("qosTier");
+public final class f implements q9.d {
+    public static final f f48269a = new Object();
+    public static final q9.c f48270b = q9.c.c("requestTimeMs");
+    public static final q9.c f48271c = q9.c.c("requestUptimeMs");
+    public static final q9.c d = q9.c.c("clientInfo");
+    public static final q9.c f48272e = q9.c.c("logSource");
+    public static final q9.c f48273f = q9.c.c("logSourceName");
+    public static final q9.c f48274g = q9.c.c("logEvent");
+    public static final q9.c h = q9.c.c("qosTier");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        r9.e eVar = (r9.e) obj2;
+        q9.e eVar = (q9.e) obj2;
         l lVar = (l) ((s) obj);
-        eVar.c(f48697b, lVar.f48723a);
-        eVar.c(f48698c, lVar.f48724b);
-        eVar.a(d, lVar.f48725c);
-        eVar.a(f48699e, lVar.d);
-        eVar.a(f48700f, lVar.f48726e);
-        eVar.a(f48701g, lVar.f48727f);
-        eVar.a(h, w.f48737a);
+        eVar.d(f48270b, lVar.f48296a);
+        eVar.d(f48271c, lVar.f48297b);
+        eVar.g(d, lVar.f48298c);
+        eVar.g(f48272e, lVar.d);
+        eVar.g(f48273f, lVar.f48299e);
+        eVar.g(f48274g, lVar.f48300f);
+        eVar.g(h, w.f48310a);
     }
 }

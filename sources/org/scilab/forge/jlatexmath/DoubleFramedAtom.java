@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class DoubleFramedAtom extends FBoxAtom {
     public DoubleFramedAtom(Atom atom) {
         super(atom);
@@ -7,10 +6,10 @@ public class DoubleFramedAtom extends FBoxAtom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
+        Box createBox = this.base.createBox(teXEnvironment);
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
         float factor = SpaceAtom.getFactor(0, teXEnvironment) * this.INTERSPACE;
         float f10 = 1.5f * defaultRuleThickness;
-        return new FramedBox(new FramedBox(boxCreateBox, defaultRuleThickness * 0.75f, factor), f10, (SpaceAtom.getFactor(3, teXEnvironment) * 0.5f) + f10);
+        return new FramedBox(new FramedBox(createBox, defaultRuleThickness * 0.75f, factor), f10, (SpaceAtom.getFactor(3, teXEnvironment) * 0.5f) + f10);
     }
 }

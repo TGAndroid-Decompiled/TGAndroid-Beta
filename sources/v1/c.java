@@ -1,10 +1,8 @@
 package v1;
-
 public final class c {
-
-    public final Class f48673a;
+    public final Class f48246a;
 
     public c(Class cls) {
-        this.f48673a = cls;
+        this.f48246a = cls;
     }
 }

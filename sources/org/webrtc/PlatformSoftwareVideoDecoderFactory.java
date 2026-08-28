@@ -1,7 +1,8 @@
 package org.webrtc;
 
 import android.media.MediaCodecInfo;
-
+import org.webrtc.EglBase;
+import org.webrtc.Predicate;
 public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
     private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() {
         @Override

@@ -1,91 +1,111 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class g60 extends vk0 {
+    public ArrayList f28656c = new ArrayList();
+    public ArrayList d = new ArrayList();
+    public final of.v1 f28657e;
+    public int f28658f;
+    public Runnable h;
+    public final k60 f28659n;
 
-public final class g60 extends s51 {
-
-    public float f28537f;
-    public float h;
-
-    public final Paint f28538n;
-
-    public float f28539r;
-
-    public org.telegram.ui.i6 f28540s;
-    public final p60 v;
-
-    public g60(p60 p60Var, Context context) {
-        super(p60Var, context);
-        this.v = p60Var;
-        this.f28538n = new Paint();
+    public g60(k60 k60Var) {
+        this.f28659n = k60Var;
+        of.v1 v1Var = new of.v1(false);
+        this.f28657e = v1Var;
+        v1Var.f19524a = new wu(this, 7);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        p60 p60Var = this.v;
-        p60Var.R.setTranslationY(AndroidUtilities.dp(64.0f) + AndroidUtilities.dp(6.0f) + (p60Var.f32986y - ((org.telegram.ui.ActionBar.e3) p60Var).backgroundPaddingTop));
-        float f10 = p60Var.f31524k0 + p60Var.f31529q0;
-        iw0 iw0Var = p60Var.f32983s;
-        if (iw0Var.getVisibility() != 0) {
-            this.f28537f = f10;
-            this.h = f10;
-        } else if (this.h != f10) {
-            this.h = f10;
-            this.f28539r = (f10 - this.f28537f) * 0.10666667f;
+    public final boolean D(f2.q1 q1Var) {
+        if (q1Var.f5505f == 1) {
+            return true;
         }
-        float f11 = this.f28537f;
-        float f12 = this.h;
-        if (f11 != f12) {
-            float f13 = this.f28539r;
-            float f14 = f11 + f13;
-            this.f28537f = f14;
-            if (f13 > 0.0f && f14 > f12) {
-                this.f28537f = f12;
-            } else if (f13 >= 0.0f || f14 >= f12) {
-                invalidate();
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        int size = this.f28656c.size();
+        of.v1 v1Var = this.f28657e;
+        int size2 = v1Var.d.size();
+        int size3 = v1Var.f19527e.size();
+        int i9 = size + size2;
+        if (size3 != 0) {
+            i9 += size3 + 1;
+        }
+        int i10 = i9 + 2;
+        this.f28658f = i10;
+        return i10;
+    }
+
+    @Override
+    public final int j(int i9) {
+        if (i9 == 0) {
+            return 2;
+        }
+        if (i9 == this.f28658f - 1) {
+            return 4;
+        }
+        if (i9 - 1 != this.f28657e.d.size() + this.f28656c.size()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.q1 r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g60.v(f2.q1, int):void");
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        View view;
+        int i10;
+        Context context = viewGroup.getContext();
+        if (i9 != 1) {
+            if (i9 != 2) {
+                if (i9 != 4) {
+                    ?? frameLayout = new FrameLayout(context);
+                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23020e7, false));
+                    Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
+                    frameLayout.f24333a = drawable;
+                    drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.Zh, false), PorterDuff.Mode.MULTIPLY));
+                    TextView textView = new TextView(frameLayout.getContext());
+                    frameLayout.f24334b = textView;
+                    j3.r0.u(14.0f, 1, textView);
+                    textView.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.ai, false));
+                    int i11 = 3;
+                    if (LocaleController.isRTL) {
+                        i10 = 5;
+                    } else {
+                        i10 = 3;
+                    }
+                    textView.setGravity(i10 | 16);
+                    if (LocaleController.isRTL) {
+                        i11 = 5;
+                    }
+                    frameLayout.addView(textView, g7.e6.d(-1, -1.0f, i11 | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+                    view = frameLayout;
+                } else {
+                    view = new View(context);
+                }
             } else {
-                this.f28537f = f12;
+                view = new fh.l2(this, context, 18);
             }
+        } else {
+            view = new org.telegram.ui.Cells.g4(context, 1, 0, false);
         }
-        iw0Var.setTranslationY(p60Var.f32986y + this.f28537f);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        p60 p60Var = this.v;
-        if (view != p60Var.R) {
-            return super.drawChild(canvas, view, j10);
-        }
-        canvas.save();
-        canvas.clipRect(0.0f, view.getY() - AndroidUtilities.dp(4.0f), getMeasuredWidth(), view.getY() + p60Var.f31520g0 + 1.0f);
-        canvas.drawColor(i0.b.k(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23053d6, false), (int) (p60Var.f31517d0 * 255.0f)));
-        int iK = i0.b.k(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23054d7, false), (int) (p60Var.f31517d0 * 255.0f));
-        Paint paint = this.f28538n;
-        paint.setColor(iK);
-        canvas.drawRect(0.0f, view.getY() + p60Var.f31520g0, getMeasuredWidth(), view.getY() + p60Var.f31520g0 + 1.0f, paint);
-        boolean zDrawChild = super.drawChild(canvas, view, j10);
-        canvas.restore();
-        return zDrawChild;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.ui.i6 i6Var = this.f28540s;
-        if (i6Var != null) {
-            ((x51) i6Var.f38984b).f34506b = true;
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        if (view == this.v.f31528p0 && this.f28540s == null) {
-            this.f28540s = new org.telegram.ui.i6(view);
-        }
+        return new f2.q1(view);
     }
 }

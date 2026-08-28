@@ -1,37 +1,56 @@
 package org.telegram.ui.web;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.lj0;
+public abstract class a1 {
+    public static boolean f43794a;
+    public static boolean f43795b;
+    public static ArrayList f43796c;
+    public static LongSparseArray d;
+    public static ArrayList f43797e;
 
-public final class a1 extends TLObject {
-
-    public long f43774a;
-
-    public long f43775b;
-
-    public String f43776c;
-    public i2 d;
-
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f43774a = inputSerializedData.readInt64(z10);
-        this.f43775b = inputSerializedData.readInt64(z10);
-        this.f43776c = inputSerializedData.readString(z10);
-        i2 i2Var = new i2();
-        this.d = i2Var;
-        i2Var.readParams(inputSerializedData, z10);
+    public static ArrayList a(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null && !f43795b) {
+            if (f43797e == null) {
+                f43797e = new ArrayList();
+            }
+            f43797e.add(callback);
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        b();
+        if (z10) {
+            return null;
+        }
+        return f43796c;
     }
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt64(this.f43774a);
-        outputSerializedData.writeInt64(this.f43775b);
-        String str = this.f43776c;
-        if (str == null) {
-            str = "";
+    public static void b() {
+        if (!f43794a && !f43795b) {
+            f43794a = true;
+            f43796c = new ArrayList();
+            d = new LongSparseArray();
+            Utilities.globalQueue.postRunnable(new lj0(10));
         }
-        outputSerializedData.writeString(str);
-        this.d.serializeToStream(outputSerializedData);
+    }
+
+    public static void c(z0 z0Var) {
+        if (z0Var != null && z0Var.d != null) {
+            b();
+            z0 z0Var2 = (z0) d.get(z0Var.f44112a);
+            if (z0Var2 != null) {
+                z0Var2.d = z0Var.d;
+            } else {
+                f43796c.add(z0Var);
+                d.put(z0Var.f44112a, z0Var);
+            }
+            AndroidUtilities.cancelRunOnUIThread(new lj0(9));
+            AndroidUtilities.runOnUIThread(new lj0(9), 1000L);
+        }
     }
 }

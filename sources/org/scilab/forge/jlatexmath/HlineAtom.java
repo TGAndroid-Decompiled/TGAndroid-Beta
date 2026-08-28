@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class HlineAtom extends Atom {
     private float shift;
     private float width;

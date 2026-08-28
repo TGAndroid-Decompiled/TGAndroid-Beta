@@ -1,17 +1,14 @@
 package q2;
-
 public final class d {
+    public int f45916a;
+    public final int f45917b;
 
-    public int f46080a;
-
-    public final int f46081b;
-
-    public d(int i10, int i11) {
-        this.f46080a = i10;
-        this.f46081b = i11;
+    public d(int i9, int i10) {
+        this.f45916a = i9;
+        this.f45917b = i10;
     }
 
     public final String toString() {
-        return "Entry{count=" + this.f46080a + ", offset=" + this.f46081b + '}';
+        return "Entry{count=" + this.f45916a + ", offset=" + this.f45917b + '}';
     }
 }

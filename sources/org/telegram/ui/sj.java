@@ -1,34 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class sj implements Runnable {
+    public final qn f42709a;
 
-public final class sj extends org.telegram.ui.Components.i11 {
-
-    public final rn f42655e;
-
-    public sj(rn rnVar, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, i10, c6Var);
-        this.f42655e = rnVar;
+    public sj(qn qnVar) {
+        this.f42709a = qnVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() == 0.0f) {
-            return false;
+    public final void run() {
+        String formatPluralString;
+        qn qnVar = this.f42709a;
+        MessageObject messageObject = qnVar.Z4;
+        if (messageObject != null && qnVar.P8 != null) {
+            int max = Math.max(0, messageObject.messageOwner.ttl_period - (qnVar.getConnectionsManager().getCurrentTime() - qnVar.Z4.messageOwner.date));
+            if (max < 86400) {
+                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
+            } else {
+                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
+            }
+            qnVar.P8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
+            AndroidUtilities.runOnUIThread(qnVar.Q8, 1000L);
         }
-        rn rnVar = this.f42655e;
-        if (((org.telegram.ui.ActionBar.n2) rnVar).actionBar.t() || rnVar.A9()) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        if (getTranslationY() != f10) {
-            invalidate();
-        }
-        super.setTranslationY(f10);
     }
 }

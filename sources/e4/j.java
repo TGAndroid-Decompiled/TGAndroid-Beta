@@ -2,13 +2,11 @@ package e4;
 
 import h3.g1;
 import h3.t0;
-
 public abstract class j implements z3.b {
-
-    public final String f5209a;
+    public final String f4850a;
 
     public j(String str) {
-        this.f5209a = str;
+        this.f4850a = str;
     }
 
     @Override
@@ -27,7 +25,7 @@ public abstract class j implements z3.b {
     }
 
     public String toString() {
-        return this.f5209a;
+        return this.f4850a;
     }
 
     @Override

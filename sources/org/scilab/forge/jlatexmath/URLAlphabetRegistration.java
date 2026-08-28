@@ -1,8 +1,8 @@
 package org.scilab.forge.jlatexmath;
 
+import java.lang.Character;
 import java.net.URL;
 import java.net.URLClassLoader;
-
 public class URLAlphabetRegistration implements AlphabetRegistration {
     private Character.UnicodeBlock[] blocks;
     private String language;
@@ -20,7 +20,7 @@ public class URLAlphabetRegistration implements AlphabetRegistration {
     }
 
     @Override
-    public Object getPackage() throws AlphabetRegistrationException {
+    public Object getPackage() {
         URL[] urlArr = {this.url};
         this.language = this.language.toLowerCase();
         StringBuilder sb2 = new StringBuilder("org.scilab.forge.jlatexmath.");
@@ -36,8 +36,8 @@ public class URLAlphabetRegistration implements AlphabetRegistration {
             return alphabetRegistration;
         } catch (ClassNotFoundException unused) {
             throw new AlphabetRegistrationException("Class at " + this.url + " cannot be got.");
-        } catch (Exception e9) {
-            throw new AlphabetRegistrationException("Problem in loading the class at " + this.url + " :\n" + e9.getMessage());
+        } catch (Exception e10) {
+            throw new AlphabetRegistrationException("Problem in loading the class at " + this.url + " :\n" + e10.getMessage());
         }
     }
 

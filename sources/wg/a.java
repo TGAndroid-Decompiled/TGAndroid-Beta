@@ -1,36 +1,65 @@
 package wg;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.ol0;
+import org.telegram.messenger.R;
+public enum a {
+    CONTACTS(R.raw.tab_contacts),
+    CALLS(R.raw.tab_calls),
+    CHATS(R.raw.tab_chats),
+    SETTINGS(R.raw.tab_settings),
+    f48820s("CHECKLIST", R.raw.tab_checklist_reverse),
+    v("COLORS", R.raw.tab_colors_reverse),
+    f48821w("FILES", R.raw.tab_files_reverse),
+    f48822x("GALLERY", R.raw.tab_gallery_reverse),
+    EF7("GIFT", R.raw.tab_gift_reverse),
+    f48823y("LOCATION", R.raw.tab_location_reverse),
+    A("STICKER", R.raw.tab_sticker_reverse),
+    B("EMOJI", R.raw.tab_emoji_reverse),
+    C("MODELS", R.raw.tab_models_reverse),
+    D("MUSIC", R.raw.tab_music_reverse),
+    E("POLL", R.raw.tab_poll_reverse),
+    F("SYMBOLS", R.raw.tab_symbols_reverse),
+    G("REPLIES", R.raw.tab_reply_reverse),
+    EF0("WALLET", R.raw.tab_wallet_reverse),
+    H,
+    I("ARTICLE", R.raw.tab_article_reverse),
+    BOOSTS(R.raw.boosts, 25, 49),
+    MONETIZATION(R.raw.monetize, 19, 45);
+    
+    public final int f48824a;
+    public final int f48825b;
+    public final int f48826c;
+    public final int d;
+    public final int f48827e;
 
-public abstract class a extends k51 {
-    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, c6 c6Var) {
-        super(context, i10, -1, false, callback2, callback5, null, c6Var, -1, 0);
-        this.f35297v2 = true;
-        setOverScrollMode(2);
+    a(int i9, int i10, int i11) {
+        this.f48824a = i9;
+        this.f48825b = i9;
+        this.d = i10;
+        this.f48827e = i11;
+        this.f48826c = -1;
     }
 
-    public final void I1(View view) {
-        int i10;
-        if (view == null) {
-            return;
-        }
-        float fDp = AndroidUtilities.dp(92.0f);
-        float width = getWidth() - fDp;
-        float x8 = view.getX();
-        float width2 = view.getWidth() + x8;
-        if (x8 < fDp) {
-            i10 = (int) (x8 - fDp);
-        } else {
-            i10 = width2 > width ? (int) (width2 - width) : 0;
-        }
-        if (i10 != 0) {
-            AndroidUtilities.doOnLayout(this, new ol0(this, view, i10, 16));
-        }
+    a(int i9) {
+        this.f48826c = i9;
+        this.f48824a = -1;
+        this.f48825b = -1;
+        this.d = -1;
+        this.f48827e = -1;
+    }
+
+    a(int i9) {
+        this.f48824a = i9;
+        this.f48825b = i9;
+        this.d = -1;
+        this.f48827e = -1;
+        this.f48826c = -1;
+    }
+
+    a(String str, int i9) {
+        this.f48824a = r2;
+        this.f48825b = i9;
+        this.d = -1;
+        this.f48827e = -1;
+        this.f48826c = -1;
     }
 }

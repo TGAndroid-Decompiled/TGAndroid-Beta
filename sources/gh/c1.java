@@ -1,11 +1,9 @@
 package gh;
 
-import android.view.ViewTreeObserver;
-
-public final class c1 implements ViewTreeObserver.OnPreDrawListener {
+import android.view.View;
+public final class c1 extends f2.n {
     @Override
-    public final boolean onPreDraw() {
-        int i10 = k2.f7380r0;
-        return false;
+    public final float A(View view) {
+        return 0.3f;
     }
 }

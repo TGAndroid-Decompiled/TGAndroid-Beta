@@ -1,34 +1,28 @@
 package v2;
 
 import java.util.Arrays;
-
 public final class k extends r {
-
-    public final long f48717a;
-
-    public final Integer f48718b;
-
-    public final long f48719c;
+    public final long f48290a;
+    public final Integer f48291b;
+    public final long f48292c;
     public final byte[] d;
-
-    public final String f48720e;
-
-    public final long f48721f;
-
-    public final v f48722g;
+    public final String f48293e;
+    public final long f48294f;
+    public final v f48295g;
 
     public k(long j10, Integer num, long j11, byte[] bArr, String str, long j12, v vVar) {
-        this.f48717a = j10;
-        this.f48718b = num;
-        this.f48719c = j11;
+        this.f48290a = j10;
+        this.f48291b = num;
+        this.f48292c = j11;
         this.d = bArr;
-        this.f48720e = str;
-        this.f48721f = j12;
-        this.f48722g = vVar;
+        this.f48293e = str;
+        this.f48294f = j12;
+        this.f48295g = vVar;
     }
 
     public final boolean equals(Object obj) {
         Integer num;
+        byte[] bArr;
         String str;
         v vVar;
         if (obj == this) {
@@ -37,11 +31,16 @@ public final class k extends r {
         if (obj instanceof r) {
             r rVar = (r) obj;
             k kVar = (k) rVar;
-            v vVar2 = kVar.f48722g;
-            String str2 = kVar.f48720e;
-            Integer num2 = kVar.f48718b;
-            if (this.f48717a == kVar.f48717a && ((num = this.f48718b) != null ? num.equals(num2) : num2 == null) && this.f48719c == kVar.f48719c) {
-                if (Arrays.equals(this.d, rVar instanceof k ? ((k) rVar).d : kVar.d) && ((str = this.f48720e) != null ? str.equals(str2) : str2 == null) && this.f48721f == kVar.f48721f && ((vVar = this.f48722g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
+            v vVar2 = kVar.f48295g;
+            String str2 = kVar.f48293e;
+            Integer num2 = kVar.f48291b;
+            if (this.f48290a == kVar.f48290a && ((num = this.f48291b) != null ? num.equals(num2) : num2 == null) && this.f48292c == kVar.f48292c) {
+                if (rVar instanceof k) {
+                    bArr = ((k) rVar).d;
+                } else {
+                    bArr = kVar.d;
+                }
+                if (Arrays.equals(this.d, bArr) && ((str = this.f48293e) != null ? str.equals(str2) : str2 == null) && this.f48294f == kVar.f48294f && ((vVar = this.f48295g) != null ? vVar.equals(vVar2) : vVar2 == null)) {
                     return true;
                 }
             }
@@ -50,21 +49,35 @@ public final class k extends r {
     }
 
     public final int hashCode() {
-        long j10 = this.f48717a;
-        int i10 = (((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003;
-        Integer num = this.f48718b;
-        int iHashCode = (i10 ^ (num == null ? 0 : num.hashCode())) * 1000003;
-        long j11 = this.f48719c;
-        int iHashCode2 = (((iHashCode ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ Arrays.hashCode(this.d)) * 1000003;
-        String str = this.f48720e;
-        int iHashCode3 = (iHashCode2 ^ (str == null ? 0 : str.hashCode())) * 1000003;
-        long j12 = this.f48721f;
-        int i11 = (iHashCode3 ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
-        v vVar = this.f48722g;
-        return i11 ^ (vVar != null ? vVar.hashCode() : 0);
+        int hashCode;
+        int hashCode2;
+        long j10 = this.f48290a;
+        int i9 = (((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003;
+        int i10 = 0;
+        Integer num = this.f48291b;
+        if (num == null) {
+            hashCode = 0;
+        } else {
+            hashCode = num.hashCode();
+        }
+        long j11 = this.f48292c;
+        int hashCode3 = (((((i9 ^ hashCode) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ Arrays.hashCode(this.d)) * 1000003;
+        String str = this.f48293e;
+        if (str == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str.hashCode();
+        }
+        long j12 = this.f48294f;
+        int i11 = (((hashCode3 ^ hashCode2) * 1000003) ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
+        v vVar = this.f48295g;
+        if (vVar != null) {
+            i10 = vVar.hashCode();
+        }
+        return i11 ^ i10;
     }
 
     public final String toString() {
-        return "LogEvent{eventTimeMs=" + this.f48717a + ", eventCode=" + this.f48718b + ", eventUptimeMs=" + this.f48719c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.f48720e + ", timezoneOffsetSeconds=" + this.f48721f + ", networkConnectionInfo=" + this.f48722g + "}";
+        return "LogEvent{eventTimeMs=" + this.f48290a + ", eventCode=" + this.f48291b + ", eventUptimeMs=" + this.f48292c + ", sourceExtension=" + Arrays.toString(this.d) + ", sourceExtensionJsonProto3=" + this.f48293e + ", timezoneOffsetSeconds=" + this.f48294f + ", networkConnectionInfo=" + this.f48295g + "}";
     }
 }

@@ -1,32 +1,27 @@
 package org.telegram.messenger;
+public final class a7 implements Runnable {
+    public final int f19701a;
+    public final MediaDataController f19702b;
+    public final long f19703c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-
-public final class a7 implements RequestDelegate {
-
-    public final int f19681a;
-
-    public final MediaDataController f19682b;
-
-    public final String f19683c;
-
-    public a7(MediaDataController mediaDataController, String str, int i10) {
-        this.f19681a = i10;
-        this.f19682b = mediaDataController;
-        this.f19683c = str;
+    public a7(MediaDataController mediaDataController, long j10, int i9) {
+        this.f19701a = i9;
+        this.f19702b = mediaDataController;
+        this.f19703c = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19681a) {
+    public final void run() {
+        switch (this.f19701a) {
             case 0:
-                this.f19682b.lambda$verifyAnimatedStickerMessageInternal$70(this.f19683c, tLObject, tL_error);
-                break;
+                MediaDataController.Q0(this.f19702b, this.f19703c);
+                return;
+            case 1:
+                MediaDataController.P2(this.f19702b, this.f19703c);
+                return;
             default:
-                this.f19682b.lambda$fetchStickerSetInternal$42(this.f19683c, tLObject, tL_error);
-                break;
+                MediaDataController.E2(this.f19702b, this.f19703c);
+                return;
         }
     }
 }

@@ -1,7 +1,6 @@
 package r0;
 
 import android.view.View;
-
 public abstract class e0 {
     public static CharSequence a(View view) {
         return view.getAccessibilityPaneTitle();

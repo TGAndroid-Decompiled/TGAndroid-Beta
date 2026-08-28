@@ -2,49 +2,45 @@ package e0;
 
 import android.app.Notification;
 import android.os.Parcel;
-
 public final class j0 {
+    public final String f4717a;
+    public final int f4718b;
+    public final Notification f4719c;
 
-    public final String f5074a;
-
-    public final int f5075b;
-
-    public final Notification f5076c;
-
-    public j0(String str, int i10, Notification notification) {
-        this.f5074a = str;
-        this.f5075b = i10;
-        this.f5076c = notification;
+    public j0(String str, int i9, Notification notification) {
+        this.f4717a = str;
+        this.f4718b = i9;
+        this.f4719c = notification;
     }
 
     public final void a(b.c cVar) {
-        String str = this.f5074a;
-        int i10 = this.f5075b;
+        String str = this.f4717a;
+        int i9 = this.f4718b;
         b.a aVar = (b.a) cVar;
         aVar.getClass();
-        Parcel parcelObtain = Parcel.obtain();
+        Parcel obtain = Parcel.obtain();
         try {
-            parcelObtain.writeInterfaceToken(b.c.f1880g);
-            parcelObtain.writeString(str);
-            parcelObtain.writeInt(i10);
-            parcelObtain.writeString(null);
-            Notification notification = this.f5076c;
+            obtain.writeInterfaceToken(b.c.f1384g);
+            obtain.writeString(str);
+            obtain.writeInt(i9);
+            obtain.writeString(null);
+            Notification notification = this.f4719c;
             if (notification != null) {
-                parcelObtain.writeInt(1);
-                notification.writeToParcel(parcelObtain, 0);
+                obtain.writeInt(1);
+                notification.writeToParcel(obtain, 0);
             } else {
-                parcelObtain.writeInt(0);
+                obtain.writeInt(0);
             }
-            aVar.f1878a.transact(1, parcelObtain, null, 1);
+            aVar.f1382a.transact(1, obtain, null, 1);
         } finally {
-            parcelObtain.recycle();
+            obtain.recycle();
         }
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("NotifyTask[packageName:");
-        sb2.append(this.f5074a);
+        sb2.append(this.f4717a);
         sb2.append(", id:");
-        return a9.p.k(this.f5075b, ", tag:null]", sb2);
+        return aa.d.l(this.f4718b, ", tag:null]", sb2);
     }
 }

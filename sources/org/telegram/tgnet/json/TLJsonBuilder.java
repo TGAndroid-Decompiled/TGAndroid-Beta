@@ -1,12 +1,10 @@
 package org.telegram.tgnet.json;
 
-import java.util.Iterator;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
-
 public class TLJsonBuilder {
     private final JSONObject result2 = new JSONObject();
 
@@ -25,8 +23,8 @@ public class TLJsonBuilder {
             TLJsonBuilder tLJsonBuilder = new TLJsonBuilder();
             serializable.serializeToJson(tLJsonBuilder);
             return tLJsonBuilder.result2;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -34,8 +32,8 @@ public class TLJsonBuilder {
     private void write(String str, Object obj) {
         try {
             this.result2.putOpt(str, obj);
-        } catch (JSONException e9) {
-            FileLog.e(e9);
+        } catch (JSONException e10) {
+            FileLog.e(e10);
         }
     }
 
@@ -43,8 +41,8 @@ public class TLJsonBuilder {
         write(str, Boolean.valueOf(z10));
     }
 
-    public void writeInt32(String str, int i10) {
-        writeString(str, Integer.toString(i10, 10));
+    public void writeInt32(String str, int i9) {
+        writeString(str, Integer.toString(i9, 10));
     }
 
     public void writeInt64(String str, long j10) {
@@ -61,11 +59,10 @@ public class TLJsonBuilder {
 
     public <T extends Serializable> void writeVector(String str, List<T> list) {
         JSONArray jSONArray = new JSONArray();
-        Iterator<T> it = list.iterator();
-        while (it.hasNext()) {
-            JSONObject jSONObjectSerialize = serialize(it.next());
-            if (jSONObjectSerialize != null) {
-                jSONArray.put(jSONObjectSerialize);
+        for (T t10 : list) {
+            JSONObject serialize = serialize(t10);
+            if (serialize != null) {
+                jSONArray.put(serialize);
             }
         }
         write(str, jSONArray);

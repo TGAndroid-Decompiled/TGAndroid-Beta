@@ -1,55 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class d30 extends AnimatorListenerAdapter {
+    public final int f27645a;
+    public final f30 f27646b;
 
-public final class d30 implements Runnable {
-
-    public final int f27636a;
-
-    public final f30 f27637b;
-
-    public final String f27638c;
-    public final int d;
-
-    public d30(f30 f30Var, String str, int i10, int i11) {
-        this.f27636a = i11;
-        this.f27637b = f30Var;
-        this.f27638c = str;
-        this.d = i10;
+    public d30(f30 f30Var, int i9) {
+        this.f27645a = i9;
+        this.f27646b = f30Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27636a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27645a) {
             case 0:
-                f30 f30Var = this.f27637b;
-                String str = this.f27638c;
-                int i10 = this.d;
-                if (f30Var.f28244e != null) {
-                    f30Var.f28244e = null;
-                    AndroidUtilities.runOnUIThread(new d30(f30Var, str, i10, 1));
-                    break;
+                f30 f30Var = this.f27646b;
+                if (f30Var.U == animator) {
+                    f30Var.U = null;
+                    f30Var.b();
+                    return;
                 }
-                break;
+                return;
             default:
-                f30 f30Var2 = this.f27637b;
-                String str2 = this.f27638c;
-                int i11 = this.d;
-                ArrayList arrayList = null;
-                f30Var2.f28244e = null;
-                if (!ChatObject.isChannel(f30Var2.f28249w.R) && f30Var2.f28249w.S != null) {
-                    arrayList = new ArrayList(f30Var2.f28249w.S.participants.participants);
+                f30 f30Var2 = this.f27646b;
+                if (f30Var2.T == animator) {
+                    f30Var2.T = null;
+                    return;
                 }
-                if (arrayList != null) {
-                    Utilities.searchQueue.postRunnable(new ag.k0(f30Var2, str2, i11, arrayList));
-                } else {
-                    f30Var2.h = false;
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f27645a) {
+            case 1:
+                e30 e30Var = this.f27646b.S;
+                if (e30Var != null) {
+                    ((org.telegram.ui.sr0) e30Var).f42756a.f35580a0.requestLayout();
+                    return;
                 }
-                f30Var2.d.g(str2, ChatObject.canAddUsers(f30Var2.f28249w.R), false, true, false, ChatObject.isChannel(f30Var2.f28249w.R) ? f30Var2.f28249w.R.f22380id : 0L, false, 2, i11);
-                break;
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

@@ -1,36 +1,105 @@
 package o8;
 
-public final class b extends a {
+import h7.wa;
+import j$.util.Objects;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public final class b extends h7.d0 {
+    public final wa f19027b;
 
-    public final char f19359a;
-
-    public b(char c10) {
-        this.f19359a = c10;
+    public b(wa waVar) {
+        super(2);
+        this.f19027b = waVar;
     }
 
     @Override
-    public final boolean a(char c10) {
-        return c10 == this.f19359a;
+    public final void clear() {
+        this.f19027b.clear();
     }
 
-    public final String toString() {
-        char[] cArr = new char[6];
-        cArr[0] = '\\';
-        cArr[1] = 'u';
-        cArr[2] = 0;
-        cArr[3] = 0;
-        cArr[4] = 0;
-        cArr[5] = 0;
-        char c10 = this.f19359a;
-        for (int i10 = 0; i10 < 4; i10++) {
-            cArr[5 - i10] = "0123456789ABCDEF".charAt(c10 & 15);
-            c10 = (char) (c10 >> 4);
+    @Override
+    public final boolean contains(Object obj) {
+        Set entrySet = this.f19027b.f10166b.entrySet();
+        entrySet.getClass();
+        try {
+            return entrySet.contains(obj);
+        } catch (ClassCastException | NullPointerException unused) {
+            return false;
         }
-        String strCopyValueOf = String.copyValueOf(cArr);
-        StringBuilder sb2 = new StringBuilder(String.valueOf(strCopyValueOf).length() + 18);
-        sb2.append("CharMatcher.is('");
-        sb2.append(strCopyValueOf);
-        sb2.append("')");
-        return sb2.toString();
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return this.f19027b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new h7.c(this.f19027b, (char) 0);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        Object obj2;
+        if (!contains(obj)) {
+            return false;
+        }
+        Map.Entry entry = (Map.Entry) obj;
+        Objects.requireNonNull(entry);
+        h0 h0Var = (h0) this.f19027b.f10168e;
+        Object key = entry.getKey();
+        Map map = h0Var.d;
+        map.getClass();
+        try {
+            obj2 = map.remove(key);
+        } catch (ClassCastException | NullPointerException unused) {
+            obj2 = null;
+        }
+        Collection collection = (Collection) obj2;
+        if (collection != null) {
+            int size = collection.size();
+            collection.clear();
+            h0Var.f19047e -= size;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.removeAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            boolean z10 = false;
+            for (Object obj : collection) {
+                z10 |= remove(obj);
+            }
+            return z10;
+        }
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.retainAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            HashSet l10 = l.l(collection.size());
+            for (Object obj : collection) {
+                if (contains(obj) && (obj instanceof Map.Entry)) {
+                    l10.add(((Map.Entry) obj).getKey());
+                }
+            }
+            return this.f19027b.keySet().retainAll(l10);
+        }
+    }
+
+    @Override
+    public final int size() {
+        return this.f19027b.f10166b.size();
     }
 }

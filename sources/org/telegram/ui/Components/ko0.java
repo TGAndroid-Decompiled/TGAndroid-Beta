@@ -1,99 +1,51 @@
 package org.telegram.ui.Components;
 
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.PhotoViewer;
+import android.view.WindowInsets;
+public final class ko0 implements r0.o, org.telegram.ui.ActionBar.m1 {
+    public final int f30209a;
+    public final rp0 f30210b;
 
-public final class ko0 implements View.OnClickListener {
-
-    public final int f30161a;
-
-    public final sp0 f30162b;
-
-    public ko0(sp0 sp0Var, int i10) {
-        this.f30161a = i10;
-        this.f30162b = sp0Var;
+    public ko0(rp0 rp0Var, int i9) {
+        this.f30209a = i9;
+        this.f30210b = rp0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30161a) {
-            case 0:
-                sp0 sp0Var = this.f30162b;
-                bp bpVar = sp0Var.f32519a0;
-                bpVar.a(!bpVar.f27188a.f26309q, true);
-                sp0Var.Z0();
-                break;
+    public r0.m1 L0(View view, r0.m1 m1Var) {
+        WindowInsets g10 = m1Var.g();
+        rp0 rp0Var = this.f30210b;
+        rp0Var.processLegacyContainerInsets(g10);
+        i0.b f10 = m1Var.f46929a.f(519);
+        if (!rp0Var.C0.equals(f10)) {
+            rp0Var.C0 = f10;
+            rp0Var.container.requestLayout();
+        }
+        return r0.m1.f46928b;
+    }
+
+    @Override
+    public void k(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.o1 o1Var;
+        org.telegram.ui.ActionBar.o1 o1Var2;
+        switch (this.f30209a) {
             case 1:
-                sp0 sp0Var2 = this.f30162b;
-                org.telegram.ui.ActionBar.n1 n1Var = sp0Var2.F0;
-                if (n1Var != null && n1Var.isShowing()) {
-                    sp0Var2.F0.d(true);
+                rp0 rp0Var = this.f30210b;
+                rp0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = rp0Var.F0) != null && o1Var.isShowing()) {
+                    rp0Var.F0.d(true);
+                    return;
                 }
-                sp0Var2.V0(false);
-                break;
-            case 2:
-                sp0 sp0Var3 = this.f30162b;
-                org.telegram.ui.ActionBar.n1 n1Var2 = sp0Var3.F0;
-                if (n1Var2 != null && n1Var2.isShowing()) {
-                    sp0Var3.F0.d(true);
-                }
-                sp0Var3.V0(true);
-                break;
-            case 3:
-                sp0 sp0Var4 = this.f30162b;
-                String[] strArr = sp0Var4.f32533k0;
-                if (sp0Var4.Q.m() == 0) {
-                    if (sp0Var4.f32532j0 || strArr[0] != null) {
-                        sp0Var4.dismiss();
-                        PhotoViewer.t1().G0(true, false);
-                        if (strArr[0] == null && sp0Var4.f32530h0) {
-                            sp0Var4.f32531i0 = true;
-                            Toast.makeText(sp0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                        } else {
-                            sp0Var4.getContext();
-                            sp0Var4.M0();
-                        }
-                    }
-                }
-                break;
-            case 4:
-                sp0 sp0Var5 = this.f30162b;
-                String[] strArr2 = sp0Var5.f32533k0;
-                if (sp0Var5.Q.m() == 0) {
-                    if (sp0Var5.f32532j0 || strArr2[0] != null) {
-                        sp0Var5.dismiss();
-                        if (strArr2[0] == null && sp0Var5.f32530h0) {
-                            sp0Var5.f32531i0 = true;
-                            Toast.makeText(sp0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                        } else {
-                            sp0Var5.getContext();
-                            sp0Var5.M0();
-                        }
-                    }
-                }
-                break;
-            case 5:
-                sp0 sp0Var6 = this.f30162b;
-                String[] strArr3 = sp0Var6.f32533k0;
-                if (sp0Var6.Q.m() == 0) {
-                    if (sp0Var6.f32532j0 || strArr3[0] != null) {
-                        sp0Var6.dismiss();
-                        if (strArr3[0] == null && sp0Var6.f32530h0) {
-                            sp0Var6.f32531i0 = true;
-                            Toast.makeText(sp0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
-                        } else {
-                            sp0Var6.getContext();
-                            sp0Var6.M0();
-                        }
-                    }
-                }
-                break;
+                return;
             default:
-                this.f30162b.V0(true);
-                break;
+                rp0 rp0Var2 = this.f30210b;
+                rp0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var2 = rp0Var2.F0) != null && o1Var2.isShowing()) {
+                    rp0Var2.F0.d(true);
+                    return;
+                }
+                return;
         }
     }
 }

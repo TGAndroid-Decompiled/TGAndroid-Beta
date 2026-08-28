@@ -1,28 +1,30 @@
 package org.telegram.ui;
-
 public final class af implements Runnable {
+    public final int f36469a;
+    public final qn f36470b;
+    public final boolean f36471c;
 
-    public final int f36524a;
-
-    public final rn f36525b;
-
-    public final boolean f36526c;
-
-    public af(rn rnVar, boolean z10, int i10) {
-        this.f36524a = i10;
-        this.f36525b = rnVar;
-        this.f36526c = z10;
+    public af(qn qnVar, boolean z10, int i9) {
+        this.f36469a = i9;
+        this.f36470b = qnVar;
+        this.f36471c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f36524a) {
+        String str;
+        switch (this.f36469a) {
             case 0:
-                this.f36525b.presentFragment(new PremiumPreviewFragment(0, this.f36526c ? "upload_speed" : "download_speed"));
-                break;
+                if (this.f36471c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
+                }
+                this.f36470b.presentFragment(new PremiumPreviewFragment(0, str));
+                return;
             default:
-                this.f36525b.yc(0, this.f36526c);
-                break;
+                this.f36470b.yc(0, this.f36471c);
+                return;
         }
     }
 }

@@ -5,92 +5,93 @@ import android.view.View;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.ri0;
+import org.telegram.ui.Components.pi0;
+import org.telegram.ui.d10;
 import org.telegram.ui.dl0;
-import org.telegram.ui.g10;
-import org.telegram.ui.hp0;
-import org.telegram.ui.i10;
-import org.telegram.ui.jp0;
-
+import org.telegram.ui.f10;
+import org.telegram.ui.gp0;
+import org.telegram.ui.ip0;
 public final class a implements View.OnClickListener {
+    public final int f24039a;
+    public final Object f24040b;
 
-    public final int f24046a;
-
-    public final Object f24047b;
-
-    public a(Object obj, int i10) {
-        this.f24046a = i10;
-        this.f24047b = obj;
+    public a(Object obj, int i9) {
+        this.f24039a = i9;
+        this.f24040b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f24046a;
-        Object obj = this.f24047b;
-        switch (i10) {
+        int i9 = this.f24039a;
+        Object obj = this.f24040b;
+        switch (i9) {
             case 0:
                 ((j) obj).h();
-                break;
+                return;
             case 1:
                 m mVar = (m) obj;
-                if (mVar.f24645e.size() != 1) {
-                    new gh.f(mVar.getContext()).show();
+                if (mVar.f24681e.size() == 1) {
+                    new fh.x(mVar.getContext(), null, null, (GiftAuctionController.Auction) mVar.f24681e.get(0)).show();
+                    return;
                 } else {
-                    new gh.v(mVar.getContext(), null, null, (GiftAuctionController.Auction) mVar.f24645e.get(0)).show();
+                    new fh.f(mVar.getContext()).show();
+                    return;
                 }
-                break;
             case 2:
                 ((w) obj).toggle();
-                break;
+                return;
             case 3:
-                ri0 ri0Var = ((v2) obj).f25795f;
-                if (!ri0Var.b()) {
-                    ri0Var.setProgress(0.0f);
-                    ri0Var.d();
+                pi0 pi0Var = ((x2) obj).f25934f;
+                if (!pi0Var.b()) {
+                    pi0Var.setProgress(0.0f);
+                    pi0Var.d();
+                    return;
                 }
-                break;
+                return;
             case 4:
-                ((m3) obj).getClass();
-                break;
+                ((p3) obj).getClass();
+                return;
             case 5:
-                b4 b4Var = (b4) obj;
-                b4Var.d(b4Var);
-                break;
+                e4 e4Var = (e4) obj;
+                e4Var.d(e4Var);
+                return;
             case 6:
-                ((m4) obj).performClick();
-                break;
+                ((p4) obj).performClick();
+                return;
             case 7:
-                y4 y4Var = (y4) obj;
-                y4Var.H.d(y4Var, true);
-                break;
+                b5 b5Var = (b5) obj;
+                b5Var.H.d(b5Var, true);
+                return;
             case 8:
-                r5 r5Var = (r5) obj;
-                r5Var.d = r5Var.f25219e[((Integer) ((RadioButton) view).getTag()).intValue()];
-                r5Var.b(true);
-                r5Var.f25218c.onClick(r5Var);
-                break;
+                u5 u5Var = (u5) obj;
+                u5Var.d = u5Var.f25747e[((Integer) ((RadioButton) view).getTag()).intValue()];
+                u5Var.b(true);
+                u5Var.f25746c.onClick(u5Var);
+                return;
             case 9:
-                v5 v5Var = (v5) obj;
-                u5 u5Var = v5Var.d;
-                if (u5Var != null) {
-                    jp0.U(((hp0) ((dl0) u5Var).f37438b).d, v5Var.f25806b[((Integer) view.getTag()).intValue()]);
+                y5 y5Var = (y5) obj;
+                x5 x5Var = y5Var.d;
+                if (x5Var != null) {
+                    ip0.T(((gp0) ((dl0) x5Var).f37560b).d, y5Var.f25992b[((Integer) view.getTag()).intValue()]);
+                    return;
                 }
-                break;
+                return;
             case 10:
-                p7 p7Var = (p7) obj;
-                if (p7Var.d != null) {
-                    int iIntValue = ((Integer) view.getTag()).intValue();
-                    m7 m7Var = p7Var.d;
-                    int i11 = p7Var.f24994c[iIntValue];
-                    MessageObject messageObject = p7Var.f24993b[iIntValue];
-                    i10 i10Var = ((g10) ((org.telegram.ui.g) m7Var).f38248b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = i10.f38933o0;
-                    i10Var.f(i11, p7Var, messageObject, iIntValue);
+                s7 s7Var = (s7) obj;
+                if (s7Var.d != null) {
+                    int intValue = ((Integer) view.getTag()).intValue();
+                    p7 p7Var = s7Var.d;
+                    int i10 = s7Var.f25282c[intValue];
+                    MessageObject messageObject = s7Var.f25281b[intValue];
+                    f10 f10Var = ((d10) ((org.telegram.ui.g) p7Var).f38388b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = f10.f38084o0;
+                    f10Var.f(i10, s7Var, messageObject, intValue);
+                    return;
                 }
-                break;
+                return;
             default:
                 ((Runnable) obj).run();
-                break;
+                return;
         }
     }
 }

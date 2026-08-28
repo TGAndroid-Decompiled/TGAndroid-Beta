@@ -1,25 +1,25 @@
 package g;
 
+import android.content.DialogInterface;
 import android.view.View;
-import android.widget.AbsListView;
+import android.widget.AdapterView;
+public final class b implements AdapterView.OnItemClickListener {
+    public final e f6944a;
+    public final c f6945b;
 
-public final class b implements AbsListView.OnScrollListener {
-
-    public final View f6201a;
-
-    public final View f6202b;
-
-    public b(View view, View view2) {
-        this.f6201a = view;
-        this.f6202b = view2;
+    public b(c cVar, e eVar) {
+        this.f6945b = cVar;
+        this.f6944a = eVar;
     }
 
     @Override
-    public final void onScroll(AbsListView absListView, int i10, int i11, int i12) {
-        f.b(absListView, this.f6201a, this.f6202b);
-    }
-
-    @Override
-    public final void onScrollStateChanged(AbsListView absListView, int i10) {
+    public final void onItemClick(AdapterView adapterView, View view, int i9, long j10) {
+        c cVar = this.f6945b;
+        DialogInterface.OnClickListener onClickListener = cVar.f6953j;
+        e eVar = this.f6944a;
+        onClickListener.onClick(eVar.f6958b, i9);
+        if (!cVar.f6955l) {
+            eVar.f6958b.dismiss();
+        }
     }
 }

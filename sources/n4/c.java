@@ -1,126 +1,121 @@
 package n4;
 
 import android.net.Uri;
-import d5.g0;
+import d5.f0;
 import h3.a1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
 public final class c implements i4.a {
-
-    public final long f18217a;
-
-    public final long f18218b;
-
-    public final long f18219c;
+    public final long f18390a;
+    public final long f18391b;
+    public final long f18392c;
     public final boolean d;
-
-    public final long f18220e;
-
-    public final long f18221f;
-
-    public final long f18222g;
+    public final long f18393e;
+    public final long f18394f;
+    public final long f18395g;
     public final long h;
+    public final b9.c f18396i;
+    public final a1 f18397j;
+    public final Uri f18398k;
+    public final i f18399l;
+    public final List f18400m;
 
-    public final c9.b f18223i;
-
-    public final a1 f18224j;
-
-    public final Uri f18225k;
-
-    public final i f18226l;
-
-    public final List f18227m;
-
-    public c(long j10, long j11, long j12, boolean z10, long j13, long j14, long j15, long j16, i iVar, c9.b bVar, a1 a1Var, Uri uri, ArrayList arrayList) {
-        this.f18217a = j10;
-        this.f18218b = j11;
-        this.f18219c = j12;
+    public c(long j10, long j11, long j12, boolean z10, long j13, long j14, long j15, long j16, i iVar, b9.c cVar, a1 a1Var, Uri uri, ArrayList arrayList) {
+        this.f18390a = j10;
+        this.f18391b = j11;
+        this.f18392c = j12;
         this.d = z10;
-        this.f18220e = j13;
-        this.f18221f = j14;
-        this.f18222g = j15;
+        this.f18393e = j13;
+        this.f18394f = j14;
+        this.f18395g = j15;
         this.h = j16;
-        this.f18226l = iVar;
-        this.f18223i = bVar;
-        this.f18225k = uri;
-        this.f18224j = a1Var;
-        this.f18227m = arrayList;
+        this.f18399l = iVar;
+        this.f18396i = cVar;
+        this.f18398k = uri;
+        this.f18397j = a1Var;
+        this.f18400m = arrayList;
     }
 
     @Override
     public final Object a(List list) {
         long j10;
+        long j11;
         LinkedList linkedList = new LinkedList(list);
         Collections.sort(linkedList);
         linkedList.add(new i4.b());
         ArrayList arrayList = new ArrayList();
-        long j11 = 0;
-        int i10 = 0;
+        long j12 = 0;
+        int i9 = 0;
         while (true) {
-            if (i10 >= this.f18227m.size()) {
+            j10 = -9223372036854775807L;
+            if (i9 >= this.f18400m.size()) {
                 break;
             }
-            if (((i4.b) linkedList.peek()).f10563a != i10) {
-                long jC = c(i10);
-                if (jC != -9223372036854775807L) {
-                    j11 += jC;
+            if (((i4.b) linkedList.peek()).f10923a != i9) {
+                long c10 = c(i9);
+                if (c10 != -9223372036854775807L) {
+                    j12 += c10;
                 }
             } else {
-                h hVarB = b(i10);
-                List list2 = hVarB.f18246c;
+                h b10 = b(i9);
+                List list2 = b10.f18419c;
                 i4.b bVar = (i4.b) linkedList.poll();
-                int i11 = bVar.f10563a;
+                int i10 = bVar.f10923a;
                 ArrayList arrayList2 = new ArrayList();
                 while (true) {
-                    int i12 = bVar.f10564b;
-                    a aVar = (a) list2.get(i12);
-                    List list3 = aVar.f18211c;
+                    int i11 = bVar.f10924b;
+                    a aVar = (a) list2.get(i11);
+                    List list3 = aVar.f18384c;
                     ArrayList arrayList3 = new ArrayList();
                     do {
-                        arrayList3.add((m) list3.get(bVar.f10565c));
+                        arrayList3.add((m) list3.get(bVar.f10925c));
                         bVar = (i4.b) linkedList.poll();
-                        if (bVar.f10563a != i11) {
+                        if (bVar.f10923a != i10) {
                             break;
                         }
-                    } while (bVar.f10564b == i12);
-                    j10 = j11;
-                    arrayList2.add(new a(aVar.f18209a, aVar.f18210b, arrayList3, aVar.d, aVar.f18212e, aVar.f18213f));
-                    if (bVar.f10563a != i11) {
+                    } while (bVar.f10924b == i11);
+                    j11 = j12;
+                    arrayList2.add(new a(aVar.f18382a, aVar.f18383b, arrayList3, aVar.d, aVar.f18385e, aVar.f18386f));
+                    if (bVar.f10923a != i10) {
                         break;
                     }
-                    j11 = j10;
+                    j12 = j11;
                 }
                 linkedList.addFirst(bVar);
-                arrayList.add(new h(hVarB.f18244a, hVarB.f18245b - j10, arrayList2, hVarB.d));
-                j11 = j10;
+                arrayList.add(new h(b10.f18417a, b10.f18418b - j11, arrayList2, b10.d));
+                j12 = j11;
             }
-            i10++;
+            i9++;
         }
-        long j12 = j11;
-        long j13 = this.f18218b;
-        return new c(this.f18217a, j13 != -9223372036854775807L ? j13 - j12 : -9223372036854775807L, this.f18219c, this.d, this.f18220e, this.f18221f, this.f18222g, this.h, this.f18226l, this.f18223i, this.f18224j, this.f18225k, arrayList);
+        long j13 = j12;
+        long j14 = this.f18391b;
+        if (j14 != -9223372036854775807L) {
+            j10 = j14 - j13;
+        }
+        a1 a1Var = this.f18397j;
+        Uri uri = this.f18398k;
+        return new c(this.f18390a, j10, this.f18392c, this.d, this.f18393e, this.f18394f, this.f18395g, this.h, this.f18399l, this.f18396i, a1Var, uri, arrayList);
     }
 
-    public final h b(int i10) {
-        return (h) this.f18227m.get(i10);
+    public final h b(int i9) {
+        return (h) this.f18400m.get(i9);
     }
 
-    public final long c(int i10) {
-        List list = this.f18227m;
-        if (i10 != list.size() - 1) {
-            return ((h) list.get(i10 + 1)).f18245b - ((h) list.get(i10)).f18245b;
+    public final long c(int i9) {
+        List list = this.f18400m;
+        if (i9 == list.size() - 1) {
+            long j10 = this.f18391b;
+            if (j10 == -9223372036854775807L) {
+                return -9223372036854775807L;
+            }
+            return j10 - ((h) list.get(i9)).f18418b;
         }
-        long j10 = this.f18218b;
-        if (j10 == -9223372036854775807L) {
-            return -9223372036854775807L;
-        }
-        return j10 - ((h) list.get(i10)).f18245b;
+        return ((h) list.get(i9 + 1)).f18418b - ((h) list.get(i9)).f18418b;
     }
 
-    public final long d(int i10) {
-        return g0.H(c(i10));
+    public final long d(int i9) {
+        return f0.H(c(i9));
     }
 }

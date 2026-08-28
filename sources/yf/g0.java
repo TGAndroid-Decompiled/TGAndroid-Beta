@@ -1,7 +1,10 @@
 package yf;
 
-import android.graphics.Typeface;
-
-public interface g0 {
-    Typeface a();
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class g0 extends FrameLayout {
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
 }

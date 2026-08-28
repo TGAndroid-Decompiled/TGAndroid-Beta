@@ -1,40 +1,22 @@
 package g;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import androidx.appcompat.widget.ContentFrameLayout;
-import g7.o7;
-
-public final class p extends ContentFrameLayout {
-
-    public final r f6275r;
-
-    public p(r rVar, k.c cVar) {
-        super(cVar, null);
-        this.f6275r = rVar;
-    }
-
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        return this.f6275r.i(keyEvent) || super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            int x8 = (int) motionEvent.getX();
-            int y10 = (int) motionEvent.getY();
-            if (x8 < -5 || y10 < -5 || x8 > getWidth() + 5 || y10 > getHeight() + 5) {
-                r rVar = this.f6275r;
-                rVar.h(rVar.p(0), true);
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setBackgroundResource(int i10) {
-        setBackgroundDrawable(o7.b(getContext(), i10));
-    }
+import android.os.Bundle;
+import android.view.View;
+public final class p {
+    public int f6995a;
+    public int f6996b;
+    public int f6997c;
+    public int d;
+    public o f6998e;
+    public View f6999f;
+    public View f7000g;
+    public l.k h;
+    public l.g f7001i;
+    public k.c f7002j;
+    public boolean f7003k;
+    public boolean f7004l;
+    public boolean f7005m;
+    public boolean f7006n;
+    public boolean f7007o;
+    public Bundle f7008p;
 }

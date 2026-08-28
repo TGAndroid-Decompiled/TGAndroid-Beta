@@ -2,8 +2,8 @@ package org.webrtc;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
+import j3.r0;
 import java.util.ArrayList;
-
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
@@ -22,6 +22,7 @@ public interface EglBase {
         private boolean supportsPixelBuffer;
 
         public int[] createConfigAttributes() {
+            int i9;
             ArrayList arrayList = new ArrayList();
             arrayList.add(12324);
             arrayList.add(8);
@@ -36,7 +37,12 @@ public interface EglBase {
             int i10 = this.openGlesVersion;
             if (i10 == 2 || i10 == 3) {
                 arrayList.add(12352);
-                arrayList.add(Integer.valueOf(this.openGlesVersion == 3 ? 64 : 4));
+                if (this.openGlesVersion == 3) {
+                    i9 = 64;
+                } else {
+                    i9 = 4;
+                }
+                arrayList.add(Integer.valueOf(i9));
             }
             if (this.supportsPixelBuffer) {
                 arrayList.add(12339);
@@ -64,12 +70,12 @@ public interface EglBase {
             return this;
         }
 
-        public ConfigBuilder setOpenGlesVersion(int i10) {
-            if (i10 < 1 || i10 > 3) {
-                throw new IllegalArgumentException(i0.a.l(i10, "OpenGL ES version ", " not supported"));
+        public ConfigBuilder setOpenGlesVersion(int i9) {
+            if (i9 >= 1 && i9 <= 3) {
+                this.openGlesVersion = i9;
+                return this;
             }
-            this.openGlesVersion = i10;
-            return this;
+            throw new IllegalArgumentException(r0.m(i9, "OpenGL ES version ", " not supported"));
         }
 
         public ConfigBuilder setSupportsPixelBuffer(boolean z10) {
@@ -88,7 +94,7 @@ public interface EglBase {
 
     void createDummyPbufferSurface();
 
-    void createPbufferSurface(int i10, int i11);
+    void createPbufferSurface(int i9, int i10);
 
     void createSurface(SurfaceTexture surfaceTexture);
 

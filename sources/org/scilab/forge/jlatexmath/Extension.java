@@ -1,16 +1,15 @@
 package org.scilab.forge.jlatexmath;
-
 public class Extension {
     private final Char bottom;
     private final Char middle;
     private final Char repeat;
     private final Char top;
 
-    public Extension(Char r10, Char r11, Char r12, Char r13) {
-        this.top = r10;
-        this.middle = r11;
-        this.repeat = r12;
-        this.bottom = r13;
+    public Extension(Char r12, Char r22, Char r32, Char r42) {
+        this.top = r12;
+        this.middle = r22;
+        this.repeat = r32;
+        this.bottom = r42;
     }
 
     public Char getBottom() {
@@ -30,14 +29,23 @@ public class Extension {
     }
 
     public boolean hasBottom() {
-        return this.bottom != null;
+        if (this.bottom != null) {
+            return true;
+        }
+        return false;
     }
 
     public boolean hasMiddle() {
-        return this.middle != null;
+        if (this.middle != null) {
+            return true;
+        }
+        return false;
     }
 
     public boolean hasTop() {
-        return this.top != null;
+        if (this.top != null) {
+            return true;
+        }
+        return false;
     }
 }

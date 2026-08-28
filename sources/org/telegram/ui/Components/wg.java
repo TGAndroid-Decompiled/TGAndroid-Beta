@@ -1,74 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.text.TextUtils;
+public final class wg implements Runnable {
+    public final int f34222a;
+    public final ki f34223b;
 
-public final class wg implements kg.a {
-
-    public final int f34175a;
-
-    public final Object f34176b;
-
-    public wg(Object obj, int i10) {
-        this.f34175a = i10;
-        this.f34176b = obj;
+    public wg(ki kiVar, int i9) {
+        this.f34222a = i9;
+        this.f34223b = kiVar;
     }
 
     @Override
-    public final void e(Canvas canvas, RectF rectF) {
-        Canvas canvas2;
-        RectF rectF2;
-        yh yhVar;
-        gh.s2 s2Var;
-        switch (this.f34175a) {
+    public final void run() {
+        ut utVar;
+        boolean z10;
+        long j10;
+        boolean G1;
+        switch (this.f34222a) {
             case 0:
-                gi giVar = (gi) this.f34176b;
-                int i10 = 0;
-                while (i10 < 2) {
-                    yh yhVar2 = i10 == 0 ? giVar.f28696u0 : giVar.f28699v0;
-                    if (yhVar2 == null || yhVar2.f34901c == null || yhVar2.getVisibility() != 0) {
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                    } else {
-                        canvas2 = canvas;
-                        rectF2 = rectF;
-                        pg.c.a(yhVar2.f34901c, canvas2, rectF2, yhVar2.d, giVar.getContainerView(), (int) (((i10 == 0 && (yhVar = giVar.f28699v0) != null && yhVar.getVisibility() == 0) ? (1.0f - giVar.f28699v0.getAlpha()) * yhVar2.getAlpha() : yhVar2.getAlpha()) * 255.0f));
-                    }
-                    i10++;
-                    canvas = canvas2;
-                    rectF = rectF2;
+                ki kiVar = this.f34223b;
+                if (kiVar.Y) {
+                    utVar = kiVar.L0;
+                } else {
+                    utVar = kiVar.A0;
                 }
-                break;
+                if (utVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(utVar.getText().toString().trim())) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                kiVar.M1(z10);
+                return;
             case 1:
-                kg.a[] aVarArr = (kg.a[]) this.f34176b;
-                for (int i11 = 0; i11 < 3; i11++) {
-                    kg.a aVar = aVarArr[i11];
-                    if (aVar != null) {
-                        aVar.e(canvas, rectF);
-                    }
+                ki kiVar2 = this.f34223b;
+                cf cfVar = kiVar2.f30106d0;
+                if (cfVar != null) {
+                    j10 = cfVar.k();
+                } else {
+                    j10 = 0;
                 }
-                break;
+                long j11 = j10;
+                vh vhVar = kiVar2.E0;
+                kiVar2.J0 = j11;
+                vhVar.setEffect(j11);
+                ci ciVar = kiVar2.f30160u0;
+                if (ciVar != kiVar2.f30114f0 && ciVar != kiVar2.m0) {
+                    if (!ciVar.H(0, false, 0, kiVar2.s1(), j11)) {
+                        kiVar2.dismiss();
+                    }
+                    G1 = false;
+                } else {
+                    G1 = kiVar2.G1(0, false, 0, kiVar2.s1(), j11);
+                }
+                cf cfVar2 = kiVar2.f30106d0;
+                if (cfVar2 != null) {
+                    cfVar2.h(!G1);
+                    kiVar2.f30106d0 = null;
+                    return;
+                }
+                return;
+            case 2:
+                this.f34223b.F1();
+                return;
             default:
-                hu0 hu0Var = (hu0) this.f34176b;
-                for (zs0 zs0Var : hu0Var.f29122g0) {
-                    jg.k kVar = zs0Var.f35339n;
-                    if (kVar != null) {
-                        kVar.e(canvas, rectF);
-                    }
-                }
-                wq0 wq0Var = hu0Var.R;
-                if (wq0Var != null && (s2Var = wq0Var.N) != null) {
-                    s2Var.e(canvas, rectF);
-                    break;
-                }
-                break;
+                ki.w(this.f34223b);
+                return;
         }
-    }
-
-    @Override
-    public final void g(g.y yVar, RectF rectF) {
-        switch (this.f34175a) {
-        }
-        yVar.f6327b = true;
     }
 }

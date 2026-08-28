@@ -25,7 +25,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.xml.parsers.SAXParserFactory;
@@ -33,40 +32,33 @@ import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
-
 public class SvgHelper {
     private static final Pattern SPLIT_BOUNDARY;
     private static final double[] pow10 = new double[128];
 
     public static class Circle {
         float rad;
-
-        float f19636x1;
-
-        float f19637y1;
+        float f19663x1;
+        float f19664y1;
 
         public Circle(float f10, float f11, float f12) {
-            this.f19636x1 = f10;
-            this.f19637y1 = f11;
+            this.f19663x1 = f10;
+            this.f19664y1 = f11;
             this.rad = f12;
         }
     }
 
     public static class Line {
-
-        float f19638x1;
-
-        float f19639x2;
-
-        float f19640y1;
-
-        float f19641y2;
+        float f19665x1;
+        float f19666x2;
+        float f19667y1;
+        float f19668y2;
 
         public Line(float f10, float f11, float f12, float f13) {
-            this.f19638x1 = f10;
-            this.f19640y1 = f11;
-            this.f19639x2 = f12;
-            this.f19641y2 = f13;
+            this.f19665x1 = f10;
+            this.f19667y1 = f11;
+            this.f19666x2 = f12;
+            this.f19668y2 = f13;
         }
     }
 
@@ -74,17 +66,17 @@ public class SvgHelper {
         private int nextCmd;
         private ArrayList<Float> numbers;
 
-        public NumberParse(ArrayList<Float> arrayList, int i10) {
+        public NumberParse(ArrayList<Float> arrayList, int i9) {
             this.numbers = arrayList;
-            this.nextCmd = i10;
+            this.nextCmd = i9;
         }
 
         public int getNextCmd() {
             return this.nextCmd;
         }
 
-        public float getNumber(int i10) {
-            return this.numbers.get(i10).floatValue();
+        public float getNumber(int i9) {
+            return this.numbers.get(i9).floatValue();
         }
     }
 
@@ -98,30 +90,28 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-
-        private int f19642n;
+        private int f19669n;
         public int pos;
+        private CharSequence f19670s;
 
-        private CharSequence f19643s;
-
-        public ParserHelper(CharSequence charSequence, int i10) {
-            this.f19643s = charSequence;
-            this.pos = i10;
-            this.f19642n = charSequence.length();
-            this.current = charSequence.charAt(i10);
+        public ParserHelper(CharSequence charSequence, int i9) {
+            this.f19670s = charSequence;
+            this.pos = i9;
+            this.f19669n = charSequence.length();
+            this.current = charSequence.charAt(i9);
         }
 
         private char read() {
-            int i10 = this.pos;
-            int i11 = this.f19642n;
-            if (i10 < i11) {
-                this.pos = i10 + 1;
+            int i9 = this.pos;
+            int i10 = this.f19669n;
+            if (i9 < i10) {
+                this.pos = i9 + 1;
             }
-            int i12 = this.pos;
-            if (i12 == i11) {
+            int i11 = this.pos;
+            if (i11 == i10) {
                 return (char) 0;
             }
-            return this.f19643s.charAt(i12);
+            return this.f19670s.charAt(i11);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -132,2655 +122,67 @@ public class SvgHelper {
             this.current = read();
         }
 
-        public float buildFloat(int i10, int i11) {
-            if (i11 < -125 || i10 == 0) {
-                return 0.0f;
+        public float buildFloat(int i9, int i10) {
+            double d;
+            if (i10 >= -125 && i9 != 0) {
+                if (i10 >= 128) {
+                    if (i9 > 0) {
+                        return Float.POSITIVE_INFINITY;
+                    }
+                    return Float.NEGATIVE_INFINITY;
+                } else if (i10 == 0) {
+                    return i9;
+                } else {
+                    if (i9 >= 67108864) {
+                        i9++;
+                    }
+                    double d9 = i9;
+                    double[] dArr = SvgHelper.pow10;
+                    if (i10 > 0) {
+                        d = d9 * dArr[i10];
+                    } else {
+                        d = d9 / dArr[-i10];
+                    }
+                    return (float) d;
+                }
             }
-            if (i11 >= 128) {
-                return i10 > 0 ? Float.POSITIVE_INFINITY : Float.NEGATIVE_INFINITY;
-            }
-            if (i11 == 0) {
-                return i10;
-            }
-            if (i10 >= 67108864) {
-                i10++;
-            }
-            double d = i10;
-            double[] dArr = SvgHelper.pow10;
-            return (float) (i11 > 0 ? d * dArr[i11] : d / dArr[-i11]);
+            return 0.0f;
         }
 
         public float nextFloat() {
             skipWhitespace();
-            float f10 = parseFloat();
+            float parseFloat = parseFloat();
             skipNumberSeparator();
-            return f10;
+            return parseFloat;
         }
 
         public float parseFloat() {
-            boolean z10;
-            int i10;
-            int i11;
-            int i12;
-            boolean z11;
-            char c10;
-            char c11;
-            char c12;
-            char c13;
-            int i13;
-            char c14;
-            char c15;
-            char c16;
-            char c17;
-            char c18;
-            char c19;
-            char c20 = this.current;
-            int i14 = 0;
-            boolean z12 = true;
-            if (c20 != '+') {
-                if (c20 != '-') {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                switch (this.current) {
-                    case '.':
-                        i10 = 0;
-                        i11 = 0;
-                        i12 = 0;
-                        z11 = false;
-                        if (this.current == '.') {
-                            c16 = read();
-                            this.current = c16;
-                            switch (c16) {
-                                case '0':
-                                    if (i10 == 0) {
-                                        while (true) {
-                                            c18 = read();
-                                            this.current = c18;
-                                            i11--;
-                                            switch (c18) {
-                                                case '0':
-                                                    break;
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                                default:
-                                                    if (!z11) {
-                                                        return 0.0f;
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                    }
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    while (true) {
-                                        if (i10 < 9) {
-                                            i10++;
-                                            i11--;
-                                            i12 = (this.current - '0') + (i12 * 10);
-                                        }
-                                        c17 = read();
-                                        this.current = c17;
-                                        switch (c17) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                default:
-                                    if (!z11) {
-                                        reportUnexpectedCharacterError(c16);
-                                        return 0.0f;
-                                    }
-                                    break;
-                            }
-                        }
-                        c11 = this.current;
-                        if (c11 != 'E' || c11 == 'e') {
-                            c12 = read();
-                            this.current = c12;
-                            if (c12 == '+') {
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            } else if (c12 != '-') {
-                                switch (c12) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c12);
-                                        return 0.0f;
-                                }
-                            } else {
-                                z12 = false;
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            }
-                            switch (this.current) {
-                                case '0':
-                                    while (true) {
-                                        c15 = read();
-                                        this.current = c15;
-                                        switch (c15) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                i13 = 0;
-                                                while (true) {
-                                                    if (i14 < 3) {
-                                                        i14++;
-                                                        i13 = (this.current - '0') + (i13 * 10);
-                                                    }
-                                                    c14 = read();
-                                                    this.current = c14;
-                                                    switch (c14) {
-                                                        case '0':
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            i14 = i13;
-                                                            break;
-                                                    }
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    i13 = 0;
-                                    while (true) {
-                                        if (i14 < 3) {
-                                            i14++;
-                                            i13 = (this.current - '0') + (i13 * 10);
-                                        }
-                                        c14 = read();
-                                        this.current = c14;
-                                        switch (c14) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                i14 = i13;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                        if (!z12) {
-                            i14 = -i14;
-                        }
-                        int i15 = i14 + i11;
-                        if (!z10) {
-                            i12 = -i12;
-                        }
-                        return buildFloat(i12, i15);
-                    case '/':
-                    default:
-                        return Float.NaN;
-                    case '0':
-                        while (true) {
-                            c19 = read();
-                            this.current = c19;
-                            if (c19 != '.' || c19 == 'E' || c19 == 'e') {
-                                i10 = 0;
-                                i11 = 0;
-                                i12 = 0;
-                                z11 = true;
-                                if (this.current == '.') {
-                                    c16 = read();
-                                    this.current = c16;
-                                    switch (c16) {
-                                        case '0':
-                                            if (i10 == 0) {
-                                                while (true) {
-                                                    c18 = read();
-                                                    this.current = c18;
-                                                    i11--;
-                                                    switch (c18) {
-                                                        case '0':
-                                                            break;
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            if (!z11) {
-                                                                return 0.0f;
-                                                            }
-                                                            break;
-                                                    }
-                                                }
-                                            }
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            while (true) {
-                                                if (i10 < 9) {
-                                                    i10++;
-                                                    i11--;
-                                                    i12 = (this.current - '0') + (i12 * 10);
-                                                }
-                                                c17 = read();
-                                                this.current = c17;
-                                                switch (c17) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        default:
-                                            if (!z11) {
-                                                reportUnexpectedCharacterError(c16);
-                                                return 0.0f;
-                                            }
-                                            break;
-                                    }
-                                }
-                                c11 = this.current;
-                                if (c11 != 'E') {
-                                    c12 = read();
-                                    this.current = c12;
-                                    if (c12 == '+') {
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    } else if (c12 != '-') {
-                                        switch (c12) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c12);
-                                                return 0.0f;
-                                        }
-                                    } else {
-                                        z12 = false;
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    }
-                                    switch (this.current) {
-                                        case '0':
-                                            while (true) {
-                                                c15 = read();
-                                                this.current = c15;
-                                                switch (c15) {
-                                                    case '0':
-                                                        break;
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        i13 = 0;
-                                                        while (true) {
-                                                            if (i14 < 3) {
-                                                                i14++;
-                                                                i13 = (this.current - '0') + (i13 * 10);
-                                                            }
-                                                            c14 = read();
-                                                            this.current = c14;
-                                                            switch (c14) {
-                                                                case '0':
-                                                                case '1':
-                                                                case '2':
-                                                                case '3':
-                                                                case '4':
-                                                                case '5':
-                                                                case '6':
-                                                                case '7':
-                                                                case '8':
-                                                                case '9':
-                                                                    break;
-                                                                default:
-                                                                    i14 = i13;
-                                                                    break;
-                                                            }
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                } else {
-                                    c12 = read();
-                                    this.current = c12;
-                                    if (c12 == '+') {
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    } else if (c12 != '-') {
-                                        switch (c12) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c12);
-                                                return 0.0f;
-                                        }
-                                    } else {
-                                        z12 = false;
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    }
-                                    switch (this.current) {
-                                        case '0':
-                                            while (true) {
-                                                c15 = read();
-                                                this.current = c15;
-                                                switch (c15) {
-                                                    case '0':
-                                                        break;
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        i13 = 0;
-                                                        while (true) {
-                                                            if (i14 < 3) {
-                                                                i14++;
-                                                                i13 = (this.current - '0') + (i13 * 10);
-                                                            }
-                                                            c14 = read();
-                                                            this.current = c14;
-                                                            switch (c14) {
-                                                                case '0':
-                                                                case '1':
-                                                                case '2':
-                                                                case '3':
-                                                                case '4':
-                                                                case '5':
-                                                                case '6':
-                                                                case '7':
-                                                                case '8':
-                                                                case '9':
-                                                                    break;
-                                                                default:
-                                                                    i14 = i13;
-                                                                    break;
-                                                            }
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                }
-                                if (!z12) {
-                                    i14 = -i14;
-                                }
-                                int i16 = i14 + i11;
-                                if (!z10) {
-                                    i12 = -i12;
-                                }
-                                return buildFloat(i12, i16);
-                            }
-                            switch (c19) {
-                                case '0':
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    return 0.0f;
-                            }
-                            i10 = 0;
-                            i11 = 0;
-                            i12 = 0;
-                            while (true) {
-                                if (i10 < 9) {
-                                    i10++;
-                                    i12 = (i12 * 10) + (this.current - '0');
-                                } else {
-                                    i11++;
-                                }
-                                c10 = read();
-                                this.current = c10;
-                                switch (c10) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                }
-                                z11 = true;
-                                if (this.current == '.') {
-                                    c16 = read();
-                                    this.current = c16;
-                                    switch (c16) {
-                                        case '0':
-                                            if (i10 == 0) {
-                                                while (true) {
-                                                    c18 = read();
-                                                    this.current = c18;
-                                                    i11--;
-                                                    switch (c18) {
-                                                        case '0':
-                                                            break;
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            if (!z11) {
-                                                                return 0.0f;
-                                                            }
-                                                            break;
-                                                    }
-                                                }
-                                            }
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            while (true) {
-                                                if (i10 < 9) {
-                                                    i10++;
-                                                    i11--;
-                                                    i12 = (this.current - '0') + (i12 * 10);
-                                                }
-                                                c17 = read();
-                                                this.current = c17;
-                                                switch (c17) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        default:
-                                            if (!z11) {
-                                                reportUnexpectedCharacterError(c16);
-                                                return 0.0f;
-                                            }
-                                            break;
-                                    }
-                                }
-                                c11 = this.current;
-                                if (c11 != 'E') {
-                                    c12 = read();
-                                    this.current = c12;
-                                    if (c12 == '+') {
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    } else if (c12 != '-') {
-                                        switch (c12) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c12);
-                                                return 0.0f;
-                                        }
-                                    } else {
-                                        z12 = false;
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    }
-                                    switch (this.current) {
-                                        case '0':
-                                            while (true) {
-                                                c15 = read();
-                                                this.current = c15;
-                                                switch (c15) {
-                                                    case '0':
-                                                        break;
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        i13 = 0;
-                                                        while (true) {
-                                                            if (i14 < 3) {
-                                                                i14++;
-                                                                i13 = (this.current - '0') + (i13 * 10);
-                                                            }
-                                                            c14 = read();
-                                                            this.current = c14;
-                                                            switch (c14) {
-                                                                case '0':
-                                                                case '1':
-                                                                case '2':
-                                                                case '3':
-                                                                case '4':
-                                                                case '5':
-                                                                case '6':
-                                                                case '7':
-                                                                case '8':
-                                                                case '9':
-                                                                    break;
-                                                                default:
-                                                                    i14 = i13;
-                                                                    break;
-                                                            }
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                } else {
-                                    c12 = read();
-                                    this.current = c12;
-                                    if (c12 == '+') {
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    } else if (c12 != '-') {
-                                        switch (c12) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c12);
-                                                return 0.0f;
-                                        }
-                                    } else {
-                                        z12 = false;
-                                        c13 = read();
-                                        this.current = c13;
-                                        switch (c13) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                reportUnexpectedCharacterError(c13);
-                                                return 0.0f;
-                                        }
-                                    }
-                                    switch (this.current) {
-                                        case '0':
-                                            while (true) {
-                                                c15 = read();
-                                                this.current = c15;
-                                                switch (c15) {
-                                                    case '0':
-                                                        break;
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        i13 = 0;
-                                                        while (true) {
-                                                            if (i14 < 3) {
-                                                                i14++;
-                                                                i13 = (this.current - '0') + (i13 * 10);
-                                                            }
-                                                            c14 = read();
-                                                            this.current = c14;
-                                                            switch (c14) {
-                                                                case '0':
-                                                                case '1':
-                                                                case '2':
-                                                                case '3':
-                                                                case '4':
-                                                                case '5':
-                                                                case '6':
-                                                                case '7':
-                                                                case '8':
-                                                                case '9':
-                                                                    break;
-                                                                default:
-                                                                    i14 = i13;
-                                                                    break;
-                                                            }
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                }
-                                if (!z12) {
-                                    i14 = -i14;
-                                }
-                                int i17 = i14 + i11;
-                                if (!z10) {
-                                    i12 = -i12;
-                                }
-                                return buildFloat(i12, i17);
-                            }
-                        }
-                    case '1':
-                    case '2':
-                    case '3':
-                    case '4':
-                    case '5':
-                    case '6':
-                    case '7':
-                    case '8':
-                    case '9':
-                        i10 = 0;
-                        i11 = 0;
-                        i12 = 0;
-                        while (true) {
-                            if (i10 < 9) {
-                                i10++;
-                                i12 = (i12 * 10) + (this.current - '0');
-                            } else {
-                                i11++;
-                            }
-                            c10 = read();
-                            this.current = c10;
-                            switch (c10) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                            }
-                            z11 = true;
-                            if (this.current == '.') {
-                                c16 = read();
-                                this.current = c16;
-                                switch (c16) {
-                                    case '0':
-                                        if (i10 == 0) {
-                                            while (true) {
-                                                c18 = read();
-                                                this.current = c18;
-                                                i11--;
-                                                switch (c18) {
-                                                    case '0':
-                                                        break;
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        if (!z11) {
-                                                            return 0.0f;
-                                                        }
-                                                        break;
-                                                }
-                                            }
-                                        }
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        while (true) {
-                                            if (i10 < 9) {
-                                                i10++;
-                                                i11--;
-                                                i12 = (this.current - '0') + (i12 * 10);
-                                            }
-                                            c17 = read();
-                                            this.current = c17;
-                                            switch (c17) {
-                                                case '0':
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                    default:
-                                        if (!z11) {
-                                            reportUnexpectedCharacterError(c16);
-                                            return 0.0f;
-                                        }
-                                        break;
-                                }
-                            }
-                            c11 = this.current;
-                            if (c11 != 'E') {
-                                c12 = read();
-                                this.current = c12;
-                                if (c12 == '+') {
-                                    c13 = read();
-                                    this.current = c13;
-                                    switch (c13) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c13);
-                                            return 0.0f;
-                                    }
-                                } else if (c12 != '-') {
-                                    switch (c12) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c12);
-                                            return 0.0f;
-                                    }
-                                } else {
-                                    z12 = false;
-                                    c13 = read();
-                                    this.current = c13;
-                                    switch (c13) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c13);
-                                            return 0.0f;
-                                    }
-                                }
-                                switch (this.current) {
-                                    case '0':
-                                        while (true) {
-                                            c15 = read();
-                                            this.current = c15;
-                                            switch (c15) {
-                                                case '0':
-                                                    break;
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    i13 = 0;
-                                                    while (true) {
-                                                        if (i14 < 3) {
-                                                            i14++;
-                                                            i13 = (this.current - '0') + (i13 * 10);
-                                                        }
-                                                        c14 = read();
-                                                        this.current = c14;
-                                                        switch (c14) {
-                                                            case '0':
-                                                            case '1':
-                                                            case '2':
-                                                            case '3':
-                                                            case '4':
-                                                            case '5':
-                                                            case '6':
-                                                            case '7':
-                                                            case '8':
-                                                            case '9':
-                                                                break;
-                                                            default:
-                                                                i14 = i13;
-                                                                break;
-                                                        }
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        i13 = 0;
-                                        while (true) {
-                                            if (i14 < 3) {
-                                                i14++;
-                                                i13 = (this.current - '0') + (i13 * 10);
-                                            }
-                                            c14 = read();
-                                            this.current = c14;
-                                            switch (c14) {
-                                                case '0':
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                                default:
-                                                    i14 = i13;
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                }
-                            } else {
-                                c12 = read();
-                                this.current = c12;
-                                if (c12 == '+') {
-                                    c13 = read();
-                                    this.current = c13;
-                                    switch (c13) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c13);
-                                            return 0.0f;
-                                    }
-                                } else if (c12 != '-') {
-                                    switch (c12) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c12);
-                                            return 0.0f;
-                                    }
-                                } else {
-                                    z12 = false;
-                                    c13 = read();
-                                    this.current = c13;
-                                    switch (c13) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            reportUnexpectedCharacterError(c13);
-                                            return 0.0f;
-                                    }
-                                }
-                                switch (this.current) {
-                                    case '0':
-                                        while (true) {
-                                            c15 = read();
-                                            this.current = c15;
-                                            switch (c15) {
-                                                case '0':
-                                                    break;
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    i13 = 0;
-                                                    while (true) {
-                                                        if (i14 < 3) {
-                                                            i14++;
-                                                            i13 = (this.current - '0') + (i13 * 10);
-                                                        }
-                                                        c14 = read();
-                                                        this.current = c14;
-                                                        switch (c14) {
-                                                            case '0':
-                                                            case '1':
-                                                            case '2':
-                                                            case '3':
-                                                            case '4':
-                                                            case '5':
-                                                            case '6':
-                                                            case '7':
-                                                            case '8':
-                                                            case '9':
-                                                                break;
-                                                            default:
-                                                                i14 = i13;
-                                                                break;
-                                                        }
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        i13 = 0;
-                                        while (true) {
-                                            if (i14 < 3) {
-                                                i14++;
-                                                i13 = (this.current - '0') + (i13 * 10);
-                                            }
-                                            c14 = read();
-                                            this.current = c14;
-                                            switch (c14) {
-                                                case '0':
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                                default:
-                                                    i14 = i13;
-                                                    break;
-                                            }
-                                        }
-                                        break;
-                                }
-                            }
-                            if (!z12) {
-                                i14 = -i14;
-                            }
-                            int i18 = i14 + i11;
-                            if (!z10) {
-                                i12 = -i12;
-                            }
-                            return buildFloat(i12, i18);
-                        }
-                }
-            }
-            z10 = true;
-            this.current = read();
-            switch (this.current) {
-                case '.':
-                    i10 = 0;
-                    i11 = 0;
-                    i12 = 0;
-                    z11 = false;
-                    if (this.current == '.') {
-                        c16 = read();
-                        this.current = c16;
-                        switch (c16) {
-                            case '0':
-                                if (i10 == 0) {
-                                    while (true) {
-                                        c18 = read();
-                                        this.current = c18;
-                                        i11--;
-                                        switch (c18) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                if (!z11) {
-                                                    return 0.0f;
-                                                }
-                                                break;
-                                        }
-                                    }
-                                }
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                                while (true) {
-                                    if (i10 < 9) {
-                                        i10++;
-                                        i11--;
-                                        i12 = (this.current - '0') + (i12 * 10);
-                                    }
-                                    c17 = read();
-                                    this.current = c17;
-                                    switch (c17) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                    }
-                                }
-                                break;
-                            default:
-                                if (!z11) {
-                                    reportUnexpectedCharacterError(c16);
-                                    return 0.0f;
-                                }
-                                break;
-                        }
-                    }
-                    c11 = this.current;
-                    if (c11 != 'E') {
-                        c12 = read();
-                        this.current = c12;
-                        if (c12 == '+') {
-                            c13 = read();
-                            this.current = c13;
-                            switch (c13) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c13);
-                                    return 0.0f;
-                            }
-                        } else if (c12 != '-') {
-                            switch (c12) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c12);
-                                    return 0.0f;
-                            }
-                        } else {
-                            z12 = false;
-                            c13 = read();
-                            this.current = c13;
-                            switch (c13) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c13);
-                                    return 0.0f;
-                            }
-                        }
-                        switch (this.current) {
-                            case '0':
-                                while (true) {
-                                    c15 = read();
-                                    this.current = c15;
-                                    switch (c15) {
-                                        case '0':
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                }
-                                break;
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                                i13 = 0;
-                                while (true) {
-                                    if (i14 < 3) {
-                                        i14++;
-                                        i13 = (this.current - '0') + (i13 * 10);
-                                    }
-                                    c14 = read();
-                                    this.current = c14;
-                                    switch (c14) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            i14 = i13;
-                                            break;
-                                    }
-                                }
-                                break;
-                        }
-                    } else {
-                        c12 = read();
-                        this.current = c12;
-                        if (c12 == '+') {
-                            c13 = read();
-                            this.current = c13;
-                            switch (c13) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c13);
-                                    return 0.0f;
-                            }
-                        } else if (c12 != '-') {
-                            switch (c12) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c12);
-                                    return 0.0f;
-                            }
-                        } else {
-                            z12 = false;
-                            c13 = read();
-                            this.current = c13;
-                            switch (c13) {
-                                case '0':
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    break;
-                                default:
-                                    reportUnexpectedCharacterError(c13);
-                                    return 0.0f;
-                            }
-                        }
-                        switch (this.current) {
-                            case '0':
-                                while (true) {
-                                    c15 = read();
-                                    this.current = c15;
-                                    switch (c15) {
-                                        case '0':
-                                            break;
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            i13 = 0;
-                                            while (true) {
-                                                if (i14 < 3) {
-                                                    i14++;
-                                                    i13 = (this.current - '0') + (i13 * 10);
-                                                }
-                                                c14 = read();
-                                                this.current = c14;
-                                                switch (c14) {
-                                                    case '0':
-                                                    case '1':
-                                                    case '2':
-                                                    case '3':
-                                                    case '4':
-                                                    case '5':
-                                                    case '6':
-                                                    case '7':
-                                                    case '8':
-                                                    case '9':
-                                                        break;
-                                                    default:
-                                                        i14 = i13;
-                                                        break;
-                                                }
-                                            }
-                                            break;
-                                    }
-                                }
-                                break;
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                                i13 = 0;
-                                while (true) {
-                                    if (i14 < 3) {
-                                        i14++;
-                                        i13 = (this.current - '0') + (i13 * 10);
-                                    }
-                                    c14 = read();
-                                    this.current = c14;
-                                    switch (c14) {
-                                        case '0':
-                                        case '1':
-                                        case '2':
-                                        case '3':
-                                        case '4':
-                                        case '5':
-                                        case '6':
-                                        case '7':
-                                        case '8':
-                                        case '9':
-                                            break;
-                                        default:
-                                            i14 = i13;
-                                            break;
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                    if (!z12) {
-                        i14 = -i14;
-                    }
-                    int i19 = i14 + i11;
-                    if (!z10) {
-                        i12 = -i12;
-                    }
-                    return buildFloat(i12, i19);
-                case '/':
-                default:
-                    return Float.NaN;
-                case '0':
-                    while (true) {
-                        c19 = read();
-                        this.current = c19;
-                        if (c19 != '.') {
-                        }
-                        i10 = 0;
-                        i11 = 0;
-                        i12 = 0;
-                        z11 = true;
-                        if (this.current == '.') {
-                            c16 = read();
-                            this.current = c16;
-                            switch (c16) {
-                                case '0':
-                                    if (i10 == 0) {
-                                        while (true) {
-                                            c18 = read();
-                                            this.current = c18;
-                                            i11--;
-                                            switch (c18) {
-                                                case '0':
-                                                    break;
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                                default:
-                                                    if (!z11) {
-                                                        return 0.0f;
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                    }
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    while (true) {
-                                        if (i10 < 9) {
-                                            i10++;
-                                            i11--;
-                                            i12 = (this.current - '0') + (i12 * 10);
-                                        }
-                                        c17 = read();
-                                        this.current = c17;
-                                        switch (c17) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                default:
-                                    if (!z11) {
-                                        reportUnexpectedCharacterError(c16);
-                                        return 0.0f;
-                                    }
-                                    break;
-                            }
-                        }
-                        c11 = this.current;
-                        if (c11 != 'E') {
-                            c12 = read();
-                            this.current = c12;
-                            if (c12 == '+') {
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            } else if (c12 != '-') {
-                                switch (c12) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c12);
-                                        return 0.0f;
-                                }
-                            } else {
-                                z12 = false;
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            }
-                            switch (this.current) {
-                                case '0':
-                                    while (true) {
-                                        c15 = read();
-                                        this.current = c15;
-                                        switch (c15) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                i13 = 0;
-                                                while (true) {
-                                                    if (i14 < 3) {
-                                                        i14++;
-                                                        i13 = (this.current - '0') + (i13 * 10);
-                                                    }
-                                                    c14 = read();
-                                                    this.current = c14;
-                                                    switch (c14) {
-                                                        case '0':
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            i14 = i13;
-                                                            break;
-                                                    }
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    i13 = 0;
-                                    while (true) {
-                                        if (i14 < 3) {
-                                            i14++;
-                                            i13 = (this.current - '0') + (i13 * 10);
-                                        }
-                                        c14 = read();
-                                        this.current = c14;
-                                        switch (c14) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                i14 = i13;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                        } else {
-                            c12 = read();
-                            this.current = c12;
-                            if (c12 == '+') {
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            } else if (c12 != '-') {
-                                switch (c12) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c12);
-                                        return 0.0f;
-                                }
-                            } else {
-                                z12 = false;
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            }
-                            switch (this.current) {
-                                case '0':
-                                    while (true) {
-                                        c15 = read();
-                                        this.current = c15;
-                                        switch (c15) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                i13 = 0;
-                                                while (true) {
-                                                    if (i14 < 3) {
-                                                        i14++;
-                                                        i13 = (this.current - '0') + (i13 * 10);
-                                                    }
-                                                    c14 = read();
-                                                    this.current = c14;
-                                                    switch (c14) {
-                                                        case '0':
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            i14 = i13;
-                                                            break;
-                                                    }
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    i13 = 0;
-                                    while (true) {
-                                        if (i14 < 3) {
-                                            i14++;
-                                            i13 = (this.current - '0') + (i13 * 10);
-                                        }
-                                        c14 = read();
-                                        this.current = c14;
-                                        switch (c14) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                i14 = i13;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                        if (!z12) {
-                            i14 = -i14;
-                        }
-                        int i110 = i14 + i11;
-                        if (!z10) {
-                            i12 = -i12;
-                        }
-                        return buildFloat(i12, i110);
-                    }
-                    break;
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    i10 = 0;
-                    i11 = 0;
-                    i12 = 0;
-                    while (true) {
-                        if (i10 < 9) {
-                            i10++;
-                            i12 = (i12 * 10) + (this.current - '0');
-                        } else {
-                            i11++;
-                        }
-                        c10 = read();
-                        this.current = c10;
-                        switch (c10) {
-                            case '0':
-                            case '1':
-                            case '2':
-                            case '3':
-                            case '4':
-                            case '5':
-                            case '6':
-                            case '7':
-                            case '8':
-                            case '9':
-                                break;
-                        }
-                        z11 = true;
-                        if (this.current == '.') {
-                            c16 = read();
-                            this.current = c16;
-                            switch (c16) {
-                                case '0':
-                                    if (i10 == 0) {
-                                        while (true) {
-                                            c18 = read();
-                                            this.current = c18;
-                                            i11--;
-                                            switch (c18) {
-                                                case '0':
-                                                    break;
-                                                case '1':
-                                                case '2':
-                                                case '3':
-                                                case '4':
-                                                case '5':
-                                                case '6':
-                                                case '7':
-                                                case '8':
-                                                case '9':
-                                                    break;
-                                                default:
-                                                    if (!z11) {
-                                                        return 0.0f;
-                                                    }
-                                                    break;
-                                            }
-                                        }
-                                    }
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    while (true) {
-                                        if (i10 < 9) {
-                                            i10++;
-                                            i11--;
-                                            i12 = (this.current - '0') + (i12 * 10);
-                                        }
-                                        c17 = read();
-                                        this.current = c17;
-                                        switch (c17) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                default:
-                                    if (!z11) {
-                                        reportUnexpectedCharacterError(c16);
-                                        return 0.0f;
-                                    }
-                                    break;
-                            }
-                        }
-                        c11 = this.current;
-                        if (c11 != 'E') {
-                            c12 = read();
-                            this.current = c12;
-                            if (c12 == '+') {
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            } else if (c12 != '-') {
-                                switch (c12) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c12);
-                                        return 0.0f;
-                                }
-                            } else {
-                                z12 = false;
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            }
-                            switch (this.current) {
-                                case '0':
-                                    while (true) {
-                                        c15 = read();
-                                        this.current = c15;
-                                        switch (c15) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                i13 = 0;
-                                                while (true) {
-                                                    if (i14 < 3) {
-                                                        i14++;
-                                                        i13 = (this.current - '0') + (i13 * 10);
-                                                    }
-                                                    c14 = read();
-                                                    this.current = c14;
-                                                    switch (c14) {
-                                                        case '0':
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            i14 = i13;
-                                                            break;
-                                                    }
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    i13 = 0;
-                                    while (true) {
-                                        if (i14 < 3) {
-                                            i14++;
-                                            i13 = (this.current - '0') + (i13 * 10);
-                                        }
-                                        c14 = read();
-                                        this.current = c14;
-                                        switch (c14) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                i14 = i13;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                        } else {
-                            c12 = read();
-                            this.current = c12;
-                            if (c12 == '+') {
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            } else if (c12 != '-') {
-                                switch (c12) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c12);
-                                        return 0.0f;
-                                }
-                            } else {
-                                z12 = false;
-                                c13 = read();
-                                this.current = c13;
-                                switch (c13) {
-                                    case '0':
-                                    case '1':
-                                    case '2':
-                                    case '3':
-                                    case '4':
-                                    case '5':
-                                    case '6':
-                                    case '7':
-                                    case '8':
-                                    case '9':
-                                        break;
-                                    default:
-                                        reportUnexpectedCharacterError(c13);
-                                        return 0.0f;
-                                }
-                            }
-                            switch (this.current) {
-                                case '0':
-                                    while (true) {
-                                        c15 = read();
-                                        this.current = c15;
-                                        switch (c15) {
-                                            case '0':
-                                                break;
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                i13 = 0;
-                                                while (true) {
-                                                    if (i14 < 3) {
-                                                        i14++;
-                                                        i13 = (this.current - '0') + (i13 * 10);
-                                                    }
-                                                    c14 = read();
-                                                    this.current = c14;
-                                                    switch (c14) {
-                                                        case '0':
-                                                        case '1':
-                                                        case '2':
-                                                        case '3':
-                                                        case '4':
-                                                        case '5':
-                                                        case '6':
-                                                        case '7':
-                                                        case '8':
-                                                        case '9':
-                                                            break;
-                                                        default:
-                                                            i14 = i13;
-                                                            break;
-                                                    }
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    break;
-                                case '1':
-                                case '2':
-                                case '3':
-                                case '4':
-                                case '5':
-                                case '6':
-                                case '7':
-                                case '8':
-                                case '9':
-                                    i13 = 0;
-                                    while (true) {
-                                        if (i14 < 3) {
-                                            i14++;
-                                            i13 = (this.current - '0') + (i13 * 10);
-                                        }
-                                        c14 = read();
-                                        this.current = c14;
-                                        switch (c14) {
-                                            case '0':
-                                            case '1':
-                                            case '2':
-                                            case '3':
-                                            case '4':
-                                            case '5':
-                                            case '6':
-                                            case '7':
-                                            case '8':
-                                            case '9':
-                                                break;
-                                            default:
-                                                i14 = i13;
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                        if (!z12) {
-                            i14 = -i14;
-                        }
-                        int i111 = i14 + i11;
-                        if (!z10) {
-                            i12 = -i12;
-                        }
-                        return buildFloat(i12, i111);
-                    }
-            }
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SvgHelper.ParserHelper.parseFloat():float");
         }
 
         public void skipNumberSeparator() {
             while (true) {
-                int i10 = this.pos;
-                if (i10 >= this.f19642n) {
-                    return;
-                }
-                char cCharAt = this.f19643s.charAt(i10);
-                if (cCharAt != '\t' && cCharAt != '\n' && cCharAt != ' ' && cCharAt != ',') {
-                    return;
+                int i9 = this.pos;
+                if (i9 < this.f19669n) {
+                    char charAt = this.f19670s.charAt(i9);
+                    if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
+                        advance();
+                    } else {
+                        return;
+                    }
                 } else {
-                    advance();
+                    return;
                 }
             }
         }
 
         public void skipWhitespace() {
             while (true) {
-                int i10 = this.pos;
-                if (i10 >= this.f19642n || !Character.isWhitespace(this.f19643s.charAt(i10))) {
-                    return;
-                } else {
+                int i9 = this.pos;
+                if (i9 < this.f19669n && Character.isWhitespace(this.f19670s.charAt(i9))) {
                     advance();
+                } else {
+                    return;
                 }
             }
         }
@@ -2792,17 +194,20 @@ public class SvgHelper {
 
         public String getAttr(String str) {
             ArrayList<StyleSet> arrayList = this.styles;
-            String style = null;
+            String str2 = null;
             if (arrayList != null && !arrayList.isEmpty()) {
                 int size = this.styles.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    style = this.styles.get(i10).getStyle(str);
-                    if (style != null) {
+                for (int i9 = 0; i9 < size; i9++) {
+                    str2 = this.styles.get(i9).getStyle(str);
+                    if (str2 != null) {
                         break;
                     }
                 }
             }
-            return style == null ? SvgHelper.getStringAttr(str, this.atts) : style;
+            if (str2 == null) {
+                return SvgHelper.getStringAttr(str, this.atts);
+            }
+            return str2;
         }
 
         public Float getFloat(String str, float f10) {
@@ -2826,25 +231,26 @@ public class SvgHelper {
             return getAttr(str);
         }
 
-        private Properties(Attributes attributes, HashMap<String, StyleSet> map) {
+        private Properties(Attributes attributes, HashMap<String, StyleSet> hashMap) {
             this.atts = attributes;
             String stringAttr = SvgHelper.getStringAttr("style", attributes);
-            if (stringAttr != null) {
-                ArrayList<StyleSet> arrayList = new ArrayList<>();
-                this.styles = arrayList;
-                arrayList.add(new StyleSet(stringAttr));
+            if (stringAttr == null) {
+                String stringAttr2 = SvgHelper.getStringAttr("class", attributes);
+                if (stringAttr2 != null) {
+                    this.styles = new ArrayList<>();
+                    for (String str : stringAttr2.split(" ")) {
+                        StyleSet styleSet = hashMap.get(str.trim());
+                        if (styleSet != null) {
+                            this.styles.add(styleSet);
+                        }
+                    }
+                    return;
+                }
                 return;
             }
-            String stringAttr2 = SvgHelper.getStringAttr("class", attributes);
-            if (stringAttr2 != null) {
-                this.styles = new ArrayList<>();
-                for (String str : stringAttr2.split(" ")) {
-                    StyleSet styleSet = map.get(str.trim());
-                    if (styleSet != null) {
-                        this.styles.add(styleSet);
-                    }
-                }
-            }
+            ArrayList<StyleSet> arrayList = new ArrayList<>();
+            this.styles = arrayList;
+            arrayList.add(new StyleSet(stringAttr));
         }
 
         public Float getFloat(String str) {
@@ -2883,17 +289,17 @@ public class SvgHelper {
         }
 
         private StyleSet(StyleSet styleSet) {
-            HashMap<String, String> map = new HashMap<>();
-            this.styleMap = map;
-            map.putAll(styleSet.styleMap);
+            HashMap<String, String> hashMap = new HashMap<>();
+            this.styleMap = hashMap;
+            hashMap.putAll(styleSet.styleMap);
         }
 
         private StyleSet(String str) {
             this.styleMap = new HashMap<>();
             for (String str2 : str.split(";")) {
-                String[] strArrSplit = str2.split(":");
-                if (strArrSplit.length == 2) {
-                    this.styleMap.put(strArrSplit[0].trim(), strArrSplit[1].trim());
+                String[] split = str2.split(":");
+                if (split.length == 2) {
+                    this.styleMap.put(split[0].trim(), split[1].trim());
                 }
             }
         }
@@ -2908,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.c6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.b6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -2937,9 +343,9 @@ public class SvgHelper {
             lite = LiteMode.isEnabled(32);
         }
 
-        public void copyCommandFromPosition(int i10) {
+        public void copyCommandFromPosition(int i9) {
             ArrayList<Object> arrayList = this.commands;
-            arrayList.add(arrayList.get(i10));
+            arrayList.add(arrayList.get(i9));
         }
 
         @Override
@@ -2947,47 +353,53 @@ public class SvgHelper {
             drawInternal(canvas, false, 0, System.currentTimeMillis(), getBounds().left, getBounds().top, getBounds().width(), getBounds().height());
         }
 
-        public void drawInternal(Canvas canvas, boolean z10, int i10, long j10, float f10, float f11, float f12, float f13) {
-            long j11;
+        public void drawInternal(Canvas canvas, boolean z10, int i9, long j10, float f10, float f11, float f12, float f13) {
+            int i10;
             int i11;
             int i12 = this.currentColorKey;
             if (i12 >= 0) {
                 setupGradient(i12, this.currentResourcesProvider, this.colorAlpha, z10);
             }
             float scale = getScale((int) f12, (int) f13);
-            if (this.placeholderGradient[i10] != null) {
+            if (this.placeholderGradient[i9] != null) {
                 float f14 = gradientWidth;
                 if (f14 > 0.0f && lite) {
+                    long j11 = 0;
+                    long j12 = 64;
                     if (z10) {
-                        long j12 = j10 - lastUpdateTime;
-                        j11 = j12 <= 64 ? j12 : 64L;
-                        if (j11 > 0) {
+                        long j13 = j10 - lastUpdateTime;
+                        if (j13 <= 64) {
+                            j12 = j13;
+                        }
+                        if (j12 > 0) {
                             lastUpdateTime = j10;
-                            totalTranslation = a9.p.d(j11, f14, 1800.0f, totalTranslation);
+                            totalTranslation = aa.d.d((float) j12, f14, 1800.0f, totalTranslation);
                             while (true) {
                                 float f15 = totalTranslation;
                                 float f16 = gradientWidth;
                                 if (f15 < f16 * 2.0f) {
                                     break;
-                                } else {
-                                    totalTranslation = f15 - (f16 * 2.0f);
                                 }
+                                totalTranslation = f15 - (f16 * 2.0f);
                             }
                         }
                     } else if (shiftRunnable == null || shiftDrawable.get() == this) {
-                        long j13 = j10 - lastUpdateTime;
-                        j11 = j13 <= 64 ? j13 : 64L;
-                        long j14 = j11 >= 0 ? j11 : 0L;
+                        long j14 = j10 - lastUpdateTime;
+                        if (j14 <= 64) {
+                            j12 = j14;
+                        }
+                        if (j12 >= 0) {
+                            j11 = j12;
+                        }
                         lastUpdateTime = j10;
-                        totalTranslation = a9.p.d(j14, gradientWidth, 1800.0f, totalTranslation);
+                        totalTranslation = aa.d.d((float) j11, gradientWidth, 1800.0f, totalTranslation);
                         while (true) {
                             float f17 = totalTranslation;
                             float f18 = gradientWidth;
                             if (f17 < f18 / 2.0f) {
                                 break;
-                            } else {
-                                totalTranslation = f17 - f18;
                             }
+                            totalTranslation = f17 - f18;
                         }
                         shiftDrawable = new WeakReference<>(this);
                         Runnable runnable = shiftRunnable;
@@ -2999,25 +411,29 @@ public class SvgHelper {
                         AndroidUtilities.runOnUIThread(w1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
-                    if (imageReceiver == null || z10) {
-                        i11 = 0;
-                    } else {
+                    if (imageReceiver != null && !z10) {
                         int[] iArr = parentPosition;
                         imageReceiver.getParentPosition(iArr);
-                        i11 = iArr[0];
+                        i10 = iArr[0];
+                    } else {
+                        i10 = 0;
                     }
-                    int i13 = z10 ? i10 + 1 : 0;
-                    Matrix matrix = this.placeholderMatrix[i13];
+                    if (z10) {
+                        i11 = i9 + 1;
+                    } else {
+                        i11 = 0;
+                    }
+                    Matrix matrix = this.placeholderMatrix[i11];
                     if (matrix != null) {
                         matrix.reset();
                         if (z10) {
-                            this.placeholderMatrix[i13].postTranslate(((-i11) + totalTranslation) - f10, 0.0f);
+                            this.placeholderMatrix[i11].postTranslate(((-i10) + totalTranslation) - f10, 0.0f);
                         } else {
-                            this.placeholderMatrix[i13].postTranslate(((-i11) + totalTranslation) - f10, 0.0f);
+                            this.placeholderMatrix[i11].postTranslate(((-i10) + totalTranslation) - f10, 0.0f);
                         }
                         float f19 = 1.0f / scale;
-                        this.placeholderMatrix[i13].postScale(f19, f19);
-                        this.placeholderGradient[i13].setLocalMatrix(this.placeholderMatrix[i13]);
+                        this.placeholderMatrix[i11].postScale(f19, f19);
+                        this.placeholderGradient[i11].setLocalMatrix(this.placeholderMatrix[i11]);
                         ImageReceiver imageReceiver2 = this.parentImageReceiver;
                         if (imageReceiver2 != null && !z10) {
                             imageReceiver2.invalidate();
@@ -3028,19 +444,19 @@ public class SvgHelper {
             canvas.save();
             canvas.translate(f10, f11);
             if (!this.aspectFill || this.aspectCenter) {
-                canvas.translate(com.google.android.recaptcha.internal.a.w(this.width, scale, f12, 2.0f), com.google.android.recaptcha.internal.a.w(this.height, scale, f13, 2.0f));
+                canvas.translate(e2.c.d(this.width, scale, f12, 2.0f), e2.c.d(this.height, scale, f13, 2.0f));
             }
             canvas.scale(scale, scale);
             int size = this.commands.size();
-            for (int i14 = 0; i14 < size; i14++) {
-                Object obj = this.commands.get(i14);
+            for (int i13 = 0; i13 < size; i13++) {
+                Object obj = this.commands.get(i13);
                 if (obj instanceof Matrix) {
                     canvas.save();
                     canvas.concat((Matrix) obj);
                 } else if (obj == null) {
                     canvas.restore();
                 } else {
-                    Paint paint = this.overridePaintByPosition.get(i14);
+                    Paint paint = this.overridePaintByPosition.get(i13);
                     if (paint == null) {
                         paint = this.overridePaint;
                     }
@@ -3059,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f19638x1, line.f19640y1, line.f19639x2, line.f19641y2, paint);
+                        canvas.drawLine(line.f19665x1, line.f19667y1, line.f19666x2, line.f19668y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f19636x1, circle.f19637y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f19663x1, circle.f19664y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -3092,20 +508,23 @@ public class SvgHelper {
             return -2;
         }
 
-        public float getScale(int i10, int i11) {
-            float f10 = i10 / this.width;
-            float f11 = i11 / this.height;
-            return this.aspectFill ? Math.max(f10, f11) : Math.min(f10, f11);
+        public float getScale(int i9, int i10) {
+            float f10 = i9 / this.width;
+            float f11 = i10 / this.height;
+            if (this.aspectFill) {
+                return Math.max(f10, f11);
+            }
+            return Math.min(f10, f11);
         }
 
-        public void overrideWidthAndHeight(int i10, int i11) {
-            this.width = i10;
-            this.height = i11;
+        public void overrideWidthAndHeight(int i9, int i10) {
+            this.width = i9;
+            this.height = i10;
         }
 
         @Override
-        public void setAlpha(int i10) {
-            this.crossfadeAlpha = i10 / 255.0f;
+        public void setAlpha(int i9) {
+            this.crossfadeAlpha = i9 / 255.0f;
         }
 
         public void setAspectCenter(boolean z10) {
@@ -3116,12 +535,12 @@ public class SvgHelper {
             this.aspectFill = z10;
         }
 
-        public void setColor(int i10) {
-            this.overrideColor = Integer.valueOf(i10);
+        public void setColor(int i9) {
+            this.overrideColor = Integer.valueOf(i9);
         }
 
-        public void setColorKey(int i10) {
-            this.currentColorKey = i10;
+        public void setColorKey(int i9) {
+            this.currentColorKey = i9;
         }
 
         public void setPaint(Paint paint) {
@@ -3132,15 +551,15 @@ public class SvgHelper {
             this.parentImageReceiver = imageReceiver;
         }
 
-        public void setupGradient(int i10, float f10, boolean z10) {
-            setupGradient(i10, null, f10, z10);
+        public void setupGradient(int i9, float f10, boolean z10) {
+            setupGradient(i9, null, f10, z10);
         }
 
         public SvgDrawable clone() {
             SvgDrawable svgDrawable = new SvgDrawable();
-            for (int i10 = 0; i10 < this.commands.size(); i10++) {
-                svgDrawable.commands.add(this.commands.get(i10));
-                Paint paint = this.paints.get(this.commands.get(i10));
+            for (int i9 = 0; i9 < this.commands.size(); i9++) {
+                svgDrawable.commands.add(this.commands.get(i9));
+                Paint paint = this.paints.get(this.commands.get(i9));
                 if (paint != null) {
                     Paint paint2 = new Paint();
                     paint2.setColor(paint.getColor());
@@ -3148,7 +567,7 @@ public class SvgHelper {
                     paint2.setStrokeJoin(paint.getStrokeJoin());
                     paint2.setStrokeWidth(paint.getStrokeWidth());
                     paint2.setStyle(paint.getStyle());
-                    svgDrawable.paints.put(this.commands.get(i10), paint2);
+                    svgDrawable.paints.put(this.commands.get(i9), paint2);
                 }
             }
             svgDrawable.width = this.width;
@@ -3156,59 +575,59 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-            this.currentColorKey = i10;
-            this.currentResourcesProvider = c6Var;
+        public void setColorKey(int i9, org.telegram.ui.ActionBar.b6 b6Var) {
+            this.currentColorKey = i9;
+            this.currentResourcesProvider = b6Var;
         }
 
-        public void setPaint(Paint paint, int i10) {
-            this.overridePaintByPosition.put(i10, paint);
+        public void setPaint(Paint paint, int i9) {
+            this.overridePaintByPosition.put(i9, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.c6 c6Var, float f10, boolean z10) {
-            Shader bitmapShader;
+        public void setupGradient(int i9, org.telegram.ui.ActionBar.b6 b6Var, float f10, boolean z10) {
+            BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int iV0 = num == null ? org.telegram.ui.ActionBar.g6.v0(i10, c6Var) : num.intValue();
-            this.currentResourcesProvider = c6Var;
+            int v02 = num == null ? org.telegram.ui.ActionBar.f6.v0(i9, b6Var) : num.intValue();
+            this.currentResourcesProvider = b6Var;
             int[] iArr = this.currentColor;
-            if (iArr[z10 ? 1 : 0] != iV0) {
+            if (iArr[z10 ? 1 : 0] != v02) {
                 this.colorAlpha = f10;
-                this.currentColorKey = i10;
-                iArr[z10 ? 1 : 0] = iV0;
+                this.currentColorKey = i9;
+                iArr[z10 ? 1 : 0] = v02;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
-                    int iK = i0.b.k(iV0, 70);
+                    int k10 = i0.a.k(v02, 70);
                     if (z10) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
                         }
                         this.backgroundPaint.setShader(null);
-                        this.backgroundPaint.setColor(iK);
+                        this.backgroundPaint.setColor(k10);
                         return;
                     }
                     for (Paint paint : this.paints.values()) {
                         paint.setShader(null);
-                        paint.setColor(iK);
+                        paint.setColor(k10);
                     }
                     return;
                 }
-                float fDp = AndroidUtilities.dp(180.0f) / gradientWidth;
-                int iArgb = Color.argb((int) ((Color.alpha(iV0) / 2) * this.colorAlpha), Color.red(iV0), Color.green(iV0), Color.blue(iV0));
-                float f11 = (1.0f - fDp) / 2.0f;
+                float dp = AndroidUtilities.dp(180.0f) / gradientWidth;
+                int argb = Color.argb((int) ((Color.alpha(v02) / 2) * this.colorAlpha), Color.red(v02), Color.green(v02), Color.blue(v02));
+                float f11 = (1.0f - dp) / 2.0f;
                 LinearGradient[] linearGradientArr = this.placeholderGradient;
-                float f12 = fDp / 2.0f;
+                float f12 = dp / 2.0f;
                 Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-                linearGradientArr[z10 ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, iArgb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
-                int i11 = Build.VERSION.SDK_INT;
-                if (i11 >= 28) {
-                    bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{iArgb, iArgb}, (float[]) null, tileMode);
+                linearGradientArr[z10 ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f11 - f12, f11, f12 + f11, 1.0f}, tileMode);
+                int i10 = Build.VERSION.SDK_INT;
+                if (i10 >= 28) {
+                    bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{argb, argb}, (float[]) null, tileMode);
                 } else {
                     Bitmap[] bitmapArr = this.backgroundBitmap;
                     if (bitmapArr[z10 ? 1 : 0] == null) {
                         bitmapArr[z10 ? 1 : 0] = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
                         this.backgroundCanvas[z10 ? 1 : 0] = new Canvas(this.backgroundBitmap[z10 ? 1 : 0]);
                     }
-                    this.backgroundCanvas[z10 ? 1 : 0].drawColor(iArgb);
+                    this.backgroundCanvas[z10 ? 1 : 0].drawColor(argb);
                     bitmapShader = new BitmapShader(this.backgroundBitmap[z10 ? 1 : 0], tileMode, tileMode);
                 }
                 this.placeholderMatrix[z10 ? 1 : 0] = new Matrix();
@@ -3217,7 +636,7 @@ public class SvgHelper {
                     if (this.backgroundPaint == null) {
                         this.backgroundPaint = new Paint(1);
                     }
-                    if (i11 <= 22) {
+                    if (i10 <= 22) {
                         this.backgroundPaint.setShader(bitmapShader);
                         return;
                     } else {
@@ -3249,50 +668,50 @@ public class SvgHelper {
 
         SvgDrawable getDrawable();
 
-        List<mf.c> getGiftPatternPositions();
+        List<lf.c> getGiftPatternPositions();
     }
 
     static {
-        int i10 = 0;
+        int i9 = 0;
         while (true) {
             double[] dArr = pow10;
-            if (i10 >= dArr.length) {
+            if (i9 < dArr.length) {
+                dArr[i9] = Math.pow(10.0d, i9);
+                i9++;
+            } else {
                 SPLIT_BOUNDARY = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
                 return;
-            } else {
-                dArr[i10] = Math.pow(10.0d, i10);
-                i10++;
             }
         }
     }
 
-    private static float[] arcToBeziers(double d, double d10) {
-        int iCeil = (int) Math.ceil((Math.abs(d10) * 2.0d) / 3.141592653589793d);
-        double d11 = d10 / ((double) iCeil);
-        double d12 = d11 / 2.0d;
-        double dSin = (Math.sin(d12) * 1.3333333333333333d) / (Math.cos(d12) + 1.0d);
-        float[] fArr = new float[iCeil * 6];
+    private static float[] arcToBeziers(double d, double d9) {
+        int ceil = (int) Math.ceil((Math.abs(d9) * 2.0d) / 3.141592653589793d);
+        double d10 = d9 / ceil;
+        double d11 = d10 / 2.0d;
+        double sin = (Math.sin(d11) * 1.3333333333333333d) / (Math.cos(d11) + 1.0d);
+        float[] fArr = new float[ceil * 6];
+        int i9 = 0;
         int i10 = 0;
-        int i11 = 0;
-        while (i10 < iCeil) {
-            double d13 = (((double) i10) * d11) + d;
-            double dCos = Math.cos(d13);
-            double dSin2 = Math.sin(d13);
+        while (i9 < ceil) {
+            double d12 = (i9 * d10) + d;
+            double cos = Math.cos(d12);
+            double sin2 = Math.sin(d12);
             float[] fArr2 = fArr;
-            fArr2[i11] = (float) (dCos - (dSin * dSin2));
-            fArr2[i11 + 1] = (float) ((dCos * dSin) + dSin2);
-            double d14 = d13 + d11;
-            double dCos2 = Math.cos(d14);
-            double dSin3 = Math.sin(d14);
-            fArr2[i11 + 2] = (float) ((dSin * dSin3) + dCos2);
-            fArr2[i11 + 3] = (float) (dSin3 - (dSin * dCos2));
-            int i12 = i11 + 5;
-            fArr2[i11 + 4] = (float) dCos2;
-            i11 += 6;
-            fArr2[i12] = (float) dSin3;
-            i10++;
+            fArr2[i10] = (float) (cos - (sin * sin2));
+            fArr2[i10 + 1] = (float) ((cos * sin) + sin2);
+            double d13 = d12 + d10;
+            double cos2 = Math.cos(d13);
+            double sin3 = Math.sin(d13);
+            fArr2[i10 + 2] = (float) ((sin * sin3) + cos2);
+            fArr2[i10 + 3] = (float) (sin3 - (sin * cos2));
+            int i11 = i10 + 5;
+            fArr2[i10 + 4] = (float) cos2;
+            i10 += 6;
+            fArr2[i11] = (float) sin3;
+            i9++;
             fArr = fArr2;
-            iCeil = iCeil;
+            ceil = ceil;
         }
         return fArr;
     }
@@ -3312,13 +731,13 @@ public class SvgHelper {
             StringBuilder sb2 = new StringBuilder(bArr.length * 2);
             sb2.append('M');
             for (byte b10 : bArr) {
-                int i10 = b10 & 255;
-                if (i10 >= 192) {
-                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i10 - 192));
+                int i9 = b10 & 255;
+                if (i9 >= 192) {
+                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i9 - 192));
                 } else {
-                    if (i10 >= 128) {
+                    if (i9 >= 128) {
                         sb2.append(',');
-                    } else if (i10 >= 64) {
+                    } else if (i9 >= 64) {
                         sb2.append('-');
                     }
                     sb2.append(b10 & 63);
@@ -3326,8 +745,8 @@ public class SvgHelper {
             }
             sb2.append('z');
             return sb2.toString();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return "";
         }
     }
@@ -3335,12 +754,16 @@ public class SvgHelper {
     public static Path doPath(String str) {
         char c10;
         float f10;
+        boolean z10;
         float f11;
         float f12;
-        float fNextFloat;
-        float fNextFloat2;
-        float fNextFloat3;
-        float fNextFloat4;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        float f17;
+        float nextFloat;
+        float nextFloat2;
         String str2 = str;
         if (ApplicationLoader.isAndroidTestEnvironment()) {
             return new Path();
@@ -3350,359 +773,463 @@ public class SvgHelper {
         parserHelper.skipWhitespace();
         Path path = new Path();
         char c11 = 0;
-        float f13 = 0.0f;
-        float f14 = 0.0f;
-        float f15 = 0.0f;
-        float f16 = 0.0f;
-        float f17 = 0.0f;
         float f18 = 0.0f;
+        float f19 = 0.0f;
+        float f20 = 0.0f;
+        float f21 = 0.0f;
+        float f22 = 0.0f;
+        float f23 = 0.0f;
         while (true) {
-            int i10 = parserHelper.pos;
-            if (i10 >= length) {
-                return path;
-            }
-            char cCharAt = str2.charAt(i10);
-            switch (cCharAt) {
-                case '+':
-                case '-':
-                case '.':
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    if (c11 != 'm' && c11 != 'M') {
-                        if (c11 == 'c' || c11 == 'C' || c11 == 'l' || c11 == 'L' || c11 == 's' || c11 == 'S' || c11 == 'h' || c11 == 'H' || c11 == 'v' || c11 == 'V' || c11 == 'q' || c11 == 'Q' || c11 == 'a' || c11 == 'A' || c11 == 't' || c11 == 'T') {
-                            c10 = c11;
+            int i9 = parserHelper.pos;
+            if (i9 < length) {
+                char charAt = str2.charAt(i9);
+                switch (charAt) {
+                    case '+':
+                    case '-':
+                    case '.':
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        if (c11 != 'm' && c11 != 'M') {
+                            if (c11 == 'c' || c11 == 'C' || c11 == 'l' || c11 == 'L' || c11 == 's' || c11 == 'S' || c11 == 'h' || c11 == 'H' || c11 == 'v' || c11 == 'V' || c11 == 'q' || c11 == 'Q' || c11 == 'a' || c11 == 'A' || c11 == 't' || c11 == 'T') {
+                                c10 = c11;
+                                break;
+                            }
+                        } else {
+                            char c12 = c11;
+                            c11 = (char) (c11 - 1);
+                            c10 = c12;
+                            break;
                         }
                         break;
-                    } else {
-                        char c12 = c11;
-                        c11 = (char) (c11 - 1);
-                        c10 = c12;
+                    case ',':
+                    case '/':
+                    default:
+                        parserHelper.advance();
+                        c10 = charAt;
+                        c11 = c10;
                         break;
-                    }
-                case ',':
-                case '/':
-                default:
-                    parserHelper.advance();
-                    c10 = cCharAt;
-                    c11 = c10;
-                    break;
+                }
+                boolean z11 = true;
+                switch (c11) {
+                    case 'A':
+                    case 'a':
+                        float nextFloat3 = parserHelper.nextFloat();
+                        float nextFloat4 = parserHelper.nextFloat();
+                        float f24 = f20;
+                        float nextFloat5 = parserHelper.nextFloat();
+                        if (((int) parserHelper.nextFloat()) == 1) {
+                            f10 = f21;
+                            z10 = true;
+                        } else {
+                            f10 = f21;
+                            z10 = false;
+                        }
+                        if (((int) parserHelper.nextFloat()) != 1) {
+                            z11 = false;
+                        }
+                        float nextFloat6 = parserHelper.nextFloat();
+                        float nextFloat7 = parserHelper.nextFloat();
+                        if (c11 == 'a') {
+                            float f25 = nextFloat6 + f18;
+                            nextFloat7 += f19;
+                            f11 = f18;
+                            f12 = f19;
+                            f13 = f25;
+                        } else {
+                            f11 = f18;
+                            f12 = f19;
+                            f13 = nextFloat6;
+                        }
+                        float f26 = f10;
+                        float f27 = nextFloat7;
+                        drawArc(path, f11, f12, f13, f27, nextFloat3, nextFloat4, nextFloat5, z10, z11);
+                        f18 = f13;
+                        f19 = f27;
+                        f21 = f26;
+                        f20 = f24;
+                        z11 = false;
+                        break;
+                    case 'C':
+                    case 'c':
+                        float nextFloat8 = parserHelper.nextFloat();
+                        float nextFloat9 = parserHelper.nextFloat();
+                        float nextFloat10 = parserHelper.nextFloat();
+                        float nextFloat11 = parserHelper.nextFloat();
+                        float nextFloat12 = parserHelper.nextFloat();
+                        float nextFloat13 = parserHelper.nextFloat();
+                        if (c11 == 'c') {
+                            nextFloat8 += f18;
+                            nextFloat10 += f18;
+                            nextFloat12 += f18;
+                            nextFloat9 += f19;
+                            nextFloat11 += f19;
+                            nextFloat13 += f19;
+                        }
+                        float f28 = nextFloat8;
+                        float f29 = nextFloat9;
+                        f14 = nextFloat10;
+                        f15 = nextFloat11;
+                        f16 = nextFloat12;
+                        f17 = nextFloat13;
+                        path.cubicTo(f28, f29, f14, f15, f16, f17);
+                        f22 = f14;
+                        f23 = f15;
+                        f18 = f16;
+                        f19 = f17;
+                        break;
+                    case 'H':
+                    case 'h':
+                        float nextFloat14 = parserHelper.nextFloat();
+                        if (c11 == 'h') {
+                            path.rLineTo(nextFloat14, 0.0f);
+                            f18 += nextFloat14;
+                        } else {
+                            path.lineTo(nextFloat14, f19);
+                            f18 = nextFloat14;
+                        }
+                        z11 = false;
+                        break;
+                    case 'L':
+                    case 'l':
+                        nextFloat = parserHelper.nextFloat();
+                        nextFloat2 = parserHelper.nextFloat();
+                        if (c11 == 'l') {
+                            path.rLineTo(nextFloat, nextFloat2);
+                            f18 += nextFloat;
+                            f19 += nextFloat2;
+                            z11 = false;
+                            break;
+                        } else {
+                            path.lineTo(nextFloat, nextFloat2);
+                            f18 = nextFloat;
+                            f19 = nextFloat2;
+                            z11 = false;
+                        }
+                    case 'M':
+                    case 'm':
+                        nextFloat = parserHelper.nextFloat();
+                        nextFloat2 = parserHelper.nextFloat();
+                        if (c11 == 'm') {
+                            f20 += nextFloat;
+                            f21 += nextFloat2;
+                            path.rMoveTo(nextFloat, nextFloat2);
+                            f18 += nextFloat;
+                            f19 += nextFloat2;
+                            z11 = false;
+                            break;
+                        } else {
+                            path.moveTo(nextFloat, nextFloat2);
+                            f18 = nextFloat;
+                            f20 = f18;
+                            f19 = nextFloat2;
+                            f21 = f19;
+                            z11 = false;
+                        }
+                    case 'Q':
+                    case 'q':
+                        float nextFloat15 = parserHelper.nextFloat();
+                        float nextFloat16 = parserHelper.nextFloat();
+                        float nextFloat17 = parserHelper.nextFloat();
+                        float nextFloat18 = parserHelper.nextFloat();
+                        if (c11 == 'q') {
+                            nextFloat15 += f18;
+                            nextFloat16 += f19;
+                            nextFloat17 += f18;
+                            nextFloat18 += f19;
+                        }
+                        f22 = nextFloat15;
+                        f18 = nextFloat17;
+                        f19 = nextFloat18;
+                        path.quadTo(f22, nextFloat16, f18, f19);
+                        f23 = nextFloat16;
+                        break;
+                    case 'S':
+                    case 's':
+                        float nextFloat19 = parserHelper.nextFloat();
+                        float nextFloat20 = parserHelper.nextFloat();
+                        float nextFloat21 = parserHelper.nextFloat();
+                        float nextFloat22 = parserHelper.nextFloat();
+                        if (c11 == 's') {
+                            nextFloat19 += f18;
+                            nextFloat21 += f18;
+                            nextFloat20 += f19;
+                            nextFloat22 += f19;
+                        }
+                        f16 = nextFloat21;
+                        float f30 = (f18 * 2.0f) - f22;
+                        float f31 = (f19 * 2.0f) - f23;
+                        f14 = nextFloat19;
+                        f15 = nextFloat20;
+                        f17 = nextFloat22;
+                        path.cubicTo(f30, f31, f14, f15, f16, f17);
+                        f22 = f14;
+                        f23 = f15;
+                        f18 = f16;
+                        f19 = f17;
+                        break;
+                    case 'T':
+                    case 't':
+                        f16 = parserHelper.nextFloat();
+                        f17 = parserHelper.nextFloat();
+                        if (c11 == 't') {
+                            f16 += f18;
+                            f17 += f19;
+                        }
+                        f22 = (f18 * 2.0f) - f22;
+                        float f32 = (f19 * 2.0f) - f23;
+                        path.quadTo(f22, f32, f16, f17);
+                        f23 = f32;
+                        f18 = f16;
+                        f19 = f17;
+                        break;
+                    case 'V':
+                    case 'v':
+                        float nextFloat23 = parserHelper.nextFloat();
+                        if (c11 == 'v') {
+                            path.rLineTo(0.0f, nextFloat23);
+                            f19 += nextFloat23;
+                        } else {
+                            path.lineTo(f18, nextFloat23);
+                            f19 = nextFloat23;
+                        }
+                        z11 = false;
+                        break;
+                    case 'Z':
+                    case 'z':
+                        path.close();
+                        path.moveTo(f20, f21);
+                        f18 = f20;
+                        f22 = f18;
+                        f19 = f21;
+                        f23 = f19;
+                        break;
+                    default:
+                        z11 = false;
+                        break;
+                }
+                if (!z11) {
+                    f22 = f18;
+                    f23 = f19;
+                }
+                parserHelper.skipWhitespace();
+                str2 = str;
+                c11 = c10;
+            } else {
+                return path;
             }
-            boolean z10 = true;
-            switch (c11) {
-                case 'A':
-                case 'a':
-                    float fNextFloat5 = parserHelper.nextFloat();
-                    float fNextFloat6 = parserHelper.nextFloat();
-                    float f19 = f15;
-                    float fNextFloat7 = parserHelper.nextFloat();
-                    boolean z11 = ((int) parserHelper.nextFloat()) == 1;
-                    z10 = ((int) parserHelper.nextFloat()) == 1;
-                    float fNextFloat8 = parserHelper.nextFloat();
-                    float fNextFloat9 = parserHelper.nextFloat();
-                    if (c11 == 'a') {
-                        fNextFloat9 += f14;
-                        f10 = fNextFloat8 + f13;
-                    } else {
-                        f10 = fNextFloat8;
-                    }
-                    float f20 = f16;
-                    float f21 = fNextFloat9;
-                    drawArc(path, f13, f14, f10, f21, fNextFloat5, fNextFloat6, fNextFloat7, z11, z10);
-                    f13 = f10;
-                    f14 = f21;
-                    f16 = f20;
-                    f15 = f19;
-                    z10 = false;
-                    break;
-                case 'C':
-                case 'c':
-                    float fNextFloat10 = parserHelper.nextFloat();
-                    float fNextFloat11 = parserHelper.nextFloat();
-                    float fNextFloat12 = parserHelper.nextFloat();
-                    float fNextFloat13 = parserHelper.nextFloat();
-                    float fNextFloat14 = parserHelper.nextFloat();
-                    float fNextFloat15 = parserHelper.nextFloat();
-                    if (c11 == 'c') {
-                        fNextFloat10 += f13;
-                        fNextFloat12 += f13;
-                        fNextFloat14 += f13;
-                        fNextFloat11 += f14;
-                        fNextFloat13 += f14;
-                        fNextFloat15 += f14;
-                    }
-                    float f22 = fNextFloat10;
-                    float f23 = fNextFloat11;
-                    f11 = fNextFloat12;
-                    f12 = fNextFloat13;
-                    fNextFloat = fNextFloat14;
-                    fNextFloat2 = fNextFloat15;
-                    path.cubicTo(f22, f23, f11, f12, fNextFloat, fNextFloat2);
-                    f17 = f11;
-                    f18 = f12;
-                    f13 = fNextFloat;
-                    f14 = fNextFloat2;
-                    break;
-                case 'H':
-                case 'h':
-                    float fNextFloat16 = parserHelper.nextFloat();
-                    if (c11 == 'h') {
-                        path.rLineTo(fNextFloat16, 0.0f);
-                        f13 += fNextFloat16;
-                    } else {
-                        path.lineTo(fNextFloat16, f14);
-                        f13 = fNextFloat16;
-                    }
-                    z10 = false;
-                    break;
-                case 'L':
-                case 'l':
-                    fNextFloat3 = parserHelper.nextFloat();
-                    fNextFloat4 = parserHelper.nextFloat();
-                    if (c11 == 'l') {
-                        path.rLineTo(fNextFloat3, fNextFloat4);
-                        f13 += fNextFloat3;
-                        f14 += fNextFloat4;
-                    } else {
-                        path.lineTo(fNextFloat3, fNextFloat4);
-                        f13 = fNextFloat3;
-                        f14 = fNextFloat4;
-                    }
-                    z10 = false;
-                    break;
-                case 'M':
-                case 'm':
-                    fNextFloat3 = parserHelper.nextFloat();
-                    fNextFloat4 = parserHelper.nextFloat();
-                    if (c11 == 'm') {
-                        f15 += fNextFloat3;
-                        f16 += fNextFloat4;
-                        path.rMoveTo(fNextFloat3, fNextFloat4);
-                        f13 += fNextFloat3;
-                        f14 += fNextFloat4;
-                    } else {
-                        path.moveTo(fNextFloat3, fNextFloat4);
-                        f13 = fNextFloat3;
-                        f15 = f13;
-                        f14 = fNextFloat4;
-                        f16 = f14;
-                    }
-                    z10 = false;
-                    break;
-                case 'Q':
-                case 'q':
-                    float fNextFloat17 = parserHelper.nextFloat();
-                    float fNextFloat18 = parserHelper.nextFloat();
-                    float fNextFloat19 = parserHelper.nextFloat();
-                    float fNextFloat20 = parserHelper.nextFloat();
-                    if (c11 == 'q') {
-                        fNextFloat17 += f13;
-                        fNextFloat18 += f14;
-                        fNextFloat19 += f13;
-                        fNextFloat20 += f14;
-                    }
-                    f17 = fNextFloat17;
-                    f13 = fNextFloat19;
-                    f14 = fNextFloat20;
-                    path.quadTo(f17, fNextFloat18, f13, f14);
-                    f18 = fNextFloat18;
-                    break;
-                case 'S':
-                case 's':
-                    float fNextFloat21 = parserHelper.nextFloat();
-                    float fNextFloat22 = parserHelper.nextFloat();
-                    float fNextFloat23 = parserHelper.nextFloat();
-                    float fNextFloat24 = parserHelper.nextFloat();
-                    if (c11 == 's') {
-                        fNextFloat21 += f13;
-                        fNextFloat23 += f13;
-                        fNextFloat22 += f14;
-                        fNextFloat24 += f14;
-                    }
-                    fNextFloat = fNextFloat23;
-                    float f24 = (f13 * 2.0f) - f17;
-                    float f25 = (f14 * 2.0f) - f18;
-                    f11 = fNextFloat21;
-                    f12 = fNextFloat22;
-                    fNextFloat2 = fNextFloat24;
-                    path.cubicTo(f24, f25, f11, f12, fNextFloat, fNextFloat2);
-                    f17 = f11;
-                    f18 = f12;
-                    f13 = fNextFloat;
-                    f14 = fNextFloat2;
-                    break;
-                case 'T':
-                case 't':
-                    fNextFloat = parserHelper.nextFloat();
-                    fNextFloat2 = parserHelper.nextFloat();
-                    if (c11 == 't') {
-                        fNextFloat += f13;
-                        fNextFloat2 += f14;
-                    }
-                    f17 = (f13 * 2.0f) - f17;
-                    float f26 = (f14 * 2.0f) - f18;
-                    path.quadTo(f17, f26, fNextFloat, fNextFloat2);
-                    f18 = f26;
-                    f13 = fNextFloat;
-                    f14 = fNextFloat2;
-                    break;
-                case 'V':
-                case 'v':
-                    float fNextFloat25 = parserHelper.nextFloat();
-                    if (c11 == 'v') {
-                        path.rLineTo(0.0f, fNextFloat25);
-                        f14 += fNextFloat25;
-                    } else {
-                        path.lineTo(f13, fNextFloat25);
-                        f14 = fNextFloat25;
-                    }
-                    z10 = false;
-                    break;
-                case 'Z':
-                case 'z':
-                    path.close();
-                    path.moveTo(f15, f16);
-                    f13 = f15;
-                    f17 = f13;
-                    f14 = f16;
-                    f18 = f14;
-                    break;
-                default:
-                    z10 = false;
-                    break;
-            }
-            if (!z10) {
-                f17 = f13;
-                f18 = f14;
-            }
-            parserHelper.skipWhitespace();
-            str2 = str;
-            c11 = c10;
         }
     }
 
     private static void drawArc(Path path, float f10, float f11, float f12, float f13, float f14, float f15, float f16, boolean z10, boolean z11) {
-        if (f10 == f12 && f11 == f13) {
-            return;
-        }
-        if (f14 == 0.0f || f15 == 0.0f) {
+        double d;
+        double d9;
+        if (f10 != f12 || f11 != f13) {
+            if (f14 != 0.0f && f15 != 0.0f) {
+                float abs = Math.abs(f14);
+                float abs2 = Math.abs(f15);
+                double radians = Math.toRadians(f16 % 360.0d);
+                double cos = Math.cos(radians);
+                double sin = Math.sin(radians);
+                double d10 = (f10 - f12) / 2.0d;
+                double d11 = (f11 - f13) / 2.0d;
+                double d12 = (sin * d11) + (cos * d10);
+                double d13 = (d11 * cos) + ((-sin) * d10);
+                double d14 = abs * abs;
+                double d15 = abs2 * abs2;
+                double d16 = d12 * d12;
+                double d17 = d13 * d13;
+                double d18 = (d17 / d15) + (d16 / d14);
+                if (d18 > 0.99999d) {
+                    double sqrt = Math.sqrt(d18) * 1.00001d;
+                    abs = (float) (abs * sqrt);
+                    abs2 = (float) (sqrt * abs2);
+                    d14 = abs * abs;
+                    d15 = abs2 * abs2;
+                }
+                double d19 = 1.0d;
+                if (z10 == z11) {
+                    d = -1.0d;
+                } else {
+                    d = 1.0d;
+                }
+                double d20 = d14 * d15;
+                double d21 = d14 * d17;
+                double d22 = d15 * d16;
+                double d23 = ((d20 - d21) - d22) / (d21 + d22);
+                if (d23 < 0.0d) {
+                    d23 = 0.0d;
+                }
+                double sqrt2 = Math.sqrt(d23) * d;
+                double d24 = abs;
+                double d25 = d24 * d13;
+                double d26 = abs2;
+                double d27 = (d25 / d26) * sqrt2;
+                double d28 = sqrt2 * (-((d26 * d12) / d24));
+                double d29 = ((cos * d27) - (sin * d28)) + ((f10 + f12) / 2.0d);
+                double d30 = (cos * d28) + (sin * d27) + ((f11 + f13) / 2.0d);
+                double d31 = (d12 - d27) / d24;
+                double d32 = (d13 - d28) / d26;
+                double d33 = ((-d12) - d27) / d24;
+                double d34 = ((-d13) - d28) / d26;
+                double d35 = (d32 * d32) + (d31 * d31);
+                double sqrt3 = Math.sqrt(d35);
+                if (d32 < 0.0d) {
+                    d9 = -1.0d;
+                } else {
+                    d9 = 1.0d;
+                }
+                double acos = Math.acos(d31 / sqrt3) * d9;
+                double sqrt4 = Math.sqrt(((d34 * d34) + (d33 * d33)) * d35);
+                double d36 = (d32 * d34) + (d31 * d33);
+                if ((d31 * d34) - (d32 * d33) < 0.0d) {
+                    d19 = -1.0d;
+                }
+                double checkedArcCos = d19 * checkedArcCos(d36 / sqrt4);
+                int i9 = (checkedArcCos > 0.0d ? 1 : (checkedArcCos == 0.0d ? 0 : -1));
+                if (i9 == 0) {
+                    path.lineTo(f12, f13);
+                    return;
+                }
+                if (!z11 && i9 > 0) {
+                    checkedArcCos -= 6.283185307179586d;
+                } else if (z11 && checkedArcCos < 0.0d) {
+                    checkedArcCos += 6.283185307179586d;
+                }
+                float[] arcToBeziers = arcToBeziers(acos % 6.283185307179586d, checkedArcCos % 6.283185307179586d);
+                Matrix matrix = new Matrix();
+                matrix.postScale(abs, abs2);
+                matrix.postRotate(f16);
+                matrix.postTranslate((float) d29, (float) d30);
+                matrix.mapPoints(arcToBeziers);
+                arcToBeziers[arcToBeziers.length - 2] = f12;
+                arcToBeziers[arcToBeziers.length - 1] = f13;
+                for (int i10 = 0; i10 < arcToBeziers.length; i10 += 6) {
+                    path.cubicTo(arcToBeziers[i10], arcToBeziers[i10 + 1], arcToBeziers[i10 + 2], arcToBeziers[i10 + 3], arcToBeziers[i10 + 4], arcToBeziers[i10 + 5]);
+                }
+                return;
+            }
             path.lineTo(f12, f13);
-            return;
-        }
-        float fAbs = Math.abs(f14);
-        float fAbs2 = Math.abs(f15);
-        double radians = Math.toRadians(((double) f16) % 360.0d);
-        double dCos = Math.cos(radians);
-        double dSin = Math.sin(radians);
-        double d = ((double) (f10 - f12)) / 2.0d;
-        double d10 = ((double) (f11 - f13)) / 2.0d;
-        double d11 = (dSin * d10) + (dCos * d);
-        double d12 = (d10 * dCos) + ((-dSin) * d);
-        double d13 = fAbs * fAbs;
-        double d14 = fAbs2 * fAbs2;
-        double d15 = d11 * d11;
-        double d16 = d12 * d12;
-        double d17 = (d16 / d14) + (d15 / d13);
-        if (d17 > 0.99999d) {
-            double dSqrt = Math.sqrt(d17) * 1.00001d;
-            fAbs = (float) (((double) fAbs) * dSqrt);
-            fAbs2 = (float) (dSqrt * ((double) fAbs2));
-            d13 = fAbs * fAbs;
-            d14 = fAbs2 * fAbs2;
-        }
-        double d18 = z10 == z11 ? -1.0d : 1.0d;
-        double d19 = d13 * d14;
-        double d20 = d13 * d16;
-        double d21 = d14 * d15;
-        double d22 = ((d19 - d20) - d21) / (d20 + d21);
-        if (d22 < 0.0d) {
-            d22 = 0.0d;
-        }
-        double dSqrt2 = Math.sqrt(d22) * d18;
-        double d23 = fAbs;
-        double d24 = d23 * d12;
-        double d25 = fAbs2;
-        double d26 = (d24 / d25) * dSqrt2;
-        double d27 = dSqrt2 * (-((d25 * d11) / d23));
-        double d28 = ((dCos * d26) - (dSin * d27)) + (((double) (f10 + f12)) / 2.0d);
-        double d29 = (dCos * d27) + (dSin * d26) + (((double) (f11 + f13)) / 2.0d);
-        double d30 = (d11 - d26) / d23;
-        double d31 = (d12 - d27) / d25;
-        double d32 = ((-d11) - d26) / d23;
-        double d33 = ((-d12) - d27) / d25;
-        double d34 = (d31 * d31) + (d30 * d30);
-        double dAcos = Math.acos(d30 / Math.sqrt(d34)) * (d31 < 0.0d ? -1.0d : 1.0d);
-        double dCheckedArcCos = ((d30 * d33) - (d31 * d32) < 0.0d ? -1.0d : 1.0d) * checkedArcCos(((d31 * d33) + (d30 * d32)) / Math.sqrt(((d33 * d33) + (d32 * d32)) * d34));
-        if (dCheckedArcCos == 0.0d) {
-            path.lineTo(f12, f13);
-            return;
-        }
-        if (!z11 && dCheckedArcCos > 0.0d) {
-            dCheckedArcCos -= 6.283185307179586d;
-        } else if (z11 && dCheckedArcCos < 0.0d) {
-            dCheckedArcCos += 6.283185307179586d;
-        }
-        float[] fArrArcToBeziers = arcToBeziers(dAcos % 6.283185307179586d, dCheckedArcCos % 6.283185307179586d);
-        Matrix matrix = new Matrix();
-        matrix.postScale(fAbs, fAbs2);
-        matrix.postRotate(f16);
-        matrix.postTranslate((float) d28, (float) d29);
-        matrix.mapPoints(fArrArcToBeziers);
-        fArrArcToBeziers[fArrArcToBeziers.length - 2] = f12;
-        fArrArcToBeziers[fArrArcToBeziers.length - 1] = f13;
-        for (int i10 = 0; i10 < fArrArcToBeziers.length; i10 += 6) {
-            path.cubicTo(fArrArcToBeziers[i10], fArrArcToBeziers[i10 + 1], fArrArcToBeziers[i10 + 2], fArrArcToBeziers[i10 + 3], fArrArcToBeziers[i10 + 4], fArrArcToBeziers[i10 + 5]);
         }
     }
 
-    public static Bitmap getBitmap(int i10, int i11, int i12, int i13) {
-        return getBitmap(i10, i11, i12, i13, 1.0f);
+    public static Bitmap getBitmap(int i9, int i10, int i11, int i12) {
+        return getBitmap(i9, i10, i11, i12, 1.0f);
     }
 
-    public static Bitmap getBitmapByPathOnly(String str, int i10, int i11, int i12, int i13) {
+    public static Bitmap getBitmapByPathOnly(String str, int i9, int i10, int i11, int i12) {
         try {
-            Path pathDoPath = doPath(str);
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i12, i13, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmapCreateBitmap);
-            canvas.scale(i12 / i10, i13 / i11);
+            Path doPath = doPath(str);
+            Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            canvas.scale(i11 / i9, i12 / i10);
             Paint paint = new Paint();
             paint.setColor(-1);
-            canvas.drawPath(pathDoPath, paint);
-            return bitmapCreateBitmap;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            canvas.drawPath(doPath, paint);
+            return createBitmap;
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
     public static Integer getColorByName(String str) {
+        char c10;
         String lowerCase = str.toLowerCase();
         lowerCase.getClass();
-        switch (lowerCase) {
-            case "yellow":
+        switch (lowerCase.hashCode()) {
+            case -734239628:
+                if (lowerCase.equals("yellow")) {
+                    c10 = 0;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 112785:
+                if (lowerCase.equals("red")) {
+                    c10 = 1;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 3027034:
+                if (lowerCase.equals("blue")) {
+                    c10 = 2;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 3068707:
+                if (lowerCase.equals("cyan")) {
+                    c10 = 3;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 3181155:
+                if (lowerCase.equals("gray")) {
+                    c10 = 4;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 93818879:
+                if (lowerCase.equals("black")) {
+                    c10 = 5;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 98619139:
+                if (lowerCase.equals("green")) {
+                    c10 = 6;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 113101865:
+                if (lowerCase.equals("white")) {
+                    c10 = 7;
+                    break;
+                }
+                c10 = 65535;
+                break;
+            case 828922025:
+                if (lowerCase.equals("magenta")) {
+                    c10 = '\b';
+                    break;
+                }
+                c10 = 65535;
+                break;
+            default:
+                c10 = 65535;
+                break;
+        }
+        switch (c10) {
+            case 0:
                 return -256;
-            case "red":
+            case 1:
                 return -65536;
-            case "blue":
+            case 2:
                 return -16776961;
-            case "cyan":
+            case 3:
                 return -16711681;
-            case "gray":
+            case 4:
                 return -7829368;
-            case "black":
+            case 5:
                 return -16777216;
-            case "green":
+            case 6:
                 return -16711936;
-            case "white":
+            case 7:
                 return -1;
-            case "magenta":
+            case '\b':
                 return -65281;
             default:
                 return null;
@@ -3716,23 +1243,23 @@ public class SvgHelper {
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawableByPath(String str, int i10, int i11) {
+    public static SvgDrawable getDrawableByPath(String str, int i9, int i10) {
         try {
-            Path pathDoPath = doPath(str);
+            Path doPath = doPath(str);
             SvgDrawable svgDrawable = new SvgDrawable();
-            svgDrawable.commands.add(pathDoPath);
-            svgDrawable.paints.put(pathDoPath, new Paint(1));
-            svgDrawable.width = i10;
-            svgDrawable.height = i11;
+            svgDrawable.commands.add(doPath);
+            svgDrawable.paints.put(doPath, new Paint(1));
+            svgDrawable.width = i9;
+            svgDrawable.height = i10;
             return svgDrawable;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -3755,9 +1282,9 @@ public class SvgHelper {
 
     public static NumberParse getNumberParseAttr(String str, Attributes attributes) {
         int length = attributes.getLength();
-        for (int i10 = 0; i10 < length; i10++) {
-            if (attributes.getLocalName(i10).equals(str)) {
-                return parseNumbers(attributes.getValue(i10));
+        for (int i9 = 0; i9 < length; i9++) {
+            if (attributes.getLocalName(i9).equals(str)) {
+                return parseNumbers(attributes.getValue(i9));
             }
         }
         return null;
@@ -3765,38 +1292,34 @@ public class SvgHelper {
 
     public static String getStringAttr(String str, Attributes attributes) {
         int length = attributes.getLength();
-        for (int i10 = 0; i10 < length; i10++) {
-            if (attributes.getLocalName(i10).equals(str)) {
-                return attributes.getValue(i10);
+        for (int i9 = 0; i9 < length; i9++) {
+            if (attributes.getLocalName(i9).equals(str)) {
+                return attributes.getValue(i9);
             }
         }
         return null;
     }
 
-    public static SvgResult getSvgBitmap(File file, int i10, int i11, boolean z10) {
+    public static SvgResult getSvgBitmap(File file, int i9, int i10, boolean z10) {
+        Integer num;
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            try {
-                XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
-                if (!z10) {
-                    sVGHandler.alphaOnly = true;
-                }
-                xMLReader.setContentHandler(sVGHandler);
-                xMLReader.parse(new InputSource(fileInputStream));
-                fileInputStream.close();
-                return sVGHandler;
-            } catch (Throwable th) {
-                try {
-                    fileInputStream.close();
-                    throw th;
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
-                    throw th;
-                }
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            if (z10) {
+                num = -1;
+            } else {
+                num = null;
             }
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            SVGHandler sVGHandler = new SVGHandler(i9, i10, num, false, 1.0f);
+            if (!z10) {
+                sVGHandler.alphaOnly = true;
+            }
+            xMLReader.setContentHandler(sVGHandler);
+            xMLReader.parse(new InputSource(fileInputStream));
+            fileInputStream.close();
+            return sVGHandler;
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -3804,34 +1327,38 @@ public class SvgHelper {
     private static NumberParse parseNumbers(String str) {
         int length = str.length();
         ArrayList arrayList = new ArrayList();
-        int length2 = 0;
+        int i9 = 0;
         boolean z10 = false;
         for (int i10 = 1; i10 < length; i10++) {
             if (z10) {
                 z10 = false;
             } else {
-                char cCharAt = str.charAt(i10);
-                switch (cCharAt) {
+                char charAt = str.charAt(i10);
+                switch (charAt) {
                     case '\t':
                     case '\n':
                     case ' ':
                     case ',':
                     case '-':
-                        if (cCharAt != '-' || str.charAt(i10 - 1) != 'e') {
-                            String strSubstring = str.substring(length2, i10);
-                            if (strSubstring.trim().length() > 0) {
-                                arrayList.add(Float.valueOf(Float.parseFloat(strSubstring)));
-                                if (cCharAt == '-') {
-                                    length2 = i10;
+                        if (charAt == '-' && str.charAt(i10 - 1) == 'e') {
+                            break;
+                        } else {
+                            String substring = str.substring(i9, i10);
+                            if (substring.trim().length() > 0) {
+                                arrayList.add(Float.valueOf(Float.parseFloat(substring)));
+                                if (charAt == '-') {
+                                    i9 = i10;
+                                    break;
                                 } else {
-                                    length2 = i10 + 1;
+                                    i9 = i10 + 1;
                                     z10 = true;
+                                    break;
                                 }
                             } else {
-                                length2++;
+                                i9++;
+                                continue;
                             }
                         }
-                        break;
                     case ')':
                     case 'A':
                     case 'C':
@@ -3853,121 +1380,120 @@ public class SvgHelper {
                     case 't':
                     case 'v':
                     case 'z':
-                        String strSubstring2 = str.substring(length2, i10);
-                        if (strSubstring2.trim().length() > 0) {
-                            arrayList.add(Float.valueOf(Float.parseFloat(strSubstring2)));
+                        String substring2 = str.substring(i9, i10);
+                        if (substring2.trim().length() > 0) {
+                            arrayList.add(Float.valueOf(Float.parseFloat(substring2)));
                         }
                         return new NumberParse(arrayList, i10);
                 }
             }
         }
-        String strSubstring3 = str.substring(length2);
-        if (strSubstring3.length() > 0) {
+        String substring3 = str.substring(i9);
+        if (substring3.length() > 0) {
             try {
-                arrayList.add(Float.valueOf(Float.parseFloat(strSubstring3)));
+                arrayList.add(Float.valueOf(Float.parseFloat(substring3)));
             } catch (NumberFormatException unused) {
             }
-            length2 = str.length();
+            i9 = str.length();
         }
-        return new NumberParse(arrayList, length2);
+        return new NumberParse(arrayList, i9);
     }
 
     public static Matrix parseTransform(String str) {
         Matrix matrix = new Matrix();
-        Iterator<String> it = splitSvgTransforms(str).iterator();
-        while (it.hasNext()) {
-            Matrix transformCommand = parseTransformCommand(it.next());
-            if (transformCommand != null) {
-                matrix.preConcat(transformCommand);
+        for (String str2 : splitSvgTransforms(str)) {
+            Matrix parseTransformCommand = parseTransformCommand(str2);
+            if (parseTransformCommand != null) {
+                matrix.preConcat(parseTransformCommand);
             }
         }
         return matrix;
     }
 
     private static Matrix parseTransformCommand(String str) {
-        float fFloatValue;
+        float f10 = 0.0f;
         if (str.startsWith("matrix(")) {
-            NumberParse numbers = parseNumbers(str.substring(7));
-            if (numbers.numbers.size() != 6) {
-                return null;
+            NumberParse parseNumbers = parseNumbers(str.substring(7));
+            if (parseNumbers.numbers.size() == 6) {
+                Matrix matrix = new Matrix();
+                matrix.setValues(new float[]{((Float) parseNumbers.numbers.get(0)).floatValue(), ((Float) parseNumbers.numbers.get(2)).floatValue(), ((Float) parseNumbers.numbers.get(4)).floatValue(), ((Float) parseNumbers.numbers.get(1)).floatValue(), ((Float) parseNumbers.numbers.get(3)).floatValue(), ((Float) parseNumbers.numbers.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
+                return matrix;
             }
-            Matrix matrix = new Matrix();
-            matrix.setValues(new float[]{((Float) numbers.numbers.get(0)).floatValue(), ((Float) numbers.numbers.get(2)).floatValue(), ((Float) numbers.numbers.get(4)).floatValue(), ((Float) numbers.numbers.get(1)).floatValue(), ((Float) numbers.numbers.get(3)).floatValue(), ((Float) numbers.numbers.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
-            return matrix;
-        }
-        if (str.startsWith("translate(")) {
-            NumberParse numbers2 = parseNumbers(str.substring(10));
-            if (numbers2.numbers.size() <= 0) {
-                return null;
+            return null;
+        } else if (str.startsWith("translate(")) {
+            NumberParse parseNumbers2 = parseNumbers(str.substring(10));
+            if (parseNumbers2.numbers.size() > 0) {
+                float floatValue = ((Float) parseNumbers2.numbers.get(0)).floatValue();
+                if (parseNumbers2.numbers.size() > 1) {
+                    f10 = ((Float) parseNumbers2.numbers.get(1)).floatValue();
+                }
+                Matrix matrix2 = new Matrix();
+                matrix2.postTranslate(floatValue, f10);
+                return matrix2;
             }
-            float fFloatValue2 = ((Float) numbers2.numbers.get(0)).floatValue();
-            fFloatValue = numbers2.numbers.size() > 1 ? ((Float) numbers2.numbers.get(1)).floatValue() : 0.0f;
-            Matrix matrix2 = new Matrix();
-            matrix2.postTranslate(fFloatValue2, fFloatValue);
-            return matrix2;
-        }
-        if (str.startsWith("scale(")) {
-            NumberParse numbers3 = parseNumbers(str.substring(6));
-            if (numbers3.numbers.size() <= 0) {
-                return null;
+            return null;
+        } else if (str.startsWith("scale(")) {
+            NumberParse parseNumbers3 = parseNumbers(str.substring(6));
+            if (parseNumbers3.numbers.size() > 0) {
+                float floatValue2 = ((Float) parseNumbers3.numbers.get(0)).floatValue();
+                if (parseNumbers3.numbers.size() > 1) {
+                    f10 = ((Float) parseNumbers3.numbers.get(1)).floatValue();
+                }
+                Matrix matrix3 = new Matrix();
+                matrix3.postScale(floatValue2, f10);
+                return matrix3;
             }
-            float fFloatValue3 = ((Float) numbers3.numbers.get(0)).floatValue();
-            fFloatValue = numbers3.numbers.size() > 1 ? ((Float) numbers3.numbers.get(1)).floatValue() : 0.0f;
-            Matrix matrix3 = new Matrix();
-            matrix3.postScale(fFloatValue3, fFloatValue);
-            return matrix3;
-        }
-        if (str.startsWith("skewX(")) {
-            NumberParse numbers4 = parseNumbers(str.substring(6));
-            if (numbers4.numbers.size() <= 0) {
-                return null;
+            return null;
+        } else if (str.startsWith("skewX(")) {
+            NumberParse parseNumbers4 = parseNumbers(str.substring(6));
+            if (parseNumbers4.numbers.size() > 0) {
+                float floatValue3 = ((Float) parseNumbers4.numbers.get(0)).floatValue();
+                Matrix matrix4 = new Matrix();
+                matrix4.postSkew((float) Math.tan(floatValue3), 0.0f);
+                return matrix4;
             }
-            float fFloatValue4 = ((Float) numbers4.numbers.get(0)).floatValue();
-            Matrix matrix4 = new Matrix();
-            matrix4.postSkew((float) Math.tan(fFloatValue4), 0.0f);
-            return matrix4;
-        }
-        if (str.startsWith("skewY(")) {
-            NumberParse numbers5 = parseNumbers(str.substring(6));
-            if (numbers5.numbers.size() <= 0) {
-                return null;
+            return null;
+        } else if (str.startsWith("skewY(")) {
+            NumberParse parseNumbers5 = parseNumbers(str.substring(6));
+            if (parseNumbers5.numbers.size() > 0) {
+                float floatValue4 = ((Float) parseNumbers5.numbers.get(0)).floatValue();
+                Matrix matrix5 = new Matrix();
+                matrix5.postSkew(0.0f, (float) Math.tan(floatValue4));
+                return matrix5;
             }
-            float fFloatValue5 = ((Float) numbers5.numbers.get(0)).floatValue();
-            Matrix matrix5 = new Matrix();
-            matrix5.postSkew(0.0f, (float) Math.tan(fFloatValue5));
-            return matrix5;
-        }
-        if (!str.startsWith("rotate(")) {
+            return null;
+        } else if (str.startsWith("rotate(")) {
+            NumberParse parseNumbers6 = parseNumbers(str.substring(7));
+            if (parseNumbers6.numbers.size() > 0) {
+                Matrix matrix6 = new Matrix();
+                float floatValue5 = ((Float) parseNumbers6.numbers.get(0)).floatValue();
+                if (parseNumbers6.numbers.size() > 2) {
+                    matrix6.postRotate(floatValue5, ((Float) parseNumbers6.numbers.get(1)).floatValue(), ((Float) parseNumbers6.numbers.get(2)).floatValue());
+                    return matrix6;
+                }
+                matrix6.postRotate(floatValue5);
+                return matrix6;
+            }
+            return null;
+        } else {
             return null;
         }
-        NumberParse numbers6 = parseNumbers(str.substring(7));
-        if (numbers6.numbers.size() <= 0) {
-            return null;
-        }
-        Matrix matrix6 = new Matrix();
-        float fFloatValue6 = ((Float) numbers6.numbers.get(0)).floatValue();
-        if (numbers6.numbers.size() > 2) {
-            matrix6.postRotate(fFloatValue6, ((Float) numbers6.numbers.get(1)).floatValue(), ((Float) numbers6.numbers.get(2)).floatValue());
-            return matrix6;
-        }
-        matrix6.postRotate(fFloatValue6);
-        return matrix6;
     }
 
     private static List<String> splitSvgTransforms(String str) {
         if (str == null) {
             return Collections.EMPTY_LIST;
         }
-        String strTrim = str.trim();
-        if (strTrim.isEmpty()) {
+        String trim = str.trim();
+        if (trim.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        String[] strArrSplit = SPLIT_BOUNDARY.split(strTrim);
-        ArrayList arrayList = new ArrayList(strArrSplit.length);
-        for (String str2 : strArrSplit) {
-            String strTrim2 = str2.trim();
-            if (!strTrim2.isEmpty()) {
-                arrayList.add(strTrim2);
+        String[] split = SPLIT_BOUNDARY.split(trim);
+        ArrayList arrayList = new ArrayList(split.length);
+        for (String str2 : split) {
+            String trim2 = str2.trim();
+            if (!trim2.isEmpty()) {
+                arrayList.add(trim2);
             }
         }
         return arrayList;
@@ -3985,7 +1511,7 @@ public class SvgHelper {
         private HashMap<String, StyleSet> globalStyles;
         private boolean insideGiftRect;
         private int insideGiftRectDepth;
-        private List<mf.c> insideGiftRectPositions;
+        private List<lf.c> insideGiftRectPositions;
         private Paint paint;
         private Integer paintColor;
         boolean pushed;
@@ -3996,6 +1522,7 @@ public class SvgHelper {
         private StringBuilder styles;
 
         private void doColor(Properties properties, Integer num, boolean z10) {
+            String str;
             Integer num2 = this.paintColor;
             if (num2 != null) {
                 this.paint.setColor(num2.intValue());
@@ -4004,7 +1531,12 @@ public class SvgHelper {
             }
             Float f10 = properties.getFloat("opacity");
             if (f10 == null) {
-                f10 = properties.getFloat(z10 ? "fill-opacity" : "stroke-opacity");
+                if (z10) {
+                    str = "fill-opacity";
+                } else {
+                    str = "stroke-opacity";
+                }
+                f10 = properties.getFloat(str);
             }
             if (f10 == null) {
                 this.paint.setAlpha(255);
@@ -4027,18 +1559,18 @@ public class SvgHelper {
                 doColor(properties, hex, true);
                 this.paint.setStyle(Paint.Style.FILL);
                 return true;
-            }
-            if (properties.getString("fill") != null || properties.getString("stroke") != null) {
+            } else if (properties.getString("fill") != null || properties.getString("stroke") != null) {
                 return false;
-            }
-            this.paint.setStyle(Paint.Style.FILL);
-            Integer num = this.paintColor;
-            if (num != null) {
-                this.paint.setColor(num.intValue());
             } else {
-                this.paint.setColor(-16777216);
+                this.paint.setStyle(Paint.Style.FILL);
+                Integer num = this.paintColor;
+                if (num != null) {
+                    this.paint.setColor(num.intValue());
+                } else {
+                    this.paint.setColor(-16777216);
+                }
+                return true;
             }
-            return true;
         }
 
         private boolean doStroke(Properties properties) {
@@ -4083,67 +1615,97 @@ public class SvgHelper {
         }
 
         private void pushTransform(Attributes attributes) {
+            boolean z10;
             String stringAttr = SvgHelper.getStringAttr("transform", attributes);
-            boolean z10 = stringAttr != null;
+            if (stringAttr != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
             this.pushed = z10;
             if (z10) {
-                Matrix transform = SvgHelper.parseTransform(stringAttr);
+                Matrix parseTransform = SvgHelper.parseTransform(stringAttr);
                 SvgDrawable svgDrawable = this.drawable;
                 if (svgDrawable != null) {
-                    svgDrawable.addCommand(transform);
-                } else {
-                    this.canvas.save();
-                    this.canvas.concat(transform);
+                    svgDrawable.addCommand(parseTransform);
+                    return;
                 }
+                this.canvas.save();
+                this.canvas.concat(parseTransform);
             }
         }
 
         @Override
-        public void characters(char[] cArr, int i10, int i11) {
+        public void characters(char[] cArr, int i9, int i10) {
             StringBuilder sb2 = this.styles;
             if (sb2 != null) {
-                sb2.append(cArr, i10, i11);
+                sb2.append(cArr, i9, i10);
             }
         }
 
         @Override
         public void endElement(String str, String str2, String str3) {
-            int iIndexOf;
+            int indexOf;
             if (this.insideGiftRect) {
-                int i10 = this.insideGiftRectDepth - 1;
-                this.insideGiftRectDepth = i10;
-                if (i10 == 0) {
+                int i9 = this.insideGiftRectDepth - 1;
+                this.insideGiftRectDepth = i9;
+                if (i9 == 0) {
                     this.insideGiftRect = false;
+                    return;
                 }
                 return;
             }
             str2.getClass();
-            switch (str2) {
-                case "g":
-                case "defs":
-                case "clipPath":
-                    this.boundsMode = false;
-                    break;
-                case "style":
-                    StringBuilder sb2 = this.styles;
-                    if (sb2 != null) {
-                        String[] strArrSplit = sb2.toString().split("\\}");
-                        int i11 = 0;
-                        while (true) {
-                            if (i11 >= strArrSplit.length) {
-                                this.styles = null;
-                            } else {
-                                String strReplace = strArrSplit[i11].trim().replace("\t", "").replace("\n", "");
-                                strArrSplit[i11] = strReplace;
-                                if (strReplace.length() != 0 && strArrSplit[i11].charAt(0) == '.' && (iIndexOf = strArrSplit[i11].indexOf(123)) >= 0) {
-                                    this.globalStyles.put(strArrSplit[i11].substring(1, iIndexOf).trim(), new StyleSet(strArrSplit[i11].substring(iIndexOf + 1)));
-                                }
-                                i11++;
-                            }
-                            break;
-                        }
+            char c10 = 65535;
+            switch (str2.hashCode()) {
+                case 103:
+                    if (str2.equals("g")) {
+                        c10 = 0;
+                        break;
                     }
                     break;
+                case 3079438:
+                    if (str2.equals("defs")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case 109780401:
+                    if (str2.equals("style")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case 917656469:
+                    if (str2.equals("clipPath")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                case 1:
+                case 3:
+                    this.boundsMode = false;
+                    return;
+                case 2:
+                    StringBuilder sb2 = this.styles;
+                    if (sb2 != null) {
+                        String[] split = sb2.toString().split("\\}");
+                        for (int i10 = 0; i10 < split.length; i10++) {
+                            String replace = split[i10].trim().replace("\t", "").replace("\n", "");
+                            split[i10] = replace;
+                            if (replace.length() != 0 && split[i10].charAt(0) == '.' && (indexOf = split[i10].indexOf(123)) >= 0) {
+                                this.globalStyles.put(split[i10].substring(1, indexOf).trim(), new StyleSet(split[i10].substring(indexOf + 1)));
+                            }
+                        }
+                        this.styles = null;
+                        return;
+                    }
+                    return;
+                default:
+                    return;
             }
         }
 
@@ -4158,56 +1720,127 @@ public class SvgHelper {
         }
 
         @Override
-        public List<mf.c> getGiftPatternPositions() {
+        public List<lf.c> getGiftPatternPositions() {
             return this.insideGiftRectPositions;
         }
 
         @Override
         public void startElement(String str, String str2, String str3, Attributes attributes) {
             String stringAttr;
-            int i10;
-            Float fValueOf = Float.valueOf(0.0f);
-            mf.c cVar = null;
-            Object[] objArr = 0;
-            Object[] objArr2 = 0;
-            Object[] objArr3 = 0;
-            Object[] objArr4 = 0;
-            Object[] objArr5 = 0;
-            Object[] objArr6 = 0;
-            if (!"g".equals(str3) || this.insideGiftRect) {
-                if (this.insideGiftRect) {
-                    this.insideGiftRectDepth++;
-                    if ("rect".equals(str3)) {
-                        float f10 = this.scale;
-                        try {
-                            float f11 = Float.parseFloat(attributes.getValue("x"));
-                            float f12 = Float.parseFloat(attributes.getValue("y"));
-                            RectF rectF = new RectF(f11, f12, Float.parseFloat(attributes.getValue("width")) + f11, Float.parseFloat(attributes.getValue("height")) + f12);
-                            Matrix transform = SvgHelper.parseTransform(attributes.getValue("transform"));
-                            transform.postScale(f10, f10);
-                            cVar = new mf.c(rectF, transform);
-                        } catch (Exception e9) {
-                            FileLog.e(e9);
+            Bitmap.Config config;
+            int i9;
+            Float valueOf = Float.valueOf(0.0f);
+            lf.c cVar = null;
+            if ("g".equals(str3) && !this.insideGiftRect) {
+                if ("GiftPatterns".equals(attributes.getValue("id"))) {
+                    this.insideGiftRect = true;
+                    this.insideGiftRectDepth = 1;
+                    return;
+                }
+            } else if (this.insideGiftRect) {
+                this.insideGiftRectDepth++;
+                if ("rect".equals(str3)) {
+                    float f10 = this.scale;
+                    try {
+                        float parseFloat = Float.parseFloat(attributes.getValue("x"));
+                        float parseFloat2 = Float.parseFloat(attributes.getValue("y"));
+                        RectF rectF = new RectF(parseFloat, parseFloat2, Float.parseFloat(attributes.getValue("width")) + parseFloat, Float.parseFloat(attributes.getValue("height")) + parseFloat2);
+                        Matrix parseTransform = SvgHelper.parseTransform(attributes.getValue("transform"));
+                        parseTransform.postScale(f10, f10);
+                        cVar = new lf.c(rectF, parseTransform);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
+                    }
+                    if (cVar != null) {
+                        if (this.insideGiftRectPositions == null) {
+                            this.insideGiftRectPositions = new ArrayList();
                         }
-                        if (cVar != null) {
-                            if (this.insideGiftRectPositions == null) {
-                                this.insideGiftRectPositions = new ArrayList();
-                            }
-                            this.insideGiftRectPositions.add(cVar);
-                            return;
-                        }
+                        this.insideGiftRectPositions.add(cVar);
                         return;
                     }
                     return;
                 }
-            } else if ("GiftPatterns".equals(attributes.getValue("id"))) {
-                this.insideGiftRect = true;
-                this.insideGiftRectDepth = 1;
+                return;
             }
             if (!this.boundsMode || str2.equals("style")) {
                 str2.getClass();
-                switch (str2) {
-                    case "ellipse":
+                char c10 = 65535;
+                switch (str2.hashCode()) {
+                    case -1656480802:
+                        if (str2.equals("ellipse")) {
+                            c10 = 0;
+                            break;
+                        }
+                        break;
+                    case -1360216880:
+                        if (str2.equals("circle")) {
+                            c10 = 1;
+                            break;
+                        }
+                        break;
+                    case -397519558:
+                        if (str2.equals("polygon")) {
+                            c10 = 2;
+                            break;
+                        }
+                        break;
+                    case 103:
+                        if (str2.equals("g")) {
+                            c10 = 3;
+                            break;
+                        }
+                        break;
+                    case 114276:
+                        if (str2.equals("svg")) {
+                            c10 = 4;
+                            break;
+                        }
+                        break;
+                    case 3079438:
+                        if (str2.equals("defs")) {
+                            c10 = 5;
+                            break;
+                        }
+                        break;
+                    case 3321844:
+                        if (str2.equals("line")) {
+                            c10 = 6;
+                            break;
+                        }
+                        break;
+                    case 3433509:
+                        if (str2.equals("path")) {
+                            c10 = 7;
+                            break;
+                        }
+                        break;
+                    case 3496420:
+                        if (str2.equals("rect")) {
+                            c10 = '\b';
+                            break;
+                        }
+                        break;
+                    case 109780401:
+                        if (str2.equals("style")) {
+                            c10 = '\t';
+                            break;
+                        }
+                        break;
+                    case 561938880:
+                        if (str2.equals("polyline")) {
+                            c10 = '\n';
+                            break;
+                        }
+                        break;
+                    case 917656469:
+                        if (str2.equals("clipPath")) {
+                            c10 = 11;
+                            break;
+                        }
+                        break;
+                }
+                switch (c10) {
+                    case 0:
                         Float floatAttr = SvgHelper.getFloatAttr("cx", attributes);
                         Float floatAttr2 = SvgHelper.getFloatAttr("cy", attributes);
                         Float floatAttr3 = SvgHelper.getFloatAttr("rx", attributes);
@@ -4233,10 +1866,10 @@ public class SvgHelper {
                                 }
                             }
                             popTransform();
-                            break;
+                            return;
                         }
-                        break;
-                    case "circle":
+                        return;
+                    case 1:
                         Float floatAttr5 = SvgHelper.getFloatAttr("cx", attributes);
                         Float floatAttr6 = SvgHelper.getFloatAttr("cy", attributes);
                         Float floatAttr7 = SvgHelper.getFloatAttr("r", attributes);
@@ -4260,11 +1893,11 @@ public class SvgHelper {
                                 }
                             }
                             popTransform();
-                            break;
+                            return;
                         }
-                        break;
-                    case "polygon":
-                    case "polyline":
+                        return;
+                    case 2:
+                    case '\n':
                         NumberParse numberParseAttr = SvgHelper.getNumberParseAttr("points", attributes);
                         if (numberParseAttr != null) {
                             Path path = new Path();
@@ -4273,8 +1906,8 @@ public class SvgHelper {
                                 pushTransform(attributes);
                                 Properties properties3 = new Properties(attributes, this.globalStyles);
                                 path.moveTo(((Float) arrayList.get(0)).floatValue(), ((Float) arrayList.get(1)).floatValue());
-                                for (int i11 = 2; i11 < arrayList.size(); i11 += 2) {
-                                    path.lineTo(((Float) arrayList.get(i11)).floatValue(), ((Float) arrayList.get(i11 + 1)).floatValue());
+                                for (int i10 = 2; i10 < arrayList.size(); i10 += 2) {
+                                    path.lineTo(((Float) arrayList.get(i10)).floatValue(), ((Float) arrayList.get(i10 + 1)).floatValue());
                                 }
                                 if (str2.equals("polygon")) {
                                     path.close();
@@ -4296,71 +1929,76 @@ public class SvgHelper {
                                     }
                                 }
                                 popTransform();
+                                return;
                             }
-                            break;
+                            return;
                         }
-                        break;
-                    case "g":
+                        return;
+                    case 3:
                         if ("bounds".equalsIgnoreCase(SvgHelper.getStringAttr("id", attributes))) {
                             this.boundsMode = true;
-                            break;
+                            return;
                         }
-                        break;
-                    case "svg":
+                        return;
+                    case 4:
                         Float floatAttr8 = SvgHelper.getFloatAttr("width", attributes);
                         Float floatAttr9 = SvgHelper.getFloatAttr("height", attributes);
                         if ((floatAttr8 == null || floatAttr9 == null) && (stringAttr = SvgHelper.getStringAttr("viewBox", attributes)) != null) {
-                            String[] strArrSplit = stringAttr.split(" ");
-                            Float fValueOf2 = Float.valueOf(Float.parseFloat(strArrSplit[2]));
-                            floatAttr9 = Float.valueOf(Float.parseFloat(strArrSplit[3]));
-                            floatAttr8 = fValueOf2;
+                            String[] split = stringAttr.split(" ");
+                            Float valueOf2 = Float.valueOf(Float.parseFloat(split[2]));
+                            floatAttr9 = Float.valueOf(Float.parseFloat(split[3]));
+                            floatAttr8 = valueOf2;
                         }
                         if (floatAttr8 == null || floatAttr9 == null) {
                             floatAttr8 = Float.valueOf(this.desiredWidth);
                             floatAttr9 = Float.valueOf(this.desiredHeight);
                         }
-                        int iCeil = (int) Math.ceil(floatAttr8.floatValue());
-                        int iCeil2 = (int) Math.ceil(floatAttr9.floatValue());
-                        if (iCeil == 0 || iCeil2 == 0) {
-                            iCeil = this.desiredWidth;
-                            iCeil2 = this.desiredHeight;
-                        } else {
-                            int i12 = this.desiredWidth;
-                            if (i12 != 0 && (i10 = this.desiredHeight) != 0) {
+                        int ceil = (int) Math.ceil(floatAttr8.floatValue());
+                        int ceil2 = (int) Math.ceil(floatAttr9.floatValue());
+                        if (ceil != 0 && ceil2 != 0) {
+                            int i11 = this.desiredWidth;
+                            if (i11 != 0 && (i9 = this.desiredHeight) != 0) {
                                 if (this.scaleMode == ScaleMode.ByWidth) {
-                                    this.scale = i12 / iCeil;
+                                    this.scale = i11 / ceil;
                                 } else {
-                                    this.scale = Math.min(i12 / iCeil, i10 / iCeil2);
+                                    this.scale = Math.min(i11 / ceil, i9 / ceil2);
                                 }
-                                float f13 = this.scale;
-                                iCeil = (int) (iCeil * f13);
-                                iCeil2 = (int) (iCeil2 * f13);
+                                float f11 = this.scale;
+                                ceil = (int) (ceil * f11);
+                                ceil2 = (int) (ceil2 * f11);
                             }
+                        } else {
+                            ceil = this.desiredWidth;
+                            ceil2 = this.desiredHeight;
                         }
                         SvgDrawable svgDrawable7 = this.drawable;
-                        if (svgDrawable7 != null) {
-                            svgDrawable7.width = iCeil;
-                            svgDrawable7.height = iCeil2;
-                            break;
-                        } else {
-                            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iCeil, iCeil2, this.alphaOnly ? Bitmap.Config.ALPHA_8 : Bitmap.Config.ARGB_8888);
-                            this.bitmap = bitmapCreateBitmap;
-                            bitmapCreateBitmap.eraseColor(0);
+                        if (svgDrawable7 == null) {
+                            if (this.alphaOnly) {
+                                config = Bitmap.Config.ALPHA_8;
+                            } else {
+                                config = Bitmap.Config.ARGB_8888;
+                            }
+                            Bitmap createBitmap = Bitmap.createBitmap(ceil, ceil2, config);
+                            this.bitmap = createBitmap;
+                            createBitmap.eraseColor(0);
                             Canvas canvas = new Canvas(this.bitmap);
                             this.canvas = canvas;
-                            float f14 = this.scale;
-                            if (f14 != 0.0f) {
-                                float f15 = this.globalScale;
-                                canvas.scale(f15 * f14, f15 * f14);
+                            float f12 = this.scale;
+                            if (f12 != 0.0f) {
+                                float f13 = this.globalScale;
+                                canvas.scale(f13 * f12, f13 * f12);
+                                return;
                             }
-                            break;
+                            return;
                         }
-                        break;
-                    case "defs":
-                    case "clipPath":
+                        svgDrawable7.width = ceil;
+                        svgDrawable7.height = ceil2;
+                        return;
+                    case 5:
+                    case 11:
                         this.boundsMode = true;
-                        break;
-                    case "line":
+                        return;
+                    case 6:
                         Float floatAttr10 = SvgHelper.getFloatAttr("x1", attributes);
                         Float floatAttr11 = SvgHelper.getFloatAttr("x2", attributes);
                         Float floatAttr12 = SvgHelper.getFloatAttr("y1", attributes);
@@ -4374,39 +2012,39 @@ public class SvgHelper {
                                 this.canvas.drawLine(floatAttr10.floatValue(), floatAttr12.floatValue(), floatAttr11.floatValue(), floatAttr13.floatValue(), this.paint);
                             }
                             popTransform();
-                            break;
+                            return;
                         }
-                        break;
-                    case "path":
-                        Path pathDoPath = SvgHelper.doPath(SvgHelper.getStringAttr("d", attributes));
+                        return;
+                    case 7:
+                        Path doPath = SvgHelper.doPath(SvgHelper.getStringAttr("d", attributes));
                         pushTransform(attributes);
                         Properties properties4 = new Properties(attributes, this.globalStyles);
                         if (doFill(properties4)) {
                             SvgDrawable svgDrawable9 = this.drawable;
                             if (svgDrawable9 != null) {
-                                svgDrawable9.addCommand(pathDoPath, this.paint);
+                                svgDrawable9.addCommand(doPath, this.paint);
                             } else {
-                                this.canvas.drawPath(pathDoPath, this.paint);
+                                this.canvas.drawPath(doPath, this.paint);
                             }
                         }
                         if (doStroke(properties4)) {
                             SvgDrawable svgDrawable10 = this.drawable;
                             if (svgDrawable10 != null) {
-                                svgDrawable10.addCommand(pathDoPath, this.paint);
+                                svgDrawable10.addCommand(doPath, this.paint);
                             } else {
-                                this.canvas.drawPath(pathDoPath, this.paint);
+                                this.canvas.drawPath(doPath, this.paint);
                             }
                         }
                         popTransform();
-                        break;
-                    case "rect":
+                        return;
+                    case '\b':
                         Float floatAttr14 = SvgHelper.getFloatAttr("x", attributes);
                         if (floatAttr14 == null) {
-                            floatAttr14 = fValueOf;
+                            floatAttr14 = valueOf;
                         }
                         Float floatAttr15 = SvgHelper.getFloatAttr("y", attributes);
                         if (floatAttr15 != null) {
-                            fValueOf = floatAttr15;
+                            valueOf = floatAttr15;
                         }
                         Float floatAttr16 = SvgHelper.getFloatAttr("width", attributes);
                         Float floatAttr17 = SvgHelper.getFloatAttr("height", attributes);
@@ -4417,46 +2055,48 @@ public class SvgHelper {
                             SvgDrawable svgDrawable11 = this.drawable;
                             if (svgDrawable11 != null) {
                                 if (floatAttr18 != null) {
-                                    svgDrawable11.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), floatAttr18.floatValue()), this.paint);
+                                    svgDrawable11.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue()), floatAttr18.floatValue()), this.paint);
                                 } else {
-                                    svgDrawable11.addCommand(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), this.paint);
+                                    svgDrawable11.addCommand(new RectF(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue()), this.paint);
                                 }
                             } else if (floatAttr18 != null) {
-                                this.rectTmp.set(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue());
+                                this.rectTmp.set(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue());
                                 this.canvas.drawRoundRect(this.rectTmp, floatAttr18.floatValue(), floatAttr18.floatValue(), this.paint);
                             } else {
-                                this.canvas.drawRect(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue(), this.paint);
+                                this.canvas.drawRect(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue(), this.paint);
                             }
                         }
                         if (doStroke(properties5)) {
                             SvgDrawable svgDrawable12 = this.drawable;
                             if (svgDrawable12 != null) {
                                 if (floatAttr18 != null) {
-                                    svgDrawable12.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), floatAttr18.floatValue()), this.paint);
+                                    svgDrawable12.addCommand(new RoundRect(new RectF(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue()), floatAttr18.floatValue()), this.paint);
                                 } else {
-                                    svgDrawable12.addCommand(new RectF(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue()), this.paint);
+                                    svgDrawable12.addCommand(new RectF(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue()), this.paint);
                                 }
                             } else if (floatAttr18 != null) {
-                                this.rectTmp.set(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue());
+                                this.rectTmp.set(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue());
                                 this.canvas.drawRoundRect(this.rectTmp, floatAttr18.floatValue(), floatAttr18.floatValue(), this.paint);
                             } else {
-                                this.canvas.drawRect(floatAttr14.floatValue(), fValueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + fValueOf.floatValue(), this.paint);
+                                this.canvas.drawRect(floatAttr14.floatValue(), valueOf.floatValue(), floatAttr16.floatValue() + floatAttr14.floatValue(), floatAttr17.floatValue() + valueOf.floatValue(), this.paint);
                             }
                         }
                         popTransform();
-                        break;
-                    case "style":
+                        return;
+                    case '\t':
                         this.styles = new StringBuilder();
-                        break;
+                        return;
+                    default:
+                        return;
                 }
             }
         }
 
-        private SVGHandler(int i10, int i11, Integer num, boolean z10, float f10) {
-            this(i10, i11, num, z10, f10, ScaleMode.Default);
+        private SVGHandler(int i9, int i10, Integer num, boolean z10, float f10) {
+            this(i9, i10, num, z10, f10, ScaleMode.Default);
         }
 
-        private SVGHandler(int i10, int i11, Integer num, boolean z10, float f10, ScaleMode scaleMode) {
+        private SVGHandler(int i9, int i10, Integer num, boolean z10, float f10, ScaleMode scaleMode) {
             this.scale = 1.0f;
             this.paint = new Paint(1);
             this.rect = new RectF();
@@ -4467,8 +2107,8 @@ public class SvgHelper {
             this.insideGiftRect = false;
             this.insideGiftRectDepth = 0;
             this.globalScale = f10;
-            this.desiredWidth = i10;
-            this.desiredHeight = i11;
+            this.desiredWidth = i9;
+            this.desiredHeight = i10;
             this.paintColor = num;
             this.scaleMode = scaleMode;
             if (z10) {
@@ -4485,8 +2125,8 @@ public class SvgHelper {
         }
     }
 
-    public static Bitmap getBitmap(int i10, int i11, int i12, int i13, float f10) {
-        return getBitmap(i10, i11, i12, i13, f10, ScaleMode.Default);
+    public static Bitmap getBitmap(int i9, int i10, int i11, int i12, float f10) {
+        return getBitmap(i9, i10, i11, i12, f10, ScaleMode.Default);
     }
 
     public static Float getFloatAttr(String str, Attributes attributes, Float f10) {
@@ -4495,126 +2135,103 @@ public class SvgHelper {
             return f10;
         }
         if (stringAttr.endsWith("px")) {
-            stringAttr = com.google.android.recaptcha.internal.a.n(stringAttr, 2, 0);
+            stringAttr = e2.c.m(stringAttr, 2, 0);
         } else if (stringAttr.endsWith("mm")) {
             return null;
         }
         return Float.valueOf(Float.parseFloat(stringAttr));
     }
 
-    public static Bitmap getBitmap(int i10, int i11, int i12, int i13, float f10, ScaleMode scaleMode) {
+    public static Bitmap getBitmap(int i9, int i10, int i11, int i12, float f10, ScaleMode scaleMode) {
         try {
-            InputStream inputStreamOpenRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i10);
-            try {
-                XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i11, i12, Integer.valueOf(i13), false, f10, scaleMode);
-                xMLReader.setContentHandler(sVGHandler);
-                xMLReader.parse(new InputSource(inputStreamOpenRawResource));
-                Bitmap bitmap = sVGHandler.getBitmap();
-                if (inputStreamOpenRawResource != null) {
-                    inputStreamOpenRawResource.close();
-                }
-                return bitmap;
-            } catch (Throwable th) {
-                if (inputStreamOpenRawResource == null) {
-                    throw th;
-                }
-                try {
-                    inputStreamOpenRawResource.close();
-                    throw th;
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
-                    throw th;
-                }
+            InputStream openRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i9);
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            SVGHandler sVGHandler = new SVGHandler(i10, i11, Integer.valueOf(i12), false, f10, scaleMode);
+            xMLReader.setContentHandler(sVGHandler);
+            xMLReader.parse(new InputSource(openRawResource));
+            Bitmap bitmap = sVGHandler.getBitmap();
+            if (openRawResource != null) {
+                openRawResource.close();
             }
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            return bitmap;
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawableByPath(Path path, int i10, int i11) {
+    public static SvgDrawable getDrawableByPath(Path path, int i9, int i10) {
         try {
             SvgDrawable svgDrawable = new SvgDrawable();
             svgDrawable.commands.add(path);
             svgDrawable.paints.put(path, new Paint(1));
-            svgDrawable.width = i10;
-            svgDrawable.height = i11;
+            svgDrawable.width = i9;
+            svgDrawable.height = i10;
             return svgDrawable;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static SvgDrawable getDrawable(int i10, Integer num) {
+    public static SvgDrawable getDrawable(int i9, Integer num) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(0, 0, num, true, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
-            xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i10)));
+            xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i9)));
             return sVGHandler.getDrawable();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(InputStream inputStream, int i10, int i11, boolean z10) {
+    public static Bitmap getBitmap(InputStream inputStream, int i9, int i10, boolean z10) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(i9, i10, z10 ? -1 : null, false, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(inputStream));
             return sVGHandler.getBitmap();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(File file, int i10, int i11, boolean z10) {
-        return getBitmap(file, i10, i11, z10, ScaleMode.Default);
+    public static Bitmap getBitmap(File file, int i9, int i10, boolean z10) {
+        return getBitmap(file, i9, i10, z10, ScaleMode.Default);
     }
 
-    public static Bitmap getBitmap(File file, int i10, int i11, boolean z10, ScaleMode scaleMode) {
+    public static Bitmap getBitmap(File file, int i9, int i10, boolean z10, ScaleMode scaleMode) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            try {
-                XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f, scaleMode);
-                if (!z10) {
-                    sVGHandler.alphaOnly = true;
-                }
-                xMLReader.setContentHandler(sVGHandler);
-                xMLReader.parse(new InputSource(fileInputStream));
-                Bitmap bitmap = sVGHandler.getBitmap();
-                fileInputStream.close();
-                return bitmap;
-            } catch (Throwable th) {
-                try {
-                    fileInputStream.close();
-                    throw th;
-                } catch (Throwable th2) {
-                    th.addSuppressed(th2);
-                    throw th;
-                }
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            SVGHandler sVGHandler = new SVGHandler(i9, i10, z10 ? -1 : null, false, 1.0f, scaleMode);
+            if (!z10) {
+                sVGHandler.alphaOnly = true;
             }
-        } catch (Exception e9) {
-            FileLog.e(e9);
+            xMLReader.setContentHandler(sVGHandler);
+            xMLReader.parse(new InputSource(fileInputStream));
+            Bitmap bitmap = sVGHandler.getBitmap();
+            fileInputStream.close();
+            return bitmap;
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
 
-    public static Bitmap getBitmap(String str, int i10, int i11, boolean z10) {
+    public static Bitmap getBitmap(String str, int i9, int i10, boolean z10) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(i10, i11, z10 ? -1 : null, false, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(i9, i10, z10 ? -1 : null, false, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getBitmap();
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }

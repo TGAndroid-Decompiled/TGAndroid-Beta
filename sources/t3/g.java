@@ -1,28 +1,24 @@
 package t3;
 
-import d5.g0;
+import d5.f0;
 import m3.s;
 import m3.u;
-
 public final class g implements f {
-
-    public final long[] f48036a;
-
-    public final long[] f48037b;
-
-    public final long f48038c;
+    public final long[] f47625a;
+    public final long[] f47626b;
+    public final long f47627c;
     public final long d;
 
     public g(long[] jArr, long[] jArr2, long j10, long j11) {
-        this.f48036a = jArr;
-        this.f48037b = jArr2;
-        this.f48038c = j10;
+        this.f47625a = jArr;
+        this.f47626b = jArr2;
+        this.f47627c = j10;
         this.d = j11;
     }
 
     @Override
     public final long a(long j10) {
-        return this.f48036a[g0.e(this.f48037b, j10, true)];
+        return this.f47625a[f0.e(this.f47626b, j10, true)];
     }
 
     @Override
@@ -37,20 +33,20 @@ public final class g implements f {
 
     @Override
     public final s h(long j10) {
-        long[] jArr = this.f48036a;
-        int iE = g0.e(jArr, j10, true);
-        long j11 = jArr[iE];
-        long[] jArr2 = this.f48037b;
-        u uVar = new u(j11, jArr2[iE]);
-        if (j11 >= j10 || iE == jArr.length - 1) {
-            return new s(uVar, uVar);
+        long[] jArr = this.f47625a;
+        int e10 = f0.e(jArr, j10, true);
+        long j11 = jArr[e10];
+        long[] jArr2 = this.f47626b;
+        u uVar = new u(j11, jArr2[e10]);
+        if (j11 < j10 && e10 != jArr.length - 1) {
+            int i9 = e10 + 1;
+            return new s(uVar, new u(jArr[i9], jArr2[i9]));
         }
-        int i10 = iE + 1;
-        return new s(uVar, new u(jArr[i10], jArr2[i10]));
+        return new s(uVar, uVar);
     }
 
     @Override
     public final long i() {
-        return this.f48038c;
+        return this.f47627c;
     }
 }

@@ -1,33 +1,28 @@
 package org.telegram.ui.Components;
 
-public final class m8 extends org.telegram.ui.ActionBar.j {
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class m8 extends cq {
+    public final int f30760b0;
 
-    public final int f30616a;
-
-    public final v8 f30617b;
-
-    public m8(v8 v8Var, int i10) {
-        this.f30616a = i10;
-        this.f30617b = v8Var;
+    public m8(Context context, boolean z10, bq bqVar, int i9) {
+        super(context, z10, bqVar);
+        this.f30760b0 = i9;
     }
 
     @Override
-    public final void b(int i10) {
-        switch (this.f30616a) {
+    public final void onMeasure(int i9, int i10) {
+        switch (this.f30760b0) {
             case 0:
-                if (i10 == -1) {
-                    v8.U(this.f30617b);
-                }
-                break;
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
             default:
-                v8 v8Var = this.f30617b;
-                if (i10 == -1) {
-                    v8.U(v8Var);
-                }
-                if (i10 == 1) {
-                    v8Var.f0();
-                }
-                break;
+                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
         }
     }
 }

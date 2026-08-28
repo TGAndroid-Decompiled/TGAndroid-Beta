@@ -2,8 +2,7 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-
-public final class cy0 extends f2.l {
+public final class cy0 extends f2.n {
     public int F = -1;
     public final ProfileActivity G;
 
@@ -22,21 +21,21 @@ public final class cy0 extends f2.l {
     }
 
     @Override
-    public final void P(f2.o1 o1Var) {
+    public final void P(f2.q1 q1Var) {
         this.G.U4();
     }
 
     @Override
     public final void m() {
-        boolean zIsEmpty = this.f5738p.isEmpty();
-        boolean zIsEmpty2 = this.f5740r.isEmpty();
-        boolean zIsEmpty3 = this.f5741s.isEmpty();
-        boolean zIsEmpty4 = this.f5739q.isEmpty();
-        if (!zIsEmpty || !zIsEmpty2 || !zIsEmpty4 || !zIsEmpty3) {
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            valueAnimatorOfFloat.addUpdateListener(new g3(this, 26));
-            valueAnimatorOfFloat.setDuration(this.f5843e);
-            valueAnimatorOfFloat.start();
+        boolean isEmpty = this.f5450p.isEmpty();
+        boolean isEmpty2 = this.f5452r.isEmpty();
+        boolean isEmpty3 = this.f5453s.isEmpty();
+        boolean isEmpty4 = this.f5451q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new f3(this, 26));
+            ofFloat.setDuration(this.f5549e);
+            ofFloat.start();
             this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }
         super.m();

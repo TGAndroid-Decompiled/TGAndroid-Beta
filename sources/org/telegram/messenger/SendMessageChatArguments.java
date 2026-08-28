@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public class SendMessageChatArguments {
     public static final SendMessageChatArguments EMPTY = new Builder().build();
     public final String quickReplyShortcut;
@@ -15,9 +14,9 @@ public class SendMessageChatArguments {
             return new SendMessageChatArguments(this);
         }
 
-        public void setQuickReplyShortcut(String str, int i10) {
+        public void setQuickReplyShortcut(String str, int i9) {
             this.quickReplyShortcut = str;
-            this.quickReplyShortcutId = i10;
+            this.quickReplyShortcutId = i9;
         }
 
         public void setWelcomeMessageChatId(long j10) {

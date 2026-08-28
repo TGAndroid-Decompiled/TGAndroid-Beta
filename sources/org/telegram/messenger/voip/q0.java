@@ -4,37 +4,33 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e3;
-
+import org.telegram.ui.ActionBar.f3;
 public final class q0 implements DialogInterface.OnShowListener {
+    public final int f21937a;
+    public final KeyEvent.Callback f21938b;
+    public final Object f21939c;
 
-    public final int f21961a;
-
-    public final KeyEvent.Callback f21962b;
-
-    public final Object f21963c;
-
-    public q0(KeyEvent.Callback callback, Object obj, int i10) {
-        this.f21961a = i10;
-        this.f21962b = callback;
-        this.f21963c = obj;
+    public q0(KeyEvent.Callback callback, Object obj, int i9) {
+        this.f21937a = i9;
+        this.f21938b = callback;
+        this.f21939c = obj;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f21961a) {
+        switch (this.f21937a) {
             case 0:
-                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((e3) this.f21962b, (Integer) this.f21963c, dialogInterface);
-                break;
+                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((f3) this.f21938b, (Integer) this.f21939c, dialogInterface);
+                return;
             default:
-                View view = (View) this.f21962b;
-                qf.p pVar = (qf.p) this.f21963c;
+                View view = (View) this.f21938b;
+                pf.o oVar = (pf.o) this.f21939c;
                 if (view != null) {
                     view.clearFocus();
                 }
-                pVar.requestFocus();
-                AndroidUtilities.showKeyboard(pVar);
-                break;
+                oVar.requestFocus();
+                AndroidUtilities.showKeyboard(oVar);
+                return;
         }
     }
 }

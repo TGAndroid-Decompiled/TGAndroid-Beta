@@ -1,145 +1,162 @@
 package u3;
 
-import d5.z;
+import d5.y;
+import j3.r0;
 import java.nio.ByteBuffer;
 import java.util.UUID;
-
+import n5.e0;
+import o8.z;
 public abstract class j {
-
-    public static final String[] f48320a = {"Blues", "Classic Rock", "Country", "Dance", "Disco", "Funk", "Grunge", "Hip-Hop", "Jazz", "Metal", "New Age", "Oldies", "Other", "Pop", "R&B", "Rap", "Reggae", "Rock", "Techno", "Industrial", "Alternative", "Ska", "Death Metal", "Pranks", "Soundtrack", "Euro-Techno", "Ambient", "Trip-Hop", "Vocal", "Jazz+Funk", "Fusion", "Trance", "Classical", "Instrumental", "Acid", "House", "Game", "Sound Clip", "Gospel", "Noise", "AlternRock", "Bass", "Soul", "Punk", "Space", "Meditative", "Instrumental Pop", "Instrumental Rock", "Ethnic", "Gothic", "Darkwave", "Techno-Industrial", "Electronic", "Pop-Folk", "Eurodance", "Dream", "Southern Rock", "Comedy", "Cult", "Gangsta", "Top 40", "Christian Rap", "Pop/Funk", "Jungle", "Native American", "Cabaret", "New Wave", "Psychadelic", "Rave", "Showtunes", "Trailer", "Lo-Fi", "Tribal", "Acid Punk", "Acid Jazz", "Polka", "Retro", "Musical", "Rock & Roll", "Hard Rock", "Folk", "Folk-Rock", "National Folk", "Swing", "Fast Fusion", "Bebob", "Latin", "Revival", "Celtic", "Bluegrass", "Avantgarde", "Gothic Rock", "Progressive Rock", "Psychedelic Rock", "Symphonic Rock", "Slow Rock", "Big Band", "Chorus", "Easy Listening", "Acoustic", "Humour", "Speech", "Chanson", "Opera", "Chamber Music", "Sonata", "Symphony", "Booty Bass", "Primus", "Porn Groove", "Satire", "Slow Jam", "Club", "Tango", "Samba", "Folklore", "Ballad", "Power Ballad", "Rhythmic Soul", "Freestyle", "Duet", "Punk Rock", "Drum Solo", "A capella", "Euro-House", "Dance Hall", "Goa", "Drum & Bass", "Club-House", "Hardcore", "Terror", "Indie", "BritPop", "Afro-Punk", "Polsk Punk", "Beat", "Christian Gangsta Rap", "Heavy Metal", "Black Metal", "Crossover", "Contemporary Christian", "Christian Rock", "Merengue", "Salsa", "Thrash Metal", "Anime", "Jpop", "Synthpop", "Abstract", "Art Rock", "Baroque", "Bhangra", "Big beat", "Breakbeat", "Chillout", "Downtempo", "Dub", "EBM", "Eclectic", "Electro", "Electroclash", "Emo", "Experimental", "Garage", "Global", "IDM", "Illbient", "Industro-Goth", "Jam Band", "Krautrock", "Leftfield", "Lounge", "Math Rock", "New Romantic", "Nu-Breakz", "Post-Punk", "Post-Rock", "Psytrance", "Shoegaze", "Space Rock", "Trop Rock", "World Music", "Neoclassical", "Audiobook", "Audio theatre", "Neue Deutsche Welle", "Podcast", "Indie-Rock", "G-Funk", "Dubstep", "Garage Rock", "Psybient"};
-
-    public static final int[] f48321b = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
+    public static final String[] f48023a = {"Blues", "Classic Rock", "Country", "Dance", "Disco", "Funk", "Grunge", "Hip-Hop", "Jazz", "Metal", "New Age", "Oldies", "Other", "Pop", "R&B", "Rap", "Reggae", "Rock", "Techno", "Industrial", "Alternative", "Ska", "Death Metal", "Pranks", "Soundtrack", "Euro-Techno", "Ambient", "Trip-Hop", "Vocal", "Jazz+Funk", "Fusion", "Trance", "Classical", "Instrumental", "Acid", "House", "Game", "Sound Clip", "Gospel", "Noise", "AlternRock", "Bass", "Soul", "Punk", "Space", "Meditative", "Instrumental Pop", "Instrumental Rock", "Ethnic", "Gothic", "Darkwave", "Techno-Industrial", "Electronic", "Pop-Folk", "Eurodance", "Dream", "Southern Rock", "Comedy", "Cult", "Gangsta", "Top 40", "Christian Rap", "Pop/Funk", "Jungle", "Native American", "Cabaret", "New Wave", "Psychadelic", "Rave", "Showtunes", "Trailer", "Lo-Fi", "Tribal", "Acid Punk", "Acid Jazz", "Polka", "Retro", "Musical", "Rock & Roll", "Hard Rock", "Folk", "Folk-Rock", "National Folk", "Swing", "Fast Fusion", "Bebob", "Latin", "Revival", "Celtic", "Bluegrass", "Avantgarde", "Gothic Rock", "Progressive Rock", "Psychedelic Rock", "Symphonic Rock", "Slow Rock", "Big Band", "Chorus", "Easy Listening", "Acoustic", "Humour", "Speech", "Chanson", "Opera", "Chamber Music", "Sonata", "Symphony", "Booty Bass", "Primus", "Porn Groove", "Satire", "Slow Jam", "Club", "Tango", "Samba", "Folklore", "Ballad", "Power Ballad", "Rhythmic Soul", "Freestyle", "Duet", "Punk Rock", "Drum Solo", "A capella", "Euro-House", "Dance Hall", "Goa", "Drum & Bass", "Club-House", "Hardcore", "Terror", "Indie", "BritPop", "Afro-Punk", "Polsk Punk", "Beat", "Christian Gangsta Rap", "Heavy Metal", "Black Metal", "Crossover", "Contemporary Christian", "Christian Rock", "Merengue", "Salsa", "Thrash Metal", "Anime", "Jpop", "Synthpop", "Abstract", "Art Rock", "Baroque", "Bhangra", "Big beat", "Breakbeat", "Chillout", "Downtempo", "Dub", "EBM", "Eclectic", "Electro", "Electroclash", "Emo", "Experimental", "Garage", "Global", "IDM", "Illbient", "Industro-Goth", "Jam Band", "Krautrock", "Leftfield", "Lounge", "Math Rock", "New Romantic", "Nu-Breakz", "Post-Punk", "Post-Rock", "Psytrance", "Shoegaze", "Space Rock", "Trop Rock", "World Music", "Neoclassical", "Audiobook", "Audio theatre", "Neue Deutsche Welle", "Podcast", "Indie-Rock", "G-Funk", "Dubstep", "Garage Rock", "Psybient"};
+    public static final int[] f48024b = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
     public static byte[] a(UUID uuid, UUID[] uuidArr, byte[] bArr) {
-        int length = (bArr != null ? bArr.length : 0) + 32;
-        if (uuidArr != null) {
-            length += (uuidArr.length * 16) + 4;
+        int i9;
+        int i10;
+        if (bArr != null) {
+            i9 = bArr.length;
+        } else {
+            i9 = 0;
         }
-        ByteBuffer byteBufferAllocate = ByteBuffer.allocate(length);
-        byteBufferAllocate.putInt(length);
-        byteBufferAllocate.putInt(1886614376);
-        byteBufferAllocate.putInt(uuidArr != null ? 16777216 : 0);
-        byteBufferAllocate.putLong(uuid.getMostSignificantBits());
-        byteBufferAllocate.putLong(uuid.getLeastSignificantBits());
+        int i11 = i9 + 32;
         if (uuidArr != null) {
-            byteBufferAllocate.putInt(uuidArr.length);
+            i11 += (uuidArr.length * 16) + 4;
+        }
+        ByteBuffer allocate = ByteBuffer.allocate(i11);
+        allocate.putInt(i11);
+        allocate.putInt(1886614376);
+        if (uuidArr != null) {
+            i10 = 16777216;
+        } else {
+            i10 = 0;
+        }
+        allocate.putInt(i10);
+        allocate.putLong(uuid.getMostSignificantBits());
+        allocate.putLong(uuid.getLeastSignificantBits());
+        if (uuidArr != null) {
+            allocate.putInt(uuidArr.length);
             for (UUID uuid2 : uuidArr) {
-                byteBufferAllocate.putLong(uuid2.getMostSignificantBits());
-                byteBufferAllocate.putLong(uuid2.getLeastSignificantBits());
+                allocate.putLong(uuid2.getMostSignificantBits());
+                allocate.putLong(uuid2.getLeastSignificantBits());
             }
         }
         if (bArr != null && bArr.length != 0) {
-            byteBufferAllocate.putInt(bArr.length);
-            byteBufferAllocate.put(bArr);
+            allocate.putInt(bArr.length);
+            allocate.put(bArr);
         }
-        return byteBufferAllocate.array();
+        return allocate.array();
     }
 
-    public static e4.e b(int i10, z zVar) {
-        int iE = zVar.e();
-        if (zVar.e() == 1684108385) {
-            zVar.D(8);
-            String strN = zVar.n(iE - 16);
-            return new e4.e("und", strN, strN);
+    public static e4.e b(int i9, y yVar) {
+        int e10 = yVar.e();
+        if (yVar.e() == 1684108385) {
+            yVar.D(8);
+            String n10 = yVar.n(e10 - 16);
+            return new e4.e("und", n10, n10);
         }
-        d5.a.K("MetadataUtil", "Failed to parse comment attribute: " + mc.k.a(i10));
+        d5.a.K("MetadataUtil", "Failed to parse comment attribute: " + lc.k.a(i9));
         return null;
     }
 
-    public static e4.a c(z zVar) {
+    public static e4.a c(y yVar) {
         String str;
-        int iE = zVar.e();
-        if (zVar.e() != 1684108385) {
-            d5.a.K("MetadataUtil", "Failed to parse cover art attribute");
-            return null;
+        int e10 = yVar.e();
+        if (yVar.e() == 1684108385) {
+            int e11 = yVar.e() & 16777215;
+            if (e11 == 13) {
+                str = "image/jpeg";
+            } else if (e11 == 14) {
+                str = "image/png";
+            } else {
+                str = null;
+            }
+            if (str == null) {
+                e2.c.t(e11, "Unrecognized cover art flags: ", "MetadataUtil");
+                return null;
+            }
+            yVar.D(4);
+            int i9 = e10 - 16;
+            byte[] bArr = new byte[i9];
+            yVar.c(0, i9, bArr);
+            return new e4.a(3, str, null, bArr);
         }
-        int iE2 = zVar.e() & 16777215;
-        if (iE2 == 13) {
-            str = "image/jpeg";
-        } else {
-            str = iE2 == 14 ? "image/png" : null;
-        }
-        if (str == null) {
-            com.google.android.recaptcha.internal.a.s(iE2, "Unrecognized cover art flags: ", "MetadataUtil");
-            return null;
-        }
-        zVar.D(4);
-        int i10 = iE - 16;
-        byte[] bArr = new byte[i10];
-        zVar.c(0, i10, bArr);
-        return new e4.a(3, str, null, bArr);
+        d5.a.K("MetadataUtil", "Failed to parse cover art attribute");
+        return null;
     }
 
-    public static e4.n d(int i10, String str, z zVar) {
-        int iE = zVar.e();
-        if (zVar.e() == 1684108385 && iE >= 22) {
-            zVar.D(10);
-            int iW = zVar.w();
-            if (iW > 0) {
-                String strK = i0.a.k(iW, "");
-                int iW2 = zVar.w();
-                if (iW2 > 0) {
-                    strK = strK + "/" + iW2;
+    public static e4.n d(int i9, String str, y yVar) {
+        int e10 = yVar.e();
+        if (yVar.e() == 1684108385 && e10 >= 22) {
+            yVar.D(10);
+            int w8 = yVar.w();
+            if (w8 > 0) {
+                String l10 = r0.l(w8, "");
+                int w10 = yVar.w();
+                if (w10 > 0) {
+                    l10 = l10 + "/" + w10;
                 }
-                return new e4.n(str, null, p8.z.y(strK));
+                return new e4.n(str, null, z.y(l10));
             }
         }
-        d5.a.K("MetadataUtil", "Failed to parse index/count attribute: " + mc.k.a(i10));
+        d5.a.K("MetadataUtil", "Failed to parse index/count attribute: " + lc.k.a(i9));
         return null;
     }
 
-    public static n1.d e(byte[] bArr) {
-        z zVar = new z(bArr);
-        if (zVar.f4860c >= 32) {
-            zVar.C(0);
-            if (zVar.e() == zVar.a() + 4 && zVar.e() == 1886614376) {
-                int iB = mc.k.b(zVar.e());
-                if (iB > 1) {
-                    com.google.android.recaptcha.internal.a.s(iB, "Unsupported pssh version: ", "PsshAtomUtil");
+    public static e0 e(byte[] bArr) {
+        y yVar = new y(bArr);
+        if (yVar.f4412c >= 32) {
+            yVar.C(0);
+            if (yVar.e() == yVar.a() + 4 && yVar.e() == 1886614376) {
+                int b10 = lc.k.b(yVar.e());
+                if (b10 > 1) {
+                    e2.c.t(b10, "Unsupported pssh version: ", "PsshAtomUtil");
                     return null;
                 }
-                UUID uuid = new UUID(zVar.l(), zVar.l());
-                if (iB == 1) {
-                    zVar.D(zVar.u() * 16);
+                UUID uuid = new UUID(yVar.l(), yVar.l());
+                if (b10 == 1) {
+                    yVar.D(yVar.u() * 16);
                 }
-                int iU = zVar.u();
-                if (iU == zVar.a()) {
-                    byte[] bArr2 = new byte[iU];
-                    zVar.c(0, iU, bArr2);
-                    return new n1.d(uuid, iB, bArr2);
+                int u10 = yVar.u();
+                if (u10 == yVar.a()) {
+                    byte[] bArr2 = new byte[u10];
+                    yVar.c(0, u10, bArr2);
+                    return new e0(uuid, b10, bArr2);
                 }
             }
         }
         return null;
     }
 
-    public static e4.n f(int i10, String str, z zVar) {
-        int iE = zVar.e();
-        if (zVar.e() == 1684108385) {
-            zVar.D(8);
-            return new e4.n(str, null, p8.z.y(zVar.n(iE - 16)));
+    public static e4.n f(int i9, String str, y yVar) {
+        int e10 = yVar.e();
+        if (yVar.e() == 1684108385) {
+            yVar.D(8);
+            return new e4.n(str, null, z.y(yVar.n(e10 - 16)));
         }
-        d5.a.K("MetadataUtil", "Failed to parse text attribute: " + mc.k.a(i10));
+        d5.a.K("MetadataUtil", "Failed to parse text attribute: " + lc.k.a(i9));
         return null;
     }
 
-    public static e4.j g(int i10, String str, z zVar, boolean z10, boolean z11) {
-        int iH = h(zVar);
+    public static e4.j g(int i9, String str, y yVar, boolean z10, boolean z11) {
+        int h = h(yVar);
         if (z11) {
-            iH = Math.min(1, iH);
+            h = Math.min(1, h);
         }
-        if (iH >= 0) {
-            return z10 ? new e4.n(str, null, p8.z.y(Integer.toString(iH))) : new e4.e("und", str, Integer.toString(iH));
+        if (h >= 0) {
+            if (z10) {
+                return new e4.n(str, null, z.y(Integer.toString(h)));
+            }
+            return new e4.e("und", str, Integer.toString(h));
         }
-        d5.a.K("MetadataUtil", "Failed to parse uint8 attribute: " + mc.k.a(i10));
+        d5.a.K("MetadataUtil", "Failed to parse uint8 attribute: " + lc.k.a(i9));
         return null;
     }
 
-    public static int h(z zVar) {
-        zVar.D(4);
-        if (zVar.e() == 1684108385) {
-            zVar.D(8);
-            return zVar.r();
+    public static int h(y yVar) {
+        yVar.D(4);
+        if (yVar.e() == 1684108385) {
+            yVar.D(8);
+            return yVar.r();
         }
         d5.a.K("MetadataUtil", "Failed to parse uint8 attribute value");
         return -1;
@@ -147,6 +164,7 @@ public abstract class j {
 
     public static boolean i(m3.l lVar, boolean z10, boolean z11) {
         boolean z12;
+        int i9;
         int i10;
         long length = lVar.getLength();
         long j10 = 4096;
@@ -156,92 +174,92 @@ public abstract class j {
             j10 = length;
         }
         int i12 = (int) j10;
-        z zVar = new z(64);
+        y yVar = new y(64);
         int i13 = 0;
         int i14 = 0;
         boolean z13 = false;
-        while (true) {
-            if (i14 < i12) {
-                zVar.z(8);
-                if (lVar.g(zVar.f4858a, i13, 8, true)) {
-                    long jS = zVar.s();
-                    int iE = zVar.e();
-                    if (jS == 1) {
-                        lVar.b(8, 8, zVar.f4858a);
-                        zVar.B(16);
-                        jS = zVar.l();
-                        i10 = 16;
-                    } else {
-                        if (jS == 0) {
-                            long length2 = lVar.getLength();
-                            if (length2 != j11) {
-                                jS = (length2 - lVar.i()) + ((long) 8);
-                            }
-                        }
-                        i10 = 8;
-                    }
-                    long j12 = i10;
-                    if (jS < j12) {
-                        return false;
-                    }
-                    int i15 = i14 + i10;
-                    if (iE == 1836019574) {
-                        i12 += (int) jS;
-                        if (i11 != 0 && i12 > length) {
-                            i12 = (int) length;
-                        }
-                        i14 = i15;
-                    } else {
-                        if (iE == 1836019558 || iE == 1836475768) {
-                            z12 = true;
-                            return z13 && z10 == z12;
-                        }
-                        int i16 = i11;
-                        if ((((long) i15) + jS) - j12 < i12) {
-                            int i17 = (int) (jS - j12);
-                            i14 = i15 + i17;
-                            if (iE == 1718909296) {
-                                if (i17 < 8) {
-                                    return false;
-                                }
-                                zVar.z(i17);
-                                lVar.b(0, i17, zVar.f4858a);
-                                int i18 = i17 / 4;
-                                for (int i19 = 0; i19 < i18; i19++) {
-                                    if (i19 != 1) {
-                                        int iE2 = zVar.e();
-                                        if ((iE2 >>> 8) != 3368816 && (iE2 != 1751476579 || !z11)) {
-                                            int i20 = 0;
-                                            while (true) {
-                                                if (i20 >= 29) {
-                                                    continue;
-                                                } else if (f48321b[i20] != iE2) {
-                                                    i20++;
-                                                }
-                                            }
-                                        }
-                                        z13 = true;
-                                        break;
-                                    }
-                                    zVar.D(4);
-                                }
-                                if (!z13) {
-                                    return false;
-                                }
-                            } else if (i17 != 0) {
-                                lVar.j(i17);
-                            }
-                            i11 = i16;
-                        }
-                    }
-                    j11 = -1;
-                    i13 = 0;
-                }
+        while (i14 < i12) {
+            yVar.z(8);
+            if (!lVar.g(yVar.f4410a, i13, 8, true)) {
+                break;
             }
-            z12 = false;
-            if (z13) {
+            long s10 = yVar.s();
+            int e10 = yVar.e();
+            if (s10 == 1) {
+                lVar.c(8, 8, yVar.f4410a);
+                yVar.B(16);
+                i9 = i14;
+                s10 = yVar.l();
+                i10 = 16;
+            } else {
+                if (s10 == 0) {
+                    long length2 = lVar.getLength();
+                    if (length2 != j11) {
+                        s10 = (length2 - lVar.k()) + 8;
+                    }
+                }
+                i9 = i14;
+                i10 = 8;
+            }
+            long j12 = i10;
+            if (s10 < j12) {
                 return false;
             }
+            int i15 = i9 + i10;
+            if (e10 == 1836019574) {
+                i12 += (int) s10;
+                if (i11 != 0 && i12 > length) {
+                    i12 = (int) length;
+                }
+                i14 = i15;
+            } else if (e10 != 1836019558 && e10 != 1836475768) {
+                int i16 = i11;
+                if ((i15 + s10) - j12 >= i12) {
+                    break;
+                }
+                int i17 = (int) (s10 - j12);
+                i14 = i15 + i17;
+                if (e10 == 1718909296) {
+                    if (i17 < 8) {
+                        return false;
+                    }
+                    yVar.z(i17);
+                    lVar.c(0, i17, yVar.f4410a);
+                    int i18 = i17 / 4;
+                    for (int i19 = 0; i19 < i18; i19++) {
+                        if (i19 == 1) {
+                            yVar.D(4);
+                        } else {
+                            int e11 = yVar.e();
+                            if ((e11 >>> 8) != 3368816 && (e11 != 1751476579 || !z11)) {
+                                for (int i20 = 0; i20 < 29; i20++) {
+                                    if (f48024b[i20] != e11) {
+                                    }
+                                }
+                                continue;
+                            }
+                            z13 = true;
+                            break;
+                        }
+                    }
+                    if (!z13) {
+                        return false;
+                    }
+                } else if (i17 != 0) {
+                    lVar.n(i17);
+                }
+                i11 = i16;
+            } else {
+                z12 = true;
+                break;
+            }
+            j11 = -1;
+            i13 = 0;
         }
+        z12 = false;
+        if (!z13 || z10 != z12) {
+            return false;
+        }
+        return true;
     }
 }

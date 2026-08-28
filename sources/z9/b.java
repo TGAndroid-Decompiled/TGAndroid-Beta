@@ -1,85 +1,56 @@
 package z9;
 
-import java.io.IOException;
-import w3.b0;
+import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
+public final class b {
+    public static final String[] f50393c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f50394a;
+    public final String f50395b;
 
-public final class b implements Runnable {
-
-    public final int f50257a;
-
-    public final c f50258b;
-
-    public b(c cVar, int i10) {
-        this.f50257a = i10;
-        this.f50258b = cVar;
+    public b(s8.h r4) {
+        throw new UnsupportedOperationException("Method not decompiled: z9.b.<init>(s8.h):void");
     }
 
-    @Override
-    public final void run() {
-        aa.b bVarM;
-        aa.b bVarI;
-        switch (this.f50257a) {
-            case 0:
-                this.f50258b.b();
-                return;
-            case 1:
-                c cVar = this.f50258b;
-                synchronized (c.f50259m) {
-                    try {
-                        t8.h hVar = cVar.f50260a;
-                        hVar.a();
-                        b0 b0VarD = b0.d(hVar.f48119a);
-                        try {
-                            bVarM = cVar.f50262c.M();
-                            if (b0VarD != null) {
-                                b0VarD.l();
-                            }
-                        } catch (Throwable th) {
-                            if (b0VarD != null) {
-                                b0VarD.l();
-                            }
-                            throw th;
-                        }
-                    } catch (Throwable th2) {
-                        throw th2;
-                    }
-                }
-                try {
-                    int i10 = bVarM.f206b;
-                    if (i10 == 5) {
-                        bVarI = cVar.i(bVarM);
-                    } else {
-                        if (i10 == 3) {
-                            bVarI = cVar.i(bVarM);
-                        } else if (!cVar.d.a(bVarM)) {
-                            return;
-                        } else {
-                            bVarI = cVar.c(bVarM);
-                        }
-                    }
-                    cVar.f(bVarI);
-                    cVar.m(bVarM, bVarI);
-                    if (bVarI.f206b == 4) {
-                        cVar.l(bVarI.f205a);
-                    }
-                    int i11 = bVarI.f206b;
-                    if (i11 == 5) {
-                        cVar.j(new e());
-                        return;
-                    } else if (i11 == 2 || i11 == 1) {
-                        cVar.j(new IOException("Installation ID could not be validated with the Firebase servers (maybe it was deleted). Firebase Installations will need to create a new Installation ID and auth token. Please retry your last request."));
-                        return;
-                    } else {
-                        cVar.k(bVarI);
-                        return;
-                    }
-                } catch (e e9) {
-                    cVar.j(e9);
-                    return;
-                }
-            default:
-                this.f50258b.b();
-                return;
+    public final String a() {
+        String string;
+        synchronized (this.f50394a) {
+            string = this.f50394a.getString("|S|id", null);
+        }
+        return string;
+    }
+
+    public final String b() {
+        PublicKey publicKey;
+        synchronized (this.f50394a) {
+            String str = null;
+            String string = this.f50394a.getString("|S||P|", null);
+            if (string == null) {
+                return null;
+            }
+            try {
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(string, 8)));
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e10) {
+                Log.w("ContentValues", "Invalid key stored " + e10);
+                publicKey = null;
+            }
+            if (publicKey == null) {
+                return null;
+            }
+            try {
+                byte[] digest = MessageDigest.getInstance("SHA1").digest(publicKey.getEncoded());
+                digest[0] = (byte) (((digest[0] & 15) + 112) & 255);
+                str = Base64.encodeToString(digest, 0, 8, 11);
+            } catch (NoSuchAlgorithmException unused) {
+                Log.w("ContentValues", "Unexpected error, device missing required algorithms");
+            }
+            return str;
         }
     }
 }

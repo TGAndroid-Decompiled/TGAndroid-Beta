@@ -1,32 +1,47 @@
 package org.telegram.ui;
 
-public final class zi extends mg.b {
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class zi implements MessagesStorage.IntCallback {
+    public final int f45162a;
+    public final boolean f45163b;
+    public final Object f45164c;
 
-    public final int f45186n;
-
-    public final rn f45187r;
-
-    public zi(rn rnVar, org.telegram.ui.ActionBar.c6 c6Var, int i10, int i11) {
-        super(i10, c6Var);
-        this.f45186n = i11;
-        this.f45187r = rnVar;
+    public zi(int i9, Object obj, boolean z10) {
+        this.f45162a = i9;
+        this.f45164c = obj;
+        this.f45163b = z10;
     }
 
     @Override
-    public final int p2() {
-        switch (this.f45186n) {
+    public final void run(int i9) {
+        org.telegram.ui.Components.nc ncVar;
+        switch (this.f45162a) {
             case 0:
-                rn rnVar = this.f45187r;
-                if (ng.c.c(((org.telegram.ui.ActionBar.n2) rnVar).currentAccount, rnVar.f41983aa)) {
-                    return (rnVar.f41983aa == null || org.telegram.ui.ActionBar.g6.I.q()) ? this.d : i0.b.k(this.d, 216);
+                qn qnVar = ((bj) this.f45164c).f36877b;
+                if (i9 > 0 && qnVar.getParentActivity() != null) {
+                    org.telegram.ui.Components.oc a02 = org.telegram.ui.Components.oc.a0(qnVar);
+                    if (this.f45163b) {
+                        ncVar = org.telegram.ui.Components.nc.C;
+                    } else {
+                        ncVar = org.telegram.ui.Components.nc.E;
+                    }
+                    a02.m(ncVar, i9, 0, 0, qnVar.f41848aa).j();
+                    return;
                 }
-                return i0.b.k(rnVar.getThemedColor(org.telegram.ui.ActionBar.g6.Sd), 255);
+                return;
             default:
-                rn rnVar2 = this.f45187r;
-                if (ng.c.c(((org.telegram.ui.ActionBar.n2) rnVar2).currentAccount, rnVar2.f41983aa)) {
-                    return (rnVar2.f41983aa == null || org.telegram.ui.ActionBar.g6.I.q()) ? this.d : i0.b.k(this.d, 216);
+                aj ajVar = (aj) this.f45164c;
+                qn qnVar2 = ajVar.f36509b.f36877b;
+                if (i9 >= 50) {
+                    TLRPC.Chat chat = qnVar2.f41890e;
+                    TLRPC.User user = qnVar2.f41903f;
+                    boolean z10 = this.f45163b;
+                    org.telegram.ui.Components.y4.s(qnVar2, true, chat, user, false, false, false, z10, new b1(ajVar, z10));
+                    return;
                 }
-                return i0.b.k(rnVar2.getThemedColor(org.telegram.ui.ActionBar.g6.f23053d6), 255);
+                qnVar2.qa(qnVar2.Z3, true);
+                return;
         }
     }
 }

@@ -1,17 +1,19 @@
 package org.telegram.ui.Components;
 
-public final class e51 extends k51 {
+import org.telegram.messenger.AndroidUtilities;
+public final class e51 extends f2.m0 {
+    public final i51 I;
 
-    public final f51 f27955b3;
-
-    public e51(f51 f51Var, f51 f51Var2, d dVar, c51 c51Var, c51 c51Var2) {
-        super(f51Var2, dVar, c51Var, c51Var2);
-        this.f27955b3 = f51Var;
+    public e51(i51 i51Var, int i9) {
+        super(i9, false);
+        this.I = i51Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f27955b3.f28262b = -1;
+    public final int W0(f2.n1 n1Var) {
+        if (this.I.W2) {
+            return AndroidUtilities.displaySize.y;
+        }
+        return super.W0(n1Var);
     }
 }

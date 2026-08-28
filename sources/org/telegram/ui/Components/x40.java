@@ -1,15 +1,21 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public interface x40 {
+    long a();
 
-public final class x40 extends File {
-    @Override
-    public final boolean delete() {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.e("delete camera file");
-        }
-        return super.delete();
-    }
+    boolean c();
+
+    int getClassGuid();
+
+    View getFragmentView();
+
+    Activity getParentActivity();
+
+    void r(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i9, int i10, boolean z11, long j10);
+
+    boolean w();
 }

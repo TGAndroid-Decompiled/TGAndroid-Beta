@@ -1,64 +1,44 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.content.Context;
+import android.text.TextUtils;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+public final class ai extends kh0 {
+    public final qn f36502e;
 
-public final class ai implements org.telegram.ui.Components.sk0 {
-
-    public final rn f36538a;
-
-    public ai(rn rnVar) {
-        this.f36538a = rnVar;
-    }
-
-    @Override
-    public final boolean mo5c(float f10, float f11, int i10, View view) {
-        boolean z10;
-        View view2;
-        boolean zI7;
-        rn rnVar = this.f36538a;
-        km kmVar = rnVar.Y8;
-        if ((kmVar == null || !kmVar.f25899z) && !rnVar.b9() && !((org.telegram.ui.ActionBar.n2) rnVar).inPreviewMode && !rnVar.Ka) {
-            rnVar.f42294z4 = true;
-            if (view instanceof org.telegram.ui.Cells.v0) {
-                org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) view;
-                MessageObject messageObject = v0Var.getMessageObject();
-                if (messageObject != null) {
-                    if ((messageObject.messageOwner.action instanceof TLRPC.TL_messageActionSetMessagesTTL) || v0Var.getMessageObject().type == 21 || v0Var.getMessageObject().isWallpaperAction() || v0Var.getMessageObject().type == 30) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                }
-            } else {
-                z10 = true;
-            }
-            if (((org.telegram.ui.ActionBar.n2) rnVar).actionBar.t() || (rnVar.A9() && !z10)) {
-                view2 = view;
-                rn.b2(rnVar, view2, view2 instanceof org.telegram.ui.Cells.s1 ? !((org.telegram.ui.Cells.s1) view2).h3(f10) : false, f10, f11);
-                zI7 = true;
-            } else {
-                view2 = view;
-                zI7 = rnVar.I7(view2, false, true, f10, f11, true, true, false);
-            }
-            if (view2 instanceof org.telegram.ui.Cells.s1) {
-                org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) view2;
-                if (s1Var.getMessageObject() != null && s1Var.getMessageObject().type != 27) {
-                    rn.c2(rnVar, i10);
-                    return true;
-                }
-            }
-            return zI7;
+    public ai(qn qnVar, Context context, int i9, MessageObject messageObject) {
+        super(context);
+        this.f36502e = qnVar;
+        this.f39841a = null;
+        if (!messageObject.isRoundVideo()) {
+            messageObject.isVoice();
         }
-        return false;
-    }
-
-    @Override
-    public final void i() {
-    }
-
-    @Override
-    public final void s(float f10) {
+        org.telegram.ui.Components.e00 e00Var = new org.telegram.ui.Components.e00(context, null);
+        this.f39843c = e00Var;
+        e00Var.f(org.telegram.ui.ActionBar.f6.G8, org.telegram.ui.ActionBar.f6.f23092i6, -1);
+        e00Var.setViewType(13);
+        e00Var.setIsSingleCell(false);
+        addView(e00Var, g7.e6.c(-1.0f, -2));
+        org.telegram.ui.Components.l80 l80Var = new org.telegram.ui.Components.l80(context, null);
+        this.f39842b = l80Var;
+        l80Var.setTextSize(1, 14.0f);
+        l80Var.setGravity(19);
+        l80Var.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.E8, false));
+        l80Var.setLinkTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23061gc, false));
+        l80Var.setEllipsize(TextUtils.TruncateAt.END);
+        l80Var.setSingleLine();
+        l80Var.setLines(1);
+        l80Var.setMaxLines(1);
+        addView(l80Var, g7.e6.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
+        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
+        tL_channels_getMessageAuthor.channel = MessagesController.getInstance(i9).getInputChannel(-messageObject.getDialogId());
+        tL_channels_getMessageAuthor.f22417id = messageObject.getId();
+        l80Var.setAlpha(0.0f);
+        ConnectionsManager.getInstance(i9).sendRequest(tL_channels_getMessageAuthor, new gh.u1(this, i9, 8));
+        setBackground(org.telegram.ui.ActionBar.f6.Y(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.I5, false), 6, 0));
+        setEnabled(false);
     }
 }

@@ -1,25 +1,12 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-
-public final class kx {
-
-    public Long f30204a;
-
-    public TLRPC.StickerSet f30205b;
-
-    public ArrayList f30206c = new ArrayList();
-    public TLRPC.InputStickerSet d;
-
-    public boolean f30207e;
-
-    public boolean f30208f;
-
-    public boolean f30209g;
-    public boolean h;
-
-    public boolean f30210i;
-
-    public int f30211j;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class kx extends FrameLayout {
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f));
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
+    }
 }

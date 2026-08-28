@@ -1,34 +1,28 @@
 package org.telegram.messenger;
 
+import android.content.Context;
 public final class vh implements Runnable {
+    public final int f21775a;
+    public final SecretChatHelper f21776b;
+    public final Context f21777c;
+    public final org.telegram.ui.ActionBar.c2 d;
 
-    public final int f21815a;
-
-    public final SavedMessagesController f21816b;
-
-    public vh(SavedMessagesController savedMessagesController, int i10) {
-        this.f21815a = i10;
-        this.f21816b = savedMessagesController;
+    public vh(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        this.f21775a = i9;
+        this.f21776b = secretChatHelper;
+        this.f21777c = context;
+        this.d = c2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f21815a) {
+        switch (this.f21775a) {
             case 0:
-                this.f21816b.update();
-                break;
-            case 1:
-                this.f21816b.saveCache();
-                break;
-            case 2:
-                this.f21816b.lambda$deleteCache$12();
-                break;
-            case 3:
-                this.f21816b.lambda$saveCache$10();
-                break;
+                this.f21776b.lambda$startSecretChat$27(this.f21777c, this.d);
+                return;
             default:
-                this.f21816b.lambda$loadDialogs$1();
-                break;
+                this.f21776b.lambda$startSecretChat$29(this.f21777c, this.d);
+                return;
         }
     }
 }

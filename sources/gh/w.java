@@ -1,138 +1,86 @@
 package gh;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.LocaleController;
+import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.rl;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.mc;
+import org.telegram.tgnet.tl.TL_stars;
+public final class w implements RequestDelegate {
+    public final int f9078a;
+    public final long f9079b;
+    public final Object f9080c;
+    public final Object d;
+    public final Object f9081e;
 
-public final class w implements Utilities.Callback2 {
-
-    public final int f7594a = 1;
-
-    public final int f7595b;
-
-    public final long f7596c;
-    public final Context d;
-
-    public final Object f7597e;
-
-    public final Object f7598f;
-
-    public w(int i10, long j10, TLRPC.Photo photo, Context context, jh.b bVar) {
-        this.f7595b = i10;
-        this.f7596c = j10;
-        this.f7597e = photo;
-        this.d = context;
-        this.f7598f = bVar;
+    public w(Object obj, Object obj2, long j10, Object obj3, int i9) {
+        this.f9078a = i9;
+        this.f9080c = obj;
+        this.d = obj2;
+        this.f9079b = j10;
+        this.f9081e = obj3;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        long j10;
-        TLObject chat;
-        int i10 = this.f7594a;
-        Object obj3 = this.f7598f;
-        Object obj4 = this.f7597e;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9078a) {
             case 0:
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj4;
-                Runnable runnable = (Runnable) obj3;
-                GiftAuctionController.Auction auction = (GiftAuctionController.Auction) obj;
-                if (auction != null) {
-                    int i11 = this.f7595b;
-                    long j11 = UserConfig.getInstance(i11).clientUserId;
-                    long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
-                    Context context = this.d;
-                    long j12 = this.f7596c;
-                    if (j12 != peerDialogId && j12 != 0 && peerDialogId != 0) {
-                        a0 a0Var = new a0(context, i11, auction, j12, runnable);
-                        if (peerDialogId >= 0) {
-                            chat = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
-                            j10 = peerDialogId;
-                        } else {
-                            j10 = peerDialogId;
-                            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
-                        }
-                        TLObject user = j12 >= 0 ? MessagesController.getInstance(i11).getUser(Long.valueOf(j12)) : MessagesController.getInstance(i11).getChat(Long.valueOf(-j12));
-                        LinearLayout linearLayoutG = org.telegram.messenger.y1.g(context, 1);
-                        linearLayoutG.addView(new hh.h5(context, chat, user), h7.z5.t(-1, -2, 48, 0, -4, 0, 0));
-                        TextView textView = new TextView(context);
-                        NotificationCenter.listenEmojiLoading(textView);
-                        textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
-                        int i12 = org.telegram.ui.ActionBar.g6.f23161j5;
-                        rl.w(i12, c6Var, textView, 1, 20.0f);
-                        textView.setGravity(LocaleController.isRTL ? 5 : 3);
-                        linearLayoutG.addView(textView, h7.z5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 19.0f, 24.0f, 2.0f));
-                        TextView textView2 = new TextView(context);
-                        rl.l(i12, c6Var, textView2, 1, 16.0f);
-                        rl.n(R.string.Gift2AuctionsChangeRecipient2, new Object[]{DialogObject.getShortName(j10), DialogObject.getShortName(j12)}, textView2);
-                        linearLayoutG.addView(textView2, h7.z5.t(-1, -2, 48, 24, 4, 24, 4));
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
-                        alertDialog$Builder.n(linearLayoutG);
-                        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new a1.c(a0Var, 26));
-                        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        alertDialog$Builder.f22702a.show();
-                    } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
-                        v vVar = new v(context, c6Var, null, auction);
-                        vVar.f7574j0 = runnable;
-                        vVar.show();
-                    } else {
-                        new i0(context, c6Var, j12, auction.gift, runnable).show();
-                    }
-                }
-                break;
+                AndroidUtilities.runOnUIThread(new fh.m1((c0) this.f9080c, (org.telegram.ui.ActionBar.c2) this.d, tLObject, this.f9079b, (Utilities.Callback) this.f9081e));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new p2((k5) this.f9080c, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f9081e, tL_error, this.f9079b));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new fh.m1((v7) this.f9080c, tLObject, (MessageObject) this.d, this.f9079b, (Runnable) this.f9081e, 2));
+                return;
+            case 3:
+                ((MessagesController) this.f9080c).lambda$deleteSavedDialog$143(this.f9079b, (int[]) this.d, (TLRPC.InputPeer) this.f9081e, tLObject, tL_error);
+                return;
+            case 4:
+                ((MessagesController) this.f9080c).lambda$getSavedReactionTags$486(this.f9079b, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f9081e, tLObject, tL_error);
+                return;
+            case 5:
+                ((MessagesController) this.f9080c).lambda$addUsersToChannel$274((org.telegram.ui.ActionBar.o2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f9081e, this.f9079b, tLObject, tL_error);
+                return;
+            case 6:
+                ((TopicsController) this.f9080c).lambda$pinTopic$20((org.telegram.ui.ActionBar.o2) this.d, this.f9079b, (ArrayList) this.f9081e, tLObject, tL_error);
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new fh.m1((org.telegram.ui.ActionBar.c2) this.d, tLObject, this.f9079b, (AccountInstance) this.f9080c, (MessagesStorage.BooleanCallback) this.f9081e, 13));
+                return;
             default:
-                TLRPC.Photo photo = (TLRPC.Photo) obj4;
-                jh.b bVar = (jh.b) obj3;
-                Integer num = (Integer) obj;
-                TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
-                int i13 = this.f7595b;
-                reportprofilephoto.peer = MessagesController.getInstance(i13).getInputPeer(this.f7596c);
-                TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f22399id = photo.f22404id;
-                tL_inputPhoto.file_reference = photo.file_reference;
-                tL_inputPhoto.access_hash = photo.access_hash;
-                reportprofilephoto.photo_id = tL_inputPhoto;
-                reportprofilephoto.message = "";
-                if (num.intValue() == 0) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonSpam();
-                } else if (num.intValue() == 1) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonViolence();
-                } else if (num.intValue() == 2) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonChildAbuse();
-                } else if (num.intValue() == 5) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPornography();
-                } else if (num.intValue() == 3) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonIllegalDrugs();
-                } else if (num.intValue() == 4) {
-                    reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPersonalDetails();
-                }
-                ConnectionsManager.getInstance(i13).sendRequest(reportprofilephoto, null);
-                new mc(ab.a(this.d), bVar).E(bVar).j();
-                break;
+                AndroidUtilities.runOnUIThread(new p2((org.telegram.ui.ActionBar.o2) this.f9080c, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f9081e, this.f9079b));
+                return;
         }
     }
 
-    public w(Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10, long j10, Runnable runnable) {
-        this.d = context;
-        this.f7597e = c6Var;
-        this.f7595b = i10;
-        this.f7596c = j10;
-        this.f7598f = runnable;
+    public w(Object obj, Object obj2, Object obj3, long j10, int i9) {
+        this.f9078a = i9;
+        this.f9080c = obj;
+        this.d = obj2;
+        this.f9081e = obj3;
+        this.f9079b = j10;
+    }
+
+    public w(MessagesController messagesController, long j10, Object obj, TLObject tLObject, int i9) {
+        this.f9078a = i9;
+        this.f9080c = messagesController;
+        this.f9079b = j10;
+        this.d = obj;
+        this.f9081e = tLObject;
+    }
+
+    public w(org.telegram.ui.ActionBar.c2 c2Var, long j10, AccountInstance accountInstance, MessagesStorage.BooleanCallback booleanCallback) {
+        this.f9078a = 7;
+        this.d = c2Var;
+        this.f9079b = j10;
+        this.f9080c = accountInstance;
+        this.f9081e = booleanCallback;
     }
 }

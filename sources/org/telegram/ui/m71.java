@@ -1,48 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class m71 implements Runnable {
+    public final int f40345a;
+    public final z71 f40346b;
 
-public final class m71 implements View.OnClickListener {
-
-    public final int f40387a;
-
-    public final x71 f40388b;
-
-    public m71(x71 x71Var, int i10) {
-        this.f40387a = i10;
-        this.f40388b = x71Var;
+    public m71(z71 z71Var, int i9) {
+        this.f40345a = i9;
+        this.f40346b = z71Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40387a) {
+    public final void run() {
+        switch (this.f40345a) {
             case 0:
-                x71 x71Var = this.f40388b;
-                we.e.s(x71Var.getParentActivity(), x71Var.getMessagesController().premiumManageSubscriptionUrl);
-                x71Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                break;
+                this.f40346b.f45062c.U2.N(true);
+                return;
             case 1:
-                x71 x71Var2 = this.f40388b;
-                x71Var2.getClass();
-                x71Var2.presentFragment(new h(3));
-                break;
+                ve.e.s(this.f40346b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
             case 2:
-                this.f40388b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                break;
+                z71 z71Var = this.f40346b;
+                z71Var.f45062c.postOnAnimation(new m71(z71Var, 3));
+                return;
             case 3:
-                x71 x71Var3 = this.f40388b;
-                x71Var3.getClass();
-                x71Var3.presentFragment(new zf1(8, null));
-                break;
-            case 4:
-                this.f40388b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                break;
-            case 5:
-                x71.V(this.f40388b);
-                break;
+                this.f40346b.h0();
+                return;
             default:
-                x71.Y(this.f40388b);
-                break;
+                MessagesController.getInstance(this.f40346b.currentAccount).deleteUserPhoto(null);
+                return;
         }
     }
 }

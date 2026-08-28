@@ -3,12 +3,9 @@ package m2;
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 import android.view.View;
-
 public abstract class a {
-
-    public final DataSetObservable f17544a = new DataSetObservable();
-
-    public DataSetObserver f17545b;
+    public final DataSetObservable f17168a = new DataSetObservable();
+    public DataSetObserver f17169b;
 
     public abstract void a(g gVar, Object obj);
 
@@ -18,18 +15,18 @@ public abstract class a {
         return -1;
     }
 
-    public CharSequence d(int i10) {
+    public CharSequence d(int i9) {
         return null;
     }
 
-    public abstract Object e(g gVar, int i10);
+    public abstract Object e(g gVar, int i9);
 
     public abstract boolean f(View view, Object obj);
 
     public void g() {
         synchronized (this) {
             try {
-                DataSetObserver dataSetObserver = this.f17545b;
+                DataSetObserver dataSetObserver = this.f17169b;
                 if (dataSetObserver != null) {
                     dataSetObserver.onChanged();
                 }
@@ -37,15 +34,15 @@ public abstract class a {
                 throw th;
             }
         }
-        this.f17544a.notifyChanged();
+        this.f17168a.notifyChanged();
     }
 
     public final void i(DataSetObserver dataSetObserver) {
         synchronized (this) {
-            this.f17545b = dataSetObserver;
+            this.f17169b = dataSetObserver;
         }
     }
 
-    public void h(int i10) {
+    public void h(int i9) {
     }
 }

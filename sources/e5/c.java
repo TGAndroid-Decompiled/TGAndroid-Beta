@@ -1,62 +1,49 @@
 package e5;
-
-import java.util.Arrays;
-
 public final class c {
+    public final int f4876a;
+    public String f4877b;
 
-    public long f5235a;
-
-    public long f5236b;
-
-    public long f5237c;
-    public long d;
-
-    public long f5238e;
-
-    public long f5239f;
-
-    public final boolean[] f5240g = new boolean[15];
-    public int h;
-
-    public final boolean a() {
-        return this.d > 15 && this.h == 0;
-    }
-
-    public final void b(long j10) {
-        long j11 = this.d;
-        if (j11 == 0) {
-            this.f5235a = j10;
-        } else if (j11 == 1) {
-            long j12 = j10 - this.f5235a;
-            this.f5236b = j12;
-            this.f5239f = j12;
-            this.f5238e = 1L;
-        } else {
-            long j13 = j10 - this.f5237c;
-            int i10 = (int) (j11 % 15);
-            long jAbs = Math.abs(j13 - this.f5236b);
-            boolean[] zArr = this.f5240g;
-            if (jAbs <= 1000000) {
-                this.f5238e++;
-                this.f5239f += j13;
-                if (zArr[i10]) {
-                    zArr[i10] = false;
-                    this.h--;
-                }
-            } else if (!zArr[i10]) {
-                zArr[i10] = true;
-                this.h++;
+    public static c a(d5.y yVar) {
+        String str;
+        yVar.D(2);
+        int r10 = yVar.r();
+        int i9 = r10 >> 1;
+        int r11 = ((yVar.r() >> 3) & 31) | ((r10 & 1) << 5);
+        if (i9 != 4 && i9 != 5 && i9 != 7) {
+            if (i9 == 8) {
+                str = "hev1";
+            } else if (i9 == 9) {
+                str = "avc3";
+            } else {
+                return null;
             }
+        } else {
+            str = "dvhe";
         }
-        this.d++;
-        this.f5237c = j10;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(str);
+        String str2 = ".0";
+        sb2.append(".0");
+        sb2.append(i9);
+        if (r11 >= 10) {
+            str2 = ".";
+        }
+        sb2.append(str2);
+        sb2.append(r11);
+        return new c(sb2.toString(), 0);
     }
 
-    public final void c() {
-        this.d = 0L;
-        this.f5238e = 0L;
-        this.f5239f = 0L;
-        this.h = 0;
-        Arrays.fill(this.f5240g, false);
+    public String toString() {
+        switch (this.f4876a) {
+            case 2:
+                return "<" + this.f4877b + '>';
+            default:
+                return super.toString();
+        }
+    }
+
+    public c(String str, int i9) {
+        this.f4876a = i9;
+        this.f4877b = str;
     }
 }

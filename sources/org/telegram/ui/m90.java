@@ -1,107 +1,36 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.tgnet.tl.TL_account;
+public final class m90 implements RequestDelegate {
+    public final int f40356a;
+    public final LaunchActivity f40357b;
 
-public final class m90 implements zx {
-
-    public final int f40402a = 1;
-
-    public final LaunchActivity f40403b;
-
-    public final String f40404c;
-    public final int d;
-
-    public final TLRPC.User f40405e;
-
-    public m90(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f40403b = launchActivity;
-        this.f40404c = str;
-        this.d = i10;
-        this.f40405e = user;
+    public m90(LaunchActivity launchActivity, int i9) {
+        this.f40356a = i9;
+        this.f40357b = launchActivity;
     }
 
     @Override
-    public final boolean D() {
-        switch (this.f40402a) {
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean K(gy gyVar) {
-        switch (this.f40402a) {
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean w(gy gyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, we1 we1Var) {
-        int i12 = this.f40402a;
-        TLRPC.User user = this.f40405e;
-        int i13 = this.d;
-        String str = this.f40404c;
-        LaunchActivity launchActivity = this.f40403b;
-        switch (i12) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i9 = this.f40356a;
+        LaunchActivity launchActivity = this.f40357b;
+        switch (i9) {
             case 0:
-                Pattern pattern = LaunchActivity.f35496x1;
-                long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                Bundle bundleH = a9.p.h("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j10)) {
-                    bundleH.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
-                } else if (DialogObject.isUserDialog(j10)) {
-                    bundleH.putLong("user_id", j10);
-                } else {
-                    bundleH.putLong("chat_id", -j10);
+                Pattern pattern = LaunchActivity.f35493x1;
+                if (tLObject != null) {
+                    AndroidUtilities.runOnUIThread(new x20(12, launchActivity, (TL_account.Password) tLObject));
+                    return;
                 }
-                bundleH.putString("attach_bot", UserObject.getPublicUsername(user));
-                if (str != null) {
-                    bundleH.putString("attach_bot_start_command", str);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(bundleH, gyVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).S(new rn(bundleH), true, false);
-                }
-                break;
+                return;
             default:
-                Pattern pattern2 = LaunchActivity.f35496x1;
-                long j11 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
-                TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f22442id = tL_inputGameShortName;
-                tL_inputGameShortName.short_name = str;
-                tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
-                SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j11), tL_inputMediaGame, 0L, 0L);
-                Bundle bundleH2 = a9.p.h("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j11)) {
-                    bundleH2.putInt("enc_id", DialogObject.getEncryptedChatId(j11));
-                } else if (DialogObject.isUserDialog(j11)) {
-                    bundleH2.putLong("user_id", j11);
-                } else {
-                    bundleH2.putLong("chat_id", -j11);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(bundleH2, gyVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).S(new rn(bundleH2), true, false);
-                }
-                break;
+                Pattern pattern2 = LaunchActivity.f35493x1;
+                AndroidUtilities.runOnUIThread(new x20(8, launchActivity, tLObject));
+                return;
         }
-        return true;
-    }
-
-    public m90(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f40403b = launchActivity;
-        this.f40405e = user;
-        this.f40404c = str;
-        this.d = i10;
     }
 }

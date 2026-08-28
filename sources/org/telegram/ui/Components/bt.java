@@ -1,32 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public class bt extends View {
+    public final nz0 f27272a;
+    public final Drawable f27273b;
+    public final ImageReceiver f27274c;
+    public final Rect d;
+    public final RectF f27275e;
+    public kg.d f27276f;
 
-public final class bt implements Utilities.Callback0Return {
+    public bt(Context context, CharSequence charSequence) {
+        super(context);
+        this.d = new Rect();
+        this.f27275e = new RectF();
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f27274c = imageReceiver;
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(22.66f));
+        this.f27272a = new nz0(charSequence, 14.0f, AndroidUtilities.bold());
+        Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
+        this.f27273b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+    }
 
-    public final int f27208a;
-
-    public final Object f27209b;
-
-    public bt(Object obj, int i10) {
-        this.f27208a = i10;
-        this.f27209b = obj;
+    public final void a(TLRPC.Photo photo, Object obj) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false);
+        this.f27274c.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), "24_24", 0L, null, obj, 0);
     }
 
     @Override
-    public final Object run() {
-        Editable text;
-        gi0[] gi0VarArr;
-        int i10 = this.f27208a;
-        Object obj = this.f27209b;
-        switch (i10) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f26369a;
-                return Boolean.valueOf(editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((gi0VarArr = (gi0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), gi0.class)) == null || gi0VarArr.length == 0));
-            default:
-                return ((i40) obj).getCloseIntoObject();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && motionEvent.getAction() == 0) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f27274c.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f27274c.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        int dp;
+        ImageReceiver imageReceiver = this.f27274c;
+        boolean hasBitmapImage = imageReceiver.hasBitmapImage();
+        if (hasBitmapImage) {
+            f10 = 30.33f;
+        } else {
+            f10 = 11.33f;
+        }
+        int dp2 = AndroidUtilities.dp(19.0f) + ((int) Math.ceil(this.f27272a.f31223c)) + AndroidUtilities.dp(f10);
+        int dp3 = AndroidUtilities.dp(24.0f);
+        int width = (getWidth() - dp2) / 2;
+        int height = getHeight() / 2;
+        int i9 = height - (dp3 / 2);
+        int i10 = dp2 + width;
+        Rect rect = this.d;
+        rect.set(width, i9, i10, dp3 + i9);
+        rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+        kg.d dVar = this.f27276f;
+        if (dVar != null) {
+            dVar.setBounds(rect);
+            this.f27276f.draw(canvas);
+        }
+        if (hasBitmapImage) {
+            float f11 = height;
+            float dp4 = (AndroidUtilities.dp(22.66f) / 2.0f) + f11;
+            RectF rectF = this.f27275e;
+            rectF.set(AndroidUtilities.dp(0.66f) + width, f11 - (AndroidUtilities.dp(22.66f) / 2.0f), AndroidUtilities.dp(23.32f) + width, dp4);
+            imageReceiver.setImageCoords(rectF);
+            imageReceiver.draw(canvas);
+        }
+        this.f27272a.c(width + dp, height, 1.0f, -1, canvas);
+        Drawable drawable = this.f27273b;
+        drawable.setBounds(i10 - AndroidUtilities.dp(17.0f), height - AndroidUtilities.dp(6.0f), i10 - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f) + height);
+        drawable.draw(canvas);
+    }
+
+    public void setBlurredBackgroundDrawable(kg.d dVar) {
+        dVar.o(AndroidUtilities.dp(4.0f));
+        dVar.p(AndroidUtilities.dp(11.0f));
+        this.f27276f = dVar;
+    }
+
+    public void setImage(Bitmap bitmap) {
+        this.f27274c.setImageBitmap(bitmap);
+        invalidate();
+    }
+
+    public void setImage(String str) {
+        if (str == null) {
+            setImage((Bitmap) null);
+        } else {
+            Utilities.globalQueue.postRunnable(new zq(3, this, str));
         }
     }
 }

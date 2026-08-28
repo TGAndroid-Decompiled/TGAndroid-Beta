@@ -2,12 +2,11 @@ package ru.noties.jlatexmath.awt.image;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Image;
-
 public class BufferedImage extends Image {
     public static final int TYPE_INT_ARGB = 2;
     public static final int TYPE_INT_RGB = 1;
 
-    public BufferedImage(int i10, int i11, int i12) {
+    public BufferedImage(int i9, int i10, int i11) {
     }
 
     public Graphics2D createGraphics() {
@@ -18,7 +17,7 @@ public class BufferedImage extends Image {
         return 0;
     }
 
-    public int getRGB(int i10, int i11) {
+    public int getRGB(int i9, int i10) {
         return 0;
     }
 

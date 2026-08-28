@@ -1,40 +1,89 @@
 package org.telegram.ui;
+public final class q10 implements org.telegram.ui.Components.on0 {
+    public final int f41646a;
+    public final ag.a f41647b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-
-public final class q10 extends FrameLayout {
-
-    public org.telegram.ui.ActionBar.h5 f41485a;
-
-    public ImageView f41486b;
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int iDp;
-        ImageView imageView = this.f41486b;
-        int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.h5 h5Var = this.f41485a;
-        int textHeight = ((i13 - i11) - h5Var.getTextHeight()) / 2;
-        if (LocaleController.isRTL) {
-            iDp = (getMeasuredWidth() - h5Var.getMeasuredWidth()) - AndroidUtilities.dp(imageView.getVisibility() == 0 ? 64.0f : 23.0f);
-        } else {
-            iDp = AndroidUtilities.dp(imageView.getVisibility() == 0 ? 64.0f : 23.0f);
-        }
-        h5Var.layout(iDp, textHeight, h5Var.getMeasuredWidth() + iDp, h5Var.getMeasuredHeight() + textHeight);
-        int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-        imageView.layout(iDp2, 0, imageView.getMeasuredWidth() + iDp2, imageView.getMeasuredHeight());
+    public q10(ag.a aVar, int i9) {
+        this.f41646a = i9;
+        this.f41647b = aVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        AndroidUtilities.dp(48.0f);
-        this.f41485a.measure(org.telegram.messenger.rl.d(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f41486b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
+    public final void Q(float f10, boolean z10) {
+        switch (this.f41646a) {
+            case 0:
+                ag.k kVar = this.f41647b.f164c;
+                if (kVar != null) {
+                    kVar.v = f10 * 2.0f;
+                    return;
+                }
+                return;
+            case 1:
+                ag.k kVar2 = this.f41647b.f164c;
+                if (kVar2 != null) {
+                    kVar2.f238w = f10 * 2.0f;
+                    return;
+                }
+                return;
+            case 2:
+                ag.k kVar3 = this.f41647b.f164c;
+                if (kVar3 != null) {
+                    kVar3.f239x = f10;
+                    return;
+                }
+                return;
+            default:
+                ag.k kVar4 = this.f41647b.f164c;
+                if (kVar4 != null) {
+                    kVar4.A = f10 * 2.0f;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final int c0() {
+        switch (this.f41646a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        switch (this.f41646a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final void n() {
+        int i9 = this.f41646a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

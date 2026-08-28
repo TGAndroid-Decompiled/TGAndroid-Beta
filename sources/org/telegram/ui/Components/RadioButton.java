@@ -12,39 +12,29 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-
 public class RadioButton extends View {
-
-    public static Paint f26498s;
+    public static Paint f26502s;
     public static Paint v;
-
-    public static Paint f26499w;
-
-    public int f26500a;
-
-    public int f26501b;
-
-    public float f26502c;
+    public static Paint f26503w;
+    public int f26504a;
+    public int f26505b;
+    public float f26506c;
     public ObjectAnimator d;
-
-    public boolean f26503e;
-
-    public boolean f26504f;
+    public boolean f26507e;
+    public boolean f26508f;
     public int h;
-
-    public int f26505n;
-
-    public Drawable f26506r;
+    public int f26509n;
+    public Drawable f26510r;
 
     public RadioButton(Context context) {
         super(context);
         this.h = AndroidUtilities.dp(16.0f);
-        if (f26498s == null) {
+        if (f26502s == null) {
             Paint paint = new Paint(1);
-            f26498s = paint;
+            f26502s = paint;
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            f26498s.setStyle(Paint.Style.STROKE);
-            f26499w = new Paint(1);
+            f26502s.setStyle(Paint.Style.STROKE);
+            f26503w = new Paint(1);
             Paint paint2 = new Paint(1);
             v = paint2;
             paint2.setColor(0);
@@ -53,14 +43,18 @@ public class RadioButton extends View {
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (z10 == this.f26504f) {
+        if (z10 == this.f26508f) {
             return;
         }
-        this.f26504f = z10;
-        if (this.f26503e && z11) {
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z10 ? 1.0f : 0.0f);
-            this.d = objectAnimatorOfFloat;
-            objectAnimatorOfFloat.setDuration(200L);
+        this.f26508f = z10;
+        float f10 = 0.0f;
+        if (this.f26507e && z11) {
+            if (z10) {
+                f10 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
+            this.d = ofFloat;
+            ofFloat.setDuration(200L);
             this.d.start();
             return;
         }
@@ -68,108 +62,109 @@ public class RadioButton extends View {
         if (objectAnimator != null) {
             objectAnimator.cancel();
         }
-        setProgress(z10 ? 1.0f : 0.0f);
+        if (z10) {
+            f10 = 1.0f;
+        }
+        setProgress(f10);
     }
 
-    public final void b(int i10, int i11) {
-        this.f26501b = i10;
-        this.f26500a = i11;
+    public final void b(int i9, int i10) {
+        this.f26505b = i9;
+        this.f26504a = i10;
         invalidate();
     }
 
     public int getColor() {
-        return this.f26501b;
+        return this.f26505b;
     }
 
     public float getProgress() {
-        return this.f26502c;
+        return this.f26506c;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f26503e = true;
+        this.f26507e = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f26503e = false;
+        this.f26507e = false;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        float f11 = this.f26502c;
+        float f11 = this.f26506c;
         if (f11 <= 0.5f) {
-            f26498s.setColor(this.f26501b);
-            f26499w.setColor(this.f26501b);
-            f10 = this.f26502c / 0.5f;
+            f26502s.setColor(this.f26505b);
+            f26503w.setColor(this.f26505b);
+            f10 = this.f26506c / 0.5f;
         } else {
             f10 = 2.0f - (f11 / 0.5f);
-            int iRed = Color.red(this.f26501b);
+            int red = Color.red(this.f26505b);
             float f12 = 1.0f - f10;
-            int iRed2 = (int) ((Color.red(this.f26500a) - iRed) * f12);
-            int iGreen = Color.green(this.f26501b);
-            int iGreen2 = (int) ((Color.green(this.f26500a) - iGreen) * f12);
-            int iBlue = Color.blue(this.f26501b);
-            int iRgb = Color.rgb(iRed + iRed2, iGreen + iGreen2, iBlue + ((int) ((Color.blue(this.f26500a) - iBlue) * f12)));
-            f26498s.setColor(iRgb);
-            f26499w.setColor(iRgb);
+            int green = Color.green(this.f26505b);
+            int blue = Color.blue(this.f26505b);
+            int rgb = Color.rgb(red + ((int) ((Color.red(this.f26504a) - red) * f12)), green + ((int) ((Color.green(this.f26504a) - green) * f12)), blue + ((int) ((Color.blue(this.f26504a) - blue) * f12)));
+            f26502s.setColor(rgb);
+            f26503w.setColor(rgb);
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         float f13 = (this.h / 2) - ((f10 + 1.0f) * AndroidUtilities.density);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f13, f26498s);
-        if (this.f26506r == null) {
-            if (this.f26502c <= 0.5f) {
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f13 - AndroidUtilities.dp(1.0f), f26499w);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f13, f26502s);
+        if (this.f26510r == null) {
+            if (this.f26506c <= 0.5f) {
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, f13 - AndroidUtilities.dp(1.0f), f26503w);
                 canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, (1.0f - f10) * (f13 - AndroidUtilities.dp(1.0f)), v);
             } else {
-                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, com.google.android.recaptcha.internal.a.z(f13 - AndroidUtilities.dp(1.0f), this.h / 4, f10, this.h / 4), f26499w);
+                canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, e2.c.z(f13 - AndroidUtilities.dp(1.0f), this.h / 4, f10, this.h / 4), f26503w);
             }
         }
         canvas.restore();
-        if (this.f26506r != null) {
-            int iD = i0.b.d(Utilities.clamp(this.f26502c, 1.0f, 0.0f), this.f26501b, this.f26500a);
-            if (this.f26505n != iD) {
-                Drawable drawable = this.f26506r;
-                this.f26505n = iD;
-                drawable.setColorFilter(new PorterDuffColorFilter(iD, PorterDuff.Mode.SRC_IN));
+        if (this.f26510r != null) {
+            int d = i0.a.d(Utilities.clamp(this.f26506c, 1.0f, 0.0f), this.f26505b, this.f26504a);
+            if (this.f26509n != d) {
+                Drawable drawable = this.f26510r;
+                this.f26509n = d;
+                drawable.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
             }
-            this.f26506r.setBounds((int) ((getWidth() / 2.0f) - (this.f26506r.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.f26506r.getIntrinsicHeight() / 2.0f)), (int) ((this.f26506r.getIntrinsicWidth() / 2.0f) + (getWidth() / 2.0f)), (int) ((this.f26506r.getIntrinsicHeight() / 2.0f) + (getHeight() / 2.0f)));
-            this.f26506r.draw(canvas);
+            this.f26510r.setBounds((int) ((getWidth() / 2.0f) - (this.f26510r.getIntrinsicWidth() / 2.0f)), (int) ((getHeight() / 2.0f) - (this.f26510r.getIntrinsicHeight() / 2.0f)), (int) ((this.f26510r.getIntrinsicWidth() / 2.0f) + (getWidth() / 2.0f)), (int) ((this.f26510r.getIntrinsicHeight() / 2.0f) + (getHeight() / 2.0f)));
+            this.f26510r.draw(canvas);
         }
     }
 
     @Override
-    public void setBackgroundColor(int i10) {
-        this.f26501b = i10;
+    public void setBackgroundColor(int i9) {
+        this.f26505b = i9;
         invalidate();
     }
 
-    public void setCheckedColor(int i10) {
-        this.f26500a = i10;
+    public void setCheckedColor(int i9) {
+        this.f26504a = i9;
         invalidate();
     }
 
     public void setIcon(Drawable drawable) {
-        this.f26505n = 0;
-        this.f26506r = drawable;
+        this.f26509n = 0;
+        this.f26510r = drawable;
         invalidate();
     }
 
     public void setProgress(float f10) {
-        if (this.f26502c == f10) {
+        if (this.f26506c == f10) {
             return;
         }
-        this.f26502c = f10;
+        this.f26506c = f10;
         invalidate();
     }
 
-    public void setSize(int i10) {
-        if (this.h == i10) {
+    public void setSize(int i9) {
+        if (this.h == i9) {
             return;
         }
-        this.h = i10;
+        this.h = i9;
     }
 }

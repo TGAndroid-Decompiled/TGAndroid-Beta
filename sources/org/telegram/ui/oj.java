@@ -1,26 +1,56 @@
 package org.telegram.ui;
+public final class oj implements Runnable {
+    public final int f41174a;
+    public final qn f41175b;
 
-import org.telegram.messenger.MessageObject;
-
-public final class oj extends f2.w {
-
-    public final rn f41119c;
-
-    public oj(rn rnVar) {
-        this.f41119c = rnVar;
+    public oj(qn qnVar, int i9) {
+        this.f41174a = i9;
+        this.f41175b = qnVar;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        MessageObject messageObject;
-        MessageObject.GroupedMessages groupedMessagesX8;
-        rn rnVar = this.f41119c;
-        dm dmVar = rnVar.f42252w0;
-        int i12 = dmVar.F;
-        if (i10 < i12 || i10 >= dmVar.G || (i11 = i10 - i12) < 0 || i11 >= dmVar.L().size() || (groupedMessagesX8 = rnVar.X8((messageObject = (MessageObject) rnVar.f42252w0.L().get(i11)))) == null) {
-            return 1000;
+    public final void run() {
+        int i9 = this.f41174a;
+        qn qnVar = this.f41175b;
+        switch (i9) {
+            case 0:
+                qn.i2(qnVar);
+                return;
+            case 1:
+                qn.i2(qnVar);
+                return;
+            case 2:
+                int i10 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 3:
+                int i11 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 4:
+                int i12 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 5:
+                int i13 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 6:
+                int i14 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 7:
+                int i15 = qn.Dc;
+                qnVar.Ma();
+                return;
+            case 8:
+                int i16 = qn.Dc;
+                qnVar.Ma();
+                return;
+            default:
+                int i17 = qn.Dc;
+                qnVar.Ma();
+                return;
         }
-        return groupedMessagesX8.getPosition(messageObject).spanSize;
     }
 }

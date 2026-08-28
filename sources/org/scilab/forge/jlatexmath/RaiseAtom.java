@@ -1,45 +1,43 @@
 package org.scilab.forge.jlatexmath;
-
 public class RaiseAtom extends Atom {
     private Atom base;
     private float d;
     private int dunit;
     private float h;
     private int hunit;
-
-    private float f19597r;
+    private float f19624r;
     private int runit;
 
-    public RaiseAtom(Atom atom, int i10, float f10, int i11, float f11, int i12, float f12) {
+    public RaiseAtom(Atom atom, int i9, float f10, int i10, float f11, int i11, float f12) {
         this.base = atom;
-        this.runit = i10;
-        this.f19597r = f10;
-        this.hunit = i11;
+        this.runit = i9;
+        this.f19624r = f10;
+        this.hunit = i10;
         this.h = f11;
-        this.dunit = i12;
+        this.dunit = i11;
         this.d = f12;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.base.createBox(teXEnvironment);
-        int i10 = this.runit;
-        if (i10 == -1) {
-            boxCreateBox.setShift(0.0f);
+        Box createBox = this.base.createBox(teXEnvironment);
+        int i9 = this.runit;
+        if (i9 == -1) {
+            createBox.setShift(0.0f);
         } else {
-            boxCreateBox.setShift(SpaceAtom.getFactor(i10, teXEnvironment) * (-this.f19597r));
+            createBox.setShift(SpaceAtom.getFactor(i9, teXEnvironment) * (-this.f19624r));
         }
         if (this.hunit == -1) {
-            return boxCreateBox;
+            return createBox;
         }
-        HorizontalBox horizontalBox = new HorizontalBox(boxCreateBox);
+        HorizontalBox horizontalBox = new HorizontalBox(createBox);
         horizontalBox.setHeight(SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h);
-        int i11 = this.dunit;
-        if (i11 == -1) {
+        int i10 = this.dunit;
+        if (i10 == -1) {
             horizontalBox.setDepth(0.0f);
             return horizontalBox;
         }
-        horizontalBox.setDepth(SpaceAtom.getFactor(i11, teXEnvironment) * this.d);
+        horizontalBox.setDepth(SpaceAtom.getFactor(i10, teXEnvironment) * this.d);
         return horizontalBox;
     }
 

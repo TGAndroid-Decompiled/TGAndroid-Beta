@@ -1,62 +1,64 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Timer;
+import org.telegram.messenger.Emoji;
+public final class ot extends org.telegram.ui.Components.vk0 {
+    public final Context f41237c;
+    public Timer d;
+    public ArrayList f41238e;
+    public final ArrayList f41239f = new ArrayList();
+    public final qt h;
 
-public final class ot implements Comparator {
-
-    public final int f41163a;
-
-    public final Object f41164b;
-
-    public ot(Object obj, int i10) {
-        this.f41163a = i10;
-        this.f41164b = obj;
+    public ot(qt qtVar, Context context, HashMap hashMap) {
+        this.h = qtVar;
+        this.f41237c = context;
+        for (List<lt> list : hashMap.values()) {
+            for (lt ltVar : list) {
+                this.f41239f.add(ltVar);
+            }
+        }
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f41163a) {
-            case 0:
-                return ((Comparator) this.f41164b).compare(((nt) obj).f40915a, ((nt) obj2).f40915a);
-            case 1:
-                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f41164b;
-                int i10 = longSparseIntArray.get(((Long) obj).longValue());
-                int i11 = longSparseIntArray.get(((Long) obj2).longValue());
-                if (i10 > i11) {
-                    return 1;
-                }
-                return i10 < i11 ? -1 : 0;
-            case 2:
-                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f41164b;
-                LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
-                LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
-                if (localeInfo2 != localeInfo) {
-                    if (localeInfo3 != localeInfo) {
-                        int i12 = localeInfo2.serverIndex;
-                        int i13 = localeInfo3.serverIndex;
-                        if (i12 == i13) {
-                            return localeInfo2.name.compareTo(localeInfo3.name);
-                        }
-                        if (i12 <= i13) {
-                            if (i12 >= i13) {
-                                return 0;
-                            }
-                        }
-                    }
-                    return 1;
-                }
-                return -1;
-            default:
-                StickersActivity stickersActivity = (StickersActivity) this.f41164b;
-                int iIndexOf = stickersActivity.f36192e.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int iIndexOf2 = stickersActivity.f36192e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
-                if (iIndexOf < 0 || iIndexOf2 < 0) {
-                    return 0;
-                }
-                return iIndexOf - iIndexOf2;
+    public final boolean D(f2.q1 q1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.f41238e;
+        if (arrayList == null) {
+            return 0;
         }
+        return arrayList.size();
+    }
+
+    @Override
+    public final int j(int i9) {
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.q1 q1Var, int i9) {
+        String str;
+        lt ltVar = (lt) this.f41238e.get(i9);
+        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) q1Var.f5501a;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(qt.U(ltVar), baVar.getTextView().getPaint().getFontMetricsInt(), false);
+        if (this.h.h) {
+            str = "+" + ltVar.f40227c;
+        } else {
+            str = null;
+        }
+        baVar.c(replaceEmoji, str, false, false);
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        return new f2.q1(qt.T(this.f41237c));
     }
 }

@@ -2,37 +2,30 @@ package y3;
 
 import android.media.MediaCodec;
 import android.os.HandlerThread;
-import d5.g0;
+import d5.f0;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
-
 public final class e {
-
-    public static final ArrayDeque f49467g = new ArrayDeque();
+    public static final ArrayDeque f49477g = new ArrayDeque();
     public static final Object h = new Object();
-
-    public final MediaCodec f49468a;
-
-    public final HandlerThread f49469b;
-
-    public androidx.mediarouter.app.c f49470c;
+    public final MediaCodec f49478a;
+    public final HandlerThread f49479b;
+    public androidx.mediarouter.app.d f49480c;
     public final AtomicReference d;
-
-    public final d5.c f49471e;
-
-    public boolean f49472f;
+    public final d5.c f49481e;
+    public boolean f49482f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
-        d5.c cVar = new d5.c();
-        this.f49468a = mediaCodec;
-        this.f49469b = handlerThread;
-        this.f49471e = cVar;
+        ?? obj = new Object();
+        this.f49478a = mediaCodec;
+        this.f49479b = handlerThread;
+        this.f49481e = obj;
         this.d = new AtomicReference();
     }
 
     public static d b() {
-        ArrayDeque arrayDeque = f49467g;
+        ArrayDeque arrayDeque = f49477g;
         synchronized (arrayDeque) {
             try {
                 if (arrayDeque.isEmpty()) {
@@ -46,93 +39,94 @@ public final class e {
     }
 
     public static void d(d dVar) {
-        ArrayDeque arrayDeque = f49467g;
+        ArrayDeque arrayDeque = f49477g;
         synchronized (arrayDeque) {
             arrayDeque.add(dVar);
         }
     }
 
     public final void a() {
-        if (this.f49472f) {
+        if (this.f49482f) {
             try {
-                androidx.mediarouter.app.c cVar = this.f49470c;
-                cVar.getClass();
-                cVar.removeCallbacksAndMessages(null);
-                d5.c cVar2 = this.f49471e;
-                cVar2.b();
-                androidx.mediarouter.app.c cVar3 = this.f49470c;
-                cVar3.getClass();
-                cVar3.obtainMessage(2).sendToTarget();
-                synchronized (cVar2) {
-                    while (!cVar2.f4779a) {
-                        cVar2.wait();
+                androidx.mediarouter.app.d dVar = this.f49480c;
+                dVar.getClass();
+                dVar.removeCallbacksAndMessages(null);
+                d5.c cVar = this.f49481e;
+                cVar.b();
+                androidx.mediarouter.app.d dVar2 = this.f49480c;
+                dVar2.getClass();
+                dVar2.obtainMessage(2).sendToTarget();
+                synchronized (cVar) {
+                    while (!cVar.f4335a) {
+                        cVar.wait();
                     }
                 }
-            } catch (InterruptedException e9) {
+            } catch (InterruptedException e10) {
                 Thread.currentThread().interrupt();
-                throw new IllegalStateException(e9);
+                throw new IllegalStateException(e10);
             }
         }
     }
 
-    public final void c(int i10, k3.d dVar, long j10) {
+    public final void c(int i9, k3.d dVar, long j10) {
         RuntimeException runtimeException = (RuntimeException) this.d.getAndSet(null);
-        if (runtimeException != null) {
-            throw runtimeException;
-        }
-        d dVarB = b();
-        dVarB.f49463a = i10;
-        dVarB.f49464b = 0;
-        dVarB.d = j10;
-        dVarB.f49466e = 0;
-        MediaCodec.CryptoInfo cryptoInfo = dVarB.f49465c;
-        cryptoInfo.numSubSamples = dVar.f14414f;
-        int[] iArr = dVar.d;
-        int[] iArrCopyOf = cryptoInfo.numBytesOfClearData;
-        if (iArr != null) {
-            if (iArrCopyOf == null || iArrCopyOf.length < iArr.length) {
-                iArrCopyOf = Arrays.copyOf(iArr, iArr.length);
-            } else {
-                System.arraycopy(iArr, 0, iArrCopyOf, 0, iArr.length);
+        if (runtimeException == null) {
+            d b10 = b();
+            b10.f49473a = i9;
+            b10.f49474b = 0;
+            b10.d = j10;
+            b10.f49476e = 0;
+            MediaCodec.CryptoInfo cryptoInfo = b10.f49475c;
+            cryptoInfo.numSubSamples = dVar.f14593f;
+            int[] iArr = dVar.d;
+            int[] iArr2 = cryptoInfo.numBytesOfClearData;
+            if (iArr != null) {
+                if (iArr2 != null && iArr2.length >= iArr.length) {
+                    System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
+                } else {
+                    iArr2 = Arrays.copyOf(iArr, iArr.length);
+                }
             }
-        }
-        cryptoInfo.numBytesOfClearData = iArrCopyOf;
-        int[] iArr2 = dVar.f14413e;
-        int[] iArrCopyOf2 = cryptoInfo.numBytesOfEncryptedData;
-        if (iArr2 != null) {
-            if (iArrCopyOf2 == null || iArrCopyOf2.length < iArr2.length) {
-                iArrCopyOf2 = Arrays.copyOf(iArr2, iArr2.length);
-            } else {
-                System.arraycopy(iArr2, 0, iArrCopyOf2, 0, iArr2.length);
+            cryptoInfo.numBytesOfClearData = iArr2;
+            int[] iArr3 = dVar.f14592e;
+            int[] iArr4 = cryptoInfo.numBytesOfEncryptedData;
+            if (iArr3 != null) {
+                if (iArr4 != null && iArr4.length >= iArr3.length) {
+                    System.arraycopy(iArr3, 0, iArr4, 0, iArr3.length);
+                } else {
+                    iArr4 = Arrays.copyOf(iArr3, iArr3.length);
+                }
             }
-        }
-        cryptoInfo.numBytesOfEncryptedData = iArrCopyOf2;
-        byte[] bArr = dVar.f14411b;
-        byte[] bArrCopyOf = cryptoInfo.key;
-        if (bArr != null) {
-            if (bArrCopyOf == null || bArrCopyOf.length < bArr.length) {
-                bArrCopyOf = Arrays.copyOf(bArr, bArr.length);
-            } else {
-                System.arraycopy(bArr, 0, bArrCopyOf, 0, bArr.length);
+            cryptoInfo.numBytesOfEncryptedData = iArr4;
+            byte[] bArr = dVar.f14590b;
+            byte[] bArr2 = cryptoInfo.key;
+            if (bArr != null) {
+                if (bArr2 != null && bArr2.length >= bArr.length) {
+                    System.arraycopy(bArr, 0, bArr2, 0, bArr.length);
+                } else {
+                    bArr2 = Arrays.copyOf(bArr, bArr.length);
+                }
             }
-        }
-        bArrCopyOf.getClass();
-        cryptoInfo.key = bArrCopyOf;
-        byte[] bArr2 = dVar.f14410a;
-        byte[] bArrCopyOf2 = cryptoInfo.iv;
-        if (bArr2 != null) {
-            if (bArrCopyOf2 == null || bArrCopyOf2.length < bArr2.length) {
-                bArrCopyOf2 = Arrays.copyOf(bArr2, bArr2.length);
-            } else {
-                System.arraycopy(bArr2, 0, bArrCopyOf2, 0, bArr2.length);
+            bArr2.getClass();
+            cryptoInfo.key = bArr2;
+            byte[] bArr3 = dVar.f14589a;
+            byte[] bArr4 = cryptoInfo.iv;
+            if (bArr3 != null) {
+                if (bArr4 != null && bArr4.length >= bArr3.length) {
+                    System.arraycopy(bArr3, 0, bArr4, 0, bArr3.length);
+                } else {
+                    bArr4 = Arrays.copyOf(bArr3, bArr3.length);
+                }
             }
+            bArr4.getClass();
+            cryptoInfo.iv = bArr4;
+            cryptoInfo.mode = dVar.f14591c;
+            if (f0.f4349a >= 24) {
+                cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f14594g, dVar.h));
+            }
+            this.f49480c.obtainMessage(1, b10).sendToTarget();
+            return;
         }
-        bArrCopyOf2.getClass();
-        cryptoInfo.iv = bArrCopyOf2;
-        cryptoInfo.mode = dVar.f14412c;
-        if (g0.f4795a >= 24) {
-            cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f14415g, dVar.h));
-        }
-        this.f49470c.obtainMessage(1, dVarB).sendToTarget();
+        throw runtimeException;
     }
 }

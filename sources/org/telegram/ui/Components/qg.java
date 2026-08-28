@@ -1,38 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+public class qg extends pi0 {
+    public og f31937r;
+    public pg f31938s;
+    public final int v;
+    public final gc.e f31939w;
 
-public final class qg implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f31904a;
-
-    public final gi f31905b;
-
-    public qg(gi giVar, int i10) {
-        this.f31904a = i10;
-        this.f31905b = giVar;
+    public qg(Context context) {
+        this(context, 32);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31904a) {
-            case 0:
-                this.f31905b.b2();
-                break;
-            case 1:
-                this.f31905b.f28714z0.invalidate();
-                break;
-            case 2:
-                gi.m(this.f31905b, valueAnimator);
-                break;
-            case 3:
-                gi giVar = this.f31905b;
-                giVar.getClass();
-                giVar.K1(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
-            default:
-                this.f31905b.b2();
-                break;
-        }
+    public og getCurrentState() {
+        return this.f31937r;
+    }
+
+    public final void j(org.telegram.ui.Components.og r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qg.j(org.telegram.ui.Components.og, boolean):void");
+    }
+
+    public qg(Context context, int i9) {
+        super(context);
+        this.f31939w = new gc.e(this, 1);
+        this.v = i9;
     }
 }

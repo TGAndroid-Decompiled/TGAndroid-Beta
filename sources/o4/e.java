@@ -1,41 +1,40 @@
 package o4;
 
-import g7.l0;
+import f7.f5;
 import java.util.Arrays;
-
 public final class e extends l4.e {
-
-    public byte[] f19198s;
+    public byte[] f18851s;
     public volatile boolean v;
+    public byte[] f18852w;
 
-    public byte[] f19199w;
+    @Override
+    public final void K() {
+        this.v = true;
+    }
 
     @Override
     public final void a() {
         try {
-            this.f15423r.open(this.f15418b);
+            this.f16666r.open(this.f16661b);
+            int i9 = 0;
             int i10 = 0;
-            int i11 = 0;
-            while (i10 != -1 && !this.v) {
-                byte[] bArr = this.f19198s;
-                if (bArr.length < i11 + 16384) {
-                    this.f19198s = Arrays.copyOf(bArr, bArr.length + 16384);
+            while (i9 != -1 && !this.v) {
+                byte[] bArr = this.f18851s;
+                if (bArr.length < i10 + 16384) {
+                    this.f18851s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i10 = this.f15423r.read(this.f19198s, i11, 16384);
-                if (i10 != -1) {
-                    i11 += i10;
+                i9 = this.f16666r.read(this.f18851s, i10, 16384);
+                if (i9 != -1) {
+                    i10 += i9;
                 }
             }
             if (!this.v) {
-                this.f19199w = Arrays.copyOf(this.f19198s, i11);
+                this.f18852w = Arrays.copyOf(this.f18851s, i10);
             }
-        } finally {
-            l0.a(this.f15423r);
+            f5.a(this.f16666r);
+        } catch (Throwable th) {
+            f5.a(this.f16666r);
+            throw th;
         }
-    }
-
-    @Override
-    public final void l() {
-        this.v = true;
     }
 }

@@ -1,28 +1,25 @@
 package org.telegram.messenger.voip;
-
 public final class b implements Runnable {
+    public final int f21860a;
+    public final ConferenceCall f21861b;
 
-    public final int f21884a;
-
-    public final ConferenceCall f21885b;
-
-    public b(ConferenceCall conferenceCall, int i10) {
-        this.f21884a = i10;
-        this.f21885b = conferenceCall;
+    public b(ConferenceCall conferenceCall, int i9) {
+        this.f21860a = i9;
+        this.f21861b = conferenceCall;
     }
 
     @Override
     public final void run() {
-        switch (this.f21884a) {
+        switch (this.f21860a) {
             case 0:
-                this.f21885b.lambda$checkParticipants$1();
-                break;
+                ConferenceCall.n(this.f21861b);
+                return;
             case 1:
-                this.f21885b.lambda$checkEmojiHash$0();
-                break;
+                ConferenceCall.g(this.f21861b);
+                return;
             default:
-                this.f21885b.poll();
-                break;
+                ConferenceCall.j(this.f21861b);
+                return;
         }
     }
 }

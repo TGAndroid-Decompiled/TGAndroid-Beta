@@ -1,47 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class sk implements org.telegram.ui.Components.tj0 {
+    public final qn f42711a;
 
-public final class sk implements LayoutTransition.TransitionListener {
-
-    public rk f42659a;
-
-    public int f42660b;
-
-    public final org.telegram.ui.ActionBar.z f42661c;
-    public final rn d;
-
-    public sk(rn rnVar, org.telegram.ui.ActionBar.z zVar) {
-        this.d = rnVar;
-        this.f42661c = zVar;
+    public sk(qn qnVar) {
+        this.f42711a = qnVar;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f42660b - 1;
-        this.f42660b = i11;
-        if (i11 != 0 || this.f42659a == null) {
-            return;
-        }
-        this.f42661c.getViewTreeObserver().removeOnPreDrawListener(this.f42659a);
-        this.f42659a = null;
+    public final void d(android.view.View r24, hg.r0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sk.d(android.view.View, hg.r0, boolean, boolean):void");
     }
 
     @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f42660b == 0 && this.f42659a == null) {
-            this.f42659a = new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public final boolean onPreDraw() {
-                    ((org.telegram.ui.ActionBar.n2) this.f41949a.d).actionBar.invalidate();
-                    return true;
-                }
-            };
-            this.f42661c.getViewTreeObserver().addOnPreDrawListener(this.f42659a);
-        }
-        this.f42660b++;
+    public final boolean n() {
+        return true;
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void s(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i9, boolean z10) {
     }
 }

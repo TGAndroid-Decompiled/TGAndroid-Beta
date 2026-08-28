@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class MediaSource {
     private long nativeSource;
     private final RefCountDelegate refCountDelegate;
@@ -10,8 +9,8 @@ public class MediaSource {
         ENDED,
         MUTED;
 
-        public static State fromNativeIndex(int i10) {
-            return values()[i10];
+        public static State fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -26,9 +25,10 @@ public class MediaSource {
     }
 
     private void checkMediaSourceExists() {
-        if (this.nativeSource == 0) {
-            throw new IllegalStateException("MediaSource has been disposed.");
+        if (this.nativeSource != 0) {
+            return;
         }
+        throw new IllegalStateException("MediaSource has been disposed.");
     }
 
     private static native State nativeGetState(long j10);

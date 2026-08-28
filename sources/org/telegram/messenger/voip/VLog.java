@@ -3,7 +3,6 @@ package org.telegram.messenger.voip;
 import android.text.TextUtils;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
 class VLog {
     public static native void d(String str);
 
@@ -26,8 +25,8 @@ class VLog {
             stringWriter.append((CharSequence) ": ");
         }
         th.printStackTrace(new PrintWriter(stringWriter));
-        String[] strArrSplit = stringWriter.toString().split("\n");
-        for (String str2 : strArrSplit) {
+        String[] split = stringWriter.toString().split("\n");
+        for (String str2 : split) {
             e(str2);
         }
     }

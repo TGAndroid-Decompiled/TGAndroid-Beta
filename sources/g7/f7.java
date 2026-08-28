@@ -1,6 +1,4 @@
 package g7;
-
-public final class f7 {
-
-    public final d7 f6472a;
+public abstract class f7 {
+    public static s7.a f7179a;
 }

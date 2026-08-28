@@ -1,27 +1,42 @@
 package gh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
+import android.content.DialogInterface;
+import org.telegram.messenger.Utilities;
+public final class j6 implements DialogInterface.OnDismissListener {
+    public final int f8348a;
+    public final Utilities.Callback2 f8349b;
+    public final boolean[] f8350c;
 
-public final class j6 extends View {
-
-    public final TL_stars.StarGift f7367a;
-
-    public final float f7368b;
-
-    public j6(Context context, TL_stars.StarGift starGift, float f10) {
-        super(context);
-        this.f7367a = starGift;
-        this.f7368b = f10;
+    public j6(Utilities.Callback2 callback2, boolean[] zArr, int i9) {
+        this.f8348a = i9;
+        this.f8349b = callback2;
+        this.f8350c = zArr;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (this.f7367a == null) {
-            super.onMeasure(i10, i11);
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f7368b), 1073741824), i11);
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f8348a) {
+            case 0:
+                Utilities.Callback2 callback2 = this.f8349b;
+                if (callback2 != null && !this.f8350c[0]) {
+                    callback2.run(0L, Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 1:
+                Utilities.Callback2 callback22 = this.f8349b;
+                if (callback22 != null && !this.f8350c[0]) {
+                    callback22.run(Boolean.FALSE, null);
+                    return;
+                }
+                return;
+            default:
+                Utilities.Callback2 callback23 = this.f8349b;
+                if (callback23 != null && !this.f8350c[0]) {
+                    callback23.run(Boolean.FALSE, null);
+                    return;
+                }
+                return;
         }
     }
 }

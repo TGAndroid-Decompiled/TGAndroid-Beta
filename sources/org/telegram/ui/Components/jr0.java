@@ -1,35 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import androidx.recyclerview.widget.RecyclerView;
+public final class jr0 extends f2.d1 {
+    public final ar0 f29832a;
+    public final br0 f29833b;
+    public final eu0 f29834c;
 
-public final class jr0 extends org.telegram.ui.rn {
-    public boolean Mc;
-    public final int Nc;
-    public final hu0 Oc;
-
-    public jr0(hu0 hu0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Oc = hu0Var;
-        this.Nc = i10;
-        this.Mc = true;
+    public jr0(eu0 eu0Var, ar0 ar0Var, br0 br0Var) {
+        this.f29834c = eu0Var;
+        this.f29832a = ar0Var;
+        this.f29833b = br0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        hu0 hu0Var = this.Oc;
-        st0 st0Var = hu0Var.O;
-        if (this.Mc) {
-            if (this.f42040f0 != null) {
-                la("");
-                this.f42040f0.H(st0Var.f32564w, false);
-            }
-            org.telegram.ui.ok okVar = this.f42104k1;
-            if (okVar != null) {
-                okVar.e(st0Var.f32565x, false);
-            }
-            hu0Var.f29145r1.getMediaDataController().portSavedSearchResults(getClassGuid(), st0Var.f32565x, st0Var.f32564w, st0Var.f32561n, st0Var.h, this.Nc, st0Var.v, st0Var.f32563s);
-            this.Mc = false;
+    public final void a(RecyclerView recyclerView, int i9) {
+        boolean z10;
+        if (i9 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        super.onTransitionAnimationStart(z10, z11);
+        this.f29834c.X0 = z10;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i9, int i10) {
+        int i11;
+        int i12;
+        eu0 eu0Var = this.f29834c;
+        tt0[] tt0VarArr = eu0Var.f28155p1;
+        br0 br0Var = this.f29833b;
+        ar0 ar0Var = this.f29832a;
+        eu0Var.G(ar0Var, (wk0) recyclerView, br0Var);
+        if (i10 != 0 && ((i12 = eu0Var.f28137g0[0].B) == 0 || i12 == 5)) {
+            tt0VarArr[0].f32788a.isEmpty();
+        }
+        if (i10 != 0 && ((i11 = ar0Var.B) == 0 || eu0.p0(i11))) {
+            eu0.q(ar0Var, tt0VarArr, true);
+        }
+        ar0Var.h.K0(true);
+        if (ar0Var.C != null) {
+            ar0Var.invalidate();
+        }
+        eu0Var.o0();
     }
 }

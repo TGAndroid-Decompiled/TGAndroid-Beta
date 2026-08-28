@@ -1,21 +1,15 @@
 package j3;
-
 public final class e implements h3.g {
     public static final e h = new e(0, 0, 1, 1, 0);
-
-    public final int f12321a;
-
-    public final int f12322b;
-
-    public final int f12323c;
+    public final int f13225a;
+    public final int f13226b;
+    public final int f13227c;
     public final int d;
-
-    public final int f12324e;
-
-    public a9.i f12325f;
+    public final int f13228e;
+    public android.support.v4.media.c f13229f;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         Integer.toString(0, 36);
         Integer.toString(1, 36);
         Integer.toString(2, 36);
@@ -23,19 +17,19 @@ public final class e implements h3.g {
         Integer.toString(4, 36);
     }
 
-    public e(int i10, int i11, int i12, int i13, int i14) {
-        this.f12321a = i10;
-        this.f12322b = i11;
-        this.f12323c = i12;
-        this.d = i13;
-        this.f12324e = i14;
+    public e(int i9, int i10, int i11, int i12, int i13) {
+        this.f13225a = i9;
+        this.f13226b = i10;
+        this.f13227c = i11;
+        this.d = i12;
+        this.f13228e = i13;
     }
 
-    public final a9.i a() {
-        if (this.f12325f == null) {
-            this.f12325f = new a9.i(this);
+    public final android.support.v4.media.c a() {
+        if (this.f13229f == null) {
+            this.f13229f = new android.support.v4.media.c(this);
         }
-        return this.f12325f;
+        return this.f13229f;
     }
 
     public final boolean equals(Object obj) {
@@ -44,7 +38,7 @@ public final class e implements h3.g {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.f12321a == eVar.f12321a && this.f12322b == eVar.f12322b && this.f12323c == eVar.f12323c && this.d == eVar.d && this.f12324e == eVar.f12324e) {
+            if (this.f13225a == eVar.f13225a && this.f13226b == eVar.f13226b && this.f13227c == eVar.f13227c && this.d == eVar.d && this.f13228e == eVar.f13228e) {
                 return true;
             }
         }
@@ -52,6 +46,6 @@ public final class e implements h3.g {
     }
 
     public final int hashCode() {
-        return ((((((((527 + this.f12321a) * 31) + this.f12322b) * 31) + this.f12323c) * 31) + this.d) * 31) + this.f12324e;
+        return ((((((((527 + this.f13225a) * 31) + this.f13226b) * 31) + this.f13227c) * 31) + this.d) * 31) + this.f13228e;
     }
 }

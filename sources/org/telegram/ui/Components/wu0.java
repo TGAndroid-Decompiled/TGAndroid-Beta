@@ -1,5 +1,4 @@
 package org.telegram.ui.Components;
-
 public interface wu0 {
-    void g(Runnable runnable);
+    void G(int i9, boolean z10);
 }

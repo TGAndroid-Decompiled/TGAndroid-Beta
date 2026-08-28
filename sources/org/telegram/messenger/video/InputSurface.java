@@ -7,7 +7,6 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.view.Surface;
-
 public class InputSurface {
     private static final int EGL_OPENGL_ES2_BIT = 4;
     private static final int EGL_RECORDABLE_ANDROID = 12610;
@@ -27,36 +26,38 @@ public class InputSurface {
         while (EGL14.eglGetError() != 12288) {
             z10 = true;
         }
-        if (z10) {
-            throw new RuntimeException("EGL error encountered (see log)");
+        if (!z10) {
+            return;
         }
+        throw new RuntimeException("EGL error encountered (see log)");
     }
 
     private void eglSetup() {
-        EGLDisplay eGLDisplayEglGetDisplay = EGL14.eglGetDisplay(0);
-        this.mEGLDisplay = eGLDisplayEglGetDisplay;
-        if (eGLDisplayEglGetDisplay == EGL14.EGL_NO_DISPLAY) {
-            throw new RuntimeException("unable to get EGL14 display");
-        }
-        int[] iArr = new int[2];
-        if (!EGL14.eglInitialize(eGLDisplayEglGetDisplay, iArr, 0, iArr, 1)) {
+        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
+        this.mEGLDisplay = eglGetDisplay;
+        if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
+            int[] iArr = new int[2];
+            if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
+                EGLConfig[] eGLConfigArr = new EGLConfig[1];
+                if (EGL14.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+                    this.mEGLContext = EGL14.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
+                    checkEglError("eglCreateContext");
+                    if (this.mEGLContext != null) {
+                        this.mEGLSurface = EGL14.eglCreateWindowSurface(this.mEGLDisplay, eGLConfigArr[0], this.mSurface, new int[]{12344}, 0);
+                        checkEglError("eglCreateWindowSurface");
+                        if (this.mEGLSurface != null) {
+                            return;
+                        }
+                        throw new RuntimeException("surface was null");
+                    }
+                    throw new RuntimeException("null context");
+                }
+                throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
+            }
             this.mEGLDisplay = null;
             throw new RuntimeException("unable to initialize EGL14");
         }
-        EGLConfig[] eGLConfigArr = new EGLConfig[1];
-        if (!EGL14.eglChooseConfig(this.mEGLDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
-            throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
-        }
-        this.mEGLContext = EGL14.eglCreateContext(this.mEGLDisplay, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
-        checkEglError("eglCreateContext");
-        if (this.mEGLContext == null) {
-            throw new RuntimeException("null context");
-        }
-        this.mEGLSurface = EGL14.eglCreateWindowSurface(this.mEGLDisplay, eGLConfigArr[0], this.mSurface, new int[]{12344}, 0);
-        checkEglError("eglCreateWindowSurface");
-        if (this.mEGLSurface == null) {
-            throw new RuntimeException("surface was null");
-        }
+        throw new RuntimeException("unable to get EGL14 display");
     }
 
     public Surface getSurface() {
@@ -66,9 +67,10 @@ public class InputSurface {
     public void makeCurrent() {
         EGLDisplay eGLDisplay = this.mEGLDisplay;
         EGLSurface eGLSurface = this.mEGLSurface;
-        if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
-            throw new RuntimeException("eglMakeCurrent failed");
+        if (EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.mEGLContext)) {
+            return;
         }
+        throw new RuntimeException("eglMakeCurrent failed");
     }
 
     public void release() {

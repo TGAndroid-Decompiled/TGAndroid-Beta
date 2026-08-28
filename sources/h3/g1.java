@@ -2,7 +2,6 @@ package h3;
 
 import android.net.Uri;
 import android.os.Bundle;
-
 public final class g1 {
     public Integer A;
     public Integer B;
@@ -11,65 +10,42 @@ public final class g1 {
     public CharSequence E;
     public Integer F;
     public Bundle G;
-
-    public CharSequence f7841a;
-
-    public CharSequence f7842b;
-
-    public CharSequence f7843c;
+    public CharSequence f9411a;
+    public CharSequence f9412b;
+    public CharSequence f9413c;
     public CharSequence d;
-
-    public CharSequence f7844e;
-
-    public CharSequence f7845f;
-
-    public CharSequence f7846g;
+    public CharSequence f9414e;
+    public CharSequence f9415f;
+    public CharSequence f9416g;
     public g2 h;
-
-    public g2 f7847i;
-
-    public byte[] f7848j;
-
-    public Integer f7849k;
-
-    public Uri f7850l;
-
-    public Integer f7851m;
-
-    public Integer f7852n;
-
-    public Integer f7853o;
-
-    public Boolean f7854p;
-
-    public Boolean f7855q;
-
-    public Integer f7856r;
-
-    public Integer f7857s;
-
-    public Integer f7858t;
-
-    public Integer f7859u;
+    public g2 f9417i;
+    public byte[] f9418j;
+    public Integer f9419k;
+    public Uri f9420l;
+    public Integer f9421m;
+    public Integer f9422n;
+    public Integer f9423o;
+    public Boolean f9424p;
+    public Boolean f9425q;
+    public Integer f9426r;
+    public Integer f9427s;
+    public Integer f9428t;
+    public Integer f9429u;
     public Integer v;
+    public Integer f9430w;
+    public CharSequence f9431x;
+    public CharSequence f9432y;
+    public CharSequence f9433z;
 
-    public Integer f7860w;
-
-    public CharSequence f7861x;
-
-    public CharSequence f7862y;
-
-    public CharSequence f7863z;
-
-    public final void a(int i10, byte[] bArr) {
-        if (this.f7848j != null) {
-            Integer numValueOf = Integer.valueOf(i10);
-            int i11 = d5.g0.f4795a;
-            if (!numValueOf.equals(3) && d5.g0.a(this.f7849k, 3)) {
+    public final void a(int i9, byte[] bArr) {
+        if (this.f9418j != null) {
+            Integer valueOf = Integer.valueOf(i9);
+            int i10 = d5.f0.f4349a;
+            if (!valueOf.equals(3) && d5.f0.a(this.f9419k, 3)) {
                 return;
             }
         }
-        this.f7848j = (byte[]) bArr.clone();
-        this.f7849k = Integer.valueOf(i10);
+        this.f9418j = (byte[]) bArr.clone();
+        this.f9419k = Integer.valueOf(i9);
     }
 }

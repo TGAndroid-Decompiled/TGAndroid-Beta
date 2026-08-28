@@ -1,53 +1,30 @@
 package org.telegram.ui;
 
-public final class jb0 implements Runnable {
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class jb0 extends qn {
+    public boolean Mc;
+    public final TLRPC.User Nc;
+    public final TLRPC.User[] Oc;
+    public final long Pc;
 
-    public final int f39330a;
-
-    public final ob0 f39331b;
-
-    public final String f39332c;
-
-    public jb0(ob0 ob0Var, String str, int i10) {
-        this.f39330a = i10;
-        this.f39331b = ob0Var;
-        this.f39332c = str;
+    public jb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j10) {
+        super(bundle);
+        this.Nc = user;
+        this.Oc = userArr;
+        this.Pc = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39330a) {
-            case 0:
-                ob0 ob0Var = this.f39331b;
-                ob0Var.getClass();
-                String str = this.f39332c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    ob0Var.o("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    ob0Var.o("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    ob0Var.o("emailRow");
-                }
-                break;
-            default:
-                ob0 ob0Var2 = this.f39331b;
-                ob0Var2.getClass();
-                String str2 = this.f39332c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    ob0Var2.o("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    ob0Var2.o("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    ob0Var2.o("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    ob0Var2.o("fingerprintRow");
-                }
-                break;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Mc) {
+            this.Mc = true;
+            org.telegram.ui.Components.oc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Nc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Oc[0])), new bg.i2(this, this.Pc, 27)), R.raw.contact_check).j();
         }
     }
 }

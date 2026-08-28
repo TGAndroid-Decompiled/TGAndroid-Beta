@@ -1,32 +1,15 @@
 package le;
 
-import e4.h;
-import fe.b;
-import ge.e;
+import fe.c;
+import ie.s;
+public interface a {
+    int a(c cVar, c cVar2);
 
-public abstract class a {
-    public boolean b(je.a aVar) {
-        return this instanceof ge.a;
-    }
+    void b(s sVar, s sVar2, int i9);
 
-    public boolean c() {
-        return this instanceof b;
-    }
+    char c();
 
-    public abstract je.a e();
+    int d();
 
-    public boolean f() {
-        return this instanceof ge.a;
-    }
-
-    public abstract h h(e eVar);
-
-    public void d() {
-    }
-
-    public void a(CharSequence charSequence) {
-    }
-
-    public void g(ke.a aVar) {
-    }
+    char e();
 }

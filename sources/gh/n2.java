@@ -1,40 +1,51 @@
 package gh;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.o71;
-import org.telegram.ui.ProfileActivity;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n2 implements Runnable {
+    public final int f8594a = 1;
+    public final k5 f8595b;
+    public final TLObject f8596c;
+    public final long d;
+    public final long f8597e;
+    public final TLRPC.TL_error f8598f;
+    public final long h;
+    public final Object f8599n;
 
-public final class n2 implements Utilities.Callback {
-
-    public final int f7461a;
-
-    public final d4 f7462b;
-
-    public n2(d4 d4Var, int i10) {
-        this.f7461a = i10;
-        this.f7462b = d4Var;
+    public n2(k5 k5Var, TLObject tLObject, long j10, long j11, Utilities.Callback callback, TLRPC.TL_error tL_error, long j12) {
+        this.f8595b = k5Var;
+        this.f8596c = tLObject;
+        this.d = j10;
+        this.f8597e = j11;
+        this.f8599n = callback;
+        this.f8598f = tL_error;
+        this.h = j12;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f7461a) {
+    public final void run() {
+        switch (this.f8594a) {
             case 0:
-                d4 d4Var = this.f7462b;
-                d4Var.f7200e.b((String) obj, new n2(d4Var, 1));
-                break;
+                long j10 = this.h;
+                TLRPC.TL_error tL_error = this.f8598f;
+                k5.G0(this.f8595b, (org.telegram.ui.ActionBar.c2) this.f8599n, this.f8596c, this.d, this.f8597e, j10, tL_error);
+                return;
             default:
-                d4 d4Var2 = this.f7462b;
-                d4Var2.f(true);
-                o71 o71Var = d4Var2.f7202n;
-                int i10 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
-                o71Var.d(i10, d4Var2.f7200e.f(i10) + 1);
-                org.telegram.ui.ActionBar.n2 n2Var = d4Var2.f7197a;
-                if (n2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) n2Var).G4(true);
-                }
-                d4Var2.n();
-                break;
+                TLRPC.TL_error tL_error2 = this.f8598f;
+                long j11 = this.h;
+                k5.e0(this.f8595b, this.f8596c, this.d, this.f8597e, (Utilities.Callback) this.f8599n, tL_error2, j11);
+                return;
         }
+    }
+
+    public n2(k5 k5Var, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, long j10, long j11, long j12, TLRPC.TL_error tL_error) {
+        this.f8595b = k5Var;
+        this.f8599n = c2Var;
+        this.f8596c = tLObject;
+        this.d = j10;
+        this.f8597e = j11;
+        this.h = j12;
+        this.f8598f = tL_error;
     }
 }

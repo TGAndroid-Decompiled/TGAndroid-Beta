@@ -1,176 +1,168 @@
 package h3;
 
-import android.os.Bundle;
-import hh.i5;
-import org.telegram.ui.zf1;
+import android.net.Uri;
+import java.util.Collections;
+import java.util.List;
+public final class q2 implements g {
+    public static final Object D = new Object();
+    public static final Object E = new Object();
+    public static final f1 F;
+    public static final String G;
+    public static final String H;
+    public static final String I;
+    public static final String J;
+    public static final String K;
+    public static final String L;
+    public static final String M;
+    public static final String N;
+    public static final String O;
+    public static final String P;
+    public static final String Q;
+    public static final String R;
+    public static final String S;
+    public int A;
+    public int B;
+    public long C;
+    public Object f9659b;
+    public Object d;
+    public long f9661e;
+    public long f9662f;
+    public long h;
+    public boolean f9663n;
+    public boolean f9664r;
+    public boolean f9665s;
+    public b1 v;
+    public boolean f9666w;
+    public long f9667x;
+    public long f9668y;
+    public Object f9658a = D;
+    public f1 f9660c = F;
 
-public final class q2 implements f, org.telegram.ui.ActionBar.a2, d5.k, d5.l {
-
-    public final int f8088a;
-
-    public q2(int i10) {
-        this.f8088a = i10;
-    }
-
-    @Override
-    public g a(Bundle bundle) {
-        switch (this.f8088a) {
-            case 0:
-                Bundle bundle2 = bundle.getBundle(r2.G);
-                f1 f1Var = bundle2 != null ? (f1) f1.f7828x.a(bundle2) : f1.h;
-                long j10 = bundle.getLong(r2.H, -9223372036854775807L);
-                long j11 = bundle.getLong(r2.I, -9223372036854775807L);
-                long j12 = bundle.getLong(r2.J, -9223372036854775807L);
-                boolean z10 = bundle.getBoolean(r2.K, false);
-                boolean z11 = bundle.getBoolean(r2.L, false);
-                Bundle bundle3 = bundle.getBundle(r2.M);
-                b1 b1Var = bundle3 != null ? (b1) b1.f7781w.a(bundle3) : null;
-                boolean z12 = bundle.getBoolean(r2.N, false);
-                long j13 = bundle.getLong(r2.O, 0L);
-                long j14 = bundle.getLong(r2.P, -9223372036854775807L);
-                int i10 = bundle.getInt(r2.Q, 0);
-                int i11 = bundle.getInt(r2.R, 0);
-                long j15 = bundle.getLong(r2.S, 0L);
-                r2 r2Var = new r2();
-                r2Var.b(r2.E, f1Var, null, j10, j11, j12, z10, z11, b1Var, j13, j14, i10, i11, j15);
-                r2Var.f8120w = z12;
-                return r2Var;
-            default:
-                ia.l lVar = j4.i1.f12582n;
-                Bundle bundle4 = bundle.getBundle(t2.f8197f);
-                bundle4.getClass();
-                j4.i1 i1Var = (j4.i1) lVar.a(bundle4);
-                int[] intArray = bundle.getIntArray(t2.h);
-                int i12 = i1Var.f12583a;
-                int[] iArr = new int[i12];
-                if (intArray == null) {
-                    intArray = iArr;
-                }
-                boolean[] booleanArray = bundle.getBooleanArray(t2.f8198n);
-                boolean[] zArr = new boolean[i12];
-                if (booleanArray == null) {
-                    booleanArray = zArr;
-                }
-                return new t2(i1Var, bundle.getBoolean(t2.f8199r, false), intArray, booleanArray);
+    static {
+        c1 c1Var;
+        x0 x0Var = new x0();
+        o8.x xVar = o8.z.f19105b;
+        o8.l0 l0Var = o8.l0.f19056e;
+        List list = Collections.EMPTY_LIST;
+        o8.l0 l0Var2 = o8.l0.f19056e;
+        d1 d1Var = d1.f9375c;
+        Uri uri = Uri.EMPTY;
+        if (uri != null) {
+            c1Var = new c1(uri, null, null, list, null, l0Var2, null);
+        } else {
+            c1Var = null;
         }
+        F = new f1("com.google.android.exoplayer2.Timeline", new y0(x0Var), c1Var, new b1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -3.4028235E38f, -3.4028235E38f), h1.U, d1Var);
+        int i9 = d5.f0.f4349a;
+        G = Integer.toString(1, 36);
+        H = Integer.toString(2, 36);
+        I = Integer.toString(3, 36);
+        J = Integer.toString(4, 36);
+        K = Integer.toString(5, 36);
+        L = Integer.toString(6, 36);
+        M = Integer.toString(7, 36);
+        N = Integer.toString(8, 36);
+        O = Integer.toString(9, 36);
+        P = Integer.toString(10, 36);
+        Q = Integer.toString(11, 36);
+        R = Integer.toString(12, 36);
+        S = Integer.toString(13, 36);
     }
 
-    @Override
-    public void e(Object obj, d5.g gVar) {
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f8088a) {
-            case 2:
-                i5.d2(new zf1(6, null));
-                break;
-            default:
-                int i11 = i5.f9450m1;
-                break;
+    public final boolean a() {
+        boolean z10;
+        boolean z11;
+        boolean z12 = this.f9665s;
+        if (this.v != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        i3.b bVar = (i3.b) obj;
-        switch (this.f8088a) {
-            case 8:
-                bVar.getClass();
-                break;
-            case 9:
-                bVar.getClass();
-                break;
-            case 10:
-                bVar.getClass();
-                break;
-            case 11:
-                bVar.getClass();
-                break;
-            case 12:
-                bVar.getClass();
-                break;
-            case 13:
-                bVar.getClass();
-                break;
-            case 14:
-                bVar.getClass();
-                break;
-            case 15:
-                bVar.getClass();
-                break;
-            case 16:
-                bVar.getClass();
-                break;
-            case 17:
-                bVar.getClass();
-                break;
-            case 18:
-                bVar.getClass();
-                break;
-            case 19:
-                bVar.getClass();
-                break;
-            case 20:
-                bVar.getClass();
-                break;
-            case 21:
-                bVar.getClass();
-                break;
-            case 22:
-                bVar.getClass();
-                break;
-            case 23:
-                bVar.getClass();
-                break;
-            case 24:
-                bVar.getClass();
-                break;
-            case 25:
-                bVar.getClass();
-                break;
-            case 26:
-            default:
-                bVar.getClass();
-                break;
-            case 27:
-                bVar.getClass();
-                break;
-            case 28:
-                bVar.getClass();
-                break;
+        if (z12 == z10) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
+        d5.a.i(z11);
+        if (this.v == null) {
+            return false;
+        }
+        return true;
     }
 
-    public q2(i5 i5Var) {
-        this.f8088a = 2;
+    public final void b(Object obj, f1 f1Var, Object obj2, long j10, long j11, long j12, boolean z10, boolean z11, b1 b1Var, long j13, long j14, int i9, int i10, long j15) {
+        f1 f1Var2;
+        Object obj3;
+        boolean z12;
+        c1 c1Var;
+        this.f9658a = obj;
+        if (f1Var != null) {
+            f1Var2 = f1Var;
+        } else {
+            f1Var2 = F;
+        }
+        this.f9660c = f1Var2;
+        if (f1Var != null && (c1Var = f1Var.f9399b) != null) {
+            obj3 = c1Var.f9366f;
+        } else {
+            obj3 = null;
+        }
+        this.f9659b = obj3;
+        this.d = obj2;
+        this.f9661e = j10;
+        this.f9662f = j11;
+        this.h = j12;
+        this.f9663n = z10;
+        this.f9664r = z11;
+        if (b1Var != null) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        this.f9665s = z12;
+        this.v = b1Var;
+        this.f9667x = j13;
+        this.f9668y = j14;
+        this.A = i9;
+        this.B = i10;
+        this.C = j15;
+        this.f9666w = false;
     }
 
-    public q2(i3.a aVar, int i10, int i11) {
-        this.f8088a = 18;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && q2.class.equals(obj.getClass())) {
+            q2 q2Var = (q2) obj;
+            if (d5.f0.a(this.f9658a, q2Var.f9658a) && d5.f0.a(this.f9660c, q2Var.f9660c) && d5.f0.a(this.d, q2Var.d) && d5.f0.a(this.v, q2Var.v) && this.f9661e == q2Var.f9661e && this.f9662f == q2Var.f9662f && this.h == q2Var.h && this.f9663n == q2Var.f9663n && this.f9664r == q2Var.f9664r && this.f9666w == q2Var.f9666w && this.f9667x == q2Var.f9667x && this.f9668y == q2Var.f9668y && this.A == q2Var.A && this.B == q2Var.B && this.C == q2Var.C) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public q2(i3.a aVar, int i10, int i11, byte b10) {
-        this.f8088a = i11;
-    }
-
-    public q2(i3.a aVar, f1 f1Var, int i10) {
-        this.f8088a = 19;
-    }
-
-    public q2(i3.a aVar, Object obj, int i10) {
-        this.f8088a = i10;
-    }
-
-    public q2(i3.a aVar, Object obj, Object obj2, int i10) {
-        this.f8088a = i10;
-    }
-
-    public q2(i3.a aVar, boolean z10) {
-        this.f8088a = 10;
-    }
-
-    public q2(i3.a aVar, boolean z10, int i10, int i11) {
-        this.f8088a = i11;
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2 = (this.f9660c.hashCode() + ((this.f9658a.hashCode() + 217) * 31)) * 31;
+        Object obj = this.d;
+        int i9 = 0;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
+        }
+        int i10 = (hashCode2 + hashCode) * 31;
+        b1 b1Var = this.v;
+        if (b1Var != null) {
+            i9 = b1Var.hashCode();
+        }
+        long j10 = this.f9661e;
+        long j11 = this.f9662f;
+        long j12 = this.h;
+        long j13 = this.f9667x;
+        long j14 = this.f9668y;
+        long j15 = this.C;
+        return ((((((((((((((((((((((i10 + i9) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + ((int) (j12 ^ (j12 >>> 32)))) * 31) + (this.f9663n ? 1 : 0)) * 31) + (this.f9664r ? 1 : 0)) * 31) + (this.f9666w ? 1 : 0)) * 31) + ((int) (j13 ^ (j13 >>> 32)))) * 31) + ((int) (j14 ^ (j14 >>> 32)))) * 31) + this.A) * 31) + this.B) * 31) + ((int) (j15 ^ (j15 >>> 32)));
     }
 }

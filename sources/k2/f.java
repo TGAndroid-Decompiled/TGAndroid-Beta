@@ -1,29 +1,23 @@
 package k2;
 
 import android.animation.TypeEvaluator;
-
 public final class f implements TypeEvaluator {
-
-    public static final f f14353a = new f();
+    public static final f f14532a = new Object();
 
     @Override
     public final Object evaluate(float f10, Object obj, Object obj2) {
-        int iIntValue = ((Integer) obj).intValue();
-        float f11 = ((iIntValue >> 24) & 255) / 255.0f;
-        int iIntValue2 = ((Integer) obj2).intValue();
-        float f12 = ((iIntValue2 >> 24) & 255) / 255.0f;
-        float fPow = (float) Math.pow(((iIntValue >> 16) & 255) / 255.0f, 2.2d);
-        float fPow2 = (float) Math.pow(((iIntValue >> 8) & 255) / 255.0f, 2.2d);
-        float fPow3 = (float) Math.pow((iIntValue & 255) / 255.0f, 2.2d);
-        float fPow4 = (float) Math.pow(((iIntValue2 >> 16) & 255) / 255.0f, 2.2d);
-        float fPow5 = (float) Math.pow(((iIntValue2 >> 8) & 255) / 255.0f, 2.2d);
-        float fPow6 = (float) Math.pow((iIntValue2 & 255) / 255.0f, 2.2d);
-        float fZ = com.google.android.recaptcha.internal.a.z(f12, f11, f10, f11);
-        float fZ2 = com.google.android.recaptcha.internal.a.z(fPow4, fPow, f10, fPow);
-        float fZ3 = com.google.android.recaptcha.internal.a.z(fPow5, fPow2, f10, fPow2);
-        float fZ4 = com.google.android.recaptcha.internal.a.z(fPow6, fPow3, f10, fPow3);
-        float fPow7 = ((float) Math.pow(fZ2, 0.45454545454545453d)) * 255.0f;
-        float fPow8 = ((float) Math.pow(fZ3, 0.45454545454545453d)) * 255.0f;
-        return Integer.valueOf(Math.round(((float) Math.pow(fZ4, 0.45454545454545453d)) * 255.0f) | (Math.round(fPow7) << 16) | (Math.round(fZ * 255.0f) << 24) | (Math.round(fPow8) << 8));
+        int intValue = ((Integer) obj).intValue();
+        float f11 = ((intValue >> 24) & 255) / 255.0f;
+        int intValue2 = ((Integer) obj2).intValue();
+        float pow = (float) Math.pow(((intValue >> 16) & 255) / 255.0f, 2.2d);
+        float pow2 = (float) Math.pow(((intValue >> 8) & 255) / 255.0f, 2.2d);
+        float pow3 = (float) Math.pow((intValue & 255) / 255.0f, 2.2d);
+        float pow4 = (float) Math.pow(((intValue2 >> 16) & 255) / 255.0f, 2.2d);
+        float z10 = e2.c.z(((intValue2 >> 24) & 255) / 255.0f, f11, f10, f11);
+        float z11 = e2.c.z(pow4, pow, f10, pow);
+        float z12 = e2.c.z((float) Math.pow(((intValue2 >> 8) & 255) / 255.0f, 2.2d), pow2, f10, pow2);
+        float z13 = e2.c.z((float) Math.pow((intValue2 & 255) / 255.0f, 2.2d), pow3, f10, pow3);
+        int round = Math.round(((float) Math.pow(z11, 0.45454545454545453d)) * 255.0f) << 16;
+        return Integer.valueOf(Math.round(((float) Math.pow(z13, 0.45454545454545453d)) * 255.0f) | round | (Math.round(z10 * 255.0f) << 24) | (Math.round(((float) Math.pow(z12, 0.45454545454545453d)) * 255.0f) << 8));
     }
 }

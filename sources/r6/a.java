@@ -1,25 +1,15 @@
 package r6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import h7.r8;
-import n6.w0;
+import android.os.IInterface;
+import com.google.android.gms.common.api.Status;
+import q6.l;
+import q6.q;
+public interface a extends IInterface {
+    void U(Status status, q6.b bVar);
 
-public final class a extends z5.a {
-    public static final Parcelable.Creator<a> CREATOR = new w0(19);
+    void p0(Status status, l lVar);
 
-    public final boolean f46831a;
+    void r0(Status status, q qVar);
 
-    public a(boolean z10) {
-        this.f46831a = z10;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel dest, int i10) {
-        kotlin.jvm.internal.j.e(dest, "dest");
-        int iQ = r8.q(dest, 20293);
-        r8.s(dest, 1, 4);
-        dest.writeInt(this.f46831a ? 1 : 0);
-        r8.r(dest, iQ);
-    }
+    void t0(Status status, q6.e eVar);
 }

@@ -1,40 +1,114 @@
 package ch;
 
-import android.view.View;
-import android.view.WindowInsets;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.q10;
-import r0.m1;
-import r0.o;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import g7.n;
+import org.telegram.messenger.Utilities;
+public final class b extends Drawable {
+    public final a f2426b;
+    public Bitmap f2427c;
+    public Canvas d;
+    public int f2428e;
+    public float f2429f;
+    public int f2430g;
+    public int h;
+    public final Paint f2425a = new Paint(2);
+    public int f2431i = 255;
 
-public final class b implements q10, o {
+    public b(a aVar) {
+        this.f2426b = aVar;
+    }
 
-    public final h f2903a;
-
-    public b(h hVar) {
-        this.f2903a = hVar;
+    public final void a(int i9, int i10, float f10, int i11) {
+        int i12 = i11 * 2;
+        int i13 = (int) ((i9 + i12) / f10);
+        int i14 = (int) ((i10 + i12) / f10);
+        Bitmap bitmap = this.f2427c;
+        if (bitmap != null && bitmap.getWidth() == i13 && this.f2427c.getHeight() == i14) {
+            this.f2427c.eraseColor(0);
+        } else {
+            Bitmap bitmap2 = this.f2427c;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            }
+            this.f2427c = Bitmap.createBitmap(i13, i14, Bitmap.Config.ARGB_8888);
+            this.d = new Canvas(this.f2427c);
+        }
+        this.f2429f = f10;
+        this.f2428e = i11;
+        this.d.save();
+        float f11 = i11 / f10;
+        this.d.translate(f11, f11);
+        float f12 = 1.0f / f10;
+        this.d.scale(f12, f12);
+        this.f2426b.l(this.d, 255);
+        Utilities.stackBlurBitmap(this.f2427c, (int) f11);
+        this.d.restore();
     }
 
     @Override
-    public m1 I0(View view, m1 m1Var) {
-        WindowInsets windowInsetsG = m1Var.g();
-        h hVar = this.f2903a;
-        hVar.processLegacyContainerInsets(windowInsetsG);
-        hVar.U.a(m1Var.f46619a.f(8).d > 0, true);
-        return m1.f46618b;
+    public final void draw(Canvas canvas) {
+        int i9 = this.f2431i;
+        a aVar = this.f2426b;
+        if (i9 == 255) {
+            canvas.save();
+            canvas.translate(this.f2430g, this.h);
+            aVar.l(canvas, 255);
+            canvas.restore();
+        } else if (i9 != 0) {
+            double d = i9 / 255.0d;
+            double d9 = d / ((1.0d - d) * 6.0d);
+            double d10 = 1.0d + d9;
+            double sqrt = ((-d10) + Math.sqrt((d10 * d10) - (((-d9) * 4.0d) * (-d)))) / ((-2.0d) * d9);
+            int b10 = n.b((int) (d9 * sqrt * 255.0d), 0, 255);
+            int b11 = n.b((int) (sqrt * 255.0d), 0, 255);
+            if (b11 > 0 && this.f2427c != null) {
+                Paint paint = this.f2425a;
+                paint.setAlpha(b11);
+                canvas.save();
+                int i10 = this.f2430g;
+                int i11 = this.f2428e;
+                canvas.translate(i10 - i11, this.h - i11);
+                float f10 = this.f2429f;
+                canvas.scale(f10, f10);
+                canvas.drawBitmap(this.f2427c, 0.0f, 0.0f, paint);
+                canvas.restore();
+            }
+            if (b10 > 0) {
+                canvas.save();
+                canvas.translate(this.f2430g, this.h);
+                aVar.l(canvas, b10);
+                canvas.restore();
+            }
+        }
     }
 
     @Override
-    public void a(int i10) {
-        int iMin = Math.min(i10, AndroidUtilities.dp(144.0f));
-        if (i10 > 0) {
-            iMin -= AndroidUtilities.dp(8.0f);
-        }
-        h hVar = this.f2903a;
-        if (hVar.f2923h0 != iMin) {
-            hVar.f2923h0 = iMin;
-            hVar.T.a(iMin);
-            hVar.f2919d0.postOnAnimation(new af.e(hVar, 26));
-        }
+    public final int getAlpha() {
+        return this.f2431i;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        this.f2431i = i9;
+    }
+
+    @Override
+    public final void setBounds(int i9, int i10, int i11, int i12) {
+        this.f2430g = i9;
+        this.h = i10;
+        super.setBounds(i9, i10, i11, i12);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

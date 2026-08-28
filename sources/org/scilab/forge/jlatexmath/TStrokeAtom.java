@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class TStrokeAtom extends Atom {
     private boolean upper;
 
@@ -9,12 +8,19 @@ public class TStrokeAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Char r10 = teXEnvironment.getTeXFont().getChar("bar", teXEnvironment.getStyle());
-        float italic = r10.getItalic();
-        CharBox charBox = new CharBox(teXEnvironment.getTeXFont().getChar(this.upper ? 'T' : 't', "mathnormal", teXEnvironment.getStyle()));
-        Box charBox2 = new CharBox(r10);
+        char c10;
+        Char r02 = teXEnvironment.getTeXFont().getChar("bar", teXEnvironment.getStyle());
+        float italic = r02.getItalic();
+        TeXFont teXFont = teXEnvironment.getTeXFont();
+        if (this.upper) {
+            c10 = 'T';
+        } else {
+            c10 = 't';
+        }
+        CharBox charBox = new CharBox(teXFont.getChar(c10, "mathnormal", teXEnvironment.getStyle()));
+        Box charBox2 = new CharBox(r02);
         if (Math.abs(italic) > 1.0E-7f) {
-            HorizontalBox horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
+            Box horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
             horizontalBox.add(charBox2);
             charBox2 = horizontalBox;
         }

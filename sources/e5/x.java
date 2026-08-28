@@ -1,47 +1,44 @@
 package e5;
 
-import d5.g0;
+import d5.f0;
+import gh.i3;
+import h3.h0;
+import h3.k0;
+import j4.d0;
+public final class x implements Runnable {
+    public final int f4946a;
+    public final we.b f4947b;
+    public final k3.f f4948c;
 
-public final class x implements h3.g {
-
-    public static final x f5307e = new x(0, 0, 1.0f, 0);
-
-    public final int f5308a;
-
-    public final int f5309b;
-
-    public final int f5310c;
-    public final float d;
-
-    static {
-        int i10 = g0.f4795a;
-        Integer.toString(0, 36);
-        Integer.toString(1, 36);
-        Integer.toString(2, 36);
-        Integer.toString(3, 36);
+    public x(we.b bVar, k3.f fVar, int i9) {
+        this.f4946a = i9;
+        this.f4947b = bVar;
+        this.f4948c = fVar;
     }
 
-    public x(int i10, int i11, float f10, int i12) {
-        this.f5308a = i10;
-        this.f5309b = i11;
-        this.f5310c = i12;
-        this.d = f10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        switch (this.f4946a) {
+            case 0:
+                we.b bVar = this.f4947b;
+                k3.f fVar = this.f4948c;
+                synchronized (fVar) {
+                }
+                int i9 = f0.f4349a;
+                k0 k0Var = ((h0) bVar.f48794c).f9440a;
+                i3.f fVar2 = k0Var.f9557r;
+                i3.a i10 = fVar2.i((d0) fVar2.d.f4163e);
+                fVar2.l(i10, 1020, new i3(i10, fVar, 17));
+                k0Var.P = null;
+                return;
+            default:
+                we.b bVar2 = this.f4947b;
+                k3.f fVar3 = this.f4948c;
+                int i11 = f0.f4349a;
+                i3.f fVar4 = ((h0) bVar2.f48794c).f9440a.f9557r;
+                i3.a k10 = fVar4.k();
+                fVar4.l(k10, 1015, new i3.d(k10, fVar3, 0));
+                return;
         }
-        if (obj instanceof x) {
-            x xVar = (x) obj;
-            if (this.f5308a == xVar.f5308a && this.f5309b == xVar.f5309b && this.f5310c == xVar.f5310c && this.d == xVar.d) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Float.floatToRawIntBits(this.d) + ((((((217 + this.f5308a) * 31) + this.f5309b) * 31) + this.f5310c) * 31);
     }
 }

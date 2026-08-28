@@ -1,16 +1,12 @@
 package h3;
-
 public final class p0 {
+    public final r2 f9625a;
+    public final int f9626b;
+    public final long f9627c;
 
-    public final s2 f8055a;
-
-    public final int f8056b;
-
-    public final long f8057c;
-
-    public p0(s2 s2Var, int i10, long j10) {
-        this.f8055a = s2Var;
-        this.f8056b = i10;
-        this.f8057c = j10;
+    public p0(r2 r2Var, int i9, long j10) {
+        this.f9625a = r2Var;
+        this.f9626b = i9;
+        this.f9627c = j10;
     }
 }

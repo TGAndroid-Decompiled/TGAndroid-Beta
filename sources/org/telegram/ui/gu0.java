@@ -1,10 +1,13 @@
 package org.telegram.ui;
+public final class gu0 extends f2.n {
+    public final hu0 F;
 
-public final class gu0 {
+    public gu0(hu0 hu0Var) {
+        this.F = hu0Var;
+    }
 
-    public final float f38479a;
-
-    public gu0(float f10) {
-        this.f38479a = f10;
+    @Override
+    public final void P(f2.q1 q1Var) {
+        this.F.invalidate();
     }
 }

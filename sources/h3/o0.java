@@ -1,24 +1,18 @@
 package h3;
-
 public final class o0 {
-
-    public final j4.c0 f8045a;
-
-    public final long f8046b;
-
-    public final long f8047c;
+    public final j4.d0 f9615a;
+    public final long f9616b;
+    public final long f9617c;
     public final boolean d;
+    public final boolean f9618e;
+    public final boolean f9619f;
 
-    public final boolean f8048e;
-
-    public final boolean f8049f;
-
-    public o0(j4.c0 c0Var, long j10, long j11, boolean z10, boolean z11, boolean z12) {
-        this.f8045a = c0Var;
-        this.f8046b = j10;
-        this.f8047c = j11;
+    public o0(j4.d0 d0Var, long j10, long j11, boolean z10, boolean z11, boolean z12) {
+        this.f9615a = d0Var;
+        this.f9616b = j10;
+        this.f9617c = j11;
         this.d = z10;
-        this.f8048e = z11;
-        this.f8049f = z12;
+        this.f9618e = z11;
+        this.f9619f = z12;
     }
 }

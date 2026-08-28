@@ -1,17 +1,16 @@
 package w0;
-
 public final class h extends i {
-    public h(CharSequence charSequence, int i10) {
+    public h(CharSequence charSequence, int i9) {
         super(charSequence, "androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION");
-        switch (i10) {
+        switch (i9) {
             case 2:
                 super(charSequence, "android.credentials.GetCredentialException.TYPE_UNKNOWN");
-                break;
+                return;
             case 3:
                 super(charSequence, "androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION");
-                break;
+                return;
             default:
-                break;
+                return;
         }
     }
 

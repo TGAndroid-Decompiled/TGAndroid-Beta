@@ -1,13 +1,17 @@
 package g7;
+public final class v3 implements q9.d {
+    public static final v3 f7386a = new Object();
 
-public final class v3 implements r9.d {
-
-    public static final v3 f6620a = new v3();
-
-    public static final r9.c f6621b = new r9.c("identifiedLanguage", s3.c.h(com.google.android.recaptcha.internal.a.q(i.class, new e(1))));
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(6, e2.c.r(d.class, e2.c.i(5, e2.c.r(d.class, e2.c.i(4, e2.c.r(d.class, e2.c.i(3, e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))))))))))));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((r9.e) obj2).a(f6621b, ((f7) obj).f6472a);
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.view.OrientationEventListener;
 import org.telegram.messenger.ApplicationLoader;
-
 public class OrientationHelper {
     private static final int ORIENTATION_HYSTERESIS = 5;
     public static volatile int cameraOrientation;
@@ -10,28 +9,27 @@ public class OrientationHelper {
     public static volatile boolean cameraRotationDisabled;
     private OrientationEventListener orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
         @Override
-        public void onOrientationChanged(int i10) {
-            if (OrientationHelper.this.orientationEventListener == null || i10 == -1) {
-                return;
-            }
-            OrientationHelper orientationHelper = OrientationHelper.this;
-            int iRoundOrientation = orientationHelper.roundOrientation(i10, orientationHelper.rotation);
-            if (iRoundOrientation != OrientationHelper.this.rotation) {
-                OrientationHelper orientationHelper2 = OrientationHelper.this;
-                orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = iRoundOrientation);
+        public void onOrientationChanged(int i9) {
+            if (OrientationHelper.this.orientationEventListener != null && i9 != -1) {
+                OrientationHelper orientationHelper = OrientationHelper.this;
+                int roundOrientation = orientationHelper.roundOrientation(i9, orientationHelper.rotation);
+                if (roundOrientation != OrientationHelper.this.rotation) {
+                    OrientationHelper orientationHelper2 = OrientationHelper.this;
+                    orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
+                }
             }
         }
     };
     private int rotation;
 
-    public int roundOrientation(int i10, int i11) {
-        if (i11 != -1) {
-            int iAbs = Math.abs(i10 - i11);
-            if (Math.min(iAbs, 360 - iAbs) < 50) {
-                return i11;
+    public int roundOrientation(int i9, int i10) {
+        if (i10 != -1) {
+            int abs = Math.abs(i9 - i10);
+            if (Math.min(abs, 360 - abs) < 50) {
+                return i10;
             }
         }
-        return (((i10 + 45) / 90) * 90) % 360;
+        return (((i9 + 45) / 90) * 90) % 360;
     }
 
     public int getOrientation() {
@@ -44,10 +42,10 @@ public class OrientationHelper {
     public void start() {
         if (this.orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-        } else {
-            this.orientationEventListener.disable();
-            this.orientationEventListener = null;
+            return;
         }
+        this.orientationEventListener.disable();
+        this.orientationEventListener = null;
     }
 
     public void stop() {
@@ -58,6 +56,6 @@ public class OrientationHelper {
         }
     }
 
-    public void onOrientationUpdate(int i10) {
+    public void onOrientationUpdate(int i9) {
     }
 }

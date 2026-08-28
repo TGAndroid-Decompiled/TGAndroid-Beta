@@ -1,27 +1,30 @@
 package ja;
 
-import j$.util.DesugarCollections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import kotlin.jvm.internal.j;
+import android.util.Log;
+import g7.y5;
+import zc.p;
+public final class c extends sc.i implements p {
+    public Object f14258a;
 
-public final class c {
-
-    public static final c f12874a = new c();
-
-    public static final Map f12875b = DesugarCollections.synchronizedMap(new LinkedHashMap());
-
-    public static a a(d dVar) {
-        Map dependencies = f12875b;
-        j.d(dependencies, "dependencies");
-        Object obj = dependencies.get(dVar);
-        if (obj != null) {
-            return (a) obj;
-        }
-        throw new IllegalStateException("Cannot get dependency " + dVar + ". Dependencies should be added at class load time.");
+    @Override
+    public final qc.c create(Object obj, qc.c cVar) {
+        ?? iVar = new sc.i(2, cVar);
+        iVar.f14258a = obj;
+        return iVar;
     }
 
-    public final java.lang.Object b(tc.c r11) {
-        throw new UnsupportedOperationException("Method not decompiled: ja.c.b(tc.c):java.lang.Object");
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        oc.i iVar = oc.i.f19197a;
+        ((c) create((String) obj, (qc.c) obj2)).invokeSuspend(iVar);
+        return iVar;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        rc.a aVar = rc.a.f47127a;
+        y5.b(obj);
+        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f14258a));
+        return oc.i.f19197a;
     }
 }

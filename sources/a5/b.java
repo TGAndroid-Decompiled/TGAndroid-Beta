@@ -1,67 +1,75 @@
 package a5;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import d5.y;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern f51c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
+    public final y f52a = new y();
+    public final StringBuilder f53b = new StringBuilder();
 
-public final class b implements r4.g {
-
-    public final int f51a;
-
-    public final List f52b;
-
-    public b(int i10, List list) {
-        this.f51a = i10;
-        this.f52b = list;
-    }
-
-    @Override
-    public final int c(long j10) {
-        switch (this.f51a) {
-            case 0:
-                return j10 < 0 ? 0 : -1;
-            case 1:
-                return j10 < 0 ? 0 : -1;
-            default:
-                return -1;
+    public static String a(y yVar, StringBuilder sb2) {
+        boolean z10 = false;
+        sb2.setLength(0);
+        int i9 = yVar.f4411b;
+        int i10 = yVar.f4412c;
+        while (i9 < i10 && !z10) {
+            char c10 = (char) yVar.f4410a[i9];
+            if ((c10 < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && ((c10 < '0' || c10 > '9') && c10 != '#' && c10 != '-' && c10 != '.' && c10 != '_'))) {
+                z10 = true;
+            } else {
+                i9++;
+                sb2.append(c10);
+            }
         }
+        yVar.D(i9 - yVar.f4411b);
+        return sb2.toString();
     }
 
-    @Override
-    public final long f(int i10) {
-        switch (this.f51a) {
-            case 0:
-                d5.a.f(i10 == 0);
-                break;
-            case 1:
-                d5.a.f(i10 == 0);
-                break;
+    public static String b(y yVar, StringBuilder sb2) {
+        c(yVar);
+        if (yVar.a() == 0) {
+            return null;
         }
-        return 0L;
-    }
-
-    @Override
-    public final List h(long j10) {
-        switch (this.f51a) {
-            case 0:
-                return j10 >= 0 ? this.f52b : Collections.EMPTY_LIST;
-            case 1:
-                return j10 >= 0 ? this.f52b : Collections.EMPTY_LIST;
-            default:
-                return this.f52b;
+        String a2 = a(yVar, sb2);
+        if (!"".equals(a2)) {
+            return a2;
         }
+        return "" + ((char) yVar.r());
     }
 
-    @Override
-    public final int p() {
-        switch (this.f51a) {
+    public static void c(y yVar) {
+        while (true) {
+            for (boolean z10 = true; yVar.a() > 0 && z10; z10 = false) {
+                int i9 = yVar.f4411b;
+                byte[] bArr = yVar.f4410a;
+                byte b10 = bArr[i9];
+                char c10 = (char) b10;
+                if (c10 != '\t' && c10 != '\n' && c10 != '\f' && c10 != '\r' && c10 != ' ') {
+                    int i10 = yVar.f4412c;
+                    int i11 = i9 + 2;
+                    if (i11 <= i10) {
+                        int i12 = i9 + 1;
+                        if (b10 == 47 && bArr[i12] == 42) {
+                            while (true) {
+                                int i13 = i11 + 1;
+                                if (i13 >= i10) {
+                                    break;
+                                } else if (((char) bArr[i11]) == '*' && ((char) bArr[i13]) == '/') {
+                                    i11 += 2;
+                                    i10 = i11;
+                                } else {
+                                    i11 = i13;
+                                }
+                            }
+                            yVar.D(i10 - yVar.f4411b);
+                        }
+                    }
+                } else {
+                    yVar.D(1);
+                }
+            }
+            return;
         }
-        return 1;
-    }
-
-    public b(ArrayList arrayList) {
-        this.f51a = 0;
-        this.f52b = DesugarCollections.unmodifiableList(arrayList);
     }
 }

@@ -1,44 +1,36 @@
 package h3;
 
+import fh.y5;
 public abstract class y0 implements g {
-
-    public static final z0 f8247f = new z0(new x0());
+    public static final z0 f9817f = new y0(new x0());
     public static final String h;
-
-    public static final String f8248n;
-
-    public static final String f8249r;
-
-    public static final String f8250s;
+    public static final String f9818n;
+    public static final String f9819r;
+    public static final String f9820s;
     public static final String v;
-
-    public static final f9.z f8251w;
-
-    public final long f8252a;
-
-    public final long f8253b;
-
-    public final boolean f8254c;
+    public static final y5 f9821w;
+    public final long f9822a;
+    public final long f9823b;
+    public final boolean f9824c;
     public final boolean d;
-
-    public final boolean f8255e;
+    public final boolean f9825e;
 
     static {
-        int i10 = d5.g0.f4795a;
+        int i9 = d5.f0.f4349a;
         h = Integer.toString(0, 36);
-        f8248n = Integer.toString(1, 36);
-        f8249r = Integer.toString(2, 36);
-        f8250s = Integer.toString(3, 36);
+        f9818n = Integer.toString(1, 36);
+        f9819r = Integer.toString(2, 36);
+        f9820s = Integer.toString(3, 36);
         v = Integer.toString(4, 36);
-        f8251w = new f9.z(21);
+        f9821w = new y5(17);
     }
 
     public y0(x0 x0Var) {
-        this.f8252a = x0Var.f8238a;
-        this.f8253b = x0Var.f8239b;
-        this.f8254c = x0Var.f8240c;
+        this.f9822a = x0Var.f9807a;
+        this.f9823b = x0Var.f9808b;
+        this.f9824c = x0Var.f9809c;
         this.d = x0Var.d;
-        this.f8255e = x0Var.f8241e;
+        this.f9825e = x0Var.f9810e;
     }
 
     public final boolean equals(Object obj) {
@@ -49,13 +41,15 @@ public abstract class y0 implements g {
             return false;
         }
         y0 y0Var = (y0) obj;
-        return this.f8252a == y0Var.f8252a && this.f8253b == y0Var.f8253b && this.f8254c == y0Var.f8254c && this.d == y0Var.d && this.f8255e == y0Var.f8255e;
+        if (this.f9822a == y0Var.f9822a && this.f9823b == y0Var.f9823b && this.f9824c == y0Var.f9824c && this.d == y0Var.d && this.f9825e == y0Var.f9825e) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        long j10 = this.f8252a;
-        int i10 = ((int) (j10 ^ (j10 >>> 32))) * 31;
-        long j11 = this.f8253b;
-        return ((((((i10 + ((int) (j11 ^ (j11 >>> 32)))) * 31) + (this.f8254c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31) + (this.f8255e ? 1 : 0);
+        long j10 = this.f9822a;
+        long j11 = this.f9823b;
+        return (((((((((int) (j10 ^ (j10 >>> 32))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + (this.f9824c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31) + (this.f9825e ? 1 : 0);
     }
 }

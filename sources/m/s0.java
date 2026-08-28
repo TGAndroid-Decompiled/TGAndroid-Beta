@@ -3,7 +3,6 @@ package m;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 import java.util.Locale;
-
 public abstract class s0 {
     public static Drawable[] a(TextView textView) {
         return textView.getCompoundDrawablesRelative();

@@ -1,22 +1,32 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Bundle;
+public final class ms0 extends bu0 {
+    public final eu0 C;
 
-public final class ms0 extends org.telegram.ui.tn {
-
-    public final hu0 f30745f;
-
-    public ms0(hu0 hu0Var, Context context, org.telegram.ui.ActionBar.b5 b5Var, Bundle bundle) {
-        super(context, b5Var, bundle);
-        this.f30745f = hu0Var;
+    public ms0(eu0 eu0Var, Context context) {
+        super(eu0Var, context, 0, false);
+        this.C = eu0Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.v0 v0Var = this.f30745f.f29128j0;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(z10);
+    public final void l() {
+        boolean z10;
+        super.l();
+        eu0 eu0Var = this.C;
+        xs0 W = eu0Var.W(8);
+        if (W != null && W.f34761r.getVisibility() == 0) {
+            eu0Var.W.l();
+        }
+        if (W != null) {
+            or0 or0Var = W.f34763w;
+            ih.n6 n6Var = this.f27281s;
+            if (n6Var != null && (n6Var.k() || (eu0Var.i0() && this.f27281s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            or0Var.e(z10, true);
         }
     }
 }

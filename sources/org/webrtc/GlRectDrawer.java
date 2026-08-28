@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.GlGenericDrawer;
 public class GlRectDrawer extends GlGenericDrawer {
     private static final String FRAGMENT_SHADER = "void main() {\n  gl_FragColor = sample(tc);\n}\n";
 
@@ -16,7 +17,7 @@ public class GlRectDrawer extends GlGenericDrawer {
         }
 
         @Override
-        public void onPrepareShader(GlShader glShader, float[] fArr, int i10, int i11, int i12, int i13) {
+        public void onPrepareShader(GlShader glShader, float[] fArr, int i9, int i10, int i11, int i12) {
         }
     }
 }

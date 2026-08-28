@@ -1,34 +1,39 @@
 package org.telegram.ui;
+public final class xi extends lg.b {
+    public final int f44531n;
+    public final qn f44532r;
 
-public final class xi extends org.telegram.ui.ActionBar.n1 {
-
-    public final rn f44471o;
-
-    public xi(rn rnVar, vi viVar) {
-        super(viVar, -2, -2);
-        this.f44471o = rnVar;
+    public xi(qn qnVar, org.telegram.ui.ActionBar.b6 b6Var, int i9, int i10) {
+        super(i9, b6Var);
+        this.f44531n = i10;
+        this.f44532r = qnVar;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        rn rnVar = this.f44471o;
-        if (rnVar.M8 != this) {
-            return;
+    public final int k() {
+        int i9;
+        int i10;
+        switch (this.f44531n) {
+            case 0:
+                qn qnVar = this.f44532r;
+                i9 = ((org.telegram.ui.ActionBar.o2) qnVar).currentAccount;
+                if (!mg.c.c(i9, qnVar.f41848aa)) {
+                    return i0.a.k(qnVar.getThemedColor(org.telegram.ui.ActionBar.f6.Sd), 255);
+                }
+                if (qnVar.f41848aa != null && !org.telegram.ui.ActionBar.f6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
+            default:
+                qn qnVar2 = this.f44532r;
+                i10 = ((org.telegram.ui.ActionBar.o2) qnVar2).currentAccount;
+                if (!mg.c.c(i10, qnVar2.f41848aa)) {
+                    return i0.a.k(qnVar2.getThemedColor(org.telegram.ui.ActionBar.f6.f23001d6), 255);
+                }
+                if (qnVar2.f41848aa != null && !org.telegram.ui.ActionBar.f6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
         }
-        rnVar.M8 = null;
-        rnVar.P8 = null;
-        rnVar.O8 = null;
-        rnVar.f42239v0.R = true;
-        if (rnVar.N8) {
-            rnVar.g8(false, true, 0.0f);
-        } else {
-            rnVar.N8 = true;
-        }
-        ck ckVar = rnVar.U;
-        if (ckVar == null || ckVar.getEditField() == null) {
-            return;
-        }
-        rnVar.U.getEditField().setAllowDrawCursor(true);
     }
 }

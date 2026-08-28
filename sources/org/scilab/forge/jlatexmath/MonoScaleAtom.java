@@ -1,19 +1,16 @@
 package org.scilab.forge.jlatexmath;
-
 public class MonoScaleAtom extends ScaleAtom {
     private float factor;
 
-    public MonoScaleAtom(Atom atom, float f10) {
-        double d = f10;
-        super(atom, d, d);
-        this.factor = f10;
+    public MonoScaleAtom(org.scilab.forge.jlatexmath.Atom r7, float r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.MonoScaleAtom.<init>(org.scilab.forge.jlatexmath.Atom, float):void");
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy();
-        float scaleFactor = teXEnvironmentCopy.getScaleFactor();
-        teXEnvironmentCopy.setScaleFactor(this.factor);
-        return new ScaleBox(this.base.createBox(teXEnvironmentCopy), this.factor / scaleFactor);
+        TeXEnvironment copy = teXEnvironment.copy();
+        float scaleFactor = copy.getScaleFactor();
+        copy.setScaleFactor(this.factor);
+        return new ScaleBox(this.base.createBox(copy), this.factor / scaleFactor);
     }
 }

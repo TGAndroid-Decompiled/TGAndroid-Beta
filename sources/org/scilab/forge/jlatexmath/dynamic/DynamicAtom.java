@@ -6,7 +6,6 @@ import org.scilab.forge.jlatexmath.EmptyAtom;
 import org.scilab.forge.jlatexmath.StrutBox;
 import org.scilab.forge.jlatexmath.TeXEnvironment;
 import org.scilab.forge.jlatexmath.TeXFormula;
-
 public class DynamicAtom extends Atom {
     private static ExternalConverterFactory ecFactory;
     private ExternalConverter converter;
@@ -21,14 +20,16 @@ public class DynamicAtom extends Atom {
         if (externalConverterFactory != null) {
             this.converter = externalConverterFactory.getExternalConverter();
         }
-        if (str2 == null || !str2.equals("i")) {
-            return;
+        if (str2 != null && str2.equals("i")) {
+            this.insert = true;
         }
-        this.insert = true;
     }
 
     public static boolean hasAnExternalConverterFactory() {
-        return ecFactory != null;
+        if (ecFactory != null) {
+            return true;
+        }
+        return false;
     }
 
     public static void setExternalConverterFactory(ExternalConverterFactory externalConverterFactory) {
@@ -58,7 +59,10 @@ public class DynamicAtom extends Atom {
             this.refreshed = true;
         }
         Atom atom = this.formula.root;
-        return atom == null ? new EmptyAtom() : atom;
+        if (atom == null) {
+            return new EmptyAtom();
+        }
+        return atom;
     }
 
     public boolean getInsertMode() {

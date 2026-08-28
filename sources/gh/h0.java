@@ -1,42 +1,32 @@
 package gh;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.sp0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.Components.mt;
+public final class h0 implements org.telegram.ui.ActionBar.b2 {
+    public final int f8188a;
+    public final int f8189b;
+    public final Object f8190c;
 
-public final class h0 extends org.telegram.ui.ActionBar.j {
-
-    public final TL_stars.StarGift f7278a;
-
-    public final Context f7279b;
-
-    public final org.telegram.ui.ActionBar.c6 f7280c;
-
-    public h0(Context context, TL_stars.StarGift starGift, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f7278a = starGift;
-        this.f7279b = context;
-        this.f7280c = c6Var;
+    public h0(int i9, int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f8188a = i9;
+        this.f8189b = i10;
+        this.f8190c = o2Var;
     }
 
     @Override
-    public final void b(int i10) {
-        Context context = this.f7279b;
-        TL_stars.StarGift starGift = this.f7278a;
-        if (i10 != 3 && i10 != 2) {
-            if (i10 == 4) {
-                i0.U(context, starGift, this.f7280c);
-                return;
-            }
-            return;
-        }
-        String str = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/auction/" + starGift.auction_slug;
-        if (i10 == 3) {
-            AndroidUtilities.addToClipboard(str);
-        } else {
-            sp0.N0(context, null, str, false, str).show();
-        }
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        ve.d g10 = c2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f8188a;
+        int i10 = this.f8189b;
+        ConnectionsManager.getInstance(i10).sendRequestTyped(tL_resolveStarGiftOffer, new j0(i10, (org.telegram.ui.ActionBar.o2) this.f8190c, g10, c2Var));
+    }
+
+    public h0(mt mtVar, int i9, int i10) {
+        this.f8190c = mtVar;
+        this.f8188a = i9;
+        this.f8189b = i10;
     }
 }

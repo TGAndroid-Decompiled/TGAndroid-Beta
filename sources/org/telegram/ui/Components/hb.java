@@ -1,28 +1,39 @@
 package org.telegram.ui.Components;
+public final class hb extends o1.i {
+    public final int f29025a;
 
-public final class hb implements o1.g {
-
-    public final int f28958a;
-
-    public final jb f28959b;
-
-    public final q0.a f28960c;
-
-    public hb(q0.a aVar, jb jbVar, int i10) {
-        this.f28958a = i10;
-        this.f28960c = aVar;
-        this.f28959b = jbVar;
+    public hb(int i9) {
+        this.f29025a = i9;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        switch (this.f28958a) {
+    public final float a(Object obj) {
+        switch (this.f29025a) {
             case 0:
-                ((va) this.f28960c).accept(Float.valueOf(this.f28959b.getTranslationY()));
-                break;
+                return ((lb) obj).inOutOffset;
+            case 1:
+                return ((org.telegram.ui.pg0) obj).J;
             default:
-                ((zk) this.f28960c).accept(Float.valueOf(this.f28959b.getTranslationY()));
-                break;
+                return ((org.telegram.ui.pg0) obj).I;
+        }
+    }
+
+    @Override
+    public final void b(Object obj, float f10) {
+        switch (this.f29025a) {
+            case 0:
+                lb.access$2200((lb) obj, f10);
+                return;
+            case 1:
+                org.telegram.ui.pg0 pg0Var = (org.telegram.ui.pg0) obj;
+                pg0Var.J = f10;
+                pg0Var.invalidate();
+                return;
+            default:
+                org.telegram.ui.pg0 pg0Var2 = (org.telegram.ui.pg0) obj;
+                pg0Var2.I = f10;
+                pg0Var2.invalidate();
+                return;
         }
     }
 }

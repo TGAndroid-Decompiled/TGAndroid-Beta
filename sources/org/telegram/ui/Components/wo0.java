@@ -7,28 +7,25 @@ import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
+public final class wo0 extends lg {
+    public final int f34302h0;
+    public final Object f34303i0;
 
-public final class wo0 extends hg {
-
-    public final int f34305h0;
-
-    public final Object f34306i0;
-
-    public wo0(Object obj, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(i10, context, c6Var, true);
-        this.f34305h0 = i11;
-        this.f34306i0 = obj;
+    public wo0(Object obj, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var, int i10) {
+        super(i9, context, b6Var, true);
+        this.f34302h0 = i10;
+        this.f34303i0 = obj;
     }
 
     @Override
     public boolean d() {
-        switch (this.f34305h0) {
+        switch (this.f34302h0) {
             case 1:
                 return false;
             case 2:
                 return false;
             case 3:
-                return ((rh.x1) this.f34306i0).l0();
+                return ((qh.x1) this.f34303i0).k0();
             default:
                 return super.d();
         }
@@ -36,7 +33,7 @@ public final class wo0 extends hg {
 
     @Override
     public final boolean f() {
-        switch (this.f34305h0) {
+        switch (this.f34302h0) {
             case 0:
                 return true;
             case 1:
@@ -44,32 +41,38 @@ public final class wo0 extends hg {
             case 2:
                 return true;
             case 3:
-                return ((rh.x1) this.f34306i0).H0 || this.f29001r > 0;
+                if (!((qh.x1) this.f34303i0).H0 && this.f30444r <= 0) {
+                    return false;
+                }
+                return true;
             default:
-                return ((rh.t3) this.f34306i0).S || this.f29001r > 0;
+                if (!((qh.s3) this.f34303i0).S && this.f30444r <= 0) {
+                    return false;
+                }
+                return true;
         }
     }
 
     @Override
     public int getFillColor() {
-        int i10 = this.f34305h0;
-        Object obj = this.f34306i0;
-        switch (i10) {
+        int i9 = this.f34302h0;
+        Object obj = this.f34303i0;
+        switch (i9) {
             case 0:
-                return ((sp0) obj).getThemedColor(org.telegram.ui.ActionBar.g6.S5);
+                return ((rp0) obj).getThemedColor(org.telegram.ui.ActionBar.f6.S5);
             case 1:
             default:
                 return super.getFillColor();
             case 2:
-                int i11 = org.telegram.ui.ActionBar.g6.f23449zf;
+                int i10 = org.telegram.ui.ActionBar.f6.f23395zf;
                 Drawable[] drawableArr = PhotoViewer.P8;
-                return ((PhotoViewer) obj).z1(i11);
+                return ((PhotoViewer) obj).z1(i10);
         }
     }
 
     @Override
     public boolean j() {
-        switch (this.f34305h0) {
+        switch (this.f34302h0) {
             case 0:
                 return true;
             case 1:
@@ -83,23 +86,23 @@ public final class wo0 extends hg {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f34305h0) {
+        switch (this.f34302h0) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((org.telegram.ui.gy) this.f34306i0).E2.size(), new Object[0]));
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((org.telegram.ui.dy) this.f34303i0).E2.size(), new Object[0]));
                 accessibilityNodeInfo.setClassName(Button.class.getName());
                 accessibilityNodeInfo.setLongClickable(true);
                 accessibilityNodeInfo.setClickable(true);
-                break;
+                return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                break;
+                return;
         }
     }
 
-    public wo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(i10, context, c6Var, false);
-        this.f34305h0 = i11;
-        this.f34306i0 = notificationCenterDelegate;
+    public wo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var, int i10) {
+        super(i9, context, b6Var, false);
+        this.f34302h0 = i10;
+        this.f34303i0 = notificationCenterDelegate;
     }
 }

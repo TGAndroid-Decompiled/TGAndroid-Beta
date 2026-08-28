@@ -2,9 +2,8 @@ package m;
 
 import android.view.View;
 import android.widget.PopupWindow;
-
 public abstract class z1 {
-    public static int a(PopupWindow popupWindow, View view, int i10, boolean z10) {
-        return popupWindow.getMaxAvailableHeight(view, i10, z10);
+    public static int a(PopupWindow popupWindow, View view, int i9, boolean z10) {
+        return popupWindow.getMaxAvailableHeight(view, i9, z10);
     }
 }

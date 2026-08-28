@@ -1,98 +1,134 @@
 package we;
 
-import android.animation.ValueAnimator;
-import android.content.DialogInterface;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.ys0;
-import yf.p1;
-import yf.r0;
-import zf.f;
-import zf.g;
-import zf.j;
-import zf.n2;
+import android.util.Log;
+import com.google.android.gms.cast.MediaError;
+import com.google.android.gms.cast.MediaInfo;
+import m5.k;
+import o5.h;
+import o5.j;
+import x5.l;
+public final class a extends o5.g {
+    public final h f48786a;
+    public final n5.g f48787b;
+    public final n5.c f48788c;
+    public g d;
+    public int f48789e;
+    public int f48790f;
+    public int f48791g;
+    public int h;
 
-public final class a implements Runnable {
-
-    public final int f49288a;
-
-    public final int f49289b;
-
-    public final Object f49290c;
-
-    public a(Object obj, int i10, int i11) {
-        this.f49288a = i11;
-        this.f49290c = obj;
-        this.f49289b = i10;
+    public a(n5.c cVar, n5.g gVar, h hVar) {
+        this.f48788c = cVar;
+        this.f48787b = gVar;
+        this.f48786a = hVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f49288a;
-        final int i11 = this.f49289b;
-        Object obj = this.f49290c;
-        switch (i10) {
-            case 0:
-                b2[] b2VarArr = (b2[]) obj;
-                b2 b2Var = b2VarArr[0];
-                if (b2Var != null) {
-                    try {
-                        b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                            @Override
-                            public final void onCancel(DialogInterface dialogInterface) {
-                                ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i11, true);
-                            }
-                        });
-                        b2VarArr[0].show();
-                    } catch (Exception unused) {
-                        return;
-                    }
-                    break;
-                }
-                break;
-            case 1:
-                ((wg.a) obj).v0(i11, 0, null);
-                break;
-            case 2:
-                j jVar = (j) obj;
-                jVar.H = i11;
-                jVar.G = true;
-                int i12 = 2;
-                try {
-                    jVar.performHapticFeedback(3, 2);
-                    break;
-                } catch (Exception unused2) {
-                }
-                ValueAnimator valueAnimator = jVar.L;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                ValueAnimator valueAnimator2 = jVar.M;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
-                }
-                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                jVar.L = duration;
-                duration.setInterpolator(er.f28122f);
-                jVar.L.addUpdateListener(new f(jVar, 5));
-                jVar.L.addListener(new g(jVar, i12));
-                jVar.L.start();
-                break;
-            case 3:
-                ys0 ys0Var = (ys0) obj;
-                p1 p1Var = ys0Var.G1;
-                ys0Var.s0(p1Var, null);
-                r0.e(i11).j(p1Var.f50036c);
-                break;
-            default:
-                n2 n2Var = (n2) obj;
-                n2Var.getClass();
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.customStickerCreated, Boolean.FALSE);
-                n2Var.h();
-                break;
+    public final void a() {
+        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f48788c.a());
+    }
+
+    @Override
+    public final void b(MediaError mediaError) {
+        int i9;
+        StringBuilder sb2 = new StringBuilder("onMediaError ");
+        sb2.append(this.f48788c.a());
+        sb2.append(" ");
+        Integer num = mediaError.f2703c;
+        sb2.append(num);
+        sb2.append(" ");
+        sb2.append(mediaError.f2702b);
+        Log.d("CAST_CLIENT", sb2.toString());
+        if (num != null) {
+            i9 = num.intValue();
+        } else {
+            i9 = -1;
         }
+        this.f48789e = i9;
+    }
+
+    @Override
+    public final void c() {
+        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f48788c.a());
+    }
+
+    @Override
+    public final void d() {
+        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f48788c.a());
+    }
+
+    @Override
+    public final void e() {
+        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f48788c.a());
+    }
+
+    @Override
+    public final void f() {
+        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f48788c.a());
+    }
+
+    @Override
+    public final void g() {
+        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f48788c.a());
+        int b10 = this.f48786a.b();
+        if (b10 != this.f48790f) {
+            Log.d("CAST_CLIENT", "idleReason " + b10);
+            this.f48790f = b10;
+            if (b10 == 2) {
+                this.f48787b.b(true);
+            } else if (b10 == 4) {
+                int i9 = this.f48789e;
+                if (i9 == 104) {
+                    q(true);
+                } else if (i9 == 102) {
+                    q(false);
+                }
+            }
+        }
+    }
+
+    public final void p() {
+        f fVar;
+        this.f48789e = -1;
+        if (this.d == null) {
+            this.d = null;
+            return;
+        }
+        String i9 = e.i();
+        if (this.f48791g < this.d.f48813a.size()) {
+            fVar = this.d.a(this.f48791g);
+        } else {
+            fVar = e.f48800l;
+        }
+        MediaInfo mediaInfo = new MediaInfo(e.j(i9, fVar.d) + ("?index=" + this.f48791g + "&attempt=" + this.h), 1, fVar.f48808a, fVar.f48809b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
+        Boolean bool = Boolean.TRUE;
+        if (Double.compare(1.0d, 2.0d) <= 0 && Double.compare(1.0d, 0.5d) >= 0) {
+            k kVar = new k(mediaInfo, null, bool, -1L, 1.0d, null, null, null, null, null, null, 0L);
+            l.e("Must be called from the main thread.");
+            h hVar = this.f48786a;
+            if (!hVar.w()) {
+                h.t();
+                return;
+            } else {
+                h.x(new j(hVar, kVar, 1));
+                return;
+            }
+        }
+        throw new IllegalArgumentException("playbackRate must be between PLAYBACK_RATE_MIN and PLAYBACK_RATE_MAX");
+    }
+
+    public final void q(boolean z10) {
+        if (z10) {
+            this.f48791g++;
+        } else {
+            int i9 = this.h + 1;
+            this.h = i9;
+            if (i9 > 3) {
+                this.h = 0;
+                this.f48791g++;
+            }
+        }
+        Log.e("CAST_CLIENT", "next attempt " + this.f48789e + " " + this.f48791g + " " + this.h);
+        p();
     }
 }

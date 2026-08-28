@@ -1,22 +1,17 @@
 package fd;
 
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
+import java.nio.charset.Charset;
+public abstract class a {
+    public static final Charset f6039a;
 
-public final class a implements b {
-
-    public final AtomicReference f6039a;
-
-    public a(e eVar) {
-        this.f6039a = new AtomicReference(eVar);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        b bVar = (b) this.f6039a.getAndSet(null);
-        if (bVar != null) {
-            return bVar.iterator();
-        }
-        throw new IllegalStateException("This sequence can be consumed only once.");
+    static {
+        Charset forName = Charset.forName("UTF-8");
+        kotlin.jvm.internal.i.d(forName, "forName(...)");
+        f6039a = forName;
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16BE"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("UTF-16LE"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("US-ASCII"), "forName(...)");
+        kotlin.jvm.internal.i.d(Charset.forName("ISO-8859-1"), "forName(...)");
     }
 }

@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class LibaomAv1Encoder extends WrappedNativeVideoEncoder {
     public static native long nativeCreateEncoder();
 

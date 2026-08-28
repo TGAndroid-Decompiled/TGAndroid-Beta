@@ -1,49 +1,45 @@
 package org.telegram.ui.Components;
-
 public final class a7 implements Runnable {
+    public final int f26710a;
+    public final c8 f26711b;
+    public final x60 f26712c;
 
-    public final int f26651a;
-
-    public final b8 f26652b;
-
-    public final b70 f26653c;
-
-    public a7(b8 b8Var, b70 b70Var, int i10) {
-        this.f26651a = i10;
-        this.f26652b = b8Var;
-        this.f26653c = b70Var;
+    public a7(c8 c8Var, x60 x60Var, int i9) {
+        this.f26710a = i9;
+        this.f26711b = c8Var;
+        this.f26712c = x60Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f26651a) {
+        switch (this.f26710a) {
             case 0:
-                b8 b8Var = this.f26652b;
-                b8Var.getClass();
-                this.f26653c.u();
-                b8Var.t0(1);
-                break;
+                c8 c8Var = this.f26711b;
+                c8Var.getClass();
+                this.f26712c.u();
+                c8Var.s0(1);
+                return;
             case 1:
-                b8 b8Var2 = this.f26652b;
-                b8Var2.getClass();
-                this.f26653c.u();
-                b8Var2.t0(2);
-                break;
+                c8 c8Var2 = this.f26711b;
+                c8Var2.getClass();
+                this.f26712c.u();
+                c8Var2.s0(2);
+                return;
             case 2:
-                b8 b8Var3 = this.f26652b;
-                b8Var3.getClass();
-                this.f26653c.u();
-                b8Var3.t0(4);
-                break;
+                c8 c8Var3 = this.f26711b;
+                c8Var3.getClass();
+                this.f26712c.u();
+                c8Var3.s0(4);
+                return;
             case 3:
-                b8 b8Var4 = this.f26652b;
-                b8Var4.getClass();
-                this.f26653c.u();
-                b8Var4.t0(7);
-                break;
+                c8 c8Var4 = this.f26711b;
+                c8Var4.getClass();
+                this.f26712c.u();
+                c8Var4.s0(7);
+                return;
             default:
-                b8.r(this.f26652b, this.f26653c);
-                break;
+                c8.q(this.f26711b, this.f26712c);
+                return;
         }
     }
 }

@@ -2,14 +2,13 @@ package org.webrtc;
 
 import android.graphics.Matrix;
 import java.nio.ByteBuffer;
-
 public class VideoFrame implements RefCounted {
     private final Buffer buffer;
     private final int rotation;
     private final long timestampNs;
 
     public interface Buffer extends RefCounted {
-        Buffer cropAndScale(int i10, int i11, int i12, int i13, int i14, int i15);
+        Buffer cropAndScale(int i9, int i10, int i11, int i12, int i13, int i14);
 
         int getBufferType();
 
@@ -48,11 +47,11 @@ public class VideoFrame implements RefCounted {
         public enum Type {
             OES(36197),
             RGB(3553);
-
+            
             private final int glTarget;
 
-            Type(int i10) {
-                this.glTarget = i10;
+            Type(int i9) {
+                this.glTarget = i9;
             }
 
             public int getGlTarget() {
@@ -60,7 +59,7 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i10, int i11);
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i9, int i10);
 
         int getTextureId();
 
@@ -73,16 +72,17 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i10, long j10) {
-        if (buffer == null) {
-            throw new IllegalArgumentException("buffer not allowed to be null");
-        }
-        if (i10 % 90 != 0) {
+    public VideoFrame(Buffer buffer, int i9, long j10) {
+        if (buffer != null) {
+            if (i9 % 90 == 0) {
+                this.buffer = buffer;
+                this.rotation = i9;
+                this.timestampNs = j10;
+                return;
+            }
             throw new IllegalArgumentException("rotation must be a multiple of 90");
         }
-        this.buffer = buffer;
-        this.rotation = i10;
-        this.timestampNs = j10;
+        throw new IllegalArgumentException("buffer not allowed to be null");
     }
 
     public Buffer getBuffer() {
@@ -90,11 +90,17 @@ public class VideoFrame implements RefCounted {
     }
 
     public int getRotatedHeight() {
-        return this.rotation % 180 == 0 ? this.buffer.getHeight() : this.buffer.getWidth();
+        if (this.rotation % 180 == 0) {
+            return this.buffer.getHeight();
+        }
+        return this.buffer.getWidth();
     }
 
     public int getRotatedWidth() {
-        return this.rotation % 180 == 0 ? this.buffer.getWidth() : this.buffer.getHeight();
+        if (this.rotation % 180 == 0) {
+            return this.buffer.getWidth();
+        }
+        return this.buffer.getHeight();
     }
 
     public int getRotation() {

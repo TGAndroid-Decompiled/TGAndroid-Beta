@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class BreakMarkAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {

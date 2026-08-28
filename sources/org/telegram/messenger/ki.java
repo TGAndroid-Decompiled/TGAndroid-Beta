@@ -1,47 +1,31 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 public final class ki implements Runnable {
+    public final int f20818a;
+    public final SendMessagesHelper f20819b;
+    public final long f20820c;
+    public final ArrayList d;
 
-    public final int f20796a;
-
-    public final CharSequence f20797b;
-
-    public final AccountInstance f20798c;
-    public final long d;
-
-    public final long f20799e;
-
-    public final boolean f20800f;
-    public final int h;
-
-    public final int f20801n;
-
-    public final long f20802r;
-
-    public ki(CharSequence charSequence, AccountInstance accountInstance, long j10, long j11, boolean z10, int i10, int i11, long j12, int i12) {
-        this.f20796a = i12;
-        this.f20797b = charSequence;
-        this.f20798c = accountInstance;
-        this.d = j10;
-        this.f20799e = j11;
-        this.f20800f = z10;
-        this.h = i10;
-        this.f20801n = i11;
-        this.f20802r = j12;
+    public ki(SendMessagesHelper sendMessagesHelper, long j10, ArrayList arrayList, int i9) {
+        this.f20818a = i9;
+        this.f20819b = sendMessagesHelper;
+        this.f20820c = j10;
+        this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20796a) {
+        switch (this.f20818a) {
             case 0:
-                SendMessagesHelper.lambda$prepareSendingText$126(this.f20797b, this.f20798c, this.d, this.f20799e, this.f20800f, this.h, this.f20801n, this.f20802r);
-                break;
+                SendMessagesHelper.u(this.f20819b, this.f20820c, this.d);
+                return;
             case 1:
-                SendMessagesHelper.lambda$prepareSendingText$124(this.f20797b, this.f20798c, this.d, this.f20799e, this.f20800f, this.h, this.f20801n, this.f20802r);
-                break;
+                SendMessagesHelper.k1(this.f20819b, this.f20820c, this.d);
+                return;
             default:
-                SendMessagesHelper.lambda$prepareSendingText$125(this.f20797b, this.f20798c, this.d, this.f20799e, this.f20800f, this.h, this.f20801n, this.f20802r);
-                break;
+                SendMessagesHelper.R0(this.f20819b, this.f20820c, this.d);
+                return;
         }
     }
 }

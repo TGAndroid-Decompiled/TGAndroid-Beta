@@ -1,31 +1,54 @@
 package r4;
 
-import com.google.android.gms.common.api.internal.v;
-import java.util.ArrayDeque;
+import java.nio.ByteBuffer;
+import k3.m;
+public abstract class e extends m implements g {
+    public final String f47059a;
 
-public final class e extends l {
+    public e(String str) {
+        super(new j[2], new k[2]);
+        this.f47059a = str;
+        setInitialInputBufferSize(1024);
+    }
 
-    public final int f46749c;
-    public final h d;
+    public abstract f c(int i9, boolean z10, byte[] bArr);
 
-    public e(h hVar, int i10) {
-        this.f46749c = i10;
-        this.d = hVar;
+    @Override
+    public final k3.i createInputBuffer() {
+        return new j();
     }
 
     @Override
-    public final void release() {
-        switch (this.f46749c) {
-            case 0:
-                ArrayDeque arrayDeque = (ArrayDeque) ((v) this.d).d;
-                d5.a.i(arrayDeque.size() < 2);
-                d5.a.f(!arrayDeque.contains(this));
-                clear();
-                arrayDeque.addFirst(this);
-                break;
-            default:
-                ((f) this.d).releaseOutputBuffer(this);
-                break;
+    public final k3.k createOutputBuffer() {
+        return new d(this, 1);
+    }
+
+    @Override
+    public final k3.g createUnexpectedDecodeException(Throwable th) {
+        return new Exception("Unexpected decode error", th);
+    }
+
+    @Override
+    public final k3.g decode(k3.i iVar, k3.k kVar, boolean z10) {
+        j jVar = (j) iVar;
+        k kVar2 = (k) kVar;
+        try {
+            ByteBuffer byteBuffer = jVar.f14608b;
+            byteBuffer.getClass();
+            kVar2.a(jVar.d, c(byteBuffer.limit(), z10, byteBuffer.array()), jVar.f47061n);
+            kVar2.clearFlag(Integer.MIN_VALUE);
+            return null;
+        } catch (h e10) {
+            return e10;
         }
+    }
+
+    @Override
+    public final String getName() {
+        return this.f47059a;
+    }
+
+    @Override
+    public final void a(long j10) {
     }
 }

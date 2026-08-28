@@ -1,44 +1,43 @@
 package m3;
 
-import ag.t2;
-import ag.x1;
 import android.animation.ObjectAnimator;
-import org.telegram.ui.Components.bg;
-import org.telegram.ui.Components.ib;
-import org.telegram.ui.Components.jb;
-import org.telegram.ui.Components.sa;
+import org.telegram.ui.Components.dl;
+import org.telegram.ui.Components.fg;
+import org.telegram.ui.Components.kb;
+import org.telegram.ui.Components.lb;
 import org.telegram.ui.Components.ua;
-import org.telegram.ui.Components.va;
-import org.telegram.ui.Components.ws;
-import org.telegram.ui.Components.zk;
+import org.telegram.ui.Components.wa;
+import org.telegram.ui.Components.xa;
+import org.telegram.ui.Components.xs;
+public final class n implements kb {
+    public long f17244a;
 
-public final class n implements ib {
-
-    public long f17620a;
-
-    public boolean a(ue.m mVar) {
-        return mVar.f4577b == this.f17620a && ue.a.c(mVar);
+    public boolean a(te.m mVar) {
+        if (mVar.f4135b == this.f17244a && te.a.c(mVar)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void c(jb jbVar, ua uaVar, sa saVar, va vaVar) {
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(jbVar, jb.IN_OUT_OFFSET_Y2, jbVar.getHeight());
-        objectAnimatorOfFloat.setDuration(175L);
-        objectAnimatorOfFloat.setInterpolator(ws.f34318c);
-        objectAnimatorOfFloat.addListener(new x1(uaVar, saVar, 17));
-        objectAnimatorOfFloat.addUpdateListener(new t2(9, vaVar, jbVar));
-        objectAnimatorOfFloat.start();
+    public void e(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, lbVar.getHeight());
+        ofFloat.setDuration(175L);
+        ofFloat.setInterpolator(xs.f34753c);
+        ofFloat.addListener(new fg.j(waVar, uaVar, 15));
+        ofFloat.addUpdateListener(new f2.g(8, xaVar, lbVar));
+        ofFloat.start();
     }
 
     @Override
-    public void g(jb jbVar, ua uaVar, bg bgVar, zk zkVar) {
-        jbVar.setInOutOffset(jbVar.getMeasuredHeight());
-        zkVar.accept(Float.valueOf(jbVar.getTranslationY()));
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(jbVar, jb.IN_OUT_OFFSET_Y2, 0.0f);
-        objectAnimatorOfFloat.setDuration(this.f17620a);
-        objectAnimatorOfFloat.setInterpolator(ws.d);
-        objectAnimatorOfFloat.addListener(new x1(uaVar, bgVar, 16));
-        objectAnimatorOfFloat.addUpdateListener(new t2(10, zkVar, jbVar));
-        objectAnimatorOfFloat.start();
+    public void g(lb lbVar, wa waVar, fg fgVar, dl dlVar) {
+        lbVar.setInOutOffset(lbVar.getMeasuredHeight());
+        dlVar.accept(Float.valueOf(lbVar.getTranslationY()));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lbVar, lb.IN_OUT_OFFSET_Y2, 0.0f);
+        ofFloat.setDuration(this.f17244a);
+        ofFloat.setInterpolator(xs.d);
+        ofFloat.addListener(new fg.j(waVar, fgVar, 14));
+        ofFloat.addUpdateListener(new f2.g(9, dlVar, lbVar));
+        ofFloat.start();
     }
 }

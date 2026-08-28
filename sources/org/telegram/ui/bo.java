@@ -1,86 +1,53 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
+public final class bo implements Runnable {
+    public final int f36914a;
+    public final ho f36915b;
 
-public final class bo implements org.telegram.ui.ActionBar.a2, MessagesStorage.LongCallback, oc0, MessagesStorage.BooleanCallback {
-
-    public final int f36860a;
-
-    public final jo f36861b;
-
-    public bo(jo joVar, int i10) {
-        this.f36860a = i10;
-        this.f36861b = joVar;
+    public bo(ho hoVar, int i9) {
+        this.f36914a = i9;
+        this.f36915b = hoVar;
     }
 
     @Override
-    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
-        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-        tL_channelLocation.address = messageMedia.address;
-        tL_channelLocation.geo_point = messageMedia.geo;
-        jo joVar = this.f36861b;
-        TLRPC.ChatFull chatFull = joVar.f39430u0;
-        chatFull.location = tL_channelLocation;
-        chatFull.flags |= 32768;
-        joVar.p0(false, true);
-        joVar.getMessagesController().loadFullChat(joVar.f39428s0, 0, true);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f36860a) {
+    public final void run() {
+        switch (this.f36914a) {
             case 0:
-                this.f36861b.j0();
-                break;
+                ho.U(this.f36915b);
+                return;
             case 1:
-                this.f36861b.finishFragment();
-                break;
+                ho.Z(this.f36915b);
+                return;
             case 2:
-                this.f36861b.j0();
-                break;
+                ho hoVar = this.f36915b;
+                hoVar.f38837b.dismiss();
+                hoVar.finishFragment();
+                return;
+            case 3:
+                ho hoVar2 = this.f36915b;
+                hoVar2.I.setChecked(hoVar2.f38861t0.autotranslation);
+                return;
             default:
-                this.f36861b.finishFragment();
-                break;
-        }
-    }
-
-    @Override
-    public void run(boolean z10) {
-        jo joVar = this.f36861b;
-        joVar.getClass();
-        if (AndroidUtilities.isTablet()) {
-            joVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-joVar.f39428s0));
-        } else {
-            joVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-        }
-        joVar.finishFragment();
-        joVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-joVar.f39429t0.f22380id), null, joVar.f39429t0, Boolean.valueOf(z10));
-    }
-
-    @Override
-    public void run(long j10) {
-        switch (this.f36860a) {
-            case 4:
-                this.f36861b.t0(Long.valueOf(j10));
-                break;
-            default:
-                jo joVar = this.f36861b;
-                if (j10 == 0) {
-                    joVar.J0 = false;
-                } else {
-                    joVar.f39428s0 = j10;
-                    joVar.f39429t0 = joVar.getMessagesController().getChat(Long.valueOf(j10));
-                    joVar.J0 = false;
-                    TLRPC.ChatFull chatFull = joVar.f39430u0;
-                    if (chatFull != null) {
-                        chatFull.hidden_prehistory = true;
-                    }
-                    joVar.j0();
+                ho hoVar3 = this.f36915b;
+                hoVar3.f38842e.setImageDrawable(hoVar3.f38857r);
+                hoVar3.X.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
+                TLRPC.User user = hoVar3.f38870z0;
+                if (user != null) {
+                    user.photo = null;
+                    hoVar3.getMessagesController().putUser(hoVar3.f38870z0, true);
                 }
-                break;
+                hoVar3.K0 = true;
+                if (hoVar3.N0 == null) {
+                    int i9 = R.raw.camera_outline;
+                    hoVar3.N0 = new org.telegram.ui.Components.mi0(i9, "" + R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                }
+                hoVar3.X.f24875e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                hoVar3.X.f24875e.setAnimation(hoVar3.N0);
+                return;
         }
     }
 }

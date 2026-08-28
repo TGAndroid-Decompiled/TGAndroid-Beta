@@ -2,26 +2,22 @@ package e4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
+import d5.f0;
 import h3.g1;
 import java.util.Arrays;
-
 public final class a extends j {
-    public static final Parcelable.Creator<a> CREATOR = new c8.o(14);
-
-    public final String f5187b;
-
-    public final String f5188c;
+    public static final Parcelable.Creator<a> CREATOR = new c.c(6);
+    public final String f4828b;
+    public final String f4829c;
     public final int d;
+    public final byte[] f4830e;
 
-    public final byte[] f5189e;
-
-    public a(int i10, String str, String str2, byte[] bArr) {
+    public a(int i9, String str, String str2, byte[] bArr) {
         super("APIC");
-        this.f5187b = str;
-        this.f5188c = str2;
-        this.d = i10;
-        this.f5189e = bArr;
+        this.f4828b = str;
+        this.f4829c = str2;
+        this.d = i9;
+        this.f4830e = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -30,7 +26,7 @@ public final class a extends j {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && g0.a(this.f5187b, aVar.f5187b) && g0.a(this.f5188c, aVar.f5188c) && Arrays.equals(this.f5189e, aVar.f5189e)) {
+            if (this.d == aVar.d && f0.a(this.f4828b, aVar.f4828b) && f0.a(this.f4829c, aVar.f4829c) && Arrays.equals(this.f4830e, aVar.f4830e)) {
                 return true;
             }
         }
@@ -38,38 +34,48 @@ public final class a extends j {
     }
 
     public final int hashCode() {
+        int i9;
         int i10 = (527 + this.d) * 31;
-        String str = this.f5187b;
-        int iHashCode = (i10 + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f5188c;
-        return Arrays.hashCode(this.f5189e) + ((iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31);
+        int i11 = 0;
+        String str = this.f4828b;
+        if (str != null) {
+            i9 = str.hashCode();
+        } else {
+            i9 = 0;
+        }
+        int i12 = (i10 + i9) * 31;
+        String str2 = this.f4829c;
+        if (str2 != null) {
+            i11 = str2.hashCode();
+        }
+        return Arrays.hashCode(this.f4830e) + ((i12 + i11) * 31);
     }
 
     @Override
     public final void populateMediaMetadata(g1 g1Var) {
-        g1Var.a(this.d, this.f5189e);
+        g1Var.a(this.d, this.f4830e);
     }
 
     @Override
     public final String toString() {
-        return this.f5209a + ": mimeType=" + this.f5187b + ", description=" + this.f5188c;
+        return this.f4850a + ": mimeType=" + this.f4828b + ", description=" + this.f4829c;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f5187b);
-        parcel.writeString(this.f5188c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeString(this.f4828b);
+        parcel.writeString(this.f4829c);
         parcel.writeInt(this.d);
-        parcel.writeByteArray(this.f5189e);
+        parcel.writeByteArray(this.f4830e);
     }
 
     public a(Parcel parcel) {
         super("APIC");
-        String string = parcel.readString();
-        int i10 = g0.f4795a;
-        this.f5187b = string;
-        this.f5188c = parcel.readString();
+        String readString = parcel.readString();
+        int i9 = f0.f4349a;
+        this.f4828b = readString;
+        this.f4829c = parcel.readString();
         this.d = parcel.readInt();
-        this.f5189e = parcel.createByteArray();
+        this.f4830e = parcel.createByteArray();
     }
 }

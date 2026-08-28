@@ -1,28 +1,28 @@
 package e7;
 
-import c7.w;
-import g7.s6;
+import b7.x;
+import f7.x6;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
-public final class b extends w implements ListIterator {
-
-    public final int f5315b;
-
-    public int f5316c;
+public final class b extends x implements ListIterator {
+    public final int f4971b;
+    public int f4972c;
     public final d d;
 
-    public b(d dVar, int i10) {
-        super(3);
+    public b(d dVar, int i9) {
+        super(4);
         int size = dVar.size();
-        s6.b(i10, size);
-        this.f5315b = size;
-        this.f5316c = i10;
-        this.d = dVar;
+        if (i9 >= 0 && i9 <= size) {
+            this.f4971b = size;
+            this.f4972c = i9;
+            this.d = dVar;
+            return;
+        }
+        throw new IndexOutOfBoundsException(x6.c(i9, size, "index"));
     }
 
-    public final Object a(int i10) {
-        return this.d.get(i10);
+    public final Object a(int i9) {
+        return this.d.get(i9);
     }
 
     @Override
@@ -32,42 +32,48 @@ public final class b extends w implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        return this.f5316c < this.f5315b;
+        if (this.f4972c < this.f4971b) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final boolean hasPrevious() {
-        return this.f5316c > 0;
+        if (this.f4972c > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final Object next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
+        if (hasNext()) {
+            int i9 = this.f4972c;
+            this.f4972c = i9 + 1;
+            return a(i9);
         }
-        int i10 = this.f5316c;
-        this.f5316c = i10 + 1;
-        return a(i10);
+        throw new NoSuchElementException();
     }
 
     @Override
     public final int nextIndex() {
-        return this.f5316c;
+        return this.f4972c;
     }
 
     @Override
     public final Object previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
+        if (hasPrevious()) {
+            int i9 = this.f4972c - 1;
+            this.f4972c = i9;
+            return a(i9);
         }
-        int i10 = this.f5316c - 1;
-        this.f5316c = i10;
-        return a(i10);
+        throw new NoSuchElementException();
     }
 
     @Override
     public final int previousIndex() {
-        return this.f5316c - 1;
+        return this.f4972c - 1;
     }
 
     @Override

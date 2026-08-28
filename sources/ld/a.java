@@ -1,23 +1,18 @@
 package ld;
 
-public final class a extends tc.c {
+import ha.u;
+import java.util.concurrent.CancellationException;
+public final class a extends CancellationException {
+    public final transient u f16836a;
 
-    public md.g f15538a;
-
-    public Object f15539b;
-
-    public final k5.i f15540c;
-    public int d;
-
-    public a(k5.i iVar, tc.c cVar) {
-        super(cVar);
-        this.f15540c = iVar;
+    public a(u uVar) {
+        super("Flow was aborted, no more elements needed");
+        this.f16836a = uVar;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f15539b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f15540c.q(null, this);
+    public final Throwable fillInStackTrace() {
+        setStackTrace(new StackTraceElement[0]);
+        return this;
     }
 }

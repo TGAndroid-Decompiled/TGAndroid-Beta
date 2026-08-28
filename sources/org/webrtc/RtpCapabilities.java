@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.List;
 import java.util.Map;
-
+import org.webrtc.MediaStreamTrack;
 public class RtpCapabilities {
     public List<CodecCapability> codecs;
     public List<HeaderExtensionCapability> headerExtensions;
@@ -43,8 +43,8 @@ public class RtpCapabilities {
             return this.preferredPayloadType;
         }
 
-        public CodecCapability(int i10, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
-            this.preferredPayloadType = i10;
+        public CodecCapability(int i9, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
+            this.preferredPayloadType = i9;
             this.name = str;
             this.kind = mediaType;
             this.clockRate = num;
@@ -59,9 +59,9 @@ public class RtpCapabilities {
         private final int preferredId;
         private final String uri;
 
-        public HeaderExtensionCapability(String str, int i10, boolean z10) {
+        public HeaderExtensionCapability(String str, int i9, boolean z10) {
             this.uri = str;
-            this.preferredId = i10;
+            this.preferredId = i9;
             this.preferredEncrypted = z10;
         }
 

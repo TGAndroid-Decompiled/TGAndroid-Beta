@@ -1,28 +1,42 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class i40 extends AnimatorListenerAdapter {
+    public final int f39002a;
+    public final o50 f39003b;
 
-public final class i40 implements ViewTreeObserver.OnPreDrawListener {
-
-    public final ChatObject.VideoParticipant f38975a;
-
-    public final s50 f38976b;
-
-    public i40(s50 s50Var, ChatObject.VideoParticipant videoParticipant) {
-        this.f38976b = s50Var;
-        this.f38975a = videoParticipant;
+    public i40(o50 o50Var, int i9) {
+        this.f39002a = i9;
+        this.f39003b = o50Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        s50 s50Var = this.f38976b;
-        s50Var.M.getViewTreeObserver().removeOnPreDrawListener(this);
-        s50Var.f42460m2 = null;
-        s50Var.W1.j(this.f38975a);
-        AndroidUtilities.updateVisibleRows(s50Var.f42446i2);
-        ((org.telegram.ui.ActionBar.e3) s50Var).containerView.requestLayout();
-        return false;
+    public final void onAnimationEnd(Animator animator) {
+        int i9;
+        switch (this.f39002a) {
+            case 0:
+                o50 o50Var = this.f39003b;
+                o50Var.R.setVisibility(4);
+                o50Var.S.setVisibility(4);
+                o50Var.Q.setVisibility(4);
+                return;
+            case 1:
+                this.f39003b.f40893d0 = null;
+                return;
+            default:
+                o50 o50Var2 = this.f39003b;
+                o50Var2.f40894d1 = null;
+                Paint paint = o50Var2.f40890c1;
+                if (o50Var2.P1 == 3) {
+                    i9 = -1163700;
+                } else {
+                    i9 = -12761513;
+                }
+                paint.setColor(i9);
+                o50Var2.f40885b1.invalidate();
+                return;
+        }
     }
 }

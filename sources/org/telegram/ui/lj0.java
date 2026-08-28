@@ -1,27 +1,20 @@
 package org.telegram.ui;
+public final class lj0 implements Runnable {
+    public final int f40179a;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.NotificationCenter;
-
-public final class lj0 extends TextView {
-
-    public final lt f40142a;
-
-    public lj0(Context context) {
-        super(context);
-        this.f40142a = new lt(1, this);
+    public lj0(int i9) {
+        this.f40179a = i9;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this.f40142a, NotificationCenter.emojiLoaded);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lj0.run():void");
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this.f40142a, NotificationCenter.emojiLoaded);
+    public lj0(n0 n0Var) {
+        this.f40179a = 12;
+    }
+
+    private final void a() {
     }
 }

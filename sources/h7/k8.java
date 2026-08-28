@@ -1,16 +1,12 @@
 package h7;
+public final class k8 {
+    public final l7 f9994a;
+    public final m8 f9995b;
+    public final j7 f9996c;
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
-
-public abstract class k8 {
-    public static void a(ArrayList arrayList, Object obj) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            Object obj2 = ((Reference) arrayList.get(size)).get();
-            if (obj2 == null || obj2 == obj) {
-                arrayList.remove(size);
-                return;
-            }
-        }
+    public k8(a5.m mVar) {
+        this.f9994a = (l7) mVar.f98b;
+        this.f9995b = (m8) mVar.f99c;
+        this.f9996c = (j7) mVar.d;
     }
 }

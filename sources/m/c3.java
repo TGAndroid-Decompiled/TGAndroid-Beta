@@ -1,9 +1,7 @@
 package m;
 
 import android.app.SearchableInfo;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -11,23 +9,16 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.text.TextUtils;
-import android.text.style.TextAppearanceSpan;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.WeakHashMap;
-
 public final class c3 extends h1.b implements View.OnClickListener {
     public static final int J = 0;
     public final int A;
@@ -39,31 +30,25 @@ public final class c3 extends h1.b implements View.OnClickListener {
     public int G;
     public int H;
     public int I;
-
-    public final int f17283n;
-
-    public final int f17284r;
-
-    public final LayoutInflater f17285s;
+    public final int f16908n;
+    public final int f16909r;
+    public final LayoutInflater f16910s;
     public final SearchView v;
-
-    public final SearchableInfo f17286w;
-
-    public final Context f17287x;
-
-    public final WeakHashMap f17288y;
+    public final SearchableInfo f16911w;
+    public final Context f16912x;
+    public final WeakHashMap f16913y;
 
     public c3(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap weakHashMap) {
         int suggestionRowLayout = searchView.getSuggestionRowLayout();
-        this.f7743b = true;
-        this.f7744c = null;
-        this.f7742a = false;
+        this.f9311b = true;
+        this.f9312c = null;
+        this.f9310a = false;
         this.d = -1;
-        this.f7745e = new com.google.android.gms.internal.clearcut.c(this);
-        this.f7746f = new h1.a(this, 0);
-        this.f17284r = suggestionRowLayout;
-        this.f17283n = suggestionRowLayout;
-        this.f17285s = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.f9313e = new com.google.android.gms.internal.clearcut.c(this);
+        this.f9314f = new h1.a(this, 0);
+        this.f16909r = suggestionRowLayout;
+        this.f16908n = suggestionRowLayout;
+        this.f16910s = (LayoutInflater) context.getSystemService("layout_inflater");
         this.B = 1;
         this.D = -1;
         this.E = -1;
@@ -72,151 +57,27 @@ public final class c3 extends h1.b implements View.OnClickListener {
         this.H = -1;
         this.I = -1;
         this.v = searchView;
-        this.f17286w = searchableInfo;
+        this.f16911w = searchableInfo;
         this.A = searchView.getSuggestionCommitIconResId();
-        this.f17287x = context;
-        this.f17288y = weakHashMap;
+        this.f16912x = context;
+        this.f16913y = weakHashMap;
     }
 
-    public static String h(Cursor cursor, int i10) {
-        if (i10 == -1) {
+    public static String g(Cursor cursor, int i9) {
+        if (i9 == -1) {
             return null;
         }
         try {
-            return cursor.getString(i10);
-        } catch (Exception e9) {
-            Log.e("SuggestionsAdapter", "unexpected error retrieving valid column from cursor, did the remote process die?", e9);
+            return cursor.getString(i9);
+        } catch (Exception e10) {
+            Log.e("SuggestionsAdapter", "unexpected error retrieving valid column from cursor, did the remote process die?", e10);
             return null;
         }
     }
 
     @Override
-    public final void a(View view, Cursor cursor) {
-        int i10;
-        Drawable drawableF;
-        CharSequence charSequenceH;
-        b3 b3Var = (b3) view.getTag();
-        int i11 = this.I;
-        int i12 = i11 != -1 ? cursor.getInt(i11) : 0;
-        TextView textView = b3Var.f17278a;
-        TextView textView2 = b3Var.f17279b;
-        ImageView imageView = b3Var.f17281e;
-        if (textView != null) {
-            String strH = h(cursor, this.D);
-            textView.setText(strH);
-            if (TextUtils.isEmpty(strH)) {
-                textView.setVisibility(8);
-            } else {
-                textView.setVisibility(0);
-            }
-        }
-        Context context = this.f17287x;
-        if (textView2 != null) {
-            String strH2 = h(cursor, this.F);
-            if (strH2 != null) {
-                if (this.C == null) {
-                    TypedValue typedValue = new TypedValue();
-                    context.getTheme().resolveAttribute(2130968964, typedValue, true);
-                    this.C = context.getResources().getColorStateList(typedValue.resourceId);
-                }
-                SpannableString spannableString = new SpannableString(strH2);
-                spannableString.setSpan(new TextAppearanceSpan(null, 0, 0, this.C, null), 0, strH2.length(), 33);
-                charSequenceH = spannableString;
-            } else {
-                charSequenceH = h(cursor, this.E);
-            }
-            if (TextUtils.isEmpty(charSequenceH)) {
-                if (textView != null) {
-                    textView.setSingleLine(false);
-                    textView.setMaxLines(2);
-                }
-            } else if (textView != null) {
-                textView.setSingleLine(true);
-                textView.setMaxLines(1);
-            }
-            textView2.setText(charSequenceH);
-            if (TextUtils.isEmpty(charSequenceH)) {
-                textView2.setVisibility(8);
-            } else {
-                textView2.setVisibility(0);
-            }
-        }
-        ImageView imageView2 = b3Var.f17280c;
-        if (imageView2 != null) {
-            int i13 = this.G;
-            if (i13 == -1) {
-                drawableF = null;
-            } else {
-                drawableF = f(cursor.getString(i13));
-                if (drawableF == null) {
-                    ComponentName searchActivity = this.f17286w.getSearchActivity();
-                    String strFlattenToShortString = searchActivity.flattenToShortString();
-                    WeakHashMap weakHashMap = this.f17288y;
-                    if (weakHashMap.containsKey(strFlattenToShortString)) {
-                        Drawable.ConstantState constantState = (Drawable.ConstantState) weakHashMap.get(strFlattenToShortString);
-                        drawableF = constantState == null ? null : constantState.newDrawable(context.getResources());
-                    } else {
-                        PackageManager packageManager = context.getPackageManager();
-                        try {
-                            ActivityInfo activityInfo = packageManager.getActivityInfo(searchActivity, 128);
-                            int iconResource = activityInfo.getIconResource();
-                            if (iconResource != 0) {
-                                Drawable drawable = packageManager.getDrawable(searchActivity.getPackageName(), iconResource, activityInfo.applicationInfo);
-                                if (drawable == null) {
-                                    StringBuilder sbO = i0.a.o(iconResource, "Invalid icon resource ", " for ");
-                                    sbO.append(searchActivity.flattenToShortString());
-                                    Log.w("SuggestionsAdapter", sbO.toString());
-                                    drawableF = null;
-                                } else {
-                                    drawableF = drawable;
-                                }
-                            } else {
-                                drawableF = null;
-                            }
-                        } catch (PackageManager.NameNotFoundException e9) {
-                            Log.w("SuggestionsAdapter", e9.toString());
-                        }
-                        weakHashMap.put(strFlattenToShortString, drawableF == null ? null : drawableF.getConstantState());
-                    }
-                    if (drawableF == null) {
-                        drawableF = context.getPackageManager().getDefaultActivityIcon();
-                    }
-                }
-            }
-            imageView2.setImageDrawable(drawableF);
-            if (drawableF == null) {
-                imageView2.setVisibility(4);
-            } else {
-                imageView2.setVisibility(0);
-                drawableF.setVisible(false, false);
-                drawableF.setVisible(true, false);
-            }
-        }
-        ImageView imageView3 = b3Var.d;
-        if (imageView3 == null) {
-            i10 = 1;
-        } else {
-            int i14 = this.H;
-            Drawable drawableF2 = i14 == -1 ? null : f(cursor.getString(i14));
-            imageView3.setImageDrawable(drawableF2);
-            if (drawableF2 == null) {
-                imageView3.setVisibility(8);
-                i10 = 1;
-            } else {
-                imageView3.setVisibility(0);
-                drawableF2.setVisible(false, false);
-                i10 = 1;
-                drawableF2.setVisible(true, false);
-            }
-        }
-        int i15 = this.B;
-        if (i15 != 2 && (i15 != i10 || (i12 & 1) == 0)) {
-            imageView.setVisibility(8);
-            return;
-        }
-        imageView.setVisibility(0);
-        imageView.setTag(textView.getText());
-        imageView.setOnClickListener(this);
+    public final void a(android.view.View r21, android.database.Cursor r22) {
+        throw new UnsupportedOperationException("Method not decompiled: m.c3.a(android.view.View, android.database.Cursor):void");
     }
 
     @Override
@@ -231,188 +92,117 @@ public final class c3 extends h1.b implements View.OnClickListener {
                 this.H = cursor.getColumnIndex("suggest_icon_2");
                 this.I = cursor.getColumnIndex("suggest_flags");
             }
-        } catch (Exception e9) {
-            Log.e("SuggestionsAdapter", "error changing cursor and caching columns", e9);
+        } catch (Exception e10) {
+            Log.e("SuggestionsAdapter", "error changing cursor and caching columns", e10);
         }
     }
 
     @Override
     public final String c(Cursor cursor) {
-        String strH;
-        String strH2;
-        if (cursor == null) {
+        String g10;
+        String g11;
+        if (cursor != null) {
+            String g12 = g(cursor, cursor.getColumnIndex("suggest_intent_query"));
+            if (g12 != null) {
+                return g12;
+            }
+            SearchableInfo searchableInfo = this.f16911w;
+            if (searchableInfo.shouldRewriteQueryFromData() && (g11 = g(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
+                return g11;
+            }
+            if (searchableInfo.shouldRewriteQueryFromText() && (g10 = g(cursor, cursor.getColumnIndex("suggest_text_1"))) != null) {
+                return g10;
+            }
             return null;
         }
-        String strH3 = h(cursor, cursor.getColumnIndex("suggest_intent_query"));
-        if (strH3 != null) {
-            return strH3;
-        }
-        SearchableInfo searchableInfo = this.f17286w;
-        if (searchableInfo.shouldRewriteQueryFromData() && (strH2 = h(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
-            return strH2;
-        }
-        if (!searchableInfo.shouldRewriteQueryFromText() || (strH = h(cursor, cursor.getColumnIndex("suggest_text_1"))) == null) {
-            return null;
-        }
-        return strH;
+        return null;
     }
 
-    @Override
-    public final View d(ViewGroup viewGroup) {
-        View viewInflate = this.f17285s.inflate(this.f17283n, viewGroup, false);
-        viewInflate.setTag(new b3(viewInflate));
-        ((ImageView) viewInflate.findViewById(2131296420)).setImageResource(this.A);
-        return viewInflate;
-    }
-
-    public final Drawable e(Uri uri) throws FileNotFoundException {
-        int identifier;
+    public final Drawable d(Uri uri) {
+        int parseInt;
         String authority = uri.getAuthority();
-        if (TextUtils.isEmpty(authority)) {
-            throw new FileNotFoundException("No authority: " + uri);
-        }
-        try {
-            Resources resourcesForApplication = this.f17287x.getPackageManager().getResourcesForApplication(authority);
-            List<String> pathSegments = uri.getPathSegments();
-            if (pathSegments == null) {
-                throw new FileNotFoundException("No path: " + uri);
-            }
-            int size = pathSegments.size();
-            if (size == 1) {
-                try {
-                    identifier = Integer.parseInt(pathSegments.get(0));
-                } catch (NumberFormatException unused) {
-                    throw new FileNotFoundException("Single path segment is not a resource ID: " + uri);
-                }
-            } else {
-                if (size != 2) {
-                    throw new FileNotFoundException("More than two path segments: " + uri);
-                }
-                identifier = resourcesForApplication.getIdentifier(pathSegments.get(1), pathSegments.get(0), authority);
-            }
-            if (identifier != 0) {
-                return resourcesForApplication.getDrawable(identifier);
-            }
-            throw new FileNotFoundException("No resource found for: " + uri);
-        } catch (PackageManager.NameNotFoundException unused2) {
-            throw new FileNotFoundException("No package found for authority: " + uri);
-        }
-    }
-
-    public final Drawable f(String str) {
-        WeakHashMap weakHashMap = this.f17288y;
-        Context context = this.f17287x;
-        Drawable drawableE = null;
-        if (str != null && !str.isEmpty() && !"0".equals(str)) {
+        if (!TextUtils.isEmpty(authority)) {
             try {
-                int i10 = Integer.parseInt(str);
-                String str2 = "android.resource://" + context.getPackageName() + "/" + i10;
-                Drawable.ConstantState constantState = (Drawable.ConstantState) weakHashMap.get(str2);
-                Drawable drawableNewDrawable = constantState == null ? null : constantState.newDrawable();
-                if (drawableNewDrawable != null) {
-                    return drawableNewDrawable;
-                }
-                Drawable drawable = context.getDrawable(i10);
-                if (drawable != null) {
-                    weakHashMap.put(str2, drawable.getConstantState());
-                }
-                return drawable;
-            } catch (Resources.NotFoundException unused) {
-                Log.w("SuggestionsAdapter", "Icon resource not found: ".concat(str));
-                return null;
-            } catch (NumberFormatException unused2) {
-                Drawable.ConstantState constantState2 = (Drawable.ConstantState) weakHashMap.get(str);
-                Drawable drawableNewDrawable2 = constantState2 == null ? null : constantState2.newDrawable();
-                if (drawableNewDrawable2 != null) {
-                    return drawableNewDrawable2;
-                }
-                Uri uri = Uri.parse(str);
-                try {
-                    if ("android.resource".equals(uri.getScheme())) {
+                Resources resourcesForApplication = this.f16912x.getPackageManager().getResourcesForApplication(authority);
+                List<String> pathSegments = uri.getPathSegments();
+                if (pathSegments != null) {
+                    int size = pathSegments.size();
+                    if (size == 1) {
                         try {
-                            drawableE = e(uri);
-                        } catch (Resources.NotFoundException unused3) {
-                            throw new FileNotFoundException("Resource does not exist: " + uri);
+                            parseInt = Integer.parseInt(pathSegments.get(0));
+                        } catch (NumberFormatException unused) {
+                            throw new FileNotFoundException("Single path segment is not a resource ID: " + uri);
                         }
+                    } else if (size == 2) {
+                        parseInt = resourcesForApplication.getIdentifier(pathSegments.get(1), pathSegments.get(0), authority);
                     } else {
-                        InputStream inputStreamOpenInputStream = context.getContentResolver().openInputStream(uri);
-                        if (inputStreamOpenInputStream == null) {
-                            throw new FileNotFoundException("Failed to open " + uri);
-                        }
-                        try {
-                            Drawable drawableCreateFromStream = Drawable.createFromStream(inputStreamOpenInputStream, null);
-                            try {
-                                inputStreamOpenInputStream.close();
-                            } catch (IOException e9) {
-                                Log.e("SuggestionsAdapter", "Error closing icon stream for " + uri, e9);
-                            }
-                            drawableE = drawableCreateFromStream;
-                        } catch (Throwable th) {
-                            try {
-                                inputStreamOpenInputStream.close();
-                            } catch (IOException e10) {
-                                Log.e("SuggestionsAdapter", "Error closing icon stream for " + uri, e10);
-                            }
-                            throw th;
-                        }
+                        throw new FileNotFoundException("More than two path segments: " + uri);
                     }
-                } catch (FileNotFoundException e11) {
-                    Log.w("SuggestionsAdapter", "Icon not found: " + uri + ", " + e11.getMessage());
+                    if (parseInt != 0) {
+                        return resourcesForApplication.getDrawable(parseInt);
+                    }
+                    throw new FileNotFoundException("No resource found for: " + uri);
                 }
-                if (drawableE != null) {
-                    weakHashMap.put(str, drawableE.getConstantState());
-                }
+                throw new FileNotFoundException("No path: " + uri);
+            } catch (PackageManager.NameNotFoundException unused2) {
+                throw new FileNotFoundException("No package found for authority: " + uri);
             }
         }
-        return drawableE;
+        throw new FileNotFoundException("No authority: " + uri);
     }
 
-    public final Cursor g(SearchableInfo searchableInfo, String str) {
+    public final android.graphics.drawable.Drawable e(java.lang.String r11) {
+        throw new UnsupportedOperationException("Method not decompiled: m.c3.e(java.lang.String):android.graphics.drawable.Drawable");
+    }
+
+    public final Cursor f(SearchableInfo searchableInfo, String str) {
         String suggestAuthority;
         String[] strArr = null;
         if (searchableInfo == null || (suggestAuthority = searchableInfo.getSuggestAuthority()) == null) {
             return null;
         }
-        Uri.Builder builderFragment = new Uri.Builder().scheme("content").authority(suggestAuthority).query("").fragment("");
+        Uri.Builder fragment = new Uri.Builder().scheme("content").authority(suggestAuthority).query("").fragment("");
         String suggestPath = searchableInfo.getSuggestPath();
         if (suggestPath != null) {
-            builderFragment.appendEncodedPath(suggestPath);
+            fragment.appendEncodedPath(suggestPath);
         }
-        builderFragment.appendPath("search_suggest_query");
+        fragment.appendPath("search_suggest_query");
         String suggestSelection = searchableInfo.getSuggestSelection();
         if (suggestSelection != null) {
             strArr = new String[]{str};
         } else {
-            builderFragment.appendPath(str);
+            fragment.appendPath(str);
         }
         String[] strArr2 = strArr;
-        builderFragment.appendQueryParameter("limit", String.valueOf(50));
-        return this.f17287x.getContentResolver().query(builderFragment.build(), null, suggestSelection, strArr2, null);
+        fragment.appendQueryParameter("limit", String.valueOf(50));
+        return this.f16912x.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
     }
 
     @Override
-    public final View getDropDownView(int i10, View view, ViewGroup viewGroup) {
+    public final View getDropDownView(int i9, View view, ViewGroup viewGroup) {
         try {
-            return super.getDropDownView(i10, view, viewGroup);
-        } catch (RuntimeException e9) {
-            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e9);
-            View viewInflate = this.f17285s.inflate(this.f17284r, viewGroup, false);
-            if (viewInflate != null) {
-                ((b3) viewInflate.getTag()).f17278a.setText(e9.toString());
+            return super.getDropDownView(i9, view, viewGroup);
+        } catch (RuntimeException e10) {
+            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
+            View inflate = this.f16910s.inflate(this.f16909r, viewGroup, false);
+            if (inflate != null) {
+                ((b3) inflate.getTag()).f16903a.setText(e10.toString());
             }
-            return viewInflate;
+            return inflate;
         }
     }
 
     @Override
-    public final View getView(int i10, View view, ViewGroup viewGroup) {
+    public final View getView(int i9, View view, ViewGroup viewGroup) {
         try {
-            return super.getView(i10, view, viewGroup);
-        } catch (RuntimeException e9) {
-            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e9);
-            View viewD = d(viewGroup);
-            ((b3) viewD.getTag()).f17278a.setText(e9.toString());
-            return viewD;
+            return super.getView(i9, view, viewGroup);
+        } catch (RuntimeException e10) {
+            Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
+            View inflate = this.f16910s.inflate(this.f16908n, viewGroup, false);
+            inflate.setTag(new b3(inflate));
+            ((ImageView) inflate.findViewById(2131296420)).setImageResource(this.A);
+            ((b3) inflate.getTag()).f16903a.setText(e10.toString());
+            return inflate;
         }
     }
 
@@ -423,21 +213,31 @@ public final class c3 extends h1.b implements View.OnClickListener {
 
     @Override
     public final void notifyDataSetChanged() {
+        Bundle bundle;
         super.notifyDataSetChanged();
-        Cursor cursor = this.f7744c;
-        Bundle extras = cursor != null ? cursor.getExtras() : null;
-        if (extras != null) {
-            extras.getBoolean("in_progress");
+        Cursor cursor = this.f9312c;
+        if (cursor != null) {
+            bundle = cursor.getExtras();
+        } else {
+            bundle = null;
+        }
+        if (bundle != null) {
+            bundle.getBoolean("in_progress");
         }
     }
 
     @Override
     public final void notifyDataSetInvalidated() {
+        Bundle bundle;
         super.notifyDataSetInvalidated();
-        Cursor cursor = this.f7744c;
-        Bundle extras = cursor != null ? cursor.getExtras() : null;
-        if (extras != null) {
-            extras.getBoolean("in_progress");
+        Cursor cursor = this.f9312c;
+        if (cursor != null) {
+            bundle = cursor.getExtras();
+        } else {
+            bundle = null;
+        }
+        if (bundle != null) {
+            bundle.getBoolean("in_progress");
         }
     }
 

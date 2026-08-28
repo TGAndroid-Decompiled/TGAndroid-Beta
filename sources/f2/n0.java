@@ -1,239 +1,173 @@
 package f2;
 
-import android.graphics.Rect;
+import android.content.Context;
+import android.graphics.PointF;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import org.telegram.messenger.BuildVars;
+public class n0 extends m1 {
+    public static final boolean f5460q = BuildVars.DEBUG_VERSION;
+    public PointF f5463k;
+    public final DisplayMetrics f5464l;
+    public float f5466n;
+    public final LinearInterpolator f5461i = new LinearInterpolator();
+    public final DecelerateInterpolator f5462j = new DecelerateInterpolator();
+    public boolean f5465m = false;
+    public int f5467o = 0;
+    public int f5468p = 0;
 
-public final class n0 extends androidx.emoji2.text.g {
-    public final int d;
-
-    public n0(k0 k0Var, int i10) {
-        super(k0Var);
-        this.d = i10;
+    public n0(Context context) {
+        this.f5464l = context.getResources().getDisplayMetrics();
     }
 
     @Override
-    public final int a(View view) {
-        int iY;
-        int i10;
-        switch (this.d) {
-            case 0:
-                y0 y0Var = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                iY = x0.y(view);
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var).rightMargin;
-                break;
-            default:
-                y0 y0Var2 = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                iY = x0.v(view);
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var2).bottomMargin;
-                break;
-        }
-        return iY + i10;
-    }
-
-    @Override
-    public final int b(View view) {
-        int measuredWidth;
-        int i10;
-        switch (this.d) {
-            case 0:
-                y0 y0Var = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                Rect rect = ((y0) view.getLayoutParams()).f5865b;
-                measuredWidth = view.getMeasuredWidth() + rect.left + rect.right + ((ViewGroup.MarginLayoutParams) y0Var).leftMargin;
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var).rightMargin;
-                break;
-            default:
-                y0 y0Var2 = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                Rect rect2 = ((y0) view.getLayoutParams()).f5865b;
-                measuredWidth = view.getMeasuredHeight() + rect2.top + rect2.bottom + ((ViewGroup.MarginLayoutParams) y0Var2).topMargin;
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var2).bottomMargin;
-                break;
-        }
-        return measuredWidth + i10;
-    }
-
-    @Override
-    public final int c(View view) {
-        int measuredHeight;
-        int i10;
-        switch (this.d) {
-            case 0:
-                y0 y0Var = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                Rect rect = ((y0) view.getLayoutParams()).f5865b;
-                measuredHeight = view.getMeasuredHeight() + rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) y0Var).topMargin;
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var).bottomMargin;
-                break;
-            default:
-                y0 y0Var2 = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                Rect rect2 = ((y0) view.getLayoutParams()).f5865b;
-                measuredHeight = view.getMeasuredWidth() + rect2.left + rect2.right + ((ViewGroup.MarginLayoutParams) y0Var2).leftMargin;
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var2).rightMargin;
-                break;
-        }
-        return measuredHeight + i10;
-    }
-
-    @Override
-    public final int d(View view) {
-        int iX;
-        int i10;
-        switch (this.d) {
-            case 0:
-                y0 y0Var = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                iX = x0.x(view);
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var).leftMargin;
-                break;
-            default:
-                y0 y0Var2 = (y0) view.getLayoutParams();
-                ((k0) this.f1352b).getClass();
-                iX = x0.z(view);
-                i10 = ((ViewGroup.MarginLayoutParams) y0Var2).topMargin;
-                break;
-        }
-        return iX - i10;
-    }
-
-    @Override
-    public final int e() {
-        switch (this.d) {
-            case 0:
-                return ((k0) this.f1352b).f5862m;
-            default:
-                return ((k0) this.f1352b).f5863n;
+    public final void d(int i9, int i10, l1 l1Var) {
+        PointF pointF;
+        if (this.f5444b.f1368x.r() == 0) {
+            h();
+        } else if (f5460q && (pointF = this.f5463k) != null && (pointF.x * i9 < 0.0f || pointF.y * i10 < 0.0f)) {
+            throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");
+        } else {
+            int i11 = this.f5467o;
+            int i12 = i11 - i9;
+            int i13 = 0;
+            if (i11 * i12 <= 0) {
+                i12 = 0;
+            }
+            this.f5467o = i12;
+            int i14 = this.f5468p;
+            int i15 = i14 - i10;
+            if (i14 * i15 > 0) {
+                i13 = i15;
+            }
+            this.f5468p = i13;
+            if (i12 == 0 && i13 == 0) {
+                q(l1Var);
+            }
         }
     }
 
     @Override
-    public final int f() {
-        int i10;
-        int iE;
-        switch (this.d) {
-            case 0:
-                k0 k0Var = (k0) this.f1352b;
-                i10 = k0Var.f5862m;
-                iE = k0Var.E();
-                break;
-            default:
-                k0 k0Var2 = (k0) this.f1352b;
-                i10 = k0Var2.f5863n;
-                iE = k0Var2.C();
-                break;
-        }
-        return i10 - iE;
+    public final void f() {
+        this.f5468p = 0;
+        this.f5467o = 0;
+        this.f5463k = null;
     }
 
     @Override
-    public final int g() {
-        switch (this.d) {
-            case 0:
-                return ((k0) this.f1352b).E();
-            default:
-                return ((k0) this.f1352b).C();
+    public void g(View view, l1 l1Var) {
+        int j10 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
+        if (m10 > 0) {
+            l1Var.b(-j10, -k10, m10, this.f5462j);
         }
     }
 
-    @Override
-    public final int h() {
-        switch (this.d) {
-            case 0:
-                return ((k0) this.f1352b).f5860k;
-            default:
-                return ((k0) this.f1352b).f5861l;
-        }
-    }
-
-    @Override
-    public final int i() {
-        switch (this.d) {
-            case 0:
-                return ((k0) this.f1352b).f5861l;
-            default:
-                return ((k0) this.f1352b).f5860k;
-        }
-    }
-
-    @Override
-    public final int j() {
-        switch (this.d) {
-            case 0:
-                return ((k0) this.f1352b).D();
-            default:
-                return ((k0) this.f1352b).J();
-        }
-    }
-
-    @Override
-    public final int k() {
-        switch (this.d) {
-            case 0:
-                k0 k0Var = (k0) this.f1352b;
-                return (k0Var.f5862m - k0Var.D()) - k0Var.E();
-            default:
-                return ((k0) this.f1352b).K();
-        }
-    }
-
-    @Override
-    public final int l(View view) {
-        switch (this.d) {
-            case 0:
-                k0 k0Var = (k0) this.f1352b;
-                Rect rect = (Rect) this.f1353c;
-                k0Var.L(view, rect);
-                return rect.right;
-            default:
-                k0 k0Var2 = (k0) this.f1352b;
-                Rect rect2 = (Rect) this.f1353c;
-                k0Var2.L(view, rect2);
-                return rect2.bottom;
-        }
-    }
-
-    @Override
-    public final int m(View view) {
-        switch (this.d) {
-            case 0:
-                k0 k0Var = (k0) this.f1352b;
-                Rect rect = (Rect) this.f1353c;
-                k0Var.L(view, rect);
-                return rect.left;
-            default:
-                k0 k0Var2 = (k0) this.f1352b;
-                Rect rect2 = (Rect) this.f1353c;
-                k0Var2.L(view, rect2);
-                return rect2.top;
-        }
-    }
-
-    @Override
-    public final void n(int i10) {
-        switch (this.d) {
-            case 0:
-                RecyclerView recyclerView = ((k0) this.f1352b).f5853b;
-                if (recyclerView != null) {
-                    int iO = recyclerView.f1840e.o();
-                    for (int i11 = 0; i11 < iO; i11++) {
-                        recyclerView.f1840e.n(i11).offsetLeftAndRight(i10);
-                    }
+    public int i(int i9, int i10, int i11, int i12, int i13) {
+        if (i13 != -1) {
+            if (i13 != 0) {
+                if (i13 == 1) {
+                    return i12 - i10;
                 }
-                break;
-            default:
-                RecyclerView recyclerView2 = ((k0) this.f1352b).f5853b;
-                if (recyclerView2 != null) {
-                    int iO2 = recyclerView2.f1840e.o();
-                    for (int i12 = 0; i12 < iO2; i12++) {
-                        recyclerView2.f1840e.n(i12).offsetTopAndBottom(i10);
-                    }
-                }
-                break;
+                throw new IllegalArgumentException("snap preference should be one of the constants defined in SmoothScroller, starting with SNAP_");
+            }
+            int i14 = i11 - i9;
+            if (i14 > 0) {
+                return i14;
+            }
+            int i15 = i12 - i10;
+            if (i15 < 0) {
+                return i15;
+            }
+            return 0;
         }
+        return i11 - i9;
+    }
+
+    public final int j(int i9, View view) {
+        z0 z0Var = this.f5445c;
+        if (z0Var != null && z0Var.d()) {
+            a1 a1Var = (a1) view.getLayoutParams();
+            return i(z0.x(view) - ((ViewGroup.MarginLayoutParams) a1Var).leftMargin, z0.y(view) + ((ViewGroup.MarginLayoutParams) a1Var).rightMargin, z0Var.D(), z0Var.f5572m - z0Var.E(), i9);
+        }
+        return 0;
+    }
+
+    public int k(int i9, View view) {
+        z0 z0Var = this.f5445c;
+        if (z0Var != null && z0Var.e()) {
+            a1 a1Var = (a1) view.getLayoutParams();
+            return i(z0.z(view) - ((ViewGroup.MarginLayoutParams) a1Var).topMargin, z0.v(view) + ((ViewGroup.MarginLayoutParams) a1Var).bottomMargin, z0Var.F(), z0Var.f5573n - z0Var.C(), i9);
+        }
+        return 0;
+    }
+
+    public float l(DisplayMetrics displayMetrics) {
+        return 25.0f / displayMetrics.densityDpi;
+    }
+
+    public int m(int i9) {
+        return (int) Math.ceil(n(i9) / 0.3356d);
+    }
+
+    public int n(int i9) {
+        float abs = Math.abs(i9);
+        if (!this.f5465m) {
+            this.f5466n = l(this.f5464l);
+            this.f5465m = true;
+        }
+        return (int) Math.ceil(abs * this.f5466n);
+    }
+
+    public final int o() {
+        PointF pointF = this.f5463k;
+        if (pointF != null) {
+            float f10 = pointF.x;
+            if (f10 != 0.0f) {
+                if (f10 > 0.0f) {
+                    return 1;
+                }
+                return -1;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public int p() {
+        PointF pointF = this.f5463k;
+        if (pointF != null) {
+            float f10 = pointF.y;
+            if (f10 != 0.0f) {
+                if (f10 > 0.0f) {
+                    return 1;
+                }
+                return -1;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public void q(l1 l1Var) {
+        PointF a2 = a(this.f5443a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            m1.b(a2);
+            this.f5463k = a2;
+            this.f5467o = (int) (a2.x * 10000.0f);
+            this.f5468p = (int) (a2.y * 10000.0f);
+            l1Var.b((int) (this.f5467o * 1.2f), (int) (this.f5468p * 1.2f), (int) (n(10000) * 1.2f), this.f5461i);
+            return;
+        }
+        l1Var.d = this.f5443a;
+        h();
+    }
+
+    @Override
+    public final void e() {
     }
 }

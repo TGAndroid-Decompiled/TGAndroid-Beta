@@ -1,23 +1,17 @@
 package fh;
 
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.q90;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class c extends FrameLayout {
+    public static final int f6387c = 0;
+    public final org.telegram.ui.ActionBar.b6 f6388a;
+    public final int f6389b;
 
-public final class c extends q90 {
-    public final e W;
-
-    public c(e eVar, n2 n2Var, long j10) {
-        super(n2Var, j10);
-        this.W = eVar;
-    }
-
-    @Override
-    public final void dismiss() {
-        e eVar = this.W;
-        c cVar = eVar.f6111i;
-        if (cVar != null && !cVar.Q.f6174b) {
-            eVar.f6111i = null;
-        }
-        super.dismiss();
+    public c(Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context);
+        this.f6389b = i9;
+        this.f6388a = b6Var;
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

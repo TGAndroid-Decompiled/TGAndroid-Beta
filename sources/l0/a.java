@@ -3,12 +3,11 @@ package l0;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.view.MenuItem;
-import l.o;
-
+import l.n;
 public interface a extends MenuItem {
-    a a(o oVar);
+    a a(n nVar);
 
-    o b();
+    n b();
 
     @Override
     int getAlphabeticModifiers();
@@ -29,7 +28,7 @@ public interface a extends MenuItem {
     CharSequence getTooltipText();
 
     @Override
-    MenuItem setAlphabeticShortcut(char c10, int i10);
+    MenuItem setAlphabeticShortcut(char c10, int i9);
 
     @Override
     a setContentDescription(CharSequence charSequence);
@@ -41,10 +40,10 @@ public interface a extends MenuItem {
     MenuItem setIconTintMode(PorterDuff.Mode mode);
 
     @Override
-    MenuItem setNumericShortcut(char c10, int i10);
+    MenuItem setNumericShortcut(char c10, int i9);
 
     @Override
-    MenuItem setShortcut(char c10, char c11, int i10, int i11);
+    MenuItem setShortcut(char c10, char c11, int i9, int i10);
 
     @Override
     a setTooltipText(CharSequence charSequence);

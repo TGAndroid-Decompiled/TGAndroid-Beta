@@ -1,56 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class dc0 extends of.p0 {
+    public boolean f37498i0;
+    public final pc0 f37499j0;
 
-public final class dc0 implements Runnable {
-
-    public final int f37350a;
-
-    public final tc0 f37351b;
-
-    public final IMapsProvider.IMapView f37352c;
-
-    public dc0(tc0 tc0Var, IMapsProvider.IMapView iMapView, int i10) {
-        this.f37350a = i10;
-        this.f37351b = tc0Var;
-        this.f37352c = iMapView;
+    public dc0(pc0 pc0Var, Context context, int i9, long j10, org.telegram.ui.ActionBar.b6 b6Var, boolean z10, boolean z11) {
+        super(context, i9, j10, false, b6Var, false, z10, z11);
+        this.f37499j0 = pc0Var;
+        this.f37498i0 = true;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37350a) {
-            case 0:
-                tc0 tc0Var = this.f37351b;
-                IMapsProvider.IMapView iMapView = this.f37352c;
-                if (tc0Var.G != null && tc0Var.getParentActivity() != null) {
-                    try {
-                        iMapView.onCreate(null);
-                        ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
-                        tc0Var.G.getMapAsync(new ec0(tc0Var, 0));
-                        tc0Var.f42876q0 = true;
-                        if (tc0Var.f42878r0) {
-                            tc0Var.G.onResume();
-                        }
-                    } catch (Exception e9) {
-                        FileLog.e(e9);
-                        return;
+    public final void K() {
+        this.f37499j0.q0(null);
+    }
+
+    @Override
+    public final void N(ArrayList arrayList) {
+        int i9;
+        pc0 pc0Var = this.f37499j0;
+        MessageObject messageObject = pc0Var.f41473x0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i10 = 0;
+            if (arrayList != null) {
+                i9 = 0;
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    jc0 jc0Var = (jc0) arrayList.get(i11);
+                    if (jc0Var != null && !UserObject.isUserSelf(jc0Var.f39438c)) {
+                        i9++;
                     }
-                    break;
                 }
-                break;
-            default:
-                tc0 tc0Var2 = this.f37351b;
-                IMapsProvider.IMapView iMapView2 = this.f37352c;
-                try {
-                    iMapView2.onCreate(null);
-                    break;
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new dc0(tc0Var2, iMapView2, 0));
-                break;
+            } else {
+                i9 = 0;
+            }
+            if (this.f37498i0 && i9 == 1) {
+                pc0Var.f41449e0 = ((jc0) arrayList.get(0)).f39436a;
+            }
+            this.f37498i0 = false;
+            org.telegram.ui.ActionBar.w0 w0Var = pc0Var.V;
+            if (i9 != 1) {
+                i10 = 8;
+            }
+            w0Var.setVisibility(i10);
         }
+        super.N(arrayList);
     }
 }

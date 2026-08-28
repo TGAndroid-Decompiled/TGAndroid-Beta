@@ -1,51 +1,44 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-
 public final class ba implements Runnable {
+    public final int f19825a;
+    public final MessagesController f19826b;
+    public final ArrayList f19827c;
 
-    public final int f19787a;
-
-    public final MessagesController f19788b;
-
-    public final long f19789c;
-    public final ArrayList d;
-
-    public ba(MessagesController messagesController, long j10, ArrayList arrayList, int i10) {
-        this.f19787a = i10;
-        this.f19788b = messagesController;
-        this.f19789c = j10;
-        this.d = arrayList;
+    public ba(MessagesController messagesController, ArrayList arrayList, int i9) {
+        this.f19825a = i9;
+        this.f19826b = messagesController;
+        this.f19827c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19787a) {
+        switch (this.f19825a) {
             case 0:
-                this.f19788b.lambda$markAllTopicsAsRead$7(this.d, this.f19789c);
-                break;
+                MessagesController.t1(this.f19826b, this.f19827c);
+                return;
             case 1:
-                this.f19788b.lambda$generateJoinMessage$368(this.f19789c, this.d);
-                break;
+                MessagesController.s2(this.f19826b, this.f19827c);
+                return;
             case 2:
-                this.f19788b.lambda$getDifference$354(this.f19789c, this.d);
-                break;
+                MessagesController.A2(this.f19826b, this.f19827c);
+                return;
             case 3:
-                this.f19788b.lambda$processUpdateArray$418(this.f19789c, this.d);
-                break;
+                MessagesController.K4(this.f19826b, this.f19827c);
+                return;
             case 4:
-                this.f19788b.lambda$deleteMessagesByPush$369(this.d, this.f19789c);
-                break;
+                MessagesController.P3(this.f19826b, this.f19827c);
+                return;
+            case 5:
+                MessagesController.b5(this.f19826b, this.f19827c);
+                return;
+            case 6:
+                MessagesController.d0(this.f19826b, this.f19827c);
+                return;
             default:
-                this.f19788b.lambda$getDifference$355(this.f19789c, this.d);
-                break;
+                MessagesController.R2(this.f19826b, this.f19827c);
+                return;
         }
-    }
-
-    public ba(MessagesController messagesController, ArrayList arrayList, long j10, int i10) {
-        this.f19787a = i10;
-        this.f19788b = messagesController;
-        this.d = arrayList;
-        this.f19789c = j10;
     }
 }

@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-
-public final class oh0 extends FrameLayout {
+import android.widget.Button;
+import android.widget.TextView;
+public final class oh0 extends TextView {
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public final CharSequence getAccessibilityClassName() {
+        return Button.class.getName();
     }
 }

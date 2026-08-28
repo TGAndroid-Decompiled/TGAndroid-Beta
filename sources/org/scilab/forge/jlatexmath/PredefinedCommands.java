@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 final class PredefinedCommands {
     static {
         MacroInfo.Commands.put("newcommand", new PredefMacroInfo(0, 2, 2));

@@ -1,5 +1,6 @@
 package ad;
 
-public interface a extends pc.a {
-    Object invoke();
+import java.util.Random;
+public abstract class a extends e {
+    public abstract Random a();
 }

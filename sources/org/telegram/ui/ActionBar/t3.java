@@ -3,7 +3,6 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
-
 public interface t3 {
     Context getContext();
 

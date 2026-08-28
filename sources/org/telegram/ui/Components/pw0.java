@@ -1,23 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesStorage;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class pw0 extends rp0 {
+    public final cx0 X0;
 
-public final class pw0 implements org.telegram.ui.ActionBar.r0, MessagesStorage.StringCallback {
-
-    public final ex0 f31673a;
-
-    public pw0(ex0 ex0Var) {
-        this.f31673a = ex0Var;
+    public pw0(cx0 cx0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, null, str, false, str2, false, b6Var);
+        this.X0 = cx0Var;
     }
 
     @Override
-    public void h(int i10) {
-        ex0.D(this.f31673a, i10);
+    public final void R0(a0.h hVar, int i9, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.rl(this, hVar, i9, 21), 100L);
     }
 
     @Override
-    public void run(String str) {
-        ex0 ex0Var = this.f31673a;
-        new l40(ex0Var.getContext(), ex0Var.f28184k0, null, ex0Var.resourcesProvider).show();
+    public final void dismissInternal() {
+        super.dismissInternal();
+        org.telegram.ui.ActionBar.o2 o2Var = this.X0.H;
+        if (o2Var instanceof org.telegram.ui.qn) {
+            AndroidUtilities.requestAdjustResize(o2Var.getParentActivity(), o2Var.getClassGuid());
+            if (((org.telegram.ui.qn) o2Var).U.getVisibility() == 0) {
+                o2Var.getFragmentView().requestLayout();
+            }
+        }
     }
 }

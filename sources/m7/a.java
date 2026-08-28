@@ -1,48 +1,10 @@
 package m7;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.t3;
-import y5.g;
-
-public final class a extends g {
-    public final Context Q;
-
-    public a(Context context, Looper looper, k kVar, l lVar, t3 t3Var) {
-        super(context, looper, 45, t3Var, kVar, lVar, 0);
-        this.Q = context;
-    }
+import java.io.Closeable;
+public final class a implements Closeable {
+    public static final a f17607a = new Object();
 
     @Override
-    public final boolean C() {
-        return true;
-    }
-
-    @Override
-    public final int k() {
-        return 12200000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface iInterfaceQueryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.safetynet.internal.ISafetyNetService");
-        return iInterfaceQueryLocalInterface instanceof c ? (c) iInterfaceQueryLocalInterface : new c(iBinder);
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.safetynet.internal.ISafetyNetService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.safetynet.service.START";
+    public final void close() {
     }
 }

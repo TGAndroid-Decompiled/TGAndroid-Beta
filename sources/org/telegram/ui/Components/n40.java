@@ -1,14 +1,15 @@
 package org.telegram.ui.Components;
+public final class n40 implements Runnable {
+    public final int f31021a;
+    public final f50 f31022b;
 
-import android.opengl.GLES20;
-import org.telegram.messenger.R;
+    public n40(f50 f50Var, int i9) {
+        this.f31021a = i9;
+        this.f31022b = f50Var;
+    }
 
-public final class n40 extends p40 {
-
-    public final int f30836g;
-
-    public n40() {
-        super(R.raw.round_blur_stage_1_frag);
-        this.f30836g = GLES20.glGetUniformLocation(this.f31497a, "texOffset");
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n40.run():void");
     }
 }

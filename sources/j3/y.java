@@ -1,103 +1,72 @@
 package j3;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-public abstract class y implements j {
-
-    public h f12490b;
-
-    public h f12491c;
-    public h d;
-
-    public h f12492e;
-
-    public ByteBuffer f12493f;
-
-    public ByteBuffer f12494g;
-    public boolean h;
-
-    public y() {
-        ByteBuffer byteBuffer = j.f12350a;
-        this.f12493f = byteBuffer;
-        this.f12494g = byteBuffer;
-        h hVar = h.f12342e;
-        this.d = hVar;
-        this.f12492e = hVar;
-        this.f12490b = hVar;
-        this.f12491c = hVar;
-    }
+public final class y extends x {
+    public int[] f13395i;
+    public int[] f13396j;
 
     @Override
-    public ByteBuffer a() {
-        ByteBuffer byteBuffer = this.f12494g;
-        this.f12494g = j.f12350a;
-        return byteBuffer;
-    }
-
-    @Override
-    public final void c() {
-        this.h = true;
-        h();
-    }
-
-    @Override
-    public boolean d() {
-        return this.h && this.f12494g == j.f12350a;
-    }
-
-    @Override
-    public final h e(h hVar) {
-        this.d = hVar;
-        this.f12492e = f(hVar);
-        return isActive() ? this.f12492e : h.f12342e;
-    }
-
-    public abstract h f(h hVar);
-
-    @Override
-    public final void flush() {
-        this.f12494g = j.f12350a;
-        this.h = false;
-        this.f12490b = this.d;
-        this.f12491c = this.f12492e;
-        g();
-    }
-
-    @Override
-    public boolean isActive() {
-        return this.f12492e != h.f12342e;
-    }
-
-    public final ByteBuffer j(int i10) {
-        if (this.f12493f.capacity() < i10) {
-            this.f12493f = ByteBuffer.allocateDirect(i10).order(ByteOrder.nativeOrder());
-        } else {
-            this.f12493f.clear();
+    public final void b(ByteBuffer byteBuffer) {
+        int[] iArr = this.f13396j;
+        iArr.getClass();
+        int position = byteBuffer.position();
+        int limit = byteBuffer.limit();
+        ByteBuffer j10 = j(((limit - position) / this.f13390b.d) * this.f13391c.d);
+        while (position < limit) {
+            for (int i9 : iArr) {
+                j10.putShort(byteBuffer.getShort((i9 * 2) + position));
+            }
+            position += this.f13390b.d;
         }
-        ByteBuffer byteBuffer = this.f12493f;
-        this.f12494g = byteBuffer;
-        return byteBuffer;
+        byteBuffer.position(limit);
+        j10.flip();
     }
 
     @Override
-    public final void reset() {
-        flush();
-        this.f12493f = j.f12350a;
-        h hVar = h.f12342e;
-        this.d = hVar;
-        this.f12492e = hVar;
-        this.f12490b = hVar;
-        this.f12491c = hVar;
-        i();
+    public final h f(h hVar) {
+        boolean z10;
+        boolean z11;
+        int[] iArr = this.f13395i;
+        if (iArr == null) {
+            return h.f13246e;
+        }
+        int i9 = hVar.f13249c;
+        int i10 = hVar.f13248b;
+        if (i9 == 2) {
+            if (i10 != iArr.length) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            for (int i11 = 0; i11 < iArr.length; i11++) {
+                int i12 = iArr[i11];
+                if (i12 < i10) {
+                    if (i12 != i11) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    z10 |= z11;
+                } else {
+                    throw new i(hVar);
+                }
+            }
+            if (z10) {
+                return new h(hVar.f13247a, iArr.length, 2);
+            }
+            return h.f13246e;
+        }
+        throw new i(hVar);
     }
 
-    public void g() {
+    @Override
+    public final void g() {
+        this.f13396j = this.f13395i;
     }
 
-    public void h() {
-    }
-
-    public void i() {
+    @Override
+    public final void i() {
+        this.f13396j = null;
+        this.f13395i = null;
     }
 }

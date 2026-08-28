@@ -1,23 +1,9 @@
 package n8;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-
-public abstract class a extends Activity {
-    public abstract Class getServiceClass();
+public abstract class a implements f {
+    public abstract boolean a(char c10);
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Intent intent = new Intent(this, (Class<?>) getServiceClass());
-        intent.putExtra("SearchActionVerificationClientExtraIntent", getIntent());
-        if (Build.VERSION.SDK_INT >= 26) {
-            startForegroundService(intent);
-        } else {
-            startService(intent);
-        }
-        finish();
+    public final boolean apply(Object obj) {
+        return a(((Character) obj).charValue());
     }
 }

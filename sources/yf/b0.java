@@ -1,32 +1,27 @@
 package yf;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.ui.xs0;
+public final class b0 extends xf.c1 {
+    public final Bitmap A;
+    public final xs0 B;
 
-public final class b0 implements Runnable {
-
-    public final int f49875a;
-
-    public final d0 f49876b;
-
-    public final q0 f49877c;
-
-    public b0(d0 d0Var, q0 q0Var, int i10) {
-        this.f49875a = i10;
-        this.f49876b = d0Var;
-        this.f49877c = q0Var;
+    public b0(xs0 xs0Var, Context context, xf.q0 q0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, q0Var, bitmap, null, null);
+        this.B = xs0Var;
+        this.A = bitmap2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f49875a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new b0(this.f49876b, this.f49877c, 1));
-                break;
-            default:
-                d0 d0Var = this.f49876b;
-                d0Var.getClass();
-                d0Var.f49902i = this.f49877c.f50038a;
-                break;
+    public final void g(xf.m mVar) {
+        int indexOf = xf.m.f49272a.indexOf(mVar);
+        int i9 = indexOf + 1;
+        if (i9 <= 1 || this.A != null) {
+            indexOf = i9;
         }
+        xs0 xs0Var = this.B;
+        xs0Var.f49950p1.b(indexOf);
+        xs0Var.n(mVar);
     }
 }

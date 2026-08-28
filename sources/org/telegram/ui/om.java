@@ -1,69 +1,53 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.Components.UndoView;
 public final class om implements Runnable {
+    public final int f41196a;
+    public final cn f41197b;
+    public final MessageObject f41198c;
 
-    public final int f41139a;
-
-    public final dn f41140b;
-
-    public om(dn dnVar, int i10) {
-        this.f41139a = i10;
-        this.f41140b = dnVar;
+    public om(cn cnVar, MessageObject messageObject, int i9) {
+        this.f41196a = i9;
+        this.f41197b = cnVar;
+        this.f41198c = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f41139a) {
+        int i9;
+        switch (this.f41196a) {
             case 0:
-                rn rnVar = this.f41140b.f37446a;
-                rnVar.Z4 = null;
-                rnVar.f41978a5 = null;
-                break;
+                cn cnVar = this.f41197b;
+                qn qnVar = cnVar.f37236a;
+                qnVar.Q7();
+                UndoView undoView = qnVar.f42093u3;
+                if (undoView != null) {
+                    if (qnVar.U.getVisibility() == 0 && qnVar.N.getVisibility() != 0) {
+                        i9 = 16;
+                    } else {
+                        i9 = 17;
+                    }
+                    MessageObject messageObject = this.f41198c;
+                    undoView.k(0L, i9, messageObject.getDiceEmoji(), null, null, new om(cnVar, messageObject, 2));
+                    return;
+                }
+                return;
             case 1:
-                dn dnVar = this.f41140b;
-                dnVar.getClass();
-                rn rnVar2 = dnVar.f37446a;
-                new ag.g2((org.telegram.ui.ActionBar.n2) rnVar2, 8, true).show();
-                rnVar2.getMessagesController().pressTranscribeButton();
-                break;
-            case 2:
-                dn dnVar2 = this.f41140b;
-                dnVar2.getClass();
-                rn rnVar3 = dnVar2.f37446a;
-                new ag.g2((org.telegram.ui.ActionBar.n2) rnVar3, 8, true).show();
-                rnVar3.getMessagesController().pressTranscribeButton();
-                break;
-            case 3:
-                dn dnVar3 = this.f41140b;
-                dnVar3.getClass();
-                rn rnVar4 = dnVar3.f37446a;
-                new ag.g2((org.telegram.ui.ActionBar.n2) rnVar4, 8, true).show();
-                rnVar4.getMessagesController().pressTranscribeButton();
-                break;
-            case 4:
-                this.f41140b.f37446a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
-                break;
-            case 5:
-                rn rnVar5 = this.f41140b.f37446a;
-                rnVar5.Z4 = null;
-                rnVar5.f41978a5 = null;
-                break;
-            case 6:
-                this.f41140b.f37446a.U.H0();
-                break;
-            case 7:
-                this.f41140b.f37446a.U.H0();
-                break;
-            case 8:
-                rn rnVar6 = this.f41140b.f37446a;
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.P0 = true;
-                rnVar6.presentFragment(themeActivity);
-                break;
+                qn qnVar2 = this.f41197b.f37236a;
+                qnVar2.f42075sb = this.f41198c.getId();
+                qnVar2.f42088tb = 0;
+                return;
             default:
-                rn rnVar7 = this.f41140b.f37446a;
-                rnVar7.showDialog(new ag.g2((org.telegram.ui.ActionBar.n2) rnVar7, 39, false));
-                break;
+                qn qnVar3 = this.f41197b.f37236a;
+                if (qnVar3.f7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f41198c.getDiceEmoji(), qnVar3.P5, qnVar3.f41959j5, qnVar3.T3, null, false, null, null, null, true, 0, 0, null, false);
+                    of2.sendMessageChatArguments = qnVar3.C8();
+                    qnVar3.getSendMessagesHelper().sendMessage(of2);
+                    return;
+                }
+                return;
         }
     }
 }

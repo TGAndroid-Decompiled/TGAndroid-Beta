@@ -3,37 +3,33 @@ package m;
 import android.content.Context;
 import android.view.View;
 import android.view.Window;
-
 public final class o3 implements View.OnClickListener {
-
-    public final l.a f17401a;
-
-    public final p3 f17402b;
+    public final l.a f17026a;
+    public final p3 f17027b;
 
     public o3(p3 p3Var) {
-        this.f17402b = p3Var;
-        Context context = p3Var.f17412a.getContext();
+        this.f17027b = p3Var;
+        Context context = p3Var.f17037a.getContext();
         CharSequence charSequence = p3Var.h;
-        l.a aVar = new l.a();
-        aVar.f15258e = 4096;
-        aVar.f15260g = 4096;
-        aVar.f15264l = null;
-        aVar.f15265m = null;
-        aVar.f15266n = false;
-        aVar.f15267o = false;
-        aVar.f15268p = 16;
-        aVar.f15261i = context;
-        aVar.f15255a = charSequence;
-        this.f17401a = aVar;
+        ?? obj = new Object();
+        obj.f16504e = 4096;
+        obj.f16506g = 4096;
+        obj.f16510l = null;
+        obj.f16511m = null;
+        obj.f16512n = false;
+        obj.f16513o = false;
+        obj.f16514p = 16;
+        obj.f16507i = context;
+        obj.f16501a = charSequence;
+        this.f17026a = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        p3 p3Var = this.f17402b;
-        Window.Callback callback = p3Var.f17420k;
-        if (callback == null || !p3Var.f17421l) {
-            return;
+        p3 p3Var = this.f17027b;
+        Window.Callback callback = p3Var.f17045k;
+        if (callback != null && p3Var.f17046l) {
+            callback.onMenuItemSelected(0, this.f17026a);
         }
-        callback.onMenuItemSelected(0, this.f17401a);
     }
 }

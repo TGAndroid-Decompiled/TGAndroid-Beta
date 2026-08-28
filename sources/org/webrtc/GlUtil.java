@@ -5,12 +5,11 @@ import android.opengl.GLException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-
 public class GlUtil {
 
     public static class GlOutOfMemoryException extends GLException {
-        public GlOutOfMemoryException(int i10, String str) {
-            super(i10, str);
+        public GlOutOfMemoryException(int i9, String str) {
+            super(i9, str);
         }
     }
 
@@ -18,34 +17,33 @@ public class GlUtil {
     }
 
     public static void checkNoGLES2Error(String str) {
-        int iGlGetError = GLES20.glGetError();
-        if (iGlGetError != 0) {
-            if (iGlGetError == 1285) {
-                throw new GlOutOfMemoryException(iGlGetError, str);
+        int glGetError = GLES20.glGetError();
+        if (glGetError != 0) {
+            if (glGetError != 1285) {
+                throw new GLException(glGetError, str + ": GLES20 error: " + glGetError);
             }
-            throw new GLException(iGlGetError, str + ": GLES20 error: " + iGlGetError);
         }
     }
 
     public static FloatBuffer createFloatBuffer(float[] fArr) {
-        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(fArr.length * 4);
-        byteBufferAllocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer floatBufferAsFloatBuffer = byteBufferAllocateDirect.asFloatBuffer();
-        floatBufferAsFloatBuffer.put(fArr);
-        floatBufferAsFloatBuffer.position(0);
-        return floatBufferAsFloatBuffer;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(fArr.length * 4);
+        allocateDirect.order(ByteOrder.nativeOrder());
+        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
+        asFloatBuffer.put(fArr);
+        asFloatBuffer.position(0);
+        return asFloatBuffer;
     }
 
-    public static int generateTexture(int i10) {
+    public static int generateTexture(int i9) {
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);
-        int i11 = iArr[0];
-        GLES20.glBindTexture(i10, i11);
-        GLES20.glTexParameterf(i10, 10241, 9729.0f);
-        GLES20.glTexParameterf(i10, 10240, 9729.0f);
-        GLES20.glTexParameterf(i10, 10242, 33071.0f);
-        GLES20.glTexParameterf(i10, 10243, 33071.0f);
+        int i10 = iArr[0];
+        GLES20.glBindTexture(i9, i10);
+        GLES20.glTexParameterf(i9, 10241, 9729.0f);
+        GLES20.glTexParameterf(i9, 10240, 9729.0f);
+        GLES20.glTexParameterf(i9, 10242, 33071.0f);
+        GLES20.glTexParameterf(i9, 10243, 33071.0f);
         checkNoGLES2Error("generateTexture");
-        return i11;
+        return i10;
     }
 }

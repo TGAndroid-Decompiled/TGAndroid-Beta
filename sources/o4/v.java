@@ -1,94 +1,109 @@
 package o4;
 
 import android.text.TextUtils;
-import d5.f0;
-import d5.z;
+import d5.e0;
+import d5.y;
 import h3.s0;
 import h3.t0;
 import h3.t1;
-import java.io.EOFException;
-import java.io.InterruptedIOException;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import m3.w;
-
 public final class v implements m3.k {
-
-    public static final Pattern f19291g = Pattern.compile("LOCAL:([^,]+)");
+    public static final Pattern f18944g = Pattern.compile("LOCAL:([^,]+)");
     public static final Pattern h = Pattern.compile("MPEGTS:(-?\\d+)");
-
-    public final String f19292a;
-
-    public final f0 f19293b;
+    public final String f18945a;
+    public final e0 f18946b;
     public m3.m d;
+    public int f18949f;
+    public final y f18947c = new y();
+    public byte[] f18948e = new byte[1024];
 
-    public int f19296f;
-
-    public final z f19294c = new z();
-
-    public byte[] f19295e = new byte[1024];
-
-    public v(String str, f0 f0Var) {
-        this.f19292a = str;
-        this.f19293b = f0Var;
+    public v(String str, e0 e0Var) {
+        this.f18945a = str;
+        this.f18946b = e0Var;
     }
 
     public final w a(long j10) {
-        w wVarC = this.d.C(0, 3);
+        w I = this.d.I(0, 3);
         s0 s0Var = new s0();
-        s0Var.f8135o = "text/vtt";
-        s0Var.f8125c = this.f19292a;
-        s0Var.f8139s = j10;
-        wVarC.c(new t0(s0Var));
-        this.d.A();
-        return wVarC;
+        s0Var.f9705o = "text/vtt";
+        s0Var.f9695c = this.f18945a;
+        s0Var.f9709s = j10;
+        I.c(new t0(s0Var));
+        this.d.B();
+        return I;
     }
 
     @Override
-    public final int b(m3.l lVar, m3.n nVar) throws t1, EOFException, InterruptedIOException {
-        String strF;
+    public final int b(m3.l lVar, m3.n nVar) {
+        String f10;
+        int length;
         this.d.getClass();
-        int i10 = (int) ((m3.h) lVar).f17612c;
-        int i11 = this.f19296f;
-        byte[] bArr = this.f19295e;
-        if (i11 == bArr.length) {
-            this.f19295e = Arrays.copyOf(bArr, ((i10 != -1 ? i10 : bArr.length) * 3) / 2);
+        int i9 = (int) ((m3.h) lVar).f17236c;
+        int i10 = this.f18949f;
+        byte[] bArr = this.f18948e;
+        if (i10 == bArr.length) {
+            if (i9 != -1) {
+                length = i9;
+            } else {
+                length = bArr.length;
+            }
+            this.f18948e = Arrays.copyOf(bArr, (length * 3) / 2);
         }
-        byte[] bArr2 = this.f19295e;
-        int i12 = this.f19296f;
-        int i13 = ((m3.h) lVar).read(bArr2, i12, bArr2.length - i12);
-        if (i13 != -1) {
-            int i14 = this.f19296f + i13;
-            this.f19296f = i14;
-            if (i10 == -1 || i14 != i10) {
+        byte[] bArr2 = this.f18948e;
+        int i11 = this.f18949f;
+        int read = ((m3.h) lVar).read(bArr2, i11, bArr2.length - i11);
+        if (read != -1) {
+            int i12 = this.f18949f + read;
+            this.f18949f = i12;
+            if (i9 == -1 || i12 != i9) {
                 return 0;
             }
         }
-        z zVar = new z(this.f19295e);
-        a5.m.d(zVar);
-        String strF2 = zVar.f(o8.d.f19363c);
+        y yVar = new y(this.f18948e);
+        a5.l.d(yVar);
+        String f11 = yVar.f(n8.d.f18513c);
         long j10 = 0;
-        long jC = 0;
+        long j11 = 0;
         while (true) {
             Matcher matcher = null;
-            if (TextUtils.isEmpty(strF2)) {
-                while (true) {
-                    String strF3 = zVar.f(o8.d.f19363c);
-                    if (strF3 == null) {
-                        break;
-                    }
-                    if (a5.m.f97a.matcher(strF3).matches()) {
-                        do {
-                            strF = zVar.f(o8.d.f19363c);
-                            if (strF == null) {
-                                break;
-                            }
-                        } while (!strF.isEmpty());
+            if (!TextUtils.isEmpty(f11)) {
+                if (f11.startsWith("X-TIMESTAMP-MAP")) {
+                    Matcher matcher2 = f18944g.matcher(f11);
+                    if (matcher2.find()) {
+                        Matcher matcher3 = h.matcher(f11);
+                        if (matcher3.find()) {
+                            String group = matcher2.group(1);
+                            group.getClass();
+                            j11 = a5.l.c(group);
+                            String group2 = matcher3.group(1);
+                            group2.getClass();
+                            j10 = (Long.parseLong(group2) * 1000000) / 90000;
+                        } else {
+                            throw t1.a("X-TIMESTAMP-MAP doesn't contain media timestamp: ".concat(f11), null);
+                        }
                     } else {
-                        Matcher matcher2 = a5.k.f92a.matcher(strF3);
-                        if (matcher2.matches()) {
-                            matcher = matcher2;
+                        throw t1.a("X-TIMESTAMP-MAP doesn't contain local timestamp: ".concat(f11), null);
+                    }
+                }
+                f11 = yVar.f(n8.d.f18513c);
+            } else {
+                while (true) {
+                    String f12 = yVar.f(n8.d.f18513c);
+                    if (f12 == null) {
+                        break;
+                    } else if (a5.l.f95a.matcher(f12).matches()) {
+                        do {
+                            f10 = yVar.f(n8.d.f18513c);
+                            if (f10 != null) {
+                            }
+                        } while (!f10.isEmpty());
+                    } else {
+                        Matcher matcher4 = a5.j.f90a.matcher(f12);
+                        if (matcher4.matches()) {
+                            matcher = matcher4;
                             break;
                         }
                     }
@@ -97,58 +112,41 @@ public final class v implements m3.k {
                     a(0L);
                     return -1;
                 }
-                String strGroup = matcher.group(1);
-                strGroup.getClass();
-                long jC2 = a5.m.c(strGroup);
-                long jB = this.f19293b.b(((((j10 + jC2) - jC) * 90000) / 1000000) % 8589934592L);
-                w wVarA = a(jB - jC2);
-                byte[] bArr3 = this.f19295e;
-                int i15 = this.f19296f;
-                z zVar2 = this.f19294c;
-                zVar2.A(i15, bArr3);
-                wVarA.a(this.f19296f, zVar2);
-                wVarA.e(jB, 1, this.f19296f, 0, null);
+                String group3 = matcher.group(1);
+                group3.getClass();
+                long c10 = a5.l.c(group3);
+                long b10 = this.f18946b.b(((((j10 + c10) - j11) * 90000) / 1000000) % 8589934592L);
+                w a2 = a(b10 - c10);
+                byte[] bArr3 = this.f18948e;
+                int i13 = this.f18949f;
+                y yVar2 = this.f18947c;
+                yVar2.A(i13, bArr3);
+                a2.a(this.f18949f, yVar2);
+                a2.e(b10, 1, this.f18949f, 0, null);
                 return -1;
             }
-            if (strF2.startsWith("X-TIMESTAMP-MAP")) {
-                Matcher matcher3 = f19291g.matcher(strF2);
-                if (!matcher3.find()) {
-                    throw t1.a("X-TIMESTAMP-MAP doesn't contain local timestamp: ".concat(strF2), null);
-                }
-                Matcher matcher4 = h.matcher(strF2);
-                if (!matcher4.find()) {
-                    throw t1.a("X-TIMESTAMP-MAP doesn't contain media timestamp: ".concat(strF2), null);
-                }
-                String strGroup2 = matcher3.group(1);
-                strGroup2.getClass();
-                jC = a5.m.c(strGroup2);
-                String strGroup3 = matcher4.group(1);
-                strGroup3.getClass();
-                j10 = (Long.parseLong(strGroup3) * 1000000) / 90000;
-            }
-            strF2 = zVar.f(o8.d.f19363c);
         }
     }
 
     @Override
     public final void c(m3.m mVar) {
         this.d = mVar;
-        mVar.n(new m3.o(-9223372036854775807L));
+        mVar.y(new m3.o(-9223372036854775807L));
     }
 
     @Override
     public final boolean f(m3.l lVar) {
         m3.h hVar = (m3.h) lVar;
-        hVar.g(this.f19295e, 0, 6, false);
-        byte[] bArr = this.f19295e;
-        z zVar = this.f19294c;
-        zVar.A(6, bArr);
-        if (a5.m.a(zVar)) {
+        hVar.g(this.f18948e, 0, 6, false);
+        byte[] bArr = this.f18948e;
+        y yVar = this.f18947c;
+        yVar.A(6, bArr);
+        if (a5.l.a(yVar)) {
             return true;
         }
-        hVar.g(this.f19295e, 6, 3, false);
-        zVar.A(9, this.f19295e);
-        return a5.m.a(zVar);
+        hVar.g(this.f18948e, 6, 3, false);
+        yVar.A(9, this.f18948e);
+        return a5.l.a(yVar);
     }
 
     @Override

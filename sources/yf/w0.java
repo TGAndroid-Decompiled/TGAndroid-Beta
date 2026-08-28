@@ -1,38 +1,32 @@
 package yf;
 
-public final class w0 implements Runnable {
+import android.graphics.Bitmap;
+import android.widget.FrameLayout;
+import kh.s5;
+import kh.vb;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class w0 implements Utilities.Callback2 {
+    public final int f50149a;
+    public final FrameLayout f50150b;
 
-    public final int f50109a;
-
-    public final x0 f50110b;
-
-    public w0(x0 x0Var, int i10) {
-        this.f50109a = i10;
-        this.f50110b = x0Var;
+    public w0(int i9, FrameLayout frameLayout) {
+        this.f50149a = i9;
+        this.f50150b = frameLayout;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50109a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f50149a) {
             case 0:
-                z0 z0Var = this.f50110b.f50119b.d;
-                if (z0Var != null) {
-                    z0Var.postRunnable(z0Var.f50138w);
-                }
-                break;
-            case 1:
-                z0 z0Var2 = this.f50110b.f50119b.d;
-                if (z0Var2 != null) {
-                    z0Var2.postRunnable(z0Var2.f50138w);
-                }
-                break;
+                s5 s5Var = (s5) this.f50150b;
+                s5Var.f49800u0 = ((Integer) obj).intValue();
+                s5Var.f49801v0 = ((Integer) obj2).intValue();
+                AndroidUtilities.runOnUIThread(new pf.o1(s5Var, 17), 60L);
+                return;
             default:
-                b1 b1Var = this.f50110b.f50119b;
-                z0 z0Var3 = b1Var.d;
-                z0Var3.getClass();
-                z0Var3.postRunnable(new y0(z0Var3, 2));
-                b1Var.d = null;
-                break;
+                ((vb) this.f50150b).Z((Bitmap) obj, ((Float) obj2).floatValue());
+                return;
         }
     }
 }

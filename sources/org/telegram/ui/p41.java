@@ -1,24 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class p41 extends f2.y {
+    public final int Q;
+    public final b61 R;
 
-public final class p41 extends w51 {
-    public final View M;
-    public final TL_stars.TL_starGiftUnique N;
-    public final q41 O;
-
-    public p41(q41 q41Var, Context context, Runnable runnable, View view, j51 j51Var, org.telegram.ui.ActionBar.c6 c6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(q41Var.f41521e, context, runnable, view, j51Var, c6Var);
-        this.O = q41Var;
-        this.M = view2;
-        this.N = tL_starGiftUnique;
+    public p41(b61 b61Var, int i9) {
+        super(40);
+        this.Q = i9;
+        this.R = b61Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.O.f41521e.T0 = null;
+    public final void v0(RecyclerView recyclerView, f2.n1 n1Var, int i9) {
+        switch (this.Q) {
+            case 0:
+                try {
+                    kh.n1 n1Var2 = new kh.n1(this, recyclerView.getContext(), 3);
+                    n1Var2.f5443a = i9;
+                    w0(n1Var2);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            default:
+                try {
+                    kh.n1 n1Var3 = new kh.n1(this, recyclerView.getContext(), 5);
+                    n1Var3.f5443a = i9;
+                    w0(n1Var3);
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
+        }
     }
 }

@@ -1,33 +1,28 @@
 package c2;
-
 public final class i extends r {
-
-    public final String f2293a;
-
-    public final h f2294b;
+    public final String f2179a;
+    public final h f2180b;
 
     public i(String str, h hVar) {
-        this.f2293a = str;
-        this.f2294b = hVar;
+        this.f2179a = str;
+        this.f2180b = hVar;
     }
 
     @Override
-    public final void f(int i10) {
+    public final void f(int i9) {
         h hVar;
-        String str = this.f2293a;
-        if (str == null || (hVar = this.f2294b) == null) {
-            return;
+        String str = this.f2179a;
+        if (str != null && (hVar = this.f2180b) != null) {
+            hVar.q(i9, str);
         }
-        hVar.q(i10, str);
     }
 
     @Override
-    public final void i(int i10) {
+    public final void i(int i9) {
         h hVar;
-        String str = this.f2293a;
-        if (str == null || (hVar = this.f2294b) == null) {
-            return;
+        String str = this.f2179a;
+        if (str != null && (hVar = this.f2180b) != null) {
+            hVar.r(i9, str);
         }
-        hVar.r(i10, str);
     }
 }

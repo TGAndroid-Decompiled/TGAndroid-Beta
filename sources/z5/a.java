@@ -1,8 +1,3 @@
 package z5;
-
-public abstract class a implements b {
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+public final class a extends b7.a {
 }

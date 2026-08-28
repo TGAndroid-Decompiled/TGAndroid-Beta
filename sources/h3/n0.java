@@ -1,18 +1,14 @@
 package h3;
-
 public final class n0 {
-
-    public final int f8033a;
-
-    public final int f8034b;
-
-    public final int f8035c;
+    public final int f9603a;
+    public final int f9604b;
+    public final int f9605c;
     public final j4.g1 d;
 
-    public n0(int i10, int i11, int i12, j4.g1 g1Var) {
-        this.f8033a = i10;
-        this.f8034b = i11;
-        this.f8035c = i12;
+    public n0(int i9, int i10, int i11, j4.g1 g1Var) {
+        this.f9603a = i9;
+        this.f9604b = i10;
+        this.f9605c = i11;
         this.d = g1Var;
     }
 }

@@ -1,20 +1,23 @@
 package u0;
 
-import android.graphics.Rect;
-import android.os.Bundle;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ScrollView;
 import androidx.core.widget.NestedScrollView;
-
 public final class e extends r0.b {
     @Override
     public final void b(View view, AccessibilityEvent accessibilityEvent) {
+        boolean z10;
         super.b(view, accessibilityEvent);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
         accessibilityEvent.setClassName(ScrollView.class.getName());
-        accessibilityEvent.setScrollable(nestedScrollView.getScrollRange() > 0);
+        if (nestedScrollView.getScrollRange() > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        accessibilityEvent.setScrollable(z10);
         accessibilityEvent.setScrollX(nestedScrollView.getScrollX());
         accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
         accessibilityEvent.setMaxScrollX(nestedScrollView.getScrollX());
@@ -22,59 +25,27 @@ public final class e extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.c cVar) {
+    public final void c(View view, s0.d dVar) {
         int scrollRange;
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f47656a;
-        this.f46568a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47292a;
+        this.f46878a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
-        cVar.i("android.widget.ScrollView");
-        if (!nestedScrollView.isEnabled() || (scrollRange = nestedScrollView.getScrollRange()) <= 0) {
-            return;
-        }
-        accessibilityNodeInfo.setScrollable(true);
-        if (nestedScrollView.getScrollY() > 0) {
-            cVar.b(s0.b.f47650e);
-            cVar.b(s0.b.f47651f);
-        }
-        if (nestedScrollView.getScrollY() < scrollRange) {
-            cVar.b(s0.b.d);
-            cVar.b(s0.b.f47652g);
+        dVar.i("android.widget.ScrollView");
+        if (nestedScrollView.isEnabled() && (scrollRange = nestedScrollView.getScrollRange()) > 0) {
+            accessibilityNodeInfo.setScrollable(true);
+            if (nestedScrollView.getScrollY() > 0) {
+                dVar.b(s0.c.f47286e);
+                dVar.b(s0.c.f47287f);
+            }
+            if (nestedScrollView.getScrollY() < scrollRange) {
+                dVar.b(s0.c.d);
+                dVar.b(s0.c.f47288g);
+            }
         }
     }
 
     @Override
-    public final boolean d(View view, int i10, Bundle bundle) {
-        int iMin;
-        if (super.d(view, i10, bundle)) {
-            return true;
-        }
-        NestedScrollView nestedScrollView = (NestedScrollView) view;
-        if (nestedScrollView.isEnabled()) {
-            int height = nestedScrollView.getHeight();
-            Rect rect = new Rect();
-            if (nestedScrollView.getMatrix().isIdentity() && nestedScrollView.getGlobalVisibleRect(rect)) {
-                height = rect.height();
-            }
-            if (i10 == 4096) {
-                iMin = Math.min(nestedScrollView.getScrollY() + ((height - nestedScrollView.getPaddingBottom()) - nestedScrollView.getPaddingTop()), nestedScrollView.getScrollRange());
-                if (iMin != nestedScrollView.getScrollY()) {
-                    nestedScrollView.y(0 - nestedScrollView.getScrollX(), iMin - nestedScrollView.getScrollY(), true);
-                    return true;
-                }
-            } else if (i10 == 8192 || i10 == 16908344) {
-                int iMax = Math.max(nestedScrollView.getScrollY() - ((height - nestedScrollView.getPaddingBottom()) - nestedScrollView.getPaddingTop()), 0);
-                if (iMax != nestedScrollView.getScrollY()) {
-                    nestedScrollView.y(0 - nestedScrollView.getScrollX(), iMax - nestedScrollView.getScrollY(), true);
-                    return true;
-                }
-            } else if (i10 == 16908346) {
-                iMin = Math.min(nestedScrollView.getScrollY() + ((height - nestedScrollView.getPaddingBottom()) - nestedScrollView.getPaddingTop()), nestedScrollView.getScrollRange());
-                if (iMin != nestedScrollView.getScrollY()) {
-                    nestedScrollView.y(0 - nestedScrollView.getScrollX(), iMin - nestedScrollView.getScrollY(), true);
-                    return true;
-                }
-            }
-        }
-        return false;
+    public final boolean d(android.view.View r5, int r6, android.os.Bundle r7) {
+        throw new UnsupportedOperationException("Method not decompiled: u0.e.d(android.view.View, int, android.os.Bundle):boolean");
     }
 }

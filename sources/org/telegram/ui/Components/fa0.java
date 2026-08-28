@@ -1,43 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+public final class fa0 extends e71 {
+    public final Context f28370a;
+    public final cb0 f28371b;
 
-public final class fa0 extends CharacterStyle {
-
-    public final int f28337a;
-
-    public final Object f28338b;
-
-    public fa0(int i10, FrameLayout frameLayout) {
-        this.f28337a = i10;
-        this.f28338b = frameLayout;
+    public fa0(cb0 cb0Var, Context context) {
+        this.f28371b = cb0Var;
+        this.f28370a = context;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f28337a) {
-            case 0:
-                textPaint.setTypeface(AndroidUtilities.bold());
-                int alpha = textPaint.getAlpha();
-                int i10 = org.telegram.ui.ActionBar.g6.f23234n6;
-                ((ga0) this.f28338b).getClass();
-                textPaint.setColor(org.telegram.ui.ActionBar.g6.w0(null, i10, false));
-                textPaint.setAlpha(alpha);
-                break;
-            case 1:
-                textPaint.setColor(org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.g6.l1(0.4f, ((hi0) this.f28338b).E)));
-                break;
-            default:
-                textPaint.setColor(org.telegram.ui.ActionBar.g6.v(org.telegram.ui.ActionBar.g6.l1(0.55f, textPaint.getColor()), org.telegram.ui.ActionBar.g6.l1(0.4f, org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Oh, ((rh.t5) this.f28338b).f47478a))));
-                break;
-        }
+    public final void b(View view, int i9, int i10) {
+        wa0 wa0Var = (wa0) view;
+        wa0Var.h();
+        wa0Var.k(false);
     }
 
-    public fa0(hi0 hi0Var) {
-        this.f28337a = 1;
-        this.f28338b = hi0Var;
+    @Override
+    public final View d(int i9) {
+        return new wa0(this.f28371b, this.f28370a, i9);
+    }
+
+    @Override
+    public final int e() {
+        return this.f28371b.f27457e.f26746a.size();
+    }
+
+    @Override
+    public final int h(int i9) {
+        return ((za0) this.f28371b.f27457e.f26746a.get(i9)).f35264a;
     }
 }

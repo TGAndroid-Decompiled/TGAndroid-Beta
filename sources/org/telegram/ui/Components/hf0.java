@@ -2,44 +2,34 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-
 public final class hf0 extends AnimatorListenerAdapter {
+    public final int f29069a;
+    public final PipRoundVideoView f29070b;
 
-    public final int f28986a;
-
-    public final if0 f28987b;
-
-    public hf0(if0 if0Var, int i10) {
-        this.f28986a = i10;
-        this.f28987b = if0Var;
+    public hf0(PipRoundVideoView pipRoundVideoView, int i9) {
+        this.f29069a = i9;
+        this.f29070b = pipRoundVideoView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f28986a) {
+        switch (this.f29069a) {
             case 0:
-                if0 if0Var = this.f28987b;
-                if0Var.h = false;
-                if0Var.f29348a = if0Var.f29350c;
-                if0Var.invalidate();
-                int i10 = if0Var.F;
-                if (i10 >= 0) {
-                    if0Var.b(i10);
-                    if0Var.F = -1;
+                PipRoundVideoView pipRoundVideoView = this.f29070b;
+                if (animator.equals(pipRoundVideoView.f26430r)) {
+                    pipRoundVideoView.f26430r = null;
+                    return;
                 }
-                break;
+                return;
             default:
-                if0 if0Var2 = this.f28987b;
-                if0Var2.f29353n = false;
-                if0Var2.h = false;
-                if0Var2.invalidate();
-                int i11 = if0Var2.F;
-                if (i11 >= 0) {
-                    if0Var2.b(i11);
-                    if0Var2.F = -1;
+                PipRoundVideoView pipRoundVideoView2 = this.f29070b;
+                pipRoundVideoView2.a(false);
+                Runnable runnable = pipRoundVideoView2.f26431s;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                if0Var2.a();
-                break;
+                return;
         }
     }
 }

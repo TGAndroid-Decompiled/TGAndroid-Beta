@@ -4,7 +4,6 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-
 public class JLatexMathInitProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String str, String[] strArr) {

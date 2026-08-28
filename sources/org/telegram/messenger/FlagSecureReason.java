@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.view.Window;
 import java.util.HashMap;
-
 public class FlagSecureReason {
     private static HashMap<Window, Integer> currentSecureReasons;
     private final FlagSecureCondition condition;
@@ -20,20 +19,29 @@ public class FlagSecureReason {
     }
 
     public static boolean isSecuredNow(Window window) {
-        HashMap<Window, Integer> map = currentSecureReasons;
-        return (map == null || map.get(window) == null) ? false : true;
+        HashMap<Window, Integer> hashMap = currentSecureReasons;
+        if (hashMap != null && hashMap.get(window) != null) {
+            return true;
+        }
+        return false;
     }
 
-    private void update(int i10) {
+    private void update(int i9) {
+        int intValue;
         if (currentSecureReasons == null) {
             currentSecureReasons = new HashMap<>();
         }
         Integer num = currentSecureReasons.get(this.window);
-        int iMax = Math.max(0, (num == null ? 0 : num.intValue()) + i10);
-        if (iMax <= 0) {
+        if (num == null) {
+            intValue = 0;
+        } else {
+            intValue = num.intValue();
+        }
+        int max = Math.max(0, intValue + i9);
+        if (max <= 0) {
             currentSecureReasons.remove(this.window);
         } else {
-            currentSecureReasons.put(this.window, Integer.valueOf(iMax));
+            currentSecureReasons.put(this.window, Integer.valueOf(max));
         }
         updateWindowSecure(this.window);
     }
@@ -45,10 +53,10 @@ public class FlagSecureReason {
         if (isSecuredNow(window)) {
             window.addFlags(8192);
             AndroidUtilities.logFlagSecure();
-        } else {
-            window.clearFlags(8192);
-            AndroidUtilities.logFlagSecure();
+            return;
         }
+        window.clearFlags(8192);
+        AndroidUtilities.logFlagSecure();
     }
 
     public void attach() {
@@ -60,18 +68,28 @@ public class FlagSecureReason {
     }
 
     public void detach() {
-        if (this.attached) {
-            this.attached = false;
-            invalidate();
+        if (!this.attached) {
+            return;
         }
+        this.attached = false;
+        invalidate();
     }
 
     public void invalidate() {
+        boolean z10;
         FlagSecureCondition flagSecureCondition;
-        boolean z10 = this.attached && (flagSecureCondition = this.condition) != null && flagSecureCondition.run();
+        int i9 = 1;
+        if (this.attached && (flagSecureCondition = this.condition) != null && flagSecureCondition.run()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
         if (z10 != this.value) {
             this.value = z10;
-            update(z10 ? 1 : -1);
+            if (!z10) {
+                i9 = -1;
+            }
+            update(i9);
         }
     }
 }

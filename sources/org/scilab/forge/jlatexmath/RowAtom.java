@@ -4,7 +4,6 @@ import java.util.BitSet;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import org.scilab.forge.jlatexmath.dynamic.DynamicAtom;
-
 public class RowAtom extends Atom implements Row {
     private static BitSet binSet;
     private static BitSet ligKernSet;
@@ -40,14 +39,11 @@ public class RowAtom extends Atom implements Row {
     private void changeToOrd(Dummy dummy, Dummy dummy2, Atom atom) {
         if (dummy.getLeftType() == 2 && (dummy2 == null || binSet.get(dummy2.getRightType()) || atom == null)) {
             dummy.setType(0);
-            return;
-        }
-        if (atom == null || dummy.getRightType() != 2) {
-            return;
-        }
-        int leftType = atom.getLeftType();
-        if (leftType == 3 || leftType == 5 || leftType == 6) {
-            dummy.setType(0);
+        } else if (atom != null && dummy.getRightType() == 2) {
+            int leftType = atom.getLeftType();
+            if (leftType == 3 || leftType == 5 || leftType == 6) {
+                dummy.setType(0);
+            }
         }
     }
 
@@ -59,98 +55,100 @@ public class RowAtom extends Atom implements Row {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        float kern;
+        float f10;
         Dummy dummy;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         HorizontalBox horizontalBox = new HorizontalBox(teXEnvironment.getColor(), teXEnvironment.getBackground());
         teXEnvironment.reset();
         ListIterator<Atom> listIterator = this.elements.listIterator();
-        int i10 = 0;
+        int i9 = 0;
         while (true) {
-            Atom next = null;
-            if (!listIterator.hasNext()) {
-                this.previousAtom = null;
-                return horizontalBox;
-            }
-            Atom next2 = listIterator.next();
-            i10++;
-            boolean z10 = false;
-            while (next2 instanceof BreakMarkAtom) {
-                if (!z10) {
-                    z10 = true;
+            Atom atom = null;
+            if (listIterator.hasNext()) {
+                Atom next = listIterator.next();
+                i9++;
+                boolean z10 = false;
+                while (next instanceof BreakMarkAtom) {
+                    if (!z10) {
+                        z10 = true;
+                    }
+                    if (!listIterator.hasNext()) {
+                        break;
+                    }
+                    next = listIterator.next();
+                    i9++;
                 }
-                if (!listIterator.hasNext()) {
-                    break;
-                }
-                next2 = listIterator.next();
-                i10++;
-            }
-            if (next2 instanceof DynamicAtom) {
-                DynamicAtom dynamicAtom = (DynamicAtom) next2;
-                if (dynamicAtom.getInsertMode()) {
-                    next2 = dynamicAtom.getAtom();
-                    if (next2 instanceof RowAtom) {
-                        int i11 = i10 - 1;
-                        this.elements.remove(i11);
-                        this.elements.addAll(i11, ((RowAtom) next2).elements);
-                        listIterator = this.elements.listIterator(i11);
-                        next2 = listIterator.next();
+                if (next instanceof DynamicAtom) {
+                    DynamicAtom dynamicAtom = (DynamicAtom) next;
+                    if (dynamicAtom.getInsertMode()) {
+                        next = dynamicAtom.getAtom();
+                        if (next instanceof RowAtom) {
+                            int i10 = i9 - 1;
+                            this.elements.remove(i10);
+                            this.elements.addAll(i10, ((RowAtom) next).elements);
+                            listIterator = this.elements.listIterator(i10);
+                            next = listIterator.next();
+                        }
                     }
                 }
-            }
-            Dummy dummy2 = new Dummy(next2);
-            if (listIterator.hasNext()) {
-                next = listIterator.next();
-                listIterator.previous();
-            }
-            changeToOrd(dummy2, this.previousAtom, next);
-            while (true) {
-                if (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
-                    Atom next3 = listIterator.next();
-                    int i12 = i10 + 1;
-                    if ((next3 instanceof CharSymbol) && ligKernSet.get(next3.getLeftType())) {
+                Dummy dummy2 = new Dummy(next);
+                if (listIterator.hasNext()) {
+                    atom = listIterator.next();
+                    listIterator.previous();
+                }
+                changeToOrd(dummy2, this.previousAtom, atom);
+                while (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
+                    Atom next2 = listIterator.next();
+                    int i11 = i9 + 1;
+                    if ((next2 instanceof CharSymbol) && ligKernSet.get(next2.getLeftType())) {
                         dummy2.markAsTextSymbol();
                         CharFont charFont = dummy2.getCharFont(teXFont);
-                        CharFont charFont2 = ((CharSymbol) next3).getCharFont(teXFont);
+                        CharFont charFont2 = ((CharSymbol) next2).getCharFont(teXFont);
                         CharFont ligature = teXFont.getLigature(charFont, charFont2);
                         if (ligature == null) {
-                            kern = teXFont.getKern(charFont, charFont2, teXEnvironment.getStyle());
+                            f10 = teXFont.getKern(charFont, charFont2, teXEnvironment.getStyle());
                             listIterator.previous();
                             break;
                         }
                         dummy2.changeAtom(new FixedCharAtom(ligature));
-                        i10 = i12;
+                        i9 = i11;
                     } else {
                         listIterator.previous();
+                        break;
                     }
                 }
-                kern = 0.0f;
-                break;
-            }
-            if (listIterator.previousIndex() != 0 && (dummy = this.previousAtom) != null && !dummy.isKern() && !dummy2.isKern()) {
-                horizontalBox.add(Glue.get(this.previousAtom.getRightType(), dummy2.getLeftType(), teXEnvironment));
-            }
-            dummy2.setPreviousAtom(this.previousAtom);
-            Box boxCreateBox = dummy2.createBox(teXEnvironment);
-            if (dummy2.isCharInMathMode() && (boxCreateBox instanceof CharBox)) {
-                ((CharBox) boxCreateBox).addItalicCorrectionToWidth();
-            }
-            if (z10 || ((next2 instanceof CharAtom) && Character.isDigit(((CharAtom) next2).getCharacter()))) {
-                horizontalBox.addBreakPosition(horizontalBox.children.size());
-            }
-            horizontalBox.add(boxCreateBox);
-            teXEnvironment.setLastFontId(boxCreateBox.getLastFontId());
-            if (Math.abs(kern) > 1.0E-7f) {
-                horizontalBox.add(new StrutBox(kern, 0.0f, 0.0f, 0.0f));
-            }
-            if (!dummy2.isKern()) {
-                this.previousAtom = dummy2;
+                f10 = 0.0f;
+                if (listIterator.previousIndex() != 0 && (dummy = this.previousAtom) != null && !dummy.isKern() && !dummy2.isKern()) {
+                    horizontalBox.add(Glue.get(this.previousAtom.getRightType(), dummy2.getLeftType(), teXEnvironment));
+                }
+                dummy2.setPreviousAtom(this.previousAtom);
+                Box createBox = dummy2.createBox(teXEnvironment);
+                if (dummy2.isCharInMathMode() && (createBox instanceof CharBox)) {
+                    ((CharBox) createBox).addItalicCorrectionToWidth();
+                }
+                if (z10 || ((next instanceof CharAtom) && Character.isDigit(((CharAtom) next).getCharacter()))) {
+                    horizontalBox.addBreakPosition(horizontalBox.children.size());
+                }
+                horizontalBox.add(createBox);
+                teXEnvironment.setLastFontId(createBox.getLastFontId());
+                if (Math.abs(f10) > 1.0E-7f) {
+                    horizontalBox.add(new StrutBox(f10, 0.0f, 0.0f, 0.0f));
+                }
+                if (!dummy2.isKern()) {
+                    this.previousAtom = dummy2;
+                }
+            } else {
+                this.previousAtom = null;
+                return horizontalBox;
             }
         }
     }
 
     public Atom getLastAtom() {
-        return this.elements.size() != 0 ? this.elements.removeLast() : new SpaceAtom(3, 0.0f, 0.0f, 0.0f);
+        if (this.elements.size() != 0) {
+            return this.elements.removeLast();
+        }
+        return new SpaceAtom(3, 0.0f, 0.0f, 0.0f);
     }
 
     @Override

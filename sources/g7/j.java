@@ -1,30 +1,21 @@
 package g7;
 
-import java.util.Map;
-
-public final class j implements r9.d {
-
-    public static final j f6508b = new j(0);
-
-    public static final j f6509c = new j(1);
-
-    public final int f6510a;
-
-    public j(int i10) {
-        this.f6510a = i10;
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f6510a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                r9.e eVar = (r9.e) obj2;
-                eVar.a(k.f6521g, entry.getKey());
-                eVar.a(k.h, entry.getValue());
-                return;
-            default:
-                throw new r9.b("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
+import android.os.Bundle;
+import java.util.ArrayList;
+public abstract class j {
+    public static final ArrayList a(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i9 = 0;
+        while (i9 < size) {
+            Object obj = arrayList.get(i9);
+            i9++;
+            k8.t tVar = (k8.t) obj;
+            Bundle bundle = new Bundle();
+            bundle.putInt("event_type", tVar.f14705a);
+            bundle.putLong("event_timestamp", tVar.f14706b);
+            arrayList2.add(bundle);
         }
+        return arrayList2;
     }
 }

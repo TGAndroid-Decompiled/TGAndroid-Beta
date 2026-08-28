@@ -1,73 +1,80 @@
 package org.scilab.forge.jlatexmath;
-
 public class MulticolumnAtom extends Atom {
     protected int afterVlines;
     protected int align;
     protected int beforeVlines;
     protected int col;
     protected Atom cols;
-
-    protected int f19593n;
+    protected int f19620n;
     protected int row;
+    protected float f19621w = 0.0f;
 
-    protected float f19594w = 0.0f;
-
-    public MulticolumnAtom(int i10, String str, Atom atom) {
-        this.f19593n = i10 < 1 ? 1 : i10;
+    public MulticolumnAtom(int i9, String str, Atom atom) {
+        this.f19620n = i9 < 1 ? 1 : i9;
         this.cols = atom;
         this.align = parseAlign(str);
     }
 
     private int parseAlign(String str) {
         int length = str.length();
-        int i10 = 0;
-        int i11 = 2;
+        int i9 = 0;
+        int i10 = 2;
         boolean z10 = true;
-        while (i10 < length) {
-            char cCharAt = str.charAt(i10);
-            if (cCharAt == 'c') {
-                i11 = 2;
-            } else if (cCharAt != 'l') {
-                if (cCharAt == 'r') {
-                    i11 = 1;
-                } else if (cCharAt == '|') {
-                    if (z10) {
-                        this.beforeVlines = 1;
+        while (i9 < length) {
+            char charAt = str.charAt(i9);
+            if (charAt != 'c') {
+                if (charAt != 'l') {
+                    if (charAt != 'r') {
+                        if (charAt == '|') {
+                            if (z10) {
+                                this.beforeVlines = 1;
+                            } else {
+                                this.afterVlines = 1;
+                            }
+                            while (true) {
+                                int i11 = i9 + 1;
+                                if (i11 < length) {
+                                    if (str.charAt(i11) != '|') {
+                                        break;
+                                    }
+                                    if (z10) {
+                                        this.beforeVlines++;
+                                    } else {
+                                        this.afterVlines++;
+                                    }
+                                    i9 = i11;
+                                } else {
+                                    i9 = i11;
+                                    break;
+                                }
+                            }
+                        }
+                        i9++;
                     } else {
-                        this.afterVlines = 1;
+                        i10 = 1;
                     }
-                    while (true) {
-                        int i12 = i10 + 1;
-                        if (i12 >= length) {
-                            i10 = i12;
-                            break;
-                        }
-                        if (str.charAt(i12) != '|') {
-                            break;
-                        }
-                        if (z10) {
-                            this.beforeVlines++;
-                        } else {
-                            this.afterVlines++;
-                        }
-                        i10 = i12;
-                    }
+                } else {
+                    i10 = 0;
                 }
-                i10++;
             } else {
-                i11 = 0;
+                i10 = 2;
             }
             z10 = false;
-            i10++;
+            i9++;
         }
-        return i11;
+        return i10;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.f19594w == 0.0f ? this.cols.createBox(teXEnvironment) : new HorizontalBox(this.cols.createBox(teXEnvironment), this.f19594w, this.align);
-        boxCreateBox.type = 12;
-        return boxCreateBox;
+        Box horizontalBox;
+        if (this.f19621w == 0.0f) {
+            horizontalBox = this.cols.createBox(teXEnvironment);
+        } else {
+            horizontalBox = new HorizontalBox(this.cols.createBox(teXEnvironment), this.f19621w, this.align);
+        }
+        horizontalBox.type = 12;
+        return horizontalBox;
     }
 
     public int getCol() {
@@ -79,19 +86,22 @@ public class MulticolumnAtom extends Atom {
     }
 
     public int getSkipped() {
-        return this.f19593n;
+        return this.f19620n;
     }
 
     public boolean hasRightVline() {
-        return this.afterVlines != 0;
+        if (this.afterVlines != 0) {
+            return true;
+        }
+        return false;
     }
 
-    public void setRowColumn(int i10, int i11) {
-        this.row = i10;
-        this.col = i11;
+    public void setRowColumn(int i9, int i10) {
+        this.row = i9;
+        this.col = i10;
     }
 
     public void setWidth(float f10) {
-        this.f19594w = f10;
+        this.f19621w = f10;
     }
 }

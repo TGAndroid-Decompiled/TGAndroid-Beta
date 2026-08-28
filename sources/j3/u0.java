@@ -1,106 +1,103 @@
 package j3;
 
 import java.nio.ByteBuffer;
-
-public final class u0 extends y {
-
-    public int f12455i;
-
-    public int f12456j;
-
-    public boolean f12457k;
-
-    public int f12458l;
-
-    public byte[] f12459m;
-
-    public int f12460n;
-
-    public long f12461o;
+public final class u0 extends x {
+    public int f13360i;
+    public int f13361j;
+    public boolean f13362k;
+    public int f13363l;
+    public byte[] f13364m;
+    public int f13365n;
+    public long f13366o;
 
     @Override
     public final ByteBuffer a() {
-        int i10;
-        if (super.d() && (i10 = this.f12460n) > 0) {
-            j(i10).put(this.f12459m, 0, this.f12460n).flip();
-            this.f12460n = 0;
+        int i9;
+        if (super.d() && (i9 = this.f13365n) > 0) {
+            j(i9).put(this.f13364m, 0, this.f13365n).flip();
+            this.f13365n = 0;
         }
         return super.a();
     }
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
-        int iPosition = byteBuffer.position();
-        int iLimit = byteBuffer.limit();
-        int i10 = iLimit - iPosition;
-        if (i10 == 0) {
-            return;
+        int position = byteBuffer.position();
+        int limit = byteBuffer.limit();
+        int i9 = limit - position;
+        if (i9 != 0) {
+            int min = Math.min(i9, this.f13363l);
+            this.f13366o += min / this.f13390b.d;
+            this.f13363l -= min;
+            byteBuffer.position(position + min);
+            if (this.f13363l > 0) {
+                return;
+            }
+            int i10 = i9 - min;
+            int length = (this.f13365n + i10) - this.f13364m.length;
+            ByteBuffer j10 = j(length);
+            int h = d5.f0.h(length, 0, this.f13365n);
+            j10.put(this.f13364m, 0, h);
+            int h10 = d5.f0.h(length - h, 0, i10);
+            byteBuffer.limit(byteBuffer.position() + h10);
+            j10.put(byteBuffer);
+            byteBuffer.limit(limit);
+            int i11 = i10 - h10;
+            int i12 = this.f13365n - h;
+            this.f13365n = i12;
+            byte[] bArr = this.f13364m;
+            System.arraycopy(bArr, h, bArr, 0, i12);
+            byteBuffer.get(this.f13364m, this.f13365n, i11);
+            this.f13365n += i11;
+            j10.flip();
         }
-        int iMin = Math.min(i10, this.f12458l);
-        this.f12461o += (long) (iMin / this.f12490b.d);
-        this.f12458l -= iMin;
-        byteBuffer.position(iPosition + iMin);
-        if (this.f12458l > 0) {
-            return;
-        }
-        int i11 = i10 - iMin;
-        int length = (this.f12460n + i11) - this.f12459m.length;
-        ByteBuffer byteBufferJ = j(length);
-        int iH = d5.g0.h(length, 0, this.f12460n);
-        byteBufferJ.put(this.f12459m, 0, iH);
-        int iH2 = d5.g0.h(length - iH, 0, i11);
-        byteBuffer.limit(byteBuffer.position() + iH2);
-        byteBufferJ.put(byteBuffer);
-        byteBuffer.limit(iLimit);
-        int i12 = i11 - iH2;
-        int i13 = this.f12460n - iH;
-        this.f12460n = i13;
-        byte[] bArr = this.f12459m;
-        System.arraycopy(bArr, iH, bArr, 0, i13);
-        byteBuffer.get(this.f12459m, this.f12460n, i12);
-        this.f12460n += i12;
-        byteBufferJ.flip();
     }
 
     @Override
     public final boolean d() {
-        return super.d() && this.f12460n == 0;
+        if (super.d() && this.f13365n == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final h f(h hVar) throws i {
-        if (hVar.f12345c != 2) {
-            throw new i(hVar);
+    public final h f(h hVar) {
+        if (hVar.f13249c == 2) {
+            this.f13362k = true;
+            if (this.f13360i == 0 && this.f13361j == 0) {
+                return h.f13246e;
+            }
+            return hVar;
         }
-        this.f12457k = true;
-        return (this.f12455i == 0 && this.f12456j == 0) ? h.f12342e : hVar;
+        throw new i(hVar);
     }
 
     @Override
     public final void g() {
-        if (this.f12457k) {
-            this.f12457k = false;
-            int i10 = this.f12456j;
-            int i11 = this.f12490b.d;
-            this.f12459m = new byte[i10 * i11];
-            this.f12458l = this.f12455i * i11;
+        if (this.f13362k) {
+            this.f13362k = false;
+            int i9 = this.f13361j;
+            int i10 = this.f13390b.d;
+            this.f13364m = new byte[i9 * i10];
+            this.f13363l = this.f13360i * i10;
         }
-        this.f12460n = 0;
+        this.f13365n = 0;
     }
 
     @Override
     public final void h() {
-        if (this.f12457k) {
-            int i10 = this.f12460n;
-            if (i10 > 0) {
-                this.f12461o += (long) (i10 / this.f12490b.d);
+        int i9;
+        if (this.f13362k) {
+            if (this.f13365n > 0) {
+                this.f13366o += i9 / this.f13390b.d;
             }
-            this.f12460n = 0;
+            this.f13365n = 0;
         }
     }
 
     @Override
     public final void i() {
-        this.f12459m = d5.g0.f4799f;
+        this.f13364m = d5.f0.f4353f;
     }
 }

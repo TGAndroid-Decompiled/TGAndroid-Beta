@@ -1,46 +1,51 @@
 package j4;
 
-import ag.t2;
 import android.animation.ValueAnimator;
-import h7.z6;
+import g7.v6;
 import java.net.URL;
-import org.telegram.ui.Components.er;
-
+import org.telegram.ui.Components.gr;
 public final class x0 {
+    public long f13606a;
+    public int f13607b;
+    public Object f13608c;
 
-    public long f12710a;
-
-    public int f12711b;
-
-    public Object f12712c;
-
-    public x0(int i10, URL url, long j10) {
-        this.f12711b = i10;
-        this.f12712c = url;
-        this.f12710a = j10;
+    public x0(int i9, URL url, long j10) {
+        this.f13607b = i9;
+        this.f13608c = url;
+        this.f13606a = j10;
     }
 
-    public void a(rh.a aVar, lh.p pVar) {
-        int i10;
-        int iB = z6.b(aVar);
-        long j10 = aVar != null ? aVar.f47027a : Long.MIN_VALUE;
-        boolean z10 = j10 == this.f12710a && this.f12711b >= 0;
-        this.f12710a = j10;
-        ValueAnimator valueAnimator = (ValueAnimator) this.f12712c;
+    public void a(qh.a aVar, kh.p pVar) {
+        long j10;
+        boolean z10;
+        int i9;
+        int b10 = v6.b(aVar);
+        if (aVar != null) {
+            j10 = aVar.f46268a;
+        } else {
+            j10 = Long.MIN_VALUE;
+        }
+        if (j10 == this.f13606a && this.f13607b >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f13606a = j10;
+        ValueAnimator valueAnimator = (ValueAnimator) this.f13608c;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f12712c = null;
+            this.f13608c = null;
         }
-        if (!z10 || (i10 = this.f12711b) == iB) {
-            this.f12711b = iB;
-            pVar.d(iB);
+        if (z10 && (i9 = this.f13607b) != b10) {
+            ValueAnimator ofInt = ValueAnimator.ofInt(i9, b10);
+            ofInt.addUpdateListener(new f2.g(26, this, pVar));
+            ofInt.setInterpolator(gr.f28844f);
+            ofInt.setDuration(200L);
+            this.f13608c = ofInt;
+            ofInt.start();
             return;
         }
-        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(i10, iB);
-        valueAnimatorOfInt.addUpdateListener(new t2(27, this, pVar));
-        valueAnimatorOfInt.setInterpolator(er.f28122f);
-        valueAnimatorOfInt.setDuration(200L);
-        this.f12712c = valueAnimatorOfInt;
-        valueAnimatorOfInt.start();
+        this.f13607b = b10;
+        pVar.h(b10);
     }
 }

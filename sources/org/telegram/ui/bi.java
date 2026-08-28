@@ -1,74 +1,72 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class bi implements View.OnTouchListener {
+    public final int f36862a;
+    public final int[] f36863b;
+    public final Rect f36864c;
+    public final Object d;
 
-public final class bi implements View.OnClickListener {
-
-    public final rh0 f36834a;
-
-    public final org.telegram.ui.Components.zk0 f36835b;
-
-    public final LinearLayout f36836c;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
-
-    public final int[] f36837e;
-
-    public final rn f36838f;
-
-    public bi(rn rnVar, rh0 rh0Var, org.telegram.ui.Components.zk0 zk0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f36838f = rnVar;
-        this.f36834a = rh0Var;
-        this.f36835b = zk0Var;
-        this.f36836c = linearLayout;
-        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f36837e = iArr;
+    public bi(o50 o50Var, Rect rect) {
+        this.f36862a = 1;
+        this.d = o50Var;
+        this.f36864c = rect;
+        this.f36863b = new int[2];
     }
 
     @Override
-    public final void onClick(View view) {
-        rh0 rh0Var = this.f36834a;
-        ArrayList arrayList = rh0Var.f41934b;
-        ArrayList arrayList2 = rh0Var.f41935c;
-        rn rnVar = this.f36838f;
-        if (rnVar.M8 == null || arrayList2.isEmpty()) {
-            return;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        o40 o40Var;
+        switch (this.f36862a) {
+            case 0:
+                qn qnVar = (qn) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    org.telegram.ui.ActionBar.o1 o1Var = qnVar.M8;
+                    if (o1Var != null && o1Var.isShowing()) {
+                        View contentView = qnVar.M8.getContentView();
+                        int[] iArr = this.f36863b;
+                        contentView.getLocationInWindow(iArr);
+                        int i9 = iArr[0];
+                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
+                        Rect rect = this.f36864c;
+                        rect.set(i9, iArr[1], contentView.getMeasuredWidth() + i9, measuredHeight);
+                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            qnVar.A7(true);
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4) {
+                    qnVar.A7(true);
+                }
+                return false;
+            default:
+                o50 o50Var = (o50) this.d;
+                if (motionEvent.getActionMasked() == 0) {
+                    o40 o40Var2 = o50Var.f40887b3;
+                    if (o40Var2 != null && o40Var2.isShowing()) {
+                        View contentView2 = o50Var.f40887b3.getContentView();
+                        int[] iArr2 = this.f36863b;
+                        contentView2.getLocationInWindow(iArr2);
+                        int i10 = iArr2[0];
+                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
+                        Rect rect2 = this.f36864c;
+                        rect2.set(i10, iArr2[1], contentView2.getMeasuredWidth() + i10, measuredHeight2);
+                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            o50Var.f40887b3.dismiss();
+                        }
+                    }
+                } else if (motionEvent.getActionMasked() == 4 && (o40Var = o50Var.f40887b3) != null && o40Var.isShowing()) {
+                    o50Var.f40887b3.dismiss();
+                }
+                return false;
         }
-        if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-            TLObject tLObject = (TLObject) arrayList2.get(0);
-            if (tLObject == null) {
-                return;
-            }
-            Bundle bundle = new Bundle();
-            if (tLObject instanceof TLRPC.User) {
-                bundle.putLong("user_id", ((TLRPC.User) tLObject).f22527id);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f22380id);
-            }
-            rnVar.presentFragment(new ProfileActivity(bundle, null));
-            rnVar.A7(true);
-            return;
-        }
-        if (SharedConfig.messageSeenHintCount > 0 && rnVar.T0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-            org.telegram.ui.Components.ec ecVarT = new org.telegram.ui.Components.mc(org.telegram.ui.Components.ab.a(rnVar.getParentActivity()), rnVar.f41983aa).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-            rnVar.f42091j1 = ecVarT;
-            ecVarT.f28020j = 4000;
-            ecVarT.j();
-            SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-        }
-        org.telegram.ui.Components.zk0 zk0Var = this.f36835b;
-        zk0Var.requestLayout();
-        this.f36836c.requestLayout();
-        zk0Var.getAdapter().l();
-        this.d.getSwipeBack().e(this.f36837e[0]);
+    }
+
+    public bi(qn qnVar, Rect rect) {
+        this.f36862a = 0;
+        this.d = qnVar;
+        this.f36864c = rect;
+        this.f36863b = new int[2];
     }
 }

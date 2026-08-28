@@ -1,23 +1,31 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+public final class an0 extends of.f0 {
+    public final org.telegram.ui.dy E0;
+    public final Context F0;
+    public final org.telegram.ui.mx G0;
 
-public final class an0 extends t30 {
-    public final org.telegram.ui.px Y;
-
-    public an0(org.telegram.ui.px pxVar, zk0 zk0Var, Context context, int i10) {
-        super(zk0Var, context, i10);
-        this.Y = pxVar;
+    public an0(org.telegram.ui.mx mxVar, Context context, org.telegram.ui.dy dyVar, int i9, int i10, f2.n nVar, boolean z10, org.telegram.ui.dy dyVar2, Context context2) {
+        super(context, dyVar, i9, i10, nVar, z10);
+        this.G0 = mxVar;
+        this.E0 = dyVar2;
+        this.F0 = context2;
     }
 
     @Override
-    public final void N(boolean z10) {
-        super.N(z10);
-        wm0 wm0Var = this.Y.f29755o0;
-        wm0Var.e(false, z10);
-        wm0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        wm0Var.f29506e.setVisibility(8);
+    public final void l() {
+        gh.f1 f1Var;
+        int i9 = this.f19316x0;
+        super.l();
+        org.telegram.ui.mx mxVar = this.G0;
+        if (!mxVar.E0 && (f1Var = mxVar.R) != null) {
+            f1Var.u0(0);
+            mxVar.E0 = true;
+        }
+        if (h() != 0 || i9 == 0 || this.f19319z0 > 0) {
+            return;
+        }
+        mxVar.S.e(false, false);
     }
 }

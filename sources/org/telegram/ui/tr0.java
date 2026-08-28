@@ -1,25 +1,22 @@
 package org.telegram.ui;
+public final class tr0 extends org.telegram.ui.Cells.x9 {
+    public final int f43054v0 = 0;
 
-import org.telegram.messenger.ImageReceiver;
-
-public final class tr0 implements org.telegram.ui.Components.j30 {
-
-    public final PhotoViewer f43000a;
-
-    public tr0(PhotoViewer photoViewer) {
-        this.f43000a = photoViewer;
+    public tr0(ih.d8 d8Var, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(d8Var, b6Var);
     }
 
-    public final void a(int i10) {
-        PhotoViewer photoViewer = this.f43000a;
-        photoViewer.L4 = -1;
-        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f35635f5;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            photoViewer.f35635f5 = null;
+    @Override
+    public final int p() {
+        switch (this.f43054v0) {
+            case 0:
+                return 0;
+            default:
+                return 0;
         }
-        photoViewer.f35653h5 = true;
-        photoViewer.B2(i10);
-        photoViewer.f35653h5 = false;
+    }
+
+    public tr0(ih.b bVar) {
+        super(null, bVar);
     }
 }

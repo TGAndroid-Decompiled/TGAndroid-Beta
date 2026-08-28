@@ -1,72 +1,85 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class cm0 implements org.telegram.ui.Components.ii {
+    public final wm0 f37235a;
 
-public final class cm0 extends AnimatorListenerAdapter {
-
-    public final int f37116a;
-
-    public final boolean f37117b;
-
-    public final xm0 f37118c;
-
-    public cm0(xm0 xm0Var, boolean z10, int i10) {
-        this.f37116a = i10;
-        this.f37118c = xm0Var;
-        this.f37117b = z10;
+    public cm0(wm0 wm0Var) {
+        this.f37235a = wm0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f37116a) {
-            case 0:
-                xm0 xm0Var = this.f37118c;
-                AnimatorSet animatorSet = xm0Var.I;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    xm0Var.I = null;
-                    break;
+    public final void L(int i9, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
+        org.telegram.ui.Components.ki kiVar;
+        wm0 wm0Var = this.f37235a;
+        if (wm0Var.getParentActivity() != null && (kiVar = wm0Var.N0) != null) {
+            if (i9 != 8 && i9 != 7) {
+                kiVar.dismissWithButtonClick(i9);
+                wm0Var.F1(i9);
+                return;
+            }
+            if (i9 != 8) {
+                kiVar.dismiss(true);
+            }
+            HashMap<Object, Object> selectedPhotos = wm0Var.N0.f30114f0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = wm0Var.N0.f30114f0.getSelectedPhotosOrder();
+            if (!selectedPhotos.isEmpty()) {
+                ArrayList arrayList = new ArrayList();
+                for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i12));
+                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                    String str = photoEntry.imagePath;
+                    if (str != null) {
+                        sendingMediaInfo.path = str;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    arrayList.add(sendingMediaInfo);
+                    photoEntry.reset();
                 }
-                break;
-            default:
-                xm0 xm0Var2 = this.f37118c;
-                AnimatorSet animatorSet2 = xm0Var2.I;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    xm0Var2.I = null;
-                    break;
-                }
-                break;
+                wm0Var.G1(arrayList);
+            }
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f37116a) {
-            case 0:
-                xm0 xm0Var = this.f37118c;
-                AnimatorSet animatorSet = xm0Var.I;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f37117b) {
-                        xm0Var.J.setVisibility(4);
-                    } else {
-                        xm0Var.H.getContentView().setVisibility(4);
-                    }
-                    break;
-                }
-                break;
-            default:
-                xm0 xm0Var2 = this.f37118c;
-                AnimatorSet animatorSet2 = xm0Var2.I;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f37117b) {
-                        xm0Var2.L.setVisibility(4);
-                    } else {
-                        xm0Var2.K.setVisibility(4);
-                    }
-                    break;
-                }
-                break;
-        }
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final void t(org.telegram.ui.Components.wg wgVar) {
+        wgVar.run();
+    }
+
+    @Override
+    public final boolean t0() {
+        return false;
+    }
+
+    @Override
+    public final void u() {
+        AndroidUtilities.hideKeyboard(this.f37235a.fragmentView.findFocus());
+    }
+
+    @Override
+    public final void A(Object obj) {
+    }
+
+    @Override
+    public final void E(TLRPC.User user) {
+    }
+
+    @Override
+    public final void o() {
+    }
+
+    @Override
+    public final void v0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i9, int i10, long j10, boolean z11, long j11) {
     }
 }

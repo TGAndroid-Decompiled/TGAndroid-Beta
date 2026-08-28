@@ -1,27 +1,24 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.View;
-
 public final class h0 implements View.OnClickListener {
+    public final int f23444a;
+    public final g1 f23445b;
 
-    public final int f23453a;
-
-    public final f1 f23454b;
-
-    public h0(f1 f1Var, int i10) {
-        this.f23453a = i10;
-        this.f23454b = f1Var;
+    public h0(g1 g1Var, int i9) {
+        this.f23444a = i9;
+        this.f23445b = g1Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f23453a) {
+        switch (this.f23444a) {
             case 0:
-                this.f23454b.b();
-                break;
+                this.f23445b.b();
+                return;
             default:
-                this.f23454b.b();
-                break;
+                this.f23445b.b();
+                return;
         }
     }
 }

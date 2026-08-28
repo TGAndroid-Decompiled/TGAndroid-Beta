@@ -1,58 +1,53 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
+public final class x31 extends wk0 {
+    public final e41 T2;
+    public final h41 U2;
 
-public final class x31 {
-
-    public final g41 f34462a;
-
-    public final j41 f34463b;
-
-    public x31(j41 j41Var, g41 g41Var) {
-        this.f34463b = j41Var;
-        this.f34462a = g41Var;
+    public x31(h41 h41Var, Context context, e41 e41Var) {
+        super(context, null);
+        this.U2 = h41Var;
+        this.T2 = e41Var;
     }
 
-    public final int a() {
-        return this.f34463b.f29587s.v;
-    }
-
-    public final void b(boolean z10) {
-        f2.q0 adapter;
-        i41 i41Var;
-        j41 j41Var = this.f34463b;
-        z31 z31Var = j41Var.f29585n;
-        if (z10) {
-            f2.q0 adapter2 = z31Var.getAdapter();
-            pf.l1 l1Var = j41Var.v;
-            if (adapter2 != l1Var) {
-                z31Var.setAdapter(l1Var);
-            } else {
-                if (!z10) {
-                    return;
-                }
-                adapter = z31Var.getAdapter();
-                i41Var = j41Var.f29587s;
-                if (adapter != i41Var) {
-                    return;
-                } else {
-                    z31Var.setAdapter(i41Var);
-                }
-            }
-        } else {
-            if (!z10) {
-                return;
-            }
-            adapter = z31Var.getAdapter();
-            i41Var = j41Var.f29587s;
-            if (adapter != i41Var) {
-                return;
-            } else {
-                z31Var.setAdapter(i41Var);
-            }
+    @Override
+    public final boolean E0(float f10) {
+        if (f10 >= AndroidUtilities.dp(58.0f) + this.U2.A) {
+            return true;
         }
-        if (z31Var.getAdapter().h() > 0) {
-            j41Var.f29586r.i1(0, AndroidUtilities.dp(58.0f) + (-z31Var.getPaddingTop()) + j41Var.A, false);
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.U2.B = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.T2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.U2.H != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.U2.D) {
+            super.requestLayout();
         }
     }
 }

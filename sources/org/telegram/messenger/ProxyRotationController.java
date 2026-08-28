@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
-
 public class ProxyRotationController implements NotificationCenter.NotificationCenterDelegate {
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new rg(this, 4);
+    private Runnable checkProxyAndSwitchRunnable = new ng(this, 4);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -20,8 +21,8 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     private void initInternal() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.didUpdateConnectionState);
+        for (int i9 = 0; i9 < 4; i9++) {
+            NotificationCenter.getInstance(i9).addObserver(this, NotificationCenter.didUpdateConnectionState);
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.proxyCheckDone);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.proxySettingsChanged);
@@ -41,26 +42,25 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j10) {
-        AndroidUtilities.runOnUIThread(new nh(proxyInfo, j10, 0));
+        AndroidUtilities.runOnUIThread(new jh(proxyInfo, j10, 0));
     }
 
     public void lambda$new$2() {
         this.isCurrentlyChecking = true;
-        int i10 = UserConfig.selectedAccount;
+        int i9 = UserConfig.selectedAccount;
         boolean z10 = false;
-        for (int i11 = 0; i11 < SharedConfig.proxyList.size(); i11++) {
-            SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i11);
+        for (int i10 = 0; i10 < SharedConfig.proxyList.size(); i10++) {
+            SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i10);
             if (!proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
                 proxyInfo.checking = true;
-                proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new d(proxyInfo, 11));
+                proxyInfo.proxyCheckPingId = ConnectionsManager.getInstance(i9).checkProxy(proxyInfo.address, proxyInfo.port, proxyInfo.username, proxyInfo.password, proxyInfo.secret, new d(proxyInfo, 11));
                 z10 = true;
             }
         }
-        if (z10) {
-            return;
+        if (!z10) {
+            this.isCurrentlyChecking = false;
+            switchToAvailable();
         }
-        this.isCurrentlyChecking = false;
-        switchToAvailable();
     }
 
     public static int lambda$switchToAvailable$3(SharedConfig.ProxyInfo proxyInfo, SharedConfig.ProxyInfo proxyInfo2) {
@@ -73,23 +73,23 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
             ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
             Collections.sort(arrayList, new q(26));
             int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
+            int i9 = 0;
+            while (i9 < size) {
+                Object obj = arrayList.get(i9);
+                i9++;
                 SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) obj;
                 if (proxyInfo != SharedConfig.currentProxy && !proxyInfo.checking && proxyInfo.available) {
-                    SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
-                    editorEdit.putString("proxy_ip", proxyInfo.address);
-                    editorEdit.putString("proxy_pass", proxyInfo.password);
-                    editorEdit.putString("proxy_user", proxyInfo.username);
-                    editorEdit.putInt("proxy_port", proxyInfo.port);
-                    editorEdit.putString("proxy_secret", proxyInfo.secret);
-                    editorEdit.putBoolean("proxy_enabled", true);
+                    SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                    edit.putString("proxy_ip", proxyInfo.address);
+                    edit.putString("proxy_pass", proxyInfo.password);
+                    edit.putString("proxy_user", proxyInfo.username);
+                    edit.putInt("proxy_port", proxyInfo.port);
+                    edit.putString("proxy_secret", proxyInfo.secret);
+                    edit.putBoolean("proxy_enabled", true);
                     if (!proxyInfo.secret.isEmpty()) {
-                        editorEdit.putBoolean("proxy_enabled_calls", false);
+                        edit.putBoolean("proxy_enabled_calls", false);
                     }
-                    editorEdit.apply();
+                    edit.apply();
                     SharedConfig.currentProxy = proxyInfo;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyChangedByRotation, new Object[0]);
@@ -102,28 +102,23 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     @Override
-    public void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.proxyCheckDone) {
+    public void didReceivedNotification(int i9, int i10, Object... objArr) {
+        if (i9 == NotificationCenter.proxyCheckDone) {
             if (SharedConfig.isProxyEnabled() && SharedConfig.proxyRotationEnabled && SharedConfig.proxyList.size() > 1 && this.isCurrentlyChecking) {
                 switchToAvailable();
-                return;
             }
-            return;
-        }
-        if (i10 == NotificationCenter.proxySettingsChanged) {
+        } else if (i9 == NotificationCenter.proxySettingsChanged) {
             AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
-            return;
-        }
-        if (i10 == NotificationCenter.didUpdateConnectionState && i11 == UserConfig.selectedAccount) {
+        } else if (i9 == NotificationCenter.didUpdateConnectionState && i10 == UserConfig.selectedAccount) {
             if ((SharedConfig.isProxyEnabled() || SharedConfig.proxyRotationEnabled) && SharedConfig.proxyList.size() > 1) {
-                if (ConnectionsManager.getInstance(i11).getConnectionState() != 4) {
-                    AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
-                } else {
-                    if (this.isCurrentlyChecking) {
+                if (ConnectionsManager.getInstance(i10).getConnectionState() == 4) {
+                    if (!this.isCurrentlyChecking) {
+                        AndroidUtilities.runOnUIThread(this.checkProxyAndSwitchRunnable, ROTATION_TIMEOUTS.get(SharedConfig.proxyRotationTimeout).intValue() * 1000);
                         return;
                     }
-                    AndroidUtilities.runOnUIThread(this.checkProxyAndSwitchRunnable, ((long) ROTATION_TIMEOUTS.get(SharedConfig.proxyRotationTimeout).intValue()) * 1000);
+                    return;
                 }
+                AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);
             }
         }
     }

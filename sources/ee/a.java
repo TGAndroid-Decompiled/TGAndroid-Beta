@@ -1,6 +1,4 @@
 package ee;
-
-import je.n;
-
-public final class a extends n {
+public final class a {
+    public final int f5114a;
 }

@@ -2,17 +2,14 @@ package z3;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
-import h7.v6;
+import d5.f0;
+import g7.s6;
 import java.util.Arrays;
 import java.util.List;
-
 public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new a();
-
-    public final b[] f50188a;
-
-    public final long f50189b;
+    public static final Parcelable.Creator<c> CREATOR = new Object();
+    public final b[] f50288a;
+    public final long f50289b;
 
     public c(b... bVarArr) {
         this(-9223372036854775807L, bVarArr);
@@ -20,13 +17,13 @@ public final class c implements Parcelable {
 
     public final c a(c cVar) {
         if (cVar != null) {
-            b[] bVarArr = cVar.f50188a;
+            b[] bVarArr = cVar.f50288a;
             if (bVarArr.length != 0) {
-                int i10 = g0.f4795a;
-                b[] bVarArr2 = this.f50188a;
-                Object[] objArrCopyOf = Arrays.copyOf(bVarArr2, bVarArr2.length + bVarArr.length);
-                System.arraycopy(bVarArr, 0, objArrCopyOf, bVarArr2.length, bVarArr.length);
-                return new c(this.f50189b, (b[]) objArrCopyOf);
+                int i9 = f0.f4349a;
+                b[] bVarArr2 = this.f50288a;
+                Object[] copyOf = Arrays.copyOf(bVarArr2, bVarArr2.length + bVarArr.length);
+                System.arraycopy(bVarArr, 0, copyOf, bVarArr2.length, bVarArr.length);
+                return new c(this.f50289b, (b[]) copyOf);
             }
         }
         return this;
@@ -43,7 +40,7 @@ public final class c implements Parcelable {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (Arrays.equals(this.f50188a, cVar.f50188a) && this.f50189b == cVar.f50189b) {
+            if (Arrays.equals(this.f50288a, cVar.f50288a) && this.f50289b == cVar.f50289b) {
                 return true;
             }
         }
@@ -51,14 +48,14 @@ public final class c implements Parcelable {
     }
 
     public final int hashCode() {
-        return v6.a(this.f50189b) + (Arrays.hashCode(this.f50188a) * 31);
+        return s6.a(this.f50289b) + (Arrays.hashCode(this.f50288a) * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("entries=");
-        sb2.append(Arrays.toString(this.f50188a));
-        long j10 = this.f50189b;
+        sb2.append(Arrays.toString(this.f50288a));
+        long j10 = this.f50289b;
         if (j10 == -9223372036854775807L) {
             str = "";
         } else {
@@ -69,18 +66,18 @@ public final class c implements Parcelable {
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        b[] bVarArr = this.f50188a;
+    public final void writeToParcel(Parcel parcel, int i9) {
+        b[] bVarArr = this.f50288a;
         parcel.writeInt(bVarArr.length);
         for (b bVar : bVarArr) {
             parcel.writeParcelable(bVar, 0);
         }
-        parcel.writeLong(this.f50189b);
+        parcel.writeLong(this.f50289b);
     }
 
     public c(long j10, b... bVarArr) {
-        this.f50189b = j10;
-        this.f50188a = bVarArr;
+        this.f50289b = j10;
+        this.f50288a = bVarArr;
     }
 
     public c(List list) {
@@ -88,15 +85,15 @@ public final class c implements Parcelable {
     }
 
     public c(Parcel parcel) {
-        this.f50188a = new b[parcel.readInt()];
-        int i10 = 0;
+        this.f50288a = new b[parcel.readInt()];
+        int i9 = 0;
         while (true) {
-            b[] bVarArr = this.f50188a;
-            if (i10 < bVarArr.length) {
-                bVarArr[i10] = (b) parcel.readParcelable(b.class.getClassLoader());
-                i10++;
+            b[] bVarArr = this.f50288a;
+            if (i9 < bVarArr.length) {
+                bVarArr[i9] = (b) parcel.readParcelable(b.class.getClassLoader());
+                i9++;
             } else {
-                this.f50189b = parcel.readLong();
+                this.f50289b = parcel.readLong();
                 return;
             }
         }

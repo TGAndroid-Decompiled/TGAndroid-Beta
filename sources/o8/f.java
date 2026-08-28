@@ -1,5 +1,5 @@
 package o8;
 
-public interface f {
-    boolean apply(Object obj);
+import java.util.RandomAccess;
+public final class f extends h7.e implements RandomAccess {
 }

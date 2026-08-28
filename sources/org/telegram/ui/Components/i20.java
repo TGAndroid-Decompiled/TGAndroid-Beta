@@ -1,40 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import org.telegram.messenger.NotificationCenter;
+public final class i20 extends AnimatorListenerAdapter {
+    public final View f29279a;
+    public final View f29280b;
+    public final WindowManager f29281c;
+    public final View d;
+    public final View f29282e;
+    public final j20 f29283f;
 
-public final class i20 implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f29208a;
-
-    public final n20 f29209b;
-
-    public i20(n20 n20Var, int i10) {
-        this.f29208a = i10;
-        this.f29209b = n20Var;
+    public i20(j20 j20Var, h20 h20Var, fh.d2 d2Var, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.t7 t7Var) {
+        this.f29283f = j20Var;
+        this.f29279a = h20Var;
+        this.f29280b = d2Var;
+        this.f29281c = windowManager;
+        this.d = frameLayout;
+        this.f29282e = t7Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29208a) {
-            case 0:
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n20 n20Var = this.f29209b;
-                n20Var.f30825r.x = (int) fFloatValue;
-                n20Var.h();
-                k20 k20Var = n20Var.f30819a;
-                if (k20Var.getParent() != null) {
-                    n20Var.f30824n.updateViewLayout(k20Var, n20Var.f30825r);
-                }
-                break;
-            default:
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n20 n20Var2 = this.f29209b;
-                n20Var2.f30825r.y = (int) fFloatValue2;
-                k20 k20Var2 = n20Var2.f30819a;
-                if (k20Var2.getParent() != null) {
-                    n20Var2.f30824n.updateViewLayout(k20Var2, n20Var2.f30825r);
-                }
-                break;
-        }
+    public final void onAnimationEnd(Animator animator) {
+        NotificationCenter.getInstance(this.f29283f.h).doOnIdle(new org.telegram.ui.hr(this.f29279a, this.f29280b, this.f29281c, this.d, this.f29282e, 1));
     }
 }

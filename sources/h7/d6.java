@@ -1,29 +1,17 @@
 package h7;
+public final class d6 implements q9.d {
+    public static final d6 f9905a = new Object();
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.p80;
-
-public abstract class d6 {
-    public static p80 a(Context context, float f10, int i10, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
-        int i11 = org.telegram.ui.ActionBar.g6.gc;
-        p80 p80Var = new p80(context, null);
-        p80Var.setTextSize(1, f10);
-        p80Var.setTextColor(org.telegram.ui.ActionBar.g6.v0(i10, c6Var));
-        p80Var.setLinkTextColor(org.telegram.ui.ActionBar.g6.v0(i11, c6Var));
-        if (z10) {
-            p80Var.setTypeface(AndroidUtilities.bold());
-        }
-        return p80Var;
+    static {
+        e2.c.u(e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))));
     }
 
-    public static TextView b(Context context, float f10, int i10, boolean z10, org.telegram.ui.ActionBar.c6 c6Var) {
-        TextView textViewH = org.telegram.messenger.y1.h(context, 1, f10);
-        textViewH.setTextColor(org.telegram.ui.ActionBar.g6.v0(i10, c6Var));
-        if (z10) {
-            textViewH.setTypeface(AndroidUtilities.bold());
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        return textViewH;
+        throw new ClassCastException();
     }
 }

@@ -1,44 +1,59 @@
 package gh;
 
-import android.content.DialogInterface;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
+public final class k implements TextView.OnEditorActionListener {
+    public final int f8378a;
+    public final Object f8379b;
 
-public final class k implements DialogInterface.OnShowListener {
-
-    public final int f7369a;
-
-    public final EditTextBoldCursor f7370b;
-
-    public k(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f7369a = i10;
-        this.f7370b = editTextBoldCursor;
+    public k(Object obj, int i9) {
+        this.f8378a = i9;
+        this.f8379b = obj;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f7369a) {
+    public final boolean onEditorAction(TextView textView, int i9, KeyEvent keyEvent) {
+        qh.c1 c1Var;
+        switch (this.f8378a) {
             case 0:
-                r rVar = (r) this.f7370b;
-                rVar.requestFocus();
-                AndroidUtilities.showKeyboard(rVar);
-                break;
+                r rVar = (r) this.f8379b;
+                if (i9 == 5) {
+                    rVar.j0();
+                    return true;
+                }
+                rVar.getClass();
+                return false;
             case 1:
-                b3 b3Var = (b3) this.f7370b;
-                b3Var.requestFocus();
-                AndroidUtilities.showKeyboard(b3Var);
-                break;
-            case 2:
-                qf.p pVar = (qf.p) this.f7370b;
-                pVar.requestFocus();
-                AndroidUtilities.showKeyboard(pVar);
-                break;
+                pf.m0 m0Var = (pf.m0) this.f8379b;
+                pf.i0 i0Var = m0Var.B;
+                boolean z10 = false;
+                if (i9 == 6) {
+                    m0Var.f45709x = false;
+                    AndroidUtilities.cancelRunOnUIThread(i0Var);
+                    z10 = true;
+                    if (TextUtils.isEmpty(m0Var.f45704f.getText())) {
+                        m0Var.f45710y = null;
+                        m0Var.d.b();
+                        m0Var.f45702c.U2.N(true);
+                    } else {
+                        AndroidUtilities.runOnUIThread(i0Var);
+                    }
+                    m0Var.a0();
+                }
+                return z10;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f7370b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
-                break;
+                qh.d1 d1Var = (qh.d1) this.f8379b;
+                if (i9 == 5 && (c1Var = d1Var.f46335c) != null && !d1Var.f46341w) {
+                    if (d1Var.f46339r) {
+                        d1Var.p();
+                    } else {
+                        c1Var.L0(d1Var);
+                    }
+                    return true;
+                }
+                return false;
         }
     }
 }

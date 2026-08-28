@@ -1,140 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+public final class xz extends vk0 {
+    public final Context f34809c;
+    public final yz d;
 
-public final class xz extends f2.c0 {
-    public final lp d = new lp(this, 17);
-
-    public final yz f34733e;
-
-    public xz(yz yzVar) {
-        this.f34733e = yzVar;
+    public xz(yz yzVar, Activity activity) {
+        this.d = yzVar;
+        this.f34809c = activity;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, f2.o1 o1Var) {
-        super.a(recyclerView, o1Var);
-        View view = o1Var.f5789a;
-        view.setPressed(false);
-        view.setBackground(null);
-        view.setTag(R.id.dragging, null);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, f2.o1 o1Var) {
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            yz yzVar = this.f34733e;
-            if (!yzVar.f35085n || (o1Var.b() == 0 && ((vz) yzVar.h.get(0)).f34075e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-                return f2.c0.l(0, 0);
-            }
-        }
-        return f2.c0.l(12, 0);
-    }
-
-    @Override
-    public final boolean k() {
-        return this.f34733e.f35085n;
-    }
-
-    @Override
-    public final boolean n(RecyclerView recyclerView, f2.o1 o1Var, f2.o1 o1Var2) {
-        int i10 = 0;
-        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((o1Var.b() == 0 || o1Var2.b() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
-            return false;
-        }
-        uz uzVar = this.f34733e.E;
-        int iB = o1Var.b();
-        int iB2 = o1Var2.b();
-        yz yzVar = uzVar.d;
-        ArrayList arrayList = yzVar.h;
-        SparseIntArray sparseIntArray = yzVar.f35079g0;
-        int size = arrayList.size();
-        if (iB >= 0 && iB2 >= 0 && iB < size && iB2 < size) {
-            ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
-            MessagesController.DialogFilter dialogFilter = dialogFilters.get(iB);
-            MessagesController.DialogFilter dialogFilter2 = dialogFilters.get(iB2);
-            int i11 = dialogFilter.order;
-            dialogFilter.order = dialogFilter2.order;
-            dialogFilter2.order = i11;
-            dialogFilters.set(iB, dialogFilter2);
-            dialogFilters.set(iB2, dialogFilter);
-            vz vzVar = (vz) arrayList.get(iB);
-            vz vzVar2 = (vz) arrayList.get(iB2);
-            int i12 = vzVar.f34072a;
-            vzVar.f34072a = vzVar2.f34072a;
-            vzVar2.f34072a = i12;
-            int i13 = sparseIntArray.get(iB);
-            sparseIntArray.put(iB, sparseIntArray.get(iB2));
-            sparseIntArray.put(iB2, i13);
-            tz tzVar = yzVar.F;
-            int i14 = vzVar2.f34072a;
-            int i15 = vzVar.f34072a;
-            org.telegram.ui.gw gwVar = (org.telegram.ui.gw) tzVar;
-            while (true) {
-                org.telegram.ui.fy[] fyVarArr = gwVar.f38485b.f38498a0;
-                if (i10 >= fyVarArr.length) {
-                    break;
-                }
-                org.telegram.ui.fy fyVar = fyVarArr[i10];
-                int i16 = fyVar.h;
-                if (i16 == i14) {
-                    fyVar.h = i15;
-                } else if (i16 == i15) {
-                    fyVar.h = i14;
-                }
-                i10++;
-            }
-            int i17 = yzVar.G;
-            if (i17 == iB) {
-                yzVar.G = iB2;
-                yzVar.H = vzVar.f34072a;
-            } else if (i17 == iB2) {
-                yzVar.G = iB;
-                yzVar.H = vzVar2.f34072a;
-            }
-            int i18 = yzVar.m0;
-            if (i18 == iB) {
-                yzVar.m0 = iB2;
-                yzVar.f35086n0 = vzVar.f34072a;
-            } else if (i18 == iB2) {
-                yzVar.m0 = iB;
-                yzVar.f35086n0 = vzVar2.f34072a;
-            }
-            arrayList.set(iB, vzVar2);
-            arrayList.set(iB2, vzVar);
-            yzVar.j();
-            yzVar.f35099y = true;
-            yzVar.B.setItemAnimator(yzVar.f35087o0);
-            uzVar.p(iB, iB2);
-        }
+    public final boolean D(f2.q1 q1Var) {
         return true;
     }
 
     @Override
-    public final void p(f2.o1 o1Var, int i10) {
-        if (i10 != 0) {
-            yz yzVar = this.f34733e;
-            yzVar.B.I0(false);
-            o1Var.f5789a.setPressed(true);
-            o1Var.f5789a.setBackgroundColor(org.telegram.ui.ActionBar.g6.v0(yzVar.U, yzVar.f35068a));
-        } else {
-            lp lpVar = this.d;
-            AndroidUtilities.cancelRunOnUIThread(lpVar);
-            AndroidUtilities.runOnUIThread(lpVar, 320L);
+    public final int h() {
+        int size = this.d.f35117s.size();
+        if (size < 10) {
+            return size + 1;
         }
-        if (o1Var != null) {
-            o1Var.f5789a.setTag(R.id.dragging, i10 == 2 ? Boolean.TRUE : null);
-        }
+        return size;
     }
 
     @Override
-    public final void q(f2.o1 o1Var) {
+    public final int j(int i9) {
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.q1 q1Var, int i9) {
+        int i10;
+        org.telegram.ui.ActionBar.y2 y2Var = (org.telegram.ui.ActionBar.y2) q1Var.f5501a;
+        yz yzVar = this.d;
+        ArrayList arrayList = yzVar.v;
+        ArrayList arrayList2 = yzVar.f35117s;
+        if (i9 < arrayList2.size()) {
+            y2Var.getImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.J5, false), PorterDuff.Mode.MULTIPLY));
+            MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) arrayList2.get(i9);
+            y2Var.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23108j5, false));
+            int i11 = dialogFilter.flags;
+            if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i11) == (MessagesController.DIALOG_FILTER_FLAG_CONTACTS | MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS)) {
+                i10 = R.drawable.msg_openprofile;
+            } else {
+                if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i11) != 0) {
+                    int i12 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
+                    if ((i11 & i12) == i12) {
+                        i10 = R.drawable.msg_markunread;
+                    }
+                }
+                if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i11) == MessagesController.DIALOG_FILTER_FLAG_CHANNELS) {
+                    i10 = R.drawable.msg_channel;
+                } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i11) == MessagesController.DIALOG_FILTER_FLAG_GROUPS) {
+                    i10 = R.drawable.msg_groups;
+                } else if ((MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS & i11) == MessagesController.DIALOG_FILTER_FLAG_CONTACTS) {
+                    i10 = R.drawable.msg_contacts;
+                } else if ((i11 & MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS) == MessagesController.DIALOG_FILTER_FLAG_BOTS) {
+                    i10 = R.drawable.msg_bots;
+                } else {
+                    i10 = R.drawable.msg_folders;
+                }
+            }
+            y2Var.a(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(dialogFilter.name, y2Var.getTextView().getPaint().getFontMetricsInt(), false), dialogFilter.entities, y2Var.getTextView().getPaint().getFontMetricsInt()), 0, new o00(yzVar.getContext(), i10, dialogFilter.color), false);
+            y2Var.getTextView().setEmojiColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.Oh, yz.z(yzVar)));
+            boolean z10 = true;
+            for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                if (!dialogFilter.includesDialog(AccountInstance.getInstance(yz.C(yzVar)), ((Long) arrayList.get(i13)).longValue())) {
+                    z10 = false;
+                }
+            }
+            y2Var.setChecked(z10);
+            return;
+        }
+        y2Var.getImageView().setColorFilter((ColorFilter) null);
+        Context context = this.f34809c;
+        Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
+        Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
+        int w02 = org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.N6, false);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23128k7, false), mode));
+        fq fqVar = new fq(drawable, drawable2);
+        y2Var.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23229q6, false));
+        y2Var.a(LocaleController.getString(R.string.CreateNewFilter), 0, fqVar, false);
+    }
+
+    @Override
+    public final f2.q1 x(ViewGroup viewGroup, int i9) {
+        org.telegram.ui.ActionBar.y2 y2Var = new org.telegram.ui.ActionBar.y2(this.f34809c, 0, null);
+        y2Var.setBackground(null);
+        y2Var.setLayoutParams(new f2.a1(-1, -2));
+        return new f2.q1(y2Var);
     }
 }

@@ -1,41 +1,32 @@
 package i3;
 
-import h3.s2;
-import h7.e0;
-import j4.c0;
+import g7.c0;
+import h3.r2;
+import j4.d0;
 import java.util.Arrays;
-
 public final class a {
+    public final long f10875a;
+    public final r2 f10876b;
+    public final int f10877c;
+    public final d0 d;
+    public final long f10878e;
+    public final r2 f10879f;
+    public final int f10880g;
+    public final d0 h;
+    public final long f10881i;
+    public final long f10882j;
 
-    public final long f10516a;
-
-    public final s2 f10517b;
-
-    public final int f10518c;
-    public final c0 d;
-
-    public final long f10519e;
-
-    public final s2 f10520f;
-
-    public final int f10521g;
-    public final c0 h;
-
-    public final long f10522i;
-
-    public final long f10523j;
-
-    public a(long j10, s2 s2Var, int i10, c0 c0Var, long j11, s2 s2Var2, int i11, c0 c0Var2, long j12, long j13) {
-        this.f10516a = j10;
-        this.f10517b = s2Var;
-        this.f10518c = i10;
-        this.d = c0Var;
-        this.f10519e = j11;
-        this.f10520f = s2Var2;
-        this.f10521g = i11;
-        this.h = c0Var2;
-        this.f10522i = j12;
-        this.f10523j = j13;
+    public a(long j10, r2 r2Var, int i9, d0 d0Var, long j11, r2 r2Var2, int i10, d0 d0Var2, long j12, long j13) {
+        this.f10875a = j10;
+        this.f10876b = r2Var;
+        this.f10877c = i9;
+        this.d = d0Var;
+        this.f10878e = j11;
+        this.f10879f = r2Var2;
+        this.f10880g = i10;
+        this.h = d0Var2;
+        this.f10881i = j12;
+        this.f10882j = j13;
     }
 
     public final boolean equals(Object obj) {
@@ -44,7 +35,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f10516a == aVar.f10516a && this.f10518c == aVar.f10518c && this.f10519e == aVar.f10519e && this.f10521g == aVar.f10521g && this.f10522i == aVar.f10522i && this.f10523j == aVar.f10523j && e0.a(this.f10517b, aVar.f10517b) && e0.a(this.d, aVar.d) && e0.a(this.f10520f, aVar.f10520f) && e0.a(this.h, aVar.h)) {
+            if (this.f10875a == aVar.f10875a && this.f10877c == aVar.f10877c && this.f10878e == aVar.f10878e && this.f10880g == aVar.f10880g && this.f10881i == aVar.f10881i && this.f10882j == aVar.f10882j && c0.a(this.f10876b, aVar.f10876b) && c0.a(this.d, aVar.d) && c0.a(this.f10879f, aVar.f10879f) && c0.a(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -52,6 +43,6 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10516a), this.f10517b, Integer.valueOf(this.f10518c), this.d, Long.valueOf(this.f10519e), this.f10520f, Integer.valueOf(this.f10521g), this.h, Long.valueOf(this.f10522i), Long.valueOf(this.f10523j)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f10875a), this.f10876b, Integer.valueOf(this.f10877c), this.d, Long.valueOf(this.f10878e), this.f10879f, Integer.valueOf(this.f10880g), this.h, Long.valueOf(this.f10881i), Long.valueOf(this.f10882j)});
     }
 }

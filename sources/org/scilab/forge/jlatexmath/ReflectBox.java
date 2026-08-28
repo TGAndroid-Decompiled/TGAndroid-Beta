@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
-
 public class ReflectBox extends Box {
     private Box box;
 

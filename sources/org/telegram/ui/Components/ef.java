@@ -1,33 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-
-public final class ef extends AnimatorListenerAdapter {
-
-    public final ChatActivityEnterView f28040a;
+import android.text.TextUtils;
+import android.view.View;
+public final class ef implements mk0 {
+    public final ChatActivityEnterView f28011a;
 
     public ef(ChatActivityEnterView chatActivityEnterView) {
-        this.f28040a = chatActivityEnterView;
+        this.f28011a = chatActivityEnterView;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f28040a;
-        b71 b71Var = chatActivityEnterView.f26078b1;
-        if (b71Var != null) {
-            b71Var.setVisibility(8);
-        }
-        xj0 xj0Var = chatActivityEnterView.f26091d1;
-        if (xj0Var != null) {
-            xj0Var.setVisibility(8);
-        }
-        chatActivityEnterView.f26136k4 = 0.0f;
-        chatActivityEnterView.x0();
-        chatActivityEnterView.p0();
-        ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.I1;
-        if (recordCircle != null) {
-            recordCircle.d();
+    public final void a(int i9, View view) {
+        if (view instanceof mh.a0) {
+            String command = ((mh.a0) view).getCommand();
+            if (!TextUtils.isEmpty(command)) {
+                ChatActivityEnterView chatActivityEnterView = this.f28011a;
+                if (chatActivityEnterView.c()) {
+                    y4.M(chatActivityEnterView.J2, chatActivityEnterView.L2, new g1(10, this, command), chatActivityEnterView.R3);
+                    return;
+                }
+                org.telegram.ui.qn qnVar = chatActivityEnterView.K2;
+                if (qnVar == null || !qnVar.e7(view)) {
+                    y4.a0(chatActivityEnterView.M, 1, chatActivityEnterView.L2, new org.telegram.ui.df(12, this, command));
+                }
+            }
         }
     }
 }

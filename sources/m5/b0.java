@@ -1,59 +1,81 @@
 package m5;
 
 import android.os.Parcel;
+import android.os.RemoteException;
 import com.google.android.gms.tasks.TaskCompletionSource;
-
+import java.util.HashMap;
 public final class b0 implements com.google.android.gms.common.api.internal.s {
+    public final int f17369a;
+    public final f0 f17370b;
+    public final String f17371c;
+    public final String d;
 
-    public final int f17745a = 1;
-
-    public final f0 f17746b;
-
-    public final String f17747c;
-    public final f d;
-
-    public b0(f0 f0Var, String str, o5.h hVar) {
-        this.f17746b = f0Var;
-        this.f17747c = str;
-        this.d = hVar;
+    public b0(f0 f0Var, String str, String str2, int i9) {
+        this.f17369a = i9;
+        this.f17370b = f0Var;
+        this.f17371c = str;
+        this.d = str2;
     }
 
     @Override
     public final void accept(Object obj, Object obj2) {
-        r5.x xVar = (r5.x) obj;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        switch (this.f17745a) {
+        boolean z10 = false;
+        boolean z11 = true;
+        switch (this.f17369a) {
             case 0:
-                y5.l.j("Not active connection", this.f17746b.F != 1);
-                if (this.d != null) {
-                    r5.f fVar = (r5.f) xVar.u();
-                    Parcel parcelM0 = fVar.M0();
-                    parcelM0.writeString(this.f17747c);
-                    fVar.R0(parcelM0, 12);
+                f0 f0Var = this.f17370b;
+                String str = this.f17371c;
+                String str2 = this.d;
+                q5.x xVar = (q5.x) obj;
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
+                if (f0Var.F != 2) {
+                    z11 = false;
                 }
-                taskCompletionSource.setResult(null);
-                break;
+                x5.l.j("Not connected to device", z11);
+                q5.f fVar = (q5.f) xVar.u();
+                Parcel M0 = fVar.M0();
+                M0.writeString(str);
+                M0.writeString(str2);
+                int i9 = com.google.android.gms.internal.cast.u.f3239a;
+                M0.writeInt(0);
+                fVar.R0(M0, 14);
+                synchronized (f0Var.f17400r) {
+                    try {
+                        if (f0Var.f17397o != null) {
+                            f0Var.i(2477);
+                        }
+                        f0Var.f17397o = taskCompletionSource;
+                    } catch (Throwable th) {
+                        throw th;
+                    }
+                }
+                return;
             default:
-                y5.l.j("Not active connection", this.f17746b.F != 1);
-                r5.f fVar2 = (r5.f) xVar.u();
-                Parcel parcelM1 = fVar2.M0();
-                String str = this.f17747c;
-                parcelM1.writeString(str);
-                fVar2.R0(parcelM1, 12);
-                if (this.d != null) {
-                    r5.f fVar3 = (r5.f) xVar.u();
-                    Parcel parcelM2 = fVar3.M0();
-                    parcelM2.writeString(str);
-                    fVar3.R0(parcelM2, 11);
+                f0 f0Var2 = this.f17370b;
+                String str3 = this.f17371c;
+                String str4 = this.d;
+                q5.x xVar2 = (q5.x) obj;
+                TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) obj2;
+                HashMap hashMap = f0Var2.B;
+                long incrementAndGet = f0Var2.f17399q.incrementAndGet();
+                if (f0Var2.F == 2) {
+                    z10 = true;
                 }
-                taskCompletionSource.setResult(null);
-                break;
+                x5.l.j("Not connected to device", z10);
+                try {
+                    hashMap.put(Long.valueOf(incrementAndGet), taskCompletionSource2);
+                    q5.f fVar2 = (q5.f) xVar2.u();
+                    Parcel M02 = fVar2.M0();
+                    M02.writeString(str3);
+                    M02.writeString(str4);
+                    M02.writeLong(incrementAndGet);
+                    fVar2.R0(M02, 9);
+                    return;
+                } catch (RemoteException e10) {
+                    hashMap.remove(Long.valueOf(incrementAndGet));
+                    taskCompletionSource2.setException(e10);
+                    return;
+                }
         }
-    }
-
-    public b0(f0 f0Var, f fVar, String str) {
-        this.f17746b = f0Var;
-        this.d = fVar;
-        this.f17747c = str;
     }
 }

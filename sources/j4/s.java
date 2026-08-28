@@ -1,69 +1,77 @@
 package j4;
 
-import android.util.Pair;
-import h3.s2;
-import java.util.HashMap;
+import h3.r2;
+public final class s extends h3.a {
+    public final r2 f13549e;
+    public final int f13550f;
+    public final int h;
+    public final int f13551n;
 
-public final class s extends l1 {
-
-    public final int f12660l;
-
-    public final HashMap f12661m;
-
-    public final HashMap f12662n;
-
-    public s(a aVar) {
-        super(new w(aVar, false));
-        this.f12660l = Integer.MAX_VALUE;
-        this.f12661m = new HashMap();
-        this.f12662n = new HashMap();
-    }
-
-    @Override
-    public final z b(c0 c0Var, com.google.android.exoplayer2.upstream.r rVar, long j10) {
-        int i10 = this.f12660l;
-        a aVar = this.f12614k;
-        if (i10 == Integer.MAX_VALUE) {
-            return aVar.b(c0Var, rVar, j10);
-        }
-        Object obj = c0Var.f12503a;
-        int i11 = h3.a.d;
-        c0 c0VarB = c0Var.b(((Pair) obj).second);
-        this.f12661m.put(c0VarB, c0Var);
-        z zVarB = aVar.b(c0VarB, rVar, j10);
-        this.f12662n.put(zVarB, c0VarB);
-        return zVarB;
-    }
-
-    @Override
-    public final s2 g() {
-        w wVar = (w) this.f12614k;
-        int i10 = this.f12660l;
-        return i10 != Integer.MAX_VALUE ? new r(wVar.f12698o, i10) : new q(wVar.f12698o, 0);
-    }
-
-    @Override
-    public final boolean i() {
-        return false;
-    }
-
-    @Override
-    public final void n(z zVar) {
-        this.f12614k.n(zVar);
-        c0 c0Var = (c0) this.f12662n.remove(zVar);
-        if (c0Var != null) {
-            this.f12661m.remove(c0Var);
+    public s(r2 r2Var, int i9) {
+        super(new f1(i9));
+        boolean z10;
+        this.f13549e = r2Var;
+        int h = r2Var.h();
+        this.f13550f = h;
+        this.h = r2Var.o();
+        this.f13551n = i9;
+        if (h > 0) {
+            if (i9 <= Integer.MAX_VALUE / h) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (!z10) {
+                throw new IllegalStateException("LoopingMediaSource contains too many periods");
+            }
         }
     }
 
     @Override
-    public final c0 x(c0 c0Var) {
-        return this.f12660l != Integer.MAX_VALUE ? (c0) this.f12661m.get(c0Var) : c0Var;
+    public final int h() {
+        return this.f13550f * this.f13551n;
     }
 
     @Override
-    public final void y(s2 s2Var) {
-        int i10 = this.f12660l;
-        m(i10 != Integer.MAX_VALUE ? new r(s2Var, i10) : new q(s2Var, 0));
+    public final int o() {
+        return this.h * this.f13551n;
+    }
+
+    @Override
+    public final int q(Object obj) {
+        if (!(obj instanceof Integer)) {
+            return -1;
+        }
+        return ((Integer) obj).intValue();
+    }
+
+    @Override
+    public final int r(int i9) {
+        return i9 / this.f13550f;
+    }
+
+    @Override
+    public final int s(int i9) {
+        return i9 / this.h;
+    }
+
+    @Override
+    public final Object t(int i9) {
+        return Integer.valueOf(i9);
+    }
+
+    @Override
+    public final int u(int i9) {
+        return i9 * this.f13550f;
+    }
+
+    @Override
+    public final int v(int i9) {
+        return i9 * this.h;
+    }
+
+    @Override
+    public final r2 x(int i9) {
+        return this.f13549e;
     }
 }

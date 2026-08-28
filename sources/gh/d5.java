@@ -2,33 +2,43 @@ package gh;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+public final class d5 extends org.telegram.ui.Components.o9 {
+    public final int C;
 
-public final class d5 extends org.telegram.ui.ActionBar.f1 {
-    public final int H;
-    public long I;
-    public b5 J;
-
-    public d5(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(0, context, c6Var, false, false);
-        this.H = i10;
-        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        c(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.E8, c6Var), org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.F8, c6Var));
-        setIconColor(-1);
-        this.f22913c.setTranslationX(AndroidUtilities.dp(2.0f));
-        this.f22913c.setScaleX(1.2f);
-        this.f22913c.setScaleY(1.2f);
-        a(2);
-        setBackground(null);
-        this.f22913c.addOnAttachStateChangeListener(new bf.b(this, 2));
+    public d5(Context context, int i9) {
+        super(context);
+        this.C = i9;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = AndroidUtilities.dp(250.0f);
+    public void onMeasure(int i9, int i10) {
+        switch (this.C) {
+            case 1:
+                int size = View.MeasureSpec.getSize(i9);
+                setMeasuredDimension(size, size);
+                return;
+            default:
+                super.onMeasure(i9, i10);
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        int i9;
+        switch (this.C) {
+            case 0:
+                super.setAlpha(f10);
+                if (f10 > 0.0f) {
+                    i9 = 0;
+                } else {
+                    i9 = 4;
+                }
+                setVisibility(i9);
+                return;
+            default:
+                super.setAlpha(f10);
+                return;
+        }
     }
 }

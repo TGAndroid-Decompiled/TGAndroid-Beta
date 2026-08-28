@@ -1,10 +1,8 @@
 package c2;
 
-import android.content.BroadcastReceiver;
-
-public abstract class j0 extends BroadcastReceiver {
-
-    public static final int f2297a = 0;
-
-    public static final int f2298b = 0;
+import android.media.MediaRouter;
+public abstract class j0 {
+    public static MediaRouter.VolumeCallback a(h0 h0Var) {
+        return new i0(h0Var);
+    }
 }

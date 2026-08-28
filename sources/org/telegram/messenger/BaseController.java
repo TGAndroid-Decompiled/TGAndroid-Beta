@@ -1,14 +1,13 @@
 package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
-
 public class BaseController {
     protected final int currentAccount;
     private AccountInstance parentAccountInstance;
 
-    public BaseController(int i10) {
-        this.parentAccountInstance = AccountInstance.getInstance(i10);
-        this.currentAccount = i10;
+    public BaseController(int i9) {
+        this.parentAccountInstance = AccountInstance.getInstance(i9);
+        this.currentAccount = i9;
     }
 
     public final AccountInstance getAccountInstance() {
@@ -19,7 +18,7 @@ public class BaseController {
         return getMessagesController().config;
     }
 
-    public final yf.r0 getColorPalette() {
+    public final xf.s0 getColorPalette() {
         return this.parentAccountInstance.getColorPalette();
     }
 

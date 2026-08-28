@@ -8,164 +8,166 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.api.Scope;
-import h7.q8;
+import g7.o8;
 import java.util.ArrayList;
-
 public final class d implements Parcelable.Creator {
+    public final int f13628a;
 
-    public final int f12726a;
-
-    public d(int i10) {
-        this.f12726a = i10;
+    public d(int i9) {
+        this.f13628a = i9;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f12726a) {
+        switch (this.f13628a) {
             case 0:
-                int iZ = q8.z(parcel);
-                String strH = null;
-                String strH2 = null;
-                String strH3 = null;
-                String strH4 = null;
+                int z10 = o8.z(parcel);
+                String str = null;
+                String str2 = null;
+                String str3 = null;
+                String str4 = null;
                 Uri uri = null;
-                String strH5 = null;
-                String strH6 = null;
-                ArrayList arrayListL = null;
-                String strH7 = null;
-                String strH8 = null;
-                long jW = 0;
-                int iU = 0;
-                while (parcel.dataPosition() < iZ) {
-                    int i10 = parcel.readInt();
-                    switch ((char) i10) {
+                String str5 = null;
+                String str6 = null;
+                ArrayList arrayList = null;
+                String str7 = null;
+                String str8 = null;
+                long j10 = 0;
+                int i9 = 0;
+                while (parcel.dataPosition() < z10) {
+                    int readInt = parcel.readInt();
+                    switch ((char) readInt) {
                         case 1:
-                            iU = q8.u(parcel, i10);
+                            i9 = o8.u(parcel, readInt);
                             break;
                         case 2:
-                            strH = q8.h(parcel, i10);
+                            str = o8.h(parcel, readInt);
                             break;
                         case 3:
-                            strH2 = q8.h(parcel, i10);
+                            str2 = o8.h(parcel, readInt);
                             break;
                         case 4:
-                            strH3 = q8.h(parcel, i10);
+                            str3 = o8.h(parcel, readInt);
                             break;
                         case 5:
-                            strH4 = q8.h(parcel, i10);
+                            str4 = o8.h(parcel, readInt);
                             break;
                         case 6:
-                            uri = (Uri) q8.g(parcel, i10, Uri.CREATOR);
+                            uri = (Uri) o8.g(parcel, readInt, Uri.CREATOR);
                             break;
                         case 7:
-                            strH5 = q8.h(parcel, i10);
+                            str5 = o8.h(parcel, readInt);
                             break;
                         case '\b':
-                            jW = q8.w(parcel, i10);
+                            j10 = o8.w(parcel, readInt);
                             break;
                         case '\t':
-                            strH6 = q8.h(parcel, i10);
+                            str6 = o8.h(parcel, readInt);
                             break;
                         case '\n':
-                            arrayListL = q8.l(parcel, i10, Scope.CREATOR);
+                            arrayList = o8.l(parcel, readInt, Scope.CREATOR);
                             break;
                         case 11:
-                            strH7 = q8.h(parcel, i10);
+                            str7 = o8.h(parcel, readInt);
                             break;
                         case '\f':
-                            strH8 = q8.h(parcel, i10);
+                            str8 = o8.h(parcel, readInt);
                             break;
                         default:
-                            q8.y(parcel, i10);
+                            o8.y(parcel, readInt);
                             break;
                     }
                 }
-                q8.m(parcel, iZ);
-                return new GoogleSignInAccount(iU, strH, strH2, strH3, strH4, uri, strH5, jW, strH6, arrayListL, strH7, strH8);
+                o8.m(parcel, z10);
+                return new GoogleSignInAccount(i9, str, str2, str3, str4, uri, str5, j10, str6, arrayList, str7, str8);
             case 1:
-                int iZ2 = q8.z(parcel);
-                ArrayList arrayListL2 = null;
-                ArrayList arrayListL3 = null;
+                int z11 = o8.z(parcel);
+                ArrayList arrayList2 = null;
+                ArrayList arrayList3 = null;
                 Account account = null;
-                String strH9 = null;
-                String strH10 = null;
-                String strH11 = null;
-                int iU2 = 0;
-                boolean zN = false;
-                boolean zN2 = false;
-                boolean zN3 = false;
-                while (parcel.dataPosition() < iZ2) {
-                    int i11 = parcel.readInt();
-                    switch ((char) i11) {
+                String str9 = null;
+                String str10 = null;
+                String str11 = null;
+                int i10 = 0;
+                boolean z12 = false;
+                boolean z13 = false;
+                boolean z14 = false;
+                while (parcel.dataPosition() < z11) {
+                    int readInt2 = parcel.readInt();
+                    switch ((char) readInt2) {
                         case 1:
-                            iU2 = q8.u(parcel, i11);
+                            i10 = o8.u(parcel, readInt2);
                             break;
                         case 2:
-                            arrayListL3 = q8.l(parcel, i11, Scope.CREATOR);
+                            arrayList3 = o8.l(parcel, readInt2, Scope.CREATOR);
                             break;
                         case 3:
-                            account = (Account) q8.g(parcel, i11, Account.CREATOR);
+                            account = (Account) o8.g(parcel, readInt2, Account.CREATOR);
                             break;
                         case 4:
-                            zN = q8.n(parcel, i11);
+                            z12 = o8.n(parcel, readInt2);
                             break;
                         case 5:
-                            zN2 = q8.n(parcel, i11);
+                            z13 = o8.n(parcel, readInt2);
                             break;
                         case 6:
-                            zN3 = q8.n(parcel, i11);
+                            z14 = o8.n(parcel, readInt2);
                             break;
                         case 7:
-                            strH9 = q8.h(parcel, i11);
+                            str9 = o8.h(parcel, readInt2);
                             break;
                         case '\b':
-                            strH10 = q8.h(parcel, i11);
+                            str10 = o8.h(parcel, readInt2);
                             break;
                         case '\t':
-                            arrayListL2 = q8.l(parcel, i11, k5.a.CREATOR);
+                            arrayList2 = o8.l(parcel, readInt2, k5.a.CREATOR);
                             break;
                         case '\n':
-                            strH11 = q8.h(parcel, i11);
+                            str11 = o8.h(parcel, readInt2);
                             break;
                         default:
-                            q8.y(parcel, i11);
+                            o8.y(parcel, readInt2);
                             break;
                     }
                 }
-                q8.m(parcel, iZ2);
-                return new GoogleSignInOptions(iU2, arrayListL3, account, zN, zN2, zN3, strH9, strH10, GoogleSignInOptions.c(arrayListL2), strH11);
+                o8.m(parcel, z11);
+                return new GoogleSignInOptions(i10, arrayList3, account, z12, z13, z14, str9, str10, GoogleSignInOptions.c(arrayList2), str11);
             default:
-                int iZ3 = q8.z(parcel);
-                String strH12 = "";
+                int z15 = o8.z(parcel);
+                String str12 = "";
                 GoogleSignInAccount googleSignInAccount = null;
-                String strH13 = "";
-                while (parcel.dataPosition() < iZ3) {
-                    int i12 = parcel.readInt();
-                    char c10 = (char) i12;
-                    if (c10 == 4) {
-                        strH12 = q8.h(parcel, i12);
-                    } else if (c10 == 7) {
-                        googleSignInAccount = (GoogleSignInAccount) q8.g(parcel, i12, GoogleSignInAccount.CREATOR);
-                    } else if (c10 != '\b') {
-                        q8.y(parcel, i12);
+                String str13 = "";
+                while (parcel.dataPosition() < z15) {
+                    int readInt3 = parcel.readInt();
+                    char c10 = (char) readInt3;
+                    if (c10 != 4) {
+                        if (c10 != 7) {
+                            if (c10 != '\b') {
+                                o8.y(parcel, readInt3);
+                            } else {
+                                str13 = o8.h(parcel, readInt3);
+                            }
+                        } else {
+                            googleSignInAccount = (GoogleSignInAccount) o8.g(parcel, readInt3, GoogleSignInAccount.CREATOR);
+                        }
                     } else {
-                        strH13 = q8.h(parcel, i12);
+                        str12 = o8.h(parcel, readInt3);
                     }
                 }
-                q8.m(parcel, iZ3);
-                return new SignInAccount(strH12, googleSignInAccount, strH13);
+                o8.m(parcel, z15);
+                return new SignInAccount(str12, googleSignInAccount, str13);
         }
     }
 
     @Override
-    public final Object[] newArray(int i10) {
-        switch (this.f12726a) {
+    public final Object[] newArray(int i9) {
+        switch (this.f13628a) {
             case 0:
-                return new GoogleSignInAccount[i10];
+                return new GoogleSignInAccount[i9];
             case 1:
-                return new GoogleSignInOptions[i10];
+                return new GoogleSignInOptions[i9];
             default:
-                return new SignInAccount[i10];
+                return new SignInAccount[i9];
         }
     }
 }

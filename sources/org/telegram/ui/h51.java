@@ -1,38 +1,36 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-
-public final class h51 extends AnimatorListenerAdapter {
-
+import android.animation.ValueAnimator;
+public final class h51 implements ValueAnimator.AnimatorUpdateListener {
     public final int f38686a;
+    public final k51 f38687b;
 
-    public final j51 f38687b;
-
-    public h51(j51 j51Var, int i10) {
-        this.f38686a = i10;
-        this.f38687b = j51Var;
+    public h51(k51 k51Var, int i9) {
+        this.f38686a = i9;
+        this.f38687b = k51Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.f38686a) {
             case 0:
-                super.onAnimationEnd(animator);
-                this.f38687b.E = null;
-                break;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k51 k51Var = this.f38687b;
+                k51Var.J = floatValue;
+                k51Var.R.f36669d0.invalidate();
+                return;
             case 1:
-                super.onAnimationEnd(animator);
-                this.f38687b.E = null;
-                break;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k51 k51Var2 = this.f38687b;
+                k51Var2.J = floatValue2;
+                k51Var2.R.f36669d0.invalidate();
+                return;
             default:
-                super.onAnimationEnd(animator);
-                j51 j51Var = this.f38687b;
-                j51Var.J = 0.0f;
-                j51Var.E = null;
-                j51Var.I = false;
-                j51Var.d(true, false);
-                break;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k51 k51Var3 = this.f38687b;
+                k51Var3.J = floatValue3;
+                k51Var3.R.f36669d0.invalidate();
+                return;
         }
     }
 }

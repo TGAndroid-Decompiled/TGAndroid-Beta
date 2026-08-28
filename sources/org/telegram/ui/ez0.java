@@ -1,38 +1,36 @@
 package org.telegram.ui;
-
 public final class ez0 implements Runnable {
+    public final int f38056a;
+    public final fz0 f38057b;
 
-    public final int f37883a;
-
-    public final fz0 f37884b;
-
-    public ez0(fz0 fz0Var, int i10) {
-        this.f37883a = i10;
-        this.f37884b = fz0Var;
+    public ez0(fz0 fz0Var, int i9) {
+        this.f38056a = i9;
+        this.f38057b = fz0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37883a) {
+        switch (this.f38056a) {
             case 0:
-                ProfileActivity profileActivity = this.f37884b.f38246z0;
-                sy0 sy0Var = profileActivity.f36085x5;
+                ProfileActivity profileActivity = this.f38057b.f38386z0;
+                sy0 sy0Var = profileActivity.f36082x5;
                 if (sy0Var != null) {
                     sy0Var.dismiss();
-                    profileActivity.f36085x5 = null;
+                    profileActivity.f36082x5 = null;
+                    return;
                 }
-                break;
+                return;
             default:
                 try {
-                    org.telegram.ui.Components.zk0 currentListView = this.f37884b.f38240t0.K.getCurrentListView();
+                    org.telegram.ui.Components.wk0 currentListView = this.f38057b.f38380t0.K.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
-                        break;
+                        return;
                     }
+                    return;
                 } catch (Throwable unused) {
                     return;
                 }
-                break;
         }
     }
 }

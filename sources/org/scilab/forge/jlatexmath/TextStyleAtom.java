@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class TextStyleAtom extends Atom {
     private Atom at;
     private String style;
@@ -13,8 +12,8 @@ public class TextStyleAtom extends Atom {
     public Box createBox(TeXEnvironment teXEnvironment) {
         String textStyle = teXEnvironment.getTextStyle();
         teXEnvironment.setTextStyle(this.style);
-        Box boxCreateBox = this.at.createBox(teXEnvironment);
+        Box createBox = this.at.createBox(teXEnvironment);
         teXEnvironment.setTextStyle(textStyle);
-        return boxCreateBox;
+        return createBox;
     }
 }

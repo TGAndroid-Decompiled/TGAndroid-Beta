@@ -5,100 +5,134 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-
 public final class me implements Runnable {
+    public final int f40400a;
+    public final qn f40401b;
+    public final MessageObject f40402c;
 
-    public final int f40451a;
-
-    public final rn f40452b;
-
-    public final MessageObject f40453c;
-
-    public me(rn rnVar, MessageObject messageObject, int i10) {
-        this.f40451a = i10;
-        this.f40452b = rnVar;
-        this.f40453c = messageObject;
+    public me(qn qnVar, MessageObject messageObject, int i9) {
+        this.f40400a = i9;
+        this.f40401b = qnVar;
+        this.f40402c = messageObject;
     }
 
     @Override
     public final void run() {
         TLRPC.WebPage webPage;
-        switch (this.f40451a) {
+        boolean z10;
+        int i9;
+        int i10;
+        int i11;
+        int i12;
+        switch (this.f40400a) {
             case 0:
-                MessageObject messageObject = this.f40453c;
+                MessageObject messageObject = this.f40402c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.C1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.C1.P().l(messageObject) == null) {
-                        this.f40452b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f40401b.createArticleViewer(false).N(messageObject, null, null, null);
+                        return;
                     }
-                    break;
+                    return;
                 }
-                break;
+                return;
             case 1:
-                rn rnVar = this.f40452b;
-                rnVar.getClass();
-                MessageObject messageObject2 = this.f40453c;
+                qn qnVar = this.f40401b;
+                qnVar.getClass();
+                MessageObject messageObject2 = this.f40402c;
                 TLRPC.Message message = messageObject2.messageOwner;
-                int i10 = message.ttl;
-                boolean z10 = i10 != Integer.MAX_VALUE;
-                int i11 = i10 == Integer.MAX_VALUE ? 0 : i10;
-                message.destroyTime = rnVar.getConnectionsManager().getCurrentTime() + i11;
-                messageObject2.messageOwner.destroyTimeMillis = rnVar.getConnectionsManager().getCurrentTimeMillis() + (((long) i11) * 1000);
-                if (rnVar.h == null) {
-                    rnVar.getMessagesController().markMessageAsRead2(rnVar.P5, messageObject2.getId(), null, i11, 0L, z10);
+                int i13 = message.ttl;
+                if (i13 != Integer.MAX_VALUE) {
+                    z10 = true;
                 } else {
-                    rnVar.getMessagesController().markMessageAsRead(rnVar.P5, messageObject2.messageOwner.random_id, i11);
+                    z10 = false;
                 }
-                break;
+                if (i13 == Integer.MAX_VALUE) {
+                    i9 = 0;
+                } else {
+                    i9 = i13;
+                }
+                message.destroyTime = qnVar.getConnectionsManager().getCurrentTime() + i9;
+                messageObject2.messageOwner.destroyTimeMillis = qnVar.getConnectionsManager().getCurrentTimeMillis() + (i9 * 1000);
+                if (qnVar.h != null) {
+                    qnVar.getMessagesController().markMessageAsRead(qnVar.P5, messageObject2.messageOwner.random_id, i9);
+                    return;
+                } else {
+                    qnVar.getMessagesController().markMessageAsRead2(qnVar.P5, messageObject2.getId(), null, i9, 0L, z10);
+                    return;
+                }
             case 2:
-                int id2 = this.f40453c.getId();
-                rn rnVar2 = this.f40452b;
-                rnVar2.Xa(id2, 0, true, 0, true, 0, null, null, new lg(rnVar2, 13));
-                if (rnVar2.f42019d6.isEmpty()) {
-                    rnVar2.Lb(false);
+                int id2 = this.f40402c.getId();
+                qn qnVar2 = this.f40401b;
+                qnVar2.Xa(id2, 0, true, 0, true, 0, null, null, new jg(qnVar2, 13));
+                if (qnVar2.f41884d6.isEmpty()) {
+                    qnVar2.Lb(false);
+                    return;
                 }
-                break;
+                return;
             case 3:
-                rn rnVar3 = this.f40452b;
-                rnVar3.getClass();
-                MessageObject messageObject3 = this.f40453c;
-                rnVar3.Xa(messageObject3.getReplyMsgId(), messageObject3.messageOwner.f22401id, true, messageObject3.getDialogId() == rnVar3.H6 ? 1 : 0, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
-                break;
-            case 4:
-                rn rnVar4 = this.f40452b;
-                rnVar4.getClass();
-                MessageObject messageObject4 = this.f40453c;
-                rnVar4.Xa(messageObject4.getReplyMsgId(), messageObject4.messageOwner.f22401id, true, messageObject4.getDialogId() == rnVar4.H6 ? 1 : 0, false, 0, null, null, null);
-                break;
-            case 5:
-                rn rnVar5 = this.f40452b;
-                rnVar5.getClass();
-                MessageObject messageObject5 = this.f40453c;
-                rnVar5.j(messageObject5.getReplyMsgId(), messageObject5.messageOwner.f22401id, true, messageObject5.getDialogId() == rnVar5.H6 ? 1 : 0, false, 0);
-                break;
-            case 6:
-                rn rnVar6 = this.f40452b;
-                rnVar6.getClass();
-                MessageObject messageObject6 = this.f40453c;
-                if (!messageObject6.isVideo()) {
-                    MediaController.getInstance().playMessage(messageObject6);
+                qn qnVar3 = this.f40401b;
+                qnVar3.getClass();
+                MessageObject messageObject3 = this.f40402c;
+                int replyMsgId = messageObject3.getReplyMsgId();
+                int i14 = messageObject3.messageOwner.f22401id;
+                if (messageObject3.getDialogId() == qnVar3.H6) {
+                    i10 = 1;
                 } else {
-                    rnVar6.ha(null, messageObject6);
+                    i10 = 0;
                 }
-                break;
+                qnVar3.Xa(replyMsgId, i14, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
+                return;
+            case 4:
+                qn qnVar4 = this.f40401b;
+                qnVar4.getClass();
+                MessageObject messageObject4 = this.f40402c;
+                int replyMsgId2 = messageObject4.getReplyMsgId();
+                int i15 = messageObject4.messageOwner.f22401id;
+                if (messageObject4.getDialogId() == qnVar4.H6) {
+                    i11 = 1;
+                } else {
+                    i11 = 0;
+                }
+                qnVar4.Xa(replyMsgId2, i15, true, i11, false, 0, null, null, null);
+                return;
+            case 5:
+                qn qnVar5 = this.f40401b;
+                qnVar5.getClass();
+                MessageObject messageObject5 = this.f40402c;
+                int replyMsgId3 = messageObject5.getReplyMsgId();
+                int i16 = messageObject5.messageOwner.f22401id;
+                if (messageObject5.getDialogId() == qnVar5.H6) {
+                    i12 = 1;
+                } else {
+                    i12 = 0;
+                }
+                qnVar5.j(replyMsgId3, i16, true, i12, false, 0);
+                return;
+            case 6:
+                qn qnVar6 = this.f40401b;
+                qnVar6.getClass();
+                MessageObject messageObject6 = this.f40402c;
+                if (messageObject6.isVideo()) {
+                    qnVar6.ha(null, messageObject6);
+                    return;
+                } else {
+                    MediaController.getInstance().playMessage(messageObject6);
+                    return;
+                }
             case 7:
-                rn rnVar7 = this.f40452b;
-                rnVar7.getMessagesController().pinMessage(rnVar7.f42026e, rnVar7.f42039f, this.f40453c.getId(), true, false, false);
-                rnVar7.f42255w3 = null;
-                break;
+                qn qnVar7 = this.f40401b;
+                qnVar7.getMessagesController().pinMessage(qnVar7.f41890e, qnVar7.f41903f, this.f40402c.getId(), true, false, false);
+                qnVar7.f42117w3 = null;
+                return;
             default:
-                rn rnVar8 = this.f40452b;
-                org.telegram.ui.Components.mc.a0(rnVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f40453c;
-                rnVar8.Fa(messageObject7);
-                rnVar8.Ha(messageObject7);
-                break;
+                qn qnVar8 = this.f40401b;
+                org.telegram.ui.Components.oc.a0(qnVar8).c(LocaleController.getString(R.string.AdHidden)).j();
+                MessageObject messageObject7 = this.f40402c;
+                qnVar8.Fa(messageObject7);
+                qnVar8.Ha(messageObject7);
+                return;
         }
     }
 }

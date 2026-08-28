@@ -2,25 +2,21 @@ package e4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
+import d5.f0;
 import java.util.Arrays;
-
 public final class f extends j {
-    public static final Parcelable.Creator<f> CREATOR = new c8.o(19);
-
-    public final String f5201b;
-
-    public final String f5202c;
+    public static final Parcelable.Creator<f> CREATOR = new c.c(11);
+    public final String f4842b;
+    public final String f4843c;
     public final String d;
-
-    public final byte[] f5203e;
+    public final byte[] f4844e;
 
     public f(String str, byte[] bArr, String str2, String str3) {
         super("GEOB");
-        this.f5201b = str;
-        this.f5202c = str2;
+        this.f4842b = str;
+        this.f4843c = str2;
         this.d = str3;
-        this.f5203e = bArr;
+        this.f4844e = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +25,7 @@ public final class f extends j {
         }
         if (obj != null && f.class == obj.getClass()) {
             f fVar = (f) obj;
-            if (g0.a(this.f5201b, fVar.f5201b) && g0.a(this.f5202c, fVar.f5202c) && g0.a(this.d, fVar.d) && Arrays.equals(this.f5203e, fVar.f5203e)) {
+            if (f0.a(this.f4842b, fVar.f4842b) && f0.a(this.f4843c, fVar.f4843c) && f0.a(this.d, fVar.d) && Arrays.equals(this.f4844e, fVar.f4844e)) {
                 return true;
             }
         }
@@ -37,34 +33,50 @@ public final class f extends j {
     }
 
     public final int hashCode() {
-        String str = this.f5201b;
-        int iHashCode = (527 + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f5202c;
-        int iHashCode2 = (iHashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
+        int i9;
+        int i10;
+        int i11 = 0;
+        String str = this.f4842b;
+        if (str != null) {
+            i9 = str.hashCode();
+        } else {
+            i9 = 0;
+        }
+        int i12 = (527 + i9) * 31;
+        String str2 = this.f4843c;
+        if (str2 != null) {
+            i10 = str2.hashCode();
+        } else {
+            i10 = 0;
+        }
+        int i13 = (i12 + i10) * 31;
         String str3 = this.d;
-        return Arrays.hashCode(this.f5203e) + ((iHashCode2 + (str3 != null ? str3.hashCode() : 0)) * 31);
+        if (str3 != null) {
+            i11 = str3.hashCode();
+        }
+        return Arrays.hashCode(this.f4844e) + ((i13 + i11) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f5209a + ": mimeType=" + this.f5201b + ", filename=" + this.f5202c + ", description=" + this.d;
+        return this.f4850a + ": mimeType=" + this.f4842b + ", filename=" + this.f4843c + ", description=" + this.d;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f5201b);
-        parcel.writeString(this.f5202c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeString(this.f4842b);
+        parcel.writeString(this.f4843c);
         parcel.writeString(this.d);
-        parcel.writeByteArray(this.f5203e);
+        parcel.writeByteArray(this.f4844e);
     }
 
     public f(Parcel parcel) {
         super("GEOB");
-        String string = parcel.readString();
-        int i10 = g0.f4795a;
-        this.f5201b = string;
-        this.f5202c = parcel.readString();
+        String readString = parcel.readString();
+        int i9 = f0.f4349a;
+        this.f4842b = readString;
+        this.f4843c = parcel.readString();
         this.d = parcel.readString();
-        this.f5203e = parcel.createByteArray();
+        this.f4844e = parcel.createByteArray();
     }
 }

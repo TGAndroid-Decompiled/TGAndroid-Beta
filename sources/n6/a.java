@@ -1,5 +1,3 @@
 package n6;
-
-public interface a {
-    int a();
+public final class a extends b {
 }

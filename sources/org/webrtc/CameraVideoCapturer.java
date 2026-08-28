@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import android.media.MediaRecorder;
-
 public interface CameraVideoCapturer extends VideoCapturer {
 
     public interface CameraEventsHandler {
@@ -32,8 +31,11 @@ public interface CameraVideoCapturer extends VideoCapturer {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
-                    Logging.d("CameraStatistics", "Camera fps: " + Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f) + ".");
-                    if (CameraStatistics.this.frameCount == 0) {
+                    int round = Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f);
+                    Logging.d("CameraStatistics", "Camera fps: " + round + ".");
+                    if (CameraStatistics.this.frameCount != 0) {
+                        CameraStatistics.this.freezePeriodCount = 0;
+                    } else {
                         CameraStatistics.access$104(CameraStatistics.this);
                         if (CameraStatistics.this.freezePeriodCount * 2000 >= 4000 && CameraStatistics.this.eventsHandler != null) {
                             Logging.e("CameraStatistics", "Camera freezed.");
@@ -45,34 +47,34 @@ public interface CameraVideoCapturer extends VideoCapturer {
                                 return;
                             }
                         }
-                    } else {
-                        CameraStatistics.this.freezePeriodCount = 0;
                     }
                     CameraStatistics.this.frameCount = 0;
                     CameraStatistics.this.surfaceTextureHelper.getHandler().postDelayed(this, 2000L);
                 }
             };
             this.cameraObserver = runnable;
-            if (surfaceTextureHelper == null) {
-                throw new IllegalArgumentException("SurfaceTextureHelper is null");
+            if (surfaceTextureHelper != null) {
+                this.surfaceTextureHelper = surfaceTextureHelper;
+                this.eventsHandler = cameraEventsHandler;
+                this.frameCount = 0;
+                this.freezePeriodCount = 0;
+                surfaceTextureHelper.getHandler().postDelayed(runnable, 2000L);
+                return;
             }
-            this.surfaceTextureHelper = surfaceTextureHelper;
-            this.eventsHandler = cameraEventsHandler;
-            this.frameCount = 0;
-            this.freezePeriodCount = 0;
-            surfaceTextureHelper.getHandler().postDelayed(runnable, 2000L);
+            throw new IllegalArgumentException("SurfaceTextureHelper is null");
         }
 
         public static int access$104(CameraStatistics cameraStatistics) {
-            int i10 = cameraStatistics.freezePeriodCount + 1;
-            cameraStatistics.freezePeriodCount = i10;
-            return i10;
+            int i9 = cameraStatistics.freezePeriodCount + 1;
+            cameraStatistics.freezePeriodCount = i9;
+            return i9;
         }
 
         private void checkThread() {
-            if (Thread.currentThread() != this.surfaceTextureHelper.getHandler().getLooper().getThread()) {
-                throw new IllegalStateException("Wrong thread");
+            if (Thread.currentThread() == this.surfaceTextureHelper.getHandler().getLooper().getThread()) {
+                return;
             }
+            throw new IllegalStateException("Wrong thread");
         }
 
         public void addFrame() {

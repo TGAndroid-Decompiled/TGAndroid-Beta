@@ -1,19 +1,17 @@
 package d5;
 
-import android.telephony.TelephonyCallback;
-import android.telephony.TelephonyDisplayInfo;
-
-public final class v extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-
-    public final x f4847a;
-
-    public v(x xVar) {
-        this.f4847a = xVar;
-    }
-
-    @Override
-    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
-        x.a(this.f4847a, overrideNetworkType == 3 || overrideNetworkType == 4 || overrideNetworkType == 5 ? 10 : 5);
+import android.content.Context;
+import android.telephony.TelephonyManager;
+public abstract class v {
+    public static void a(Context context, w wVar) {
+        try {
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
+            telephonyManager.getClass();
+            u uVar = new u(wVar);
+            telephonyManager.registerTelephonyCallback(context.getMainExecutor(), uVar);
+            telephonyManager.unregisterTelephonyCallback(uVar);
+        } catch (RuntimeException unused) {
+            w.a(wVar, 5);
+        }
     }
 }

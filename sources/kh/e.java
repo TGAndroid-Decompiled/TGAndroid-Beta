@@ -1,136 +1,149 @@
 package kh;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.HashSet;
-import java.util.List;
-import java.util.regex.Pattern;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.Cells.v2;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.ap;
-import org.telegram.ui.Components.az;
-import org.telegram.ui.Components.b8;
-import org.telegram.ui.Components.bk;
-import org.telegram.ui.Components.dd0;
-import org.telegram.ui.Components.ex0;
-import org.telegram.ui.Components.fu;
-import org.telegram.ui.Components.gi;
-import org.telegram.ui.Components.hu0;
-import org.telegram.ui.Components.jn0;
-import org.telegram.ui.Components.sh0;
-import org.telegram.ui.Components.sp0;
-import org.telegram.ui.Components.tk;
-import org.telegram.ui.Components.y4;
-import org.telegram.ui.PopupNotificationActivity;
-import org.telegram.ui.do0;
-import org.telegram.ui.g9;
-import org.telegram.ui.m4;
-import org.telegram.ui.na;
-import org.telegram.ui.oj0;
-import org.telegram.ui.qb;
-import org.telegram.ui.rn;
+import android.graphics.Shader;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.mt;
+public final class e implements Runnable {
+    public final int f15127a;
+    public final m f15128b;
 
-public final class e implements View.OnTouchListener {
-
-    public final int f15197a;
-
-    public e(int i10) {
-        this.f15197a = i10;
+    public e(m mVar, int i9) {
+        this.f15127a = i9;
+        this.f15128b = mVar;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f15197a) {
+    public final void run() {
+        float f10;
+        int i9;
+        int i10;
+        int i11 = this.f15127a;
+        m mVar = this.f15128b;
+        switch (i11) {
             case 0:
-                int i10 = r.T;
-                break;
-            case 1:
-                int i11 = e3.f22876a;
-                break;
-            case 3:
-                HashSet hashSet = m4.X0;
-            case 2:
-                return true;
-            case 4:
-                int i12 = g9.f38340e;
-                break;
-            case 5:
-                int i13 = v2.f25790w;
-                break;
-            case 6:
-                Paint paint = na.D;
-                break;
-            case 7:
-                int i14 = qb.T0;
-                break;
-            case 8:
-                int i15 = rn.Dc;
-                break;
-            case 10:
-                Pattern pattern = y4.f34802a;
-            case 9:
-                return true;
-            case 11:
-                b8 b8Var = b8.P0;
-                break;
-            case 12:
-                int i16 = ChatActivityEnterView.f26070i5;
-                break;
-            case 13:
-                int i17 = gi.K2;
-                break;
-            case 14:
-                int i18 = bk.f27111c0;
-                break;
-            case 15:
-                int i19 = tk.A0;
-                break;
-            case 16:
-                int i20 = ap.f26776e0;
-                break;
-            case 17:
-                fu fuVar = fu.O;
-                break;
-            case 18:
-                int i21 = az.h;
-                break;
-            case 19:
-                int[] iArr = dd0.T;
-                break;
-            case 20:
-                int i22 = sh0.N;
-                break;
-            case 21:
-                int i23 = jn0.T0;
-                break;
-            case 22:
-                int i24 = sp0.W0;
-                break;
-            case 23:
-                int[] iArr2 = hu0.Z1;
-                break;
-            case 24:
-                int i25 = ex0.f28169q0;
-                break;
-            case 25:
-                int i26 = UndoView.f26571a0;
-                break;
-            case 26:
-                int i27 = UndoView.f26571a0;
-                break;
-            case 27:
-                int i28 = oj0.Z;
-                break;
-            case 28:
-                List list = do0.f37449c1;
-                break;
+                mVar.t();
+                return;
             default:
-                int i29 = PopupNotificationActivity.X;
-                break;
+                boolean z10 = mVar.f15636i0;
+                FrameLayout frameLayout = mVar.F;
+                j jVar = mVar.f15645r;
+                g gVar = mVar.f15632f;
+                if (mVar.f15639l0 != z10) {
+                    mVar.f15639l0 = z10;
+                    ValueAnimator valueAnimator = mVar.m0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                        mVar.m0 = null;
+                    }
+                    Utilities.Callback callback = mVar.f15634g0;
+                    if (callback != null) {
+                        callback.run(Boolean.valueOf(z10));
+                    }
+                    mVar.d(z10);
+                    if (z10) {
+                        i iVar = mVar.I;
+                        if (iVar != null) {
+                            iVar.setVisibility(0);
+                        }
+                        jVar.setVisibility(0);
+                    } else {
+                        gVar.getEditText().scrollBy(0, -gVar.getEditText().getScrollY());
+                    }
+                    float f11 = mVar.f15638k0;
+                    if (z10) {
+                        f10 = 1.0f;
+                    } else {
+                        f10 = 0.0f;
+                    }
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+                    mVar.m0 = ofFloat;
+                    ofFloat.addUpdateListener(new bg.b(mVar, 25));
+                    if (!z10) {
+                        gVar.getEditText().setAllowDrawCursor(false);
+                    }
+                    mVar.m0.addListener(new hg.b0(8, mVar, z10));
+                    if (z10) {
+                        mVar.m0.setInterpolator(org.telegram.ui.ActionBar.q1.f23713w);
+                        mVar.m0.setDuration(250L);
+                    } else {
+                        mVar.m0.setInterpolator(new u1.a());
+                        mVar.m0.setDuration(420L);
+                    }
+                    mVar.m0.start();
+                    mt editText = gVar.getEditText();
+                    if (editText != null && editText.getLayout() != null) {
+                        ObjectAnimator objectAnimator = mVar.f15628c0;
+                        if (objectAnimator != null) {
+                            objectAnimator.cancel();
+                        }
+                        int scrollY = editText.getScrollY();
+                        if (z10) {
+                            i9 = gVar.f33121a.length();
+                        } else {
+                            i9 = 0;
+                        }
+                        gVar.setSelection(i9);
+                        gVar.getEditText().setForceCursorEnd(false);
+                        int lineTop = editText.getLayout().getLineTop(editText.getLineCount());
+                        int height = (editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom();
+                        if (z10) {
+                            i10 = lineTop - height;
+                        } else {
+                            i10 = 0;
+                        }
+                        ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, i10);
+                        mVar.f15628c0 = ofInt;
+                        ofInt.setDuration(360L);
+                        mVar.f15628c0.setInterpolator(gr.h);
+                        mVar.f15628c0.start();
+                    }
+                    gVar.setSuggestionsEnabled(z10);
+                    if (!z10) {
+                        gVar.getEditText().setSpoilersRevealed(false, true);
+                    }
+                    if (z10 && SharedConfig.getDevicePerformanceClass() >= 1 && !LiteMode.isPowerSaverApplied()) {
+                        if (mVar.f15641n0 == null) {
+                            mVar.f15641n0 = Bitmap.createBitmap((int) (frameLayout.getWidth() / 12.0f), (int) (frameLayout.getHeight() / 12.0f), Bitmap.Config.ARGB_8888);
+                        }
+                        mVar.f15650u0 = true;
+                        mVar.i(mVar.f15641n0);
+                        mVar.f15650u0 = false;
+                        Bitmap bitmap = mVar.f15641n0;
+                        if (bitmap != null && !bitmap.isRecycled()) {
+                            Bitmap bitmap2 = mVar.f15641n0;
+                            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                            mVar.f15642o0 = new BitmapShader(bitmap2, tileMode, tileMode);
+                            Matrix matrix = mVar.f15643p0;
+                            if (matrix == null) {
+                                mVar.f15643p0 = new Matrix();
+                            } else {
+                                matrix.reset();
+                            }
+                            mVar.f15642o0.setLocalMatrix(mVar.f15643p0);
+                            if (mVar.f15644q0 == null) {
+                                Paint paint = new Paint(3);
+                                mVar.f15644q0 = paint;
+                                paint.setColor(-1);
+                            }
+                            mVar.f15644q0.setShader(mVar.f15642o0);
+                            return;
+                        }
+                        mVar.f15641n0 = null;
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return true;
     }
 }

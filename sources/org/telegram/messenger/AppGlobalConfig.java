@@ -3,10 +3,8 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
-
 public class AppGlobalConfig {
     public final ConfigInt aicomposeToneExamplesNum;
     public final ConfigInt aicomposeTonePromptLengthMax;
@@ -84,12 +82,12 @@ public class AppGlobalConfig {
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
                 boolean z10;
-                if (!(jSONValue instanceof TLRPC.TL_jsonBool) || (z10 = ((TLRPC.TL_jsonBool) jSONValue).value) == this.value) {
-                    return false;
+                if ((jSONValue instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue).value) != this.value) {
+                    this.value = z10;
+                    editor.putBoolean(this.name, z10);
+                    return true;
                 }
-                this.value = z10;
-                editor.putBoolean(this.name, z10);
-                return true;
+                return false;
             }
 
             @Override
@@ -122,16 +120,16 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                if (!(jSONValue instanceof TLRPC.TL_jsonNumber)) {
+                if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+                    double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+                    if (d != this.value) {
+                        this.value = d;
+                        editor.putFloat(this.name, (float) d);
+                        return true;
+                    }
                     return false;
                 }
-                double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-                if (d == this.value) {
-                    return false;
-                }
-                this.value = d;
-                editor.putFloat(this.name, (float) d);
-                return true;
+                return false;
             }
 
             @Override
@@ -164,17 +162,17 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                if (!(jSONValue instanceof TLRPC.TL_jsonNumber)) {
+                if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+                    double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+                    if (d != this.value) {
+                        int i9 = (int) d;
+                        this.value = i9;
+                        editor.putInt(this.name, i9);
+                        return true;
+                    }
                     return false;
                 }
-                double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-                if (d == this.value) {
-                    return false;
-                }
-                int i10 = (int) d;
-                this.value = i10;
-                editor.putInt(this.name, i10);
-                return true;
+                return false;
             }
 
             @Override
@@ -182,9 +180,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getInt(this.name, this.defaultValue);
             }
 
-            private Internal(String str, int i10) {
+            private Internal(String str, int i9) {
                 this.name = str;
-                this.defaultValue = i10;
+                this.defaultValue = i9;
             }
         }
 
@@ -192,8 +190,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigInt(String str, int i10) {
-            this.handler = new Internal(str, i10);
+        private ConfigInt(String str, int i9) {
+            this.handler = new Internal(str, i9);
         }
     }
 
@@ -213,17 +211,17 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                if (!(jSONValue instanceof TLRPC.TL_jsonNumber)) {
+                if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+                    double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+                    if (d != this.value) {
+                        long j10 = (long) d;
+                        this.value = j10;
+                        editor.putLong(this.name, j10);
+                        return true;
+                    }
                     return false;
                 }
-                double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
-                if (d == this.value) {
-                    return false;
-                }
-                long j10 = (long) d;
-                this.value = j10;
-                editor.putLong(this.name, j10);
-                return true;
+                return false;
             }
 
             @Override
@@ -256,17 +254,17 @@ public class AppGlobalConfig {
 
             @Override
             public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
-                if (!(jSONValue instanceof TLRPC.TL_jsonString)) {
+                if (jSONValue instanceof TLRPC.TL_jsonString) {
+                    TLRPC.TL_jsonString tL_jsonString = (TLRPC.TL_jsonString) jSONValue;
+                    if (!TextUtils.equals(tL_jsonString.value, this.value)) {
+                        String str = tL_jsonString.value;
+                        this.value = str;
+                        editor.putString(this.name, str);
+                        return true;
+                    }
                     return false;
                 }
-                TLRPC.TL_jsonString tL_jsonString = (TLRPC.TL_jsonString) jSONValue;
-                if (TextUtils.equals(tL_jsonString.value, this.value)) {
-                    return false;
-                }
-                String str = tL_jsonString.value;
-                this.value = str;
-                editor.putString(this.name, str);
-                return true;
+                return false;
             }
 
             @Override
@@ -367,8 +365,8 @@ public class AppGlobalConfig {
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
     }
 
-    public static AppGlobalConfig getInstance(int i10) {
-        return MessagesController.getInstance(i10).config;
+    public static AppGlobalConfig getInstance(int i9) {
+        return MessagesController.getInstance(i9).config;
     }
 
     private ConfigBoolean ofBoolean(String str, boolean z10) {
@@ -383,8 +381,8 @@ public class AppGlobalConfig {
         return configDouble;
     }
 
-    private ConfigInt ofInt(String str, int i10) {
-        ConfigInt configInt = new ConfigInt(str, i10);
+    private ConfigInt ofInt(String str, int i9) {
+        ConfigInt configInt = new ConfigInt(str, i9);
         this.map.put(str, configInt.handler);
         return configInt;
     }
@@ -409,24 +407,23 @@ public class AppGlobalConfig {
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
         int size = tL_jsonObject.value.size();
-        boolean zApply = false;
-        for (int i10 = 0; i10 < size; i10++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i10);
+        boolean z10 = false;
+        for (int i9 = 0; i9 < size; i9++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i9);
             ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
             if (configInternal != null) {
-                zApply |= configInternal.apply(editor, tL_jsonObjectValue.value);
+                z10 |= configInternal.apply(editor, tL_jsonObjectValue.value);
             }
         }
-        return zApply;
+        return z10;
     }
 
     public void load(SharedPreferences sharedPreferences) {
-        Iterator<ConfigInternal> it = this.map.values().iterator();
-        while (it.hasNext()) {
+        for (ConfigInternal configInternal : this.map.values()) {
             try {
-                it.next().load(sharedPreferences);
-            } catch (ClassCastException e9) {
-                FileLog.e(e9);
+                configInternal.load(sharedPreferences);
+            } catch (ClassCastException e10) {
+                FileLog.e(e10);
             }
         }
     }

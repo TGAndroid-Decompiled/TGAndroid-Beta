@@ -6,21 +6,19 @@ import android.text.TextUtils;
 import android.util.LongSparseArray;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.upstream.c;
-import com.google.android.exoplayer2.upstream.d0;
+import com.google.android.exoplayer2.upstream.g;
 import com.google.android.exoplayer2.upstream.i;
-import com.google.android.exoplayer2.upstream.k;
 import com.google.android.exoplayer2.upstream.m;
 import com.google.android.exoplayer2.upstream.q;
 import com.google.android.exoplayer2.upstream.y0;
 import com.google.android.exoplayer2.upstream.z;
 import d5.a;
-import d5.g0;
+import d5.f0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.FileStreamLoadOperation;
-
 public final class ExtendedDefaultDataSource implements m {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -46,8 +44,8 @@ public final class ExtendedDefaultDataSource implements m {
     }
 
     private void addListenersToDataSource(m mVar) {
-        for (int i10 = 0; i10 < this.transferListeners.size(); i10++) {
-            mVar.addTransferListener(this.transferListeners.get(i10));
+        for (int i9 = 0; i9 < this.transferListeners.size(); i9++) {
+            mVar.addTransferListener(this.transferListeners.get(i9));
         }
     }
 
@@ -71,9 +69,9 @@ public final class ExtendedDefaultDataSource implements m {
 
     private m getDataSchemeDataSource() {
         if (this.dataSchemeDataSource == null) {
-            k kVar = new k(false);
-            this.dataSchemeDataSource = kVar;
-            addListenersToDataSource(kVar);
+            g gVar = new g(false);
+            this.dataSchemeDataSource = gVar;
+            addListenersToDataSource(gVar);
         }
         return this.dataSchemeDataSource;
     }
@@ -89,9 +87,9 @@ public final class ExtendedDefaultDataSource implements m {
 
     private m getFileDataSource() {
         if (this.fileDataSource == null) {
-            d0 d0Var = new d0(false);
-            this.fileDataSource = d0Var;
-            addListenersToDataSource(d0Var);
+            g gVar = new g(false);
+            this.fileDataSource = gVar;
+            addListenersToDataSource(gVar);
         }
         return this.fileDataSource;
     }
@@ -113,8 +111,8 @@ public final class ExtendedDefaultDataSource implements m {
                 addListenersToDataSource(mVar);
             } catch (ClassNotFoundException unused) {
                 a.K("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-            } catch (Exception e9) {
-                throw new RuntimeException("Error instantiating RTMP extension", e9);
+            } catch (Exception e10) {
+                throw new RuntimeException("Error instantiating RTMP extension", e10);
             }
             if (this.rtmpDataSource == null) {
                 this.rtmpDataSource = this.baseDataSource;
@@ -165,7 +163,10 @@ public final class ExtendedDefaultDataSource implements m {
     @Override
     public Map<String, List<String>> getResponseHeaders() {
         m mVar = this.dataSource;
-        return mVar == null ? Collections.EMPTY_MAP : mVar.getResponseHeaders();
+        if (mVar == null) {
+            return Collections.EMPTY_MAP;
+        }
+        return mVar.getResponseHeaders();
     }
 
     @Override
@@ -179,16 +180,38 @@ public final class ExtendedDefaultDataSource implements m {
 
     @Override
     public long open(q qVar) {
-        a.i(this.dataSource == null);
-        Uri uri = qVar.f3022a;
+        boolean z10;
+        if (this.dataSource == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        a.i(z10);
+        Uri uri = qVar.f2585a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(qVar.f3022a.toString().substring(8)));
-            qVar.f3022a = uri;
+            uri = this.mtprotoUris.get(Long.parseLong(qVar.f2585a.toString().substring(8)));
+            qVar.f2585a = uri;
         }
         String scheme = uri.getScheme();
-        int i10 = g0.f4795a;
+        int i9 = f0.f4349a;
         String scheme2 = uri.getScheme();
-        if (TextUtils.isEmpty(scheme2) || "file".equals(scheme2)) {
+        if (!TextUtils.isEmpty(scheme2) && !"file".equals(scheme2)) {
+            if ("tg".equals(scheme)) {
+                this.dataSource = getStreamDataSource();
+            } else if ("asset".equals(scheme)) {
+                this.dataSource = getAssetDataSource();
+            } else if ("content".equals(scheme)) {
+                this.dataSource = getContentDataSource();
+            } else if ("rtmp".equals(scheme)) {
+                this.dataSource = getRtmpDataSource();
+            } else if ("data".equals(scheme)) {
+                this.dataSource = getDataSchemeDataSource();
+            } else if ("rawresource".equals(scheme)) {
+                this.dataSource = getRawResourceDataSource();
+            } else {
+                this.dataSource = this.baseDataSource;
+            }
+        } else {
             String path = uri.getPath();
             if (path != null && path.startsWith("/android_asset/")) {
                 this.dataSource = getAssetDataSource();
@@ -197,33 +220,19 @@ public final class ExtendedDefaultDataSource implements m {
             } else {
                 this.dataSource = getFileDataSource();
             }
-        } else if ("tg".equals(scheme)) {
-            this.dataSource = getStreamDataSource();
-        } else if ("asset".equals(scheme)) {
-            this.dataSource = getAssetDataSource();
-        } else if ("content".equals(scheme)) {
-            this.dataSource = getContentDataSource();
-        } else if ("rtmp".equals(scheme)) {
-            this.dataSource = getRtmpDataSource();
-        } else if ("data".equals(scheme)) {
-            this.dataSource = getDataSchemeDataSource();
-        } else if ("rawresource".equals(scheme)) {
-            this.dataSource = getRawResourceDataSource();
-        } else {
-            this.dataSource = this.baseDataSource;
         }
         return this.dataSource.open(qVar);
     }
 
     @Override
-    public int read(byte[] bArr, int i10, int i11) {
+    public int read(byte[] bArr, int i9, int i10) {
         m mVar = this.dataSource;
         mVar.getClass();
-        return mVar.read(bArr, i10, i11);
+        return mVar.read(bArr, i9, i10);
     }
 
-    public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new z(str, i10, i11, z10, null, 0), (LongSparseArray<Uri>) null);
+    public ExtendedDefaultDataSource(Context context, String str, int i9, int i10, boolean z10) {
+        this(context, new z(str, i9, i10, z10, null, 0), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, m mVar, LongSparseArray<Uri> longSparseArray) {

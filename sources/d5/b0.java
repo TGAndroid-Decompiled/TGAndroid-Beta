@@ -1,13 +1,28 @@
 package d5;
 
-import android.os.Handler;
-import android.os.Looper;
-
+import android.os.Message;
+import java.util.ArrayList;
 public final class b0 {
+    public Message f4334a;
 
-    public static final b0 f4778a = new b0();
+    public final void a() {
+        this.f4334a = null;
+        ArrayList arrayList = c0.f4336b;
+        synchronized (arrayList) {
+            try {
+                if (arrayList.size() < 50) {
+                    arrayList.add(this);
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
 
-    public final d0 a(Looper looper, Handler.Callback callback) {
-        return new d0(new Handler(looper, callback));
+    public final void b() {
+        Message message = this.f4334a;
+        message.getClass();
+        message.sendToTarget();
+        a();
     }
 }

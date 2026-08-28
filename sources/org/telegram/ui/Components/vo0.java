@@ -5,17 +5,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
-
-public final class vo0 extends tt {
+public final class vo0 extends ut {
     public boolean R;
     public int S;
     public int T;
     public ValueAnimator U;
-    public final sp0 V;
+    public final rp0 V;
 
-    public vo0(sp0 sp0Var, Context context, cp0 cp0Var, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, cp0Var, null, 1, true, c6Var);
-        this.V = sp0Var;
+    public vo0(rp0 rp0Var, Context context, cp0 cp0Var, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, cp0Var, null, 1, true, b6Var);
+        this.V = rp0Var;
     }
 
     @Override
@@ -26,18 +25,18 @@ public final class vo0 extends tt {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.R) {
-            lt editText = this.V.d.getEditText();
+            mt editText = this.V.d.getEditText();
             editText.setOffsetY(editText.getOffsetY() - ((this.T - editText.getScrollY()) + (this.S - editText.getMeasuredHeight())));
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
-            valueAnimatorOfFloat.addUpdateListener(new v60(editText, 18));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new q60(editText, 18));
             ValueAnimator valueAnimator = this.U;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.U = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.setDuration(200L);
-            valueAnimatorOfFloat.setInterpolator(er.f28122f);
-            valueAnimatorOfFloat.start();
+            this.U = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(gr.f28844f);
+            ofFloat.start();
             this.R = false;
         }
         super.dispatchDraw(canvas);
@@ -46,43 +45,43 @@ public final class vo0 extends tt {
     @Override
     public final void f() {
         super.f();
-        yy emojiView = getEmojiView();
-        sp0 sp0Var = this.V;
+        wy emojiView = getEmojiView();
+        rp0 rp0Var = this.V;
         if (emojiView != null) {
-            emojiView.f35035s0 = false;
-            emojiView.f35040t2 = false;
+            emojiView.f34442s0 = false;
+            emojiView.f34447t2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(sp0Var.C0.d);
+            emojiView.setBottomInset(rp0Var.C0.d);
         }
-        FrameLayout frameLayout = sp0Var.Y;
+        FrameLayout frameLayout = rp0Var.Y;
         if (frameLayout != null) {
             frameLayout.bringToFront();
         }
-        uo0 uo0Var = sp0Var.f32522c;
+        uo0 uo0Var = rp0Var.f32244c;
         if (uo0Var != null) {
             uo0Var.bringToFront();
         }
-        uo0 uo0Var2 = sp0Var.f32527f;
+        uo0 uo0Var2 = rp0Var.f32249f;
         if (uo0Var2 != null) {
             uo0Var2.bringToFront();
         }
     }
 
     @Override
-    public final void q(int i10, int i11) {
-        sp0 sp0Var = this.V;
-        uo0 uo0Var = sp0Var.f32522c;
-        if (TextUtils.isEmpty(getEditText().getText())) {
-            getEditText().animate().cancel();
-            getEditText().setOffsetY(0.0f);
-            this.R = false;
-        } else {
+    public final void q(int i9, int i10) {
+        rp0 rp0Var = this.V;
+        uo0 uo0Var = rp0Var.f32244c;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
             this.R = true;
             this.S = getEditText().getMeasuredHeight();
             this.T = getEditText().getScrollY();
             invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.R = false;
         }
-        sp0Var.f32541r0 = uo0Var.getTop() + sp0Var.f32539q0;
+        rp0Var.f32263r0 = uo0Var.getTop() + rp0Var.f32261q0;
         uo0Var.invalidate();
     }
 }

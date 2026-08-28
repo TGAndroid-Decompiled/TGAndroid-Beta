@@ -1,51 +1,15 @@
 package b5;
 
-import h3.t0;
 import j4.i1;
-import java.util.List;
+public final class s {
+    public final i1 f1496a;
+    public final int[] f1497b;
 
-public interface s {
-    int a(t0 t0Var);
-
-    i1 b();
-
-    boolean c(long j10, l4.e eVar, List list);
-
-    int d();
-
-    boolean e(int i10, long j10);
-
-    boolean f(int i10, long j10);
-
-    void g(boolean z10);
-
-    t0 h(int i10);
-
-    void i();
-
-    int j(int i10);
-
-    int k(long j10, List list);
-
-    void l();
-
-    int length();
-
-    void m(long j10, long j11, long j12, List list, l4.l[] lVarArr);
-
-    int n();
-
-    t0 o();
-
-    int p();
-
-    void q(float f10);
-
-    Object r();
-
-    void s();
-
-    void t();
-
-    int u(int i10);
+    public s(int i9, i1 i1Var, int[] iArr) {
+        if (iArr.length == 0) {
+            d5.a.p("ETSDefinition", "Empty tracks are not allowed", new IllegalArgumentException());
+        }
+        this.f1496a = i1Var;
+        this.f1497b = iArr;
+    }
 }

@@ -4,41 +4,32 @@ import android.graphics.Rect;
 import android.text.Layout;
 import android.view.View;
 import org.telegram.messenger.Emoji;
-
 public final class o5 implements q5 {
-
-    public final View f31156a;
-
-    public final boolean f31157b;
-
-    public Layout f31158c;
+    public final View f31287a;
+    public final boolean f31288b;
+    public Layout f31289c;
     public t5 d;
-
-    public Rect f31159e;
-
-    public k5 f31160f;
+    public Rect f31290e;
+    public k5 f31291f;
     public Emoji.EmojiDrawable h;
-
-    public boolean f31161n;
-
-    public float f31162r;
-
-    public float f31163s;
+    public boolean f31292n;
+    public float f31293r;
+    public float f31294s;
     public boolean v;
 
     public o5(View view, boolean z10) {
-        this.f31156a = view;
-        this.f31157b = z10;
+        this.f31287a = view;
+        this.f31288b = z10;
     }
 
     @Override
     public final void invalidate() {
-        View view = this.f31156a;
+        View view = this.f31287a;
         if (view != null) {
-            if (!this.f31157b || view.getParent() == null) {
-                view.invalidate();
-            } else {
+            if (this.f31288b && view.getParent() != null) {
                 ((View) view.getParent()).invalidate();
+            } else {
+                view.invalidate();
             }
         }
     }

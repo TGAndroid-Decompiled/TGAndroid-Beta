@@ -1,31 +1,22 @@
 package g7;
-
-import android.content.Context;
-import android.util.Log;
-
 public abstract class n {
-    public static String a(Context context, int i10) {
-        if (context == null) {
-            return "";
+    public static float a(float f10, float f11, float f12) {
+        if (f10 < f11) {
+            return f11;
         }
-        if (i10 == 1) {
-            return context.getString(2131701344);
+        if (f10 > f12) {
+            return f12;
         }
-        if (i10 != 7) {
-            switch (i10) {
-                case 9:
-                    break;
-                case 10:
-                    return context.getString(2131701348);
-                case 11:
-                    return context.getString(2131701347);
-                case 12:
-                    return context.getString(2131701345);
-                default:
-                    Log.e("BiometricUtils", "Unknown error code: " + i10);
-                    return context.getString(2131701340);
-            }
+        return f10;
+    }
+
+    public static int b(int i9, int i10, int i11) {
+        if (i9 < i10) {
+            return i10;
         }
-        return context.getString(2131701346);
+        if (i9 > i11) {
+            return i11;
+        }
+        return i9;
     }
 }

@@ -1,37 +1,26 @@
 package zb;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.ByteChannel;
+import java.util.ArrayList;
+public final class b {
+    public int f50409a;
+    public int f50410b;
+    public int f50411c;
+    public int d;
+    public int f50412e;
+    public ArrayList f50413f;
+    public ArrayList f50414g;
+    public boolean h;
+    public int f50415i;
+    public int f50416j;
+    public int f50417k;
+    public ArrayList f50418l;
+    public int f50419m;
+    public int f50420n;
+    public int f50421o;
+    public int f50422p;
+    public int f50423q;
 
-public final class b implements ByteChannel {
-
-    public ByteBuffer f50319a;
-
-    @Override
-    public final boolean isOpen() {
-        return true;
-    }
-
-    @Override
-    public final int read(ByteBuffer byteBuffer) {
-        int iRemaining = byteBuffer.remaining();
-        ByteBuffer byteBuffer2 = this.f50319a;
-        if (byteBuffer2.remaining() <= 0) {
-            return -1;
-        }
-        byteBuffer.put((ByteBuffer) byteBuffer2.duplicate().limit(byteBuffer.remaining() + byteBuffer2.position()));
-        byteBuffer2.position(byteBuffer2.position() + iRemaining);
-        return iRemaining;
-    }
-
-    @Override
-    public final int write(ByteBuffer byteBuffer) {
-        int iRemaining = byteBuffer.remaining();
-        this.f50319a.put(byteBuffer);
-        return iRemaining;
-    }
-
-    @Override
-    public final void close() {
+    public final String toString() {
+        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f50409a + ", avcProfileIndication=" + this.f50410b + ", profileCompatibility=" + this.f50411c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.f50412e + ", hasExts=" + this.h + ", chromaFormat=" + this.f50415i + ", bitDepthLumaMinus8=" + this.f50416j + ", bitDepthChromaMinus8=" + this.f50417k + ", lengthSizeMinusOnePaddingBits=" + this.f50419m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f50420n + ", chromaFormatPaddingBits=" + this.f50421o + ", bitDepthLumaMinus8PaddingBits=" + this.f50422p + ", bitDepthChromaMinus8PaddingBits=" + this.f50423q + '}';
     }
 }

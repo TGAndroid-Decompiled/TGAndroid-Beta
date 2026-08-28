@@ -1,162 +1,70 @@
 package og;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.RecordingCanvas;
+import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
-import android.support.v4.media.session.z;
-import java.util.Iterator;
-import java.util.List;
-import jg.g;
-import jg.h;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import pg.i;
+public abstract class d {
+    public static final Matrix f19570a = new Matrix();
+    public static final RectF f19571b = new RectF();
+    public static final RectF f19572c = new RectF();
 
-public final class d implements a {
-
-    public final a f19450a;
-
-    public h f19452c;
-    public jg.e d;
-
-    public int f19453e;
-
-    public a f19454f;
-    public boolean h;
-
-    public boolean f19455n;
-
-    public RecordingCanvas f19456r;
-    public Runnable v;
-
-    public final yd.b f19457s = new yd.b(true);
-
-    public final RenderNode f19451b = z.c();
-
-    public d(a aVar) {
-        this.f19450a = aVar;
-    }
-
-    @Override
-    public final void T0(Canvas canvas, float f10, float f11, float f12, float f13) {
-        jg.e eVar;
-        if (!canvas.isHardwareAccelerated()) {
-            a aVar = this.f19450a;
-            if (aVar != null) {
-                aVar.T0(canvas, f10, f11, f12, f13);
-                return;
-            }
-            return;
-        }
-        if (this.f19455n) {
-            throw new IllegalStateException();
-        }
-        a aVar2 = this.f19454f;
-        if (aVar2 != null) {
-            aVar2.T0(canvas, f10, f11, f12, f13);
-        }
-        canvas.save();
-        if (!this.h) {
-            canvas.clipRect(f10, f11, f12, f13);
-        }
-        if (Build.VERSION.SDK_INT < 31 || (eVar = this.d) == null) {
-            canvas.drawRenderNode(this.f19451b);
-        } else {
-            eVar.c(canvas, this.f19453e);
-        }
-        canvas.restore();
-    }
-
-    public final RecordingCanvas a(int i10, int i11) {
-        if (this.f19455n) {
-            throw new IllegalStateException();
-        }
-        this.f19455n = true;
-        this.f19451b.setPosition(0, 0, i10, i11);
-        RecordingCanvas recordingCanvasBeginRecording = this.f19451b.beginRecording(i10, i11);
-        this.f19456r = recordingCanvasBeginRecording;
-        return recordingCanvasBeginRecording;
-    }
-
-    public final void b() {
-        if (!this.f19455n) {
-            throw new IllegalStateException();
-        }
-        this.f19451b.endRecording();
-        this.f19455n = false;
-        this.f19456r = null;
-    }
-
-    public final int c(List list, int i10, int i11) {
-        RectF rectF;
-        int i12 = 0;
-        for (lg.e eVar : this.f19457s) {
-            boolean zV = eVar.v();
-            lg.c cVar = eVar.h;
-            if (zV && eVar.f15600j > 0 && !cVar.f15590m.isEmpty()) {
-                if (i10 < list.size()) {
-                    rectF = (RectF) list.get(i10);
+    public static void a(jg.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i9) {
+        boolean z10;
+        if (i9 > 0) {
+            RectF rectF2 = f19572c;
+            if (i.c(view, viewGroup, rectF2)) {
+                float f10 = rectF2.left;
+                float f11 = rectF2.top;
+                RectF rectF3 = f19571b;
+                rectF3.set(rectF);
+                rectF3.offset(-f10, -f11);
+                boolean z11 = true;
+                if (f10 == 0.0f && f11 == 0.0f) {
+                    z10 = false;
                 } else {
-                    rectF = new RectF();
-                    list.add(rectF);
+                    z10 = true;
                 }
-                rectF.set(cVar.f15590m);
-                rectF.offset(eVar.f15593a, eVar.f15594b);
-                float f10 = -i11;
-                rectF.inset(f10, f10);
-                i10++;
-                i12++;
+                if (i9 == 255) {
+                    z11 = false;
+                }
+                if (z10) {
+                    canvas.save();
+                    canvas.translate(f10, f11);
+                }
+                if (z11) {
+                    canvas.saveLayerAlpha(rectF3, i9);
+                }
+                aVar.e(canvas, rectF3);
+                if (z11) {
+                    canvas.restore();
+                }
+                if (z10) {
+                    canvas.restore();
+                }
             }
         }
-        return i12;
     }
 
-    public final void d() {
-        Iterator it = this.f19457s.iterator();
-        while (it.hasNext()) {
-            ((lg.e) it.next()).M = true;
+    public static void b(jg.a aVar, Canvas canvas, RectF rectF, View view, FrameLayout frameLayout) {
+        a(aVar, canvas, rectF, view, frameLayout, 255);
+    }
+
+    public static void c(ng.b bVar, View view) {
+        Bitmap bitmap;
+        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
+            Matrix matrix = f19570a;
+            matrix.reset();
+            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+            bVar.f18595b.set(matrix);
         }
     }
 
-    public final boolean e(int i10, int i11) {
-        return (this.f19451b.hasDisplayList() && this.f19451b.getWidth() == i10 && this.f19451b.getHeight() == i11) ? false : true;
-    }
-
-    public final void f(float f10) {
-        this.f19451b.setRenderEffect(f10 > 0.0f ? RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP) : null);
-    }
-
-    public final void g(float f10, RenderEffect renderEffect) {
-        this.f19451b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP), renderEffect));
-    }
-
-    public final void h(int i10, int i11) {
-        this.f19451b.setPosition(0, 0, i10, i11);
-    }
-
-    public final void i(g gVar) {
-        if (this.f19452c == null) {
-            this.f19452c = new h(this.f19451b, gVar);
-        }
-    }
-
-    public final void j() {
-        this.f19452c.a();
-    }
-
-    @Override
-    public final void r() {
-        Runnable runnable = this.v;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public final lg.d w() {
-        lg.e eVar = new lg.e(this);
-        this.f19457s.add(eVar);
-        return eVar;
+    public static c d(kg.d dVar, int i9, int i10) {
+        return new c(i9, i10, dVar);
     }
 }

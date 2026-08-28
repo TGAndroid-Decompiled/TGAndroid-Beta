@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-
+import org.telegram.tgnet.tl.TL_iv;
 public class TL_ephemeral {
 
     public static abstract class EphemeralMessage extends TLObject {
@@ -17,7 +17,6 @@ public class TL_ephemeral {
         public ArrayList<TLRPC.MessageEntity> entities;
         public int flags;
         public TLRPC.Peer from_id;
-
         public int f22593id;
         public boolean invert_media;
         public TLRPC.MessageMedia media;
@@ -33,21 +32,21 @@ public class TL_ephemeral {
         public long via_bot_id;
         public boolean welcome;
 
-        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (EphemeralMessage) TLObject.TLdeserialize(EphemeralMessage.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static EphemeralMessage fromConstructor(int i10) {
-            if (i10 == -1896618863) {
-                return new TL_ephemeralMessage_layer229_old();
-            }
-            if (i10 == -641278950) {
+        private static EphemeralMessage fromConstructor(int i9) {
+            if (i9 != -1896618863) {
+                if (i9 != -641278950) {
+                    if (i9 != -584597783) {
+                        return null;
+                    }
+                    return new TL_ephemeralMessage();
+                }
                 return new TL_ephemeralMessage_layer228();
             }
-            if (i10 != -584597783) {
-                return null;
-            }
-            return new TL_ephemeralMessage();
+            return new TL_ephemeralMessage_layer229_old();
         }
     }
 
@@ -62,23 +61,29 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
     public static class TL_deleteMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -1829312617;
         public int flags;
-
         public int f22594id;
         public TLRPC.InputPeer peer;
         public TLRPC.InputUser receiver_id;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1829312617);
-            int flag = TLObject.setFlag(this.flags, 1, this.peer != null);
+            int i9 = this.flags;
+            if (this.peer != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -89,14 +94,13 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
     public static class TL_deleteWelcomeMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -394090015;
-
         public int f22595id;
         public TLRPC.InputPeer peer;
 
@@ -108,8 +112,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -122,22 +126,57 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
+            boolean z12;
+            boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-811830693);
-            int flag = TLObject.setFlag(this.flags, 1, this.message != null);
+            int i9 = this.flags;
+            boolean z15 = false;
+            if (this.message != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 1, z10);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 2, this.entities != null);
+            if (this.entities != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 2, z11);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 4, this.reply_markup != null);
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 4, z12);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 8, this.media != null);
+            if (this.media != null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 8, z13);
             this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 16, this.rich_message != null);
+            if (this.rich_message != null) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 16, z14);
             this.flags = flag5;
             int flag6 = TLObject.setFlag(flag5, 32, this.invert_media);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 64, this.welcome);
             this.flags = flag7;
-            int flag8 = TLObject.setFlag(flag7, 128, this.peer != null);
+            if (this.peer != null) {
+                z15 = true;
+            }
+            int flag8 = TLObject.setFlag(flag7, 128, z15);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
             if (TLObject.hasFlag(this.flags, 128)) {
@@ -168,9 +207,9 @@ public class TL_ephemeral {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
             this.noforwards = TLObject.hasFlag(this.flags, 4096);
@@ -210,24 +249,58 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
+            boolean z12;
+            boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-584597783);
+            boolean z15 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 4, this.entities != null);
+            if (this.entities != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 4, z10);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 8, this.media != null);
+            if (this.media != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.reply_markup != null);
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
             this.flags = flag4;
             int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
             this.flags = flag5;
-            int flag6 = TLObject.setFlag(flag5, 64, this.reply_to != null);
+            if (this.reply_to != null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            int flag6 = TLObject.setFlag(flag5, 64, z13);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 128, this.invert_media);
             this.flags = flag7;
-            int flag8 = TLObject.setFlag(flag7, 256, this.rich_message != null);
+            if (this.rich_message != null) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            int flag8 = TLObject.setFlag(flag7, 256, z14);
             this.flags = flag8;
-            int flag9 = TLObject.setFlag(flag8, 512, this.peer_id != null);
+            if (this.peer_id == null) {
+                z15 = false;
+            }
+            int flag9 = TLObject.setFlag(flag8, 512, z15);
             this.flags = flag9;
             int flag10 = TLObject.setFlag(flag9, 4096, this.noforwards);
             this.flags = flag10;
@@ -272,9 +345,9 @@ public class TL_ephemeral {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 1);
             this.f22593id = inputSerializedData.readInt32(z10);
             this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -300,16 +373,38 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
+            boolean z12;
             outputSerializedData.writeInt32(-641278950);
+            boolean z13 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 4, this.entities != null);
+            if (this.entities != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 4, z10);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 8, this.media != null);
+            if (this.media != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.reply_markup != null);
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
             this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 64, this.reply_to != null);
+            if (this.reply_to == null) {
+                z13 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 64, z13);
             this.flags = flag5;
             outputSerializedData.writeInt32(flag5);
             outputSerializedData.writeInt32(this.f22593id);
@@ -341,9 +436,9 @@ public class TL_ephemeral {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
             this.f22593id = inputSerializedData.readInt32(z10);
@@ -374,22 +469,50 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
+            boolean z12;
+            boolean z13;
             outputSerializedData.writeInt32(-1896618863);
+            boolean z14 = true;
             int flag = TLObject.setFlag(this.flags, 1, this.out);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 4, this.entities != null);
+            if (this.entities != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 4, z10);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 8, this.media != null);
+            if (this.media != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 8, z11);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.reply_markup != null);
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z12);
             this.flags = flag4;
             int flag5 = TLObject.setFlag(flag4, 32, this.welcome);
             this.flags = flag5;
-            int flag6 = TLObject.setFlag(flag5, 64, this.reply_to != null);
+            if (this.reply_to != null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            int flag6 = TLObject.setFlag(flag5, 64, z13);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 128, this.invert_media);
             this.flags = flag7;
-            int flag8 = TLObject.setFlag(flag7, 256, this.rich_message != null);
+            if (this.rich_message == null) {
+                z14 = false;
+            }
+            int flag8 = TLObject.setFlag(flag7, 256, z14);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
             outputSerializedData.writeInt32(this.f22593id);
@@ -423,14 +546,20 @@ public class TL_ephemeral {
         public static final int constructor = 1067738312;
         public byte[] data;
         public int flags;
-
         public int f22596id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(1067738312);
-            int flag = TLObject.setFlag(this.flags, 2, this.data != null);
+            int i9 = this.flags;
+            if (this.data != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 2, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
@@ -441,8 +570,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.TL_messages_botCallbackAnswer deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.TL_messages_botCallbackAnswer.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -459,14 +588,13 @@ public class TL_ephemeral {
         }
 
         @Override
-        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return WelcomeMessages.TLdeserialize(inputSerializedData, i10, z10);
+        public WelcomeMessages deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return WelcomeMessages.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
     public static class TL_reportMessage extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = -2029718849;
-
         public int f22597id;
         public String message;
         public byte[] option;
@@ -482,8 +610,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.ReportResult deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.ReportResult.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -506,22 +634,57 @@ public class TL_ephemeral {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
+            boolean z12;
+            boolean z13;
+            boolean z14;
             outputSerializedData.writeInt32(-1165140171);
-            int flag = TLObject.setFlag(this.flags, 2, this.entities != null);
+            int i9 = this.flags;
+            boolean z15 = false;
+            if (this.entities != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 2, z10);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 4, this.media != null);
+            if (this.media != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 4, z11);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 8, this.reply_markup != null);
+            if (this.reply_markup != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            int flag3 = TLObject.setFlag(flag2, 8, z12);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 16, this.rich_message != null);
+            if (this.rich_message != null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            int flag4 = TLObject.setFlag(flag3, 16, z13);
             this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 32, this.reply_to != null);
+            if (this.reply_to != null) {
+                z14 = true;
+            } else {
+                z14 = false;
+            }
+            int flag5 = TLObject.setFlag(flag4, 32, z14);
             this.flags = flag5;
             int flag6 = TLObject.setFlag(flag5, 64, this.invert_media);
             this.flags = flag6;
             int flag7 = TLObject.setFlag(flag6, 128, this.welcome);
             this.flags = flag7;
-            int flag8 = TLObject.setFlag(flag7, 256, this.peer != null);
+            if (this.peer != null) {
+                z15 = true;
+            }
+            int flag8 = TLObject.setFlag(flag7, 256, z15);
             this.flags = flag8;
             int flag9 = TLObject.setFlag(flag8, 512, this.anchor);
             this.flags = flag9;
@@ -553,8 +716,8 @@ public class TL_ephemeral {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -579,18 +742,18 @@ public class TL_ephemeral {
         public long hash;
         public ArrayList<EphemeralMessage> messages = new ArrayList<>();
 
-        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static WelcomeMessages TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return (WelcomeMessages) TLObject.TLdeserialize(WelcomeMessages.class, fromConstructor(i9), inputSerializedData, i9, z10);
         }
 
-        private static WelcomeMessages fromConstructor(int i10) {
-            if (i10 == 273664114) {
-                return new TL_welcomeMessages();
+        private static WelcomeMessages fromConstructor(int i9) {
+            if (i9 != 273664114) {
+                if (i9 != 1509940017) {
+                    return null;
+                }
+                return new TL_welcomeMessagesNotModified();
             }
-            if (i10 != 1509940017) {
-                return null;
-            }
-            return new TL_welcomeMessagesNotModified();
+            return new TL_welcomeMessages();
         }
     }
 

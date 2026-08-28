@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
-
 public class OverBar extends VerticalBox {
     public OverBar(Box box, float f10, float f11) {
         add(new StrutBox(0.0f, f11, 0.0f, 0.0f));
@@ -11,8 +10,8 @@ public class OverBar extends VerticalBox {
     }
 
     @Override
-    public void add(int i10, Box box) {
-        super.add(i10, box);
+    public void add(int i9, Box box) {
+        super.add(i9, box);
     }
 
     @Override

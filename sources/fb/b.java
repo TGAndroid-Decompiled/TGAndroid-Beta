@@ -1,10 +1,12 @@
 package fb;
 
-public final class b {
-
-    public final y9.b f6036a;
-
-    public b(y9.b bVar) {
-        this.f6036a = bVar;
-    }
+import androidx.lifecycle.b0;
+import androidx.lifecycle.m;
+import androidx.lifecycle.s;
+import com.google.android.gms.common.api.n;
+import java.io.Closeable;
+public interface b extends Closeable, s, n {
+    @Override
+    @b0(m.ON_DESTROY)
+    void close();
 }

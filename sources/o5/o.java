@@ -1,4 +1,3 @@
 package o5;
-
-public final class o extends c7.a {
+public final class o extends b7.a {
 }

@@ -1,48 +1,50 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class k8 implements Function {
+    public final int f39766a;
 
-public final class k8 implements r0.o, Utilities.Callback5, Utilities.Callback5Return, org.telegram.ui.Components.ek0 {
+    public k8(int i9) {
+        this.f39766a = i9;
+    }
 
-    public final j9 f39647a;
-
-    public k8(j9 j9Var) {
-        this.f39647a = j9Var;
+    public Function andThen(Function function) {
+        int i9 = this.f39766a;
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public r0.m1 I0(View view, r0.m1 m1Var) {
-        return this.f39647a.onInsetsInternal(view, m1Var);
-    }
-
-    @Override
-    public void b() {
-        this.f39647a.f0();
-    }
-
-    @Override
-    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        j9.X(this.f39647a, (org.telegram.ui.Components.n41) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        Object obj6 = ((org.telegram.ui.Components.n41) obj).G;
-        if (obj6 instanceof f9) {
-            this.f39647a.e0(((f9) obj6).f38009c, (e9) view);
-            z10 = true;
-        } else {
-            z10 = false;
+    public final Object apply(Object obj) {
+        switch (this.f39766a) {
+            case 0:
+                return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
+            case 1:
+                return Long.valueOf(((MessageObject) obj).getFromChatId());
+            case 2:
+                return Integer.valueOf(((MessageObject) obj).getId());
+            case 3:
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
+                if (channelParticipant == null) {
+                    return null;
+                }
+                return channelParticipant.banned_rights;
+            case 4:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 5:
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 6:
+                return ((lt) obj).f40225a;
+            default:
+                return ((lt) obj).f40225a;
         }
-        return Boolean.valueOf(z10);
+    }
+
+    public Function compose(Function function) {
+        int i9 = this.f39766a;
+        return Function$CC.$default$compose(this, function);
     }
 }

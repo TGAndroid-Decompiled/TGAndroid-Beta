@@ -1,30 +1,28 @@
 package m;
 
 import androidx.appcompat.widget.SearchView;
-
 public final class r2 implements Runnable {
+    public final int f17066a;
+    public final SearchView f17067b;
 
-    public final int f17441a;
-
-    public final SearchView f17442b;
-
-    public r2(SearchView searchView, int i10) {
-        this.f17441a = i10;
-        this.f17442b = searchView;
+    public r2(SearchView searchView, int i9) {
+        this.f17066a = i9;
+        this.f17067b = searchView;
     }
 
     @Override
     public final void run() {
-        switch (this.f17441a) {
+        switch (this.f17066a) {
             case 0:
-                this.f17442b.r();
-                break;
+                this.f17067b.r();
+                return;
             default:
-                h1.b bVar = this.f17442b.f1001d0;
+                h1.b bVar = this.f17067b.f495d0;
                 if (bVar instanceof c3) {
                     bVar.b(null);
+                    return;
                 }
-                break;
+                return;
         }
     }
 }

@@ -10,15 +10,16 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewParent;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import kh.g4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.rl;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.tg1;
-
+import org.telegram.messenger.ll;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.ug1;
 public final class s1 extends FrameLayout {
     public float A;
     public float B;
@@ -43,177 +44,166 @@ public final class s1 extends FrameLayout {
     public boolean U;
     public boolean V;
     public ValueAnimator W;
-
-    public float f33846a;
-
-    public final ag.q1 f33847a0;
-
-    public float f33848b;
-
-    public ValueAnimator f33849b0;
-
-    public float f33850c;
-
-    public final lh.m2 f33851c0;
+    public float f33796a;
+    public final f2.f0 f33797a0;
+    public float f33798b;
+    public ValueAnimator f33799b0;
+    public float f33800c;
+    public final g4 f33801c0;
     public float d;
-
-    public View.OnClickListener f33852d0;
-
-    public boolean f33853e;
-
-    public r1 f33854e0;
-
-    public int f33855f;
-
-    public long f33856f0;
+    public View.OnClickListener f33802d0;
+    public boolean f33803e;
+    public r1 f33804e0;
+    public int f33805f;
+    public long f33806f0;
     public int h;
-
-    public WindowInsets f33857n;
-
-    public final float f33858r;
-
-    public final Path f33859s;
+    public WindowInsets f33807n;
+    public final float f33808r;
+    public final Path f33809s;
     public final RectF v;
-
-    public final Paint f33860w;
-
-    public final Drawable f33861x;
-
-    public float f33862y;
+    public final Paint f33810w;
+    public final Drawable f33811x;
+    public float f33812y;
 
     public s1(Activity activity) {
         super(activity);
-        this.f33859s = new Path();
+        this.f33809s = new Path();
         this.v = new RectF();
         new Paint(1);
         Paint paint = new Paint(1);
-        this.f33860w = paint;
-        this.f33862y = -1.0f;
+        this.f33810w = paint;
+        this.f33812y = -1.0f;
         this.A = -1.0f;
         this.F = 0.0f;
         this.G = 0.0f;
         this.M = -1.0f;
         this.N = true;
-        this.f33847a0 = new ag.q1(this, 10);
-        this.f33851c0 = new lh.m2(this, 13);
-        this.f33858r = ViewConfiguration.get(activity).getScaledTouchSlop();
-        setOutlineProvider(new lg.b(this, 4));
+        this.f33797a0 = new f2.f0(this, 9);
+        this.f33801c0 = new g4(this, 10);
+        this.f33808r = ViewConfiguration.get(activity).getScaledTouchSlop();
+        setOutlineProvider(new kg.b(this, 4));
         setClipToOutline(true);
-        paint.setColor(i0.b.k(-16777216, 102));
-        this.f33861x = activity.getDrawable(R.drawable.calls_mute_mini);
+        paint.setColor(i0.a.k(-16777216, 102));
+        this.f33811x = activity.getDrawable(R.drawable.calls_mute_mini);
     }
 
     public final void a() {
         f();
         float f10 = this.Q;
-        if (f10 < 0.0f || this.K) {
+        if (f10 >= 0.0f && !this.K) {
+            e(f10, this.R, getMeasuredWidth(), getMeasuredHeight(), true);
+            this.Q = -1.0f;
+            this.R = -1.0f;
+        }
+    }
+
+    public final void b() {
+        float systemWindowInsetTop;
+        float systemWindowInsetBottom;
+        if (getMeasuredWidth() > 0 && this.f33812y < 0.0f) {
+            ViewParent parent = getParent();
+            if (parent == null) {
+                return;
+            }
+            WindowInsets windowInsets = this.f33807n;
+            if (windowInsets == null) {
+                systemWindowInsetTop = 0.0f;
+            } else {
+                systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.D;
+            }
+            WindowInsets windowInsets2 = this.f33807n;
+            if (windowInsets2 == null) {
+                systemWindowInsetBottom = 0.0f;
+            } else {
+                systemWindowInsetBottom = windowInsets2.getSystemWindowInsetBottom() + this.E;
+            }
+            View view = (View) parent;
+            this.Q = (getTranslationX() - this.B) / (((view.getMeasuredWidth() - this.B) - this.C) - getMeasuredWidth());
+            this.R = (getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - systemWindowInsetBottom) - systemWindowInsetTop) - getMeasuredHeight());
+            this.Q = Math.max(0.0f, Math.min(1.0f, this.Q));
+            this.R = Math.max(0.0f, Math.min(1.0f, this.R));
             return;
         }
-        e(f10, this.R, getMeasuredWidth(), getMeasuredHeight(), true);
         this.Q = -1.0f;
         this.R = -1.0f;
     }
 
-    public final void b() {
-        if (getMeasuredWidth() <= 0 || this.f33862y >= 0.0f) {
-            this.Q = -1.0f;
-            this.R = -1.0f;
-            return;
-        }
-        Object parent = getParent();
-        if (parent == null) {
-            return;
-        }
-        WindowInsets windowInsets = this.f33857n;
-        float systemWindowInsetTop = windowInsets == null ? 0.0f : windowInsets.getSystemWindowInsetTop() + this.D;
-        WindowInsets windowInsets2 = this.f33857n;
-        float systemWindowInsetBottom = windowInsets2 == null ? 0.0f : windowInsets2.getSystemWindowInsetBottom() + this.E;
-        View view = (View) parent;
-        this.Q = (getTranslationX() - this.B) / (((view.getMeasuredWidth() - this.B) - this.C) - getMeasuredWidth());
-        this.R = (getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - systemWindowInsetBottom) - systemWindowInsetTop) - getMeasuredHeight());
-        this.Q = Math.max(0.0f, Math.min(1.0f, this.Q));
-        this.R = Math.max(0.0f, Math.min(1.0f, this.R));
-    }
-
     public final void c(boolean z10, boolean z11) {
         s1 s1Var;
-        if (getMeasuredWidth() <= 0 || getVisibility() != 0) {
-            z11 = false;
-        }
-        if (!z11) {
+        float f10 = 1.0f;
+        if (!((getMeasuredWidth() <= 0 || getVisibility() != 0) ? false : false)) {
             if (this.I != z10) {
                 this.I = z10;
                 this.J = z10;
-                this.F = z10 ? 1.0f : 0.0f;
+                if (!z10) {
+                    f10 = 0.0f;
+                }
+                this.F = f10;
                 requestLayout();
                 invalidateOutline();
-                return;
             }
-            return;
-        }
-        if (this.K) {
+        } else if (this.K) {
             this.J = z10;
-            return;
-        }
-        if (!z10 || this.I) {
-            if (z10 || !this.I) {
-                this.F = this.I ? 1.0f : 0.0f;
-                this.I = z10;
-                this.J = z10;
-                requestLayout();
-                return;
+        } else if (z10 && !this.I) {
+            this.I = true;
+            this.J = z10;
+            f();
+            float f11 = this.f33812y;
+            if (f11 >= 0.0f) {
+                s1Var = this;
+                s1Var.e(f11, this.A, (int) (getMeasuredWidth() * 0.23f), (int) (getMeasuredHeight() * 0.23f), false);
+            } else {
+                s1Var = this;
             }
-            this.J = z10;
+            s1Var.I = false;
+            s1Var.K = true;
             float translationX = getTranslationX();
             float translationY = getTranslationY();
+            setTranslationX(0.0f);
+            setTranslationY(0.0f);
+            invalidate();
+            ValueAnimator valueAnimator = s1Var.W;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(s1Var.F, 1.0f);
+            s1Var.W = ofFloat;
+            ofFloat.addUpdateListener(s1Var.f33797a0);
+            s1Var.W.setDuration(300L);
+            s1Var.W.start();
+            animate().setListener(null).cancel();
+            ViewPropertyAnimator duration = animate().scaleX(0.23f).scaleY(0.23f).translationX(translationX - ((getMeasuredWidth() - (getMeasuredWidth() * 0.23f)) / 2.0f)).translationY(translationY - ((getMeasuredHeight() - (getMeasuredHeight() * 0.23f)) / 2.0f)).alpha(1.0f).setStartDelay(0L).setDuration(300L);
+            gr grVar = gr.f28844f;
+            duration.setInterpolator(grVar).setListener(new p1(this, translationX, translationY, 0)).setInterpolator(grVar).start();
+        } else if (!z10 && this.I) {
+            this.J = z10;
+            float translationX2 = getTranslationX();
+            float translationY2 = getTranslationY();
             f();
             this.I = false;
             this.K = true;
             requestLayout();
             animate().setListener(null).cancel();
-            getViewTreeObserver().addOnPreDrawListener(new q1(this, translationX, translationY));
-            return;
-        }
-        this.I = true;
-        this.J = z10;
-        f();
-        float f10 = this.f33862y;
-        if (f10 >= 0.0f) {
-            s1Var = this;
-            s1Var.e(f10, this.A, (int) (getMeasuredWidth() * 0.23f), (int) (getMeasuredHeight() * 0.23f), false);
+            getViewTreeObserver().addOnPreDrawListener(new q1(this, translationX2, translationY2));
         } else {
-            s1Var = this;
+            if (!this.I) {
+                f10 = 0.0f;
+            }
+            this.F = f10;
+            this.I = z10;
+            this.J = z10;
+            requestLayout();
         }
-        s1Var.I = false;
-        s1Var.K = true;
-        float translationX2 = getTranslationX();
-        float translationY2 = getTranslationY();
-        setTranslationX(0.0f);
-        setTranslationY(0.0f);
-        invalidate();
-        ValueAnimator valueAnimator = s1Var.W;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(s1Var.F, 1.0f);
-        s1Var.W = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(s1Var.f33847a0);
-        s1Var.W.setDuration(300L);
-        s1Var.W.start();
-        animate().setListener(null).cancel();
-        ViewPropertyAnimator duration = animate().scaleX(0.23f).scaleY(0.23f).translationX(translationX2 - ((getMeasuredWidth() - (getMeasuredWidth() * 0.23f)) / 2.0f)).translationY(translationY2 - ((getMeasuredHeight() - (getMeasuredHeight() * 0.23f)) / 2.0f)).alpha(1.0f).setStartDelay(0L).setDuration(300L);
-        er erVar = er.f28122f;
-        duration.setInterpolator(erVar).setListener(new p1(this, translationX2, translationY2, 0)).setInterpolator(erVar).start();
     }
 
     public final void d(float f10, float f11) {
-        Object parent = getParent();
+        ViewParent parent = getParent();
         if (this.I && parent != null && ((View) parent).getMeasuredWidth() <= 0 && getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
             e(f10, f11, getMeasuredWidth(), getMeasuredHeight(), true);
-        } else {
-            this.f33862y = f10;
-            this.A = f11;
+            return;
         }
+        this.f33812y = f10;
+        this.A = f11;
     }
 
     @Override
@@ -233,13 +223,13 @@ public final class s1 extends FrameLayout {
             this.S = -1.0f;
             this.T = -1.0f;
         }
-        if (this.f33862y < 0.0f || !this.I || getMeasuredWidth() <= 0) {
+        if (this.f33812y >= 0.0f && this.I && getMeasuredWidth() > 0) {
             s1Var = this;
+            s1Var.e(this.f33812y, this.A, getMeasuredWidth(), getMeasuredHeight(), false);
+            s1Var.f33812y = -1.0f;
+            s1Var.A = -1.0f;
         } else {
             s1Var = this;
-            s1Var.e(this.f33862y, this.A, getMeasuredWidth(), getMeasuredHeight(), false);
-            s1Var.f33862y = -1.0f;
-            s1Var.A = -1.0f;
         }
         super.dispatchDraw(canvas);
         if (!s1Var.K) {
@@ -255,9 +245,9 @@ public final class s1 extends FrameLayout {
         float f10 = measuredWidth;
         float f11 = measuredHeight;
         canvas.scale((1.0f / getScaleX()) * s1Var.F * s1Var.G, (1.0f / getScaleY()) * s1Var.F * s1Var.G, f10, f11);
-        canvas.drawCircle(f10, f11, AndroidUtilities.dp(14.0f), s1Var.f33860w);
-        Drawable drawable = s1Var.f33861x;
-        drawable.setBounds(rl.v(2, measuredWidth, drawable), rl.e(2, measuredHeight, drawable), rl.A(2, measuredWidth, drawable), rl.y(2, measuredHeight, drawable));
+        canvas.drawCircle(f10, f11, AndroidUtilities.dp(14.0f), s1Var.f33810w);
+        Drawable drawable = s1Var.f33811x;
+        drawable.setBounds(ll.x(2, measuredWidth, drawable), ll.e(2, measuredHeight, drawable), ll.B(2, measuredWidth, drawable), ll.z(2, measuredHeight, drawable));
         drawable.draw(canvas);
         canvas.restore();
         if (s1Var.K) {
@@ -265,38 +255,62 @@ public final class s1 extends FrameLayout {
         }
     }
 
-    public final void e(float f10, float f11, int i10, int i11, boolean z10) {
-        Object parent = getParent();
-        if (parent == null || !this.I || this.K || !this.N) {
-            return;
+    public final void e(float f10, float f11, int i9, int i10, boolean z10) {
+        WindowInsets windowInsets;
+        float systemWindowInsetTop;
+        WindowInsets windowInsets2;
+        long j10;
+        ViewParent parent = getParent();
+        if (parent != null && this.I && !this.K && this.N) {
+            float f12 = 0.0f;
+            if (this.f33807n == null) {
+                systemWindowInsetTop = 0.0f;
+            } else {
+                systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.D;
+            }
+            if (this.f33807n != null) {
+                f12 = windowInsets2.getSystemWindowInsetBottom() + this.E;
+            }
+            View view = (View) parent;
+            float z11 = e2.c.z((view.getMeasuredWidth() - this.B) - this.C, i9, f10, this.B);
+            float z12 = e2.c.z((view.getMeasuredHeight() - f12) - systemWindowInsetTop, i10, f11, systemWindowInsetTop);
+            if (z10) {
+                animate().setListener(null).cancel();
+                ViewPropertyAnimator alpha = animate().scaleX(1.0f).scaleY(1.0f).translationX(z11).translationY(z12).alpha(1.0f);
+                if (this.H) {
+                    j10 = 0;
+                } else {
+                    j10 = 150;
+                }
+                alpha.setStartDelay(j10).setDuration(150L).setInterpolator(gr.f28844f).start();
+                return;
+            }
+            if (!this.O) {
+                animate().setListener(null).cancel();
+                setScaleX(1.0f);
+                setScaleY(1.0f);
+                animate().alpha(1.0f).setDuration(150L).start();
+            }
+            setTranslationX(z11);
+            setTranslationY(z12);
         }
-        WindowInsets windowInsets = this.f33857n;
-        float systemWindowInsetTop = windowInsets == null ? 0.0f : windowInsets.getSystemWindowInsetTop() + this.D;
-        WindowInsets windowInsets2 = this.f33857n;
-        float systemWindowInsetBottom = windowInsets2 != null ? windowInsets2.getSystemWindowInsetBottom() + this.E : 0.0f;
-        View view = (View) parent;
-        float fZ = com.google.android.recaptcha.internal.a.z((view.getMeasuredWidth() - this.B) - this.C, i10, f10, this.B);
-        float fZ2 = com.google.android.recaptcha.internal.a.z((view.getMeasuredHeight() - systemWindowInsetBottom) - systemWindowInsetTop, i11, f11, systemWindowInsetTop);
-        if (z10) {
-            animate().setListener(null).cancel();
-            animate().scaleX(1.0f).scaleY(1.0f).translationX(fZ).translationY(fZ2).alpha(1.0f).setStartDelay(this.H ? 0L : 150L).setDuration(150L).setInterpolator(er.f28122f).start();
-            return;
-        }
-        if (!this.O) {
-            animate().setListener(null).cancel();
-            setScaleX(1.0f);
-            setScaleY(1.0f);
-            animate().alpha(1.0f).setDuration(150L).start();
-        }
-        setTranslationX(fZ);
-        setTranslationY(fZ2);
     }
 
     public final void f() {
+        int dp;
+        float f10 = 16.0f;
         this.B = AndroidUtilities.dp(16.0f);
         this.C = AndroidUtilities.dp(16.0f);
-        this.D = this.H ? AndroidUtilities.dp(60.0f) : AndroidUtilities.dp(16.0f);
-        this.E = AndroidUtilities.dp(this.H ? 100.0f : 16.0f) + this.P;
+        if (this.H) {
+            dp = AndroidUtilities.dp(60.0f);
+        } else {
+            dp = AndroidUtilities.dp(16.0f);
+        }
+        this.D = dp;
+        if (this.H) {
+            f10 = 100.0f;
+        }
+        this.E = AndroidUtilities.dp(f10) + this.P;
     }
 
     @Override
@@ -305,9 +319,9 @@ public final class s1 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
+    public final void onMeasure(int i9, int i10) {
+        int size = View.MeasureSpec.getSize(i9);
+        int size2 = View.MeasureSpec.getSize(i10);
         this.L = false;
         if (this.I) {
             size = (int) (size * 0.23f);
@@ -317,22 +331,20 @@ public final class s1 extends FrameLayout {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
         }
-        r1 r1Var = this.f33854e0;
+        r1 r1Var = this.f33804e0;
         if (r1Var != null) {
-            ((tg1) r1Var).f42940b.Z.d(this.F, this.L);
+            ((ug1) r1Var).f43258b.Z.d(this.F, this.L);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        if (getMeasuredHeight() != this.f33855f && getMeasuredWidth() != this.h) {
-            Path path = this.f33859s;
+        if (getMeasuredHeight() != this.f33805f && getMeasuredWidth() != this.h) {
+            Path path = this.f33809s;
             path.reset();
-            float measuredWidth = getMeasuredWidth();
-            float measuredHeight = getMeasuredHeight();
             RectF rectF = this.v;
-            rectF.set(0.0f, 0.0f, measuredWidth, measuredHeight);
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             path.addRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Path.Direction.CW);
             path.toggleInverseFillType();
         }
-        this.f33855f = getMeasuredHeight();
+        this.f33805f = getMeasuredHeight();
         this.h = getMeasuredWidth();
         f();
     }
@@ -348,11 +360,11 @@ public final class s1 extends FrameLayout {
     }
 
     public void setDelegate(r1 r1Var) {
-        this.f33854e0 = r1Var;
+        this.f33804e0 = r1Var;
     }
 
     public void setInsets(WindowInsets windowInsets) {
-        this.f33857n = windowInsets;
+        this.f33807n = windowInsets;
     }
 
     public void setIsActive(boolean z10) {
@@ -360,19 +372,30 @@ public final class s1 extends FrameLayout {
     }
 
     public void setOnTapListener(View.OnClickListener onClickListener) {
-        this.f33852d0 = onClickListener;
+        this.f33802d0 = onClickListener;
     }
 
     public void setRelativePosition(s1 s1Var) {
-        Object parent = getParent();
+        float systemWindowInsetTop;
+        float systemWindowInsetBottom;
+        ViewParent parent = getParent();
         if (parent == null) {
             return;
         }
-        WindowInsets windowInsets = this.f33857n;
-        float systemWindowInsetTop = windowInsets == null ? 0.0f : windowInsets.getSystemWindowInsetTop() + this.D;
-        WindowInsets windowInsets2 = this.f33857n;
+        WindowInsets windowInsets = this.f33807n;
+        if (windowInsets == null) {
+            systemWindowInsetTop = 0.0f;
+        } else {
+            systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.D;
+        }
+        WindowInsets windowInsets2 = this.f33807n;
+        if (windowInsets2 == null) {
+            systemWindowInsetBottom = 0.0f;
+        } else {
+            systemWindowInsetBottom = windowInsets2.getSystemWindowInsetBottom() + this.E;
+        }
         View view = (View) parent;
-        d(Math.min(1.0f, Math.max(0.0f, (s1Var.getTranslationX() - this.B) / (((view.getMeasuredWidth() - this.B) - this.C) - s1Var.getMeasuredWidth()))), Math.min(1.0f, Math.max(0.0f, (s1Var.getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - (windowInsets2 == null ? 0.0f : windowInsets2.getSystemWindowInsetBottom() + this.E)) - systemWindowInsetTop) - s1Var.getMeasuredHeight()))));
+        d(Math.min(1.0f, Math.max(0.0f, (s1Var.getTranslationX() - this.B) / (((view.getMeasuredWidth() - this.B) - this.C) - s1Var.getMeasuredWidth()))), Math.min(1.0f, Math.max(0.0f, (s1Var.getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - systemWindowInsetBottom) - systemWindowInsetTop) - s1Var.getMeasuredHeight()))));
     }
 
     public void setUiVisible(boolean z10) {

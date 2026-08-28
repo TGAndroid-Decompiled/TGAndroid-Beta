@@ -1,39 +1,30 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.Utilities;
 public final class ue implements Runnable {
-
-    public final int f21729a;
-
-    public final MessagesStorage f21730b;
-
-    public final long f21731c;
+    public final int f21679a;
+    public final MessagesStorage f21680b;
+    public final Utilities.Callback f21681c;
     public final long d;
+    public final long f21682e;
 
-    public ue(int i10, long j10, long j11, MessagesStorage messagesStorage) {
-        this.f21729a = i10;
-        this.f21730b = messagesStorage;
-        this.f21731c = j10;
-        this.d = j11;
+    public ue(MessagesStorage messagesStorage, Utilities.Callback callback, long j10, long j11, int i9) {
+        this.f21679a = i9;
+        this.f21680b = messagesStorage;
+        this.f21681c = callback;
+        this.d = j10;
+        this.f21682e = j11;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f21729a) {
+    public final void run() {
+        switch (this.f21679a) {
             case 0:
-                this.f21730b.lambda$clearUserPhoto$93(this.f21731c, this.d);
-                break;
-            case 1:
-                this.f21730b.lambda$saveChatInviter$132(this.f21731c, this.d);
-                break;
-            case 2:
-                this.f21730b.lambda$setDialogFlags$37(this.f21731c, this.d);
-                break;
-            case 3:
-                this.f21730b.lambda$removeTopic$57(this.f21731c, this.d);
-                break;
+                this.f21680b.lambda$getEphemeralMessages$208(this.f21681c, this.d, this.f21682e);
+                return;
             default:
-                this.f21730b.lambda$deleteUserChatHistory$87(this.f21731c, this.d);
-                break;
+                this.f21680b.lambda$getEphemeralMessages$207(this.f21681c, this.d, this.f21682e);
+                return;
         }
     }
 }

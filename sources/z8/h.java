@@ -1,27 +1,36 @@
 package z8;
 
-public final class h {
+import java.util.concurrent.Delayed;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import n5.a0;
+public final class h extends c0.h implements ScheduledFuture {
+    public final ScheduledFuture f50378n;
 
-    public final q f50236a;
-
-    public final boolean f50237b;
-
-    public h(q qVar, boolean z10) {
-        this.f50236a = qVar;
-        this.f50237b = z10;
+    public h(g gVar) {
+        this.f50378n = gVar.a(new a0(this, 22));
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof h) {
-            h hVar = (h) obj;
-            if (hVar.f50236a.equals(this.f50236a) && hVar.f50237b == this.f50237b) {
-                return true;
-            }
+    @Override
+    public final int compareTo(Delayed delayed) {
+        return this.f50378n.compareTo(delayed);
+    }
+
+    @Override
+    public final void d() {
+        boolean z10;
+        ScheduledFuture scheduledFuture = this.f50378n;
+        Object obj = this.f2069a;
+        if ((obj instanceof c0.a) && ((c0.a) obj).f2053a) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return false;
+        scheduledFuture.cancel(z10);
     }
 
-    public final int hashCode() {
-        return ((this.f50236a.hashCode() ^ 1000003) * 1000003) ^ Boolean.valueOf(this.f50237b).hashCode();
+    @Override
+    public final long getDelay(TimeUnit timeUnit) {
+        return this.f50378n.getDelay(timeUnit);
     }
 }

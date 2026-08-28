@@ -6,7 +6,8 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.Arrays;
 import java.util.List;
-
+import org.webrtc.CameraSession;
+import org.webrtc.CameraVideoCapturer;
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;
     private static final int OPEN_CAMERA_DELAY_MS = 500;
@@ -106,10 +107,10 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 try {
-                    if (cameraSession == CameraCapturer.this.currentSession || CameraCapturer.this.currentSession == null) {
-                        CameraCapturer.this.eventsHandler.onCameraClosed();
-                    } else {
+                    if (cameraSession != CameraCapturer.this.currentSession && CameraCapturer.this.currentSession != null) {
                         Logging.d("CameraCapturer", "onCameraClosed from another session.");
+                    } else {
+                        CameraCapturer.this.eventsHandler.onCameraClosed();
                     }
                 } catch (Throwable th) {
                     throw th;
@@ -124,10 +125,10 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 try {
                     if (cameraSession != CameraCapturer.this.currentSession) {
                         Logging.w("CameraCapturer", "onCameraDisconnected from another session.");
-                    } else {
-                        CameraCapturer.this.eventsHandler.onCameraDisconnected();
-                        CameraCapturer.this.stopCapture();
+                        return;
                     }
+                    CameraCapturer.this.eventsHandler.onCameraDisconnected();
+                    CameraCapturer.this.stopCapture();
                 } catch (Throwable th) {
                     throw th;
                 }
@@ -139,12 +140,12 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 try {
-                    if (cameraSession == CameraCapturer.this.currentSession) {
-                        CameraCapturer.this.eventsHandler.onCameraError(str);
-                        CameraCapturer.this.stopCapture();
-                    } else {
+                    if (cameraSession != CameraCapturer.this.currentSession) {
                         Logging.w("CameraCapturer", "onCameraError from another session: " + str);
+                        return;
                     }
+                    CameraCapturer.this.eventsHandler.onCameraError(str);
+                    CameraCapturer.this.stopCapture();
                 } catch (Throwable th) {
                     throw th;
                 }
@@ -231,20 +232,21 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         } : cameraEventsHandler;
         this.cameraEnumerator = cameraEnumerator;
         this.cameraName = str;
-        List listAsList = Arrays.asList(cameraEnumerator.getDeviceNames());
+        List asList = Arrays.asList(cameraEnumerator.getDeviceNames());
         this.uiThreadHandler = new Handler(Looper.getMainLooper());
-        if (listAsList.isEmpty()) {
-            throw new RuntimeException("No cameras attached.");
+        if (!asList.isEmpty()) {
+            if (asList.contains(this.cameraName)) {
+                return;
+            }
+            throw new IllegalArgumentException(aa.d.r(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
-        if (!listAsList.contains(this.cameraName)) {
-            throw new IllegalArgumentException(a9.p.p(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
-        }
+        throw new RuntimeException("No cameras attached.");
     }
 
     public static int access$1710(CameraCapturer cameraCapturer) {
-        int i10 = cameraCapturer.openAttemptsRemaining;
-        cameraCapturer.openAttemptsRemaining = i10 - 1;
-        return i10;
+        int i9 = cameraCapturer.openAttemptsRemaining;
+        cameraCapturer.openAttemptsRemaining = i9 - 1;
+        return i9;
     }
 
     public void checkIsOnCameraThread() {
@@ -255,15 +257,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         throw new RuntimeException("Not on camera thread.");
     }
 
-    public void createSessionInternal(int i10) {
-        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i10 + 10000);
+    public void createSessionInternal(int i9) {
+        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i9 + 10000);
         this.cameraThreadHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 CameraCapturer cameraCapturer = CameraCapturer.this;
                 cameraCapturer.createCameraSession(cameraCapturer.createSessionCallback, CameraCapturer.this.cameraSessionEventsHandler, CameraCapturer.this.applicationContext, CameraCapturer.this.surfaceHelper, CameraCapturer.this.cameraName, CameraCapturer.this.width, CameraCapturer.this.height, CameraCapturer.this.framerate);
             }
-        }, i10);
+        }, i9);
     }
 
     public void reportCameraSwitchError(String str, CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
@@ -276,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(s3.c.e("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(ta.b.d("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -325,17 +327,17 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder sbP = com.google.android.recaptcha.internal.a.p("changeCaptureFormat: ", i10, "x", i11, "@");
-        sbP.append(i12);
-        Logging.d("CameraCapturer", sbP.toString());
+    public void changeCaptureFormat(int i9, int i10, int i11) {
+        StringBuilder o6 = e2.c.o("changeCaptureFormat: ", i9, "x", i10, "@");
+        o6.append(i11);
+        Logging.d("CameraCapturer", o6.toString());
         synchronized (this.stateLock) {
             stopCapture();
-            startCapture(i10, i11, i12);
+            startCapture(i9, i10, i11);
         }
     }
 
-    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12);
+    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i9, int i10, int i11);
 
     @Override
     public void dispose() {
@@ -365,8 +367,13 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     public void printStackTrace() {
+        Thread thread;
         Handler handler = this.cameraThreadHandler;
-        Thread thread = handler != null ? handler.getLooper().getThread() : null;
+        if (handler != null) {
+            thread = handler.getLooper().getThread();
+        } else {
+            thread = null;
+        }
         if (thread != null) {
             StackTraceElement[] stackTrace = thread.getStackTrace();
             if (stackTrace.length > 0) {
@@ -384,29 +391,30 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void startCapture(int i10, int i11, int i12) {
-        StringBuilder sbP = com.google.android.recaptcha.internal.a.p("startCapture: ", i10, "x", i11, "@");
-        sbP.append(i12);
-        Logging.d("CameraCapturer", sbP.toString());
-        if (this.applicationContext == null) {
-            throw new RuntimeException("CameraCapturer must be initialized before calling startCapture.");
-        }
-        synchronized (this.stateLock) {
-            try {
-                if (!this.sessionOpening && this.currentSession == null) {
-                    this.width = i10;
-                    this.height = i11;
-                    this.framerate = i12;
-                    this.sessionOpening = true;
-                    this.openAttemptsRemaining = 3;
-                    createSessionInternal(0);
+    public void startCapture(int i9, int i10, int i11) {
+        StringBuilder o6 = e2.c.o("startCapture: ", i9, "x", i10, "@");
+        o6.append(i11);
+        Logging.d("CameraCapturer", o6.toString());
+        if (this.applicationContext != null) {
+            synchronized (this.stateLock) {
+                try {
+                    if (!this.sessionOpening && this.currentSession == null) {
+                        this.width = i9;
+                        this.height = i10;
+                        this.framerate = i11;
+                        this.sessionOpening = true;
+                        this.openAttemptsRemaining = 3;
+                        createSessionInternal(0);
+                        return;
+                    }
+                    Logging.w("CameraCapturer", "Session already open");
                     return;
+                } catch (Throwable th) {
+                    throw th;
                 }
-                Logging.w("CameraCapturer", "Session already open");
-            } catch (Throwable th) {
-                throw th;
             }
         }
+        throw new RuntimeException("CameraCapturer must be initialized before calling startCapture.");
     }
 
     @Override
@@ -449,12 +457,12 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         this.cameraThreadHandler.post(new Runnable() {
             @Override
             public void run() {
-                List listAsList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
-                if (listAsList.size() < 2) {
+                List asList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
+                if (asList.size() < 2) {
                     CameraCapturer.this.reportCameraSwitchError("No camera to switch to.", cameraSwitchHandler);
-                } else {
-                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) listAsList.get((listAsList.indexOf(CameraCapturer.this.cameraName) + 1) % listAsList.size()));
+                    return;
                 }
+                CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
             }
         });
     }

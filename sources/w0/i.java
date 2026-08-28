@@ -1,11 +1,8 @@
 package w0;
-
 public abstract class i extends Exception {
+    public static final int f48424a = 0;
 
-    public static final int f48927a = 0;
-
-    public i(CharSequence charSequence, String type) {
-        super(charSequence != null ? charSequence.toString() : null);
-        kotlin.jvm.internal.j.e(type, "type");
+    public i(java.lang.CharSequence r2, java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: w0.i.<init>(java.lang.CharSequence, java.lang.String):void");
     }
 }

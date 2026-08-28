@@ -1,74 +1,49 @@
 package org.telegram.ui;
 
-public final class t10 implements org.telegram.ui.Components.pn0 {
+import android.text.style.URLSpan;
+import android.view.View;
+import android.view.ViewParent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class t10 implements Utilities.CallbackReturn {
+    public final int f42805a;
+    public final Object f42806b;
 
-    public final int f42751a;
-
-    public final bg.a f42752b;
-
-    public t10(bg.a aVar, int i10) {
-        this.f42751a = i10;
-        this.f42752b = aVar;
+    public t10(Object obj, int i9) {
+        this.f42805a = i9;
+        this.f42806b = obj;
     }
 
     @Override
-    public final void P(float f10, boolean z10) {
-        switch (this.f42751a) {
+    public final Object run(Object obj) {
+        switch (this.f42805a) {
             case 0:
-                bg.j jVar = this.f42752b.f2090c;
-                if (jVar != null) {
-                    jVar.v = f10 * 2.0f;
+                x10 x10Var = (x10) this.f42806b;
+                View view = (View) obj;
+                x10Var.getClass();
+                ViewParent parent = view.getParent();
+                org.telegram.ui.Components.wk0 wk0Var = x10Var.f44314c;
+                if (parent != wk0Var) {
+                    return Boolean.FALSE;
                 }
-                break;
+                return Boolean.valueOf(!org.telegram.ui.Components.z41.K(wk0Var.T(view).f5505f));
             case 1:
-                bg.j jVar2 = this.f42752b.f2090c;
-                if (jVar2 != null) {
-                    jVar2.f2162w = f10 * 2.0f;
+                of0 of0Var = (of0) this.f42806b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new lf0(of0Var, 1));
+                    return Boolean.TRUE;
                 }
-                break;
-            case 2:
-                bg.j jVar3 = this.f42752b.f2090c;
-                if (jVar3 != null) {
-                    jVar3.f2163x = f10;
-                }
-                break;
+                return Boolean.FALSE;
             default:
-                bg.j jVar4 = this.f42752b.f2090c;
-                if (jVar4 != null) {
-                    jVar4.A = f10 * 2.0f;
+                ProfileActivity profileActivity = (ProfileActivity) this.f42806b;
+                URLSpan uRLSpan = (URLSpan) obj;
+                if (uRLSpan != null) {
+                    profileActivity.B4(uRLSpan.getURL(), null);
+                    return Boolean.TRUE;
                 }
-                break;
+                return Boolean.FALSE;
         }
-    }
-
-    @Override
-    public final int a0() {
-        switch (this.f42751a) {
-        }
-        return 0;
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f42751a) {
-        }
-        return null;
-    }
-
-    @Override
-    public final void r() {
-        int i10 = this.f42751a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
     }
 }

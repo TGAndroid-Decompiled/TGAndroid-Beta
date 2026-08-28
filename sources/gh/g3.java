@@ -1,31 +1,53 @@
 package gh;
 
-public final class g3 implements Runnable {
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g3 implements RequestDelegate {
+    public final int f8098a;
+    public final k5 f8099b;
 
-    public final int f7269a;
-
-    public final t3 f7270b;
-
-    public g3(t3 t3Var, int i10) {
-        this.f7269a = i10;
-        this.f7270b = t3Var;
+    public g3(k5 k5Var, int i9) {
+        this.f8098a = i9;
+        this.f8099b = k5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f7269a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f8098a) {
             case 0:
-                this.f7270b.setReordering(true);
-                break;
-            case 1:
-                this.f7270b.setReordering(true);
-                break;
-            case 2:
-                this.f7270b.f(false);
-                break;
+                final k5 k5Var = this.f8099b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                k5.Z(k5Var, tLObject, tL_error);
+                                return;
+                            default:
+                                k5.x0(k5Var, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
             default:
-                this.f7270b.setReordering(true);
-                break;
+                final k5 k5Var2 = this.f8099b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                k5.Z(k5Var2, tLObject, tL_error);
+                                return;
+                            default:
+                                k5.x0(k5Var2, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
     }
 }

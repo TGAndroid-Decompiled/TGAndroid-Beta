@@ -1,64 +1,89 @@
 package org.telegram.ui.web;
 
-import android.util.LongSparseArray;
-import java.util.ArrayList;
+import android.text.TextUtils;
+import android.widget.EditText;
+import mh.m2;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.tq0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.e5;
+import org.telegram.ui.Components.c51;
+public final class b1 extends e5 {
+    public final m2 f43806f = new m2(this, 18);
+    public final c1 h;
 
-public abstract class b1 {
+    public b1(c1 c1Var) {
+        this.h = c1Var;
+    }
 
-    public static boolean f43781a;
-
-    public static boolean f43782b;
-
-    public static ArrayList f43783c;
-    public static LongSparseArray d;
-
-    public static ArrayList f43784e;
-
-    public static ArrayList a(Utilities.Callback callback) {
-        boolean z10;
-        if (callback == null || f43782b) {
-            z10 = false;
-        } else {
-            if (f43784e == null) {
-                f43784e = new ArrayList();
+    public static boolean t(String str, String str2) {
+        if (str != null && str2 != null) {
+            String lowerCase = str.toLowerCase();
+            String lowerCase2 = str2.toLowerCase();
+            if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.l0.w(" ", lowerCase2, lowerCase) && !org.telegram.messenger.l0.w(".", lowerCase2, lowerCase)) {
+                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                if (translitSafe.startsWith(translitSafe2) || org.telegram.messenger.l0.w(" ", translitSafe2, translitSafe) || org.telegram.messenger.l0.w(".", translitSafe2, translitSafe)) {
+                    return true;
+                }
+                return false;
             }
-            f43784e.add(callback);
-            z10 = true;
+            return true;
         }
-        b();
-        if (z10) {
-            return null;
-        }
-        return f43783c;
+        return false;
     }
 
-    public static void b() {
-        if (f43781a || f43782b) {
-            return;
+    @Override
+    public final void m() {
+        int i9;
+        c1 c1Var = this.h;
+        c1Var.f43821n = null;
+        c1Var.h = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f43806f);
+        c51 c51Var = c1Var.f27658a;
+        if (c51Var != null) {
+            c51Var.U2.N(true);
+            c1Var.f27658a.T2.h1(0, 0);
         }
-        f43781a = true;
-        f43783c = new ArrayList();
-        d = new LongSparseArray();
-        Utilities.globalQueue.postRunnable(new tq0(9));
-    }
-
-    public static void c(a1 a1Var) {
-        if (a1Var == null || a1Var.d == null) {
-            return;
-        }
-        b();
-        a1 a1Var2 = (a1) d.get(a1Var.f43774a);
-        if (a1Var2 != null) {
-            a1Var2.d = a1Var.d;
+        dh.u uVar = c1Var.f43824w.d;
+        if (TextUtils.isEmpty(c1Var.f43821n)) {
+            i9 = R.string.WebNoHistory;
         } else {
-            f43783c.add(a1Var);
-            d.put(a1Var.f43774a, a1Var);
+            i9 = R.string.WebNoSearchedHistory;
         }
-        int i10 = 8;
-        AndroidUtilities.cancelRunOnUIThread(new tq0(i10));
-        AndroidUtilities.runOnUIThread(new tq0(i10), 1000L);
+        uVar.setText(LocaleController.getString(i9));
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        int i9;
+        c1 c1Var = this.h;
+        boolean z10 = !TextUtils.isEmpty(c1Var.f43821n);
+        String obj = editText.getText().toString();
+        if (!TextUtils.equals(c1Var.f43821n, obj)) {
+            c1Var.f43821n = obj;
+            c1Var.h = true;
+            m2 m2Var = this.f43806f;
+            AndroidUtilities.cancelRunOnUIThread(m2Var);
+            AndroidUtilities.runOnUIThread(m2Var, 500L);
+            dh.u uVar = c1Var.f43824w.d;
+            if (TextUtils.isEmpty(obj)) {
+                i9 = R.string.WebNoHistory;
+            } else {
+                i9 = R.string.WebNoSearchedHistory;
+            }
+            uVar.setText(LocaleController.getString(i9));
+        }
+        c51 c51Var = c1Var.f27658a;
+        if (c51Var != null) {
+            c51Var.U2.N(true);
+            if (z10 != (!TextUtils.isEmpty(obj))) {
+                c1Var.f27658a.T2.h1(0, 0);
+            }
+        }
+    }
+
+    @Override
+    public final void n() {
     }
 }

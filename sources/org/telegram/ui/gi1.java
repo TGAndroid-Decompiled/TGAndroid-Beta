@@ -1,18 +1,26 @@
 package org.telegram.ui;
 
-import android.webkit.JavascriptInterface;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class gi1 extends org.telegram.ui.ActionBar.j {
+    public final ii1 f38554a;
 
-public final class gi1 {
-
-    public final hi1 f38423a;
-
-    public gi1(hi1 hi1Var) {
-        this.f38423a = hi1Var;
+    public gi1(ii1 ii1Var) {
+        this.f38554a = ii1Var;
     }
 
-    @JavascriptInterface
-    public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new zh1(2, this, str));
+    @Override
+    public final void b(int i9) {
+        ii1 ii1Var = this.f38554a;
+        MessageObject messageObject = ii1Var.f39172n;
+        if (i9 == -1) {
+            ii1Var.finishFragment();
+        } else if (i9 == 1) {
+            if (messageObject != null) {
+                messageObject.messageOwner.with_my_score = false;
+                ii1Var.showDialog(org.telegram.ui.Components.rp0.N0(ii1Var.getParentActivity(), messageObject, null, false, ii1Var.h));
+            }
+        } else if (i9 == 2) {
+            ii1.U(ii1Var.d, messageObject, ii1Var.getParentActivity(), ii1Var.f39173r, ii1Var.f39170e);
+        }
     }
 }

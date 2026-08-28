@@ -1,10 +1,16 @@
 package g7;
 
+import android.util.Log;
 public abstract class d8 {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            return obj != null && obj.equals(obj2);
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
         }
-        return true;
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
     }
 }

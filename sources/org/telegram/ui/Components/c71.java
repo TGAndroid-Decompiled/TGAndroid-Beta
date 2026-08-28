@@ -1,66 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
+import android.content.Context;
+import android.util.SparseIntArray;
+public final class c71 extends m71 {
+    public final n71 f27377p0;
 
-public final class c71 implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f27355a;
-
-    public final p71 f27356b;
-
-    public c71(p71 p71Var, int i10) {
-        this.f27355a = i10;
-        this.f27356b = p71Var;
+    public c71(n71 n71Var, Context context, boolean z10, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(i9, context, b6Var, z10);
+        this.f27377p0 = n71Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27355a) {
-            case 0:
-                p71 p71Var = this.f27356b;
-                p71Var.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = p71Var.f31545e;
-                View view = viewArr[1];
-                if (view != null) {
-                    if (p71Var.f31552y) {
-                        p71Var.E(view, (1.0f - fFloatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        p71Var.E(view2, (-view2.getMeasuredWidth()) * fFloatValue);
-                    } else {
-                        p71Var.E(view, (1.0f - fFloatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        p71Var.E(view3, view3.getMeasuredWidth() * fFloatValue);
-                    }
-                    p71Var.f31544c = fFloatValue;
-                    p71Var.w(true);
-                    e71 e71Var = p71Var.I;
-                    if (e71Var != null) {
-                        e71Var.v.invalidate();
-                        p71Var.I.v.f1();
-                        p71Var.I.invalidate();
-                    }
-                    break;
-                }
-                break;
-            case 1:
-                p71 p71Var2 = this.f27356b;
-                p71Var2.getClass();
-                p71Var2.N = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                break;
-            case 2:
-                p71 p71Var3 = this.f27356b;
-                p71Var3.J.onAnimationUpdate(valueAnimator);
-                p71Var3.I.f31204a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p71Var3.I.v.f1();
-                p71Var3.I.invalidate();
-                break;
-            default:
-                p71 p71Var4 = this.f27356b;
-                p71Var4.getClass();
-                p71Var4.N = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                break;
+    public final void e(float f10, int i9, int i10) {
+        float f11;
+        int i11;
+        boolean z10;
+        if (f10 < 0.0f) {
+            f11 = 0.0f;
+        } else if (f10 > 1.0f) {
+            f11 = 1.0f;
+        } else {
+            f11 = f10;
         }
+        this.B = i9;
+        SparseIntArray sparseIntArray = this.U;
+        this.C = sparseIntArray.get(i9);
+        if (f11 > 0.0f) {
+            l71 l71Var = this.f30759y;
+            if (l71Var != null) {
+                e71 e71Var = ((n71) ((n2.p) l71Var).f18343b).H;
+            }
+            this.H = i10;
+            this.I = sparseIntArray.get(i10);
+        } else {
+            this.H = -1;
+            this.I = -1;
+        }
+        this.G = f11;
+        this.v.f1();
+        invalidate();
+        c(i9);
+        if (f11 >= 1.0f) {
+            this.H = -1;
+            this.I = -1;
+            this.B = i10;
+            this.C = sparseIntArray.get(i10);
+        }
+        l71 l71Var2 = this.f30759y;
+        if (l71Var2 != null) {
+            ((n71) ((n2.p) l71Var2).f18343b).s();
+        }
+        if (f10 <= 0.5f) {
+            i11 = i9;
+        } else {
+            i11 = i10;
+        }
+        if (i9 < i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f27377p0.y(i11, z10);
     }
 }

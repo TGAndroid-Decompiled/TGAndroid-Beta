@@ -1,40 +1,24 @@
 package org.telegram.messenger;
-
 public final class y5 implements Runnable {
+    public final int f22210a;
+    public final MediaController f22211b;
+    public final int f22212c;
 
-    public final int f22199a;
-
-    public final org.telegram.ui.ActionBar.b2 f22200b;
-
-    public final boolean[] f22201c;
-
-    public y5(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
-        this.f22199a = i10;
-        this.f22200b = b2Var;
-        this.f22201c = zArr;
+    public y5(MediaController mediaController, int i9, int i10) {
+        this.f22210a = i10;
+        this.f22211b = mediaController;
+        this.f22212c = i9;
     }
 
     @Override
     public final void run() {
-        switch (this.f22199a) {
+        switch (this.f22210a) {
             case 0:
-                MediaController.lambda$saveFile$45(this.f22201c, this.f22200b);
-                break;
-            case 1:
-                MediaController.lambda$saveFile$49(this.f22200b, this.f22201c);
-                break;
-            case 2:
-                MediaController.lambda$saveFile$52(this.f22201c, this.f22200b);
-                break;
+                this.f22211b.lambda$onAudioFocusChange$5(this.f22212c);
+                return;
             default:
-                MediaController.lambda$saveFile$54(this.f22200b, this.f22201c);
-                break;
+                this.f22211b.lambda$stopRecording$42(this.f22212c);
+                return;
         }
-    }
-
-    public y5(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f22199a = i10;
-        this.f22201c = zArr;
-        this.f22200b = b2Var;
     }
 }

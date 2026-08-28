@@ -4,52 +4,50 @@ import android.content.DialogInterface;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
-
 public final class x1 implements DialogInterface.OnCancelListener {
-
-    public final int f34415a = 1;
-
-    public final int f34416b;
-
-    public final int[] f34417c;
+    public final int f34484a = 1;
+    public final int f34485b;
+    public final int[] f34486c;
     public final Runnable d;
 
-    public x1(int i10, int[] iArr, org.telegram.ui.a30 a30Var) {
-        this.f34416b = i10;
-        this.f34417c = iArr;
-        this.d = a30Var;
+    public x1(int i9, int[] iArr, org.telegram.ui.x20 x20Var) {
+        this.f34485b = i9;
+        this.f34486c = iArr;
+        this.d = x20Var;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f34415a;
+        int i9 = this.f34484a;
         Runnable runnable = this.d;
-        int[] iArr = this.f34417c;
-        int i11 = this.f34416b;
-        switch (i10) {
+        int[] iArr = this.f34486c;
+        int i10 = this.f34485b;
+        switch (i9) {
             case 0:
-                for (int i12 : iArr) {
-                    if (i12 != 0) {
-                        ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
+                for (int i11 : iArr) {
+                    if (i11 != 0) {
+                        ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
                     }
                 }
                 if (runnable != null) {
                     runnable.run();
+                    return;
                 }
-                break;
+                return;
             default:
-                Pattern pattern = LaunchActivity.f35496x1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
+                Pattern pattern = LaunchActivity.f35493x1;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
                 if (runnable != null) {
                     runnable.run();
+                    return;
                 }
-                break;
+                return;
         }
     }
 
-    public x1(int[] iArr, Runnable runnable, int i10) {
-        this.f34417c = iArr;
-        this.f34416b = i10;
+    public x1(int[] iArr, Runnable runnable, int i9) {
+        this.f34486c = iArr;
+        this.f34485b = i9;
         this.d = runnable;
     }
 }

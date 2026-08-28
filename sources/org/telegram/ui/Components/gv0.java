@@ -1,49 +1,58 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public class gv0 extends f2.n0 {
+    public final gr f28879r;
+    public int f28880s;
+    public float f28881t;
 
-public final class gv0 implements Runnable {
-
-    public final int f28829a;
-
-    public final TLRPC.Document f28830b;
-
-    public final int f28831c;
-    public final MessageObject d;
-
-    public final org.telegram.ui.Cells.s1 f28832e;
-
-    public final TLRPC.TL_messages_stickerSet f28833f;
-
-    public gv0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
-        this.f28829a = i11;
-        this.f28830b = document;
-        this.f28831c = i10;
-        this.d = messageObject;
-        this.f28832e = s1Var;
-        this.f28833f = tL_messages_stickerSet;
+    public gv0(Context context) {
+        super(context);
+        this.f28879r = gr.f28844f;
+        this.f28881t = 1.0f;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28829a) {
-            case 0:
-                TLRPC.Document document = this.f28830b;
-                String attachFileName = FileLoader.getAttachFileName(document);
-                int i10 = this.f28831c;
-                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.f28832e);
-                FileLoader.getInstance(i10).loadFile(document, this.f28833f, 1, 1);
-                break;
-            default:
-                TLRPC.Document document2 = this.f28830b;
-                String attachFileName2 = FileLoader.getAttachFileName(document2);
-                int i11 = this.f28831c;
-                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.f28832e);
-                FileLoader.getInstance(i11).loadFile(document2, this.f28833f, 1, 1);
-                break;
+    public final void g(View view, f2.l1 l1Var) {
+        int j10 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
+        if (m10 > 0) {
+            l1Var.b(-j10, -k10, m10, this.f28879r);
         }
+        AndroidUtilities.runOnUIThread(new tp0(this, 8), Math.max(0, m10));
+    }
+
+    @Override
+    public final int k(int i9, View view) {
+        return super.k(i9, view) - this.f28880s;
+    }
+
+    @Override
+    public final int m(int i9) {
+        return Math.round(Math.min(super.m(i9), 500) * this.f28881t);
+    }
+
+    @Override
+    public final int n(int i9) {
+        return Math.round(Math.min(super.n(i9), 150) * this.f28881t);
+    }
+
+    @Override
+    public final void q(f2.l1 l1Var) {
+        PointF a2 = a(this.f5443a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            f2.m1.b(a2);
+            this.f5463k = a2;
+            this.f5467o = (int) (a2.x * 10000.0f);
+            this.f5468p = (int) (a2.y * 10000.0f);
+            l1Var.b((int) (this.f5467o * 1.2f), (int) (this.f5468p * 1.2f), (int) (n(10000) * 1.2f), this.f28879r);
+            return;
+        }
+        l1Var.d = this.f5443a;
+        h();
     }
 }

@@ -1,27 +1,56 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.graphics.drawable.Drawable;
+public final class mr implements Drawable.Callback {
+    public final int f40506a;
+    public final Drawable f40507b;
 
-public final class mr implements View.OnClickListener {
-
-    public final int f40586a;
-
-    public final org.telegram.ui.Components.hg0 f40587b;
-
-    public mr(org.telegram.ui.Components.hg0 hg0Var, int i10) {
-        this.f40586a = i10;
-        this.f40587b = hg0Var;
+    public mr(int i9, Drawable drawable) {
+        this.f40506a = i9;
+        this.f40507b = drawable;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40586a) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f40506a) {
             case 0:
-                this.f40587b.b(true);
-                break;
+                ((nr) this.f40507b).invalidateSelf();
+                return;
             default:
-                this.f40587b.b(true);
-                break;
+                org.telegram.ui.Cells.w0 w0Var = ((g01) this.f40507b).h;
+                if (w0Var != null) {
+                    w0Var.invalidate();
+                    return;
+                }
+                return;
         }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f40506a) {
+            case 0:
+                ((nr) this.f40507b).scheduleSelf(runnable, j10);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f40506a) {
+            case 0:
+                ((nr) this.f40507b).unscheduleSelf(runnable);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void b(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void a(Drawable drawable, Runnable runnable, long j10) {
     }
 }

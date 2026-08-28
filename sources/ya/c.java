@@ -1,51 +1,26 @@
 package ya;
 
-import android.os.IBinder;
-import android.os.RemoteException;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.util.Log;
-import j8.x0;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+public abstract class c {
+    public static final b9.c f49686a = new b9.c("CommonUtils", "");
 
-public final class c {
-
-    public final HashMap f49815a = new HashMap();
-
-    public c() {
-    }
-
-    public void a(IBinder iBinder) {
-        synchronized (this.f49815a) {
-            if (iBinder != null) {
-                try {
-                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
-                } catch (Throwable th) {
-                    throw th;
+    public static String a(Context context) {
+        try {
+            return String.valueOf(context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode);
+        } catch (PackageManager.NameNotFoundException e10) {
+            String concat = "Exception thrown when trying to get app version ".concat(e10.toString());
+            b9.c cVar = f49686a;
+            if (Log.isLoggable(cVar.f1662b, 6)) {
+                String str = cVar.f1663c;
+                if (str != null) {
+                    concat = str.concat(concat);
                 }
+                Log.e("CommonUtils", concat);
+                return "";
             }
-            new x0();
-            for (Map.Entry entry : this.f49815a.entrySet()) {
-                if (entry.getValue() != null) {
-                    throw new ClassCastException();
-                }
-                try {
-                    throw null;
-                } catch (RemoteException unused) {
-                    Log.w("WearableClient", "onPostInitHandler: Didn't add: " + String.valueOf(entry.getKey()) + "/null");
-                }
-            }
-        }
-    }
-
-    public c(Set set) {
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            b bVar = (b) it.next();
-            HashMap map = this.f49815a;
-            bVar.getClass();
-            map.put(a.class, bVar.f49814a);
+            return "";
         }
     }
 }

@@ -1,31 +1,28 @@
 package k3;
 
 import android.media.MediaCodec;
-import d5.g0;
-
+import d5.f0;
 public final class d {
-
-    public byte[] f14410a;
-
-    public byte[] f14411b;
-
-    public int f14412c;
+    public byte[] f14589a;
+    public byte[] f14590b;
+    public int f14591c;
     public int[] d;
-
-    public int[] f14413e;
-
-    public int f14414f;
-
-    public int f14415g;
+    public int[] f14592e;
+    public int f14593f;
+    public int f14594g;
     public int h;
-
-    public final MediaCodec.CryptoInfo f14416i;
-
-    public final c f14417j;
+    public final MediaCodec.CryptoInfo f14595i;
+    public final c f14596j;
 
     public d() {
+        c cVar;
         MediaCodec.CryptoInfo cryptoInfo = new MediaCodec.CryptoInfo();
-        this.f14416i = cryptoInfo;
-        this.f14417j = g0.f4795a >= 24 ? new c(cryptoInfo) : null;
+        this.f14595i = cryptoInfo;
+        if (f0.f4349a >= 24) {
+            cVar = new c(cryptoInfo);
+        } else {
+            cVar = null;
+        }
+        this.f14596j = cVar;
     }
 }

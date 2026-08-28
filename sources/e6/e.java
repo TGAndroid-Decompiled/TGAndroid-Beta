@@ -1,0 +1,10 @@
+package e6;
+
+import java.util.regex.Pattern;
+public abstract class e {
+    public static final int f4965a = 0;
+
+    static {
+        Pattern.compile("\\$\\{(.*?)\\}");
+    }
+}

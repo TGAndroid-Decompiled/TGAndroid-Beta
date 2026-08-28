@@ -1,51 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class ht implements DialogInterface.OnShowListener {
+    public final int f29183a;
+    public final EditTextBoldCursor f29184b;
 
-public final class ht implements ActionMode.Callback {
-
-    public final ActionMode.Callback f29097a;
-
-    public final lt f29098b;
-
-    public ht(lt ltVar, ActionMode.Callback callback) {
-        this.f29098b = ltVar;
-        this.f29097a = callback;
+    public ht(int i9, EditTextBoldCursor editTextBoldCursor) {
+        this.f29183a = i9;
+        this.f29184b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f29098b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f29183a) {
+            case 0:
+                gh.o oVar = (gh.o) this.f29184b;
+                oVar.requestFocus();
+                AndroidUtilities.showKeyboard(oVar);
+                return;
+            case 1:
+                gh.o oVar2 = (gh.o) this.f29184b;
+                oVar2.requestFocus();
+                AndroidUtilities.showKeyboard(oVar2);
+                return;
+            default:
+                z3 z3Var = (z3) this.f29184b;
+                z3Var.requestFocus();
+                AndroidUtilities.showKeyboard(z3Var);
+                return;
         }
-        try {
-            return this.f29097a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        lt ltVar = this.f29098b;
-        ltVar.copyPasteShowed = true;
-        ltVar.onContextMenuOpen();
-        return this.f29097a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        lt ltVar = this.f29098b;
-        ltVar.copyPasteShowed = false;
-        ltVar.onContextMenuClose();
-        this.f29097a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f29097a.onPrepareActionMode(actionMode, menu);
     }
 }

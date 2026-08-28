@@ -1,7 +1,6 @@
 package m;
 
 import android.widget.AbsListView;
-
 public abstract class p1 {
     public static boolean a(AbsListView absListView) {
         return absListView.isSelectedChildViewEnabled();

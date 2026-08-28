@@ -1,29 +1,35 @@
 package org.telegram.ui;
+public final class l9 implements o1.f {
+    public final int f40083a;
+    public final Object f40084b;
 
-public final class l9 implements o1.g {
-
-    public final int f39991a;
-
-    public final t9 f39992b;
-
-    public l9(t9 t9Var, int i10) {
-        this.f39991a = i10;
-        this.f39992b = t9Var;
+    public l9(Object obj, int i9) {
+        this.f40083a = i9;
+        this.f40084b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        switch (this.f39991a) {
+    public final void a(o1.h hVar, boolean z10, float f10, float f11) {
+        switch (this.f40083a) {
             case 0:
-                t9 t9Var = this.f39992b;
-                t9Var.f42829y = f10 / 500.0f;
-                t9Var.fragmentView.invalidate();
-                break;
+                s9 s9Var = (s9) this.f40084b;
+                o1.j jVar = s9Var.f42603x;
+                if (jVar != null) {
+                    jVar.c();
+                    s9Var.f42603x = null;
+                    return;
+                }
+                return;
+            case 1:
+                yn0 yn0Var = (yn0) this.f40084b;
+                if (hVar == yn0Var.f44915c) {
+                    yn0Var.f44915c = null;
+                    return;
+                }
+                return;
             default:
-                t9 t9Var2 = this.f39992b;
-                t9Var2.W = t9Var2.I ? f10 / 500.0f : 1.0f - (f10 / 500.0f);
-                t9Var2.fragmentView.invalidate();
-                break;
+                ((mt0) this.f40084b).D();
+                return;
         }
     }
 }

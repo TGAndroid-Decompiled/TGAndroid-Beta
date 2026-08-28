@@ -1,45 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class i60 extends AnimatorListenerAdapter {
+    public final int f29355a;
+    public final j60 f29356b;
 
-public final class i60 extends iw0 {
-    public final int G;
-
-    public i60(Context context, View view, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11) {
-        super(context, view, i10, c6Var);
-        this.G = i11;
+    public i60(j60 j60Var, int i9) {
+        this.f29355a = i9;
+        this.f29356b = j60Var;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        switch (this.G) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29355a) {
             case 0:
-                super.onAttachedToWindow();
-                this.f29504b.getImageReceiver().startAnimation();
-                break;
-            case 1:
-                super.onAttachedToWindow();
-                this.f29504b.getImageReceiver().startAnimation();
-                break;
+                j60 j60Var = this.f29356b;
+                j60Var.f29655e.Z = null;
+                j60Var.requestLayout();
+                return;
             default:
-                super.onAttachedToWindow();
-                break;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.G) {
-            case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    e(false, false);
-                }
-                break;
-            default:
-                super.setVisibility(i10);
-                break;
+                j60 j60Var2 = this.f29356b;
+                j60Var2.f29655e.Z = null;
+                j60Var2.f29652a = false;
+                return;
         }
     }
 }

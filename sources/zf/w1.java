@@ -2,239 +2,150 @@ package zf;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
 import android.view.View;
+import kh.i9;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.y5;
-
-public final class w1 extends View {
-    public yf.b1 A;
-    public float B;
-    public float C;
-    public yf.p1 D;
-    public Runnable E;
-    public boolean F;
-    public v1 G;
-
-    public final Paint f50746a;
-
-    public final Paint f50747b;
-
-    public final Path f50748c;
-    public final m5.o d;
-
-    public final RectF f50749e;
-
-    public boolean f50750f;
-    public boolean h;
-
-    public float f50751n;
-
-    public float f50752r;
-
-    public long f50753s;
-    public boolean v;
-
-    public final y5 f50754w;
-
-    public final y5 f50755x;
-
-    public final y5 f50756y;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+public class w1 extends View {
+    public v1 f50764a;
+    public int f50765b;
+    public i9 f50766c;
+    public boolean d;
+    public Paint f50767e;
+    public LinearGradient f50768f;
+    public Matrix h;
 
     public w1(Context context) {
         super(context);
+        int i9;
+        if (SharedConfig.getDevicePerformanceClass() == 2) {
+            i9 = 200;
+        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
+            i9 = 100;
+        } else {
+            i9 = 50;
+        }
+        this.d = true;
+        this.f50764a = new v1(i9);
+        a();
+    }
+
+    public void a() {
+        v1 v1Var = this.f50764a;
+        v1Var.N = 100;
+        v1Var.M = true;
+        v1Var.G = true;
+        v1Var.K = true;
+        v1Var.H = true;
+        v1Var.f50748r = 4;
+        v1Var.f50752w = 0.98f;
+        v1Var.v = 0.98f;
+        v1Var.f50751u = 0.98f;
+        v1Var.c();
+    }
+
+    public final void b() {
         Paint paint = new Paint(1);
-        this.f50746a = paint;
-        Paint paint2 = new Paint(1);
-        this.f50747b = paint2;
-        this.f50748c = new Path();
-        this.f50749e = new RectF();
-        this.v = true;
-        this.f50754w = new y5(this);
-        this.f50755x = new y5(this);
-        this.f50756y = new y5(this);
-        this.D = new yf.p1(1.0f, 0.016773745f, -1);
-        this.F = true;
-        this.d = new m5.o(context, new u1(this));
-        paint2.setColor(-1);
-        paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, AndroidUtilities.dp(2.0f), 1342177280);
-        paint.setColor(1090519039);
-        paint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 637534208);
+        this.f50767e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f50768f = linearGradient;
+        this.f50767e.setShader(linearGradient);
+        this.h = new Matrix();
     }
 
-    public final void a(float f10, float f11, float f12, Canvas canvas, boolean z10) {
-        if (z10) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((f10 - f12) - AndroidUtilities.dp(6.0f), (f11 - f12) - AndroidUtilities.dp(6.0f), f10 + f12 + AndroidUtilities.dp(6.0f), f11 + f12 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f50752r * 255.0f), 31);
-        }
-        canvas.drawCircle(f10, f11, f12, this.f50747b);
-        if (z10) {
-            canvas.restore();
+    public int getStarsRectWidth() {
+        return AndroidUtilities.dp(140.0f);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        i9 i9Var = new i9(this, 26);
+        this.f50766c = i9Var;
+        LiteMode.addOnPowerSaverAppliedListener(i9Var);
+        boolean isEnabled = LiteMode.isEnabled(131072);
+        if (this.d != isEnabled) {
+            this.d = isEnabled;
+            invalidate();
         }
     }
 
-    public final void b(float f10, float f11) {
-        this.B = f10;
-        this.C = f11;
-        invalidate();
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        i9 i9Var = this.f50766c;
+        if (i9Var != null) {
+            LiteMode.removeOnPowerSaverAppliedListener(i9Var);
+        }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f10;
-        float f11;
+        Canvas canvas2;
         super.onDraw(canvas);
-        long jMin = Math.min(16L, System.currentTimeMillis() - this.f50753s);
-        this.f50753s = System.currentTimeMillis();
-        v1 v1Var = this.G;
-        float fD = this.f50754w.d(v1Var != null ? v1Var.get() : this.D.f50036c, false);
-        float fD2 = this.f50755x.d(this.B, false);
-        float fD3 = this.f50756y.d(this.C, false);
-        boolean z10 = this.h;
+        if (this.d) {
+            if (this.f50767e != null) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
+            }
+            this.f50764a.d(canvas2);
+            if (this.f50767e != null) {
+                canvas2.save();
+                this.h.reset();
+                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
+                this.f50768f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.f50767e);
+                this.h.reset();
+                this.h.postRotate(180.0f);
+                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
+                this.f50768f.setLocalMatrix(this.h);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.f50767e);
+                canvas2.restore();
+                canvas2.restore();
+            }
+            if (!this.f50764a.f50738g) {
+                invalidate();
+            }
+        }
+    }
+
+    @Override
+    public void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
+        this.f50764a.f50733a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
+        this.f50764a.f50733a.offset((getMeasuredWidth() - this.f50764a.f50733a.width()) / 2.0f, (getMeasuredHeight() - this.f50764a.f50733a.height()) / 2.0f);
+        this.f50764a.f50734b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
+        if (this.f50765b != measuredHeight) {
+            this.f50765b = measuredHeight;
+            this.f50764a.f();
+        }
+    }
+
+    public void setPaused(boolean z10) {
+        v1 v1Var = this.f50764a;
+        if (z10 == v1Var.f50738g) {
+            return;
+        }
+        v1Var.f50738g = z10;
         if (z10) {
-            float f12 = this.f50751n;
-            if (f12 != 1.0f) {
-                this.f50751n = Math.min(1.0f, (jMin / 200.0f) + f12);
-                invalidate();
-            } else if (!z10) {
-                f10 = this.f50751n;
-                if (f10 != 0.0f) {
-                    this.f50751n = Math.max(0.0f, f10 - (jMin / 200.0f));
-                    invalidate();
-                }
-            }
-        } else if (!z10) {
-            f10 = this.f50751n;
-            if (f10 != 0.0f) {
-                this.f50751n = Math.max(0.0f, f10 - (jMin / 200.0f));
-                invalidate();
-            }
+            v1Var.Q = System.currentTimeMillis();
+            return;
         }
-        boolean z11 = this.f50750f;
-        if (z11) {
-            float f13 = this.f50752r;
-            if (f13 != 1.0f) {
-                this.f50752r = Math.min(1.0f, (jMin / 200.0f) + f13);
-                invalidate();
-            } else if (!z11) {
-                f11 = this.f50752r;
-                if (f11 != 0.0f) {
-                    this.f50752r = Math.max(0.0f, f11 - (jMin / 200.0f));
-                    invalidate();
-                }
-            }
-        } else if (!z11) {
-            f11 = this.f50752r;
-            if (f11 != 0.0f) {
-                this.f50752r = Math.max(0.0f, f11 - (jMin / 200.0f));
-                invalidate();
-            }
+        for (int i9 = 0; i9 < this.f50764a.f50744n.size(); i9++) {
+            u1 u1Var = (u1) this.f50764a.f50744n.get(i9);
+            u1Var.f50713a = (System.currentTimeMillis() - this.f50764a.Q) + u1Var.f50713a;
         }
-        RectF rectF = this.f50749e;
-        float fHeight = rectF.height();
-        int iDp = AndroidUtilities.dp(16.0f);
-        int iDp2 = AndroidUtilities.dp(3.0f);
-        int iDp3 = AndroidUtilities.dp(3.0f);
-        Path path = this.f50748c;
-        path.rewind();
-        path.moveTo(0.0f, 0.0f);
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        int i10 = -iDp3;
-        int i11 = -iDp;
-        rectF2.set(AndroidUtilities.lerp(i10, i11, this.f50752r), 0.0f, AndroidUtilities.lerp(iDp3, iDp, this.f50752r), AndroidUtilities.lerp(iDp3, iDp, this.f50752r) * 2);
-        path.arcTo(rectF2, -90.0f, 90.0f);
-        path.lineTo(AndroidUtilities.lerp(iDp3, iDp2, this.f50752r), fHeight);
-        rectF2.set(AndroidUtilities.lerp(i10, -iDp2, this.f50752r), fHeight - (iDp2 * 2), AndroidUtilities.lerp(iDp3, iDp2, this.f50752r), fHeight);
-        path.arcTo(rectF2, 0.0f, 180.0f);
-        float f14 = iDp;
-        path.lineTo(AndroidUtilities.lerp(i10, i11, this.f50752r), f14);
-        rectF2.set(AndroidUtilities.lerp(i10, i11, this.f50752r), 0.0f, AndroidUtilities.lerp(iDp3, iDp, this.f50752r), iDp * 2);
-        path.arcTo(rectF2, -180.0f, 90.0f);
-        path.close();
-        if (this.f50751n != 0.0f) {
-            rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.saveLayerAlpha(rectF2, (int) ((1.0f - this.f50751n) * 255.0f), 31);
-        }
-        canvas.save();
-        float fDp = AndroidUtilities.dp(32.0f);
-        er erVar = er.f28122f;
-        canvas.translate(erVar.getInterpolation(this.f50752r) * fDp, rectF.top);
-        canvas.drawPath(path, this.f50746a);
-        canvas.restore();
-        float f15 = (fD - fD2) / (fD3 - fD2);
-        float f16 = iDp2 * 1.5f;
-        a(erVar.getInterpolation(this.f50752r) * AndroidUtilities.dp(32.0f), h7.n.a(com.google.android.recaptcha.internal.a.z(1.0f, f15, rectF.height(), rectF.top), rectF.top + f14, rectF.bottom - Math.min(f16, f14)), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(Math.min(f16, f14), f14, f15), this.f50752r), canvas, false);
-        if (this.F && this.f50752r != 0.0f && this.v && this.A != null) {
-            float width = getWidth() / 2.0f;
-            float height = getHeight() / 2.0f;
-            yf.b1 b1Var = this.A;
-            float f17 = b1Var.f49880c.f50016g.f32893a;
-            a(width, height, b1Var.getCurrentBrush().h() * com.google.android.recaptcha.internal.a.x(f17, 0.043945312f, fD, 0.00390625f * f17) * this.A.getCurrentBrush().g(), canvas, true);
-        }
-        if (this.f50751n != 0.0f) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        int height = (int) (getHeight() * 0.3f);
-        this.f50749e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean zOnTouchEvent = ((GestureDetector) this.d.f17823b).onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
-            return zOnTouchEvent;
-        }
-        this.f50750f = false;
-        invalidate();
-        return zOnTouchEvent;
-    }
-
-    public void setBrushWeight(float f10) {
-        this.D.f50036c = f10;
-        invalidate();
-    }
-
-    public void setColorSwatch(yf.p1 p1Var) {
-        this.D = p1Var;
-        invalidate();
-    }
-
-    public void setDrawCenter(boolean z10) {
-        this.F = z10;
-        invalidate();
-    }
-
-    public void setOnUpdate(Runnable runnable) {
-        this.E = runnable;
-    }
-
-    public void setRenderView(yf.b1 b1Var) {
-        this.A = b1Var;
-    }
-
-    public void setShowPreview(boolean z10) {
-        this.v = z10;
-        invalidate();
-    }
-
-    public void setValueOverride(v1 v1Var) {
-        this.G = v1Var;
-        invalidate();
-    }
-
-    public void setViewHidden(boolean z10) {
-        this.h = z10;
         invalidate();
     }
 }

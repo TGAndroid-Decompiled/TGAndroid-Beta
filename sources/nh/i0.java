@@ -1,156 +1,110 @@
 package nh;
 
-import android.app.DownloadManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Pair;
-import java.io.File;
-import org.json.JSONObject;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+import bg.o2;
+import fh.w4;
+import g7.e6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.ll;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.i51;
+public final class i0 extends g0 {
+    public final j0 h;
 
-public final class i0 {
+    public i0(j0 j0Var, Context context) {
+        super(j0Var, context);
+        int i9;
+        b6 b6Var;
+        b6 b6Var2;
+        b6 b6Var3;
+        b6 b6Var4;
+        this.h = j0Var;
+        i9 = ((f3) j0Var).currentAccount;
+        s sVar = new s(j0Var, 5);
+        t tVar = new t(j0Var, 5);
+        b6Var = ((f3) j0Var).resourcesProvider;
+        i51 i51Var = new i51(context, i9, 0, false, sVar, tVar, null, b6Var);
+        this.d = i51Var;
+        i51Var.p1();
+        i51 i51Var2 = this.d;
+        i51Var2.U2.f35188r = false;
+        i51Var2.setClipToPadding(false);
+        this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.j(new o2(this, 18));
+        this.f18639c.addView(this.d, 0, e6.c(-1.0f, -1));
+        b6Var2 = ((f3) j0Var).resourcesProvider;
+        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, b6Var2);
+        this.f18637a = kVar;
+        kVar.setOccupyStatusBar(false);
+        org.telegram.ui.ActionBar.k kVar2 = this.f18637a;
+        int i10 = f6.G6;
+        kVar2.setTitleColor(j0Var.getThemedColor(i10));
+        this.f18637a.A(j0Var.getThemedColor(f6.f23388z8), false);
+        this.f18637a.setBackButtonImage(R.drawable.ic_ab_back);
+        this.f18637a.C(j0Var.getThemedColor(f6.f23371y8), false);
+        this.f18637a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
+        this.f18637a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
+        this.f18637a.setActionBarMenuOnItemClick(new w4(this, 11));
+        this.f18639c.addView(this.f18637a, e6.e(-1, 56, 48));
+        LinearLayout f10 = ll.f(context, 0);
+        f10.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
+        b6Var3 = ((f3) j0Var).resourcesProvider;
+        kh.d dVar = new kh.d(context, b6Var3, true);
+        dVar.d();
+        dVar.setColor(i0.a.d(0.125f, j0Var.getThemedColor(f6.f23001d6), j0Var.getThemedColor(i10)));
+        dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
+        dVar.e();
+        dVar.setOnClickListener(new View.OnClickListener(this) {
+            public final i0 f18645b;
 
-    public Long f18737a;
+            {
+                this.f18645b = this;
+            }
 
-    public final String f18738b;
-
-    public final String f18739c;
-    public File d;
-
-    public final String f18740e;
-
-    public long f18741f;
-
-    public long f18742g;
-    public boolean h;
-
-    public boolean f18743i;
-
-    public long f18744j;
-
-    public boolean f18745k;
-
-    public boolean f18746l;
-
-    public final Runnable f18747m = new f0(this, 1);
-
-    public final j0 f18748n;
-
-    public i0(j0 j0Var, String str, String str2) {
-        this.f18748n = j0Var;
-        this.f18738b = str;
-        this.f18739c = str2;
-        TLRPC.User user = MessagesController.getInstance(j0Var.f18769b).getUser(Long.valueOf(j0Var.f18770c));
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
-        request.setTitle(UserObject.getUserName(user));
-        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a9.p.m("Downloading ", str2, "..."));
-        request.setNotificationVisibility(0);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
-        this.f18737a = Long.valueOf(j0Var.d.enqueue(request));
-    }
-
-    public final void a() {
-        j0 j0Var = this.f18748n;
-        j0Var.getClass();
-        this.f18743i = true;
-        Long l10 = this.f18737a;
-        if (l10 != null) {
-            j0Var.d.remove(l10.longValue());
-            this.f18737a = null;
-        }
-        j0Var.f18771e.remove(this);
-        j0Var.e();
-    }
-
-    public final Pair b() {
-        if (this.h) {
-            return new Pair(Long.valueOf(this.f18742g), Long.valueOf(this.f18742g));
-        }
-        if (this.f18737a == null || this.f18743i) {
-            return new Pair(Long.valueOf(this.f18741f), Long.valueOf(this.f18742g));
-        }
-        if (System.currentTimeMillis() - this.f18744j < 150) {
-            return new Pair(Long.valueOf(this.f18741f), Long.valueOf(this.f18742g));
-        }
-        d();
-        return new Pair(Long.valueOf(this.f18741f), Long.valueOf(this.f18742g));
-    }
-
-    public final boolean c() {
-        return (this.h || this.f18737a == null) ? false : true;
-    }
-
-    public final void d() {
-        j0 j0Var = this.f18748n;
-        if (this.h || this.f18743i) {
-            return;
-        }
-        Runnable runnable = this.f18747m;
-        AndroidUtilities.cancelRunOnUIThread(runnable);
-        this.f18744j = System.currentTimeMillis();
-        DownloadManager.Query query = new DownloadManager.Query();
-        query.setFilterById(this.f18737a.longValue());
-        Cursor cursorQuery = null;
-        try {
-            try {
-                cursorQuery = j0Var.d.query(query);
-                if (cursorQuery.moveToFirst()) {
-                    int i10 = cursorQuery.getInt(cursorQuery.getColumnIndex("status"));
-                    if (i10 == 8) {
-                        File file = new File(Uri.parse(cursorQuery.getString(cursorQuery.getColumnIndex("local_uri"))).getPath());
-                        this.d = file;
-                        this.h = true;
-                        long length = file.length();
-                        this.f18742g = length;
-                        if (length <= 0) {
-                            a();
-                        }
-                        j0Var.f();
-                    } else if (i10 == 16) {
-                        a();
-                        cursorQuery.close();
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f18645b.h.I.f(false, true);
                         return;
-                    } else {
-                        this.f18741f = cursorQuery.getLong(cursorQuery.getColumnIndex("bytes_so_far"));
-                        this.f18742g = cursorQuery.getLong(cursorQuery.getColumnIndex("total_size"));
-                        AndroidUtilities.runOnUIThread(runnable, 160L);
-                    }
-                } else if (!this.h) {
-                    a();
+                    default:
+                        this.f18645b.h.I.f(true, true);
+                        return;
                 }
-            } catch (Exception e9) {
-                FileLog.e(e9);
-                if (0 != 0) {
-                }
-                j0Var.e();
             }
-            cursorQuery.close();
-            j0Var.e();
-        } catch (Throwable th) {
-            if (0 != 0) {
-                cursorQuery.close();
-            }
-            throw th;
-        }
-    }
+        });
+        f10.addView(dVar, e6.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
+        b6Var4 = ((f3) j0Var).resourcesProvider;
+        kh.d dVar2 = new kh.d(context, b6Var4, true);
+        dVar2.setText(LocaleController.getString(R.string.CommunityPendingRequestAddAll));
+        dVar2.e();
+        dVar2.setOnClickListener(new View.OnClickListener(this) {
+            public final i0 f18645b;
 
-    public i0(j0 j0Var, JSONObject jSONObject) {
-        this.f18748n = j0Var;
-        this.f18738b = jSONObject.optString("url");
-        this.f18739c = jSONObject.optString("file_name");
-        this.f18742g = jSONObject.optLong("size");
-        this.h = jSONObject.optBoolean("done");
-        this.f18740e = jSONObject.optString("mime");
-        String strOptString = jSONObject.optString("path");
-        if (TextUtils.isEmpty(strOptString)) {
-            return;
-        }
-        this.d = new File(strOptString);
+            {
+                this.f18645b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f18645b.h.I.f(false, true);
+                        return;
+                    default:
+                        this.f18645b.h.I.f(true, true);
+                        return;
+                }
+            }
+        });
+        f10.addView(dVar2, e6.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
+        this.f18639c.addView(f10, e6.f(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
+        a();
     }
 }

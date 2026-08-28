@@ -1,51 +1,30 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.VideoEditedInfo;
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class ll extends org.telegram.ui.Components.y10 {
+    public final qn f40188b;
 
-public final class ll extends st0 {
-
-    public final ArrayList f40151a;
-
-    public final boolean[] f40152b;
-
-    public final rn f40153c;
-
-    public ll(rn rnVar, ArrayList arrayList, boolean[] zArr) {
-        this.f40153c = rnVar;
-        this.f40151a = arrayList;
-        this.f40152b = zArr;
+    public ll(qn qnVar, Activity activity, org.telegram.ui.ActionBar.o2 o2Var) {
+        super(activity, o2Var);
+        this.f40188b = qnVar;
     }
 
     @Override
-    public final boolean S() {
-        return false;
-    }
-
-    @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f40151a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f40152b[size]) {
-                arrayList.remove(size);
-            }
+    public final void m() {
+        qn qnVar = this.f40188b;
+        qnVar.Q7();
+        UndoView undoView = qnVar.f42093u3;
+        if (undoView == null) {
+            return;
         }
-        this.f40153c.eb(arrayList, i11, z10, z11);
+        undoView.j(75, 0L, null);
+        qnVar.getMessagesController().removeSuggestion(qnVar.P5, "CONVERT_GIGAGROUP");
     }
 
     @Override
-    public final boolean x(int i10) {
-        return this.f40152b[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+    public final void n() {
+        qn qnVar = this.f40188b;
+        qnVar.getMessagesController().convertToGigaGroup(qnVar.getParentActivity(), qnVar.f41890e, qnVar, new b1(this, 19));
     }
 }

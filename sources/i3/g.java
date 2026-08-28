@@ -1,98 +1,80 @@
 package i3;
 
 import h3.r2;
-import h3.s2;
-import j4.c0;
-
+import j4.d0;
 public final class g {
+    public final String f10896a;
+    public int f10897b;
+    public long f10898c;
+    public final d0 d;
+    public boolean f10899e;
+    public boolean f10900f;
+    public final h f10901g;
 
-    public final String f10537a;
-
-    public int f10538b;
-
-    public long f10539c;
-    public final c0 d;
-
-    public boolean f10540e;
-
-    public boolean f10541f;
-
-    public final h f10542g;
-
-    public g(h hVar, String str, int i10, c0 c0Var) {
-        this.f10542g = hVar;
-        this.f10537a = str;
-        this.f10538b = i10;
-        this.f10539c = c0Var == null ? -1L : c0Var.d;
-        if (c0Var == null || !c0Var.a()) {
-            return;
+    public g(h hVar, String str, int i9, d0 d0Var) {
+        long j10;
+        this.f10901g = hVar;
+        this.f10896a = str;
+        this.f10897b = i9;
+        if (d0Var == null) {
+            j10 = -1;
+        } else {
+            j10 = d0Var.d;
         }
-        this.d = c0Var;
+        this.f10898c = j10;
+        if (d0Var != null && d0Var.a()) {
+            this.d = d0Var;
+        }
     }
 
     public final boolean a(a aVar) {
-        c0 c0Var = aVar.d;
-        s2 s2Var = aVar.f10517b;
-        if (c0Var == null) {
-            return this.f10538b != aVar.f10518c;
-        }
-        long j10 = this.f10539c;
-        if (j10 == -1) {
+        d0 d0Var = aVar.d;
+        r2 r2Var = aVar.f10876b;
+        if (d0Var == null) {
+            if (this.f10897b != aVar.f10877c) {
+                return true;
+            }
             return false;
         }
-        if (c0Var.d > j10) {
+        long j10 = this.f10898c;
+        if (j10 != -1) {
+            if (d0Var.d <= j10) {
+                d0 d0Var2 = this.d;
+                if (d0Var2 != null) {
+                    int i9 = d0Var2.f13427b;
+                    int b10 = r2Var.b(d0Var.f13426a);
+                    int b11 = r2Var.b(d0Var2.f13426a);
+                    if (d0Var.d >= d0Var2.d && b10 >= b11) {
+                        if (b10 <= b11) {
+                            if (d0Var.a()) {
+                                int i10 = d0Var.f13427b;
+                                int i11 = d0Var.f13428c;
+                                if (i10 <= i9) {
+                                    if (i10 == i9 && i11 > d0Var2.f13428c) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            }
+                            int i12 = d0Var.f13429e;
+                            if (i12 == -1 || i12 > i9) {
+                                return true;
+                            }
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
             return true;
         }
-        c0 c0Var2 = this.d;
-        if (c0Var2 == null) {
-            return false;
-        }
-        int i10 = c0Var2.f12504b;
-        int iB = s2Var.b(c0Var.f12503a);
-        int iB2 = s2Var.b(c0Var2.f12503a);
-        if (c0Var.d < c0Var2.d || iB < iB2) {
-            return false;
-        }
-        if (iB > iB2) {
-            return true;
-        }
-        if (!c0Var.a()) {
-            int i11 = c0Var.f12506e;
-            return i11 == -1 || i11 > i10;
-        }
-        int i12 = c0Var.f12504b;
-        int i13 = c0Var.f12505c;
-        if (i12 <= i10) {
-            return i12 == i10 && i13 > c0Var2.f12505c;
-        }
-        return true;
+        return false;
     }
 
-    public final boolean b(s2 s2Var, s2 s2Var2) {
-        c0 c0Var;
-        int i10 = this.f10538b;
-        if (i10 < s2Var.o()) {
-            h hVar = this.f10542g;
-            r2 r2Var = hVar.f10544a;
-            s2Var.n(i10, r2Var);
-            int i11 = r2Var.A;
-            while (true) {
-                if (i11 > r2Var.B) {
-                    i10 = -1;
-                    break;
-                }
-                int iB = s2Var2.b(s2Var.l(i11));
-                if (iB != -1) {
-                    i10 = s2Var2.f(iB, hVar.f10545b, false).f8069c;
-                    break;
-                }
-                i11++;
-            }
-        } else if (i10 >= s2Var2.o()) {
-            i10 = -1;
-            break;
-        }
-        this.f10538b = i10;
-        return i10 != -1 && ((c0Var = this.d) == null || s2Var2.b(c0Var.f12503a) != -1);
+    public final boolean b(h3.r2 r7, h3.r2 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: i3.g.b(h3.r2, h3.r2):boolean");
     }
 }

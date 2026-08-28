@@ -1,320 +1,459 @@
 package d5;
+public final class x {
+    public final int f4404a;
+    public byte[] f4405b;
+    public int f4406c;
+    public int d;
+    public int f4407e;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.widget.ImageView;
-import com.google.android.gms.internal.cast.m4;
-import com.google.android.gms.internal.cast.o0;
-import com.google.android.gms.internal.cast.s5;
-import com.google.android.gms.internal.cast.x0;
-import com.google.android.gms.internal.cast.z0;
-import com.google.android.gms.internal.play_billing.r1;
-import com.google.android.gms.tasks.OnSuccessListener;
-import g7.o7;
-import h7.a8;
-import java.lang.ref.WeakReference;
-import java.util.Arrays;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeoutException;
-import m.f3;
-import m.m1;
-import org.telegram.ui.lg;
-import r0.j0;
-
-public final class x implements OnSuccessListener, ud.i {
-
-    public static x f4848e;
-
-    public int f4849a;
-
-    public Object f4850b;
-
-    public Object f4851c;
-    public Object d;
-
-    public x(ImageView imageView) {
-        this.f4849a = 0;
-        this.f4850b = imageView;
+    public x() {
+        this.f4404a = 0;
+        this.f4405b = f0.f4353f;
     }
 
-    public static void a(x xVar, int i10) {
-        synchronized (xVar.d) {
-            try {
-                if (xVar.f4849a == i10) {
-                    return;
+    public void a() {
+        boolean z10;
+        int i9;
+        boolean z11;
+        int i10;
+        switch (this.f4404a) {
+            case 0:
+                int i11 = this.f4406c;
+                if (i11 >= 0 && (i11 < (i9 = this.f4407e) || (i11 == i9 && this.d == 0))) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                xVar.f4849a = i10;
-                for (WeakReference weakReference : (CopyOnWriteArrayList) xVar.f4851c) {
-                    com.google.android.exoplayer2.upstream.s sVar = (com.google.android.exoplayer2.upstream.s) weakReference.get();
-                    if (sVar != null) {
-                        sVar.a(i10);
-                    } else {
-                        ((CopyOnWriteArrayList) xVar.f4851c).remove(weakReference);
-                    }
+                a.i(z10);
+                return;
+            default:
+                int i12 = this.d;
+                if (i12 >= 0 && (i12 < (i10 = this.f4406c) || (i12 == i10 && this.f4407e == 0))) {
+                    z11 = true;
+                } else {
+                    z11 = false;
                 }
-            } catch (Throwable th) {
-                throw th;
-            }
+                a.i(z11);
+                return;
         }
     }
 
-    public static synchronized x f(Context context) {
-        try {
-            if (f4848e == null) {
-                f4848e = new x(context);
-            }
-        } catch (Throwable th) {
-            throw th;
-        }
-        return f4848e;
+    public int b() {
+        return ((this.f4407e - this.f4406c) * 8) - this.d;
     }
 
-    @Override
-    public void b() {
-        i();
+    public void c() {
+        if (this.d == 0) {
+            return;
+        }
+        this.d = 0;
+        this.f4406c++;
+        a();
     }
 
-    @Override
-    public void c(ud.j jVar) {
-        i();
+    public boolean d(int i9) {
+        int i10 = this.d;
+        int i11 = i9 / 8;
+        int i12 = i10 + i11;
+        int i13 = (this.f4407e + i9) - (i11 * 8);
+        if (i13 > 7) {
+            i12++;
+            i13 -= 8;
+        }
+        while (true) {
+            i10++;
+            if (i10 > i12 || i12 >= this.f4406c) {
+                break;
+            } else if (q(i10)) {
+                i12++;
+                i10 += 2;
+            }
+        }
+        int i14 = this.f4406c;
+        if (i12 < i14) {
+            return true;
+        }
+        if (i12 == i14 && i13 == 0) {
+            return true;
+        }
+        return false;
     }
 
-    public void d() {
-        ImageView imageView = (ImageView) this.f4850b;
-        Drawable drawable = imageView.getDrawable();
-        if (drawable != null) {
-            m1.a(drawable);
+    public boolean e() {
+        boolean z10;
+        int i9 = this.d;
+        int i10 = this.f4407e;
+        int i11 = 0;
+        while (this.d < this.f4406c && !h()) {
+            i11++;
         }
-        if (drawable != null) {
-            int i10 = Build.VERSION.SDK_INT;
-            if (i10 <= 21 && i10 == 21) {
-                if (((f3) this.d) == null) {
-                    this.d = new f3();
-                }
-                f3 f3Var = (f3) this.d;
-                f3Var.f17321c = null;
-                f3Var.f17320b = false;
-                f3Var.d = null;
-                f3Var.f17319a = false;
-                ColorStateList imageTintList = imageView.getImageTintList();
-                if (imageTintList != null) {
-                    f3Var.f17320b = true;
-                    f3Var.f17321c = imageTintList;
-                }
-                PorterDuff.Mode imageTintMode = imageView.getImageTintMode();
-                if (imageTintMode != null) {
-                    f3Var.f17319a = true;
-                    f3Var.d = imageTintMode;
-                }
-                if (f3Var.f17320b || f3Var.f17319a) {
-                    m.r.d(drawable, f3Var, imageView.getDrawableState());
-                    return;
-                }
-            }
-            f3 f3Var2 = (f3) this.f4851c;
-            if (f3Var2 != null) {
-                m.r.d(drawable, f3Var2, imageView.getDrawableState());
-            }
-        }
-    }
-
-    public u5.k e() {
-        String strValueOf;
-        if (TextUtils.isEmpty((String) this.f4850b)) {
-            throw new IllegalArgumentException("Title must be set and non-empty.");
-        }
-        if (r1.b(this.f4849a)) {
-            int i10 = this.f4849a;
-            boolean zA = i10 != 0 ? r1.a(i10) : false;
-            if (TextUtils.isEmpty((String) this.d) && !zA) {
-                throw new IllegalArgumentException("Negative text must be set and non-empty.");
-            }
-            if (TextUtils.isEmpty((String) this.d) || !zA) {
-                return new u5.k((String) this.f4850b, (String) this.f4851c, (String) this.d, this.f4849a);
-            }
-            throw new IllegalArgumentException("Negative text must not be set if device credential authentication is allowed.");
-        }
-        StringBuilder sb2 = new StringBuilder("Authenticator combination is unsupported on API ");
-        sb2.append(Build.VERSION.SDK_INT);
-        sb2.append(": ");
-        int i11 = this.f4849a;
-        if (i11 == 15) {
-            strValueOf = "BIOMETRIC_STRONG";
-        } else if (i11 == 255) {
-            strValueOf = "BIOMETRIC_WEAK";
-        } else if (i11 == 32768) {
-            strValueOf = "DEVICE_CREDENTIAL";
-        } else if (i11 != 32783) {
-            strValueOf = i11 != 33023 ? String.valueOf(i11) : "BIOMETRIC_WEAK | DEVICE_CREDENTIAL";
+        if (this.d == this.f4406c) {
+            z10 = true;
         } else {
-            strValueOf = "BIOMETRIC_STRONG | DEVICE_CREDENTIAL";
+            z10 = false;
         }
-        sb2.append(strValueOf);
-        throw new IllegalArgumentException(sb2.toString());
+        this.d = i9;
+        this.f4407e = i10;
+        if (z10 || !d((i11 * 2) + 1)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int f() {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        a.i(z10);
+        return this.f4406c;
     }
 
     public int g() {
-        int i10;
-        synchronized (this.d) {
-            i10 = this.f4849a;
-        }
-        return i10;
+        return (this.f4406c * 8) + this.d;
     }
 
-    public void h(AttributeSet attributeSet, int i10) {
-        Drawable drawable;
-        Drawable drawable2;
-        int resourceId;
-        ImageView imageView = (ImageView) this.f4850b;
-        Context context = imageView.getContext();
-        int[] iArr = f.a.f5578f;
-        j9.a aVarG = j9.a.G(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) aVarG.f12864c;
-        j0.j(imageView, imageView.getContext(), iArr, attributeSet, (TypedArray) aVarG.f12864c, i10);
-        try {
-            Drawable drawable3 = imageView.getDrawable();
-            if (drawable3 == null && (resourceId = typedArray.getResourceId(1, -1)) != -1 && (drawable3 = o7.b(imageView.getContext(), resourceId)) != null) {
-                imageView.setImageDrawable(drawable3);
-            }
-            if (drawable3 != null) {
-                m1.a(drawable3);
-            }
-            if (typedArray.hasValue(2)) {
-                ColorStateList colorStateListX = aVarG.x(2);
-                int i11 = Build.VERSION.SDK_INT;
-                imageView.setImageTintList(colorStateListX);
-                if (i11 == 21 && (drawable2 = imageView.getDrawable()) != null && imageView.getImageTintList() != null) {
-                    if (drawable2.isStateful()) {
-                        drawable2.setState(imageView.getDrawableState());
-                    }
-                    imageView.setImageDrawable(drawable2);
+    public boolean h() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f4404a) {
+            case 0:
+                if ((this.f4405b[this.f4406c] & (128 >> this.d)) != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-            }
-            if (typedArray.hasValue(3)) {
-                PorterDuff.Mode modeB = m1.b(typedArray.getInt(3, -1), null);
-                int i12 = Build.VERSION.SDK_INT;
-                imageView.setImageTintMode(modeB);
-                if (i12 == 21 && (drawable = imageView.getDrawable()) != null && imageView.getImageTintList() != null) {
-                    if (drawable.isStateful()) {
-                        drawable.setState(imageView.getDrawableState());
-                    }
-                    imageView.setImageDrawable(drawable);
+                r();
+                return z10;
+            case 1:
+                if ((this.f4405b[this.d] & (128 >> this.f4407e)) != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
                 }
-            }
-        } finally {
-            aVarG.I();
+                r();
+                return z11;
+            default:
+                if ((((this.f4405b[this.d] & 255) >> this.f4407e) & 1) == 1) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                s(1);
+                return z12;
         }
     }
 
-    public void i() {
-        float[] fArr = (float[]) this.f4850b;
-        Arrays.fill(fArr, 0.0f);
-        for (ud.e eVar : (ud.j) this.d) {
-            fArr[((Integer) eVar.f48505a).intValue()] = eVar.c();
+    public int i(int i9) {
+        switch (this.f4404a) {
+            case 0:
+                if (i9 == 0) {
+                    return 0;
+                }
+                this.d += i9;
+                int i10 = 0;
+                while (true) {
+                    int i11 = this.d;
+                    if (i11 > 8) {
+                        int i12 = i11 - 8;
+                        this.d = i12;
+                        byte[] bArr = this.f4405b;
+                        int i13 = this.f4406c;
+                        this.f4406c = i13 + 1;
+                        i10 |= (bArr[i13] & 255) << i12;
+                    } else {
+                        byte[] bArr2 = this.f4405b;
+                        int i14 = this.f4406c;
+                        int i15 = ((-1) >>> (32 - i9)) & (i10 | ((bArr2[i14] & 255) >> (8 - i11)));
+                        if (i11 == 8) {
+                            this.d = 0;
+                            this.f4406c = i14 + 1;
+                        }
+                        a();
+                        return i15;
+                    }
+                }
+            case 1:
+                this.f4407e += i9;
+                int i16 = 0;
+                while (true) {
+                    int i17 = this.f4407e;
+                    int i18 = 2;
+                    if (i17 > 8) {
+                        int i19 = i17 - 8;
+                        this.f4407e = i19;
+                        byte[] bArr3 = this.f4405b;
+                        int i20 = this.d;
+                        i16 |= (bArr3[i20] & 255) << i19;
+                        if (!q(i20 + 1)) {
+                            i18 = 1;
+                        }
+                        this.d = i20 + i18;
+                    } else {
+                        byte[] bArr4 = this.f4405b;
+                        int i21 = this.d;
+                        int i22 = ((-1) >>> (32 - i9)) & (i16 | ((bArr4[i21] & 255) >> (8 - i17)));
+                        if (i17 == 8) {
+                            this.f4407e = 0;
+                            if (!q(i21 + 1)) {
+                                i18 = 1;
+                            }
+                            this.d = i21 + i18;
+                        }
+                        a();
+                        return i22;
+                    }
+                }
+            default:
+                int i23 = this.d;
+                int min = Math.min(i9, 8 - this.f4407e);
+                byte[] bArr5 = this.f4405b;
+                int i24 = i23 + 1;
+                int i25 = ((bArr5[i23] & 255) >> this.f4407e) & (255 >> (8 - min));
+                while (min < i9) {
+                    i25 |= (bArr5[i24] & 255) << min;
+                    min += 8;
+                    i24++;
+                }
+                int i26 = i25 & ((-1) >>> (32 - i9));
+                s(i9);
+                return i26;
         }
-        ((lg) this.f4851c).run();
     }
 
-    public void j(int i10, boolean z10, boolean z11) {
-        int iNumberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f4849a);
-        int iB = a8.b(this.f4849a, 1 << i10, z10);
-        this.f4849a = iB;
-        int iNumberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(iB);
-        if (iNumberOfLeadingZeros != iNumberOfLeadingZeros2) {
-            ((ud.j) this.d).i(Integer.valueOf(iNumberOfLeadingZeros2), z11);
+    public void j(int i9, byte[] bArr) {
+        int i10 = i9 >> 3;
+        for (int i11 = 0; i11 < i10; i11++) {
+            byte[] bArr2 = this.f4405b;
+            int i12 = this.f4406c;
+            int i13 = i12 + 1;
+            this.f4406c = i13;
+            byte b10 = bArr2[i12];
+            int i14 = this.d;
+            byte b11 = (byte) (b10 << i14);
+            bArr[i11] = b11;
+            bArr[i11] = (byte) (((255 & bArr2[i13]) >> (8 - i14)) | b11);
         }
+        int i15 = i9 & 7;
+        if (i15 == 0) {
+            return;
+        }
+        byte b12 = (byte) (bArr[i10] & (255 >> i15));
+        bArr[i10] = b12;
+        int i16 = this.d;
+        if (i16 + i15 > 8) {
+            byte[] bArr3 = this.f4405b;
+            int i17 = this.f4406c;
+            this.f4406c = i17 + 1;
+            bArr[i10] = (byte) (b12 | ((bArr3[i17] & 255) << i16));
+            this.d = i16 - 8;
+        }
+        int i18 = this.d + i15;
+        this.d = i18;
+        byte[] bArr4 = this.f4405b;
+        int i19 = this.f4406c;
+        bArr[i10] = (byte) (((byte) (((255 & bArr4[i19]) >> (8 - i18)) << (8 - i15))) | bArr[i10]);
+        if (i18 == 8) {
+            this.d = 0;
+            this.f4406c = i19 + 1;
+        }
+        a();
     }
 
-    public void k(Throwable th) {
-        n2.x xVar = (n2.x) this.d;
-        if (th instanceof TimeoutException) {
-            xVar.F(102, 28, n2.a0.f18105p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", th);
+    public void k(int i9, byte[] bArr) {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
         } else {
-            xVar.F(95, 28, n2.a0.f18105p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", th);
+            z10 = false;
         }
-        ((Runnable) this.f4851c).run();
+        a.i(z10);
+        System.arraycopy(this.f4405b, this.f4406c, bArr, 0, i9);
+        this.f4406c += i9;
+        a();
     }
 
-    @Override
-    public void onSuccess(Object obj) {
-        af.h hVar;
-        o0 o0Var = (o0) this.f4850b;
-        String str = (String) this.f4851c;
-        int i10 = this.f4849a;
-        SharedPreferences sharedPreferences = (SharedPreferences) this.d;
-        Bundle bundle = (Bundle) obj;
-        n5.h hVar2 = o0Var.f3603a;
-        y5.l.h(hVar2);
-        com.google.android.gms.internal.cast.s sVar = o0Var.f3604b;
-        if (i10 == 3) {
-            com.google.android.gms.internal.cast.d dVar = o0Var.f3605c;
-            hVar = new af.h();
-            hVar.f274a = o0Var;
-            hVar.f275b = dVar;
-            hVar.f276c = str;
-            hVar.f277e = new m4(hVar);
-            hVar2.a(new m4(hVar));
-            if (sVar != null) {
-                x0 x0Var = new x0(hVar, 1);
-                com.google.android.gms.internal.cast.s.f3644i.b("register callback = %s", x0Var);
-                y5.l.e("Must be called from the main thread.");
-                sVar.f3646b.add(x0Var);
-            }
-        } else if (i10 == 2) {
-            i10 = 2;
-            com.google.android.gms.internal.cast.d dVar2 = o0Var.f3605c;
-            hVar = new af.h();
-            hVar.f274a = o0Var;
-            hVar.f275b = dVar2;
-            hVar.f276c = str;
-            hVar.f277e = new m4(hVar);
-            hVar2.a(new m4(hVar));
-            if (sVar != null) {
-                x0 x0Var2 = new x0(hVar, 1);
-                com.google.android.gms.internal.cast.s.f3644i.b("register callback = %s", x0Var2);
-                y5.l.e("Must be called from the main thread.");
-                sVar.f3646b.add(x0Var2);
-            }
+    public int l() {
+        int i9 = 0;
+        int i10 = 0;
+        while (!h()) {
+            i10++;
         }
-        if (i10 == 1 || i10 == 2) {
-            z0 z0Var = new z0(sharedPreferences, o0Var, o0Var.f3605c, bundle, str);
-            hVar2.a(new s5(z0Var));
-            if (sVar != null) {
-                x0 x0Var3 = new x0(z0Var, 0);
-                com.google.android.gms.internal.cast.s.f3644i.b("register callback = %s", x0Var3);
-                y5.l.e("Must be called from the main thread.");
-                sVar.f3646b.add(x0Var3);
+        int i11 = (1 << i10) - 1;
+        if (i10 > 0) {
+            i9 = i(i10);
+        }
+        return i11 + i9;
+    }
+
+    public int m() {
+        int i9;
+        int l10 = l();
+        if (l10 % 2 == 0) {
+            i9 = -1;
+        } else {
+            i9 = 1;
+        }
+        return ((l10 + 1) / 2) * i9;
+    }
+
+    public void n(int i9, byte[] bArr) {
+        this.f4405b = bArr;
+        this.f4406c = 0;
+        this.d = 0;
+        this.f4407e = i9;
+    }
+
+    public void o(y yVar) {
+        n(yVar.f4412c, yVar.f4410a);
+        p(yVar.f4411b * 8);
+    }
+
+    public void p(int i9) {
+        int i10 = i9 / 8;
+        this.f4406c = i10;
+        this.d = i9 - (i10 * 8);
+        a();
+    }
+
+    public boolean q(int i9) {
+        if (2 <= i9 && i9 < this.f4406c) {
+            byte[] bArr = this.f4405b;
+            if (bArr[i9] == 3 && bArr[i9 - 2] == 0 && bArr[i9 - 1] == 0) {
+                return true;
             }
+            return false;
+        }
+        return false;
+    }
+
+    public void r() {
+        switch (this.f4404a) {
+            case 0:
+                int i9 = this.d + 1;
+                this.d = i9;
+                if (i9 == 8) {
+                    this.d = 0;
+                    this.f4406c++;
+                }
+                a();
+                return;
+            default:
+                int i10 = 1;
+                int i11 = this.f4407e + 1;
+                this.f4407e = i11;
+                if (i11 == 8) {
+                    this.f4407e = 0;
+                    int i12 = this.d;
+                    if (q(i12 + 1)) {
+                        i10 = 2;
+                    }
+                    this.d = i12 + i10;
+                }
+                a();
+                return;
         }
     }
 
-    public x(Context context) {
-        this.f4850b = new Handler(Looper.getMainLooper());
-        this.f4851c = new CopyOnWriteArrayList();
-        this.d = new Object();
-        this.f4849a = 0;
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        g0.M(context, new androidx.mediarouter.app.f(this, 3), intentFilter);
+    public void s(int i9) {
+        int i10;
+        switch (this.f4404a) {
+            case 0:
+                int i11 = i9 / 8;
+                int i12 = this.f4406c + i11;
+                this.f4406c = i12;
+                int i13 = (i9 - (i11 * 8)) + this.d;
+                this.d = i13;
+                if (i13 > 7) {
+                    this.f4406c = i12 + 1;
+                    this.d = i13 - 8;
+                }
+                a();
+                return;
+            case 1:
+                int i14 = this.d;
+                int i15 = i9 / 8;
+                int i16 = i14 + i15;
+                this.d = i16;
+                int i17 = (i9 - (i15 * 8)) + this.f4407e;
+                this.f4407e = i17;
+                if (i17 > 7) {
+                    this.d = i16 + 1;
+                    this.f4407e = i17 - 8;
+                }
+                while (true) {
+                    i14++;
+                    if (i14 <= this.d) {
+                        if (q(i14)) {
+                            this.d++;
+                            i14 += 2;
+                        }
+                    } else {
+                        a();
+                        return;
+                    }
+                }
+            default:
+                int i18 = i9 / 8;
+                int i19 = this.d + i18;
+                this.d = i19;
+                int i20 = (i9 - (i18 * 8)) + this.f4407e;
+                this.f4407e = i20;
+                boolean z10 = true;
+                if (i20 > 7) {
+                    this.d = i19 + 1;
+                    this.f4407e = i20 - 8;
+                }
+                int i21 = this.d;
+                if (i21 < 0 || (i21 >= (i10 = this.f4406c) && (i21 != i10 || this.f4407e != 0))) {
+                    z10 = false;
+                }
+                a.i(z10);
+                return;
+        }
     }
 
-    public x() {
-        this.f4850b = null;
-        this.f4851c = null;
-        this.d = null;
-        this.f4849a = 0;
+    public void t(int i9) {
+        boolean z10;
+        if (this.d == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        a.i(z10);
+        this.f4406c += i9;
+        a();
+    }
+
+    public x(byte[] bArr, int i9, int i10) {
+        this.f4404a = 1;
+        this.f4405b = bArr;
+        this.d = i9;
+        this.f4406c = i10;
+        this.f4407e = 0;
+        a();
+    }
+
+    public x(byte[] bArr) {
+        this.f4404a = 2;
+        this.f4405b = bArr;
+        this.f4406c = bArr.length;
+    }
+
+    public x(byte[] bArr, int i9) {
+        this.f4404a = 0;
+        this.f4405b = bArr;
+        this.f4407e = i9;
+    }
+
+    public x(int i9, int i10) {
+        this.f4404a = 3;
+        this.f4406c = i9;
+        this.d = i10;
+        this.f4405b = new byte[(i10 * 2) - 1];
+        this.f4407e = 0;
     }
 }

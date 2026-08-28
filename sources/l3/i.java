@@ -1,9 +1,20 @@
 package l3;
 
-public final class i {
+import android.os.Looper;
+import h3.t0;
+import i3.l;
+public interface i {
+    public static final wa.a f16639p = new wa.a(13);
 
-    public static final i f15395a = new i();
+    h D(a6.a aVar, t0 t0Var);
 
-    public final void a() {
-    }
+    int G(t0 t0Var);
+
+    void H(Looper looper, l lVar);
+
+    void a();
+
+    e n(a6.a aVar, t0 t0Var);
+
+    void release();
 }

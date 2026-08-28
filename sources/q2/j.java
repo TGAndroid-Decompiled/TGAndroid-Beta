@@ -4,116 +4,113 @@ import j$.util.DesugarCollections;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
-import org.telegram.ui.Cells.pa;
-
+import org.telegram.ui.Cells.j2;
 public final class j extends com.googlecode.mp4parser.c {
-    public static final ae.b A;
-    public static final ae.b B;
-
-    public static final ae.b f46090w;
-
-    public static final ae.b f46091x;
-
-    public static final ae.b f46092y;
-
-    public String f46093e;
-
-    public String f46094f;
+    public static final zd.b A;
+    public static final zd.b B;
+    public static final zd.b f45926w;
+    public static final zd.b f45927x;
+    public static final zd.b f45928y;
+    public String f45929e;
+    public String f45930f;
     public long h;
-
-    public long f46095n;
-
-    public long f46096r;
-
-    public boolean f46097s;
+    public long f45931n;
+    public long f45932r;
+    public boolean f45933s;
     public long v;
 
     static {
-        ae.a aVar = new ae.a(j.class, "HandlerBox.java");
-        f46090w = aVar.e(aVar.d("getHandlerType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
-        f46091x = aVar.e(aVar.d("setName", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "name", "void"));
-        f46092y = aVar.e(aVar.d("setHandlerType", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "handlerType", "void"));
+        zd.a aVar = new zd.a(j.class, "HandlerBox.java");
+        f45926w = aVar.e(aVar.d("getHandlerType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
+        f45927x = aVar.e(aVar.d("setName", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "name", "void"));
+        f45928y = aVar.e(aVar.d("setHandlerType", "com.coremedia.iso.boxes.HandlerBox", "java.lang.String", "handlerType", "void"));
         A = aVar.e(aVar.d("getName", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("getHumanReadableTrackType", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
         B = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.HandlerBox", "", "", "java.lang.String"));
-        HashMap map = new HashMap();
-        map.put("odsm", "ObjectDescriptorStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("crsm", "ClockReferenceStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("sdsm", "SceneDescriptionStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("m7sm", "MPEG7Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("ocsm", "ObjectContentInfoStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("ipsm", "IPMP Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("mjsm", "MPEG-J Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        map.put("mdir", "Apple Meta Data iTunes Reader");
-        map.put("mp7b", "MPEG-7 binary XML");
-        map.put("mp7t", "MPEG-7 XML");
-        map.put("vide", "Video Track");
-        map.put("soun", "Sound Track");
-        map.put("hint", "Hint Track");
-        map.put("appl", "Apple specific");
-        map.put("meta", "Timed Metadata track - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
-        DesugarCollections.unmodifiableMap(map);
+        HashMap hashMap = new HashMap();
+        hashMap.put("odsm", "ObjectDescriptorStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("crsm", "ClockReferenceStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("sdsm", "SceneDescriptionStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("m7sm", "MPEG7Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("ocsm", "ObjectContentInfoStream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("ipsm", "IPMP Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("mjsm", "MPEG-J Stream - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        hashMap.put("mdir", "Apple Meta Data iTunes Reader");
+        hashMap.put("mp7b", "MPEG-7 binary XML");
+        hashMap.put("mp7t", "MPEG-7 XML");
+        hashMap.put("vide", "Video Track");
+        hashMap.put("soun", "Sound Track");
+        hashMap.put("hint", "Hint Track");
+        hashMap.put("appl", "Apple specific");
+        hashMap.put("meta", "Timed Metadata track - defined in ISO/IEC JTC1/SC29/WG11 - CODING OF MOVING PICTURES AND AUDIO");
+        DesugarCollections.unmodifiableMap(hashMap);
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         this.v = p2.b.i(byteBuffer);
-        this.f46093e = p2.b.d(byteBuffer);
+        this.f45929e = p2.b.d(byteBuffer);
         this.h = p2.b.i(byteBuffer);
-        this.f46095n = p2.b.i(byteBuffer);
-        this.f46096r = p2.b.i(byteBuffer);
-        if (byteBuffer.remaining() <= 0) {
-            this.f46097s = false;
-            return;
-        }
-        byte[] bArr = new byte[byteBuffer.remaining()];
-        byteBuffer.get(bArr);
-        try {
-            String str = new String(bArr, "UTF-8");
-            this.f46094f = str;
-            if (!str.endsWith("\u0000")) {
-                this.f46097s = false;
-            } else {
-                this.f46094f = com.google.android.recaptcha.internal.a.n(this.f46094f, 1, 0);
-                this.f46097s = true;
+        this.f45931n = p2.b.i(byteBuffer);
+        this.f45932r = p2.b.i(byteBuffer);
+        if (byteBuffer.remaining() > 0) {
+            byte[] bArr = new byte[byteBuffer.remaining()];
+            byteBuffer.get(bArr);
+            try {
+                String str = new String(bArr, "UTF-8");
+                this.f45930f = str;
+                if (str.endsWith("\u0000")) {
+                    this.f45930f = e2.c.m(this.f45930f, 1, 0);
+                    this.f45933s = true;
+                    return;
+                }
+                this.f45933s = false;
+                return;
+            } catch (UnsupportedEncodingException e10) {
+                throw new Error(e10);
             }
-        } catch (UnsupportedEncodingException e9) {
-            throw new Error(e9);
         }
+        this.f45933s = false;
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
         byteBuffer.putInt((int) this.v);
-        byteBuffer.put(p2.c.d(this.f46093e));
+        byteBuffer.put(p2.c.d(this.f45929e));
         byteBuffer.putInt((int) this.h);
-        byteBuffer.putInt((int) this.f46095n);
-        byteBuffer.putInt((int) this.f46096r);
-        String str = this.f46094f;
+        byteBuffer.putInt((int) this.f45931n);
+        byteBuffer.putInt((int) this.f45932r);
+        String str = this.f45930f;
         if (str != null) {
             byteBuffer.put(p2.b.b(str));
         }
-        if (this.f46097s) {
+        if (this.f45933s) {
             byteBuffer.put((byte) 0);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return this.f46097s ? p2.b.l(this.f46094f) + 25 : p2.b.l(this.f46094f) + 24;
+        int l10;
+        if (this.f45933s) {
+            l10 = p2.b.l(this.f45930f) + 25;
+        } else {
+            l10 = p2.b.l(this.f45930f) + 24;
+        }
+        return l10;
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t tVarB = ae.a.b(B, this, this);
+        com.google.firebase.messaging.t b10 = zd.a.b(B, this, this);
         com.googlecode.mp4parser.g.a().getClass();
-        com.googlecode.mp4parser.g.b(tVarB);
+        com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("HandlerBox[handlerType=");
-        pa.u(ae.a.b(f46090w, this, this));
-        sb2.append(this.f46093e);
+        j2.t(zd.a.b(f45926w, this, this));
+        sb2.append(this.f45929e);
         sb2.append(";name=");
-        pa.u(ae.a.b(A, this, this));
-        return a9.p.p(sb2, this.f46094f, "]");
+        j2.t(zd.a.b(A, this, this));
+        return aa.d.r(sb2, this.f45930f, "]");
     }
 }

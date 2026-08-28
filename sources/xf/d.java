@@ -1,36 +1,38 @@
 package xf;
 
-import android.graphics.Canvas;
-import org.telegram.ui.Cells.a8;
-import org.telegram.ui.Components.zk0;
-
-public abstract class d extends zk0 {
-    public boolean T2;
-
+import org.telegram.messenger.R;
+public final class d extends m {
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        this.T2 = false;
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            if (getChildAt(i10) instanceof c) {
-                c cVar = (c) getChildAt(i10);
-                canvas.save();
-                canvas.translate(cVar.getX(), cVar.getY());
-                a8 a8Var = (a8) cVar;
-                if (a8Var.H) {
-                    a8Var.b(canvas, this);
-                }
-                canvas.restore();
-            }
-        }
-        super.dispatchDraw(canvas);
+    public final float a() {
+        return 1.0f;
     }
 
     @Override
-    public final void invalidate() {
-        if (this.T2) {
-            return;
+    public final float d() {
+        return 1.0f;
+    }
+
+    @Override
+    public final int e() {
+        return R.raw.photo_eraser;
+    }
+
+    @Override
+    public final float g() {
+        return 0.35f;
+    }
+
+    @Override
+    public final String i(int i9) {
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMaskEraser";
         }
-        super.invalidate();
-        this.T2 = true;
+        return "blitWithMaskEraser";
     }
 }

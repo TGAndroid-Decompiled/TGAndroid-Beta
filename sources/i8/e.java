@@ -1,84 +1,105 @@
 package i8;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.data.DataHolder;
-import java.io.Closeable;
-import java.util.ArrayList;
-import java.util.Iterator;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+import g7.p8;
+public final class e extends y5.a {
+    public static final Parcelable.Creator<e> CREATOR = new c(1);
+    public final f f10971a;
+    public final int f10972b;
+    public final int f10973c;
+    public final int d;
 
-public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
-
-    public final DataHolder f10951a;
-
-    public boolean f10952b = false;
-
-    public ArrayList f10953c;
-    public final Status d;
-
-    public e(DataHolder dataHolder) {
-        this.f10951a = dataHolder;
-        this.d = new Status(dataHolder.f3403e, null, null, null);
+    public e(f fVar, int i9, int i10, int i11) {
+        this.f10971a = fVar;
+        this.f10972b = i9;
+        this.f10973c = i10;
+        this.d = i11;
     }
 
-    @Override
-    public final void close() {
-        DataHolder dataHolder = this.f10951a;
-        if (dataHolder != null) {
-            dataHolder.close();
-        }
-    }
-
-    @Override
-    public final Status i() {
-        return this.d;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new kotlin.jvm.internal.a(this);
-    }
-
-    public final int n(int i10) {
-        if (i10 < 0 || i10 >= this.f10953c.size()) {
-            throw new IllegalArgumentException(i0.a.l(i10, "Position ", " is out of bounds for this buffer"));
-        }
-        return ((Integer) this.f10953c.get(i10)).intValue();
-    }
-
-    public final void o() {
-        synchronized (this) {
-            try {
-                if (!this.f10952b) {
-                    DataHolder dataHolder = this.f10951a;
-                    y5.l.h(dataHolder);
-                    int i10 = dataHolder.f3405n;
-                    ArrayList arrayList = new ArrayList();
-                    this.f10953c = arrayList;
-                    if (i10 > 0) {
-                        arrayList.add(0);
-                        int iB = this.f10951a.b(0);
-                        DataHolder dataHolder2 = this.f10951a;
-                        dataHolder2.c(0, "path");
-                        String string = dataHolder2.d[iB].getString(0, dataHolder2.f3402c.getInt("path"));
-                        for (int i11 = 1; i11 < i10; i11++) {
-                            int iB2 = this.f10951a.b(i11);
-                            DataHolder dataHolder3 = this.f10951a;
-                            dataHolder3.c(i11, "path");
-                            String string2 = dataHolder3.d[iB2].getString(i11, dataHolder3.f3402c.getInt("path"));
-                            if (string2 == null) {
-                                throw new NullPointerException("Missing value for markerColumn: path, at row: " + i11 + ", for window: " + iB2);
-                            }
-                            if (!string2.equals(string)) {
-                                this.f10953c.add(Integer.valueOf(i11));
-                                string = string2;
-                            }
-                        }
+    public final void b(h8.c cVar) {
+        f fVar = this.f10971a;
+        int i9 = this.f10972b;
+        if (i9 != 1) {
+            int i10 = this.d;
+            int i11 = this.f10973c;
+            if (i9 != 2) {
+                if (i9 != 3) {
+                    if (i9 != 4) {
+                        Log.w("ChannelEventParcelable", "Unknown type: " + i9);
+                        return;
                     }
-                    this.f10952b = true;
+                    cVar.onOutputClosed(fVar, i11, i10);
+                    return;
                 }
-            } catch (Throwable th) {
-                throw th;
+                cVar.onInputClosed(fVar, i11, i10);
+                return;
             }
+            cVar.onChannelClosed(fVar, i11, i10);
+            return;
         }
+        cVar.onChannelOpened(fVar);
+    }
+
+    public final String toString() {
+        String str;
+        String str2;
+        String valueOf = String.valueOf(this.f10971a);
+        int i9 = this.f10972b;
+        if (i9 != 1) {
+            if (i9 != 2) {
+                if (i9 != 3) {
+                    if (i9 != 4) {
+                        str = Integer.toString(i9);
+                    } else {
+                        str = "OUTPUT_CLOSED";
+                    }
+                } else {
+                    str = "INPUT_CLOSED";
+                }
+            } else {
+                str = "CHANNEL_CLOSED";
+            }
+        } else {
+            str = "CHANNEL_OPENED";
+        }
+        int i10 = this.f10973c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        str2 = Integer.toString(i10);
+                    } else {
+                        str2 = "CLOSE_REASON_LOCAL_CLOSE";
+                    }
+                } else {
+                    str2 = "CLOSE_REASON_REMOTE_CLOSE";
+                }
+            } else {
+                str2 = "CLOSE_REASON_DISCONNECTED";
+            }
+        } else {
+            str2 = "CLOSE_REASON_NORMAL";
+        }
+        StringBuilder q10 = j3.r0.q("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        q10.append(str2);
+        q10.append(", appErrorCode=");
+        q10.append(this.d);
+        q10.append("]");
+        return q10.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.k(parcel, 2, this.f10971a, i9);
+        p8.s(parcel, 3, 4);
+        parcel.writeInt(this.f10972b);
+        p8.s(parcel, 4, 4);
+        parcel.writeInt(this.f10973c);
+        p8.s(parcel, 5, 4);
+        parcel.writeInt(this.d);
+        p8.r(parcel, q10);
     }
 }

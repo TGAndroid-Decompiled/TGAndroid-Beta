@@ -3,46 +3,43 @@ package org.telegram.ui.Components;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
-
 public final class y2 implements Runnable {
-
-    public final int f34789a = 1;
-
-    public final int f34790b;
-
-    public final int[] f34791c;
+    public final int f34836a = 1;
+    public final int f34837b;
+    public final int[] f34838c;
     public final Runnable d;
 
-    public y2(int i10, int[] iArr, org.telegram.ui.a30 a30Var) {
-        this.f34790b = i10;
-        this.f34791c = iArr;
-        this.d = a30Var;
+    public y2(int i9, int[] iArr, org.telegram.ui.x20 x20Var) {
+        this.f34837b = i9;
+        this.f34838c = iArr;
+        this.d = x20Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f34789a;
+        int i9 = this.f34836a;
         Runnable runnable = this.d;
-        int[] iArr = this.f34791c;
-        int i11 = this.f34790b;
-        switch (i10) {
+        int[] iArr = this.f34838c;
+        int i10 = this.f34837b;
+        switch (i9) {
             case 0:
-                iArr[0] = i11;
+                iArr[0] = i10;
                 runnable.run();
-                break;
+                return;
             default:
-                Pattern pattern = LaunchActivity.f35496x1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
+                Pattern pattern = LaunchActivity.f35493x1;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
                 if (runnable != null) {
                     runnable.run();
+                    return;
                 }
-                break;
+                return;
         }
     }
 
-    public y2(int[] iArr, Runnable runnable, int i10) {
-        this.f34791c = iArr;
-        this.f34790b = i10;
+    public y2(int[] iArr, Runnable runnable, int i9) {
+        this.f34838c = iArr;
+        this.f34837b = i9;
         this.d = runnable;
     }
 }

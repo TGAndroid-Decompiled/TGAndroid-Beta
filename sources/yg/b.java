@@ -1,33 +1,38 @@
 package yg;
 
-public final class b {
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import ff.s;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.gr;
+public final class b extends View {
+    public final td.a f50205a;
+    public final Drawable f50206b;
+    public final Drawable f50207c;
 
-    public static final b f50141a;
-
-    public static final b f50142b;
-
-    public static final b f50143c;
-    public static final b d;
-
-    public static final b[] f50144e;
-
-    static {
-        b bVar = new b("STATE_FULLY_HIDDEN", 0);
-        f50141a = bVar;
-        b bVar2 = new b("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
-        f50142b = bVar2;
-        b bVar3 = new b("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
-        f50143c = bVar3;
-        b bVar4 = new b("STATE_FULLY_VISIBLE", 3);
-        d = bVar4;
-        f50144e = new b[]{bVar, bVar2, bVar3, bVar4};
+    public b(Context context) {
+        super(context);
+        this.f50205a = new td.a(this, gr.h, 320L);
+        this.f50206b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
+        this.f50207c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
     }
 
-    public static b valueOf(String str) {
-        return (b) Enum.valueOf(b.class, str);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float f10 = this.f50205a.f47775e;
+        s.b(canvas, this.f50206b, 1.0f - f10);
+        s.b(canvas, this.f50207c, f10);
     }
 
-    public static b[] values() {
-        return (b[]) f50144e.clone();
+    @Override
+    public final void onSizeChanged(int i9, int i10, int i11, int i12) {
+        super.onSizeChanged(i9, i10, i11, i12);
+        float f10 = i9 / 2.0f;
+        float f11 = i10 / 2.0f;
+        s.d(this.f50206b, f10, f11, 17);
+        s.d(this.f50207c, f10, f11, 17);
     }
 }

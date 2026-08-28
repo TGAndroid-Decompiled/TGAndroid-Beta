@@ -1,127 +1,66 @@
 package oa;
 
-import j$.util.Objects;
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Map;
+import j$.util.concurrent.ConcurrentHashMap;
+public final class j implements la.v {
+    public static final i f19148c = new i(0);
+    public static final i d = new i(0);
+    public final g5.b f19149a;
+    public final ConcurrentHashMap f19150b = new ConcurrentHashMap();
 
-public final class j extends AbstractSet {
-
-    public final int f19393a;
-
-    public final l f19394b;
-
-    public j(l lVar, int i10) {
-        this.f19393a = i10;
-        this.f19394b = lVar;
+    public j(g5.b bVar) {
+        this.f19149a = bVar;
     }
 
-    @Override
-    public final void clear() {
-        switch (this.f19393a) {
-            case 0:
-                this.f19394b.clear();
-                break;
-            default:
-                this.f19394b.clear();
-                break;
-        }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        k kVarA;
-        switch (this.f19393a) {
-            case 0:
-                if (!(obj instanceof Map.Entry)) {
-                    return false;
+    public final la.u a(g5.b bVar, la.g gVar, sa.a aVar, ma.a aVar2, boolean z10) {
+        la.o oVar;
+        i iVar;
+        la.u uVar;
+        Object Y1 = bVar.l(new sa.a(aVar2.value())).Y1();
+        boolean nullSafe = aVar2.nullSafe();
+        if (Y1 instanceof la.u) {
+            uVar = (la.u) Y1;
+        } else if (Y1 instanceof la.v) {
+            la.v vVar = (la.v) Y1;
+            if (z10) {
+                la.v vVar2 = (la.v) this.f19150b.putIfAbsent(aVar.f47502a, vVar);
+                if (vVar2 != null) {
+                    vVar = vVar2;
                 }
-                l lVar = this.f19394b;
-                Map.Entry entry = (Map.Entry) obj;
-                Object key = entry.getKey();
-                k kVar = null;
-                if (key != null) {
-                    try {
-                        kVarA = lVar.a(key, false);
-                    } catch (ClassCastException unused) {
-                        kVarA = null;
-                    }
-                    break;
+            }
+            uVar = vVar.create(gVar, aVar);
+        } else {
+            boolean z11 = Y1 instanceof la.o;
+            if (z11) {
+                if (z11) {
+                    oVar = (la.o) Y1;
                 } else {
-                    kVarA = null;
+                    oVar = null;
                 }
-                if (kVarA != null && Objects.equals(kVarA.f19400n, entry.getValue())) {
-                    kVar = kVarA;
-                }
-                return kVar != null;
-            default:
-                return this.f19394b.containsKey(obj);
-        }
-    }
-
-    @Override
-    public final Iterator iterator() {
-        switch (this.f19393a) {
-            case 0:
-                return new i(this.f19394b, 0);
-            default:
-                return new i(this.f19394b, 1);
-        }
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        k kVarA;
-        switch (this.f19393a) {
-            case 0:
-                if (!(obj instanceof Map.Entry)) {
-                    return false;
-                }
-                Map.Entry entry = (Map.Entry) obj;
-                Object key = entry.getKey();
-                l lVar = this.f19394b;
-                k kVar = null;
-                if (key != null) {
-                    try {
-                        kVarA = lVar.a(key, false);
-                    } catch (ClassCastException unused) {
-                        kVarA = null;
-                    }
-                    break;
+                la.o oVar2 = oVar;
+                if (z10) {
+                    iVar = f19148c;
                 } else {
-                    kVarA = null;
+                    iVar = d;
                 }
-                if (kVarA != null && Objects.equals(kVarA.f19400n, entry.getValue())) {
-                    kVar = kVarA;
-                }
-                if (kVar == null) {
-                    return false;
-                }
-                lVar.c(kVar, true);
-                return true;
-            default:
-                l lVar2 = this.f19394b;
-                k kVarA2 = null;
-                if (obj != null) {
-                    try {
-                        kVarA2 = lVar2.a(obj, false);
-                        break;
-                    } catch (ClassCastException unused2) {
-                    }
-                }
-                if (kVarA2 != null) {
-                    lVar2.c(kVarA2, true);
-                }
-                return kVarA2 != null;
+                a0 a0Var = new a0(oVar2, gVar, aVar, iVar, nullSafe);
+                nullSafe = false;
+                uVar = a0Var;
+            } else {
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + Y1.getClass().getName() + " as a @JsonAdapter for " + na.d.k(aVar.f47503b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+            }
         }
+        if (uVar != null && nullSafe) {
+            return uVar.nullSafe();
+        }
+        return uVar;
     }
 
     @Override
-    public final int size() {
-        switch (this.f19393a) {
-            case 0:
-                break;
+    public final la.u create(la.g gVar, sa.a aVar) {
+        ma.a aVar2 = (ma.a) aVar.f47502a.getAnnotation(ma.a.class);
+        if (aVar2 == null) {
+            return null;
         }
-        return this.f19394b.d;
+        return a(this.f19149a, gVar, aVar, aVar2, true);
     }
 }

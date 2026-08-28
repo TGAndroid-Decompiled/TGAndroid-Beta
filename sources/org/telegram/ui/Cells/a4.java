@@ -1,66 +1,67 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.R;
+public final class a4 extends org.telegram.ui.ActionBar.h5 {
+    public float I0;
+    public final int J0;
+    public final e4 K0;
 
-public final class a4 extends Drawable {
-
-    public final Drawable[] f24059a;
-
-    public a4(Context context) {
-        this.f24059a = new Drawable[]{drawableMutate, context.getResources().getDrawable(R.drawable.verified_check).mutate()};
-        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
+    public a4(e4 e4Var, Context context, int i9) {
+        super(context);
+        this.K0 = e4Var;
+        this.J0 = i9;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = 0;
-        while (true) {
-            Drawable[] drawableArr = this.f24059a;
-            if (i10 >= drawableArr.length) {
+    public final float getAlpha() {
+        return this.I0;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        this.I0 = f10;
+        e4 e4Var = this.K0;
+        if (this.J0 == 4) {
+            float fullAlpha = e4Var.d[4].getFullAlpha();
+            if (e4Var.c()) {
+                float f11 = e4Var.f24289a0;
+                if (f11 > 0.0f) {
+                    super.setAlpha(1.0f - f11);
+                    return;
+                }
+            }
+            if (fullAlpha > 0.0f) {
+                super.setAlpha(Math.max(f10, fullAlpha));
+                return;
+            } else {
+                super.setAlpha(f10);
                 return;
             }
-            drawableArr[i10].setBounds(getBounds());
-            drawableArr[i10].draw(canvas);
-            i10++;
+        }
+        super.setAlpha((1.0f - e4Var.d[4].getFullAlpha()) * f10);
+    }
+
+    @Override
+    public final void setFullAlpha(float f10) {
+        super.setFullAlpha(f10);
+        int i9 = 0;
+        while (true) {
+            org.telegram.ui.ActionBar.h5[] h5VarArr = this.K0.d;
+            if (i9 < h5VarArr.length) {
+                org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[i9];
+                h5Var.setAlpha(h5Var.getAlpha());
+                i9++;
+            } else {
+                return;
+            }
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f24059a[0].getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f24059a[0].getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int i11 = 0;
-        while (true) {
-            Drawable[] drawableArr = this.f24059a;
-            if (i11 >= drawableArr.length) {
-                return;
-            }
-            drawableArr[i11].setAlpha(i10);
-            i11++;
+    public final void setTranslationY(float f10) {
+        if (this.J0 == 4 && getFullAlpha() > 0.0f) {
+            f10 = 0.0f;
         }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        super.setTranslationY(f10);
     }
 }

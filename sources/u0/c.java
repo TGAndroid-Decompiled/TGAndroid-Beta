@@ -3,7 +3,6 @@ package u0;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.EdgeEffect;
-
 public abstract class c {
     public static EdgeEffect a(Context context, AttributeSet attributeSet) {
         try {

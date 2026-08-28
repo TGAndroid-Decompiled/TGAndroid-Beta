@@ -1,5 +1,4 @@
 package h3;
-
 public interface h2 {
     String getName();
 

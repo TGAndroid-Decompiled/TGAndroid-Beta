@@ -1,52 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_iv;
+public final class h1 extends f2.z {
+    public final m1 S;
 
-public final class h1 extends f2.w0 {
-
-    public final n1 f38657a;
-
-    public h1(n1 n1Var) {
-        this.f38657a = n1Var;
+    public h1(m1 m1Var) {
+        super(true);
+        this.S = m1Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.l1 l1Var) {
-        rect.bottom = 0;
-        boolean z10 = view instanceof g2;
-        n1 n1Var = this.f38657a;
-        MessageObject.GroupedMessagePosition groupedMessagePosition = z10 ? (MessageObject.GroupedMessagePosition) n1Var.v.f40283b.get(((g2) view).J) : view instanceof b3 ? (MessageObject.GroupedMessagePosition) n1Var.v.f40283b.get(((b3) view).H) : null;
-        if (groupedMessagePosition == null || groupedMessagePosition.siblingHeights == null) {
-            return;
-        }
-        Point point = AndroidUtilities.displaySize;
-        float fMax = Math.max(point.x, point.y) * 0.5f;
-        int i10 = 0;
-        int iCeil = 0;
-        while (true) {
-            float[] fArr = groupedMessagePosition.siblingHeights;
-            if (i10 >= fArr.length) {
-                break;
-            }
-            iCeil += (int) Math.ceil(fArr[i10] * fMax);
-            i10++;
-        }
-        int iDp2 = (AndroidUtilities.dp2(11.0f) * (groupedMessagePosition.maxY - groupedMessagePosition.minY)) + iCeil;
-        int size = n1Var.v.f40282a.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) n1Var.v.f40282a.get(i11);
-            byte b10 = groupedMessagePosition2.minY;
-            byte b11 = groupedMessagePosition.minY;
-            if (b10 == b11 && ((groupedMessagePosition2.minX != groupedMessagePosition.minX || groupedMessagePosition2.maxX != groupedMessagePosition.maxX || b10 != b11 || groupedMessagePosition2.maxY != groupedMessagePosition.maxY) && b10 == b11)) {
-                iDp2 = org.telegram.messenger.y1.A(4.0f, (int) Math.ceil(fMax * groupedMessagePosition2.f19619ph), iDp2);
-                break;
+    public final boolean B1(int i9) {
+        byte b10;
+        m1 m1Var = this.S;
+        ArrayList<TL_iv.PageBlock> arrayList = m1Var.f40291s.items;
+        MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) m1Var.v.f39966b.get(arrayList.get((arrayList.size() - i9) - 1));
+        if (groupedMessagePosition.minX != groupedMessagePosition.maxX && (b10 = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b10 != 0) {
+            int size = m1Var.v.f39965a.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) m1Var.v.f39965a.get(i10);
+                if (groupedMessagePosition2 != groupedMessagePosition) {
+                    byte b11 = groupedMessagePosition2.minY;
+                    byte b12 = groupedMessagePosition.minY;
+                    if (b11 <= b12 && groupedMessagePosition2.maxY >= b12) {
+                        return true;
+                    }
+                }
             }
         }
-        rect.bottom = -iDp2;
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

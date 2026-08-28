@@ -1,22 +1,49 @@
 package ib;
 
-import android.content.Context;
-import i7.ma;
+import j7.ve;
+import java.util.Arrays;
+import x5.l;
+public final class e {
+    public final boolean f11086a;
+    public final boolean f11087b;
+    public final boolean f11088c;
 
-public final class e extends b8.a {
-
-    public final za.g f11104b;
-
-    public e(za.g gVar) {
-        super(8);
-        this.f11104b = gVar;
+    public e(d dVar) {
+        this.f11086a = dVar.f11083a;
+        this.f11087b = dVar.f11084b;
+        this.f11088c = dVar.f11085c;
     }
 
-    @Override
-    public final Object F(Object obj) {
-        hb.b bVar = (hb.b) obj;
-        Context contextB = this.f11104b.b();
-        v5.e.f48795b.getClass();
-        return new f(bVar, v5.e.a(contextB) >= 204700000 ? new a(contextB, bVar) : new c(contextB, bVar), ma.b());
+    public final ve a() {
+        ?? obj = new Object();
+        Boolean bool = Boolean.FALSE;
+        obj.f1413a = bool;
+        obj.f1414b = Boolean.valueOf(this.f11086a);
+        obj.f1415c = Boolean.valueOf(this.f11087b);
+        obj.d = bool;
+        obj.f1416e = Boolean.valueOf(this.f11088c);
+        return new ve(obj);
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof e) {
+                e eVar = (e) obj;
+                if (this.f11086a == eVar.f11086a && this.f11087b == eVar.f11087b && this.f11088c == eVar.f11088c && l.l(null, null)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        Boolean valueOf = Boolean.valueOf(this.f11086a);
+        Boolean valueOf2 = Boolean.valueOf(this.f11087b);
+        Boolean valueOf3 = Boolean.valueOf(this.f11088c);
+        Boolean bool = Boolean.FALSE;
+        return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }
 }

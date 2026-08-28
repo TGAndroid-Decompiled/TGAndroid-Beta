@@ -1,7 +1,6 @@
 package q2;
 
 import java.nio.channels.WritableByteChannel;
-
 public interface b {
     void getBox(WritableByteChannel writableByteChannel);
 

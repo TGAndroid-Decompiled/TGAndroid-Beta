@@ -2,7 +2,6 @@ package z3;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 public final class a implements Parcelable.Creator {
     @Override
     public final Object createFromParcel(Parcel parcel) {
@@ -10,7 +9,7 @@ public final class a implements Parcelable.Creator {
     }
 
     @Override
-    public final Object[] newArray(int i10) {
-        return new c[i10];
+    public final Object[] newArray(int i9) {
+        return new c[i9];
     }
 }

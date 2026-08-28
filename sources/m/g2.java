@@ -2,7 +2,6 @@ package m;
 
 import android.transition.Transition;
 import android.widget.PopupWindow;
-
 public abstract class g2 {
     public static void a(PopupWindow popupWindow, Transition transition) {
         popupWindow.setEnterTransition(transition);

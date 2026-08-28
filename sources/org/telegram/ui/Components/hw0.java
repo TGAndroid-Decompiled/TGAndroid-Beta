@@ -1,31 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import org.telegram.messenger.NotificationCenter;
+public final class hw0 extends o9 implements NotificationCenter.NotificationCenterDelegate {
+    public final int C;
+    public int D;
+    public String E;
 
-public final class hw0 extends AnimatorListenerAdapter {
-
-    public final int f29174a;
-
-    public final iw0 f29175b;
-
-    public hw0(iw0 iw0Var, int i10) {
-        this.f29174a = i10;
-        this.f29175b = iw0Var;
+    public hw0(Context context, int i9) {
+        super(context);
+        this.E = "tg_placeholders_android";
+        this.C = i9;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29174a) {
-            case 0:
-                this.f29175b.f29510s.setVisibility(8);
-                break;
-            case 1:
-                this.f29175b.f29510s.setVisibility(8);
-                break;
-            default:
-                this.f29175b.f29510s.setVisibility(8);
-                break;
+    public final void didReceivedNotification(int i9, int i10, Object... objArr) {
+        if (i9 == NotificationCenter.diceStickersDidLoad) {
+            if (this.E.equals((String) objArr[0])) {
+                t();
+            }
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        t();
+        NotificationCenter.getInstance(this.C).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.C).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    public void setStickerNum(int i9) {
+        if (this.D != i9) {
+            this.D = i9;
+            t();
+        }
+    }
+
+    public void setStickerPackName(String str) {
+        this.E = str;
+    }
+
+    public final void t() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hw0.t():void");
     }
 }

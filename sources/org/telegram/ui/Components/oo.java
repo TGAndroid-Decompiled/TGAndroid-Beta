@@ -1,21 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.nc1;
+import android.animation.ValueAnimator;
+public final class oo implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f31416a = false;
+    public final cp f31417b;
 
-public final class oo extends nc1 {
-
-    public final int f31368g2;
-
-    public oo(Object obj, Bitmap bitmap, boolean z10, int i10) {
-        super(obj, bitmap, z10);
-        this.f31368g2 = i10;
+    public oo(cp cpVar) {
+        this.f31417b = cpVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f31368g2) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        cp cpVar = this.f31417b;
+        cpVar.O = floatValue;
+        cpVar.N.invalidate();
+        if (!this.f31416a && cpVar.O > 0.5f) {
+            this.f31416a = true;
         }
-        return true;
     }
 }

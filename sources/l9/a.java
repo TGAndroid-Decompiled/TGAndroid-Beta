@@ -1,34 +1,20 @@
 package l9;
 
-import ia.l;
-
+import ib.d;
 public final class a {
+    public final com.google.android.gms.internal.cast.a f16697a;
+    public final d f16698b;
+    public final long f16699c;
+    public final double d;
+    public final double f16700e;
+    public final int f16701f;
 
-    public static final i9.a f15489b = new i9.a();
-
-    public static final String f15490c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
-    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
-
-    public static final l f15491e = new l(20);
-
-    public final c f15492a;
-
-    public a(c cVar) {
-        this.f15492a = cVar;
-    }
-
-    public static String a(String str, String str2) {
-        int length = str.length() - str2.length();
-        if (length < 0 || length > 1) {
-            throw new IllegalArgumentException("Invalid input received");
-        }
-        StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
-        for (int i10 = 0; i10 < str.length(); i10++) {
-            sb2.append(str.charAt(i10));
-            if (str2.length() > i10) {
-                sb2.append(str2.charAt(i10));
-            }
-        }
-        return sb2.toString();
+    public a(long j10, com.google.android.gms.internal.cast.a aVar, d dVar, double d, double d9, int i9) {
+        this.f16699c = j10;
+        this.f16697a = aVar;
+        this.f16698b = dVar;
+        this.d = d;
+        this.f16700e = d9;
+        this.f16701f = i9;
     }
 }

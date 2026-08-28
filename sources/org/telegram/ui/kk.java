@@ -1,22 +1,22 @@
 package org.telegram.ui;
 
-public final class kk extends c2.x {
+import org.telegram.messenger.NotificationCenter;
+public final class kk implements NotificationCenter.PostponeNotificationCallback {
+    public final qn f39853a;
 
-    public final rn f39790l;
-
-    public kk(rn rnVar, kj kjVar, nj njVar) {
-        super(kjVar, njVar);
-        this.f39790l = rnVar;
+    public kk(qn qnVar) {
+        this.f39853a = qnVar;
     }
 
-    public final void e(int i10) {
-        if (this.f39790l.La) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
+    @Override
+    public final boolean needPostpone(int i9, int i10, Object[] objArr) {
+        if (i9 == NotificationCenter.didReceiveNewMessages) {
+            long longValue = ((Long) objArr[0]).longValue();
+            qn qnVar = this.f39853a;
+            if (qnVar.D6 && longValue == qnVar.P5) {
+                return true;
             }
         }
-        this.f2367b = i10;
+        return false;
     }
 }

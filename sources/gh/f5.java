@@ -1,69 +1,34 @@
 package gh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.m41;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.ri0;
-import org.telegram.ui.Components.zk0;
+public final class f5 extends AnimatorListenerAdapter {
+    public final g5 f8062a;
 
-public final class f5 extends m41 {
-
-    public static final int f7256a = 0;
-
-    static {
-        m41.setup(new f5());
+    public f5(g5 g5Var) {
+        this.f8062a = g5Var;
     }
 
     @Override
-    public final void bindView(View view, n41 n41Var, boolean z10, b51 b51Var, k51 k51Var) {
-        g5 g5Var = (g5) view;
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) n41Var.G;
-        int i10 = n41Var.f30857z;
-        String str = (String) n41Var.f30844l;
-        boolean z11 = n41Var.f30838e;
-        org.telegram.ui.ActionBar.c6 c6Var = g5Var.B;
-        ri0 ri0Var = g5Var.f22913c;
-        e5 e5Var = g5Var.J;
-        if (e5Var == null || g5Var.I != stargiftattributepattern.document.f22386id) {
-            g5Var.I = stargiftattributepattern.document.f22386id;
-            if (e5Var != null) {
-                e5Var.o(ri0Var);
-            }
-            e5 e5Var2 = new e5(3, g5Var.H, stargiftattributepattern.document);
-            g5Var.J = e5Var2;
-            e5Var2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.E8, c6Var), PorterDuff.Mode.SRC_IN));
+    public final void onAnimationEnd(Animator animator) {
+        g5 g5Var = this.f8062a;
+        fh.o1 o1Var = g5Var.f8114e0;
+        g5Var.f8125o0 = g5Var.f8124n0;
+        g5Var.d(g5Var.Q);
+        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = g5Var.f8113e;
+        int i9 = 2 - g5Var.f8124n0;
+        stargiftattributemodelArr[i9] = (TL_stars.starGiftAttributeModel) g5Var.S.f2897f;
+        oa.Z0(g5Var.d[i9].getImageReceiver(), stargiftattributemodelArr[2 - g5Var.f8124n0].document, 160);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) g5Var.T.f2897f;
+        if (stargiftattributepattern != null) {
+            org.telegram.ui.Components.k5 m10 = org.telegram.ui.Components.k5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
+            m10.f29953m = true;
+            m10.v();
         }
-        if (ri0Var.isAttachedToWindow()) {
-            g5Var.J.a(ri0Var);
-        }
-        CharSequence charSequenceHighlightText = stargiftattributepattern.name;
-        if (!TextUtils.isEmpty(str)) {
-            charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, c6Var);
-        }
-        if (i10 > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
-            spannableStringBuilder.append((CharSequence) "  ");
-            int length = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder.setSpan(new k41(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-            charSequenceHighlightText = spannableStringBuilder;
-        }
-        g5Var.g(charSequenceHighlightText, 0, g5Var.J);
-        g5Var.setChecked(z11);
-    }
-
-    @Override
-    public final View createView(Context context, zk0 zk0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        return new g5(context, i10, c6Var);
+        AndroidUtilities.cancelRunOnUIThread(o1Var);
+        AndroidUtilities.runOnUIThread(o1Var, 2500L);
     }
 }

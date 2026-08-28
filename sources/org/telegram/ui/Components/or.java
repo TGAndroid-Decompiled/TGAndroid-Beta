@@ -1,35 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.VoIPService;
-
 public final class or implements Utilities.Callback2 {
+    public final int f31430a;
+    public final wr f31431b;
 
-    public final int f31395a;
-
-    public or(int i10) {
-        this.f31395a = i10;
+    public or(wr wrVar, int i9) {
+        this.f31430a = i9;
+        this.f31431b = wrVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f31395a) {
-            case 0:
-                int i10 = ur.C0;
-                break;
-            case 1:
-                Boolean bool = (Boolean) obj;
-                HashSet<Long> hashSet = (HashSet) obj2;
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    sharedInstance.convertToConferenceCall(bool.booleanValue(), hashSet);
-                }
-                break;
-            default:
-                RectF rectF = qg.d.D;
-                break;
-        }
+    public final void run(java.lang.Object r13, java.lang.Object r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.or.run(java.lang.Object, java.lang.Object):void");
     }
 }

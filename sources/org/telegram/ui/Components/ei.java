@@ -1,24 +1,55 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ei extends fi {
+    public int f28032b;
+    public final ki f28033c;
 
-public interface ei {
-    void F();
+    public ei(ki kiVar, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.b6 b6Var;
+        this.f28033c = kiVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        b6Var = ((org.telegram.ui.ActionBar.f3) kiVar).resourcesProvider;
+        wg.b bVar = new wg.b(context);
+        bVar.d = b6Var;
+        bVar.M = true;
+        TextView textView = bVar.f48828a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.a(false);
+        bVar.f48829b.setLayoutParams(g7.e6.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f48836w = org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.cl, b6Var);
+        bVar.f48835s = org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.al, b6Var);
+        bVar.v = org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.bl, b6Var);
+        bVar.f();
+        this.f28435a = bVar;
+        addView(bVar, g7.e6.c(-1.0f, -1));
+    }
 
-    void I(Object obj);
+    public final void a(int i9, String str, wg.a aVar) {
+        this.f28435a.setText(str);
+        this.f28435a.setTabAnimation(aVar);
+        this.f28032b = i9;
+    }
 
-    boolean N0();
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
 
-    void P0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11);
-
-    void g0(TLRPC.User user);
-
-    void n0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11);
-
-    boolean s();
-
-    void w();
-
-    void y(sg sgVar);
+    @Override
+    public final void onAttachedToWindow() {
+        boolean z10;
+        super.onAttachedToWindow();
+        if (this.f28032b == this.f28033c.S0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f28435a.e(z10, false);
+    }
 }

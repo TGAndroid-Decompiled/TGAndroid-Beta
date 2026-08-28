@@ -2,45 +2,54 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-
 public final class r extends AnimatorListenerAdapter {
+    public final int f33767a;
+    public final t f33768b;
 
-    public final int f33817a;
-
-    public final t f33818b;
-
-    public r(t tVar, int i10) {
-        this.f33817a = i10;
-        this.f33818b = tVar;
+    public r(t tVar, int i9) {
+        this.f33767a = i9;
+        this.f33768b = tVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33817a) {
+        float f10;
+        int i9;
+        switch (this.f33767a) {
             case 0:
-                t tVar = this.f33818b;
+                t tVar = this.f33768b;
                 tVar.A = false;
                 tVar.invalidate();
-                break;
+                return;
             case 1:
-                t tVar2 = this.f33818b;
+                t tVar2 = this.f33768b;
                 s sVar = tVar2.U;
-                float f10 = tVar2.S ? 0.0f : 1.0f;
+                if (tVar2.S) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 1.0f;
+                }
                 tVar2.T = f10;
                 sVar.setAlpha(f10);
-                sVar.setVisibility(tVar2.S ? 8 : 0);
-                tVar2.f33871a.invalidate();
-                break;
+                if (tVar2.S) {
+                    i9 = 8;
+                } else {
+                    i9 = 0;
+                }
+                sVar.setVisibility(i9);
+                tVar2.f33821a.invalidate();
+                return;
             default:
                 super.onAnimationEnd(animator);
-                t tVar3 = this.f33818b;
+                t tVar3 = this.f33768b;
                 tVar3.F0 = null;
-                o oVar = tVar3.f33871a;
+                o oVar = tVar3.f33821a;
                 oVar.setRotationY(0.0f);
                 if (!tVar3.G0) {
                     oVar.d.clearImage();
+                    return;
                 }
-                break;
+                return;
         }
     }
 }

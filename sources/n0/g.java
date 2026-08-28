@@ -3,10 +3,8 @@ package n0;
 import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
-
 public abstract class g {
-
-    public static final int f18080a = 0;
+    public static final int f18255a = 0;
 
     static {
         if (Build.VERSION.SDK_INT < 29) {
@@ -18,8 +16,8 @@ public abstract class g {
                 Trace.class.getMethod("asyncTraceBegin", cls, String.class, cls2);
                 Trace.class.getMethod("asyncTraceEnd", cls, String.class, cls2);
                 Trace.class.getMethod("traceCounter", cls, String.class, cls2);
-            } catch (Exception e9) {
-                Log.i("TraceCompat", "Unable to initialize via reflection.", e9);
+            } catch (Exception e10) {
+                Log.i("TraceCompat", "Unable to initialize via reflection.", e10);
             }
         }
     }

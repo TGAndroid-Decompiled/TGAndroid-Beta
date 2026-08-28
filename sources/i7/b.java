@@ -1,6 +1,10 @@
 package i7;
 
-import java.util.RandomAccess;
+import java.util.logging.Logger;
+public abstract class b {
+    public static final int f10941a = 0;
 
-public final class b extends e implements RandomAccess {
+    static {
+        Logger.getLogger(b.class.getName());
+    }
 }

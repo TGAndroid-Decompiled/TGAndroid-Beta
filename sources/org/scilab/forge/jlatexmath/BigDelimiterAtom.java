@@ -1,21 +1,20 @@
 package org.scilab.forge.jlatexmath;
-
 public class BigDelimiterAtom extends Atom {
     public SymbolAtom delim;
     private int size;
 
-    public BigDelimiterAtom(SymbolAtom symbolAtom, int i10) {
+    public BigDelimiterAtom(SymbolAtom symbolAtom, int i9) {
         this.delim = symbolAtom;
-        this.size = i10;
+        this.size = i9;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreate = DelimiterFactory.create(this.delim, teXEnvironment, this.size);
+        Box create = DelimiterFactory.create(this.delim, teXEnvironment, this.size);
         HorizontalBox horizontalBox = new HorizontalBox();
-        float height = boxCreate.getHeight();
-        boxCreate.setShift((((-(boxCreate.getDepth() + height)) / 2.0f) + height) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
-        horizontalBox.add(boxCreate);
+        float height = create.getHeight();
+        create.setShift((((-(create.getDepth() + height)) / 2.0f) + height) - teXEnvironment.getTeXFont().getAxisHeight(teXEnvironment.getStyle()));
+        horizontalBox.add(create);
         return horizontalBox;
     }
 }

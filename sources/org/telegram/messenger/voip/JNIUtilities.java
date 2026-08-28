@@ -15,30 +15,28 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
-import java.util.Iterator;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-
 public class JNIUtilities {
     public static String[] getCarrierInfo() {
-        String strSubstring;
-        String strSubstring2;
-        TelephonyManager telephonyManagerCreateForSubscriptionId = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+        String str;
+        String str2;
+        TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
         if (Build.VERSION.SDK_INT >= 24) {
-            telephonyManagerCreateForSubscriptionId = telephonyManagerCreateForSubscriptionId.createForSubscriptionId(SubscriptionManager.getDefaultDataSubscriptionId());
+            telephonyManager = telephonyManager.createForSubscriptionId(SubscriptionManager.getDefaultDataSubscriptionId());
         }
-        if (TextUtils.isEmpty(telephonyManagerCreateForSubscriptionId.getNetworkOperatorName())) {
-            return null;
+        if (!TextUtils.isEmpty(telephonyManager.getNetworkOperatorName())) {
+            String networkOperator = telephonyManager.getNetworkOperator();
+            if (networkOperator != null && networkOperator.length() > 3) {
+                str = networkOperator.substring(0, 3);
+                str2 = networkOperator.substring(3);
+            } else {
+                str = "";
+                str2 = "";
+            }
+            return new String[]{telephonyManager.getNetworkOperatorName(), telephonyManager.getNetworkCountryIso().toUpperCase(), str, str2};
         }
-        String networkOperator = telephonyManagerCreateForSubscriptionId.getNetworkOperator();
-        if (networkOperator == null || networkOperator.length() <= 3) {
-            strSubstring = "";
-            strSubstring2 = "";
-        } else {
-            strSubstring = networkOperator.substring(0, 3);
-            strSubstring2 = networkOperator.substring(3);
-        }
-        return new String[]{telephonyManagerCreateForSubscriptionId.getNetworkOperatorName(), telephonyManagerCreateForSubscriptionId.getNetworkCountryIso().toUpperCase(), strSubstring, strSubstring2};
+        return null;
     }
 
     public static String getCurrentNetworkInterfaceName() {
@@ -54,25 +52,24 @@ public class JNIUtilities {
     public static String[] getLocalNetworkAddressesAndInterfaceName() {
         LinkProperties linkProperties;
         ConnectivityManager connectivityManager = (ConnectivityManager) ApplicationLoader.applicationContext.getSystemService("connectivity");
-        String hostAddress = null;
+        String str = null;
         if (Build.VERSION.SDK_INT >= 23) {
             Network activeNetwork = connectivityManager.getActiveNetwork();
             if (activeNetwork == null || (linkProperties = connectivityManager.getLinkProperties(activeNetwork)) == null) {
                 return null;
             }
-            Iterator<LinkAddress> it = linkProperties.getLinkAddresses().iterator();
-            String hostAddress2 = null;
-            while (it.hasNext()) {
-                InetAddress address = it.next().getAddress();
+            String str2 = null;
+            for (LinkAddress linkAddress : linkProperties.getLinkAddresses()) {
+                InetAddress address = linkAddress.getAddress();
                 if (address instanceof Inet4Address) {
                     if (!address.isLinkLocalAddress()) {
-                        hostAddress = address.getHostAddress();
+                        str = address.getHostAddress();
                     }
                 } else if ((address instanceof Inet6Address) && !address.isLinkLocalAddress() && (address.getAddress()[0] & 240) != 240) {
-                    hostAddress2 = address.getHostAddress();
+                    str2 = address.getHostAddress();
                 }
             }
-            return new String[]{linkProperties.getInterfaceName(), hostAddress, hostAddress2};
+            return new String[]{linkProperties.getInterfaceName(), str, str2};
         }
         try {
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -80,27 +77,27 @@ public class JNIUtilities {
                 return null;
             }
             while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface networkInterfaceNextElement = networkInterfaces.nextElement();
-                if (!networkInterfaceNextElement.isLoopback() && networkInterfaceNextElement.isUp()) {
-                    Enumeration<InetAddress> inetAddresses = networkInterfaceNextElement.getInetAddresses();
-                    String hostAddress3 = null;
-                    String hostAddress4 = null;
+                NetworkInterface nextElement = networkInterfaces.nextElement();
+                if (!nextElement.isLoopback() && nextElement.isUp()) {
+                    Enumeration<InetAddress> inetAddresses = nextElement.getInetAddresses();
+                    String str3 = null;
+                    String str4 = null;
                     while (inetAddresses.hasMoreElements()) {
-                        InetAddress inetAddressNextElement = inetAddresses.nextElement();
-                        if (inetAddressNextElement instanceof Inet4Address) {
-                            if (!inetAddressNextElement.isLinkLocalAddress()) {
-                                hostAddress3 = inetAddressNextElement.getHostAddress();
+                        InetAddress nextElement2 = inetAddresses.nextElement();
+                        if (nextElement2 instanceof Inet4Address) {
+                            if (!nextElement2.isLinkLocalAddress()) {
+                                str3 = nextElement2.getHostAddress();
                             }
-                        } else if ((inetAddressNextElement instanceof Inet6Address) && !inetAddressNextElement.isLinkLocalAddress() && (inetAddressNextElement.getAddress()[0] & 240) != 240) {
-                            hostAddress4 = inetAddressNextElement.getHostAddress();
+                        } else if ((nextElement2 instanceof Inet6Address) && !nextElement2.isLinkLocalAddress() && (nextElement2.getAddress()[0] & 240) != 240) {
+                            str4 = nextElement2.getHostAddress();
                         }
                     }
-                    return new String[]{networkInterfaceNextElement.getName(), hostAddress3, hostAddress4};
+                    return new String[]{nextElement.getName(), str3, str4};
                 }
             }
             return null;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }

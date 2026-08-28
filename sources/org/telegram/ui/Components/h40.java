@@ -1,22 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-
+import android.graphics.Paint;
+import android.graphics.RectF;
 public final class h40 {
+    public long f28960a;
+    public float f28961b;
+    public float f28962c;
+    public boolean d;
+    public float f28963e;
+    public final RectF f28964f = new RectF();
+    public int f28965g;
+    public final Paint h;
+    public final int f28966i;
 
-    public final TLObject f28924a;
-
-    public TLRPC.User f28925b;
-
-    public final int f28926c;
-    public final boolean d;
-
-    public boolean f28927e;
-
-    public h40(int i10, TLObject tLObject) {
-        this.f28924a = tLObject;
-        this.f28926c = i10;
-        this.d = (tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self;
+    public h40(int i9) {
+        this.f28966i = i9;
+        Paint paint = new Paint(1);
+        this.h = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 }

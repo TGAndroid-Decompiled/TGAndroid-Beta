@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class OvalAtom extends FBoxAtom {
     public OvalAtom(Atom atom) {
         super(atom);

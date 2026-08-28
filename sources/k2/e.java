@@ -1,37 +1,35 @@
 package k2;
 
 import android.animation.TypeEvaluator;
-import g7.w7;
-
+import f7.i8;
 public final class e implements TypeEvaluator {
-
-    public i0.e[] f14352a;
+    public i0.d[] f14531a;
 
     @Override
     public final Object evaluate(float f10, Object obj, Object obj2) {
-        i0.e[] eVarArr = (i0.e[]) obj;
-        i0.e[] eVarArr2 = (i0.e[]) obj2;
-        if (!w7.a(eVarArr, eVarArr2)) {
-            throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
-        }
-        if (!w7.a(this.f14352a, eVarArr)) {
-            this.f14352a = w7.e(eVarArr);
-        }
-        for (int i10 = 0; i10 < eVarArr.length; i10++) {
-            i0.e eVar = this.f14352a[i10];
-            i0.e eVar2 = eVarArr[i10];
-            i0.e eVar3 = eVarArr2[i10];
-            eVar.getClass();
-            eVar.f10493a = eVar2.f10493a;
-            int i11 = 0;
-            while (true) {
-                float[] fArr = eVar2.f10494b;
-                if (i11 < fArr.length) {
-                    eVar.f10494b[i11] = (eVar3.f10494b[i11] * f10) + ((1.0f - f10) * fArr[i11]);
-                    i11++;
+        i0.d[] dVarArr = (i0.d[]) obj;
+        i0.d[] dVarArr2 = (i0.d[]) obj2;
+        if (i8.a(dVarArr, dVarArr2)) {
+            if (!i8.a(this.f14531a, dVarArr)) {
+                this.f14531a = i8.e(dVarArr);
+            }
+            for (int i9 = 0; i9 < dVarArr.length; i9++) {
+                i0.d dVar = this.f14531a[i9];
+                i0.d dVar2 = dVarArr[i9];
+                i0.d dVar3 = dVarArr2[i9];
+                dVar.getClass();
+                dVar.f10852a = dVar2.f10852a;
+                int i10 = 0;
+                while (true) {
+                    float[] fArr = dVar2.f10853b;
+                    if (i10 < fArr.length) {
+                        dVar.f10853b[i10] = (dVar3.f10853b[i10] * f10) + ((1.0f - f10) * fArr[i10]);
+                        i10++;
+                    }
                 }
             }
+            return this.f14531a;
         }
-        return this.f14352a;
+        throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
     }
 }

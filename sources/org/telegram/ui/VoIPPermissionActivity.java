@@ -8,71 +8,80 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.tl.TL_phone;
-
 public class VoIPPermissionActivity extends Activity {
     @Override
     public final void onCreate(Bundle bundle) {
-        boolean zIsVideo;
+        boolean isVideo;
+        int i9;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             TL_phone.PhoneCall phoneCall = sharedInstance.privateCall;
-            zIsVideo = phoneCall != null && phoneCall.video;
+            if (phoneCall != null && phoneCall.video) {
+                isVideo = true;
+            } else {
+                isVideo = false;
+            }
         } else {
-            zIsVideo = VoIPPreNotificationService.isVideo();
+            isVideo = VoIPPreNotificationService.isVideo();
         }
         ArrayList arrayList = new ArrayList();
         if (checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
             arrayList.add("android.permission.RECORD_AUDIO");
         }
-        if (zIsVideo && checkSelfPermission("android.permission.CAMERA") != 0) {
+        if (isVideo && checkSelfPermission("android.permission.CAMERA") != 0) {
             arrayList.add("android.permission.CAMERA");
         }
-        if (arrayList.isEmpty()) {
-            return;
-        }
-        try {
-            requestPermissions((String[]) arrayList.toArray(new String[0]), zIsVideo ? 102 : 101);
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        if (!arrayList.isEmpty()) {
+            try {
+                String[] strArr = (String[]) arrayList.toArray(new String[0]);
+                if (isVideo) {
+                    i9 = 102;
+                } else {
+                    i9 = 101;
+                }
+                requestPermissions(strArr, i9);
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
         }
     }
 
     @Override
-    public final void onRequestPermissionsResult(int i10, String[] strArr, int[] iArr) {
-        if (i10 == 101 || i10 == 102) {
-            boolean z10 = false;
-            int i11 = 0;
-            while (true) {
-                if (i11 >= iArr.length) {
-                    z10 = true;
+    public final void onRequestPermissionsResult(int i9, String[] strArr, int[] iArr) {
+        if (i9 != 101 && i9 != 102) {
+            return;
+        }
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 < iArr.length) {
+                if (iArr[i10] != 0) {
                     break;
-                } else if (iArr[i11] != 0) {
-                    break;
-                } else {
-                    i11++;
                 }
+                i10++;
+            } else {
+                z10 = true;
+                break;
             }
-            if (iArr.length > 0 && z10) {
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().acceptIncomingCall();
-                } else {
-                    VoIPPreNotificationService.answer(this);
-                }
-                finish();
-                startActivity(new Intent(this, (Class<?>) LaunchActivity.class).setAction("voip"));
-                return;
+        }
+        if (iArr.length > 0 && z10) {
+            if (VoIPService.getSharedInstance() != null) {
+                VoIPService.getSharedInstance().acceptIncomingCall();
+            } else {
+                VoIPPreNotificationService.answer(this);
             }
-            if (shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
-                finish();
-                return;
-            }
+            finish();
+            startActivity(new Intent(this, LaunchActivity.class).setAction("voip"));
+        } else if (!shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
             if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().declineIncomingCall();
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.e2.i(this, new ky0(this, 27), i10);
+            org.telegram.ui.Components.voip.e2.i(this, new ky0(this, 27), i9);
+        } else {
+            finish();
         }
     }
 }

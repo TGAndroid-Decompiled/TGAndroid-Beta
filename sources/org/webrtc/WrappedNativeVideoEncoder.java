@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.VideoEncoder;
 public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     @Override
     public abstract long createNativeVideoEncoder();
@@ -43,7 +44,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i10) {
+    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i9) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 

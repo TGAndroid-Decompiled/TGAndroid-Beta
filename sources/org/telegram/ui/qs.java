@@ -1,25 +1,40 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import java.util.ArrayList;
+public final class qs extends of.e {
+    public final ContactsActivity H;
 
-public final class qs extends pf.c1 {
-    public final ContactsActivity G;
+    public qs(ContactsActivity contactsActivity, Context context, int i9, boolean z10, a0.h hVar, int i10) {
+        super(context, i9, z10, hVar, i10);
+        this.H = contactsActivity;
+    }
 
-    public qs(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z10, boolean z11, boolean z12) {
-        this.G = contactsActivity;
-        this.d = new ArrayList();
-        this.f45753e = new ArrayList();
-        this.D = new ArrayList();
-        this.f45752c = context;
-        this.h = hVar;
-        this.f45756r = z10;
-        this.f45757s = z11;
-        this.f45759x = 0;
-        this.v = z12;
-        this.f45758w = true;
-        pf.j1 j1Var = new pf.j1(true);
-        this.f45754f = j1Var;
-        j1Var.f45836a = new pf.a1(this);
+    @Override
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qs.R():int");
+    }
+
+    @Override
+    public final void l() {
+        boolean z10 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.H;
+        org.telegram.ui.Components.wk0 wk0Var = contactsActivity.f35420f;
+        if (wk0Var != null && wk0Var.getAdapter() == this) {
+            int h = h();
+            if (contactsActivity.D) {
+                org.telegram.ui.Components.wk0 wk0Var2 = contactsActivity.f35420f;
+                if (h != 2) {
+                    z10 = true;
+                }
+                wk0Var2.setFastScrollVisible(z10);
+                return;
+            }
+            org.telegram.ui.Components.wk0 wk0Var3 = contactsActivity.f35420f;
+            if (h != 0) {
+                z10 = true;
+            }
+            wk0Var3.setFastScrollVisible(z10);
+        }
     }
 }

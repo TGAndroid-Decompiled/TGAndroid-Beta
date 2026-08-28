@@ -1,36 +1,52 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class px extends m2.a implements ic0 {
+    public final wy f31768c;
 
-public final class px {
-
-    public final TLRPC.StickerSetCovered f31674a;
-
-    public final TLRPC.TL_messages_stickerSet f31675b;
-
-    public final TLRPC.StickerSet f31676c;
-    public final ArrayList d;
-
-    public final TLRPC.Document f31677e;
-
-    public px(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
-        TLRPC.Document document = null;
-        this.f31674a = null;
-        this.f31675b = tL_messages_stickerSet;
-        this.f31676c = tL_messages_stickerSet.set;
-        this.d = arrayList;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            document = (TLRPC.Document) arrayList.get(0);
-        }
-        this.f31677e = document;
+    public px(wy wyVar) {
+        this.f31768c = wyVar;
     }
 
-    public px(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
-        this.f31674a = stickerSetCovered;
-        this.f31675b = null;
-        this.f31676c = stickerSetCovered.set;
-        this.d = arrayList;
-        this.f31677e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
+    @Override
+    public final void a(m2.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f31768c.f34397e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i9) {
+        if (i9 != 0) {
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    return null;
+                }
+                return LocaleController.getString(R.string.AccDescrStickers);
+            }
+            return LocaleController.getString(R.string.AccDescrGIFs);
+        }
+        return LocaleController.getString(R.string.Emoji);
+    }
+
+    @Override
+    public final Object e(m2.g gVar, int i9) {
+        FrameLayout frameLayout = ((sy) this.f31768c.f34397e.get(i9)).f32566b;
+        gVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

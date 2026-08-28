@@ -1,11 +1,9 @@
 package r1;
 
-import android.system.ErrnoException;
 import android.system.Os;
 import java.io.FileDescriptor;
-
 public abstract class h {
-    public static void a(FileDescriptor fileDescriptor) throws ErrnoException {
+    public static void a(FileDescriptor fileDescriptor) {
         Os.close(fileDescriptor);
     }
 
@@ -13,7 +11,7 @@ public abstract class h {
         return Os.dup(fileDescriptor);
     }
 
-    public static long c(FileDescriptor fileDescriptor, long j10, int i10) {
-        return Os.lseek(fileDescriptor, j10, i10);
+    public static long c(FileDescriptor fileDescriptor, long j10, int i9) {
+        return Os.lseek(fileDescriptor, j10, i9);
     }
 }

@@ -1,63 +1,155 @@
 package h7;
 
-import java.io.EOFException;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+public abstract class s extends o implements List, RandomAccess {
+    public static final q f10091b = new q(w.f10155e, 0);
 
-public abstract class s {
-    public static z3.c a(m3.l lVar, boolean z10) throws Throwable {
-        a9.m mVar = z10 ? null : e4.i.f5207b;
-        d5.z zVar = new d5.z(10);
-        z3.c cVarC = null;
-        int i10 = 0;
-        while (true) {
-            try {
-                lVar.b(0, 10, zVar.f4858a);
-                zVar.C(0);
-                if (zVar.t() != 4801587) {
-                    break;
-                }
-                zVar.D(3);
-                int iQ = zVar.q();
-                int i11 = iQ + 10;
-                if (cVarC == null) {
-                    byte[] bArr = new byte[i11];
-                    System.arraycopy(zVar.f4858a, 0, bArr, 0, 10);
-                    lVar.b(10, iQ, bArr);
-                    cVarC = new e4.i(mVar).c(i11, bArr);
-                } else {
-                    lVar.j(iQ);
-                }
-                i10 += i11;
-            } catch (EOFException unused) {
-            }
-        }
-        lVar.q();
-        lVar.j(i10);
-        if (cVarC == null || cVarC.f50188a.length == 0) {
-            return null;
-        }
-        return cVarC;
+    @Override
+    public final void add(int i9, Object obj) {
+        throw new UnsupportedOperationException();
     }
 
-    public static m3.p b(d5.z zVar) {
-        zVar.D(1);
-        int iT = zVar.t();
-        long j10 = ((long) zVar.f4859b) + ((long) iT);
-        int i10 = iT / 18;
-        long[] jArrCopyOf = new long[i10];
-        long[] jArrCopyOf2 = new long[i10];
-        for (int i11 = 0; i11 < i10; i11++) {
-            long jL = zVar.l();
-            if (jL == -1) {
-                jArrCopyOf = Arrays.copyOf(jArrCopyOf, i11);
-                jArrCopyOf2 = Arrays.copyOf(jArrCopyOf2, i11);
-                break;
-            }
-            jArrCopyOf[i11] = jL;
-            jArrCopyOf2[i11] = zVar.l();
-            zVar.D(2);
+    @Override
+    public final boolean addAll(int i9, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
         }
-        zVar.D((int) (j10 - ((long) zVar.f4859b)));
-        return new m3.p(jArrCopyOf, jArrCopyOf2);
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i9 = 0; i9 < size; i9++) {
+                            if (f7.a8.a(get(i9), list.get(i9))) {
+                            }
+                        }
+                        return true;
+                    }
+                    q listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (it.hasNext()) {
+                                if (!f7.a8.a(listIterator.next(), it.next())) {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i9 = 1;
+        for (int i10 = 0; i10 < size; i10++) {
+            i9 = (i9 * 31) + get(i10).hashCode();
+        }
+        return i9;
+    }
+
+    @Override
+    public int i(Object[] objArr) {
+        int size = size();
+        for (int i9 = 0; i9 < size; i9++) {
+            objArr[i9] = get(i9);
+        }
+        return size;
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i9 = 0; i9 < size; i9++) {
+            if (obj.equals(get(i9))) {
+                return i9;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public s subList(int i9, int i10) {
+        f7.b8.b(i9, i10, size());
+        int i11 = i10 - i9;
+        if (i11 == size()) {
+            return this;
+        }
+        if (i11 == 0) {
+            return w.f10155e;
+        }
+        return new r(this, i9, i11);
+    }
+
+    @Override
+    public final q listIterator(int i9) {
+        int size = size();
+        if (i9 >= 0 && i9 <= size) {
+            if (isEmpty()) {
+                return f10091b;
+            }
+            return new q(this, i9);
+        }
+        throw new IndexOutOfBoundsException(f7.b8.c(i9, size, "index"));
+    }
+
+    @Override
+    public final Object remove(int i9) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object set(int i9, Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

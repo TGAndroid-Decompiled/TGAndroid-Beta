@@ -8,20 +8,19 @@ import m5.i;
 import n5.b;
 import n5.e;
 import o5.a;
-
 public class ChromecastOptionsProvider implements e {
-
-    public static final b f19976a;
+    public static final b f20010a;
 
     static {
         ArrayList arrayList = new ArrayList();
         i iVar = new i();
         ArrayList arrayList2 = new ArrayList();
         a aVar = b.E;
-        if (aVar == null) {
-            throw new NullPointerException("use Optional.orNull() instead of Optional.or(null)");
+        if (aVar != null) {
+            f20010a = new b("CC1AD845", arrayList, false, iVar, true, aVar, true, 0.05000000074505806d, false, false, false, arrayList2, true, false, b.C, b.D);
+            return;
         }
-        f19976a = new b("CC1AD845", arrayList, false, iVar, true, aVar, true, 0.05000000074505806d, false, false, false, arrayList2, true, false, b.C, b.D);
+        throw new NullPointerException("use Optional.orNull() instead of Optional.or(null)");
     }
 
     @Override
@@ -31,6 +30,6 @@ public class ChromecastOptionsProvider implements e {
 
     @Override
     public b getCastOptions(Context context) {
-        return f19976a;
+        return f20010a;
     }
 }

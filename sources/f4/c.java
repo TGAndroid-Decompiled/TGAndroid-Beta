@@ -1,27 +1,27 @@
 package f4;
 
-import a9.p;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.o;
-import d5.g0;
+import d5.f0;
 import java.util.Arrays;
 import java.util.Locale;
-
 public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new o(29);
+    public static final Parcelable.Creator<c> CREATOR = new c.c(25);
+    public final long f5581a;
+    public final long f5582b;
+    public final int f5583c;
 
-    public final long f5876a;
-
-    public final long f5877b;
-
-    public final int f5878c;
-
-    public c(long j10, long j11, int i10) {
-        d5.a.f(j10 < j11);
-        this.f5876a = j10;
-        this.f5877b = j11;
-        this.f5878c = i10;
+    public c(long j10, long j11, int i9) {
+        boolean z10;
+        if (j10 < j11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d5.a.f(z10);
+        this.f5581a = j10;
+        this.f5582b = j11;
+        this.f5583c = i9;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class c implements Parcelable {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f5876a == cVar.f5876a && this.f5877b == cVar.f5877b && this.f5878c == cVar.f5878c) {
+            if (this.f5581a == cVar.f5581a && this.f5582b == cVar.f5582b && this.f5583c == cVar.f5583c) {
                 return true;
             }
         }
@@ -43,23 +43,23 @@ public final class c implements Parcelable {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f5876a), Long.valueOf(this.f5877b), Integer.valueOf(this.f5878c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f5581a), Long.valueOf(this.f5582b), Integer.valueOf(this.f5583c)});
     }
 
     public final String toString() {
-        int i10 = g0.f4795a;
+        int i9 = f0.f4349a;
         Locale locale = Locale.US;
-        StringBuilder sbQ = p.q(this.f5876a, "Segment: startTimeMs=", ", endTimeMs=");
-        sbQ.append(this.f5877b);
-        sbQ.append(", speedDivisor=");
-        sbQ.append(this.f5878c);
-        return sbQ.toString();
+        StringBuilder s10 = aa.d.s(this.f5581a, "Segment: startTimeMs=", ", endTimeMs=");
+        s10.append(this.f5582b);
+        s10.append(", speedDivisor=");
+        s10.append(this.f5583c);
+        return s10.toString();
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeLong(this.f5876a);
-        parcel.writeLong(this.f5877b);
-        parcel.writeInt(this.f5878c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeLong(this.f5581a);
+        parcel.writeLong(this.f5582b);
+        parcel.writeInt(this.f5583c);
     }
 }

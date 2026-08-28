@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class EmptyAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {

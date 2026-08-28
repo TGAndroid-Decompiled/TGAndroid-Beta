@@ -1,27 +1,24 @@
 package h3;
 
+import fh.y5;
 import java.util.Arrays;
-
 public final class l2 extends g2 {
-
-    public static final String f8012e;
-
-    public static final String f8013f;
-    public static final f9.z h;
-
-    public final int f8014c;
+    public static final String f9582e;
+    public static final String f9583f;
+    public static final y5 h;
+    public final int f9584c;
     public final float d;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f8012e = Integer.toString(1, 36);
-        f8013f = Integer.toString(2, 36);
-        h = new f9.z(27);
+        int i9 = d5.f0.f4349a;
+        f9582e = Integer.toString(1, 36);
+        f9583f = Integer.toString(2, 36);
+        h = new y5(23);
     }
 
-    public l2(int i10) {
-        d5.a.e("maxStars must be a positive integer", i10 > 0);
-        this.f8014c = i10;
+    public l2(int i9) {
+        d5.a.e("maxStars must be a positive integer", i9 > 0);
+        this.f9584c = i9;
         this.d = -1.0f;
     }
 
@@ -30,21 +27,24 @@ public final class l2 extends g2 {
             return false;
         }
         l2 l2Var = (l2) obj;
-        return this.f8014c == l2Var.f8014c && this.d == l2Var.d;
+        if (this.f9584c != l2Var.f9584c || this.d != l2Var.d) {
+            return false;
+        }
+        return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f8014c), Float.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f9584c), Float.valueOf(this.d)});
     }
 
-    public l2(int i10, float f10) {
+    public l2(int i9, float f10) {
         boolean z10 = false;
-        d5.a.e("maxStars must be a positive integer", i10 > 0);
-        if (f10 >= 0.0f && f10 <= i10) {
+        d5.a.e("maxStars must be a positive integer", i9 > 0);
+        if (f10 >= 0.0f && f10 <= i9) {
             z10 = true;
         }
         d5.a.e("starRating is out of range [0, maxStars]", z10);
-        this.f8014c = i10;
+        this.f9584c = i9;
         this.d = f10;
     }
 }

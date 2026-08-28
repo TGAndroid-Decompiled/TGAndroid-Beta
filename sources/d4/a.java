@@ -1,75 +1,68 @@
 package d4;
 
-import h7.d0;
-import h7.p8;
+import g7.b0;
+import g7.y8;
 import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CharsetDecoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import o8.d;
+import n8.d;
 import z3.e;
-
-public final class a extends p8 {
-
-    public static final Pattern f4752c = Pattern.compile("(.+?)='(.*?)';", 32);
-
-    public final CharsetDecoder f4753a = d.f19363c.newDecoder();
-
-    public final CharsetDecoder f4754b = d.f19362b.newDecoder();
+public final class a extends y8 {
+    public static final Pattern f4310c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f4311a = d.f18513c.newDecoder();
+    public final CharsetDecoder f4312b = d.f18512b.newDecoder();
 
     @Override
     public final z3.c b(e eVar, ByteBuffer byteBuffer) {
-        String string;
-        CharsetDecoder charsetDecoder = this.f4754b;
-        CharsetDecoder charsetDecoder2 = this.f4753a;
-        String str = null;
+        String str;
+        CharsetDecoder charsetDecoder = this.f4312b;
+        CharsetDecoder charsetDecoder2 = this.f4311a;
+        String str2 = null;
         try {
-            string = charsetDecoder2.decode(byteBuffer).toString();
-            charsetDecoder2.reset();
-            byteBuffer.rewind();
+            str = charsetDecoder2.decode(byteBuffer).toString();
         } catch (CharacterCodingException unused) {
-            charsetDecoder2.reset();
-            byteBuffer.rewind();
             try {
-                String string2 = charsetDecoder.decode(byteBuffer).toString();
+                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
                 charsetDecoder.reset();
                 byteBuffer.rewind();
-                string = string2;
+                str = charBuffer;
             } catch (CharacterCodingException unused2) {
                 charsetDecoder.reset();
                 byteBuffer.rewind();
-                string = null;
+                str = null;
             } catch (Throwable th) {
                 charsetDecoder.reset();
                 byteBuffer.rewind();
                 throw th;
             }
-        } catch (Throwable th2) {
+        } finally {
             charsetDecoder2.reset();
             byteBuffer.rewind();
-            throw th2;
         }
         byte[] bArr = new byte[byteBuffer.limit()];
         byteBuffer.get(bArr);
-        if (string == null) {
+        if (str == null) {
             return new z3.c(new c(null, null, bArr));
         }
-        Matcher matcher = f4752c.matcher(string);
-        String str2 = null;
-        for (int iEnd = 0; matcher.find(iEnd); iEnd = matcher.end()) {
-            String strGroup = matcher.group(1);
-            String strGroup2 = matcher.group(2);
-            if (strGroup != null) {
-                String strB = d0.b(strGroup);
-                strB.getClass();
-                if (strB.equals("streamurl")) {
-                    str2 = strGroup2;
-                } else if (strB.equals("streamtitle")) {
-                    str = strGroup2;
+        Matcher matcher = f4310c.matcher(str);
+        String str3 = null;
+        for (int i9 = 0; matcher.find(i9); i9 = matcher.end()) {
+            String group = matcher.group(1);
+            String group2 = matcher.group(2);
+            if (group != null) {
+                String b10 = b0.b(group);
+                b10.getClass();
+                if (!b10.equals("streamurl")) {
+                    if (b10.equals("streamtitle")) {
+                        str2 = group2;
+                    }
+                } else {
+                    str3 = group2;
                 }
             }
         }
-        return new z3.c(new c(str, str2, bArr));
+        return new z3.c(new c(str2, str3, bArr));
     }
 }

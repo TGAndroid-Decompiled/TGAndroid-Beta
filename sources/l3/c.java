@@ -2,29 +2,41 @@ package l3;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
+import d5.f0;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.UUID;
+public final class c implements Comparator, Parcelable {
+    public static final Parcelable.Creator<c> CREATOR = new h5.h(13);
+    public final b[] f16633a;
+    public int f16634b;
+    public final String f16635c;
+    public final int d;
 
-public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new h5.h(21);
+    public c(String str, ArrayList arrayList) {
+        this(str, false, (b[]) arrayList.toArray(new b[0]));
+    }
 
-    public int f15386a;
+    public final c a(String str) {
+        if (f0.a(this.f16635c, str)) {
+            return this;
+        }
+        return new c(str, false, this.f16633a);
+    }
 
-    public final UUID f15387b;
-
-    public final String f15388c;
-    public final String d;
-
-    public final byte[] f15389e;
-
-    public c(UUID uuid, String str, String str2, byte[] bArr) {
-        uuid.getClass();
-        this.f15387b = uuid;
-        this.f15388c = str;
-        str2.getClass();
-        this.d = str2;
-        this.f15389e = bArr;
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        b bVar = (b) obj;
+        b bVar2 = (b) obj2;
+        UUID uuid = h3.h.f9436a;
+        if (uuid.equals(bVar.f16630b)) {
+            if (uuid.equals(bVar2.f16630b)) {
+                return 0;
+            }
+            return 1;
+        }
+        return bVar.f16630b.compareTo(bVar2.f16630b);
     }
 
     @Override
@@ -32,42 +44,53 @@ public final class c implements Parcelable {
         return 0;
     }
 
+    @Override
     public final boolean equals(Object obj) {
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        if (obj == this) {
+        if (this == obj) {
             return true;
         }
-        c cVar = (c) obj;
-        return g0.a(this.f15388c, cVar.f15388c) && g0.a(this.d, cVar.d) && g0.a(this.f15387b, cVar.f15387b) && Arrays.equals(this.f15389e, cVar.f15389e);
+        if (obj != null && c.class == obj.getClass()) {
+            c cVar = (c) obj;
+            if (f0.a(this.f16635c, cVar.f16635c) && Arrays.equals(this.f16633a, cVar.f16633a)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public final int hashCode() {
-        if (this.f15386a == 0) {
-            int iHashCode = this.f15387b.hashCode() * 31;
-            String str = this.f15388c;
-            this.f15386a = Arrays.hashCode(this.f15389e) + i0.a.g((iHashCode + (str == null ? 0 : str.hashCode())) * 31, 31, this.d);
+        int hashCode;
+        if (this.f16634b == 0) {
+            String str = this.f16635c;
+            if (str == null) {
+                hashCode = 0;
+            } else {
+                hashCode = str.hashCode();
+            }
+            this.f16634b = (hashCode * 31) + Arrays.hashCode(this.f16633a);
         }
-        return this.f15386a;
+        return this.f16634b;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        UUID uuid = this.f15387b;
-        parcel.writeLong(uuid.getMostSignificantBits());
-        parcel.writeLong(uuid.getLeastSignificantBits());
-        parcel.writeString(this.f15388c);
-        parcel.writeString(this.d);
-        parcel.writeByteArray(this.f15389e);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeString(this.f16635c);
+        parcel.writeTypedArray(this.f16633a, 0);
+    }
+
+    public c(String str, boolean z10, b... bVarArr) {
+        this.f16635c = str;
+        bVarArr = z10 ? (b[]) bVarArr.clone() : bVarArr;
+        this.f16633a = bVarArr;
+        this.d = bVarArr.length;
+        Arrays.sort(bVarArr, this);
     }
 
     public c(Parcel parcel) {
-        this.f15387b = new UUID(parcel.readLong(), parcel.readLong());
-        this.f15388c = parcel.readString();
-        String string = parcel.readString();
-        int i10 = g0.f4795a;
-        this.d = string;
-        this.f15389e = parcel.createByteArray();
+        this.f16635c = parcel.readString();
+        b[] bVarArr = (b[]) parcel.createTypedArray(b.CREATOR);
+        int i9 = f0.f4349a;
+        this.f16633a = bVarArr;
+        this.d = bVarArr.length;
     }
 }

@@ -5,74 +5,70 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+public final class ae extends org.telegram.ui.Components.e71 {
+    public final Context f36460a;
+    public final int f36461b;
+    public final int f36462c;
+    public final org.telegram.ui.ActionBar.b6 d;
+    public final ArrayList f36463e = new ArrayList();
+    public final be f36464f;
 
-public final class ae extends org.telegram.ui.Components.g71 {
-
-    public final Context f36516a;
-
-    public final int f36517b;
-
-    public final int f36518c;
-    public final org.telegram.ui.ActionBar.c6 d;
-
-    public final ArrayList f36519e = new ArrayList();
-
-    public final be f36520f;
-
-    public ae(be beVar, Context context, int i10, long j10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f36520f = beVar;
-        this.f36516a = context;
-        this.f36517b = i10;
-        this.f36518c = i11;
-        this.d = c6Var;
+    public ae(be beVar, Context context, int i9, long j10, int i10, org.telegram.ui.ActionBar.b6 b6Var) {
+        this.f36464f = beVar;
+        this.f36460a = context;
+        this.f36461b = i9;
+        this.f36462c = i10;
+        this.d = b6Var;
         i();
     }
 
     @Override
-    public final View d(int i10) {
-        return new zd(this.f36520f, this.f36516a, i10, this.f36517b, this.f36518c, new cg.w1(this, i10, 16), this.d);
+    public final View d(int i9) {
+        return new zd(this.f36464f, this.f36460a, i9, this.f36461b, this.f36462c, new bg.c2(this, i9, 17), this.d);
     }
 
     @Override
     public final int e() {
-        return this.f36519e.size();
+        return this.f36463e.size();
     }
 
     @Override
-    public final CharSequence g(int i10) {
-        int iH = h(i10);
-        if (iH != 0) {
-            return iH != 1 ? "" : LocaleController.getString(R.string.MonetizationTransactionsTON);
+    public final CharSequence g(int i9) {
+        int h = h(i9);
+        if (h != 0) {
+            if (h != 1) {
+                return "";
+            }
+            return LocaleController.getString(R.string.MonetizationTransactionsTON);
         }
         return LocaleController.getString(R.string.MonetizationTransactionsStars);
     }
 
     @Override
-    public final int h(int i10) {
-        if (i10 < 0) {
+    public final int h(int i9) {
+        if (i9 >= 0) {
+            ArrayList arrayList = this.f36463e;
+            if (i9 < arrayList.size()) {
+                return ((org.telegram.ui.Components.l41) arrayList.get(i9)).f30352z;
+            }
             return 1;
         }
-        ArrayList arrayList = this.f36519e;
-        if (i10 >= arrayList.size()) {
-            return 1;
-        }
-        return ((org.telegram.ui.Components.n41) arrayList.get(i10)).f30857z;
+        return 1;
     }
 
     public final void i() {
-        ArrayList arrayList = this.f36519e;
+        ArrayList arrayList = this.f36463e;
         arrayList.clear();
-        be beVar = this.f36520f;
+        be beVar = this.f36464f;
         if (!beVar.h.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.n41.C(1));
+            arrayList.add(org.telegram.ui.Components.l41.C(1));
         }
-        if (beVar.f36790n.isEmpty()) {
-            return;
+        if (!beVar.f36836n.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.l41.C(0));
         }
-        arrayList.add(org.telegram.ui.Components.n41.C(0));
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
+    public final void b(View view, int i9, int i10) {
     }
 }

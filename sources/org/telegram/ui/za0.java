@@ -1,68 +1,55 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Emoji;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class za0 extends org.telegram.ui.Cells.j3 {
+    public boolean f45095x;
+    public final bb0 f45096y;
 
-public final class za0 implements TextWatcher {
-
-    public final int f45120a;
-
-    public final fb0 f45121b;
-
-    public za0(fb0 fb0Var, int i10) {
-        this.f45120a = i10;
-        this.f45121b = fb0Var;
+    public za0(bb0 bb0Var, Context context, String str, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, str, false, false, -1, b6Var);
+        this.f45096y = bb0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f45120a) {
-            case 0:
-                Emoji.replaceEmoji(editable, this.f45121b.G.getPaint().getFontMetricsInt(), false);
-                break;
-            default:
-                fb0 fb0Var = this.f45121b;
-                if (!fb0Var.K) {
-                    if (editable.toString().equals("0")) {
-                        fb0Var.B.setText("");
-                    } else {
-                        try {
-                            int i10 = Integer.parseInt(editable.toString());
-                            if (i10 <= 100000) {
-                                fb0Var.W(i10);
-                            } else {
-                                fb0Var.X();
-                            }
-                        } catch (NumberFormatException unused) {
-                            fb0Var.X();
-                        }
-                    }
-                    break;
-                }
-                break;
+    public final void b(Editable editable) {
+        int i9;
+        int i10;
+        if (this.f45095x) {
+            return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f45120a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f45120a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        bb0 bb0Var = this.f45096y;
+        if (isEmpty) {
+            bb0Var.f36815s.setText("");
+            return;
+        }
+        try {
+            long parseLong = Long.parseLong(editable.toString());
+            if (parseLong > bb0Var.getMessagesController().starsSubscriptionAmountMax) {
+                this.f45095x = true;
+                parseLong = bb0Var.getMessagesController().starsSubscriptionAmountMax;
+                setText(Long.toString(parseLong));
+                this.f45095x = false;
+            }
+            TextView textView = bb0Var.f36815s;
+            if (bb0Var.getConnectionsManager().isTestBackend()) {
+                i9 = R.string.RequireMonthlyFeePriceTest5Minutes;
+            } else {
+                i9 = R.string.RequireMonthlyFeePrice;
+            }
+            BillingController billingController = BillingController.getInstance();
+            i10 = ((org.telegram.ui.ActionBar.o2) bb0Var).currentAccount;
+            textView.setText(LocaleController.formatString(i9, billingController.formatCurrency((long) ((parseLong / 1000.0d) * MessagesController.getInstance(i10).starsUsdWithdrawRate1000), "USD")));
+        } catch (Exception e10) {
+            FileLog.e(e10);
+        }
     }
 }

@@ -1,113 +1,40 @@
 package org.telegram.messenger;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_payments;
+public final class d1 implements Utilities.Callback2 {
+    public final int f20039a;
+    public final Object f20040b;
+    public final Object f20041c;
 
-public final class d1 implements Runnable {
-
-    public final int f20005a;
-
-    public final Object f20006b;
-
-    public d1(Object obj, int i10) {
-        this.f20005a = i10;
-        this.f20006b = obj;
+    public d1(int i9, Object obj, Object obj2) {
+        this.f20039a = i9;
+        this.f20040b = obj;
+        this.f20041c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20005a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f20039a) {
             case 0:
-                ((CompoundEmoji.DrawableInfo) this.f20006b).lambda$load$0();
-                break;
+                ((ChatThemeController) this.f20040b).lambda$requestNextChatThemes$21((ResultCallback) this.f20041c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                return;
             case 1:
-                ((FeedRemoteViewsFactory) this.f20006b).lambda$onDataSetChanged$0();
-                break;
+                ((GiftAuctionController) this.f20040b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f20041c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                return;
             case 2:
-                ((FilesMigrationService.AnonymousClass1) this.f20006b).lambda$run$0();
-                break;
+                ((MessagesController) this.f20040b).lambda$fetchJoinedCommunities$251((Utilities.Callback) this.f20041c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                return;
             case 3:
-                ((ImageLoader.AnonymousClass6) this.f20006b).lambda$onReceive$0();
-                break;
-            case 4:
-                ((LocaleController.TimeZoneChangedReceiver) this.f20006b).lambda$onReceive$0();
-                break;
-            case 5:
-                ((MediaController.AnonymousClass7) this.f20006b).lambda$onSurfaceDestroyed$0();
-                break;
-            case 6:
-                ((MediaController.AnonymousClass9) this.f20006b).lambda$onSurfaceDestroyed$0();
-                break;
-            case 7:
-                ((MediaController.GalleryObserverInternal) this.f20006b).lambda$scheduleReloadRunnable$0();
-                break;
-            case 8:
-                ((MediaController.MusicListenReporter) this.f20006b).report();
-                break;
-            case 9:
-                MediaController.VideoConvertRunnable.lambda$runConversion$0((MediaController.VideoConvertMessage) this.f20006b);
-                break;
-            case 10:
-                ((TelegramMediaSession.SessionCallback) this.f20006b).lambda$notifyPlayStateForNotificationRefresh$0();
-                break;
-            case 11:
-                ((ANRDetector) this.f20006b).run();
-                break;
-            case 12:
-                AndroidUtilities.lambda$notifyDataSetChanged$26((RecyclerView) this.f20006b);
-                break;
-            case 13:
-                ((BotFullscreenButtons) this.f20006b).lambda$new$0();
-                break;
-            case 14:
-                ((BotFullscreenButtons.OptionsIcon) this.f20006b).invalidateSelf();
-                break;
-            case 15:
-                CodeHighlighting.lambda$highlight$3((CodeHighlighting.LockedSpannableString) this.f20006b);
-                break;
-            case 16:
-                ((CompoundEmoji.CompoundEmojiDrawable) this.f20006b).invalidate();
-                break;
-            case 17:
-                ((ContactsLoadingObserver) this.f20006b).lambda$new$1();
-                break;
-            case 18:
-                ((DispatchQueueMainThreadSync) this.f20006b).lambda$recycle$0();
-                break;
-            case 19:
-                ((FactCheckController) this.f20006b).loadMissing();
-                break;
-            case 20:
-                ((FileLoaderPriorityQueue) this.f20006b).lambda$new$0();
-                break;
-            case 21:
-                ((FilePathDatabase) this.f20006b).lambda$clear$3();
-                break;
-            case 22:
-                FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f20006b);
-                break;
-            case 23:
-                ((ImageReceiver) this.f20006b).invalidate();
-                break;
-            case 24:
-                MediaController.lambda$saveFile$46((org.telegram.ui.ActionBar.b2) this.f20006b);
-                break;
-            case 25:
-                ((org.telegram.ui.Components.cc) this.f20006b).f();
-                break;
-            case 26:
-                MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f20006b);
-                break;
-            case 27:
-                MessagesController.lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f20006b);
-                break;
-            case 28:
-                MessagesController.lambda$performLogout$321((TLObject) this.f20006b);
-                break;
+                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.c2) this.f20040b, (Utilities.Callback2) this.f20041c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
+                return;
             default:
-                MessagesController.lambda$setContentSettings$503((TLRPC.TL_error) this.f20006b);
-                break;
+                ((UnconfirmedAuthController.UnconfirmedAuth) this.f20040b).lambda$confirm$0((Utilities.Callback) this.f20041c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                return;
         }
     }
 }

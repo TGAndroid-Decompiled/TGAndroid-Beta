@@ -3,7 +3,6 @@ package org.scilab.forge.jlatexmath;
 import ru.noties.jlatexmath.awt.Color;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
-
 public class HorizontalRule extends Box {
     private Color color;
     private float speShift;
@@ -46,10 +45,10 @@ public class HorizontalRule extends Box {
         this.width = f11;
         if (z10) {
             this.shift = f12;
-        } else {
-            this.shift = 0.0f;
-            this.speShift = f12;
+            return;
         }
+        this.shift = 0.0f;
+        this.speShift = f12;
     }
 
     public HorizontalRule(float f10, float f11, float f12, Color color) {

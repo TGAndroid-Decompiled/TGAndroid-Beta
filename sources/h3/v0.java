@@ -1,43 +1,43 @@
 package h3;
 
+import fh.y5;
 import java.util.Arrays;
-
 public final class v0 extends g2 {
-
-    public static final String f8213e;
-
-    public static final String f8214f;
-    public static final f9.z h;
-
-    public final boolean f8215c;
+    public static final String f9782e;
+    public static final String f9783f;
+    public static final y5 h;
+    public final boolean f9784c;
     public final boolean d;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f8213e = Integer.toString(1, 36);
-        f8214f = Integer.toString(2, 36);
-        h = new f9.z(19);
+        int i9 = d5.f0.f4349a;
+        f9782e = Integer.toString(1, 36);
+        f9783f = Integer.toString(2, 36);
+        h = new y5(15);
     }
 
     public v0() {
-        this.f8215c = false;
+        this.f9784c = false;
         this.d = false;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof v0)) {
+        if (obj instanceof v0) {
+            v0 v0Var = (v0) obj;
+            if (this.d == v0Var.d && this.f9784c == v0Var.f9784c) {
+                return true;
+            }
             return false;
         }
-        v0 v0Var = (v0) obj;
-        return this.d == v0Var.d && this.f8215c == v0Var.f8215c;
+        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f8215c), Boolean.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f9784c), Boolean.valueOf(this.d)});
     }
 
     public v0(boolean z10) {
-        this.f8215c = true;
+        this.f9784c = true;
         this.d = z10;
     }
 }

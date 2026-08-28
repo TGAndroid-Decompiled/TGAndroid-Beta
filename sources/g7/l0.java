@@ -1,14 +1,17 @@
 package g7;
+public final class l0 implements q9.d {
+    public static final l0 f7286a = new Object();
 
-import java.io.IOException;
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(3, e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))))));
+    }
 
-public abstract class l0 {
-    public static void a(com.google.android.exoplayer2.upstream.m mVar) {
-        if (mVar != null) {
-            try {
-                mVar.close();
-            } catch (IOException unused) {
-            }
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
+        throw new ClassCastException();
     }
 }

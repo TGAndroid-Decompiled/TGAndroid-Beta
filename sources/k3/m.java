@@ -1,7 +1,6 @@
 package k3;
 
 import java.util.ArrayDeque;
-
 public abstract class m implements e {
     private int availableInputBufferCount;
     private final i[] availableInputBuffers;
@@ -20,71 +19,76 @@ public abstract class m implements e {
     public m(i[] iVarArr, k[] kVarArr) {
         this.availableInputBuffers = iVarArr;
         this.availableInputBufferCount = iVarArr.length;
-        for (int i10 = 0; i10 < this.availableInputBufferCount; i10++) {
-            this.availableInputBuffers[i10] = createInputBuffer();
+        for (int i9 = 0; i9 < this.availableInputBufferCount; i9++) {
+            this.availableInputBuffers[i9] = createInputBuffer();
         }
         this.availableOutputBuffers = kVarArr;
         this.availableOutputBufferCount = kVarArr.length;
-        for (int i11 = 0; i11 < this.availableOutputBufferCount; i11++) {
-            this.availableOutputBuffers[i11] = createOutputBuffer();
+        for (int i10 = 0; i10 < this.availableOutputBufferCount; i10++) {
+            this.availableOutputBuffers[i10] = createOutputBuffer();
         }
-        bg.h hVar = new bg.h(this);
-        this.decodeThread = hVar;
-        hVar.start();
+        ag.i iVar = new ag.i(this);
+        this.decodeThread = iVar;
+        iVar.start();
     }
 
     public static void access$000(m mVar) {
         mVar.getClass();
         do {
             try {
-            } catch (InterruptedException e9) {
-                throw new IllegalStateException(e9);
+            } catch (InterruptedException e10) {
+                throw new IllegalStateException(e10);
             }
         } while (mVar.b());
     }
 
     public final boolean b() {
-        g gVarCreateUnexpectedDecodeException;
+        g createUnexpectedDecodeException;
+        boolean z10;
         synchronized (this.lock) {
             while (!this.released) {
                 try {
                     if (!this.queuedInputBuffers.isEmpty() && this.availableOutputBufferCount > 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
                         break;
                     }
                     this.lock.wait();
-                } catch (Throwable th) {
-                    throw th;
+                } finally {
                 }
             }
             if (this.released) {
                 return false;
             }
-            i iVarRemoveFirst = this.queuedInputBuffers.removeFirst();
+            i removeFirst = this.queuedInputBuffers.removeFirst();
             k[] kVarArr = this.availableOutputBuffers;
-            int i10 = this.availableOutputBufferCount - 1;
-            this.availableOutputBufferCount = i10;
-            k kVar = kVarArr[i10];
-            boolean z10 = this.flushed;
+            int i9 = this.availableOutputBufferCount - 1;
+            this.availableOutputBufferCount = i9;
+            k kVar = kVarArr[i9];
+            boolean z11 = this.flushed;
             this.flushed = false;
-            if (iVarRemoveFirst.isEndOfStream()) {
+            if (removeFirst.isEndOfStream()) {
                 kVar.addFlag(4);
             } else {
-                if (iVarRemoveFirst.isDecodeOnly()) {
+                if (removeFirst.isDecodeOnly()) {
                     kVar.addFlag(Integer.MIN_VALUE);
                 }
-                if (iVarRemoveFirst.isFirstSample()) {
+                if (removeFirst.isFirstSample()) {
                     kVar.addFlag(134217728);
                 }
                 try {
-                    gVarCreateUnexpectedDecodeException = decode(iVarRemoveFirst, kVar, z10);
-                } catch (OutOfMemoryError e9) {
-                    gVarCreateUnexpectedDecodeException = createUnexpectedDecodeException(e9);
-                } catch (RuntimeException e10) {
-                    gVarCreateUnexpectedDecodeException = createUnexpectedDecodeException(e10);
+                    createUnexpectedDecodeException = decode(removeFirst, kVar, z11);
+                } catch (OutOfMemoryError e10) {
+                    createUnexpectedDecodeException = createUnexpectedDecodeException(e10);
+                } catch (RuntimeException e11) {
+                    createUnexpectedDecodeException = createUnexpectedDecodeException(e11);
                 }
-                if (gVarCreateUnexpectedDecodeException != null) {
+                if (createUnexpectedDecodeException != null) {
                     synchronized (this.lock) {
-                        this.exception = gVarCreateUnexpectedDecodeException;
+                        this.exception = createUnexpectedDecodeException;
                     }
                     return false;
                 }
@@ -101,13 +105,12 @@ public abstract class m implements e {
                         this.skippedOutputBufferCount = 0;
                         this.queuedOutputBuffers.addLast(kVar);
                     }
-                    iVarRemoveFirst.clear();
+                    removeFirst.clear();
                     i[] iVarArr = this.availableInputBuffers;
-                    int i11 = this.availableInputBufferCount;
-                    this.availableInputBufferCount = i11 + 1;
-                    iVarArr[i11] = iVarRemoveFirst;
-                } catch (Throwable th2) {
-                    throw th2;
+                    int i10 = this.availableInputBufferCount;
+                    this.availableInputBufferCount = i10 + 1;
+                    iVarArr[i10] = removeFirst;
+                } finally {
                 }
             }
             return true;
@@ -132,18 +135,18 @@ public abstract class m implements e {
                 if (iVar != null) {
                     iVar.clear();
                     i[] iVarArr = this.availableInputBuffers;
-                    int i10 = this.availableInputBufferCount;
-                    this.availableInputBufferCount = i10 + 1;
-                    iVarArr[i10] = iVar;
+                    int i9 = this.availableInputBufferCount;
+                    this.availableInputBufferCount = i9 + 1;
+                    iVarArr[i9] = iVar;
                     this.dequeuedInputBuffer = null;
                 }
                 while (!this.queuedInputBuffers.isEmpty()) {
-                    i iVarRemoveFirst = this.queuedInputBuffers.removeFirst();
-                    iVarRemoveFirst.clear();
+                    i removeFirst = this.queuedInputBuffers.removeFirst();
+                    removeFirst.clear();
                     i[] iVarArr2 = this.availableInputBuffers;
-                    int i11 = this.availableInputBufferCount;
-                    this.availableInputBufferCount = i11 + 1;
-                    iVarArr2[i11] = iVarRemoveFirst;
+                    int i10 = this.availableInputBufferCount;
+                    this.availableInputBufferCount = i10 + 1;
+                    iVarArr2[i10] = removeFirst;
                 }
                 while (!this.queuedOutputBuffers.isEmpty()) {
                     this.queuedOutputBuffers.removeFirst().release();
@@ -171,19 +174,25 @@ public abstract class m implements e {
         synchronized (this.lock) {
             kVar.clear();
             k[] kVarArr = this.availableOutputBuffers;
-            int i10 = this.availableOutputBufferCount;
-            this.availableOutputBufferCount = i10 + 1;
-            kVarArr[i10] = kVar;
+            int i9 = this.availableOutputBufferCount;
+            this.availableOutputBufferCount = i9 + 1;
+            kVarArr[i9] = kVar;
             if (!this.queuedInputBuffers.isEmpty() && this.availableOutputBufferCount > 0) {
                 this.lock.notify();
             }
         }
     }
 
-    public final void setInitialInputBufferSize(int i10) {
-        d5.a.i(this.availableInputBufferCount == this.availableInputBuffers.length);
+    public final void setInitialInputBufferSize(int i9) {
+        boolean z10;
+        if (this.availableInputBufferCount == this.availableInputBuffers.length) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d5.a.i(z10);
         for (i iVar : this.availableInputBuffers) {
-            iVar.b(i10);
+            iVar.c(i9);
         }
     }
 
@@ -193,20 +202,21 @@ public abstract class m implements e {
         synchronized (this.lock) {
             try {
                 g gVar = this.exception;
-                if (gVar != null) {
+                if (gVar == null) {
+                    d5.a.i(this.dequeuedInputBuffer == null);
+                    int i9 = this.availableInputBufferCount;
+                    if (i9 == 0) {
+                        iVar = null;
+                    } else {
+                        i[] iVarArr = this.availableInputBuffers;
+                        int i10 = i9 - 1;
+                        this.availableInputBufferCount = i10;
+                        iVar = iVarArr[i10];
+                    }
+                    this.dequeuedInputBuffer = iVar;
+                } else {
                     throw gVar;
                 }
-                d5.a.i(this.dequeuedInputBuffer == null);
-                int i10 = this.availableInputBufferCount;
-                if (i10 == 0) {
-                    iVar = null;
-                } else {
-                    i[] iVarArr = this.availableInputBuffers;
-                    int i11 = i10 - 1;
-                    this.availableInputBufferCount = i11;
-                    iVar = iVarArr[i11];
-                }
-                this.dequeuedInputBuffer = iVar;
             } catch (Throwable th) {
                 throw th;
             }
@@ -219,13 +229,13 @@ public abstract class m implements e {
         synchronized (this.lock) {
             try {
                 g gVar = this.exception;
-                if (gVar != null) {
-                    throw gVar;
+                if (gVar == null) {
+                    if (this.queuedOutputBuffers.isEmpty()) {
+                        return null;
+                    }
+                    return this.queuedOutputBuffers.removeFirst();
                 }
-                if (this.queuedOutputBuffers.isEmpty()) {
-                    return null;
-                }
-                return this.queuedOutputBuffers.removeFirst();
+                throw gVar;
             } catch (Throwable th) {
                 throw th;
             }
@@ -237,15 +247,16 @@ public abstract class m implements e {
         synchronized (this.lock) {
             try {
                 g gVar = this.exception;
-                if (gVar != null) {
+                if (gVar == null) {
+                    d5.a.f(iVar == this.dequeuedInputBuffer);
+                    this.queuedInputBuffers.addLast(iVar);
+                    if (!this.queuedInputBuffers.isEmpty() && this.availableOutputBufferCount > 0) {
+                        this.lock.notify();
+                    }
+                    this.dequeuedInputBuffer = null;
+                } else {
                     throw gVar;
                 }
-                d5.a.f(iVar == this.dequeuedInputBuffer);
-                this.queuedInputBuffers.addLast(iVar);
-                if (!this.queuedInputBuffers.isEmpty() && this.availableOutputBufferCount > 0) {
-                    this.lock.notify();
-                }
-                this.dequeuedInputBuffer = null;
             } catch (Throwable th) {
                 throw th;
             }

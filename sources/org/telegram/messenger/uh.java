@@ -1,37 +1,30 @@
 package org.telegram.messenger;
-
-import android.view.View;
-
 public final class uh implements Runnable {
+    public final int f21689a;
+    public final SecretChatHelper f21690b;
+    public final long f21691c;
 
-    public final int f21737a = 0;
-
-    public final RichMessageLayout.Text f21738b;
-
-    public final RichMessageLayout f21739c;
-    public final View d;
-
-    public uh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f21738b = text;
-        this.d = view;
-        this.f21739c = richMessageLayout;
+    public uh(SecretChatHelper secretChatHelper, long j10, int i9) {
+        this.f21689a = i9;
+        this.f21690b = secretChatHelper;
+        this.f21691c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21737a) {
+        switch (this.f21689a) {
             case 0:
-                this.f21738b.lambda$revealSpoilers$4(this.d, this.f21739c);
-                break;
+                SecretChatHelper.x(this.f21690b, this.f21691c);
+                return;
+            case 1:
+                SecretChatHelper.t(this.f21690b, this.f21691c);
+                return;
+            case 2:
+                SecretChatHelper.j(this.f21690b, this.f21691c);
+                return;
             default:
-                this.f21738b.lambda$revealSpoilers$3(this.f21739c, this.d);
-                break;
+                SecretChatHelper.w(this.f21690b, this.f21691c);
+                return;
         }
-    }
-
-    public uh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f21738b = text;
-        this.f21739c = richMessageLayout;
-        this.d = view;
     }
 }

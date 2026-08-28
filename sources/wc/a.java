@@ -1,20 +1,26 @@
 package wc;
-
 public abstract class a {
-
-    public static final Integer f49287a;
+    public static final Integer f48785a;
 
     static {
         Integer num;
+        Object obj;
         Integer num2 = null;
         try {
-            Object obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
-            num = obj instanceof Integer ? (Integer) obj : null;
+            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
         } catch (Throwable unused) {
         }
-        if (num != null && num.intValue() > 0) {
+        if (obj instanceof Integer) {
+            num = (Integer) obj;
+            if (num != null && num.intValue() > 0) {
+                num2 = num;
+            }
+            f48785a = num2;
+        }
+        num = null;
+        if (num != null) {
             num2 = num;
         }
-        f49287a = num2;
+        f48785a = num2;
     }
 }

@@ -1,57 +1,104 @@
 package bg;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.Components.voip.k0;
-import org.telegram.ui.lh1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.i6;
+public final class c extends View {
+    public final i6 f1709a;
+    public float f1710b;
+    public ValueAnimator f1711c;
+    public int d;
+    public final Paint f1712e;
 
-public final class c implements ValueAnimator.AnimatorUpdateListener {
+    public c(Context context) {
+        super(context);
+        this.f1710b = 1.0f;
+        i6 i6Var = new i6(false, false, true, false);
+        this.f1709a = i6Var;
+        i6Var.k(0.3f, 250L, gr.h);
+        i6Var.setCallback(this);
+        i6Var.t(AndroidUtilities.dp(11.5f));
+        i6Var.u(AndroidUtilities.bold());
+        i6Var.r(-1);
+        i6Var.q("", true, true);
+        i6Var.f29333b = 17;
+        Paint paint = new Paint(1);
+        this.f1712e = paint;
+        paint.setColor(-6915073);
+        setVisibility(8);
+    }
 
-    public final int f2113a;
-
-    public final float f2114b;
-
-    public final float f2115c;
-    public final float d;
-
-    public final Object f2116e;
-
-    public c(Object obj, float f10, float f11, float f12, int i10) {
-        this.f2113a = i10;
-        this.f2116e = obj;
-        this.f2114b = f10;
-        this.f2115c = f11;
-        this.d = f12;
+    public final void a(int i9, boolean z10) {
+        if (!u0.i()) {
+            i9 = 0;
+        }
+        if (i9 > 0) {
+            setVisibility(0);
+        }
+        i6 i6Var = this.f1709a;
+        if (z10) {
+            i6Var.b();
+        }
+        if (z10 && i9 != this.d && i9 > 0) {
+            ValueAnimator valueAnimator = this.f1711c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f1711c = null;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f1711c = ofFloat;
+            ofFloat.addUpdateListener(new b(this, 0));
+            this.f1711c.addListener(new ag.e(this, 1));
+            this.f1711c.setInterpolator(new OvershootInterpolator(2.0f));
+            this.f1711c.setDuration(200L);
+            this.f1711c.start();
+        }
+        this.d = i9;
+        int length = i6Var.f29337g.length();
+        i6Var.q("x" + i9, z10, true);
+        int length2 = i6Var.f29337g.length();
+        invalidate();
+        if (length != length2) {
+            requestLayout();
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f2113a) {
-            case 0:
-                i iVar = (i) this.f2116e;
-                iVar.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a aVar = iVar.f2129b;
-                aVar.d = this.f2114b * fFloatValue;
-                aVar.f2091e = this.f2115c * fFloatValue;
-                aVar.f2093g = fFloatValue * this.d;
-                break;
-            case 1:
-                k0 k0Var = (k0) this.f2116e;
-                k0Var.getClass();
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k0Var.f33673u0 = com.google.android.recaptcha.internal.a.z(1.0f, fFloatValue2, 1.0f, this.f2114b * fFloatValue2);
-                k0Var.f33664n0 = this.f2115c * fFloatValue2;
-                k0Var.f33665o0 = this.d * fFloatValue2;
-                k0Var.invalidate();
-                break;
-            default:
-                lh1 lh1Var = (lh1) this.f2116e;
-                float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lh1Var.f40094b1 = com.google.android.recaptcha.internal.a.z(1.0f, fFloatValue3, 1.0f, this.f2114b * fFloatValue3);
-                lh1Var.U0 = this.f2115c * fFloatValue3;
-                lh1Var.V0 = this.d * fFloatValue3;
-                lh1Var.f40122s.invalidate();
-                break;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        Rect rect = AndroidUtilities.rectTmp2;
+        int dp = AndroidUtilities.dp(8.0f);
+        i6 i6Var = this.f1709a;
+        rect.set(0, 0, dp + ((int) i6Var.d()), AndroidUtilities.dp(20.0f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(rect);
+        if (this.f1710b != 1.0f) {
+            canvas.save();
+            float f10 = this.f1710b;
+            canvas.scale(f10, f10, rect.centerX(), rect.centerY());
         }
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.f1712e);
+        rect.set(0, 0, (int) rectF.width(), AndroidUtilities.dp(19.0f));
+        i6Var.setBounds(rect);
+        i6Var.draw(canvas);
+        if (this.f1710b != 1.0f) {
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f1709a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
     }
 }

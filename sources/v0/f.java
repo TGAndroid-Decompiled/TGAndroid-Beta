@@ -2,7 +2,6 @@ package v0;
 
 import android.os.Bundle;
 import org.json.JSONObject;
-
 public final class f extends c {
     public f(String str, Bundle bundle) {
         super("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", bundle);

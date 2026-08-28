@@ -1,14 +1,12 @@
 package o1;
 
 import android.view.View;
-
 public final class c extends i {
-
-    public final int f19124a;
+    public final int f18777a;
 
     @Override
     public final float a(Object obj) {
-        switch (this.f19124a) {
+        switch (this.f18777a) {
             case 0:
                 return ((View) obj).getAlpha();
             case 1:
@@ -30,31 +28,31 @@ public final class c extends i {
 
     @Override
     public final void b(Object obj, float f10) {
-        switch (this.f19124a) {
+        switch (this.f18777a) {
             case 0:
                 ((View) obj).setAlpha(f10);
-                break;
+                return;
             case 1:
                 ((View) obj).setTranslationX(f10);
-                break;
+                return;
             case 2:
                 ((View) obj).setTranslationY(f10);
-                break;
+                return;
             case 3:
                 ((View) obj).setScaleX(f10);
-                break;
+                return;
             case 4:
                 ((View) obj).setScaleY(f10);
-                break;
+                return;
             case 5:
                 ((View) obj).setRotation(f10);
-                break;
+                return;
             case 6:
                 ((View) obj).setRotationX(f10);
-                break;
+                return;
             default:
                 ((View) obj).setRotationY(f10);
-                break;
+                return;
         }
     }
 }

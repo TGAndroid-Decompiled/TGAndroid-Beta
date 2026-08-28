@@ -1,90 +1,91 @@
 package m3;
 
-import d5.f0;
+import d5.e0;
 import java.util.ArrayList;
 import java.util.Collections;
-import p8.l0;
-import p8.z;
-import w3.c0;
-
+import o8.l0;
+import o8.z;
+import w3.b0;
 public final class i {
-
-    public static final int[] f17615b = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14};
-
-    public static final g5.b f17616c = new g5.b(new ia.l(26));
-    public static final g5.b d = new g5.b(new ia.l(27));
-
-    public final l0 f17617a;
+    public static final int[] f17239b = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14};
+    public static final g5.b f17240c = new g5.b(new i3.i(20));
+    public static final g5.b d = new g5.b(new i3.i(21));
+    public final l0 f17241a;
 
     public i() {
-        p8.x xVar = z.f45604b;
-        this.f17617a = l0.f45555e;
+        o8.x xVar = z.f19105b;
+        this.f17241a = l0.f19056e;
     }
 
-    public final void a(int i10, ArrayList arrayList) {
-        switch (i10) {
+    public final void a(int i9, ArrayList arrayList) {
+        switch (i9) {
             case 0:
                 arrayList.add(new w3.a());
-                break;
+                return;
             case 1:
                 arrayList.add(new w3.c());
-                break;
+                return;
             case 2:
                 arrayList.add(new w3.d(1));
-                break;
+                return;
             case 3:
                 arrayList.add(new n3.a(1));
-                break;
+                return;
             case 4:
-                k kVarP = f17616c.p(0);
-                if (kVarP == null) {
-                    arrayList.add(new p3.b());
+                k p6 = f17240c.p(0);
+                if (p6 != null) {
+                    arrayList.add(p6);
+                    return;
                 } else {
-                    arrayList.add(kVarP);
+                    arrayList.add(new p3.b());
+                    return;
                 }
-                break;
             case 5:
                 arrayList.add(new q3.b());
-                break;
+                return;
             case 6:
-                arrayList.add(new s3.e(0));
-                break;
+                arrayList.add(new s3.d(0));
+                return;
             case 7:
                 arrayList.add(new t3.d(1));
-                break;
+                return;
             case 8:
                 arrayList.add(new u3.i(0, null, Collections.EMPTY_LIST, null));
-                arrayList.add(new u3.m(0));
-                break;
+                arrayList.add(new u3.l(0));
+                return;
             case 9:
-                arrayList.add(new v3.d());
-                break;
+                arrayList.add(new Object());
+                return;
             case 10:
                 arrayList.add(new w3.x());
-                break;
+                return;
             case 11:
-                arrayList.add(new c0(1, new f0(0L), new o0.i(0, this.f17617a)));
-                break;
+                arrayList.add(new b0(1, new e0(0L), new o0.h(0, this.f17241a)));
+                return;
             case 12:
-                x3.c cVar = new x3.c();
-                cVar.f49352c = 0;
-                cVar.d = -1L;
-                cVar.f49354f = -1;
-                cVar.f49355g = -1L;
-                arrayList.add(cVar);
-                break;
+                ?? obj = new Object();
+                obj.f48872c = 0;
+                obj.d = -1L;
+                obj.f48874f = -1;
+                obj.f48875g = -1L;
+                arrayList.add(obj);
+                return;
+            case 13:
+            default:
+                return;
             case 14:
                 arrayList.add(new r3.a());
-                break;
+                return;
             case 15:
-                k kVarP2 = d.p(new Object[0]);
-                if (kVarP2 != null) {
-                    arrayList.add(kVarP2);
+                k p9 = d.p(new Object[0]);
+                if (p9 != null) {
+                    arrayList.add(p9);
+                    return;
                 }
-                break;
+                return;
             case 16:
                 arrayList.add(new o3.b());
-                break;
+                return;
         }
     }
 }

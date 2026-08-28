@@ -1,73 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.SpannableString;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+public class pc {
+    public View f31606a;
+    public final float f31607b;
+    public final float f31608c;
+    public final float d;
+    public long f31609e;
+    public Runnable f31610f;
+    public ValueAnimator f31611g;
+    public boolean h;
+    public float f31612i;
 
-public final class pc extends ReplacementSpan {
-
-    public final org.telegram.ui.ActionBar.c6 f31581a;
-
-    public final Paint f31582b = new Paint(1);
-
-    public final pz0 f31583c;
-    public final Runnable d;
-
-    public nc f31584e;
-
-    public Integer f31585f;
-
-    public pc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.c6 c6Var) {
-        this.f31581a = c6Var;
-        this.d = runnable;
-        this.f31583c = new pz0(charSequence, 12.0f, null);
+    public pc(View view) {
+        this(view, 1.0f, 5.0f);
     }
 
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.c6 c6Var, Integer num) {
-        SpannableString spannableString = new SpannableString("btn");
-        pc pcVar = new pc(charSequence, runnable, c6Var);
-        spannableString.setSpan(pcVar, 0, spannableString.length(), 33);
-        pcVar.f31585f = num;
-        return spannableString;
+    public final float a(float f10) {
+        return e2.c.z(1.0f, this.f31612i, f10, 1.0f - f10);
     }
 
-    public final int a() {
-        return (int) (this.f31583c.f31697c + AndroidUtilities.dp(14.0f));
-    }
-
-    public final void c(oc ocVar, boolean z10) {
-        if (this.f31584e == null) {
-            this.f31584e = new nc(ocVar);
+    public void b() {
+        View view = this.f31606a;
+        if (view != null) {
+            view.invalidate();
         }
-        this.f31584e.c(z10);
+        Runnable runnable = this.f31610f;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f10, int i12, int i13, int i14, Paint paint) {
-        float fDpf2 = AndroidUtilities.dpf2(17.0f);
-        float f11 = (i12 + i14) / 2.0f;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f12 = fDpf2 / 2.0f;
-        rectF.set(f10, f11 - f12, a() + f10, f11 + f12);
-        nc ncVar = this.f31584e;
-        float fA = ncVar == null ? 1.0f : ncVar.a(0.025f);
-        canvas.save();
-        canvas.scale(fA, fA, rectF.centerX(), rectF.centerY());
-        Integer num = this.f31585f;
-        int iIntValue = num != null ? num.intValue() : org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Oh, this.f31581a);
-        int iL1 = org.telegram.ui.ActionBar.g6.l1(0.15f, iIntValue);
-        Paint paint2 = this.f31582b;
-        paint2.setColor(iL1);
-        canvas.drawRoundRect(rectF, f12, f12, paint2);
-        this.f31583c.c(f10 + AndroidUtilities.dp(7.0f), f11, 1.0f, iIntValue, canvas);
-        canvas.restore();
+    public final void c(boolean z10) {
+        float f10;
+        if (this.h != z10) {
+            this.h = z10;
+            ValueAnimator valueAnimator = this.f31611g;
+            this.f31611g = null;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f11 = this.f31612i;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+            this.f31611g = ofFloat;
+            ofFloat.addUpdateListener(new e6(this, 7));
+            this.f31611g.addListener(new u9(1, this, z10));
+            if (this.h) {
+                this.f31611g.setInterpolator(gr.f28844f);
+                this.f31611g.setDuration(this.f31607b * 60.0f);
+                this.f31611g.setStartDelay(0L);
+            } else {
+                this.f31611g.setInterpolator(new OvershootInterpolator(this.d));
+                this.f31611g.setDuration(this.f31608c * 350.0f);
+                this.f31611g.setStartDelay(this.f31609e);
+            }
+            this.f31611g.start();
+        }
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return a();
+    public pc(View view, float f10, float f11) {
+        this.f31609e = 0L;
+        this.f31606a = view;
+        this.f31608c = f10;
+        this.f31607b = f10;
+        this.d = f11;
+    }
+
+    public pc(kh.e6 e6Var) {
+        this.f31609e = 0L;
+        this.f31606a = e6Var;
+        this.f31607b = 1.5f;
+        this.f31608c = 1.0f;
+        this.d = 2.0f;
     }
 }

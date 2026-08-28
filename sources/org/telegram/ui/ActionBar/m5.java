@@ -7,7 +7,6 @@ import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.MediaController;
-
 public final class m5 implements SensorEventListener {
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
@@ -15,41 +14,48 @@ public final class m5 implements SensorEventListener {
         if (f10 <= 0.0f) {
             f10 = 0.1f;
         }
-        if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
-            return;
-        }
-        if (f10 > 500.0f) {
-            g6.h = 1.0f;
-        } else {
-            g6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
-        }
-        if (g6.h > g6.f23277q) {
-            if (g6.f23174k) {
-                g6.f23174k = false;
-                AndroidUtilities.cancelRunOnUIThread(g6.f23209m);
+        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
+            if (f10 > 500.0f) {
+                f6.h = 1.0f;
+            } else {
+                f6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
-            if (g6.f23155j) {
+            long j10 = 1800;
+            if (f6.h <= f6.f23222q) {
+                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
+                    if (f6.f23102j) {
+                        f6.f23102j = false;
+                        AndroidUtilities.cancelRunOnUIThread(f6.f23138l);
+                    }
+                    if (!f6.f23120k) {
+                        f6.f23120k = true;
+                        androidx.emoji2.text.m mVar = f6.f23156m;
+                        if (Math.abs(f6.f23085i - SystemClock.elapsedRealtime()) < 12000) {
+                            j10 = 12000;
+                        }
+                        AndroidUtilities.runOnUIThread(mVar, j10);
+                        return;
+                    }
+                    return;
+                }
                 return;
             }
-            g6.f23155j = true;
-            AndroidUtilities.runOnUIThread(g6.f23192l, Math.abs(g6.f23137i - SystemClock.elapsedRealtime()) < 12000 ? 12000L : 1800L);
-            return;
+            if (f6.f23120k) {
+                f6.f23120k = false;
+                AndroidUtilities.cancelRunOnUIThread(f6.f23156m);
+            }
+            if (!f6.f23102j) {
+                f6.f23102j = true;
+                androidx.emoji2.text.m mVar2 = f6.f23138l;
+                if (Math.abs(f6.f23085i - SystemClock.elapsedRealtime()) < 12000) {
+                    j10 = 12000;
+                }
+                AndroidUtilities.runOnUIThread(mVar2, j10);
+            }
         }
-        if (MediaController.getInstance().isRecordingOrListeningByProximity()) {
-            return;
-        }
-        if (g6.f23155j) {
-            g6.f23155j = false;
-            AndroidUtilities.cancelRunOnUIThread(g6.f23192l);
-        }
-        if (g6.f23174k) {
-            return;
-        }
-        g6.f23174k = true;
-        AndroidUtilities.runOnUIThread(g6.f23209m, Math.abs(g6.f23137i - SystemClock.elapsedRealtime()) < 12000 ? 12000L : 1800L);
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final void onAccuracyChanged(Sensor sensor, int i9) {
     }
 }

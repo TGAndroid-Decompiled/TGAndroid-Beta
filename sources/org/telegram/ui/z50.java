@@ -1,26 +1,45 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class z50 implements org.telegram.ui.Components.n10, org.telegram.ui.ActionBar.b2, r0.o {
+    public final int f45037a;
+    public final k60 f45038b;
 
-public final class z50 implements ViewTreeObserver.OnGlobalLayoutListener {
-
-    public final FrameLayout f45030a;
-
-    public final c60 f45031b;
-
-    public z50(c60 c60Var, FrameLayout frameLayout) {
-        this.f45031b = c60Var;
-        this.f45030a = frameLayout;
+    public z50(k60 k60Var, int i9) {
+        this.f45037a = i9;
+        this.f45038b = k60Var;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        this.f45030a.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        c60 c60Var = this.f45031b;
-        if (c60Var.f36972v0 == null) {
-            c60Var.f36972v0 = (qc) c60Var.y0(c60Var.V);
+    public r0.m1 L0(View view, r0.m1 m1Var) {
+        int i9 = AndroidUtilities.getDefaultWindowInsets(m1Var, false).d;
+        k60 k60Var = this.f45038b;
+        k60Var.f39738i0 = i9;
+        gh.h1 h1Var = k60Var.B;
+        if (h1Var != null) {
+            h1Var.setPadding(0, 0, 0, i9);
         }
-        c60Var.f36972v0.f41632f.setOnClickListener(new u50(this, 1));
+        k60Var.i0();
+        k60Var.g0();
+        return r0.m1.f46928b;
+    }
+
+    @Override
+    public void a(int i9) {
+        k60 k60Var = this.f45038b;
+        k60Var.f39727b.a(Math.min(i9, k60Var.Y));
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f45037a) {
+            case 1:
+                this.f45038b.n0();
+                return;
+            default:
+                this.f45038b.finishFragment();
+                return;
+        }
     }
 }

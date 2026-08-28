@@ -1,13 +1,10 @@
 package w2;
-
-public final class b implements r9.d {
-
-    public static final b f48937a = new b();
-
-    public static final r9.c f48938b = new r9.c("storageMetrics", s3.c.h(s3.c.g(u9.d.class, new u9.a(1))));
+public final class b implements q9.d {
+    public static final b f48434a = new Object();
+    public static final q9.c f48435b = new q9.c("storageMetrics", ta.b.g(ta.b.f(t9.d.class, new t9.a(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((r9.e) obj2).a(f48938b, ((z2.b) obj).f50171a);
+        ((q9.e) obj2).g(f48435b, ((z2.b) obj).f50271a);
     }
 }

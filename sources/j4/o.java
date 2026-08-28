@@ -1,96 +1,62 @@
 package j4;
 
-import android.net.Uri;
-import java.util.Map;
+import h3.p2;
+import h3.q2;
+import h3.r2;
+public abstract class o extends r2 {
+    public final r2 f13526b;
 
-public final class o implements com.google.android.exoplayer2.upstream.m {
-
-    public final com.google.android.exoplayer2.upstream.m f12626a;
-
-    public final int f12627b;
-
-    public final o0 f12628c;
-    public final byte[] d;
-
-    public int f12629e;
-
-    public o(com.google.android.exoplayer2.upstream.m mVar, int i10, o0 o0Var) {
-        d5.a.f(i10 > 0);
-        this.f12626a = mVar;
-        this.f12627b = i10;
-        this.f12628c = o0Var;
-        this.d = new byte[1];
-        this.f12629e = i10;
+    public o(r2 r2Var) {
+        this.f13526b = r2Var;
     }
 
     @Override
-    public final void addTransferListener(com.google.android.exoplayer2.upstream.y0 y0Var) {
-        y0Var.getClass();
-        this.f12626a.addTransferListener(y0Var);
+    public final int a(boolean z10) {
+        return this.f13526b.a(z10);
     }
 
     @Override
-    public final void close() {
-        throw new UnsupportedOperationException();
+    public int b(Object obj) {
+        return this.f13526b.b(obj);
     }
 
     @Override
-    public final Map getResponseHeaders() {
-        return this.f12626a.getResponseHeaders();
+    public final int c(boolean z10) {
+        return this.f13526b.c(z10);
     }
 
     @Override
-    public final Uri getUri() {
-        return this.f12626a.getUri();
+    public int e(int i9, int i10, boolean z10) {
+        return this.f13526b.e(i9, i10, z10);
     }
 
     @Override
-    public final long open(com.google.android.exoplayer2.upstream.q qVar) {
-        throw new UnsupportedOperationException();
+    public p2 f(int i9, p2 p2Var, boolean z10) {
+        return this.f13526b.f(i9, p2Var, z10);
     }
 
     @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        int i12 = this.f12629e;
-        com.google.android.exoplayer2.upstream.m mVar = this.f12626a;
-        if (i12 == 0) {
-            byte[] bArr2 = this.d;
-            int i13 = 0;
-            if (mVar.read(bArr2, 0, 1) != -1) {
-                int i14 = (bArr2[0] & 255) << 4;
-                if (i14 != 0) {
-                    byte[] bArr3 = new byte[i14];
-                    int i15 = i14;
-                    while (i15 > 0) {
-                        int i16 = mVar.read(bArr3, i13, i15);
-                        if (i16 != -1) {
-                            i13 += i16;
-                            i15 -= i16;
-                        }
-                    }
-                    while (i14 > 0 && bArr3[i14 - 1] == 0) {
-                        i14--;
-                    }
-                    if (i14 > 0) {
-                        d5.z zVar = new d5.z(bArr3, i14);
-                        o0 o0Var = this.f12628c;
-                        long jMax = !o0Var.f12638w ? o0Var.f12636r : Math.max(o0Var.f12639x.i(true), o0Var.f12636r);
-                        int iA = zVar.a();
-                        a1 a1Var = o0Var.v;
-                        a1Var.getClass();
-                        a1Var.d(iA, zVar);
-                        a1Var.e(jMax, 1, iA, 0, null);
-                        o0Var.f12638w = true;
-                    }
-                }
-                this.f12629e = this.f12627b;
-            }
-            return -1;
-        }
-        int i17 = mVar.read(bArr, i10, Math.min(this.f12629e, i11));
-        if (i17 != -1) {
-            this.f12629e -= i17;
-        }
-        return i17;
+    public final int h() {
+        return this.f13526b.h();
+    }
+
+    @Override
+    public int k(int i9, int i10, boolean z10) {
+        return this.f13526b.k(i9, i10, z10);
+    }
+
+    @Override
+    public Object l(int i9) {
+        return this.f13526b.l(i9);
+    }
+
+    @Override
+    public q2 m(int i9, q2 q2Var, long j10) {
+        return this.f13526b.m(i9, q2Var, j10);
+    }
+
+    @Override
+    public final int o() {
+        return this.f13526b.o();
     }
 }

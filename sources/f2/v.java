@@ -1,14 +1,24 @@
 package f2;
+public final class v extends x {
+    public final int f5543c;
 
-public final class v extends y0 {
+    @Override
+    public int h(int i9, int i10) {
+        switch (this.f5543c) {
+            case 0:
+                return i9 % i10;
+            default:
+                return super.h(i9, i10);
+        }
+    }
 
-    public int f5838e;
-
-    public int f5839f;
-
-    public v(int i10, int i11) {
-        super(i10, i11);
-        this.f5838e = -1;
-        this.f5839f = 0;
+    @Override
+    public final int i(int i9) {
+        switch (this.f5543c) {
+            case 0:
+                return 1;
+            default:
+                return 1;
+        }
     }
 }

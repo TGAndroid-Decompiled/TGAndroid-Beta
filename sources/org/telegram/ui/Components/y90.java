@@ -1,43 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.drawable.Drawable;
+public final class y90 extends Drawable {
+    public Paint f34902a;
+    public Paint f34903b;
+    public long f34904c;
+    public float d;
+    public boolean f34905e;
+    public boolean f34906f;
+    public float f34907g;
+    public float h;
+    public float f34908i;
+    public float f34909j;
+    public float f34910k;
+    public long f34911l;
+    public org.telegram.ui.Cells.t1 f34912m;
 
-public final class y90 extends f2.w0 {
-
-    public final z90 f34871a;
-
-    public y90(z90 z90Var) {
-        this.f34871a = z90Var;
+    public final void a() {
+        int i9;
+        int i10;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f10 = bounds.left - centerX;
+        float f11 = bounds.top - centerY;
+        this.f34907g = (float) Math.ceil(Math.sqrt(e2.c.z(i10, centerY, f11, f10 * (i9 - centerX))));
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.l1 l1Var) {
-        int iR;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        f2.x0 layoutManager = recyclerView.getLayoutManager();
-        aa0 aa0Var = this.f34871a.X2;
-        if (layoutManager != aa0Var.d || (iR = RecyclerView.R(view)) == 0 || aa0Var.f26703f.N()) {
-            return;
-        }
-        if (aa0Var.f26703f.I() == null && aa0Var.f26703f.Q == null) {
-            rect.top = AndroidUtilities.dp(2.0f);
-        } else {
-            if (iR == 0) {
-                return;
-            }
-            iR--;
-            t90 t90Var = aa0Var.d;
-            t90Var.B1();
-            if (iR > t90Var.U) {
-                rect.top = AndroidUtilities.dp(2.0f);
-            }
-        }
-        rect.right = aa0Var.d.E1(iR) ? 0 : AndroidUtilities.dp(2.0f);
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y90.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        this.f34902a.setAlpha(i9);
+    }
+
+    @Override
+    public final void setBounds(int i9, int i10, int i11, int i12) {
+        super.setBounds(i9, i10, i11, i12);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f34902a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

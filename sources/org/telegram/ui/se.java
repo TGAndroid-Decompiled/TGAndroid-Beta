@@ -2,63 +2,62 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
-
 public final class se implements Utilities.Callback {
+    public final int f42672a;
+    public final qn f42673b;
 
-    public final int f42602a;
-
-    public final rn f42603b;
-
-    public se(rn rnVar, int i10) {
-        this.f42602a = i10;
-        this.f42603b = rnVar;
+    public se(qn qnVar, int i9) {
+        this.f42672a = i9;
+        this.f42673b = qnVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f42602a;
-        rn rnVar = this.f42603b;
-        switch (i10) {
+        int i9 = this.f42672a;
+        qn qnVar = this.f42673b;
+        switch (i9) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                rn rnVar2 = this.f42603b;
-                rnVar2.f42006c5 = messageSuggestionParams;
-                rnVar2.f42119l5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                rnVar2.yb(true, null, rnVar2.f42119l5, null, null, true, 0, null, false, 0L, null, true);
-                break;
+                qn qnVar2 = this.f42673b;
+                qnVar2.f41870c5 = messageSuggestionParams;
+                qnVar2.f41982l5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                qnVar2.yb(true, null, qnVar2.f41982l5, null, null, null, false, true);
+                return;
             case 1:
-                rnVar.vb(true, false);
+                qnVar.vb(true, false);
                 if (((Boolean) obj).booleanValue()) {
-                    rnVar.finishFragment();
+                    qnVar.finishFragment();
+                    return;
                 }
-                break;
+                return;
             case 2:
-                rnVar.da((String) obj, false);
-                break;
+                qnVar.da((String) obj, false);
+                return;
             case 3:
-                rnVar.Db((MessageSuggestionParams) obj);
-                break;
+                qnVar.Db((MessageSuggestionParams) obj);
+                return;
             case 4:
                 Long l10 = (Long) obj;
-                org.telegram.ui.Components.d21 d21Var = rnVar.N1;
-                if (d21Var != null) {
-                    d21Var.m(l10.longValue(), true);
+                org.telegram.ui.Components.b21 b21Var = qnVar.N1;
+                if (b21Var != null) {
+                    b21Var.m(l10.longValue(), true);
+                    return;
                 }
-                break;
+                return;
             case 5:
-                xr xrVar = rnVar.Z;
-                xrVar.f44599c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
-                break;
+                wr wrVar = qnVar.Z;
+                wrVar.f44250c.add(((org.telegram.ui.ActionBar.w0) obj).getIconView());
+                return;
             case 6:
-                int iIntValue = ((Integer) obj).intValue();
-                int i11 = rn.Dc;
-                rnVar.Ba(iIntValue);
-                break;
+                int intValue = ((Integer) obj).intValue();
+                int i10 = qn.Dc;
+                qnVar.Ba(intValue);
+                return;
             default:
-                int iIntValue2 = ((Integer) obj).intValue();
-                int i12 = rn.Dc;
-                rnVar.Ba(iIntValue2);
-                break;
+                int intValue2 = ((Integer) obj).intValue();
+                int i11 = qn.Dc;
+                qnVar.Ba(intValue2);
+                return;
         }
     }
 }

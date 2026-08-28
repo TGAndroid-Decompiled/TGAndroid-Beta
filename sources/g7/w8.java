@@ -1,30 +1,58 @@
 package g7;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
-
 public abstract class w8 {
-    public static boolean a(i7.d0 d0Var, Collection collection) {
-        collection.getClass();
-        if (collection instanceof k7.l) {
-            collection = ((k7.l) collection).zza();
-        }
-        boolean zRemove = false;
-        if (!(collection instanceof Set) || collection.size() <= d0Var.size()) {
-            Iterator it = collection.iterator();
-            while (it.hasNext()) {
-                zRemove |= d0Var.remove(it.next());
+    public static final Class a(dd.c cVar) {
+        kotlin.jvm.internal.i.e(cVar, "<this>");
+        Class a2 = ((kotlin.jvm.internal.c) cVar).a();
+        if (a2.isPrimitive()) {
+            String name = a2.getName();
+            switch (name.hashCode()) {
+                case -1325958191:
+                    if (name.equals("double")) {
+                        return Double.class;
+                    }
+                    break;
+                case 104431:
+                    if (name.equals("int")) {
+                        return Integer.class;
+                    }
+                    break;
+                case 3039496:
+                    if (name.equals("byte")) {
+                        return Byte.class;
+                    }
+                    break;
+                case 3052374:
+                    if (name.equals("char")) {
+                        return Character.class;
+                    }
+                    break;
+                case 3327612:
+                    if (name.equals("long")) {
+                        return Long.class;
+                    }
+                    break;
+                case 3625364:
+                    if (name.equals("void")) {
+                        return Void.class;
+                    }
+                    break;
+                case 64711720:
+                    if (name.equals("boolean")) {
+                        return Boolean.class;
+                    }
+                    break;
+                case 97526364:
+                    if (name.equals("float")) {
+                        return Float.class;
+                    }
+                    break;
+                case 109413500:
+                    if (name.equals("short")) {
+                        return Short.class;
+                    }
+                    break;
             }
-            return zRemove;
         }
-        Iterator<E> it2 = d0Var.iterator();
-        while (it2.hasNext()) {
-            if (collection.contains(it2.next())) {
-                it2.remove();
-                zRemove = true;
-            }
-        }
-        return zRemove;
+        return a2;
     }
 }

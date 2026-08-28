@@ -1,4 +1,16 @@
 package n6;
 
-public final class d extends Exception {
+import android.os.IBinder;
+import android.os.IInterface;
+public final class d implements f, IInterface {
+    public final IBinder f18508a;
+
+    public d(IBinder iBinder) {
+        this.f18508a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f18508a;
+    }
 }

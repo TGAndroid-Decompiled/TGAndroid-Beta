@@ -1,68 +1,63 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class dn0 implements Runnable {
+    public final int f37570a;
+    public final co0 f37571b;
+    public final TLRPC.TL_error f37572c;
+    public final TLObject d;
 
-public final class dn0 implements OnCompleteListener, org.telegram.ui.ActionBar.a2, st {
-
-    public final int f37447a;
-
-    public final do0 f37448b;
-
-    public dn0(do0 do0Var, int i10) {
-        this.f37447a = i10;
-        this.f37448b = do0Var;
+    public dn0(co0 co0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i9) {
+        this.f37570a = i9;
+        this.f37571b = co0Var;
+        this.f37572c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public void Z0(nt ntVar) {
-        switch (this.f37447a) {
-            case 2:
-                do0 do0Var = this.f37448b;
-                do0Var.f37483w0 = ntVar;
-                do0Var.f37462f[4].setText(ntVar.f40915a);
-                break;
-            default:
-                do0 do0Var2 = this.f37448b;
-                do0Var2.f37483w0 = ntVar;
-                do0Var2.f37462f[4].setText(ntVar.f40915a);
-                do0Var2.f37485x0 = ntVar.d;
-                break;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37447a) {
+    public final void run() {
+        switch (this.f37570a) {
+            case 0:
+                co0 co0Var = this.f37571b;
+                co0Var.f37246a0 = false;
+                if (this.f37572c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    co0Var.W = password;
+                    if (!TwoStepVerificationActivity.h0(password, false)) {
+                        org.telegram.ui.Components.y4.x0(co0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
+                    }
+                    TLRPC.PaymentForm paymentForm = co0Var.f37281y0;
+                    if (paymentForm != null && co0Var.W.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        co0Var.K0();
+                    }
+                    TwoStepVerificationActivity.l0(co0Var.W);
+                    co0 co0Var2 = co0Var.f37249b0;
+                    if (co0Var2 != null) {
+                        co0Var2.B0(co0Var.W);
+                    }
+                    if (!co0Var.W.has_password && co0Var.Z == null) {
+                        bn0 bn0Var = new bn0(co0Var, 3);
+                        co0Var.Z = bn0Var;
+                        AndroidUtilities.runOnUIThread(bn0Var, 5000L);
+                        return;
+                    }
+                    return;
+                }
+                return;
             case 1:
-                do0 do0Var = this.f37448b;
-                do0Var.I0(do0Var.N0[0]);
-                break;
-            case 2:
+                co0.U(this.f37571b, this.f37572c, this.d);
+                return;
             default:
-                do0 do0Var2 = this.f37448b;
-                do0Var2.D0(true);
-                do0Var2.z0();
-                break;
-            case 3:
-                this.f37448b.A0(true);
-                break;
-        }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        do0 do0Var = this.f37448b;
-        do0Var.getClass();
-        if (!task.isSuccessful()) {
-            FileLog.e("isReadyToPay failed", task.getException());
-            return;
-        }
-        FrameLayout frameLayout = do0Var.K;
-        if (frameLayout != null) {
-            frameLayout.setVisibility(0);
+                co0.W(this.f37571b, this.f37572c, this.d);
+                return;
         }
     }
 }

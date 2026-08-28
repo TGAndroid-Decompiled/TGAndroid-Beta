@@ -1,64 +1,92 @@
 package f2;
 
-import java.util.ArrayList;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import androidx.recyclerview.widget.RecyclerView;
+public final class r1 extends r0.b {
+    public final int d = 0;
+    public final Object f5525e;
 
-public abstract class r1 extends v0 {
-
-    public boolean f5819m;
-
-    public boolean f5820n;
-
-    public r1() {
-        this.f5840a = null;
-        this.f5841b = new ArrayList();
-        this.f5842c = 120L;
-        this.d = 120L;
-        this.f5843e = 250L;
-        this.f5844f = 250L;
-        this.f5845g = 250L;
-        this.f5849l = 0L;
-        this.f5819m = true;
+    public r1(s1 s1Var) {
+        this.f5525e = s1Var;
     }
 
     @Override
-    public boolean a(o1 o1Var, d5.p pVar, d5.p pVar2) {
-        int i10;
-        int i11;
-        if (pVar != null && ((i10 = pVar.f4821a) != (i11 = pVar2.f4821a) || pVar.f4822b != pVar2.f4822b || this.f5820n)) {
-            return r(o1Var, pVar, i10, pVar.f4822b, i11, pVar2.f4822b);
+    public void b(android.view.View r3, android.view.accessibility.AccessibilityEvent r4) {
+        throw new UnsupportedOperationException("Method not decompiled: f2.r1.b(android.view.View, android.view.accessibility.AccessibilityEvent):void");
+    }
+
+    @Override
+    public final void c(View view, s0.d dVar) {
+        boolean z10;
+        switch (this.d) {
+            case 0:
+                this.f46878a.onInitializeAccessibilityNodeInfo(view, dVar.f47292a);
+                s1 s1Var = (s1) this.f5525e;
+                RecyclerView recyclerView = s1Var.d;
+                RecyclerView recyclerView2 = s1Var.d;
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
+                    recyclerView2.getLayoutManager().T(view, dVar);
+                    return;
+                }
+                return;
+            default:
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47292a;
+                this.f46878a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                dVar.i(m2.g.class.getName());
+                m2.g gVar = (m2.g) this.f5525e;
+                m2.a aVar = gVar.f17192e;
+                if (aVar != null && aVar.b() > 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                accessibilityNodeInfo.setScrollable(z10);
+                if (gVar.canScrollHorizontally(1)) {
+                    dVar.a(4096);
+                }
+                if (gVar.canScrollHorizontally(-1)) {
+                    dVar.a(8192);
+                    return;
+                }
+                return;
         }
-        p(o1Var);
-        return true;
     }
 
-    public abstract void p(o1 o1Var);
-
-    public abstract boolean q(o1 o1Var, o1 o1Var2, d5.p pVar, int i10, int i11, int i12, int i13);
-
-    public abstract boolean r(o1 o1Var, d5.p pVar, int i10, int i11, int i12, int i13);
-
-    public abstract void s(o1 o1Var, d5.p pVar);
-
-    public boolean t(o1 o1Var) {
-        return !this.f5819m || o1Var.h();
+    @Override
+    public final boolean d(View view, int i9, Bundle bundle) {
+        switch (this.d) {
+            case 0:
+                s1 s1Var = (s1) this.f5525e;
+                if (super.d(view, i9, bundle)) {
+                    return true;
+                }
+                RecyclerView recyclerView = s1Var.d;
+                RecyclerView recyclerView2 = s1Var.d;
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
+                    g1 g1Var = recyclerView2.getLayoutManager().f5563b.f1339b;
+                }
+                return false;
+            default:
+                m2.g gVar = (m2.g) this.f5525e;
+                if (super.d(view, i9, bundle)) {
+                    return true;
+                }
+                if (i9 != 4096) {
+                    if (i9 == 8192 && gVar.canScrollHorizontally(-1)) {
+                        gVar.setCurrentItem(gVar.f17194f - 1);
+                        return true;
+                    }
+                } else if (gVar.canScrollHorizontally(1)) {
+                    gVar.setCurrentItem(gVar.f17194f + 1);
+                    return true;
+                }
+                return false;
+        }
     }
 
-    public final void u(o1 o1Var) {
-        w(o1Var);
-        d(o1Var);
-    }
-
-    public final void v(o1 o1Var) {
-        x(o1Var);
-        d(o1Var);
-    }
-
-    public void y() {
-    }
-
-    public void w(o1 o1Var) {
-    }
-
-    public void x(o1 o1Var) {
+    public r1(m2.g gVar) {
+        this.f5525e = gVar;
     }
 }

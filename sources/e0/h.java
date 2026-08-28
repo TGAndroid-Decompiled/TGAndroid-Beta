@@ -4,29 +4,27 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import h7.r6;
-
+import g7.z6;
 public abstract class h extends Activity implements androidx.lifecycle.t, r0.k {
-
-    public final androidx.lifecycle.v f5062a = new androidx.lifecycle.v(this);
+    public final androidx.lifecycle.v f4705a = new androidx.lifecycle.v(this);
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        kotlin.jvm.internal.j.e(event, "event");
+        kotlin.jvm.internal.i.e(event, "event");
         View decorView = getWindow().getDecorView();
-        kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (r6.a(decorView, event)) {
+        kotlin.jvm.internal.i.d(decorView, "window.decorView");
+        if (z6.a(decorView, event)) {
             return true;
         }
-        return r6.b(this, decorView, this, event);
+        return z6.b(this, decorView, this, event);
     }
 
     @Override
     public final boolean dispatchKeyShortcutEvent(KeyEvent event) {
-        kotlin.jvm.internal.j.e(event, "event");
+        kotlin.jvm.internal.i.e(event, "event");
         View decorView = getWindow().getDecorView();
-        kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (r6.a(decorView, event)) {
+        kotlin.jvm.internal.i.d(decorView, "window.decorView");
+        if (z6.a(decorView, event)) {
             return true;
         }
         return super.dispatchKeyShortcutEvent(event);
@@ -34,21 +32,21 @@ public abstract class h extends Activity implements androidx.lifecycle.t, r0.k {
 
     @Override
     public final boolean i(KeyEvent event) {
-        kotlin.jvm.internal.j.e(event, "event");
+        kotlin.jvm.internal.i.e(event, "event");
         return super.dispatchKeyEvent(event);
     }
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        int i10 = androidx.lifecycle.h0.f1600b;
+        int i9 = androidx.lifecycle.h0.f1103b;
         androidx.lifecycle.f0.b(this);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        kotlin.jvm.internal.j.e(outState, "outState");
-        this.f5062a.g();
+        kotlin.jvm.internal.i.e(outState, "outState");
+        this.f4705a.g();
         super.onSaveInstanceState(outState);
     }
 }

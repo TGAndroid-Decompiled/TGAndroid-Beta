@@ -1,79 +1,36 @@
 package f7;
 
-import c7.w;
-import g7.x6;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
+import java.util.Iterator;
+public final class b extends m9 {
+    public final transient d f5605c;
+    public final transient c d;
 
-public final class b extends w implements ListIterator {
+    public b(d dVar, c cVar) {
+        this.f5605c = dVar;
+        this.d = cVar;
+    }
 
-    public final int f5900b;
-
-    public int f5901c;
-    public final d d;
-
-    public b(d dVar, int i10) {
-        super(4);
-        int size = dVar.size();
-        if (i10 < 0 || i10 > size) {
-            throw new IndexOutOfBoundsException(x6.c(i10, size, "index"));
+    @Override
+    public final boolean contains(Object obj) {
+        if (this.f5605c.get(obj) != null) {
+            return true;
         }
-        this.f5900b = size;
-        this.f5901c = i10;
-        this.d = dVar;
-    }
-
-    public final Object a(int i10) {
-        return this.d.get(i10);
+        return false;
     }
 
     @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int i(Object[] objArr) {
+        return this.d.i(objArr);
     }
 
     @Override
-    public final boolean hasNext() {
-        return this.f5901c < this.f5900b;
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
     }
 
     @Override
-    public final boolean hasPrevious() {
-        return this.f5901c > 0;
-    }
-
-    @Override
-    public final Object next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        int i10 = this.f5901c;
-        this.f5901c = i10 + 1;
-        return a(i10);
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f5901c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (!hasPrevious()) {
-            throw new NoSuchElementException();
-        }
-        int i10 = this.f5901c - 1;
-        this.f5901c = i10;
-        return a(i10);
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f5901c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+    public final int size() {
+        this.f5605c.getClass();
+        return 1;
     }
 }

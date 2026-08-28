@@ -1,53 +1,61 @@
 package o8;
 
-import java.io.Serializable;
-import java.util.List;
+import h7.wa;
+import java.util.Comparator;
+import java.util.SortedMap;
+import java.util.SortedSet;
+public class g extends wa implements SortedMap {
+    public SortedSet f19045f;
+    public final h0 h;
 
-public final class g implements f, Serializable {
+    public g(h0 h0Var, SortedMap sortedMap) {
+        super(h0Var, sortedMap, 2);
+        this.h = h0Var;
+    }
 
-    public final List f19366a;
-
-    public g(List list) {
-        this.f19366a = list;
+    public SortedSet b() {
+        return new h(this.h, d());
     }
 
     @Override
-    public final boolean apply(Object obj) {
-        int i10 = 0;
-        while (true) {
-            List list = this.f19366a;
-            if (i10 >= list.size()) {
-                return true;
-            }
-            if (!((f) list.get(i10)).apply(obj)) {
-                return false;
-            }
-            i10++;
+    public SortedSet keySet() {
+        SortedSet sortedSet = this.f19045f;
+        if (sortedSet == null) {
+            SortedSet b10 = b();
+            this.f19045f = b10;
+            return b10;
         }
+        return sortedSet;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof g) {
-            return this.f19366a.equals(((g) obj).f19366a);
-        }
-        return false;
+    @Override
+    public final Comparator comparator() {
+        return d().comparator();
     }
 
-    public final int hashCode() {
-        return this.f19366a.hashCode() + 306654252;
+    public SortedMap d() {
+        return (SortedMap) this.f10166b;
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("Predicates.and(");
-        boolean z10 = true;
-        for (Object obj : this.f19366a) {
-            if (!z10) {
-                sb2.append(',');
-            }
-            sb2.append(obj);
-            z10 = false;
-        }
-        sb2.append(')');
-        return sb2.toString();
+    @Override
+    public final Object firstKey() {
+        return d().firstKey();
+    }
+
+    public SortedMap headMap(Object obj) {
+        return new g(this.h, d().headMap(obj));
+    }
+
+    @Override
+    public final Object lastKey() {
+        return d().lastKey();
+    }
+
+    public SortedMap subMap(Object obj, Object obj2) {
+        return new g(this.h, d().subMap(obj, obj2));
+    }
+
+    public SortedMap tailMap(Object obj) {
+        return new g(this.h, d().tailMap(obj));
     }
 }

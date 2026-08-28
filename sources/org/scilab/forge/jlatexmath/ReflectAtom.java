@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class ReflectAtom extends Atom {
     private Atom base;
 

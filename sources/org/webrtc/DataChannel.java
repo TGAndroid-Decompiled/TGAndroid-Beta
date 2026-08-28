@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-
 public class DataChannel {
     private long nativeDataChannel;
     private long nativeObserver;
@@ -22,11 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-
-        public int f45285id = -1;
+        public int f45279id = -1;
 
         public int getId() {
-            return this.f45285id;
+            return this.f45279id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -64,8 +62,8 @@ public class DataChannel {
         CLOSING,
         CLOSED;
 
-        public static State fromNativeIndex(int i10) {
-            return values()[i10];
+        public static State fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -74,9 +72,10 @@ public class DataChannel {
     }
 
     private void checkDataChannelExists() {
-        if (this.nativeDataChannel == 0) {
-            throw new IllegalStateException("DataChannel has been disposed.");
+        if (this.nativeDataChannel != 0) {
+            return;
         }
+        throw new IllegalStateException("DataChannel has been disposed.");
     }
 
     private native long nativeBufferedAmount();

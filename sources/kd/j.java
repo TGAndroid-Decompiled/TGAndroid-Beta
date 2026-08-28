@@ -1,16 +1,17 @@
 package kd;
 
-import id.j2;
+import ha.u;
+import kotlin.jvm.internal.p;
+public final class j extends sc.c {
+    public p f14782a;
+    public u f14783b;
+    public Object f14784c;
+    public int d;
 
-public final class j {
-
-    public final j2 f15185a;
-
-    public j(j2 j2Var) {
-        this.f15185a = j2Var;
-    }
-
-    public final String toString() {
-        return "WaiterEB(" + this.f15185a + ')';
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f14784c = obj;
+        this.d |= Integer.MIN_VALUE;
+        return n.b(null, this);
     }
 }

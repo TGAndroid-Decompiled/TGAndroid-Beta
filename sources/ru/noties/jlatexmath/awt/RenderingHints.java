@@ -1,5 +1,4 @@
 package ru.noties.jlatexmath.awt;
-
 public class RenderingHints {
     public static final Key KEY_ANTIALIASING = null;
     public static final Key KEY_RENDERING = null;

@@ -6,71 +6,69 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-
 public final class kd implements Runnable {
+    public final int f39804a;
+    public final fe f39805b;
 
-    public final int f39697a;
-
-    public final fe f39698b;
-
-    public kd(fe feVar, int i10) {
-        this.f39697a = i10;
-        this.f39698b = feVar;
+    public kd(fe feVar, int i9) {
+        this.f39804a = i9;
+        this.f39805b = feVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f39697a) {
+        switch (this.f39804a) {
             case 0:
-                we.e.s(this.f39698b.getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
-                break;
+                ve.e.s(this.f39805b.getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
+                return;
             case 1:
-                org.telegram.ui.Components.k51 k51Var = this.f39698b.W0;
-                if (k51Var != null) {
-                    k51Var.U2.N(true);
+                org.telegram.ui.Components.i51 i51Var = this.f39805b.W0;
+                if (i51Var != null) {
+                    i51Var.U2.N(true);
+                    return;
                 }
-                break;
+                return;
             case 2:
-                fe feVar = this.f39698b;
+                fe feVar = this.f39805b;
                 feVar.getClass();
                 try {
-                    org.telegram.ui.Components.zk0 currentListView = feVar.f38080a1.getCurrentListView();
+                    org.telegram.ui.Components.wk0 currentListView = feVar.f38218a1.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
-                        break;
+                        return;
                     }
+                    return;
                 } catch (Throwable unused) {
                     return;
                 }
-                break;
             case 3:
-                fe feVar2 = this.f39698b;
-                int i10 = feVar2.f38100u0;
-                AndroidUtilities.cancelRunOnUIThread(feVar2.f38096r1);
-                if (feVar2.f38088i1 != feVar2.f38089j1) {
+                fe feVar2 = this.f39805b;
+                int i9 = feVar2.f38238u0;
+                AndroidUtilities.cancelRunOnUIThread(feVar2.f38234r1);
+                if (feVar2.f38226i1 != feVar2.f38227j1) {
                     TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i10).getInputChannel(-feVar2.f38101v0);
-                    tL_channels_restrictSponsoredMessages.restricted = feVar2.f38088i1;
-                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new qd(feVar2, 0));
-                    break;
+                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i9).getInputChannel(-feVar2.f38239v0);
+                    tL_channels_restrictSponsoredMessages.restricted = feVar2.f38226i1;
+                    ConnectionsManager.getInstance(i9).sendRequest(tL_channels_restrictSponsoredMessages, new qd(feVar2, 0));
+                    return;
                 }
-                break;
+                return;
             case 4:
-                fe feVar3 = this.f39698b;
-                feVar3.f38089j1 = feVar3.f38088i1;
-                break;
+                fe feVar3 = this.f39805b;
+                feVar3.f38227j1 = feVar3.f38226i1;
+                return;
             case 5:
-                this.f39698b.P0.setLoading(false);
-                break;
+                this.f39805b.P0.setLoading(false);
+                return;
             case 6:
-                this.f39698b.Y0.setVisibility(8);
-                break;
+                this.f39805b.Y0.setVisibility(8);
+                return;
             case 7:
-                this.f39698b.Y0.setVisibility(8);
-                break;
+                this.f39805b.Y0.setVisibility(8);
+                return;
             default:
-                we.e.s(this.f39698b.getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
-                break;
+                ve.e.s(this.f39805b.getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
+                return;
         }
     }
 }

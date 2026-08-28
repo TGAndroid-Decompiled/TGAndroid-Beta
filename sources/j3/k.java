@@ -1,41 +1,35 @@
 package j3;
-
-import h3.q2;
-
 public final class k implements Runnable {
+    public final int f13284a;
+    public final m f13285b;
+    public final Exception f13286c;
 
-    public final int f12380a;
-
-    public final n f12381b;
-
-    public final Exception f12382c;
-
-    public k(n nVar, Exception exc, int i10) {
-        this.f12380a = i10;
-        this.f12381b = nVar;
-        this.f12382c = exc;
+    public k(m mVar, Exception exc, int i9) {
+        this.f13284a = i9;
+        this.f13285b = mVar;
+        this.f13286c = exc;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f12380a;
-        Exception exc = this.f12382c;
-        n nVar = this.f12381b;
-        switch (i10) {
+        int i9 = this.f13284a;
+        Exception exc = this.f13286c;
+        m mVar = this.f13285b;
+        switch (i9) {
             case 0:
-                o oVar = nVar.f12392b;
-                int i11 = d5.g0.f4795a;
-                i3.f fVar = ((h3.h0) oVar).f7870a.f7987r;
-                i3.a aVarK = fVar.k();
-                fVar.l(aVarK, 1029, new q2(aVarK, exc, 9));
-                break;
+                n nVar = mVar.f13292b;
+                int i10 = d5.f0.f4349a;
+                i3.f fVar = ((h3.h0) nVar).f9440a.f9557r;
+                i3.a k10 = fVar.k();
+                fVar.l(k10, 1029, new h9.a(k10, exc, 16));
+                return;
             default:
-                o oVar2 = nVar.f12392b;
-                int i12 = d5.g0.f4795a;
-                i3.f fVar2 = ((h3.h0) oVar2).f7870a.f7987r;
-                i3.a aVarK2 = fVar2.k();
-                fVar2.l(aVarK2, 1014, new i3.d(aVarK2, exc, 6));
-                break;
+                n nVar2 = mVar.f13292b;
+                int i11 = d5.f0.f4349a;
+                i3.f fVar2 = ((h3.h0) nVar2).f9440a.f9557r;
+                i3.a k11 = fVar2.k();
+                fVar2.l(k11, 1014, new i3.d(k11, exc, 13));
+                return;
         }
     }
 }

@@ -8,40 +8,33 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import g7.o7;
-
+import f7.t7;
 public abstract class d3 {
-
-    public static final ThreadLocal f17292a = new ThreadLocal();
-
-    public static final int[] f17293b = {-16842910};
-
-    public static final int[] f17294c = {16842908};
+    public static final ThreadLocal f16917a = new ThreadLocal();
+    public static final int[] f16918b = {-16842910};
+    public static final int[] f16919c = {16842908};
     public static final int[] d = {16842919};
-
-    public static final int[] f17295e = {16842912};
-
-    public static final int[] f17296f = new int[0];
-
-    public static final int[] f17297g = new int[1];
+    public static final int[] f16920e = {16842912};
+    public static final int[] f16921f = new int[0];
+    public static final int[] f16922g = new int[1];
 
     public static void a(View view, Context context) {
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes(f.a.f5581j);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(f.a.f5276j);
         try {
-            if (!typedArrayObtainStyledAttributes.hasValue(117)) {
+            if (!obtainStyledAttributes.hasValue(117)) {
                 Log.e("ThemeUtils", "View " + view.getClass() + " is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).");
             }
         } finally {
-            typedArrayObtainStyledAttributes.recycle();
+            obtainStyledAttributes.recycle();
         }
     }
 
-    public static int b(Context context, int i10) {
-        ColorStateList colorStateListD = d(context, i10);
-        if (colorStateListD != null && colorStateListD.isStateful()) {
-            return colorStateListD.getColorForState(f17293b, colorStateListD.getDefaultColor());
+    public static int b(Context context, int i9) {
+        ColorStateList d9 = d(context, i9);
+        if (d9 != null && d9.isStateful()) {
+            return d9.getColorForState(f16918b, d9.getDefaultColor());
         }
-        ThreadLocal threadLocal = f17292a;
+        ThreadLocal threadLocal = f16917a;
         TypedValue typedValue = (TypedValue) threadLocal.get();
         if (typedValue == null) {
             typedValue = new TypedValue();
@@ -49,34 +42,34 @@ public abstract class d3 {
         }
         context.getTheme().resolveAttribute(16842803, typedValue, true);
         float f10 = typedValue.getFloat();
-        int iC = c(context, i10);
-        return i0.b.k(iC, Math.round(Color.alpha(iC) * f10));
+        int c10 = c(context, i9);
+        return i0.a.k(c10, Math.round(Color.alpha(c10) * f10));
     }
 
-    public static int c(Context context, int i10) {
-        int[] iArr = f17297g;
-        iArr[0] = i10;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
+    public static int c(Context context, int i9) {
+        int[] iArr = f16922g;
+        iArr[0] = i9;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {
-            return typedArrayObtainStyledAttributes.getColor(0, 0);
+            return obtainStyledAttributes.getColor(0, 0);
         } finally {
-            typedArrayObtainStyledAttributes.recycle();
+            obtainStyledAttributes.recycle();
         }
     }
 
-    public static ColorStateList d(Context context, int i10) {
+    public static ColorStateList d(Context context, int i9) {
         ColorStateList colorStateList;
         int resourceId;
-        int[] iArr = f17297g;
-        iArr[0] = i10;
-        TypedArray typedArrayObtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
+        int[] iArr = f16922g;
+        iArr[0] = i9;
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {
-            if (!typedArrayObtainStyledAttributes.hasValue(0) || (resourceId = typedArrayObtainStyledAttributes.getResourceId(0, 0)) == 0 || (colorStateList = o7.a(context, resourceId)) == null) {
-                colorStateList = typedArrayObtainStyledAttributes.getColorStateList(0);
+            if (!obtainStyledAttributes.hasValue(0) || (resourceId = obtainStyledAttributes.getResourceId(0, 0)) == 0 || (colorStateList = t7.a(context, resourceId)) == null) {
+                colorStateList = obtainStyledAttributes.getColorStateList(0);
             }
             return colorStateList;
         } finally {
-            typedArrayObtainStyledAttributes.recycle();
+            obtainStyledAttributes.recycle();
         }
     }
 }

@@ -6,9 +6,9 @@ import org.json.JSONObject;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.voip.NativeInstance;
 import org.webrtc.ContextUtils;
 import org.webrtc.VideoSink;
-
 public final class Instance {
     public static final int AUDIO_STATE_ACTIVE = 1;
     public static final int AUDIO_STATE_MUTED = 0;
@@ -58,8 +58,7 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-
-        public final String f21877id;
+        public final String f21853id;
         public final String ip;
         public final String network;
         public final String port;
@@ -75,7 +74,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f21877id = str5;
+            this.f21853id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -87,7 +86,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f21877id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f21853id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -106,10 +105,10 @@ public final class Instance {
         public final double receiveTimeout;
         public final String statsLogPath;
 
-        public Config(double d, double d10, int i10, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, String str, String str2, int i11, String str3) {
+        public Config(double d, double d9, int i9, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, String str, String str2, int i10, String str3) {
             this.initializationTimeout = d;
-            this.receiveTimeout = d10;
-            this.dataSaving = i10;
+            this.receiveTimeout = d9;
+            this.dataSaving = i9;
             this.enableP2p = z10;
             this.enableAec = z11;
             this.enableNs = z12;
@@ -117,7 +116,7 @@ public final class Instance {
             this.enableCallUpgrade = z14;
             this.logPath = str;
             this.statsLogPath = str2;
-            this.maxApiLayer = i11;
+            this.maxApiLayer = i10;
             this.enableSm = z15;
             this.customParameters = str3;
         }
@@ -142,8 +141,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-
-        public final long f21878id;
+        public final long f21854id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -157,13 +155,13 @@ public final class Instance {
         public final int type;
         public final String username;
 
-        public Endpoint(boolean z10, long j10, String str, String str2, int i10, int i11, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
+        public Endpoint(boolean z10, long j10, String str, String str2, int i9, int i10, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
             this.isRtc = z10;
-            this.f21878id = j10;
+            this.f21854id = j10;
             this.ipv4 = str;
             this.ipv6 = str2;
-            this.port = i10;
-            this.type = i11;
+            this.port = i9;
+            this.type = i10;
             this.peerTag = bArr;
             this.turn = z11;
             this.stun = z12;
@@ -172,11 +170,11 @@ public final class Instance {
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                int i12 = d5.g0.f4795a;
+                int i11 = d5.f0.f4349a;
                 StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-                for (int i13 = 0; i13 < bArr.length; i13++) {
-                    sb2.append(Character.forDigit((bArr[i13] >> 4) & 15, 16));
-                    sb2.append(Character.forDigit(bArr[i13] & 15, 16));
+                for (int i12 = 0; i12 < bArr.length; i12++) {
+                    sb2.append(Character.forDigit((bArr[i12] >> 4) & 15, 16));
+                    sb2.append(Character.forDigit(bArr[i12] & 15, 16));
                 }
                 this.password = sb2.toString();
             } else {
@@ -187,7 +185,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f21878id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f21854id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -226,11 +224,11 @@ public final class Instance {
     }
 
     public interface OnRemoteMediaStateUpdatedListener {
-        void onMediaStateUpdated(int i10, int i11);
+        void onMediaStateUpdated(int i9, int i10);
     }
 
     public interface OnSignalBarsUpdatedListener {
-        void onSignalBarsUpdated(int i10);
+        void onSignalBarsUpdated(int i9);
     }
 
     public interface OnSignalingDataListener {
@@ -238,7 +236,7 @@ public final class Instance {
     }
 
     public interface OnStateUpdatedListener {
-        void onStateUpdated(int i10, boolean z10);
+        void onStateUpdated(int i9, boolean z10);
     }
 
     public static final class Proxy {
@@ -247,9 +245,9 @@ public final class Instance {
         public final String password;
         public final int port;
 
-        public Proxy(String str, int i10, String str2, String str3) {
+        public Proxy(String str, int i9, String str2, String str3) {
             this.host = str;
-            this.port = i10;
+            this.port = i9;
             this.login = str2;
             this.password = str3;
         }
@@ -262,7 +260,7 @@ public final class Instance {
             sb2.append(", login='");
             sb2.append(this.login);
             sb2.append("', password='");
-            return a9.p.p(sb2, this.password, "'}");
+            return aa.d.r(sb2, this.password, "'}");
         }
     }
 
@@ -328,9 +326,10 @@ public final class Instance {
     }
 
     private static void checkHasDelegate() {
-        if (instance == null) {
-            throw new IllegalStateException("tgvoip version is not set");
+        if (instance != null) {
+            return;
         }
+        throw new IllegalStateException("tgvoip version is not set");
     }
 
     public static void destroyInstance() {
@@ -353,21 +352,21 @@ public final class Instance {
         return null;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i10, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i9, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(ApplicationLoader.applicationContext);
         }
-        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, audioLevelsCallback);
+        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i9, encryptionKey, videoSink, j10, audioLevelsCallback);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
         setBufferSize(bufferSize);
         return instance;
     }
 
-    public static void setBufferSize(int i10) {
-        bufferSize = i10;
+    public static void setBufferSize(int i9) {
+        bufferSize = i9;
         NativeInstance nativeInstance = instance;
         if (nativeInstance != null) {
-            nativeInstance.setBufferSize(i10);
+            nativeInstance.setBufferSize(i9);
         }
     }
 
@@ -378,9 +377,9 @@ public final class Instance {
             if (nativeInstance != null) {
                 nativeInstance.setGlobalServerConfig(str);
             }
-        } catch (JSONException e9) {
+        } catch (JSONException e10) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("failed to parse tgvoip server config", e9);
+                FileLog.e("failed to parse tgvoip server config", e10);
             }
         }
     }

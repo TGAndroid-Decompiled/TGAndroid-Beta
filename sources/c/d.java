@@ -1,33 +1,46 @@
 package c;
 
+import android.os.Binder;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
+public final class d extends Binder implements b {
+    public static final int f2049b = 0;
+    public final e f2050a;
 
-public class d implements Parcelable {
-    public static final Parcelable.Creator<d> CREATOR = new w.a(22);
-
-    public b f2190a;
-
-    @Override
-    public final int describeContents() {
-        return 0;
+    public d(e eVar) {
+        this.f2050a = eVar;
+        attachInterface(this, b.h);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        synchronized (this) {
-            try {
-                if (this.f2190a == null) {
-                    this.f2190a = new c(this);
-                }
-                parcel.writeStrongBinder(this.f2190a.asBinder());
-            } catch (Throwable th) {
-                throw th;
+    public final boolean onTransact(int i9, Parcel parcel, Parcel parcel2, int i10) {
+        Object obj;
+        String str = b.h;
+        if (i9 >= 1 && i9 <= 16777215) {
+            parcel.enforceInterface(str);
+        }
+        if (i9 == 1598968902) {
+            parcel2.writeString(str);
+            return true;
+        } else if (i9 != 1) {
+            return super.onTransact(i9, parcel, parcel2, i10);
+        } else {
+            int readInt = parcel.readInt();
+            Parcelable.Creator creator = Bundle.CREATOR;
+            if (parcel.readInt() != 0) {
+                obj = creator.createFromParcel(parcel);
+            } else {
+                obj = null;
             }
+            this.f2050a.a(readInt, (Bundle) obj);
+            return true;
         }
     }
 
-    public void a(int i10, Bundle bundle) {
+    @Override
+    public final IBinder asBinder() {
+        return this;
     }
 }

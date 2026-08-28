@@ -4,7 +4,7 @@ import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.os.Build;
 import java.util.ArrayList;
-
+import org.webrtc.EglBase;
 class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private static final String TAG = "MediaCodecVideoDecoderFactory";
     private final Predicate<MediaCodecInfo> codecAllowedPredicate;
@@ -16,21 +16,21 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     }
 
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        int i10 = 0;
+        int i9 = 0;
         while (true) {
-            MediaCodecInfo codecInfoAt = null;
-            if (i10 >= MediaCodecList.getCodecCount()) {
+            MediaCodecInfo mediaCodecInfo = null;
+            if (i9 >= MediaCodecList.getCodecCount()) {
                 return null;
             }
             try {
-                codecInfoAt = MediaCodecList.getCodecInfoAt(i10);
-            } catch (IllegalArgumentException e9) {
-                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e9);
+                mediaCodecInfo = MediaCodecList.getCodecInfoAt(i9);
+            } catch (IllegalArgumentException e10) {
+                Logging.e("MediaCodecVideoDecoderFactory", "Cannot retrieve decoder codec info", e10);
             }
-            if (codecInfoAt != null && !codecInfoAt.isEncoder() && isSupportedCodec(codecInfoAt, videoCodecMimeType)) {
-                return codecInfoAt;
+            if (mediaCodecInfo != null && !mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
+                return mediaCodecInfo;
             }
-            i10++;
+            i9++;
         }
     }
 
@@ -47,39 +47,42 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
         if (name.startsWith("OMX.qcom.")) {
             return true;
         }
-        return Build.VERSION.SDK_INT >= 23 && name.startsWith("OMX.Exynos.");
-    }
-
-    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        if (MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null) {
-            return isCodecAllowed(mediaCodecInfo);
+        if (Build.VERSION.SDK_INT >= 23 && name.startsWith("OMX.Exynos.")) {
+            return true;
         }
         return false;
     }
 
+    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+        if (!MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) || MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) == null) {
+            return false;
+        }
+        return isCodecAllowed(mediaCodecInfo);
+    }
+
     @Override
     public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
-        VideoCodecMimeType videoCodecMimeTypeValueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
-        MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeTypeValueOf);
-        if (mediaCodecInfoFindCodecForType == null) {
+        VideoCodecMimeType valueOf = VideoCodecMimeType.valueOf(videoCodecInfo.getName());
+        MediaCodecInfo findCodecForType = findCodecForType(valueOf);
+        if (findCodecForType == null) {
             return null;
         }
-        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), mediaCodecInfoFindCodecForType.getName(), videoCodecMimeTypeValueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, mediaCodecInfoFindCodecForType.getCapabilitiesForType(videoCodecMimeTypeValueOf.mimeType())).intValue(), this.sharedContext);
+        return new AndroidVideoDecoder(new MediaCodecWrapperFactoryImpl(), findCodecForType.getName(), valueOf, MediaCodecUtils.selectColorFormat(MediaCodecUtils.DECODER_COLOR_FORMATS, findCodecForType.getCapabilitiesForType(valueOf.mimeType())).intValue(), this.sharedContext);
     }
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
         ArrayList arrayList = new ArrayList();
         VideoCodecMimeType[] videoCodecMimeTypeArr = {VideoCodecMimeType.VP8, VideoCodecMimeType.VP9, VideoCodecMimeType.H264, VideoCodecMimeType.AV1, VideoCodecMimeType.H265};
-        for (int i10 = 0; i10 < 5; i10++) {
-            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i10];
-            MediaCodecInfo mediaCodecInfoFindCodecForType = findCodecForType(videoCodecMimeType);
-            if (mediaCodecInfoFindCodecForType != null) {
-                String strName = videoCodecMimeType.name();
-                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(mediaCodecInfoFindCodecForType)) {
-                    arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
+        for (int i9 = 0; i9 < 5; i9++) {
+            VideoCodecMimeType videoCodecMimeType = videoCodecMimeTypeArr[i9];
+            MediaCodecInfo findCodecForType = findCodecForType(videoCodecMimeType);
+            if (findCodecForType != null) {
+                String name = videoCodecMimeType.name();
+                if (videoCodecMimeType == VideoCodecMimeType.H264 && isH264HighProfileSupported(findCodecForType)) {
+                    arrayList.add(new VideoCodecInfo(name, MediaCodecUtils.getCodecProperties(videoCodecMimeType, true)));
                 }
-                arrayList.add(new VideoCodecInfo(strName, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
+                arrayList.add(new VideoCodecInfo(name, MediaCodecUtils.getCodecProperties(videoCodecMimeType, false)));
             }
         }
         return (VideoCodecInfo[]) arrayList.toArray(new VideoCodecInfo[arrayList.size()]);

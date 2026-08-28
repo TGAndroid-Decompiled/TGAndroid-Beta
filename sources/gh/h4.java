@@ -1,105 +1,98 @@
 package gh;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.b70;
-import org.telegram.ui.Components.n41;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.gr;
+public final class h4 extends Drawable {
+    public Drawable f8208g;
+    public int h;
+    public int f8209i;
+    public final Paint f8204b = new Paint(1);
+    public final Shader[] f8205c = new Shader[2];
+    public final Matrix d = new Matrix();
+    public final org.telegram.ui.Components.y5 f8206e = new org.telegram.ui.Components.y5(1.0f, new fh.o1(this, 14), 0, 420, gr.h);
+    public final RectF f8207f = new RectF();
+    public final int f8203a = 1;
 
-public final class h4 implements Utilities.Callback5 {
-
-    public final int f7289a;
-
-    public final y5 f7290b;
-
-    public final b70 f7291c;
-
-    public h4(y5 y5Var, b70 b70Var, int i10) {
-        this.f7289a = i10;
-        this.f7290b = y5Var;
-        this.f7291c = b70Var;
+    public final void a(int i9, int i10) {
+        if (this.h == i9 && this.f8209i == i10) {
+            return;
+        }
+        Shader[] shaderArr = this.f8205c;
+        shaderArr[0] = shaderArr[1];
+        if (this.f8203a == 0) {
+            this.h = i9;
+            this.f8209i = i10;
+            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i9, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            this.h = i9;
+            this.f8209i = i10;
+            shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i9, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.f8206e.d(0.0f, true);
+        invalidateSelf();
     }
 
     @Override
-    public final void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f7289a;
-        n41 n41Var = (n41) obj;
-        y5 y5Var = this.f7290b;
-        y5Var.getClass();
-        switch (i10) {
-            case 0:
-                long j10 = ((TL_stars.starGiftAttributePattern) n41Var.G).document.f22386id;
-                i5 i5Var = y5Var.d;
-                HashSet hashSet = i5Var.f7332l;
-                if (hashSet.contains(Long.valueOf(j10))) {
-                    hashSet.remove(Long.valueOf(j10));
-                } else if (hashSet.isEmpty()) {
-                    ArrayList arrayList = i5Var.h;
-                    int size = arrayList.size();
-                    int i11 = 0;
-                    while (i11 < size) {
-                        Object obj6 = arrayList.get(i11);
-                        i11++;
-                        long j11 = ((TL_stars.starGiftAttributePattern) obj6).document.f22386id;
-                        if (j11 != j10) {
-                            hashSet.add(Long.valueOf(j11));
-                        }
-                    }
-                } else {
-                    hashSet.add(Long.valueOf(j10));
-                }
-                i5Var.h();
-                this.f7291c.u();
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f8207f;
+        rectF.set(bounds);
+        rectF.right = rectF.width() + rectF.left;
+        int i9 = 0;
+        float d = this.f8206e.d(1.0f, false);
+        while (true) {
+            Shader[] shaderArr = this.f8205c;
+            if (i9 >= shaderArr.length) {
                 break;
-            case 1:
-                int i12 = ((TL_stars.starGiftAttributeBackdrop) n41Var.G).backdrop_id;
-                i5 i5Var2 = y5Var.d;
-                HashSet hashSet2 = i5Var2.f7331k;
-                if (hashSet2.contains(Integer.valueOf(i12))) {
-                    hashSet2.remove(Integer.valueOf(i12));
-                } else if (hashSet2.isEmpty()) {
-                    ArrayList arrayList2 = i5Var2.f7328g;
-                    int size2 = arrayList2.size();
-                    int i13 = 0;
-                    while (i13 < size2) {
-                        Object obj7 = arrayList2.get(i13);
-                        i13++;
-                        int i14 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
-                        if (i14 != i12) {
-                            hashSet2.add(Integer.valueOf(i14));
-                        }
+            }
+            if (shaderArr[i9] != null) {
+                float pow = (float) Math.pow(1.0f - Math.abs(i9 - d), 0.25d);
+                if (pow > 0.0f) {
+                    Matrix matrix = this.d;
+                    matrix.reset();
+                    if (this.f8203a == 1) {
+                        matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
+                    } else {
+                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
                     }
-                } else {
-                    hashSet2.add(Integer.valueOf(i12));
+                    shaderArr[i9].setLocalMatrix(matrix);
+                    Shader shader = shaderArr[i9];
+                    Paint paint = this.f8204b;
+                    paint.setShader(shader);
+                    paint.setAlpha((int) (pow * 255.0f));
+                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
                 }
-                i5Var2.h();
-                this.f7291c.u();
-                break;
-            default:
-                long j12 = ((TL_stars.starGiftAttributeModel) n41Var.G).document.f22386id;
-                i5 i5Var3 = y5Var.d;
-                HashSet hashSet3 = i5Var3.f7330j;
-                if (hashSet3.contains(Long.valueOf(j12))) {
-                    hashSet3.remove(Long.valueOf(j12));
-                } else if (hashSet3.isEmpty()) {
-                    ArrayList arrayList3 = i5Var3.f7327f;
-                    int size3 = arrayList3.size();
-                    int i15 = 0;
-                    while (i15 < size3) {
-                        Object obj8 = arrayList3.get(i15);
-                        i15++;
-                        long j13 = ((TL_stars.starGiftAttributeModel) obj8).document.f22386id;
-                        if (j13 != j12) {
-                            hashSet3.add(Long.valueOf(j13));
-                        }
-                    }
-                } else {
-                    hashSet3.add(Long.valueOf(j12));
-                }
-                i5Var3.h();
-                this.f7291c.u();
-                break;
+            }
+            i9++;
         }
+        if (this.f8208g != null) {
+            canvas.save();
+            canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
+            y0.a(canvas, 0, this.f8208g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

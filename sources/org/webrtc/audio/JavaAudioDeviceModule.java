@@ -8,7 +8,6 @@ import android.os.Build;
 import java.util.concurrent.ScheduledExecutorService;
 import org.webrtc.JniCommon;
 import org.webrtc.Logging;
-
 public class JavaAudioDeviceModule implements AudioDeviceModule {
     private static final String TAG = "JavaAudioDeviceModule";
     private final WebRtcAudioRecord audioInput;
@@ -47,10 +46,10 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         private final byte[] data;
         private final int sampleRate;
 
-        public AudioSamples(int i10, int i11, int i12, byte[] bArr) {
-            this.audioFormat = i10;
-            this.channelCount = i11;
-            this.sampleRate = i12;
+        public AudioSamples(int i9, int i10, int i11, byte[] bArr) {
+            this.audioFormat = i9;
+            this.channelCount = i10;
+            this.sampleRate = i11;
             this.data = bArr;
         }
 
@@ -132,11 +131,11 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             if (this.useLowLatency && Build.VERSION.SDK_INT >= 26) {
                 Logging.d("JavaAudioDeviceModule", "Low latency mode will be used.");
             }
-            ScheduledExecutorService scheduledExecutorServiceNewDefaultScheduler = this.scheduler;
-            if (scheduledExecutorServiceNewDefaultScheduler == null) {
-                scheduledExecutorServiceNewDefaultScheduler = WebRtcAudioRecord.newDefaultScheduler();
+            ScheduledExecutorService scheduledExecutorService = this.scheduler;
+            if (scheduledExecutorService == null) {
+                scheduledExecutorService = WebRtcAudioRecord.newDefaultScheduler();
             }
-            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorServiceNewDefaultScheduler, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency, this.enableVolumeLogger), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
+            return new JavaAudioDeviceModule(this.context, this.audioManager, new WebRtcAudioRecord(this.context, scheduledExecutorService, this.audioManager, this.audioSource, this.audioFormat, this.audioRecordErrorCallback, this.audioRecordStateCallback, this.samplesReadyCallback, this.useHardwareAcousticEchoCanceler, this.useHardwareNoiseSuppressor), new WebRtcAudioTrack(this.context, this.audioManager, this.audioAttributes, this.audioTrackErrorCallback, this.audioTrackStateCallback, this.useLowLatency, this.enableVolumeLogger), this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
         }
 
         public Builder setAudioAttributes(AudioAttributes audioAttributes) {
@@ -144,8 +143,8 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             return this;
         }
 
-        public Builder setAudioFormat(int i10) {
-            this.audioFormat = i10;
+        public Builder setAudioFormat(int i9) {
+            this.audioFormat = i9;
             return this;
         }
 
@@ -159,8 +158,8 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             return this;
         }
 
-        public Builder setAudioSource(int i10) {
-            this.audioSource = i10;
+        public Builder setAudioSource(int i9) {
+            this.audioSource = i9;
             return this;
         }
 
@@ -179,22 +178,22 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
             return this;
         }
 
-        public Builder setInputSampleRate(int i10) {
-            Logging.d("JavaAudioDeviceModule", "Input sample rate overridden to: " + i10);
-            this.inputSampleRate = i10;
+        public Builder setInputSampleRate(int i9) {
+            Logging.d("JavaAudioDeviceModule", "Input sample rate overridden to: " + i9);
+            this.inputSampleRate = i9;
             return this;
         }
 
-        public Builder setOutputSampleRate(int i10) {
-            Logging.d("JavaAudioDeviceModule", "Output sample rate overridden to: " + i10);
-            this.outputSampleRate = i10;
+        public Builder setOutputSampleRate(int i9) {
+            Logging.d("JavaAudioDeviceModule", "Output sample rate overridden to: " + i9);
+            this.outputSampleRate = i9;
             return this;
         }
 
-        public Builder setSampleRate(int i10) {
-            Logging.d("JavaAudioDeviceModule", "Input/Output sample rate overridden to: " + i10);
-            this.inputSampleRate = i10;
-            this.outputSampleRate = i10;
+        public Builder setSampleRate(int i9) {
+            Logging.d("JavaAudioDeviceModule", "Input/Output sample rate overridden to: " + i9);
+            this.inputSampleRate = i9;
+            this.outputSampleRate = i9;
             return this;
         }
 
@@ -272,7 +271,7 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         return WebRtcAudioEffects.isNoiseSuppressorSupported();
     }
 
-    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z10, boolean z11);
+    private static native long nativeCreateAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i9, int i10, boolean z10, boolean z11);
 
     @Override
     public long getNativeAudioDeviceModulePointer() {
@@ -333,14 +332,14 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
         this.audioOutput.setSpeakerMute(z10);
     }
 
-    private JavaAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i10, int i11, boolean z10, boolean z11) {
+    private JavaAudioDeviceModule(Context context, AudioManager audioManager, WebRtcAudioRecord webRtcAudioRecord, WebRtcAudioTrack webRtcAudioTrack, int i9, int i10, boolean z10, boolean z11) {
         this.nativeLock = new Object();
         this.context = context;
         this.audioManager = audioManager;
         this.audioInput = webRtcAudioRecord;
         this.audioOutput = webRtcAudioTrack;
-        this.inputSampleRate = i10;
-        this.outputSampleRate = i11;
+        this.inputSampleRate = i9;
+        this.outputSampleRate = i10;
         this.useStereoInput = z10;
         this.useStereoOutput = z11;
     }

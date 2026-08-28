@@ -1,51 +1,99 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.Build;
-import java.lang.ref.WeakReference;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class rb0 extends Drawable {
+    public final Drawable f32126a;
+    public final Paint f32127b;
+    public final Paint f32128c;
+    public final y5 d;
+    public boolean f32129e;
 
-public final class rb0 {
-
-    public final Shader.TileMode f32121a;
-
-    public final Matrix f32122b = new Matrix();
-
-    public boolean f32123c;
-    public BitmapShader d;
-
-    public WeakReference f32124e;
-
-    public rb0(Shader.TileMode tileMode) {
-        this.f32121a = tileMode;
+    public rb0(Context context) {
+        Paint paint = new Paint(1);
+        this.f32127b = paint;
+        Paint paint2 = new Paint(1);
+        this.f32128c = paint2;
+        this.d = new y5(new ib0(this, 2), 200L, gr.f28845g, 0);
+        this.f32126a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
+        paint.setColor(-1);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Join join = Paint.Join.ROUND;
+        paint.setStrokeJoin(join);
+        paint2.setStyle(style);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(4.5f));
+        paint2.setColor(-65536);
+        paint2.setStrokeCap(cap);
+        paint2.setStrokeJoin(join);
     }
 
-    public final void a(boolean z10) {
-        BitmapShader bitmapShader;
-        if (this.f32123c != z10) {
-            this.f32123c = z10;
-            if (Build.VERSION.SDK_INT < 33 || (bitmapShader = this.d) == null) {
-                return;
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+        Drawable drawable = this.f32126a;
+        drawable.setBounds(bounds);
+        drawable.draw(canvas);
+        float e10 = this.d.e(this.f32129e);
+        if (e10 > 0.0f) {
+            float dpf2 = AndroidUtilities.dpf2(0.783f);
+            float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
+            float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
+            float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
+            float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
+            if (this.f32129e) {
+                centerX = AndroidUtilities.lerp(dp, centerX, e10);
+                centerY = AndroidUtilities.lerp(dp2, centerY, e10);
+            } else {
+                dp = AndroidUtilities.lerp(centerX, dp, e10);
+                dp2 = AndroidUtilities.lerp(centerY, dp2, e10);
             }
-            bitmapShader.setFilterMode(z10 ? 1 : 2);
+            float f10 = dp2;
+            float f11 = centerX;
+            float f12 = centerY;
+            float f13 = dp;
+            canvas.drawLine(f11, f12, f13, f10, this.f32128c);
+            Paint paint = this.f32127b;
+            paint.setAlpha((int) (Math.min(1.0f, e10 * 10.0f) * 255.0f));
+            canvas.drawLine(f11, f12, f13, f10, paint);
         }
+        canvas.restore();
     }
 
-    public final boolean b(Bitmap bitmap) {
-        WeakReference weakReference = this.f32124e;
-        if (weakReference != null && weakReference.get() == bitmap) {
-            return false;
-        }
-        this.f32124e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f32121a;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f32122b);
-        if (Build.VERSION.SDK_INT >= 33) {
-            this.d.setFilterMode(this.f32123c ? 1 : 2);
-        }
-        return true;
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        this.f32126a.setAlpha(i9);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

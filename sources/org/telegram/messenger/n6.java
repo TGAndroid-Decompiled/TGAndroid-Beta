@@ -1,69 +1,68 @@
 package org.telegram.messenger;
 
-import java.nio.ByteBuffer;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-
+import org.telegram.tgnet.tl.TL_account;
 public final class n6 implements Runnable {
+    public final int f21023a;
+    public final int f21024b;
+    public final Object f21025c;
 
-    public final int f21041a;
-
-    public final boolean f21042b;
-
-    public final Object f21043c;
-    public final Object d;
-
-    public n6(Object obj, Object obj2, boolean z10, int i10) {
-        this.f21041a = i10;
-        this.f21043c = obj;
-        this.d = obj2;
-        this.f21042b = z10;
+    public n6(int i9, Object obj, int i10) {
+        this.f21023a = i10;
+        this.f21024b = i9;
+        this.f21025c = obj;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f21041a) {
+    public final void run() {
+        switch (this.f21023a) {
             case 0:
-                ((MediaController.AnonymousClass2) this.f21043c).lambda$run$1((ByteBuffer) this.d, this.f21042b);
-                break;
+                ((MediaController.AnonymousClass4) this.f21025c).lambda$onCallStateChanged$0(this.f21024b);
+                return;
             case 1:
-                ((FileLoader) this.f21043c).lambda$cancelFileUpload$2(this.f21042b, (String) this.d);
-                break;
+                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f21024b, (TLRPC.TL_help_appConfig) this.f21025c);
+                return;
             case 2:
-                ((ImageLoader) this.f21043c).lambda$cancelLoadingForImageReceiver$4(this.f21042b, (ImageReceiver) this.d);
-                break;
+                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f21024b, (TLRPC.messages_AvailableEffects) this.f21025c);
+                return;
             case 3:
-                ((MediaDataController) this.f21043c).lambda$loadBotKeyboard$196((MessagesStorage.TopicKey) this.d, this.f21042b);
-                break;
+                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f21024b, (TL_account.TL_webBrowserSettings) this.f21025c);
+                return;
             case 4:
-                ((MediaDataController) this.f21043c).lambda$buildShortcuts$143(this.f21042b, (ArrayList) this.d);
-                break;
+                AutoDeleteMediaTask.b(this.f21024b, (File) this.f21025c);
+                return;
             case 5:
-                ((MessagesController) this.f21043c).lambda$processDialogsUpdate$229((TLRPC.messages_Dialogs) this.d, this.f21042b);
-                break;
+                FileLoader.lambda$deleteFiles$16((ArrayList) this.f21025c, this.f21024b);
+                return;
             case 6:
-                ((MessagesStorage) this.f21043c).lambda$updateUserInfo$130((TLRPC.UserFull) this.d, this.f21042b);
-                break;
+                ((FilesMigrationService) this.f21025c).lambda$updateProgress$1(this.f21024b);
+                return;
             case 7:
-                ((MessagesStorage) this.f21043c).lambda$putCachedPhoneBook$149((HashMap) this.d, this.f21042b);
-                break;
+                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.c2) this.f21025c, this.f21024b);
+                return;
             case 8:
-                ((MessagesStorage) this.f21043c).lambda$updateEncryptedChatSeq$171((TLRPC.EncryptedChat) this.d, this.f21042b);
-                break;
+                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f21025c, this.f21024b);
+                return;
             case 9:
-                ((MessagesStorage) this.f21043c).lambda$updateChatInfo$134((TLRPC.ChatFull) this.d, this.f21042b);
-                break;
+                PushListenerController.lambda$processRemoteMessage$2(this.f21024b, (TLRPC.TL_updates) this.f21025c);
+                return;
+            case 10:
+                SendMessagesHelper.lambda$handleError$119(this.f21024b, (AccountInstance) this.f21025c);
+                return;
             default:
-                ((MessagesStorage) this.f21043c).lambda$deleteEphemeralMessages$206((a0.h) this.d, this.f21042b);
-                break;
+                Utilities.lambda$doCallbacks$0(this.f21024b, (Utilities.Callback[]) this.f21025c);
+                return;
         }
     }
 
-    public n6(Object obj, boolean z10, Object obj2, int i10) {
-        this.f21041a = i10;
-        this.f21043c = obj;
-        this.f21042b = z10;
-        this.d = obj2;
+    public n6(Object obj, int i9, int i10) {
+        this.f21023a = i10;
+        this.f21025c = obj;
+        this.f21024b = i9;
     }
 }

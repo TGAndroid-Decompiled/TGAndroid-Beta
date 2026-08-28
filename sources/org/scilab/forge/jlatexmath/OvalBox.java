@@ -4,7 +4,6 @@ import ru.noties.jlatexmath.awt.BasicStroke;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Stroke;
 import ru.noties.jlatexmath.awt.geom.RoundRectangle2D;
-
 public class OvalBox extends FramedBox {
     public OvalBox(FramedBox framedBox) {
         super(framedBox.box, framedBox.thickness, framedBox.space);
@@ -17,13 +16,13 @@ public class OvalBox extends FramedBox {
         graphics2D.setStroke(new BasicStroke(this.thickness, 0, 0));
         float f12 = this.thickness;
         float f13 = f12 / 2.0f;
-        float fMin = Math.min(this.width - f12, (this.height + this.depth) - f12) * 0.5f;
+        float min = Math.min(this.width - f12, (this.height + this.depth) - f12) * 0.5f;
         float f14 = f10 + f13;
         float f15 = this.height;
         float f16 = (f11 - f15) + f13;
         float f17 = this.width;
         float f18 = this.thickness;
-        graphics2D.draw(new RoundRectangle2D.Float(f14, f16, f17 - f18, (f15 + this.depth) - f18, fMin, fMin));
+        graphics2D.draw(new RoundRectangle2D.Float(f14, f16, f17 - f18, (f15 + this.depth) - f18, min, min));
         graphics2D.setStroke(stroke);
     }
 

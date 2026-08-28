@@ -8,7 +8,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.l;
-
 public class TL_legacy_message {
 
     public static class TL_message_layer118 extends TLRPC.TL_message {
@@ -16,9 +15,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -48,12 +47,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -155,9 +154,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -183,12 +182,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -298,9 +297,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -326,12 +325,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -447,9 +446,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -476,12 +475,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -599,9 +598,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -629,12 +628,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -760,9 +759,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -793,12 +792,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -927,9 +926,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -963,12 +962,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -1100,9 +1099,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -1136,12 +1135,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -1279,9 +1278,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -1292,9 +1291,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.f22401id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 256)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -1321,12 +1320,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -1470,9 +1469,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -1483,9 +1482,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.f22401id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 256)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -1512,12 +1511,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -1667,9 +1666,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -1680,9 +1679,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.f22401id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1710,12 +1709,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -1873,9 +1872,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -1886,9 +1885,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.f22401id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1916,12 +1915,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -2085,9 +2084,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -2098,9 +2097,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.f22401id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -2128,12 +2127,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -2303,9 +2302,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -2316,9 +2315,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -2348,12 +2347,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -2412,6 +2411,7 @@ public class TL_legacy_message {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1743401272);
             int flag = TLObject.setFlag(this.flags, 2, this.out);
             this.flags = flag;
@@ -2440,7 +2440,12 @@ public class TL_legacy_message {
             this.flags2 = flag12;
             int flag13 = TLObject.setFlag(flag12, 16, this.video_processing_pending);
             this.flags2 = flag13;
-            int flag14 = TLObject.setFlag(flag13, 128, this.suggested_post != null);
+            if (this.suggested_post != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag14 = TLObject.setFlag(flag13, 128, z10);
             this.flags2 = flag14;
             int flag15 = TLObject.setFlag(flag14, 256, this.paid_suggested_post_stars);
             this.flags2 = flag15;
@@ -2535,9 +2540,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -2548,9 +2553,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -2580,12 +2585,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -2647,6 +2652,7 @@ public class TL_legacy_message {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1188071729);
             int flag = TLObject.setFlag(this.flags, 2, this.out);
             this.flags = flag;
@@ -2675,7 +2681,12 @@ public class TL_legacy_message {
             this.flags2 = flag12;
             int flag13 = TLObject.setFlag(flag12, 16, this.video_processing_pending);
             this.flags2 = flag13;
-            int flag14 = TLObject.setFlag(flag13, 128, this.suggested_post != null);
+            if (this.suggested_post != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag14 = TLObject.setFlag(flag13, 128, z10);
             this.flags2 = flag14;
             int flag15 = TLObject.setFlag(flag14, 256, this.paid_suggested_post_stars);
             this.flags2 = flag15;
@@ -2773,9 +2784,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -2786,9 +2797,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -2818,12 +2829,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -2888,6 +2899,7 @@ public class TL_legacy_message {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1665888023);
             int flag = TLObject.setFlag(this.flags, 2, this.out);
             this.flags = flag;
@@ -2916,7 +2928,12 @@ public class TL_legacy_message {
             this.flags2 = flag12;
             int flag13 = TLObject.setFlag(flag12, 16, this.video_processing_pending);
             this.flags2 = flag13;
-            int flag14 = TLObject.setFlag(flag13, 128, this.suggested_post != null);
+            if (this.suggested_post != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag14 = TLObject.setFlag(flag13, 128, z10);
             this.flags2 = flag14;
             int flag15 = TLObject.setFlag(flag14, 256, this.paid_suggested_post_stars);
             this.flags2 = flag15;
@@ -3017,9 +3034,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -3030,9 +3047,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -3065,12 +3082,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -3135,6 +3152,7 @@ public class TL_legacy_message {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(988112002);
             int flag = TLObject.setFlag(this.flags, 2, this.out);
             this.flags = flag;
@@ -3163,13 +3181,22 @@ public class TL_legacy_message {
             this.flags2 = flag12;
             int flag13 = TLObject.setFlag(flag12, 16, this.video_processing_pending);
             this.flags2 = flag13;
-            int flag14 = TLObject.setFlag(flag13, 128, this.suggested_post != null);
+            boolean z11 = false;
+            if (this.suggested_post != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag14 = TLObject.setFlag(flag13, 128, z10);
             this.flags2 = flag14;
             int flag15 = TLObject.setFlag(flag14, 256, this.paid_suggested_post_stars);
             this.flags2 = flag15;
             int flag16 = TLObject.setFlag(flag15, 512, this.paid_suggested_post_ton);
             this.flags2 = flag16;
-            int flag17 = TLObject.setFlag(flag16, 4096, this.from_rank != null);
+            if (this.from_rank != null) {
+                z11 = true;
+            }
+            int flag17 = TLObject.setFlag(flag16, 4096, z11);
             this.flags2 = flag17;
             outputSerializedData.writeInt32(flag17);
             outputSerializedData.writeInt32(this.f22401id);
@@ -3269,9 +3296,9 @@ public class TL_legacy_message {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.out = TLObject.hasFlag(int32, 2);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.out = TLObject.hasFlag(readInt32, 2);
             this.mentioned = TLObject.hasFlag(this.flags, 16);
             this.media_unread = TLObject.hasFlag(this.flags, 32);
             this.silent = TLObject.hasFlag(this.flags, 8192);
@@ -3282,9 +3309,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int33 = inputSerializedData.readInt32(z10);
-            this.flags2 = int33;
-            this.offline = TLObject.hasFlag(int33, 2);
+            int readInt322 = inputSerializedData.readInt32(z10);
+            this.flags2 = readInt322;
+            this.offline = TLObject.hasFlag(readInt322, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -3320,12 +3347,12 @@ public class TL_legacy_message {
             this.date = inputSerializedData.readInt32(z10);
             this.message = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 512)) {
-                TLRPC.MessageMedia messageMediaTLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-                this.media = messageMediaTLdeserialize;
-                if (messageMediaTLdeserialize != null) {
-                    this.ttl = messageMediaTLdeserialize.ttl_seconds;
+                TLRPC.MessageMedia TLdeserialize = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+                this.media = TLdeserialize;
+                if (TLdeserialize != null) {
+                    this.ttl = TLdeserialize.ttl_seconds;
                 }
-                if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
+                if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
                     this.message = this.media.captionLegacy;
                 }
             }
@@ -3390,6 +3417,8 @@ public class TL_legacy_message {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
             outputSerializedData.writeInt32(-1779470549);
             int flag = TLObject.setFlag(this.flags, 2, this.out);
             this.flags = flag;
@@ -3418,15 +3447,29 @@ public class TL_legacy_message {
             this.flags2 = flag12;
             int flag13 = TLObject.setFlag(flag12, 16, this.video_processing_pending);
             this.flags2 = flag13;
-            int flag14 = TLObject.setFlag(flag13, 128, this.suggested_post != null);
+            boolean z12 = false;
+            if (this.suggested_post != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag14 = TLObject.setFlag(flag13, 128, z10);
             this.flags2 = flag14;
             int flag15 = TLObject.setFlag(flag14, 256, this.paid_suggested_post_stars);
             this.flags2 = flag15;
             int flag16 = TLObject.setFlag(flag15, 512, this.paid_suggested_post_ton);
             this.flags2 = flag16;
-            int flag17 = TLObject.setFlag(flag16, 4096, this.from_rank != null);
+            if (this.from_rank != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag17 = TLObject.setFlag(flag16, 4096, z11);
             this.flags2 = flag17;
-            int flag18 = TLObject.setFlag(flag17, 524288, this.guestchat_via_from != null);
+            if (this.guestchat_via_from != null) {
+                z12 = true;
+            }
+            int flag18 = TLObject.setFlag(flag17, 524288, z12);
             this.flags2 = flag18;
             outputSerializedData.writeInt32(flag18);
             outputSerializedData.writeInt32(this.f22401id);

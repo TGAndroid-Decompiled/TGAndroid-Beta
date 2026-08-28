@@ -6,7 +6,6 @@ import android.util.LongSparseArray;
 import com.google.android.exoplayer2.upstream.a0;
 import com.google.android.exoplayer2.upstream.l;
 import com.google.android.exoplayer2.upstream.y0;
-
 public final class ExtendedDefaultDataSourceFactory implements l {
     private final l baseDataSourceFactory;
     private final Context context;

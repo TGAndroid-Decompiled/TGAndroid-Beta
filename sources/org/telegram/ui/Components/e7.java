@@ -1,44 +1,46 @@
 package org.telegram.ui.Components;
 
+import android.view.ViewGroup;
 public final class e7 implements o1.g {
+    public final int f27963a;
+    public final Object f27964b;
 
-    public final int f27961a;
-
-    public final Object f27962b;
-
-    public e7(Object obj, int i10) {
-        this.f27961a = i10;
-        this.f27962b = obj;
+    public e7(Object obj, int i9) {
+        this.f27963a = i9;
+        this.f27964b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, float f10, float f11) {
-        switch (this.f27961a) {
+        ViewGroup viewGroup;
+        switch (this.f27963a) {
             case 0:
-                ((b8) this.f27962b).P.setBufferedProgress(f10 / 1000.0f);
-                break;
+                ((c8) this.f27964b).P.setBufferedProgress(f10 / 1000.0f);
+                return;
             case 1:
-                ec ecVar = (ec) this.f27962b;
-                ecVar.f28025o = (int) f10;
-                ecVar.l();
-                break;
+                gc gcVar = (gc) this.f27964b;
+                gcVar.f28742o = (int) f10;
+                gcVar.l();
+                return;
             case 2:
-                if (Math.abs(f10) > ((jb) this.f27962b).getWidth()) {
+                if (Math.abs(f10) > ((lb) this.f27964b).getWidth()) {
                     hVar.c();
+                    return;
                 }
-                break;
+                return;
             case 3:
-                gi giVar = (gi) ((hh.l3) this.f27962b).d;
-                yh yhVar = giVar.f28699v0;
-                if (yhVar == giVar.f28659i0 || yhVar == giVar.f28662j0 || (giVar.B && giVar.f28680p1 != null)) {
-                    giVar.a2(1);
+                ki kiVar = (ki) ((gh.m3) this.f27964b).d;
+                ci ciVar = kiVar.f30163v0;
+                if (ciVar == kiVar.f30123i0 || ciVar == kiVar.f30126j0 || (kiVar.B && kiVar.f30144p1 != null)) {
+                    kiVar.a2(1);
                 }
-                giVar.f28699v0.k(giVar.f28658h2);
-                ((org.telegram.ui.ActionBar.e3) giVar).containerView.invalidate();
-                break;
+                kiVar.f30163v0.k(kiVar.f30122h2);
+                viewGroup = ((org.telegram.ui.ActionBar.f3) kiVar).containerView;
+                viewGroup.invalidate();
+                return;
             default:
-                ((nb0) this.f27962b).z();
-                break;
+                ((jb0) this.f27964b).z();
+                return;
         }
     }
 }

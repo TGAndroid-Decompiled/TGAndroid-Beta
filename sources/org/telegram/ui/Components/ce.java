@@ -1,115 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.ImageView;
-import android.widget.ToggleButton;
-import org.telegram.messenger.voip.VoIPService;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class ce extends FrameLayout {
+    public final ChatActivityEnterView f27471a;
 
-public final class ce extends ImageView {
-
-    public final int f27408a;
-
-    public ce(Context context, int i10) {
-        super(context);
-        this.f27408a = i10;
+    public ce(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity);
+        this.f27471a = chatActivityEnterView;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f27408a) {
-            case 1:
-                super.dispatchDraw(canvas);
-                break;
-            default:
-                super.dispatchDraw(canvas);
-                break;
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27408a) {
-            case 0:
-                if (getAlpha() < 0.5f) {
-                    return false;
+    public final boolean drawChild(final Canvas canvas, final View view, final long j10) {
+        ChatActivityEnterView chatActivityEnterView = this.f27471a;
+        if (view != null && view == chatActivityEnterView.A0) {
+            return chatActivityEnterView.e0(canvas, new Utilities.Callback0Return() {
+                @Override
+                public final Object run() {
+                    Boolean valueOf;
+                    valueOf = Boolean.valueOf(super/*android.widget.FrameLayout*/.drawChild(canvas, view, j10));
+                    return valueOf;
                 }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+            });
         }
+        if (chatActivityEnterView.f26191u4 && view == chatActivityEnterView.f26077a1) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f27408a) {
-            case 3:
-                super.onDraw(canvas);
-                invalidate();
-                break;
-            default:
-                super.onDraw(canvas);
-                break;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f27408a) {
-            case 4:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
-                accessibilityNodeInfo.setCheckable(true);
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
+    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
+        super.onLayout(z10, i9, i10, i11, i12);
+        ChatActivityEnterView chatActivityEnterView = this.f27471a;
+        if (!chatActivityEnterView.f26203x0.isEmpty()) {
+            for (int i13 = 0; i13 < getChildCount(); i13++) {
+                View childAt = getChildAt(i13);
+                Float f10 = (Float) chatActivityEnterView.f26203x0.get(childAt);
+                if (f10 != null) {
+                    childAt.setTranslationX(f10.floatValue() - childAt.getLeft());
+                    childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(gr.f28844f).start();
                 }
-                break;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                break;
+            }
+            chatActivityEnterView.f26203x0.clear();
         }
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        float f10;
-        float f11;
-        switch (this.f27408a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-                break;
-            case 5:
-                super.onMeasure(i10, i11);
-                Matrix imageMatrix = getImageMatrix();
-                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
-                int intrinsicWidth = getDrawable().getIntrinsicWidth();
-                int intrinsicHeight = getDrawable().getIntrinsicHeight();
-                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
-                    f10 = measuredHeight;
-                    f11 = intrinsicHeight;
-                } else {
-                    f10 = measuredWidth;
-                    f11 = intrinsicWidth;
-                }
-                float f12 = f10 / f11;
-                imageMatrix.setScale(f12, f12);
-                setImageMatrix(imageMatrix);
-                break;
-            default:
-                super.onMeasure(i10, i11);
-                break;
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        int max = Math.max(AndroidUtilities.dp(44.0f), getMeasuredHeight());
+        ChatActivityEnterView chatActivityEnterView = this.f27471a;
+        td.c cVar = chatActivityEnterView.f26079a5;
+        if (cVar.f47780e > 0.0f) {
+            cVar.a(max);
+        } else {
+            cVar.c(max);
         }
-    }
-
-    public ce(tt ttVar, Context context) {
-        super(context);
-        this.f27408a = 1;
+        chatActivityEnterView.M();
     }
 }

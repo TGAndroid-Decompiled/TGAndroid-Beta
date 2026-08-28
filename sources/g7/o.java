@@ -1,26 +1,11 @@
 package g7;
-
-import android.app.KeyguardManager;
-import android.content.Context;
-import android.os.Build;
-
 public abstract class o {
-    public static KeyguardManager a(Context context) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            return androidx.biometric.h0.a(context);
-        }
-        Object systemService = context.getSystemService("keyguard");
-        if (systemService instanceof KeyguardManager) {
-            return (KeyguardManager) systemService;
-        }
-        return null;
-    }
-
-    public static boolean b(Context context) {
-        KeyguardManager keyguardManagerA = a(context);
-        if (keyguardManagerA == null) {
-            return false;
-        }
-        return Build.VERSION.SDK_INT >= 23 ? androidx.biometric.h0.b(keyguardManagerA) : androidx.biometric.g0.a(keyguardManagerA);
+    public static m1.c a(String name) {
+        od.d dVar = hd.n0.f10463b;
+        hd.j1 j1Var = new hd.j1();
+        dVar.getClass();
+        md.e b10 = hd.f0.b(u6.c(dVar, j1Var));
+        kotlin.jvm.internal.i.e(name, "name");
+        return new m1.c(name, m1.a.f17159b, b10);
     }
 }

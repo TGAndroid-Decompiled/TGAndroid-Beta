@@ -1,33 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-
 public final class h2 implements View.OnClickListener {
+    public final int f28947a;
+    public final org.telegram.ui.ActionBar.f3[] f28948b;
 
-    public final int f28903a;
-
-    public final org.telegram.ui.ActionBar.e3[] f28904b;
-
-    public h2(org.telegram.ui.ActionBar.e3[] e3VarArr, int i10) {
-        this.f28903a = i10;
-        this.f28904b = e3VarArr;
+    public h2(org.telegram.ui.ActionBar.f3[] f3VarArr, int i9) {
+        this.f28947a = i9;
+        this.f28948b = f3VarArr;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f28903a) {
+        switch (this.f28947a) {
             case 0:
-                this.f28904b[0].dismiss();
-                break;
+                this.f28948b[0].dismiss();
+                return;
             case 1:
-                this.f28904b[0].dismiss();
-                break;
+                this.f28948b[0].dismiss();
+                return;
             case 2:
-                this.f28904b[0].dismiss();
-                break;
+                this.f28948b[0].dismiss();
+                return;
             default:
-                this.f28904b[0].dismiss();
-                break;
+                this.f28948b[0].dismiss();
+                return;
         }
     }
 }

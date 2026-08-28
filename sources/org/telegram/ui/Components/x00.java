@@ -1,75 +1,71 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocationController;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class x00 implements View.OnLongClickListener {
+    public final int f34482a;
+    public final Object f34483b;
 
-public final class x00 implements org.telegram.ui.ActionBar.r0, ud.i, org.telegram.ui.ActionBar.a2, ku0 {
-
-    public final FragmentContextView f34411a;
-
-    public x00(FragmentContextView fragmentContextView) {
-        this.f34411a = fragmentContextView;
+    public x00(Object obj, int i9) {
+        this.f34482a = i9;
+        this.f34483b = obj;
     }
 
     @Override
-    public void c(ud.j jVar) {
-        FragmentContextView fragmentContextView = this.f34411a;
-        ud.j<ud.e> jVar2 = fragmentContextView.G0;
-        float f10 = 1.0f - jVar2.f48521a.d.f48512c.f48522a;
-        fragmentContextView.d.setAlpha(f10);
-        fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f10));
-        fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f10));
-        for (ud.e eVar : jVar2) {
-            float fC = eVar.c();
-            Object obj = eVar.f48505a;
-            float fLerp = AndroidUtilities.lerp(0.7f, 1.0f, fC);
-            ug.d dVar = ((i10) obj).f29199b;
-            dVar.setAlpha(eVar.c());
-            dVar.setScaleX(fLerp);
-            dVar.setScaleY(fLerp);
+    public final boolean onLongClick(View view) {
+        int i9 = this.f34482a;
+        Object obj = this.f34483b;
+        switch (i9) {
+            case 0:
+                final FragmentContextView fragmentContextView = (FragmentContextView) obj;
+                float[] fArr = FragmentContextView.I0;
+                final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.R);
+                fragmentContextView.D.d(playbackSpeed, false);
+                org.telegram.ui.ActionBar.c1 c1Var = fragmentContextView.D;
+                int i10 = org.telegram.ui.ActionBar.f6.G8;
+                c1Var.setBackgroundColor(org.telegram.ui.ActionBar.f6.v0(i10, fragmentContextView.f26390l0));
+                org.telegram.ui.ActionBar.c1 c1Var2 = fragmentContextView.D;
+                c1Var2.J = fragmentContextView.h instanceof org.telegram.ui.qn;
+                c1Var2.B.setShader(null);
+                c1Var2.h = null;
+                Bitmap bitmap = c1Var2.f22822f;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    c1Var2.f22822f = null;
+                }
+                fragmentContextView.B.B(org.telegram.ui.ActionBar.f6.w0(null, i10, false));
+                fragmentContextView.B.N();
+                fragmentContextView.q(false);
+                fragmentContextView.B.setDimMenu(0.3f);
+                fragmentContextView.B.M(fragmentContextView.D, null);
+                fragmentContextView.B.setOnMenuDismiss(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        float[] fArr2 = FragmentContextView.I0;
+                        if (!((Boolean) obj2).booleanValue()) {
+                            MediaController mediaController = MediaController.getInstance();
+                            FragmentContextView fragmentContextView2 = FragmentContextView.this;
+                            fragmentContextView2.l(playbackSpeed, mediaController.getPlaybackSpeed(fragmentContextView2.R), false);
+                        }
+                    }
+                });
+                MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
+                return true;
+            case 1:
+                yc0 yc0Var = (yc0) obj;
+                yc0Var.f34946r.setText("");
+                kh.z8.a(yc0Var.f34947s, true);
+                Drawable drawable = yc0Var.f34940a;
+                if (drawable instanceof jb0) {
+                    ((jb0) drawable).y();
+                }
+                return true;
+            default:
+                return rp0.n((rp0) obj);
         }
-    }
-
-    @Override
-    public void d(LocationController.SharingLocationInfo sharingLocationInfo) {
-        float[] fArr = FragmentContextView.I0;
-        this.f34411a.k(sharingLocationInfo);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        FragmentContextView fragmentContextView = this.f34411a;
-        org.telegram.ui.ActionBar.n2 n2Var = fragmentContextView.h;
-        if (!(n2Var instanceof org.telegram.ui.gy)) {
-            LocationController.getInstance(n2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f26387n.a());
-            return;
-        }
-        for (int i11 = 0; i11 < 4; i11++) {
-            LocationController.getInstance(i11).removeAllLocationSharings();
-        }
-    }
-
-    @Override
-    public void h(int i10) {
-        float[] fArr = FragmentContextView.I0;
-        if (i10 >= 0) {
-            float[] fArr2 = FragmentContextView.I0;
-            if (i10 >= 6) {
-                return;
-            }
-            MediaController mediaController = MediaController.getInstance();
-            FragmentContextView fragmentContextView = this.f34411a;
-            float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.R);
-            float f10 = fArr2[i10];
-            MediaController.getInstance().setPlaybackSpeed(fragmentContextView.R, f10);
-            if (playbackSpeed != f10) {
-                fragmentContextView.l(playbackSpeed, f10, false);
-            }
-        }
-    }
-
-    @Override
-    public void b() {
     }
 }

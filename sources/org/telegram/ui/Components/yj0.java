@@ -1,18 +1,14 @@
 package org.telegram.ui.Components;
-
 public final class yj0 {
+    public final c2.y f34983a;
+    public final int f34984b;
+    public final int f34985c;
+    public final boolean d;
 
-    public float f34911a;
-
-    public float f34912b;
-
-    public float f34913c;
-    public float d;
-
-    public yj0(float f10, float f11, float f12, float f13) {
-        this.f34911a = f10;
-        this.f34912b = f11;
-        this.f34913c = f12;
-        this.d = f13;
+    public yj0(c2.y yVar, int i9, int i10, boolean z10) {
+        this.f34983a = yVar;
+        this.f34984b = i9;
+        this.f34985c = i10;
+        this.d = z10;
     }
 }

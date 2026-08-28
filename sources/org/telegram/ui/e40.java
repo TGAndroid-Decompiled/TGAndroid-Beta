@@ -1,24 +1,41 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.ChatObject;
+public final class e40 implements ViewTreeObserver.OnPreDrawListener {
+    public final ChatObject.VideoParticipant f37816a;
+    public final boolean f37817b;
+    public final o50 f37818c;
 
-public final class e40 extends AnimatorListenerAdapter {
-
-    public final org.telegram.ui.Components.voip.t f37620a;
-
-    public final s50 f37621b;
-
-    public e40(s50 s50Var, org.telegram.ui.Components.voip.t tVar) {
-        this.f37621b = s50Var;
-        this.f37620a = tVar;
+    public e40(o50 o50Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
+        this.f37818c = o50Var;
+        this.f37816a = videoParticipant;
+        this.f37817b = z10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.Components.voip.t tVar = this.f37620a;
-        if (tVar.getParent() != null) {
-            ((org.telegram.ui.ActionBar.e3) this.f37621b).containerView.removeView(tVar);
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        o50 o50Var = this.f37818c;
+        u40 u40Var = o50Var.M;
+        u40Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        o50Var.f40931m2 = null;
+        g30 g30Var = o50Var.W1;
+        ChatObject.VideoParticipant videoParticipant = this.f37816a;
+        g30Var.j(videoParticipant);
+        if (o50Var.f40938o0) {
+            o50Var.f40938o0 = false;
+            o50Var.O0(true);
+            if (this.f37817b && videoParticipant != null) {
+                u40Var.u0(0);
+            }
+            o50Var.f40938o0 = true;
+        } else {
+            o50Var.O0(true);
         }
+        viewGroup = ((org.telegram.ui.ActionBar.f3) o50Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

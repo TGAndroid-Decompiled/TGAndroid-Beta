@@ -1,60 +1,78 @@
 package gh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.lt;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.dy;
+import org.telegram.ui.q21;
+import org.telegram.ui.y21;
+public final class b3 implements Runnable {
+    public final int f7835a = 0;
+    public final Object f7836b;
+    public final TLObject f7837c;
+    public final long d;
+    public final Object f7838e;
+    public final Object f7839f;
+    public final Object h;
+    public final Object f7840n;
+    public final Object f7841r;
 
-public final class b3 extends lt {
-
-    public final org.telegram.ui.Components.b5 f7169c;
-    public int d;
-
-    public final org.telegram.ui.Components.i6 f7170e;
-
-    public final d4 f7171f;
-
-    public b3(d4 d4Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context, c6Var);
-        this.f7171f = d4Var;
-        this.f7169c = new org.telegram.ui.Components.b5(this);
-        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true, false);
-        this.f7170e = i6Var;
-        i6Var.k(0.2f, 160L, er.h);
-        i6Var.t(AndroidUtilities.dp(15.33f));
-        i6Var.setCallback(this);
-        i6Var.f29239b = 5;
+    public b3(k5 k5Var, ve.d dVar, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.TL_error tL_error, long j10, CharSequence charSequence) {
+        this.f7839f = k5Var;
+        this.h = dVar;
+        this.f7836b = c2Var;
+        this.f7837c = tLObject;
+        this.f7840n = tL_starGiftUnique;
+        this.f7838e = tL_error;
+        this.d = j10;
+        this.f7841r = charSequence;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int iA = this.f7169c.a(org.telegram.ui.ActionBar.g6.v0(this.d < 0 ? org.telegram.ui.ActionBar.g6.f23269p7 : org.telegram.ui.ActionBar.g6.P5, this.f7171f.f7201f), false);
-        org.telegram.ui.Components.i6 i6Var = this.f7170e;
-        i6Var.r(iA);
-        i6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        i6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        org.telegram.ui.Components.i6 i6Var = this.f7170e;
-        if (i6Var != null) {
-            this.d = 12 - charSequence.length();
-            i6Var.b();
-            String str = "";
-            if (this.d <= 4) {
-                str = "" + this.d;
-            }
-            i6Var.q(str, true, true);
+    public final void run() {
+        switch (this.f7835a) {
+            case 0:
+                k5.A0((k5) this.f7839f, (ve.d) this.h, (org.telegram.ui.ActionBar.c2) this.f7836b, this.f7837c, (TL_stars.TL_starGiftUnique) this.f7840n, (TLRPC.TL_error) this.f7838e, this.d, (CharSequence) this.f7841r);
+                return;
+            case 1:
+                dy.l0((dy) this.f7839f, (org.telegram.ui.ActionBar.c2) this.f7836b, this.f7837c, (TLRPC.User) this.h, (TLRPC.Chat) this.f7840n, this.d, (TLRPC.TL_error) this.f7838e, (TLRPC.TL_messages_checkHistoryImportPeer) this.f7841r);
+                return;
+            default:
+                Context context = (Context) this.f7839f;
+                ih.j0 j0Var = (ih.j0) this.h;
+                byte[] bArr = (byte[]) this.f7836b;
+                oc ocVar = (oc) this.f7838e;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f7841r;
+                TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) this.f7837c;
+                y21 y21Var = new y21(context, j0Var, this.d, bArr);
+                y21Var.N(tL_channels_sponsoredMessageReportResultChooseOption);
+                y21Var.f44697s = new q21((org.telegram.messenger.video.a) this.f7840n, ocVar, context, j0Var, dVar);
+                y21Var.show();
+                return;
         }
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.f7170e || super.verifyDrawable(drawable);
+    public b3(TLObject tLObject, Context context, ih.j0 j0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, oc ocVar, org.telegram.messenger.video.d dVar) {
+        this.f7837c = tLObject;
+        this.f7839f = context;
+        this.h = j0Var;
+        this.d = j10;
+        this.f7836b = bArr;
+        this.f7840n = aVar;
+        this.f7838e = ocVar;
+        this.f7841r = dVar;
+    }
+
+    public b3(dy dyVar, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_error tL_error, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.f7839f = dyVar;
+        this.f7836b = c2Var;
+        this.f7837c = tLObject;
+        this.h = user;
+        this.f7840n = chat;
+        this.d = j10;
+        this.f7838e = tL_error;
+        this.f7841r = tL_messages_checkHistoryImportPeer;
     }
 }

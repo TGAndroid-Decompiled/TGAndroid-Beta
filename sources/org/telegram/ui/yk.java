@@ -1,83 +1,81 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.tgnet.TLRPC;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class yk extends FrameLayout {
+    public float f44891a;
+    public float f44892b;
+    public final qn f44893c;
 
-public final class yk extends org.telegram.ui.Components.gb0 {
-    public final rn D;
-
-    public yk(rn rnVar, Context context, rn rnVar2, jg.a aVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.cb0 cb0Var, int i11, boolean z10) {
-        super(context, rnVar2, aVar, messagePreviewParams, user, chat, i10, cb0Var, i11, z10);
-        this.D = rnVar;
+    public yk(qn qnVar, Activity activity) {
+        super(activity);
+        this.f44893c = qnVar;
+        setOnLongClickListener(new u(this, 2));
     }
 
     @Override
-    public final void b() {
-        MessageObject messageObject;
-        hn hnVar;
-        rn rnVar = this.D;
-        hn hnVar2 = rnVar.f42069h5;
-        if (hnVar2 == null || (messageObject = hnVar2.f38861a) == null || !((hnVar = rnVar.f41992b5.quote) == null || hnVar.f38861a == null || messageObject.getId() == rnVar.f41992b5.quote.f38861a.getId())) {
-            rnVar.f42069h5 = rnVar.f41992b5.quote;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        qn qnVar = this.f44893c;
+        if (view == qnVar.f42105v2) {
+            canvas.save();
+            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
+        org.telegram.ui.ActionBar.h5[] h5VarArr = qnVar.f42155z2;
+        if (view != h5VarArr[0] && view != h5VarArr[1]) {
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            if (view == qnVar.f42105v2) {
+                canvas.restore();
+            }
+            return drawChild;
+        }
+        canvas.save();
+        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
+        boolean drawChild2 = super.drawChild(canvas, view, j10);
+        canvas.restore();
+        return drawChild2;
     }
 
     @Override
-    public final void c(boolean z10) {
-        int i10;
-        boolean z11;
-        MessagePreviewParams.Messages messages;
-        a(false);
-        rn rnVar = this.D;
-        MessagePreviewParams messagePreviewParams = rnVar.f41992b5;
-        if (messagePreviewParams != null) {
-            if (!z10) {
-                rnVar.f42082i5 = true;
-            }
-            MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
-            if (messages2 != null) {
-                int size = messages2.messages.size();
-                i10 = 0;
-                z11 = false;
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject messageObject = rnVar.f41992b5.forwardMessages.messages.get(i11);
-                    if (messageObject.isTodo()) {
-                        i10 = 3;
-                    } else if (messageObject.isPoll()) {
-                        if (i10 != 2) {
-                            i10 = messageObject.isPublicPoll() ? 2 : 1;
-                        }
-                    } else if (messageObject.isInvoice()) {
-                        z11 = true;
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        qn qnVar = this.f44893c;
+        if (qnVar.f42116w2) {
+            int i11 = 0;
+            while (true) {
+                AnimatorSet[] animatorSetArr = qnVar.D2;
+                if (i11 < animatorSetArr.length) {
+                    AnimatorSet animatorSet = animatorSetArr[i11];
+                    if (animatorSet != null) {
+                        animatorSet.start();
                     }
-                    rnVar.S5[0].put(messageObject.getId(), messageObject);
-                }
-            } else {
-                i10 = 0;
-                z11 = false;
-            }
-            Bundle bundleE = org.telegram.messenger.y1.e(3, "onlySelect", "dialogsType", true);
-            bundleE.putBoolean("quote", !z10);
-            boolean z12 = (z10 || (messages = rnVar.f41992b5.replyMessage) == null || messages.messages.isEmpty() || rnVar.f41992b5.quote != null) ? false : true;
-            bundleE.putBoolean("reply_to", z12);
-            if (z12) {
-                long peerDialogId = DialogObject.getPeerDialogId(rnVar.f41992b5.replyMessage.messages.get(0).getFromPeer());
-                if (peerDialogId != 0 && peerDialogId != rnVar.a() && peerDialogId != rnVar.getUserConfig().getClientUserId() && peerDialogId > 0) {
-                    bundleE.putLong("reply_to_author", peerDialogId);
+                    i11++;
+                } else {
+                    qnVar.f42116w2 = false;
+                    return;
                 }
             }
-            bundleE.putInt("hasPoll", i10);
-            bundleE.putBoolean("hasInvoice", z11);
-            MessagePreviewParams.Messages messages3 = rnVar.f41992b5.forwardMessages;
-            bundleE.putInt("messagesCount", messages3 != null ? messages3.messages.size() : 0);
-            bundleE.putBoolean("canSelectTopics", true);
-            gy gyVar = new gy(bundleE);
-            gyVar.f38621y2 = rnVar;
-            rnVar.presentFragment(gyVar);
         }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.f44891a = motionEvent.getY();
+        int action = motionEvent.getAction();
+        qn qnVar = this.f44893c;
+        if (action == 1) {
+            qnVar.finishPreviewFragment();
+        } else if (motionEvent.getAction() == 2) {
+            float f10 = this.f44892b - this.f44891a;
+            qnVar.movePreviewFragment(f10);
+            if (f10 < 0.0f) {
+                this.f44892b = this.f44891a;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

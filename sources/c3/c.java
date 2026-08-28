@@ -1,22 +1,18 @@
 package c3;
-
 public final class c {
-
-    public static final c f2421a;
-
-    public static final c f2422b;
-
-    public static final c f2423c;
+    public static final c f2283a;
+    public static final c f2284b;
+    public static final c f2285c;
     public static final c[] d;
 
     static {
-        c cVar = new c("NETWORK_UNMETERED", 0);
-        f2421a = cVar;
-        c cVar2 = new c("DEVICE_IDLE", 1);
-        f2422b = cVar2;
-        c cVar3 = new c("DEVICE_CHARGING", 2);
-        f2423c = cVar3;
-        d = new c[]{cVar, cVar2, cVar3};
+        ?? r02 = new Enum("NETWORK_UNMETERED", 0);
+        f2283a = r02;
+        ?? r12 = new Enum("DEVICE_IDLE", 1);
+        f2284b = r12;
+        ?? r32 = new Enum("DEVICE_CHARGING", 2);
+        f2285c = r32;
+        d = new c[]{r02, r12, r32};
     }
 
     public static c valueOf(String str) {

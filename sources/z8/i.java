@@ -1,71 +1,70 @@
 package z8;
 
-import h7.v8;
+import java.util.ArrayDeque;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.logging.Logger;
+import org.telegram.ui.fm;
+import x5.l;
+public final class i implements Executor {
+    public static final Logger f50379f = Logger.getLogger(i.class.getName());
+    public final Executor f50380a;
+    public final ArrayDeque f50381b = new ArrayDeque();
+    public int f50382c = 1;
+    public long d = 0;
+    public final fm f50383e = new fm(this);
 
-public final class i {
-
-    public final q f50238a;
-
-    public final int f50239b;
-
-    public final int f50240c;
-
-    public i(int i10, int i11, Class cls) {
-        this(q.a(cls), i10, i11);
+    public i(Executor executor) {
+        l.h(executor);
+        this.f50380a = executor;
     }
 
-    public static i a(Class cls) {
-        return new i(1, 0, cls);
-    }
-
-    public static i b(q qVar) {
-        return new i(qVar, 1, 0);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof i)) {
-            return false;
+    @Override
+    public final void execute(Runnable runnable) {
+        l.h(runnable);
+        synchronized (this.f50381b) {
+            int i9 = this.f50382c;
+            if (i9 != 4 && i9 != 3) {
+                long j10 = this.d;
+                f6.c cVar = new f6.c(2, runnable);
+                this.f50381b.add(cVar);
+                this.f50382c = 2;
+                try {
+                    this.f50380a.execute(this.f50383e);
+                    if (this.f50382c == 2) {
+                        synchronized (this.f50381b) {
+                            try {
+                                if (this.d == j10 && this.f50382c == 2) {
+                                    this.f50382c = 3;
+                                }
+                            } finally {
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Error | RuntimeException e10) {
+                    synchronized (this.f50381b) {
+                        try {
+                            int i10 = this.f50382c;
+                            boolean z10 = true;
+                            if ((i10 != 1 && i10 != 2) || !this.f50381b.removeLastOccurrence(cVar)) {
+                                z10 = false;
+                            }
+                            if (!(e10 instanceof RejectedExecutionException) || z10) {
+                                throw e10;
+                            }
+                        } finally {
+                        }
+                    }
+                    return;
+                }
+            }
+            this.f50381b.add(runnable);
         }
-        i iVar = (i) obj;
-        return this.f50238a.equals(iVar.f50238a) && this.f50239b == iVar.f50239b && this.f50240c == iVar.f50240c;
-    }
-
-    public final int hashCode() {
-        return ((((this.f50238a.hashCode() ^ 1000003) * 1000003) ^ this.f50239b) * 1000003) ^ this.f50240c;
     }
 
     public final String toString() {
-        String str;
-        String str2;
-        StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
-        sb2.append(this.f50238a);
-        sb2.append(", type=");
-        int i10 = this.f50239b;
-        if (i10 == 1) {
-            str = "required";
-        } else {
-            str = i10 == 0 ? "optional" : "set";
-        }
-        sb2.append(str);
-        sb2.append(", injection=");
-        int i11 = this.f50240c;
-        if (i11 == 0) {
-            str2 = "direct";
-        } else if (i11 == 1) {
-            str2 = "provider";
-        } else {
-            if (i11 != 2) {
-                throw new AssertionError(i0.a.k(i11, "Unsupported injection: "));
-            }
-            str2 = "deferred";
-        }
-        return a9.p.p(sb2, str2, "}");
-    }
-
-    public i(q qVar, int i10, int i11) {
-        v8.a(qVar, "Null dependency anInterface.");
-        this.f50238a = qVar;
-        this.f50239b = i10;
-        this.f50240c = i11;
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f50380a + "}";
     }
 }

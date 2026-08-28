@@ -1,48 +1,81 @@
 package kh;
 
-import ag.n0;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import cg.x0;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.qa;
-import org.telegram.ui.Components.yk0;
-import org.telegram.ui.Components.zk0;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.BuildVars;
+public final class u {
+    public static ArrayList f16114f;
+    public final String f16115a;
+    public final int f16116b;
+    public final int f16117c;
+    public final int[] d;
+    public final ArrayList f16118e = new ArrayList();
 
-public final class u extends qa {
-    public final int T;
-    public final CharSequence U;
-    public b51 V;
-
-    public u(n2 n2Var, String str, n0 n0Var) {
-        super(n2Var.getParentActivity(), n2Var, true, false, false, 1, n2Var.getResourceProvider());
-        new FrameLayout(getContext());
-        new ImageView(getContext());
-        this.T = n2Var.getCurrentAccount();
-        this.U = str;
-        N();
-        this.v = 0.6f;
-        this.f31860y = true;
-        this.A = true;
-        fixNavigationBar();
-        K();
-        zk0 zk0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        zk0Var.setPadding(i10, 0, i10, 0);
-        this.d.setOnItemClickListener(new x0(3, this, n0Var));
+    public u(String str) {
+        str = str == null ? "." : str;
+        this.f16115a = str;
+        String[] split = str.split("/");
+        int length = split.length;
+        this.f16117c = length;
+        this.d = new int[length];
+        int i9 = 0;
+        for (int i10 = 0; i10 < split.length; i10++) {
+            this.d[i10] = split[i10].length();
+            i9 = Math.max(i9, split[i10].length());
+        }
+        this.f16116b = i9;
+        for (int i11 = 0; i11 < split.length; i11++) {
+            for (int i12 = 0; i12 < split[i11].length(); i12++) {
+                this.f16118e.add(new t(this, i12, i11));
+            }
+        }
     }
 
-    @Override
-    public final yk0 w(zk0 zk0Var) {
-        b51 b51Var = new b51(zk0Var, getContext(), this.T, 0, false, new ch.c(this, 23), this.resourcesProvider);
-        this.V = b51Var;
-        b51Var.f26942r = false;
-        return b51Var;
+    public static ArrayList a() {
+        if (f16114f == null) {
+            ArrayList arrayList = new ArrayList();
+            f16114f = arrayList;
+            arrayList.add(new u("./."));
+            f16114f.add(new u(".."));
+            f16114f.add(new u("../."));
+            f16114f.add(new u("./.."));
+            f16114f.add(new u("././."));
+            f16114f.add(new u("..."));
+            f16114f.add(new u("../.."));
+            f16114f.add(new u("./../.."));
+            f16114f.add(new u("../../."));
+            f16114f.add(new u("../../.."));
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                f16114f.add(new u("../../../.."));
+                f16114f.add(new u(".../.../..."));
+                f16114f.add(new u("..../..../...."));
+                f16114f.add(new u(".../.../.../..."));
+            }
+        }
+        return f16114f;
     }
 
-    @Override
-    public final CharSequence z() {
-        return this.U;
+    public static int b() {
+        ArrayList a2 = a();
+        int size = a2.size();
+        int i9 = 0;
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = a2.get(i10);
+            i10++;
+            i9 = Math.max(i9, ((u) obj).f16118e.size());
+        }
+        return i9;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof u) {
+            return TextUtils.equals(this.f16115a, ((u) obj).f16115a);
+        }
+        return false;
+    }
+
+    public final String toString() {
+        return this.f16115a;
     }
 }

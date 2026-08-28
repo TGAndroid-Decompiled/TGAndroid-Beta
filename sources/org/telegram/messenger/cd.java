@@ -1,30 +1,26 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
-
 public final class cd implements Runnable {
+    public final int f19988a;
+    public final long f19989b;
+    public final long f19990c;
+    public final BaseController d;
 
-    public final int f19958a;
-
-    public final MessagesController f19959b;
-
-    public final TLRPC.TL_help_peerColors f19960c;
-
-    public cd(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f19958a = i10;
-        this.f19959b = messagesController;
-        this.f19960c = tL_help_peerColors;
+    public cd(BaseController baseController, long j10, long j11, int i9) {
+        this.f19988a = i9;
+        this.d = baseController;
+        this.f19989b = j10;
+        this.f19990c = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19958a) {
+        switch (this.f19988a) {
             case 0:
-                this.f19959b.lambda$checkPeerColors$492(this.f19960c);
-                break;
+                ((MessagesController) this.d).lambda$markDialogAsReadNow$240(this.f19989b, this.f19990c);
+                return;
             default:
-                this.f19959b.lambda$checkPeerColors$490(this.f19960c);
-                break;
+                ((NotificationsController) this.d).lambda$setOpenedDialogId$3(this.f19989b, this.f19990c);
+                return;
         }
     }
 }

@@ -7,7 +7,6 @@ import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowInsets;
-
 public abstract class b0 {
     public static void a(WindowInsets windowInsets, View view) {
         View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296698);
@@ -17,9 +16,9 @@ public abstract class b0 {
     }
 
     public static m1 b(View view, m1 m1Var, Rect rect) {
-        WindowInsets windowInsetsG = m1Var.g();
-        if (windowInsetsG != null) {
-            return m1.h(view, view.computeSystemWindowInsets(windowInsetsG, rect));
+        WindowInsets g10 = m1Var.g();
+        if (g10 != null) {
+            return m1.h(view, view.computeSystemWindowInsets(g10, rect));
         }
         rect.setEmpty();
         return m1Var;
@@ -38,32 +37,34 @@ public abstract class b0 {
     }
 
     public static m1 f(View view) {
-        c1 z0Var;
+        c1 y0Var;
         if (x0.d && view.isAttachedToWindow()) {
             try {
-                Object obj = x0.f46648a.get(view.getRootView());
+                Object obj = x0.f46958a.get(view.getRootView());
                 if (obj != null) {
-                    Rect rect = (Rect) x0.f46649b.get(obj);
-                    Rect rect2 = (Rect) x0.f46650c.get(obj);
+                    Rect rect = (Rect) x0.f46959b.get(obj);
+                    Rect rect2 = (Rect) x0.f46960c.get(obj);
                     if (rect != null && rect2 != null) {
-                        int i10 = Build.VERSION.SDK_INT;
-                        if (i10 >= 34) {
-                            z0Var = new b1();
-                        } else if (i10 >= 30) {
-                            z0Var = new a1();
+                        int i9 = Build.VERSION.SDK_INT;
+                        if (i9 >= 34) {
+                            y0Var = new b1();
+                        } else if (i9 >= 30) {
+                            y0Var = new a1();
+                        } else if (i9 >= 29) {
+                            y0Var = new z0();
                         } else {
-                            z0Var = i10 >= 29 ? new z0() : new y0();
+                            y0Var = new y0();
                         }
-                        z0Var.e(i0.c.b(rect.left, rect.top, rect.right, rect.bottom));
-                        z0Var.g(i0.c.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
-                        m1 m1VarB = z0Var.b();
-                        m1VarB.f46619a.r(m1VarB);
-                        m1VarB.f46619a.d(view.getRootView());
-                        return m1VarB;
+                        y0Var.e(i0.b.b(rect.left, rect.top, rect.right, rect.bottom));
+                        y0Var.g(i0.b.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
+                        m1 b10 = y0Var.b();
+                        b10.f46929a.r(b10);
+                        b10.f46929a.d(view.getRootView());
+                        return b10;
                     }
                 }
-            } catch (IllegalAccessException e9) {
-                Log.w("WindowInsetsCompat", "Failed to get insets from AttachInfo. " + e9.getMessage(), e9);
+            } catch (IllegalAccessException e10) {
+                Log.w("WindowInsetsCompat", "Failed to get insets from AttachInfo. " + e10.getMessage(), e10);
             }
         }
         return null;
@@ -82,15 +83,20 @@ public abstract class b0 {
     }
 
     public static void j(View view, o oVar) {
-        a0 a0Var = oVar != null ? new a0(view, oVar) : null;
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
+        if (oVar != null) {
+            onApplyWindowInsetsListener = new a0(view, oVar);
+        } else {
+            onApplyWindowInsetsListener = null;
+        }
         if (Build.VERSION.SDK_INT < 30) {
-            view.setTag(2131296687, a0Var);
+            view.setTag(2131296687, onApplyWindowInsetsListener);
         }
         if (view.getTag(2131296686) != null) {
             return;
         }
-        if (a0Var != null) {
-            view.setOnApplyWindowInsetsListener(a0Var);
+        if (onApplyWindowInsetsListener != null) {
+            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
         } else {
             view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296698));
         }

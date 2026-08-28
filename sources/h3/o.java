@@ -1,32 +1,29 @@
 package h3;
+public final class o implements n8.i {
+    public final int f9613a;
+    public final Object f9614b;
 
-public final class o implements o8.i {
-
-    public final int f8043a;
-
-    public final Object f8044b;
-
-    public o(Object obj, int i10) {
-        this.f8043a = i10;
-        this.f8044b = obj;
+    public o(Object obj, int i9) {
+        this.f9613a = i9;
+        this.f9614b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f8043a) {
+        switch (this.f9613a) {
             case 0:
-                return (j) this.f8044b;
+                return (j) this.f9614b;
             case 1:
-                return (b5.v) this.f8044b;
+                return (b5.w) this.f9614b;
             case 2:
-                return (l) this.f8044b;
+                return (l) this.f9614b;
             case 3:
-                return Boolean.valueOf(((q0) this.f8044b).K);
+                return Boolean.valueOf(((q0) this.f9614b).K);
             default:
                 try {
-                    return (j4.b0) ((Class) this.f8044b).getConstructor(null).newInstance(null);
-                } catch (Exception e9) {
-                    throw new IllegalStateException(e9);
+                    return (j4.c0) ((Class) this.f9614b).getConstructor(null).newInstance(null);
+                } catch (Exception e10) {
+                    throw new IllegalStateException(e10);
                 }
         }
     }

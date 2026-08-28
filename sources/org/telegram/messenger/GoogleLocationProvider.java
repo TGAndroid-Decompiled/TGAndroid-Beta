@@ -5,7 +5,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.WorkSource;
-import com.google.android.gms.common.api.internal.r;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.tasks.Task;
@@ -17,10 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
-
+import org.telegram.messenger.ILocationServiceProvider;
+import org.telegram.messenger.PushListenerController;
 public class GoogleLocationProvider implements ILocationServiceProvider {
-    private r7.a locationProviderClient;
-    private r7.i settingsClient;
+    private q7.a locationProviderClient;
+    private q7.i settingsClient;
 
     public static final class GoogleApiClientImpl implements ILocationServiceProvider.IMapApiClient {
         private com.google.android.gms.common.api.m apiClient;
@@ -45,54 +45,73 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
 
         @Override
         public void setFastestInterval(long j10) {
+            boolean z10;
             LocationRequest locationRequest = this.request;
             locationRequest.getClass();
-            y5.l.c(j10 >= 0, "illegal fastest interval: %d", Long.valueOf(j10));
-            locationRequest.f4339c = j10;
+            if (j10 >= 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            x5.l.c(z10, "illegal fastest interval: %d", Long.valueOf(j10));
+            locationRequest.f3897c = j10;
         }
 
         @Override
         public void setInterval(long j10) {
+            boolean z10;
             LocationRequest locationRequest = this.request;
             locationRequest.getClass();
-            y5.l.a("intervalMillis must be greater than or equal to 0", j10 >= 0);
-            long j11 = locationRequest.f4339c;
-            long j12 = locationRequest.f4338b;
+            if (j10 >= 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            x5.l.a("intervalMillis must be greater than or equal to 0", z10);
+            long j11 = locationRequest.f3897c;
+            long j12 = locationRequest.f3896b;
             if (j11 == j12 / 6) {
-                locationRequest.f4339c = j10 / 6;
+                locationRequest.f3897c = j10 / 6;
             }
-            if (locationRequest.f4343r == j12) {
-                locationRequest.f4343r = j10;
+            if (locationRequest.f3901r == j12) {
+                locationRequest.f3901r = j10;
             }
-            locationRequest.f4338b = j10;
+            locationRequest.f3896b = j10;
         }
 
         @Override
-        public void setPriority(int i10) {
-            int i11;
+        public void setPriority(int i9) {
+            int i10;
             boolean z10;
-            int i12 = 105;
-            if (i10 == 1) {
-                i11 = 102;
-            } else if (i10 != 2) {
-                i11 = i10 != 3 ? 100 : 105;
+            int i11 = 105;
+            if (i9 != 1) {
+                if (i9 != 2) {
+                    if (i9 != 3) {
+                        i10 = 100;
+                    } else {
+                        i10 = 105;
+                    }
+                } else {
+                    i10 = 104;
+                }
             } else {
-                i11 = 104;
+                i10 = 102;
             }
             LocationRequest locationRequest = this.request;
             locationRequest.getClass();
-            if (i11 != 100 && i11 != 102 && i11 != 104) {
-                if (i11 != 105) {
-                    i12 = i11;
+            if (i10 != 100 && i10 != 102 && i10 != 104) {
+                if (i10 != 105) {
+                    i11 = i10;
                     z10 = false;
+                    x5.l.c(z10, "priority %d must be a Priority.PRIORITY_* constant", Integer.valueOf(i11));
+                    locationRequest.f3895a = i10;
                 }
-                y5.l.c(z10, "priority %d must be a Priority.PRIORITY_* constant", Integer.valueOf(i12));
-                locationRequest.f4337a = i11;
+            } else {
+                i11 = i10;
             }
-            i12 = i11;
             z10 = true;
-            y5.l.c(z10, "priority %d must be a Priority.PRIORITY_* constant", Integer.valueOf(i12));
-            locationRequest.f4337a = i11;
+            x5.l.c(z10, "priority %d must be a Priority.PRIORITY_* constant", Integer.valueOf(i11));
+            locationRequest.f3895a = i10;
         }
 
         private GoogleLocationRequest(LocationRequest locationRequest) {
@@ -104,16 +123,16 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         try {
             task.getResult(com.google.android.gms.common.api.f.class);
             aVar.accept(0);
-        } catch (com.google.android.gms.common.api.f e9) {
-            int statusCode = e9.getStatusCode();
-            if (statusCode == 6) {
-                aVar.accept(1);
-            } else {
-                if (statusCode != 8502) {
+        } catch (com.google.android.gms.common.api.f e10) {
+            int statusCode = e10.getStatusCode();
+            if (statusCode != 6) {
+                if (statusCode == 8502) {
+                    aVar.accept(2);
                     return;
                 }
-                aVar.accept(2);
+                return;
             }
+            aVar.accept(1);
         }
     }
 
@@ -131,14 +150,14 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         if (locationRequest != null) {
             arrayList.add(locationRequest);
         }
-        r7.i iVar = this.settingsClient;
-        r7.e eVar = new r7.e(arrayList, false, false);
-        c7.d dVar = (c7.d) iVar;
-        dVar.getClass();
-        com.google.android.gms.common.api.internal.v vVarB = com.google.android.gms.common.api.internal.w.b();
-        vVarB.f3359c = new ga.c(eVar, 6);
-        vVarB.f3357a = 2426;
-        dVar.e(0, vVarB.b()).addOnCompleteListener(new h4(aVar, 1));
+        q7.i iVar = this.settingsClient;
+        q7.e eVar = new q7.e(arrayList, false, false);
+        b7.e eVar2 = (b7.e) iVar;
+        eVar2.getClass();
+        com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
+        b10.f2914c = new android.support.v4.media.c(eVar, 3);
+        b10.f2912a = 2426;
+        eVar2.e(0, b10.b()).addOnCompleteListener(new f4(aVar, 1));
     }
 
     @Override
@@ -148,22 +167,22 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
 
     @Override
     public void getLastLocation(q0.a aVar) {
-        c7.d dVar = (c7.d) this.locationProviderClient;
-        dVar.getClass();
-        com.google.android.gms.common.api.internal.v vVarB = com.google.android.gms.common.api.internal.w.b();
-        vVarB.f3359c = c7.b.f2460c;
-        vVarB.f3357a = 2414;
-        dVar.e(0, vVarB.b()).addOnCompleteListener(new h4(aVar, 0));
+        b7.e eVar = (b7.e) this.locationProviderClient;
+        eVar.getClass();
+        com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
+        b10.f2914c = b7.b.f1553c;
+        b10.f2912a = 2414;
+        eVar.e(0, b10.b()).addOnCompleteListener(new f4(aVar, 0));
     }
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = r7.d.f46858a;
-        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f3198c;
-        com.google.android.gms.common.api.e eVar2 = c7.d.f2462k;
-        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f3189g;
-        this.locationProviderClient = new c7.d(context, eVar2, aVar, iVar);
-        this.settingsClient = new c7.d(context, eVar2, aVar, iVar);
+        com.google.android.gms.common.api.e eVar = q7.d.f46098a;
+        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f2753c;
+        com.google.android.gms.common.api.e eVar2 = b7.e.f1556k;
+        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f2744g;
+        this.locationProviderClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
+        this.settingsClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
     }
 
     @Override
@@ -174,25 +193,26 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     @Override
     public ILocationServiceProvider.IMapApiClient onCreateLocationServicesAPI(Context context, final ILocationServiceProvider.IAPIConnectionCallbacks iAPIConnectionCallbacks, final ILocationServiceProvider.IAPIOnConnectionFailedListener iAPIOnConnectionFailedListener) {
         List list;
+        boolean z10;
         Context context2 = ApplicationLoader.applicationContext;
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
-        a0.f fVar = new a0.f(0);
-        a0.f fVar2 = new a0.f(0);
-        Object obj = v5.d.f48793c;
-        a6.b bVar = y7.b.f49799a;
+        ?? kVar = new a0.k(0);
+        ?? kVar2 = new a0.k(0);
+        Object obj = u5.d.f48108c;
+        b7.d dVar = x7.b.f49082a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar = r7.d.f46858a;
-        y5.l.i(eVar, "Api must not be null");
-        fVar2.put(eVar, null);
-        a6.b bVar2 = eVar.f3190a;
-        y5.l.i(bVar2, "Base client builder must not be null");
-        switch (bVar2.f102a) {
-            case 5:
+        com.google.android.gms.common.api.e eVar = q7.d.f46098a;
+        x5.l.i(eVar, "Api must not be null");
+        kVar2.put(eVar, null);
+        b7.d dVar2 = eVar.f2745a;
+        x5.l.i(dVar2, "Base client builder must not be null");
+        switch (dVar2.f1555a) {
+            case 4:
                 list = Collections.EMPTY_LIST;
                 break;
             default:
@@ -202,140 +222,176 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         hashSet2.addAll(list);
         hashSet.addAll(list);
         arrayList.add(new com.google.android.gms.common.api.k() {
+            {
+                GoogleLocationProvider.this = this;
+            }
+
             @Override
             public void onConnected(Bundle bundle) {
                 iAPIConnectionCallbacks.onConnected(bundle);
             }
 
             @Override
-            public void onConnectionSuspended(int i10) {
-                iAPIConnectionCallbacks.onConnectionSuspended(i10);
+            public void onConnectionSuspended(int i9) {
+                iAPIConnectionCallbacks.onConnectionSuspended(i9);
             }
         });
         arrayList2.add(new com.google.android.gms.common.api.l() {
             @Override
-            public final void onConnectionFailed(v5.a aVar) {
-                iAPIOnConnectionFailedListener.onConnectionFailed();
+            public final void onConnectionFailed(u5.a aVar) {
+                ILocationServiceProvider.IAPIOnConnectionFailedListener.this.onConnectionFailed();
             }
         });
-        y5.l.a("must call addApi() to add at least one API", !fVar2.isEmpty());
-        y7.a aVar = y7.a.f49798a;
-        com.google.android.gms.common.api.e eVar2 = y7.b.f49800b;
-        if (fVar2.containsKey(eVar2)) {
-            aVar = (y7.a) fVar2.get(eVar2);
+        x5.l.a("must call addApi() to add at least one API", !kVar2.isEmpty());
+        x7.a aVar = x7.a.f49081a;
+        com.google.android.gms.common.api.e eVar2 = x7.b.f49083b;
+        if (kVar2.containsKey(eVar2)) {
+            aVar = (x7.a) kVar2.get(eVar2);
         }
-        m.t3 t3Var = new m.t3(hashSet, fVar, packageName, name, aVar);
-        Map map = (Map) t3Var.f17475c;
-        a0.f fVar3 = new a0.f(0);
-        a0.f fVar4 = new a0.f(0);
+        m.t3 t3Var = new m.t3(hashSet, kVar, packageName, name, aVar);
+        Map map = (Map) t3Var.f17100c;
+        a0.k kVar3 = new a0.k(0);
+        a0.k kVar4 = new a0.k(0);
         ArrayList arrayList3 = new ArrayList();
-        Iterator it = ((a0.c) fVar2.keySet()).iterator();
+        Iterator it = ((a0.c) kVar2.keySet()).iterator();
         com.google.android.gms.common.api.e eVar3 = null;
+        a0.k kVar5 = kVar2;
         while (true) {
-            a0.b bVar3 = (a0.b) it;
-            if (!bVar3.hasNext()) {
-                m.t3 t3Var2 = t3Var;
-                a0.f fVar5 = fVar3;
-                a0.f fVar6 = fVar4;
-                ArrayList arrayList4 = arrayList3;
+            a0.b bVar = (a0.b) it;
+            if (bVar.hasNext()) {
+                com.google.android.gms.common.api.e eVar4 = (com.google.android.gms.common.api.e) bVar.next();
+                Object obj2 = kVar5.get(eVar4);
+                if (map.get(eVar4) != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
                 Looper looper = mainLooper;
+                kVar3.put(eVar4, Boolean.valueOf(z10));
+                a0.k kVar6 = kVar4;
+                com.google.android.gms.common.api.internal.o1 o1Var = new com.google.android.gms.common.api.internal.o1(eVar4, z10);
+                arrayList3.add(o1Var);
+                b7.d dVar3 = eVar4.f2745a;
+                x5.l.h(dVar3);
+                ArrayList arrayList4 = arrayList3;
+                Map map2 = map;
+                m.t3 t3Var2 = t3Var;
+                a0.k kVar7 = kVar3;
+                a0.k kVar8 = kVar5;
+                com.google.android.gms.common.api.c a2 = dVar3.a(context2, looper, t3Var2, obj2, o1Var, o1Var);
+                kVar6.put(eVar4.f2746b, a2);
+                if (a2.a()) {
+                    if (eVar3 == null) {
+                        mainLooper = looper;
+                        t3Var = t3Var2;
+                        kVar4 = kVar6;
+                        eVar3 = eVar4;
+                    } else {
+                        throw new IllegalStateException(aa.d.z(eVar4.f2747c, " cannot be used with ", eVar3.f2747c));
+                    }
+                } else {
+                    mainLooper = looper;
+                    t3Var = t3Var2;
+                    kVar4 = kVar6;
+                }
+                map = map2;
+                kVar3 = kVar7;
+                kVar5 = kVar8;
+                arrayList3 = arrayList4;
+            } else {
+                m.t3 t3Var3 = t3Var;
+                a0.f fVar = kVar3;
+                a0.f fVar2 = kVar4;
+                ArrayList arrayList5 = arrayList3;
+                Looper looper2 = mainLooper;
                 if (eVar3 != null) {
-                    boolean zEquals = hashSet.equals(hashSet2);
-                    String str = eVar3.f3192c;
-                    if (!zEquals) {
-                        throw new IllegalStateException(a9.p.m("Must not set scopes in GoogleApiClient.Builder when using ", str, ". Set account in GoogleSignInOptions.Builder instead."));
+                    boolean equals = hashSet.equals(hashSet2);
+                    String str = eVar3.f2747c;
+                    if (!equals) {
+                        throw new IllegalStateException(aa.d.o("Must not set scopes in GoogleApiClient.Builder when using ", str, ". Set account in GoogleSignInOptions.Builder instead."));
                     }
                 }
-                com.google.android.gms.common.api.internal.j0 j0Var = new com.google.android.gms.common.api.internal.j0(context2, new ReentrantLock(), looper, t3Var2, fVar5, arrayList, arrayList2, fVar6, com.google.android.gms.common.api.internal.j0.f(fVar6.values(), true), arrayList4);
-                Set set = com.google.android.gms.common.api.m.f3395a;
+                com.google.android.gms.common.api.internal.j0 j0Var = new com.google.android.gms.common.api.internal.j0(context2, new ReentrantLock(), looper2, t3Var3, fVar, arrayList, arrayList2, fVar2, com.google.android.gms.common.api.internal.j0.f(fVar2.values(), true), arrayList5);
+                Set set = com.google.android.gms.common.api.m.f2950a;
                 synchronized (set) {
                     set.add(j0Var);
                 }
                 return new GoogleApiClientImpl(j0Var);
             }
-            com.google.android.gms.common.api.e eVar4 = (com.google.android.gms.common.api.e) bVar3.next();
-            Object obj2 = fVar2.get(eVar4);
-            boolean z10 = map.get(eVar4) != null;
-            Looper looper2 = mainLooper;
-            fVar3.put(eVar4, Boolean.valueOf(z10));
-            a0.f fVar7 = fVar4;
-            com.google.android.gms.common.api.internal.o1 o1Var = new com.google.android.gms.common.api.internal.o1(eVar4, z10);
-            arrayList3.add(o1Var);
-            a6.b bVar4 = eVar4.f3190a;
-            y5.l.h(bVar4);
-            ArrayList arrayList5 = arrayList3;
-            Map map2 = map;
-            t3Var = t3Var;
-            mainLooper = looper2;
-            a0.f fVar8 = fVar3;
-            a0.f fVar9 = fVar2;
-            fVar4 = fVar7;
-            com.google.android.gms.common.api.c cVarA = bVar4.a(context2, mainLooper, t3Var, obj2, o1Var, o1Var);
-            fVar4.put(eVar4.f3191b, cVarA);
-            if (cVarA.a()) {
-                if (eVar3 != null) {
-                    throw new IllegalStateException(a9.p.w(eVar4.f3192c, " cannot be used with ", eVar3.f3192c));
-                }
-                eVar3 = eVar4;
-            }
-            map = map2;
-            fVar3 = fVar8;
-            fVar2 = fVar9;
-            arrayList3 = arrayList5;
         }
     }
 
     @Override
     public void removeLocationUpdates(final ILocationServiceProvider.ILocationListener iLocationListener) {
-        r7.a aVar = this.locationProviderClient;
-        r7.c cVar = new r7.c() {
+        q7.a aVar = this.locationProviderClient;
+        q7.c cVar = new q7.c() {
+            {
+                GoogleLocationProvider.this = this;
+            }
+
             @Override
             public void onLocationResult(LocationResult locationResult) {
+                Location location;
                 ILocationServiceProvider.ILocationListener iLocationListener2 = iLocationListener;
-                List list = locationResult.f4349a;
+                List list = locationResult.f3907a;
                 int size = list.size();
-                iLocationListener2.onLocationChanged(size == 0 ? null : (Location) list.get(size - 1));
+                if (size == 0) {
+                    location = null;
+                } else {
+                    location = (Location) list.get(size - 1);
+                }
+                iLocationListener2.onLocationChanged(location);
             }
         };
-        c7.d dVar = (c7.d) aVar;
-        dVar.getClass();
-        String simpleName = r7.c.class.getSimpleName();
-        y5.l.g(simpleName, "Listener type must not be empty");
-        dVar.c(new com.google.android.gms.common.api.internal.n(cVar, simpleName), 2418).continueWith(c7.c.f2461a, c7.b.f2459b);
+        b7.e eVar = (b7.e) aVar;
+        eVar.getClass();
+        String simpleName = q7.c.class.getSimpleName();
+        x5.l.g(simpleName, "Listener type must not be empty");
+        eVar.c(new com.google.android.gms.common.api.internal.n(cVar, simpleName), 2418).continueWith(b7.c.f1554a, b7.b.f1552b);
     }
 
     @Override
     public void requestLocationUpdates(ILocationServiceProvider.ILocationRequest iLocationRequest, final ILocationServiceProvider.ILocationListener iLocationListener) {
-        r7.a aVar = this.locationProviderClient;
+        q7.a aVar = this.locationProviderClient;
         LocationRequest locationRequest = ((GoogleLocationRequest) iLocationRequest).request;
-        r7.c cVar = new r7.c() {
+        q7.c cVar = new q7.c() {
+            {
+                GoogleLocationProvider.this = this;
+            }
+
             @Override
             public void onLocationResult(LocationResult locationResult) {
+                Location location;
                 ILocationServiceProvider.ILocationListener iLocationListener2 = iLocationListener;
-                List list = locationResult.f4349a;
+                List list = locationResult.f3907a;
                 int size = list.size();
-                iLocationListener2.onLocationChanged(size == 0 ? null : (Location) list.get(size - 1));
+                if (size == 0) {
+                    location = null;
+                } else {
+                    location = (Location) list.get(size - 1);
+                }
+                iLocationListener2.onLocationChanged(location);
             }
         };
         Looper mainLooper = Looper.getMainLooper();
-        c7.d dVar = (c7.d) aVar;
-        dVar.getClass();
+        b7.e eVar = (b7.e) aVar;
+        eVar.getClass();
         if (mainLooper == null) {
             mainLooper = Looper.myLooper();
-            y5.l.i(mainLooper, "invalid null looper");
+            x5.l.i(mainLooper, "invalid null looper");
         }
-        com.google.android.gms.common.api.internal.p pVarN = a9.i.N(mainLooper, cVar, r7.c.class.getSimpleName());
-        androidx.activity.n nVar = new androidx.activity.n();
-        nVar.f895c = dVar;
-        nVar.f893a = true;
-        nVar.f894b = pVarN;
-        xe.b bVar = new xe.b(nVar, locationRequest, false, 8);
-        r rVar = new r();
-        rVar.f3339b = true;
-        rVar.f3340c = bVar;
-        rVar.d = nVar;
-        rVar.f3341e = pVarN;
-        rVar.f3338a = 2436;
-        dVar.b(rVar.a());
+        com.google.android.gms.common.api.internal.p D = fa.c.D(mainLooper, cVar, q7.c.class.getSimpleName());
+        ?? obj = new Object();
+        obj.f389c = eVar;
+        obj.f387a = true;
+        obj.f388b = D;
+        we.b bVar = new we.b(obj, locationRequest, false, 7);
+        ?? obj2 = new Object();
+        obj2.f2894b = true;
+        obj2.f2895c = bVar;
+        obj2.d = obj;
+        obj2.f2896e = D;
+        obj2.f2893a = 2436;
+        eVar.b(obj2.a());
     }
 }

@@ -8,7 +8,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.l;
-
 public class TL_phone {
 
     public static abstract class PhoneCall extends TLObject {
@@ -23,7 +22,6 @@ public class TL_phone {
         public byte[] g_a_hash;
         public byte[] g_a_or_b;
         public byte[] g_b;
-
         public long f22606id;
         public long key_fingerprint;
         public boolean need_debug;
@@ -36,9 +34,9 @@ public class TL_phone {
         public int start_date;
         public boolean video;
 
-        public static PhoneCall TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PhoneCall TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
             TLObject tL_phoneCall_layer176;
-            switch (i10) {
+            switch (i9) {
                 case -1770029977:
                     tL_phoneCall_layer176 = new TL_phoneCall_layer176();
                     break;
@@ -64,7 +62,7 @@ public class TL_phone {
                     tL_phoneCall_layer176 = null;
                     break;
             }
-            return (PhoneCall) TLObject.TLdeserialize(PhoneCall.class, tL_phoneCall_layer176, inputSerializedData, i10, z10);
+            return (PhoneCall) TLObject.TLdeserialize(PhoneCall.class, tL_phoneCall_layer176, inputSerializedData, i9, z10);
         }
     }
 
@@ -76,14 +74,18 @@ public class TL_phone {
         public boolean udp_p2p;
         public boolean udp_reflector;
 
-        public static PhoneCallProtocol TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PhoneCallProtocol TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
             TLObject tL_phoneCallProtocol_layer110;
-            if (i10 != -1564789301) {
-                tL_phoneCallProtocol_layer110 = i10 != -58224696 ? null : new TL_phoneCallProtocol();
+            if (i9 != -1564789301) {
+                if (i9 != -58224696) {
+                    tL_phoneCallProtocol_layer110 = null;
+                } else {
+                    tL_phoneCallProtocol_layer110 = new TL_phoneCallProtocol();
+                }
             } else {
                 tL_phoneCallProtocol_layer110 = new TL_phoneCallProtocol_layer110();
             }
-            return (PhoneCallProtocol) TLObject.TLdeserialize(PhoneCallProtocol.class, tL_phoneCallProtocol_layer110, inputSerializedData, i10, z10);
+            return (PhoneCallProtocol) TLObject.TLdeserialize(PhoneCallProtocol.class, tL_phoneCallProtocol_layer110, inputSerializedData, i9, z10);
         }
     }
 
@@ -93,8 +95,14 @@ public class TL_phone {
         public long last_timestamp_ms;
         public int scale;
 
-        public static TL_groupCallStreamChannel TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (TL_groupCallStreamChannel) TLObject.TLdeserialize(TL_groupCallStreamChannel.class, -2132064081 != i10 ? null : new TL_groupCallStreamChannel(), inputSerializedData, i10, z10);
+        public static TL_groupCallStreamChannel TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            TL_groupCallStreamChannel tL_groupCallStreamChannel;
+            if (-2132064081 != i9) {
+                tL_groupCallStreamChannel = null;
+            } else {
+                tL_groupCallStreamChannel = new TL_groupCallStreamChannel();
+            }
+            return (TL_groupCallStreamChannel) TLObject.TLdeserialize(TL_groupCallStreamChannel.class, tL_groupCallStreamChannel, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -118,9 +126,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.p2p_allowed = TLObject.hasFlag(int32, 32);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.p2p_allowed = TLObject.hasFlag(readInt32, 32);
             this.video = TLObject.hasFlag(this.flags, 64);
             this.conference_supported = TLObject.hasFlag(this.flags, 256);
             this.f22606id = inputSerializedData.readInt64(z10);
@@ -169,9 +177,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.video = TLObject.hasFlag(int32, 64);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.video = TLObject.hasFlag(readInt32, 64);
             this.f22606id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -202,9 +210,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.need_rating = TLObject.hasFlag(int32, 4);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.need_rating = TLObject.hasFlag(readInt32, 4);
             this.need_debug = TLObject.hasFlag(this.flags, 8);
             this.video = TLObject.hasFlag(this.flags, 64);
             this.f22606id = inputSerializedData.readInt64(z10);
@@ -256,9 +264,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.udp_p2p = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.udp_p2p = TLObject.hasFlag(readInt32, 1);
             this.udp_reflector = TLObject.hasFlag(this.flags, 2);
             this.min_layer = inputSerializedData.readInt32(z10);
             this.max_layer = inputSerializedData.readInt32(z10);
@@ -284,9 +292,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.udp_p2p = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.udp_p2p = TLObject.hasFlag(readInt32, 1);
             this.udp_reflector = TLObject.hasFlag(this.flags, 2);
             this.min_layer = inputSerializedData.readInt32(z10);
             this.max_layer = inputSerializedData.readInt32(z10);
@@ -310,9 +318,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.video = TLObject.hasFlag(int32, 64);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.video = TLObject.hasFlag(readInt32, 64);
             this.f22606id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -347,9 +355,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.p2p_allowed = TLObject.hasFlag(int32, 32);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.p2p_allowed = TLObject.hasFlag(readInt32, 32);
             this.video = TLObject.hasFlag(this.flags, 64);
             this.f22606id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
@@ -389,8 +397,14 @@ public class TL_phone {
         public PhoneCall phone_call;
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_phone_phoneCall TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (TL_phone_phoneCall) TLObject.TLdeserialize(TL_phone_phoneCall.class, -326966976 != i10 ? null : new TL_phone_phoneCall(), inputSerializedData, i10, z10);
+        public static TL_phone_phoneCall TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            TL_phone_phoneCall tL_phone_phoneCall;
+            if (-326966976 != i9) {
+                tL_phone_phoneCall = null;
+            } else {
+                tL_phone_phoneCall = new TL_phone_phoneCall();
+            }
+            return (TL_phone_phoneCall) TLObject.TLdeserialize(TL_phone_phoneCall.class, tL_phone_phoneCall, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -414,8 +428,8 @@ public class TL_phone {
         public TL_phoneCallProtocol protocol;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -433,8 +447,8 @@ public class TL_phone {
         public ArrayList<Integer> sources = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserializeInt(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return Vector.TLDeserializeInt(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -453,8 +467,8 @@ public class TL_phone {
         public TL_phoneCallProtocol protocol;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -479,8 +493,8 @@ public class TL_phone {
         public boolean video_stopped;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -511,8 +525,8 @@ public class TL_phone {
         public String title;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -535,8 +549,8 @@ public class TL_phone {
         public int msg_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -556,8 +570,8 @@ public class TL_phone {
         public boolean only_left;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -592,8 +606,8 @@ public class TL_phone {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -615,8 +629,8 @@ public class TL_phone {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -630,8 +644,8 @@ public class TL_phone {
         public boolean video;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -652,8 +666,8 @@ public class TL_phone {
         public TLRPC.InputGroupCall call;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -676,8 +690,8 @@ public class TL_phone {
         public int volume;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -713,8 +727,8 @@ public class TL_phone {
         public String title;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -732,8 +746,8 @@ public class TL_phone {
         public int flags;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return exportedGroupCallInvite.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return exportedGroupCallInvite.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -750,8 +764,14 @@ public class TL_phone {
         public static final int constructor = 541839704;
         public String link;
 
-        public static exportedGroupCallInvite TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (exportedGroupCallInvite) TLObject.TLdeserialize(exportedGroupCallInvite.class, 541839704 != i10 ? null : new exportedGroupCallInvite(), inputSerializedData, i10, z10);
+        public static exportedGroupCallInvite TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            exportedGroupCallInvite exportedgroupcallinvite;
+            if (541839704 != i9) {
+                exportedgroupcallinvite = null;
+            } else {
+                exportedgroupcallinvite = new exportedGroupCallInvite();
+            }
+            return (exportedGroupCallInvite) TLObject.TLdeserialize(exportedGroupCallInvite.class, exportedgroupcallinvite, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -770,8 +790,8 @@ public class TL_phone {
         public static final int constructor = 1430593449;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -786,8 +806,8 @@ public class TL_phone {
         public int limit;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return groupCall.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return groupCall.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -806,8 +826,8 @@ public class TL_phone {
         public int sub_chain_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -825,8 +845,8 @@ public class TL_phone {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return joinAsPeers.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return joinAsPeers.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -847,8 +867,8 @@ public class TL_phone {
         }
 
         @Override
-        public groupCallStars deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return groupCallStars.TLdeserialize(inputSerializedData, i10, z10);
+        public groupCallStars deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return groupCallStars.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -857,8 +877,8 @@ public class TL_phone {
         public TLRPC.InputGroupCall call;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return groupCallStreamChannels.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return groupCallStreamChannels.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -876,8 +896,8 @@ public class TL_phone {
         public boolean revoke;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return groupCallStreamRtmpUrl.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return groupCallStreamRtmpUrl.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -900,8 +920,8 @@ public class TL_phone {
         public ArrayList<Integer> sources = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return groupParticipants.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return groupParticipants.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -923,8 +943,14 @@ public class TL_phone {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static groupCall TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupCall) TLObject.TLdeserialize(groupCall.class, -1636664659 != i10 ? null : new groupCall(), inputSerializedData, i10, z10);
+        public static groupCall TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupCall groupcall;
+            if (-1636664659 != i9) {
+                groupcall = null;
+            } else {
+                groupcall = new groupCall();
+            }
+            return (groupCall) TLObject.TLdeserialize(groupCall.class, groupcall, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -956,15 +982,21 @@ public class TL_phone {
         public long stars;
         public boolean top;
 
-        public static groupCallDonor TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupCallDonor) TLObject.TLdeserialize(groupCallDonor.class, i10 == -297595771 ? new groupCallDonor() : null, inputSerializedData, i10, z10);
+        public static groupCallDonor TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupCallDonor groupcalldonor;
+            if (i9 == -297595771) {
+                groupcalldonor = new groupCallDonor();
+            } else {
+                groupcalldonor = null;
+            }
+            return (groupCallDonor) TLObject.TLdeserialize(groupCallDonor.class, groupcalldonor, inputSerializedData, i9, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.top = TLObject.hasFlag(int32, 1);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.top = TLObject.hasFlag(readInt32, 1);
             this.my = TLObject.hasFlag(this.flags, 2);
             this.anonymous = TLObject.hasFlag(this.flags, 4);
             if (TLObject.hasFlag(this.flags, 8)) {
@@ -997,8 +1029,14 @@ public class TL_phone {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static groupCallStars TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupCallStars) TLObject.TLdeserialize(groupCallStars.class, i10 == -1658995418 ? new groupCallStars() : null, inputSerializedData, i10, z10);
+        public static groupCallStars TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupCallStars groupcallstars;
+            if (i9 == -1658995418) {
+                groupcallstars = new groupCallStars();
+            } else {
+                groupcallstars = null;
+            }
+            return (groupCallStars) TLObject.TLdeserialize(groupCallStars.class, groupcallstars, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1023,8 +1061,14 @@ public class TL_phone {
         public static final int constructor = -790330702;
         public ArrayList<TL_groupCallStreamChannel> channels = new ArrayList<>();
 
-        public static groupCallStreamChannels TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupCallStreamChannels) TLObject.TLdeserialize(groupCallStreamChannels.class, -790330702 != i10 ? null : new groupCallStreamChannels(), inputSerializedData, i10, z10);
+        public static groupCallStreamChannels TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupCallStreamChannels groupcallstreamchannels;
+            if (-790330702 != i9) {
+                groupcallstreamchannels = null;
+            } else {
+                groupcallstreamchannels = new groupCallStreamChannels();
+            }
+            return (groupCallStreamChannels) TLObject.TLdeserialize(groupCallStreamChannels.class, groupcallstreamchannels, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1044,8 +1088,14 @@ public class TL_phone {
         public String key;
         public String url;
 
-        public static groupCallStreamRtmpUrl TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupCallStreamRtmpUrl) TLObject.TLdeserialize(groupCallStreamRtmpUrl.class, 767505458 != i10 ? null : new groupCallStreamRtmpUrl(), inputSerializedData, i10, z10);
+        public static groupCallStreamRtmpUrl TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupCallStreamRtmpUrl groupcallstreamrtmpurl;
+            if (767505458 != i9) {
+                groupcallstreamrtmpurl = null;
+            } else {
+                groupcallstreamrtmpurl = new groupCallStreamRtmpUrl();
+            }
+            return (groupCallStreamRtmpUrl) TLObject.TLdeserialize(groupCallStreamRtmpUrl.class, groupcallstreamrtmpurl, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1071,8 +1121,14 @@ public class TL_phone {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static groupParticipants TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (groupParticipants) TLObject.TLdeserialize(groupParticipants.class, -193506890 != i10 ? null : new groupParticipants(), inputSerializedData, i10, z10);
+        public static groupParticipants TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            groupParticipants groupparticipants;
+            if (-193506890 != i9) {
+                groupparticipants = null;
+            } else {
+                groupparticipants = new groupParticipants();
+            }
+            return (groupParticipants) TLObject.TLdeserialize(groupParticipants.class, groupparticipants, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1105,8 +1161,8 @@ public class TL_phone {
         public boolean video;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1126,8 +1182,8 @@ public class TL_phone {
         public ArrayList<TLRPC.InputUser> users = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1144,8 +1200,14 @@ public class TL_phone {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static joinAsPeers TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (joinAsPeers) TLObject.TLdeserialize(joinAsPeers.class, -1343921601 != i10 ? null : new joinAsPeers(), inputSerializedData, i10, z10);
+        public static joinAsPeers TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            joinAsPeers joinaspeers;
+            if (-1343921601 != i9) {
+                joinaspeers = null;
+            } else {
+                joinaspeers = new joinAsPeers();
+            }
+            return (joinAsPeers) TLObject.TLdeserialize(joinAsPeers.class, joinaspeers, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1177,8 +1239,8 @@ public class TL_phone {
         public boolean video_stopped;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1208,8 +1270,8 @@ public class TL_phone {
         public TLRPC.TL_dataJSON params;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1226,8 +1288,8 @@ public class TL_phone {
         public int source;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1243,8 +1305,8 @@ public class TL_phone {
         public TLRPC.InputGroupCall call;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1259,9 +1321,9 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int int32 = inputSerializedData.readInt32(z10);
-            this.flags = int32;
-            this.video = TLObject.hasFlag(int32, 64);
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.video = TLObject.hasFlag(readInt32, 64);
             this.f22606id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -1292,8 +1354,8 @@ public class TL_phone {
         public TLRPC.TL_inputPhoneCall peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1313,8 +1375,8 @@ public class TL_phone {
         public boolean video;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TL_phone_phoneCall.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1336,8 +1398,8 @@ public class TL_phone {
         public TLRPC.TL_inputPhoneCall peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1354,8 +1416,8 @@ public class TL_phone {
         public TLRPC.TL_inputPhoneCall peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1372,8 +1434,8 @@ public class TL_phone {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1397,8 +1459,8 @@ public class TL_phone {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -1408,8 +1470,8 @@ public class TL_phone {
         public TLRPC.InputGroupCall call;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1433,8 +1495,8 @@ public class TL_phone {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -1449,8 +1511,15 @@ public class TL_phone {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
             outputSerializedData.writeInt32(-1311697904);
-            int flag = TLObject.setFlag(this.flags, 2, this.send_as != null);
+            int i9 = this.flags;
+            if (this.send_as != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i9, 2, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.call.serializeToStream(outputSerializedData);
@@ -1465,8 +1534,8 @@ public class TL_phone {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -1476,8 +1545,8 @@ public class TL_phone {
         public TLRPC.TL_inputPhoneCall peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1497,8 +1566,8 @@ public class TL_phone {
         public boolean user_initiative;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1518,8 +1587,8 @@ public class TL_phone {
         public TLRPC.InputGroupCall call;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1539,8 +1608,8 @@ public class TL_phone {
         public boolean video_portrait;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override
@@ -1571,24 +1640,42 @@ public class TL_phone {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            boolean z11;
             outputSerializedData.writeInt32(-1757179150);
-            int flag = TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(0, 1, this.join_muted != null), 2, this.reset_invite_hash), 4, this.messages_enabled != null), 8, this.send_paid_messages_stars != null);
-            outputSerializedData.writeInt32(flag);
+            boolean z12 = false;
+            if (this.join_muted != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(TLObject.setFlag(0, 1, z10), 2, this.reset_invite_hash);
+            if (this.messages_enabled != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 4, z11);
+            if (this.send_paid_messages_stars != null) {
+                z12 = true;
+            }
+            int flag3 = TLObject.setFlag(flag2, 8, z12);
+            outputSerializedData.writeInt32(flag3);
             this.call.serializeToStream(outputSerializedData);
-            if (TLObject.hasFlag(flag, 1)) {
+            if (TLObject.hasFlag(flag3, 1)) {
                 outputSerializedData.writeBool(this.join_muted.booleanValue());
             }
-            if (TLObject.hasFlag(flag, 4)) {
+            if (TLObject.hasFlag(flag3, 4)) {
                 outputSerializedData.writeBool(this.messages_enabled.booleanValue());
             }
-            if (TLObject.hasFlag(flag, 8)) {
+            if (TLObject.hasFlag(flag3, 8)) {
                 outputSerializedData.writeInt64(this.send_paid_messages_stars.longValue());
             }
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
     }
 
@@ -1598,8 +1685,8 @@ public class TL_phone {
         public boolean subscribed;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override

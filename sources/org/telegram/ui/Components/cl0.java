@@ -1,36 +1,20 @@
 package org.telegram.ui.Components;
+public final class cl0 {
+    public final float f27507a;
+    public final float f27508b;
+    public final float f27509c;
+    public final float d;
+    public final boolean f27510e;
 
-import android.app.Activity;
-import android.widget.ImageView;
-
-public final class cl0 extends wb {
-
-    public final dl0 f27482c;
-
-    public cl0(Activity activity, String str) {
-        super(activity, null);
-        this.f34154b.setText(str);
-        this.f34154b.setTranslationY(-1.0f);
-        ImageView imageView = this.f34153a;
-        dl0 dl0Var = new dl0();
-        this.f27482c = dl0Var;
-        imageView.setImageDrawable(dl0Var);
+    public cl0(float f10, float f11, float f12, float f13, int i9) {
+        this(f10, f11, f12, f13);
+        this.f27510e = true;
     }
 
-    @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        dl0 dl0Var = this.f27482c;
-        dl0Var.getClass();
-        dl0Var.f27796g = System.currentTimeMillis();
-        dl0Var.invalidateSelf();
-    }
-
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        dl0 dl0Var = this.f27482c;
-        dl0Var.f27796g = -1L;
-        dl0Var.invalidateSelf();
+    public cl0(float f10, float f11, float f12, float f13) {
+        this.f27507a = f10;
+        this.f27508b = f11;
+        this.f27509c = f12;
+        this.d = f13;
     }
 }

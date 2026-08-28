@@ -1,42 +1,19 @@
 package org.telegram.ui;
+public final class xw extends f2.m0 {
+    public final cy I;
+    public final yw J;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-
-public final class xw {
-
-    public final int f44629a;
-
-    public final yw f44630b;
-
-    public final View f44631c;
-
-    public xw(yw ywVar, View view, int i10) {
-        this.f44629a = i10;
-        this.f44630b = ywVar;
-        this.f44631c = view;
+    public xw(yw ywVar, cy cyVar) {
+        this.J = ywVar;
+        this.I = cyVar;
     }
 
-    public final void a(boolean z10) {
-        switch (this.f44629a) {
-            case 0:
-                View view = this.f44631c;
-                if (view instanceof jh.o) {
-                    this.f44630b.K0.A0.i((jh.o) view, false);
-                    if (z10) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.gc(19), 500L);
-                    }
-                }
-                break;
-            default:
-                View view2 = this.f44631c;
-                if (view2 instanceof jh.o) {
-                    this.f44630b.K0.A0.i((jh.o) view2, false);
-                    if (z10) {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.gc(19), 500L);
-                    }
-                }
-                break;
+    @Override
+    public final int R0() {
+        cy cyVar = this.I;
+        if (cyVar.f37357s == 0 && this.J.S.Z3() && cyVar.v == 2) {
+            return 1;
         }
+        return 0;
     }
 }

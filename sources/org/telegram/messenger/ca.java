@@ -1,33 +1,34 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ca implements RequestDelegate {
+    public final int f19932a;
+    public final BaseController f19933b;
+    public final int f19934c;
 
-public final class ca implements Runnable {
-
-    public final int f19900a;
-
-    public final Context f19901b;
-
-    public final org.telegram.ui.ActionBar.b2 f19902c;
-
-    public ca(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f19900a = i10;
-        this.f19901b = context;
-        this.f19902c = b2Var;
+    public ca(BaseController baseController, int i9, int i10) {
+        this.f19932a = i10;
+        this.f19933b = baseController;
+        this.f19934c = i9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19900a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19932a) {
             case 0:
-                MessagesController.lambda$convertToGigaGroup$267(this.f19901b, this.f19902c);
-                break;
+                ((MessagesController) this.f19933b).lambda$migrateDialogs$216(this.f19934c, tLObject, tL_error);
+                return;
             case 1:
-                MessagesController.lambda$convertToMegaGroup$262(this.f19901b, this.f19902c);
-                break;
+                ((MessagesController) this.f19933b).lambda$loadPinnedDialogs$367(this.f19934c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f19933b).lambda$loadGlobalNotificationsSettings$201(this.f19934c, tLObject, tL_error);
+                return;
             default:
-                SecretChatHelper.lambda$startSecretChat$24(this.f19901b, this.f19902c);
-                break;
+                ((ContactsController) this.f19933b).lambda$loadPrivacySettings$65(this.f19934c, tLObject, tL_error);
+                return;
         }
     }
 }

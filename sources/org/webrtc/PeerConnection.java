@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+import org.webrtc.DataChannel;
+import org.webrtc.MediaStreamTrack;
+import org.webrtc.RtpTransceiver;
 public class PeerConnection {
     private final List<MediaStream> localStreams;
     private final long nativePeerConnection;
@@ -28,11 +29,12 @@ public class PeerConnection {
         CELLULAR_3G(128),
         CELLULAR_4G(256),
         CELLULAR_5G(512);
-
+        
         private static final Map<Integer, AdapterType> BY_BITMASK = new HashMap();
         public final Integer bitMask;
 
         static {
+            AdapterType[] values;
             for (AdapterType adapterType : values()) {
                 BY_BITMASK.put(adapterType.bitMask, adapterType);
             }
@@ -42,8 +44,8 @@ public class PeerConnection {
             this.bitMask = num;
         }
 
-        public static AdapterType fromNativeIndex(int i10) {
-            return BY_BITMASK.get(Integer.valueOf(i10));
+        public static AdapterType fromNativeIndex(int i9) {
+            return BY_BITMASK.get(Integer.valueOf(i9));
         }
     }
 
@@ -72,8 +74,8 @@ public class PeerConnection {
         DISCONNECTED,
         CLOSED;
 
-        public static IceConnectionState fromNativeIndex(int i10) {
-            return values()[i10];
+        public static IceConnectionState fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -82,8 +84,8 @@ public class PeerConnection {
         GATHERING,
         COMPLETE;
 
-        public static IceGatheringState fromNativeIndex(int i10) {
-            return values()[i10];
+        public static IceGatheringState fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -93,7 +95,6 @@ public class PeerConnection {
         public final List<String> tlsAlpnProtocols;
         public final TlsCertPolicy tlsCertPolicy;
         public final List<String> tlsEllipticCurves;
-
         @Deprecated
         public final String uri;
         public final List<String> urls;
@@ -149,9 +150,9 @@ public class PeerConnection {
                 this.hostname = "";
                 if (list != null && !list.isEmpty()) {
                     this.urls = list;
-                } else {
-                    throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
+                    return;
                 }
+                throw new IllegalArgumentException("urls == null || urls.isEmpty(): " + list);
             }
         }
 
@@ -170,7 +171,10 @@ public class PeerConnection {
                 return false;
             }
             IceServer iceServer = (IceServer) obj;
-            return this.uri.equals(iceServer.uri) && this.urls.equals(iceServer.urls) && this.username.equals(iceServer.username) && this.password.equals(iceServer.password) && this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) && this.hostname.equals(iceServer.hostname) && this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) && this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves);
+            if (!this.uri.equals(iceServer.uri) || !this.urls.equals(iceServer.urls) || !this.username.equals(iceServer.username) || !this.password.equals(iceServer.password) || !this.tlsCertPolicy.equals(iceServer.tlsCertPolicy) || !this.hostname.equals(iceServer.hostname) || !this.tlsAlpnProtocols.equals(iceServer.tlsAlpnProtocols) || !this.tlsEllipticCurves.equals(iceServer.tlsEllipticCurves)) {
+                return false;
+            }
+            return true;
         }
 
         public String getHostname() {
@@ -235,9 +239,8 @@ public class PeerConnection {
 
         private IceServer(String str, List<String> list, String str2, String str3, TlsCertPolicy tlsCertPolicy, String str4, List<String> list2, List<String> list3) {
             if (str != null && list != null && !list.isEmpty()) {
-                Iterator<String> it = list.iterator();
-                while (it.hasNext()) {
-                    if (it.next() == null) {
+                for (String str5 : list) {
+                    if (str5 == null) {
                         throw new IllegalArgumentException("urls element is null: " + list);
                     }
                 }
@@ -320,8 +323,8 @@ public class PeerConnection {
         FAILED,
         CLOSED;
 
-        public static PeerConnectionState fromNativeIndex(int i10) {
-            return values()[i10];
+        public static PeerConnectionState fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -347,7 +350,6 @@ public class PeerConnection {
         public KeyType keyType = KeyType.ECDSA;
         public ContinualGatheringPolicy continualGatheringPolicy = ContinualGatheringPolicy.GATHER_ONCE;
         public int iceCandidatePoolSize = 0;
-
         @Deprecated
         public boolean pruneTurnPorts = false;
         public PortPrunePolicy turnPortPrunePolicy = PortPrunePolicy.NO_PRUNE;
@@ -553,8 +555,8 @@ public class PeerConnection {
         HAVE_REMOTE_PRANSWER,
         CLOSED;
 
-        public static SignalingState fromNativeIndex(int i10) {
-            return values()[i10];
+        public static SignalingState fromNativeIndex(int i9) {
+            return values()[i9];
         }
     }
 
@@ -576,9 +578,9 @@ public class PeerConnection {
         return nativeCreatePeerConnectionObserver(observer);
     }
 
-    private native boolean nativeAddIceCandidate(String str, int i10, String str2);
+    private native boolean nativeAddIceCandidate(String str, int i9, String str2);
 
-    private native void nativeAddIceCandidateWithObserver(String str, int i10, String str2, AddIceObserver addIceObserver);
+    private native void nativeAddIceCandidateWithObserver(String str, int i9, String str2, AddIceObserver addIceObserver);
 
     private native boolean nativeAddLocalStream(long j10);
 
@@ -654,7 +656,7 @@ public class PeerConnection {
 
     private native SignalingState nativeSignalingState();
 
-    private native boolean nativeStartRtcEventLog(int i10, int i11);
+    private native boolean nativeStartRtcEventLog(int i9, int i10);
 
     private native void nativeStopRtcEventLog();
 
@@ -699,11 +701,11 @@ public class PeerConnection {
     }
 
     public RtpSender createSender(String str, String str2) {
-        RtpSender rtpSenderNativeCreateSender = nativeCreateSender(str, str2);
-        if (rtpSenderNativeCreateSender != null) {
-            this.senders.add(rtpSenderNativeCreateSender);
+        RtpSender nativeCreateSender = nativeCreateSender(str, str2);
+        if (nativeCreateSender != null) {
+            this.senders.add(nativeCreateSender);
         }
-        return rtpSenderNativeCreateSender;
+        return nativeCreateSender;
     }
 
     public void dispose() {
@@ -713,18 +715,15 @@ public class PeerConnection {
             mediaStream.dispose();
         }
         this.localStreams.clear();
-        Iterator<RtpSender> it = this.senders.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpSender rtpSender : this.senders) {
+            rtpSender.dispose();
         }
         this.senders.clear();
-        Iterator<RtpReceiver> it2 = this.receivers.iterator();
-        while (it2.hasNext()) {
-            it2.next().dispose();
+        for (RtpReceiver rtpReceiver : this.receivers) {
+            rtpReceiver.dispose();
         }
-        Iterator<RtpTransceiver> it3 = this.transceivers.iterator();
-        while (it3.hasNext()) {
-            it3.next().dispose();
+        for (RtpTransceiver rtpTransceiver : this.transceivers) {
+            rtpTransceiver.dispose();
         }
         this.transceivers.clear();
         this.receivers.clear();
@@ -748,13 +747,12 @@ public class PeerConnection {
     }
 
     public List<RtpReceiver> getReceivers() {
-        Iterator<RtpReceiver> it = this.receivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpReceiver rtpReceiver : this.receivers) {
+            rtpReceiver.dispose();
         }
-        List<RtpReceiver> listNativeGetReceivers = nativeGetReceivers();
-        this.receivers = listNativeGetReceivers;
-        return DesugarCollections.unmodifiableList(listNativeGetReceivers);
+        List<RtpReceiver> nativeGetReceivers = nativeGetReceivers();
+        this.receivers = nativeGetReceivers;
+        return DesugarCollections.unmodifiableList(nativeGetReceivers);
     }
 
     public SessionDescription getRemoteDescription() {
@@ -762,13 +760,12 @@ public class PeerConnection {
     }
 
     public List<RtpSender> getSenders() {
-        Iterator<RtpSender> it = this.senders.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpSender rtpSender : this.senders) {
+            rtpSender.dispose();
         }
-        List<RtpSender> listNativeGetSenders = nativeGetSenders();
-        this.senders = listNativeGetSenders;
-        return DesugarCollections.unmodifiableList(listNativeGetSenders);
+        List<RtpSender> nativeGetSenders = nativeGetSenders();
+        this.senders = nativeGetSenders;
+        return DesugarCollections.unmodifiableList(nativeGetSenders);
     }
 
     @Deprecated
@@ -777,13 +774,12 @@ public class PeerConnection {
     }
 
     public List<RtpTransceiver> getTransceivers() {
-        Iterator<RtpTransceiver> it = this.transceivers.iterator();
-        while (it.hasNext()) {
-            it.next().dispose();
+        for (RtpTransceiver rtpTransceiver : this.transceivers) {
+            rtpTransceiver.dispose();
         }
-        List<RtpTransceiver> listNativeGetTransceivers = nativeGetTransceivers();
-        this.transceivers = listNativeGetTransceivers;
-        return DesugarCollections.unmodifiableList(listNativeGetTransceivers);
+        List<RtpTransceiver> nativeGetTransceivers = nativeGetTransceivers();
+        this.transceivers = nativeGetTransceivers;
+        return DesugarCollections.unmodifiableList(nativeGetTransceivers);
     }
 
     public IceConnectionState iceConnectionState() {
@@ -842,8 +838,8 @@ public class PeerConnection {
         return nativeSignalingState();
     }
 
-    public boolean startRtcEventLog(int i10, int i11) {
-        return nativeStartRtcEventLog(i10, i11);
+    public boolean startRtcEventLog(int i9, int i10) {
+        return nativeStartRtcEventLog(i9, i10);
     }
 
     public void stopRtcEventLog() {
@@ -863,30 +859,30 @@ public class PeerConnection {
     }
 
     public RtpSender addTrack(MediaStreamTrack mediaStreamTrack, List<String> list) {
-        if (mediaStreamTrack == null || list == null) {
-            throw new NullPointerException("No MediaStreamTrack specified in addTrack.");
-        }
-        RtpSender rtpSenderNativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
-        if (rtpSenderNativeAddTrack == null) {
+        if (mediaStreamTrack != null && list != null) {
+            RtpSender nativeAddTrack = nativeAddTrack(mediaStreamTrack.getNativeMediaStreamTrack(), list);
+            if (nativeAddTrack != null) {
+                this.senders.add(nativeAddTrack);
+                return nativeAddTrack;
+            }
             throw new IllegalStateException("C++ addTrack failed.");
         }
-        this.senders.add(rtpSenderNativeAddTrack);
-        return rtpSenderNativeAddTrack;
+        throw new NullPointerException("No MediaStreamTrack specified in addTrack.");
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        if (mediaStreamTrack == null) {
-            throw new NullPointerException("No MediaStreamTrack specified for addTransceiver.");
-        }
-        if (rtpTransceiverInit == null) {
-            rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
-        }
-        RtpTransceiver rtpTransceiverNativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
-        if (rtpTransceiverNativeAddTransceiverWithTrack == null) {
+        if (mediaStreamTrack != null) {
+            if (rtpTransceiverInit == null) {
+                rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
+            }
+            RtpTransceiver nativeAddTransceiverWithTrack = nativeAddTransceiverWithTrack(mediaStreamTrack.getNativeMediaStreamTrack(), rtpTransceiverInit);
+            if (nativeAddTransceiverWithTrack != null) {
+                this.transceivers.add(nativeAddTransceiverWithTrack);
+                return nativeAddTransceiverWithTrack;
+            }
             throw new IllegalStateException("C++ addTransceiver failed.");
         }
-        this.transceivers.add(rtpTransceiverNativeAddTransceiverWithTrack);
-        return rtpTransceiverNativeAddTransceiverWithTrack;
+        throw new NullPointerException("No MediaStreamTrack specified for addTransceiver.");
     }
 
     public void getStats(RTCStatsCollectorCallback rTCStatsCollectorCallback) {
@@ -914,10 +910,10 @@ public class PeerConnection {
             if (rtpTransceiverInit == null) {
                 rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
             }
-            RtpTransceiver rtpTransceiverNativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
-            if (rtpTransceiverNativeAddTransceiverOfType != null) {
-                this.transceivers.add(rtpTransceiverNativeAddTransceiverOfType);
-                return rtpTransceiverNativeAddTransceiverOfType;
+            RtpTransceiver nativeAddTransceiverOfType = nativeAddTransceiverOfType(mediaType, rtpTransceiverInit);
+            if (nativeAddTransceiverOfType != null) {
+                this.transceivers.add(nativeAddTransceiverOfType);
+                return nativeAddTransceiverOfType;
             }
             throw new IllegalStateException("C++ addTransceiver failed.");
         }

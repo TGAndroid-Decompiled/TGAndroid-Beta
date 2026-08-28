@@ -1,85 +1,87 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SvgHelper;
 public final class w1 implements Runnable {
+    public final int f21982a;
 
-    public final int f22007a;
-
-    public w1(int i10) {
-        this.f22007a = i10;
+    public w1(int i9) {
+        this.f21982a = i9;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f22007a) {
+    public final void run() {
+        switch (this.f21982a) {
             case 0:
                 ContactsController.MyContentObserver.lambda$new$0();
-                break;
+                return;
             case 1:
                 MediaController.GalleryObserverExternal.lambda$onChange$0();
-                break;
+                return;
             case 2:
-                AppStartReceiver.lambda$onReceive$0();
-                break;
+                AppStartReceiver.a();
+                return;
             case 3:
                 FileLog.dumpANR();
-                break;
+                return;
             case 4:
                 ApplicationLoader.startPushService();
-                break;
+                return;
             case 5:
                 ApplicationLoader.lambda$initPushServices$0();
-                break;
+                return;
             case 6:
-                BotGuardHelper.lambda$openGuardBotWebApp$1();
-                break;
+                BotGuardHelper.a();
+                return;
             case 7:
-                CodeHighlighting.lambda$prepare$2();
-                break;
+                CodeHighlighting.f();
+                return;
             case 8:
                 Emoji.lambda$static$0();
-                break;
+                return;
             case 9:
-                KeepAliveJob.finishJobInternal();
-                break;
+                KeepAliveJob.b();
+                return;
             case 10:
-                KeepAliveJob.lambda$startJob$0();
-                break;
+                KeepAliveJob.a();
+                return;
             case 11:
                 LocaleController.lambda$applyLanguage$9();
-                break;
+                return;
             case 12:
                 LocationController.lambda$setLastKnownLocation$10();
-                break;
+                return;
             case 13:
                 LocationSharingService.lambda$onCreate$0();
-                break;
+                return;
             case 14:
                 MediaDataController.lambda$cleanup$1();
-                break;
+                return;
             case 15:
-                org.telegram.ui.ActionBar.g6.E(false);
-                break;
+                org.telegram.ui.ActionBar.f6.E(false);
+                return;
             case 16:
                 NotificationCenter.lambda$listen$3();
-                break;
+                return;
             case 17:
                 NotificationsController.lambda$dismissNotification$37();
-                break;
+                return;
             case 18:
                 SharedConfig.saveConfig();
-                break;
+                return;
             case 19:
                 SharedConfig.lambda$checkSdCard$0();
-                break;
+                return;
             case 20:
                 SharedConfig.lambda$checkSdCard$2();
-                break;
+                return;
             case 21:
                 SharedConfig.lambda$checkSaveToGalleryFiles$5();
-                break;
+                return;
             default:
                 SvgHelper.SvgDrawable.shiftRunnable = null;
-                break;
+                return;
         }
     }
 }

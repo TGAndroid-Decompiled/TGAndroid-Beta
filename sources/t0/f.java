@@ -1,7 +1,6 @@
 package t0;
 
 import android.os.Bundle;
-
 public interface f {
-    boolean d(j jVar, int i10, Bundle bundle);
+    boolean h(j jVar, int i9, Bundle bundle);
 }

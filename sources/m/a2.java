@@ -2,7 +2,6 @@ package m;
 
 import android.graphics.Rect;
 import android.widget.PopupWindow;
-
 public abstract class a2 {
     public static void a(PopupWindow popupWindow, Rect rect) {
         popupWindow.setEpicenterBounds(rect);

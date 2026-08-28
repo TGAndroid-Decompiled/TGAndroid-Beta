@@ -1,18 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.window.OnBackInvokedCallback;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class oa0 implements OnBackInvokedCallback {
+    public final LaunchActivity f41036a;
 
-public final class oa0 implements View.OnLayoutChangeListener {
+    public oa0(LaunchActivity launchActivity) {
+        this.f41036a = launchActivity;
+    }
 
-    public boolean f41046a;
-
-    @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10 = i13 - i11 > i12 - i10;
-        if (z10 != this.f41046a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.gc(this, 25));
-            this.f41046a = z10;
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f41036a.onBackPressed();
+        } else if (!this.f41036a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f41036a;
+            ActionBarLayout actionBarLayout = launchActivity.m0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.Y0) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.Y0 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
         }
     }
 }

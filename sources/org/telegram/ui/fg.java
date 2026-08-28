@@ -1,47 +1,57 @@
 package org.telegram.ui;
+public final class fg implements q0.a {
+    public final int f38256a;
+    public final qn f38257b;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-
-public final class fg implements DialogInterface.OnCancelListener {
-
-    public final int f38123a;
-
-    public final Object f38124b;
-
-    public fg(Object obj, int i10) {
-        this.f38123a = i10;
-        this.f38124b = obj;
+    public fg(qn qnVar, int i9) {
+        this.f38256a = i9;
+        this.f38257b = qnVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f38123a) {
+    public final void accept(Object obj) {
+        switch (this.f38256a) {
             case 0:
-                rn rnVar = (rn) this.f38124b;
-                rnVar.X8 = true;
-                rnVar.V8 = 0;
-                rnVar.f42136mb = 0;
-                rnVar.J4 = 0;
-                rnVar.r9();
-                rnVar.Nb(false);
-                break;
-            case 1:
-                jo joVar = (jo) this.f38124b;
-                joVar.I0 = false;
-                joVar.f39405b = null;
-                joVar.J0 = false;
-                break;
-            case 2:
-                ((jp) this.f38124b).f39455n = null;
-                break;
-            default:
-                ob0 ob0Var = (ob0) this.f38124b;
-                if (ob0Var.h >= 0) {
-                    ConnectionsManager.getInstance(ob0Var.f41051b).cancelRequest(ob0Var.h, true);
-                    ob0Var.h = -1;
+                Integer num = (Integer) obj;
+                qn qnVar = this.f38257b;
+                qnVar.getClass();
+                if (num.intValue() == 0) {
+                    qnVar.f41930h1 = 0;
+                    qnVar.Bc(true);
+                    qnVar.getMessagesController().markReactionsAsRead(qnVar.P5, qnVar.b());
+                    return;
                 }
-                break;
+                qnVar.Bc(true);
+                qnVar.j(num.intValue(), 0, false, 0, true, 0);
+                return;
+            case 1:
+                Integer num2 = (Integer) obj;
+                qn qnVar2 = this.f38257b;
+                qnVar2.getClass();
+                if (num2.intValue() == 0) {
+                    qnVar2.f41943i1 = 0;
+                    qnVar2.Ac(true);
+                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.P5, qnVar2.b());
+                    return;
+                }
+                int i9 = qnVar2.f41943i1 - 1;
+                qnVar2.f41943i1 = i9;
+                if (i9 <= 0) {
+                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.P5, qnVar2.b());
+                }
+                qnVar2.Ac(true);
+                qnVar2.j(num2.intValue(), 0, false, 0, true, 0);
+                return;
+            default:
+                qn qnVar3 = this.f38257b;
+                qnVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                qnVar3.f41859b7 = booleanValue;
+                if (!booleanValue) {
+                    qnVar3.r8();
+                    return;
+                }
+                return;
         }
     }
 }

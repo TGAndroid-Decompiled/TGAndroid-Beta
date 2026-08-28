@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import android.content.Context;
-
 public class ContextUtils {
     private static final String TAG = "ContextUtils";
     private static Context applicationContext;
@@ -12,9 +11,10 @@ public class ContextUtils {
     }
 
     public static void initialize(Context context) {
-        if (context == null) {
-            throw new IllegalArgumentException("Application context cannot be null for ContextUtils.initialize.");
+        if (context != null) {
+            applicationContext = context;
+            return;
         }
-        applicationContext = context;
+        throw new IllegalArgumentException("Application context cannot be null for ContextUtils.initialize.");
     }
 }

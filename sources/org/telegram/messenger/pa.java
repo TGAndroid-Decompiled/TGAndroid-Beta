@@ -1,88 +1,41 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.TLObject;
 public final class pa implements Runnable {
+    public final int f21225a;
+    public final MessagesController f21226b;
+    public final TLObject f21227c;
 
-    public final int f21242a;
-
-    public final MessagesController f21243b;
-
-    public final long f21244c;
-
-    public pa(MessagesController messagesController, long j10, int i10) {
-        this.f21242a = i10;
-        this.f21243b = messagesController;
-        this.f21244c = j10;
+    public pa(MessagesController messagesController, TLObject tLObject, int i9) {
+        this.f21225a = i9;
+        this.f21226b = messagesController;
+        this.f21227c = tLObject;
     }
 
     @Override
-    public final void run() throws Throwable {
-        switch (this.f21242a) {
+    public final void run() {
+        switch (this.f21225a) {
             case 0:
-                this.f21243b.lambda$setChannelSlowMode$93(this.f21244c);
-                break;
+                this.f21226b.lambda$loadHintDialogs$195(this.f21227c);
+                return;
             case 1:
-                this.f21243b.lambda$setChatReactions$470(this.f21244c);
-                break;
+                this.f21226b.lambda$getContentSettings$501(this.f21227c);
+                return;
             case 2:
-                this.f21243b.lambda$getChannelDifference$343(this.f21244c);
-                break;
+                this.f21226b.lambda$reloadReactionsNotifySettings$204(this.f21227c);
+                return;
             case 3:
-                this.f21243b.lambda$deleteDialog$140(this.f21244c);
-                break;
+                this.f21226b.lambda$loadGlobalNotificationsSettings$202(this.f21227c);
+                return;
             case 4:
-                this.f21243b.lambda$setDefaultBannedRole$97(this.f21244c);
-                break;
+                this.f21226b.lambda$loadUnreadDialogs$361(this.f21227c);
+                return;
             case 5:
-                this.f21243b.lambda$processUpdateArray$383(this.f21244c);
-                break;
-            case 6:
-                this.f21243b.lambda$getSavedReactionTags$488(this.f21244c);
-                break;
-            case 7:
-                this.f21243b.lambda$getChannelDifference$334(this.f21244c);
-                break;
-            case 8:
-                this.f21243b.lambda$getChannelDifference$335(this.f21244c);
-                break;
-            case 9:
-                this.f21243b.lambda$getChannelDifference$336(this.f21244c);
-                break;
-            case 10:
-                this.f21243b.lambda$getChannelDifference$337(this.f21244c);
-                break;
-            case 11:
-                this.f21243b.lambda$removeDialog$134(this.f21244c);
-                break;
-            case 12:
-                this.f21243b.lambda$deleteParticipantFromChat$312(this.f21244c);
-                break;
-            case 13:
-                this.f21243b.lambda$setParticipantBannedRole$90(this.f21244c);
-                break;
-            case 14:
-                this.f21243b.lambda$deleteDialog$139(this.f21244c);
-                break;
-            case 15:
-                this.f21243b.lambda$setBoostsToUnblockRestrictions$95(this.f21244c);
-                break;
-            case 16:
-                this.f21243b.lambda$deleteParticipantFromChat$315(this.f21244c);
-                break;
-            case 17:
-                this.f21243b.lambda$addUserToChat$298(this.f21244c);
-                break;
-            case 18:
-                this.f21243b.lambda$addUserToChat$309(this.f21244c);
-                break;
-            case 19:
-                this.f21243b.lambda$addUserToChat$307(this.f21244c);
-                break;
-            case 20:
-                this.f21243b.lambda$getChannelDifference$344(this.f21244c);
-                break;
+                this.f21226b.lambda$loadSuggestedFilters$24(this.f21227c);
+                return;
             default:
-                this.f21243b.lambda$getChannelDifference$345(this.f21244c);
-                break;
+                this.f21226b.lambda$loadSignUpNotificationsSettings$206(this.f21227c);
+                return;
         }
     }
 }

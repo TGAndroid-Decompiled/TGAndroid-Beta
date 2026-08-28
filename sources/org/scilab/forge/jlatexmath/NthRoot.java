@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class NthRoot extends Atom {
     private static final float FACTOR = 0.55f;
     private static final String sqrtSymbol = "sqrt";
@@ -13,34 +12,41 @@ public class NthRoot extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
+        float f10;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         float defaultRuleThickness = teXFont.getDefaultRuleThickness(style);
-        float fAbs = (Math.abs(style < 2 ? teXFont.getXHeight(style, teXFont.getChar("sqrt", style).getFontCode()) : defaultRuleThickness) / 4.0f) + defaultRuleThickness;
+        if (style < 2) {
+            f10 = teXFont.getXHeight(style, teXFont.getChar("sqrt", style).getFontCode());
+        } else {
+            f10 = defaultRuleThickness;
+        }
+        float abs = (Math.abs(f10) / 4.0f) + defaultRuleThickness;
         HorizontalBox horizontalBox = new HorizontalBox(this.base.createBox(teXEnvironment.crampStyle()));
         horizontalBox.add(new SpaceAtom(5, 1.0f, 0.0f, 0.0f).createBox(teXEnvironment.crampStyle()));
-        float depth = horizontalBox.getDepth() + horizontalBox.getHeight() + fAbs;
-        Box boxCreate = DelimiterFactory.create("sqrt", teXEnvironment, depth + defaultRuleThickness);
-        float depth2 = ((boxCreate.getDepth() - depth) / 2.0f) + fAbs;
-        boxCreate.setShift(-(horizontalBox.getHeight() + depth2));
-        OverBar overBar = new OverBar(horizontalBox, depth2, boxCreate.getHeight());
+        float depth = horizontalBox.getDepth() + horizontalBox.getHeight() + abs;
+        Box create = DelimiterFactory.create("sqrt", teXEnvironment, depth + defaultRuleThickness);
+        float depth2 = ((create.getDepth() - depth) / 2.0f) + abs;
+        create.setShift(-(horizontalBox.getHeight() + depth2));
+        OverBar overBar = new OverBar(horizontalBox, depth2, create.getHeight());
         overBar.setShift(-(horizontalBox.getHeight() + depth2 + defaultRuleThickness));
-        HorizontalBox horizontalBox2 = new HorizontalBox(boxCreate);
+        HorizontalBox horizontalBox2 = new HorizontalBox(create);
         horizontalBox2.add(overBar);
         Atom atom = this.root;
         if (atom == null) {
             return horizontalBox2;
         }
-        Box boxCreateBox = atom.createBox(teXEnvironment.rootStyle());
-        boxCreateBox.setShift((horizontalBox2.getDepth() - boxCreateBox.getDepth()) - ((horizontalBox2.getDepth() + horizontalBox2.getHeight()) * 0.55f));
-        Box boxCreateBox2 = new SpaceAtom(5, -10.0f, 0.0f, 0.0f).createBox(teXEnvironment);
+        Box createBox = atom.createBox(teXEnvironment.rootStyle());
+        float height = horizontalBox2.getHeight();
+        createBox.setShift((horizontalBox2.getDepth() - createBox.getDepth()) - ((horizontalBox2.getDepth() + height) * 0.55f));
+        Box createBox2 = new SpaceAtom(5, -10.0f, 0.0f, 0.0f).createBox(teXEnvironment);
         HorizontalBox horizontalBox3 = new HorizontalBox();
-        float width = boxCreateBox2.getWidth() + boxCreateBox.getWidth();
+        float width = createBox2.getWidth() + createBox.getWidth();
         if (width < 0.0f) {
             horizontalBox3.add(new StrutBox(-width, 0.0f, 0.0f, 0.0f));
         }
-        horizontalBox3.add(boxCreateBox);
-        horizontalBox3.add(boxCreateBox2);
+        horizontalBox3.add(createBox);
+        horizontalBox3.add(createBox2);
         horizontalBox3.add(horizontalBox2);
         return horizontalBox3;
     }

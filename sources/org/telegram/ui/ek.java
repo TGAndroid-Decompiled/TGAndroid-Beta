@@ -2,51 +2,81 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ek extends FrameLayout {
+    public final int f37979a;
+    public final qn f37980b;
 
-public final class ek extends org.telegram.ui.Components.bd {
-    public final rn d;
-
-    public ek(rn rnVar, Context context) {
+    public ek(qn qnVar, Context context, int i9) {
         super(context);
-        this.d = rnVar;
+        this.f37979a = i9;
+        this.f37980b = qnVar;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public void measureChildWithMargins(View view, int i9, int i10, int i11, int i12) {
+        int i13;
+        switch (this.f37979a) {
+            case 1:
+                qn qnVar = this.f37980b;
+                if (view == qnVar.Q2) {
+                    ImageView imageView = qnVar.O2;
+                    if (imageView != null && imageView.getVisibility() != 8) {
+                        i13 = 66;
+                    } else {
+                        i13 = 18;
+                    }
+                    ImageView imageView2 = qnVar.P2;
+                    if (imageView2 != null && imageView2.getVisibility() != 8) {
+                        i13 += 48;
+                    }
+                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = AndroidUtilities.dp(i13);
+                }
+                super.measureChildWithMargins(view, i9, i10, i11, i12);
+                return;
+            default:
+                super.measureChildWithMargins(view, i9, i10, i11, i12);
+                return;
+        }
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        rn rnVar = this.d;
-        ck ckVar = rnVar.U;
-        if (ckVar != null) {
-            ckVar.invalidate();
-        }
-        if (getVisibility() != 8) {
-            rnVar.h9(true);
-            FrameLayout frameLayout = rnVar.L;
-            if (frameLayout != null) {
-                frameLayout.setTranslationY(f10);
-            }
-            rnVar.o9();
-            rnVar.r9();
-            View view = rnVar.fragmentView;
-            if (view != null) {
-                view.invalidate();
-            }
+    public void setTranslationY(float f10) {
+        switch (this.f37979a) {
+            case 2:
+                super.setTranslationY(f10);
+                this.f37980b.T0.invalidate();
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
         }
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        FrameLayout frameLayout;
-        super.setVisibility(i10);
-        if (i10 != 8 || (frameLayout = this.d.L) == null) {
-            return;
+    public void setVisibility(int i9) {
+        boolean z10;
+        switch (this.f37979a) {
+            case 0:
+                super.setVisibility(i9);
+                d5.w wVar = this.f37980b.f42139xc;
+                boolean z11 = false;
+                if (i9 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (getMeasuredWidth() > 0) {
+                    z11 = true;
+                }
+                wVar.j(2, z10, z11);
+                return;
+            default:
+                super.setVisibility(i9);
+                return;
         }
-        frameLayout.setTranslationY(0.0f);
     }
 }

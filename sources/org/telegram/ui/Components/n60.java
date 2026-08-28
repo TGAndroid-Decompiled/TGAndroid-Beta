@@ -1,32 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class n60 implements View.OnLayoutChangeListener {
+    public final int f31026a;
+    public final Object f31027b;
 
-public final class n60 extends AnimatorListenerAdapter {
-
-    public final int f30888a;
-
-    public final o60 f30889b;
-
-    public n60(o60 o60Var, int i10) {
-        this.f30888a = i10;
-        this.f30889b = o60Var;
+    public n60(Object obj, int i9) {
+        this.f31026a = i9;
+        this.f31027b = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30888a) {
+    public final void onLayoutChange(View view, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f31026a) {
             case 0:
-                o60 o60Var = this.f30889b;
-                o60Var.f31176e.Z = null;
-                o60Var.requestLayout();
-                break;
+                x60 x60Var = (x60) this.f31027b;
+                if (x60Var.D()) {
+                    x60Var.O();
+                    return;
+                }
+                return;
             default:
-                o60 o60Var2 = this.f30889b;
-                o60Var2.f31176e.Z = null;
-                o60Var2.f31173a = false;
-                break;
+                lw0 lw0Var = (lw0) this.f31027b;
+                bg.t tVar = lw0Var.h;
+                if (tVar != null && tVar.getLayout() != null) {
+                    lw0Var.B = tVar.getLayout().getLineWidth(0);
+                    return;
+                }
+                return;
         }
     }
 }

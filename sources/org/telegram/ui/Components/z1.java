@@ -6,46 +6,40 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.tl.TL_account;
-
 public final class z1 implements TextView.OnEditorActionListener {
-
-    public final int f35125a;
-
-    public final int f35126b;
-
-    public final org.telegram.ui.ActionBar.b2[] f35127c;
+    public final int f35148a;
+    public final int f35149b;
+    public final org.telegram.ui.ActionBar.c2[] f35150c;
     public final View d;
+    public final EditTextBoldCursor f35151e;
+    public final Object f35152f;
 
-    public final EditTextBoldCursor f35128e;
-
-    public final Object f35129f;
-
-    public z1(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.b2[] b2VarArr, View view, int i11) {
-        this.f35125a = i11;
-        this.f35128e = editTextBoldCursor;
-        this.f35126b = i10;
-        this.f35129f = obj;
-        this.f35127c = b2VarArr;
+    public z1(EditTextBoldCursor editTextBoldCursor, int i9, Object obj, org.telegram.ui.ActionBar.c2[] c2VarArr, View view, int i10) {
+        this.f35148a = i10;
+        this.f35151e = editTextBoldCursor;
+        this.f35149b = i9;
+        this.f35152f = obj;
+        this.f35150c = c2VarArr;
         this.d = view;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f35125a) {
+    public final boolean onEditorAction(TextView textView, int i9, KeyEvent keyEvent) {
+        switch (this.f35148a) {
             case 0:
-                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f35129f;
-                if (i10 != 6) {
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f35152f;
+                if (i9 != 6) {
                     return false;
                 }
-                EditTextBoldCursor editTextBoldCursor = this.f35128e;
-                String string = editTextBoldCursor.getText().toString();
-                if (string.length() > this.f35126b) {
+                EditTextBoldCursor editTextBoldCursor = this.f35151e;
+                String obj = editTextBoldCursor.getText().toString();
+                if (obj.length() > this.f35149b) {
                     AndroidUtilities.shakeView(editTextBoldCursor);
                 } else {
-                    stringCallback.run(string);
-                    org.telegram.ui.ActionBar.b2 b2Var = this.f35127c[0];
-                    if (b2Var != null) {
-                        b2Var.dismiss();
+                    stringCallback.run(obj);
+                    org.telegram.ui.ActionBar.c2 c2Var = this.f35150c[0];
+                    if (c2Var != null) {
+                        c2Var.dismiss();
                     }
                     View view = this.d;
                     if (view != null) {
@@ -54,31 +48,31 @@ public final class z1 implements TextView.OnEditorActionListener {
                 }
                 return true;
             default:
-                qf.p pVar = (qf.p) this.f35128e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f35129f;
-                if (i10 != 6) {
+                pf.o oVar = (pf.o) this.f35151e;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f35152f;
+                if (i9 != 6) {
                     return false;
                 }
-                String string2 = pVar.getText().toString();
-                if (string2.length() > 32) {
-                    AndroidUtilities.shakeView(pVar);
+                String obj2 = oVar.getText().toString();
+                if (obj2.length() > 32) {
+                    AndroidUtilities.shakeView(oVar);
                 } else {
-                    qf.v vVarD = qf.v.d(this.f35126b);
-                    TL_account.TL_businessChatLink tL_businessChatLinkC = vVarD.c(tL_businessChatLink.link);
-                    if (tL_businessChatLinkC != null) {
+                    pf.u d = pf.u.d(this.f35149b);
+                    TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
+                    if (c10 != null) {
                         TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
-                        tL_inputBusinessChatLink.message = tL_businessChatLinkC.message;
-                        tL_inputBusinessChatLink.entities = tL_businessChatLinkC.entities;
-                        tL_inputBusinessChatLink.title = string2;
-                        vVarD.b(tL_businessChatLinkC, tL_inputBusinessChatLink, null);
+                        tL_inputBusinessChatLink.message = c10.message;
+                        tL_inputBusinessChatLink.entities = c10.entities;
+                        tL_inputBusinessChatLink.title = obj2;
+                        d.b(c10, tL_inputBusinessChatLink, null);
                     }
-                    org.telegram.ui.ActionBar.b2[] b2VarArr = this.f35127c;
-                    org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr[0];
-                    if (b2Var2 != null) {
-                        b2Var2.dismiss();
+                    org.telegram.ui.ActionBar.c2[] c2VarArr = this.f35150c;
+                    org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr[0];
+                    if (c2Var2 != null) {
+                        c2Var2.dismiss();
                     }
-                    if (b2VarArr[0] == qf.s.d) {
-                        qf.s.d = null;
+                    if (c2VarArr[0] == pf.r.d) {
+                        pf.r.d = null;
                     }
                     View view2 = this.d;
                     if (view2 != null) {

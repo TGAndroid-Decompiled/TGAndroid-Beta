@@ -1,33 +1,65 @@
 package kh;
+public final class f extends lg.b {
+    public final int f15192n;
 
-import android.view.View;
-import jh.b6;
-import org.telegram.ui.Components.vq0;
-
-public final class f implements View.OnClickListener {
-
-    public final int f15198a;
-
-    public final r f15199b;
-
-    public f(r rVar, int i10) {
-        this.f15198a = i10;
-        this.f15199b = rVar;
+    public f(int i9, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(i9, b6Var);
+        this.f15192n = 2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f15198a) {
+    public boolean a() {
+        switch (this.f15192n) {
             case 0:
-                r rVar = this.f15199b;
-                vq0 vq0Var = rVar.S;
-                b6 b6Var = rVar.f15214a;
-                vq0Var.a(b6Var == null ? "" : b6Var.E);
-                break;
+                return true;
+            case 1:
+                return true;
             default:
-                r rVar2 = this.f15199b;
-                rVar2.S.b(rVar2.f15214a.E);
-                break;
+                return super.a();
         }
+    }
+
+    @Override
+    public int e() {
+        switch (this.f15192n) {
+            case 2:
+                if (a()) {
+                    return 117440511;
+                }
+                return 285212672;
+            default:
+                return super.e();
+        }
+    }
+
+    @Override
+    public int g() {
+        switch (this.f15192n) {
+            case 2:
+                if (a()) {
+                    return 301989887;
+                }
+                return 536870912;
+            default:
+                return super.g();
+        }
+    }
+
+    @Override
+    public int j() {
+        switch (this.f15192n) {
+            case 2:
+                if (a()) {
+                    return 83886079;
+                }
+                return 536870912;
+            default:
+                return super.j();
+        }
+    }
+
+    public f(org.telegram.ui.ActionBar.b6 b6Var, int i9, float f10, int i10) {
+        super(b6Var, i9, f10);
+        this.f15192n = i10;
     }
 }

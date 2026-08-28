@@ -1,18 +1,16 @@
 package org.telegram.ui.Components.voip;
 
 import android.view.View;
-import org.telegram.ui.Components.q9;
-
-public final class t1 implements q9, ud.b {
-
-    public final View f33908a;
+import org.telegram.ui.Components.r9;
+public final class t1 implements r9, td.b {
+    public final View f33858a;
 
     @Override
-    public void o(int i10, float f10, float f11, ud.c cVar) {
-        this.f33908a.invalidate();
+    public void J0(int i9, float f10, float f11, td.c cVar) {
+        this.f33858a.invalidate();
     }
 
     @Override
-    public void A(float f10, int i10) {
+    public void B(float f10, int i9) {
     }
 }

@@ -1,5 +1,6 @@
 package g5;
 
+import a5.m;
 import android.content.Context;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -12,153 +13,129 @@ import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.view.View;
+import androidx.biometric.j;
 import c2.t;
 import com.google.android.exoplayer2.upstream.s0;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.s;
-import com.google.android.gms.internal.clearcut.e;
 import com.google.android.gms.internal.play_billing.a4;
-import com.google.android.gms.internal.play_billing.e3;
+import com.google.android.gms.internal.play_billing.b4;
 import com.google.android.gms.internal.play_billing.f3;
-import com.google.android.gms.internal.play_billing.h3;
-import com.google.android.gms.internal.play_billing.k3;
-import com.google.android.gms.internal.play_billing.n3;
+import com.google.android.gms.internal.play_billing.g3;
+import com.google.android.gms.internal.play_billing.i3;
+import com.google.android.gms.internal.play_billing.l3;
 import com.google.android.gms.internal.play_billing.o3;
-import com.google.android.gms.internal.play_billing.s3;
+import com.google.android.gms.internal.play_billing.p3;
+import com.google.android.gms.internal.play_billing.t3;
 import com.google.android.gms.internal.play_billing.u;
-import com.google.android.gms.internal.play_billing.u3;
 import com.google.android.gms.internal.play_billing.v3;
 import com.google.android.gms.internal.play_billing.w3;
-import com.google.android.gms.internal.play_billing.z3;
+import com.google.android.gms.internal.play_billing.x3;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import e7.v;
-import g7.e8;
+import g7.oa;
 import h3.n1;
 import h3.o1;
 import h3.p1;
 import h3.r1;
 import h3.s1;
-import h7.k6;
-import h7.oa;
-import h7.w6;
-import ia.d0;
+import ih.i4;
+import ih.l9;
+import ih.m9;
 import j4.a1;
-import j4.c0;
-import j4.h0;
-import j4.p;
+import j4.d0;
+import j4.i0;
+import j4.q;
+import j4.y;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumMap;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.SortedSet;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.atomic.AtomicBoolean;
-import jh.e4;
-import jh.h9;
-import jh.i9;
-import jh.x3;
-import l3.h;
-import ld.n;
-import m.i3;
-import m2.g;
-import m3.j;
+import kb.e;
+import l3.g;
 import m3.k;
 import m3.w;
 import m5.f0;
-import n2.b0;
+import mc.i;
+import n2.a0;
 import n2.d;
-import n2.z;
-import nc.i;
-import oa.m;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+import q5.f;
+import q5.x;
 import r0.j0;
 import r0.m1;
 import r0.o;
-import r5.f;
-import r5.x;
-import w2.q;
-import y5.l;
+import x5.l;
+public final class b implements i0, g, kd.b, s0, OnCompleteListener, o, s, m9.a, je.b, a0, b6 {
+    public final int f7110a;
+    public Object f7111b;
+    public Object f7112c;
 
-public final class b implements h0, h, s0, ld.b, OnCompleteListener, o, s, z, n9.a, ke.b, c6 {
-
-    public final int f6388a;
-
-    public Object f6389b;
-
-    public Object f6390c;
-
-    public b(int i10) {
-        this.f6388a = i10;
+    public b(int i9) {
+        this.f7110a = i9;
     }
 
-    public static String j(Class cls) {
+    public static String i(Class cls) {
         int modifiers = cls.getModifiers();
         if (Modifier.isInterface(modifiers)) {
             return "Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter for this type. Interface name: ".concat(cls.getName());
         }
-        if (!Modifier.isAbstract(modifiers)) {
-            return null;
+        if (Modifier.isAbstract(modifiers)) {
+            return "Abstract classes can't be instantiated! Adjust the R8 configuration or register an InstanceCreator or a TypeAdapter for this type. Class name: " + cls.getName() + "\nSee " + "https://github.com/google/gson/blob/main/Troubleshooting.md#".concat("r8-abstract-class");
         }
-        return "Abstract classes can't be instantiated! Adjust the R8 configuration or register an InstanceCreator or a TypeAdapter for this type. Class name: " + cls.getName() + "\nSee " + "https://github.com/google/gson/blob/main/Troubleshooting.md#".concat("r8-abstract-class");
+        return null;
     }
 
     public static String v(b bVar) {
-        Collection<String> collection = (Collection) bVar.f6389b;
+        Collection<String> collection = (Collection) bVar.f7111b;
         StringBuilder sb2 = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) bVar.f6390c;
+        String str = (String) bVar.f7112c;
         if (str != null) {
             String upperCase = str.toUpperCase(Locale.ROOT);
-            if (!upperCase.matches("[A-F0-9]+")) {
+            if (upperCase.matches("[A-F0-9]+")) {
+                sb2.append("/");
+                sb2.append(upperCase);
+            } else {
                 throw new IllegalArgumentException("Invalid application ID: ".concat(str));
             }
-            sb2.append("/");
-            sb2.append(upperCase);
         }
         if (collection != null) {
-            if (collection.isEmpty()) {
-                throw new IllegalArgumentException("Must specify at least one namespace");
-            }
-            if (str == null) {
+            if (!collection.isEmpty()) {
+                if (str == null) {
+                    sb2.append("/");
+                }
                 sb2.append("/");
-            }
-            sb2.append("/");
-            boolean z10 = true;
-            for (String string : collection) {
-                r5.a.b(string);
-                if (!z10) {
-                    sb2.append(",");
-                }
-                if (!r5.a.f46766a.matcher(string).matches()) {
-                    StringBuilder sb3 = new StringBuilder(string.length());
-                    for (int i10 = 0; i10 < string.length(); i10++) {
-                        char cCharAt = string.charAt(i10);
-                        if ((cCharAt < 'A' || cCharAt > 'Z') && ((cCharAt < 'a' || cCharAt > 'z') && !((cCharAt >= '0' && cCharAt <= '9') || cCharAt == '_' || cCharAt == '-' || cCharAt == '.' || cCharAt == ':'))) {
-                            sb3.append(String.format("%%%04x", Integer.valueOf(cCharAt)));
-                        } else {
-                            sb3.append(cCharAt);
-                        }
+                boolean z10 = true;
+                for (String str2 : collection) {
+                    q5.a.b(str2);
+                    if (!z10) {
+                        sb2.append(",");
                     }
-                    string = sb3.toString();
+                    if (!q5.a.f46007a.matcher(str2).matches()) {
+                        StringBuilder sb3 = new StringBuilder(str2.length());
+                        for (int i9 = 0; i9 < str2.length(); i9++) {
+                            char charAt = str2.charAt(i9);
+                            if ((charAt < 'A' || charAt > 'Z') && ((charAt < 'a' || charAt > 'z') && ((charAt < '0' || charAt > '9') && charAt != '_' && charAt != '-' && charAt != '.' && charAt != ':'))) {
+                                sb3.append(String.format("%%%04x", Integer.valueOf(charAt)));
+                            } else {
+                                sb3.append(charAt);
+                            }
+                        }
+                        str2 = sb3.toString();
+                    }
+                    sb2.append(str2);
+                    z10 = false;
                 }
-                sb2.append(string);
-                z10 = false;
+            } else {
+                throw new IllegalArgumentException("Must specify at least one namespace");
             }
         }
         if (str == null && collection == null) {
@@ -171,166 +148,172 @@ public final class b implements h0, h, s0, ld.b, OnCompleteListener, o, s, z, n9
         return sb2.toString();
     }
 
-    public void A(k3 k3Var) {
+    public void A(l3 l3Var) {
         try {
-            v3 v3VarT = w3.t();
-            v3VarT.d((o3) this.f6389b);
-            v3VarT.c();
-            w3.p((w3) v3VarT.f4129b, k3Var);
-            ((t) this.f6390c).h((w3) v3VarT.a());
+            w3 t10 = x3.t();
+            t10.d((p3) this.f7111b);
+            t10.c();
+            x3.p((x3) t10.f3691b, l3Var);
+            ((t) this.f7112c).h((x3) t10.a());
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public void B(z3 z3Var) {
+    public void B(a4 a4Var) {
         try {
-            t tVar = (t) this.f6390c;
-            v3 v3VarT = w3.t();
-            v3VarT.d((o3) this.f6389b);
-            v3VarT.c();
-            w3.r((w3) v3VarT.f4129b, z3Var);
-            tVar.h((w3) v3VarT.a());
+            w3 t10 = x3.t();
+            t10.d((p3) this.f7111b);
+            t10.c();
+            x3.r((x3) t10.f3691b, a4Var);
+            ((t) this.f7112c).h((x3) t10.a());
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public void C(a4 a4Var) {
-        if (a4Var == null) {
+    public void C(b4 b4Var) {
+        if (b4Var == null) {
             return;
         }
         try {
-            v3 v3VarT = w3.t();
-            v3VarT.d((o3) this.f6389b);
-            v3VarT.c();
-            w3.s((w3) v3VarT.f4129b, a4Var);
-            ((t) this.f6390c).h((w3) v3VarT.a());
-        } catch (Throwable th) {
-            u.i("BillingLogger", "Unable to log.", th);
-        }
-    }
-
-    public void D(f3 f3Var, o3 o3Var) {
-        if (f3Var == null) {
-            return;
-        }
-        try {
-            v3 v3VarT = w3.t();
-            v3VarT.d(o3Var);
-            v3VarT.c();
-            w3.n((w3) v3VarT.f4129b, f3Var);
-            ((t) this.f6390c).h((w3) v3VarT.a());
-        } catch (Throwable th) {
-            u.i("BillingLogger", "Unable to log.", th);
-        }
-    }
-
-    public void E(h3 h3Var, o3 o3Var) {
-        try {
-            v3 v3VarT = w3.t();
-            v3VarT.d(o3Var);
-            v3VarT.c();
-            w3.o((w3) v3VarT.f4129b, h3Var);
-            ((t) this.f6390c).h((w3) v3VarT.a());
+            w3 t10 = x3.t();
+            t10.d((p3) this.f7111b);
+            t10.c();
+            x3.s((x3) t10.f3691b, b4Var);
+            ((t) this.f7112c).h((x3) t10.a());
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
     @Override
-    public ColorFilter F() {
-        return g6.f23371v3;
+    public Object D(Uri uri, com.google.android.exoplayer2.upstream.o oVar) {
+        i4.a aVar = (i4.a) ((s0) this.f7111b).D(uri, oVar);
+        List list = (List) this.f7112c;
+        if (list != null && !list.isEmpty()) {
+            return (i4.a) aVar.a(list);
+        }
+        return aVar;
+    }
+
+    public void E(g3 g3Var, p3 p3Var) {
+        if (g3Var == null) {
+            return;
+        }
+        try {
+            w3 t10 = x3.t();
+            t10.d(p3Var);
+            t10.c();
+            x3.n((x3) t10.f3691b, g3Var);
+            ((t) this.f7112c).h((x3) t10.a());
+        } catch (Throwable th) {
+            u.i("BillingLogger", "Unable to log.", th);
+        }
+    }
+
+    public void F(i3 i3Var, p3 p3Var) {
+        try {
+            w3 t10 = x3.t();
+            t10.d(p3Var);
+            t10.c();
+            x3.o((x3) t10.f3691b, i3Var);
+            ((t) this.f7112c).h((x3) t10.a());
+        } catch (Throwable th) {
+            u.i("BillingLogger", "Unable to log.", th);
+        }
     }
 
     @Override
-    public m1 I0(View view, m1 m1Var) {
-        g gVar = (g) this.f6390c;
-        m1 m1VarH = j0.h(view, m1Var);
-        if (m1VarH.f46619a.n()) {
-            return m1VarH;
+    public ColorFilter H() {
+        return f6.f23317v3;
+    }
+
+    @Override
+    public m1 L0(View view, m1 m1Var) {
+        m2.g gVar = (m2.g) this.f7112c;
+        m1 h = j0.h(view, m1Var);
+        if (h.f46929a.n()) {
+            return h;
         }
-        Rect rect = (Rect) this.f6389b;
-        rect.left = m1VarH.b();
-        rect.top = m1VarH.d();
-        rect.right = m1VarH.c();
-        rect.bottom = m1VarH.a();
+        Rect rect = (Rect) this.f7111b;
+        rect.left = h.b();
+        rect.top = h.d();
+        rect.right = h.c();
+        rect.bottom = h.a();
         int childCount = gVar.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            m1 m1VarB = j0.b(gVar.getChildAt(i10), m1VarH);
-            rect.left = Math.min(m1VarB.b(), rect.left);
-            rect.top = Math.min(m1VarB.d(), rect.top);
-            rect.right = Math.min(m1VarB.c(), rect.right);
-            rect.bottom = Math.min(m1VarB.a(), rect.bottom);
+        for (int i9 = 0; i9 < childCount; i9++) {
+            m1 b10 = j0.b(gVar.getChildAt(i9), h);
+            rect.left = Math.min(b10.b(), rect.left);
+            rect.top = Math.min(b10.d(), rect.top);
+            rect.right = Math.min(b10.c(), rect.right);
+            rect.bottom = Math.min(b10.a(), rect.bottom);
         }
-        return m1VarH.f(rect.left, rect.top, rect.right, rect.bottom);
+        return h.f(rect.left, rect.top, rect.right, rect.bottom);
     }
 
     @Override
-    public Paint N(String str) {
-        return g6.S0(str);
-    }
-
-    @Override
-    public int N0(int i10) {
-        SparseIntArray sparseIntArray = (SparseIntArray) this.f6389b;
-        int iIndexOfKey = sparseIntArray.indexOfKey(i10);
-        return iIndexOfKey >= 0 ? sparseIntArray.valueAt(iIndexOfKey) : g6.w0(null, i10, false);
-    }
-
-    @Override
-    public ke.a V0(b bVar) {
-        List list = (List) this.f6390c;
-        List list2 = (List) bVar.f6389b;
-        int size = list2 != null ? list2.size() : 0;
-        if (size > 0) {
-            ArrayList arrayList = new ArrayList(list.size() + size);
-            arrayList.addAll(list);
-            arrayList.addAll(list2);
-            list = arrayList;
+    public int N0(int i9) {
+        SparseIntArray sparseIntArray = (SparseIntArray) this.f7111b;
+        int indexOfKey = sparseIntArray.indexOfKey(i9);
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
         }
-        return new i(bVar, (List) this.f6389b, list);
+        return f6.w0(null, i9, false);
+    }
+
+    @Override
+    public Paint O(String str) {
+        return f6.S0(str);
     }
 
     @Override
     public boolean a() {
-        return g6.I.q();
+        return f6.I.q();
     }
 
     @Override
-    public StackTraceElement[] a0(StackTraceElement[] stackTraceElementArr) {
-        if (stackTraceElementArr.length <= 1024) {
-            return stackTraceElementArr;
+    public je.a a1(we.b bVar) {
+        int i9;
+        List list = (List) this.f7112c;
+        List list2 = (List) bVar.f48793b;
+        if (list2 != null) {
+            i9 = list2.size();
+        } else {
+            i9 = 0;
         }
-        n9.a[] aVarArr = (n9.a[]) this.f6389b;
-        StackTraceElement[] stackTraceElementArrA0 = stackTraceElementArr;
-        for (int i10 = 0; i10 < 1; i10++) {
-            n9.a aVar = aVarArr[i10];
-            if (stackTraceElementArrA0.length <= 1024) {
-                break;
-            }
-            stackTraceElementArrA0 = aVar.a0(stackTraceElementArr);
+        if (i9 > 0) {
+            ArrayList arrayList = new ArrayList(list.size() + i9);
+            arrayList.addAll(list);
+            arrayList.addAll(list2);
+            list = arrayList;
         }
-        return stackTraceElementArrA0.length > 1024 ? ((ab.a) this.f6390c).a0(stackTraceElementArrA0) : stackTraceElementArrA0;
+        return new i(bVar, (List) this.f7111b, list);
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        f0 f0Var = (f0) this.f6389b;
-        String str = (String) this.f6390c;
+        boolean z10;
+        f0 f0Var = (f0) this.f7111b;
+        String str = (String) this.f7112c;
         x xVar = (x) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        l.j("Not connected to device", f0Var.F == 2);
+        if (f0Var.F == 2) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        l.j("Not connected to device", z10);
         f fVar = (f) xVar.u();
-        Parcel parcelM0 = fVar.M0();
-        parcelM0.writeString(str);
-        fVar.R0(parcelM0, 5);
-        synchronized (f0Var.f17778s) {
+        Parcel M0 = fVar.M0();
+        M0.writeString(str);
+        fVar.R0(M0, 5);
+        synchronized (f0Var.f17401s) {
             try {
-                if (f0Var.f17775p != null) {
+                if (f0Var.f17398p != null) {
                     taskCompletionSource.setException(l.m(new Status(2001, null, null, null)));
                 } else {
-                    f0Var.f17775p = taskCompletionSource;
+                    f0Var.f17398p = taskCompletionSource;
                 }
             } catch (Throwable th) {
                 throw th;
@@ -339,49 +322,50 @@ public final class b implements h0, h, s0, ld.b, OnCompleteListener, o, s, z, n9
     }
 
     @Override
-    public void b(int i10, c0 c0Var, j4.x xVar) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new o1(this, pairO, xVar, 0));
+    public void b(int i9, d0 d0Var, y yVar) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new o1(this, n10, yVar, 0));
         }
     }
 
     @Override
-    public void c(int i10, c0 c0Var, j4.x xVar) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new o1(this, pairO, xVar, 1));
+    public void c(int i9, d0 d0Var, y yVar) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new o1(this, n10, yVar, 1));
         }
     }
 
     @Override
-    public void d(int i10, c0 c0Var, p pVar, j4.x xVar, IOException iOException, boolean z10) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new p1(this, pairO, pVar, xVar, iOException, z10, 0));
+    public void d(int i9, d0 d0Var, q qVar, y yVar, IOException iOException, boolean z10) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new p1(this, n10, qVar, yVar, iOException, z10, 0));
         }
     }
 
     @Override
-    public Object e(Uri uri, com.google.android.exoplayer2.upstream.o oVar) {
-        i4.a aVar = (i4.a) ((s0) this.f6389b).e(uri, oVar);
-        List list = (List) this.f6390c;
-        return (list == null || list.isEmpty()) ? aVar : (i4.a) aVar.a(list);
-    }
-
-    @Override
-    public void f(int i10, c0 c0Var, p pVar, j4.x xVar) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new n1(this, pairO, pVar, xVar, 2));
+    public void e(int i9, d0 d0Var, q qVar, y yVar) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new n1(this, n10, qVar, yVar, 2));
         }
     }
 
     @Override
-    public void g(int i10, c0 c0Var, p pVar, j4.x xVar) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new n1(this, pairO, pVar, xVar, 1));
+    public void f(int i9, d0 d0Var, q qVar, y yVar) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new n1(this, n10, qVar, yVar, 1));
+        }
+    }
+
+    @Override
+    public void g(int i9, d0 d0Var, q qVar, y yVar) {
+        Pair n10 = n(i9, d0Var);
+        if (n10 != null) {
+            ((s1) this.f7112c).f9722i.c(new n1(this, n10, qVar, yVar, 0));
         }
     }
 
@@ -390,566 +374,452 @@ public final class b implements h0, h, s0, ld.b, OnCompleteListener, o, s, z, n9
         return null;
     }
 
-    @Override
-    public void h(int i10, c0 c0Var, p pVar, j4.x xVar) {
-        Pair pairO = o(i10, c0Var);
-        if (pairO != null) {
-            ((s1) this.f6390c).f8152i.c(new n1(this, pairO, pVar, xVar, 0));
-        }
-    }
-
-    public d i() {
-        if (((n2.l) this.f6389b) != null) {
+    public d h() {
+        if (((n2.l) this.f7111b) != null) {
             return new d(this);
         }
         throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
     }
 
-    public boolean k(int i10) {
-        return ((d5.g) this.f6389b).f4794a.get(i10);
-    }
-
-    public m l(ta.a aVar) {
-        m oVar;
-        String str;
-        m b0Var;
-        Type type = aVar.f48152b;
-        Class cls = aVar.f48151a;
-        HashMap map = (HashMap) this.f6389b;
-        if (map.get(type) != null) {
-            throw new ClassCastException();
-        }
-        if (map.get(cls) != null) {
-            throw new ClassCastException();
-        }
-        int i10 = 6;
-        m aVar2 = null;
-        if (EnumSet.class.isAssignableFrom(cls)) {
-            oVar = new n1.d(type, i10);
-        } else {
-            oVar = cls == EnumMap.class ? new m5.o(type, i10) : null;
-        }
-        if (oVar != null) {
-            return oVar;
-        }
-        oa.d.f((ArrayList) this.f6390c);
-        if (Modifier.isAbstract(cls.getModifiers())) {
-            b0Var = null;
-        } else {
-            try {
-                Constructor declaredConstructor = cls.getDeclaredConstructor(null);
-                w6 w6Var = ra.c.f46882a;
-                try {
-                    declaredConstructor.setAccessible(true);
-                    str = null;
-                } catch (Exception e9) {
-                    str = "Failed making constructor '" + ra.c.b(declaredConstructor) + "' accessible; either increase its visibility or write a custom InstanceCreator or TypeAdapter for its declaring type: " + e9.getMessage() + ra.c.e(e9);
-                }
-                b0Var = str != null ? new b0(str, i10) : new o0.b(declaredConstructor, 2);
-            } catch (NoSuchMethodException unused) {
-                b0Var = null;
-            }
-        }
-        if (b0Var != null) {
-            return b0Var;
-        }
-        int i11 = 17;
-        if (Collection.class.isAssignableFrom(cls)) {
-            int i12 = 16;
-            if (SortedSet.class.isAssignableFrom(cls)) {
-                aVar2 = new w9.d(i12);
-            } else if (Set.class.isAssignableFrom(cls)) {
-                aVar2 = new xa.a(i12);
-            } else {
-                aVar2 = Queue.class.isAssignableFrom(cls) ? new za.b(i12) : new ab.a(i11);
-            }
-        } else if (Map.class.isAssignableFrom(cls)) {
-            if (ConcurrentNavigableMap.class.isAssignableFrom(cls)) {
-                aVar2 = new v(i11);
-            } else if (ConcurrentMap.class.isAssignableFrom(cls)) {
-                aVar2 = new w9.d(i11);
-            } else if (SortedMap.class.isAssignableFrom(cls)) {
-                aVar2 = new xa.a(i11);
-            } else {
-                aVar2 = (!(type instanceof ParameterizedType) || String.class.isAssignableFrom(new ta.a(((ParameterizedType) type).getActualTypeArguments()[0]).f48151a)) ? new ab.a(18) : new za.b(i11);
-            }
-        }
-        if (aVar2 != null) {
-            return aVar2;
-        }
-        String strJ = j(cls);
-        return strJ != null ? new e(strJ) : new b0(cls, 5);
+    public boolean j(int i9) {
+        return ((d5.g) this.f7111b).f4361a.get(i9);
     }
 
     @Override
-    public void m(float f10, float f11, int i10, int i11) {
-        g6.q(f10, f11, i10, i11);
+    public StackTraceElement[] k(StackTraceElement[] stackTraceElementArr) {
+        if (stackTraceElementArr.length <= 1024) {
+            return stackTraceElementArr;
+        }
+        m9.a[] aVarArr = (m9.a[]) this.f7111b;
+        StackTraceElement[] stackTraceElementArr2 = stackTraceElementArr;
+        for (int i9 = 0; i9 < 1; i9++) {
+            m9.a aVar = aVarArr[i9];
+            if (stackTraceElementArr2.length <= 1024) {
+                break;
+            }
+            stackTraceElementArr2 = aVar.k(stackTraceElementArr);
+        }
+        if (stackTraceElementArr2.length > 1024) {
+            return ((v9.d) this.f7112c).k(stackTraceElementArr2);
+        }
+        return stackTraceElementArr2;
     }
 
-    public mb.b n() {
-        if (((mb.b) this.f6390c) == null) {
-            mb.f fVar = (mb.f) this.f6389b;
-            int[] iArr = fVar.f17937c;
-            lb.d dVar = fVar.f17935a;
-            int i10 = dVar.f15514a;
-            int i11 = dVar.f15515b;
-            mb.b bVar = new mb.b(i10, i11);
-            if (fVar.f17936b.length < i10) {
-                fVar.f17936b = new byte[i10];
+    public na.n l(sa.a r8) {
+        throw new UnsupportedOperationException("Method not decompiled: g5.b.l(sa.a):na.n");
+    }
+
+    public lb.b m() {
+        if (((lb.b) this.f7112c) == null) {
+            lb.f fVar = (lb.f) this.f7111b;
+            int[] iArr = fVar.f16753c;
+            kb.d dVar = fVar.f16751a;
+            int i9 = dVar.f14733a;
+            int i10 = dVar.f14734b;
+            lb.b bVar = new lb.b(i9, i10);
+            if (fVar.f16752b.length < i9) {
+                fVar.f16752b = new byte[i9];
             }
-            for (int i12 = 0; i12 < 32; i12++) {
-                iArr[i12] = 0;
+            for (int i11 = 0; i11 < 32; i11++) {
+                iArr[i11] = 0;
             }
-            for (int i13 = 1; i13 < 5; i13++) {
-                byte[] bArrB = dVar.b((i11 * i13) / 5, fVar.f17936b);
-                int i14 = (i10 * 4) / 5;
-                for (int i15 = i10 / 5; i15 < i14; i15++) {
-                    int i16 = (bArrB[i15] & 255) >> 3;
-                    iArr[i16] = iArr[i16] + 1;
+            for (int i12 = 1; i12 < 5; i12++) {
+                byte[] b10 = dVar.b((i10 * i12) / 5, fVar.f16752b);
+                int i13 = (i9 * 4) / 5;
+                for (int i14 = i9 / 5; i14 < i13; i14++) {
+                    int i15 = (b10[i14] & 255) >> 3;
+                    iArr[i15] = iArr[i15] + 1;
                 }
             }
             int length = iArr.length;
+            int i16 = 0;
             int i17 = 0;
             int i18 = 0;
-            int i19 = 0;
-            for (int i20 = 0; i20 < length; i20++) {
-                int i21 = iArr[i20];
-                if (i21 > i17) {
-                    i19 = i20;
-                    i17 = i21;
+            for (int i19 = 0; i19 < length; i19++) {
+                int i20 = iArr[i19];
+                if (i20 > i16) {
+                    i18 = i19;
+                    i16 = i20;
                 }
-                if (i21 > i18) {
-                    i18 = i21;
+                if (i20 > i17) {
+                    i17 = i20;
                 }
             }
+            int i21 = 0;
             int i22 = 0;
-            int i23 = 0;
-            for (int i24 = 0; i24 < length; i24++) {
-                int i25 = i24 - i19;
-                int i26 = iArr[i24] * i25 * i25;
-                if (i26 > i23) {
-                    i22 = i24;
-                    i23 = i26;
+            for (int i23 = 0; i23 < length; i23++) {
+                int i24 = i23 - i18;
+                int i25 = iArr[i23] * i24 * i24;
+                if (i25 > i22) {
+                    i21 = i23;
+                    i22 = i25;
                 }
             }
-            if (i19 <= i22) {
-                int i27 = i19;
-                i19 = i22;
-                i22 = i27;
+            if (i18 <= i21) {
+                int i26 = i18;
+                i18 = i21;
+                i21 = i26;
             }
-            if (i19 - i22 <= length / 16) {
-                throw lb.e.a();
-            }
-            int i28 = i19 - 1;
-            int i29 = i28;
-            int i30 = -1;
-            while (i28 > i22) {
-                int i31 = i28 - i22;
-                int i32 = (i18 - iArr[i28]) * (i19 - i28) * i31 * i31;
-                if (i32 > i30) {
-                    i29 = i28;
-                    i30 = i32;
+            if (i18 - i21 > length / 16) {
+                int i27 = i18 - 1;
+                int i28 = i27;
+                int i29 = -1;
+                while (i27 > i21) {
+                    int i30 = i27 - i21;
+                    int i31 = (i17 - iArr[i27]) * (i18 - i27) * i30 * i30;
+                    if (i31 > i29) {
+                        i28 = i27;
+                        i29 = i31;
+                    }
+                    i27--;
                 }
-                i28--;
-            }
-            int i33 = i29 << 3;
-            byte[] bArrA = dVar.a();
-            for (int i34 = 0; i34 < i11; i34++) {
-                int i35 = i34 * i10;
-                for (int i36 = 0; i36 < i10; i36++) {
-                    if ((bArrA[i35 + i36] & 255) < i33) {
-                        int i37 = (i36 / 32) + (bVar.f17921c * i34);
-                        int[] iArr2 = bVar.d;
-                        iArr2[i37] = iArr2[i37] | (1 << (i36 & 31));
+                int i32 = i28 << 3;
+                byte[] a2 = dVar.a();
+                for (int i33 = 0; i33 < i10; i33++) {
+                    int i34 = i33 * i9;
+                    for (int i35 = 0; i35 < i9; i35++) {
+                        if ((a2[i34 + i35] & 255) < i32) {
+                            int i36 = (i35 / 32) + (bVar.f16737c * i33);
+                            int[] iArr2 = bVar.d;
+                            iArr2[i36] = iArr2[i36] | (1 << (i35 & 31));
+                        }
                     }
                 }
+                this.f7112c = bVar;
+            } else {
+                throw e.a();
             }
-            this.f6390c = bVar;
         }
-        return (mb.b) this.f6390c;
+        return (lb.b) this.f7112c;
     }
 
-    public Pair o(int i10, c0 c0Var) {
-        c0 c0VarB;
-        r1 r1Var = (r1) this.f6389b;
-        c0 c0Var2 = null;
-        if (c0Var != null) {
-            int i11 = 0;
+    public Pair n(int i9, d0 d0Var) {
+        d0 d0Var2;
+        r1 r1Var = (r1) this.f7111b;
+        d0 d0Var3 = null;
+        if (d0Var != null) {
+            int i10 = 0;
             while (true) {
-                if (i11 >= r1Var.f8110c.size()) {
-                    c0VarB = null;
+                if (i10 < r1Var.f9690c.size()) {
+                    if (((d0) r1Var.f9690c.get(i10)).d == d0Var.d) {
+                        Object obj = d0Var.f13426a;
+                        Object obj2 = r1Var.f9689b;
+                        int i11 = h3.a.d;
+                        d0Var2 = d0Var.b(Pair.create(obj2, obj));
+                        break;
+                    }
+                    i10++;
+                } else {
+                    d0Var2 = null;
                     break;
                 }
-                if (((c0) r1Var.f8110c.get(i11)).d == c0Var.d) {
-                    Object obj = c0Var.f12503a;
-                    Object obj2 = r1Var.f8109b;
-                    int i12 = h3.a.d;
-                    c0VarB = c0Var.b(Pair.create(obj2, obj));
-                    break;
-                }
-                i11++;
             }
-            if (c0VarB == null) {
+            if (d0Var2 == null) {
                 return null;
             }
-            c0Var2 = c0VarB;
+            d0Var3 = d0Var2;
         }
-        return Pair.create(Integer.valueOf(i10 + r1Var.d), c0Var2);
+        return Pair.create(Integer.valueOf(i9 + r1Var.d), d0Var3);
     }
 
     @Override
-    public int o1(int i10) {
-        return ((SparseIntArray) this.f6389b).get(i10);
+    public void o(float f10, float f11, int i9, int i10) {
+        f6.q(f10, f11, i9, i10);
     }
 
     @Override
     public void onComplete(Task task) {
-        l8.c cVar = (l8.c) this.f6389b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f6390c;
-        synchronized (cVar.f15456f) {
-            cVar.f15455e.remove(taskCompletionSource);
+        k8.c cVar = (k8.c) this.f7111b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f7112c;
+        synchronized (cVar.f14675f) {
+            cVar.f14674e.remove(taskCompletionSource);
         }
     }
 
     public k p(Object... objArr) {
-        Constructor constructorC;
-        synchronized (((AtomicBoolean) this.f6390c)) {
-            try {
-                if (!((AtomicBoolean) this.f6390c).get()) {
-                    try {
-                        constructorC = ((ia.l) this.f6389b).c();
-                    } catch (ClassNotFoundException unused) {
-                        ((AtomicBoolean) this.f6390c).set(true);
-                        constructorC = null;
-                    } catch (Exception e9) {
-                        throw new RuntimeException("Error instantiating extension", e9);
-                    }
+        Constructor a2;
+        synchronized (((AtomicBoolean) this.f7112c)) {
+            if (!((AtomicBoolean) this.f7112c).get()) {
+                try {
+                    a2 = ((i3.i) this.f7111b).a();
+                } catch (ClassNotFoundException unused) {
+                    ((AtomicBoolean) this.f7112c).set(true);
+                } catch (Exception e10) {
+                    throw new RuntimeException("Error instantiating extension", e10);
                 }
-                constructorC = null;
-            } catch (Throwable th) {
-                throw th;
             }
+            a2 = null;
         }
-        if (constructorC == null) {
+        if (a2 == null) {
             return null;
         }
         try {
-            return (k) constructorC.newInstance(objArr);
-        } catch (Exception e10) {
-            throw new IllegalStateException("Unexpected error creating extractor", e10);
+            return (k) a2.newInstance(objArr);
+        } catch (Exception e11) {
+            throw new IllegalStateException("Unexpected error creating extractor", e11);
         }
     }
 
     @Override
-    public Object q(ld.c cVar, tc.c cVar2) {
-        ld.d dVar;
-        b bVar;
-        switch (this.f6388a) {
-            case 10:
-                Object objQ = ((b) this.f6389b).q(new ia.b0(cVar, (d0) this.f6390c), cVar2);
-                return objQ == sc.a.f47847a ? objQ : pc.i.f45696a;
-            default:
-                if (cVar2 instanceof ld.d) {
-                    dVar = (ld.d) cVar2;
-                    int i10 = dVar.f15542b;
-                    if ((i10 & Integer.MIN_VALUE) != 0) {
-                        dVar.f15542b = i10 - Integer.MIN_VALUE;
-                    } else {
-                        dVar = new ld.d(this, cVar2);
-                    }
-                } else {
-                    dVar = new ld.d(this, cVar2);
-                }
-                Object objA = dVar.f15541a;
-                Object obj = sc.a.f47847a;
-                int i11 = dVar.f15542b;
-                if (i11 != 0) {
-                    if (i11 == 1) {
-                        cVar = dVar.f15544e;
-                        bVar = dVar.d;
-                        k6.b(objA);
-                    } else {
-                        if (i11 != 2) {
-                            throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-                        }
-                        k6.b(objA);
-                    }
-                    return pc.i.f45696a;
-                }
-                k6.b(objA);
-                ld.b bVar2 = (ld.b) this.f6389b;
-                dVar.d = this;
-                dVar.f15544e = cVar;
-                dVar.f15542b = 1;
-                objA = n.a(bVar2, cVar, dVar);
-                if (objA == obj) {
-                    return obj;
-                }
-                bVar = this;
-                Throwable th = (Throwable) objA;
-                if (th != null) {
-                    ia.z zVar = (ia.z) bVar.f6390c;
-                    dVar.d = null;
-                    dVar.f15544e = null;
-                    dVar.f15542b = 2;
-                    if (zVar.a(cVar, th, dVar) == obj) {
-                        return obj;
-                    }
-                }
-                return pc.i.f45696a;
-        }
+    public int p0(int i9) {
+        return N0(i9);
     }
 
     @Override
-    public int q0(int i10) {
-        return N0(i10);
+    public java.lang.Object q(kd.c r6, sc.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: g5.b.q(kd.c, sc.c):java.lang.Object");
+    }
+
+    @Override
+    public int q1(int i9) {
+        return ((SparseIntArray) this.f7111b).get(i9);
     }
 
     public void r(boolean z10, boolean z11, float f10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f6389b;
-        x3 x3Var = (x3) this.f6390c;
-        i9 i9Var = x3Var.f14122e;
-        i9.f13461x1 = f10;
-        h9 h9Var = i9Var.f13510v0;
-        if (h9Var != null) {
-            h9Var.setSpeed(f10);
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f7111b;
+        ih.b4 b4Var = (ih.b4) this.f7112c;
+        m9 m9Var = b4Var.f11262e;
+        m9.f11780x1 = f10;
+        l9 l9Var = m9Var.f11829v0;
+        if (l9Var != null) {
+            l9Var.setSpeed(f10);
         }
-        e4.a0(x3Var.f14128l, z10);
-        if (!z11 || actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() == null) {
-            return;
+        i4.a0(b4Var.f11268l, z10);
+        if (z11 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
         }
-        actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
     }
 
-    public void s(o0.g gVar) {
-        androidx.biometric.n nVar = (androidx.biometric.n) this.f6390c;
-        a9.i iVar = (a9.i) this.f6389b;
-        int i10 = gVar.f19103b;
-        if (i10 != 0) {
-            nVar.execute(new i3(iVar, i10));
+    public void s(o0.f fVar) {
+        androidx.biometric.o oVar = (androidx.biometric.o) this.f7112c;
+        k5.i iVar = (k5.i) this.f7111b;
+        int i9 = fVar.f18759b;
+        if (i9 == 0) {
+            oVar.execute(new j(iVar, fVar.f18758a, false, 28));
         } else {
-            nVar.execute(new a9.o(iVar, gVar.f19102a, false, 29));
+            oVar.execute(new m.i3(iVar, i9));
         }
     }
 
     public void t(n2.l lVar) {
-        this.f6389b = lVar;
+        this.f7111b = lVar;
         if (lVar.a() != null) {
             lVar.a().getClass();
             String str = lVar.a().d;
             if (str != null) {
-                this.f6390c = str;
+                this.f7112c = str;
             }
         }
     }
 
+    @Override
+    public boolean t0() {
+        return false;
+    }
+
     public String toString() {
-        switch (this.f6388a) {
-            case 16:
+        switch (this.f7110a) {
+            case 14:
                 try {
-                    return n().toString();
-                } catch (lb.e unused) {
+                    return m().toString();
+                } catch (e unused) {
                     return "";
                 }
-            case 28:
-                return ((HashMap) this.f6389b).toString();
+            case 26:
+                return ((HashMap) this.f7111b).toString();
             default:
                 return super.toString();
         }
     }
 
-    public w u(int i10) {
-        int i11 = 0;
+    public w u(int i9) {
+        int i10 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f6389b;
-            if (i11 >= iArr.length) {
-                d5.a.o("BaseMediaChunkOutput", "Unmatched track of type: " + i10);
-                return new j();
+            int[] iArr = (int[]) this.f7111b;
+            if (i10 < iArr.length) {
+                if (i9 == iArr[i10]) {
+                    return ((a1[]) this.f7112c)[i10];
+                }
+                i10++;
+            } else {
+                d5.a.o("BaseMediaChunkOutput", "Unmatched track of type: " + i9);
+                return new m3.j();
             }
-            if (i10 == iArr[i11]) {
-                return ((a1[]) this.f6390c)[i11];
-            }
-            i11++;
         }
     }
 
-    @Override
-    public boolean u0() {
-        return false;
-    }
-
-    public void w(f3 f3Var) {
+    public void w(g3 g3Var) {
         try {
-            D(f3Var, (o3) this.f6389b);
+            E(g3Var, (p3) this.f7111b);
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public void x(f3 f3Var, int i10, long j10) {
+    public void x(g3 g3Var, int i9, long j10) {
         try {
-            n3 n3Var = (n3) ((o3) this.f6389b).g();
-            n3Var.c();
-            o3.p((o3) n3Var.f4129b, i10);
-            o3 o3Var = (o3) n3Var.a();
-            this.f6389b = o3Var;
+            o3 o3Var = (o3) ((p3) this.f7111b).g();
+            o3Var.c();
+            p3.p((p3) o3Var.f3691b, i9);
+            p3 p3Var = (p3) o3Var.a();
+            this.f7111b = p3Var;
             if (j10 != 0) {
-                n3 n3Var2 = (n3) o3Var.g();
-                n3Var2.c();
-                o3.r((o3) n3Var2.f4129b, j10);
-                o3Var = (o3) n3Var2.a();
+                o3 o3Var2 = (o3) p3Var.g();
+                o3Var2.c();
+                p3.r((p3) o3Var2.f3691b, j10);
+                p3Var = (p3) o3Var2.a();
             }
-            D(f3Var, o3Var);
+            E(g3Var, p3Var);
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public void y(f3 f3Var, long j10, boolean z10) {
-        o3 o3Var;
+    public void y(g3 g3Var, long j10, boolean z10) {
+        p3 p3Var;
         try {
-            e3 e3Var = (e3) f3Var.g();
-            s3 s3Var = (s3) f3Var.o().g();
-            s3Var.c();
-            u3.n((u3) s3Var.f4129b, z10);
-            e3Var.c();
-            f3.r((f3) e3Var.f4129b, (u3) s3Var.a());
-            f3 f3Var2 = (f3) e3Var.a();
+            f3 f3Var = (f3) g3Var.g();
+            t3 t3Var = (t3) g3Var.o().g();
+            t3Var.c();
+            v3.n((v3) t3Var.f3691b, z10);
+            f3Var.c();
+            g3.r((g3) f3Var.f3691b, (v3) t3Var.a());
+            g3 g3Var2 = (g3) f3Var.a();
             if (j10 == 0) {
-                o3Var = (o3) this.f6389b;
+                p3Var = (p3) this.f7111b;
             } else {
-                n3 n3Var = (n3) ((o3) this.f6389b).g();
-                n3Var.c();
-                o3.r((o3) n3Var.f4129b, j10);
-                o3Var = (o3) n3Var.a();
+                o3 o3Var = (o3) ((p3) this.f7111b).g();
+                o3Var.c();
+                p3.r((p3) o3Var.f3691b, j10);
+                p3Var = (p3) o3Var.a();
             }
-            D(f3Var2, o3Var);
+            E(g3Var2, p3Var);
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public void z(f3 f3Var, int i10, long j10, boolean z10) {
-        o3 o3Var;
+    public void z(g3 g3Var, int i9, long j10, boolean z10) {
+        p3 p3Var;
         try {
-            n3 n3Var = (n3) ((o3) this.f6389b).g();
-            n3Var.c();
-            o3.p((o3) n3Var.f4129b, i10);
-            this.f6389b = (o3) n3Var.a();
-            e3 e3Var = (e3) f3Var.g();
-            s3 s3Var = (s3) f3Var.o().g();
-            s3Var.c();
-            u3.n((u3) s3Var.f4129b, z10);
-            e3Var.c();
-            f3.r((f3) e3Var.f4129b, (u3) s3Var.a());
-            f3 f3Var2 = (f3) e3Var.a();
+            o3 o3Var = (o3) ((p3) this.f7111b).g();
+            o3Var.c();
+            p3.p((p3) o3Var.f3691b, i9);
+            this.f7111b = (p3) o3Var.a();
+            f3 f3Var = (f3) g3Var.g();
+            t3 t3Var = (t3) g3Var.o().g();
+            t3Var.c();
+            v3.n((v3) t3Var.f3691b, z10);
+            f3Var.c();
+            g3.r((g3) f3Var.f3691b, (v3) t3Var.a());
+            g3 g3Var2 = (g3) f3Var.a();
             if (j10 == 0) {
-                o3Var = (o3) this.f6389b;
+                p3Var = (p3) this.f7111b;
             } else {
-                n3 n3Var2 = (n3) ((o3) this.f6389b).g();
-                n3Var2.c();
-                o3.r((o3) n3Var2.f4129b, j10);
-                o3Var = (o3) n3Var2.a();
+                o3 o3Var2 = (o3) ((p3) this.f7111b).g();
+                o3Var2.c();
+                p3.r((p3) o3Var2.f3691b, j10);
+                p3Var = (p3) o3Var2.a();
             }
-            D(f3Var2, o3Var);
+            E(g3Var2, p3Var);
         } catch (Throwable th) {
             u.i("BillingLogger", "Unable to log.", th);
         }
     }
 
-    public b(int i10, Object obj, Object obj2) {
-        this.f6388a = i10;
-        this.f6389b = obj;
-        this.f6390c = obj2;
+    public b(int i9, Object obj, Object obj2) {
+        this.f7110a = i9;
+        this.f7111b = obj;
+        this.f7112c = obj2;
     }
 
-    public b(Object obj, Object obj2, boolean z10, int i10) {
-        this.f6388a = i10;
-        this.f6390c = obj;
-        this.f6389b = obj2;
+    public b(Object obj, Object obj2, boolean z10, int i9) {
+        this.f7110a = i9;
+        this.f7112c = obj;
+        this.f7111b = obj2;
     }
 
-    public b(a5.n nVar) {
-        this.f6388a = 4;
-        this.f6390c = new e8();
-        this.f6389b = nVar;
+    public b(m mVar) {
+        this.f7110a = 1;
+        this.f7112c = new Object();
+        this.f7111b = mVar;
         oa.b();
     }
 
-    public b(Context context, o3 o3Var) {
-        this.f6388a = 23;
+    public b(Context context, p3 p3Var) {
+        this.f7110a = 24;
         t tVar = new t(5);
         try {
-            q.b(context);
-            tVar.f2347c = q.a().c(u2.a.f48257e).a("PLAY_BILLING_LIBRARY", new t2.c("proto"), new xa.a(15));
+            w2.q.b(context);
+            tVar.f2234c = w2.q.a().c(u2.a.f47963e).a("PLAY_BILLING_LIBRARY", new t2.c("proto"), new za.a(15));
         } catch (Throwable unused) {
-            tVar.f2346b = true;
+            tVar.f2233b = true;
         }
-        this.f6390c = tVar;
-        this.f6389b = o3Var;
+        this.f7112c = tVar;
+        this.f7111b = p3Var;
     }
 
-    public b(n9.a[] aVarArr) {
-        this.f6388a = 25;
-        this.f6389b = aVarArr;
-        this.f6390c = new ab.a(16);
+    public b(m9.a[] aVarArr) {
+        this.f7110a = 21;
+        this.f7111b = aVarArr;
+        this.f7112c = new v9.d(15);
     }
 
-    public b(mb.f fVar) {
-        this.f6388a = 16;
-        this.f6389b = fVar;
+    public b(lb.f fVar) {
+        this.f7110a = 14;
+        this.f7111b = fVar;
     }
 
     public b(d5.g gVar, SparseArray sparseArray) {
-        this.f6388a = 6;
-        this.f6389b = gVar;
-        SparseBooleanArray sparseBooleanArray = gVar.f4794a;
+        this.f7110a = 8;
+        this.f7111b = gVar;
+        SparseBooleanArray sparseBooleanArray = gVar.f4361a;
         SparseArray sparseArray2 = new SparseArray(sparseBooleanArray.size());
-        for (int i10 = 0; i10 < sparseBooleanArray.size(); i10++) {
-            int iA = gVar.a(i10);
-            i3.a aVar = (i3.a) sparseArray.get(iA);
+        for (int i9 = 0; i9 < sparseBooleanArray.size(); i9++) {
+            int a2 = gVar.a(i9);
+            i3.a aVar = (i3.a) sparseArray.get(a2);
             aVar.getClass();
-            sparseArray2.append(iA, aVar);
+            sparseArray2.append(a2, aVar);
         }
-        this.f6390c = sparseArray2;
+        this.f7112c = sparseArray2;
     }
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f6388a = 2;
+        this.f7110a = 3;
         int size = arrayList.size();
-        this.f6389b = new int[size];
-        this.f6390c = new float[size];
-        for (int i10 = 0; i10 < size; i10++) {
-            ((int[]) this.f6389b)[i10] = ((Integer) arrayList.get(i10)).intValue();
-            ((float[]) this.f6390c)[i10] = ((Float) arrayList2.get(i10)).floatValue();
+        this.f7111b = new int[size];
+        this.f7112c = new float[size];
+        for (int i9 = 0; i9 < size; i9++) {
+            ((int[]) this.f7111b)[i9] = ((Integer) arrayList.get(i9)).intValue();
+            ((float[]) this.f7112c)[i9] = ((Float) arrayList2.get(i9)).floatValue();
         }
     }
 
     @Override
-    public void c1(int i10, int i11) {
+    public void c1(int i9, int i10) {
     }
 
-    public b(int i10, int i11) {
-        this.f6388a = 2;
-        this.f6389b = new int[]{i10, i11};
-        this.f6390c = new float[]{0.0f, 1.0f};
+    public b(int i9, int i10) {
+        this.f7110a = 3;
+        this.f7111b = new int[]{i9, i10};
+        this.f7112c = new float[]{0.0f, 1.0f};
     }
 
-    public b(int i10, int i11, int i12) {
-        this.f6388a = 2;
-        this.f6389b = new int[]{i10, i11, i12};
-        this.f6390c = new float[]{0.0f, 0.5f, 1.0f};
+    public b(int i9, int i10, int i11) {
+        this.f7110a = 3;
+        this.f7111b = new int[]{i9, i10, i11};
+        this.f7112c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
-    public b(g gVar) {
-        this.f6388a = 18;
-        this.f6390c = gVar;
-        this.f6389b = new Rect();
+    public b(m2.g gVar) {
+        this.f7110a = 17;
+        this.f7112c = gVar;
+        this.f7111b = new Rect();
     }
 
-    public b(ia.l lVar) {
-        this.f6388a = 19;
-        this.f6389b = lVar;
-        this.f6390c = new AtomicBoolean(false);
+    public b(i3.i iVar) {
+        this.f7110a = 18;
+        this.f7111b = iVar;
+        this.f7112c = new AtomicBoolean(false);
     }
 }

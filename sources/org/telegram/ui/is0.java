@@ -1,57 +1,44 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.messenger.video.VideoPlayerRewinder;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class is0 extends org.telegram.ui.Components.f00 {
+    public final qr0 f39280e;
+    public final PhotoViewer f39281f;
 
-public final class is0 extends VideoPlayerRewinder {
-
-    public final PhotoViewer f39158a;
-
-    public is0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
-        super(videoFramesRewinder);
-        this.f39158a = photoViewer;
+    public is0(PhotoViewer photoViewer, qr0 qr0Var) {
+        super(false);
+        this.f39281f = photoViewer;
+        this.f39280e = qr0Var;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f39158a;
-        PhotoViewer.k(photoViewer, motionEventObtain);
-        photoViewer.f35774v1.f(false);
-        org.telegram.ui.Components.sf0.f32415l0.M.f(false);
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        PhotoViewer photoViewer = this.f39281f;
+        int[] iArr = photoViewer.f35657i3;
+        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        int[] iArr2 = photoViewer.f35666j3;
+        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
+        sb4.append(' ');
+        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
     }
 
     @Override
-    public final void onRewindStart(boolean z10) {
-        PhotoViewer photoViewer = this.f39158a;
-        photoViewer.f35774v1.e(false);
-        photoViewer.f35774v1.d(!z10);
-        photoViewer.f35774v1.f(true);
-        photoViewer.f35583a0.invalidate();
-        org.telegram.ui.Components.sf0.v(z10);
+    public final float k() {
+        return this.f39281f.f35691m3.c();
     }
 
     @Override
-    public final void updateRewindProgressUi(long j10, float f10, boolean z10) {
-        PhotoViewer photoViewer = this.f39158a;
-        photoViewer.f35774v1.g(Math.abs(j10));
-        if (z10) {
-            photoViewer.f35694m3.h(f10, false);
-            photoViewer.f35704n3.invalidate();
-        }
-        org.telegram.ui.Components.sf0 sf0Var = org.telegram.ui.Components.sf0.f32415l0;
-        sf0Var.M.g(0L);
-        if (z10) {
-            sf0Var.V = f10;
-            jh.a3 a3Var = sf0Var.X;
-            if (a3Var != null) {
-                a3Var.invalidate();
-            }
-            org.telegram.ui.Components.rf0 rf0Var = sf0Var.h;
-            if (rf0Var != null) {
-                rf0Var.invalidate();
-            }
-        }
+    public final void l(float f10) {
+        this.f39280e.b(f10);
+        PhotoViewer photoViewer = this.f39281f;
+        photoViewer.f35691m3.h(f10, false);
+        photoViewer.f35701n3.invalidate();
     }
 }

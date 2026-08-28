@@ -1,26 +1,35 @@
 package r4;
 
-import d5.g0;
-import java.util.List;
-import p8.l0;
-import p8.x;
-import p8.z;
+import com.google.android.gms.common.api.internal.v;
+import java.util.ArrayDeque;
+public final class d extends k {
+    public final int f47058c;
+    public final g d;
 
-public final class d implements h3.g {
-
-    public static final int f46747b = 0;
-
-    public final z f46748a;
-
-    static {
-        x xVar = z.f45604b;
-        new d(0L, l0.f45555e);
-        int i10 = g0.f4795a;
-        Integer.toString(0, 36);
-        Integer.toString(1, 36);
+    public d(g gVar, int i9) {
+        this.f47058c = i9;
+        this.d = gVar;
     }
 
-    public d(long j10, List list) {
-        this.f46748a = z.u(list);
+    @Override
+    public final void release() {
+        boolean z10;
+        switch (this.f47058c) {
+            case 0:
+                ArrayDeque arrayDeque = (ArrayDeque) ((v) this.d).d;
+                if (arrayDeque.size() < 2) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                d5.a.i(z10);
+                d5.a.f(!arrayDeque.contains(this));
+                clear();
+                arrayDeque.addFirst(this);
+                return;
+            default:
+                ((e) this.d).releaseOutputBuffer(this);
+                return;
+        }
     }
 }

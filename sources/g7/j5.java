@@ -1,24 +1,17 @@
 package g7;
+public final class j5 implements q9.d {
+    public static final j5 f7256a = new Object();
 
-public abstract class j5 {
-    public static String a(String str) {
-        int length = str.length();
-        int i10 = 0;
-        while (i10 < length) {
-            char cCharAt = str.charAt(i10);
-            if (cCharAt >= 'a' && cCharAt <= 'z') {
-                char[] charArray = str.toCharArray();
-                while (i10 < length) {
-                    char c10 = charArray[i10];
-                    if (c10 >= 'a' && c10 <= 'z') {
-                        charArray[i10] = (char) (c10 ^ ' ');
-                    }
-                    i10++;
-                }
-                return String.valueOf(charArray);
-            }
-            i10++;
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(5, e2.c.r(d.class, e2.c.i(4, e2.c.r(d.class, e2.c.i(3, e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))))))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        return str;
+        throw new ClassCastException();
     }
 }

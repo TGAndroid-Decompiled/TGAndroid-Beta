@@ -2,33 +2,29 @@ package org.telegram.messenger;
 
 import java.text.Collator;
 import java.util.Comparator;
-
+import org.telegram.tgnet.TLRPC;
 public final class k1 implements Comparator {
+    public final int f20740a;
+    public final Collator f20741b;
+    public final Object f20742c;
 
-    public final int f20725a;
-
-    public final Collator f20726b;
-
-    public k1(Collator collator, int i10) {
-        this.f20725a = i10;
-        this.f20726b = collator;
+    public k1(Object obj, Collator collator, int i9) {
+        this.f20740a = i9;
+        this.f20742c = obj;
+        this.f20741b = collator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f20725a) {
+        int lambda$buildContactsSectionsArrays$43;
+        int lambda$processLoadedContacts$30;
+        switch (this.f20740a) {
             case 0:
-                return ContactsController.lambda$buildContactsSectionsArrays$44(this.f20726b, (String) obj, (String) obj2);
-            case 1:
-                return ContactsController.lambda$mergePhonebookAndTelegramContacts$38(this.f20726b, obj, obj2);
-            case 2:
-                return ContactsController.lambda$mergePhonebookAndTelegramContacts$39(this.f20726b, (String) obj, (String) obj2);
-            case 3:
-                return ContactsController.lambda$processLoadedContacts$31(this.f20726b, (String) obj, (String) obj2);
-            case 4:
-                return ContactsController.lambda$processLoadedContacts$32(this.f20726b, (String) obj, (String) obj2);
+                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f20742c).lambda$buildContactsSectionsArrays$43(this.f20741b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                return lambda$buildContactsSectionsArrays$43;
             default:
-                return ContactsController.lambda$updateUnregisteredContacts$42(this.f20726b, (ContactsController.Contact) obj, (ContactsController.Contact) obj2);
+                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.h) this.f20742c, this.f20741b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                return lambda$processLoadedContacts$30;
         }
     }
 }

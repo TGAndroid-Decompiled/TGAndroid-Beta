@@ -1,21 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-
-public final class a51 extends View {
-
-    public int f26634a;
+import org.telegram.messenger.Utilities;
+public final class a51 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final d51 f26668a;
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f26634a, 1073741824));
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(this.f26668a.W((l41) obj, (View) obj2));
     }
 
-    public void setHeight(int i10) {
-        if (this.f26634a == i10) {
-            return;
-        }
-        this.f26634a = i10;
-        requestLayout();
+    @Override
+    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f26668a.V((l41) obj, (View) obj2);
     }
 }

@@ -1,25 +1,18 @@
 package e0;
 
 import java.util.ArrayList;
-
 public final class g0 {
-
-    public ArrayList f5056a = new ArrayList();
-
-    public int f5057b = 1;
-
-    public ArrayList f5058c = new ArrayList();
+    public ArrayList f4699a = new ArrayList();
+    public int f4700b = 1;
+    public ArrayList f4701c = new ArrayList();
     public int d = 8388613;
-
-    public int f5059e = -1;
-
-    public int f5060f = 80;
-
-    public String f5061g;
+    public int f4702e = -1;
+    public int f4703f = 80;
+    public String f4704g;
     public String h;
 
     public final void a(k kVar) {
-        this.f5056a.add(kVar);
+        this.f4699a.add(kVar);
     }
 
     public final void b(String str) {
@@ -28,13 +21,13 @@ public final class g0 {
 
     public final Object clone() {
         g0 g0Var = new g0();
-        g0Var.f5056a = new ArrayList(this.f5056a);
-        g0Var.f5057b = this.f5057b;
-        g0Var.f5058c = new ArrayList(this.f5058c);
+        g0Var.f4699a = new ArrayList(this.f4699a);
+        g0Var.f4700b = this.f4700b;
+        g0Var.f4701c = new ArrayList(this.f4701c);
         g0Var.d = this.d;
-        g0Var.f5059e = this.f5059e;
-        g0Var.f5060f = this.f5060f;
-        g0Var.f5061g = this.f5061g;
+        g0Var.f4702e = this.f4702e;
+        g0Var.f4703f = this.f4703f;
+        g0Var.f4704g = this.f4704g;
         g0Var.h = this.h;
         return g0Var;
     }

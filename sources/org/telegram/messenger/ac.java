@@ -1,30 +1,27 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
-
 public final class ac implements Runnable {
+    public final int f19723a;
+    public final MessagesController f19724b;
+    public final a0.h f19725c;
 
-    public final int f19698a;
-
-    public final MessagesController f19699b;
-
-    public final TLRPC.User f19700c;
-
-    public ac(MessagesController messagesController, TLRPC.User user, int i10) {
-        this.f19698a = i10;
-        this.f19699b = messagesController;
-        this.f19700c = user;
+    public ac(MessagesController messagesController, a0.h hVar, int i9) {
+        this.f19723a = i9;
+        this.f19724b = messagesController;
+        this.f19725c = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f19698a) {
+        switch (this.f19723a) {
             case 0:
-                this.f19699b.lambda$loadFullUser$71(this.f19700c);
-                break;
+                this.f19724b.lambda$processUpdateArray$407(this.f19725c);
+                return;
+            case 1:
+                this.f19724b.lambda$processUpdateArray$406(this.f19725c);
+                return;
             default:
-                this.f19699b.lambda$processUpdateArray$408(this.f19700c);
-                break;
+                this.f19724b.lambda$getChannelDifference$340(this.f19725c);
+                return;
         }
     }
 }

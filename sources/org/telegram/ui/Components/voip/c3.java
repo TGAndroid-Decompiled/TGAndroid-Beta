@@ -6,14 +6,13 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Shader;
-import lh.w3;
-
-public final class c3 extends w3 {
+import kh.x3;
+public final class c3 extends x3 {
     public final Paint H0;
     public final n1 I0;
 
-    public c3(Activity activity, int i10, n1 n1Var, boolean z10) {
-        super(activity, i10);
+    public c3(Activity activity, int i9, n1 n1Var, boolean z10) {
+        super(activity, i9);
         Paint paint = new Paint(1);
         this.H0 = paint;
         this.I0 = n1Var;
@@ -31,10 +30,10 @@ public final class c3 extends w3 {
         Paint paint = this.H0;
         paint.setShader(shader);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.B.getAlpha(), n1Var.b().getAlpha()) * f10), 31);
-        Path path = this.f16992p0;
+        Path path = this.f16360p0;
         canvas.drawPath(path, paint);
-        if (n1Var.f33739e) {
-            paint.setShader(((Paint) n1Var.d.f4602a).getShader());
+        if (n1Var.f33689e) {
+            paint.setShader(((Paint) n1Var.d.f4160a).getShader());
             canvas.drawPath(path, paint);
         }
         canvas.restore();

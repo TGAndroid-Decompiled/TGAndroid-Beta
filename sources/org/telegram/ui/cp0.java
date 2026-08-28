@@ -1,51 +1,23 @@
 package org.telegram.ui;
+public final class cp0 extends org.telegram.ui.ActionBar.j {
+    public final ip0 f37285a;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public final class cp0 implements zp0 {
-
-    public final HashMap f37126a;
-
-    public final ArrayList f37127b;
-
-    public final jp0 f37128c;
-
-    public cp0(jp0 jp0Var, HashMap map, ArrayList arrayList) {
-        this.f37128c = jp0Var;
-        this.f37126a = map;
-        this.f37127b = arrayList;
+    public cp0(ip0 ip0Var) {
+        this.f37285a = ip0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        jp0 jp0Var = this.f37128c;
-        org.telegram.ui.Components.tt ttVar = jp0Var.I;
-        jp0Var.f39461a = editable;
-        ttVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        jp0 jp0Var = this.f37128c;
-        jp0Var.removeSelfFromStack();
-        if (z10) {
-            return;
+    public final void b(int i9) {
+        ip0 ip0Var = this.f37285a;
+        if (i9 == -1) {
+            ip0Var.finishFragment();
+        } else if (i9 == 1) {
+            if (ip0Var.R != null) {
+                ip0Var.finishFragment(false);
+                ip0Var.R.b();
+            }
+        } else if (i9 == 2) {
+            ip0.T(ip0Var, null);
         }
-        jp0Var.V(this.f37126a, this.f37127b, z11, i10);
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void h() {
     }
 }

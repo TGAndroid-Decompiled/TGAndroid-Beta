@@ -2,19 +2,17 @@ package e4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
-
+import d5.f0;
+import j3.r0;
 public final class o extends j {
-    public static final Parcelable.Creator<o> CREATOR = new c8.o(24);
-
-    public final String f5220b;
-
-    public final String f5221c;
+    public static final Parcelable.Creator<o> CREATOR = new c.c(16);
+    public final String f4861b;
+    public final String f4862c;
 
     public o(String str, String str2, String str3) {
         super(str);
-        this.f5220b = str2;
-        this.f5221c = str3;
+        this.f4861b = str2;
+        this.f4862c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +21,7 @@ public final class o extends j {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (this.f5209a.equals(oVar.f5209a) && g0.a(this.f5220b, oVar.f5220b) && g0.a(this.f5221c, oVar.f5221c)) {
+            if (this.f4850a.equals(oVar.f4850a) && f0.a(this.f4861b, oVar.f4861b) && f0.a(this.f4862c, oVar.f4862c)) {
                 return true;
             }
         }
@@ -31,30 +29,36 @@ public final class o extends j {
     }
 
     public final int hashCode() {
-        int iG = i0.a.g(527, 31, this.f5209a);
-        String str = this.f5220b;
-        int iHashCode = (iG + (str != null ? str.hashCode() : 0)) * 31;
-        String str2 = this.f5221c;
-        return iHashCode + (str2 != null ? str2.hashCode() : 0);
+        int i9;
+        int f10 = r0.f(527, 31, this.f4850a);
+        int i10 = 0;
+        String str = this.f4861b;
+        if (str != null) {
+            i9 = str.hashCode();
+        } else {
+            i9 = 0;
+        }
+        int i11 = (f10 + i9) * 31;
+        String str2 = this.f4862c;
+        if (str2 != null) {
+            i10 = str2.hashCode();
+        }
+        return i11 + i10;
     }
 
     @Override
     public final String toString() {
-        return this.f5209a + ": url=" + this.f5221c;
+        return this.f4850a + ": url=" + this.f4862c;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f5209a);
-        parcel.writeString(this.f5220b);
-        parcel.writeString(this.f5221c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeString(this.f4850a);
+        parcel.writeString(this.f4861b);
+        parcel.writeString(this.f4862c);
     }
 
-    public o(Parcel parcel) {
-        String string = parcel.readString();
-        int i10 = g0.f4795a;
-        super(string);
-        this.f5220b = parcel.readString();
-        this.f5221c = parcel.readString();
+    public o(android.os.Parcel r3) {
+        throw new UnsupportedOperationException("Method not decompiled: e4.o.<init>(android.os.Parcel):void");
     }
 }

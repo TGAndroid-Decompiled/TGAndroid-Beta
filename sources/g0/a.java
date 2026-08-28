@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
 import e0.i0;
-
 public abstract class a {
     public static Paint a(Bitmap bitmap) {
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -25,8 +24,8 @@ public abstract class a {
         return paint;
     }
 
-    public static void b(Canvas canvas, i0 i0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f5065b, 0, (float[]) i0Var.f5066c, 0, (int[]) i0Var.f5067e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
+    public static void b(Canvas canvas, i0 i0Var, int i9, Paint paint) {
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i9 * 8, (float[]) i0Var.f4708b, 0, (float[]) i0Var.f4709c, 0, (int[]) i0Var.f4710e, 0, (short[]) i0Var.d, 0, i9 * 6, paint);
     }
 
     public static Object c(Bundle bundle) {

@@ -1,17 +1,13 @@
 package o3;
-
 public final class c implements a {
+    public final int f18823a;
+    public final int f18824b;
+    public final int f18825c;
 
-    public final int f19170a;
-
-    public final int f19171b;
-
-    public final int f19172c;
-
-    public c(int i10, int i11, int i12) {
-        this.f19170a = i10;
-        this.f19171b = i11;
-        this.f19172c = i12;
+    public c(int i9, int i10, int i11) {
+        this.f18823a = i9;
+        this.f18824b = i10;
+        this.f18825c = i11;
     }
 
     @Override

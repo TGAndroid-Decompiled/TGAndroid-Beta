@@ -1,22 +1,17 @@
 package g7;
+public final class i5 implements q9.d {
+    public static final i5 f7246a = new Object();
 
-import android.os.Bundle;
-import j$.util.DesugarCollections;
-import java.util.HashMap;
-import java.util.Map;
+    static {
+        e2.c.u(e2.c.r(d.class, e2.c.i(2, e2.c.r(d.class, new a(1)))));
+    }
 
-public abstract class i5 {
-    public static Map a(String str, Bundle bundle) {
-        Map map = (Map) bundle.getSerializable(str);
-        if (map == null) {
-            return com.google.android.gms.internal.cast.r0.f3636n;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        HashMap map2 = new HashMap();
-        for (Map.Entry entry : map.entrySet()) {
-            if (entry != null && entry.getKey() != null && entry.getValue() != null) {
-                map2.put((Integer) entry.getKey(), (Integer) entry.getValue());
-            }
-        }
-        return DesugarCollections.unmodifiableMap(map2);
+        throw new ClassCastException();
     }
 }

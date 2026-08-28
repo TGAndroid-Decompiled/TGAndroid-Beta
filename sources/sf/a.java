@@ -1,22 +1,29 @@
 package sf;
 
-import org.telegram.messenger.SegmentTree;
+import android.graphics.Paint;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+public final class a extends f {
+    public final b6 f47515q;
+    public final Paint f47516r;
+    public int f47517s;
 
-public final class a {
+    public a(rf.a aVar, b6 b6Var) {
+        super(aVar, false, null);
+        Paint paint = new Paint();
+        this.f47516r = paint;
+        this.f47517s = 0;
+        this.f47515q = b6Var;
+        Paint paint2 = this.f47548c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
+        this.f47548c.setAntiAlias(false);
+    }
 
-    public long[] f47874a;
-
-    public SegmentTree f47875b;
-
-    public String f47876c;
-    public String d;
-
-    public int f47879g;
-
-    public long f47877e = 0;
-
-    public long f47878f = Long.MAX_VALUE;
-    public int h = -16777216;
-
-    public int f47880i = -1;
+    @Override
+    public final void a() {
+        super.a();
+        this.f47517s = i0.a.d(0.3f, f6.v0(f6.f23001d6, this.f47515q), this.f47556m);
+    }
 }

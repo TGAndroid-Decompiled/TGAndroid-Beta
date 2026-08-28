@@ -1,110 +1,83 @@
 package f2;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import org.telegram.ui.Cells.p2;
-import org.telegram.ui.Components.os;
+import java.util.ArrayList;
+public final class h implements Runnable {
+    public final int f5365a;
+    public final ArrayList f5366b;
+    public final n f5367c;
 
-public final class h extends AnimatorListenerAdapter {
-
-    public final int f5678a;
-
-    public final o1 f5679b;
-
-    public final int f5680c;
-    public final View d;
-
-    public final int f5681e;
-
-    public final ViewPropertyAnimator f5682f;
-    public final r1 h;
-
-    public h(r1 r1Var, o1 o1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
-        this.f5678a = i12;
-        this.h = r1Var;
-        this.f5679b = o1Var;
-        this.f5680c = i10;
-        this.d = view;
-        this.f5681e = i11;
-        this.f5682f = viewPropertyAnimator;
+    public h(n nVar, ArrayList arrayList, int i9) {
+        this.f5365a = i9;
+        this.f5367c = nVar;
+        this.f5366b = arrayList;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f5678a) {
+    public final void run() {
+        switch (this.f5365a) {
             case 0:
-                int i10 = this.f5680c;
-                View view = this.d;
-                if (i10 != 0) {
-                    view.setTranslationX(0.0f);
+                ArrayList arrayList = this.f5366b;
+                int size = arrayList.size();
+                int i9 = 0;
+                while (true) {
+                    n nVar = this.f5367c;
+                    if (i9 < size) {
+                        Object obj = arrayList.get(i9);
+                        i9++;
+                        m mVar = (m) obj;
+                        nVar.C(mVar.f5428a, mVar);
+                        nVar.f5456w.add(mVar);
+                    } else {
+                        arrayList.clear();
+                        nVar.f5455u.remove(arrayList);
+                        return;
+                    }
                 }
-                if (this.f5681e != 0) {
-                    view.setTranslationY(0.0f);
+            case 1:
+                ArrayList arrayList2 = this.f5366b;
+                int size2 = arrayList2.size();
+                int i10 = 0;
+                while (true) {
+                    n nVar2 = this.f5367c;
+                    if (i10 < size2) {
+                        Object obj2 = arrayList2.get(i10);
+                        i10++;
+                        l lVar = (l) obj2;
+                        nVar2.B(lVar);
+                        nVar2.f5457x.add(lVar);
+                    } else {
+                        arrayList2.clear();
+                        nVar2.v.remove(arrayList2);
+                        return;
+                    }
                 }
-                break;
             default:
-                int i11 = this.f5680c;
-                View view2 = this.d;
-                if (i11 != 0) {
-                    view2.setTranslationX(0.0f);
+                ArrayList arrayList3 = this.f5366b;
+                int i11 = Integer.MAX_VALUE;
+                for (int size3 = arrayList3.size() - 1; size3 >= 0; size3--) {
+                    i11 = Math.min(i11, ((q1) arrayList3.get(size3)).b());
                 }
-                if (this.f5681e != 0) {
-                    view2.setTranslationY(0.0f);
+                int size4 = arrayList3.size();
+                while (true) {
+                    size4--;
+                    n nVar3 = this.f5367c;
+                    if (size4 >= 0) {
+                        q1 q1Var = (q1) arrayList3.get(size4);
+                        long b10 = (q1Var.b() - i11) * nVar3.D;
+                        View view = q1Var.f5501a;
+                        ViewPropertyAnimator animate = view.animate();
+                        nVar3.f5458y.add(q1Var);
+                        animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(nVar3.h()).setStartDelay(b10).setInterpolator(nVar3.h);
+                        animate.setUpdateListener(new e(nVar3, q1Var, 1));
+                        animate.setListener(new i(nVar3, q1Var, view, animate)).start();
+                    } else {
+                        arrayList3.clear();
+                        nVar3.f5454t.remove(arrayList3);
+                        return;
+                    }
                 }
-                View view3 = this.f5679b.f5789a;
-                if (view3 instanceof p2) {
-                    ((p2) view3).setMoving(false);
-                } else if (view3 instanceof pf.j) {
-                    ((pf.j) view3).f45833a = false;
-                }
-                break;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f5678a) {
-            case 0:
-                this.f5682f.setListener(null);
-                l lVar = (l) this.h;
-                o1 o1Var = this.f5679b;
-                lVar.P(o1Var);
-                lVar.v(o1Var);
-                lVar.f5747z.remove(o1Var);
-                lVar.G();
-                lVar.z(o1Var);
-                break;
-            default:
-                this.f5682f.setListener(null);
-                os osVar = (os) this.h;
-                o1 o1Var2 = this.f5679b;
-                osVar.v(o1Var2);
-                osVar.f31403w.remove(o1Var2);
-                osVar.A();
-                View view = o1Var2.f5789a;
-                if (view instanceof p2) {
-                    ((p2) view).setMoving(false);
-                } else if (view instanceof pf.j) {
-                    ((pf.j) view).f45833a = false;
-                }
-                View view2 = this.d;
-                view2.setTranslationX(0.0f);
-                view2.setTranslationY(0.0f);
-                break;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f5678a) {
-            case 0:
-                ((l) this.h).getClass();
-                break;
-            default:
-                ((os) this.h).getClass();
-                break;
         }
     }
 }

@@ -1,900 +1,806 @@
 package k5;
 
-import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.RectF;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
+import android.os.RemoteException;
+import android.os.ResultReceiver;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import androidx.appcompat.widget.Toolbar;
-import androidx.biometric.p;
-import androidx.fragment.app.b0;
-import androidx.fragment.app.f0;
+import android.widget.TextView;
+import androidx.biometric.f0;
 import androidx.fragment.app.j0;
 import androidx.lifecycle.a0;
+import androidx.recyclerview.widget.RecyclerView;
+import bg.i2;
 import c2.t;
-import cg.b2;
+import com.android.billingclient.api.ProxyBillingActivityV2;
+import com.google.android.exoplayer2.upstream.l0;
+import com.google.android.exoplayer2.upstream.n0;
+import com.google.android.exoplayer2.upstream.q0;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.g0;
+import com.google.android.gms.common.api.internal.k0;
+import com.google.android.gms.common.api.internal.n;
 import com.google.android.gms.common.api.internal.o;
+import com.google.android.gms.common.api.internal.p;
 import com.google.android.gms.common.api.internal.s;
-import com.google.android.gms.internal.cast.x4;
-import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.common.api.internal.v0;
+import com.google.android.gms.common.api.internal.x;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import f2.t1;
-import f2.x0;
-import f2.y0;
-import g.q;
-import h3.l0;
-import h7.k6;
-import hh.i5;
-import j3.n;
-import j3.n0;
-import j3.r;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.BufferOverflowException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.ReadOnlyBufferException;
-import java.util.Iterator;
-import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
+import d7.u;
+import f2.a1;
+import f2.v1;
+import f2.z0;
+import f7.h5;
+import i8.e0;
+import ih.i9;
+import ih.j9;
+import ih.k4;
+import ih.n3;
+import j3.m;
+import j3.m0;
+import j3.q;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.ConcurrentModificationException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.MissingFormatArgumentException;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import jh.e4;
-import l.e0;
-import l.x;
-import lh.va;
+import kh.ya;
+import m.f2;
+import m.j1;
+import m6.v;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Components.ec;
-import org.telegram.ui.Components.gp0;
-import org.telegram.ui.y51;
-import yf.m;
-import yf.p1;
-import yf.r0;
-import zf.v1;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.iz0;
+import org.telegram.ui.oy0;
+import x6.l1;
+import x6.m1;
+import xf.q1;
+import xf.s0;
+public final class i implements a0, androidx.activity.result.b, o, s, k0, v0, l0, v1, j1, OnCompleteListener, i9, q, kd.b, yf.v1, f2, m.l {
+    public static i f14657c;
+    public final int f14658a;
+    public Object f14659b;
 
-public final class i implements s, a0, androidx.activity.result.b, o, y2.b, e5.o, t1, x, gp0, y51, r, l3.f, ld.b, v1, l.j {
-
-    public static i f14478c;
-
-    public final int f14479a;
-
-    public Object f14480b;
-
-    public i(d6.g gVar, d6.a aVar) {
-        this.f14479a = 11;
-        this.f14480b = aVar;
+    public i(int i9, boolean z10) {
+        this.f14658a = i9;
     }
 
-    public static synchronized i H(Context context) {
-        return K(context.getApplicationContext());
+    public static boolean L(Bundle bundle) {
+        if (!"1".equals(bundle.getString("gcm.n.e")) && !"1".equals(bundle.getString("gcm.n.e".replace("gcm.n.", "gcm.notification.")))) {
+            return false;
+        }
+        return true;
     }
 
-    public static synchronized i K(Context context) {
-        i iVar = f14478c;
-        if (iVar != null) {
-            return iVar;
+    public static String P(String str) {
+        if (str.startsWith("gcm.n.")) {
+            return str.substring(6);
         }
-        i iVar2 = new i(context);
-        f14478c = iVar2;
-        return iVar2;
+        return str;
     }
 
-    public static int L(CharSequence charSequence) {
-        int length = charSequence.length();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < length && charSequence.charAt(i11) < 128) {
-            i11++;
+    public static synchronized i Q(Context context) {
+        i S;
+        synchronized (i.class) {
+            S = S(context.getApplicationContext());
         }
-        int i12 = length;
-        while (i11 < length) {
-            char cCharAt = charSequence.charAt(i11);
-            if (cCharAt >= 2048) {
-                int length2 = charSequence.length();
-                while (i11 < length2) {
-                    char cCharAt2 = charSequence.charAt(i11);
-                    if (cCharAt2 < 2048) {
-                        i10 += (127 - cCharAt2) >>> 31;
-                    } else {
-                        i10 += 2;
-                        if (55296 <= cCharAt2 && cCharAt2 <= 57343) {
-                            if (Character.codePointAt(charSequence, i11) < 65536) {
-                                StringBuilder sb2 = new StringBuilder(39);
-                                sb2.append("Unpaired surrogate at index ");
-                                sb2.append(i11);
-                                throw new IllegalArgumentException(sb2.toString());
-                            }
-                            i11++;
-                        }
-                    }
-                    i11++;
-                }
-                i12 += i10;
-                break;
-            }
-            i12 += (127 - cCharAt) >>> 31;
-            i11++;
-        }
-        if (i12 >= length) {
-            return i12;
-        }
-        StringBuilder sb3 = new StringBuilder(54);
-        sb3.append("UTF-8 length does not fit in int: ");
-        sb3.append(((long) i12) + 4294967296L);
-        throw new IllegalArgumentException(sb3.toString());
+        return S;
     }
 
-    public static int Q(int i10, String str) {
-        int iV = V(i10);
-        int iL = L(str);
-        return W(iL) + iL + iV;
-    }
-
-    public static void S(CharSequence charSequence, ByteBuffer byteBuffer) {
-        int i10;
-        char cCharAt;
-        int i11;
-        if (byteBuffer.isReadOnly()) {
-            throw new ReadOnlyBufferException();
-        }
-        char c10 = 57343;
-        int i12 = 0;
-        if (!byteBuffer.hasArray()) {
-            int length = charSequence.length();
-            while (i12 < length) {
-                char cCharAt2 = charSequence.charAt(i12);
-                if (cCharAt2 < 128) {
-                    i11 = cCharAt2;
-                    byteBuffer.put((byte) i11);
-                } else if (cCharAt2 < 2048) {
-                    byteBuffer.put((byte) ((cCharAt2 >>> 6) | 960));
-                    i11 = (cCharAt2 & '?') | 128;
-                    i11 = cCharAt2;
-                    byteBuffer.put((byte) i11);
-                } else {
-                    if (cCharAt2 >= 55296 && 57343 >= cCharAt2) {
-                        int i13 = i12 + 1;
-                        if (i13 != charSequence.length()) {
-                            char cCharAt3 = charSequence.charAt(i13);
-                            if (Character.isSurrogatePair(cCharAt2, cCharAt3)) {
-                                int codePoint = Character.toCodePoint(cCharAt2, cCharAt3);
-                                byteBuffer.put((byte) ((codePoint >>> 18) | 240));
-                                byteBuffer.put((byte) (((codePoint >>> 12) & 63) | 128));
-                                byteBuffer.put((byte) (((codePoint >>> 6) & 63) | 128));
-                                byteBuffer.put((byte) ((codePoint & 63) | 128));
-                                i12 = i13;
-                            } else {
-                                i12 = i13;
-                            }
-                        }
-                        StringBuilder sb2 = new StringBuilder(39);
-                        sb2.append("Unpaired surrogate at index ");
-                        sb2.append(i12 - 1);
-                        throw new IllegalArgumentException(sb2.toString());
-                    }
-                    byteBuffer.put((byte) ((cCharAt2 >>> '\f') | 480));
-                    byteBuffer.put((byte) (((cCharAt2 >>> 6) & 63) | 128));
-                    byteBuffer.put((byte) ((cCharAt2 & '?') | 128));
-                }
-                i12++;
-            }
-            return;
-        }
-        try {
-            byte[] bArrArray = byteBuffer.array();
-            int iArrayOffset = byteBuffer.arrayOffset() + byteBuffer.position();
-            int iRemaining = byteBuffer.remaining();
-            int length2 = charSequence.length();
-            int i14 = iRemaining + iArrayOffset;
-            while (i12 < length2) {
-                int i15 = i12 + iArrayOffset;
-                if (i15 >= i14 || (cCharAt = charSequence.charAt(i12)) >= 128) {
-                    break;
-                }
-                bArrArray[i15] = (byte) cCharAt;
-                i12++;
-            }
-            if (i12 == length2) {
-                i10 = iArrayOffset + length2;
-            } else {
-                i10 = iArrayOffset + i12;
-                while (i12 < length2) {
-                    char cCharAt4 = charSequence.charAt(i12);
-                    if (cCharAt4 < 128 && i10 < i14) {
-                        bArrArray[i10] = (byte) cCharAt4;
-                        i10++;
-                    } else if (cCharAt4 < 2048 && i10 <= i14 - 2) {
-                        int i16 = i10 + 1;
-                        bArrArray[i10] = (byte) ((cCharAt4 >>> 6) | 960);
-                        i10 += 2;
-                        bArrArray[i16] = (byte) ((cCharAt4 & '?') | 128);
-                    } else {
-                        if ((cCharAt4 >= 55296 && c10 >= cCharAt4) || i10 > i14 - 3) {
-                            if (i10 > i14 - 4) {
-                                StringBuilder sb3 = new StringBuilder(37);
-                                sb3.append("Failed writing ");
-                                sb3.append(cCharAt4);
-                                sb3.append(" at index ");
-                                sb3.append(i10);
-                                throw new ArrayIndexOutOfBoundsException(sb3.toString());
-                            }
-                            int i17 = i12 + 1;
-                            if (i17 != charSequence.length()) {
-                                char cCharAt5 = charSequence.charAt(i17);
-                                if (Character.isSurrogatePair(cCharAt4, cCharAt5)) {
-                                    int codePoint2 = Character.toCodePoint(cCharAt4, cCharAt5);
-                                    bArrArray[i10] = (byte) ((codePoint2 >>> 18) | 240);
-                                    bArrArray[i10 + 1] = (byte) (((codePoint2 >>> 12) & 63) | 128);
-                                    int i18 = i10 + 3;
-                                    bArrArray[i10 + 2] = (byte) (((codePoint2 >>> 6) & 63) | 128);
-                                    i10 += 4;
-                                    bArrArray[i18] = (byte) ((codePoint2 & 63) | 128);
-                                    i12 = i17;
-                                } else {
-                                    i12 = i17;
-                                }
-                            }
-                            StringBuilder sb4 = new StringBuilder(39);
-                            sb4.append("Unpaired surrogate at index ");
-                            sb4.append(i12 - 1);
-                            throw new IllegalArgumentException(sb4.toString());
-                        }
-                        bArrArray[i10] = (byte) ((cCharAt4 >>> '\f') | 480);
-                        int i19 = i10 + 2;
-                        bArrArray[i10 + 1] = (byte) (((cCharAt4 >>> 6) & 63) | 128);
-                        i10 += 3;
-                        bArrArray[i19] = (byte) ((cCharAt4 & '?') | 128);
-                    }
-                    i12++;
-                    c10 = 57343;
-                }
-            }
-            byteBuffer.position(i10 - byteBuffer.arrayOffset());
-        } catch (ArrayIndexOutOfBoundsException e9) {
-            BufferOverflowException bufferOverflowException = new BufferOverflowException();
-            bufferOverflowException.initCause(e9);
-            throw bufferOverflowException;
-        }
-    }
-
-    public static int U(long j10) {
-        if (((-128) & j10) == 0) {
-            return 1;
-        }
-        if (((-16384) & j10) == 0) {
-            return 2;
-        }
-        if (((-2097152) & j10) == 0) {
-            return 3;
-        }
-        if (((-268435456) & j10) == 0) {
-            return 4;
-        }
-        if (((-34359738368L) & j10) == 0) {
-            return 5;
-        }
-        if (((-4398046511104L) & j10) == 0) {
-            return 6;
-        }
-        if (((-562949953421312L) & j10) == 0) {
-            return 7;
-        }
-        if (((-72057594037927936L) & j10) == 0) {
-            return 8;
-        }
-        return (j10 & Long.MIN_VALUE) == 0 ? 9 : 10;
-    }
-
-    public static int V(int i10) {
-        return W(i10 << 3);
-    }
-
-    public static int W(int i10) {
-        if ((i10 & (-128)) == 0) {
-            return 1;
-        }
-        if ((i10 & (-16384)) == 0) {
-            return 2;
-        }
-        if (((-2097152) & i10) == 0) {
-            return 3;
-        }
-        return (i10 & (-268435456)) == 0 ? 4 : 5;
-    }
-
-    @Override
-    public View A(int i10) {
-        return ((x0) this.f14480b).q(i10);
-    }
-
-    @Override
-    public void B() {
-        int i10 = this.f14479a;
-    }
-
-    @Override
-    public void E() {
-        l0 l0Var = ((n0) this.f14480b).O0;
-        if (l0Var != null) {
-            l0Var.f8011a.f8079n.d(2);
-        }
-    }
-
-    public JSONObject F() throws Throwable {
-        FileInputStream fileInputStream;
-        JSONObject jSONObject;
-        FileInputStream fileInputStream2 = null;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Checking for cached settings...", null);
-        }
-        try {
-            File file = (File) this.f14480b;
-            if (file.exists()) {
-                fileInputStream = new FileInputStream(file);
-                try {
-                    try {
-                        jSONObject = new JSONObject(f9.h.j(fileInputStream));
-                        fileInputStream2 = fileInputStream;
-                    } catch (Exception e9) {
-                        e = e9;
-                        Log.e("FirebaseCrashlytics", "Failed to fetch cached settings", e);
-                        f9.h.c(fileInputStream, "Error while closing settings cache file.");
-                        return null;
-                    }
-                } catch (Throwable th) {
-                    th = th;
-                    fileInputStream2 = fileInputStream;
-                    f9.h.c(fileInputStream2, "Error while closing settings cache file.");
-                    throw th;
-                }
-            } else {
-                if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                    Log.v("FirebaseCrashlytics", "Settings file does not exist.", null);
-                }
-                jSONObject = null;
-            }
-            f9.h.c(fileInputStream2, "Error while closing settings cache file.");
-            return jSONObject;
-        } catch (Exception e10) {
-            e = e10;
-            fileInputStream = null;
-        } catch (Throwable th2) {
-            th = th2;
-            f9.h.c(fileInputStream2, "Error while closing settings cache file.");
-            throw th;
-        }
-    }
-
-    @Override
-    public int G(View view) {
-        return x0.y(view) + ((ViewGroup.MarginLayoutParams) ((y0) view.getLayoutParams())).rightMargin;
-    }
-
-    public synchronized void I() {
-        b bVar = (b) this.f14480b;
-        ReentrantLock reentrantLock = bVar.f14461a;
-        reentrantLock.lock();
-        try {
-            bVar.f14462b.edit().clear().apply();
-            reentrantLock.unlock();
-        } catch (Throwable th) {
-            reentrantLock.unlock();
-            throw th;
-        }
-    }
-
-    @Override
-    public void J(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        p pVar = (p) this.f14480b;
-        if (charSequence != null) {
-            if (pVar.R()) {
-                pVar.W(charSequence);
-            }
-            pVar.f1062h0.d(null);
-        }
-    }
-
-    public void M(int i10, String str) throws x4 {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f14480b;
-        R(i10, 2);
-        try {
-            int iW = W(str.length());
-            if (iW != W(str.length() * 3)) {
-                P(L(str));
-                S(str, byteBuffer);
-                return;
-            }
-            int iPosition = byteBuffer.position();
-            if (byteBuffer.remaining() < iW) {
-                throw new x4(iPosition + iW, byteBuffer.limit());
-            }
-            byteBuffer.position(iPosition + iW);
-            S(str, byteBuffer);
-            int iPosition2 = byteBuffer.position();
-            byteBuffer.position(iPosition);
-            P((iPosition2 - iPosition) - iW);
-            byteBuffer.position(iPosition2);
-        } catch (BufferOverflowException e9) {
-            x4 x4Var = new x4(byteBuffer.position(), byteBuffer.limit());
-            x4Var.initCause(e9);
-            throw x4Var;
-        }
-    }
-
-    public void N(int i10, byte[] bArr) throws x4 {
-        R(i10, 2);
-        P(bArr.length);
-        int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f14480b;
-        if (byteBuffer.remaining() < length) {
-            throw new x4(byteBuffer.position(), byteBuffer.limit());
-        }
-        byteBuffer.put(bArr, 0, length);
-    }
-
-    public void O(int i10) throws x4 {
-        byte b10 = (byte) i10;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f14480b;
-        if (!byteBuffer.hasRemaining()) {
-            throw new x4(byteBuffer.position(), byteBuffer.limit());
-        }
-        byteBuffer.put(b10);
-    }
-
-    public void P(int i10) throws x4 {
-        while ((i10 & (-128)) != 0) {
-            O((i10 & 127) | 128);
-            i10 >>>= 7;
-        }
-        O(i10);
-    }
-
-    public void R(int i10, int i11) throws x4 {
-        P((i10 << 3) | i11);
-    }
-
-    public void T(long j10) throws x4 {
-        while (((-128) & j10) != 0) {
-            O((((int) j10) & 127) | 128);
-            j10 >>>= 7;
-        }
-        O((int) j10);
-    }
-
-    @Override
-    public void a(Object obj) {
-        androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-        j0 j0Var = (j0) this.f14480b;
-        f0 f0Var = (f0) j0Var.F.pollLast();
-        if (f0Var == null) {
-            Log.w("FragmentManager", "No Activities were started for result for " + this);
-            return;
-        }
-        String str = f0Var.f1433a;
-        int i10 = f0Var.f1434b;
-        androidx.fragment.app.s sVarQ = j0Var.f1447c.q(str);
-        if (sVarQ != null) {
-            sVarQ.x(i10, aVar.f906a, aVar.f907b);
-            return;
-        }
-        Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        switch (this.f14479a) {
-            case 1:
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-                a6.a aVar = (a6.a) ((a6.d) obj).u();
-                y5.o oVar = (y5.o) this.f14480b;
-                Parcel parcelG0 = aVar.G0();
-                v6.a.c(parcelG0, oVar);
-                try {
-                    aVar.f2456b.transact(1, parcelG0, null, 1);
-                    parcelG0.recycle();
-                    taskCompletionSource.setResult(null);
-                    return;
-                } catch (Throwable th) {
-                    parcelG0.recycle();
-                    throw th;
-                }
-            default:
-                d6.f fVar = new d6.f(1, (TaskCompletionSource) obj2);
-                d6.e eVar = (d6.e) ((d6.h) obj).u();
-                d6.a aVar2 = (d6.a) this.f14480b;
-                Parcel parcelG1 = eVar.G0();
-                v6.a.d(parcelG1, fVar);
-                v6.a.c(parcelG1, aVar2);
-                parcelG1.writeStrongBinder(null);
-                eVar.H0(parcelG1, 2);
-                return;
-        }
-    }
-
-    @Override
-    public void b(l.l lVar, boolean z10) {
-        q qVar;
-        switch (this.f14479a) {
-            case 14:
-                g.r rVar = (g.r) this.f14480b;
-                l.l lVarK = lVar.k();
-                int i10 = 0;
-                boolean z11 = lVarK != lVar;
-                if (z11) {
-                    lVar = lVarK;
-                }
-                q[] qVarArr = rVar.Q;
-                int length = qVarArr != null ? qVarArr.length : 0;
-                while (true) {
-                    if (i10 >= length) {
-                        qVar = null;
-                    } else {
-                        qVar = qVarArr[i10];
-                        if (qVar == null || qVar.h != lVar) {
-                            i10++;
-                        }
-                    }
-                }
-                if (qVar != null) {
-                    if (!z11) {
-                        rVar.h(qVar, z10);
-                    } else {
-                        rVar.f(qVar.f6276a, qVar, lVarK);
-                        rVar.h(qVar, true);
-                    }
-                }
-                break;
-            default:
-                if (lVar instanceof e0) {
-                    ((e0) lVar).f15286z.k().c(false);
-                }
-                x xVar = ((m.i) this.f14480b).f17340e;
-                if (xVar != null) {
-                    xVar.b(lVar, z10);
-                }
-                break;
-        }
-    }
-
-    @Override
-    public void c(long j10) {
-        n nVar = ((n0) this.f14480b).F0;
-        Handler handler = nVar.f12391a;
-        if (handler != null) {
-            handler.post(new b2(nVar, j10, 3));
-        }
-    }
-
-    @Override
-    public void c0(float f10) {
-        va vaVar = (va) this.f14480b;
-        r0.e(vaVar.B1).k(String.valueOf(m.f49979a.indexOf(vaVar.K0.getCurrentBrush())), f10);
-        p1 p1Var = vaVar.f16000w1;
-        p1Var.f50036c = f10;
-        vaVar.E0(p1Var, null, false);
-    }
-
-    @Override
-    public UUID d() {
-        return h3.h.f7866a;
-    }
-
-    @Override
-    public int f(View view) {
-        return x0.x(view) - ((ViewGroup.MarginLayoutParams) ((y0) view.getLayoutParams())).leftMargin;
-    }
-
-    @Override
-    public void g() {
-        l0 l0Var = ((n0) this.f14480b).O0;
-        if (l0Var != null) {
-            l0Var.f8011a.S = true;
-        }
-    }
-
-    @Override
-    public Object mo28get() {
-        String packageName = ((Context) ((oc.a) this.f14480b).mo28get()).getPackageName();
-        if (packageName != null) {
-            return packageName;
-        }
-        throw new NullPointerException("Cannot return null from a non-@Nullable @Provides method");
-    }
-
-    @Override
-    public void h0() {
-        switch (this.f14479a) {
-            case 17:
-                ec ecVarK = ((i5) this.f14480b).getBulletinFactory().k(false);
-                ecVarK.f28030t = true;
-                ecVarK.j();
-                break;
-            default:
-                e4.j0((e4) this.f14480b);
-                break;
-        }
-    }
-
-    @Override
-    public void i(Object obj) {
-        ((r7.c) obj).onLocationResult((LocationResult) this.f14480b);
-    }
-
-    @Override
-    public boolean j() {
-        return false;
-    }
-
-    @Override
-    public void k(l.l lVar) {
-        Toolbar toolbar = (Toolbar) this.f14480b;
-        m.i iVar = toolbar.f1018a.F;
-        if (iVar == null || !iVar.g()) {
-            Iterator it = ((CopyOnWriteArrayList) toolbar.S.d).iterator();
-            while (it.hasNext()) {
-                ((b0) it.next()).f1420a.t();
-            }
-        }
-    }
-
-    @Override
-    public boolean l(l.l lVar) {
-        Window.Callback callback;
-        switch (this.f14479a) {
-            case 14:
-                g.r rVar = (g.r) this.f14480b;
-                if (lVar != lVar.k() || !rVar.K || (callback = rVar.f6298f.getCallback()) == null || rVar.V) {
-                    return true;
-                }
-                callback.onMenuOpened(108, lVar);
-                return true;
-            default:
-                m.i iVar = (m.i) this.f14480b;
-                if (lVar == iVar.f17339c) {
-                    return false;
-                }
-                ((e0) lVar).A.getClass();
-                iVar.getClass();
-                x xVar = iVar.f17340e;
-                if (xVar != null) {
-                    return xVar.l(lVar);
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public void m(a1.c cVar) {
-        cVar.a(((WindowManager) this.f14480b).getDefaultDisplay());
-    }
-
-    @Override
-    public int n() {
-        return ((x0) this.f14480b).D();
-    }
-
-    @Override
-    public void o(int i10, long j10, long j11) {
-        n nVar = ((n0) this.f14480b).F0;
-        Handler handler = nVar.f12391a;
-        if (handler != null) {
-            handler.post(new com.google.android.exoplayer2.upstream.d(nVar, i10, j10, j11, 1));
-        }
-    }
-
-    @Override
-    public void onSkipSilenceEnabledChanged(boolean z10) {
-        n nVar = ((n0) this.f14480b).F0;
-        Handler handler = nVar.f12391a;
-        if (handler != null) {
-            handler.post(new fh.f(5, nVar, z10));
-        }
-    }
-
-    @Override
-    public int p() {
-        return 1;
-    }
-
-    @Override
-    public Object q(ld.c cVar, tc.c cVar2) throws Throwable {
-        ld.a aVar;
-        Throwable th;
-        md.g gVar;
-        if (cVar2 instanceof ld.a) {
-            aVar = (ld.a) cVar2;
-            int i10 = aVar.d;
-            if ((i10 & Integer.MIN_VALUE) != 0) {
-                aVar.d = i10 - Integer.MIN_VALUE;
-            } else {
-                aVar = new ld.a(this, cVar2);
-            }
-        } else {
-            aVar = new ld.a(this, cVar2);
-        }
-        Object obj = aVar.f15539b;
-        sc.a aVar2 = sc.a.f47847a;
-        int i11 = aVar.d;
-        pc.i iVar = pc.i.f45696a;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-            }
-            gVar = aVar.f15538a;
-            try {
-                k6.b(obj);
-                gVar.releaseIntercepted();
+    public static synchronized i S(Context context) {
+        synchronized (i.class) {
+            i iVar = f14657c;
+            if (iVar != null) {
                 return iVar;
-            } catch (Throwable th2) {
-                th = th2;
-                gVar.releaseIntercepted();
-                throw th;
             }
-        }
-        k6.b(obj);
-        md.g gVar2 = new md.g(cVar, aVar.getContext());
-        try {
-            aVar.f15538a = gVar2;
-            aVar.d = 1;
-            Object objInvoke = ((k1.n) this.f14480b).invoke(gVar2, aVar);
-            if (objInvoke != aVar2) {
-                objInvoke = iVar;
-            }
-            if (objInvoke == aVar2) {
-                return aVar2;
-            }
-            gVar = gVar2;
-            gVar.releaseIntercepted();
-            return iVar;
-        } catch (Throwable th3) {
-            th = th3;
-            gVar = gVar2;
-            gVar.releaseIntercepted();
-            throw th;
+            i iVar2 = new i(context);
+            f14657c = iVar2;
+            return iVar2;
         }
     }
 
     @Override
-    public boolean s(String str) {
-        return false;
+    public boolean A() {
+        return true;
     }
 
     @Override
-    public boolean t(l.l lVar, MenuItem menuItem) {
-        ((Toolbar) this.f14480b).getClass();
-        return false;
+    public int B(View view) {
+        return z0.v(view) + ((ViewGroup.MarginLayoutParams) ((a1) view.getLayoutParams())).bottomMargin;
     }
 
-    public String toString() {
-        switch (this.f14479a) {
-            case 5:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f14480b).flattenToShortString() + " }";
-            default:
-                return super.toString();
+    @Override
+    public com.google.android.gms.common.api.internal.e C(com.google.android.gms.common.api.internal.e eVar) {
+        throw new IllegalStateException("GoogleApiClient is not connected yet.");
+    }
+
+    @Override
+    public void D() {
+        h3.l0 l0Var = ((m0) this.f14659b).O0;
+        if (l0Var != null) {
+            l0Var.f9581a.f9649n.d(2);
         }
     }
 
     @Override
-    public void u(Exception exc) {
-        d5.a.p("MediaCodecAudioRenderer", "Audio sink error", exc);
-        n nVar = ((n0) this.f14480b).F0;
-        Handler handler = nVar.f12391a;
-        if (handler != null) {
-            handler.post(new j3.k(nVar, exc, 1));
+    public void E(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        f0 f0Var = (f0) this.f14659b;
+        Handler handler = f0Var.f541w0;
+        androidx.activity.i iVar = f0Var.f542x0;
+        handler.removeCallbacks(iVar);
+        TextView textView = f0Var.C0;
+        if (textView != null) {
+            textView.setText(charSequence);
         }
+        handler.postDelayed(iVar, 2000L);
     }
 
-    @Override
-    public int v() {
-        x0 x0Var = (x0) this.f14480b;
-        return x0Var.f5862m - x0Var.E();
-    }
-
-    @Override
-    public void w() {
-        ((n0) this.f14480b).M0 = true;
-    }
-
-    @Override
-    public l3.e x() {
-        return (l3.e) this.f14480b;
-    }
-
-    @Override
-    public k3.b y() {
-        return null;
-    }
-
-    public void z(int i10, boolean z10) {
-        t tVar = (t) this.f14480b;
+    public void F(int i9, boolean z10) {
+        t tVar = (t) this.f14659b;
         if (z10) {
-            tVar.b(i10);
+            tVar.b(i9);
         } else {
             tVar.getClass();
         }
     }
 
-    public i(Object obj, int i10) {
-        this.f14479a = i10;
-        this.f14480b = obj;
+    public boolean G(String str) {
+        String K = K(str);
+        if (!"1".equals(K) && !Boolean.parseBoolean(K)) {
+            return false;
+        }
+        return true;
     }
 
-    public i(byte[] bArr, int i10) {
-        this.f14479a = 9;
-        ByteBuffer byteBufferWrap = ByteBuffer.wrap(bArr, 0, i10);
-        this.f14480b = byteBufferWrap;
-        byteBufferWrap.order(ByteOrder.LITTLE_ENDIAN);
+    public Integer H(String str) {
+        String K = K(str);
+        if (!TextUtils.isEmpty(K)) {
+            try {
+                return Integer.valueOf(Integer.parseInt(K));
+            } catch (NumberFormatException unused) {
+                Log.w("NotificationParams", "Couldn't parse value of " + P(str) + "(" + K + ") into an int");
+                return null;
+            }
+        }
+        return null;
     }
 
-    public i(Context context) {
-        String strD;
-        this.f14479a = 0;
-        b bVarA = b.a(context);
-        this.f14480b = bVarA;
-        bVarA.b();
-        String strD2 = bVarA.d("defaultGoogleSignInAccount");
-        if (TextUtils.isEmpty(strD2) || (strD = bVarA.d(b.f("googleSignInOptions", strD2))) == null) {
-            return;
+    public JSONArray I(String str) {
+        String K = K(str);
+        if (!TextUtils.isEmpty(K)) {
+            try {
+                return new JSONArray(K);
+            } catch (JSONException unused) {
+                Log.w("NotificationParams", "Malformed JSON for key " + P(str) + ": " + K + ", falling back to default");
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public String J(Resources resources, String str, String str2) {
+        String[] strArr;
+        String K = K(str2);
+        if (!TextUtils.isEmpty(K)) {
+            return K;
+        }
+        String K2 = K(str2.concat("_loc_key"));
+        if (TextUtils.isEmpty(K2)) {
+            return null;
+        }
+        int identifier = resources.getIdentifier(K2, "string", str);
+        if (identifier == 0) {
+            Log.w("NotificationParams", P(str2.concat("_loc_key")) + " resource not found: " + str2 + " Default value will be used.");
+            return null;
+        }
+        JSONArray I = I(str2.concat("_loc_args"));
+        if (I == null) {
+            strArr = null;
+        } else {
+            int length = I.length();
+            strArr = new String[length];
+            for (int i9 = 0; i9 < length; i9++) {
+                strArr[i9] = I.optString(i9);
+            }
+        }
+        if (strArr == null) {
+            return resources.getString(identifier);
         }
         try {
-            GoogleSignInOptions.b(strD);
-        } catch (JSONException unused) {
+            return resources.getString(identifier, strArr);
+        } catch (MissingFormatArgumentException e10) {
+            Log.w("NotificationParams", "Missing format argument for " + P(str2) + ": " + Arrays.toString(strArr) + " Default value will be used.", e10);
+            return null;
         }
+    }
+
+    public String K(String str) {
+        String replace;
+        Bundle bundle = (Bundle) this.f14659b;
+        if (!bundle.containsKey(str) && str.startsWith("gcm.n.")) {
+            if (!str.startsWith("gcm.n.")) {
+                replace = str;
+            } else {
+                replace = str.replace("gcm.n.", "gcm.notification.");
+            }
+            if (bundle.containsKey(replace)) {
+                str = replace;
+            }
+        }
+        return bundle.getString(str);
+    }
+
+    public Bundle M() {
+        Bundle bundle = (Bundle) this.f14659b;
+        Bundle bundle2 = new Bundle(bundle);
+        for (String str : bundle.keySet()) {
+            if (!str.startsWith("google.c.a.") && !str.equals("from")) {
+                bundle2.remove(str);
+            }
+        }
+        return bundle2;
+    }
+
+    public l9.a N(JSONObject jSONObject) {
+        l9.b uVar;
+        int i9 = jSONObject.getInt("settings_version");
+        if (i9 != 3) {
+            Log.e("FirebaseCrashlytics", "Could not determine SettingsJsonTransform for settings version " + i9 + ". Using default settings values.", null);
+            uVar = new za.a(13);
+        } else {
+            uVar = new u(14);
+        }
+        return uVar.t((ya.b) this.f14659b, jSONObject);
+    }
+
+    public void O(int i9) {
+        RecyclerView recyclerView = (RecyclerView) this.f14659b;
+        View childAt = recyclerView.getChildAt(i9);
+        if (childAt != null) {
+            recyclerView.r(childAt);
+            childAt.clearAnimation();
+        }
+        recyclerView.removeViewAt(i9);
+    }
+
+    public synchronized void R() {
+        synchronized (this) {
+            b bVar = (b) this.f14659b;
+            ReentrantLock reentrantLock = bVar.f14640a;
+            reentrantLock.lock();
+            bVar.f14641b.edit().clear().apply();
+            reentrantLock.unlock();
+        }
+    }
+
+    @Override
+    public void T(long j10, int i9, n3 n3Var) {
+        int i10 = ProfileStoriesView.f36197o0;
+        ((oy0) this.f14659b).f(true, false);
+        n3Var.run();
+    }
+
+    @Override
+    public void a(long j10) {
+        m mVar = ((m0) this.f14659b).F0;
+        Handler handler = mVar.f13291a;
+        if (handler != null) {
+            handler.post(new i2(mVar, j10, 8));
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        switch (this.f14658a) {
+            case 7:
+                c6.f fVar = new c6.f(0, (TaskCompletionSource) obj2);
+                c6.e eVar = (c6.e) ((c6.h) obj).u();
+                Parcel G0 = eVar.G0();
+                u6.a.d(G0, fVar);
+                u6.a.c(G0, (c6.a) this.f14659b);
+                eVar.H0(G0, 1);
+                return;
+            case 14:
+                f8.e eVar2 = (f8.e) this.f14659b;
+                o7.b bVar = (o7.b) obj;
+                bVar.getClass();
+                o7.a aVar = new o7.a(1, (TaskCompletionSource) obj2);
+                try {
+                    o7.i iVar = (o7.i) bVar.u();
+                    Bundle G = bVar.G();
+                    Parcel obtain = Parcel.obtain();
+                    obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
+                    int i9 = o7.c.f19011a;
+                    obtain.writeInt(1);
+                    eVar2.writeToParcel(obtain, 0);
+                    obtain.writeInt(1);
+                    G.writeToParcel(obtain, 0);
+                    obtain.writeStrongBinder(aVar);
+                    iVar.f19019a.transact(14, obtain, null, 1);
+                    obtain.recycle();
+                    return;
+                } catch (RemoteException e10) {
+                    Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e10);
+                    Bundle bundle = Bundle.EMPTY;
+                    h5.a(Status.h, Boolean.FALSE, aVar.f19010b);
+                    return;
+                }
+            default:
+                l6.b bVar2 = new l6.b(0, (TaskCompletionSource) obj2);
+                m1 m1Var = (m1) ((l1) obj).u();
+                Parcel obtain2 = Parcel.obtain();
+                obtain2.writeInterfaceToken(m1Var.f49041b);
+                int i10 = x6.j.f49024a;
+                obtain2.writeStrongBinder(bVar2);
+                obtain2.writeInt(1);
+                ((v) this.f14659b).writeToParcel(obtain2, 0);
+                Parcel obtain3 = Parcel.obtain();
+                try {
+                    m1Var.f49040a.transact(1, obtain2, obtain3, 0);
+                    obtain3.readException();
+                    return;
+                } finally {
+                    obtain2.recycle();
+                    obtain3.recycle();
+                }
+        }
+    }
+
+    @Override
+    public int c(View view) {
+        return z0.z(view) - ((ViewGroup.MarginLayoutParams) ((a1) view.getLayoutParams())).topMargin;
+    }
+
+    @Override
+    public void f(Object obj) {
+        int i9;
+        Bundle extras;
+        switch (this.f14658a) {
+            case 3:
+                Map map = (Map) obj;
+                j0 j0Var = (j0) this.f14659b;
+                String[] strArr = (String[]) map.keySet().toArray(new String[0]);
+                ArrayList arrayList = new ArrayList(map.values());
+                int[] iArr = new int[arrayList.size()];
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    if (((Boolean) arrayList.get(i10)).booleanValue()) {
+                        i9 = 0;
+                    } else {
+                        i9 = -1;
+                    }
+                    iArr[i10] = i9;
+                }
+                androidx.fragment.app.f0 f0Var = (androidx.fragment.app.f0) j0Var.F.pollFirst();
+                if (f0Var == null) {
+                    Log.w("FragmentManager", "No permissions were requested for " + this);
+                    return;
+                }
+                String str = f0Var.f936a;
+                if (j0Var.f950c.q(str) == null) {
+                    Log.w("FragmentManager", "Permission request result delivered for unknown Fragment " + str);
+                    return;
+                }
+                return;
+            default:
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f14659b;
+                androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
+                proxyBillingActivityV2.getClass();
+                Intent intent = aVar.f400b;
+                int i11 = aVar.f399a;
+                if (intent == null) {
+                    extras = null;
+                } else {
+                    extras = intent.getExtras();
+                }
+                if (i11 != -1) {
+                    if (extras == null) {
+                        extras = new Bundle();
+                    }
+                    com.google.android.gms.internal.play_billing.u.h("ProxyBillingActivityV2", "External offer flow finished with resultCode: " + i11);
+                    extras.putInt("INTERNAL_LOG_ERROR_REASON", 134);
+                    extras.putString("INTERNAL_LOG_ERROR_ADDITIONAL_DETAILS", "External offer flow finished with error resultCode: " + i11);
+                }
+                int i12 = com.google.android.gms.internal.play_billing.u.e("ProxyBillingActivityV2", intent).f18319a;
+                ResultReceiver resultReceiver = proxyBillingActivityV2.K;
+                if (resultReceiver != null) {
+                    resultReceiver.send(i12, extras);
+                } else {
+                    com.google.android.gms.internal.play_billing.u.h("ProxyBillingActivityV2", "External offer flow result receiver is null");
+                }
+                if (i12 != 0) {
+                    com.google.android.gms.internal.play_billing.u.h("ProxyBillingActivityV2", "External offer flow finished with billing responseCode: " + i12);
+                }
+                proxyBillingActivityV2.finish();
+                return;
+        }
+    }
+
+    @Override
+    public void g() {
+        h3.l0 l0Var = ((m0) this.f14659b).O0;
+        if (l0Var != null) {
+            l0Var.f9581a.S = true;
+        }
+    }
+
+    @Override
+    public void g0(float f10) {
+        ya yaVar = (ya) this.f14659b;
+        s0.e(yaVar.B1).k(String.valueOf(xf.m.f49272a.indexOf(yaVar.K0.getCurrentBrush())), f10);
+        q1 q1Var = yaVar.f15310w1;
+        q1Var.f49335c = f10;
+        yaVar.E0(q1Var, null, false);
     }
 
     @Override
     public float get() {
-        va vaVar = (va) this.f14480b;
-        int i10 = vaVar.B1;
-        m currentBrush = vaVar.K0.getCurrentBrush();
+        ya yaVar = (ya) this.f14659b;
+        int i9 = yaVar.B1;
+        xf.m currentBrush = yaVar.K0.getCurrentBrush();
         if (currentBrush == null) {
-            return r0.e(i10).f50060i;
+            return s0.e(i9).f49364i;
         }
-        return r0.e(i10).f(String.valueOf(m.f49979a.indexOf(currentBrush)), currentBrush.d());
+        return s0.e(i9).f(String.valueOf(xf.m.f49272a.indexOf(currentBrush)), currentBrush.d());
     }
 
-    public i(k9.c cVar) {
-        this.f14479a = 29;
-        this.f14480b = new File(cVar.f15099b, "com.crashlytics.settings.json");
+    @Override
+    public com.google.android.exoplayer2.upstream.k0 h(n0 n0Var, IOException iOException, int i9) {
+        m4.g gVar = ((m4.d) this.f14659b).f17290a;
+        d5.a.p("DashMediaSource", "Failed to resolve time offset.", iOException);
+        gVar.u(true);
+        return q0.f2591e;
     }
 
-    public i(int i10) {
-        this.f14479a = i10;
-        switch (i10) {
-            case 15:
+    @Override
+    public void i(Object obj) {
+        n nVar;
+        q7.c cVar = (q7.c) obj;
+        androidx.activity.o oVar = ((b7.k) this.f14659b).f1565b;
+        synchronized (oVar) {
+            oVar.f387a = false;
+            nVar = ((p) oVar.f388b).f2873c;
+        }
+        if (nVar != null) {
+            ((b7.e) oVar.f389c).c(nVar, 2441);
+        }
+    }
+
+    @Override
+    public void j() {
+        com.google.android.gms.common.api.internal.m0 m0Var = (com.google.android.gms.common.api.internal.m0) this.f14659b;
+        m0Var.f2850a.lock();
+        try {
+            m0Var.f2859m = new g0(m0Var, m0Var.f2856j, m0Var.f2857k, m0Var.d, m0Var.f2858l, m0Var.f2850a, m0Var.f2852c);
+            m0Var.f2859m.v();
+            m0Var.f2851b.signalAll();
+        } finally {
+            m0Var.f2850a.unlock();
+        }
+    }
+
+    @Override
+    public void k(l.k kVar, MenuItem menuItem) {
+        ((l.e) this.f14659b).f16534f.removeCallbacksAndMessages(kVar);
+    }
+
+    @Override
+    public int l() {
+        return ((z0) this.f14659b).G();
+    }
+
+    @Override
+    public void m(n0 n0Var, long j10, long j11) {
+        boolean z10;
+        m4.d dVar = (m4.d) this.f14659b;
+        synchronized (d5.a.f4327i) {
+            z10 = d5.a.f4328j;
+        }
+        if (!z10) {
+            IOException iOException = new IOException(new ConcurrentModificationException());
+            m4.g gVar = dVar.f17290a;
+            d5.a.p("DashMediaSource", "Failed to resolve time offset.", iOException);
+            gVar.u(true);
+            return;
+        }
+        dVar.a();
+    }
+
+    @Override
+    public void n(int i9) {
+        x xVar = (x) this.f14659b;
+        Lock lock = xVar.f2929o;
+        lock.lock();
+        try {
+            if (xVar.f2928n) {
+                xVar.f2928n = false;
+                x.k(xVar, i9);
+            } else {
+                xVar.f2928n = true;
+                xVar.d.onConnectionSuspended(i9);
+            }
+            lock.unlock();
+        } catch (Throwable th) {
+            lock.unlock();
+            throw th;
+        }
+    }
+
+    @Override
+    public void o(int i9, long j10, long j11) {
+        m mVar = ((m0) this.f14659b).F0;
+        Handler handler = mVar.f13291a;
+        if (handler != null) {
+            handler.post(new com.google.android.exoplayer2.upstream.d(mVar, i9, j10, j11, 1));
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        e0 e0Var = (e0) this.f14659b;
+        if (task.isSuccessful()) {
+            h8.m.K0(e0Var, true, (byte[]) task.getResult());
+            return;
+        }
+        Log.e("WearableLS", "Failed to resolve future, sending null response", task.getException());
+        h8.m.K0(e0Var, false, null);
+    }
+
+    @Override
+    public void onSkipSilenceEnabledChanged(boolean z10) {
+        m mVar = ((m0) this.f14659b).F0;
+        Handler handler = mVar.f13291a;
+        if (handler != null) {
+            handler.post(new eh.f(5, mVar, z10));
+        }
+    }
+
+    @Override
+    public java.lang.Object q(kd.c r7, sc.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: k5.i.q(kd.c, sc.c):java.lang.Object");
+    }
+
+    @Override
+    public void s(Bundle bundle) {
+        x xVar = (x) this.f14659b;
+        xVar.f2929o.lock();
+        try {
+            xVar.f2927m = u5.a.f48098e;
+            x.l(xVar);
+        } finally {
+            xVar.f2929o.unlock();
+        }
+    }
+
+    @Override
+    public void t(u5.a aVar) {
+        x xVar = (x) this.f14659b;
+        xVar.f2929o.lock();
+        try {
+            xVar.f2927m = aVar;
+            x.l(xVar);
+        } finally {
+            xVar.f2929o.unlock();
+        }
+    }
+
+    @Override
+    public int u() {
+        z0 z0Var = (z0) this.f14659b;
+        return z0Var.f5573n - z0Var.C();
+    }
+
+    @Override
+    public void v() {
+        com.google.android.gms.common.api.internal.m0 m0Var = (com.google.android.gms.common.api.internal.m0) this.f14659b;
+        for (com.google.android.gms.common.api.c cVar : m0Var.f2854f.values()) {
+            cVar.disconnect();
+        }
+        m0Var.f2861o.B = Collections.EMPTY_SET;
+    }
+
+    @Override
+    public void w(Exception exc) {
+        d5.a.p("MediaCodecAudioRenderer", "Audio sink error", exc);
+        m mVar = ((m0) this.f14659b).F0;
+        Handler handler = mVar.f13291a;
+        if (handler != null) {
+            handler.post(new j3.k(mVar, exc, 1));
+        }
+    }
+
+    @Override
+    public void x() {
+        ((m0) this.f14659b).M0 = true;
+    }
+
+    @Override
+    public void y(l.k kVar, l.m mVar) {
+        l.e eVar = (l.e) this.f14659b;
+        Handler handler = eVar.f16534f;
+        l.d dVar = null;
+        handler.removeCallbacksAndMessages(null);
+        ArrayList arrayList = eVar.f16535n;
+        int size = arrayList.size();
+        int i9 = 0;
+        while (true) {
+            if (i9 < size) {
+                if (kVar == ((l.d) arrayList.get(i9)).f16528b) {
+                    break;
+                }
+                i9++;
+            } else {
+                i9 = -1;
                 break;
+            }
+        }
+        if (i9 == -1) {
+            return;
+        }
+        int i10 = i9 + 1;
+        if (i10 < arrayList.size()) {
+            dVar = (l.d) arrayList.get(i10);
+        }
+        handler.postAtTime(new af.f(this, dVar, mVar, kVar, 7), kVar, SystemClock.uptimeMillis() + 200);
+    }
+
+    @Override
+    public boolean y0(long j10, int i9, int i10, int i11, j9 j9Var) {
+        ImageReceiver imageReceiver;
+        k4 k4Var;
+        k4 k4Var2;
+        k4 k4Var3;
+        k4 k4Var4;
+        j9Var.f11643b = null;
+        j9Var.f11644c = null;
+        oy0 oy0Var = (oy0) this.f14659b;
+        iz0 iz0Var = oy0Var.h;
+        ArrayList arrayList = oy0Var.f36219w;
+        if (oy0Var.J < 0.2f) {
+            j9Var.f11643b = iz0Var.getImageReceiver();
+            j9Var.f11644c = null;
+            j9Var.f11642a = iz0Var;
+            j9Var.h = 0.0f;
+            j9Var.f11648i = AndroidUtilities.displaySize.y;
+            j9Var.f11647g = (View) oy0Var.getParent();
+            j9Var.d = oy0Var.f36221y;
+            j9Var.f11653n = true;
+            return true;
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 < arrayList.size()) {
+                k4 k4Var5 = (k4) arrayList.get(i12);
+                if (k4Var5.f11674e >= 1.0f && k4Var5.f11671a == i10) {
+                    int i13 = i12 - 1;
+                    if (i13 >= 0) {
+                        k4Var3 = (k4) arrayList.get(i13);
+                    } else {
+                        k4Var3 = null;
+                    }
+                    int i14 = i12 - 2;
+                    if (i14 >= 0) {
+                        k4Var4 = (k4) arrayList.get(i14);
+                    } else {
+                        k4Var4 = null;
+                    }
+                    k4 d = ProfileStoriesView.d(k4Var3, k4Var4, k4Var5);
+                    imageReceiver = k4Var5.f11672b;
+                    k4Var2 = d;
+                    k4Var = k4Var5;
+                }
+                i12++;
+            } else {
+                imageReceiver = null;
+                k4Var = null;
+                k4Var2 = null;
+                break;
+            }
+        }
+        if (imageReceiver == null) {
+            return false;
+        }
+        j9Var.f11644c = imageReceiver;
+        j9Var.f11643b = null;
+        j9Var.f11642a = oy0Var;
+        j9Var.h = 0.0f;
+        j9Var.f11648i = AndroidUtilities.displaySize.y;
+        j9Var.f11647g = (View) oy0Var.getParent();
+        if (k4Var != null && k4Var2 != null) {
+            j9Var.f11646f = new f1.a(this, new RectF(k4Var.f11681m), k4Var, new RectF(k4Var2.f11681m), k4Var2);
+            return true;
+        }
+        j9Var.f11646f = null;
+        return true;
+    }
+
+    @Override
+    public View z(int i9) {
+        return ((z0) this.f14659b).q(i9);
+    }
+
+    public i(com.google.android.gms.common.api.j jVar, y5.a aVar, int i9) {
+        this.f14658a = i9;
+        this.f14659b = aVar;
+    }
+
+    public i(Object obj, int i9) {
+        this.f14658a = i9;
+        this.f14659b = obj;
+    }
+
+    public i(Context context) {
+        String d;
+        this.f14658a = 0;
+        b a2 = b.a(context);
+        this.f14659b = a2;
+        a2.b();
+        String d9 = a2.d("defaultGoogleSignInAccount");
+        if (TextUtils.isEmpty(d9) || (d = a2.d(b.f("googleSignInOptions", d9))) == null) {
+            return;
+        }
+        try {
+            GoogleSignInOptions.b(d);
+        } catch (JSONException unused) {
+        }
+    }
+
+    public i(int i9) {
+        this.f14658a = i9;
+        switch (i9) {
             case 16:
-                this.f14480b = new t();
-                break;
+                this.f14659b = new t();
+                return;
             default:
-                this.f14480b = new CopyOnWriteArrayList();
-                break;
+                this.f14659b = new LinkedHashMap(0, 0.75f, true);
+                return;
         }
     }
 
-    private final void C() {
-    }
-
-    private final void D() {
-    }
-
-    @Override
-    public void r() {
+    public i(Bundle bundle) {
+        this.f14658a = 10;
+        this.f14659b = new Bundle(bundle);
     }
 
     @Override
-    public void e(b6.a aVar) {
+    public void b(Bundle bundle) {
     }
 
     @Override
-    public void h(b6.a aVar) {
+    public void d(boolean z10) {
+    }
+
+    @Override
+    public void r(int i9) {
+    }
+
+    @Override
+    public void p(u5.a aVar, com.google.android.gms.common.api.e eVar, boolean z10) {
+    }
+
+    @Override
+    public void e(n0 n0Var, long j10, long j11, boolean z10) {
     }
 }

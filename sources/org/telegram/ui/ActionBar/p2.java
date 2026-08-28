@@ -1,39 +1,56 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.animation.ValueAnimator;
+public final class p2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23703a;
+    public final f3 f23704b;
 
-public final class p2 implements Runnable {
-
-    public final int f23726a;
-
-    public final e3 f23727b;
-
-    public p2(e3 e3Var, int i10) {
-        this.f23726a = i10;
-        this.f23727b = e3Var;
+    public p2(f3 f3Var, int i9) {
+        this.f23703a = i9;
+        this.f23704b = f3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23726a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23703a) {
             case 0:
-                e3 e3Var = this.f23727b;
-                AndroidUtilities.removeFromParent(e3Var.container);
-                e3Var.attachedFragment.getLayoutContainer().addView(e3Var.container);
-                break;
-            case 1:
-                this.f23727b.dismiss();
-                break;
-            default:
-                e3 e3Var2 = this.f23727b;
-                e3Var2.getClass();
-                try {
-                    e3Var2.dismissInternal();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
+                f3 f3Var = this.f23704b;
+                f3Var.getClass();
+                f3Var.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d3 d3Var = f3Var.container;
+                if (d3Var != null) {
+                    d3Var.invalidate();
+                    return;
                 }
-                break;
+                return;
+            case 1:
+                f3 f3Var2 = this.f23704b;
+                f3Var2.getClass();
+                f3Var2.navigationBarAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d3 d3Var2 = f3Var2.container;
+                if (d3Var2 != null) {
+                    d3Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                this.f23704b.onContainerViewTranslation();
+                return;
+            case 3:
+                this.f23704b.onContainerViewTranslation();
+                return;
+            case 4:
+                this.f23704b.onContainerViewTranslation();
+                return;
+            case 5:
+                f3.j(this.f23704b, valueAnimator);
+                return;
+            case 6:
+                this.f23704b.onContainerViewTranslation();
+                return;
+            default:
+                f3.i(this.f23704b, valueAnimator);
+                return;
         }
     }
 }

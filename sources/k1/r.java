@@ -1,30 +1,23 @@
 package k1;
-
-public final class r extends tc.c {
-
-    public Object f14296a;
-
-    public Object f14297b;
-
-    public Object f14298c;
-    public kotlin.jvm.internal.q d;
-
-    public z f14299e;
-
-    public Object f14300f;
+public final class r extends sc.c {
+    public Object f14475a;
+    public Object f14476b;
+    public Object f14477c;
+    public kotlin.jvm.internal.p d;
+    public z f14478e;
+    public Object f14479f;
     public final s h;
+    public int f14480n;
 
-    public int f14301n;
-
-    public r(s sVar, tc.c cVar) {
+    public r(s sVar, sc.c cVar) {
         super(cVar);
         this.h = sVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f14300f = obj;
-        this.f14301n |= Integer.MIN_VALUE;
+        this.f14479f = obj;
+        this.f14480n |= Integer.MIN_VALUE;
         return this.h.a(null, this);
     }
 }

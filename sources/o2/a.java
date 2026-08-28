@@ -1,37 +1,37 @@
 package o2;
 
 import java.util.Random;
-
 public final class a extends Random {
-
-    public long f19156a;
-
-    public long f19157b;
+    public long f18809a;
+    public long f18810b;
 
     @Override
-    public final int next(int i10) {
-        return ((int) nextLong()) >>> (32 - i10);
+    public final int next(int i9) {
+        return ((int) nextLong()) >>> (32 - i9);
     }
 
     @Override
     public final boolean nextBoolean() {
-        return nextLong() >= 0;
+        if (nextLong() >= 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final void nextBytes(byte[] bArr) {
         int length = bArr.length;
-        int i10 = 0;
-        while (i10 < length) {
-            long jNextLong = (int) nextLong();
-            int iMin = Math.min(length - i10, 8);
+        int i9 = 0;
+        while (i9 < length) {
+            long nextLong = (int) nextLong();
+            int min = Math.min(length - i9, 8);
             while (true) {
-                int i11 = iMin - 1;
-                if (iMin > 0) {
-                    bArr[i10] = (byte) jNextLong;
-                    jNextLong >>>= 8;
-                    i10++;
-                    iMin = i11;
+                int i10 = min - 1;
+                if (min > 0) {
+                    bArr[i9] = (byte) nextLong;
+                    nextLong >>>= 8;
+                    i9++;
+                    min = i10;
                 }
             }
         }
@@ -54,19 +54,20 @@ public final class a extends Random {
 
     @Override
     public final long nextLong() {
-        long j10 = this.f19156a;
-        long j11 = this.f19157b;
+        long j10 = this.f18809a;
+        long j11 = this.f18810b;
         long j12 = j10 + j11;
         long j13 = j11 ^ j10;
-        this.f19156a = (Long.rotateLeft(j10, 55) ^ j13) ^ (j13 << 14);
-        this.f19157b = Long.rotateLeft(j13, 36);
+        this.f18809a = (Long.rotateLeft(j10, 55) ^ j13) ^ (j13 << 14);
+        this.f18810b = Long.rotateLeft(j13, 36);
         return j12;
     }
 
     @Override
     public final void setSeed(long j10) {
-        if (this.f19156a != 0 || this.f19157b != 0) {
-            throw new RuntimeException("No seed set");
+        if (this.f18809a == 0 && this.f18810b == 0) {
+            return;
         }
+        throw new RuntimeException("No seed set");
     }
 }

@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class RomanAtom extends Atom {
     protected Atom base;
 
@@ -9,11 +8,11 @@ public class RomanAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        if (this.base == null) {
-            return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
+        if (this.base != null) {
+            TeXEnvironment copy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
+            copy.getTeXFont().setRoman(true);
+            return this.base.createBox(copy);
         }
-        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
-        teXEnvironmentCopy.getTeXFont().setRoman(true);
-        return this.base.createBox(teXEnvironmentCopy);
+        return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
     }
 }

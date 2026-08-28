@@ -12,12 +12,11 @@ import android.widget.RemoteViewsService;
 import androidx.core.content.FileProvider;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-
-class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, NotificationCenter.NotificationCenterDelegate {
+public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, NotificationCenter.NotificationCenterDelegate {
     private AccountInstance accountInstance;
     private int classGuid;
     private long dialogId;
@@ -29,10 +28,10 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
         this.mContext = context;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
-        int i10 = sharedPreferences.getInt("account" + intExtra, -1);
-        if (i10 >= 0) {
+        int i9 = sharedPreferences.getInt("account" + intExtra, -1);
+        if (i9 >= 0) {
             this.dialogId = sharedPreferences.getLong("dialogId" + intExtra, 0L);
-            this.accountInstance = AccountInstance.getInstance(i10);
+            this.accountInstance = AccountInstance.getInstance(i9);
         }
     }
 
@@ -45,8 +44,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
+    public void didReceivedNotification(int i9, int i10, Object... objArr) {
+        if (i9 == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
             this.messages.clear();
             this.messages.addAll((ArrayList) objArr[2]);
             this.countDownLatch.countDown();
@@ -59,8 +58,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public long getItemId(int i10) {
-        return i10;
+    public long getItemId(int i9) {
+        return i9;
     }
 
     @Override
@@ -69,8 +68,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     }
 
     @Override
-    public RemoteViews getViewAt(int i10) {
-        MessageObject messageObject = this.messages.get(i10);
+    public RemoteViews getViewAt(int i9) {
+        MessageObject messageObject = this.messages.get(i9);
         RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), R.layout.feed_widget_item);
         if (messageObject.type == 0) {
             remoteViews.setTextViewText(R.id.feed_widget_item_text, messageObject.messageText);
@@ -82,18 +81,19 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
             remoteViews.setViewVisibility(R.id.feed_widget_item_text, 0);
         }
         ArrayList<TLRPC.PhotoSize> arrayList = messageObject.photoThumbs;
-        if (arrayList == null || arrayList.isEmpty()) {
-            remoteViews.setViewVisibility(R.id.feed_widget_item_image, 8);
-        } else {
+        if (arrayList != null && !arrayList.isEmpty()) {
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()));
             if (pathToAttach.exists()) {
                 remoteViews.setViewVisibility(R.id.feed_widget_item_image, 0);
-                Uri uriD = FileProvider.d(this.mContext, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
-                grantUriAccessToWidget(this.mContext, uriD);
-                remoteViews.setImageViewUri(R.id.feed_widget_item_image, uriD);
+                Context context = this.mContext;
+                Uri d = FileProvider.d(context, ApplicationLoader.getApplicationId() + ".provider", pathToAttach);
+                grantUriAccessToWidget(this.mContext, d);
+                remoteViews.setImageViewUri(R.id.feed_widget_item_image, d);
             } else {
                 remoteViews.setViewVisibility(R.id.feed_widget_item_image, 8);
             }
+        } else {
+            remoteViews.setViewVisibility(R.id.feed_widget_item_image, 8);
         }
         Bundle bundle = new Bundle();
         bundle.putLong("chatId", -messageObject.getDialogId());
@@ -113,9 +113,8 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     public void grantUriAccessToWidget(Context context, Uri uri) {
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.HOME");
-        Iterator<ResolveInfo> it = context.getPackageManager().queryIntentActivities(intent, 65536).iterator();
-        while (it.hasNext()) {
-            context.grantUriPermission(it.next().activityInfo.packageName, uri, 1);
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(intent, 65536)) {
+            context.grantUriPermission(resolveInfo.activityInfo.packageName, uri, 1);
         }
     }
 
@@ -132,16 +131,17 @@ class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory, N
     @Override
     public void onDataSetChanged() {
         AccountInstance accountInstance = this.accountInstance;
-        if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {
-            this.messages.clear();
-            return;
+        if (accountInstance != null && accountInstance.getUserConfig().isClientActivated()) {
+            AndroidUtilities.runOnUIThread(new e1(this, 1));
+            try {
+                this.countDownLatch.await();
+                return;
+            } catch (Exception e10) {
+                FileLog.e(e10);
+                return;
+            }
         }
-        AndroidUtilities.runOnUIThread(new d1(this, 1));
-        try {
-            this.countDownLatch.await();
-        } catch (Exception e9) {
-            FileLog.e(e9);
-        }
+        this.messages.clear();
     }
 
     @Override

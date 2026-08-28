@@ -2,251 +2,199 @@ package gh;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.Shader;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.NinePatchDrawable;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.y8;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.gr;
+public abstract class y0 {
+    public static final float[][] f9193a;
+    public static final e0.i0 f9194b;
 
-public final class y0 extends Drawable {
-
-    public NinePatchDrawable f7634a;
-
-    public NinePatchDrawable f7635b;
-
-    public final TextPaint f7636c;
-    public final ImageReceiver d;
-
-    public final y8 f7637e;
-
-    public final int f7638f;
-
-    public final int f7639g;
-    public final float h;
-
-    public final float f7640i;
-
-    public final int f7641j;
-
-    public final int f7642k;
-
-    public boolean f7643l;
-
-    public CharSequence f7644m;
-
-    public StaticLayout f7645n;
-
-    public float f7646o;
-
-    public float f7647p;
-
-    public org.telegram.ui.Components.p5 f7648q;
-
-    public View f7649r;
-
-    public int f7650s;
-
-    public int f7651t;
-
-    public int f7652u;
-
-    public y0() {
-        TextPaint textPaint = new TextPaint(1);
-        this.f7636c = textPaint;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.d = imageReceiver;
-        this.f7637e = new y8((org.telegram.ui.ActionBar.c6) null);
-        int iDp = AndroidUtilities.dp(10.66f);
-        this.f7638f = iDp * 2;
-        this.f7639g = AndroidUtilities.dp(4.0f);
-        this.h = AndroidUtilities.dpf2(15.33f);
-        this.f7640i = AndroidUtilities.dpf2(7.33f);
-        this.f7641j = AndroidUtilities.dp(8.0f);
-        this.f7642k = (int) AndroidUtilities.dpf2(22.66f);
-        er erVar = er.f28122f;
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setColor(-1);
-        imageReceiver.setRoundRadius(iDp);
+    static {
+        float[][] fArr = {new float[]{83.33f, 24.0f, 27.33f, 0.22f, 68.66f, 75.33f, 25.33f, 0.21f, 0.0f, 86.0f, 25.33f, 0.12f, -68.66f, 75.33f, 25.33f, 0.21f, -82.66f, 13.66f, 27.33f, 0.22f, -80.0f, -33.33f, 20.0f, 0.24f, -46.5f, -63.16f, 27.0f, 0.21f, 1.0f, -82.66f, 20.0f, 0.15f, 46.5f, -63.16f, 27.0f, 0.21f, 80.0f, -33.33f, 19.33f, 0.24f, 115.66f, -63.0f, 20.0f, 0.15f, 134.0f, -10.66f, 20.0f, 0.18f, 118.66f, 55.66f, 20.0f, 0.15f, 124.33f, 98.33f, 20.0f, 0.11f, -128.0f, 98.33f, 20.0f, 0.11f, -108.0f, 55.66f, 20.0f, 0.15f, -123.33f, -10.66f, 20.0f, 0.18f, -116.0f, -63.33f, 20.0f, 0.15f}, new float[]{27.33f, -57.66f, 20.0f, 0.12f, 59.0f, -32.0f, 19.33f, 0.22f, 77.0f, 4.33f, 22.66f, 0.2f, 100.0f, 40.33f, 18.0f, 0.12f, 58.66f, 59.0f, 20.0f, 0.18f, 73.33f, 100.33f, 22.66f, 0.15f, 75.0f, 155.0f, 22.0f, 0.11f, -27.33f, -57.33f, 20.0f, 0.12f, -59.0f, -32.33f, 19.33f, 0.2f, -77.0f, 4.66f, 23.33f, 0.2f, -98.66f, 41.0f, 18.66f, 0.12f, -58.0f, 59.33f, 19.33f, 0.18f, -73.33f, 100.0f, 22.0f, 0.15f, -75.66f, 155.0f, 22.0f, 0.11f}, new float[]{-0.83f, -52.16f, 12.33f, 0.2f, 26.66f, -40.33f, 16.0f, 0.2f, 44.16f, -20.5f, 12.33f, 0.2f, 53.0f, 7.33f, 16.0f, 0.2f, 31.0f, 23.66f, 14.66f, 0.2f, 0.0f, 32.0f, 13.33f, 0.2f, -29.0f, 23.66f, 14.0f, 0.2f, -53.0f, 7.33f, 16.0f, 0.2f, -44.5f, -20.16f, 12.33f, 0.2f, -27.33f, -40.33f, 16.0f, 0.2f, 43.66f, 50.0f, 14.66f, 0.2f, -41.66f, 48.0f, 14.66f, 0.2f}, new float[]{-0.16f, -103.5f, 20.33f, 0.15f, 39.66f, -77.33f, 26.66f, 0.15f, 70.66f, -46.33f, 21.33f, 0.15f, 84.5f, -3.83f, 29.66f, 0.15f, 65.33f, 56.33f, 24.66f, 0.15f, 0.0f, 67.66f, 24.66f, 0.15f, -65.66f, 56.66f, 24.66f, 0.15f, -85.0f, -4.0f, 29.33f, 0.15f, -70.66f, -46.33f, 21.33f, 0.15f, -40.33f, -77.66f, 26.66f, 0.15f, 62.66f, -109.66f, 21.33f, 0.11f, 103.166f, -67.5f, 20.33f, 0.11f, 110.33f, 37.66f, 20.66f, 0.11f, 94.166f, 91.16f, 20.33f, 0.11f, 38.83f, 91.16f, 20.33f, 0.11f, 0.0f, 112.5f, 20.33f, 0.11f, -38.83f, 91.16f, 20.33f, 0.11f, -94.166f, 91.16f, 20.33f, 0.11f, -110.33f, 37.66f, 20.66f, 0.11f, -103.166f, -67.5f, 20.33f, 0.11f, -62.66f, -109.66f, 21.33f, 0.11f}};
+        f9193a = fArr;
+        short s10 = 0;
+        for (float[] fArr2 : fArr) {
+            s10 = (short) Math.max((int) s10, fArr2.length / 4);
+        }
+        f9194b = new e0.i0(s10);
     }
 
-    public final void a() {
-        if (this.f7634a == null) {
-            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
-            int intrinsicWidth = drawable.getIntrinsicWidth();
-            int intrinsicHeight = drawable.getIntrinsicHeight();
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmapCreateBitmap);
-            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-            drawable.draw(canvas);
-            int i10 = (intrinsicHeight * 4) / 144;
-            this.f7634a = h7.l6.a(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
-        }
-        if (this.f7635b == null) {
-            Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
-            int intrinsicWidth2 = drawable2.getIntrinsicWidth();
-            int intrinsicHeight2 = drawable2.getIntrinsicHeight();
-            Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
-            Canvas canvas2 = new Canvas(bitmapCreateBitmap2);
-            drawable2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
-            drawable2.draw(canvas2);
-            Paint paint = new Paint(1);
-            float f10 = intrinsicWidth2;
-            float f11 = intrinsicHeight2;
-            paint.setShader(new LinearGradient(f10, 0.0f, 0.0f, f11, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
-            canvas2.drawRect(0.0f, 0.0f, f10, f11, paint);
-            int i11 = (intrinsicHeight2 * 4) / 144;
-            this.f7635b = h7.l6.a(bitmapCreateBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
-        }
-    }
-
-    public final void b(int i10) {
-        int iCeil;
-        a();
-        if (i10 != this.f7650s || this.f7645n == null) {
-            this.f7650s = i10;
-            int i11 = !this.f7643l ? 0 : this.f7639g + this.f7638f;
-            int i12 = this.f7641j;
-            int i13 = i11 + i12;
-            int i14 = (i10 - i13) - i12;
-            int i15 = this.f7642k;
-            if (i14 <= 0 || TextUtils.isEmpty(this.f7644m)) {
-                this.f7645n = null;
-                this.f7651t = i15;
-                this.f7652u = i15;
-                return;
-            }
-            CharSequence charSequence = this.f7644m;
-            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            TextPaint textPaint = this.f7636c;
-            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i14, alignment, 1.0f, 0.0f, false);
-            int lineCount = staticLayout.getLineCount();
-            float fMax = 0.0f;
-            float fMax2 = 0.0f;
-            for (int i16 = 0; i16 < lineCount; i16++) {
-                fMax2 = Math.max(fMax2, staticLayout.getLineWidth(i16));
-            }
-            if (lineCount > 1 && (iCeil = (int) Math.ceil(fMax2)) < i14) {
-                StaticLayout staticLayout2 = new StaticLayout(this.f7644m, textPaint, iCeil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                if (staticLayout2.getLineCount() == lineCount) {
-                    for (int i17 = 0; i17 < staticLayout2.getLineCount(); i17++) {
-                        fMax = Math.max(fMax, staticLayout2.getLineWidth(i17));
+    public static void a(Canvas canvas, int i9, Drawable drawable, float f10, float f11, float f12, float f13) {
+        if (f12 > 0.0f) {
+            int i10 = 0;
+            while (true) {
+                float[] fArr = f9193a[i9];
+                if (i10 < fArr.length) {
+                    float f14 = fArr[i10];
+                    float f15 = fArr[i10 + 1];
+                    float f16 = fArr[i10 + 2];
+                    float f17 = fArr[i10 + 3];
+                    if (f10 < f11 && i9 == 0) {
+                        f15 = f14;
+                        f14 = f15;
                     }
-                    fMax2 = fMax;
-                    staticLayout = staticLayout2;
+                    float f18 = f14 * f13;
+                    float f19 = f15 * f13;
+                    float f20 = f16 * f13;
+                    drawable.setBounds((int) (AndroidUtilities.dp(f18) - (AndroidUtilities.dp(f20) / 2.0f)), (int) (AndroidUtilities.dp(f19) - (AndroidUtilities.dp(f20) / 2.0f)), (int) ((AndroidUtilities.dp(f20) / 2.0f) + AndroidUtilities.dp(f18)), (int) ((AndroidUtilities.dp(f20) / 2.0f) + AndroidUtilities.dp(f19)));
+                    drawable.setAlpha((int) Utilities.clamp(f12 * 255.0f * f17, 255.0f, 0.0f));
+                    drawable.draw(canvas);
+                    i10 += 4;
+                } else {
+                    return;
                 }
             }
-            this.f7645n = staticLayout;
-            this.f7646o = i13;
-            this.f7651t = ((int) Math.ceil(fMax2)) + i13 + i12;
-            int lineCount2 = this.f7645n.getLineCount() - 1;
-            float lineBaseline = this.f7645n.getLineBaseline(0);
-            float lineBaseline2 = this.f7645n.getLineBaseline(lineCount2) - lineBaseline;
-            float f10 = this.h;
-            this.f7652u = Math.max(i15, (int) Math.ceil(lineBaseline2 + f10 + this.f7640i));
-            this.f7647p = f10 - lineBaseline;
         }
     }
 
-    public final void c(TLObject tLObject) {
-        boolean z10 = tLObject != null;
-        this.f7643l = z10;
-        if (z10) {
-            y8 y8Var = this.f7637e;
-            y8Var.p(tLObject);
-            boolean z11 = tLObject instanceof TLRPC.User;
-            ImageReceiver imageReceiver = this.d;
-            if (z11) {
-                imageReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", y8Var, null, null, 0);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                imageReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", y8Var, null, null, 0);
+    public static void b(Canvas canvas, int i9, Paint paint, Bitmap bitmap, float f10, float f11, float f12) {
+        e0.i0 i0Var;
+        if (f12 <= 0.0f) {
+            return;
+        }
+        float width = bitmap.getWidth();
+        float height = bitmap.getHeight();
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            i0Var = f9194b;
+            if (i11 >= i0Var.f4707a) {
+                break;
+            }
+            e0.i0.a((float[]) i0Var.f4709c, i11, 0.0f, 0.0f, width, height);
+            i11++;
+        }
+        while (true) {
+            float[] fArr = f9193a[i9];
+            if (i10 < fArr.length) {
+                float f13 = fArr[i10];
+                float f14 = fArr[i10 + 1];
+                float f15 = fArr[i10 + 2];
+                float f16 = fArr[i10 + 3];
+                if (f10 < f11 && i9 == 0) {
+                    f14 = f13;
+                    f13 = f14;
+                }
+                float f17 = f13 * 1.0f;
+                float f18 = f14 * 1.0f;
+                float f19 = f15 * 1.0f;
+                int i12 = i10 / 4;
+                e0.i0.a((float[]) i0Var.f4708b, i12, AndroidUtilities.dp(f17) - (AndroidUtilities.dp(f19) / 2.0f), AndroidUtilities.dp(f18) - (AndroidUtilities.dp(f19) / 2.0f), (AndroidUtilities.dp(f19) / 2.0f) + AndroidUtilities.dp(f17), (AndroidUtilities.dp(f19) / 2.0f) + AndroidUtilities.dp(f18));
+                i0Var.c(i12, i0.a.k(-1, (int) (255.0f * f12 * f16)));
+                i10 += 4;
             } else {
-                imageReceiver.setImageBitmap(y8Var);
+                g0.a.b(canvas, i0Var, fArr.length / 4, paint);
+                return;
             }
         }
-        this.f7650s = -1;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        a();
-        Rect bounds = getBounds();
-        canvas.save();
-        boolean z10 = this.f7643l;
-        float f10 = z10 ? 1.0f : 0.0f;
-        NinePatchDrawable ninePatchDrawable = this.f7634a;
-        int i10 = bounds.left;
-        int i11 = this.f7639g;
-        int i12 = this.f7638f;
-        gf.s.g(ninePatchDrawable, i10 + (z10 ? i11 + i12 : 0), bounds.top, bounds.right, bounds.bottom);
-        this.f7634a.draw(canvas);
-        gf.s.g(this.f7635b, bounds.left + (this.f7643l ? i11 + i12 : 0), bounds.top, bounds.right, bounds.bottom);
-        this.f7635b.draw(canvas);
-        if (this.f7645n != null) {
-            canvas.save();
-            canvas.translate(bounds.left + this.f7646o, bounds.top + this.f7647p);
-            this.f7645n.draw(canvas);
-            View view = this.f7649r;
-            if (view != null && (this.f7644m instanceof Spanned)) {
-                org.telegram.ui.Components.p5 p5VarUpdate = org.telegram.ui.Components.t5.update(0, view, false, this.f7648q, this.f7645n);
-                this.f7648q = p5VarUpdate;
-                org.telegram.ui.Components.t5.drawAnimatedEmojis(canvas, this.f7645n, p5VarUpdate, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+    public static void c(Canvas canvas, org.telegram.ui.Components.i5 i5Var, int i9, float f10, float f11, RectF rectF, float f12) {
+        float f13;
+        float clamp01;
+        float f14;
+        float f15 = f11;
+        if (f15 <= 0.0f) {
+            return;
+        }
+        float clamp012 = Utilities.clamp01(((f15 >= 0.85f ? 1.0f : f15 / 0.85f) - 0.2f) / 0.8f);
+        float f16 = rectF.left;
+        float f17 = rectF.top;
+        float width = rectF.width();
+        float height = rectF.height();
+        float f18 = (width / 2.0f) + f16;
+        float f19 = (height / 2.0f) + f17;
+        float dpf2 = AndroidUtilities.dpf2(96.0f);
+        float min = Math.min(f16, (i9 - dpf2) / 2.0f);
+        float max = Math.max(f17, (f10 - dpf2) / 2.0f);
+        float max2 = Math.max(width, dpf2);
+        float max3 = Math.max(height, dpf2);
+        float f20 = max2 / 2.0f;
+        float f21 = min + f20;
+        float f22 = max3 / 2.0f;
+        float f23 = max + f22;
+        float dpf22 = AndroidUtilities.dpf2(24.0f);
+        float dpf23 = AndroidUtilities.dpf2(16.0f);
+        float dpf24 = AndroidUtilities.dpf2(12.0f);
+        float dpf25 = AndroidUtilities.dpf2(8.0f);
+        float dpf26 = AndroidUtilities.dpf2(4.0f);
+        float f24 = dpf22 * 2.0f;
+        float f25 = f24 * 2.0f;
+        float cos = (f24 + f20) * ((float) Math.cos(Math.toRadians(120.0d)));
+        float cos2 = (dpf23 + f22) * ((float) Math.cos(Math.toRadians(160.0d)));
+        float f26 = max + max3;
+        float f27 = min - dpf23;
+        float f28 = max3 / 4.0f;
+        float f29 = (f23 - f28) - dpf25;
+        float f30 = min + max2;
+        float f31 = f30 + dpf23;
+        float f32 = f23 + f28 + dpf25;
+        float f33 = min - f24;
+        float f34 = f30 + f24;
+        float f35 = f21 + cos;
+        float f36 = (max - f24) + dpf24;
+        float f37 = f21 - cos;
+        float f38 = (f26 + f24) - dpf24;
+        float f39 = f33 - dpf25;
+        float f40 = f23 + cos2;
+        float f41 = f34 + dpf25;
+        float f42 = f23 - cos2;
+        float f43 = min - f25;
+        float f44 = f30 + f25;
+        float f45 = 1.0f;
+        int i10 = 0;
+        float[] fArr = {f21, max - dpf22, 20.0f, f21, f26 + dpf22, 20.0f, f27, f29, 23.0f, f31, f29, 18.0f, f27, f32, 24.0f, f31 - dpf26, f32, 24.0f, f33, f23, 19.0f, f34, f23, 19.0f, f35, f36, 17.0f, f37, f36, 17.0f, f35, f38, 20.0f, f37, f38, 20.0f, f39, f40, 20.0f, f41, f40, 19.0f, f39, f42, 21.0f, f41, f42, 18.0f, f43, f23, 19.0f, f44, f23, 19.0f};
+        float[] fArr2 = {0.02f, 0.42f, 0.0f, 0.32f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.14f, 0.6f, 0.16f, 0.64f, 0.14f, 0.7f, 0.14f, 0.9f, 0.2f, 0.75f, 0.2f, 0.85f, 0.09f, 0.45f, 0.09f, 0.45f, 0.09f, 0.45f, 0.11f, 0.45f, 0.14f, 0.75f, 0.2f, 0.8f};
+        int i11 = 0;
+        for (int i12 = 54; i11 < i12; i12 = 54) {
+            float f46 = fArr[i11];
+            float f47 = fArr[i11 + 1];
+            float dpf27 = AndroidUtilities.dpf2(fArr[i11 + 2]) * 0.5f;
+            float f48 = fArr2[i10];
+            float f49 = fArr2[i10 + 1];
+            float f50 = f45 - clamp012;
+            if (f50 < f48) {
+                f13 = max3;
+                clamp01 = 1.0f;
+            } else {
+                f13 = max3;
+                clamp01 = f45 - Utilities.clamp01((f50 - f48) / (f49 - f48));
             }
-            canvas.restore();
+            float f51 = f26;
+            if (i11 == 18 || i11 == 19 || i11 == 6 || i11 == 7) {
+                clamp01 = gr.f28846i.getInterpolation(clamp01);
+            }
+            float[] fArr3 = fArr;
+            float C = j3.r0.C(1.0f, f15, AndroidUtilities.dp(12.0f), f47);
+            int i13 = (clamp01 > 1.0f ? 1 : (clamp01 == 1.0f ? 0 : -1));
+            if (i13 < 0) {
+                f46 = AndroidUtilities.lerp(f18, f46, gr.f28846i.getInterpolation(clamp01));
+                C = AndroidUtilities.lerp(f19, C, clamp01);
+                dpf27 = AndroidUtilities.lerp(AndroidUtilities.dpf2(8.0f), dpf27, clamp01);
+            }
+            if (C > f51 + AndroidUtilities.dp(8.0f)) {
+                f45 = 1.0f;
+                f14 = 1.0f - Utilities.clamp01((((C - max) - f13) - AndroidUtilities.dp(8.0f)) / AndroidUtilities.dp(56.0f));
+            } else {
+                f45 = 1.0f;
+                f14 = 1.0f;
+            }
+            float clamp013 = (f45 - Utilities.clamp01(g7.w.a(f21, f23, f46, C) / (max2 * 2.0f))) * f12 * 0.5f * f14;
+            if (i13 < 0) {
+                clamp013 = AndroidUtilities.lerp(0.0f, clamp013, clamp01);
+            }
+            i5Var.setBounds((int) (f46 - dpf27), (int) (C - dpf27), (int) (f46 + dpf27), (int) (C + dpf27));
+            i5Var.v = (int) (clamp013 * 255.0f);
+            i5Var.draw(canvas);
+            i11 += 3;
+            i10 += 2;
+            f15 = f11;
+            f26 = f51;
+            max3 = f13;
+            fArr = fArr3;
         }
-        if (f10 > 0.0f) {
-            int i13 = bounds.left;
-            float f11 = bounds.bottom - i12;
-            float f12 = i12;
-            ImageReceiver imageReceiver = this.d;
-            imageReceiver.setImageCoords(i13, f11, f12, f12);
-            canvas.save();
-            canvas.scale(f10, f10, imageReceiver.getCenterX(), imageReceiver.getCenterY());
-            imageReceiver.draw(canvas);
-            canvas.restore();
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return this.f7652u;
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return this.f7651t;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

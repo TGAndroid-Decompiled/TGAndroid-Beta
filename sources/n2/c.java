@@ -1,5 +1,4 @@
 package n2;
-
 public interface c {
     void onBillingServiceDisconnected();
 

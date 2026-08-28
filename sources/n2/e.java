@@ -1,8 +1,5 @@
 package n2;
-
 public final class e {
-
-    public String f18140a;
-
-    public int f18141b;
+    public String f18312a;
+    public int f18313b;
 }

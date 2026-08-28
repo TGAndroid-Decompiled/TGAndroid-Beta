@@ -1,18 +1,16 @@
 package u6;
 
-import android.os.IBinder;
-import android.os.IInterface;
+import android.os.Build;
+public abstract class d {
+    public static final int f48134a;
 
-public final class d implements IInterface {
-
-    public final IBinder f48428a;
-
-    public d(IBinder iBinder) {
-        this.f48428a = iBinder;
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this.f48428a;
+    static {
+        int i9;
+        if (Build.VERSION.SDK_INT >= 31) {
+            i9 = 33554432;
+        } else {
+            i9 = 0;
+        }
+        f48134a = i9;
     }
 }

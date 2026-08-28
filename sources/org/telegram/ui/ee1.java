@@ -1,24 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class ee1 extends AnimatorListenerAdapter {
+    public final int f37921a;
+    public final boolean f37922b;
+    public final we1 f37923c;
 
-public final class ee1 extends org.telegram.ui.Components.p60 {
-
-    public final long f37746w0;
-
-    public final ge1 f37747x0;
-
-    public ee1(ge1 ge1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.n2 n2Var, long j11) {
-        super(context, i10, hVar, j10, n2Var, null);
-        this.f37747x0 = ge1Var;
-        this.f37746w0 = j11;
+    public ee1(we1 we1Var, boolean z10, int i9) {
+        this.f37921a = i9;
+        this.f37923c = we1Var;
+        this.f37922b = z10;
     }
 
     @Override
-    public final boolean X() {
-        TLRPC.Chat chat = this.f37747x0.f38398b.getMessagesController().getChat(Long.valueOf(this.f37746w0));
-        return chat != null && ChatObject.canUserDoAdminAction(chat, 3);
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        int i9;
+        switch (this.f37921a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                boolean z10 = this.f37922b;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                we1 we1Var = this.f37923c;
+                we1Var.S0(f10);
+                if (z10) {
+                    we1Var.m0.setVisibility(8);
+                    return;
+                }
+                Activity parentActivity = we1Var.getParentActivity();
+                i9 = ((org.telegram.ui.ActionBar.o2) we1Var).classGuid;
+                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i9);
+                we1Var.f43768n0.setVisibility(8);
+                we1Var.Q0(true);
+                return;
+            default:
+                if (!this.f37922b) {
+                    this.f37923c.f43765k0.setVisibility(8);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public enum VideoCodecStatus {
     TARGET_BITRATE_OVERSHOOT(5),
     REQUEST_SLI(2),
@@ -14,11 +13,11 @@ public enum VideoCodecStatus {
     UNINITIALIZED(-7),
     ERR_REQUEST_SLI(-12),
     FALLBACK_SOFTWARE(-13);
-
+    
     private final int number;
 
-    VideoCodecStatus(int i10) {
-        this.number = i10;
+    VideoCodecStatus(int i9) {
+        this.number = i9;
     }
 
     public int getNumber() {

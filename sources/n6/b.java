@@ -1,4 +1,3 @@
 package n6;
-
-public final class b extends Exception {
+public abstract class b {
 }

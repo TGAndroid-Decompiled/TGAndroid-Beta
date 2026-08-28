@@ -1,86 +1,58 @@
 package org.telegram.ui.Components;
+public final class fh implements Runnable {
+    public final int f28427a;
+    public final ki f28428b;
+    public final boolean f28429c;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-
-public final class fh implements org.telegram.ui.zp0 {
-
-    public boolean f28386a;
-
-    public final HashMap f28387b;
-
-    public final ArrayList f28388c;
-    public final gi d;
-
-    public fh(gi giVar, HashMap map, ArrayList arrayList) {
-        this.d = giVar;
-        this.f28387b = map;
-        this.f28388c = arrayList;
+    public fh(ki kiVar, boolean z10, int i9) {
+        this.f28427a = i9;
+        this.f28428b = kiVar;
+        this.f28429c = z10;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void i(int i10, boolean z10, boolean z11) {
-        if (z10) {
-            return;
+    public final void run() {
+        switch (this.f28427a) {
+            case 0:
+                boolean z10 = this.f28429c;
+                ki kiVar = this.f28428b;
+                if (!z10) {
+                    kiVar.Y0.setVisibility(8);
+                    return;
+                } else {
+                    kiVar.getClass();
+                    return;
+                }
+            case 1:
+                boolean z11 = this.f28429c;
+                ki kiVar2 = this.f28428b;
+                if (!z11) {
+                    kiVar2.f30166w.setVisibility(8);
+                    return;
+                } else {
+                    kiVar2.getClass();
+                    return;
+                }
+            case 2:
+                boolean z12 = this.f28429c;
+                ki kiVar3 = this.f28428b;
+                if (!z12) {
+                    kiVar3.f30174y.setVisibility(8);
+                    return;
+                } else {
+                    kiVar3.getClass();
+                    return;
+                }
+            default:
+                boolean z13 = this.f28429c;
+                ki kiVar4 = this.f28428b;
+                if (z13) {
+                    kiVar4.f30158t1.setVisibility(4);
+                    return;
+                } else {
+                    kiVar4.getClass();
+                    return;
+                }
         }
-        HashMap map = this.f28387b;
-        if (map.isEmpty() || this.f28386a) {
-            return;
-        }
-        this.f28386a = true;
-        ArrayList arrayList = new ArrayList();
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f28388c;
-            if (i11 >= arrayList2.size()) {
-                ((org.telegram.ui.rn) this.d.f28635b0).d8(i10, arrayList, z11);
-                return;
-            }
-            Object obj = map.get(arrayList2.get(i11));
-            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-            arrayList.add(sendingMediaInfo);
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-            String str = searchImage.imagePath;
-            if (str != null) {
-                sendingMediaInfo.path = str;
-            } else {
-                sendingMediaInfo.searchImage = searchImage;
-            }
-            sendingMediaInfo.thumbPath = searchImage.thumbPath;
-            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-            CharSequence charSequence = searchImage.caption;
-            sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
-            sendingMediaInfo.entities = searchImage.entities;
-            sendingMediaInfo.masks = searchImage.stickers;
-            sendingMediaInfo.ttl = searchImage.ttl;
-            TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-            if (botInlineResult != null && searchImage.type == 1) {
-                sendingMediaInfo.inlineResult = botInlineResult;
-                sendingMediaInfo.params = searchImage.params;
-            }
-            searchImage.date = (int) (System.currentTimeMillis() / 1000);
-            i11++;
-        }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void h() {
     }
 }

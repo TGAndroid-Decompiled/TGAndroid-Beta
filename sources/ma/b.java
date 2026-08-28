@@ -1,18 +1,10 @@
 package ma;
 
-import j$.util.Objects;
-import java.lang.reflect.Field;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Retention(RetentionPolicy.RUNTIME)
+public @interface b {
+    String[] alternate() default {};
 
-public final class b {
-
-    public final Field f17893a;
-
-    public b(Field field) {
-        Objects.requireNonNull(field);
-        this.f17893a = field;
-    }
-
-    public final String toString() {
-        return this.f17893a.toString();
-    }
+    String value();
 }

@@ -1,5 +1,6 @@
 package org.webrtc;
 
+import org.webrtc.Logging;
 class JNILogging {
     private final Loggable loggable;
 

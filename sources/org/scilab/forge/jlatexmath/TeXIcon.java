@@ -8,15 +8,13 @@ import ru.noties.jlatexmath.awt.Insets;
 import ru.noties.jlatexmath.awt.RenderingHints;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
 import ru.noties.jlatexmath.swing.Icon;
-
 public class TeXIcon implements Icon {
     private static final int MAX_PIXELS = 4096;
     private static final Color defaultColor = new Color(0, 0, 0);
     public static float defaultSize = -1.0f;
     public static float magFactor = 0.0f;
     private Box box;
-
-    private Color f19604fg;
+    private Color f19631fg;
     private Insets insets;
     public boolean isColored;
     private final float size;
@@ -25,18 +23,18 @@ public class TeXIcon implements Icon {
         this(box, f10, false);
     }
 
-    private static int sanitizePx(int i10) {
-        if (i10 < 0 || i10 > 4096) {
+    private static int sanitizePx(int i9) {
+        if (i9 < 0 || i9 > 4096) {
             return 4096;
         }
-        return i10;
+        return i9;
     }
 
     public float getBaseLine() {
-        double height = ((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top);
-        double depth = ((double) ((this.box.getDepth() + this.box.getHeight()) * this.size)) + 0.99d;
+        double height = (this.box.getHeight() * this.size) + 0.99d + this.insets.top;
+        float height2 = this.box.getHeight();
         Insets insets = this.insets;
-        return (float) (height / ((depth + ((double) insets.top)) + ((double) insets.bottom)));
+        return (float) (height / (((((this.box.getDepth() + height2) * this.size) + 0.99d) + insets.top) + insets.bottom));
     }
 
     public Box getBox() {
@@ -44,19 +42,18 @@ public class TeXIcon implements Icon {
     }
 
     public int getIconDepth() {
-        return sanitizePx((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom)));
+        return sanitizePx((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom));
     }
 
     @Override
     public int getIconHeight() {
-        return sanitizePx(((int) (((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top))) + ((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom))));
+        return sanitizePx(((int) ((this.box.getHeight() * this.size) + 0.99d + this.insets.top)) + ((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom)));
     }
 
     @Override
     public int getIconWidth() {
-        double width = ((double) (this.box.getWidth() * this.size)) + 0.99d;
         Insets insets = this.insets;
-        return sanitizePx((int) (width + ((double) insets.left) + ((double) insets.right)));
+        return sanitizePx((int) ((this.box.getWidth() * this.size) + 0.99d + insets.left + insets.right));
     }
 
     public Insets getInsets() {
@@ -76,7 +73,7 @@ public class TeXIcon implements Icon {
     }
 
     @Override
-    public void paintIcon(Component component, Graphics graphics, int i10, int i11) {
+    public void paintIcon(Component component, Graphics graphics, int i9, int i10) {
         Graphics2D graphics2D = (Graphics2D) graphics;
         RenderingHints renderingHints = graphics2D.getRenderingHints();
         AffineTransform transform = graphics2D.getTransform();
@@ -86,7 +83,7 @@ public class TeXIcon implements Icon {
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         float f10 = this.size;
         graphics2D.scale(f10, f10);
-        Color color2 = this.f19604fg;
+        Color color2 = this.f19631fg;
         if (color2 != null) {
             graphics2D.setColor(color2);
         } else if (component != null) {
@@ -96,30 +93,29 @@ public class TeXIcon implements Icon {
         }
         Box box = this.box;
         Insets insets = this.insets;
-        float f11 = i10 + insets.left;
-        float f12 = this.size;
-        box.draw(graphics2D, f11 / f12, box.getHeight() + ((i11 + insets.top) / f12));
+        float f11 = this.size;
+        box.draw(graphics2D, (i9 + insets.left) / f11, box.getHeight() + ((i10 + insets.top) / f11));
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.setTransform(transform);
         graphics2D.setColor(color);
     }
 
     public void setForeground(Color color) {
-        this.f19604fg = color;
+        this.f19631fg = color;
     }
 
-    public void setIconHeight(int i10, int i11) {
-        float iconHeight = i10 - getIconHeight();
+    public void setIconHeight(int i9, int i10) {
+        float iconHeight = i9 - getIconHeight();
         if (iconHeight > 0.0f) {
-            this.box = new VerticalBox(this.box, iconHeight, i11);
+            this.box = new VerticalBox(this.box, iconHeight, i10);
         }
     }
 
-    public void setIconWidth(int i10, int i11) {
-        float iconWidth = i10 - getIconWidth();
+    public void setIconWidth(int i9, int i10) {
+        float iconWidth = i9 - getIconWidth();
         if (iconWidth > 0.0f) {
             Box box = this.box;
-            this.box = new HorizontalBox(box, box.getWidth() + iconWidth, i11);
+            this.box = new HorizontalBox(box, box.getWidth() + iconWidth, i10);
         }
     }
 
@@ -128,9 +124,9 @@ public class TeXIcon implements Icon {
         if (z10) {
             return;
         }
-        int i10 = insets.top;
+        int i9 = insets.top;
         float f10 = this.size;
-        insets.top = i10 + ((int) (f10 * 0.18f));
+        insets.top = i9 + ((int) (f10 * 0.18f));
         insets.bottom += (int) (f10 * 0.18f);
         insets.left += (int) (f10 * 0.18f);
         insets.right += (int) (f10 * 0.18f);
@@ -138,7 +134,7 @@ public class TeXIcon implements Icon {
 
     public TeXIcon(Box box, float f10, boolean z10) {
         this.insets = new Insets(0, 0, 0, 0);
-        this.f19604fg = null;
+        this.f19631fg = null;
         this.isColored = false;
         this.box = box;
         float f11 = defaultSize;
@@ -153,11 +149,11 @@ public class TeXIcon implements Icon {
             return;
         }
         Insets insets = this.insets;
-        int i10 = (int) (f10 * 0.18f);
-        insets.top += i10;
-        insets.bottom += i10;
-        insets.left += i10;
-        insets.right += i10;
+        int i9 = (int) (f10 * 0.18f);
+        insets.top += i9;
+        insets.bottom += i9;
+        insets.left += i9;
+        insets.right += i9;
     }
 
     public void setInsets(Insets insets) {

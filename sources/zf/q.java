@@ -1,33 +1,29 @@
 package zf;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q extends AnimatorListenerAdapter {
+    public final int f50667a;
+    public final r f50668b;
+    public final s f50669c;
 
-public final class q implements org.telegram.ui.ActionBar.l1, Utilities.Callback3Return {
-
-    public final l0 f50663a;
-
-    public q(l0 l0Var) {
-        this.f50663a = l0Var;
+    public q(s sVar, r rVar, int i9) {
+        this.f50667a = i9;
+        this.f50669c = sVar;
+        this.f50668b = rVar;
     }
 
     @Override
-    public void k(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        l0 l0Var = this.f50663a;
-        l0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = l0Var.N1) != null && n1Var.isShowing()) {
-            l0Var.N1.d(true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f50667a) {
+            case 0:
+                this.f50668b.f50678f = null;
+                s.a(this.f50669c);
+                return;
+            default:
+                this.f50668b.f50678f = null;
+                s.a(this.f50669c);
+                return;
         }
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3) {
-        y yVarI0 = this.f50663a.i0(obj, (TLRPC.Document) obj2, true);
-        if (((Boolean) obj3).booleanValue()) {
-            yVarI0.setScale(1.5f);
-        }
-        return Boolean.TRUE;
     }
 }

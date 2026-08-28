@@ -1,63 +1,54 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_stories;
-
+import java.io.File;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
 public final class j6 implements Runnable {
+    public final int f20657a = 0;
+    public final boolean f20658b;
+    public final int f20659c;
+    public final long d;
+    public final int f20660e;
+    public final boolean f20661f;
+    public final Object h;
+    public final Serializable f20662n;
+    public final Object f20663r;
 
-    public final int f20642a = 1;
-
-    public final MediaController f20643b;
-
-    public final int f20644c;
-    public final int d;
-
-    public final long f20645e;
-
-    public final long f20646f;
-    public final MessageSuggestionParams h;
-
-    public final MessageObject f20647n;
-
-    public final MessageObject f20648r;
-
-    public final TL_stories.StoryItem f20649s;
-    public final Object v;
-
-    public j6(MediaController mediaController, int i10, int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
-        this.f20643b = mediaController;
-        this.f20644c = i10;
-        this.d = i11;
-        this.f20645e = j10;
-        this.f20646f = j11;
-        this.h = messageSuggestionParams;
-        this.f20647n = messageObject;
-        this.f20648r = messageObject2;
-        this.f20649s = storyItem;
-        this.v = sendMessageChatArguments;
+    public j6(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i9, boolean z10, int i10, boolean z11, long j10) {
+        this.h = mediaController;
+        this.f20662n = file;
+        this.f20663r = tL_document;
+        this.f20659c = i9;
+        this.f20658b = z10;
+        this.f20660e = i10;
+        this.f20661f = z11;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20642a) {
+        switch (this.f20657a) {
             case 0:
-                this.f20643b.lambda$prepareResumedRecording$25(this.f20644c, (MediaDataController.DraftVoice) this.v, this.d, this.f20645e, this.f20646f, this.h, this.f20647n, this.f20648r, this.f20649s);
-                break;
+                ((MediaController) this.h).lambda$stopRecordingInternal$40((File) this.f20662n, (TLRPC.TL_document) this.f20663r, this.f20659c, this.f20658b, this.f20660e, this.f20661f, this.d);
+                return;
             default:
-                this.f20643b.lambda$startRecording$37(this.f20644c, this.d, this.f20645e, this.f20646f, this.h, this.f20647n, this.f20648r, this.f20649s, (SendMessageChatArguments) this.v);
-                break;
+                int i9 = this.f20660e;
+                boolean z10 = this.f20661f;
+                ((MessagesStorage) this.h).lambda$updatePinnedMessages$138(this.f20658b, (HashMap) this.f20662n, this.f20659c, this.d, (ArrayList) this.f20663r, i9, z10);
+                return;
         }
     }
 
-    public j6(MediaController mediaController, int i10, MediaDataController.DraftVoice draftVoice, int i11, long j10, long j11, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
-        this.f20643b = mediaController;
-        this.f20644c = i10;
-        this.v = draftVoice;
-        this.d = i11;
-        this.f20645e = j10;
-        this.f20646f = j11;
-        this.h = messageSuggestionParams;
-        this.f20647n = messageObject;
-        this.f20648r = messageObject2;
-        this.f20649s = storyItem;
+    public j6(MessagesStorage messagesStorage, boolean z10, HashMap hashMap, int i9, long j10, ArrayList arrayList, int i10, boolean z11) {
+        this.h = messagesStorage;
+        this.f20658b = z10;
+        this.f20662n = hashMap;
+        this.f20659c = i9;
+        this.d = j10;
+        this.f20663r = arrayList;
+        this.f20660e = i10;
+        this.f20661f = z11;
     }
 }

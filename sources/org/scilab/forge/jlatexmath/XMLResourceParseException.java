@@ -1,30 +1,13 @@
 package org.scilab.forge.jlatexmath;
-
 public class XMLResourceParseException extends ResourceParseException {
     private static final long serialVersionUID = 2091302779298293946L;
 
-    public XMLResourceParseException(String str, String str2, String str3, String str4) {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(str);
-        sb2.append(": invalid <");
-        sb2.append(str2);
-        sb2.append(">-element found: attribute '");
-        sb2.append(str3);
-        sb2.append("' ");
-        sb2.append(str4 == null ? "is required!" : str4);
-        super(sb2.toString());
+    public XMLResourceParseException(java.lang.String r2, java.lang.String r3, java.lang.String r4, java.lang.String r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.XMLResourceParseException.<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String):void");
     }
 
-    public XMLResourceParseException(String str, String str2, String str3, String str4, Throwable th) {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(str);
-        sb2.append(": invalid <");
-        sb2.append(str2);
-        sb2.append(">-element found: attribute '");
-        sb2.append(str3);
-        sb2.append("' ");
-        sb2.append(str4 == null ? "is required!" : str4);
-        super(sb2.toString(), th);
+    public XMLResourceParseException(java.lang.String r2, java.lang.String r3, java.lang.String r4, java.lang.String r5, java.lang.Throwable r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.XMLResourceParseException.<init>(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Throwable):void");
     }
 
     public XMLResourceParseException(String str, String str2) {

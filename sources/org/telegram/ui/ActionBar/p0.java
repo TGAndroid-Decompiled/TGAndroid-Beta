@@ -1,30 +1,33 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.ViewTreeObserver;
-import org.telegram.ui.Components.er;
+import android.transition.Transition;
+public final class p0 implements Transition.TransitionListener {
+    public final w0 f23701a;
 
-public final class p0 implements ViewTreeObserver.OnPreDrawListener {
-
-    public final float f23704a;
-
-    public final v0 f23705b;
-
-    public p0(v0 v0Var, float f10) {
-        this.f23705b = v0Var;
-        this.f23704a = f10;
+    public p0(w0 w0Var) {
+        this.f23701a = w0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        v0 v0Var = this.f23705b;
-        v0Var.f23859e.getViewTreeObserver().removeOnPreDrawListener(this);
-        float x8 = v0Var.f23859e.getX();
-        float f10 = this.f23704a;
-        if (x8 != f10) {
-            gg.g gVar = v0Var.f23859e;
-            gVar.setTranslationX(f10 - gVar.getX());
-        }
-        v0Var.f23859e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(er.f28122f).start();
-        return true;
+    public final void onTransitionCancel(Transition transition) {
+        this.f23701a.f23907e0.unlock();
+    }
+
+    @Override
+    public final void onTransitionEnd(Transition transition) {
+        this.f23701a.f23907e0.unlock();
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
+        this.f23701a.f23907e0.lock();
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
     }
 }

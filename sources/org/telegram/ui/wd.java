@@ -1,4 +1,3 @@
 package org.telegram.ui;
-
-public final class wd extends lh.d {
+public final class wd extends kh.d {
 }

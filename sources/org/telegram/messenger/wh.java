@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
+public final class wh implements Runnable {
+    public final int f22041a;
+    public final SecretChatHelper f22042b;
+    public final TLRPC.EncryptedChat f22043c;
 
-public final class wh implements Comparator {
-
-    public final int f22071a;
-
-    public wh(int i10) {
-        this.f22071a = i10;
+    public wh(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i9) {
+        this.f22041a = i9;
+        this.f22042b = secretChatHelper;
+        this.f22043c = encryptedChat;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f22071a) {
+    public final void run() {
+        switch (this.f22041a) {
             case 0:
-                return SavedMessagesController.lambda$updateAllDialogs$0((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
+                this.f22042b.lambda$processAcceptedSecretChat$18(this.f22043c);
+                return;
             case 1:
-                return SecretChatHelper.lambda$resendMessages$13((TLRPC.Message) obj, (TLRPC.Message) obj2);
-            case 2:
-                return SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
-            case 3:
-                return SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                this.f22042b.lambda$acceptSecretChat$21(this.f22043c);
+                return;
             default:
-                return TopicsController.lambda$sortTopics$9((TLRPC.TL_forumTopic) obj, (TLRPC.TL_forumTopic) obj2);
+                this.f22042b.lambda$applyPeerLayer$9(this.f22043c);
+                return;
         }
     }
 }

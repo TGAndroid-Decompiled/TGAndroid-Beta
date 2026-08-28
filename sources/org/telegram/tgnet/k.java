@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.tgnet.TLRPC;
 public abstract class k {
     public static void a(ResultCallback resultCallback, Throwable th) {
     }

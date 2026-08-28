@@ -1,77 +1,111 @@
 package org.telegram.messenger;
 
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+public final class jd implements RequestDelegate {
+    public final int f20693a = 1;
+    public final MessagesController f20694b;
+    public final int f20695c;
+    public final int d;
+    public final long f20696e;
+    public final long f20697f;
+    public final int f20698g;
+    public final int h;
+    public final int f20699i;
+    public final int f20700j;
+    public final int f20701k;
+    public final int f20702l;
+    public final int f20703m;
+    public final int f20704n;
+    public final long f20705o;
+    public final int f20706p;
+    public final boolean f20707q;
+    public final int f20708r;
+    public final boolean f20709s;
+    public final boolean f20710t;
 
-public final class jd implements Runnable {
-
-    public final int f20671a = 2;
-
-    public final long f20672b;
-
-    public final boolean f20673c;
-    public final BaseController d;
-
-    public final Object f20674e;
-
-    public final Object f20675f;
-    public final Object h;
-
-    public jd(ChatThemeController chatThemeController, TLObject tLObject, long j10, boolean z10, String str, Runnable runnable) {
-        this.d = chatThemeController;
-        this.f20674e = tLObject;
-        this.f20672b = j10;
-        this.f20673c = z10;
-        this.f20675f = str;
-        this.h = runnable;
+    public jd(MessagesController messagesController, int i9, int i10, long j10, long j11, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j12, int i19, boolean z10, int i20, boolean z11, boolean z12) {
+        this.f20694b = messagesController;
+        this.f20695c = i9;
+        this.d = i10;
+        this.f20696e = j10;
+        this.f20697f = j11;
+        this.f20698g = i11;
+        this.h = i12;
+        this.f20699i = i13;
+        this.f20700j = i14;
+        this.f20701k = i15;
+        this.f20702l = i16;
+        this.f20703m = i17;
+        this.f20704n = i18;
+        this.f20705o = j12;
+        this.f20706p = i19;
+        this.f20707q = z10;
+        this.f20708r = i20;
+        this.f20709s = z11;
+        this.f20710t = z12;
     }
 
     @Override
-    public final void run() throws FileNotFoundException {
-        switch (this.f20671a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f20693a) {
             case 0:
-                ((MessagesController) this.d).lambda$getSendAsPeers$442((TLRPC.TL_channels_sendAsPeers) this.f20674e, (a0.h) this.f20675f, this.f20672b, (MessagesController.SendAsPeersInfo) this.h, this.f20673c);
-                break;
-            case 1:
-                ((TranslateController) this.d).lambda$pushToTranslate$24((HashMap) this.f20674e, this.f20672b, (TranslateController.PendingTranslation) this.f20675f, this.f20673c, (Set) this.h);
-                break;
-            case 2:
-                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$16((TLObject) this.f20674e, this.f20672b, this.f20673c, (String) this.f20675f, (Runnable) this.h);
-                break;
+                boolean z10 = this.f20709s;
+                boolean z11 = this.f20710t;
+                int i9 = this.f20695c;
+                int i10 = this.d;
+                int i11 = this.f20698g;
+                int i12 = this.h;
+                int i13 = this.f20699i;
+                int i14 = this.f20700j;
+                int i15 = this.f20701k;
+                int i16 = this.f20702l;
+                int i17 = this.f20703m;
+                int i18 = this.f20704n;
+                int i19 = this.f20706p;
+                int i20 = this.f20708r;
+                this.f20694b.lambda$loadMessagesInternal$176(this.f20696e, this.f20697f, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, this.f20705o, i19, this.f20707q, i20, z10, z11, tLObject, tL_error);
+                return;
             default:
-                ((TopicsController) this.d).lambda$reloadTopics$15((TLObject) this.f20674e, this.f20673c, this.f20672b, (HashSet) this.f20675f, (Runnable) this.h);
-                break;
+                boolean z12 = this.f20709s;
+                boolean z13 = this.f20710t;
+                int i21 = this.f20695c;
+                int i22 = this.d;
+                int i23 = this.f20698g;
+                int i24 = this.h;
+                int i25 = this.f20699i;
+                int i26 = this.f20700j;
+                int i27 = this.f20701k;
+                int i28 = this.f20702l;
+                int i29 = this.f20703m;
+                int i30 = this.f20704n;
+                int i31 = this.f20706p;
+                int i32 = this.f20708r;
+                this.f20694b.lambda$loadMessagesInternal$181(i21, i22, this.f20696e, this.f20697f, i23, i24, i25, i26, i27, i28, i29, i30, this.f20705o, i31, this.f20707q, i32, z12, z13, tLObject, tL_error);
+                return;
         }
     }
 
-    public jd(MessagesController messagesController, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j10, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
-        this.d = messagesController;
-        this.f20674e = tL_channels_sendAsPeers;
-        this.f20675f = hVar;
-        this.f20672b = j10;
-        this.h = sendAsPeersInfo;
-        this.f20673c = z10;
-    }
-
-    public jd(TopicsController topicsController, TLObject tLObject, boolean z10, long j10, HashSet hashSet, Runnable runnable) {
-        this.d = topicsController;
-        this.f20674e = tLObject;
-        this.f20673c = z10;
-        this.f20672b = j10;
-        this.f20675f = hashSet;
-        this.h = runnable;
-    }
-
-    public jd(TranslateController translateController, HashMap map, long j10, TranslateController.PendingTranslation pendingTranslation, boolean z10, Set set) {
-        this.d = translateController;
-        this.f20674e = map;
-        this.f20672b = j10;
-        this.f20675f = pendingTranslation;
-        this.f20673c = z10;
-        this.h = set;
+    public jd(MessagesController messagesController, long j10, long j11, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j12, int i19, boolean z10, int i20, boolean z11, boolean z12) {
+        this.f20694b = messagesController;
+        this.f20696e = j10;
+        this.f20697f = j11;
+        this.f20695c = i9;
+        this.d = i10;
+        this.f20698g = i11;
+        this.h = i12;
+        this.f20699i = i13;
+        this.f20700j = i14;
+        this.f20701k = i15;
+        this.f20702l = i16;
+        this.f20703m = i17;
+        this.f20704n = i18;
+        this.f20705o = j12;
+        this.f20706p = i19;
+        this.f20707q = z10;
+        this.f20708r = i20;
+        this.f20709s = z11;
+        this.f20710t = z12;
     }
 }

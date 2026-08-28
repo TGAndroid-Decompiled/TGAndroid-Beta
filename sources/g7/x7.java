@@ -1,73 +1,77 @@
 package g7;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Typeface;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
-
+import android.os.Bundle;
+import org.json.JSONObject;
 public abstract class x7 {
-    public x7() {
-        new ConcurrentHashMap();
-    }
-
-    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i10);
-
-    public abstract Typeface b(Context context, o0.j[] jVarArr, int i10);
-
-    public Typeface c(Context context, List list, int i10) {
-        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
-    }
-
-    public Typeface d(Context context, InputStream inputStream) {
-        File fileD = y7.d(context);
-        if (fileD == null) {
-            return null;
-        }
+    public static a8.a a(String str, Bundle data) {
+        kotlin.jvm.internal.i.e(data, "data");
         try {
-            if (y7.c(inputStream, fileD)) {
-                return Typeface.createFromFile(fileD.getPath());
+            switch (str.hashCode()) {
+                case -1678407252:
+                    if (str.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
+                        try {
+                            String string = data.getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON");
+                            kotlin.jvm.internal.i.b(string);
+                            a8.a aVar = new a8.a("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", data);
+                            if (string.length() != 0) {
+                                try {
+                                    new JSONObject(string);
+                                    return aVar;
+                                } catch (Exception unused) {
+                                }
+                            }
+                            throw new IllegalArgumentException("credentialJson must not be empty, and must be a valid JSON");
+                        } catch (Exception unused2) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                case -1072734346:
+                    if (str.equals("androidx.credentials.TYPE_RESTORE_CREDENTIAL")) {
+                        String string2 = data.getString("androidx.credentials.BUNDLE_KEY_GET_RESTORE_CREDENTIAL_RESPONSE");
+                        if (string2 != null) {
+                            a8.a aVar2 = new a8.a("androidx.credentials.TYPE_RESTORE_CREDENTIAL", data);
+                            if (string2.length() != 0) {
+                                try {
+                                    new JSONObject(string2);
+                                    return aVar2;
+                                } catch (Exception unused3) {
+                                }
+                            }
+                            throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
+                        }
+                        throw new w0.k("The device does not contain a restore credential.");
+                    }
+                    throw new Exception();
+                case -543568185:
+                    if (str.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
+                        try {
+                            String string3 = data.getString("androidx.credentials.BUNDLE_KEY_ID");
+                            String string4 = data.getString("androidx.credentials.BUNDLE_KEY_PASSWORD");
+                            kotlin.jvm.internal.i.b(string3);
+                            kotlin.jvm.internal.i.b(string4);
+                            return new v0.n(string4, 2, data);
+                        } catch (Exception unused4) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                case -95037569:
+                    if (str.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
+                        try {
+                            String string5 = data.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON");
+                            kotlin.jvm.internal.i.b(string5);
+                            return new v0.n(string5, 3, data);
+                        } catch (Exception unused5) {
+                            throw new Exception();
+                        }
+                    }
+                    throw new Exception();
+                default:
+                    throw new Exception();
             }
-            return null;
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            fileD.delete();
+        } catch (z0.a unused6) {
+            return new v0.n(str, 0, data);
         }
-    }
-
-    public Typeface e(Context context, Resources resources, int i10, String str, int i11) {
-        File fileD = y7.d(context);
-        if (fileD == null) {
-            return null;
-        }
-        try {
-            if (y7.b(fileD, resources, i10)) {
-                return Typeface.createFromFile(fileD.getPath());
-            }
-            return null;
-        } catch (RuntimeException unused) {
-            return null;
-        } finally {
-            fileD.delete();
-        }
-    }
-
-    public o0.j f(o0.j[] jVarArr, int i10) {
-        new e7.v(9);
-        int i11 = (i10 & 1) == 0 ? 400 : 700;
-        boolean z10 = (i10 & 2) != 0;
-        o0.j jVar = null;
-        int i12 = Integer.MAX_VALUE;
-        for (o0.j jVar2 : jVarArr) {
-            int iAbs = (Math.abs(jVar2.f19111c - i11) * 2) + (jVar2.d == z10 ? 0 : 1);
-            if (jVar == null || i12 > iAbs) {
-                jVar = jVar2;
-                i12 = iAbs;
-            }
-        }
-        return jVar;
     }
 }

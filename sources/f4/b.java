@@ -2,29 +2,23 @@ package f4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.o;
+import g7.s6;
 import h3.g1;
 import h3.t0;
-import h7.v6;
-
 public final class b implements z3.b {
-    public static final Parcelable.Creator<b> CREATOR = new o(27);
-
-    public final long f5872a;
-
-    public final long f5873b;
-
-    public final long f5874c;
+    public static final Parcelable.Creator<b> CREATOR = new c.c(23);
+    public final long f5577a;
+    public final long f5578b;
+    public final long f5579c;
     public final long d;
-
-    public final long f5875e;
+    public final long f5580e;
 
     public b(long j10, long j11, long j12, long j13, long j14) {
-        this.f5872a = j10;
-        this.f5873b = j11;
-        this.f5874c = j12;
+        this.f5577a = j10;
+        this.f5578b = j11;
+        this.f5579c = j12;
         this.d = j13;
-        this.f5875e = j14;
+        this.f5580e = j14;
     }
 
     @Override
@@ -38,7 +32,7 @@ public final class b implements z3.b {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f5872a == bVar.f5872a && this.f5873b == bVar.f5873b && this.f5874c == bVar.f5874c && this.d == bVar.d && this.f5875e == bVar.f5875e) {
+            if (this.f5577a == bVar.f5577a && this.f5578b == bVar.f5578b && this.f5579c == bVar.f5579c && this.d == bVar.d && this.f5580e == bVar.f5580e) {
                 return true;
             }
         }
@@ -56,28 +50,31 @@ public final class b implements z3.b {
     }
 
     public final int hashCode() {
-        return v6.a(this.f5875e) + ((v6.a(this.d) + ((v6.a(this.f5874c) + ((v6.a(this.f5873b) + ((v6.a(this.f5872a) + 527) * 31)) * 31)) * 31)) * 31);
+        int a2 = s6.a(this.f5578b);
+        int a3 = s6.a(this.f5579c);
+        int a10 = s6.a(this.d);
+        return s6.a(this.f5580e) + ((a10 + ((a3 + ((a2 + ((s6.a(this.f5577a) + 527) * 31)) * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Motion photo metadata: photoStartPosition=" + this.f5872a + ", photoSize=" + this.f5873b + ", photoPresentationTimestampUs=" + this.f5874c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f5875e;
+        return "Motion photo metadata: photoStartPosition=" + this.f5577a + ", photoSize=" + this.f5578b + ", photoPresentationTimestampUs=" + this.f5579c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f5580e;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeLong(this.f5872a);
-        parcel.writeLong(this.f5873b);
-        parcel.writeLong(this.f5874c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeLong(this.f5577a);
+        parcel.writeLong(this.f5578b);
+        parcel.writeLong(this.f5579c);
         parcel.writeLong(this.d);
-        parcel.writeLong(this.f5875e);
+        parcel.writeLong(this.f5580e);
     }
 
     public b(Parcel parcel) {
-        this.f5872a = parcel.readLong();
-        this.f5873b = parcel.readLong();
-        this.f5874c = parcel.readLong();
+        this.f5577a = parcel.readLong();
+        this.f5578b = parcel.readLong();
+        this.f5579c = parcel.readLong();
         this.d = parcel.readLong();
-        this.f5875e = parcel.readLong();
+        this.f5580e = parcel.readLong();
     }
 
     @Override

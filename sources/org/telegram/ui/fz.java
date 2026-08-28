@@ -1,18 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fz implements org.telegram.ui.ActionBar.b2 {
+    public final int f38377a;
+    public final EditTextBoldCursor f38378b;
 
-public final class fz extends FrameLayout {
-
-    public eh.s f38238a;
-
-    public eh.s getSubtitleTextView() {
-        return this.f38238a;
+    public fz(int i9, EditTextBoldCursor editTextBoldCursor) {
+        this.f38377a = i9;
+        this.f38378b = editTextBoldCursor;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+        switch (this.f38377a) {
+            case 0:
+                AndroidUtilities.hideKeyboard(this.f38378b);
+                return;
+            case 1:
+                AndroidUtilities.hideKeyboard(this.f38378b);
+                return;
+            default:
+                AndroidUtilities.hideKeyboard(this.f38378b);
+                return;
+        }
     }
 }

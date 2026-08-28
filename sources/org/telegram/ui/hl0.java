@@ -4,73 +4,70 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-
 public final class hl0 implements Runnable {
+    public final int f38828a;
+    public final wm0 f38829b;
 
-    public final int f38853a;
-
-    public final xm0 f38854b;
-
-    public hl0(xm0 xm0Var, int i10) {
-        this.f38853a = i10;
-        this.f38854b = xm0Var;
+    public hl0(wm0 wm0Var, int i9) {
+        this.f38828a = i9;
+        this.f38829b = wm0Var;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        switch (this.f38853a) {
+        switch (this.f38828a) {
             case 0:
-                xm0 xm0Var = this.f38854b;
-                ViewGroup[] viewGroupArr = xm0Var.V;
+                wm0 wm0Var = this.f38829b;
+                ViewGroup[] viewGroupArr = wm0Var.V;
                 if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    xm0Var.U[0].requestFocus();
-                    AndroidUtilities.showKeyboard(xm0Var.U[0]);
-                    break;
+                    wm0Var.U[0].requestFocus();
+                    AndroidUtilities.showKeyboard(wm0Var.U[0]);
+                    return;
                 }
-                break;
+                return;
             case 1:
-                xm0 xm0Var2 = this.f38854b;
-                xm0Var2.presentFragment(xm0Var2.f44489d1, true);
-                xm0Var2.f44489d1 = null;
-                break;
+                wm0 wm0Var2 = this.f38829b;
+                wm0Var2.presentFragment(wm0Var2.f44158d1, true);
+                wm0Var2.f44158d1 = null;
+                return;
             case 2:
-                xm0 xm0Var3 = this.f38854b;
-                EditTextBoldCursor[] editTextBoldCursorArr = xm0Var3.W;
+                wm0 wm0Var3 = this.f38829b;
+                EditTextBoldCursor[] editTextBoldCursorArr = wm0Var3.W;
                 if (editTextBoldCursorArr != null) {
-                    xm0Var3.I1(editTextBoldCursorArr[0]);
+                    wm0Var3.I1(editTextBoldCursorArr[0]);
+                    return;
                 }
-                break;
+                return;
             case 3:
-                AndroidUtilities.showKeyboard(this.f38854b.U[2]);
-                break;
+                AndroidUtilities.showKeyboard(this.f38829b.U[2]);
+                return;
             case 4:
-                this.f38854b.x1();
-                break;
+                this.f38829b.x1();
+                return;
             case 5:
-                int i10 = 0;
+                int i9 = 0;
                 while (true) {
-                    xm0 xm0Var4 = this.f38854b;
-                    if (i10 >= xm0Var4.Y.getChildCount()) {
-                        xm0Var4.x1();
-                        xm0Var4.f44507m1.clear();
-                        xm0Var4.l1.clear();
-                        xm0Var4.f44535y.values.clear();
-                        xm0Var4.Q1();
-                    } else {
-                        View childAt = xm0Var4.Y.getChildAt(i10);
-                        if (childAt instanceof wm0) {
-                            xm0Var4.Y.removeView(childAt);
-                            i10--;
+                    wm0 wm0Var4 = this.f38829b;
+                    if (i9 < wm0Var4.Y.getChildCount()) {
+                        View childAt = wm0Var4.Y.getChildAt(i9);
+                        if (childAt instanceof vm0) {
+                            wm0Var4.Y.removeView(childAt);
+                            i9--;
                         }
-                        i10++;
+                        i9++;
+                    } else {
+                        wm0Var4.x1();
+                        wm0Var4.f44176m1.clear();
+                        wm0Var4.l1.clear();
+                        wm0Var4.f44204y.values.clear();
+                        wm0Var4.Q1();
+                        return;
                     }
-                    break;
                 }
-                break;
             default:
-                this.f38854b.finishFragment();
-                break;
+                this.f38829b.finishFragment();
+                return;
         }
     }
 }

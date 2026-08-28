@@ -1,32 +1,31 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.view.View;
-
 public final class tx0 implements View.OnClickListener {
+    public final int f43081a;
+    public final ProfileActivity f43082b;
+    public final String f43083c;
 
-    public final int f43027a;
-
-    public final ProfileActivity f43028b;
-
-    public final String f43029c;
-
-    public tx0(ProfileActivity profileActivity, String str, int i10) {
-        this.f43027a = i10;
-        this.f43028b = profileActivity;
-        this.f43029c = str;
+    public tx0(ProfileActivity profileActivity, String str, int i9) {
+        this.f43081a = i9;
+        this.f43082b = profileActivity;
+        this.f43083c = str;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f43027a) {
+        switch (this.f43081a) {
             case 0:
-                ProfileActivity profileActivity = this.f43028b;
-                we.e.s(profileActivity.getParentActivity(), "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + this.f43029c);
-                break;
+                ProfileActivity profileActivity = this.f43082b;
+                Activity parentActivity = profileActivity.getParentActivity();
+                ve.e.s(parentActivity, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + this.f43083c);
+                return;
             default:
-                ProfileActivity profileActivity2 = this.f43028b;
-                we.e.s(profileActivity2.getParentActivity(), "https://" + profileActivity2.getMessagesController().linkPrefix + "/nft/" + this.f43029c);
-                break;
+                ProfileActivity profileActivity2 = this.f43082b;
+                Activity parentActivity2 = profileActivity2.getParentActivity();
+                ve.e.s(parentActivity2, "https://" + profileActivity2.getMessagesController().linkPrefix + "/nft/" + this.f43083c);
+                return;
         }
     }
 }

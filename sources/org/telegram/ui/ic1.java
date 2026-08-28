@@ -1,7 +1,6 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
-
 public final class ic1 extends MessageObject {
     @Override
     public final boolean needDrawAvatar() {

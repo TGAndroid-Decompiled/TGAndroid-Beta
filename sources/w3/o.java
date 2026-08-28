@@ -1,52 +1,35 @@
 package w3;
 
 import android.util.SparseArray;
-
 public final class o {
-
-    public final m3.w f49123a;
-
-    public final boolean f49124b;
-
-    public final boolean f49125c;
-
-    public final d5.y f49127f;
-
-    public byte[] f49128g;
+    public final m3.w f48617a;
+    public final boolean f48618b;
+    public final boolean f48619c;
+    public final d5.x f48621f;
+    public byte[] f48622g;
     public int h;
-
-    public int f49129i;
-
-    public long f49130j;
-
-    public long f49132l;
-
-    public long f49136p;
-
-    public long f49137q;
-
-    public boolean f49138r;
+    public int f48623i;
+    public long f48624j;
+    public long f48626l;
+    public long f48630p;
+    public long f48631q;
+    public boolean f48632r;
     public final SparseArray d = new SparseArray();
-
-    public final SparseArray f49126e = new SparseArray();
-
-    public n f49133m = new n();
-
-    public n f49134n = new n();
-
-    public boolean f49131k = false;
-
-    public boolean f49135o = false;
+    public final SparseArray f48620e = new SparseArray();
+    public n f48627m = new Object();
+    public n f48628n = new Object();
+    public boolean f48625k = false;
+    public boolean f48629o = false;
 
     public o(m3.w wVar, boolean z10, boolean z11) {
-        this.f49123a = wVar;
-        this.f49124b = z10;
-        this.f49125c = z11;
+        this.f48617a = wVar;
+        this.f48618b = z10;
+        this.f48619c = z11;
         byte[] bArr = new byte[128];
-        this.f49128g = bArr;
-        this.f49127f = new d5.y(bArr, 0, 0);
-        n nVar = this.f49134n;
-        nVar.f49110b = false;
-        nVar.f49109a = false;
+        this.f48622g = bArr;
+        this.f48621f = new d5.x(bArr, 0, 0);
+        n nVar = this.f48628n;
+        nVar.f48604b = false;
+        nVar.f48603a = false;
     }
 }

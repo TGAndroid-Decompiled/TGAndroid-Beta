@@ -1,34 +1,46 @@
 package hd;
 
-import h7.s7;
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public final class c extends l1 {
+    public static final AtomicReferenceFieldUpdater f10414n = AtomicReferenceFieldUpdater.newUpdater(c.class, Object.class, "_disposer$volatile");
+    private volatile Object _disposer$volatile;
+    public final m f10415e;
+    public p0 f10416f;
+    public final e h;
 
-public final class c {
-    NANOSECONDS(TimeUnit.NANOSECONDS),
-    MICROSECONDS(TimeUnit.MICROSECONDS),
-    MILLISECONDS(TimeUnit.MILLISECONDS),
-    SECONDS(TimeUnit.SECONDS),
-    MINUTES(TimeUnit.MINUTES),
-    HOURS(TimeUnit.HOURS),
-    DAYS(TimeUnit.DAYS);
-
-
-    public final TimeUnit f8917a;
-
-    static {
-        s7.a(cVarArr);
+    public c(e eVar, m mVar) {
+        this.h = eVar;
+        this.f10415e = mVar;
     }
 
-    public c(TimeUnit timeUnit) {
-        super(str, i);
-        this.f8917a = timeUnit;
-    }
-
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
-    }
-
-    public static c[] values() {
-        return (c[]) f8916n.clone();
+    @Override
+    public final void a(Throwable th) {
+        m mVar = this.f10415e;
+        if (th != null) {
+            mVar.getClass();
+            e5.c F = mVar.F(null, new v(th, false));
+            if (F != null) {
+                mVar.e(F);
+                d dVar = (d) f10414n.get(this);
+                if (dVar != null) {
+                    dVar.b();
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = e.f10423b;
+        e eVar = this.h;
+        if (atomicIntegerFieldUpdater.decrementAndGet(eVar) == 0) {
+            i0[] i0VarArr = eVar.f10424a;
+            ArrayList arrayList = new ArrayList(i0VarArr.length);
+            for (i0 i0Var : i0VarArr) {
+                arrayList.add(i0Var.getCompleted());
+            }
+            mVar.resumeWith(arrayList);
+        }
     }
 }

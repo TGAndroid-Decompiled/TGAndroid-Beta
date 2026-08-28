@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.List;
-
 public class RtpSender {
     private MediaStreamTrack cachedTrack;
     private final DtmfSender dtmfSender;
@@ -11,18 +10,19 @@ public class RtpSender {
     public RtpSender(long j10) {
         this.nativeRtpSender = j10;
         this.cachedTrack = MediaStreamTrack.createMediaStreamTrack(nativeGetTrack(j10));
-        if (!nativeGetMediaType(j10).equalsIgnoreCase("audio")) {
-            this.dtmfSender = null;
-        } else {
-            long jNativeGetDtmfSender = nativeGetDtmfSender(j10);
-            this.dtmfSender = jNativeGetDtmfSender != 0 ? new DtmfSender(jNativeGetDtmfSender) : null;
+        if (nativeGetMediaType(j10).equalsIgnoreCase("audio")) {
+            long nativeGetDtmfSender = nativeGetDtmfSender(j10);
+            this.dtmfSender = nativeGetDtmfSender != 0 ? new DtmfSender(nativeGetDtmfSender) : null;
+            return;
         }
+        this.dtmfSender = null;
     }
 
     private void checkRtpSenderExists() {
-        if (this.nativeRtpSender == 0) {
-            throw new IllegalStateException("RtpSender has been disposed.");
+        if (this.nativeRtpSender != 0) {
+            return;
         }
+        throw new IllegalStateException("RtpSender has been disposed.");
     }
 
     private static native long nativeGetDtmfSender(long j10);
@@ -99,8 +99,15 @@ public class RtpSender {
     }
 
     public boolean setTrack(MediaStreamTrack mediaStreamTrack, boolean z10) {
+        long nativeMediaStreamTrack;
         checkRtpSenderExists();
-        if (!nativeSetTrack(this.nativeRtpSender, mediaStreamTrack == null ? 0L : mediaStreamTrack.getNativeMediaStreamTrack())) {
+        long j10 = this.nativeRtpSender;
+        if (mediaStreamTrack == null) {
+            nativeMediaStreamTrack = 0;
+        } else {
+            nativeMediaStreamTrack = mediaStreamTrack.getNativeMediaStreamTrack();
+        }
+        if (!nativeSetTrack(j10, nativeMediaStreamTrack)) {
             return false;
         }
         MediaStreamTrack mediaStreamTrack2 = this.cachedTrack;

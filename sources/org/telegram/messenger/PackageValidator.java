@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Process;
 import java.util.HashSet;
 import java.util.Set;
-
 public final class PackageValidator {
     private static final Set<String> KNOWN_PACKAGES;
 
@@ -27,22 +26,28 @@ public final class PackageValidator {
     private PackageValidator() {
     }
 
-    private static boolean hasPermission(Context context, String str, int i10) {
+    private static boolean hasPermission(Context context, String str, int i9) {
         PackageManager packageManager = context.getPackageManager();
         try {
-            return packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) == 0 || packageManager.checkPermission("android.permission.BIND_NOTIFICATION_LISTENER_SERVICE", str) == 0;
+            if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) == 0) {
+                return true;
+            }
+            if (packageManager.checkPermission("android.permission.BIND_NOTIFICATION_LISTENER_SERVICE", str) == 0) {
+                return true;
+            }
+            return false;
         } catch (Throwable unused) {
             return false;
         }
     }
 
-    public static boolean isKnownCaller(Context context, String str, int i10) {
+    public static boolean isKnownCaller(Context context, String str, int i9) {
         if (str == null) {
             return false;
         }
-        if (i10 == 1000 || i10 == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
+        if (i9 == 1000 || i9 == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
             return true;
         }
-        return hasPermission(context, str, i10);
+        return hasPermission(context, str, i9);
     }
 }

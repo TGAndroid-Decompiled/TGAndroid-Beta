@@ -1,32 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class nl extends AnimatorListenerAdapter {
+    public final boolean f40768a;
+    public final boolean f40769b;
+    public final boolean f40770c;
+    public final qn d;
 
-public final class nl extends org.telegram.ui.Components.b20 {
-
-    public final rn f40883b;
-
-    public nl(rn rnVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(activity, n2Var);
-        this.f40883b = rnVar;
+    public nl(qn qnVar, boolean z10, boolean z11, boolean z12) {
+        this.d = qnVar;
+        this.f40768a = z10;
+        this.f40769b = z11;
+        this.f40770c = z12;
     }
 
     @Override
-    public final void m() {
-        rn rnVar = this.f40883b;
-        rnVar.Q7();
-        UndoView undoView = rnVar.f42229u3;
-        if (undoView == null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        int i9;
+        int i10;
+        qn qnVar = this.d;
+        qnVar.I2 = null;
+        ImageView imageView = qnVar.F2;
+        int i11 = 4;
+        if (this.f40768a) {
+            i9 = 0;
+        } else {
+            i9 = 4;
         }
-        undoView.j(75, 0L, null);
-        rnVar.getMessagesController().removeSuggestion(rnVar.P5, "CONVERT_GIGAGROUP");
-    }
-
-    @Override
-    public final void n() {
-        rn rnVar = this.f40883b;
-        rnVar.getMessagesController().convertToGigaGroup(rnVar.getParentActivity(), rnVar.f42026e, rnVar, new c1(this, 19));
+        imageView.setVisibility(i9);
+        ImageView imageView2 = qnVar.H2;
+        if (this.f40769b) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView2.setVisibility(i10);
+        RadialProgressView radialProgressView = qnVar.G2;
+        if (this.f40770c) {
+            i11 = 0;
+        }
+        radialProgressView.setVisibility(i11);
     }
 }

@@ -2,7 +2,6 @@ package org.scilab.forge.jlatexmath;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
 public class ArrayOfAtoms extends TeXFormula {
     public LinkedList<LinkedList<Atom>> array;
     public int col;
@@ -27,20 +26,22 @@ public class ArrayOfAtoms extends TeXFormula {
     }
 
     public void checkDimensions() {
-        if (this.array.getLast().size() != 0 || this.root != null) {
+        if (this.array.getLast().size() != 0) {
+            addRow();
+        } else if (this.root != null) {
             addRow();
         }
         this.row = this.array.size() - 1;
         this.col = this.array.get(0).size();
-        for (int i10 = 1; i10 < this.row; i10++) {
-            if (this.array.get(i10).size() > this.col) {
-                this.col = this.array.get(i10).size();
+        for (int i9 = 1; i9 < this.row; i9++) {
+            if (this.array.get(i9).size() > this.col) {
+                this.col = this.array.get(i9).size();
             }
         }
-        for (int i11 = 0; i11 < this.row; i11++) {
-            int size = this.array.get(i11).size();
-            if (size != this.col && this.array.get(i11).get(0) != null && this.array.get(i11).get(0).type != 11) {
-                LinkedList<Atom> linkedList = this.array.get(i11);
+        for (int i10 = 0; i10 < this.row; i10++) {
+            int size = this.array.get(i10).size();
+            if (size != this.col && this.array.get(i10).get(0) != null && this.array.get(i10).get(0).type != 11) {
+                LinkedList<Atom> linkedList = this.array.get(i10);
                 while (size < this.col) {
                     linkedList.add(null);
                     size++;
@@ -70,14 +71,14 @@ public class ArrayOfAtoms extends TeXFormula {
         return this.row;
     }
 
-    public void addCol(int i10) {
-        if (i10 < 1) {
-            i10 = 1;
-        } else if (i10 > 4096) {
-            i10 = 4096;
+    public void addCol(int i9) {
+        if (i9 < 1) {
+            i9 = 1;
+        } else if (i9 > 4096) {
+            i9 = 4096;
         }
         this.array.get(this.row).add(this.root);
-        for (int i11 = 1; i11 < i10 - 1; i11++) {
+        for (int i10 = 1; i10 < i9 - 1; i10++) {
             this.array.get(this.row).add(null);
         }
         this.root = null;

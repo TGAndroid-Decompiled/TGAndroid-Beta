@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
 
-public final class de implements x4 {
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+public final class de extends qg {
+    public final ChatActivityEnterView f27723x;
 
-    public final int f27728a;
-
-    public final ChatActivityEnterView f27729b;
-
-    public de(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f27728a = i10;
-        this.f27729b = chatActivityEnterView;
+    public de(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity);
+        this.f27723x = chatActivityEnterView;
     }
 
     @Override
-    public final void I(int i10, int i11, boolean z10) {
-        switch (this.f27728a) {
-            case 0:
-                this.f27729b.T0(i10, z10, i11, true, 0L);
-                break;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.f27729b;
-                chatActivityEnterView.T0(i10, z10, i11, true, 0L);
-                ye yeVar = chatActivityEnterView.H0;
-                if (yeVar != null) {
-                    yeVar.i();
-                    chatActivityEnterView.H0 = null;
-                }
-                break;
+    public final void onDraw(Canvas canvas) {
+        ChatActivityEnterView chatActivityEnterView = this.f27723x;
+        Paint paint = chatActivityEnterView.L1;
+        super.onDraw(canvas);
+        if (getTag() != null && chatActivityEnterView.f26137k1 != null && !chatActivityEnterView.S0 && !MediaDataController.getInstance(chatActivityEnterView.M).getUnreadStickerSets().isEmpty() && paint != null) {
+            canvas.drawCircle(AndroidUtilities.dp(9.0f) + (getWidth() / 2), (getHeight() / 2) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), paint);
         }
     }
 }

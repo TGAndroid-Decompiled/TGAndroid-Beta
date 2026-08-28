@@ -3,7 +3,6 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-
 public interface VoIPServiceState {
     void acceptIncomingCall();
 

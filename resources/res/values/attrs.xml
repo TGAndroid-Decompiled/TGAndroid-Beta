@@ -81,8 +81,6 @@
     </attr>
     <attr name="alertDialogTheme" format="reference">
     </attr>
-    <attr name="allowShortcuts" format="boolean">
-    </attr>
     <attr name="allowStacking" format="boolean">
     </attr>
     <attr name="alpha" format="float">
@@ -94,12 +92,6 @@
         <flag name="SHIFT" value="0x1" />
         <flag name="SYM" value="0x4" />
         <flag name="FUNCTION" value="0x8" />
-    </attr>
-    <attr name="ambientEnabled" format="boolean">
-    </attr>
-    <attr name="appTheme">
-        <enum name="holo_dark" value="0" />
-        <enum name="holo_light" value="1" />
     </attr>
     <attr name="arrowHeadLength" format="dimension">
     </attr>
@@ -120,8 +112,6 @@
         <enum name="uniform" value="1" />
     </attr>
     <attr name="background" format="reference">
-    </attr>
-    <attr name="backgroundColor" format="color">
     </attr>
     <attr name="backgroundSplit" format="reference|color">
     </attr>
@@ -162,11 +152,6 @@
     </attr>
     <attr name="buttonPanelSideLayout" format="reference">
     </attr>
-    <attr name="buttonSize" format="reference">
-        <enum name="standard" value="0" />
-        <enum name="wide" value="1" />
-        <enum name="icon_only" value="2" />
-    </attr>
     <attr name="buttonStyle" format="reference">
     </attr>
     <attr name="buttonStyleSmall" format="reference">
@@ -180,148 +165,6 @@
         <enum name="multiply" value="14" />
         <enum name="screen" value="15" />
         <enum name="add" value="16" />
-    </attr>
-    <attr name="buyButtonAppearance">
-        <enum name="google_wallet_classic" value="1" />
-        <enum name="google_wallet_grayscale" value="2" />
-        <enum name="google_wallet_monochrome" value="3" />
-        <enum name="android_pay_dark" value="4" />
-        <enum name="android_pay_light" value="5" />
-        <enum name="android_pay_light_with_border" value="6" />
-        <enum name="classic" value="1" />
-        <enum name="grayscale" value="2" />
-        <enum name="monochrome" value="3" />
-    </attr>
-    <attr name="buyButtonHeight" format="dimension">
-        <enum name="match_parent" value="-1" />
-        <enum name="wrap_content" value="-2" />
-    </attr>
-    <attr name="buyButtonText">
-        <enum name="buy_with" value="5" />
-        <enum name="logo_only" value="6" />
-        <enum name="donate_with" value="7" />
-        <enum name="buy_with_google" value="1" />
-        <enum name="buy_now" value="2" />
-        <enum name="book_now" value="3" />
-        <enum name="donate_with_google" value="4" />
-    </attr>
-    <attr name="buyButtonWidth" format="dimension">
-        <enum name="match_parent" value="-1" />
-        <enum name="wrap_content" value="-2" />
-    </attr>
-    <attr name="cameraBearing" format="float">
-    </attr>
-    <attr name="cameraMaxZoomPreference" format="float">
-    </attr>
-    <attr name="cameraMinZoomPreference" format="float">
-    </attr>
-    <attr name="cameraTargetLat" format="float">
-    </attr>
-    <attr name="cameraTargetLng" format="float">
-    </attr>
-    <attr name="cameraTilt" format="float">
-    </attr>
-    <attr name="cameraZoom" format="float">
-    </attr>
-    <attr name="carColorPrimary" format="color">
-    </attr>
-    <attr name="carColorPrimaryDark" format="color">
-    </attr>
-    <attr name="carColorSecondary" format="color">
-    </attr>
-    <attr name="carColorSecondaryDark" format="color">
-    </attr>
-    <attr name="carPermissionActivityLayout" format="reference">
-    </attr>
-    <attr name="castAdBreakMarkerColor" format="color">
-    </attr>
-    <attr name="castAdInProgressLabelTextAppearance" format="reference">
-    </attr>
-    <attr name="castAdInProgressText" format="reference|string">
-    </attr>
-    <attr name="castAdInProgressTextColor" format="color">
-    </attr>
-    <attr name="castAdLabelColor" format="color">
-    </attr>
-    <attr name="castAdLabelTextAppearance" format="reference">
-    </attr>
-    <attr name="castAdLabelTextColor" format="color">
-    </attr>
-    <attr name="castBackground" format="reference|color">
-    </attr>
-    <attr name="castBackgroundColor" format="reference|color">
-    </attr>
-    <attr name="castButtonBackgroundColor" format="reference|color">
-    </attr>
-    <attr name="castButtonColor" format="reference|color">
-    </attr>
-    <attr name="castButtonText" format="reference|string">
-    </attr>
-    <attr name="castButtonTextAppearance" format="reference">
-    </attr>
-    <attr name="castClosedCaptionsButtonDrawable" format="reference">
-    </attr>
-    <attr name="castControlButtons" format="reference">
-    </attr>
-    <attr name="castDefaultAdPosterUrl" format="reference|string">
-    </attr>
-    <attr name="castExpandedControllerLoadingIndicatorColor" format="color">
-    </attr>
-    <attr name="castExpandedControllerStyle" format="reference">
-    </attr>
-    <attr name="castExpandedControllerToolbarStyle" format="reference">
-    </attr>
-    <attr name="castFocusRadius" format="reference|dimension">
-    </attr>
-    <attr name="castForward30ButtonDrawable" format="reference">
-    </attr>
-    <attr name="castIntroOverlayStyle" format="reference">
-    </attr>
-    <attr name="castLargePauseButtonDrawable" format="reference">
-    </attr>
-    <attr name="castLargePlayButtonDrawable" format="reference">
-    </attr>
-    <attr name="castLargeStopButtonDrawable" format="reference">
-    </attr>
-    <attr name="castLiveIndicatorColor" format="color">
-    </attr>
-    <attr name="castMiniControllerLoadingIndicatorColor" format="color">
-    </attr>
-    <attr name="castMiniControllerStyle" format="reference">
-    </attr>
-    <attr name="castMuteToggleButtonDrawable" format="reference">
-    </attr>
-    <attr name="castPauseButtonDrawable" format="reference">
-    </attr>
-    <attr name="castPlayButtonDrawable" format="reference">
-    </attr>
-    <attr name="castProgressBarColor" format="color">
-    </attr>
-    <attr name="castRewind30ButtonDrawable" format="reference">
-    </attr>
-    <attr name="castSeekBarProgressAndThumbColor" format="color">
-    </attr>
-    <attr name="castSeekBarProgressDrawable" format="reference">
-    </attr>
-    <attr name="castSeekBarSecondaryProgressColor" format="color">
-    </attr>
-    <attr name="castSeekBarThumbDrawable" format="reference">
-    </attr>
-    <attr name="castSeekBarTooltipBackgroundColor" format="color">
-    </attr>
-    <attr name="castSeekBarUnseekableProgressColor" format="color">
-    </attr>
-    <attr name="castShowImageThumbnail" format="boolean">
-    </attr>
-    <attr name="castSkipNextButtonDrawable" format="reference">
-    </attr>
-    <attr name="castSkipPreviousButtonDrawable" format="reference">
-    </attr>
-    <attr name="castStopButtonDrawable" format="reference">
-    </attr>
-    <attr name="castSubtitleTextAppearance" format="reference">
-    </attr>
-    <attr name="castTitleTextAppearance" format="reference">
     </attr>
     <attr name="checkMarkCompat" format="reference">
     </attr>
@@ -338,8 +181,6 @@
     <attr name="checkboxStyle" format="reference">
     </attr>
     <attr name="checkedTextViewStyle" format="reference">
-    </attr>
-    <attr name="circleCrop" format="boolean">
     </attr>
     <attr name="closeIcon" format="reference">
     </attr>
@@ -369,11 +210,6 @@
     </attr>
     <attr name="colorPrimaryDark" format="color">
     </attr>
-    <attr name="colorScheme" format="reference">
-        <enum name="dark" value="0" />
-        <enum name="light" value="1" />
-        <enum name="auto" value="2" />
-    </attr>
     <attr name="colorSwitchThumbNormal" format="color">
     </attr>
     <attr name="commitIcon" format="reference">
@@ -392,25 +228,9 @@
     </attr>
     <attr name="contentInsetStartWithNavigation" format="dimension">
     </attr>
-    <attr name="contentProviderUri" format="string">
-    </attr>
     <attr name="controlBackground" format="reference">
     </attr>
-    <attr name="corpusId" format="string">
-    </attr>
-    <attr name="corpusVersion" format="string">
-    </attr>
     <attr name="customNavigationLayout" format="reference">
-    </attr>
-    <attr name="customThemeStyle">
-        <enum name="material" value="1" />
-        <enum name="googleMaterial2" value="2" />
-    </attr>
-    <attr name="defaultIntentAction" format="string">
-    </attr>
-    <attr name="defaultIntentActivity" format="string">
-    </attr>
-    <attr name="defaultIntentData" format="string">
     </attr>
     <attr name="defaultQueryHint" format="string">
     </attr>
@@ -436,8 +256,6 @@
     <attr name="dividerPadding" format="dimension">
     </attr>
     <attr name="dividerVertical" format="reference">
-    </attr>
-    <attr name="documentMaxAgeSecs" format="integer">
     </attr>
     <attr name="drawableBottomCompat" format="reference">
     </attr>
@@ -479,25 +297,9 @@
     </attr>
     <attr name="emojiCompatEnabled" format="boolean">
     </attr>
-    <attr name="environment">
-        <enum name="production" value="1" />
-        <enum name="test" value="3" />
-        <enum name="sandbox" value="0" />
-        <enum name="strict_sandbox" value="2" />
-    </attr>
-    <attr name="expandActivityOverflowButtonDrawable" format="reference">
-    </attr>
     <attr name="externalRouteEnabledDrawable" format="reference">
     </attr>
     <attr name="externalRouteEnabledDrawableStatic" format="reference">
-    </attr>
-    <attr name="featureType">
-        <enum name="match_global_nicknames" value="1" />
-        <enum name="demote_common_words" value="2" />
-        <enum name="demote_rfc822_hostnames" value="3" />
-        <enum name="omnibox_url_section" value="4" />
-        <enum name="omnibox_title_section" value="5" />
-        <enum name="index_entity_types" value="6" />
     </attr>
     <attr name="firstBaselineToTopHeight" format="dimension">
     </attr>
@@ -532,12 +334,6 @@
     </attr>
     <attr name="fontWeight" format="integer">
     </attr>
-    <attr name="fragmentMode">
-        <enum name="buyButton" value="1" />
-        <enum name="selectionDetails" value="2" />
-    </attr>
-    <attr name="fragmentStyle" format="reference">
-    </attr>
     <attr name="gapBetweenBars" format="dimension">
     </attr>
     <attr name="goIcon" format="reference">
@@ -564,22 +360,9 @@
     </attr>
     <attr name="iconifiedByDefault" format="boolean">
     </attr>
-    <attr name="imageAspectRatio" format="float">
-    </attr>
-    <attr name="imageAspectRatioAdjust">
-        <enum name="none" value="0" />
-        <enum name="adjust_width" value="1" />
-        <enum name="adjust_height" value="2" />
-    </attr>
     <attr name="imageButtonStyle" format="reference">
     </attr>
     <attr name="indeterminateProgressStyle" format="reference">
-    </attr>
-    <attr name="indexPrefixes" format="boolean">
-    </attr>
-    <attr name="initialActivityCount" format="string">
-    </attr>
-    <attr name="inputEnabled" format="boolean">
     </attr>
     <attr name="isLightTheme" format="boolean">
     </attr>
@@ -606,14 +389,6 @@
     <attr name="lStar" format="float">
     </attr>
     <attr name="lastBaselineToBottomHeight" format="dimension">
-    </attr>
-    <attr name="latLngBoundsNorthEastLatitude" format="float">
-    </attr>
-    <attr name="latLngBoundsNorthEastLongitude" format="float">
-    </attr>
-    <attr name="latLngBoundsSouthWestLatitude" format="float">
-    </attr>
-    <attr name="latLngBoundsSouthWestLongitude" format="float">
     </attr>
     <attr name="layout" format="reference">
     </attr>
@@ -649,39 +424,9 @@
     </attr>
     <attr name="listPreferredItemPaddingStart" format="dimension">
     </attr>
-    <attr name="liteMode" format="boolean">
-    </attr>
     <attr name="logo" format="reference">
     </attr>
     <attr name="logoDescription" format="string">
-    </attr>
-    <attr name="mapId" format="string">
-    </attr>
-    <attr name="mapType">
-        <enum name="none" value="0" />
-        <enum name="normal" value="1" />
-        <enum name="satellite" value="2" />
-        <enum name="terrain" value="3" />
-        <enum name="hybrid" value="4" />
-    </attr>
-    <attr name="maskedWalletDetailsBackground" format="reference|color">
-    </attr>
-    <attr name="maskedWalletDetailsButtonBackground" format="reference|color">
-    </attr>
-    <attr name="maskedWalletDetailsButtonTextAppearance" format="reference">
-    </attr>
-    <attr name="maskedWalletDetailsHeaderTextAppearance" format="reference">
-    </attr>
-    <attr name="maskedWalletDetailsLogoImageType">
-        <enum name="google_wallet_classic" value="1" />
-        <enum name="google_wallet_monochrome" value="2" />
-        <enum name="android_pay" value="3" />
-        <enum name="classic" value="1" />
-        <enum name="monochrome" value="2" />
-    </attr>
-    <attr name="maskedWalletDetailsLogoTextColor" format="color">
-    </attr>
-    <attr name="maskedWalletDetailsTextAppearance" format="reference">
     </attr>
     <attr name="maxButtonHeight" format="dimension">
     </attr>
@@ -736,8 +481,6 @@
     </attr>
     <attr name="nestedScrollViewStyle" format="reference">
     </attr>
-    <attr name="noIndex" format="boolean">
-    </attr>
     <attr name="numericModifiers">
         <flag name="META" value="0x10000" />
         <flag name="CTRL" value="0x1000" />
@@ -762,12 +505,6 @@
     </attr>
     <attr name="panelMenuListWidth" format="dimension">
     </attr>
-    <attr name="paramName" format="string">
-    </attr>
-    <attr name="paramValue" format="string">
-    </attr>
-    <attr name="perAccountTemplate" format="boolean">
-    </attr>
     <attr name="popupMenuStyle" format="reference">
     </attr>
     <attr name="popupTheme" format="reference">
@@ -784,8 +521,6 @@
     </attr>
     <attr name="queryHint" format="string">
     </attr>
-    <attr name="queryPatterns" format="reference">
-    </attr>
     <attr name="radioButtonStyle" format="reference">
     </attr>
     <attr name="ratingBarStyle" format="reference">
@@ -794,58 +529,17 @@
     </attr>
     <attr name="ratingBarStyleSmall" format="reference">
     </attr>
-    <attr name="schemaOrgProperty" format="string">
-    </attr>
-    <attr name="schemaOrgType" format="string">
-    </attr>
-    <attr name="scopeUris" format="reference|string">
-    </attr>
-    <attr name="searchEnabled" format="boolean">
-    </attr>
     <attr name="searchHintIcon" format="reference">
     </attr>
     <attr name="searchIcon" format="reference">
     </attr>
-    <attr name="searchLabel" format="string">
-    </attr>
     <attr name="searchViewStyle" format="reference">
-    </attr>
-    <attr name="sectionContent" format="string">
-    </attr>
-    <attr name="sectionFormat">
-        <enum name="plain" value="0" />
-        <enum name="html" value="1" />
-        <enum name="rfc822" value="2" />
-        <enum name="url" value="3" />
-        <enum name="date" value="4" />
-    </attr>
-    <attr name="sectionId" format="string">
-    </attr>
-    <attr name="sectionType">
-        <enum name="text1" value="0" />
-        <enum name="text2" value="1" />
-        <enum name="icon_uri" value="2" />
-        <enum name="intent_action" value="3" />
-        <enum name="intent_data" value="4" />
-        <enum name="intent_data_id" value="5" />
-        <enum name="intent_extra_data" value="6" />
-        <enum name="large_icon_uri" value="7" />
-        <enum name="intent_activity" value="8" />
-        <enum name="thing_proto" value="9" />
-    </attr>
-    <attr name="sectionWeight" format="integer">
     </attr>
     <attr name="seekBarStyle" format="reference">
     </attr>
     <attr name="selectableItemBackground" format="reference">
     </attr>
     <attr name="selectableItemBackgroundBorderless" format="reference">
-    </attr>
-    <attr name="semanticallySearchable" format="boolean">
-    </attr>
-    <attr name="settingsDescription" format="string">
-    </attr>
-    <attr name="shortcutMatchRequired" format="boolean">
     </attr>
     <attr name="showAsAction">
         <flag name="never" value="0" />
@@ -866,28 +560,17 @@
     </attr>
     <attr name="singleChoiceItemLayout" format="reference">
     </attr>
-    <attr name="sourceClass">
-        <enum name="email" value="0" />
-        <enum name="contact" value="1" />
-        <enum name="instant_message" value="2" />
-    </attr>
     <attr name="spinBars" format="boolean">
     </attr>
     <attr name="spinnerDropDownItemStyle" format="reference">
     </attr>
     <attr name="spinnerStyle" format="reference">
     </attr>
-    <attr name="splitTrack" format="boolean">
-    </attr>
     <attr name="srcCompat" format="reference">
-    </attr>
-    <attr name="state_above_anchor" format="boolean">
     </attr>
     <attr name="subMenuArrow" format="reference">
     </attr>
     <attr name="submitBackground" format="reference">
-    </attr>
-    <attr name="subsectionSeparator" format="string">
     </attr>
     <attr name="subtitle" format="string">
     </attr>
@@ -898,8 +581,6 @@
     <attr name="subtitleTextStyle" format="reference">
     </attr>
     <attr name="suggestionRowLayout" format="reference">
-    </attr>
-    <attr name="switchMinWidth" format="dimension">
     </attr>
     <attr name="switchPadding" format="dimension">
     </attr>
@@ -934,18 +615,6 @@
     <attr name="theme" format="reference">
     </attr>
     <attr name="thickness" format="dimension">
-    </attr>
-    <attr name="thumbTextPadding" format="dimension">
-    </attr>
-    <attr name="thumbTint" format="color">
-    </attr>
-    <attr name="thumbTintMode">
-        <enum name="src_over" value="3" />
-        <enum name="src_in" value="5" />
-        <enum name="src_atop" value="9" />
-        <enum name="multiply" value="14" />
-        <enum name="screen" value="15" />
-        <enum name="add" value="16" />
     </attr>
     <attr name="tickMark" format="reference">
     </attr>
@@ -989,15 +658,9 @@
     </attr>
     <attr name="titleTextStyle" format="reference">
     </attr>
-    <attr name="toAddressesSection" format="string">
-    </attr>
     <attr name="toolbarNavigationButtonStyle" format="reference">
     </attr>
     <attr name="toolbarStyle" format="reference">
-    </attr>
-    <attr name="toolbarTextColorStyle">
-        <enum name="light" value="1" />
-        <enum name="dark" value="2" />
     </attr>
     <attr name="tooltipForegroundColor" format="reference|color">
     </attr>
@@ -1007,43 +670,7 @@
     </attr>
     <attr name="track" format="reference">
     </attr>
-    <attr name="trackTint" format="color">
-    </attr>
-    <attr name="trackTintMode">
-        <enum name="src_over" value="3" />
-        <enum name="src_in" value="5" />
-        <enum name="src_atop" value="9" />
-        <enum name="multiply" value="14" />
-        <enum name="screen" value="15" />
-        <enum name="add" value="16" />
-    </attr>
-    <attr name="trimmable" format="boolean">
-    </attr>
     <attr name="ttcIndex" format="integer">
-    </attr>
-    <attr name="uiCompass" format="boolean">
-    </attr>
-    <attr name="uiMapToolbar" format="boolean">
-    </attr>
-    <attr name="uiRotateGestures" format="boolean">
-    </attr>
-    <attr name="uiScrollGestures" format="boolean">
-    </attr>
-    <attr name="uiScrollGesturesDuringRotateOrZoom" format="boolean">
-    </attr>
-    <attr name="uiTiltGestures" format="boolean">
-    </attr>
-    <attr name="uiZoomControls" format="boolean">
-    </attr>
-    <attr name="uiZoomGestures" format="boolean">
-    </attr>
-    <attr name="useViewLifecycle" format="boolean">
-    </attr>
-    <attr name="userInputSection" format="string">
-    </attr>
-    <attr name="userInputTag" format="string">
-    </attr>
-    <attr name="userInputValue" format="string">
     </attr>
     <attr name="viewInflaterClass" format="string">
     </attr>
@@ -1080,11 +707,5 @@
     <attr name="windowMinWidthMinor" format="dimension|fraction">
     </attr>
     <attr name="windowNoTitle" format="boolean">
-    </attr>
-    <attr name="windowTransitionStyle">
-        <enum name="slide" value="1" />
-        <enum name="none" value="2" />
-    </attr>
-    <attr name="zOrderOnTop" format="boolean">
     </attr>
 </resources>

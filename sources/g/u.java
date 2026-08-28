@@ -1,64 +1,37 @@
 package g;
 
 import android.content.Context;
-import android.content.ContextWrapper;
+import android.util.AttributeSet;
 import android.view.View;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
+public final class u {
+    public static final Class[] f7036b = {Context.class, AttributeSet.class};
+    public static final int[] f7037c = {16843375};
+    public static final int[] d = {16844160};
+    public static final int[] f7038e = {16844156};
+    public static final int[] f7039f = {16844148};
+    public static final String[] f7040g = {"android.widget.", "android.view.", "android.webkit."};
+    public static final a0.k h = new a0.k(0);
+    public final Object[] f7041a = new Object[2];
 
-public final class u implements View.OnClickListener {
-
-    public final View f6314a;
-
-    public final String f6315b;
-
-    public Method f6316c;
-    public Context d;
-
-    public u(View view, String str) {
-        this.f6314a = view;
-        this.f6315b = str;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        String str;
-        Method method;
-        if (this.f6316c != null) {
-            break;
-        }
-        View view2 = this.f6314a;
-        Context context = view2.getContext();
-        while (true) {
-            String str2 = this.f6315b;
-            if (context == null) {
-                int id2 = view2.getId();
-                if (id2 == -1) {
-                    str = "";
-                } else {
-                    str = " with id '" + view2.getContext().getResources().getResourceEntryName(id2) + "'";
+    public final View a(Context context, String str, String str2) {
+        String concat;
+        a0.k kVar = h;
+        Constructor constructor = (Constructor) kVar.get(str);
+        if (constructor == null) {
+            if (str2 != null) {
+                try {
+                    concat = str2.concat(str);
+                } catch (Exception unused) {
+                    return null;
                 }
-                StringBuilder sbR = a9.p.r("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
-                sbR.append(view2.getClass());
-                sbR.append(str);
-                throw new IllegalStateException(sbR.toString());
+            } else {
+                concat = str;
             }
-            try {
-                if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
-                    this.f6316c = method;
-                    this.d = context;
-                    break;
-                }
-            } catch (NoSuchMethodException unused) {
-            }
-            context = context instanceof ContextWrapper ? ((ContextWrapper) context).getBaseContext() : null;
+            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(f7036b);
+            kVar.put(str, constructor);
         }
-        try {
-            this.f6316c.invoke(this.d, view);
-        } catch (IllegalAccessException e9) {
-            throw new IllegalStateException("Could not execute non-public method for android:onClick", e9);
-        } catch (InvocationTargetException e10) {
-            throw new IllegalStateException("Could not execute method for android:onClick", e10);
-        }
+        constructor.setAccessible(true);
+        return (View) constructor.newInstance(this.f7041a);
     }
 }

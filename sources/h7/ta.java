@@ -1,50 +1,24 @@
 package h7;
 
-public final class ta extends ra {
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class ta extends y5.a {
+    public static final Parcelable.Creator<ta> CREATOR = new s5(3);
+    public final float f10134a;
+    public final int f10135b;
 
-    public static final ta f8548e = new ta(0, new Object[0]);
-
-    public final transient Object[] f8549c;
-    public final transient int d;
-
-    public ta(int i10, Object[] objArr) {
-        this.f8549c = objArr;
-        this.d = i10;
+    public ta(float f10, int i9) {
+        this.f10134a = f10;
+        this.f10135b = i9;
     }
 
     @Override
-    public final Object get(int i10) {
-        g7.r7.a(i10, this.d);
-        Object obj = this.f8549c[i10];
-        obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f8549c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int n() {
-        return this.d;
-    }
-
-    @Override
-    public final int o() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] p() {
-        return this.f8549c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = g7.p8.q(parcel, 20293);
+        g7.p8.s(parcel, 1, 4);
+        parcel.writeFloat(this.f10134a);
+        g7.p8.s(parcel, 2, 4);
+        parcel.writeInt(this.f10135b);
+        g7.p8.r(parcel, q10);
     }
 }

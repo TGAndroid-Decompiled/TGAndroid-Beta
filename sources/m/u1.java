@@ -4,41 +4,39 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
-
 public final class u1 implements Runnable {
+    public final int f17105a;
+    public final v1 f17106b;
 
-    public final int f17480a;
-
-    public final v1 f17481b;
-
-    public u1(v1 v1Var, int i10) {
-        this.f17480a = i10;
-        this.f17481b = v1Var;
+    public u1(v1 v1Var, int i9) {
+        this.f17105a = i9;
+        this.f17106b = v1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f17480a) {
+        switch (this.f17105a) {
             case 0:
-                ViewParent parent = this.f17481b.d.getParent();
+                ViewParent parent = this.f17106b.d.getParent();
                 if (parent != null) {
                     parent.requestDisallowInterceptTouchEvent(true);
+                    return;
                 }
-                break;
+                return;
             default:
-                v1 v1Var = this.f17481b;
+                v1 v1Var = this.f17106b;
                 v1Var.a();
                 View view = v1Var.d;
                 if (view.isEnabled() && !view.isLongClickable() && v1Var.c()) {
                     view.getParent().requestDisallowInterceptTouchEvent(true);
-                    long jUptimeMillis = SystemClock.uptimeMillis();
-                    MotionEvent motionEventObtain = MotionEvent.obtain(jUptimeMillis, jUptimeMillis, 3, 0.0f, 0.0f, 0);
-                    view.onTouchEvent(motionEventObtain);
-                    motionEventObtain.recycle();
+                    long uptimeMillis = SystemClock.uptimeMillis();
+                    MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 3, 0.0f, 0.0f, 0);
+                    view.onTouchEvent(obtain);
+                    obtain.recycle();
                     v1Var.h = true;
-                    break;
+                    return;
                 }
-                break;
+                return;
         }
     }
 }

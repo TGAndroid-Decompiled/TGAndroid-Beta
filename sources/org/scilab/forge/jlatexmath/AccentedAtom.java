@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a9.p;
-
+import aa.d;
 public class AccentedAtom extends Atom {
     private boolean acc;
     private final SymbolAtom accent;
@@ -19,37 +18,50 @@ public class AccentedAtom extends Atom {
         } else {
             this.underbase = atom;
         }
-        if (!(atom2 instanceof SymbolAtom)) {
-            throw new InvalidSymbolTypeException("Invalid accent");
+        if (atom2 instanceof SymbolAtom) {
+            this.accent = (SymbolAtom) atom2;
+            this.acc = true;
+            return;
         }
-        this.accent = (SymbolAtom) atom2;
-        this.acc = true;
+        throw new InvalidSymbolTypeException("Invalid accent");
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
+        HorizontalBox createBox;
+        float f10;
+        float f11;
+        float f12;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Atom atom = this.base;
-        Box strutBox = atom == null ? new StrutBox(0.0f, 0.0f, 0.0f, 0.0f) : atom.createBox(teXEnvironment.crampStyle());
-        float width = strutBox.getWidth();
+        if (atom == null) {
+            createBox = new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
+        } else {
+            createBox = atom.createBox(teXEnvironment.crampStyle());
+        }
+        float width = createBox.getWidth();
         Atom atom2 = this.underbase;
-        float skew = atom2 instanceof CharSymbol ? teXFont.getSkew(((CharSymbol) atom2).getCharFont(teXFont), style) : 0.0f;
-        Char r10 = teXFont.getChar(this.accent.getName(), style);
-        while (teXFont.hasNextLarger(r10)) {
-            Char nextLarger = teXFont.getNextLarger(r10, style);
+        if (atom2 instanceof CharSymbol) {
+            f10 = teXFont.getSkew(((CharSymbol) atom2).getCharFont(teXFont), style);
+        } else {
+            f10 = 0.0f;
+        }
+        Char r62 = teXFont.getChar(this.accent.getName(), style);
+        while (teXFont.hasNextLarger(r62)) {
+            Char nextLarger = teXFont.getNextLarger(r62, style);
             if (nextLarger.getWidth() > width) {
                 break;
             }
-            r10 = nextLarger;
+            r62 = nextLarger;
         }
-        float fMin = -SpaceAtom.getFactor(5, teXEnvironment);
+        float f13 = -SpaceAtom.getFactor(5, teXEnvironment);
         if (!this.acc) {
-            fMin = Math.min(strutBox.getHeight(), teXFont.getXHeight(style, r10.getFontCode()));
+            f13 = Math.min(createBox.getHeight(), teXFont.getXHeight(style, r62.getFontCode()));
         }
         VerticalBox verticalBox = new VerticalBox();
-        float italic = r10.getItalic();
-        Box charBox = new CharBox(r10);
+        float italic = r62.getItalic();
+        HorizontalBox charBox = new CharBox(r62);
         if (this.acc) {
             SymbolAtom symbolAtom = this.accent;
             if (this.changeSize) {
@@ -63,24 +75,35 @@ public class AccentedAtom extends Atom {
             charBox = horizontalBox;
         }
         float width2 = (width - charBox.getWidth()) / 2.0f;
-        charBox.setShift(skew + (width2 > 0.0f ? width2 : 0.0f));
-        if (width2 < 0.0f) {
-            strutBox = new HorizontalBox(strutBox, charBox.getWidth(), 2);
+        if (width2 > 0.0f) {
+            f11 = width2;
+        } else {
+            f11 = 0.0f;
+        }
+        charBox.setShift(f10 + f11);
+        int i9 = (width2 > 0.0f ? 1 : (width2 == 0.0f ? 0 : -1));
+        if (i9 < 0) {
+            createBox = new HorizontalBox(createBox, charBox.getWidth(), 2);
         }
         verticalBox.add(charBox);
-        verticalBox.add(new StrutBox(0.0f, this.changeSize ? -fMin : -strutBox.getHeight(), 0.0f, 0.0f));
-        verticalBox.add(strutBox);
-        float depth = verticalBox.getDepth() + verticalBox.getHeight();
-        float depth2 = strutBox.getDepth();
-        verticalBox.setDepth(depth2);
-        verticalBox.setHeight(depth - depth2);
-        if (width2 >= 0.0f) {
-            return verticalBox;
+        if (this.changeSize) {
+            f12 = -f13;
+        } else {
+            f12 = -createBox.getHeight();
         }
-        HorizontalBox horizontalBox2 = new HorizontalBox(new StrutBox(width2, 0.0f, 0.0f, 0.0f));
-        horizontalBox2.add(verticalBox);
-        horizontalBox2.setWidth(width);
-        return horizontalBox2;
+        verticalBox.add(new StrutBox(0.0f, f12, 0.0f, 0.0f));
+        verticalBox.add(createBox);
+        float height = verticalBox.getHeight();
+        float depth = createBox.getDepth();
+        verticalBox.setDepth(depth);
+        verticalBox.setHeight((verticalBox.getDepth() + height) - depth);
+        if (i9 < 0) {
+            HorizontalBox horizontalBox2 = new HorizontalBox(new StrutBox(width2, 0.0f, 0.0f, 0.0f));
+            horizontalBox2.add(verticalBox);
+            horizontalBox2.setWidth(width);
+            return horizontalBox2;
+        }
+        return verticalBox;
     }
 
     public AccentedAtom(Atom atom, Atom atom2, boolean z10) {
@@ -105,7 +128,7 @@ public class AccentedAtom extends Atom {
                 return;
             }
         }
-        throw new InvalidSymbolTypeException(p.m("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+        throw new InvalidSymbolTypeException(d.o("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
     }
 
     public AccentedAtom(Atom atom, TeXFormula teXFormula) {

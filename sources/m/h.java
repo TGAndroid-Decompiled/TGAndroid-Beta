@@ -2,7 +2,6 @@ package m;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-
 public final class h extends w implements j {
     public final i d;
 
@@ -13,7 +12,7 @@ public final class h extends w implements j {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        h7.m.a(this, getContentDescription());
+        g7.m.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 
@@ -38,17 +37,17 @@ public final class h extends w implements j {
     }
 
     @Override
-    public final boolean setFrame(int i10, int i11, int i12, int i13) {
-        boolean frame = super.setFrame(i10, i11, i12, i13);
+    public final boolean setFrame(int i9, int i10, int i11, int i12) {
+        boolean frame = super.setFrame(i9, i10, i11, i12);
         Drawable drawable = getDrawable();
         Drawable background = getBackground();
         if (drawable != null && background != null) {
             int width = getWidth();
             int height = getHeight();
-            int iMax = Math.max(width, height) / 2;
+            int max = Math.max(width, height) / 2;
             int paddingLeft = (width + (getPaddingLeft() - getPaddingRight())) / 2;
             int paddingTop = (height + (getPaddingTop() - getPaddingBottom())) / 2;
-            background.setHotspotBounds(paddingLeft - iMax, paddingTop - iMax, paddingLeft + iMax, paddingTop + iMax);
+            background.setHotspotBounds(paddingLeft - max, paddingTop - max, paddingLeft + max, paddingTop + max);
         }
         return frame;
     }

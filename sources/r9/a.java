@@ -1,5 +1,6 @@
 package r9;
 
+import q9.d;
 public interface a {
-    void a(Object obj, Object obj2);
+    a l(Class cls, d dVar);
 }

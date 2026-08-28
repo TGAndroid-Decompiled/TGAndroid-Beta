@@ -1,84 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.R;
+public final class nc {
+    public static final nc A;
+    public static final nc B;
+    public static final nc C;
+    public static final nc D;
+    public static final nc E;
+    public static final nc[] F;
+    public static final nc f31064e;
+    public static final nc f31065f;
+    public static final nc h;
+    public static final nc f31066n;
+    public static final nc f31067r;
+    public static final nc f31068s;
+    public static final nc v;
+    public static final nc f31069w;
+    public static final nc f31070x;
+    public static final nc f31071y;
+    public final String f31072a;
+    public final int f31073b;
+    public final boolean f31074c;
+    public final mc d;
 
-public class nc {
-
-    public View f30944a;
-
-    public final float f30945b;
-
-    public final float f30946c;
-    public final float d;
-
-    public long f30947e;
-
-    public Runnable f30948f;
-
-    public ValueAnimator f30949g;
-    public boolean h;
-
-    public float f30950i;
-
-    public nc(View view) {
-        this(view, 1.0f, 5.0f);
+    static {
+        int i9 = R.string.PhotoSavedHint;
+        mc mcVar = mc.SAVED_TO_GALLERY;
+        nc ncVar = new nc("PHOTO", 0, "PhotoSavedHint", i9, mcVar);
+        f31064e = ncVar;
+        nc ncVar2 = new nc("PHOTOS", 1, "PhotosSavedHint", mcVar);
+        f31065f = ncVar2;
+        nc ncVar3 = new nc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, mcVar);
+        h = ncVar3;
+        nc ncVar4 = new nc("VIDEOS", 3, "VideosSavedHint", mcVar);
+        f31066n = ncVar4;
+        nc ncVar5 = new nc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, mcVar);
+        f31067r = ncVar5;
+        nc ncVar6 = new nc("LIVEPHOTOS", 5, "LivePhotosSavedHint", mcVar);
+        f31068s = ncVar6;
+        nc ncVar7 = new nc("MEDIA", 6, "MediaSavedHint", mcVar);
+        v = ncVar7;
+        int i10 = R.string.PhotoSavedToDownloadsHintLinked;
+        mc mcVar2 = mc.SAVED_TO_DOWNLOADS;
+        nc ncVar8 = new nc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i10, mcVar2);
+        f31069w = ncVar8;
+        nc ncVar9 = new nc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, mcVar2);
+        f31070x = ncVar9;
+        nc ncVar10 = new nc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, mc.SAVED_TO_GIFS);
+        f31071y = ncVar10;
+        nc ncVar11 = new nc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, mcVar2);
+        A = ncVar11;
+        int i11 = R.string.AudioSavedHint;
+        mc mcVar3 = mc.SAVED_TO_MUSIC;
+        nc ncVar12 = new nc("AUDIO", 11, "AudioSavedHint", i11, mcVar3);
+        B = ncVar12;
+        nc ncVar13 = new nc("AUDIOS", 12, "AudiosSavedHint", mcVar3);
+        C = ncVar13;
+        nc ncVar14 = new nc("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, mcVar2);
+        D = ncVar14;
+        nc ncVar15 = new nc("UNKNOWNS", 14, "FilesSavedHintLinked", mcVar2);
+        E = ncVar15;
+        F = new nc[]{ncVar, ncVar2, ncVar3, ncVar4, ncVar5, ncVar6, ncVar7, ncVar8, ncVar9, ncVar10, ncVar11, ncVar12, ncVar13, ncVar14, ncVar15};
     }
 
-    public final float a(float f10) {
-        return com.google.android.recaptcha.internal.a.z(1.0f, this.f30950i, f10, 1.0f - f10);
+    public nc(String str, int i9, String str2, int i10, mc mcVar) {
+        this.f31072a = str2;
+        this.f31073b = i10;
+        this.d = mcVar;
+        this.f31074c = false;
     }
 
-    public void b() {
-        View view = this.f30944a;
-        if (view != null) {
-            view.invalidate();
-        }
-        Runnable runnable = this.f30948f;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public static nc valueOf(String str) {
+        return (nc) Enum.valueOf(nc.class, str);
     }
 
-    public final void c(boolean z10) {
-        if (this.h != z10) {
-            this.h = z10;
-            ValueAnimator valueAnimator = this.f30949g;
-            this.f30949g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.f30950i, z10 ? 1.0f : 0.0f);
-            this.f30949g = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new e6(this, 7));
-            this.f30949g.addListener(new org.telegram.ui.go(2, this, z10));
-            if (this.h) {
-                this.f30949g.setInterpolator(er.f28122f);
-                this.f30949g.setDuration((long) (this.f30945b * 60.0f));
-                this.f30949g.setStartDelay(0L);
-            } else {
-                this.f30949g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f30949g.setDuration((long) (this.f30946c * 350.0f));
-                this.f30949g.setStartDelay(this.f30947e);
-            }
-            this.f30949g.start();
-        }
+    public static nc[] values() {
+        return (nc[]) F.clone();
     }
 
-    public nc(View view, float f10, float f11) {
-        this.f30947e = 0L;
-        this.f30944a = view;
-        this.f30946c = f10;
-        this.f30945b = f10;
-        this.d = f11;
-    }
-
-    public nc(lh.d6 d6Var) {
-        this.f30947e = 0L;
-        this.f30944a = d6Var;
-        this.f30945b = 1.5f;
-        this.f30946c = 1.0f;
-        this.d = 2.0f;
+    public nc(String str, int i9, String str2, mc mcVar) {
+        this.f31072a = str2;
+        this.d = mcVar;
+        this.f31073b = 0;
+        this.f31074c = true;
     }
 }

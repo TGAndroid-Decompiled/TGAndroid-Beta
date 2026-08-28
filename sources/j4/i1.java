@@ -1,74 +1,72 @@
 package j4;
 
 import java.util.Arrays;
-
 public final class i1 implements h3.g {
-
-    public static final String f12581f;
+    public static final String f13479f;
     public static final String h;
-
-    public static final ia.l f12582n;
-
-    public final int f12583a;
-
-    public final String f12584b;
-
-    public final int f12585c;
+    public static final i3.i f13480n;
+    public final int f13481a;
+    public final String f13482b;
+    public final int f13483c;
     public final h3.t0[] d;
-
-    public int f12586e;
+    public int f13484e;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f12581f = Integer.toString(0, 36);
+        int i9 = d5.f0.f4349a;
+        f13479f = Integer.toString(0, 36);
         h = Integer.toString(1, 36);
-        f12582n = new ia.l(8);
+        f13480n = new i3.i(9);
     }
 
     public i1(String str, h3.t0... t0VarArr) {
-        d5.a.f(t0VarArr.length > 0);
-        this.f12584b = str;
+        boolean z10;
+        if (t0VarArr.length > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        d5.a.f(z10);
+        this.f13482b = str;
         this.d = t0VarArr;
-        this.f12583a = t0VarArr.length;
-        int iG = d5.q.g(t0VarArr[0].B);
-        this.f12585c = iG == -1 ? d5.q.g(t0VarArr[0].A) : iG;
-        String str2 = t0VarArr[0].f8186c;
-        str2 = (str2 == null || str2.equals("und")) ? "" : str2;
-        int i10 = t0VarArr[0].f8187e | 16384;
-        for (int i11 = 1; i11 < t0VarArr.length; i11++) {
-            String str3 = t0VarArr[i11].f8186c;
-            if (!str2.equals((str3 == null || str3.equals("und")) ? "" : str3)) {
-                b("languages", i11, t0VarArr[0].f8186c, t0VarArr[i11].f8186c);
+        this.f13481a = t0VarArr.length;
+        int g10 = d5.q.g(t0VarArr[0].B);
+        this.f13483c = g10 == -1 ? d5.q.g(t0VarArr[0].A) : g10;
+        String str2 = t0VarArr[0].f9762c;
+        str2 = (str2 == null || str2.equals("und")) ? "" : "";
+        int i9 = t0VarArr[0].f9763e | 16384;
+        for (int i10 = 1; i10 < t0VarArr.length; i10++) {
+            String str3 = t0VarArr[i10].f9762c;
+            if (!str2.equals((str3 == null || str3.equals("und")) ? "" : "")) {
+                b("languages", i10, t0VarArr[0].f9762c, t0VarArr[i10].f9762c);
                 return;
-            } else {
-                if (i10 != (t0VarArr[i11].f8187e | 16384)) {
-                    b("role flags", i11, Integer.toBinaryString(t0VarArr[0].f8187e), Integer.toBinaryString(t0VarArr[i11].f8187e));
-                    return;
-                }
+            } else if (i9 != (t0VarArr[i10].f9763e | 16384)) {
+                b("role flags", i10, Integer.toBinaryString(t0VarArr[0].f9763e), Integer.toBinaryString(t0VarArr[i10].f9763e));
+                return;
             }
         }
     }
 
-    public static void b(String str, int i10, String str2, String str3) {
-        StringBuilder sbP = i0.a.p("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
-        sbP.append(str3);
-        sbP.append("' (track ");
-        sbP.append(i10);
-        sbP.append(")");
-        d5.a.p("TrackGroup", "", new IllegalStateException(sbP.toString()));
+    public static void b(String str, int i9, String str2, String str3) {
+        StringBuilder q10 = j3.r0.q("Different ", str, " combined in one TrackGroup: '", str2, "' (track 0) and '");
+        q10.append(str3);
+        q10.append("' (track ");
+        q10.append(i9);
+        q10.append(")");
+        d5.a.p("TrackGroup", "", new IllegalStateException(q10.toString()));
     }
 
     public final int a(h3.t0 t0Var) {
-        int i10 = 0;
+        int i9 = 0;
         while (true) {
             h3.t0[] t0VarArr = this.d;
-            if (i10 >= t0VarArr.length) {
+            if (i9 < t0VarArr.length) {
+                if (t0Var == t0VarArr[i9]) {
+                    return i9;
+                }
+                i9++;
+            } else {
                 return -1;
             }
-            if (t0Var == t0VarArr[i10]) {
-                return i10;
-            }
-            i10++;
         }
     }
 
@@ -78,7 +76,7 @@ public final class i1 implements h3.g {
         }
         if (obj != null && i1.class == obj.getClass()) {
             i1 i1Var = (i1) obj;
-            if (this.f12584b.equals(i1Var.f12584b) && Arrays.equals(this.d, i1Var.d)) {
+            if (this.f13482b.equals(i1Var.f13482b) && Arrays.equals(this.d, i1Var.d)) {
                 return true;
             }
         }
@@ -86,9 +84,9 @@ public final class i1 implements h3.g {
     }
 
     public final int hashCode() {
-        if (this.f12586e == 0) {
-            this.f12586e = i0.a.g(527, 31, this.f12584b) + Arrays.hashCode(this.d);
+        if (this.f13484e == 0) {
+            this.f13484e = j3.r0.f(527, 31, this.f13482b) + Arrays.hashCode(this.d);
         }
-        return this.f12586e;
+        return this.f13484e;
     }
 }

@@ -9,28 +9,20 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.f11;
-import org.telegram.ui.lh1;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.y11;
+import org.telegram.ui.mh1;
 import org.webrtc.OrientationHelper;
-
 public abstract class v2 extends FrameLayout {
-
-    public Activity f33957a;
-
-    public boolean f33958b;
-
-    public AnimationNotificationsLocker f33959c;
+    public Activity f33907a;
+    public boolean f33908b;
+    public AnimationNotificationsLocker f33909c;
     public VelocityTracker d;
-
-    public boolean f33960e;
-
-    public boolean f33961f;
+    public boolean f33910e;
+    public boolean f33911f;
     public float h;
-
-    public float f33962n;
-
-    public boolean f33963r;
+    public float f33912n;
+    public boolean f33913r;
 
     public static WindowManager.LayoutParams a() {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -50,46 +42,45 @@ public abstract class v2 extends FrameLayout {
     }
 
     public final void c(long j10) {
-        if (this.f33961f) {
-            return;
-        }
-        this.f33961f = true;
-        if (lh1.f40088j1 != null) {
-            if (VoIPService.getSharedInstance() != null) {
-                int measuredHeight = lh1.f40088j1.f40119q0.getMeasuredHeight();
-                if (lh1.f40088j1.f40133z0 && !VoIPService.getSharedInstance().isConverting()) {
-                    lh1 lh1Var = lh1.f40088j1;
-                    l2.l(lh1Var.f40092b, lh1Var.f40089a, lh1Var.f40119q0.getMeasuredWidth(), measuredHeight, 0);
-                    WindowInsets windowInsets = lh1.f40088j1.f40116n0;
-                    if (windowInsets != null) {
-                        l2.S = windowInsets.getSystemWindowInsetTop();
-                        lh1.f40088j1.f40116n0.getSystemWindowInsetBottom();
+        if (!this.f33911f) {
+            this.f33911f = true;
+            if (mh1.f40427j1 != null) {
+                if (VoIPService.getSharedInstance() != null) {
+                    int measuredHeight = mh1.f40427j1.f40458q0.getMeasuredHeight();
+                    if (mh1.f40427j1.f40472z0 && !VoIPService.getSharedInstance().isConverting()) {
+                        mh1 mh1Var = mh1.f40427j1;
+                        l2.l(mh1Var.f40431b, mh1Var.f40428a, mh1Var.f40458q0.getMeasuredWidth(), measuredHeight, 0);
+                        WindowInsets windowInsets = mh1.f40427j1.f40455n0;
+                        if (windowInsets != null) {
+                            l2.S = windowInsets.getSystemWindowInsetTop();
+                            mh1.f40427j1.f40455n0.getSystemWindowInsetBottom();
+                        }
                     }
                 }
+                mh1.f40427j1.Y.d.release();
+                mh1.f40427j1.Z.d.release();
+                mh1.f40427j1.X.release();
+                mh1.f40427j1.l();
             }
-            lh1.f40088j1.Y.d.release();
-            lh1.f40088j1.Z.d.release();
-            lh1.f40088j1.X.release();
-            lh1.f40088j1.l();
-        }
-        lh1.f40088j1 = null;
-        if (this.f33958b) {
-            try {
-                ((WindowManager) this.f33957a.getSystemService("window")).removeView(this);
-            } catch (Exception unused) {
+            mh1.f40427j1 = null;
+            if (this.f33908b) {
+                try {
+                    ((WindowManager) this.f33907a.getSystemService("window")).removeView(this);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
             }
-        } else {
-            this.f33959c.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new f11(this, 18)).setDuration(j10).setInterpolator(er.f28122f).start();
+            this.f33909c.lock();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new y11(this, 16)).setDuration(j10).setInterpolator(gr.f28844f).start();
         }
     }
 
     public final void d() {
         if (getParent() != null) {
-            AndroidUtilities.unlockOrientation(this.f33957a);
-            WindowManager windowManager = (WindowManager) this.f33957a.getSystemService("window");
+            AndroidUtilities.unlockOrientation(this.f33907a);
             setVisibility(8);
-            windowManager.removeView(this);
+            ((WindowManager) this.f33907a.getSystemService("window")).removeView(this);
             OrientationHelper.cameraRotationDisabled = false;
         }
     }
@@ -100,51 +91,51 @@ public abstract class v2 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (this.f33960e) {
-            return;
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, i10);
+        if (!this.f33910e) {
+            this.f33910e = true;
+            if (!this.f33908b) {
+                setTranslationY(getMeasuredHeight());
+                setAlpha(0.0f);
+                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(gr.f28844f).start();
+            }
         }
-        this.f33960e = true;
-        if (this.f33958b) {
-            return;
-        }
-        setTranslationY(getMeasuredHeight());
-        setAlpha(0.0f);
-        animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(er.f28122f).start();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f33958b) {
+        if (!this.f33908b) {
             if (motionEvent.getAction() == 0) {
                 this.h = motionEvent.getX();
-                this.f33962n = motionEvent.getY();
+                this.f33912n = motionEvent.getY();
                 if (this.d == null) {
                     this.d = VelocityTracker.obtain();
                 }
                 this.d.clear();
                 return false;
             }
+            float f10 = 0.0f;
             if (motionEvent.getAction() == 2) {
-                float x8 = motionEvent.getX() - this.h;
-                float y10 = motionEvent.getY() - this.f33962n;
-                if (!this.f33963r && Math.abs(y10) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y10) / 3.0f > x8) {
-                    this.f33962n = motionEvent.getY();
-                    this.f33963r = true;
+                float x10 = motionEvent.getX() - this.h;
+                float y10 = motionEvent.getY() - this.f33912n;
+                if (!this.f33913r && Math.abs(y10) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y10) / 3.0f > x10) {
+                    this.f33912n = motionEvent.getY();
+                    this.f33913r = true;
                     y10 = 0.0f;
                 }
-                if (this.f33963r) {
-                    float f10 = y10 >= 0.0f ? y10 : 0.0f;
+                if (this.f33913r) {
+                    if (y10 >= 0.0f) {
+                        f10 = y10;
+                    }
                     if (this.d == null) {
                         this.d = VelocityTracker.obtain();
                     }
                     this.d.addMovement(motionEvent);
                     setTranslationY(f10);
                 }
-                return this.f33963r;
-            }
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                return this.f33913r;
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 float translationY = getTranslationY();
                 if (this.d == null) {
                     this.d = VelocityTracker.obtain();
@@ -152,12 +143,12 @@ public abstract class v2 extends FrameLayout {
                 this.d.computeCurrentVelocity(1000);
                 float xVelocity = this.d.getXVelocity();
                 float yVelocity = this.d.getYVelocity();
-                if (translationY >= getMeasuredHeight() / 3.0f || (xVelocity >= 3500.0f && xVelocity >= yVelocity)) {
-                    c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
-                } else {
+                if (translationY < getMeasuredHeight() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
                     animate().translationY(0.0f).start();
+                } else {
+                    c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
                 }
-                this.f33963r = false;
+                this.f33913r = false;
                 return false;
             }
         }
@@ -165,6 +156,6 @@ public abstract class v2 extends FrameLayout {
     }
 
     public void setLockOnScreen(boolean z10) {
-        this.f33958b = z10;
+        this.f33908b = z10;
     }
 }

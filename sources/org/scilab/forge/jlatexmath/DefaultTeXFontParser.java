@@ -1,13 +1,13 @@
 package org.scilab.forge.jlatexmath;
 
-import a9.p;
+import aa.d;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.telegram.ui.Cells.pa;
+import org.telegram.ui.Cells.j2;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -15,7 +15,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.awt.Font;
-
 public class DefaultTeXFontParser {
     public static final String GEN_SET_EL = "GeneralSettings";
     public static final String MUFONTID_ATTR = "mufontid";
@@ -80,10 +79,10 @@ public class DefaultTeXFontParser {
 
     public static String getAttrValueAndCheckIfNotNull(String str, Element element) {
         String attribute = element.getAttribute(str);
-        if (attribute.equals("")) {
-            throw new XMLResourceParseException("DefaultTeXFont.xml", element.getTagName(), str, null);
+        if (!attribute.equals("")) {
+            return attribute;
         }
-        return attribute;
+        throw new XMLResourceParseException("DefaultTeXFont.xml", element.getTagName(), str, null);
     }
 
     public static float getFloatAndCheck(String str, Element element) {
@@ -114,10 +113,10 @@ public class DefaultTeXFontParser {
         }
     }
 
-    public static int getOptionalInt(String str, Element element, int i10) {
+    public static int getOptionalInt(String str, Element element, int i9) {
         String attribute = element.getAttribute(str);
         if (attribute.equals("")) {
-            return i10;
+            return i9;
         }
         try {
             return Integer.parseInt(attribute);
@@ -127,55 +126,57 @@ public class DefaultTeXFontParser {
     }
 
     private Map<String, CharFont[]> parseStyleMappings() {
-        String attrValueAndCheckIfNotNull;
-        HashMap map = new HashMap();
+        String str;
+        HashMap hashMap = new HashMap();
         Element element = (Element) this.root.getElementsByTagName("TextStyleMappings").item(0);
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("TextStyleMapping");
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                Element element2 = (Element) elementsByTagName.item(i10);
-                String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("name", element2);
+            for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                Element element2 = (Element) elementsByTagName.item(i9);
+                String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element2);
                 try {
-                    attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("bold", element2);
+                    str = getAttrValueAndCheckIfNotNull("bold", element2);
                 } catch (ResourceParseException unused) {
-                    attrValueAndCheckIfNotNull = null;
+                    str = null;
                 }
                 NodeList elementsByTagName2 = element2.getElementsByTagName("MapRange");
                 CharFont[] charFontArr = new CharFont[4];
-                for (int i11 = 0; i11 < elementsByTagName2.getLength(); i11++) {
-                    Element element3 = (Element) elementsByTagName2.item(i11);
-                    String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("fontId", element3);
+                for (int i10 = 0; i10 < elementsByTagName2.getLength(); i10++) {
+                    Element element3 = (Element) elementsByTagName2.item(i10);
+                    String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("fontId", element3);
                     int intAndCheck = getIntAndCheck("start", element3);
-                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("code", element3);
-                    Integer num = rangeTypeMappings.get(attrValueAndCheckIfNotNull4);
-                    if (num == null) {
-                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", p.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull4, "'!"));
-                    }
-                    if (attrValueAndCheckIfNotNull == null) {
-                        charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull3));
+                    String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("code", element3);
+                    Integer num = rangeTypeMappings.get(attrValueAndCheckIfNotNull3);
+                    if (num != null) {
+                        if (str == null) {
+                            charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull2));
+                        } else {
+                            charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull2), Font_ID.indexOf(str));
+                        }
                     } else {
-                        charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull3), Font_ID.indexOf(attrValueAndCheckIfNotNull));
+                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", d.o("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull3, "'!"));
                     }
                 }
-                map.put(attrValueAndCheckIfNotNull2, charFontArr);
+                hashMap.put(attrValueAndCheckIfNotNull, charFontArr);
             }
         }
-        return map;
+        return hashMap;
     }
 
     private static void processCharElement(Element element, FontInfo fontInfo) {
         char intAndCheck = (char) getIntAndCheck("code", element);
         fontInfo.setMetrics(intAndCheck, new float[]{getOptionalFloat("width", element, 0.0f), getOptionalFloat("height", element, 0.0f), getOptionalFloat("depth", element, 0.0f), getOptionalFloat("italic", element, 0.0f)});
         NodeList childNodes = element.getChildNodes();
-        for (int i10 = 0; i10 < childNodes.getLength(); i10++) {
-            Node nodeItem = childNodes.item(i10);
-            if (nodeItem.getNodeType() != 3) {
-                Element element2 = (Element) nodeItem;
+        for (int i9 = 0; i9 < childNodes.getLength(); i9++) {
+            Node item = childNodes.item(i9);
+            if (item.getNodeType() != 3) {
+                Element element2 = (Element) item;
                 CharChildParser charChildParser = charChildParsers.get(element2.getTagName());
-                if (charChildParser == null) {
+                if (charChildParser != null) {
+                    charChildParser.parse(element2, intAndCheck, fontInfo);
+                } else {
                     throw new XMLResourceParseException("DefaultTeXFont.xml: a <Char>-element has an unknown child element '" + element2.getTagName() + "'!");
                 }
-                charChildParser.parse(element2, intAndCheck, fontInfo);
             }
         }
     }
@@ -203,23 +204,25 @@ public class DefaultTeXFontParser {
         Element element = (Element) this.root.getElementsByTagName("DefaultTextStyleMapping").item(0);
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("MapStyle");
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                Element element2 = (Element) elementsByTagName.item(i10);
+            for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                Element element2 = (Element) elementsByTagName.item(i9);
                 String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("code", element2);
                 Integer num = rangeTypeMappings.get(attrValueAndCheckIfNotNull);
-                if (num == null) {
-                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", p.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
+                if (num != null) {
+                    String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("textStyle", element2);
+                    if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2) != null) {
+                        int intValue = num.intValue();
+                        if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2)[intValue] != null) {
+                            strArr[intValue] = attrValueAndCheckIfNotNull2;
+                        } else {
+                            throw new XMLResourceParseException(j2.h("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
+                        }
+                    } else {
+                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", d.o("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
+                    }
+                } else {
+                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", d.o("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
                 }
-                String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("textStyle", element2);
-                if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2) == null) {
-                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", p.m("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
-                }
-                CharFont[] charFontArr = this.parsedTextStyles.get(attrValueAndCheckIfNotNull2);
-                int iIntValue = num.intValue();
-                if (charFontArr[iIntValue] == null) {
-                    throw new XMLResourceParseException(pa.j("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
-                }
-                strArr[iIntValue] = attrValueAndCheckIfNotNull2;
             }
         }
         return strArr;
@@ -239,138 +242,144 @@ public class DefaultTeXFontParser {
     }
 
     public FontInfo[] parseFontDescriptions(FontInfo[] fontInfoArr, InputStream inputStream, String str) {
-        String attrValueAndCheckIfNotNull;
-        String attrValueAndCheckIfNotNull2;
-        String attrValueAndCheckIfNotNull3;
-        String attrValueAndCheckIfNotNull4;
+        String str2;
+        String str3;
+        String str4;
+        String str5;
         if (inputStream == null) {
             return fontInfoArr;
         }
         ArrayList arrayList = new ArrayList(Arrays.asList(fontInfoArr));
         try {
             Element documentElement = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-            String attrValueAndCheckIfNotNull5 = getAttrValueAndCheckIfNotNull("name", documentElement);
-            String attrValueAndCheckIfNotNull6 = getAttrValueAndCheckIfNotNull("id", documentElement);
-            if (Font_ID.indexOf(attrValueAndCheckIfNotNull6) >= 0) {
-                throw new FontAlreadyLoadedException(p.m("Font ", attrValueAndCheckIfNotNull6, " is already loaded !"));
+            String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", documentElement);
+            String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("id", documentElement);
+            if (Font_ID.indexOf(attrValueAndCheckIfNotNull2) < 0) {
+                Font_ID.add(attrValueAndCheckIfNotNull2);
+                float floatAndCheck = getFloatAndCheck("space", documentElement);
+                float floatAndCheck2 = getFloatAndCheck("xHeight", documentElement);
+                float floatAndCheck3 = getFloatAndCheck("quad", documentElement);
+                int optionalInt = getOptionalInt("skewChar", documentElement, -1);
+                int optionalInt2 = getOptionalInt("unicode", documentElement, 0);
+                String str6 = null;
+                try {
+                    str2 = getAttrValueAndCheckIfNotNull("boldVersion", documentElement);
+                } catch (ResourceParseException unused) {
+                    str2 = null;
+                }
+                try {
+                    str3 = getAttrValueAndCheckIfNotNull("romanVersion", documentElement);
+                } catch (ResourceParseException unused2) {
+                    str3 = null;
+                }
+                try {
+                    str4 = getAttrValueAndCheckIfNotNull("ssVersion", documentElement);
+                } catch (ResourceParseException unused3) {
+                    str4 = null;
+                }
+                try {
+                    str5 = getAttrValueAndCheckIfNotNull("ttVersion", documentElement);
+                } catch (ResourceParseException unused4) {
+                    str5 = null;
+                }
+                try {
+                    str6 = getAttrValueAndCheckIfNotNull("itVersion", documentElement);
+                } catch (ResourceParseException unused5) {
+                }
+                FontInfo fontInfo = new FontInfo(Font_ID.indexOf(attrValueAndCheckIfNotNull2), this.base, str.substring(0, str.lastIndexOf("/") + 1) + attrValueAndCheckIfNotNull, attrValueAndCheckIfNotNull, optionalInt2, floatAndCheck2, floatAndCheck, floatAndCheck3, str2, str3, str4, str5, str6);
+                if (optionalInt != -1) {
+                    fontInfo.setSkewChar((char) optionalInt);
+                }
+                NodeList elementsByTagName = documentElement.getElementsByTagName("Char");
+                for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                    processCharElement((Element) elementsByTagName.item(i9), fontInfo);
+                }
+                arrayList.add(fontInfo);
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    FontInfo fontInfo2 = (FontInfo) arrayList.get(i10);
+                    fontInfo2.setBoldId(Font_ID.indexOf(fontInfo2.boldVersion));
+                    fontInfo2.setRomanId(Font_ID.indexOf(fontInfo2.romanVersion));
+                    fontInfo2.setSsId(Font_ID.indexOf(fontInfo2.ssVersion));
+                    fontInfo2.setTtId(Font_ID.indexOf(fontInfo2.ttVersion));
+                    fontInfo2.setItId(Font_ID.indexOf(fontInfo2.itVersion));
+                }
+                this.parsedTextStyles = parseStyleMappings();
+                return (FontInfo[]) arrayList.toArray(fontInfoArr);
             }
-            Font_ID.add(attrValueAndCheckIfNotNull6);
-            float floatAndCheck = getFloatAndCheck("space", documentElement);
-            float floatAndCheck2 = getFloatAndCheck("xHeight", documentElement);
-            float floatAndCheck3 = getFloatAndCheck("quad", documentElement);
-            int optionalInt = getOptionalInt("skewChar", documentElement, -1);
-            int optionalInt2 = getOptionalInt("unicode", documentElement, 0);
-            String attrValueAndCheckIfNotNull7 = null;
-            try {
-                attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("boldVersion", documentElement);
-            } catch (ResourceParseException unused) {
-                attrValueAndCheckIfNotNull = null;
-            }
-            try {
-                attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("romanVersion", documentElement);
-            } catch (ResourceParseException unused2) {
-                attrValueAndCheckIfNotNull2 = null;
-            }
-            try {
-                attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("ssVersion", documentElement);
-            } catch (ResourceParseException unused3) {
-                attrValueAndCheckIfNotNull3 = null;
-            }
-            try {
-                attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("ttVersion", documentElement);
-            } catch (ResourceParseException unused4) {
-                attrValueAndCheckIfNotNull4 = null;
-            }
-            try {
-                attrValueAndCheckIfNotNull7 = getAttrValueAndCheckIfNotNull("itVersion", documentElement);
-            } catch (ResourceParseException unused5) {
-            }
-            FontInfo fontInfo = new FontInfo(Font_ID.indexOf(attrValueAndCheckIfNotNull6), this.base, str.substring(0, str.lastIndexOf("/") + 1) + attrValueAndCheckIfNotNull5, attrValueAndCheckIfNotNull5, optionalInt2, floatAndCheck2, floatAndCheck, floatAndCheck3, attrValueAndCheckIfNotNull, attrValueAndCheckIfNotNull2, attrValueAndCheckIfNotNull3, attrValueAndCheckIfNotNull4, attrValueAndCheckIfNotNull7);
-            if (optionalInt != -1) {
-                fontInfo.setSkewChar((char) optionalInt);
-            }
-            NodeList elementsByTagName = documentElement.getElementsByTagName("Char");
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                processCharElement((Element) elementsByTagName.item(i10), fontInfo);
-            }
-            arrayList.add(fontInfo);
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                FontInfo fontInfo2 = (FontInfo) arrayList.get(i11);
-                fontInfo2.setBoldId(Font_ID.indexOf(fontInfo2.boldVersion));
-                fontInfo2.setRomanId(Font_ID.indexOf(fontInfo2.romanVersion));
-                fontInfo2.setSsId(Font_ID.indexOf(fontInfo2.ssVersion));
-                fontInfo2.setTtId(Font_ID.indexOf(fontInfo2.ttVersion));
-                fontInfo2.setItId(Font_ID.indexOf(fontInfo2.itVersion));
-            }
-            this.parsedTextStyles = parseStyleMappings();
-            return (FontInfo[]) arrayList.toArray(fontInfoArr);
-        } catch (Exception e9) {
-            StringBuilder sbR = p.r("Cannot find the file ", str, "!");
-            sbR.append(e9.toString());
-            throw new XMLResourceParseException(sbR.toString());
+            throw new FontAlreadyLoadedException(d.o("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
+        } catch (Exception e10) {
+            StringBuilder t10 = d.t("Cannot find the file ", str, "!");
+            t10.append(e10.toString());
+            throw new XMLResourceParseException(t10.toString());
         }
     }
 
     public Map<String, Number> parseGeneralSettings() {
-        HashMap map = new HashMap();
+        HashMap hashMap = new HashMap();
         Element element = (Element) this.root.getElementsByTagName("GeneralSettings").item(0);
-        if (element == null) {
-            throw new XMLResourceParseException("DefaultTeXFont.xml", "GeneralSettings");
+        if (element != null) {
+            hashMap.put("mufontid", Integer.valueOf(Font_ID.indexOf(getAttrValueAndCheckIfNotNull("mufontid", element))));
+            hashMap.put("spacefontid", Integer.valueOf(Font_ID.indexOf(getAttrValueAndCheckIfNotNull("spacefontid", element))));
+            hashMap.put("scriptfactor", Float.valueOf(getFloatAndCheck("scriptfactor", element)));
+            hashMap.put("scriptscriptfactor", Float.valueOf(getFloatAndCheck("scriptscriptfactor", element)));
+            return hashMap;
         }
-        map.put("mufontid", Integer.valueOf(Font_ID.indexOf(getAttrValueAndCheckIfNotNull("mufontid", element))));
-        map.put("spacefontid", Integer.valueOf(Font_ID.indexOf(getAttrValueAndCheckIfNotNull("spacefontid", element))));
-        map.put("scriptfactor", Float.valueOf(getFloatAndCheck("scriptfactor", element)));
-        map.put("scriptscriptfactor", Float.valueOf(getFloatAndCheck("scriptscriptfactor", element)));
-        return map;
+        throw new XMLResourceParseException("DefaultTeXFont.xml", "GeneralSettings");
     }
 
     public Map<String, Float> parseParameters() {
-        HashMap map = new HashMap();
+        HashMap hashMap = new HashMap();
         Element element = (Element) this.root.getElementsByTagName("Parameters").item(0);
-        if (element == null) {
-            throw new XMLResourceParseException("DefaultTeXFont.xml", "Parameters");
+        if (element != null) {
+            NamedNodeMap attributes = element.getAttributes();
+            for (int i9 = 0; i9 < attributes.getLength(); i9++) {
+                String name = ((Attr) attributes.item(i9)).getName();
+                hashMap.put(name, new Float(getFloatAndCheck(name, element)));
+            }
+            return hashMap;
         }
-        NamedNodeMap attributes = element.getAttributes();
-        for (int i10 = 0; i10 < attributes.getLength(); i10++) {
-            String name = ((Attr) attributes.item(i10)).getName();
-            map.put(name, new Float(getFloatAndCheck(name, element)));
-        }
-        return map;
+        throw new XMLResourceParseException("DefaultTeXFont.xml", "Parameters");
     }
 
     public Map<String, CharFont> parseSymbolMappings() {
-        String attrValueAndCheckIfNotNull;
-        HashMap map = new HashMap();
+        Element documentElement;
+        String str;
+        HashMap hashMap = new HashMap();
         Element element = (Element) this.root.getElementsByTagName("SymbolMappings").item(0);
-        if (element == null) {
-            throw new XMLResourceParseException("DefaultTeXFont.xml", "SymbolMappings");
-        }
-        NodeList elementsByTagName = element.getElementsByTagName("Mapping");
-        for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-            String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("include", (Element) elementsByTagName.item(i10));
-            try {
-                NodeList elementsByTagName2 = (this.base == null ? factory.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream(attrValueAndCheckIfNotNull2)).getDocumentElement() : factory.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream(attrValueAndCheckIfNotNull2)).getDocumentElement()).getElementsByTagName("SymbolMapping");
-                for (int i11 = 0; i11 < elementsByTagName2.getLength(); i11++) {
-                    Element element2 = (Element) elementsByTagName2.item(i11);
-                    String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("name", element2);
-                    int intAndCheck = getIntAndCheck("ch", element2);
-                    String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("fontId", element2);
-                    try {
-                        attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("boldId", element2);
-                    } catch (ResourceParseException unused) {
-                        attrValueAndCheckIfNotNull = null;
-                    }
-                    if (attrValueAndCheckIfNotNull == null) {
-                        map.put(attrValueAndCheckIfNotNull3, new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull4)));
+        if (element != null) {
+            NodeList elementsByTagName = element.getElementsByTagName("Mapping");
+            for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("include", (Element) elementsByTagName.item(i9));
+                try {
+                    if (this.base == null) {
+                        documentElement = factory.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream(attrValueAndCheckIfNotNull)).getDocumentElement();
                     } else {
-                        map.put(attrValueAndCheckIfNotNull3, new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull4), Font_ID.indexOf(attrValueAndCheckIfNotNull)));
+                        documentElement = factory.newDocumentBuilder().parse(JLatexMathAndroid.getResourceAsStream(attrValueAndCheckIfNotNull)).getDocumentElement();
                     }
+                    NodeList elementsByTagName2 = documentElement.getElementsByTagName("SymbolMapping");
+                    for (int i10 = 0; i10 < elementsByTagName2.getLength(); i10++) {
+                        Element element2 = (Element) elementsByTagName2.item(i10);
+                        String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("name", element2);
+                        int intAndCheck = getIntAndCheck("ch", element2);
+                        String attrValueAndCheckIfNotNull3 = getAttrValueAndCheckIfNotNull("fontId", element2);
+                        try {
+                            str = getAttrValueAndCheckIfNotNull("boldId", element2);
+                        } catch (ResourceParseException unused) {
+                            str = null;
+                        }
+                        if (str == null) {
+                            hashMap.put(attrValueAndCheckIfNotNull2, new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull3)));
+                        } else {
+                            hashMap.put(attrValueAndCheckIfNotNull2, new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull3), Font_ID.indexOf(str)));
+                        }
+                    }
+                } catch (Exception unused2) {
+                    throw new XMLResourceParseException(d.o("Cannot find the file ", attrValueAndCheckIfNotNull, "!"));
                 }
-            } catch (Exception unused2) {
-                throw new XMLResourceParseException(p.m("Cannot find the file ", attrValueAndCheckIfNotNull2, "!"));
             }
+            return hashMap;
         }
-        return map;
+        throw new XMLResourceParseException("DefaultTeXFont.xml", "SymbolMappings");
     }
 
     public Map<String, CharFont[]> parseTextStyleMappings() {
@@ -383,8 +392,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e9) {
-            throw new XMLResourceParseException(str, e9);
+        } catch (Exception e10) {
+            throw new XMLResourceParseException(str, e10);
         }
     }
 
@@ -394,8 +403,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e9) {
-            throw new XMLResourceParseException(str, e9);
+        } catch (Exception e10) {
+            throw new XMLResourceParseException(str, e10);
         }
     }
 
@@ -403,8 +412,8 @@ public class DefaultTeXFontParser {
         Element element = (Element) this.root.getElementsByTagName("FontDescriptions").item(0);
         if (element != null) {
             NodeList elementsByTagName = element.getElementsByTagName("Metrics");
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("include", (Element) elementsByTagName.item(i10));
+            for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
+                String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("include", (Element) elementsByTagName.item(i9));
                 if (this.base == null) {
                     fontInfoArr = parseFontDescriptions(fontInfoArr, JLatexMathAndroid.getResourceAsStream(attrValueAndCheckIfNotNull), attrValueAndCheckIfNotNull);
                 } else {

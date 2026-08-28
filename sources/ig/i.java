@@ -1,130 +1,91 @@
 package ig;
 
-import android.text.TextUtils;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import jh.c5;
-import jh.e4;
-import jh.h5;
-import jh.i9;
-import jh.k5;
-import jh.v7;
-import jh.y1;
-import lh.f4;
-import lh.j4;
-import lh.k4;
-import lh.ka;
-import lh.r7;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.n41;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+public final class i extends Drawable {
+    public lg.a f11189a;
+    public int f11190b;
+    public int f11191c;
+    public int f11193f;
+    public boolean f11196j;
+    public float f11197k;
+    public float d = 1.0f;
+    public final RectF f11192e = new RectF();
+    public final Paint f11194g = new Paint(1);
+    public final Paint h = new Paint(1);
+    public final Paint f11195i = new Paint(1);
 
-public final class i implements d5.d {
+    public final void a(lg.a aVar) {
+        this.f11189a = aVar;
+        Paint.Style style = Paint.Style.STROKE;
+        this.h.setStyle(style);
+        this.f11195i.setStyle(style);
+        b();
+    }
 
-    public final int f11319a;
-
-    public final Object f11320b;
-
-    public i(Object obj, int i10) {
-        this.f11319a = i10;
-        this.f11320b = obj;
+    public final void b() {
+        lg.a aVar = this.f11189a;
+        if (aVar == null) {
+            return;
+        }
+        this.f11190b = f6.l1(this.d, aVar.e());
+        this.f11191c = f6.l1(this.d, this.f11189a.g());
+        int i9 = this.f11190b;
+        Paint paint = this.h;
+        paint.setColor(i9);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        int i10 = this.f11191c;
+        Paint paint2 = this.f11195i;
+        paint2.setColor(i10);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
     }
 
     @Override
-    public final void accept(Object obj) {
-        String str;
-        switch (this.f11319a) {
-            case 0:
-                s sVar = (s) this.f11320b;
-                sVar.M = (TL_stories.TL_premium_boostsStatus) obj;
-                if (!sVar.A.keySet().equals(sVar.C.keySet())) {
-                    sVar.Y(false);
-                }
-                break;
-            case 1:
-                e4 e4Var = (e4) this.f11320b;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null) {
-                    e4Var.F3 = tL_premium_boostsStatus;
-                    MessagesController.getInstance(e4Var.f13296y2).getBoostsController().userCanBoostChannel(e4Var.f13291x1, tL_premium_boostsStatus, new y1(0, e4Var, tL_premium_boostsStatus));
-                } else {
-                    i9 i9Var = e4Var.F0;
-                    if (i9Var != null) {
-                        i9Var.f13482g1 = false;
-                        i9Var.P();
-                    }
-                }
-                break;
-            case 2:
-                c5 c5Var = (c5) obj;
-                k5 k5Var = ((h5) this.f11320b).f13387e;
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = k5Var.C;
-                    if (i10 < arrayList.size()) {
-                        if (c5Var != arrayList.get(i10)) {
-                            ((c5) arrayList.get(i10)).getClass();
-                        }
-                        i10++;
-                    }
-                    break;
-                }
-                break;
-            case 3:
-                v7 v7Var = (v7) this.f11320b;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                v7Var.f14071p = true;
-                if (storyItem != null && (str = storyItem.caption) != null) {
-                    v7Var.f14068m = true;
-                    v7Var.f14067l = str;
-                    v7Var.f14062f = TextUtils.isEmpty(str);
-                    View view = v7Var.f14073r;
-                    if (view != null) {
-                        view.invalidate();
-                    }
-                    Runnable runnable = v7Var.f14074s;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    break;
-                }
-                break;
-            case 4:
-                k4 k4Var = (k4) this.f11320b;
-                View view2 = (View) obj;
-                f4 f4Var = k4Var.f16228b;
-                if (view2 instanceof j4) {
-                    f4Var.getClass();
-                    int iR = RecyclerView.R(view2);
-                    n41 n41VarG = f4Var.U2.G(iR);
-                    if (n41VarG != null) {
-                        j4 j4Var = (j4) view2;
-                        j4Var.setPosition(k4Var.b(iR));
-                        j4Var.b(k4Var.f16231f == n41VarG.d, true);
-                        boolean zContains = k4Var.f16230e.contains(Integer.valueOf(n41VarG.d));
-                        if (j4Var.f16178f != zContains) {
-                            j4Var.f16178f = zContains;
-                            j4Var.invalidate();
-                        }
-                        view2.setPressed(false);
-                        break;
-                    }
-                }
-                break;
-            case 5:
-                f4 f4Var2 = (f4) this.f11320b;
-                View view3 = (View) obj;
-                if (view3 instanceof j4) {
-                    ka kaVar = f4Var2.f15956b3;
-                    kaVar.f16228b.getClass();
-                    ((j4) view3).setPosition(kaVar.b(RecyclerView.R(view3)));
-                    view3.setPressed(false);
-                }
-                break;
-            default:
-                r7.T((r7) this.f11320b, (Long) obj);
-                break;
+    public final void draw(Canvas canvas) {
+        Canvas canvas2;
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f11193f;
+        RectF rectF = this.f11192e;
+        rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
+        if (this.f11196j) {
+            rectF.set(getBounds());
+            min = this.f11197k;
         }
+        float f10 = min;
+        Paint paint = this.f11194g;
+        if (Color.alpha(paint.getColor()) > 0) {
+            canvas.drawCircle(centerX, centerY, f10, paint);
+        }
+        if (this.f11190b != 0) {
+            canvas2 = canvas;
+            kg.d.f(canvas2, rectF, f10, AndroidUtilities.dpf2(1.0f), true, this.h);
+        } else {
+            canvas2 = canvas;
+        }
+        if (this.f11191c != 0) {
+            kg.d.f(canvas2, rectF, f10, AndroidUtilities.dpf2(0.6666667f), false, this.f11195i);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i9) {
+        this.d = i9 / 255.0f;
+        b();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

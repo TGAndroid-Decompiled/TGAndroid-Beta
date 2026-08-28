@@ -1,13 +1,8 @@
 package g7;
-
 public abstract class h0 {
-    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
-
-    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
-
-    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
-
-    public abstract void d(c0.g gVar, c0.g gVar2);
-
-    public abstract void e(c0.g gVar, Thread thread);
+    public static long a(long j10) {
+        long j11 = (j10 ^ (j10 >>> 33)) * (-49064778989728563L);
+        long j12 = (j11 ^ (j11 >>> 33)) * (-4265267296055464877L);
+        return j12 ^ (j12 >>> 33);
+    }
 }

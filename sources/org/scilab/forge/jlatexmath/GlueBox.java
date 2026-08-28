@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
-
 public class GlueBox extends Box {
     protected float shrink;
     protected float stretch;

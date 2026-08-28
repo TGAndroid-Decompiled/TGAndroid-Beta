@@ -1,26 +1,19 @@
 package ic;
 
-import java.util.regex.Pattern;
-import je.p;
-import nc.h;
+import java.util.Map;
+public abstract class c {
+    public final String f11091a;
+    public final int f11092b;
+    public final Map f11093c;
+    public int d = -1;
 
-public final class c extends h {
-
-    public static final Pattern f11115e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
-
-    @Override
-    public final p b() {
-        String strA = a(f11115e);
-        if (strA == null) {
-            return null;
-        }
-        d dVar = new d();
-        dVar.f11116g = com.google.android.recaptcha.internal.a.n(strA, 2, 2);
-        return dVar;
+    public c(int i9, String str, Map map) {
+        this.f11091a = str;
+        this.f11092b = i9;
+        this.f11093c = map;
     }
 
-    @Override
-    public final char d() {
-        return '$';
+    public Map a() {
+        return this.f11093c;
     }
 }

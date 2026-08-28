@@ -6,44 +6,46 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
-
 public class DialogObject {
     public static int editDistance(String str, String str2) {
         String lowerCase = str.toLowerCase();
         String lowerCase2 = str2.toLowerCase();
         int[] iArr = new int[lowerCase2.length() + 1];
-        for (int i10 = 0; i10 <= lowerCase.length(); i10++) {
-            int i11 = i10;
-            for (int i12 = 0; i12 <= lowerCase2.length(); i12++) {
-                if (i10 == 0) {
-                    iArr[i12] = i12;
-                } else if (i12 > 0) {
-                    int i13 = i12 - 1;
-                    int iMin = iArr[i13];
-                    if (lowerCase.charAt(i10 - 1) != lowerCase2.charAt(i13)) {
-                        iMin = Math.min(Math.min(iMin, i11), iArr[i12]) + 1;
+        for (int i9 = 0; i9 <= lowerCase.length(); i9++) {
+            int i10 = i9;
+            for (int i11 = 0; i11 <= lowerCase2.length(); i11++) {
+                if (i9 == 0) {
+                    iArr[i11] = i11;
+                } else if (i11 > 0) {
+                    int i12 = i11 - 1;
+                    int i13 = iArr[i12];
+                    if (lowerCase.charAt(i9 - 1) != lowerCase2.charAt(i12)) {
+                        i13 = Math.min(Math.min(i13, i10), iArr[i11]) + 1;
                     }
-                    iArr[i13] = i11;
-                    i11 = iMin;
+                    iArr[i12] = i10;
+                    i10 = i13;
                 }
             }
-            if (i10 > 0) {
-                iArr[lowerCase2.length()] = i11;
+            if (i9 > 0) {
+                iArr[lowerCase2.length()] = i10;
             }
         }
         return iArr[lowerCase2.length()];
     }
 
     public static boolean emojiStatusesEqual(TLRPC.EmojiStatus emojiStatus, TLRPC.EmojiStatus emojiStatus2) {
-        return getEmojiStatusDocumentId(emojiStatus) == getEmojiStatusDocumentId(emojiStatus2) && getEmojiStatusCollectibleId(emojiStatus) == getEmojiStatusCollectibleId(emojiStatus2) && getEmojiStatusUntil(emojiStatus) == getEmojiStatusUntil(emojiStatus2);
+        if (getEmojiStatusDocumentId(emojiStatus) == getEmojiStatusDocumentId(emojiStatus2) && getEmojiStatusCollectibleId(emojiStatus) == getEmojiStatusCollectibleId(emojiStatus2) && getEmojiStatusUntil(emojiStatus) == getEmojiStatusUntil(emojiStatus2)) {
+            return true;
+        }
+        return false;
     }
 
     public static TLRPC.EmojiStatus filterEmojiStatus(TLRPC.EmojiStatus emojiStatus) {
         int emojiStatusUntil = getEmojiStatusUntil(emojiStatus);
-        if (emojiStatusUntil == 0 || emojiStatusUntil > ((int) (System.currentTimeMillis() / 1000))) {
-            return emojiStatus;
+        if (emojiStatusUntil != 0 && emojiStatusUntil <= ((int) (System.currentTimeMillis() / 1000))) {
+            return null;
         }
-        return null;
+        return emojiStatus;
     }
 
     public static TLRPC.TL_username findUsername(String str, TLRPC.User user) {
@@ -92,10 +94,10 @@ public class DialogObject {
             return 0L;
         }
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return tL_emojiStatusCollectible.collectible_id;
+        if ((tL_emojiStatusCollectible.flags & 1) != 0 && tL_emojiStatusCollectible.until <= ((int) (System.currentTimeMillis() / 1000))) {
+            return 0L;
         }
-        return 0L;
+        return tL_emojiStatusCollectible.collectible_id;
     }
 
     public static long getEmojiStatusDocumentId(long j10) {
@@ -120,15 +122,15 @@ public class DialogObject {
                 return tL_emojiStatus.until;
             }
             return 0;
-        }
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+        } else if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+            if ((tL_emojiStatusCollectible.flags & 1) != 0) {
+                return tL_emojiStatusCollectible.until;
+            }
+            return 0;
+        } else {
             return 0;
         }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) != 0) {
-            return tL_emojiStatusCollectible.until;
-        }
-        return 0;
     }
 
     public static int getEncryptedChatId(long j10) {
@@ -140,8 +142,11 @@ public class DialogObject {
     }
 
     public static long getLastMessageOrDraftDate(TLRPC.Dialog dialog, TLRPC.DraftMessage draftMessage) {
-        int i10;
-        return (draftMessage == null || (i10 = draftMessage.date) < dialog.last_message_date) ? dialog.last_message_date : i10;
+        int i9;
+        if (draftMessage != null && (i9 = draftMessage.date) >= dialog.last_message_date) {
+            return i9;
+        }
+        return dialog.last_message_date;
     }
 
     public static long getMessagesStarsPrice(TL_account.RequirementToContact requirementToContact) {
@@ -171,42 +176,54 @@ public class DialogObject {
         if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             return getPublicUsername(chat.username, chat.usernames, false);
-        }
-        if (!(tLObject instanceof TLRPC.User)) {
+        } else if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            return getPublicUsername(user.username, user.usernames, false);
+        } else {
             return null;
         }
-        TLRPC.User user = (TLRPC.User) tLObject;
-        return getPublicUsername(user.username, user.usernames, false);
     }
 
-    public static String getShortName(int i10, long j10) {
-        return getShortName(MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getShortName(int i9, long j10) {
+        return getShortName(MessagesController.getInstance(i9).getUserOrChat(j10));
     }
 
     public static String getShortTitle(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             return UserObject.getForcedFirstName((TLRPC.User) tLObject);
         }
-        return tLObject instanceof TLRPC.Chat ? ((TLRPC.Chat) tLObject).title : "";
+        if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).title;
+        }
+        return "";
     }
 
     public static String getSimilarPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, String str2) {
-        double d = -1.0d;
+        double similarity;
+        double d = 0.0d;
+        double d9 = -1.0d;
         String str3 = null;
         if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                TLRPC.TL_username tL_username = arrayList.get(i10);
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                TLRPC.TL_username tL_username = arrayList.get(i9);
                 if (tL_username != null && tL_username.active && !TextUtils.isEmpty(tL_username.username)) {
-                    double dSimilarity = d < 0.0d ? 0.0d : similarity(tL_username.username, str2);
-                    if (dSimilarity > d) {
+                    if (d9 < 0.0d) {
+                        similarity = 0.0d;
+                    } else {
+                        similarity = similarity(tL_username.username, str2);
+                    }
+                    if (similarity > d9) {
                         str3 = tL_username.username;
-                        d = dSimilarity;
+                        d9 = similarity;
                     }
                 }
             }
         }
         if (!TextUtils.isEmpty(str)) {
-            if ((d >= 0.0d ? similarity(str, str2) : 0.0d) > d) {
+            if (d9 >= 0.0d) {
+                d = similarity(str, str2);
+            }
+            if (d > d9) {
                 return str;
             }
         }
@@ -219,50 +236,54 @@ public class DialogObject {
 
     public static boolean hasPhoto(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).photo != null;
+            if (((TLRPC.User) tLObject).photo != null) {
+                return true;
+            }
+            return false;
+        } else if ((tLObject instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).photo != null) {
+            return true;
+        } else {
+            return false;
         }
-        return (tLObject instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).photo != null;
     }
 
     public static void initDialog(TLRPC.Dialog dialog) {
-        if (dialog == null || dialog.f22384id != 0) {
-            return;
-        }
-        if (!(dialog instanceof TLRPC.TL_dialog)) {
-            if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f22384id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f22431id);
-                return;
-            } else {
-                if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                    dialog.f22384id = -dialog.community_id;
-                    return;
+        if (dialog != null && dialog.f22384id == 0) {
+            if (dialog instanceof TLRPC.TL_dialog) {
+                TLRPC.Peer peer = dialog.peer;
+                if (peer != null) {
+                    long j10 = peer.user_id;
+                    if (j10 != 0) {
+                        dialog.f22384id = j10;
+                        return;
+                    }
+                    long j11 = peer.chat_id;
+                    if (j11 != 0) {
+                        dialog.f22384id = -j11;
+                    } else {
+                        dialog.f22384id = -peer.channel_id;
+                    }
                 }
-                return;
+            } else if (dialog instanceof TLRPC.TL_dialogFolder) {
+                dialog.f22384id = makeFolderDialogId(((TLRPC.TL_dialogFolder) dialog).folder.f22431id);
+            } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
+                dialog.f22384id = -dialog.community_id;
             }
-        }
-        TLRPC.Peer peer = dialog.peer;
-        if (peer == null) {
-            return;
-        }
-        long j10 = peer.user_id;
-        if (j10 != 0) {
-            dialog.f22384id = j10;
-            return;
-        }
-        long j11 = peer.chat_id;
-        if (j11 != 0) {
-            dialog.f22384id = -j11;
-        } else {
-            dialog.f22384id = -peer.channel_id;
         }
     }
 
     public static boolean isChannel(TLRPC.Dialog dialog) {
-        return (dialog == null || (dialog.flags & 1) == 0) ? false : true;
+        if (dialog != null && (dialog.flags & 1) != 0) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isChatDialog(long j10) {
-        return (isEncryptedDialog(j10) || isFolderDialogId(j10) || j10 >= 0) ? false : true;
+        if (!isEncryptedDialog(j10) && !isFolderDialogId(j10) && j10 < 0) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isEmojiStatusCollectible(long j10) {
@@ -281,15 +302,24 @@ public class DialogObject {
     }
 
     public static boolean isEmpty(TL_account.RequirementToContact requirementToContact) {
-        return requirementToContact == null || (requirementToContact instanceof TL_account.requirementToContactEmpty);
+        if (requirementToContact != null && !(requirementToContact instanceof TL_account.requirementToContactEmpty)) {
+            return false;
+        }
+        return true;
     }
 
     public static boolean isEncryptedDialog(long j10) {
-        return (4611686018427387904L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0;
+        if ((4611686018427387904L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isFolderDialogId(long j10) {
-        return (2305843009213693952L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0;
+        if ((2305843009213693952L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isPremiumBlocked(TL_account.RequirementToContact requirementToContact) {
@@ -297,61 +327,64 @@ public class DialogObject {
     }
 
     public static boolean isUserDialog(long j10) {
-        return (isEncryptedDialog(j10) || isFolderDialogId(j10) || j10 <= 0) ? false : true;
+        if (!isEncryptedDialog(j10) && !isFolderDialogId(j10) && j10 > 0) {
+            return true;
+        }
+        return false;
     }
 
     public static long makeEncryptedDialogId(long j10) {
         return (j10 & 4294967295L) | 4611686018427387904L;
     }
 
-    public static long makeFolderDialogId(int i10) {
-        return 2305843009213693952L | ((long) i10);
+    public static long makeFolderDialogId(int i9) {
+        return 2305843009213693952L | i9;
     }
 
-    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.y8 y8Var, TLObject tLObject) {
-        if (!(tLObject instanceof TLRPC.User)) {
-            if (!(tLObject instanceof TLRPC.Chat)) {
-                return "";
+    public static String setDialogPhotoTitle(ImageReceiver imageReceiver, org.telegram.ui.Components.z8 z8Var, TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            if (UserObject.isReplyUser(user)) {
+                String string = LocaleController.getString(R.string.RepliesTitle);
+                if (z8Var != null) {
+                    z8Var.g(12);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, z8Var);
+                }
+                return string;
+            } else if (UserObject.isUserSelf(user)) {
+                String string2 = LocaleController.getString(R.string.SavedMessages);
+                if (z8Var != null) {
+                    z8Var.g(1);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(null, z8Var);
+                }
+                return string2;
+            } else {
+                String userName = UserObject.getUserName(user);
+                if (z8Var != null) {
+                    z8Var.r(user);
+                }
+                if (imageReceiver != null) {
+                    imageReceiver.setForUserOrChat(tLObject, z8Var);
+                }
+                return userName;
             }
+        } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (y8Var != null) {
-                y8Var.q(chat);
+            if (z8Var != null) {
+                z8Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(tLObject, y8Var);
+                imageReceiver.setForUserOrChat(tLObject, z8Var);
             }
             return str;
+        } else {
+            return "";
         }
-        TLRPC.User user = (TLRPC.User) tLObject;
-        if (UserObject.isReplyUser(user)) {
-            String string = LocaleController.getString(R.string.RepliesTitle);
-            if (y8Var != null) {
-                y8Var.g(12);
-            }
-            if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(null, y8Var);
-            }
-            return string;
-        }
-        if (UserObject.isUserSelf(user)) {
-            String string2 = LocaleController.getString(R.string.SavedMessages);
-            if (y8Var != null) {
-                y8Var.g(1);
-            }
-            if (imageReceiver != null) {
-                imageReceiver.setForUserOrChat(null, y8Var);
-            }
-            return string2;
-        }
-        String userName = UserObject.getUserName(user);
-        if (y8Var != null) {
-            y8Var.r(user);
-        }
-        if (imageReceiver != null) {
-            imageReceiver.setForUserOrChat(tLObject, y8Var);
-        }
-        return userName;
     }
 
     public static double similarity(String str, String str2) {
@@ -363,7 +396,7 @@ public class DialogObject {
         if (length == 0) {
             return 1.0d;
         }
-        return ((double) (length - editDistance(str, str2))) / ((double) length);
+        return (length - editDistance(str, str2)) / length;
     }
 
     public static TLRPC.TL_username findUsername(String str, TLRPC.Chat chat) {
@@ -373,16 +406,16 @@ public class DialogObject {
         return findUsername(str, chat.usernames);
     }
 
-    public static String getName(int i10, long j10) {
-        return getName(MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getName(int i9, long j10) {
+        return getName(MessagesController.getInstance(i9).getUserOrChat(j10));
     }
 
     public static String getShortName(long j10) {
         return getShortName(MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
     }
 
-    public static String getStatus(int i10, long j10) {
-        return getStatus(i10, MessagesController.getInstance(i10).getUserOrChat(j10));
+    public static String getStatus(int i9, long j10) {
+        return getStatus(i9, MessagesController.getInstance(i9).getUserOrChat(j10));
     }
 
     public static TLRPC.TL_username findUsername(String str, ArrayList<TLRPC.TL_username> arrayList) {
@@ -390,10 +423,10 @@ public class DialogObject {
             return null;
         }
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            TLRPC.TL_username tL_username = arrayList.get(i10);
-            i10++;
+        int i9 = 0;
+        while (i9 < size) {
+            TLRPC.TL_username tL_username = arrayList.get(i9);
+            i9++;
             TLRPC.TL_username tL_username2 = tL_username;
             if (tL_username2 != null && TextUtils.equals(tL_username2.username, str)) {
                 return tL_username2;
@@ -422,9 +455,9 @@ public class DialogObject {
         return "";
     }
 
-    public static String getStatus(int i10, TLObject tLObject) {
+    public static String getStatus(int i9, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return LocaleController.formatUserStatus(i10, (TLRPC.User) tLObject, null, null);
+            return LocaleController.formatUserStatus(i9, (TLRPC.User) tLObject, null, null);
         }
         if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
@@ -433,11 +466,11 @@ public class DialogObject {
                     return LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
                 }
                 return LocaleController.formatPluralStringComma("Members", chat.participants_count);
-            }
-            if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+            } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                 return LocaleController.getString(R.string.DiscussChannel);
+            } else {
+                return LocaleController.getString(R.string.AccDescrGroup);
             }
-            return LocaleController.getString(R.string.AccDescrGroup);
         }
         return "";
     }
@@ -461,42 +494,42 @@ public class DialogObject {
                 return tL_emojiStatus.document_id;
             }
             return 0L;
-        }
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
+        } else if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+            if ((tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000))) {
+                return tL_emojiStatusCollectible.document_id;
+            }
+            return 0L;
+        } else {
             return 0L;
         }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        if ((tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000))) {
-            return tL_emojiStatusCollectible.document_id;
-        }
-        return 0L;
     }
 
     public static boolean isEmojiStatusCollectible(TLRPC.EmojiStatus emojiStatus) {
-        if (!(emojiStatus instanceof TLRPC.TL_emojiStatusCollectible)) {
-            return false;
+        if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+            TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
+            return (tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000));
         }
-        TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
-        return (tL_emojiStatusCollectible.flags & 1) == 0 || tL_emojiStatusCollectible.until > ((int) (System.currentTimeMillis() / 1000));
+        return false;
     }
 
     public static String getPublicUsername(TLObject tLObject, String str) {
         if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             return str == null ? getPublicUsername(chat.username, chat.usernames, false) : getSimilarPublicUsername(chat.username, chat.usernames, str);
-        }
-        if (!(tLObject instanceof TLRPC.User)) {
+        } else if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            return str == null ? getPublicUsername(user.username, user.usernames, false) : getSimilarPublicUsername(user.username, user.usernames, str);
+        } else {
             return null;
         }
-        TLRPC.User user = (TLRPC.User) tLObject;
-        return str == null ? getPublicUsername(user.username, user.usernames, false) : getSimilarPublicUsername(user.username, user.usernames, str);
     }
 
     public static String getPublicUsername(String str, ArrayList<TLRPC.TL_username> arrayList, boolean z10) {
         if (TextUtils.isEmpty(str) || z10) {
             if (arrayList != null) {
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    TLRPC.TL_username tL_username = arrayList.get(i10);
+                for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                    TLRPC.TL_username tL_username = arrayList.get(i9);
                     if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                         return tL_username.username;
                     }
@@ -512,9 +545,9 @@ public class DialogObject {
         return str;
     }
 
-    public static String setDialogPhotoTitle(org.telegram.ui.Components.n9 n9Var, TLObject tLObject) {
-        if (n9Var != null) {
-            return setDialogPhotoTitle(n9Var.getImageReceiver(), n9Var.getAvatarDrawable(), tLObject);
+    public static String setDialogPhotoTitle(org.telegram.ui.Components.o9 o9Var, TLObject tLObject) {
+        if (o9Var != null) {
+            return setDialogPhotoTitle(o9Var.getImageReceiver(), o9Var.getAvatarDrawable(), tLObject);
         }
         return setDialogPhotoTitle(null, null, tLObject);
     }

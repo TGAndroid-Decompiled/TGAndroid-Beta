@@ -1,13 +1,11 @@
 package u3;
 
-import d5.z;
+import d5.y;
+public final class b extends lc.k {
+    public final y f47975c;
 
-public final class b extends mc.k {
-
-    public final z f48272c;
-
-    public b(int i10, z zVar) {
-        super(i10, 1);
-        this.f48272c = zVar;
+    public b(int i9, y yVar) {
+        super(i9, 1);
+        this.f47975c = yVar;
     }
 }

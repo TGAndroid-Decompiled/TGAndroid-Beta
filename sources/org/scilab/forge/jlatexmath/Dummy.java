@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class Dummy {
     private Atom el;
     private boolean textSymbol = false;
@@ -19,11 +18,11 @@ public class Dummy {
         if (this.textSymbol) {
             ((CharSymbol) this.el).markAsTextSymbol();
         }
-        Box boxCreateBox = this.el.createBox(teXEnvironment);
+        Box createBox = this.el.createBox(teXEnvironment);
         if (this.textSymbol) {
             ((CharSymbol) this.el).removeMark();
         }
-        return boxCreateBox;
+        return createBox;
     }
 
     public CharFont getCharFont(TeXFont teXFont) {
@@ -31,13 +30,19 @@ public class Dummy {
     }
 
     public int getLeftType() {
-        int i10 = this.type;
-        return i10 >= 0 ? i10 : this.el.getLeftType();
+        int i9 = this.type;
+        if (i9 >= 0) {
+            return i9;
+        }
+        return this.el.getLeftType();
     }
 
     public int getRightType() {
-        int i10 = this.type;
-        return i10 >= 0 ? i10 : this.el.getRightType();
+        int i9 = this.type;
+        if (i9 >= 0) {
+            return i9;
+        }
+        return this.el.getRightType();
     }
 
     public int getType() {
@@ -46,7 +51,10 @@ public class Dummy {
 
     public boolean isCharInMathMode() {
         Atom atom = this.el;
-        return (atom instanceof CharAtom) && ((CharAtom) atom).isMathMode();
+        if ((atom instanceof CharAtom) && ((CharAtom) atom).isMathMode()) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isCharSymbol() {
@@ -62,13 +70,13 @@ public class Dummy {
     }
 
     public void setPreviousAtom(Dummy dummy) {
-        Cloneable cloneable = this.el;
-        if (cloneable instanceof Row) {
-            ((Row) cloneable).setPreviousAtom(dummy);
+        Atom atom = this.el;
+        if (atom instanceof Row) {
+            ((Row) atom).setPreviousAtom(dummy);
         }
     }
 
-    public void setType(int i10) {
-        this.type = i10;
+    public void setType(int i9) {
+        this.type = i9;
     }
 }

@@ -1,10 +1,15 @@
 package id;
 
-public final class b implements y1 {
+import hd.b0;
+public final class b extends qc.a implements qc.f {
+    private volatile Object _preHandler;
 
-    public static final b f11120a = new b();
+    public b() {
+        super(b0.f10412a);
+        this._preHandler = this;
+    }
 
-    public final String toString() {
-        return "Active";
+    public final void c(java.lang.Throwable r4) {
+        throw new UnsupportedOperationException("Method not decompiled: id.b.c(java.lang.Throwable):void");
     }
 }

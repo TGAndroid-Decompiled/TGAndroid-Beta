@@ -2,28 +2,23 @@ package e4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.g0;
+import d5.f0;
 import java.util.Arrays;
-
 public final class l extends j {
-    public static final Parcelable.Creator<l> CREATOR = new c8.o(21);
-
-    public final int f5212b;
-
-    public final int f5213c;
+    public static final Parcelable.Creator<l> CREATOR = new c.c(13);
+    public final int f4853b;
+    public final int f4854c;
     public final int d;
+    public final int[] f4855e;
+    public final int[] f4856f;
 
-    public final int[] f5214e;
-
-    public final int[] f5215f;
-
-    public l(int i10, int i11, int i12, int[] iArr, int[] iArr2) {
+    public l(int i9, int i10, int i11, int[] iArr, int[] iArr2) {
         super("MLLT");
-        this.f5212b = i10;
-        this.f5213c = i11;
-        this.d = i12;
-        this.f5214e = iArr;
-        this.f5215f = iArr2;
+        this.f4853b = i9;
+        this.f4854c = i10;
+        this.d = i11;
+        this.f4855e = iArr;
+        this.f4856f = iArr2;
     }
 
     @Override
@@ -37,7 +32,7 @@ public final class l extends j {
         }
         if (obj != null && l.class == obj.getClass()) {
             l lVar = (l) obj;
-            if (this.f5212b == lVar.f5212b && this.f5213c == lVar.f5213c && this.d == lVar.d && Arrays.equals(this.f5214e, lVar.f5214e) && Arrays.equals(this.f5215f, lVar.f5215f)) {
+            if (this.f4853b == lVar.f4853b && this.f4854c == lVar.f4854c && this.d == lVar.d && Arrays.equals(this.f4855e, lVar.f4855e) && Arrays.equals(this.f4856f, lVar.f4856f)) {
                 return true;
             }
         }
@@ -45,26 +40,27 @@ public final class l extends j {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f5215f) + ((Arrays.hashCode(this.f5214e) + ((((((527 + this.f5212b) * 31) + this.f5213c) * 31) + this.d) * 31)) * 31);
+        int hashCode = Arrays.hashCode(this.f4855e);
+        return Arrays.hashCode(this.f4856f) + ((hashCode + ((((((527 + this.f4853b) * 31) + this.f4854c) * 31) + this.d) * 31)) * 31);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f5212b);
-        parcel.writeInt(this.f5213c);
+    public final void writeToParcel(Parcel parcel, int i9) {
+        parcel.writeInt(this.f4853b);
+        parcel.writeInt(this.f4854c);
         parcel.writeInt(this.d);
-        parcel.writeIntArray(this.f5214e);
-        parcel.writeIntArray(this.f5215f);
+        parcel.writeIntArray(this.f4855e);
+        parcel.writeIntArray(this.f4856f);
     }
 
     public l(Parcel parcel) {
         super("MLLT");
-        this.f5212b = parcel.readInt();
-        this.f5213c = parcel.readInt();
+        this.f4853b = parcel.readInt();
+        this.f4854c = parcel.readInt();
         this.d = parcel.readInt();
-        int[] iArrCreateIntArray = parcel.createIntArray();
-        int i10 = g0.f4795a;
-        this.f5214e = iArrCreateIntArray;
-        this.f5215f = parcel.createIntArray();
+        int[] createIntArray = parcel.createIntArray();
+        int i9 = f0.f4349a;
+        this.f4855e = createIntArray;
+        this.f4856f = parcel.createIntArray();
     }
 }

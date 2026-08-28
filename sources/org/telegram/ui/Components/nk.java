@@ -1,31 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class nk implements x4 {
+    public final int f31121a;
+    public final xk f31122b;
+    public final TLRPC.TL_messageMediaVenue f31123c;
 
-public final class nk extends pf.i0 {
-    public final tk J;
-
-    public nk(tk tkVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        super(context, c6Var, z10, false);
-        this.J = tkVar;
+    public nk(xk xkVar, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, int i9) {
+        this.f31121a = i9;
+        this.f31122b = xkVar;
+        this.f31123c = tL_messageMediaVenue;
     }
 
     @Override
-    public final void l() {
-        tk tkVar = this.J;
-        nk nkVar = tkVar.N;
-        org.telegram.ui.ActionBar.v0 v0Var = tkVar.A;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(nkVar.F);
+    public final void B(int i9, int i10, boolean z10) {
+        switch (this.f31121a) {
+            case 0:
+                xk xkVar = this.f31122b;
+                xkVar.f34709t0.d(this.f31123c, xkVar.f34710u0, z10, i9, 0L);
+                xkVar.f27493b.dismiss(true);
+                return;
+            default:
+                xk xkVar2 = this.f31122b;
+                xkVar2.f34709t0.d(this.f31123c, xkVar2.f34710u0, z10, i9, 0L);
+                xkVar2.f27493b.dismiss(true);
+                return;
         }
-        TextView textView = tkVar.f32826y;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, nkVar.f45747x)));
-        }
-        super.l();
     }
 }

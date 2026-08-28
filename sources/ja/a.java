@@ -1,36 +1,20 @@
 package ja;
+public final class a extends sc.c {
+    public Object f14249a;
+    public qd.a f14250b;
+    public Object f14251c;
+    public final d d;
+    public int f14252e;
 
-import f9.k;
-import kotlin.jvm.internal.j;
-
-public final class a {
-
-    public final rd.d f12865a;
-
-    public k f12866b = null;
-
-    public a(rd.d dVar) {
-        this.f12865a = dVar;
+    public a(d dVar, sc.c cVar) {
+        super(cVar);
+        this.d = dVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        return this.f12865a.equals(aVar.f12865a) && j.a(this.f12866b, aVar.f12866b);
-    }
-
-    public final int hashCode() {
-        int iHashCode = this.f12865a.hashCode() * 31;
-        k kVar = this.f12866b;
-        return iHashCode + (kVar == null ? 0 : kVar.hashCode());
-    }
-
-    public final String toString() {
-        return "Dependency(mutex=" + this.f12865a + ", subscriber=" + this.f12866b + ')';
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f14251c = obj;
+        this.f14252e |= Integer.MIN_VALUE;
+        return this.d.c(this);
     }
 }

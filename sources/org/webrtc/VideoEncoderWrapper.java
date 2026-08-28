@@ -1,6 +1,11 @@
 package org.webrtc;
 
-class VideoEncoderWrapper {
+import org.webrtc.VideoEncoder;
+public class VideoEncoderWrapper {
+    public static void a(long j10, EncodedImage encodedImage, VideoEncoder.CodecSpecificInfo codecSpecificInfo) {
+        nativeOnEncodedFrame(j10, encodedImage);
+    }
+
     public static VideoEncoder.Callback createEncoderCallback(long j10) {
         return new w(j10);
     }

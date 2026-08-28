@@ -1,98 +1,82 @@
 package w3;
 
-import f2.g0;
-
+import f2.i0;
 public final class j implements h {
-
-    public static final double[] f49073q = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
-
-    public String f49074a;
-
-    public m3.w f49075b;
-
-    public final a0 f49076c;
-    public final d5.z d;
-
-    public final g0 f49077e;
-
-    public final boolean[] f49078f = new boolean[4];
-
-    public final i f49079g;
+    public static final double[] f48567q = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
+    public String f48568a;
+    public m3.w f48569b;
+    public final a0 f48570c;
+    public final d5.y d;
+    public final i0 f48571e;
+    public final boolean[] f48572f = new boolean[4];
+    public final i f48573g;
     public long h;
-
-    public boolean f49080i;
-
-    public boolean f49081j;
-
-    public long f49082k;
-
-    public long f49083l;
-
-    public long f49084m;
-
-    public long f49085n;
-
-    public boolean f49086o;
-
-    public boolean f49087p;
+    public boolean f48574i;
+    public boolean f48575j;
+    public long f48576k;
+    public long f48577l;
+    public long f48578m;
+    public long f48579n;
+    public boolean f48580o;
+    public boolean f48581p;
 
     public j(a0 a0Var) {
-        this.f49076c = a0Var;
-        i iVar = new i();
-        iVar.d = new byte[128];
-        this.f49079g = iVar;
+        this.f48570c = a0Var;
+        ?? obj = new Object();
+        obj.d = new byte[128];
+        this.f48573g = obj;
         if (a0Var != null) {
-            this.f49077e = new g0(178);
-            this.d = new d5.z();
+            this.f48571e = new i0(178);
+            this.d = new d5.y();
         } else {
-            this.f49077e = null;
+            this.f48571e = null;
             this.d = null;
         }
-        this.f49083l = -9223372036854775807L;
-        this.f49085n = -9223372036854775807L;
+        this.f48577l = -9223372036854775807L;
+        this.f48579n = -9223372036854775807L;
     }
 
     @Override
-    public final void b(d5.z r23) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.j.b(d5.z):void");
+    public final void g(d5.y r23) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.j.g(d5.y):void");
     }
 
     @Override
-    public final void c() {
-        d5.a.m(this.f49078f);
-        i iVar = this.f49079g;
-        iVar.f49070a = false;
-        iVar.f49071b = 0;
-        iVar.f49072c = 0;
-        g0 g0Var = this.f49077e;
-        if (g0Var != null) {
-            g0Var.f();
+    public final void h() {
+        d5.a.m(this.f48572f);
+        i iVar = this.f48573g;
+        iVar.f48564a = false;
+        iVar.f48565b = 0;
+        iVar.f48566c = 0;
+        i0 i0Var = this.f48571e;
+        if (i0Var != null) {
+            i0Var.f();
         }
         this.h = 0L;
-        this.f49080i = false;
-        this.f49083l = -9223372036854775807L;
-        this.f49085n = -9223372036854775807L;
+        this.f48574i = false;
+        this.f48577l = -9223372036854775807L;
+        this.f48579n = -9223372036854775807L;
     }
 
     @Override
-    public final void e(m3.m mVar, e0 e0Var) {
-        e0Var.a();
-        e0Var.b();
-        this.f49074a = e0Var.f49053e;
-        e0Var.b();
-        this.f49075b = mVar.C(e0Var.d, 2);
-        a0 a0Var = this.f49076c;
+    public final void j(m3.m mVar, d0 d0Var) {
+        d0Var.a();
+        d0Var.b();
+        this.f48568a = d0Var.f48528e;
+        d0Var.b();
+        this.f48569b = mVar.I(d0Var.d, 2);
+        a0 a0Var = this.f48570c;
         if (a0Var != null) {
-            a0Var.b(mVar, e0Var);
+            a0Var.b(mVar, d0Var);
         }
     }
 
     @Override
-    public final void f(int i10, long j10) {
-        this.f49083l = j10;
+    public final void k(int i9, long j10) {
+        this.f48577l = j10;
     }
 
     @Override
-    public final void d() {
+    public final void i() {
     }
 }

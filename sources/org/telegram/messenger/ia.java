@@ -1,39 +1,33 @@
 package org.telegram.messenger;
 
-import j$.util.function.Function$CC;
-import java.util.function.Function;
+import j$.util.concurrent.ConcurrentHashMap;
+public final class ia implements Runnable {
+    public final int f20579a;
+    public final MessagesController f20580b;
+    public final ff.u f20581c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap f20582e;
 
-public final class ia implements Function {
-
-    public final int f20561a;
-
-    public ia(int i10) {
-        this.f20561a = i10;
-    }
-
-    public Function andThen(Function function) {
-        int i10 = this.f20561a;
-        return Function$CC.$default$andThen(this, function);
+    public ia(MessagesController messagesController, ff.u uVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i9) {
+        this.f20579a = i9;
+        this.f20580b = messagesController;
+        this.f20581c = uVar;
+        this.d = concurrentHashMap;
+        this.f20582e = concurrentHashMap2;
     }
 
     @Override
-    public final Object apply(Object obj) {
-        switch (this.f20561a) {
+    public final void run() {
+        switch (this.f20579a) {
             case 0:
-                return String.valueOf((Long) obj);
+                this.f20580b.lambda$processUpdateArray$400(this.f20581c, this.d, this.f20582e);
+                return;
             case 1:
-                return MessagesController.lambda$applyAppConfig$35((int[]) obj);
-            case 2:
-                return MessagesController.lambda$new$14((String) obj);
-            case 3:
-                return MessagesController.lambda$new$15((String) obj);
+                this.f20580b.lambda$processUpdateArray$401(this.f20581c, this.d, this.f20582e);
+                return;
             default:
-                return ((TranslateController.Language) obj).displayName;
+                this.f20580b.lambda$processUpdateArray$405(this.f20581c, this.d, this.f20582e);
+                return;
         }
-    }
-
-    public Function compose(Function function) {
-        int i10 = this.f20561a;
-        return Function$CC.$default$compose(this, function);
     }
 }

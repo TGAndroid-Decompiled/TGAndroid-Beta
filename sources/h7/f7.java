@@ -1,41 +1,18 @@
 package h7;
+public final class f7 {
+    public final Long f9928a;
+    public final Long f9929b;
+    public final Long f9930c;
+    public final Long d;
+    public final Long f9931e;
+    public final Long f9932f;
 
-public abstract class f7 {
-    public static Integer a(String str) {
-        if (str == null) {
-            return null;
-        }
-        switch (str.hashCode()) {
-            case -1118317585:
-                return str.equals("REPEAT_ALL_AND_SHUFFLE") ? 3 : null;
-            case -962896020:
-                return str.equals("REPEAT_SINGLE") ? 2 : null;
-            case 1645938909:
-                return str.equals("REPEAT_ALL") ? 1 : null;
-            case 1645952171:
-                return str.equals("REPEAT_OFF") ? 0 : null;
-            default:
-                return null;
-        }
-    }
-
-    public static String b(Integer num) {
-        if (num == null) {
-            return null;
-        }
-        int iIntValue = num.intValue();
-        if (iIntValue == 0) {
-            return "REPEAT_OFF";
-        }
-        if (iIntValue == 1) {
-            return "REPEAT_ALL";
-        }
-        if (iIntValue == 2) {
-            return "REPEAT_SINGLE";
-        }
-        if (iIntValue != 3) {
-            return null;
-        }
-        return "REPEAT_ALL_AND_SHUFFLE";
+    public f7(e7 e7Var) {
+        this.f9928a = e7Var.f9917a;
+        this.f9929b = e7Var.f9918b;
+        this.f9930c = e7Var.f9919c;
+        this.d = e7Var.d;
+        this.f9931e = e7Var.f9920e;
+        this.f9932f = e7Var.f9921f;
     }
 }

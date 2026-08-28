@@ -1,5 +1,6 @@
 package org.telegram.tgnet.tl;
 
+import org.telegram.tgnet.tl.TL_keyboard;
 public abstract class b {
     public static byte[] a(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
         TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();

@@ -1,73 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class rp implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42471a;
+    public final bq f42472b;
 
-public final class rp implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
-
-    public final int f42306a;
-
-    public final dq f42307b;
-
-    public rp(dq dqVar, int i10) {
-        this.f42306a = i10;
-        this.f42307b = dqVar;
+    public rp(bq bqVar, int i9) {
+        this.f42471a = i9;
+        this.f42472b = bqVar;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f42306a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42471a) {
             case 0:
-                this.f42307b.r0(true);
-                break;
-            case 1:
-                dq dqVar = this.f42307b;
-                dqVar.t0(true);
-                up upVar = new up(dqVar, 0);
-                if (dqVar.G || dqVar.H) {
-                    dqVar.getMessagesController().setUserAdminRole(dqVar.f37519w.f22380id, dqVar.v, dqVar.G ? dqVar.I : dq.o0(false), dqVar.O, false, dqVar, dqVar.V0, dqVar.G, dqVar.U0, upVar, new rp(dqVar, 2));
-                } else {
-                    dqVar.getMessagesController().addUserToChat(dqVar.f37519w.f22380id, dqVar.v, 0, dqVar.U0, dqVar, true, upVar, new rp(dqVar, 3));
+                bq bqVar = this.f42472b;
+                bqVar.h.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                bqVar.h.invalidateSelf();
+                return;
+            default:
+                bq bqVar2 = this.f42472b;
+                bqVar2.getClass();
+                bqVar2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                FrameLayout frameLayout = bqVar2.f36926e;
+                if (frameLayout != null) {
+                    frameLayout.invalidate();
+                    return;
                 }
-                break;
-            case 2:
-            case 3:
-            default:
-                dq dqVar2 = this.f42307b;
-                dqVar2.getClass();
-                dqVar2.presentFragment(new zf1(6, null));
-                break;
-            case 4:
-                this.f42307b.finishFragment();
-                break;
-            case 5:
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                dq dqVar3 = this.f42307b;
-                jh.z1 z1Var = new jh.z1(26, dqVar3, twoStepVerificationActivity);
-                twoStepVerificationActivity.V = 0;
-                twoStepVerificationActivity.X = z1Var;
-                dqVar3.presentFragment(twoStepVerificationActivity);
-                break;
-        }
-    }
-
-    @Override
-    public void run(long j10) {
-        dq.U(this.f42307b, j10);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f42306a) {
-            case 2:
-                this.f42307b.t0(false);
-                return true;
-            case 3:
-                this.f42307b.t0(false);
-                return true;
-            default:
-                return dq.W(this.f42307b, tL_error);
+                return;
         }
     }
 }

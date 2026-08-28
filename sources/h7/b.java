@@ -1,5 +1,5 @@
 package h7;
 
-public interface b {
-    int zza();
+import java.util.RandomAccess;
+public final class b extends e implements RandomAccess {
 }

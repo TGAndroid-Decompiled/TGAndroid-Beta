@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class DtmfSender {
     private long nativeDtmfSender;
 
@@ -8,16 +7,17 @@ public class DtmfSender {
     }
 
     private void checkDtmfSenderExists() {
-        if (this.nativeDtmfSender == 0) {
-            throw new IllegalStateException("DtmfSender has been disposed.");
+        if (this.nativeDtmfSender != 0) {
+            return;
         }
+        throw new IllegalStateException("DtmfSender has been disposed.");
     }
 
     private static native boolean nativeCanInsertDtmf(long j10);
 
     private static native int nativeDuration(long j10);
 
-    private static native boolean nativeInsertDtmf(long j10, String str, int i10, int i11);
+    private static native boolean nativeInsertDtmf(long j10, String str, int i9, int i10);
 
     private static native int nativeInterToneGap(long j10);
 
@@ -39,9 +39,9 @@ public class DtmfSender {
         return nativeDuration(this.nativeDtmfSender);
     }
 
-    public boolean insertDtmf(String str, int i10, int i11) {
+    public boolean insertDtmf(String str, int i9, int i10) {
         checkDtmfSenderExists();
-        return nativeInsertDtmf(this.nativeDtmfSender, str, i10, i11);
+        return nativeInsertDtmf(this.nativeDtmfSender, str, i9, i10);
     }
 
     public int interToneGap() {

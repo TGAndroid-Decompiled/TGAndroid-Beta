@@ -1,61 +1,112 @@
 package gh;
 
-import hh.k7;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.mc;
-import org.telegram.ui.Components.o71;
-import org.telegram.ui.Components.wq0;
-import org.telegram.ui.ProfileActivity;
-
 public final class j3 implements Utilities.Callback {
+    public final int f8335a = 1;
+    public final int f8336b;
+    public final int f8337c;
+    public final int d;
+    public final KeyEvent.Callback f8338e;
+    public final Object f8339f;
+    public final Object f8340g;
 
-    public final int f7358a;
-
-    public final t3 f7359b;
-
-    public final TL_stars.SavedStarGift f7360c;
-
-    public j3(t3 t3Var, TL_stars.SavedStarGift savedStarGift, int i10) {
-        this.f7358a = i10;
-        this.f7359b = t3Var;
-        this.f7360c = savedStarGift;
+    public j3(int i9, int i10, org.telegram.ui.Components.l3 l3Var, org.telegram.ui.Components.n3 n3Var, int i11, org.telegram.ui.Components.m3 m3Var) {
+        this.f8336b = i9;
+        this.f8337c = i10;
+        this.f8338e = l3Var;
+        this.f8339f = n3Var;
+        this.d = i11;
+        this.f8340g = m3Var;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f7358a;
-        TL_stars.SavedStarGift savedStarGift = this.f7360c;
-        t3 t3Var = this.f7359b;
-        int i11 = 1;
-        switch (i10) {
+        int i9;
+        int i10;
+        switch (this.f8335a) {
             case 0:
-                t3Var.f7533a.f7200e.b((String) obj, new j3(t3Var, savedStarGift, i11));
-                break;
+                k5.D0((k5) this.f8338e, this.f8336b, this.f8337c, this.d, (TL_stars.TL_starGiftUnique) this.f8339f, (bg.g3[]) this.f8340g, (Long) obj);
+                return;
             default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                wq0 wq0Var = t3Var.f7533a;
-                k7 k7Var = wq0Var.f7200e;
-                int i12 = tL_starGiftCollection.collection_id;
-                k7Var.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(savedStarGift);
-                k7Var.a(i12, arrayList);
-                wq0Var.f(true);
-                o71 o71Var = wq0Var.f7202n;
-                int i13 = tL_starGiftCollection.collection_id;
-                o71Var.d(i13, wq0Var.f7200e.f(i13) + 1);
-                org.telegram.ui.ActionBar.n2 n2Var = wq0Var.f7197a;
-                if (n2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) n2Var).G4(true);
+                org.telegram.ui.Components.l3 l3Var = (org.telegram.ui.Components.l3) this.f8338e;
+                org.telegram.ui.Components.n3 n3Var = (org.telegram.ui.Components.n3) this.f8339f;
+                org.telegram.ui.Components.m3 m3Var = (org.telegram.ui.Components.m3) this.f8340g;
+                Boolean bool = (Boolean) obj;
+                int i11 = this.f8336b;
+                int i12 = i11 % 60;
+                int i13 = (i11 - i12) / 60;
+                int i14 = this.f8337c;
+                int i15 = i14 % 60;
+                int i16 = (i14 - i15) / 60;
+                int i17 = 59;
+                if (i15 == 0 && i16 > 0) {
+                    i16--;
+                    i15 = 59;
                 }
-                wq0Var.n();
-                mc.a0(n2Var).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, hh.i5.D1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                break;
+                if (bool.booleanValue()) {
+                    i10 = l3Var.getValue();
+                    i9 = n3Var.getValue();
+                } else {
+                    int i18 = this.d;
+                    i9 = i18 % 60;
+                    i10 = (i18 - i9) / 60;
+                    if (i10 == 24) {
+                        i10--;
+                        i9 = 59;
+                    }
+                }
+                l3Var.setMinValue(i13);
+                l3Var.setMaxValue(i16);
+                if (i10 > i16) {
+                    l3Var.setValue(i16);
+                    i10 = i16;
+                } else if (i10 < i13) {
+                    l3Var.setValue(i13);
+                    i10 = i13;
+                }
+                if (i10 <= i13) {
+                    n3Var.setMinValue(i12);
+                    if (i13 == i16) {
+                        i17 = i15;
+                    }
+                    n3Var.setMaxValue(i17);
+                } else if (i10 >= i16) {
+                    if (i13 != i16) {
+                        i12 = 0;
+                    }
+                    n3Var.setMinValue(i12);
+                    n3Var.setMaxValue(i15);
+                } else if (i13 == i16) {
+                    n3Var.setMinValue(i12);
+                    n3Var.setMaxValue(i15);
+                } else {
+                    n3Var.setMinValue(0);
+                    n3Var.setMaxValue(59);
+                }
+                if (i9 > n3Var.getMaxValue()) {
+                    i9 = n3Var.getMaxValue();
+                    n3Var.setValue(i9);
+                } else if (i9 < n3Var.getMinValue()) {
+                    i9 = n3Var.getMinValue();
+                    n3Var.setValue(i9);
+                }
+                if (!bool.booleanValue()) {
+                    l3Var.setValue(i10);
+                    n3Var.setValue(i9);
+                }
+                m3Var.invalidate();
+                return;
         }
+    }
+
+    public j3(k5 k5Var, int i9, int i10, int i11, TL_stars.TL_starGiftUnique tL_starGiftUnique, bg.g3[] g3VarArr) {
+        this.f8338e = k5Var;
+        this.f8336b = i9;
+        this.f8337c = i10;
+        this.d = i11;
+        this.f8339f = tL_starGiftUnique;
+        this.f8340g = g3VarArr;
     }
 }

@@ -2,7 +2,6 @@ package g4;
 
 import h3.g1;
 import h3.t0;
-
 public abstract class b implements z3.b {
     @Override
     public final int describeContents() {

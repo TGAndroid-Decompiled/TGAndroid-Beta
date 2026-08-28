@@ -1,17 +1,15 @@
 package org.telegram.ui;
+public final class ax extends s51 {
+    public final dy f36571e;
 
-public final class ax extends f2.k0 {
-    public final fy I;
-    public final bx J;
-
-    public ax(bx bxVar, fy fyVar) {
-        this.J = bxVar;
-        this.I = fyVar;
+    public ax(dy dyVar, zw zwVar) {
+        super(zwVar);
+        this.f36571e = dyVar;
     }
 
     @Override
-    public final int R0() {
-        fy fyVar = this.I;
-        return (fyVar.f38232s == 0 && this.J.R.Z3() && fyVar.v == 2) ? 1 : 0;
+    public final void dismiss() {
+        super.dismiss();
+        this.f36571e.I0 = null;
     }
 }

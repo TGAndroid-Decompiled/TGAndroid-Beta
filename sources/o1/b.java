@@ -1,17 +1,12 @@
 package o1;
 
 import java.util.ArrayList;
-
+import m5.c0;
 public final class b {
-
-    public static final ThreadLocal f19119f = new ThreadLocal();
-    public j9.a d;
-
-    public final a0.k f19120a = new a0.k(0);
-
-    public final ArrayList f19121b = new ArrayList();
-
-    public final n1.d f19122c = new n1.d(this, 4);
-
-    public boolean f19123e = false;
+    public static final ThreadLocal f18772f = new ThreadLocal();
+    public j4.c d;
+    public final a0.k f18773a = new a0.k(0);
+    public final ArrayList f18774b = new ArrayList();
+    public final c0 f18775c = new c0(this, 7);
+    public boolean f18776e = false;
 }

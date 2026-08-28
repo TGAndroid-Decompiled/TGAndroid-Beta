@@ -1,31 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-
-public final class f40 implements org.telegram.ui.ip0 {
-
-    public final j40 f28251a;
-
-    public f40(j40 j40Var) {
-        this.f28251a = j40Var;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class f40 extends FrameLayout {
+    public View f28264a;
+    public TextView f28265b;
+    public pi0 f28266c;
+    public LinearLayout d;
 
     @Override
-    public final void a(ArrayList arrayList) throws FileNotFoundException {
-        j40.b(this.f28251a, false, arrayList);
+    public final void onMeasure(int i9, int i10) {
+        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
 
-    @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("image/*");
-            this.f28251a.f29569a.startActivityForResult(intent, 14);
-        } catch (Exception e9) {
-            FileLog.e(e9);
-        }
+    public void setGravity(int i9) {
+        this.f28265b.setGravity(i9);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f28265b.setText(charSequence);
+    }
+
+    public void setTextColor(int i9) {
+        this.f28265b.setTextColor(i9);
     }
 }

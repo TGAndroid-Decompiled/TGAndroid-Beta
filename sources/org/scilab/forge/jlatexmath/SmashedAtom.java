@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class SmashedAtom extends Atom {
     private Atom at;
     private boolean d;
@@ -18,14 +17,14 @@ public class SmashedAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.at.createBox(teXEnvironment);
+        Box createBox = this.at.createBox(teXEnvironment);
         if (this.h) {
-            boxCreateBox.setHeight(0.0f);
+            createBox.setHeight(0.0f);
         }
         if (this.d) {
-            boxCreateBox.setDepth(0.0f);
+            createBox.setDepth(0.0f);
         }
-        return boxCreateBox;
+        return createBox;
     }
 
     public SmashedAtom(Atom atom) {

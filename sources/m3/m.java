@@ -1,12 +1,10 @@
 package m3;
-
 public interface m {
+    public static final za.a f17243t = new za.a(14);
 
-    public static final xa.a f17619t = new xa.a(14);
+    void B();
 
-    void A();
+    w I(int i9, int i10);
 
-    w C(int i10, int i11);
-
-    void n(t tVar);
+    void y(t tVar);
 }

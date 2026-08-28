@@ -1,533 +1,389 @@
 package w3;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.pm.ServiceInfo;
-import android.content.res.Resources;
-import android.media.MediaCodec;
-import android.os.Bundle;
-import android.os.HandlerThread;
-import android.util.Log;
 import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
-import com.google.android.datatransport.cct.CctBackendFactory;
-import com.google.android.datatransport.runtime.backends.TransportBackendDiscovery;
-import d5.g0;
-import e0.i0;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.lang.reflect.InvocationTargetException;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
-import java.nio.channels.OverlappingFileLockException;
+import g7.a8;
+import h3.t1;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import org.telegram.ui.Cells.e3;
+public final class b0 implements m3.k {
+    public final int f48494a;
+    public final List f48495b;
+    public final d5.y f48496c;
+    public final SparseIntArray d;
+    public final o0.h f48497e;
+    public final SparseArray f48498f;
+    public final SparseBooleanArray f48499g;
+    public final SparseBooleanArray h;
+    public final v f48500i;
+    public p3.a f48501j;
+    public m3.m f48502k;
+    public int f48503l;
+    public boolean f48504m;
+    public boolean f48505n;
+    public boolean f48506o;
+    public e0 f48507p;
+    public int f48508q;
+    public int f48509r;
 
-public final class b0 implements y, r4.g, y2.b, y3.j, ud.b {
-
-    public final int f48997a;
-
-    public final Object f48998b;
-
-    public Object f48999c;
-
-    public b0(int i10, Object obj, Object obj2) {
-        this.f48997a = i10;
-        this.f48998b = obj;
-        this.f48999c = obj2;
-    }
-
-    public static b0 d(Context context) {
-        FileChannel channel;
-        FileLock fileLockLock;
-        try {
-            channel = new RandomAccessFile(new File(context.getFilesDir(), "generatefid.lock"), "rw").getChannel();
-            try {
-                fileLockLock = channel.lock();
-                try {
-                    return new b0(14, channel, fileLockLock);
-                } catch (IOException e9) {
-                    e = e9;
-                    Log.e("CrossProcessLock", "encountered error while creating and acquiring the lock, ignoring", e);
-                    if (fileLockLock != null) {
-                        try {
-                            fileLockLock.release();
-                        } catch (IOException unused) {
-                        }
-                    }
-                    if (channel != null) {
-                        try {
-                            channel.close();
-                        } catch (IOException unused2) {
-                        }
-                    }
-                    return null;
-                } catch (Error e10) {
-                    e = e10;
-                    Log.e("CrossProcessLock", "encountered error while creating and acquiring the lock, ignoring", e);
-                    if (fileLockLock != null) {
-                        fileLockLock.release();
-                    }
-                    if (channel != null) {
-                        channel.close();
-                    }
-                    return null;
-                } catch (OverlappingFileLockException e11) {
-                    e = e11;
-                    Log.e("CrossProcessLock", "encountered error while creating and acquiring the lock, ignoring", e);
-                    if (fileLockLock != null) {
-                        fileLockLock.release();
-                    }
-                    if (channel != null) {
-                        channel.close();
-                    }
-                    return null;
-                }
-            } catch (IOException | Error | OverlappingFileLockException e12) {
-                e = e12;
-                fileLockLock = null;
-            }
-        } catch (IOException | Error | OverlappingFileLockException e13) {
-            e = e13;
-            channel = null;
-            fileLockLock = null;
+    public b0(int i9, d5.e0 e0Var, o0.h hVar) {
+        this.f48497e = hVar;
+        this.f48494a = i9;
+        if (i9 != 1 && i9 != 2) {
+            ArrayList arrayList = new ArrayList();
+            this.f48495b = arrayList;
+            arrayList.add(e0Var);
+        } else {
+            this.f48495b = Collections.singletonList(e0Var);
         }
+        this.f48496c = new d5.y(new byte[9400], 0);
+        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+        this.f48499g = sparseBooleanArray;
+        this.h = new SparseBooleanArray();
+        SparseArray sparseArray = new SparseArray();
+        this.f48498f = sparseArray;
+        this.d = new SparseIntArray();
+        this.f48500i = new v(1);
+        this.f48502k = m3.m.f17243t;
+        this.f48509r = -1;
+        sparseBooleanArray.clear();
+        sparseArray.clear();
+        SparseArray sparseArray2 = new SparseArray();
+        int size = sparseArray2.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            sparseArray.put(sparseArray2.keyAt(i10), (e0) sparseArray2.valueAt(i10));
+        }
+        sparseArray.put(0, new z(new e3(this)));
+        this.f48507p = null;
     }
 
     @Override
-    public void A(float f10, int i10) {
+    public final int b(m3.l lVar, m3.n nVar) {
+        m3.l lVar2;
+        int i9;
+        ?? r32;
+        int i10;
+        int i11;
         boolean z10;
-        yg.i iVar = (yg.i) this.f48999c;
-        boolean z11 = true;
-        if ((iVar.b() == 0.0f && iVar.f50161s == 2) || iVar.f50161s == 3) {
-            iVar.f50161s = 1;
+        int i12;
+        long j10;
+        boolean z11;
+        int i13;
+        long j11 = ((m3.h) lVar).f17236c;
+        boolean z12 = this.f48504m;
+        int i14 = this.f48494a;
+        if (z12) {
+            long j12 = -9223372036854775807L;
+            v vVar = this.f48500i;
+            if (j11 != -1 && i14 != 2 && !vVar.d) {
+                int i15 = this.f48509r;
+                d5.e0 e0Var = vVar.f48709b;
+                d5.y yVar = vVar.f48710c;
+                if (i15 <= 0) {
+                    vVar.a(lVar);
+                    return 0;
+                } else if (!vVar.f48712f) {
+                    m3.h hVar = (m3.h) lVar;
+                    long j13 = hVar.f17236c;
+                    int min = (int) Math.min(112800, j13);
+                    long j14 = j13 - min;
+                    if (hVar.d != j14) {
+                        nVar.f17244a = j14;
+                        return 1;
+                    }
+                    yVar.z(min);
+                    hVar.f17238f = 0;
+                    hVar.g(yVar.f4410a, 0, min, false);
+                    int i16 = yVar.f4411b;
+                    int i17 = yVar.f4412c;
+                    int i18 = i17 - 188;
+                    while (true) {
+                        if (i18 < i16) {
+                            break;
+                        }
+                        byte[] bArr = yVar.f4410a;
+                        int i19 = -4;
+                        int i20 = 0;
+                        while (true) {
+                            if (i19 > 4) {
+                                break;
+                            }
+                            int i21 = (i19 * 188) + i18;
+                            if (i21 >= i16 && i21 < i17 && bArr[i21] == 71) {
+                                i20++;
+                                if (i20 == 5) {
+                                    long a2 = a8.a(yVar, i18, i15);
+                                    if (a2 != -9223372036854775807L) {
+                                        j12 = a2;
+                                        break;
+                                    }
+                                }
+                            } else {
+                                i20 = 0;
+                            }
+                            i19++;
+                        }
+                        i18--;
+                    }
+                    vVar.h = j12;
+                    vVar.f48712f = true;
+                    return 0;
+                } else if (vVar.h == -9223372036854775807L) {
+                    vVar.a(lVar);
+                    return 0;
+                } else if (!vVar.f48711e) {
+                    m3.h hVar2 = (m3.h) lVar;
+                    int min2 = (int) Math.min(112800, hVar2.f17236c);
+                    long j15 = 0;
+                    if (hVar2.d != j15) {
+                        nVar.f17244a = j15;
+                        return 1;
+                    }
+                    yVar.z(min2);
+                    hVar2.f17238f = 0;
+                    hVar2.g(yVar.f4410a, 0, min2, false);
+                    int i22 = yVar.f4411b;
+                    int i23 = yVar.f4412c;
+                    while (true) {
+                        if (i22 >= i23) {
+                            break;
+                        }
+                        if (yVar.f4410a[i22] == 71) {
+                            long a3 = a8.a(yVar, i22, i15);
+                            if (a3 != -9223372036854775807L) {
+                                j12 = a3;
+                                break;
+                            }
+                        }
+                        i22++;
+                    }
+                    vVar.f48713g = j12;
+                    vVar.f48711e = true;
+                    return 0;
+                } else {
+                    long j16 = vVar.f48713g;
+                    if (j16 == -9223372036854775807L) {
+                        vVar.a(lVar);
+                        return 0;
+                    }
+                    long b10 = e0Var.b(vVar.h) - e0Var.b(j16);
+                    vVar.f48714i = b10;
+                    if (b10 < 0) {
+                        d5.a.K("TsDurationReader", "Invalid duration: " + vVar.f48714i + ". Using TIME_UNSET instead.");
+                        vVar.f48714i = -9223372036854775807L;
+                    }
+                    vVar.a(lVar);
+                    return 0;
+                }
+            }
+            if (!this.f48505n) {
+                this.f48505n = true;
+                long j17 = vVar.f48714i;
+                if (j17 != -9223372036854775807L) {
+                    d5.e0 e0Var2 = vVar.f48709b;
+                    i9 = i14;
+                    j10 = 0;
+                    z11 = false;
+                    i13 = 1;
+                    p3.a aVar = new p3.a(new wa.a(14), new a6.a(this.f48509r, e0Var2), j17, j17 + 1, 0L, j11, 188L, 940);
+                    this.f48501j = aVar;
+                    this.f48502k.y(aVar.f45339a);
+                } else {
+                    i9 = i14;
+                    j10 = 0;
+                    z11 = false;
+                    i13 = 1;
+                    this.f48502k.y(new m3.o(j17));
+                }
+            } else {
+                i9 = i14;
+                j10 = 0;
+                z11 = false;
+                i13 = 1;
+            }
+            if (this.f48506o) {
+                this.f48506o = z11;
+                g(j10, j10);
+                if (((m3.h) lVar).d != j10) {
+                    nVar.f17244a = j10;
+                    return i13;
+                }
+            }
+            p3.a aVar2 = this.f48501j;
+            if (aVar2 != null && aVar2.f45341c != null) {
+                return aVar2.b(lVar, nVar);
+            }
+            lVar2 = lVar;
+            r32 = z11;
+        } else {
+            lVar2 = lVar;
+            i9 = i14;
+            r32 = 0;
+        }
+        d5.y yVar2 = this.f48496c;
+        byte[] bArr2 = yVar2.f4410a;
+        if (9400 - yVar2.f4411b < 188) {
+            int a10 = yVar2.a();
+            if (a10 > 0) {
+                System.arraycopy(bArr2, yVar2.f4411b, bArr2, r32, a10);
+            }
+            yVar2.A(a10, bArr2);
+        }
+        while (yVar2.a() < 188) {
+            int i24 = yVar2.f4412c;
+            int read = ((m3.h) lVar2).read(bArr2, i24, 9400 - i24);
+            if (read == -1) {
+                return -1;
+            }
+            yVar2.B(i24 + read);
+        }
+        int i25 = yVar2.f4411b;
+        int i26 = yVar2.f4412c;
+        byte[] bArr3 = yVar2.f4410a;
+        int i27 = i25;
+        while (i27 < i26 && bArr3[i27] != 71) {
+            i27++;
+        }
+        yVar2.C(i27);
+        int i28 = i27 + 188;
+        e0 e0Var3 = null;
+        if (i28 > i26) {
+            int i29 = (i27 - i25) + this.f48508q;
+            this.f48508q = i29;
+            i10 = i9;
+            if (i10 == 2 && i29 > 376) {
+                throw t1.a("Cannot find sync byte. Most likely not a Transport Stream.", null);
+            }
+        } else {
+            i10 = i9;
+            this.f48508q = r32;
+        }
+        int i30 = yVar2.f4412c;
+        if (i28 > i30) {
+            return r32;
+        }
+        int e10 = yVar2.e();
+        if ((8388608 & e10) != 0) {
+            yVar2.C(i28);
+            return r32;
+        }
+        if ((4194304 & e10) != 0) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        int i31 = (2096896 & e10) >> 8;
+        if ((e10 & 32) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (f10 == 1.0f) {
-            int i11 = iVar.f50162w;
-            int i12 = iVar.v;
-            if (i11 != i12) {
-                iVar.f50162w = i12;
-            } else {
-                z11 = z10;
+        if ((e10 & 16) != 0) {
+            e0Var3 = (e0) this.f48498f.get(i31);
+        }
+        if (e0Var3 == null) {
+            yVar2.C(i28);
+            return r32;
+        }
+        if (i10 != 2) {
+            int i32 = e10 & 15;
+            SparseIntArray sparseIntArray = this.d;
+            int i33 = sparseIntArray.get(i31, i32 - 1);
+            sparseIntArray.put(i31, i32);
+            if (i33 == i32) {
+                yVar2.C(i28);
+                return r32;
+            } else if (i32 != ((i33 + 1) & 15)) {
+                e0Var3.h();
             }
+        }
+        if (z10) {
+            int r10 = yVar2.r();
+            if ((yVar2.r() & 64) != 0) {
+                i12 = 2;
+            } else {
+                i12 = 0;
+            }
+            i11 |= i12;
+            yVar2.D(r10 - 1);
+        }
+        boolean z13 = this.f48504m;
+        if (i10 == 2 || z13 || !this.h.get(i31, r32)) {
+            yVar2.B(i28);
+            e0Var3.a(i11, yVar2);
+            yVar2.B(i30);
+        }
+        if (i10 != 2 && !z13 && this.f48504m && j11 != -1) {
+            this.f48506o = true;
+        }
+        yVar2.C(i28);
+        return r32;
+    }
+
+    @Override
+    public final void c(m3.m mVar) {
+        this.f48502k = mVar;
+    }
+
+    @Override
+    public final boolean f(m3.l r7) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.b0.f(m3.l):boolean");
+    }
+
+    @Override
+    public final void g(long j10, long j11) {
+        boolean z10;
+        p3.a aVar;
+        boolean z11;
+        if (this.f48494a != 2) {
+            z10 = true;
         } else {
-            z11 = z10;
+            z10 = false;
         }
-        if (z11) {
-            ((Runnable) this.f48998b).run();
-        }
-        iVar.a();
-    }
-
-    @Override
-    public void b(d5.z zVar) {
-        c0 c0Var = (c0) this.f48999c;
-        SparseArray sparseArray = c0Var.f49007f;
-        d5.y yVar = (d5.y) this.f48998b;
-        if (zVar.r() == 0 && (zVar.r() & 128) != 0) {
-            zVar.D(6);
-            int iA = zVar.a() / 4;
-            for (int i10 = 0; i10 < iA; i10++) {
-                zVar.c(0, 4, yVar.f4853b);
-                yVar.p(0);
-                int i11 = yVar.i(16);
-                yVar.s(3);
-                if (i11 == 0) {
-                    yVar.s(13);
-                } else {
-                    int i12 = yVar.i(13);
-                    if (sparseArray.get(i12) == null) {
-                        sparseArray.put(i12, new z(new i0(c0Var, i12)));
-                        c0Var.f49012l++;
-                    }
-                }
-            }
-            if (c0Var.f49003a != 2) {
-                sparseArray.remove(0);
-            }
-        }
-    }
-
-    @Override
-    public int c(long j10) {
-        int i10;
-        switch (this.f48997a) {
-            case 1:
-                ArrayList arrayList = (ArrayList) this.f48999c;
-                Long lValueOf = Long.valueOf(j10);
-                int i11 = g0.f4795a;
-                int iBinarySearch = Collections.binarySearch(arrayList, lValueOf);
-                if (iBinarySearch < 0) {
-                    i10 = ~iBinarySearch;
-                } else {
-                    int size = arrayList.size();
-                    do {
-                        iBinarySearch++;
-                        if (iBinarySearch < size) {
-                        }
-                        i10 = iBinarySearch;
-                    } while (((Comparable) arrayList.get(iBinarySearch)).compareTo(lValueOf) == 0);
-                    i10 = iBinarySearch;
-                }
-                if (i10 < arrayList.size()) {
-                    return i10;
-                }
-                return -1;
-            default:
-                long[] jArr = (long[]) this.f48999c;
-                int iB = g0.b(jArr, j10, false);
-                if (iB < jArr.length) {
-                    return iB;
-                }
-                return -1;
-        }
-    }
-
-    public void e(Object obj, String str) {
-        ((ArrayList) this.f48998b).add(a9.p.w(str, "=", String.valueOf(obj)));
-    }
-
-    @Override
-    public long f(int i10) {
-        switch (this.f48997a) {
-            case 1:
-                ArrayList arrayList = (ArrayList) this.f48999c;
-                d5.a.f(i10 >= 0);
-                d5.a.f(i10 < arrayList.size());
-                return ((Long) arrayList.get(i10)).longValue();
-            default:
-                long[] jArr = (long[]) this.f48999c;
-                d5.a.f(i10 >= 0);
-                d5.a.f(i10 < jArr.length);
-                return jArr[i10];
-        }
-    }
-
-    @Override
-    public y3.c t1(y3.i iVar) throws Exception {
-        MediaCodec mediaCodecCreateByCodecName;
-        String str = iVar.f49490a.f49495a;
-        y3.c cVar = null;
-        try {
-            d5.a.c("createCodec:" + str);
-            mediaCodecCreateByCodecName = MediaCodec.createByCodecName(str);
-            try {
-                y3.c cVar2 = new y3.c(mediaCodecCreateByCodecName, (HandlerThread) ((y3.b) this.f48998b).get(), (HandlerThread) ((y3.b) this.f48999c).get());
-                try {
-                    d5.a.q();
-                    y3.c.i(cVar2, iVar.f49491b, iVar.d, iVar.f49493e);
-                    return cVar2;
-                } catch (Exception e9) {
-                    e = e9;
-                    cVar = cVar2;
-                    if (cVar != null) {
-                        cVar.release();
-                    } else if (mediaCodecCreateByCodecName != null) {
-                        mediaCodecCreateByCodecName.release();
-                    }
-                    throw e;
-                }
-            } catch (Exception e10) {
-                e = e10;
-            }
-        } catch (Exception e11) {
-            e = e11;
-            mediaCodecCreateByCodecName = null;
-        }
-    }
-
-    @Override
-    public Object mo28get() {
-        return new x2.d((Context) ((e.a) this.f48998b).f5035a, (u2.b) ((n1.d) this.f48999c).mo28get());
-    }
-
-    @Override
-    public List h(long j10) {
-        r4.c cVar;
-        switch (this.f48997a) {
-            case 1:
-                int iC = g0.c((ArrayList) this.f48999c, Long.valueOf(j10), false);
-                return iC == -1 ? Collections.EMPTY_LIST : (List) ((ArrayList) this.f48998b).get(iC);
-            default:
-                int iE = g0.e((long[]) this.f48999c, j10, false);
-                return (iE == -1 || (cVar = ((r4.c[]) this.f48998b)[iE]) == r4.c.D) ? Collections.EMPTY_LIST : Collections.singletonList(cVar);
-        }
-    }
-
-    public ArrayList i() {
-        ?? arrayList;
-        ArrayList arrayList2 = new ArrayList();
-        m5.o oVar = (m5.o) this.f48999c;
-        Context context = (Context) this.f48998b;
-        Class cls = (Class) oVar.f17823b;
-        Bundle bundle = null;
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            if (packageManager == null) {
-                Log.w("ComponentDiscovery", "Context has no PackageManager.");
+        d5.a.i(z10);
+        List list = this.f48495b;
+        int size = list.size();
+        for (int i9 = 0; i9 < size; i9++) {
+            d5.e0 e0Var = (d5.e0) list.get(i9);
+            if (e0Var.d() == -9223372036854775807L) {
+                z11 = true;
             } else {
-                ServiceInfo serviceInfo = packageManager.getServiceInfo(new ComponentName(context, (Class<?>) cls), 128);
-                if (serviceInfo == null) {
-                    Log.w("ComponentDiscovery", cls + " has no service info.");
+                z11 = false;
+            }
+            if (!z11) {
+                long c10 = e0Var.c();
+                if (c10 != -9223372036854775807L && c10 != 0 && c10 != j11) {
+                    z11 = true;
                 } else {
-                    bundle = serviceInfo.metaData;
+                    z11 = false;
                 }
             }
-        } catch (PackageManager.NameNotFoundException unused) {
-            Log.w("ComponentDiscovery", "Application info not found.");
-        }
-        if (bundle == null) {
-            Log.w("ComponentDiscovery", "Could not retrieve metadata, returning empty list of registrars.");
-            arrayList = Collections.EMPTY_LIST;
-        } else {
-            arrayList = new ArrayList();
-            for (String str : bundle.keySet()) {
-                if ("com.google.firebase.components.ComponentRegistrar".equals(bundle.get(str)) && str.startsWith("com.google.firebase.components:")) {
-                    arrayList.add(str.substring(31));
-                }
+            if (z11) {
+                e0Var.e(j11);
             }
         }
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            arrayList2.add(new z8.c((String) it.next(), 0));
+        if (j11 != 0 && (aVar = this.f48501j) != null) {
+            aVar.d(j11);
         }
-        return arrayList2;
-    }
-
-    public CctBackendFactory j(String str) {
-        Bundle bundle;
-        Map map;
-        Object obj;
-        if (((Map) this.f48999c) == null) {
-            Context context = (Context) this.f48998b;
-            try {
-                PackageManager packageManager = context.getPackageManager();
-                if (packageManager == null) {
-                    Log.w("BackendRegistry", "Context has no PackageManager.");
-                } else {
-                    ServiceInfo serviceInfo = packageManager.getServiceInfo(new ComponentName(context, (Class<?>) TransportBackendDiscovery.class), 128);
-                    if (serviceInfo == null) {
-                        Log.w("BackendRegistry", "TransportBackendDiscovery has no service info.");
-                    } else {
-                        bundle = serviceInfo.metaData;
-                    }
-                    if (bundle == null) {
-                        Log.w("BackendRegistry", "Could not retrieve metadata, returning empty list of transport backends.");
-                        map = Collections.EMPTY_MAP;
-                    } else {
-                        HashMap map2 = new HashMap();
-                        for (String str2 : bundle.keySet()) {
-                            obj = bundle.get(str2);
-                            if (!(obj instanceof String) && str2.startsWith("backend:")) {
-                                for (String str3 : ((String) obj).split(",", -1)) {
-                                    String strTrim = str3.trim();
-                                    if (!strTrim.isEmpty()) {
-                                        map2.put(strTrim, str2.substring(8));
-                                    }
-                                }
-                            }
-                        }
-                        map = map2;
-                    }
-                    this.f48999c = map;
-                }
-            } catch (PackageManager.NameNotFoundException unused) {
-                Log.w("BackendRegistry", "Application info not found.");
-            }
-            bundle = null;
-            if (bundle == null) {
-                Log.w("BackendRegistry", "Could not retrieve metadata, returning empty list of transport backends.");
-                map = Collections.EMPTY_MAP;
-            } else {
-                HashMap map3 = new HashMap();
-                while (r6.hasNext()) {
-                    obj = bundle.get(str2);
-                    if (!(obj instanceof String)) {
-                    }
-                }
-                map = map3;
-            }
-            this.f48999c = map;
-        }
-        String str4 = (String) ((Map) this.f48999c).get(str);
-        if (str4 == null) {
-            return null;
-        }
-        try {
-            return (CctBackendFactory) Class.forName(str4).asSubclass(CctBackendFactory.class).getDeclaredConstructor(null).newInstance(null);
-        } catch (ClassNotFoundException e9) {
-            Log.w("BackendRegistry", "Class " + str4 + " is not found.", e9);
-            return null;
-        } catch (IllegalAccessException e10) {
-            Log.w("BackendRegistry", "Could not instantiate " + str4 + ".", e10);
-            return null;
-        } catch (InstantiationException e11) {
-            Log.w("BackendRegistry", "Could not instantiate " + str4 + ".", e11);
-            return null;
-        } catch (NoSuchMethodException e12) {
-            Log.w("BackendRegistry", "Could not instantiate ".concat(str4), e12);
-            return null;
-        } catch (InvocationTargetException e13) {
-            Log.w("BackendRegistry", "Could not instantiate ".concat(str4), e13);
-            return null;
-        }
-    }
-
-    public String k(String str) {
-        String str2 = (String) this.f48999c;
-        Resources resources = (Resources) this.f48998b;
-        int identifier = resources.getIdentifier(str, "string", str2);
-        if (identifier == 0) {
-            return null;
-        }
-        return resources.getString(identifier);
-    }
-
-    public void l() {
-        try {
-            ((FileLock) this.f48999c).release();
-            ((FileChannel) this.f48998b).close();
-        } catch (IOException e9) {
-            Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e9);
-        }
-    }
-
-    public int m(Context context, com.google.android.gms.common.api.c cVar) {
-        SparseIntArray sparseIntArray = (SparseIntArray) this.f48998b;
-        y5.l.h(context);
-        y5.l.h(cVar);
-        int iD = 0;
-        if (!cVar.j()) {
-            return 0;
-        }
-        int iK = cVar.k();
-        int i10 = sparseIntArray.get(iK, -1);
-        if (i10 != -1) {
-            return i10;
-        }
-        int i11 = 0;
+        this.f48496c.z(0);
+        this.d.clear();
+        int i10 = 0;
         while (true) {
-            if (i11 >= sparseIntArray.size()) {
-                iD = -1;
-                break;
+            SparseArray sparseArray = this.f48498f;
+            if (i10 < sparseArray.size()) {
+                ((e0) sparseArray.valueAt(i10)).h();
+                i10++;
+            } else {
+                this.f48508q = 0;
+                return;
             }
-            int iKeyAt = sparseIntArray.keyAt(i11);
-            if (iKeyAt > iK && sparseIntArray.get(iKeyAt) == 0) {
-                break;
-            }
-            i11++;
         }
-        if (iD == -1) {
-            iD = ((v5.e) this.f48999c).d(context, iK);
-        }
-        sparseIntArray.put(iK, iD);
-        return iD;
     }
 
     @Override
-    public void o(int i10, float f10, float f11, ud.c cVar) {
-        yg.i iVar = (yg.i) this.f48999c;
-        iVar.f50156c.a(f10);
-        iVar.d.a(f10);
-        iVar.f50155b.a(f10);
-        ((Runnable) this.f48998b).run();
-    }
-
-    @Override
-    public int p() {
-        switch (this.f48997a) {
-            case 1:
-                return ((ArrayList) this.f48999c).size();
-            default:
-                return ((long[]) this.f48999c).length;
-        }
-    }
-
-    public String toString() {
-        switch (this.f48997a) {
-            case 6:
-                StringBuilder sb2 = new StringBuilder(100);
-                sb2.append(this.f48999c.getClass().getSimpleName());
-                sb2.append('{');
-                ArrayList arrayList = (ArrayList) this.f48998b;
-                int size = arrayList.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    sb2.append((String) arrayList.get(i10));
-                    if (i10 < size - 1) {
-                        sb2.append(", ");
-                    }
-                }
-                sb2.append('}');
-                return sb2.toString();
-            default:
-                return super.toString();
-        }
-    }
-
-    public b0(Object obj) {
-        this.f48997a = 6;
-        this.f48999c = obj;
-        this.f48998b = new ArrayList();
-    }
-
-    public b0(v5.e eVar) {
-        this.f48997a = 8;
-        this.f48998b = new SparseIntArray();
-        y5.l.h(eVar);
-        this.f48999c = eVar;
-    }
-
-    public b0(yg.i iVar, Runnable runnable) {
-        this.f48997a = 12;
-        this.f48999c = iVar;
-        this.f48998b = runnable;
-    }
-
-    public b0(int i10) {
-        this.f48997a = 5;
-        y3.b bVar = new y3.b(i10, 0);
-        y3.b bVar2 = new y3.b(i10, 1);
-        this.f48998b = bVar;
-        this.f48999c = bVar2;
-    }
-
-    public b0(yf.g0 g0Var) {
-        this.f48997a = 10;
-        this.f48998b = g0Var;
-    }
-
-    public b0(Context context, int i10) {
-        this.f48997a = i10;
-        switch (i10) {
-            case 7:
-                y5.l.h(context);
-                Resources resources = context.getResources();
-                this.f48998b = resources;
-                this.f48999c = resources.getResourcePackageName(2131701329);
-                break;
-            default:
-                this.f48999c = null;
-                this.f48998b = context;
-                break;
-        }
-    }
-
-    public b0(c0 c0Var) {
-        this.f48997a = 0;
-        this.f48999c = c0Var;
-        this.f48998b = new d5.y(new byte[4], 4);
-    }
-
-    @Override
-    public void a(d5.f0 f0Var, m3.m mVar, e0 e0Var) {
+    public final void release() {
     }
 }

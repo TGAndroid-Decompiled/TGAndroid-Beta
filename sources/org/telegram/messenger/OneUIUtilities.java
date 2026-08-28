@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.os.Build;
 import java.lang.reflect.Field;
-
 public class OneUIUtilities {
     public static final int ONE_UI_4_0 = 40000;
     private static Boolean isOneUI;
@@ -11,31 +10,35 @@ public class OneUIUtilities {
     private static float oneUIMinorVersion;
 
     public static int getOneUIEncodedVersion() {
-        if (isOneUI()) {
-            return oneUIEncodedVersion;
+        if (!isOneUI()) {
+            return 0;
         }
-        return 0;
+        return oneUIEncodedVersion;
     }
 
     public static int getOneUIMajorVersion() {
-        if (isOneUI()) {
-            return oneUIMajorVersion;
+        if (!isOneUI()) {
+            return 0;
         }
-        return 0;
+        return oneUIMajorVersion;
     }
 
     public static float getOneUIMinorVersion() {
-        if (isOneUI()) {
-            return oneUIMinorVersion;
+        if (!isOneUI()) {
+            return 0.0f;
         }
-        return 0.0f;
+        return oneUIMinorVersion;
     }
 
     public static boolean hasBuiltInClipboardToasts() {
-        return isOneUI() && getOneUIEncodedVersion() == 40000;
+        if (isOneUI() && getOneUIEncodedVersion() == 40000) {
+            return true;
+        }
+        return false;
     }
 
     public static boolean isOneUI() {
+        int intValue;
         Boolean bool = isOneUI;
         if (bool != null) {
             return bool.booleanValue();
@@ -43,18 +46,18 @@ public class OneUIUtilities {
         try {
             Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
             declaredField.setAccessible(true);
-            int iIntValue = ((Integer) declaredField.get(null)).intValue();
-            if (iIntValue < 100000) {
-                return false;
-            }
-            int i10 = iIntValue - 90000;
-            oneUIEncodedVersion = i10;
-            oneUIMajorVersion = i10 / 10000;
-            oneUIMinorVersion = (i10 % 10000) / 100.0f;
-            isOneUI = Boolean.TRUE;
+            intValue = ((Integer) declaredField.get(null)).intValue();
         } catch (Exception unused) {
             isOneUI = Boolean.FALSE;
         }
+        if (intValue < 100000) {
+            return false;
+        }
+        int i9 = intValue - 90000;
+        oneUIEncodedVersion = i9;
+        oneUIMajorVersion = i9 / 10000;
+        oneUIMinorVersion = (i9 % 10000) / 100.0f;
+        isOneUI = Boolean.TRUE;
         return isOneUI.booleanValue();
     }
 }

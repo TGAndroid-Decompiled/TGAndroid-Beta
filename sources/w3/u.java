@@ -1,185 +1,186 @@
 package w3;
-
-public final class u implements f0 {
-
-    public final h f49204a;
-
-    public final d5.y f49205b = new d5.y(new byte[10], 10);
-
-    public int f49206c = 0;
+public final class u implements e0 {
+    public final h f48698a;
+    public final d5.x f48699b = new d5.x(new byte[10], 10);
+    public int f48700c = 0;
     public int d;
-
-    public d5.f0 f49207e;
-
-    public boolean f49208f;
-
-    public boolean f49209g;
+    public d5.e0 f48701e;
+    public boolean f48702f;
+    public boolean f48703g;
     public boolean h;
-
-    public int f49210i;
-
-    public int f49211j;
-
-    public boolean f49212k;
-
-    public long f49213l;
+    public int f48704i;
+    public int f48705j;
+    public boolean f48706k;
+    public long f48707l;
 
     public u(h hVar) {
-        this.f49204a = hVar;
+        this.f48698a = hVar;
     }
 
     @Override
-    public final void a(d5.f0 f0Var, m3.m mVar, e0 e0Var) {
-        this.f49207e = f0Var;
-        this.f49204a.e(mVar, e0Var);
-    }
-
-    @Override
-    public final void b(int i10, d5.z zVar) {
+    public final void a(int i9, d5.y yVar) {
+        int i10;
         int i11;
-        d5.a.j(this.f49207e);
-        int i12 = i10 & 1;
-        h hVar = this.f49204a;
-        int i13 = 2;
-        int i14 = 0;
-        if (i12 != 0) {
-            int i15 = this.f49206c;
-            if (i15 != 0 && i15 != 1) {
-                if (i15 == 2) {
-                    d5.a.K("PesReader", "Unexpected start indicator reading extended header");
-                } else {
-                    if (i15 != 3) {
+        int i12;
+        d5.a.j(this.f48701e);
+        int i13 = i9 & 1;
+        h hVar = this.f48698a;
+        int i14 = 2;
+        int i15 = 0;
+        if (i13 != 0) {
+            int i16 = this.f48700c;
+            if (i16 != 0 && i16 != 1) {
+                if (i16 != 2) {
+                    if (i16 == 3) {
+                        if (this.f48705j != -1) {
+                            d5.a.K("PesReader", "Unexpected start indicator: expected " + this.f48705j + " more bytes");
+                        }
+                        hVar.i();
+                    } else {
                         throw new IllegalStateException();
                     }
-                    if (this.f49211j != -1) {
-                        d5.a.K("PesReader", "Unexpected start indicator: expected " + this.f49211j + " more bytes");
-                    }
-                    hVar.d();
+                } else {
+                    d5.a.K("PesReader", "Unexpected start indicator reading extended header");
                 }
             }
-            this.f49206c = 1;
+            this.f48700c = 1;
             this.d = 0;
         }
-        int i16 = i10;
-        while (zVar.a() > 0) {
-            int i17 = this.f49206c;
-            if (i17 != 0) {
-                d5.y yVar = this.f49205b;
-                if (i17 != 1) {
-                    if (i17 == i13) {
-                        if (d(zVar, yVar.f4853b, Math.min(10, this.f49210i)) && d(zVar, null, this.f49210i)) {
-                            yVar.p(i14);
-                            this.f49213l = -9223372036854775807L;
-                            if (this.f49208f) {
-                                yVar.s(4);
-                                long jI = ((long) yVar.i(3)) << 30;
-                                yVar.s(1);
-                                long jI2 = ((long) (yVar.i(15) << 15)) | jI;
-                                yVar.s(1);
-                                long jI3 = jI2 | ((long) yVar.i(15));
-                                yVar.s(1);
-                                if (!this.h && this.f49209g) {
-                                    yVar.s(4);
-                                    long jI4 = ((long) yVar.i(3)) << 30;
-                                    yVar.s(1);
-                                    long jI5 = jI4 | ((long) (yVar.i(15) << 15));
-                                    yVar.s(1);
-                                    long jI6 = jI5 | ((long) yVar.i(15));
-                                    yVar.s(1);
-                                    this.f49207e.b(jI6);
-                                    this.h = true;
-                                }
-                                this.f49213l = this.f49207e.b(jI3);
+        int i17 = i9;
+        while (yVar.a() > 0) {
+            int i18 = this.f48700c;
+            if (i18 != 0) {
+                d5.x xVar = this.f48699b;
+                if (i18 != 1) {
+                    if (i18 != i14) {
+                        if (i18 == 3) {
+                            int a2 = yVar.a();
+                            int i19 = this.f48705j;
+                            if (i19 == -1) {
+                                i12 = 0;
+                            } else {
+                                i12 = a2 - i19;
                             }
-                            i16 |= this.f49212k ? 4 : 0;
-                            hVar.f(i16, this.f49213l);
-                            this.f49206c = 3;
-                            this.d = 0;
-                        }
-                    } else {
-                        if (i17 != 3) {
+                            if (i12 > 0) {
+                                a2 -= i12;
+                                yVar.B(yVar.f4411b + a2);
+                            }
+                            hVar.g(yVar);
+                            int i20 = this.f48705j;
+                            if (i20 != -1) {
+                                int i21 = i20 - a2;
+                                this.f48705j = i21;
+                                if (i21 == 0) {
+                                    hVar.i();
+                                    this.f48700c = 1;
+                                    this.d = i15;
+                                }
+                            }
+                        } else {
                             throw new IllegalStateException();
                         }
-                        int iA = zVar.a();
-                        int i18 = this.f49211j;
-                        int i19 = i18 == -1 ? 0 : iA - i18;
-                        if (i19 > 0) {
-                            iA -= i19;
-                            zVar.B(zVar.f4859b + iA);
-                        }
-                        hVar.b(zVar);
-                        int i20 = this.f49211j;
-                        if (i20 != -1) {
-                            int i21 = i20 - iA;
-                            this.f49211j = i21;
-                            if (i21 == 0) {
-                                hVar.d();
-                                this.f49206c = 1;
-                                this.d = i14;
-                            }
-                        }
-                    }
-                } else if (d(zVar, yVar.f4853b, 9)) {
-                    yVar.p(0);
-                    int i22 = yVar.i(24);
-                    if (i22 != 1) {
-                        com.google.android.recaptcha.internal.a.s(i22, "Unexpected start code prefix: ", "PesReader");
-                        this.f49211j = -1;
-                        i11 = 0;
                     } else {
-                        yVar.s(8);
-                        int i23 = yVar.i(16);
-                        yVar.s(5);
-                        this.f49212k = yVar.h();
-                        yVar.s(2);
-                        this.f49208f = yVar.h();
-                        this.f49209g = yVar.h();
-                        yVar.s(6);
-                        int i24 = yVar.i(8);
-                        this.f49210i = i24;
-                        if (i23 == 0) {
-                            this.f49211j = -1;
+                        if (b(yVar, xVar.f4405b, Math.min(10, this.f48704i)) && b(yVar, null, this.f48704i)) {
+                            xVar.p(i15);
+                            this.f48707l = -9223372036854775807L;
+                            if (this.f48702f) {
+                                xVar.s(4);
+                                xVar.s(1);
+                                long i22 = xVar.i(15) << 15;
+                                xVar.s(1);
+                                long i23 = i22 | (xVar.i(3) << 30) | xVar.i(15);
+                                xVar.s(1);
+                                if (!this.h && this.f48703g) {
+                                    xVar.s(4);
+                                    xVar.s(1);
+                                    xVar.s(1);
+                                    xVar.s(1);
+                                    this.f48701e.b((xVar.i(3) << 30) | (xVar.i(15) << 15) | xVar.i(15));
+                                    this.h = true;
+                                }
+                                this.f48707l = this.f48701e.b(i23);
+                            }
+                            if (this.f48706k) {
+                                i11 = 4;
+                            } else {
+                                i11 = 0;
+                            }
+                            i17 |= i11;
+                            hVar.k(i17, this.f48707l);
+                            this.f48700c = 3;
+                            this.d = 0;
+                        }
+                    }
+                } else if (b(yVar, xVar.f4405b, 9)) {
+                    xVar.p(0);
+                    int i24 = xVar.i(24);
+                    if (i24 != 1) {
+                        e2.c.t(i24, "Unexpected start code prefix: ", "PesReader");
+                        this.f48705j = -1;
+                        i10 = 0;
+                    } else {
+                        xVar.s(8);
+                        int i25 = xVar.i(16);
+                        xVar.s(5);
+                        this.f48706k = xVar.h();
+                        xVar.s(2);
+                        this.f48702f = xVar.h();
+                        this.f48703g = xVar.h();
+                        xVar.s(6);
+                        int i26 = xVar.i(8);
+                        this.f48704i = i26;
+                        if (i25 == 0) {
+                            this.f48705j = -1;
                         } else {
-                            int i25 = (i23 - 3) - i24;
-                            this.f49211j = i25;
-                            if (i25 < 0) {
-                                d5.a.K("PesReader", "Found negative packet payload size: " + this.f49211j);
-                                this.f49211j = -1;
+                            int i27 = (i25 - 3) - i26;
+                            this.f48705j = i27;
+                            if (i27 < 0) {
+                                d5.a.K("PesReader", "Found negative packet payload size: " + this.f48705j);
+                                this.f48705j = -1;
                             }
                         }
-                        i11 = 2;
+                        i10 = 2;
                     }
-                    this.f49206c = i11;
+                    this.f48700c = i10;
                     this.d = 0;
                 }
             } else {
-                zVar.D(zVar.a());
+                yVar.D(yVar.a());
             }
-            i13 = 2;
-            i14 = 0;
+            i14 = 2;
+            i15 = 0;
         }
     }
 
-    @Override
-    public final void c() {
-        this.f49206c = 0;
-        this.d = 0;
-        this.h = false;
-        this.f49204a.c();
-    }
-
-    public final boolean d(d5.z zVar, byte[] bArr, int i10) {
-        int iMin = Math.min(zVar.a(), i10 - this.d);
-        if (iMin <= 0) {
+    public final boolean b(d5.y yVar, byte[] bArr, int i9) {
+        int min = Math.min(yVar.a(), i9 - this.d);
+        if (min <= 0) {
             return true;
         }
         if (bArr == null) {
-            zVar.D(iMin);
+            yVar.D(min);
         } else {
-            zVar.c(this.d, iMin, bArr);
+            yVar.c(this.d, min, bArr);
         }
-        int i11 = this.d + iMin;
-        this.d = i11;
-        return i11 == i10;
+        int i10 = this.d + min;
+        this.d = i10;
+        if (i10 == i9) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(d5.e0 e0Var, m3.m mVar, d0 d0Var) {
+        this.f48701e = e0Var;
+        this.f48698a.j(mVar, d0Var);
+    }
+
+    @Override
+    public final void h() {
+        this.f48700c = 0;
+        this.d = 0;
+        this.h = false;
+        this.f48698a.h();
     }
 }

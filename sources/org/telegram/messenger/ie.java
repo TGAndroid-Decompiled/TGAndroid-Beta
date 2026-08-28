@@ -1,24 +1,24 @@
 package org.telegram.messenger;
 
-import java.util.function.ToLongFunction;
+import org.telegram.messenger.MessagesController;
+public final class ie implements Runnable {
+    public final int f20597a;
+    public final MessagesController.DialogPhotos f20598b;
 
-public final class ie implements ToLongFunction {
-
-    public final int f20578a;
-
-    public ie(int i10) {
-        this.f20578a = i10;
+    public ie(MessagesController.DialogPhotos dialogPhotos, int i9) {
+        this.f20597a = i9;
+        this.f20598b = dialogPhotos;
     }
 
     @Override
-    public final long applyAsLong(Object obj) {
-        switch (this.f20578a) {
+    public final void run() {
+        switch (this.f20597a) {
             case 0:
-                return Long.parseLong((String) obj);
-            case 1:
-                return ((NotificationsController.StoryNotification) obj).date;
+                this.f20598b.lambda$loadCache$5();
+                return;
             default:
-                return ((NotificationsController.StoryNotification) obj).date;
+                this.f20598b.lambda$saveCache$6();
+                return;
         }
     }
 }

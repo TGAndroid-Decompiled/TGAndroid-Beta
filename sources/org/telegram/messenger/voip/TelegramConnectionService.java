@@ -7,7 +7,6 @@ import android.telecom.ConnectionService;
 import android.telecom.PhoneAccountHandle;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class TelegramConnectionService extends ConnectionService {
     @Override
     public void onCreate() {
@@ -23,15 +22,15 @@ public class TelegramConnectionService extends ConnectionService {
             FileLog.d("onCreateIncomingConnection ");
         }
         Bundle extras = connectionRequest.getExtras();
-        if (extras.getInt("call_type") != 1) {
-            extras.getInt("call_type");
-            return null;
+        if (extras.getInt("call_type") == 1) {
+            VoIPService sharedInstance = VoIPService.getSharedInstance();
+            if (sharedInstance == null || sharedInstance.isOutgoing()) {
+                return null;
+            }
+            return sharedInstance.getConnectionAndStartCall();
         }
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.isOutgoing()) {
-            return null;
-        }
-        return sharedInstance.getConnectionAndStartCall();
+        extras.getInt("call_type");
+        return null;
     }
 
     @Override
@@ -50,15 +49,15 @@ public class TelegramConnectionService extends ConnectionService {
             FileLog.d("onCreateOutgoingConnection ");
         }
         Bundle extras = connectionRequest.getExtras();
-        if (extras.getInt("call_type") != 1) {
-            extras.getInt("call_type");
-            return null;
+        if (extras.getInt("call_type") == 1) {
+            VoIPService sharedInstance = VoIPService.getSharedInstance();
+            if (sharedInstance == null) {
+                return null;
+            }
+            return sharedInstance.getConnectionAndStartCall();
         }
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null) {
-            return null;
-        }
-        return sharedInstance.getConnectionAndStartCall();
+        extras.getInt("call_type");
+        return null;
     }
 
     @Override

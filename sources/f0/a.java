@@ -1,10 +1,9 @@
 package f0;
 
 import android.content.Context;
-
 public abstract class a {
-    public static int a(Context context, int i10) {
-        return context.getColor(i10);
+    public static int a(Context context, int i9) {
+        return context.getColor(i9);
     }
 
     public static Object b(Context context, Class cls) {

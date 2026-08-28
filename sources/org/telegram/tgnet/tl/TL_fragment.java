@@ -3,18 +3,21 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
-
 public class TL_fragment {
 
     public static class InputCollectible extends TLObject {
-        public static InputCollectible TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static InputCollectible TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
             TLObject tL_inputCollectiblePhone;
-            if (i10 != -1562241884) {
-                tL_inputCollectiblePhone = i10 != -476815191 ? null : new TL_inputCollectibleUsername();
+            if (i9 != -1562241884) {
+                if (i9 != -476815191) {
+                    tL_inputCollectiblePhone = null;
+                } else {
+                    tL_inputCollectiblePhone = new TL_inputCollectibleUsername();
+                }
             } else {
                 tL_inputCollectiblePhone = new TL_inputCollectiblePhone();
             }
-            return (InputCollectible) TLObject.TLdeserialize(InputCollectible.class, tL_inputCollectiblePhone, inputSerializedData, i10, z10);
+            return (InputCollectible) TLObject.TLdeserialize(InputCollectible.class, tL_inputCollectiblePhone, inputSerializedData, i9, z10);
         }
     }
 
@@ -27,8 +30,14 @@ public class TL_fragment {
         public int purchase_date;
         public String url;
 
-        public static TL_collectibleInfo TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (TL_collectibleInfo) TLObject.TLdeserialize(TL_collectibleInfo.class, 1857945489 != i10 ? null : new TL_collectibleInfo(), inputSerializedData, i10, z10);
+        public static TL_collectibleInfo TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            TL_collectibleInfo tL_collectibleInfo;
+            if (1857945489 != i9) {
+                tL_collectibleInfo = null;
+            } else {
+                tL_collectibleInfo = new TL_collectibleInfo();
+            }
+            return (TL_collectibleInfo) TLObject.TLdeserialize(TL_collectibleInfo.class, tL_collectibleInfo, inputSerializedData, i9, z10);
         }
 
         @Override
@@ -58,8 +67,8 @@ public class TL_fragment {
         public InputCollectible collectible;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_collectibleInfo.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
+            return TL_collectibleInfo.TLdeserialize(inputSerializedData, i9, z10);
         }
 
         @Override

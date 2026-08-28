@@ -1,61 +1,45 @@
 package qe;
 
-import java.util.Locale;
-import org.telegram.messenger.R;
+import android.content.Context;
+import android.util.SparseArray;
+import java.io.BufferedInputStream;
+import n2.p;
+import org.telegram.tgnet.SerializedData;
+public final class a {
+    public static final a f46160b = new a();
+    public final SparseArray f46161a;
 
-public abstract class a {
-    public static int a(Locale locale) {
-        if (locale == null) {
-            return 0;
+    public a() {
+        this.f46161a = new SparseArray();
+    }
+
+    public static void a(Context context, int i9, SparseArray sparseArray) {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().openRawResource(i9));
+        try {
+            SerializedData serializedData = new SerializedData(bufferedInputStream);
+            while (serializedData.remaining() > 0) {
+                sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
+            }
+            bufferedInputStream.close();
+        } catch (Throwable th) {
+            try {
+                bufferedInputStream.close();
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+            }
+            throw th;
         }
-        String languageTag = locale.toLanguageTag();
-        languageTag.getClass();
-        switch (languageTag) {
-            case "ar":
-                return R.raw.localization_ar;
-            case "de":
-                return R.raw.localization_de;
-            case "en":
-                return R.raw.localization_en;
-            case "es":
-                return R.raw.localization_es;
-            case "it":
-                return R.raw.localization_it;
-            case "ko":
-                return R.raw.localization_ko;
-            case "nl":
-                return R.raw.localization_nl;
-            case "ru":
-                return R.raw.localization_ru;
-            case "uk":
-                return R.raw.localization_uk;
-            case "pt-BR":
-                return R.raw.localization_pt_br;
-            default:
-                String language = locale.getLanguage();
-                language.getClass();
-                switch (language) {
-                    case "ar":
-                        return R.raw.localization_ar;
-                    case "de":
-                        return R.raw.localization_de;
-                    case "en":
-                        return R.raw.localization_en;
-                    case "es":
-                        return R.raw.localization_es;
-                    case "it":
-                        return R.raw.localization_it;
-                    case "ko":
-                        return R.raw.localization_ko;
-                    case "nl":
-                        return R.raw.localization_nl;
-                    case "ru":
-                        return R.raw.localization_ru;
-                    case "uk":
-                        return R.raw.localization_uk;
-                    default:
-                        return 0;
-                }
+    }
+
+    public final String b(String str) {
+        if (str != null) {
+            return (String) this.f46161a.get(str.hashCode());
         }
+        return null;
+    }
+
+    public a(p pVar) {
+        SparseArray sparseArray = (SparseArray) pVar.f18343b;
+        this.f46161a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

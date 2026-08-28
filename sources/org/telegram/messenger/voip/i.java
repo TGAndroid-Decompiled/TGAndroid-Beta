@@ -1,43 +1,43 @@
 package org.telegram.messenger.voip;
 
+import org.telegram.messenger.voip.VideoCapturerDevice;
 public final class i implements Runnable {
+    public final int f21892a;
 
-    public final int f21916a;
-
-    public i(int i10) {
-        this.f21916a = i10;
+    public i(int i9) {
+        this.f21892a = i9;
     }
 
     @Override
     public final void run() {
-        switch (this.f21916a) {
+        switch (this.f21892a) {
             case 0:
                 VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
-                break;
+                return;
             case 1:
                 VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
-                break;
+                return;
             case 2:
-                VoIPPreNotificationService.lambda$dismiss$5();
-                break;
+                VoIPPreNotificationService.d();
+                return;
             case 3:
-                VoIPService.lambda$startConferenceGroupCall$35();
-                break;
+                VoIPService.E();
+                return;
             case 4:
-                VoIPService.lambda$startOutgoingCall$6();
-                break;
+                VoIPService.R0();
+                return;
             case 5:
-                VoIPService.lambda$startGroupCall$24();
-                break;
+                VoIPService.O();
+                return;
             case 6:
-                VoIPService.lambda$onDestroy$97();
-                break;
+                VoIPService.a1();
+                return;
             case 7:
-                VoIPService.lambda$configureDeviceForCall$109();
-                break;
+                VoIPService.n0();
+                return;
             default:
-                VoIPService.lambda$acceptIncomingCall$100();
-                break;
+                VoIPService.r0();
+                return;
         }
     }
 }

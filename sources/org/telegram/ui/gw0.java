@@ -1,20 +1,15 @@
 package org.telegram.ui;
-
 public final class gw0 {
-
-    public final int f38486a;
-
-    public final int f38487b;
-
-    public final CharSequence f38488c;
+    public final int f38610a;
+    public final int f38611b;
+    public final CharSequence f38612c;
     public final String d;
+    public int f38613e;
 
-    public int f38489e;
-
-    public gw0(int i10, int i11, String str, String str2) {
-        this.f38486a = i10;
-        this.f38487b = i11;
-        this.f38488c = str;
+    public gw0(int i9, int i10, String str, String str2) {
+        this.f38610a = i9;
+        this.f38611b = i10;
+        this.f38612c = str;
         this.d = str2;
     }
 }

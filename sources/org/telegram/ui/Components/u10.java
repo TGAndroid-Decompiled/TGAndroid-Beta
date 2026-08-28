@@ -1,104 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import org.telegram.ui.PhotoViewer;
+public final class u10 {
+    public static final int f32879x;
+    public static final int f32880y;
+    public final int f32881a;
+    public final int f32882b;
+    public final int f32883c;
+    public final int d;
+    public final int f32884e;
+    public final androidx.mediarouter.app.d f32885f;
+    public final t10 f32886g;
+    public s10 h;
+    public boolean f32887i;
+    public boolean f32888j;
+    public boolean f32889k;
+    public boolean f32890l;
+    public boolean f32891m;
+    public MotionEvent f32892n;
+    public MotionEvent f32893o;
+    public MotionEvent f32894p;
+    public boolean f32895q;
+    public float f32896r;
+    public float f32897s;
+    public float f32898t;
+    public float f32899u;
+    public boolean v;
+    public VelocityTracker f32900w;
 
-public final class u10 extends LinearLayout {
+    static {
+        ViewConfiguration.getLongPressTimeout();
+        f32879x = ViewConfiguration.getTapTimeout();
+        f32880y = ViewConfiguration.getDoubleTapTimeout();
+    }
 
-    public final lh.d f32944a;
+    public u10(Context context, PhotoViewer photoViewer) {
+        this(context, (t10) photoViewer);
+    }
 
-    public final lh.d f32945b;
+    public final boolean a(android.view.MotionEvent r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u10.a(android.view.MotionEvent):boolean");
+    }
 
-    public final lh.d f32946c;
-    public final long d;
+    public final void b() {
+        this.v = false;
+    }
 
-    public u10(Context context, int i10) {
-        super(context);
-        TLRPC.TL_emojiList tL_emojiListA = x8.a(i10);
-        setOrientation(1);
-        n9 n9Var = new n9(context);
-        n9Var.setImageDrawable(new oi0(R.raw.utyan_gallery, AndroidUtilities.dp(110.0f), "utyan_gallery", AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(n9Var, h7.z5.q(110, 110, 49));
+    public u10(Context context, t10 t10Var) {
+        int scaledTouchSlop;
+        int i9;
+        int i10;
+        this.f32885f = new androidx.mediarouter.app.d(this, 6);
+        this.f32886g = t10Var;
+        if (t10Var instanceof s10) {
+            this.h = (s10) t10Var;
         }
-        TextView textViewH = org.telegram.messenger.y1.h(context, 1, 20.0f);
-        org.telegram.ui.Cells.pa.s(org.telegram.ui.ActionBar.g6.G6, null, false, textViewH, 1);
-        textViewH.setText(LocaleController.getString(R.string.GalleryAccessAllowAccess));
-        textViewH.setTypeface(AndroidUtilities.bold());
-        addView(textViewH, h7.z5.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.Cells.pa.s(org.telegram.ui.ActionBar.g6.f23037c7, null, false, textView, 1);
-        textView.setText(LocaleController.getString(UserConfig.getInstance(i10).isPremium() ? R.string.GalleryAccessAllowAccessTextPremium : R.string.GalleryAccessAllowAccessTextNonPremium));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, h7.z5.t(-2, -2, 49, 0, 0, 0, 14));
-        lh.d dVar = new lh.d(context, null, true);
-        this.f32944a = dVar;
-        dVar.e();
-        dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
-        addView(dVar, h7.z5.q(-2, 44, 49));
-        lh.d dVar2 = new lh.d(context, null, false);
-        this.f32945b = dVar2;
-        dVar2.e();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new cq(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.GalleryAccessAllowAccessOpenCamera));
-        dVar2.g(spannableStringBuilder, false, true);
-        addView(dVar2, h7.z5.t(-2, 44, 49, 0, 8, 0, 0));
-        lh.d dVar3 = new lh.d(context, null, false);
-        this.f32946c = dVar3;
-        dVar3.e();
-        dVar3.setVisibility(8);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
-        ArrayList<Long> arrayList = tL_emojiListA.document_id;
-        if (arrayList == null || arrayList.isEmpty()) {
-            this.d = 0L;
+        this.v = true;
+        if (context == null) {
+            i9 = ViewConfiguration.getTouchSlop();
+            this.d = ViewConfiguration.getMinimumFlingVelocity();
+            this.f32884e = ViewConfiguration.getMaximumFlingVelocity();
+            i10 = 100;
+            scaledTouchSlop = i9;
         } else {
-            long jLongValue = tL_emojiListA.document_id.get(0).longValue();
-            this.d = jLongValue;
-            spannableStringBuilder2.setSpan(new t5(jLongValue, (Paint.FontMetricsInt) null), 0, 1, 33);
-            spannableStringBuilder2.append((CharSequence) "  ");
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
+            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.f32884e = viewConfiguration.getScaledMaximumFlingVelocity();
+            i9 = scaledTouchSlop2;
+            i10 = scaledDoubleTapSlop;
         }
-        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.UseEmoji));
-        dVar3.g(spannableStringBuilder2, false, true);
-        addView(dVar3, h7.z5.t(-2, 44, 49, 0, 1, 0, 0));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
-        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        lh.d dVar = this.f32944a;
-        dVar.setUseWrapContent(true);
-        lh.d dVar2 = this.f32945b;
-        dVar2.setUseWrapContent(true);
-        lh.d dVar3 = this.f32946c;
-        dVar3.setUseWrapContent(true);
-        dVar.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-        dVar2.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-        dVar3.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-        dVar.setUseWrapContent(false);
-        dVar2.setUseWrapContent(false);
-        dVar3.setUseWrapContent(false);
-        int iMax = Math.max(Math.max(dVar.getMeasuredWidth(), dVar2.getMeasuredWidth()), dVar3.getMeasuredWidth());
-        dVar.getLayoutParams().width = AndroidUtilities.dp(80.0f) + iMax;
-        dVar2.getLayoutParams().width = AndroidUtilities.dp(80.0f) + iMax;
-        dVar3.getLayoutParams().width = AndroidUtilities.dp(80.0f) + iMax;
-        super.onMeasure(i10, i11);
-    }
-
-    public void setUseAnEmojiVisible(boolean z10) {
-        this.f32946c.setVisibility(z10 ? 0 : 8);
+        this.f32881a = i9 * i9;
+        this.f32882b = scaledTouchSlop * scaledTouchSlop;
+        this.f32883c = i10 * i10;
     }
 }

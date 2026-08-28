@@ -1,82 +1,175 @@
 package j4;
 
-import h3.p2;
-import h3.r2;
-import h3.s2;
+import h3.j2;
+public final class e implements a0, z {
+    public final a0 f13436a;
+    public z f13437b;
+    public d[] f13438c = new d[0];
+    public long d;
+    public long f13439e;
+    public long f13440f;
+    public g h;
 
-public final class e extends n {
-
-    public final long f12538c;
-    public final long d;
-
-    public final long f12539e;
-
-    public final boolean f12540f;
-
-    public e(s2 s2Var, long j10, long j11) throws f {
-        super(s2Var);
-        boolean z10 = false;
-        if (s2Var.h() != 1) {
-            throw new f(0);
+    public e(a0 a0Var, boolean z10, long j10, long j11) {
+        long j12;
+        this.f13436a = a0Var;
+        if (z10) {
+            j12 = j10;
+        } else {
+            j12 = -9223372036854775807L;
         }
-        r2 r2VarM = s2Var.m(0, new r2(), 0L);
-        long jMax = Math.max(0L, j10);
-        if (!r2VarM.f8120w && jMax != 0 && !r2VarM.f8117n) {
-            throw new f(1);
+        this.d = j12;
+        this.f13439e = j10;
+        this.f13440f = j11;
+    }
+
+    public final boolean a() {
+        if (this.d != -9223372036854775807L) {
+            return true;
         }
-        long jMax2 = j11 == Long.MIN_VALUE ? r2VarM.f8122y : Math.max(0L, j11);
-        long j12 = r2VarM.f8122y;
-        if (j12 != -9223372036854775807L) {
-            jMax2 = jMax2 > j12 ? j12 : jMax2;
-            if (jMax > jMax2) {
-                throw new f(2);
+        return false;
+    }
+
+    @Override
+    public final boolean b() {
+        return this.f13436a.b();
+    }
+
+    @Override
+    public final void c(d1 d1Var) {
+        a0 a0Var = (a0) d1Var;
+        z zVar = this.f13437b;
+        zVar.getClass();
+        zVar.c(this);
+    }
+
+    @Override
+    public final long d() {
+        long d = this.f13436a.d();
+        if (d != Long.MIN_VALUE) {
+            long j10 = this.f13440f;
+            if (j10 == Long.MIN_VALUE || d < j10) {
+                return d;
             }
         }
-        this.f12538c = jMax;
-        this.d = jMax2;
-        this.f12539e = jMax2 == -9223372036854775807L ? -9223372036854775807L : jMax2 - jMax;
-        if (r2VarM.f8118r && (jMax2 == -9223372036854775807L || (j12 != -9223372036854775807L && jMax2 == j12))) {
+        return Long.MIN_VALUE;
+    }
+
+    @Override
+    public final void f(a0 a0Var) {
+        if (this.h != null) {
+            return;
+        }
+        z zVar = this.f13437b;
+        zVar.getClass();
+        zVar.f(this);
+    }
+
+    @Override
+    public final void g() {
+        g gVar = this.h;
+        if (gVar == null) {
+            this.f13436a.g();
+            return;
+        }
+        throw gVar;
+    }
+
+    @Override
+    public final long i(long r7) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.e.i(long):long");
+    }
+
+    @Override
+    public final void k(long j10) {
+        this.f13436a.k(j10);
+    }
+
+    @Override
+    public final boolean n(long j10) {
+        return this.f13436a.n(j10);
+    }
+
+    @Override
+    public final long o() {
+        boolean z10;
+        if (a()) {
+            long j10 = this.d;
+            this.d = -9223372036854775807L;
+            long o6 = o();
+            if (o6 != -9223372036854775807L) {
+                return o6;
+            }
+            return j10;
+        }
+        long o9 = this.f13436a.o();
+        if (o9 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        boolean z11 = false;
+        if (o9 >= this.f13439e) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        this.f12540f = z10;
+        d5.a.i(z10);
+        long j11 = this.f13440f;
+        d5.a.i((j11 == Long.MIN_VALUE || o9 <= j11) ? true : true);
+        return o9;
     }
 
     @Override
-    public final p2 f(int i10, p2 p2Var, boolean z10) {
-        this.f12623b.f(0, p2Var, z10);
-        long j10 = p2Var.f8070e - this.f12538c;
-        long j11 = this.f12539e;
-        p2Var.h(p2Var.f8067a, p2Var.f8068b, 0, j11 != -9223372036854775807L ? j11 - j10 : -9223372036854775807L, j10, k4.b.f14448f, false);
-        return p2Var;
+    public final j1 q() {
+        return this.f13436a.q();
     }
 
     @Override
-    public final r2 m(int i10, r2 r2Var, long j10) {
-        this.f12623b.m(0, r2Var, 0L);
-        long j11 = r2Var.C;
-        long j12 = this.f12538c;
-        r2Var.C = j11 + j12;
-        r2Var.f8122y = this.f12539e;
-        r2Var.f8118r = this.f12540f;
-        long j13 = r2Var.f8121x;
-        if (j13 != -9223372036854775807L) {
-            long jMax = Math.max(j13, j12);
-            r2Var.f8121x = jMax;
-            long j14 = this.d;
-            if (j14 != -9223372036854775807L) {
-                jMax = Math.min(jMax, j14);
+    public final long u(long j10, j2 j2Var) {
+        long j11;
+        long j12 = this.f13439e;
+        if (j10 == j12) {
+            return j12;
+        }
+        long i9 = d5.f0.i(j2Var.f9524a, 0L, j10 - j12);
+        long j13 = j2Var.f9525b;
+        long j14 = this.f13440f;
+        if (j14 == Long.MIN_VALUE) {
+            j11 = Long.MAX_VALUE;
+        } else {
+            j11 = j14 - j10;
+        }
+        long i10 = d5.f0.i(j13, 0L, j11);
+        if (i9 != j2Var.f9524a || i10 != j2Var.f9525b) {
+            j2Var = new j2(i9, i10);
+        }
+        return this.f13436a.u(j10, j2Var);
+    }
+
+    @Override
+    public final long v() {
+        long v = this.f13436a.v();
+        if (v != Long.MIN_VALUE) {
+            long j10 = this.f13440f;
+            if (j10 == Long.MIN_VALUE || v < j10) {
+                return v;
             }
-            r2Var.f8121x = jMax - j12;
         }
-        long jS = d5.g0.S(j12);
-        long j15 = r2Var.f8115e;
-        if (j15 != -9223372036854775807L) {
-            r2Var.f8115e = j15 + jS;
-        }
-        long j16 = r2Var.f8116f;
-        if (j16 != -9223372036854775807L) {
-            r2Var.f8116f = j16 + jS;
-        }
-        return r2Var;
+        return Long.MIN_VALUE;
+    }
+
+    @Override
+    public final void w(z zVar, long j10) {
+        this.f13437b = zVar;
+        this.f13436a.w(this, j10);
+    }
+
+    @Override
+    public final long x(b5.t[] r15, boolean[] r16, j4.b1[] r17, boolean[] r18, long r19) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.e.x(b5.t[], boolean[], j4.b1[], boolean[], long):long");
+    }
+
+    @Override
+    public final void z(long j10) {
+        this.f13436a.z(j10);
     }
 }

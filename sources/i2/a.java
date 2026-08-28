@@ -1,39 +1,32 @@
 package i2;
 
-import a7.c;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Trace;
-import g7.l8;
+import f7.r8;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-
 public final class a {
     public static volatile a d;
-
-    public static final Object f10512e = new Object();
-
-    public final Context f10515c;
-
-    public final HashSet f10514b = new HashSet();
-
-    public final HashMap f10513a = new HashMap();
+    public static final Object f10871e = new Object();
+    public final Context f10874c;
+    public final HashSet f10873b = new HashSet();
+    public final HashMap f10872a = new HashMap();
 
     public a(Context context) {
-        this.f10515c = context.getApplicationContext();
+        this.f10874c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
         if (d == null) {
-            synchronized (f10512e) {
+            synchronized (f10871e) {
                 try {
                     if (d == null) {
                         d = new a(context);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } finally {
                 }
             }
         }
@@ -42,15 +35,15 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f10515c.getString(2131701263);
+        String string = this.f10874c.getString(2131701263);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
-                    boolean zHasNext = it.hasNext();
-                    hashSet = this.f10514b;
-                    if (!zHasNext) {
+                    boolean hasNext = it.hasNext();
+                    hashSet = this.f10873b;
+                    if (!hasNext) {
                         break;
                     }
                     String next = it.next();
@@ -65,48 +58,45 @@ public final class a {
                 while (it2.hasNext()) {
                     b((Class) it2.next(), hashSet2);
                 }
-            } catch (ClassNotFoundException e9) {
-                throw new c(e9);
+            } catch (ClassNotFoundException e10) {
+                throw new RuntimeException(e10);
             }
         }
     }
 
     public final Object b(Class cls, HashSet hashSet) {
-        Object objB;
-        HashMap map = this.f10513a;
-        if (l8.b()) {
+        Object obj;
+        HashMap hashMap = this.f10872a;
+        if (r8.b()) {
             try {
-                l8.a(cls.getSimpleName());
+                r8.a(cls.getSimpleName());
             } catch (Throwable th) {
                 Trace.endSection();
                 throw th;
             }
         }
-        if (hashSet.contains(cls)) {
-            throw new IllegalStateException("Cannot initialize " + cls.getName() + ". Cycle detected.");
-        }
-        if (map.containsKey(cls)) {
-            objB = map.get(cls);
-        } else {
-            hashSet.add(cls);
-            try {
+        if (!hashSet.contains(cls)) {
+            if (!hashMap.containsKey(cls)) {
+                hashSet.add(cls);
                 b bVar = (b) cls.getDeclaredConstructor(null).newInstance(null);
-                List<Class> listA = bVar.a();
-                if (!listA.isEmpty()) {
-                    for (Class cls2 : listA) {
-                        if (!map.containsKey(cls2)) {
+                List<Class> a2 = bVar.a();
+                if (!a2.isEmpty()) {
+                    for (Class cls2 : a2) {
+                        if (!hashMap.containsKey(cls2)) {
                             b(cls2, hashSet);
                         }
                     }
                 }
-                objB = bVar.b(this.f10515c);
+                obj = bVar.b(this.f10874c);
                 hashSet.remove(cls);
-                map.put(cls, objB);
-            } catch (Throwable th2) {
-                throw new c(th2);
+                hashMap.put(cls, obj);
+            } else {
+                obj = hashMap.get(cls);
             }
+            Trace.endSection();
+            return obj;
         }
-        Trace.endSection();
-        return objB;
+        String name = cls.getName();
+        throw new IllegalStateException("Cannot initialize " + name + ". Cycle detected.");
     }
 }

@@ -1,31 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import org.telegram.messenger.Utilities;
+public final class im implements Utilities.Callback {
+    public final int f29461a;
+    public final jn f29462b;
+    public final int f29463c;
 
-public final class im implements ValueAnimator.AnimatorUpdateListener {
-
-    public final int f29406a;
-
-    public final in f29407b;
-
-    public im(in inVar, int i10) {
-        this.f29406a = i10;
-        this.f29407b = inVar;
+    public im(jn jnVar, int i9, int i10) {
+        this.f29461a = i10;
+        this.f29462b = jnVar;
+        this.f29463c = i9;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29406a) {
+    public final void run(Object obj) {
+        switch (this.f29461a) {
             case 0:
-                in inVar = this.f29407b;
-                inVar.getClass();
-                inVar.A.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
+                this.f29462b.d0(this.f29463c, (yg.e) obj);
+                return;
             default:
-                in inVar2 = this.f29407b;
-                inVar2.getClass();
-                inVar2.A.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
+                jn jnVar = this.f29462b;
+                jnVar.getClass();
+                jnVar.d0(this.f29463c, new zg.e((String) obj));
+                return;
         }
     }
 }

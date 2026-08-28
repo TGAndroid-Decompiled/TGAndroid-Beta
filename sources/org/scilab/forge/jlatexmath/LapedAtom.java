@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class LapedAtom extends Atom {
     private Atom at;
     private char type;
@@ -11,20 +10,20 @@ public class LapedAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        Box boxCreateBox = this.at.createBox(teXEnvironment);
+        Box createBox = this.at.createBox(teXEnvironment);
         VerticalBox verticalBox = new VerticalBox();
-        verticalBox.add(boxCreateBox);
+        verticalBox.add(createBox);
         verticalBox.setWidth(0.0f);
         char c10 = this.type;
-        if (c10 == 'l') {
-            boxCreateBox.setShift(-boxCreateBox.getWidth());
+        if (c10 != 'l') {
+            if (c10 != 'r') {
+                createBox.setShift((-createBox.getWidth()) / 2.0f);
+                return verticalBox;
+            }
+            createBox.setShift(0.0f);
             return verticalBox;
         }
-        if (c10 != 'r') {
-            boxCreateBox.setShift((-boxCreateBox.getWidth()) / 2.0f);
-            return verticalBox;
-        }
-        boxCreateBox.setShift(0.0f);
+        createBox.setShift(-createBox.getWidth());
         return verticalBox;
     }
 }

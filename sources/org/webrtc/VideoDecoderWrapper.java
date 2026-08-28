@@ -1,6 +1,7 @@
 package org.webrtc;
 
-class VideoDecoderWrapper {
+import org.webrtc.VideoDecoder;
+public class VideoDecoderWrapper {
     public static VideoDecoder.Callback createDecoderCallback(long j10) {
         return new w(j10);
     }

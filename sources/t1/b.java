@@ -1,14 +1,12 @@
 package t1;
 
 import java.util.LinkedHashMap;
-
 public final class b {
-
-    public static final b f48005a;
+    public static final b f47594a;
 
     static {
-        b bVar = new b();
+        ?? obj = new Object();
         new LinkedHashMap();
-        f48005a = bVar;
+        f47594a = obj;
     }
 }

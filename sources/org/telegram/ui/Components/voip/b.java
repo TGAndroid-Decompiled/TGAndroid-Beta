@@ -1,14 +1,11 @@
 package org.telegram.ui.Components.voip;
-
 public final class b extends c {
-
-    public final int[] f33490f;
-
-    public final e f33491g;
+    public final int[] f33440f;
+    public final e f33441g;
 
     public b(e eVar, e eVar2) {
         super(eVar2);
-        this.f33491g = eVar;
-        this.f33490f = new int[]{0, 0};
+        this.f33441g = eVar;
+        this.f33440f = new int[]{0, 0};
     }
 }

@@ -1,30 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.TextView;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.IMapsProvider;
+public final class mc0 extends FrameLayout {
+    public final HashMap f40390a;
+    public final pc0 f40391b;
 
-public final class mc0 extends pf.i0 {
-    public final tc0 J;
-
-    public mc0(tc0 tc0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
-        super(context, c6Var, false, z10);
-        this.J = tc0Var;
+    public mc0(pc0 pc0Var, Context context) {
+        super(context);
+        this.f40391b = pc0Var;
+        this.f40390a = new HashMap();
     }
 
-    @Override
-    public final void l() {
-        tc0 tc0Var = this.J;
-        org.telegram.ui.ActionBar.v0 v0Var = tc0Var.f42884w;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(tc0Var.S.F);
+    public final void a() {
+        IMapsProvider.IMap iMap = this.f40391b.E;
+        if (iMap != null) {
+            IMapsProvider.IProjection projection = iMap.getProjection();
+            for (Map.Entry entry : this.f40390a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
+                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+            }
         }
-        TextView textView = tc0Var.f42877r;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, tc0Var.S.f45747x)));
-        }
-        super.l();
     }
 }

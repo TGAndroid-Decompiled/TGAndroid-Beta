@@ -13,52 +13,49 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.util.Xml;
-import g7.k8;
 import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 import org.xmlpull.v1.XmlPullParserException;
-
 public final class n2 {
-
-    public static n2 f17385i;
-
-    public WeakHashMap f17387a;
-
-    public a0.k f17388b;
-
-    public a0.l f17389c;
+    public static n2 f17010i;
+    public WeakHashMap f17012a;
+    public a0.k f17013b;
+    public a0.l f17014c;
     public final WeakHashMap d = new WeakHashMap(0);
-
-    public TypedValue f17390e;
-
-    public boolean f17391f;
-
-    public com.google.firebase.messaging.m f17392g;
+    public TypedValue f17015e;
+    public boolean f17016f;
+    public com.google.firebase.messaging.m f17017g;
     public static final PorterDuff.Mode h = PorterDuff.Mode.SRC_IN;
-
-    public static final l2 f17386j = new l2(6);
+    public static final l2 f17011j = new a0.j(6);
 
     public static synchronized n2 d() {
-        try {
-            if (f17385i == null) {
-                n2 n2Var = new n2();
-                f17385i = n2Var;
-                j(n2Var);
+        n2 n2Var;
+        synchronized (n2.class) {
+            try {
+                if (f17010i == null) {
+                    n2 n2Var2 = new n2();
+                    f17010i = n2Var2;
+                    j(n2Var2);
+                }
+                n2Var = f17010i;
+            } catch (Throwable th) {
+                throw th;
             }
-        } catch (Throwable th) {
-            throw th;
         }
-        return f17385i;
+        return n2Var;
     }
 
-    public static synchronized PorterDuffColorFilter h(int i10, PorterDuff.Mode mode) {
+    public static synchronized PorterDuffColorFilter h(int i9, PorterDuff.Mode mode) {
         PorterDuffColorFilter porterDuffColorFilter;
-        l2 l2Var = f17386j;
-        l2Var.getClass();
-        int i11 = (31 + i10) * 31;
-        porterDuffColorFilter = (PorterDuffColorFilter) l2Var.a(Integer.valueOf(mode.hashCode() + i11));
-        if (porterDuffColorFilter == null) {
-            porterDuffColorFilter = new PorterDuffColorFilter(i10, mode);
+        synchronized (n2.class) {
+            l2 l2Var = f17011j;
+            l2Var.getClass();
+            int i10 = (31 + i9) * 31;
+            porterDuffColorFilter = (PorterDuffColorFilter) l2Var.a(Integer.valueOf(mode.hashCode() + i10));
+            if (porterDuffColorFilter == null) {
+                porterDuffColorFilter = new PorterDuffColorFilter(i9, mode);
+                PorterDuffColorFilter porterDuffColorFilter2 = (PorterDuffColorFilter) l2Var.b(Integer.valueOf(mode.hashCode() + i10), porterDuffColorFilter);
+            }
         }
         return porterDuffColorFilter;
     }
@@ -73,10 +70,10 @@ public final class n2 {
     }
 
     public final void a(String str, m2 m2Var) {
-        if (this.f17388b == null) {
-            this.f17388b = new a0.k(0);
+        if (this.f17013b == null) {
+            this.f17013b = new a0.k(0);
         }
-        this.f17388b.put(str, m2Var);
+        this.f17013b.put(str, m2Var);
     }
 
     public final synchronized void b(Context context, long j10, Drawable drawable) {
@@ -95,34 +92,34 @@ public final class n2 {
         }
     }
 
-    public final Drawable c(Context context, int i10) {
-        if (this.f17390e == null) {
-            this.f17390e = new TypedValue();
+    public final Drawable c(Context context, int i9) {
+        if (this.f17015e == null) {
+            this.f17015e = new TypedValue();
         }
-        TypedValue typedValue = this.f17390e;
-        context.getResources().getValue(i10, typedValue, true);
-        long j10 = (((long) typedValue.assetCookie) << 32) | ((long) typedValue.data);
-        Drawable drawableE = e(context, j10);
-        if (drawableE != null) {
-            return drawableE;
+        TypedValue typedValue = this.f17015e;
+        context.getResources().getValue(i9, typedValue, true);
+        long j10 = (typedValue.assetCookie << 32) | typedValue.data;
+        Drawable e10 = e(context, j10);
+        if (e10 != null) {
+            return e10;
         }
-        LayerDrawable layerDrawableP = null;
-        if (this.f17392g != null) {
-            if (i10 == 2131230760) {
-                layerDrawableP = new LayerDrawable(new Drawable[]{g(context, 2131230759), g(context, 2131230761)});
-            } else if (i10 == 2131230795) {
-                layerDrawableP = com.google.firebase.messaging.m.p(this, context, 2131165243);
-            } else if (i10 == 2131230794) {
-                layerDrawableP = com.google.firebase.messaging.m.p(this, context, 2131165244);
-            } else if (i10 == 2131230796) {
-                layerDrawableP = com.google.firebase.messaging.m.p(this, context, 2131165245);
+        LayerDrawable layerDrawable = null;
+        if (this.f17017g != null) {
+            if (i9 == 2131230760) {
+                layerDrawable = new LayerDrawable(new Drawable[]{g(context, 2131230759), g(context, 2131230761)});
+            } else if (i9 == 2131230795) {
+                layerDrawable = com.google.firebase.messaging.m.p(this, context, 2131165243);
+            } else if (i9 == 2131230794) {
+                layerDrawable = com.google.firebase.messaging.m.p(this, context, 2131165244);
+            } else if (i9 == 2131230796) {
+                layerDrawable = com.google.firebase.messaging.m.p(this, context, 2131165245);
             }
         }
-        if (layerDrawableP != null) {
-            layerDrawableP.setChangingConfigurations(typedValue.changingConfigurations);
-            b(context, j10, layerDrawableP);
+        if (layerDrawable != null) {
+            layerDrawable.setChangingConfigurations(typedValue.changingConfigurations);
+            b(context, j10, layerDrawable);
         }
-        return layerDrawableP;
+        return layerDrawable;
     }
 
     public final synchronized Drawable e(Context context, long j10) {
@@ -141,219 +138,141 @@ public final class n2 {
         return null;
     }
 
-    public final synchronized Drawable f(int i10, Context context, boolean z10) {
-        Drawable drawableK;
+    public final synchronized Drawable f(int i9, Context context, boolean z10) {
+        Drawable k10;
         try {
-            if (!this.f17391f) {
-                this.f17391f = true;
-                Drawable drawableG = g(context, 2131230822);
-                if (drawableG == null || (!(drawableG instanceof k2.p) && !"android.graphics.drawable.VectorDrawable".equals(drawableG.getClass().getName()))) {
-                    this.f17391f = false;
+            if (!this.f17016f) {
+                this.f17016f = true;
+                Drawable g10 = g(context, 2131230822);
+                if (g10 == null || (!(g10 instanceof k2.p) && !"android.graphics.drawable.VectorDrawable".equals(g10.getClass().getName()))) {
+                    this.f17016f = false;
                     throw new IllegalStateException("This app has been built with an incorrect configuration. Please configure your build for VectorDrawableCompat.");
                 }
             }
-            drawableK = k(context, i10);
-            if (drawableK == null) {
-                drawableK = c(context, i10);
+            k10 = k(context, i9);
+            if (k10 == null) {
+                k10 = c(context, i9);
             }
-            if (drawableK == null) {
-                drawableK = context.getDrawable(i10);
+            if (k10 == null) {
+                k10 = context.getDrawable(i9);
             }
-            if (drawableK != null) {
-                drawableK = m(context, i10, z10, drawableK);
+            if (k10 != null) {
+                k10 = m(context, i9, z10, k10);
             }
-            if (drawableK != null) {
-                m1.a(drawableK);
+            if (k10 != null) {
+                m1.a(k10);
             }
         } catch (Throwable th) {
             throw th;
         }
-        return drawableK;
+        return k10;
     }
 
-    public final synchronized Drawable g(Context context, int i10) {
-        return f(i10, context, false);
+    public final synchronized Drawable g(Context context, int i9) {
+        return f(i9, context, false);
     }
 
-    public final synchronized ColorStateList i(Context context, int i10) {
+    public final synchronized ColorStateList i(Context context, int i9) {
         ColorStateList colorStateList;
         a0.l lVar;
-        WeakHashMap weakHashMap = this.f17387a;
-        ColorStateList colorStateListR = null;
-        colorStateList = (weakHashMap == null || (lVar = (a0.l) weakHashMap.get(context)) == null) ? null : (ColorStateList) lVar.c(i10);
+        WeakHashMap weakHashMap = this.f17012a;
+        ColorStateList colorStateList2 = null;
+        if (weakHashMap != null && (lVar = (a0.l) weakHashMap.get(context)) != null) {
+            colorStateList = (ColorStateList) lVar.c(i9);
+        } else {
+            colorStateList = null;
+        }
         if (colorStateList == null) {
-            com.google.firebase.messaging.m mVar = this.f17392g;
+            com.google.firebase.messaging.m mVar = this.f17017g;
             if (mVar != null) {
-                colorStateListR = mVar.r(context, i10);
+                colorStateList2 = mVar.r(context, i9);
             }
-            if (colorStateListR != null) {
-                if (this.f17387a == null) {
-                    this.f17387a = new WeakHashMap();
+            if (colorStateList2 != null) {
+                if (this.f17012a == null) {
+                    this.f17012a = new WeakHashMap();
                 }
-                a0.l lVar2 = (a0.l) this.f17387a.get(context);
+                a0.l lVar2 = (a0.l) this.f17012a.get(context);
                 if (lVar2 == null) {
                     lVar2 = new a0.l();
-                    this.f17387a.put(context, lVar2);
+                    this.f17012a.put(context, lVar2);
                 }
-                lVar2.a(i10, colorStateListR);
+                lVar2.a(i9, colorStateList2);
             }
-            colorStateList = colorStateListR;
+            colorStateList = colorStateList2;
         }
         return colorStateList;
     }
 
-    public final Drawable k(Context context, int i10) {
+    public final Drawable k(Context context, int i9) {
         int next;
-        a0.k kVar = this.f17388b;
-        if (kVar == null || kVar.isEmpty()) {
-            return null;
-        }
-        a0.l lVar = this.f17389c;
-        if (lVar != null) {
-            String str = (String) lVar.c(i10);
-            if ("appcompat_skip_skip".equals(str)) {
-                return null;
-            }
-            if (str != null && this.f17388b.get(str) == null) {
-                return null;
-            }
-        } else {
-            this.f17389c = new a0.l();
-        }
-        if (this.f17390e == null) {
-            this.f17390e = new TypedValue();
-        }
-        TypedValue typedValue = this.f17390e;
-        Resources resources = context.getResources();
-        resources.getValue(i10, typedValue, true);
-        long j10 = (((long) typedValue.assetCookie) << 32) | ((long) typedValue.data);
-        Drawable drawableE = e(context, j10);
-        if (drawableE != null) {
-            return drawableE;
-        }
-        CharSequence charSequence = typedValue.string;
-        if (charSequence != null && charSequence.toString().endsWith(".xml")) {
-            try {
-                XmlResourceParser xml = resources.getXml(i10);
-                AttributeSet attributeSetAsAttributeSet = Xml.asAttributeSet(xml);
-                do {
-                    next = xml.next();
-                    if (next == 2) {
-                        break;
+        a0.k kVar = this.f17013b;
+        if (kVar != null && !kVar.isEmpty()) {
+            a0.l lVar = this.f17014c;
+            if (lVar != null) {
+                String str = (String) lVar.c(i9);
+                if (!"appcompat_skip_skip".equals(str)) {
+                    if (str != null && this.f17013b.get(str) == null) {
+                        return null;
                     }
-                } while (next != 1);
-                if (next != 2) {
-                    throw new XmlPullParserException("No start tag found");
+                } else {
+                    return null;
                 }
-                String name = xml.getName();
-                this.f17389c.a(i10, name);
-                m2 m2Var = (m2) this.f17388b.get(name);
-                if (m2Var != null) {
-                    drawableE = m2Var.a(context, xml, attributeSetAsAttributeSet, context.getTheme());
-                }
-                if (drawableE != null) {
-                    drawableE.setChangingConfigurations(typedValue.changingConfigurations);
-                    b(context, j10, drawableE);
-                }
-            } catch (Exception e9) {
-                Log.e("ResourceManagerInternal", "Exception while inflating drawable", e9);
+            } else {
+                this.f17014c = new a0.l();
             }
+            if (this.f17015e == null) {
+                this.f17015e = new TypedValue();
+            }
+            TypedValue typedValue = this.f17015e;
+            Resources resources = context.getResources();
+            resources.getValue(i9, typedValue, true);
+            long j10 = (typedValue.assetCookie << 32) | typedValue.data;
+            Drawable e10 = e(context, j10);
+            if (e10 != null) {
+                return e10;
+            }
+            CharSequence charSequence = typedValue.string;
+            if (charSequence != null && charSequence.toString().endsWith(".xml")) {
+                try {
+                    XmlResourceParser xml = resources.getXml(i9);
+                    AttributeSet asAttributeSet = Xml.asAttributeSet(xml);
+                    while (true) {
+                        next = xml.next();
+                        if (next == 2 || next == 1) {
+                            break;
+                        }
+                    }
+                    if (next == 2) {
+                        String name = xml.getName();
+                        this.f17014c.a(i9, name);
+                        m2 m2Var = (m2) this.f17013b.get(name);
+                        if (m2Var != null) {
+                            e10 = m2Var.a(context, xml, asAttributeSet, context.getTheme());
+                        }
+                        if (e10 != null) {
+                            e10.setChangingConfigurations(typedValue.changingConfigurations);
+                            b(context, j10, e10);
+                        }
+                    } else {
+                        throw new XmlPullParserException("No start tag found");
+                    }
+                } catch (Exception e11) {
+                    Log.e("ResourceManagerInternal", "Exception while inflating drawable", e11);
+                }
+            }
+            if (e10 == null) {
+                this.f17014c.a(i9, "appcompat_skip_skip");
+            }
+            return e10;
         }
-        if (drawableE == null) {
-            this.f17389c.a(i10, "appcompat_skip_skip");
-        }
-        return drawableE;
+        return null;
     }
 
     public final synchronized void l(com.google.firebase.messaging.m mVar) {
-        this.f17392g = mVar;
+        this.f17017g = mVar;
     }
 
-    public final Drawable m(Context context, int i10, boolean z10, Drawable drawable) {
-        int iRound;
-        boolean z11;
-        PorterDuffColorFilter porterDuffColorFilterH;
-        ColorStateList colorStateListI = i(context, i10);
-        PorterDuff.Mode mode = null;
-        if (colorStateListI != null) {
-            int[] iArr = m1.f17377a;
-            Drawable drawableD = k8.d(drawable.mutate());
-            drawableD.setTintList(colorStateListI);
-            if (this.f17392g != null && i10 == 2131230809) {
-                mode = PorterDuff.Mode.MULTIPLY;
-            }
-            if (mode != null) {
-                drawableD.setTintMode(mode);
-            }
-            return drawableD;
-        }
-        int i11 = 2130968729;
-        if (this.f17392g != null) {
-            if (i10 == 2131230804) {
-                LayerDrawable layerDrawable = (LayerDrawable) drawable;
-                Drawable drawableFindDrawableByLayerId = layerDrawable.findDrawableByLayerId(16908288);
-                int iC = d3.c(context, 2130968729);
-                PorterDuff.Mode mode2 = r.f17437b;
-                com.google.firebase.messaging.m.z(drawableFindDrawableByLayerId, iC, mode2);
-                com.google.firebase.messaging.m.z(layerDrawable.findDrawableByLayerId(16908303), d3.c(context, 2130968729), mode2);
-                com.google.firebase.messaging.m.z(layerDrawable.findDrawableByLayerId(16908301), d3.c(context, 2130968727), mode2);
-                return drawable;
-            }
-            if (i10 == 2131230795 || i10 == 2131230794 || i10 == 2131230796) {
-                LayerDrawable layerDrawable2 = (LayerDrawable) drawable;
-                Drawable drawableFindDrawableByLayerId2 = layerDrawable2.findDrawableByLayerId(16908288);
-                int iB = d3.b(context, 2130968729);
-                PorterDuff.Mode mode3 = r.f17437b;
-                com.google.firebase.messaging.m.z(drawableFindDrawableByLayerId2, iB, mode3);
-                com.google.firebase.messaging.m.z(layerDrawable2.findDrawableByLayerId(16908303), d3.c(context, 2130968727), mode3);
-                com.google.firebase.messaging.m.z(layerDrawable2.findDrawableByLayerId(16908301), d3.c(context, 2130968727), mode3);
-                return drawable;
-            }
-        }
-        com.google.firebase.messaging.m mVar = this.f17392g;
-        boolean z12 = false;
-        if (mVar != null) {
-            PorterDuff.Mode mode4 = r.f17437b;
-            if (com.google.firebase.messaging.m.f(i10, (int[]) mVar.f4602a)) {
-                iRound = -1;
-                z11 = true;
-            } else if (com.google.firebase.messaging.m.f(i10, (int[]) mVar.f4604c)) {
-                iRound = -1;
-                z11 = true;
-                i11 = 2130968727;
-            } else {
-                i11 = 16842801;
-                if (com.google.firebase.messaging.m.f(i10, (int[]) mVar.d)) {
-                    mode4 = PorterDuff.Mode.MULTIPLY;
-                } else if (i10 == 2131230781) {
-                    iRound = Math.round(40.8f);
-                    i11 = 16842800;
-                    z11 = true;
-                } else if (i10 != 2131230763) {
-                    iRound = -1;
-                    z11 = false;
-                    i11 = 0;
-                }
-                iRound = -1;
-                z11 = true;
-            }
-            if (z11) {
-                int[] iArr2 = m1.f17377a;
-                Drawable drawableMutate = drawable.mutate();
-                int iC2 = d3.c(context, i11);
-                synchronized (r.class) {
-                    porterDuffColorFilterH = h(iC2, mode4);
-                }
-                drawableMutate.setColorFilter(porterDuffColorFilterH);
-                if (iRound != -1) {
-                    drawableMutate.setAlpha(iRound);
-                }
-                z12 = true;
-            }
-        }
-        if (z12 || !z10) {
-            return drawable;
-        }
-        return null;
+    public final android.graphics.drawable.Drawable m(android.content.Context r10, int r11, boolean r12, android.graphics.drawable.Drawable r13) {
+        throw new UnsupportedOperationException("Method not decompiled: m.n2.m(android.content.Context, int, boolean, android.graphics.drawable.Drawable):android.graphics.drawable.Drawable");
     }
 }

@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public abstract class CharSymbol extends Atom {
     private boolean textSymbol = false;
 

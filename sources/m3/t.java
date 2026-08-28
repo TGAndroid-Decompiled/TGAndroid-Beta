@@ -1,5 +1,4 @@
 package m3;
-
 public interface t {
     boolean e();
 

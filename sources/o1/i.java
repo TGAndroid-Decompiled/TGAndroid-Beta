@@ -1,5 +1,4 @@
 package o1;
-
 public abstract class i {
     public abstract float a(Object obj);
 

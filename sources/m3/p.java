@@ -1,13 +1,10 @@
 package m3;
-
 public final class p {
-
-    public final long[] f17624a;
-
-    public final long[] f17625b;
+    public final long[] f17248a;
+    public final long[] f17249b;
 
     public p(long[] jArr, long[] jArr2) {
-        this.f17624a = jArr;
-        this.f17625b = jArr2;
+        this.f17248a = jArr;
+        this.f17249b = jArr2;
     }
 }

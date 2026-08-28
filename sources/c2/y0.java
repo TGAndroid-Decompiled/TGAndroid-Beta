@@ -1,207 +1,120 @@
 package c2;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Build;
-import android.os.IBinder;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
+import android.os.Bundle;
+public final class y0 extends r implements t0 {
+    public final String f2263a;
+    public final String f2264b;
+    public boolean f2265c;
+    public int d = -1;
+    public int f2266e;
+    public s0 f2267f;
+    public int f2268g;
+    public final z0 h;
 
-public final class y0 extends s implements ServiceConnection {
-    public static final int C = 0;
-    public boolean A;
-    public a1.c B;
-
-    public final ComponentName f2385r;
-
-    public final t0 f2386s;
-    public final ArrayList v;
-
-    public boolean f2387w;
-
-    public boolean f2388x;
-
-    public r0 f2389y;
-
-    static {
-        Log.isLoggable("MediaRouteProviderProxy", 3);
-    }
-
-    public y0(Context context, ComponentName componentName) {
-        super(context, new k5.i(componentName, 5));
-        this.v = new ArrayList();
-        this.f2385r = componentName;
-        this.f2386s = new t0();
+    public y0(z0 z0Var, String str, String str2) {
+        this.h = z0Var;
+        this.f2263a = str;
+        this.f2264b = str2;
     }
 
     @Override
-    public final q c(String str) {
-        if (str == null) {
-            throw new IllegalArgumentException("initialMemberRouteId cannot be null.");
-        }
-        t tVar = (t) this.f2344n;
-        if (tVar == null) {
-            return null;
-        }
-        List list = (List) tVar.f2347c;
-        int size = list.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (((n) list.get(i10)).d().equals(str)) {
-                w0 w0Var = new w0(this, str);
-                this.v.add(w0Var);
-                if (this.A) {
-                    w0Var.a(this.f2389y);
-                }
-                r();
-                return w0Var;
+    public final void a(s0 s0Var) {
+        this.f2267f = s0Var;
+        int i9 = s0Var.f2228e;
+        s0Var.f2228e = i9 + 1;
+        Bundle bundle = new Bundle();
+        bundle.putString("routeId", this.f2263a);
+        bundle.putString("routeGroupId", this.f2264b);
+        int i10 = s0Var.d;
+        s0Var.d = i10 + 1;
+        s0Var.b(3, i10, i9, null, bundle);
+        this.f2268g = i9;
+        if (this.f2265c) {
+            s0Var.a(i9);
+            int i11 = this.d;
+            if (i11 >= 0) {
+                s0Var.c(this.f2268g, i11);
+                this.d = -1;
+            }
+            int i12 = this.f2266e;
+            if (i12 != 0) {
+                s0Var.d(this.f2268g, i12);
+                this.f2266e = 0;
             }
         }
-        return null;
     }
 
     @Override
-    public final r d(String str) {
-        if (str != null) {
-            return o(str, null);
-        }
-        throw new IllegalArgumentException("routeId cannot be null");
+    public final int b() {
+        return this.f2268g;
     }
 
     @Override
-    public final r e(String str, String str2) {
-        if (str == null) {
-            throw new IllegalArgumentException("routeId cannot be null");
+    public final void c() {
+        s0 s0Var = this.f2267f;
+        if (s0Var != null) {
+            int i9 = this.f2268g;
+            int i10 = s0Var.d;
+            s0Var.d = i10 + 1;
+            s0Var.b(4, i10, i9, null, null);
+            this.f2267f = null;
+            this.f2268g = 0;
         }
-        if (str2 != null) {
-            return o(str, str2);
-        }
-        throw new IllegalArgumentException("routeGroupId cannot be null");
     }
 
     @Override
-    public final void f(o oVar) {
-        if (this.A) {
-            r0 r0Var = this.f2389y;
-            int i10 = r0Var.d;
-            r0Var.d = i10 + 1;
-            r0Var.b(10, i10, 0, oVar != null ? oVar.f2315a : null, null);
-        }
-        r();
+    public final void d() {
+        z0 z0Var = this.h;
+        z0Var.v.remove(this);
+        c();
+        z0Var.r();
     }
 
-    public final void n() {
-        if (this.f2388x) {
+    @Override
+    public final void e() {
+        this.f2265c = true;
+        s0 s0Var = this.f2267f;
+        if (s0Var != null) {
+            s0Var.a(this.f2268g);
+        }
+    }
+
+    @Override
+    public final void f(int i9) {
+        s0 s0Var = this.f2267f;
+        if (s0Var != null) {
+            s0Var.c(this.f2268g, i9);
             return;
         }
-        Intent intent = new Intent("android.media.MediaRouteProviderService");
-        intent.setComponent(this.f2385r);
-        try {
-            this.f2388x = this.f2339a.bindService(intent, this, Build.VERSION.SDK_INT >= 29 ? 4097 : 1);
-        } catch (SecurityException unused) {
-        }
-    }
-
-    public final x0 o(String str, String str2) {
-        t tVar = (t) this.f2344n;
-        if (tVar == null) {
-            return null;
-        }
-        List list = (List) tVar.f2347c;
-        int size = list.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (((n) list.get(i10)).d().equals(str)) {
-                x0 x0Var = new x0(this, str, str2);
-                this.v.add(x0Var);
-                if (this.A) {
-                    x0Var.a(this.f2389y);
-                }
-                r();
-                return x0Var;
-            }
-        }
-        return null;
+        this.d = i9;
+        this.f2266e = 0;
     }
 
     @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        if (this.f2388x) {
-            p();
-            Messenger messenger = iBinder != null ? new Messenger(iBinder) : null;
-            if (messenger != null) {
-                try {
-                    if (messenger.getBinder() != null) {
-                        r0 r0Var = new r0(this, messenger);
-                        int i10 = r0Var.d;
-                        r0Var.d = i10 + 1;
-                        r0Var.f2337g = i10;
-                        if (r0Var.b(1, i10, 4, null, null)) {
-                            try {
-                                r0Var.f2332a.getBinder().linkToDeath(r0Var, 0);
-                                this.f2389y = r0Var;
-                                return;
-                            } catch (RemoteException unused) {
-                                r0Var.binderDied();
-                                return;
-                            }
-                        }
-                        return;
-                    }
-                } catch (NullPointerException unused2) {
-                }
-            }
-            Log.e("MediaRouteProviderProxy", this + ": Service returned invalid messenger binder");
+    public final void g() {
+        h(0);
+    }
+
+    @Override
+    public final void h(int i9) {
+        this.f2265c = false;
+        s0 s0Var = this.f2267f;
+        if (s0Var != null) {
+            int i10 = this.f2268g;
+            Bundle h = aa.d.h(i9, "unselectReason");
+            int i11 = s0Var.d;
+            s0Var.d = i11 + 1;
+            s0Var.b(6, i11, i10, null, h);
         }
     }
 
     @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        p();
-    }
-
-    public final void p() {
-        if (this.f2389y != null) {
-            g(null);
-            this.A = false;
-            ArrayList arrayList = this.v;
-            int size = arrayList.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                ((s0) arrayList.get(i10)).c();
-            }
-            r0 r0Var = this.f2389y;
-            r0Var.b(2, 0, 0, null, null);
-            r0Var.f2333b.f2352b.clear();
-            r0Var.f2332a.getBinder().unlinkToDeath(r0Var, 0);
-            r0Var.f2338i.f2386s.post(new q0(r0Var, 0));
-            this.f2389y = null;
-        }
-    }
-
-    public final void q() {
-        if (this.f2388x) {
-            this.f2388x = false;
-            p();
-            try {
-                this.f2339a.unbindService(this);
-            } catch (IllegalArgumentException e9) {
-                Log.e("MediaRouteProviderProxy", this + ": unbindService failed", e9);
-            }
-        }
-    }
-
-    public final void r() {
-        if (!this.f2387w || (((o) this.h) == null && this.v.isEmpty())) {
-            q();
+    public final void i(int i9) {
+        s0 s0Var = this.f2267f;
+        if (s0Var != null) {
+            s0Var.d(this.f2268g, i9);
         } else {
-            n();
+            this.f2266e += i9;
         }
-    }
-
-    public final String toString() {
-        return "Service connection " + this.f2385r.flattenToShortString();
     }
 }

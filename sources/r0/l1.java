@@ -1,35 +1,50 @@
 package r0;
 
 import android.view.WindowInsets;
-
 public abstract class l1 {
-    public static int a(int i10) {
-        int iStatusBars;
-        int i11 = 0;
-        for (int i12 = 1; i12 <= 512; i12 <<= 1) {
-            if ((i10 & i12) != 0) {
-                if (i12 == 1) {
-                    iStatusBars = WindowInsets.Type.statusBars();
-                } else if (i12 == 2) {
-                    iStatusBars = WindowInsets.Type.navigationBars();
-                } else if (i12 == 4) {
-                    iStatusBars = WindowInsets.Type.captionBar();
-                } else if (i12 == 8) {
-                    iStatusBars = WindowInsets.Type.ime();
-                } else if (i12 == 16) {
-                    iStatusBars = WindowInsets.Type.systemGestures();
-                } else if (i12 == 32) {
-                    iStatusBars = WindowInsets.Type.mandatorySystemGestures();
-                } else if (i12 == 64) {
-                    iStatusBars = WindowInsets.Type.tappableElement();
-                } else if (i12 == 128) {
-                    iStatusBars = WindowInsets.Type.displayCutout();
-                } else if (i12 == 512) {
-                    iStatusBars = WindowInsets.Type.systemOverlays();
+    public static int a(int i9) {
+        int statusBars;
+        int i10 = 0;
+        for (int i11 = 1; i11 <= 512; i11 <<= 1) {
+            if ((i9 & i11) != 0) {
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 4) {
+                            if (i11 != 8) {
+                                if (i11 != 16) {
+                                    if (i11 != 32) {
+                                        if (i11 != 64) {
+                                            if (i11 != 128) {
+                                                if (i11 == 512) {
+                                                    statusBars = WindowInsets.Type.systemOverlays();
+                                                }
+                                            } else {
+                                                statusBars = WindowInsets.Type.displayCutout();
+                                            }
+                                        } else {
+                                            statusBars = WindowInsets.Type.tappableElement();
+                                        }
+                                    } else {
+                                        statusBars = WindowInsets.Type.mandatorySystemGestures();
+                                    }
+                                } else {
+                                    statusBars = WindowInsets.Type.systemGestures();
+                                }
+                            } else {
+                                statusBars = WindowInsets.Type.ime();
+                            }
+                        } else {
+                            statusBars = WindowInsets.Type.captionBar();
+                        }
+                    } else {
+                        statusBars = WindowInsets.Type.navigationBars();
+                    }
+                } else {
+                    statusBars = WindowInsets.Type.statusBars();
                 }
-                i11 |= iStatusBars;
+                i10 |= statusBars;
             }
         }
-        return i11;
+        return i10;
     }
 }

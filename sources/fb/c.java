@@ -1,28 +1,29 @@
 package fb;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
-import y5.l;
+import java.util.Arrays;
+import x5.l;
+public abstract class c {
+    public final float f6038a;
 
-public final class c {
+    public c(gb.a aVar) {
+        this.f6038a = aVar.f7689a;
+    }
 
-    public final HashMap f6037a = new HashMap();
-
-    public c(Set set) {
-        HashMap map = new HashMap();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            b bVar = (b) it.next();
-            bVar.getClass();
-            if (this.f6037a.containsKey(hb.b.class)) {
-                Integer num = (Integer) map.get(hb.b.class);
-                l.h(num);
-                if (num.intValue() <= 0) {
-                }
-            }
-            this.f6037a.put(hb.b.class, bVar.f6036a);
-            map.put(hb.b.class, 0);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (getClass().equals(cVar.getClass()) && Float.compare(this.f6038a, cVar.f6038a) == 0 && l.l(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f6038a), null});
     }
 }

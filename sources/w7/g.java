@@ -1,18 +1,21 @@
 package w7;
 
-public abstract class g {
+import android.os.Parcel;
+import android.os.Parcelable;
+import g7.p8;
+import q7.j;
+public final class g extends y5.a {
+    public static final Parcelable.Creator<g> CREATOR = new j(29);
+    public final String f48778a;
 
-    public static final v5.c f49274a;
+    public g(String str) {
+        this.f48778a = str;
+    }
 
-    public static final v5.c f49275b;
-
-    public static final v5.c[] f49276c;
-
-    static {
-        v5.c cVar = new v5.c("EXECUTE", 1L);
-        f49274a = cVar;
-        v5.c cVar2 = new v5.c("INIT", 1L);
-        f49275b = cVar2;
-        f49276c = new v5.c[]{cVar, cVar2};
+    @Override
+    public final void writeToParcel(Parcel parcel, int i9) {
+        int q10 = p8.q(parcel, 20293);
+        p8.l(parcel, 2, this.f48778a);
+        p8.r(parcel, q10);
     }
 }

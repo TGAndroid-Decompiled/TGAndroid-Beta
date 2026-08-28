@@ -1,42 +1,46 @@
 package q2;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
-
 public final class h extends com.googlecode.mp4parser.b {
+    public final int f45921f;
 
-    public final int f46085f;
-
-    public h(String str, int i10) {
+    public h(String str, int i9) {
         super(str);
-        this.f46085f = i10;
+        this.f45921f = i9;
     }
 
     @Override
-    public void getBox(WritableByteChannel writableByteChannel) throws IOException {
-        switch (this.f46085f) {
+    public void getBox(WritableByteChannel writableByteChannel) {
+        switch (this.f45921f) {
             case 1:
                 writableByteChannel.write(d());
-                ByteBuffer byteBufferAllocate = ByteBuffer.allocate(8);
-                p2.b.r(0, byteBufferAllocate);
-                p2.b.q(0, byteBufferAllocate);
-                byteBufferAllocate.putInt(this.f4673b.size());
-                writableByteChannel.write((ByteBuffer) byteBufferAllocate.rewind());
+                ByteBuffer allocate = ByteBuffer.allocate(8);
+                p2.b.r(0, allocate);
+                p2.b.q(0, allocate);
+                allocate.putInt(this.f4231b.size());
+                writableByteChannel.write((ByteBuffer) allocate.rewind());
                 c(writableByteChannel);
-                break;
+                return;
             default:
                 super.getBox(writableByteChannel);
-                break;
+                return;
         }
     }
 
     @Override
     public long getSize() {
-        switch (this.f46085f) {
+        int i9;
+        switch (this.f45921f) {
             case 1:
-                long jB = b();
-                return 8 + jB + ((long) (jB + 16 >= 4294967296L ? 16 : 8));
+                long b10 = b();
+                long j10 = 8 + b10;
+                if (b10 + 16 >= 4294967296L) {
+                    i9 = 16;
+                } else {
+                    i9 = 8;
+                }
+                return j10 + i9;
             default:
                 return super.getSize();
         }

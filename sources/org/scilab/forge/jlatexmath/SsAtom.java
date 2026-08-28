@@ -1,5 +1,4 @@
 package org.scilab.forge.jlatexmath;
-
 public class SsAtom extends Atom {
     private Atom base;
 
@@ -9,10 +8,10 @@ public class SsAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
-        teXEnvironmentCopy.getTeXFont().setSs(true);
-        Box boxCreateBox = this.base.createBox(teXEnvironmentCopy);
-        teXEnvironmentCopy.getTeXFont().setSs(false);
-        return boxCreateBox;
+        TeXEnvironment copy = teXEnvironment.copy(teXEnvironment.getTeXFont().copy());
+        copy.getTeXFont().setSs(true);
+        Box createBox = this.base.createBox(copy);
+        copy.getTeXFont().setSs(false);
+        return createBox;
     }
 }

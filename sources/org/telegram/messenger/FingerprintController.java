@@ -11,7 +11,6 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.util.Locale;
 import javax.crypto.Cipher;
-
 public class FingerprintController {
     private static final String KEY_ALIAS = "tmessages_passcode";
     private static Boolean hasChangedFingerprints;
@@ -30,8 +29,8 @@ public class FingerprintController {
         } catch (KeyPermanentlyInvalidatedException unused) {
             hasChangedFingerprints = Boolean.TRUE;
             return true;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         }
@@ -44,8 +43,8 @@ public class FingerprintController {
     public static void deleteInvalidKey() {
         try {
             getKeyStore().deleteEntry("tmessages_passcode");
-        } catch (KeyStoreException e9) {
-            FileLog.e(e9);
+        } catch (KeyStoreException e10) {
+            FileLog.e(e10);
         }
         hasChangedFingerprints = null;
         checkKeyReady(false);
@@ -60,14 +59,13 @@ public class FingerprintController {
                 keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new y3(1, z10));
-            } catch (InvalidAlgorithmParameterException e9) {
-                FileLog.e(e9);
-            } catch (Exception e10) {
-                if (e10.getClass().getName().equals("android.security.KeyStoreException")) {
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new w3(1, z10));
+            } catch (InvalidAlgorithmParameterException e10) {
                 FileLog.e(e10);
+            } catch (Exception e11) {
+                if (!e11.getClass().getName().equals("android.security.KeyStoreException")) {
+                    FileLog.e(e11);
+                }
             }
         }
     }
@@ -81,8 +79,8 @@ public class FingerprintController {
             KeyPairGenerator keyPairGenerator3 = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
             keyPairGenerator = keyPairGenerator3;
             return keyPairGenerator3;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -97,8 +95,8 @@ public class FingerprintController {
             keyStore = keyStore3;
             keyStore3.load(null);
             return keyStore;
-        } catch (Exception e9) {
-            FileLog.e(e9);
+        } catch (Exception e10) {
+            FileLog.e(e10);
             return null;
         }
     }
@@ -106,8 +104,8 @@ public class FingerprintController {
     public static boolean isKeyReady() {
         try {
             return getKeyStore().containsAlias("tmessages_passcode");
-        } catch (KeyStoreException e9) {
-            FileLog.e(e9);
+        } catch (KeyStoreException e10) {
+            FileLog.e(e10);
             return false;
         }
     }
@@ -129,9 +127,9 @@ public class FingerprintController {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        ff.a aVar = ff.b.f6050a;
-        if (aVar.i(context) && aVar.b(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new y3(0, z10));
+        ef.a aVar = ef.b.f5119a;
+        if (aVar.v0(context) && aVar.d(ApplicationLoader.applicationContext)) {
+            Utilities.globalQueue.postRunnable(new w3(0, z10));
         }
     }
 }

@@ -1,21 +1,30 @@
 package org.telegram.ui.Components;
+public final class oy0 {
+    public static final oy0 f31474e = new oy0(false, new ly0(Integer.MIN_VALUE, -2147483647), ry0.N, 0.0f);
+    public final boolean f31475a;
+    public final ly0 f31476b;
+    public final dy0 f31477c;
+    public final float d;
 
-import android.view.ViewGroup;
+    public oy0(boolean z10, ly0 ly0Var, dy0 dy0Var, float f10) {
+        this.f31475a = z10;
+        this.f31476b = ly0Var;
+        this.f31477c = dy0Var;
+        this.d = f10;
+    }
 
-public final class oy0 extends ViewGroup.MarginLayoutParams {
-
-    public qy0 f31445a;
-
-    public qy0 f31446b;
-
-    public oy0() {
-        super(-2, -2);
-        qy0 qy0Var = qy0.f32004e;
-        this.f31445a = qy0Var;
-        this.f31446b = qy0Var;
-        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-        this.f31445a = qy0Var;
-        this.f31446b = qy0Var;
+    public static dy0 a(oy0 oy0Var, boolean z10) {
+        dy0 dy0Var = oy0Var.f31477c;
+        if (dy0Var != ry0.N) {
+            return dy0Var;
+        }
+        if (oy0Var.d == 0.0f) {
+            if (z10) {
+                return ry0.O;
+            }
+            return ry0.P;
+        }
+        return ry0.Q;
     }
 
     public final boolean equals(Object obj) {
@@ -26,10 +35,13 @@ public final class oy0 extends ViewGroup.MarginLayoutParams {
             return false;
         }
         oy0 oy0Var = (oy0) obj;
-        return this.f31446b.equals(oy0Var.f31446b) && this.f31445a.equals(oy0Var.f31445a);
+        if (this.f31477c.equals(oy0Var.f31477c) && this.f31476b.equals(oy0Var.f31476b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return this.f31446b.hashCode() + (this.f31445a.hashCode() * 31);
+        return this.f31477c.hashCode() + (this.f31476b.hashCode() * 31);
     }
 }

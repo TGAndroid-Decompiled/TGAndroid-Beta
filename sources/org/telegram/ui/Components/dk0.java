@@ -1,90 +1,87 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-
-public abstract class dk0 extends yk0 {
-
-    public boolean f27786c;
+import java.util.HashSet;
+public final class dk0 {
+    public final wk0 f27745a;
     public boolean d;
+    public final boolean f27748e;
+    public final SparseArray f27746b = new SparseArray();
+    public final HashSet f27747c = new HashSet();
+    public final boolean f27749f = true;
+    public final ArrayList f27750g = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public ArrayList f27787e;
-
-    public ArrayList f27788f;
-
-    public final void E() {
-        this.f27786c = false;
-        if (!this.d && this.f27787e.isEmpty() && this.f27788f.isEmpty()) {
-            return;
-        }
-        ((org.telegram.ui.dm) this).O(false);
+    public dk0(wk0 wk0Var, boolean z10) {
+        this.f27745a = wk0Var;
+        this.f27748e = z10;
+        wk0Var.setItemsEnterAnimator(this);
     }
 
-    @Override
-    public void l() {
-        if (this.f27786c) {
-            this.d = true;
-        } else {
-            super.l();
+    public final void a() {
+        ArrayList arrayList = this.f27750g;
+        int i9 = 0;
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                ((AnimatorSet) arrayList2.get(i10)).end();
+                ((AnimatorSet) arrayList2.get(i10)).cancel();
+            }
         }
-    }
-
-    @Override
-    public void m(int i10) {
-        if (this.f27786c) {
-            return;
-        }
-        super.m(i10);
-    }
-
-    @Override
-    public void o(int i10) {
-        ArrayList arrayList = this.f27787e;
-        if (!this.f27786c) {
-            super.o(i10);
-        } else {
-            arrayList.add(Integer.valueOf(i10));
-            arrayList.add(1);
-        }
-    }
-
-    @Override
-    public void q(int i10, int i11) {
-        if (this.f27786c) {
-            return;
-        }
-        super.q(i10, i11);
-    }
-
-    @Override
-    public void s(int i10, int i11) {
-        ArrayList arrayList = this.f27787e;
-        if (!this.f27786c) {
-            super.s(i10, i11);
-        } else {
-            arrayList.add(Integer.valueOf(i10));
-            arrayList.add(Integer.valueOf(i11));
+        arrayList.clear();
+        while (true) {
+            ArrayList arrayList3 = this.h;
+            int size = arrayList3.size();
+            wk0 wk0Var = this.f27745a;
+            if (i9 < size) {
+                wk0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i9));
+                i9++;
+            } else {
+                arrayList3.clear();
+                this.f27746b.clear();
+                wk0Var.invalidate();
+                this.d = true;
+                return;
+            }
         }
     }
 
-    @Override
-    public void t(int i10, int i11) {
-        ArrayList arrayList = this.f27788f;
-        if (!this.f27786c) {
-            super.t(i10, i11);
-        } else {
-            arrayList.add(Integer.valueOf(i10));
-            arrayList.add(Integer.valueOf(i11));
+    public final void b(int i9) {
+        Animator ofFloat;
+        wk0 wk0Var = this.f27745a;
+        int childCount = wk0Var.getChildCount();
+        e00 e00Var = null;
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = wk0Var.getChildAt(i10);
+            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof e00)) {
+                e00Var = childAt;
+            }
         }
-    }
-
-    @Override
-    public void u(int i10) {
-        ArrayList arrayList = this.f27788f;
-        if (!this.f27786c) {
-            super.u(i10);
-        } else {
-            arrayList.add(Integer.valueOf(i10));
-            arrayList.add(1);
+        f2.z0 layoutManager = wk0Var.getLayoutManager();
+        if (e00Var != null && layoutManager != null) {
+            wk0Var.removeView(e00Var);
+            this.f27747c.add(e00Var);
+            wk0Var.addView(e00Var);
+            layoutManager.M(e00Var);
+            if (this.f27749f) {
+                ofFloat = ObjectAnimator.ofFloat(e00Var, View.ALPHA, e00Var.getAlpha(), 0.0f);
+            } else {
+                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            }
+            ofFloat.addListener(new fg.j(this, e00Var, layoutManager));
+            ofFloat.start();
+            i9--;
         }
+        org.telegram.ui.nq nqVar = new org.telegram.ui.nq(this, e00Var, i9, 2);
+        this.h.add(nqVar);
+        wk0Var.getViewTreeObserver().addOnPreDrawListener(nqVar);
     }
 }

@@ -1,52 +1,63 @@
 package q5;
 
-import android.os.Bundle;
-import android.view.View;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.SeekBar;
-import com.google.android.gms.cast.framework.media.widget.CastSeekBar;
+import android.os.Build;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.Locale;
+public final class b {
+    public final String f46009a;
+    public final boolean f46010b;
+    public final String f46011c;
 
-public final class b extends View.AccessibilityDelegate {
-
-    public final CastSeekBar f46171a;
-
-    @Override
-    public final void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(view, accessibilityEvent);
-        accessibilityEvent.setClassName(SeekBar.class.getName());
-        CastSeekBar castSeekBar = this.f46171a;
-        castSeekBar.f3171a.getClass();
-        accessibilityEvent.setItemCount(1);
-        accessibilityEvent.setCurrentItemIndex(castSeekBar.getProgress());
+    public b(String str, String str2) {
+        boolean z10;
+        String o6;
+        x5.l.g(str, "The log tag cannot be null or empty.");
+        this.f46009a = str;
+        if (str.length() <= 23) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f46010b = z10;
+        if (TextUtils.isEmpty(str2)) {
+            o6 = null;
+        } else {
+            o6 = aa.d.o("[", str2, "] ");
+        }
+        this.f46011c = o6;
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(SeekBar.class.getName());
-        if (view.isEnabled()) {
-            accessibilityNodeInfo.addAction(4096);
-            accessibilityNodeInfo.addAction(8192);
+    public final void a(Exception exc, String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f46010b) {
+            String str2 = this.f46009a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr), exc);
+            }
         }
     }
 
-    @Override
-    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
-        CastSeekBar castSeekBar = this.f46171a;
-        a aVar = castSeekBar.f3171a;
-        if (view.isEnabled()) {
-            if (super.performAccessibilityAction(view, i10, bundle)) {
-                return true;
-            }
-            if (i10 == 4096 || i10 == 8192) {
-                int i11 = CastSeekBar.f3170s;
-                aVar.getClass();
-                castSeekBar.getProgress();
-                aVar.getClass();
-                return false;
+    public final void b(String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f46010b) {
+            String str2 = this.f46009a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr));
             }
         }
-        return false;
+    }
+
+    public final void c(Object... objArr) {
+        Log.e(this.f46009a, d("Bundle is null", objArr));
+    }
+
+    public final String d(String str, Object... objArr) {
+        if (objArr.length != 0) {
+            str = String.format(Locale.ROOT, str, objArr);
+        }
+        String str2 = this.f46011c;
+        if (!TextUtils.isEmpty(str2)) {
+            return String.valueOf(str2).concat(String.valueOf(str));
+        }
+        return str;
     }
 }

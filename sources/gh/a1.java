@@ -1,51 +1,33 @@
 package gh;
 
-import org.telegram.messenger.Utilities;
+import java.util.function.ToDoubleFunction;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.q61;
+public final class a1 implements ToDoubleFunction {
+    public final int f7770a;
 
-public final class a1 implements Runnable {
-
-    public final int f7131a;
-
-    public final k2 f7132b;
-
-    public final Utilities.Callback f7133c;
-
-    public a1(k2 k2Var, Utilities.Callback callback, int i10) {
-        this.f7131a = i10;
-        this.f7132b = k2Var;
-        this.f7133c = callback;
+    public a1(int i9) {
+        this.f7770a = i9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f7131a) {
+    public final double applyAsDouble(Object obj) {
+        switch (this.f7770a) {
             case 0:
-                k2 k2Var = this.f7132b;
-                Utilities.Callback callback = this.f7133c;
-                if (callback != null) {
-                    k2Var.getClass();
-                    callback.run(Boolean.FALSE);
-                }
-                k2Var.dismiss();
-                break;
+                return l1.O((TL_stars.starGiftAttributeBackdrop) obj);
             case 1:
-                k2 k2Var2 = this.f7132b;
-                Utilities.Callback callback2 = this.f7133c;
-                if (callback2 != null) {
-                    k2Var2.getClass();
-                    callback2.run(Boolean.FALSE);
-                }
-                k2Var2.dismiss();
-                break;
+                return l1.O((TL_stars.starGiftAttributePattern) obj);
+            case 2:
+                return l1.O((TL_stars.starGiftAttributeModel) obj);
+            case 3:
+                return ((q61) obj).f31844a;
+            case 4:
+                return ((TLRPC.TL_topPeer) obj).rating;
+            case 5:
+                return ((TLRPC.TL_topPeer) obj).rating;
             default:
-                k2 k2Var3 = this.f7132b;
-                Utilities.Callback callback3 = this.f7133c;
-                if (callback3 != null) {
-                    k2Var3.getClass();
-                    callback3.run(Boolean.FALSE);
-                }
-                k2Var3.dismiss();
-                break;
+                return ((TLRPC.TL_topPeer) obj).rating;
         }
     }
 }

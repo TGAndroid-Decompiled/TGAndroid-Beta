@@ -1,57 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ts0 implements of.u1, org.telegram.ui.Cells.a5 {
+    public final vs0 f32787a;
 
-public final class ts0 extends LinearLayout {
-
-    public final TextView f32872a;
-
-    public final ImageView f32873b;
-
-    public boolean f32874c;
-
-    public ts0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f32872a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f32873b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, h7.z5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23441z6, c6Var));
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, h7.z5.t(-2, -2, 17, 0, 24, 0, 0));
+    public ts0(vs0 vs0Var) {
+        this.f32787a = vs0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f32874c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f32872a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation == 3 || rotation == 1) {
-            this.f32872a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        } else {
-            this.f32872a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        }
-        this.f32874c = false;
-        super.onMeasure(i10, i11);
+    public a0.h O() {
+        return null;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f32874c) {
-            return;
+    public boolean d(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
+        int intValue = ((Integer) b5Var.getTag()).intValue();
+        vs0 vs0Var = this.f32787a;
+        TLObject E = vs0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return vs0Var.f34002s.f28180z1.h(tL_chatChannelParticipant, true, !z10, b5Var);
         }
-        super.requestLayout();
+        return false;
+    }
+
+    @Override
+    public void e(int i9) {
+        vs0 vs0Var = this.f32787a;
+        vs0Var.l();
+        if (i9 == 1) {
+            int i10 = vs0Var.f34001r - 1;
+            vs0Var.f34001r = i10;
+            if (i10 == 0) {
+                int i11 = 0;
+                while (true) {
+                    eu0 eu0Var = vs0Var.f34002s;
+                    xs0[] xs0VarArr = eu0Var.f28137g0;
+                    if (i11 < xs0VarArr.length) {
+                        xs0 xs0Var = xs0VarArr[i11];
+                        if (xs0Var.B == 7) {
+                            if (vs0Var.h == 0) {
+                                xs0Var.f34763w.e(false, true);
+                            } else {
+                                eu0Var.z(xs0Var.h, 0, null);
+                            }
+                        }
+                        i11++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean p0(int i9) {
+        return true;
+    }
+
+    @Override
+    public a0.h y() {
+        return null;
+    }
+
+    @Override
+    public void H0(ArrayList arrayList) {
     }
 }

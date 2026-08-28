@@ -1,24 +1,34 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class at extends org.telegram.ui.ActionBar.o1 {
+    public final dt f36549o;
 
-public final class at extends org.telegram.ui.ActionBar.n1 {
-
-    public final ft f36634o;
-
-    public at(ft ftVar, ViewGroup viewGroup) {
-        super(viewGroup, -2, -2);
-        this.f36634o = ftVar;
+    public at(dt dtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f36549o = dtVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        kt ktVar = this.f36634o.f38203a;
-        ktVar.f39867k = null;
-        ktVar.K = false;
-        if (ktVar.R) {
-            ktVar.n();
+        ht htVar = this.f36549o.f37593a;
+        htVar.f38922k = null;
+        htVar.K = false;
+        if (htVar.R) {
+            htVar.n();
+        }
+        View view = htVar.h;
+        if (view != null) {
+            if (view instanceof org.telegram.ui.Cells.d8) {
+                ((org.telegram.ui.Cells.d8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.b8) {
+                ((org.telegram.ui.Cells.b8) view).setScaled(false);
+            } else if (view instanceof org.telegram.ui.Cells.e2) {
+                ((org.telegram.ui.Cells.e2) view).setScaled(false);
+            }
+            htVar.h = null;
         }
     }
 }

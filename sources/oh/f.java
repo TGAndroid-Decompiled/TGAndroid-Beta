@@ -1,180 +1,102 @@
 package oh;
 
-import ag.e2;
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import gh.d1;
-import h7.z5;
-import java.util.ArrayList;
-import lh.n6;
+import android.widget.TextView;
+import bg.d2;
+import f2.a1;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Cells.e6;
-import org.telegram.ui.Cells.pa;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.n41;
-import org.telegram.ui.Components.y4;
-import org.telegram.ui.Components.y8;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.o9;
+import org.telegram.ui.Components.wk0;
+import org.telegram.ui.Components.z41;
+import org.telegram.ui.Components.z8;
+public final class f extends k41 {
+    public static final int f19589a = 0;
 
-public final class f extends n2 implements NotificationCenter.NotificationCenterDelegate {
+    static {
+        k41.setup(new k41());
+    }
 
-    public long f19477a;
-
-    public TLRPC.Chat f19478b;
-
-    public TLRPC.User f19479c;
-    public FrameLayout d;
-
-    public k51 f19480e;
-
-    public e f19481f;
-    public ArrayList h;
-
-    public NotificationCenter.ObserversGroup f19482n;
-
-    public static void U(f fVar, n41 n41Var) {
-        f fVar2;
-        if (n41Var.d == 1) {
-            fVar2 = fVar;
-            y4.R(fVar.getParentActivity(), fVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), fVar.resourceProvider, new c(fVar));
+    @Override
+    public final void bindView(View view, l41 l41Var, boolean z10, z41 z41Var, i51 i51Var) {
+        int i9;
+        g gVar = (g) view;
+        e eVar = (e) l41Var.G;
+        TLRPC.User user = eVar.f19587b;
+        long j10 = eVar.f19586a;
+        boolean z11 = eVar.f19588c;
+        boolean z12 = !l41Var.f30337j;
+        o9 o9Var = gVar.f19592c;
+        TextView textView = gVar.f19595n;
+        TextView textView2 = gVar.d;
+        gVar.f19599x = (d) l41Var.H;
+        gVar.f19600y = j10;
+        gVar.A = user.f22527id;
+        int i10 = gVar.f19591b;
+        TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
+        TLRPC.User user2 = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
+        gVar.f19594f.setText(DialogObject.getName(j10));
+        TextView textView3 = gVar.h;
+        if (user2 != null) {
+            i9 = R.string.CommunityPendingRequestSuggestedBot;
+        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+            i9 = R.string.CommunityPendingRequestSuggestedChannel;
         } else {
-            fVar2 = fVar;
+            i9 = R.string.CommunityPendingRequestSuggestedGroup;
         }
-        Object obj = n41Var.G;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f19477a));
-            fVar2.showDialog(new qh.a(fVar2.getParentActivity(), chat, fVar2.f19477a, new d1(21, fVar2, chat)));
-        }
-    }
-
-    public final void V(String str, boolean z10) {
-        if (ChatObject.isChannel(this.f19478b) || this.f19479c != null) {
-            getMessagesController().createCommunity(str, this.f19477a, z10, new b(this, 1));
-            return;
-        }
-        b2 b2Var = new b2(getParentActivity(), 3, null);
-        b2Var.q(250L);
-        getMessagesController().convertToMegaGroup(getParentActivity(), -this.f19477a, this, new l9.b(this, b2Var, str, z10, 1));
-    }
-
-    public final void W(long j10, boolean z10) {
-        if (ChatObject.isChannel(this.f19478b) || this.f19479c != null) {
-            int i10 = this.currentAccount;
-            long j11 = -this.f19477a;
-            MessagesController.getInstance(i10).linkCommunity(-j11, j10, z10, new gh.m(this, j11, 1));
+        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i9, DialogObject.getShortName(user)), f6.w0(null, f6.il, false), new d2(20)));
+        if (user2 != null) {
+            textView2.setVisibility(8);
+        } else if (chat != null && chat.participants_count > 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
+            spannableStringBuilder.setSpan(gVar.f19596r, 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
+            textView2.setText(spannableStringBuilder);
+            textView2.setVisibility(0);
         } else {
-            b2 b2Var = new b2(getParentActivity(), 3, null);
-            b2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f19477a, this, new d(this, b2Var, j10, z10, 0));
+            textView2.setVisibility(8);
         }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setAllowOverlayTitle(false);
-        pa.x(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new e2(this, 7));
-        og.c cVar = new og.c();
-        cVar.a(getThemedColor(g6.f23053d6));
-        jg.a aVar = new jg.a(cVar);
-        this.actionBar.setBackground(null);
-        this.actionBar.M(aVar, ng.c.n(this.resourceProvider), false);
-        this.actionBar.L0 = true;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        frameLayout.setBackgroundColor(g6.w0(null, g6.f22999a7, false));
-        e eVar = new e(context, this.resourceProvider);
-        this.f19481f = eVar;
-        eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
-        e eVar2 = this.f19481f;
-        if (this.f19479c != null) {
-            i10 = R.string.CommunityDescriptionBot;
+        if (z11) {
+            textView.setVisibility(0);
         } else {
-            i10 = ChatObject.isChannelAndNotMegaGroup(this.f19478b) ? R.string.CommunityDescriptionChannel : R.string.CommunityDescriptionGroup;
+            textView.setVisibility(8);
         }
-        eVar2.setSubtitle(LocaleController.getString(i10));
-        this.f19481f.setTag(-33024);
-        TLRPC.User user = this.f19479c;
-        if (user != null) {
-            this.f19481f.f19472a.e(user, new y8(0, this.f19479c));
+        gVar.f19598w = z12;
+        if (user2 != null) {
+            o9Var.e(user2, new z8(0, user2));
         } else {
-            TLRPC.Chat chat = this.f19478b;
-            if (chat != null) {
-                this.f19481f.f19472a.e(chat, new y8(this.f19478b));
-            }
+            o9Var.e(chat, new z8(chat));
         }
-        k51 k51Var = new k51(this, new b(this, 0), new c(this), new c(this));
-        this.f19480e = k51Var;
-        k51Var.setClipToPadding(false);
-        k51 k51Var2 = this.f19480e;
-        k51Var2.U2.f26942r = false;
-        k51Var2.p1();
-        this.d.addView(this.f19480e, z5.c(-1.0f, -1));
-        this.d.addView(this.actionBar, z5.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.d;
-        this.fragmentView = frameLayout2;
-        return frameLayout2;
+        gVar.f19593e.e(user, new z8(0, user));
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.chatInfoDidLoad) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j10 = chatFull.f22381id;
-            View viewY1 = this.f19480e.y1((int) (j10 ^ (j10 >>> 32)));
-            if (!(viewY1 instanceof e6)) {
-                this.f19480e.U2.N(false);
-                return;
-            }
-            e6 e6Var = (e6) viewY1;
-            ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
-            e6Var.setSubLabel(LocaleController.formatPluralString("Chats", arrayList != null ? arrayList.size() : 0, new Object[0]));
+    public final View createView(Context context, wk0 wk0Var, int i9, int i10, b6 b6Var) {
+        g gVar = new g(context, i9, b6Var);
+        gVar.setLayoutParams(new a1(-1, -2));
+        gVar.setClickable(false);
+        return gVar;
+    }
+
+    @Override
+    public final boolean equals(l41 l41Var, l41 l41Var2) {
+        e eVar = (e) l41Var.G;
+        e eVar2 = (e) l41Var2.G;
+        if (eVar.f19586a == eVar2.f19586a && DialogObject.getDialogId(eVar.f19587b) == DialogObject.getDialogId(eVar2.f19587b)) {
+            return true;
         }
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f19477a = this.arguments.getLong("dialog_id", 0L);
-        this.f19478b = getMessagesController().getChat(Long.valueOf(-this.f19477a));
-        this.f19479c = getMessagesController().getUser(Long.valueOf(this.f19477a));
-        this.h = getMessagesController().getJoinedCommunities();
-        getMessagesController().fetchJoinedCommunities(new n6(this, 5), this.classGuid);
-        this.f19482n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        NotificationCenter.ObserversGroup observersGroup = this.f19482n;
-        if (observersGroup != null) {
-            observersGroup.removeAllObservers();
-            this.f19482n = null;
-        }
-        super.onFragmentDestroy();
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        this.f19480e.setPadding(0, i11, 0, i13);
+        return false;
     }
 }

@@ -1,5 +1,4 @@
 package m4;
-
 public final class j extends l4.b {
     public final i d;
 
@@ -9,14 +8,14 @@ public final class j extends l4.b {
     }
 
     @Override
-    public final long g() {
+    public final long c() {
         a();
-        return this.d.d(this.f15403c);
+        return this.d.d(this.f16646c);
     }
 
     @Override
-    public final long i() {
+    public final long p() {
         a();
-        return this.d.c(this.f15403c);
+        return this.d.c(this.f16646c);
     }
 }

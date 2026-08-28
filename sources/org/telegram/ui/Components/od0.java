@@ -1,35 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
+import android.app.Activity;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.core.widget.NestedScrollView;
+public final class od0 extends NestedScrollView {
+    public View S;
+    public final wd0 T;
 
-public final class od0 implements NotificationCenter.NotificationCenterDelegate {
-
-    public final int f31263a;
-
-    public final Utilities.Callback f31264b;
-
-    public final NotificationCenter.NotificationCenterDelegate[] f31265c;
-
-    public od0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f31263a = i10;
-        this.f31264b = callback;
-        this.f31265c = notificationCenterDelegateArr;
+    public od0(wd0 wd0Var, Activity activity) {
+        super(activity);
+        this.T = wd0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.activityPermissionsGranted;
-        if (i10 == i12) {
-            int iIntValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (iIntValue == this.f31263a) {
-                Utilities.Callback callback = this.f31264b;
-                if (callback != null) {
-                    callback.run(iArr);
-                }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f31265c[0], i12);
+    public final int f(Rect rect) {
+        if (this.S != null && this.T.d.getTop() == getPaddingTop()) {
+            int f10 = super.f(rect);
+            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.S.getTop() - getScrollY()) + rect.top) + f10);
+            if (currentActionBarHeight > 0) {
+                return org.telegram.messenger.ll.w(10.0f, currentActionBarHeight, f10);
             }
+            return f10;
         }
+        return 0;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
+        this.S = view2;
+        super.requestChildFocus(view, view2);
     }
 }

@@ -2,149 +2,107 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.lt;
-import org.telegram.ui.Components.zu0;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.ut;
+import org.telegram.ui.Components.wz0;
+import org.telegram.ui.Components.xu0;
+public final class d3 extends ut {
+    public final org.telegram.ui.ActionBar.b6 R;
+    public final boolean S;
+    public final g3 T;
 
-public abstract class d3 extends FrameLayout {
+    public d3(g3 g3Var, Context context, xu0 xu0Var, org.telegram.ui.ActionBar.b6 b6Var, boolean z10) {
+        super(context, xu0Var, null, 4, true, null);
+        this.T = g3Var;
+        this.R = b6Var;
+        this.S = z10;
+    }
 
-    public boolean f24195a;
-
-    public final b3 f24196b;
-
-    public final int f24197c;
-    public boolean d;
-
-    public int f24198e;
-
-    public boolean f24199f;
-    public boolean h;
-
-    public boolean f24200n;
-
-    public final org.telegram.ui.Components.b5 f24201r;
-
-    public int f24202s;
-    public final org.telegram.ui.Components.i6 v;
-
-    public boolean f24203w;
-
-    public d3(Context context, zu0 zu0Var, String str, boolean z10, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
-        super(context);
-        this.f24198e = -1;
-        this.f24200n = true;
-        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true, false);
-        this.v = i6Var;
-        i6Var.k(0.2f, 160L, er.h);
-        i6Var.t(AndroidUtilities.dp(15.33f));
-        i6Var.f29239b = 5;
-        this.f24197c = i10;
-        b3 b3Var = new b3(this, context, zu0Var, c6Var, z10);
-        this.f24196b = b3Var;
-        lt editText = b3Var.getEditText();
-        editText.setDelegate(new org.telegram.ui.i6(1, this, editText));
-        b3Var.setWillNotDraw(false);
-        this.f24201r = new org.telegram.ui.Components.b5(b3Var);
-        i6Var.setCallback(b3Var);
-        editText.setTextSize(1, 17.0f);
-        editText.setHintTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.H6, c6Var));
-        int i11 = org.telegram.ui.ActionBar.g6.G6;
-        editText.setTextColor(org.telegram.ui.ActionBar.g6.v0(i11, c6Var));
-        editText.setBackground(null);
-        if (z10) {
-            editText.setMaxLines(5);
-            editText.setSingleLine(false);
-        } else {
-            editText.setMaxLines(1);
-            editText.setSingleLine(true);
+    @Override
+    public final boolean a() {
+        if (this.T.f24377n && super.a()) {
+            return true;
         }
-        editText.setPadding(editText.getPaddingLeft(), editText.getPaddingTop(), AndroidUtilities.dp(0.0f), editText.getPaddingBottom());
-        editText.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        editText.setInputType((z10 ? 131072 : 0) | 573441);
-        editText.setRawInputType(573441);
-        editText.setHint(str);
-        editText.setCursorColor(org.telegram.ui.ActionBar.g6.v0(i11, c6Var));
-        editText.setCursorSize(AndroidUtilities.dp(19.0f));
-        editText.setCursorWidth(1.5f);
-        editText.addTextChangedListener(new c3(this, i10, editText, z10));
-        editText.setOnFocusChangeListener(new m.s2(this, 1));
-        addView(b3Var, h7.z5.e(-1, -1, 48));
-        c();
+        return false;
     }
 
-    public int a() {
-        return org.telegram.ui.Components.k5.g();
+    @Override
+    public final int h() {
+        return this.T.a();
     }
 
-    public final void c() {
-        int i10;
-        b3 b3Var = this.f24196b;
-        if (b3Var == null || b3Var.getEditText() == null) {
+    @Override
+    public final void i(Menu menu) {
+        if (menu.findItem(R.id.menu_bold) != null) {
             return;
         }
-        this.f24202s = this.f24197c - getText().length();
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f24199f || this.h) && ((i10 = this.f24198e) == -1 || this.f24202s <= i10))) {
-            str = "" + this.f24202s;
+        if (Build.VERSION.SDK_INT >= 23) {
+            menu.removeItem(16908341);
         }
-        this.v.q(str, true, true);
-    }
-
-    public CharSequence getText() {
-        return this.f24196b.getText();
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_spoiler, 6, LocaleController.getString(R.string.Spoiler));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
+        spannableStringBuilder.setSpan(new i41(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 7, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
+        spannableStringBuilder2.setSpan(new i41(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 8, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
+        ?? obj = new Object();
+        obj.f34062a |= 8;
+        spannableStringBuilder3.setSpan(new wz0(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 9, spannableStringBuilder3);
+        menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 10, LocaleController.getString(R.string.Regular));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        float f10;
+        int i9;
+        canvas.save();
+        int i10 = 0;
+        canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
-        if (this.f24203w) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : 0), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f23175k0);
+        canvas.restore();
+        g3 g3Var = this.T;
+        org.telegram.ui.Components.i6 i6Var = g3Var.v;
+        org.telegram.ui.Components.b5 b5Var = g3Var.f24378r;
+        if (b5Var != null) {
+            if (g3Var.f24379s <= 0) {
+                i9 = org.telegram.ui.ActionBar.f6.f23212p7;
+            } else {
+                i9 = org.telegram.ui.ActionBar.f6.P5;
+            }
+            i6Var.r(b5Var.a(org.telegram.ui.ActionBar.f6.v0(i9, this.R), false));
         }
+        int min = Math.min(AndroidUtilities.dp(48.0f), getHeight());
+        boolean z10 = this.S;
+        if (z10) {
+            f10 = 0.0f;
+        } else {
+            f10 = -AndroidUtilities.dp(1.0f);
+        }
+        float scrollX = getScrollX();
+        float height = (getHeight() + f10) - min;
+        int width = getWidth() + getScrollX();
+        if (!z10) {
+            i10 = 44;
+        }
+        i6Var.l(scrollX, height, width - AndroidUtilities.dp(i10 + 12), f10 + getHeight());
+        i6Var.draw(canvas);
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
-
-    public void setDivider(boolean z10) {
-        this.f24203w = z10;
-        setWillNotDraw(!z10);
-    }
-
-    public void setEmojiViewCacheType(int i10) {
-        this.f24196b.setEmojiViewCacheType(i10);
-    }
-
-    public void setShowLimitOnFocus(boolean z10) {
-        this.f24199f = z10;
-    }
-
-    public void setShowLimitWhenEmpty(boolean z10) {
-        this.d = z10;
-        if (z10) {
-            c();
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.T.v && !super.verifyDrawable(drawable)) {
+            return false;
         }
-    }
-
-    public void setShowLimitWhenNear(int i10) {
-        this.f24198e = i10;
-        c();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f24195a = true;
-        b3 b3Var = this.f24196b;
-        b3Var.setText(charSequence);
-        b3Var.setSelection(b3Var.getText().length());
-        this.f24195a = false;
-    }
-
-    public void b() {
+        return true;
     }
 }

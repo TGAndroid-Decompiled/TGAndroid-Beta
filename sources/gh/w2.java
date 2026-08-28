@@ -1,57 +1,51 @@
 package gh;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import lh.sb;
-import org.telegram.messenger.BirthdayController;
-import org.telegram.ui.Components.hu0;
-import org.telegram.ui.Components.wq0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.gc;
+public final class w2 implements Runnable {
+    public final int f9086a;
+    public final k5 f9087b;
+    public final String f9088c;
 
-public final class w2 implements View.OnClickListener {
-
-    public final int f7601a;
-
-    public final boolean f7602b;
-
-    public final int f7603c;
-    public final FrameLayout d;
-
-    public w2(FrameLayout frameLayout, boolean z10, int i10, int i11) {
-        this.f7601a = i11;
-        this.d = frameLayout;
-        this.f7602b = z10;
-        this.f7603c = i10;
+    public w2(k5 k5Var, String str, int i9) {
+        this.f9086a = i9;
+        this.f9087b = k5Var;
+        this.f9088c = str;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f7601a) {
+    public final void run() {
+        switch (this.f9086a) {
             case 0:
-                wq0 wq0Var = (wq0) this.d;
-                if (wq0Var.f7200e.h() && wq0Var.h.getCurrentPosition() != 0) {
-                    wq0Var.a();
-                } else {
-                    boolean z10 = this.f7602b;
-                    int i10 = this.f7603c;
-                    if (!z10) {
-                        cg.y2.e0(2, BirthdayController.getInstance(i10).getState());
-                    } else {
-                        k2 k2Var = new k2(wq0Var.getContext(), i10, wq0Var.f7199c, null, null);
-                        k2Var.V(BirthdayController.getInstance(i10).isToday(wq0Var.f7199c));
-                        k2Var.show();
-                    }
-                }
-                break;
+                k5.i1(this.f9087b, this.f9088c);
+                return;
+            case 1:
+                k5.h1(this.f9087b, this.f9088c);
+                return;
+            case 2:
+                k5.s0(this.f9087b, this.f9088c);
+                return;
+            case 3:
+                k5.Q0(this.f9087b, this.f9088c);
+                return;
+            case 4:
+                k5.B0(this.f9087b, this.f9088c);
+                return;
+            case 5:
+                k5.P(this.f9087b, this.f9088c);
+                return;
+            case 6:
+                k5.v0(this.f9087b, this.f9088c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f9088c);
+                gc k10 = this.f9087b.getBulletinFactory().k(false);
+                k10.f28747t = true;
+                k10.j();
+                return;
             default:
-                hu0 hu0Var = (hu0) this.d;
-                org.telegram.ui.ActionBar.n2 n2Var = hu0Var.f29145r1;
-                if (!this.f7602b) {
-                    n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
-                    sb.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
-                } else {
-                    hu0Var.O0(n2Var, hu0Var.f29121f1, this.f7603c);
-                }
-                break;
+                k5.n0(this.f9087b, this.f9088c);
+                return;
         }
     }
 }

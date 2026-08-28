@@ -1,93 +1,89 @@
 package kh;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import f2.e1;
-import f2.l1;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.p7;
-import org.telegram.ui.Components.bz;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.tu0;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.ki;
+import org.telegram.ui.Components.w90;
+public final class i extends w90 {
+    public final int R;
+    public final KeyEvent.Callback S;
 
-public final class i extends bz {
-    public final int X = 0;
-    public final Object Y;
-
-    public i() {
-        super(100, false);
-        this.Y = new tu0();
+    public i(KeyEvent.Callback callback, Context context, long j10, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.b6 b6Var, int i9) {
+        super(context, j10, 0L, o2Var, b6Var);
+        this.R = i9;
+        this.S = callback;
     }
 
     @Override
-    public int A() {
-        switch (this.X) {
+    public void f(Canvas canvas, Rect rect, float f10) {
+        switch (this.R) {
             case 0:
-                return 0;
-            default:
-                return super.A();
-        }
-    }
-
-    @Override
-    public tu0 D1(int i10) {
-        switch (this.X) {
-            case 0:
-                tu0 tu0Var = (tu0) this.Y;
-                tu0Var.f32894b = 100.0f;
-                tu0Var.f32893a = 100.0f;
-                return tu0Var;
-            default:
-                return super.D1(i10);
-        }
-    }
-
-    @Override
-    public void U(e1 e1Var, l1 l1Var, View view, s0.c cVar) {
-        switch (this.X) {
-            case 0:
-                super.U(e1Var, l1Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f47656a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                qd.b bVar = collectionItemInfo != null ? new qd.b(collectionItemInfo) : null;
-                if (bVar != null) {
-                    Object obj = bVar.f46224a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                    }
+                m mVar = (m) this.S;
+                Paint paint = mVar.f15630e;
+                RectF rectF = mVar.f15651v0;
+                rectF.set(rect);
+                if (mVar.g()) {
+                    mVar.h(mVar.P, canvas, mVar.f15651v0, f10, false, -mVar.I.getX(), -mVar.I.getY(), false);
+                    return;
                 }
-                break;
+                Paint c10 = mVar.P.c(1.0f);
+                if (c10 == null) {
+                    paint.setAlpha(128);
+                    canvas.drawRoundRect(rectF, f10, f10, paint);
+                    return;
+                }
+                canvas.drawRoundRect(rectF, f10, f10, c10);
+                paint.setAlpha(80);
+                canvas.drawRoundRect(rectF, f10, f10, paint);
+                return;
             default:
-                super.U(e1Var, l1Var, view, cVar);
-                break;
+                super.f(canvas, rect, f10);
+                return;
         }
     }
 
     @Override
-    public int W0(l1 l1Var) {
-        switch (this.X) {
-            case 1:
-                return ((k51) this.Y).W2 ? AndroidUtilities.displaySize.y : super.W0(l1Var);
-            default:
-                return super.W0(l1Var);
-        }
-    }
-
-    @Override
-    public void z0(l1 l1Var, int[] iArr) {
-        switch (this.X) {
+    public boolean h() {
+        switch (this.R) {
             case 0:
-                super.z0(l1Var, iArr);
-                iArr[1] = Math.max(iArr[1], p7.a(1) * 2);
-                break;
+                return true;
             default:
-                super.z0(l1Var, iArr);
-                break;
+                return super.h();
         }
     }
 
-    public i(k51 k51Var, int i10) {
-        super(i10, false);
-        this.Y = k51Var;
+    @Override
+    public void i() {
+        switch (this.R) {
+            case 1:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ki) this.S).f30114f0;
+                if (chatAttachAlertPhotoLayout != null) {
+                    chatAttachAlertPhotoLayout.U();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void n(boolean z10) {
+        switch (this.R) {
+            case 1:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ki) this.S).f30114f0;
+                if (chatAttachAlertPhotoLayout != null) {
+                    chatAttachAlertPhotoLayout.U();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 }

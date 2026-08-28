@@ -1,100 +1,80 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.ImageView;
+import android.graphics.Matrix;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-
-public final class n50 extends Drawable {
-
-    public final Paint f40665a;
-
-    public final Paint f40666b;
-
-    public long f40667c;
+import org.telegram.messenger.Utilities;
+public final class n50 {
+    public float f40594c;
     public float d;
+    public float f40595e;
+    public float f40596f;
+    public Shader f40597g;
+    public final int f40598i;
+    public float f40592a = -1.0f;
+    public float f40593b = -1.0f;
+    public final Matrix h = new Matrix();
 
-    public int f40668e;
-
-    public boolean f40669f;
-
-    public View f40670g;
-
-    public n50() {
-        Paint paint = new Paint(1);
-        this.f40665a = paint;
-        this.f40666b = new Paint(1);
-        this.d = 1.0f;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+    public n50(int i9) {
+        this.f40598i = i9;
     }
 
-    public final void a(ImageView imageView) {
-        this.f40670g = imageView;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float fCenterX = getBounds().centerX();
-        float fCenterY = getBounds().centerY();
-        canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(10.0f), this.f40665a);
-        int i10 = this.f40669f ? -1147527 : -1;
-        Paint paint = this.f40666b;
-        paint.setColor(i10);
-        paint.setAlpha((int) (this.d * 255.0f));
-        canvas.drawCircle(fCenterX, fCenterY, AndroidUtilities.dp(5.0f), paint);
-        if (this.f40669f) {
-            long jElapsedRealtime = SystemClock.elapsedRealtime();
-            long j10 = jElapsedRealtime - this.f40667c;
-            if (j10 > 17) {
-                j10 = 17;
-            }
-            this.f40667c = jElapsedRealtime;
-            int i11 = this.f40668e;
-            if (i11 == 0) {
-                float f10 = (j10 / 2000.0f) + this.d;
-                this.d = f10;
-                if (f10 >= 1.0f) {
-                    this.d = 1.0f;
-                    this.f40668e = 1;
-                }
-            } else if (i11 == 1) {
-                float f11 = this.d - (j10 / 2000.0f);
-                this.d = f11;
-                if (f11 < 0.5f) {
-                    this.d = 0.5f;
-                    this.f40668e = 0;
-                }
-            }
-            this.f40670g.invalidate();
+    public final void a() {
+        int i9 = this.f40598i;
+        if (o50.p1(i9)) {
+            this.f40592a = aa.d.d(Utilities.random.nextInt(100), 0.2f, 100.0f, 0.85f);
+            this.f40593b = 1.0f;
+        } else if (i9 == 1) {
+            this.f40592a = aa.d.d(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.2f);
+            this.f40593b = aa.d.d(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.7f);
+        } else {
+            this.f40592a = org.telegram.ui.Cells.j2.b(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f40593b = Utilities.random.nextInt(100) / 100.0f;
         }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void b(int i9, int i10, int i11, long j10, float f10) {
+        if (this.f40597g == null) {
+            return;
+        }
+        float f11 = this.f40595e;
+        if (f11 == 0.0f || this.f40596f >= f11) {
+            this.f40595e = Utilities.random.nextInt(200) + 1500;
+            this.f40596f = 0.0f;
+            if (this.f40592a == -1.0f) {
+                a();
+            }
+            this.f40594c = this.f40592a;
+            this.d = this.f40593b;
+            a();
+        }
+        float f12 = (float) j10;
+        float f13 = 1.0f;
+        float f14 = (f12 * 0.02f * f10) + (f12 * 1.0f) + this.f40596f;
+        this.f40596f = f14;
+        float f15 = this.f40595e;
+        if (f14 > f15) {
+            this.f40596f = f15;
+        }
+        float interpolation = org.telegram.ui.Components.gr.f28845g.getInterpolation(this.f40596f / f15);
+        float f16 = i11;
+        float f17 = this.f40594c;
+        float f18 = (((((this.f40592a - f17) * interpolation) + f17) * f16) + i10) - 200.0f;
+        float f19 = this.d;
+        float f20 = (((((this.f40593b - f19) * interpolation) + f19) * f16) + i9) - 200.0f;
+        int i12 = this.f40598i;
+        if (!o50.p1(i12)) {
+            if (i12 == 1) {
+                f13 = 4.0f;
+            } else {
+                f13 = 2.5f;
+            }
+        }
+        float dp = (AndroidUtilities.dp(122.0f) / 400.0f) * f13;
+        Matrix matrix = this.h;
+        matrix.reset();
+        matrix.postTranslate(f18, f20);
+        matrix.postScale(dp, dp, f18 + 200.0f, f20 + 200.0f);
+        this.f40597g.setLocalMatrix(matrix);
     }
 }

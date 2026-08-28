@@ -1,60 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class oa0 extends org.telegram.ui.Cells.o9 {
+    public final wa0 B0;
 
-public final class oa0 extends f2.y {
-    public final ab0 S;
-
-    public oa0(ab0 ab0Var) {
-        super(true);
-        this.S = ab0Var;
+    public oa0(wa0 wa0Var) {
+        this.B0 = wa0Var;
+        this.f24084h0 = wa0Var.V.B;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        ab0 ab0Var = this.S;
-        MessageObject messageObject = ab0Var.f26718r.previewMessages.get(i10);
-        MessageObject.GroupedMessages groupedMessagesA = ab0.a(ab0Var, messageObject);
-        if (groupedMessagesA != null) {
-            MessageObject.GroupedMessagePosition position = groupedMessagesA.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = groupedMessagesA.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = groupedMessagesA.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
-                }
-            }
+    public final boolean A(MessageObject messageObject) {
+        wa0 wa0Var = this.B0;
+        if (wa0Var.f34168a == 0 && !wa0Var.V.d.isSecret && y()) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(f2.e1 e1Var, f2.l1 l1Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(e1Var, l1Var);
+    public final void J(int i9, int i10, MessageObject messageObject) {
+        org.telegram.ui.gn gnVar;
+        MessageObject messageObject2;
+        wa0 wa0Var = this.B0;
+        oa0 oa0Var = wa0Var.f34171e;
+        int i11 = oa0Var.v - oa0Var.f24108u;
+        cb0 cb0Var = wa0Var.V;
+        if (i11 > MessagesController.getInstance(cb0Var.f27462w).quoteLengthMax) {
+            wa0Var.f();
             return;
         }
-        try {
-            super.b0(e1Var, l1Var);
-        } catch (Exception e9) {
-            FileLog.e(e9);
-            AndroidUtilities.runOnUIThread(new lp(this, 28));
+        MessagePreviewParams messagePreviewParams = cb0Var.d;
+        messagePreviewParams.quoteStart = oa0Var.f24108u;
+        messagePreviewParams.quoteEnd = oa0Var.v;
+        MessageObject c10 = wa0Var.c(messageObject);
+        if (c10 != null && ((gnVar = cb0Var.d.quote) == null || (messageObject2 = gnVar.f38572a) == null || messageObject2.getId() != c10.getId())) {
+            cb0Var.d.quote = org.telegram.ui.gn.b(i9, i10, c10);
+        }
+        cb0Var.b();
+        cb0Var.a(true);
+    }
+
+    @Override
+    public final boolean b() {
+        MessageObject c10;
+        TLRPC.Message message;
+        wa0 wa0Var = this.B0;
+        if (wa0Var.f34168a == 0 && (c10 = wa0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
+            return false;
+        }
+        MessagePreviewParams messagePreviewParams = wa0Var.V.d;
+        if (messagePreviewParams != null && messagePreviewParams.noforwards) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        MessageObject c10;
+        TLRPC.Message message;
+        wa0 wa0Var = this.B0;
+        int i9 = wa0Var.f34168a;
+        if (i9 == 0 && !wa0Var.V.d.isSecret) {
+            if (i9 != 0 || (c10 = wa0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.b6 r() {
+        return this.f24084h0;
+    }
+
+    @Override
+    public final void x() {
+        super.x();
+        pa0 pa0Var = this.B0.f34172f;
+        if (pa0Var != null) {
+            pa0Var.invalidate();
         }
     }
 }

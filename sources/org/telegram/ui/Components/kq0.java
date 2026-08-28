@@ -1,36 +1,69 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+public final class kq0 implements Runnable {
+    public final int f30222a;
+    public final org.telegram.ui.ActionBar.c2[] f30223b;
+    public final int f30224c;
+    public final int d;
 
-public final class kq0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.StringCallback {
-
-    public final hu0 f30168a;
-
-    public final TL_stories.StoryItem f30169b;
-
-    public kq0(hu0 hu0Var, TL_stories.StoryItem storyItem) {
-        this.f30168a = hu0Var;
-        this.f30169b = storyItem;
+    public kq0(org.telegram.ui.ActionBar.c2[] c2VarArr, int i9, int i10, int i11) {
+        this.f30222a = i11;
+        this.f30223b = c2VarArr;
+        this.f30224c = i9;
+        this.d = i10;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f30169b);
-        hu0 hu0Var = this.f30168a;
-        org.telegram.ui.ActionBar.n2 n2Var = hu0Var.f29145r1;
-        n2Var.getMessagesController().getStoriesController().s(hu0Var.f29121f1, arrayList);
-        mc.a0(n2Var).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("StoriesDeleted", 1, new Object[0])).j();
-        hu0Var.L(false);
-    }
-
-    @Override
-    public void run(String str) {
-        hu0 hu0Var = this.f30168a;
-        hu0Var.getStoriesController().r(hu0Var.f29121f1, str, new org.telegram.ui.df(24, hu0Var, this.f30169b));
+    public final void run() {
+        switch (this.f30222a) {
+            case 0:
+                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f30223b;
+                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
+                if (c2Var != null) {
+                    final int i9 = this.f30224c;
+                    final int i10 = this.d;
+                    c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(i9).cancelRequest(i10, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(i9).cancelRequest(i10, true);
+                                    return;
+                            }
+                        }
+                    });
+                    c2VarArr[0].show();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f30223b;
+                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr2[0];
+                if (c2Var2 != null) {
+                    final int i11 = this.f30224c;
+                    final int i12 = this.d;
+                    c2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
+                                    return;
+                            }
+                        }
+                    });
+                    c2VarArr2[0].show();
+                    return;
+                }
+                return;
+        }
     }
 }

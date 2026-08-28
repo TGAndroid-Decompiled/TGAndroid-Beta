@@ -1,13 +1,17 @@
 package h7;
+public final class c6 implements q9.d {
+    public static final c6 f9898a = new Object();
 
-import java.util.ArrayList;
+    static {
+        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
+    }
 
-public abstract class c6 {
-    public static ArrayList a(org.telegram.ui.ActionBar.h6 h6Var, int... iArr) {
-        ArrayList arrayList = new ArrayList(iArr.length);
-        for (int i10 : iArr) {
-            arrayList.add(new org.telegram.ui.ActionBar.i6(null, 0, null, null, null, h6Var, i10));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            q9.e eVar = (q9.e) obj2;
+            throw null;
         }
-        return arrayList;
+        throw new ClassCastException();
     }
 }

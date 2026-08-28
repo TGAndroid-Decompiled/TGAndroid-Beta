@@ -1,40 +1,44 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+public final class qq implements yp {
+    public final TLObject f42175a;
+    public final long f42176b;
+    public final boolean f42177c;
+    public final jr d;
 
-public final class qq extends dq {
-    public final boolean[] Z0;
-
-    public final long f41730a1;
-
-    public final lr f41731b1;
-
-    public qq(lr lrVar, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j12) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f41731b1 = lrVar;
-        this.Z0 = zArr;
-        this.f41730a1 = j12;
+    public qq(jr jrVar, TLObject tLObject, long j10, boolean z10) {
+        this.d = jrVar;
+        this.f42175a = tLObject;
+        this.f42176b = j10;
+        this.f42177c = z10;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.Z0[0]) {
-            lr lrVar = this.f41731b1;
-            if (org.telegram.ui.Components.mc.a(lrVar)) {
-                long j10 = this.f41730a1;
-                if (j10 > 0) {
-                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
-                    if (user != null) {
-                        org.telegram.ui.Components.mc.C(lrVar, user.first_name).j();
-                        return;
-                    }
-                    return;
-                }
-                TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j10));
-                if (chat != null) {
-                    org.telegram.ui.Components.mc.C(lrVar, chat.title).j();
-                }
-            }
+    public final void a(TLRPC.User user) {
+        jr.b0(this.d, user);
+    }
+
+    @Override
+    public final void b(int i9, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLObject tLObject = this.f42175a;
+        if (tLObject instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
+            channelParticipant.admin_rights = tL_chatAdminRights;
+            channelParticipant.banned_rights = tL_chatBannedRights;
+            channelParticipant.rank = str;
+        }
+        jr jrVar = this.d;
+        br brVar = jrVar.f39579i1;
+        long j10 = this.f42176b;
+        if (brVar != null && i9 == 1) {
+            brVar.b(j10);
+        } else if (brVar != null) {
+            brVar.c(j10, tLObject);
+        }
+        if (this.f42177c) {
+            jrVar.removeSelfFromStack();
         }
     }
 }

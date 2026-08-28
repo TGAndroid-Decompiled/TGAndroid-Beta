@@ -1,12 +1,11 @@
 package org.webrtc;
-
 public class Size {
     public int height;
     public int width;
 
-    public Size(int i10, int i11) {
-        this.width = i10;
-        this.height = i11;
+    public Size(int i9, int i10) {
+        this.width = i9;
+        this.height = i10;
     }
 
     public boolean equals(Object obj) {
@@ -14,7 +13,10 @@ public class Size {
             return false;
         }
         Size size = (Size) obj;
-        return this.width == size.width && this.height == size.height;
+        if (this.width != size.width || this.height != size.height) {
+            return false;
+        }
+        return true;
     }
 
     public int hashCode() {

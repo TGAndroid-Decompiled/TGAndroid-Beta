@@ -1,73 +1,44 @@
 package y8;
 
-import android.os.Parcel;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.f;
-import com.google.android.gms.common.api.internal.w;
-import com.google.android.gms.common.api.q;
-import com.google.android.gms.tasks.TaskCompletionSource;
+import android.util.Log;
+import com.google.firebase.components.ComponentRegistrar;
+import java.lang.reflect.InvocationTargetException;
+public final class c implements x9.b {
+    public final int f49627a;
+    public final Object f49628b;
 
-public final class c extends w implements f {
-    public TaskCompletionSource d;
-
-    public final b[] f49811e;
-
-    public c(b[] bVarArr) {
-        super(null, false, 9004);
-        this.f49811e = bVarArr;
+    public c(Object obj, int i9) {
+        this.f49627a = i9;
+        this.f49628b = obj;
     }
 
     @Override
-    public final void a(q qVar) {
-        Exception aVar;
-        Status status = (Status) qVar;
-        if (status.b()) {
-            this.d.setResult(null);
-            return;
-        }
-        TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f3187b;
-        if (str == null || str.isEmpty()) {
-            str = "User Action indexing error, please try again.";
-        }
-        switch (status.f3186a) {
-            case 17510:
-                aVar = new w8.a(str);
-                break;
-            case 17511:
-                aVar = new w8.a(str);
-                break;
-            case 17512:
+    public final Object get() {
+        switch (this.f49627a) {
+            case 0:
+                String str = (String) this.f49628b;
+                try {
+                    Class<?> cls = Class.forName(str);
+                    if (ComponentRegistrar.class.isAssignableFrom(cls)) {
+                        return (ComponentRegistrar) cls.getDeclaredConstructor(null).newInstance(null);
+                    }
+                    throw new RuntimeException("Class " + str + " is not an instance of com.google.firebase.components.ComponentRegistrar");
+                } catch (ClassNotFoundException unused) {
+                    Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
+                    return null;
+                } catch (IllegalAccessException e10) {
+                    throw new RuntimeException(aa.d.o("Could not instantiate ", str, "."), e10);
+                } catch (InstantiationException e11) {
+                    throw new RuntimeException(aa.d.o("Could not instantiate ", str, "."), e11);
+                } catch (NoSuchMethodException e12) {
+                    throw new RuntimeException(ta.b.d("Could not instantiate ", str), e12);
+                } catch (InvocationTargetException e13) {
+                    throw new RuntimeException(ta.b.d("Could not instantiate ", str), e13);
+                }
+            case 1:
+                return (ComponentRegistrar) this.f49628b;
             default:
-                aVar = new t8.c(str);
-                break;
-            case 17513:
-                aVar = new w8.a(str);
-                break;
-            case 17514:
-                aVar = new w8.b(str);
-                break;
-        }
-        taskCompletionSource.setException(aVar);
-    }
-
-    @Override
-    public final void c(com.google.android.gms.common.api.c cVar, TaskCompletionSource taskCompletionSource) {
-        this.d = taskCompletionSource;
-        a7.a aVar = (a7.a) ((a7.b) cVar).u();
-        m6.b bVar = new m6.b(this);
-        Parcel parcelObtain = Parcel.obtain();
-        parcelObtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = a7.d.f105a;
-        parcelObtain.writeStrongBinder(bVar);
-        parcelObtain.writeTypedArray(this.f49811e, 0);
-        Parcel parcelObtain2 = Parcel.obtain();
-        try {
-            aVar.f104a.transact(7, parcelObtain, parcelObtain2, 0);
-            parcelObtain2.readException();
-        } finally {
-            parcelObtain.recycle();
-            parcelObtain2.recycle();
+                return new z9.b((s8.h) this.f49628b);
         }
     }
 }

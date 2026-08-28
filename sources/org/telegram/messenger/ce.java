@@ -1,44 +1,63 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.content.SharedPreferences;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.x60;
+import org.telegram.ui.qn;
+public final class ce implements Runnable {
+    public final int f19991a = 0;
+    public final int f19992b;
+    public final long f19993c;
+    public final long d;
+    public final Object f19994e;
+    public final Object f19995f;
+    public final Object h;
+    public final Object f19996n;
 
-public final class ce implements RequestDelegate {
-
-    public final int f19961a;
-
-    public final long f19962b;
-
-    public final int f19963c;
-    public final Object d;
-
-    public ce(BaseController baseController, long j10, int i10, int i11) {
-        this.f19961a = i11;
-        this.d = baseController;
-        this.f19962b = j10;
-        this.f19963c = i10;
+    public ce(MessagesController messagesController, TLRPC.updates_ChannelDifference updates_channeldifference, long j10, TLRPC.Chat chat, a0.h hVar, int i9, long j11) {
+        this.f19994e = messagesController;
+        this.f19995f = updates_channeldifference;
+        this.f19993c = j10;
+        this.h = chat;
+        this.f19996n = hVar;
+        this.f19992b = i9;
+        this.d = j11;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19961a) {
+    public final void run() {
+        switch (this.f19991a) {
             case 0:
-                ((MessagesController) this.d).lambda$approveOrRejectSuggestedMessageImpl$506(this.f19962b, this.f19963c, tLObject, tL_error);
-                break;
-            case 1:
-                ((TopicsController) this.d).lambda$loadTopics$7(this.f19962b, this.f19963c, tLObject, tL_error);
-                break;
+                int i9 = this.f19992b;
+                long j10 = this.d;
+                ((MessagesController) this.f19994e).lambda$getChannelDifference$346((TLRPC.updates_ChannelDifference) this.f19995f, this.f19993c, (TLRPC.Chat) this.h, (a0.h) this.f19996n, i9, j10);
+                return;
             default:
-                AndroidUtilities.runOnUIThread(new hh.b9((org.telegram.ui.m4) this.d, tLObject, this.f19963c, this.f19962b, 12));
-                break;
+                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.h;
+                org.telegram.ui.ActionBar.b6 b6Var = (org.telegram.ui.ActionBar.b6) this.f19996n;
+                ((x60) this.f19994e).u();
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.f19992b);
+                StringBuilder sb2 = new StringBuilder("sound_enabled_");
+                long j11 = this.f19993c;
+                long j12 = this.d;
+                boolean z10 = notificationsSettings.getBoolean(l0.i(j11, j12, sb2), true);
+                notificationsSettings.edit().putBoolean(l0.i(j11, j12, new StringBuilder("sound_enabled_")), !z10 ? 1 : 0).apply();
+                ((x60) this.f19995f).u();
+                if (org.telegram.ui.Components.oc.a(o2Var)) {
+                    org.telegram.ui.Components.oc.S(z10 ? 1 : 0, o2Var, b6Var).j();
+                    return;
+                }
+                return;
         }
     }
 
-    public ce(org.telegram.ui.m4 m4Var, int i10, long j10) {
-        this.f19961a = 2;
-        this.d = m4Var;
-        this.f19963c = i10;
-        this.f19962b = j10;
+    public ce(x60 x60Var, int i9, long j10, long j11, x60 x60Var2, qn qnVar, org.telegram.ui.ActionBar.b6 b6Var) {
+        this.f19994e = x60Var;
+        this.f19992b = i9;
+        this.f19993c = j10;
+        this.d = j11;
+        this.f19995f = x60Var2;
+        this.h = qnVar;
+        this.f19996n = b6Var;
     }
 }

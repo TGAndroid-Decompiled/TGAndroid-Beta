@@ -15,130 +15,183 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-
 public final class v2 implements Utilities.Callback {
+    public final int f33237a;
+    public final Object f33238b;
 
-    public final int f33254a;
-
-    public final Object f33255b;
-
-    public v2(Object obj, int i10) {
-        this.f33254a = i10;
-        this.f33255b = obj;
+    public v2(Object obj, int i9) {
+        this.f33237a = i9;
+        this.f33238b = obj;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f33254a) {
+        boolean z10;
+        float top;
+        float f10;
+        float f11;
+        float f12;
+        TL_account.TL_birthday tL_birthday;
+        switch (this.f33237a) {
             case 0:
-                ((cg.w1) this.f33255b).run();
-                break;
+                Object[] objArr = (Object[]) obj;
+                ((bg.c2) this.f33238b).run();
+                return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                lh.g gVar = ((xc) this.f33255b).f16338f;
+                kh.g gVar = ((ad) this.f33238b).f15632f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
-                break;
+                return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ul) this.f33255b).v;
-                chatAttachAlertPhotoLayout.r0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f34900b.dismiss();
-                break;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((yl) this.f33238b).v;
+                chatAttachAlertPhotoLayout.q0(null, null, ((Long) obj).longValue());
+                chatAttachAlertPhotoLayout.f27493b.dismiss();
+                return;
             case 3:
-                MessagesController.getInstance(((fs) this.f33255b).J).openApp((TLRPC.User) obj, 0);
-                break;
+                MessagesController.getInstance(((hs) this.f33238b).J).openApp((TLRPC.User) obj, 0);
+                return;
             case 4:
-                ((lt) this.f33255b).performMenuAction(((Integer) obj).intValue());
-                break;
+                ((mt) this.f33238b).performMenuAction(((Integer) obj).intValue());
+                return;
             case 5:
-                Runnable runnable = (Runnable) this.f33255b;
+                Runnable runnable = (Runnable) this.f33238b;
+                ArrayList arrayList = (ArrayList) obj;
                 if (runnable != null) {
                     runnable.run();
+                    return;
                 }
-                break;
+                return;
             case 6:
-                ((o90) this.f33255b).R.Y0(((Integer) obj).intValue() + 8);
-                break;
+                ((k90) this.f33238b).R.Y0(((Integer) obj).intValue() + 8);
+                return;
             case 7:
-                gb0 gb0Var = (gb0) this.f33255b;
+                cb0 cb0Var = (cb0) this.f33238b;
                 Integer num = (Integer) obj;
-                ArrayList arrayList = gb0Var.f28583e.f28004a;
-                ia0 ia0Var = gb0Var.f28584f;
-                if (((db0) arrayList.get(ia0Var.getCurrentPosition())).f27703a != num.intValue()) {
+                ArrayList arrayList2 = cb0Var.f27457e.f26746a;
+                ea0 ea0Var = cb0Var.f27458f;
+                if (((za0) arrayList2.get(ea0Var.getCurrentPosition())).f35264a != num.intValue()) {
+                    int i9 = 0;
                     int i10 = 0;
-                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        if (((db0) arrayList.get(i11)).f27703a == num.intValue()) {
-                            i10 = i11;
-                            if (ia0Var.getCurrentPosition() == i10) {
-                                ia0Var.D(i10);
-                                break;
+                    while (true) {
+                        if (i10 < arrayList2.size()) {
+                            if (((za0) arrayList2.get(i10)).f35264a == num.intValue()) {
+                                i9 = i10;
+                            } else {
+                                i10++;
                             }
                         }
                     }
-                    if (ia0Var.getCurrentPosition() == i10) {
-                        ia0Var.D(i10);
-                        break;
+                    if (ea0Var.getCurrentPosition() != i9) {
+                        ea0Var.D(i9);
+                        return;
                     }
+                    return;
                 }
-                break;
+                return;
             case 8:
-                dd0 dd0Var = (dd0) this.f33255b;
+                yc0 yc0Var = (yc0) this.f33238b;
                 Integer num2 = (Integer) obj;
-                FrameLayout frameLayout = dd0Var.h;
-                if (dd0Var.getContext() != null) {
-                    boolean z10 = dd0Var.getContext().getResources().getConfiguration().orientation == 2;
-                    int iIntValue = num2.intValue() - AndroidUtilities.navigationBarHeight;
-                    if (SharedConfig.passcodeType == 1) {
-                        ViewPropertyAnimator duration = frameLayout.animate().translationY(iIntValue <= AndroidUtilities.dp(20.0f) ? 0.0f : (((dd0Var.getHeight() - iIntValue) / 2.0f) - (frameLayout.getHeight() / (z10 ? 1.0f : 2.0f))) - frameLayout.getTop()).setDuration(320L);
-                        er erVar = er.h;
-                        duration.setInterpolator(erVar).start();
-                        dd0Var.E.animate().alpha(iIntValue > AndroidUtilities.dp(20.0f) ? 0.0f : 1.0f).setDuration(320L).setInterpolator(erVar);
+                FrameLayout frameLayout = yc0Var.h;
+                if (yc0Var.getContext() != null) {
+                    if (yc0Var.getContext().getResources().getConfiguration().orientation == 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
                     }
-                    break;
+                    int intValue = num2.intValue() - AndroidUtilities.navigationBarHeight;
+                    if (SharedConfig.passcodeType == 1) {
+                        ViewPropertyAnimator animate = frameLayout.animate();
+                        float f13 = 1.0f;
+                        if (intValue <= AndroidUtilities.dp(20.0f)) {
+                            top = 0.0f;
+                        } else {
+                            float f14 = 2.0f;
+                            float height = (yc0Var.getHeight() - intValue) / 2.0f;
+                            float height2 = frameLayout.getHeight();
+                            if (z10) {
+                                f14 = 1.0f;
+                            }
+                            top = (height - (height2 / f14)) - frameLayout.getTop();
+                        }
+                        ViewPropertyAnimator duration = animate.translationY(top).setDuration(320L);
+                        gr grVar = gr.h;
+                        duration.setInterpolator(grVar).start();
+                        ViewPropertyAnimator animate2 = yc0Var.E.animate();
+                        if (intValue > AndroidUtilities.dp(20.0f)) {
+                            f13 = 0.0f;
+                        }
+                        animate2.alpha(f13).setDuration(320L).setInterpolator(grVar);
+                        return;
+                    }
+                    return;
                 }
-                break;
+                return;
             case 9:
-                be0 be0Var = (be0) this.f33255b;
-                be0Var.G.b(be0Var.J, true, 0, ((Long) obj).longValue());
-                be0Var.dismiss();
-                break;
+                wd0 wd0Var = (wd0) this.f33238b;
+                wd0Var.G.b(wd0Var.J, true, 0, ((Long) obj).longValue());
+                wd0Var.dismiss();
+                return;
             case 10:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f33255b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f33238b;
                 Bitmap bitmap = (Bitmap) obj;
                 ColorMatrix colorMatrix = new ColorMatrix();
-                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, org.telegram.ui.ActionBar.g6.I.q() ? 0.04f : 0.25f);
-                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, org.telegram.ui.ActionBar.g6.I.q() ? -0.04f : -0.07f);
-                Bitmap bitmapApplyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
-                bitmapApplyColorMatrix.setHasAlpha(false);
-                ColorMatrix colorMatrix2 = new ColorMatrix();
-                colorMatrix2.setSaturation(org.telegram.ui.ActionBar.g6.I.q() ? 2.0f : 3.0f);
-                if (!org.telegram.ui.ActionBar.g6.I.q()) {
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, org.telegram.ui.ActionBar.g6.I.q() ? -0.2f : -0.07f);
+                if (org.telegram.ui.ActionBar.f6.I.q()) {
+                    f10 = 0.04f;
+                } else {
+                    f10 = 0.25f;
                 }
-                Bitmap bitmapApplyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
-                bitmapApplyColorMatrix2.setHasAlpha(false);
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, f10);
+                float f15 = -0.07f;
+                if (org.telegram.ui.ActionBar.f6.I.q()) {
+                    f11 = -0.04f;
+                } else {
+                    f11 = -0.07f;
+                }
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f11);
+                Bitmap applyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
+                applyColorMatrix.setHasAlpha(false);
+                ColorMatrix colorMatrix2 = new ColorMatrix();
+                if (org.telegram.ui.ActionBar.f6.I.q()) {
+                    f12 = 2.0f;
+                } else {
+                    f12 = 3.0f;
+                }
+                colorMatrix2.setSaturation(f12);
+                if (!org.telegram.ui.ActionBar.f6.I.q()) {
+                    if (org.telegram.ui.ActionBar.f6.I.q()) {
+                        f15 = -0.2f;
+                    }
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f15);
+                }
+                Bitmap applyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
+                applyColorMatrix2.setHasAlpha(false);
                 bitmap.recycle();
-                callback2.run(bitmapApplyColorMatrix, bitmapApplyColorMatrix2);
-                break;
+                callback2.run(applyColorMatrix, applyColorMatrix2);
+                return;
             default:
-                qx0 qx0Var = (qx0) this.f33255b;
-                TL_account.TL_birthday tL_birthday = (TL_account.TL_birthday) obj;
+                ox0 ox0Var = (ox0) this.f33238b;
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday;
-                int i12 = qx0Var.f31991a;
-                TLRPC.UserFull userFull = MessagesController.getInstance(i12).getUserFull(UserConfig.getInstance(i12).getClientUserId());
-                TL_account.TL_birthday tL_birthday2 = userFull != null ? userFull.birthday : null;
+                updatebirthday.birthday = tL_birthday2;
+                int i11 = ox0Var.f31461a;
+                TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
+                if (userFull != null) {
+                    tL_birthday = userFull.birthday;
+                } else {
+                    tL_birthday = null;
+                }
                 if (userFull != null) {
                     userFull.flags2 |= 32;
-                    userFull.birthday = tL_birthday;
-                    MessagesStorage.getInstance(i12).updateUserInfo(userFull, false);
+                    userFull.birthday = tL_birthday2;
+                    MessagesStorage.getInstance(i11).updateUserInfo(userFull, false);
                 }
-                ConnectionsManager.getInstance(i12).sendRequest(updatebirthday, new cg.y(qx0Var, userFull, tL_birthday2, 21), 1024);
-                MessagesController.getInstance(i12).invalidateContentSettings();
-                MessagesController.getInstance(i12).removeSuggestion(0L, "BIRTHDAY_SETUP");
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-                break;
+                ConnectionsManager.getInstance(i11).sendRequest(updatebirthday, new bg.b0(ox0Var, userFull, tL_birthday, 21), 1024);
+                MessagesController.getInstance(i11).invalidateContentSettings();
+                MessagesController.getInstance(i11).removeSuggestion(0L, "BIRTHDAY_SETUP");
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+                return;
         }
     }
 }

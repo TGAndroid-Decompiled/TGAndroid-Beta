@@ -1,20 +1,15 @@
 package lf;
 
-import java.nio.ShortBuffer;
-import w9.d;
-import za.b;
+import android.graphics.Bitmap;
+import java.util.List;
+public final class a {
+    public final int f16852a;
+    public final Bitmap f16853b;
+    public final List f16854c;
 
-public interface a {
-
-    public static final d f15573p;
-
-    public static final b f15574q;
-
-    static {
-        int i10 = 13;
-        f15573p = new d(i10);
-        f15574q = new b(i10);
+    public a(Bitmap bitmap, int i9, List list) {
+        this.f16854c = list;
+        this.f16853b = bitmap;
+        this.f16852a = i9;
     }
-
-    void c0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
 }

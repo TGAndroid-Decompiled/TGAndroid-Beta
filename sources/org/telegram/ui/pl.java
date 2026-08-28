@@ -1,30 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class pl extends rt0 {
+    public final qn f41556a;
 
-public final class pl extends AnimatorListenerAdapter {
-
-    public final boolean f41377a;
-
-    public final boolean f41378b;
-
-    public final boolean f41379c;
-    public final rn d;
-
-    public pl(rn rnVar, boolean z10, boolean z11, boolean z12) {
-        this.d = rnVar;
-        this.f41377a = z10;
-        this.f41378b = z11;
-        this.f41379c = z12;
+    public pl(qn qnVar) {
+        this.f41556a = qnVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        rn rnVar = this.d;
-        rnVar.I2 = null;
-        rnVar.F2.setVisibility(this.f41377a ? 0 : 4);
-        rnVar.H2.setVisibility(this.f41378b ? 0 : 4);
-        rnVar.G2.setVisibility(this.f41379c ? 0 : 4);
+    public final org.telegram.ui.bu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pl.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.bu0");
+    }
+
+    @Override
+    public final void o(int i9, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11) {
+        if (i9 >= 0) {
+            qn qnVar = this.f41556a;
+            if (i9 < qnVar.Da.size()) {
+                qnVar.cb((TLRPC.BotInlineResult) qnVar.Da.get(i9), z10, i10, 0L);
+            }
+        }
     }
 }

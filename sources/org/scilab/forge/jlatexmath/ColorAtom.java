@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 import ru.noties.jlatexmath.awt.Color;
-
 public class ColorAtom extends Atom implements Row {
     public static Map<String, Color> Colors = new HashMap();
     private final Color background;
@@ -28,28 +27,30 @@ public class ColorAtom extends Atom implements Row {
 
     public static Color getColor(String str) {
         if (str != null) {
-            String strTrim = str.trim();
-            if (strTrim.length() >= 1) {
-                if (strTrim.charAt(0) == '#') {
-                    return Color.decode(strTrim);
+            String trim = str.trim();
+            if (trim.length() >= 1) {
+                if (trim.charAt(0) == '#') {
+                    return Color.decode(trim);
                 }
-                if (strTrim.indexOf(44) != -1 || strTrim.indexOf(59) != -1) {
-                    StringTokenizer stringTokenizer = new StringTokenizer(strTrim, ";,");
-                    int iCountTokens = stringTokenizer.countTokens();
-                    if (iCountTokens == 3) {
+                if (trim.indexOf(44) != -1 || trim.indexOf(59) != -1) {
+                    StringTokenizer stringTokenizer = new StringTokenizer(trim, ";,");
+                    int countTokens = stringTokenizer.countTokens();
+                    if (countTokens == 3) {
                         try {
-                            String strTrim2 = stringTokenizer.nextToken().trim();
-                            String strTrim3 = stringTokenizer.nextToken().trim();
-                            String strTrim4 = stringTokenizer.nextToken().trim();
-                            float f10 = Float.parseFloat(strTrim2);
-                            float f11 = Float.parseFloat(strTrim3);
-                            float f12 = Float.parseFloat(strTrim4);
-                            return (f10 == ((float) ((int) f10)) && f11 == ((float) ((int) f11)) && f12 == ((float) ((int) f12)) && strTrim2.indexOf(46) == -1 && strTrim3.indexOf(46) == -1 && strTrim4.indexOf(46) == -1) ? new Color((int) Math.min(255.0f, Math.max(0.0f, f10)), (int) Math.min(255.0f, Math.max(0.0f, f11)), (int) Math.min(255.0f, Math.max(0.0f, f12))) : new Color(Math.min(1.0f, Math.max(0.0f, f10)), Math.min(1.0f, Math.max(0.0f, f11)), Math.min(1.0f, Math.max(0.0f, f12)));
+                            String trim2 = stringTokenizer.nextToken().trim();
+                            String trim3 = stringTokenizer.nextToken().trim();
+                            String trim4 = stringTokenizer.nextToken().trim();
+                            float parseFloat = Float.parseFloat(trim2);
+                            float parseFloat2 = Float.parseFloat(trim3);
+                            float parseFloat3 = Float.parseFloat(trim4);
+                            if (parseFloat == ((int) parseFloat) && parseFloat2 == ((int) parseFloat2) && parseFloat3 == ((int) parseFloat3) && trim2.indexOf(46) == -1 && trim3.indexOf(46) == -1 && trim4.indexOf(46) == -1) {
+                                return new Color((int) Math.min(255.0f, Math.max(0.0f, parseFloat)), (int) Math.min(255.0f, Math.max(0.0f, parseFloat2)), (int) Math.min(255.0f, Math.max(0.0f, parseFloat3)));
+                            }
+                            return new Color(Math.min(1.0f, Math.max(0.0f, parseFloat)), Math.min(1.0f, Math.max(0.0f, parseFloat2)), Math.min(1.0f, Math.max(0.0f, parseFloat3)));
                         } catch (NumberFormatException unused) {
                             return Color.black;
                         }
-                    }
-                    if (iCountTokens == 4) {
+                    } else if (countTokens == 4) {
                         try {
                             return convColor(Math.min(1.0f, Math.max(0.0f, Float.parseFloat(stringTokenizer.nextToken().trim()))), Math.min(1.0f, Math.max(0.0f, Float.parseFloat(stringTokenizer.nextToken().trim()))), Math.min(1.0f, Math.max(0.0f, Float.parseFloat(stringTokenizer.nextToken().trim()))), Math.min(1.0f, Math.max(0.0f, Float.parseFloat(stringTokenizer.nextToken().trim()))));
                         } catch (NumberFormatException unused2) {
@@ -57,18 +58,18 @@ public class ColorAtom extends Atom implements Row {
                         }
                     }
                 }
-                Color color = Colors.get(strTrim.toLowerCase());
+                Color color = Colors.get(trim.toLowerCase());
                 if (color != null) {
                     return color;
                 }
-                if (strTrim.indexOf(46) != -1) {
+                if (trim.indexOf(46) != -1) {
                     try {
-                        float fMin = Math.min(1.0f, Math.max(Float.parseFloat(strTrim), 0.0f));
-                        return new Color(fMin, fMin, fMin);
+                        float min = Math.min(1.0f, Math.max(Float.parseFloat(trim), 0.0f));
+                        return new Color(min, min, min);
                     } catch (NumberFormatException unused3) {
                     }
                 }
-                return Color.decode("#".concat(strTrim));
+                return Color.decode("#".concat(trim));
             }
         }
         return Color.black;
@@ -149,16 +150,16 @@ public class ColorAtom extends Atom implements Row {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         teXEnvironment.isColored = true;
-        TeXEnvironment teXEnvironmentCopy = teXEnvironment.copy();
+        TeXEnvironment copy = teXEnvironment.copy();
         Color color = this.background;
         if (color != null) {
-            teXEnvironmentCopy.setBackground(color);
+            copy.setBackground(color);
         }
         Color color2 = this.color;
         if (color2 != null) {
-            teXEnvironmentCopy.setColor(color2);
+            copy.setColor(color2);
         }
-        return this.elements.createBox(teXEnvironmentCopy);
+        return this.elements.createBox(copy);
     }
 
     @Override

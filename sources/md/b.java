@@ -1,28 +1,35 @@
 package md;
 
-import ld.o;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class b extends p {
+    public static final AtomicReferenceFieldUpdater f17643a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
+    private volatile Object _consensus$volatile = a.f17638a;
 
-public abstract class b {
-
-    public o[] f18021a;
-
-    public int f18022b;
-
-    public int f18023c;
-
-    public final void a(o oVar) {
-        synchronized (this) {
-            try {
-                int i10 = this.f18022b - 1;
-                this.f18022b = i10;
-                if (i10 == 0) {
-                    this.f18023c = 0;
+    @Override
+    public final Object a(Object obj) {
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f17643a;
+        Object obj2 = atomicReferenceFieldUpdater.get(this);
+        e5.c cVar = a.f17638a;
+        if (obj2 == cVar) {
+            e5.c c10 = c(obj);
+            obj2 = atomicReferenceFieldUpdater.get(this);
+            if (obj2 == cVar) {
+                while (true) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(this, cVar, c10)) {
+                        obj2 = c10;
+                        break;
+                    } else if (atomicReferenceFieldUpdater.get(this) != cVar) {
+                        obj2 = atomicReferenceFieldUpdater.get(this);
+                        break;
+                    }
                 }
-                kotlin.jvm.internal.j.c(oVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
-                oVar.f15572a.set(null);
-            } catch (Throwable th) {
-                throw th;
             }
         }
+        b(obj, obj2);
+        return obj2;
     }
+
+    public abstract void b(Object obj, Object obj2);
+
+    public abstract e5.c c(Object obj);
 }

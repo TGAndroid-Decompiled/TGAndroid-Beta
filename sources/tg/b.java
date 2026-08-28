@@ -1,135 +1,92 @@
 package tg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.rl;
-import org.telegram.ui.Components.voip.u2;
-import ud.c;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import g7.t8;
+import java.util.Collections;
+import java.util.HashSet;
+import y8.j;
+import y8.r;
+public final class b {
+    public int f47915a;
+    public int f47916b;
+    public Object f47917c;
+    public final Object d;
+    public final Object f47918e;
+    public Object f47919f;
+    public final Object f47920g;
 
-public abstract class b extends ViewGroup {
-
-    public int f48226a;
-
-    public int f48227b;
-
-    public final LinkedHashMap f48228c;
-
-    public b(Context context) {
-        super(context);
-        this.f48228c = new LinkedHashMap(16);
+    public b(Class cls, Class[] clsArr) {
+        this.f47917c = null;
+        HashSet hashSet = new HashSet();
+        this.d = hashSet;
+        this.f47918e = new HashSet();
+        this.f47915a = 0;
+        this.f47916b = 0;
+        this.f47920g = new HashSet();
+        hashSet.add(r.a(cls));
+        for (Class cls2 : clsArr) {
+            t8.a(cls2, "Null interface");
+            ((HashSet) this.d).add(r.a(cls2));
+        }
     }
 
-    public final void a(u2 u2Var) {
-        addView(u2Var);
-        this.f48228c.put(u2Var, new a(u2Var, new qf.b(this, 14)));
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        int iMin;
-        int i10;
-        c cVar;
-        int measuredWidth;
-        int measuredHeight;
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        boolean z12 = measuredWidth2 <= measuredHeight2;
-        if (measuredWidth2 <= 0 || measuredHeight2 <= 0) {
+    public void a(j jVar) {
+        if (!((HashSet) this.d).contains(jVar.f49642a)) {
+            ((HashSet) this.f47918e).add(jVar);
             return;
         }
-        LinkedHashMap linkedHashMap = this.f48228c;
-        Iterator it = linkedHashMap.values().iterator();
-        int i11 = 0;
-        while (it.hasNext()) {
-            if (((a) it.next()).h) {
-                i11++;
-            }
-        }
-        if (i11 == 0) {
-            i11 = 1;
-        }
-        if (z12) {
-            iMin = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (rl.z(50.0f, i11, measuredHeight2) / (i11 + 0.333f)), 0), measuredHeight2 / i11);
-            i10 = (measuredHeight2 - (i11 * iMin)) / 2;
+        throw new IllegalArgumentException("Components are not allowed to depend on interfaces they themselves provide.");
+    }
+
+    public y8.a b() {
+        boolean z10;
+        if (((y8.d) this.f47919f) != null) {
+            z10 = true;
         } else {
-            int iMin2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (rl.z(50.0f, i11, measuredWidth2) / (i11 + 0.333f)), 0), measuredWidth2 / i11);
-            iMin = AndroidUtilities.dp(76.0f);
-            i10 = (measuredWidth2 - (i11 * iMin2)) / 2;
-            measuredWidth2 = iMin2;
+            z10 = false;
         }
-        Iterator it2 = linkedHashMap.entrySet().iterator();
-        int i12 = 0;
-        while (it2.hasNext()) {
-            a aVar = (a) ((Map.Entry) it2.next()).getValue();
-            boolean z13 = aVar.h;
-            u2 u2Var = aVar.f48224e;
-            c cVar2 = aVar.f48222b;
-            ud.a aVar2 = aVar.f48223c;
-            c cVar3 = aVar.f48221a;
-            if (z13) {
-                if (z12) {
-                    measuredWidth = ((measuredWidth2 - u2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
-                    measuredHeight = (iMin * i12) + i10;
-                } else {
-                    measuredWidth = ((measuredWidth2 - u2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i12) + i10;
-                    measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
-                }
-                if (z11 || !((z10 || cVar3.f48504g) && aVar2.f48498f)) {
-                    cVar3.c(measuredWidth);
-                } else {
-                    cVar3.a(measuredWidth);
-                }
-                if (z11 || !((z10 || cVar2.f48504g) && aVar2.f48498f)) {
-                    cVar2.c(measuredHeight);
-                } else {
-                    cVar2.a(measuredHeight);
-                }
-                i12++;
-            }
-            aVar2.a(aVar.h, !z11 && (z10 || ((cVar = aVar2.h) != null && cVar.f48504g)));
+        if (z10) {
+            return new y8.a((String) this.f47917c, new HashSet((HashSet) this.d), new HashSet((HashSet) this.f47918e), this.f47915a, this.f47916b, (y8.d) this.f47919f, (HashSet) this.f47920g);
         }
-        invalidate();
+        throw new IllegalStateException("Missing required property: factory.");
     }
 
-    public final void c(u2 u2Var, boolean z10, boolean z11) {
-        a aVar = (a) this.f48228c.get(u2Var);
-        if (aVar == null || aVar.h == z10) {
+    public void c(int i9) {
+        boolean z10;
+        if (this.f47915a == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            this.f47915a = i9;
             return;
         }
-        aVar.h = z10;
-        b(z11, false);
+        throw new IllegalStateException("Instantiation type has already been set.");
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+    public b(r rVar, r[] rVarArr) {
+        this.f47917c = null;
+        HashSet hashSet = new HashSet();
+        this.d = hashSet;
+        this.f47918e = new HashSet();
+        this.f47915a = 0;
+        this.f47916b = 0;
+        this.f47920g = new HashSet();
+        hashSet.add(rVar);
+        for (r rVar2 : rVarArr) {
+            t8.a(rVar2, "Null interface");
         }
+        Collections.addAll((HashSet) this.d, rVarArr);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            getChildAt(i12).measure(iMakeMeasureSpec, iMakeMeasureSpec2);
-        }
-        if (this.f48226a == size && this.f48227b == size2) {
-            b(true, false);
-            return;
-        }
-        b(false, true);
-        this.f48226a = size;
-        this.f48227b = size2;
+    public b() {
+        this.f47917c = new RectF();
+        this.f47919f = new Path();
+        this.d = new RectF();
+        this.f47918e = new RectF();
+        this.f47920g = new PointF();
     }
 }

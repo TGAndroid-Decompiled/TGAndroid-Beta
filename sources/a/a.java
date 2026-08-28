@@ -2,27 +2,29 @@ package a;
 
 import android.os.Build;
 import android.util.Log;
-
 public abstract class a {
     public static void a(Object obj, String str, String str2) {
-        String strC = c(str);
-        if (Log.isLoggable(strC, 3)) {
-            Log.d(strC, String.format(str2, obj));
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, String.format(str2, obj));
         }
     }
 
     public static void b(String str, String str2, Exception exc) {
-        String strC = c(str);
-        if (Log.isLoggable(strC, 6)) {
-            Log.e(strC, str2, exc);
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 6)) {
+            Log.e(c10, str2, exc);
         }
     }
 
     public static String c(String str) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            return "TRuntime.".concat(str);
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
         }
-        String strConcat = "TRuntime.".concat(str);
-        return strConcat.length() > 23 ? strConcat.substring(0, 23) : strConcat;
+        return "TRuntime.".concat(str);
     }
 }

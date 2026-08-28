@@ -1,14 +1,13 @@
 package h3;
 
+import fh.y5;
 public abstract class g2 implements g {
-
-    public static final String f7864a;
-
-    public static final f9.z f7865b;
+    public static final String f9434a;
+    public static final y5 f9435b;
 
     static {
-        int i10 = d5.g0.f4795a;
-        f7864a = Integer.toString(0, 36);
-        f7865b = new f9.z(26);
+        int i9 = d5.f0.f4349a;
+        f9434a = Integer.toString(0, 36);
+        f9435b = new y5(22);
     }
 }

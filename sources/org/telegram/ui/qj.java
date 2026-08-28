@@ -1,59 +1,34 @@
 package org.telegram.ui;
 
-public final class qj implements Runnable {
+import android.content.Context;
+import android.view.MotionEvent;
+public final class qj extends org.telegram.ui.Components.g11 {
+    public final qn f41811e;
 
-    public final int f41681a;
-
-    public final rn f41682b;
-
-    public qj(rn rnVar, int i10) {
-        this.f41681a = i10;
-        this.f41682b = rnVar;
+    public qj(qn qnVar, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
+        super(context, i9, b6Var);
+        this.f41811e = qnVar;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f41681a;
-        rn rnVar = this.f41682b;
-        switch (i10) {
-            case 0:
-                rn.i2(rnVar);
-                break;
-            case 1:
-                rn.i2(rnVar);
-                break;
-            case 2:
-                int i11 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 3:
-                int i12 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 4:
-                int i13 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 5:
-                int i14 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 6:
-                int i15 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 7:
-                int i16 = rn.Dc;
-                rnVar.Ma();
-                break;
-            case 8:
-                int i17 = rn.Dc;
-                rnVar.Ma();
-                break;
-            default:
-                int i18 = rn.Dc;
-                rnVar.Ma();
-                break;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            qn qnVar = this.f41811e;
+            kVar = ((org.telegram.ui.ActionBar.o2) qnVar).actionBar;
+            if (!kVar.s() && !qnVar.A9()) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }
