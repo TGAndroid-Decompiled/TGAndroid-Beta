@@ -12,10 +12,10 @@ public final class z implements Runnable {
     public final void run() {
         switch (this.f22283a) {
             case 0:
-                this.f22284b.lambda$onQueriedPremiumProductDetails$14();
+                BillingController.p(this.f22284b);
                 return;
             default:
-                this.f22284b.lambda$onBillingServiceDisconnected$13();
+                BillingController.m(this.f22284b);
                 return;
         }
     }

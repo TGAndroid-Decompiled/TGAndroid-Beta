@@ -17,10 +17,10 @@ public final class v6 extends r7 {
         y6 y6Var = ((w6) this.f43394x).f43679e;
         if (z10) {
             y6.a0(y6Var, true);
-            y6.c0(y6Var).N(null, null);
+            ((org.telegram.ui.ActionBar.o2) y6Var).actionBar.N(null, null);
             return;
         }
-        y6.d0(y6Var).r();
+        ((org.telegram.ui.ActionBar.o2) y6Var).actionBar.r();
     }
 
     @Override

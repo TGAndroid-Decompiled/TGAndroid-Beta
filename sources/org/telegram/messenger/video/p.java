@@ -14,10 +14,10 @@ public final class p implements Runnable {
     public final void run() {
         switch (this.f21829a) {
             case 0:
-                VideoPlayerHolderBase.AnonymousClass2.a(this.f21830b);
+                this.f21830b.lambda$onRenderedFirstFrame$2();
                 return;
             default:
-                VideoPlayerHolderBase.AnonymousClass2.b(this.f21830b);
+                this.f21830b.lambda$onError$1();
                 return;
         }
     }

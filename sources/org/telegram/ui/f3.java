@@ -18,7 +18,6 @@ public final class f3 implements ValueAnimator.AnimatorUpdateListener {
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        ViewGroup viewGroup;
         switch (this.f38125a) {
             case 0:
                 g3 g3Var = (g3) this.f38126b;
@@ -155,8 +154,7 @@ public final class f3 implements ValueAnimator.AnimatorUpdateListener {
                 o50 o50Var2 = c50Var.L;
                 o50Var2.M.invalidate();
                 o50Var2.W1.invalidate();
-                viewGroup = ((org.telegram.ui.ActionBar.f3) o50Var2).containerView;
-                viewGroup.invalidate();
+                ((org.telegram.ui.ActionBar.f3) o50Var2).containerView.invalidate();
                 o50.I0(o50Var2);
                 return;
             case 18:

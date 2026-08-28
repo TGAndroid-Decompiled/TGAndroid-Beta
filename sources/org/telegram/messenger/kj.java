@@ -18,10 +18,10 @@ public final class kj implements Runnable {
     public final void run() {
         switch (this.f20821a) {
             case 0:
-                this.f20822b.lambda$sendNotificationCallback$28(this.f20823c, this.d);
+                SendMessagesHelper.M0(this.f20822b, this.f20823c, this.d);
                 return;
             default:
-                this.f20822b.lambda$sendCallback$38(this.f20823c, this.d);
+                SendMessagesHelper.D1(this.f20822b, this.f20823c, this.d);
                 return;
         }
     }

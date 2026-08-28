@@ -13,14 +13,11 @@ import android.text.Spannable;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import j$.util.Objects;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,7 +30,6 @@ public class Emoji {
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
     public static int bigImgSize;
     public static int drawImgSize;
-    private static SparseIntArray emojiAlphaMasks;
     private static Bitmap[][] emojiBmp;
     public static final HashMap<String, String> emojiColor;
     private static final int[] emojiCounts;
@@ -276,7 +272,7 @@ public class Emoji {
         return true;
     }
 
-    public static void lambda$loadEmoji$1(byte r14, short r15) {
+    public static void lambda$loadEmoji$1(byte r13, short r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.Emoji.lambda$loadEmoji$1(byte, short):void");
     }
 
@@ -351,47 +347,6 @@ public class Emoji {
                     }
                 });
             }
-        }
-    }
-
-    private static SparseIntArray loadEmojiAlphaMasks() {
-        try {
-            InputStream open = ApplicationLoader.applicationContext.getAssets().open("emoji/metadata.bin");
-            ArrayList arrayList = new ArrayList();
-            byte[] bArr = new byte[8192];
-            int i9 = 0;
-            while (true) {
-                int read = open.read(bArr);
-                if (read == -1) {
-                    break;
-                }
-                byte[] bArr2 = new byte[read];
-                System.arraycopy(bArr, 0, bArr2, 0, read);
-                arrayList.add(bArr2);
-                i9 += read;
-            }
-            byte[] bArr3 = new byte[i9];
-            int size = arrayList.size();
-            int i10 = 0;
-            int i11 = 0;
-            while (i11 < size) {
-                Object obj = arrayList.get(i11);
-                i11++;
-                byte[] bArr4 = (byte[]) obj;
-                System.arraycopy(bArr4, 0, bArr3, i10, bArr4.length);
-                i10 += bArr4.length;
-            }
-            ByteBuffer order = ByteBuffer.wrap(bArr3).order(ByteOrder.LITTLE_ENDIAN);
-            int i12 = i9 / 4;
-            SparseIntArray sparseIntArray = new SparseIntArray(i12);
-            for (int i13 = 0; i13 < i12; i13++) {
-                sparseIntArray.put(order.getShort() & 65535, 65535 & order.getShort());
-            }
-            open.close();
-            return sparseIntArray;
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            return null;
         }
     }
 
