@@ -212,8 +212,6 @@ public class NativeInstance {
 
     public native Instance.TrafficStats getTrafficStats();
 
-    public native String getVersion();
-
     public native boolean hasVideoCapturer();
 
     public boolean isGroup() {

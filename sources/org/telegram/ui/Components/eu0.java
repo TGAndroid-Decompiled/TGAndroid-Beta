@@ -377,10 +377,6 @@ public abstract class eu0 extends FrameLayout implements NotificationCenter.Noti
         AndroidUtilities.runOnUIThread(new jg0(13, eu0Var, o6Var), 100L);
     }
 
-    public static void k(int i9, TL_stories.StoryItem storyItem, eu0 eu0Var) {
-        eu0Var.getStoriesController().c(i9, eu0Var.f28136f1, storyItem);
-    }
-
     public static void m(eu0 eu0Var, HashSet hashSet, TL_stories.StoryItem storyItem, x60 x60Var, ih.o6 o6Var) {
         String formatString;
         long j10 = eu0Var.f28136f1;

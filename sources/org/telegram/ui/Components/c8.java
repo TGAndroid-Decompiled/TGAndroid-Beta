@@ -948,6 +948,14 @@ public final class c8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         return c8Var.currentAccount;
     }
 
+    public static int h0(c8 c8Var) {
+        return c8Var.backgroundPaddingTop;
+    }
+
+    public static int i0(c8 c8Var) {
+        return c8Var.backgroundPaddingTop;
+    }
+
     public static void m(c8 c8Var, MessageObject messageObject) {
         MessagesController.SavedMusicList savedMusicList = c8Var.f27402s0;
         if (savedMusicList != null) {

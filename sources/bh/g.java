@@ -160,10 +160,8 @@ public final class g extends FrameLayout {
         FrameLayout frameLayout;
         int i9;
         Paint e10;
-        float globalXOffset;
         ValueAnimator valueAnimator;
         ValueAnimator valueAnimator2;
-        float globalXOffset2;
         Drawable drawable;
         int i10;
         Drawable drawable2;
@@ -347,18 +345,10 @@ public final class g extends FrameLayout {
                         for (View view = this; view != viewGroup; view = (View) view.getParent()) {
                             f11 += view.getY();
                         }
-                        a1 d9 = a1.d();
-                        int measuredWidth = viewGroup.getMeasuredWidth();
-                        int measuredHeight = viewGroup.getMeasuredHeight();
-                        globalXOffset2 = limitPreviewView.getGlobalXOffset();
-                        d9.f(globalXOffset2 - getLeft(), -f11, measuredWidth, measuredHeight);
+                        a1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -f11, viewGroup.getMeasuredWidth(), viewGroup.getMeasuredHeight());
                     }
                 } else {
-                    a1 d10 = a1.d();
-                    int measuredWidth2 = limitPreviewView.getMeasuredWidth();
-                    int measuredHeight2 = limitPreviewView.getMeasuredHeight();
-                    globalXOffset = limitPreviewView.getGlobalXOffset();
-                    d10.f(globalXOffset - getLeft(), -getTop(), measuredWidth2, measuredHeight2);
+                    a1.d().f(limitPreviewView.getGlobalXOffset() - getLeft(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
                 }
                 int alpha2 = e10.getAlpha();
                 if (limitPreviewView.R && (valueAnimator2 = limitPreviewView.f26455e0) != null) {

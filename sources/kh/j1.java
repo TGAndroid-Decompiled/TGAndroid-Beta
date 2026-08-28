@@ -3,6 +3,7 @@ package kh;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.n71;
 import org.telegram.ui.dd1;
@@ -128,6 +129,7 @@ public final class j1 extends n71 {
 
     @Override
     public final void w(boolean z10) {
+        ViewGroup viewGroup;
         switch (this.P) {
             case 0:
                 n2 n2Var = (n2) this.Q;
@@ -137,7 +139,8 @@ public final class j1 extends n71 {
                     m2Var.B = j1Var.getPositionAnimated();
                     m2Var.invalidate();
                 }
-                n2.a0(n2Var).invalidate();
+                viewGroup = ((org.telegram.ui.ActionBar.f3) n2Var).containerView;
+                viewGroup.invalidate();
                 invalidate();
                 n2.C = j1Var.getCurrentPosition();
                 return;

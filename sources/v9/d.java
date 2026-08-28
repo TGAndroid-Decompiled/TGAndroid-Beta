@@ -954,6 +954,10 @@ public final class d implements y2.b, Continuation, ef.a, a61, jf.a, y8.e, w, m9
         }
     }
 
+    public d(t6.a aVar) {
+        this.f48374a = 22;
+    }
+
     private final void A() {
     }
 

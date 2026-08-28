@@ -20,8 +20,9 @@ public final class l3 extends f2.d1 {
         org.telegram.ui.ActionBar.k kVar;
         View view;
         View view2;
-        View m10;
         org.telegram.ui.ActionBar.k kVar2;
+        View m10;
+        org.telegram.ui.ActionBar.k kVar3;
         View view3;
         switch (this.f39984a) {
             case 0:
@@ -105,7 +106,8 @@ public final class l3 extends f2.d1 {
                 if (i9 == 0) {
                     float f10 = y50Var.f44728w0;
                     if (f10 >= 0.5f && f10 < 1.0f) {
-                        int bottom = y50.h1(y50Var).getBottom();
+                        kVar2 = ((org.telegram.ui.ActionBar.o2) y50Var).actionBar;
+                        int bottom = kVar2.getBottom();
                         f2.z0 layoutManager = y50Var.I.getLayoutManager();
                         if (layoutManager != null && (m10 = layoutManager.m(0)) != null) {
                             y50Var.I.v0(0, m10.getBottom() - bottom, null);
@@ -191,8 +193,8 @@ public final class l3 extends f2.d1 {
             case 25:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f39985b;
                 if (i9 == 0) {
-                    kVar2 = ((org.telegram.ui.ActionBar.o2) premiumPreviewFragment).actionBar;
-                    int dp2 = AndroidUtilities.dp(16.0f) + kVar2.getBottom();
+                    kVar3 = ((org.telegram.ui.ActionBar.o2) premiumPreviewFragment).actionBar;
+                    int dp2 = AndroidUtilities.dp(16.0f) + kVar3.getBottom();
                     if (premiumPreviewFragment.f35842b0 > 0.5f) {
                         premiumPreviewFragment.f35839a.v0(0, premiumPreviewFragment.Y - dp2, null);
                         return;
@@ -222,6 +224,7 @@ public final class l3 extends f2.d1 {
     public void b(RecyclerView recyclerView, int i9, int i10) {
         h00 h00Var;
         org.telegram.ui.Cells.d3 d3Var;
+        org.telegram.ui.ActionBar.k kVar;
         int i11;
         ig.e eVar;
         ig.e eVar2;
@@ -340,9 +343,11 @@ public final class l3 extends f2.d1 {
                 if (y50Var.f44727v0 == null) {
                     y50Var.f44727v0 = (pc) y50Var.x0(y50Var.V);
                 }
-                int measuredHeight = y50Var.f44727v0.getMeasuredHeight() - y50.g1(y50Var).getMeasuredHeight();
+                int measuredHeight = y50Var.f44727v0.getMeasuredHeight();
+                kVar = ((org.telegram.ui.ActionBar.o2) y50Var).actionBar;
+                int measuredHeight2 = measuredHeight - kVar.getMeasuredHeight();
                 float top = y50Var.f44727v0.getTop() * (-1);
-                float f10 = measuredHeight;
+                float f10 = measuredHeight2;
                 float max = Math.max(Math.min(1.0f, top / f10), 0.0f);
                 y50Var.f44728w0 = max;
                 float min = Math.min(max * 2.0f, 1.0f);

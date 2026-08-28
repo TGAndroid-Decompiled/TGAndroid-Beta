@@ -38,14 +38,6 @@ public final class y50 extends xc {
         y50Var.f44729x0 = false;
     }
 
-    public static org.telegram.ui.ActionBar.k g1(y50 y50Var) {
-        return y50Var.actionBar;
-    }
-
-    public static org.telegram.ui.ActionBar.k h1(y50 y50Var) {
-        return y50Var.actionBar;
-    }
-
     @Override
     public final int A0() {
         return R.string.GroupEmojiPack;

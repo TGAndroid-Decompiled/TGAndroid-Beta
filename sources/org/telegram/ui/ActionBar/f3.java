@@ -190,11 +190,6 @@ public class f3 extends Dialog implements k2 {
         return i9;
     }
 
-    public static boolean access$2102(f3 f3Var, boolean z10) {
-        f3Var.multipleLinesTitle = z10;
-        return z10;
-    }
-
     public static View access$2202(f3 f3Var, View view) {
         f3Var.customView = view;
         return view;

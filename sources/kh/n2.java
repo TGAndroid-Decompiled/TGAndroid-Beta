@@ -2,7 +2,6 @@ package kh;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
@@ -101,10 +100,6 @@ public class n2 extends org.telegram.ui.ActionBar.f3 implements NotificationCent
 
     public static int V(n2 n2Var) {
         return n2Var.currentAccount;
-    }
-
-    public static ViewGroup a0(n2 n2Var) {
-        return n2Var.containerView;
     }
 
     public static void m(n2 n2Var) {

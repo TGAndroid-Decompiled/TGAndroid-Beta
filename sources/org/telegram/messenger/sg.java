@@ -14,28 +14,28 @@ public final class sg implements Runnable {
     public final void run() {
         switch (this.f21501a) {
             case 0:
-                NotificationsController.R(this.f21502b, this.f21503c);
+                this.f21502b.lambda$processDialogsUpdateRead$29(this.f21503c);
                 return;
             case 1:
-                NotificationsController.W(this.f21502b, this.f21503c);
+                this.f21502b.lambda$removeDeletedHisoryFromNotifications$12(this.f21503c);
                 return;
             case 2:
-                NotificationsController.b0(this.f21502b, this.f21503c);
+                this.f21502b.lambda$processSeenStoryReactions$14(this.f21503c);
                 return;
             case 3:
-                NotificationsController.Y(this.f21502b, this.f21503c);
+                this.f21502b.lambda$processNewMessages$24(this.f21503c);
                 return;
             case 4:
-                NotificationsController.i(this.f21502b, this.f21503c);
+                this.f21502b.lambda$processNewMessages$26(this.f21503c);
                 return;
             case 5:
-                NotificationsController.w(this.f21502b, this.f21503c);
+                this.f21502b.lambda$setLastOnlineFromOtherDevice$5(this.f21503c);
                 return;
             case 6:
-                NotificationsController.q(this.f21502b, this.f21503c);
+                this.f21502b.lambda$processLoadedUnreadMessages$32(this.f21503c);
                 return;
             default:
-                NotificationsController.B(this.f21502b, this.f21503c);
+                this.f21502b.lambda$removeDeletedMessagesFromNotifications$9(this.f21503c);
                 return;
         }
     }

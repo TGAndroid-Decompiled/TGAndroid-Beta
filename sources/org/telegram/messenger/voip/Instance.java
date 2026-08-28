@@ -344,14 +344,6 @@ public final class Instance {
         return globalServerConfig;
     }
 
-    public static String getVersion() {
-        NativeInstance nativeInstance = instance;
-        if (nativeInstance != null) {
-            return nativeInstance.getVersion();
-        }
-        return null;
-    }
-
     public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i9, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
             ContextUtils.initialize(ApplicationLoader.applicationContext);

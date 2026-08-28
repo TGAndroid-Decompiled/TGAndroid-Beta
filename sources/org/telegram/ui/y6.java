@@ -209,6 +209,14 @@ public final class y6 extends org.telegram.ui.ActionBar.o2 implements Notificati
         return String.format("%d%%", Integer.valueOf((int) round));
     }
 
+    public static org.telegram.ui.ActionBar.k c0(y6 y6Var) {
+        return y6Var.actionBar;
+    }
+
+    public static org.telegram.ui.ActionBar.k d0(y6 y6Var) {
+        return y6Var.actionBar;
+    }
+
     public static void e0(y6 y6Var, boolean z10) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(y6Var.getParentActivity());
         String string = LocaleController.getString(R.string.LocalDatabaseClearTextTitle);
