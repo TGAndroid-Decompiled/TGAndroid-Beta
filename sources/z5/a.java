@@ -1,3 +1,4 @@
 package z5;
-public final class a extends b7.a {
+public abstract class a extends c7.a implements h {
+    public static final int f50583b = 0;
 }

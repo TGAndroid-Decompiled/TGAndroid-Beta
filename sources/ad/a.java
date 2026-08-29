@@ -1,6 +1,3 @@
 package ad;
-
-import java.util.Random;
-public abstract class a extends e {
-    public abstract Random a();
+public final class a extends Error {
 }

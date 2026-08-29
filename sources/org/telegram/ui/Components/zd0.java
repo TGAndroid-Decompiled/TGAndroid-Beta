@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class zd0 extends AnimatorListenerAdapter {
-    public final int f35281a;
-    public final be0 f35282b;
+import androidx.core.widget.NestedScrollView;
+public final class zd0 implements u0.g, b5 {
+    public final ke0 f35327a;
 
-    public zd0(be0 be0Var, int i9) {
-        this.f35281a = i9;
-        this.f35282b = be0Var;
+    public zd0(ke0 ke0Var) {
+        this.f35327a = ke0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35281a) {
-            case 0:
-                this.f35282b.f27189s = null;
-                return;
-            default:
-                this.f35282b.v = null;
-                return;
-        }
+    public void I(int i10, int i11, boolean z10) {
+        ke0 ke0Var = this.f35327a;
+        ke0Var.G.a(ke0Var.J, z10, i10, 0L);
+        ke0Var.dismiss();
+    }
+
+    @Override
+    public void a(NestedScrollView nestedScrollView) {
+        ke0 ke0Var = this.f35327a;
+        ke0Var.G(!ke0Var.f30029s);
     }
 }

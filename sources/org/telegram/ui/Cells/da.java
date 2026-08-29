@@ -1,32 +1,64 @@
 package org.telegram.ui.Cells;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.MediaDataController;
-public final class da extends GestureDetector.SimpleOnGestureListener {
-    public final ea f24247a;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class da extends FrameLayout {
+    public TextView f24244a;
+    public ImageView f24245b;
+    public boolean f24246c;
 
-    public da(ea eaVar) {
-        this.f24247a = eaVar;
+    public final void a(String str, boolean z10, boolean z11) {
+        int i10;
+        this.f24244a.setText(str);
+        ImageView imageView = this.f24245b;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+        this.f24246c = z11;
     }
 
     @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ea eaVar = this.f24247a;
-        int i9 = eaVar.E7;
-        if (eaVar.Ee != 2 || MediaDataController.getInstance(i9).getDoubleTapReaction() == null) {
-            return false;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.f24246c) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f23183k0);
         }
-        boolean selectReaction = eaVar.getMessageObject().selectReaction(hg.r0.b(MediaDataController.getInstance(i9).getDoubleTapReaction()), false, false);
-        eaVar.X3(eaVar.getMessageObject(), null, false, false, false, false);
-        eaVar.requestLayout();
-        hg.n0.b(false);
-        if (selectReaction) {
-            fa faVar = eaVar.Fe;
-            hg.n0.d(faVar.f24356r, null, faVar.f24353e[1], null, motionEvent.getX(), motionEvent.getY(), hg.r0.b(MediaDataController.getInstance(i9).getDoubleTapReaction()), eaVar.E7, 0);
-            hg.n0.f();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f24246c ? 1 : 0), 1073741824));
+    }
+
+    public void setTypeChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f24245b;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
-        eaVar.getViewTreeObserver().addOnPreDrawListener(new ca(this, 0));
-        return true;
+        imageView.setVisibility(i10);
     }
 }

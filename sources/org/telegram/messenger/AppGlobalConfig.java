@@ -165,9 +165,9 @@ public class AppGlobalConfig {
                 if (jSONValue instanceof TLRPC.TL_jsonNumber) {
                     double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
                     if (d != this.value) {
-                        int i9 = (int) d;
-                        this.value = i9;
-                        editor.putInt(this.name, i9);
+                        int i10 = (int) d;
+                        this.value = i10;
+                        editor.putInt(this.name, i10);
                         return true;
                     }
                     return false;
@@ -180,9 +180,9 @@ public class AppGlobalConfig {
                 this.value = sharedPreferences.getInt(this.name, this.defaultValue);
             }
 
-            private Internal(String str, int i9) {
+            private Internal(String str, int i10) {
                 this.name = str;
-                this.defaultValue = i9;
+                this.defaultValue = i10;
             }
         }
 
@@ -190,8 +190,8 @@ public class AppGlobalConfig {
             return this.handler.value;
         }
 
-        private ConfigInt(String str, int i9) {
-            this.handler = new Internal(str, i9);
+        private ConfigInt(String str, int i10) {
+            this.handler = new Internal(str, i10);
         }
     }
 
@@ -365,8 +365,8 @@ public class AppGlobalConfig {
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
     }
 
-    public static AppGlobalConfig getInstance(int i9) {
-        return MessagesController.getInstance(i9).config;
+    public static AppGlobalConfig getInstance(int i10) {
+        return MessagesController.getInstance(i10).config;
     }
 
     private ConfigBoolean ofBoolean(String str, boolean z10) {
@@ -381,8 +381,8 @@ public class AppGlobalConfig {
         return configDouble;
     }
 
-    private ConfigInt ofInt(String str, int i9) {
-        ConfigInt configInt = new ConfigInt(str, i9);
+    private ConfigInt ofInt(String str, int i10) {
+        ConfigInt configInt = new ConfigInt(str, i10);
         this.map.put(str, configInt.handler);
         return configInt;
     }
@@ -408,8 +408,8 @@ public class AppGlobalConfig {
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
         int size = tL_jsonObject.value.size();
         boolean z10 = false;
-        for (int i9 = 0; i9 < size; i9++) {
-            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i9);
+        for (int i10 = 0; i10 < size; i10++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i10);
             ConfigInternal configInternal = this.map.get(tL_jsonObjectValue.key);
             if (configInternal != null) {
                 z10 |= configInternal.apply(editor, tL_jsonObjectValue.value);

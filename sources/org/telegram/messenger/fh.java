@@ -1,25 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
 public final class fh implements Runnable {
-    public final int f20301a;
-    public final Utilities.Callback2 f20302b;
-    public final Exception f20303c;
+    public final int f20249a;
+    public final NotificationsController f20250b;
+    public final LongSparseIntArray f20251c;
+    public final ArrayList d;
 
-    public fh(Utilities.Callback2 callback2, Exception exc, int i9) {
-        this.f20301a = i9;
-        this.f20302b = callback2;
-        this.f20303c = exc;
+    public fh(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i10) {
+        this.f20249a = i10;
+        this.f20250b = notificationsController;
+        this.f20251c = longSparseIntArray;
+        this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20301a) {
+        switch (this.f20249a) {
             case 0:
-                PasskeysController.lambda$create$3(this.f20302b, this.f20303c);
+                this.f20250b.lambda$processDialogsUpdateRead$30(this.f20251c, this.d);
                 return;
             default:
-                PasskeysController.lambda$create$8(this.f20302b, this.f20303c);
+                this.f20250b.lambda$removeDeletedHisoryFromNotifications$13(this.f20251c, this.d);
                 return;
         }
     }

@@ -1,50 +1,165 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class iq extends LinearLayout {
-    public final o9 f29505a;
+import org.telegram.messenger.ApplicationLoader;
+public class iq extends ReplacementSpan {
+    public static final int ALIGN_BASELINE = 1;
+    public static final int ALIGN_CENTER = 2;
+    public static final int ALIGN_DEFAULT = 0;
+    private float alpha;
+    private Runnable checkColorDelegate;
+    int colorKey;
+    public boolean draw;
+    public Drawable drawable;
+    int drawableColor;
+    private Paint.FontMetricsInt fontMetrics;
+    private boolean isRelativeSize;
+    private int overrideColor;
+    public boolean recolorDrawable;
+    public float rotate;
+    private float scaleX;
+    private float scaleY;
+    private int size;
+    private int sizeWidth;
+    public float spaceScaleX;
+    private int topOffset;
+    public float translateX;
+    public float translateY;
+    public boolean useLinkPaintColor;
+    boolean usePaintColor;
+    private final int verticalAlignment;
 
-    public iq(Context context) {
-        super(context);
-        setOrientation(1);
-        o9 o9Var = new o9(context);
-        this.f29505a = o9Var;
-        o9Var.setImageDrawable(new r80(o9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(o9Var, g7.e6.q(110, 110, 49));
-        }
-        TextView g10 = org.telegram.messenger.l0.g(context, 1, 20.0f);
-        j3.r0.w(org.telegram.ui.ActionBar.f6.G6, null, false, g10, 1);
-        g10.setText(LocaleController.getString(R.string.NoContactsYet3));
-        g10.setTypeface(AndroidUtilities.bold());
-        addView(g10, g7.e6.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        j3.r0.w(org.telegram.ui.ActionBar.f6.f22984c7, null, false, textView, 1);
-        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, g7.e6.t(-2, -2, 49, 0, 0, 0, 19));
-        kh.d dVar = new kh.d(context, null, true);
-        dVar.setUseWrapContent(true);
-        dVar.e();
-        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new eq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
-        dVar.g(spannableStringBuilder, false, true);
-        addView(dVar, g7.e6.q(-2, 44, 49));
+    public iq(int i10) {
+        this(i10, 0);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f29505a.setImageDrawable(new mi0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), "utyan_empty", AndroidUtilities.dp(110.0f)));
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iq.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            return (int) (Math.abs(this.spaceScaleX) * Math.abs(this.scaleX) * this.size);
+        } else if (this.sizeWidth != 0) {
+            return (int) (Math.abs(this.scaleX) * this.sizeWidth);
+        } else {
+            float abs = Math.abs(this.spaceScaleX) * Math.abs(this.scaleX);
+            int i12 = this.size;
+            if (i12 == 0) {
+                i12 = this.drawable.getIntrinsicWidth();
+            }
+            return (int) (abs * i12);
+        }
+    }
+
+    public void rotate(float f9) {
+        this.rotate = f9;
+    }
+
+    public void setAlpha(float f9) {
+        this.alpha = f9;
+    }
+
+    public void setCheckColorDelegate(Runnable runnable) {
+        this.checkColorDelegate = runnable;
+    }
+
+    public void setColorKey(int i10) {
+        boolean z10;
+        this.colorKey = i10;
+        if (i10 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.usePaintColor = z10;
+    }
+
+    public void setOverrideColor(int i10) {
+        this.overrideColor = i10;
+    }
+
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
+    }
+
+    public void setScale(float f9) {
+        this.scaleX = f9;
+    }
+
+    public void setSize(int i10) {
+        this.size = i10;
+        this.drawable.setBounds(0, 0, i10, i10);
+    }
+
+    public void setTopOffset(int i10) {
+        this.topOffset = i10;
+    }
+
+    public void setTranslateX(float f9) {
+        this.translateX = f9;
+    }
+
+    public void setTranslateY(float f9) {
+        this.translateY = f9;
+    }
+
+    public void setWidth(int i10) {
+        this.sizeWidth = i10;
+    }
+
+    public void translate(float f9, float f10) {
+        this.translateX = f9;
+        this.translateY = f10;
+    }
+
+    public iq(Drawable drawable) {
+        this(0, drawable);
+    }
+
+    public void setScale(float f9, float f10) {
+        this.scaleX = f9;
+        this.scaleY = f10;
+    }
+
+    public iq(int i10, int i11) {
+        this(i11, ApplicationLoader.applicationContext.getDrawable(i10).mutate());
+    }
+
+    public iq(int i10, Drawable drawable) {
+        this.draw = true;
+        this.recolorDrawable = true;
+        this.usePaintColor = true;
+        this.useLinkPaintColor = false;
+        this.topOffset = 0;
+        this.alpha = 1.0f;
+        this.spaceScaleX = 1.0f;
+        this.scaleX = 1.0f;
+        this.scaleY = 1.0f;
+        this.drawable = drawable;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        }
+        this.verticalAlignment = i10;
     }
 }

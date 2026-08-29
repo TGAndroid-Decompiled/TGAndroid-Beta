@@ -1,63 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-public final class ea0 extends n71 {
-    public final cb0 P;
+import org.telegram.tgnet.TLRPC;
+public final class ea0 extends f2.v {
+    public final ka0 f27987c;
 
-    public ea0(cb0 cb0Var, Context context, ya0 ya0Var) {
-        super(context, ya0Var);
-        this.P = cb0Var;
+    public ea0(ka0 ka0Var) {
+        this.f27987c = ka0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int i9 = 0;
-        while (true) {
-            View[] viewArr = this.P.f27458f.f31035e;
-            if (i9 < viewArr.length) {
-                View view = viewArr[i9];
-                if (view != null) {
-                    wa0 wa0Var = (wa0) view;
-                    if (wa0Var.f34168a == 0) {
-                        z10 = wa0Var.f34171e.f24085i;
-                        break;
-                    }
-                }
-                i9++;
-            } else {
-                z10 = false;
-                break;
+    public final int i(int i10) {
+        ka0 ka0Var = this.f27987c;
+        rf.v0 v0Var = ka0Var.f29999f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = v0Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (v0Var.I() != null || v0Var.Q != null) {
+                i10 = i11;
+            }
+            da0 da0Var = ka0Var.d;
+            da0Var.B1();
+            return da0Var.R.get(i10);
         }
-        if (z10) {
-            return false;
-        }
-        return A(motionEvent);
-    }
-
-    @Override
-    public final void u() {
-        View view = this.f31035e[0];
-        if (view instanceof wa0) {
-            ((wa0) view).f34171e.W();
-        }
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        cb0 cb0Var = this.P;
-        cb0Var.f27457e.setSelectedTab(cb0Var.f27458f.getPositionAnimated());
-        View[] viewArr = this.f31035e;
-        View view = viewArr[0];
-        if (view instanceof wa0) {
-            ((wa0) view).f34171e.H();
-        }
-        View view2 = viewArr[1];
-        if (view2 instanceof wa0) {
-            ((wa0) view2).f34171e.H();
-        }
+        return 100;
     }
 }

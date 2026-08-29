@@ -1,31 +1,27 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 public final class w implements Runnable {
-    public final int f21960a;
-    public final VoIPService f21961b;
-    public final ArrayList f21962c;
-    public final ArrayList d;
-    public final ArrayList f21963e;
-    public final String f21964f;
+    public final int f22023a;
+    public final VoIPService f22024b;
+    public final HashSet f22025c;
+    public final String d;
 
-    public w(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i9) {
-        this.f21960a = i9;
-        this.f21961b = voIPService;
-        this.f21962c = arrayList;
-        this.d = arrayList2;
-        this.f21963e = arrayList3;
-        this.f21964f = str;
+    public w(VoIPService voIPService, HashSet hashSet, String str, int i10) {
+        this.f22023a = i10;
+        this.f22024b = voIPService;
+        this.f22025c = hashSet;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f21960a) {
+        switch (this.f22023a) {
             case 0:
-                this.f21961b.lambda$startConferenceGroupCall$47(this.f21962c, this.d, this.f21963e, this.f21964f);
+                this.f22024b.lambda$startConferenceGroupCall$42(this.f22025c, this.d);
                 return;
             default:
-                this.f21961b.lambda$startConferenceGroupCall$39(this.f21962c, this.d, this.f21963e, this.f21964f);
+                this.f22024b.lambda$startConferenceGroupCall$50(this.f22025c, this.d);
                 return;
         }
     }

@@ -1,44 +1,39 @@
 package org.telegram.ui.Components;
+public final class gs implements Runnable {
+    public final int f28974a;
+    public final org.telegram.ui.ActionBar.c2[] f28975b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-public final class gs {
-    public final int f28855a;
-    public final ds f28856b;
-    public boolean f28857c;
-    public boolean d;
-    public boolean f28858e;
-    public long f28859f;
-    public String f28860g;
-    public final ArrayList h = new ArrayList();
-    public boolean f28861i = false;
-
-    public gs(int i9, ds dsVar) {
-        this.f28855a = i9;
-        this.f28856b = dsVar;
+    public gs(org.telegram.ui.ActionBar.c2[] c2VarArr, int i10) {
+        this.f28974a = i10;
+        this.f28975b = c2VarArr;
     }
 
-    public final void a() {
-        if (!this.f28857c && !this.f28858e) {
-            this.f28857c = true;
-            boolean z10 = this.d;
-            int i9 = this.f28855a;
-            if (!z10) {
-                fs fsVar = new fs(this, 0);
-                MessagesStorage messagesStorage = MessagesStorage.getInstance(i9);
-                messagesStorage.getStorageQueue().postRunnable(new org.telegram.messenger.video.e(this, messagesStorage, fsVar, 19));
+    @Override
+    public final void run() {
+        switch (this.f28974a) {
+            case 0:
+                org.telegram.ui.ActionBar.c2 c2Var = this.f28975b[0];
+                if (c2Var != null) {
+                    c2Var.dismiss();
+                    return;
+                }
                 return;
-            }
-            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
-            getpopularappbots.limit = 20;
-            String str = this.f28860g;
-            if (str == null) {
-                str = "";
-            }
-            getpopularappbots.offset = str;
-            ConnectionsManager.getInstance(i9).sendRequest(getpopularappbots, new w1(this, 3));
+            case 1:
+                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f28975b;
+                try {
+                    c2VarArr[0].dismiss();
+                } catch (Throwable unused) {
+                }
+                c2VarArr[0] = null;
+                return;
+            default:
+                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f28975b;
+                try {
+                    c2VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                c2VarArr2[0] = null;
+                return;
         }
     }
 }

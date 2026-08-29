@@ -1,19 +1,14 @@
 package h7;
-public final class b0 extends com.google.android.gms.internal.cast.j0 {
-    public final transient Object[] f9884e;
 
-    public b0(Object[] objArr) {
-        super(5);
-        this.f9884e = objArr;
-    }
-
-    @Override
-    public final java.lang.Object get(java.lang.Object r4) {
-        throw new UnsupportedOperationException("Method not decompiled: h7.b0.get(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public final int size() {
-        return 1;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class b0 {
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

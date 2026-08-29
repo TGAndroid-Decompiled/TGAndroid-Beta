@@ -1,24 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class wf extends t31 {
-    public final xf h;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class wf extends org.telegram.ui.tn {
+    public boolean Mc;
+    public final TLRPC.User Nc;
+    public final TLRPC.User Oc;
+    public final long Pc;
 
-    public wf(xf xfVar, Context context, org.telegram.ui.ActionBar.o2 o2Var, h41 h41Var, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context, o2Var, h41Var, b6Var);
-        this.h = xfVar;
+    public wf(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j10) {
+        super(bundle);
+        this.Nc = user;
+        this.Oc = user2;
+        this.Pc = j10;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f34670a;
-        if (chatActivityEnterView.V2 == this) {
-            chatActivityEnterView.V2 = null;
-        }
-        eg egVar = chatActivityEnterView.U2;
-        if (egVar != null) {
-            egVar.p(false);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Mc) {
+            this.Mc = true;
+            tc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Nc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Oc)), new eg.z1(this, this.Pc, 20)), R.raw.contact_check).j();
         }
     }
 }

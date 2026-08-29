@@ -1,48 +1,60 @@
 package org.telegram.ui;
 
+import android.content.SharedPreferences;
+import android.os.StatFs;
+import java.io.File;
 import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
 public final class c80 implements Runnable {
-    public final int f37094a;
-    public final x20 f37095b;
+    public final int f37037a;
+    public final LaunchActivity f37038b;
+    public final int f37039c;
 
-    public c80(x20 x20Var, int i9) {
-        this.f37094a = i9;
-        this.f37095b = x20Var;
+    public c80(LaunchActivity launchActivity, int i10, int i11) {
+        this.f37037a = i11;
+        this.f37038b = launchActivity;
+        this.f37039c = i10;
     }
 
     @Override
     public final void run() {
-        int i9 = this.f37094a;
-        x20 x20Var = this.f37095b;
-        switch (i9) {
+        File directory;
+        int i10 = this.f37037a;
+        int i11 = this.f37039c;
+        LaunchActivity launchActivity = this.f37038b;
+        switch (i10) {
             case 0:
-                Pattern pattern = LaunchActivity.f35493x1;
-                try {
-                    x20Var.run();
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
+                Pattern pattern = LaunchActivity.f35560x1;
+                if (UserConfig.getInstance(launchActivity.K).isClientActivated()) {
+                    try {
+                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f35598s1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
+                            StatFs statFs = new StatFs(directory.getAbsolutePath());
+                            long availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
+                            if (i11 > 0 || availableBlocksLong < 52428800) {
+                                if (i11 > 0) {
+                                    launchActivity.f35598s1 = System.currentTimeMillis();
+                                }
+                                globalMainSettings.edit().putLong("last_space_check", System.currentTimeMillis()).commit();
+                                AndroidUtilities.runOnUIThread(new o80(launchActivity, 6));
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    } catch (Throwable unused) {
+                        return;
+                    }
                 }
-            case 1:
-                Pattern pattern2 = LaunchActivity.f35493x1;
-                try {
-                    x20Var.run();
-                    return;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                    return;
-                }
+                return;
             default:
-                Pattern pattern3 = LaunchActivity.f35493x1;
-                try {
-                    x20Var.run();
-                    return;
-                } catch (Exception e12) {
-                    FileLog.e(e12);
-                    return;
-                }
+                Pattern pattern2 = LaunchActivity.f35560x1;
+                ConnectionsManager.getInstance(launchActivity.K).cancelRequest(i11, true);
+                return;
         }
     }
 }

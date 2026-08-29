@@ -17,8 +17,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i9) {
-            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i9);
+        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i10) {
+            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i10);
         }
 
         @Override
@@ -47,8 +47,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getInputBuffer(int i9) {
-            return this.mediaCodec.getInputBuffer(i9);
+        public ByteBuffer getInputBuffer(int i10) {
+            return this.mediaCodec.getInputBuffer(i10);
         }
 
         @Override
@@ -57,8 +57,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getOutputBuffer(int i9) {
-            return this.mediaCodec.getOutputBuffer(i9);
+        public ByteBuffer getOutputBuffer(int i10) {
+            return this.mediaCodec.getOutputBuffer(i10);
         }
 
         @Override
@@ -67,8 +67,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void queueInputBuffer(int i9, int i10, int i11, long j10, int i12) {
-            this.mediaCodec.queueInputBuffer(i9, i10, i11, j10, i12);
+        public void queueInputBuffer(int i10, int i11, int i12, long j10, int i13) {
+            this.mediaCodec.queueInputBuffer(i10, i11, i12, j10, i13);
         }
 
         @Override
@@ -77,8 +77,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void releaseOutputBuffer(int i9, boolean z10) {
-            this.mediaCodec.releaseOutputBuffer(i9, z10);
+        public void releaseOutputBuffer(int i10, boolean z10) {
+            this.mediaCodec.releaseOutputBuffer(i10, z10);
         }
 
         @Override
@@ -97,8 +97,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public MediaFormat getOutputFormat(int i9) {
-            return this.mediaCodec.getOutputFormat(i9);
+        public MediaFormat getOutputFormat(int i10) {
+            return this.mediaCodec.getOutputFormat(i10);
         }
     }
 

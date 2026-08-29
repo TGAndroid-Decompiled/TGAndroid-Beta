@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class kf extends Property {
-    @Override
-    public final Object get(Object obj) {
-        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getScale());
+import android.view.View;
+public final class kf implements View.OnKeyListener {
+    public final ChatActivityEnterView f30033a;
+
+    public kf(ChatActivityEnterView chatActivityEnterView) {
+        this.f30033a = chatActivityEnterView;
     }
 
     @Override
-    public final void set(Object obj, Object obj2) {
-        ((ChatActivityEnterView.RecordCircle) obj).setScale(((Float) obj2).floatValue());
+    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kf.onKey(android.view.View, int, android.view.KeyEvent):boolean");
     }
 }

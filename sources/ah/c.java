@@ -1,49 +1,28 @@
 package ah;
 
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Cells.z;
-public abstract class c extends Drawable {
-    public final z f258a;
-    public int f259b;
-    public int f260c = 255;
+import ag.i0;
+import org.telegram.messenger.AndroidUtilities;
+public final class c {
+    public final i0 f740a;
+    public b f742c = b.f736a;
+    public final a4.g d = new a4.g(this, 5);
+    public final long f741b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
 
-    public c(b6 b6Var) {
-        int v02 = f6.v0(f6.f23092i6, b6Var);
-        this.f259b = v02;
-        this.f258a = f6.Y(v02, 0, 0);
+    public c(i0 i0Var) {
+        this.f740a = i0Var;
     }
 
-    public abstract void a(int i9);
-
-    @Override
-    public final int getAlpha() {
-        return this.f260c;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.f258a.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        if (this.f260c != i9) {
-            this.f260c = i9;
-            a(i9);
+    public final void a(b bVar, boolean z10) {
+        if (this.f742c != bVar) {
+            a4.g gVar = this.d;
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            this.f742c = bVar;
+            if (z10) {
+                this.f740a.run(bVar);
+            }
+            if (bVar == b.f737b || bVar == b.f738c) {
+                AndroidUtilities.runOnUIThread(gVar, this.f741b);
+            }
         }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

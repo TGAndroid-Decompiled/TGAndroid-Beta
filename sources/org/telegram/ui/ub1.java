@@ -3,17 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class ub1 extends AnimatorListenerAdapter {
-    public final oc1 f43212a;
+    public final qc1 f43222a;
 
-    public ub1(oc1 oc1Var) {
-        this.f43212a = oc1Var;
+    public ub1(qc1 qc1Var) {
+        this.f43222a = qc1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        oc1 oc1Var = this.f43212a;
-        if (oc1Var.S0 == null) {
-            oc1Var.F0[0].setVisibility(4);
+        char c3;
+        qc1 qc1Var = this.f43222a;
+        org.telegram.ui.Components.a81[] a81VarArr = qc1Var.F0;
+        if (qc1Var.S0 != null) {
+            c3 = 0;
+        } else {
+            c3 = 2;
         }
+        a81VarArr[c3].setVisibility(4);
     }
 }

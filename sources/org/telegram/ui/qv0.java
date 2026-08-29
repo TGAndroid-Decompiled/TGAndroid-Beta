@@ -14,55 +14,55 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 public class qv0 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h5 f42205a;
-    public final TextView f42206b;
-    public final ImageView f42207c;
+    public final org.telegram.ui.ActionBar.h5 f41784a;
+    public final TextView f41785b;
+    public final ImageView f41786c;
     public final ImageView d;
-    public boolean f42208e;
-    public gw0 f42209f;
-    public org.telegram.ui.Components.i5 h;
-    public Drawable f42210n;
+    public boolean f41787e;
+    public fw0 f41788f;
+    public org.telegram.ui.Components.n5 h;
+    public Drawable f41789n;
 
-    public qv0(Context context, org.telegram.ui.ActionBar.b6 b6Var) {
+    public qv0(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         setClipChildren(false);
         linearLayout.setClipChildren(false);
         org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f42205a = h5Var;
+        this.f41784a = h5Var;
         h5Var.setTypeface(AndroidUtilities.bold());
         h5Var.setTextSize(15);
-        h5Var.setTextColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.G6, b6Var));
-        linearLayout.addView(h5Var, g7.e6.n(-1, -2));
+        h5Var.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.G6, c6Var));
+        linearLayout.addView(h5Var, i7.f6.n(-1, -2));
         TextView textView = new TextView(context);
-        this.f42206b = textView;
+        this.f41785b = textView;
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f23369y6, b6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23433y6, c6Var));
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(textView, g7.e6.p(-1, -2, 0.0f, 0, 0, 1, 0, 0));
-        addView(linearLayout, g7.e6.d(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
+        linearLayout.addView(textView, i7.f6.p(-1, -2, 0.0f, 0, 0, 1, 0, 0));
+        addView(linearLayout, i7.f6.d(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
         ImageView imageView = new ImageView(context);
-        this.f42207c = imageView;
+        this.f41786c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_INSIDE;
         imageView.setScaleType(scaleType);
-        addView(imageView, g7.e6.d(28, 28.0f, 0, 18.0f, 12.0f, 0.0f, 0.0f));
+        addView(imageView, i7.f6.d(28, 28.0f, 0, 18.0f, 12.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.d = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.M6, b6Var));
-        addView(imageView2, g7.e6.d(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        imageView2.setColorFilter(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.M6, c6Var));
+        addView(imageView2, i7.f6.d(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
-    public final void a(gw0 gw0Var, boolean z10) {
+    public final void a(fw0 fw0Var, boolean z10) {
         long longValue;
         boolean isPremium = UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
         ImageView imageView = this.d;
-        if (isPremium && gw0Var.f38610a == 12 && gw0Var.f38611b == R.drawable.filled_premium_status2) {
+        if (isPremium && fw0Var.f38243a == 12 && fw0Var.f38244b == R.drawable.filled_premium_status2) {
             imageView.setVisibility(8);
             if (this.h == null) {
-                this.h = new org.telegram.ui.Components.i5(AndroidUtilities.dp(24.0f), 13, this, false);
+                this.h = new org.telegram.ui.Components.n5(AndroidUtilities.dp(24.0f), 13, this, false);
                 if (isAttachedToWindow()) {
                     this.h.a();
                 }
@@ -76,40 +76,40 @@ public class qv0 extends FrameLayout {
             b(longValue, false);
         } else {
             imageView.setVisibility(0);
-            org.telegram.ui.Components.i5 i5Var = this.h;
-            if (i5Var != null) {
-                i5Var.b();
+            org.telegram.ui.Components.n5 n5Var = this.h;
+            if (n5Var != null) {
+                n5Var.b();
                 this.h = null;
             }
         }
-        this.f42209f = gw0Var;
-        this.f42205a.l(gw0Var.f38612c, false);
-        this.f42206b.setText(gw0Var.d);
-        this.f42207c.setImageResource(gw0Var.f38611b);
-        this.f42208e = z10;
+        this.f41788f = fw0Var;
+        this.f41784a.l(fw0Var.f38245c, false);
+        this.f41785b.setText(fw0Var.d);
+        this.f41786c.setImageResource(fw0Var.f38244b);
+        this.f41787e = z10;
     }
 
     public final void b(long j10, boolean z10) {
         if (this.h == null) {
-            this.h = new org.telegram.ui.Components.i5(AndroidUtilities.dp(24.0f), 13, this, false);
+            this.h = new org.telegram.ui.Components.n5(AndroidUtilities.dp(24.0f), 13, this, false);
             if (isAttachedToWindow()) {
                 this.h.a();
             }
         }
         if (j10 == 0) {
-            if (this.f42210n == null) {
+            if (this.f41789n == null) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_prolfilestar).mutate();
-                this.f42210n = mutate;
-                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23319v6, false), PorterDuff.Mode.SRC_IN));
+                this.f41789n = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23383v6, false), PorterDuff.Mode.SRC_IN));
             }
-            this.h.g(this.f42210n, z10);
+            this.h.g(this.f41789n, z10);
             return;
         }
         this.h.j(j10, z10);
     }
 
     public final void c() {
-        this.h.setBounds((getWidth() - this.h.f29322s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f29322s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f29322s) / 2);
+        this.h.setBounds((getWidth() - this.h.f30852s) - AndroidUtilities.dp(21.0f), (getHeight() - this.h.f30852s) / 2, getWidth() - AndroidUtilities.dp(21.0f), (getHeight() + this.h.f30852s) / 2);
     }
 
     @Override
@@ -117,28 +117,28 @@ public class qv0 extends FrameLayout {
         super.dispatchDraw(canvas);
         if (this.h != null) {
             c();
-            this.h.k(Integer.valueOf(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23319v6, false)));
+            this.h.k(Integer.valueOf(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23383v6, false)));
             this.h.draw(canvas);
         }
-        if (this.f42208e) {
-            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.f6.f23121k0);
+        if (this.f41787e) {
+            canvas.drawRect(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f23183k0);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
-        org.telegram.ui.Components.i5 i5Var = this.h;
-        if (i5Var != null) {
-            i5Var.a();
+        org.telegram.ui.Components.n5 n5Var = this.h;
+        if (n5Var != null) {
+            n5Var.a();
         }
         super.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        org.telegram.ui.Components.i5 i5Var = this.h;
-        if (i5Var != null) {
-            i5Var.b();
+        org.telegram.ui.Components.n5 n5Var = this.h;
+        if (n5Var != null) {
+            n5Var.b();
         }
         super.onDetachedFromWindow();
     }

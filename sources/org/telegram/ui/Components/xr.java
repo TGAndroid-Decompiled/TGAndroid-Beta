@@ -1,56 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.SpannableStringBuilder;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-public final class xr {
-    public int f34745a;
-    public int f34746b;
-    public nz0 f34747c;
-    public int d;
-    public int f34748e;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xr implements Predicate {
+    public final int f34826a;
+    public final TLObject f34827b;
 
-    public static xr b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
-        ?? obj = new Object();
-        obj.f34745a = dialogFilter.f19649id;
-        obj.f34746b = dialogFilter.color;
-        String str = dialogFilter.name;
-        if (str == null) {
-            str = "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-        nz0 nz0Var = new nz0(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
-        nz0Var.s(r2Var);
-        obj.f34747c = nz0Var;
-        obj.f34747c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, nz0Var.f31221a.getFontMetricsInt(), false), dialogFilter.entities, obj.f34747c.f31221a.getFontMetricsInt()));
-        obj.f34747c.p(26);
-        int dp = AndroidUtilities.dp(9.32f);
-        nz0 nz0Var2 = obj.f34747c;
-        obj.f34748e = dp + ((int) nz0Var2.f31223c);
-        nz0Var2.j();
-        int[] iArr = org.telegram.ui.ActionBar.f6.f23250r8;
-        obj.d = org.telegram.ui.ActionBar.f6.w0(null, iArr[dialogFilter.color % iArr.length], false);
-        return obj;
+    public xr(int i10, TLObject tLObject) {
+        this.f34826a = i10;
+        this.f34827b = tLObject;
     }
 
-    public final void a(Canvas canvas) {
-        float f10;
-        Paint paint = org.telegram.ui.ActionBar.f6.A0;
-        int i9 = this.d;
-        if (org.telegram.ui.ActionBar.f6.I.q()) {
-            f10 = 0.2f;
-        } else {
-            f10 = 0.1f;
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f34826a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f34826a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
         }
-        paint.setColor(org.telegram.ui.ActionBar.f6.l1(f10, i9));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, this.f34748e, AndroidUtilities.dp(14.66f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.f6.A0);
-        this.f34747c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f34826a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
+    @Override
+    public final boolean test(Object obj) {
+        switch (this.f34826a) {
+            case 0:
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f34827b, ((MessageObject) obj).messageOwner.from_id);
+            default:
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f34827b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f22392id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f22539id) {
+                    return true;
+                }
+                return false;
+        }
     }
 }

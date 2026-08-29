@@ -17,7 +17,7 @@ public abstract class c0 {
         return builder.build();
     }
 
-    public static Notification.Action.Builder d(int i9, CharSequence charSequence, PendingIntent pendingIntent) {
-        return new Notification.Action.Builder(i9, charSequence, pendingIntent);
+    public static Notification.Action.Builder d(int i10, CharSequence charSequence, PendingIntent pendingIntent) {
+        return new Notification.Action.Builder(i10, charSequence, pendingIntent);
     }
 }

@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import aa.d;
+import a4.w;
 public class AccentedAtom extends Atom {
     private boolean acc;
     private final SymbolAtom accent;
@@ -29,9 +29,9 @@ public class AccentedAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         HorizontalBox createBox;
+        float f9;
         float f10;
         float f11;
-        float f12;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Atom atom = this.base;
@@ -43,25 +43,25 @@ public class AccentedAtom extends Atom {
         float width = createBox.getWidth();
         Atom atom2 = this.underbase;
         if (atom2 instanceof CharSymbol) {
-            f10 = teXFont.getSkew(((CharSymbol) atom2).getCharFont(teXFont), style);
+            f9 = teXFont.getSkew(((CharSymbol) atom2).getCharFont(teXFont), style);
         } else {
-            f10 = 0.0f;
+            f9 = 0.0f;
         }
-        Char r62 = teXFont.getChar(this.accent.getName(), style);
-        while (teXFont.hasNextLarger(r62)) {
-            Char nextLarger = teXFont.getNextLarger(r62, style);
+        Char r6 = teXFont.getChar(this.accent.getName(), style);
+        while (teXFont.hasNextLarger(r6)) {
+            Char nextLarger = teXFont.getNextLarger(r6, style);
             if (nextLarger.getWidth() > width) {
                 break;
             }
-            r62 = nextLarger;
+            r6 = nextLarger;
         }
-        float f13 = -SpaceAtom.getFactor(5, teXEnvironment);
+        float f12 = -SpaceAtom.getFactor(5, teXEnvironment);
         if (!this.acc) {
-            f13 = Math.min(createBox.getHeight(), teXFont.getXHeight(style, r62.getFontCode()));
+            f12 = Math.min(createBox.getHeight(), teXFont.getXHeight(style, r6.getFontCode()));
         }
         VerticalBox verticalBox = new VerticalBox();
-        float italic = r62.getItalic();
-        HorizontalBox charBox = new CharBox(r62);
+        float italic = r6.getItalic();
+        HorizontalBox charBox = new CharBox(r6);
         if (this.acc) {
             SymbolAtom symbolAtom = this.accent;
             if (this.changeSize) {
@@ -76,28 +76,28 @@ public class AccentedAtom extends Atom {
         }
         float width2 = (width - charBox.getWidth()) / 2.0f;
         if (width2 > 0.0f) {
-            f11 = width2;
+            f10 = width2;
         } else {
-            f11 = 0.0f;
+            f10 = 0.0f;
         }
-        charBox.setShift(f10 + f11);
-        int i9 = (width2 > 0.0f ? 1 : (width2 == 0.0f ? 0 : -1));
-        if (i9 < 0) {
+        charBox.setShift(f9 + f10);
+        int i10 = (width2 > 0.0f ? 1 : (width2 == 0.0f ? 0 : -1));
+        if (i10 < 0) {
             createBox = new HorizontalBox(createBox, charBox.getWidth(), 2);
         }
         verticalBox.add(charBox);
         if (this.changeSize) {
-            f12 = -f13;
+            f11 = -f12;
         } else {
-            f12 = -createBox.getHeight();
+            f11 = -createBox.getHeight();
         }
-        verticalBox.add(new StrutBox(0.0f, f12, 0.0f, 0.0f));
+        verticalBox.add(new StrutBox(0.0f, f11, 0.0f, 0.0f));
         verticalBox.add(createBox);
         float height = verticalBox.getHeight();
         float depth = createBox.getDepth();
         verticalBox.setDepth(depth);
         verticalBox.setHeight((verticalBox.getDepth() + height) - depth);
-        if (i9 < 0) {
+        if (i10 < 0) {
             HorizontalBox horizontalBox2 = new HorizontalBox(new StrutBox(width2, 0.0f, 0.0f, 0.0f));
             horizontalBox2.add(verticalBox);
             horizontalBox2.setWidth(width);
@@ -128,7 +128,7 @@ public class AccentedAtom extends Atom {
                 return;
             }
         }
-        throw new InvalidSymbolTypeException(d.o("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+        throw new InvalidSymbolTypeException(w.n("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
     }
 
     public AccentedAtom(Atom atom, TeXFormula teXFormula) {

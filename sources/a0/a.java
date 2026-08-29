@@ -9,8 +9,8 @@ public class a extends AbstractSet {
     public final int f0a;
     public final Map f1b;
 
-    public a(Map map, int i9) {
-        this.f0a = i9;
+    public a(int i10, Map map) {
+        this.f0a = i10;
         this.f1b = map;
     }
 

@@ -1,23 +1,24 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-public final class ac implements Runnable {
-    public final int f36450a;
-    public final xc f36451b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ac implements f5.d {
+    public final int f36505a;
+    public final vc f36506b;
 
-    public ac(xc xcVar, int i9) {
-        this.f36450a = i9;
-        this.f36451b = xcVar;
+    public ac(vc vcVar, int i10) {
+        this.f36505a = i10;
+        this.f36506b = vcVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36450a) {
+    public final void accept(Object obj) {
+        switch (this.f36505a) {
             case 0:
-                xc.T(this.f36451b);
+                vc.W(this.f36506b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                org.telegram.messenger.l0.p(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.oc.a0(this.f36451b), R.raw.done, 36);
+                this.f36506b.W0((TL_stories.TL_premium_boostsStatus) obj);
                 return;
         }
     }

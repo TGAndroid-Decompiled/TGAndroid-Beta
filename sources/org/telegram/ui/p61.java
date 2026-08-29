@@ -1,19 +1,15 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class p61 implements View.OnClickListener {
-    public final y61 f41349a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class p61 extends f2.a1 {
+    public final q61 f41306a;
 
-    public p61(y61 y61Var) {
-        this.f41349a = y61Var;
+    public p61(q61 q61Var) {
+        this.f41306a = q61Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.pi0 pi0Var = this.f41349a.d;
-        if (!pi0Var.b() && pi0Var.getAnimatedDrawable() != null) {
-            pi0Var.getAnimatedDrawable().K(40);
-            pi0Var.d();
-        }
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        this.f41306a.P();
     }
 }

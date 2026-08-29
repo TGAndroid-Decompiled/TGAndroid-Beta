@@ -1,3 +1,3 @@
 package r;
-public final class b {
+public abstract class b {
 }

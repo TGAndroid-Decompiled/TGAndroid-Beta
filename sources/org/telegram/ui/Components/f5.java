@@ -1,56 +1,93 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class f5 implements Runnable {
-    public final int f28269a;
-    public final g5 f28270b;
-    public final ArrayList f28271c;
-    public final TLObject d;
+import android.animation.TimeInterpolator;
+import android.os.SystemClock;
+import android.view.View;
+public final class f5 {
+    public final View f28307a;
+    public final Runnable f28308b;
+    public int f28309c;
+    public int d;
+    public boolean f28310e;
+    public final long f28311f;
+    public final TimeInterpolator f28312g;
+    public boolean h;
+    public long f28313i;
+    public int f28314j;
 
-    public f5(g5 g5Var, ArrayList arrayList, TLObject tLObject, int i9) {
-        this.f28269a = i9;
-        this.f28270b = g5Var;
-        this.f28271c = arrayList;
-        this.d = tLObject;
+    public f5(View view) {
+        this.f28311f = 200L;
+        this.f28312g = jr.f29800f;
+        this.f28307a = view;
+        this.f28310e = true;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f28269a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new f5(this.f28270b, this.f28271c, this.d, 1));
-                return;
-            default:
-                g5 g5Var = this.f28270b;
-                int i9 = g5Var.f28654e;
-                HashSet hashSet = new HashSet(this.f28271c);
-                TLObject tLObject = this.d;
-                if (tLObject instanceof Vector) {
-                    ArrayList arrayList = ((Vector) tLObject).objects;
-                    MessagesStorage.getInstance(i9).getStorageQueue().postRunnable(new d5(g5Var, arrayList, 1));
-                    g5Var.d(arrayList);
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (arrayList.get(i10) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i10)).f22386id));
-                        }
-                    }
-                    if (!hashSet.isEmpty()) {
-                        ArrayList<Long> arrayList2 = new ArrayList<>(hashSet);
-                        TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                        tL_messages_getCustomEmojiDocuments.document_id = arrayList2;
-                        ConnectionsManager.getInstance(i9).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.rc(10, g5Var, arrayList2));
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final int a(int i10, boolean z10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j10 = this.f28311f;
+        if (!z10 && j10 > 0 && !this.f28310e) {
+            if (this.d != i10) {
+                this.h = true;
+                this.d = i10;
+                this.f28314j = this.f28309c;
+                this.f28313i = elapsedRealtime;
+            }
+        } else {
+            this.d = i10;
+            this.f28309c = i10;
+            this.h = false;
+            this.f28310e = false;
         }
+        if (this.h) {
+            float a2 = i7.w.a(((float) (elapsedRealtime - this.f28313i)) / ((float) j10), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f28313i >= 0) {
+                TimeInterpolator timeInterpolator = this.f28312g;
+                if (timeInterpolator == null) {
+                    this.f28309c = i0.a.d(a2, this.f28314j, this.d);
+                } else {
+                    this.f28309c = i0.a.d(timeInterpolator.getInterpolation(a2), this.f28314j, this.d);
+                }
+            }
+            if (a2 >= 1.0f) {
+                this.h = false;
+            } else {
+                View view = this.f28307a;
+                if (view != null) {
+                    view.invalidate();
+                }
+                Runnable runnable = this.f28308b;
+                if (runnable != null) {
+                    runnable.run();
+                }
+            }
+        }
+        return this.f28309c;
+    }
+
+    public f5(View view, long j10, TimeInterpolator timeInterpolator) {
+        this.f28311f = 200L;
+        jr jrVar = jr.f29800f;
+        this.f28307a = view;
+        this.f28311f = j10;
+        this.f28312g = timeInterpolator;
+        this.f28310e = true;
+    }
+
+    public f5(View view, long j10, TimeInterpolator timeInterpolator, int i10) {
+        this.f28311f = 200L;
+        jr jrVar = jr.f29800f;
+        this.f28307a = view;
+        this.f28311f = j10;
+        this.f28312g = timeInterpolator;
+        this.f28310e = true;
+    }
+
+    public f5(Runnable runnable, long j10, TimeInterpolator timeInterpolator) {
+        this.f28311f = 200L;
+        jr jrVar = jr.f29800f;
+        this.f28308b = runnable;
+        this.f28311f = j10;
+        this.f28312g = timeInterpolator;
+        this.f28310e = true;
     }
 }

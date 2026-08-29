@@ -21,16 +21,16 @@ public abstract class c0 {
                 eVar = new r0.d(clipData, 3);
             } else {
                 r0.f fVar = new r0.f();
-                fVar.f46895b = clipData;
-                fVar.f46896c = 3;
+                fVar.f46809b = clipData;
+                fVar.f46810c = 3;
                 eVar = fVar;
             }
             r0.j0.i(textView, eVar.build());
             textView.endBatchEdit();
             return true;
-        } catch (Throwable th) {
+        } catch (Throwable th2) {
             textView.endBatchEdit();
-            throw th;
+            throw th2;
         }
     }
 
@@ -42,8 +42,8 @@ public abstract class c0 {
             eVar = new r0.d(clipData, 3);
         } else {
             r0.f fVar = new r0.f();
-            fVar.f46895b = clipData;
-            fVar.f46896c = 3;
+            fVar.f46809b = clipData;
+            fVar.f46810c = 3;
             eVar = fVar;
         }
         r0.j0.i(view, eVar.build());

@@ -1,70 +1,75 @@
 package og;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import pg.i;
-public abstract class d {
-    public static final Matrix f19570a = new Matrix();
-    public static final RectF f19571b = new RectF();
-    public static final RectF f19572c = new RectF();
+import j3.z;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+public final class d implements a {
+    public final c6 f19557a;
+    public c f19558b;
+    public c f19559c;
+    public c d;
+    public c f19560e;
+    public float f19561f;
+    public float h;
+    public float f19562n;
+    public float f19563r;
 
-    public static void a(jg.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i9) {
-        boolean z10;
-        if (i9 > 0) {
-            RectF rectF2 = f19572c;
-            if (i.c(view, viewGroup, rectF2)) {
-                float f10 = rectF2.left;
-                float f11 = rectF2.top;
-                RectF rectF3 = f19571b;
-                rectF3.set(rectF);
-                rectF3.offset(-f10, -f11);
-                boolean z11 = true;
-                if (f10 == 0.0f && f11 == 0.0f) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                if (i9 == 255) {
-                    z11 = false;
-                }
-                if (z10) {
-                    canvas.save();
-                    canvas.translate(f10, f11);
-                }
-                if (z11) {
-                    canvas.saveLayerAlpha(rectF3, i9);
-                }
-                aVar.e(canvas, rectF3);
-                if (z11) {
-                    canvas.restore();
-                }
-                if (z10) {
-                    canvas.restore();
-                }
+    public d(c6 c6Var) {
+        this.f19557a = c6Var;
+        float dpf2 = AndroidUtilities.dpf2(1.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        this.f19562n = dpf2;
+        this.f19563r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(1.0f);
+        float dpf24 = AndroidUtilities.dpf2(0.6666667f);
+        this.f19561f = dpf23;
+        this.h = dpf24;
+    }
+
+    public final int a(c cVar) {
+        boolean a2;
+        if (cVar != null) {
+            c6 c6Var = this.f19557a;
+            if (!(c6Var instanceof lh.b) && c6Var == null) {
+                a2 = g6.I.q();
+            } else {
+                a2 = c6Var.a();
             }
+            return cVar.f(c6Var, a2);
         }
+        return 0;
     }
 
-    public static void b(jg.a aVar, Canvas canvas, RectF rectF, View view, FrameLayout frameLayout) {
-        a(aVar, canvas, rectF, view, frameLayout, 255);
+    public final void b(int i10, int i11) {
+        this.f19558b = new z(i11, i10, 2);
     }
 
-    public static void c(ng.b bVar, View view) {
-        Bitmap bitmap;
-        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
-            Matrix matrix = f19570a;
-            matrix.reset();
-            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f18595b.set(matrix);
-        }
+    public final void c(int i10, int i11) {
+        this.d = new z(i11, i10, 2);
     }
 
-    public static c d(kg.d dVar, int i9, int i10) {
-        return new c(i9, i10, dVar);
+    public final void d(int i10, int i11) {
+        this.f19559c = new z(i11, i10, 2);
+    }
+
+    @Override
+    public final int h() {
+        return a(this.f19559c);
+    }
+
+    @Override
+    public final int m() {
+        return a(this.d);
+    }
+
+    @Override
+    public final int v() {
+        return a(this.f19558b);
+    }
+
+    @Override
+    public final int z() {
+        return a(this.f19560e);
     }
 }

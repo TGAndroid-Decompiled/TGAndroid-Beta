@@ -1,66 +1,65 @@
 package org.telegram.ui;
-public final class nm implements Runnable {
-    public final int f40774a;
-    public final cn f40775b;
 
-    public nm(cn cnVar, int i9) {
-        this.f40774a = i9;
-        this.f40775b = cnVar;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class nm extends pt0 {
+    public final ArrayList f40844a;
+    public final int[] f40845b = new int[2];
+    public final tn f40846c;
+
+    public nm(tn tnVar, ArrayList arrayList) {
+        this.f40846c = tnVar;
+        this.f40844a = arrayList;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40774a) {
-            case 0:
-                qn qnVar = this.f40775b.f37236a;
-                qnVar.Z4 = null;
-                qnVar.f41843a5 = null;
-                return;
-            case 1:
-                cn cnVar = this.f40775b;
-                cnVar.getClass();
-                qn qnVar2 = cnVar.f37236a;
-                new zf.x0((org.telegram.ui.ActionBar.o2) qnVar2, 8, true).show();
-                qnVar2.getMessagesController().pressTranscribeButton();
-                return;
-            case 2:
-                cn cnVar2 = this.f40775b;
-                cnVar2.getClass();
-                qn qnVar3 = cnVar2.f37236a;
-                new zf.x0((org.telegram.ui.ActionBar.o2) qnVar3, 8, true).show();
-                qnVar3.getMessagesController().pressTranscribeButton();
-                return;
-            case 3:
-                cn cnVar3 = this.f40775b;
-                cnVar3.getClass();
-                qn qnVar4 = cnVar3.f37236a;
-                new zf.x0((org.telegram.ui.ActionBar.o2) qnVar4, 8, true).show();
-                qnVar4.getMessagesController().pressTranscribeButton();
-                return;
-            case 4:
-                this.f40775b.f37236a.presentFragment(new PremiumPreviewFragment(0, "similar_channels"));
-                return;
-            case 5:
-                qn qnVar5 = this.f40775b.f37236a;
-                qnVar5.Z4 = null;
-                qnVar5.f41843a5 = null;
-                return;
-            case 6:
-                this.f40775b.f37236a.U.G0();
-                return;
-            case 7:
-                this.f40775b.f37236a.U.G0();
-                return;
-            case 8:
-                qn qnVar6 = this.f40775b.f37236a;
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.P0 = true;
-                qnVar6.presentFragment(themeActivity);
-                return;
-            default:
-                qn qnVar7 = this.f40775b.f37236a;
-                qnVar7.showDialog(new zf.x0((org.telegram.ui.ActionBar.o2) qnVar7, 39, false));
-                return;
+    public final zt0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        ImageReceiver imageReceiver;
+        org.telegram.ui.Cells.s1 s1Var;
+        MessageObject messageObject2;
+        RichMessageLayout richMessageLayout;
+        tn tnVar = this.f40846c;
+        if (tnVar.f42973t0 != null && i10 >= 0) {
+            ArrayList arrayList = this.f40844a;
+            if (i10 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
+                int childCount = tnVar.f42973t0.getChildCount();
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = tnVar.f42973t0.getChildAt(i11);
+                    boolean z12 = childAt instanceof org.telegram.ui.Cells.s1;
+                    int[] iArr = this.f40845b;
+                    if (z12 && (messageObject2 = (s1Var = (org.telegram.ui.Cells.s1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
+                        int[] iArr2 = new int[2];
+                        imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
+                        if (imageReceiver != null) {
+                            childAt.getLocationInWindow(iArr);
+                            iArr[0] = s1Var.getTextX() + iArr2[0] + iArr[0];
+                            iArr[1] = s1Var.getTextY() + iArr2[1] + iArr[1];
+                        }
+                    } else {
+                        imageReceiver = null;
+                    }
+                    if (imageReceiver != null) {
+                        zt0 zt0Var = new zt0();
+                        zt0Var.f45317b = iArr[0];
+                        zt0Var.f45318c = iArr[1];
+                        zt0Var.d = tnVar.f42973t0;
+                        zt0Var.f45316a = imageReceiver;
+                        zt0Var.f45319e = imageReceiver.getBitmapSafe();
+                        zt0Var.h = imageReceiver.getRoundRadius(true);
+                        zt0Var.f45323j = (int) ((tnVar.f42921o9 - tnVar.q9) - AndroidUtilities.dp(4.0f));
+                        zt0Var.f45322i = (int) (tnVar.W8(org.telegram.ui.Components.i21.f29305c) + tnVar.v.c() + AndroidUtilities.dp(9.0f) + tnVar.f43023wa + tnVar.f42923oc);
+                        return zt0Var;
+                    }
+                }
+            }
         }
+        return null;
     }
 }

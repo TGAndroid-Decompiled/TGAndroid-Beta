@@ -2,16 +2,24 @@ package t0;
 
 import android.content.ClipDescription;
 import android.net.Uri;
-public interface i {
-    Uri c();
+import android.os.Build;
+import l3.g0;
+public final class i {
+    public final h f48084a;
 
-    void f();
+    public i(Uri uri, ClipDescription clipDescription, Uri uri2) {
+        if (Build.VERSION.SDK_INT >= 25) {
+            this.f48084a = new g(uri, clipDescription, uri2);
+        } else {
+            this.f48084a = new g0(uri, clipDescription, uri2, false, 26);
+        }
+    }
 
-    Uri g();
+    public final ClipDescription a() {
+        return this.f48084a.getDescription();
+    }
 
-    ClipDescription j();
-
-    Object k();
-
-    void m();
+    public i(g gVar) {
+        this.f48084a = gVar;
+    }
 }

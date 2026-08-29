@@ -1,102 +1,194 @@
 package oh;
 
+import ag.v;
 import android.content.Context;
-import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import bg.d2;
-import f2.a1;
+import bg.o;
+import dg.i;
+import f2.l;
+import i7.f6;
+import jh.s7;
+import nh.t3;
+import nh.t4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.o9;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z41;
-import org.telegram.ui.Components.z8;
-public final class f extends k41 {
-    public static final int f19589a = 0;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Components.il0;
+import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.jr;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.ua;
+import org.telegram.ui.Components.xa;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.dk;
+import org.telegram.ui.tn;
+public final class f extends xa implements NotificationCenter.NotificationCenterDelegate {
+    public final kf.a T;
+    public final v U;
+    public final FrameLayout V;
+    public Runnable W;
+    public k51 X;
 
-    static {
-        k41.setup(new k41());
+    public f(Context context, c6 c6Var, kf.a aVar, boolean z10, Runnable runnable) {
+        super(context, null, false, false, false, 1, c6Var);
+        this.v = 0.2f;
+        this.W = runnable;
+        fixNavigationBar();
+        jl0 jl0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        jl0Var.setPadding(i10, 0, i10, 0);
+        this.d.setOnItemClickListener(new o(this, 18));
+        l lVar = new l();
+        lVar.f6463m = false;
+        lVar.C = false;
+        lVar.o(jr.h);
+        lVar.n(350L);
+        this.d.setItemAnimator(lVar);
+        setBackgroundColor(g6.v0(g6.f23133h5, c6Var));
+        this.T = aVar;
+        v vVar = new v(context, 3, c6Var);
+        this.U = vVar;
+        ((TextView) vVar.f681c).setText(LocaleController.formatString(R.string.TonNeededTitle, kf.a.i(aVar.f13634b - s7.y(this.currentAccount, true).s().f13634b, kf.b.f13636b).d()));
+        TextView textView = (TextView) vVar.d;
+        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
+        textView.setMaxWidth(t3.a(textView.getText(), textView.getPaint()));
+        this.f34660e.setTitle(y());
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.V = frameLayout;
+        nh.d dVar = new nh.d(getContext(), getResourcesProvider(), true);
+        frameLayout.addView(dVar, f6.t(-1, 48, 17, 20, 10, 20, 20));
+        if (!z10 && !g.B0()) {
+            dVar.g(LocaleController.getString(R.string.Close), false, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final f f19573b;
+
+                {
+                    this.f19573b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            ye.d.u(this.f19573b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            return;
+                        default:
+                            this.f19573b.dismiss();
+                            return;
+                    }
+                }
+            });
+        } else {
+            dVar.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
+            dVar.setOnClickListener(new View.OnClickListener(this) {
+                public final f f19573b;
+
+                {
+                    this.f19573b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            ye.d.u(this.f19573b.getContext(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            return;
+                        default:
+                            this.f19573b.dismiss();
+                            return;
+                    }
+                }
+            });
+        }
+        k51 k51Var = this.X;
+        if (k51Var != null) {
+            k51Var.N(false);
+        }
     }
 
     @Override
-    public final void bindView(View view, l41 l41Var, boolean z10, z41 z41Var, i51 i51Var) {
-        int i9;
-        g gVar = (g) view;
-        e eVar = (e) l41Var.G;
-        TLRPC.User user = eVar.f19587b;
-        long j10 = eVar.f19586a;
-        boolean z11 = eVar.f19588c;
-        boolean z12 = !l41Var.f30337j;
-        o9 o9Var = gVar.f19592c;
-        TextView textView = gVar.f19595n;
-        TextView textView2 = gVar.d;
-        gVar.f19599x = (d) l41Var.H;
-        gVar.f19600y = j10;
-        gVar.A = user.f22527id;
-        int i10 = gVar.f19591b;
-        TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
-        TLRPC.User user2 = MessagesController.getInstance(i10).getUser(Long.valueOf(j10));
-        gVar.f19594f.setText(DialogObject.getName(j10));
-        TextView textView3 = gVar.h;
-        if (user2 != null) {
-            i9 = R.string.CommunityPendingRequestSuggestedBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-            i9 = R.string.CommunityPendingRequestSuggestedChannel;
-        } else {
-            i9 = R.string.CommunityPendingRequestSuggestedGroup;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        Runnable runnable;
+        if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
+            k51 k51Var = this.X;
+            if (k51Var != null) {
+                k51Var.N(true);
+            }
+            kf.a s10 = s7.y(this.currentAccount, true).s();
+            int i12 = R.string.TonNeededTitle;
+            kf.a aVar = this.T;
+            ((TextView) this.U.f681c).setText(LocaleController.formatString(i12, kf.a.i(aVar.f13634b - s10.f13634b, kf.b.f13636b).d()));
+            ua uaVar = this.f34660e;
+            if (uaVar != null) {
+                uaVar.setTitle(y());
+            }
+            if (s10.f13634b >= aVar.f13634b && (runnable = this.W) != null) {
+                runnable.run();
+                this.W = null;
+                dismiss();
+            }
         }
-        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i9, DialogObject.getShortName(user)), f6.w0(null, f6.il, false), new d2(20)));
-        if (user2 != null) {
-            textView2.setVisibility(8);
-        } else if (chat != null && chat.participants_count > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(gVar.f19596r, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
-            textView2.setText(spannableStringBuilder);
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(8);
-        }
-        if (z11) {
-            textView.setVisibility(0);
-        } else {
-            textView.setVisibility(8);
-        }
-        gVar.f19598w = z12;
-        if (user2 != null) {
-            o9Var.e(user2, new z8(0, user2));
-        } else {
-            o9Var.e(chat, new z8(chat));
-        }
-        gVar.f19593e.e(user, new z8(0, user));
     }
 
     @Override
-    public final View createView(Context context, wk0 wk0Var, int i9, int i10, b6 b6Var) {
-        g gVar = new g(context, i9, b6Var);
-        gVar.setLayoutParams(new a1(-1, -2));
-        gVar.setClickable(false);
-        return gVar;
+    public final void dismiss() {
+        super.dismiss();
+        v vVar = this.U;
+        if (vVar != null) {
+            ((i) vVar.f680b).setPaused(true);
+        }
     }
 
     @Override
-    public final boolean equals(l41 l41Var, l41 l41Var2) {
-        e eVar = (e) l41Var.G;
-        e eVar2 = (e) l41Var2.G;
-        if (eVar.f19586a == eVar2.f19586a && DialogObject.getDialogId(eVar.f19587b) == DialogObject.getDialogId(eVar2.f19587b)) {
-            return true;
+    public final void dismissInternal() {
+        super.dismissInternal();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final void show() {
+        dk dkVar;
+        if (s7.y(this.currentAccount, true).s().f13634b >= this.T.f13634b) {
+            Runnable runnable = this.W;
+            if (runnable != null) {
+                runnable.run();
+                this.W = null;
+                return;
+            }
+            return;
         }
-        return false;
+        o2 R = LaunchActivity.R();
+        if (R instanceof tn) {
+            tn tnVar = (tn) R;
+            if (tnVar.x9() && (dkVar = tnVar.U) != null) {
+                dkVar.P();
+            }
+        }
+        super.show();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final il0 v(jl0 jl0Var) {
+        k51 k51Var = new k51(this.d, getContext(), this.currentAccount, 0, true, new t4(this, 5), this.resourcesProvider);
+        this.X = k51Var;
+        return k51Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        v vVar = this.U;
+        if (vVar == null) {
+            return null;
+        }
+        return ((TextView) vVar.f681c).getText();
     }
 }

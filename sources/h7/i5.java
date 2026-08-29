@@ -1,17 +1,12 @@
 package h7;
-public final class i5 implements q9.d {
-    public static final i5 f9956a = new Object();
+public abstract class i5 {
+    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))));
-    }
+    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
+
+    public abstract void d(c0.g gVar, c0.g gVar2);
+
+    public abstract void e(c0.g gVar, Thread thread);
 }

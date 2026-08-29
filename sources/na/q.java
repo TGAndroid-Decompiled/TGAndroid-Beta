@@ -1,19 +1,11 @@
 package na;
-
-import java.lang.reflect.Method;
-public final class q extends s {
-    public final Method f18564b;
-
-    public q(Method method) {
-        this.f18564b = method;
+public enum q extends t {
+    public q() {
+        super("LAZILY_PARSED_NUMBER", 1);
     }
 
     @Override
-    public final Object a(Class cls) {
-        String i9 = g5.b.i(cls);
-        if (i9 == null) {
-            return this.f18564b.invoke(null, cls, Object.class);
-        }
-        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(i9));
+    public final Number a(va.a aVar) {
+        return new pa.h(aVar.v());
     }
 }

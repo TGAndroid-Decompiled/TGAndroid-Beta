@@ -1,10 +1,4 @@
 package g4;
-public final class g {
-    public final int f7095a;
-    public final long f7096b;
-
-    public g(int i9, long j10) {
-        this.f7095a = i9;
-        this.f7096b = j10;
-    }
+public interface g {
+    boolean b(int i10, int i11, int i12, int i13, int i14);
 }

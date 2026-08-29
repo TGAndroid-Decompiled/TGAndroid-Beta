@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f36184b = 0;
-    public org.telegram.ui.Components.rp0 f36185a;
+    public static final int f36249b = 0;
+    public org.telegram.ui.Components.dq0 f36250a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,11 +55,11 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.rp0 N0 = org.telegram.ui.Components.rp0.N0(this, messageObject, null, false, string2);
-                    this.f36185a = N0;
+                    org.telegram.ui.Components.dq0 N0 = org.telegram.ui.Components.dq0.N0(this, messageObject, null, false, string2);
+                    this.f36250a = N0;
                     N0.setCanceledOnTouchOutside(true);
-                    this.f36185a.setOnDismissListener(new r5(this, 16));
-                    this.f36185a.show();
+                    this.f36250a.setOnDismissListener(new s5(this, 16));
+                    this.f36250a.show();
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
@@ -77,10 +77,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.rp0 rp0Var = this.f36185a;
-            if (rp0Var != null && rp0Var.isShowing()) {
-                this.f36185a.dismiss();
-                this.f36185a = null;
+            org.telegram.ui.Components.dq0 dq0Var = this.f36250a;
+            if (dq0Var != null && dq0Var.isShowing()) {
+                this.f36250a.dismiss();
+                this.f36250a = null;
             }
         } catch (Exception e10) {
             FileLog.e(e10);

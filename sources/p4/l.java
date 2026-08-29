@@ -1,21 +1,41 @@
 package p4;
 
 import android.net.Uri;
-import h3.t0;
-public final class l {
-    public final Uri f45412a;
-    public final t0 f45413b;
-    public final String f45414c;
-    public final String d;
-    public final String f45415e;
-    public final String f45416f;
+import j3.t0;
+import java.util.ArrayList;
+import java.util.List;
+import nh.d6;
+import q8.z;
+public final class l extends m {
+    public final j f45577n;
+    public final d6 f45578r;
 
-    public l(Uri uri, t0 t0Var, String str, String str2, String str3, String str4) {
-        this.f45412a = uri;
-        this.f45413b = t0Var;
-        this.f45414c = str;
-        this.d = str2;
-        this.f45415e = str3;
-        this.f45416f = str4;
+    public l(t0 t0Var, z zVar, r rVar, ArrayList arrayList, List list, List list2) {
+        super(t0Var, zVar, rVar, arrayList, list, list2);
+        j jVar;
+        Uri.parse(((b) zVar.get(0)).f45536a);
+        long j10 = rVar.f45594e;
+        if (j10 <= 0) {
+            jVar = null;
+        } else {
+            jVar = new j(rVar.d, j10, null);
+        }
+        this.f45577n = jVar;
+        this.f45578r = jVar == null ? new d6(new j(0L, -1L, null), 13) : null;
+    }
+
+    @Override
+    public final String a() {
+        return null;
+    }
+
+    @Override
+    public final o4.i c() {
+        return this.f45578r;
+    }
+
+    @Override
+    public final j d() {
+        return this.f45577n;
     }
 }

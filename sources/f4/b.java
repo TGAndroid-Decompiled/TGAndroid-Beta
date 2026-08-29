@@ -2,23 +2,31 @@ package f4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import g7.s6;
-import h3.g1;
-import h3.t0;
-public final class b implements z3.b {
-    public static final Parcelable.Creator<b> CREATOR = new c.c(23);
-    public final long f5577a;
-    public final long f5578b;
-    public final long f5579c;
-    public final long d;
-    public final long f5580e;
+import d6.d;
+import f5.d0;
+import j3.g1;
+import j3.t0;
+public final class b implements b4.b {
+    public static final Parcelable.Creator<b> CREATOR = new d(17);
+    public final int f6550a;
+    public final String f6551b;
+    public final String f6552c;
+    public final String d;
+    public final boolean f6553e;
+    public final int f6554f;
 
-    public b(long j10, long j11, long j12, long j13, long j14) {
-        this.f5577a = j10;
-        this.f5578b = j11;
-        this.f5579c = j12;
-        this.d = j13;
-        this.f5580e = j14;
+    public b(int i10, String str, String str2, String str3, boolean z10, int i11) {
+        f5.a.f(i11 == -1 || i11 > 0);
+        this.f6550a = i10;
+        this.f6551b = str;
+        this.f6552c = str2;
+        this.d = str3;
+        this.f6553e = z10;
+        this.f6554f = i11;
+    }
+
+    public static f4.b a(java.util.Map r14) {
+        throw new UnsupportedOperationException("Method not decompiled: f4.b.a(java.util.Map):f4.b");
     }
 
     @Override
@@ -32,7 +40,7 @@ public final class b implements z3.b {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f5577a == bVar.f5577a && this.f5578b == bVar.f5578b && this.f5579c == bVar.f5579c && this.d == bVar.d && this.f5580e == bVar.f5580e) {
+            if (this.f6550a == bVar.f6550a && d0.a(this.f6551b, bVar.f6551b) && d0.a(this.f6552c, bVar.f6552c) && d0.a(this.d, bVar.d) && this.f6553e == bVar.f6553e && this.f6554f == bVar.f6554f) {
                 return true;
             }
         }
@@ -50,34 +58,65 @@ public final class b implements z3.b {
     }
 
     public final int hashCode() {
-        int a2 = s6.a(this.f5578b);
-        int a3 = s6.a(this.f5579c);
-        int a10 = s6.a(this.d);
-        return s6.a(this.f5580e) + ((a10 + ((a3 + ((a2 + ((s6.a(this.f5577a) + 527) * 31)) * 31)) * 31)) * 31);
-    }
-
-    public final String toString() {
-        return "Motion photo metadata: photoStartPosition=" + this.f5577a + ", photoSize=" + this.f5578b + ", photoPresentationTimestampUs=" + this.f5579c + ", videoStartPosition=" + this.d + ", videoSize=" + this.f5580e;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeLong(this.f5577a);
-        parcel.writeLong(this.f5578b);
-        parcel.writeLong(this.f5579c);
-        parcel.writeLong(this.d);
-        parcel.writeLong(this.f5580e);
-    }
-
-    public b(Parcel parcel) {
-        this.f5577a = parcel.readLong();
-        this.f5578b = parcel.readLong();
-        this.f5579c = parcel.readLong();
-        this.d = parcel.readLong();
-        this.f5580e = parcel.readLong();
+        int i10;
+        int i11;
+        int i12 = (527 + this.f6550a) * 31;
+        int i13 = 0;
+        String str = this.f6551b;
+        if (str != null) {
+            i10 = str.hashCode();
+        } else {
+            i10 = 0;
+        }
+        int i14 = (i12 + i10) * 31;
+        String str2 = this.f6552c;
+        if (str2 != null) {
+            i11 = str2.hashCode();
+        } else {
+            i11 = 0;
+        }
+        int i15 = (i14 + i11) * 31;
+        String str3 = this.d;
+        if (str3 != null) {
+            i13 = str3.hashCode();
+        }
+        return ((((i15 + i13) * 31) + (this.f6553e ? 1 : 0)) * 31) + this.f6554f;
     }
 
     @Override
     public final void populateMediaMetadata(g1 g1Var) {
+        String str = this.f6552c;
+        if (str != null) {
+            g1Var.E = str;
+        }
+        String str2 = this.f6551b;
+        if (str2 != null) {
+            g1Var.C = str2;
+        }
+    }
+
+    public final String toString() {
+        return "IcyHeaders: name=\"" + this.f6552c + "\", genre=\"" + this.f6551b + "\", bitrate=" + this.f6550a + ", metadataInterval=" + this.f6554f;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeInt(this.f6550a);
+        parcel.writeString(this.f6551b);
+        parcel.writeString(this.f6552c);
+        parcel.writeString(this.d);
+        int i11 = d0.f6579a;
+        parcel.writeInt(this.f6553e ? 1 : 0);
+        parcel.writeInt(this.f6554f);
+    }
+
+    public b(Parcel parcel) {
+        this.f6550a = parcel.readInt();
+        this.f6551b = parcel.readString();
+        this.f6552c = parcel.readString();
+        this.d = parcel.readString();
+        int i10 = d0.f6579a;
+        this.f6553e = parcel.readInt() != 0;
+        this.f6554f = parcel.readInt();
     }
 }

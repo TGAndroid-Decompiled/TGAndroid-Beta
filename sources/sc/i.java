@@ -1,28 +1,39 @@
 package sc;
 
-import kotlin.jvm.internal.q;
-import kotlin.jvm.internal.r;
-public abstract class i extends c implements kotlin.jvm.internal.f {
-    private final int arity;
+import bd.p;
+import java.io.Serializable;
+import kotlin.jvm.internal.j;
+public final class i implements h, Serializable {
+    public static final i f47711a = new Object();
 
-    public i(int i9, qc.c cVar) {
-        super(cVar);
-        this.arity = i9;
+    @Override
+    public final f get(g key) {
+        j.e(key, "key");
+        return null;
+    }
+
+    public final int hashCode() {
+        return 0;
     }
 
     @Override
-    public int getArity() {
-        return this.arity;
+    public final h minusKey(g key) {
+        j.e(key, "key");
+        return this;
     }
 
     @Override
-    public String toString() {
-        if (getCompletion() == null) {
-            q.f16500a.getClass();
-            String a2 = r.a(this);
-            kotlin.jvm.internal.i.d(a2, "renderLambdaToString(...)");
-            return a2;
-        }
-        return super.toString();
+    public final h plus(h context) {
+        j.e(context, "context");
+        return context;
+    }
+
+    public final String toString() {
+        return "EmptyCoroutineContext";
+    }
+
+    @Override
+    public final Object fold(Object obj, p pVar) {
+        return obj;
     }
 }

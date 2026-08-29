@@ -1,5 +1,17 @@
 package h7;
+public final class q3 implements s9.d {
+    public static final q3 f7742a = new Object();
 
-import android.os.IInterface;
-public interface q3 extends IInterface {
+    static {
+        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(5, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(4, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(3, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(2, com.google.android.recaptcha.internal.a.p(i.class, new e(1)))))))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            s9.e eVar = (s9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

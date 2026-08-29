@@ -15,46 +15,46 @@ public class l3 {
     public boolean E;
     public String F;
     public float G;
-    public org.telegram.ui.l4 H;
-    public mh.y0 I;
+    public org.telegram.ui.m4 H;
+    public ph.u0 I;
     public boolean J;
-    public mh.s4 f23619a;
-    public org.telegram.ui.web.v0 f23620b;
-    public org.telegram.ui.p3 f23621c;
+    public ph.y3 f23641a;
+    public org.telegram.ui.web.w0 f23642b;
+    public org.telegram.ui.q3 f23643c;
     public Object d;
-    public int f23622e;
-    public int f23623f;
-    public int f23624g;
+    public int f23644e;
+    public int f23645f;
+    public int f23646g;
     public boolean h;
-    public float f23625i = Float.MAX_VALUE;
-    public boolean f23626j = true;
-    public Bitmap f23627k;
-    public boolean f23628l;
-    public boolean f23629m;
-    public int f23630n;
-    public int f23631o;
-    public int f23632p;
-    public int f23633q;
-    public boolean f23634r;
-    public boolean f23635s;
-    public boolean f23636t;
-    public a6.a f23637u;
+    public float f23647i = Float.MAX_VALUE;
+    public boolean f23648j = true;
+    public Bitmap f23649k;
+    public boolean f23650l;
+    public boolean f23651m;
+    public int f23652n;
+    public int f23653o;
+    public int f23654p;
+    public int f23655q;
+    public boolean f23656r;
+    public boolean f23657s;
+    public boolean f23658t;
+    public ag.j2 f23659u;
     public String v;
-    public boolean f23638w;
-    public boolean f23639x;
-    public boolean f23640y;
-    public boolean f23641z;
+    public boolean f23660w;
+    public boolean f23661x;
+    public boolean f23662y;
+    public boolean f23663z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.v0 v0Var = this.f23620b;
-            if (v0Var != null) {
-                v0Var.destroy();
-                this.f23620b = null;
+            org.telegram.ui.web.w0 w0Var = this.f23642b;
+            if (w0Var != null) {
+                w0Var.destroy();
+                this.f23642b = null;
             }
-            org.telegram.ui.l4 l4Var = this.H;
-            if (l4Var != null) {
-                l4Var.s();
+            org.telegram.ui.m4 m4Var = this.H;
+            if (m4Var != null) {
+                m4Var.s();
             }
         } catch (Exception e10) {
             FileLog.e(e10);
@@ -68,10 +68,10 @@ public class l3 {
             }
             return this.C;
         }
-        mh.s4 s4Var = this.f23619a;
-        if (s4Var == null) {
+        ph.y3 y3Var = this.f23641a;
+        if (y3Var == null) {
             return "";
         }
-        return UserObject.getUserName(MessagesController.getInstance(s4Var.f18105a).getUser(Long.valueOf(this.f23619a.f18107c)));
+        return UserObject.getUserName(MessagesController.getInstance(y3Var.f46163a).getUser(Long.valueOf(this.f23641a.f46165c)));
     }
 }

@@ -2,20 +2,23 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
 public final class h3 extends FrameLayout {
-    public final org.telegram.ui.Cells.z1[] f28958a;
+    public final org.telegram.ui.Cells.y1[] f29048a;
 
-    public h3(Activity activity, org.telegram.ui.Cells.z1[] z1VarArr) {
+    public h3(Activity activity, org.telegram.ui.Cells.y1[] y1VarArr) {
         super(activity);
-        this.f28958a = z1VarArr;
+        this.f29048a = y1VarArr;
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, i10);
-        org.telegram.ui.Cells.z1[] z1VarArr = this.f28958a;
-        if (z1VarArr[0] != null) {
-            setMeasuredDimension(getMeasuredWidth(), z1VarArr[0].getMeasuredHeight() + getMeasuredHeight());
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        org.telegram.ui.Cells.y1[] y1VarArr = this.f29048a;
+        if (y1VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + y1VarArr[0].getMeasuredHeight() + measuredHeight);
         }
     }
 }

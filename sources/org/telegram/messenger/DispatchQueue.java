@@ -91,20 +91,20 @@ public class DispatchQueue extends Thread {
         Looper.prepare();
         this.handler = new Handler(Looper.myLooper(), new y1(this, 0));
         this.syncLatch.countDown();
-        int i9 = this.threadPriority;
-        if (i9 != -1000) {
-            Process.setThreadPriority(i9);
+        int i10 = this.threadPriority;
+        if (i10 != -1000) {
+            Process.setThreadPriority(i10);
         }
         Looper.loop();
     }
 
-    public void sendMessage(Message message, int i9) {
+    public void sendMessage(Message message, int i10) {
         try {
             this.syncLatch.await();
-            if (i9 <= 0) {
+            if (i10 <= 0) {
                 this.handler.sendMessage(message);
             } else {
-                this.handler.sendMessageDelayed(message, i9);
+                this.handler.sendMessageDelayed(message, i10);
             }
         } catch (Exception unused) {
         }
@@ -113,9 +113,9 @@ public class DispatchQueue extends Thread {
     public DispatchQueue(String str, boolean z10) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i9 = indexPointer;
-        indexPointer = i9 + 1;
-        this.index = i9;
+        int i10 = indexPointer;
+        indexPointer = i10 + 1;
+        this.index = i10;
         this.threadPriority = -1000;
         setName(str);
         if (z10) {
@@ -135,13 +135,13 @@ public class DispatchQueue extends Thread {
         return this.handler.postDelayed(runnable, j10);
     }
 
-    public DispatchQueue(String str, boolean z10, int i9) {
+    public DispatchQueue(String str, boolean z10, int i10) {
         this.handler = null;
         this.syncLatch = new CountDownLatch(1);
-        int i10 = indexPointer;
-        indexPointer = i10 + 1;
-        this.index = i10;
-        this.threadPriority = i9;
+        int i11 = indexPointer;
+        indexPointer = i11 + 1;
+        this.index = i11;
+        this.threadPriority = i10;
         setName(str);
         if (z10) {
             start();

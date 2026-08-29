@@ -1,45 +1,69 @@
 package k8;
-public final class b extends h0 {
-    public final int h;
-    public final Object f14669n;
 
-    public b(Object obj, int i9) {
-        this.h = i9;
-        this.f14669n = obj;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.ui.th;
+public final class b extends a6.a implements j8.a {
+    public static final Parcelable.Creator<b> CREATOR = new c(0);
+    public final String f13469a;
+    public final List f13470b;
+
+    public b(String str, ArrayList arrayList) {
+        this.f13469a = str;
+        this.f13470b = arrayList;
+        z5.l.h(str);
+        z5.l.h(arrayList);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || b.class != obj.getClass()) {
+            return false;
+        }
+        b bVar = (b) obj;
+        List list = bVar.f13470b;
+        String str = bVar.f13469a;
+        String str2 = this.f13469a;
+        if (str2 == null ? str != null : !str2.equals(str)) {
+            return false;
+        }
+        List list2 = this.f13470b;
+        if (list2 == null ? list == null : list2.equals(list)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i10;
+        int i11 = 0;
+        String str = this.f13469a;
+        if (str != null) {
+            i10 = str.hashCode();
+        } else {
+            i10 = 0;
+        }
+        int i12 = (i10 + 31) * 31;
+        List list = this.f13470b;
+        if (list != null) {
+            i11 = list.hashCode();
+        }
+        return i12 + i11;
+    }
+
+    public final String toString() {
+        return th.j("CapabilityInfo{", this.f13469a, ", ", String.valueOf(this.f13470b), "}");
     }
 
     @Override
-    public final void b() {
-        switch (this.h) {
-            case 0:
-                c cVar = (c) ((df.a) this.f14669n).f4482b;
-                cVar.f14672b.b("unlinkToDeath", new Object[0]);
-                cVar.f14682n.asBinder().unlinkToDeath(cVar.f14679k, 0);
-                cVar.f14682n = null;
-                cVar.f14676g = false;
-                return;
-            default:
-                synchronized (((c) this.f14669n).f14675f) {
-                    try {
-                        if (((c) this.f14669n).f14680l.get() > 0 && ((c) this.f14669n).f14680l.decrementAndGet() > 0) {
-                            ((c) this.f14669n).f14672b.b("Leaving the connection open for other ongoing calls.", new Object[0]);
-                            return;
-                        }
-                        c cVar2 = (c) this.f14669n;
-                        if (cVar2.f14682n != null) {
-                            cVar2.f14672b.b("Unbind from service.", new Object[0]);
-                            c cVar3 = (c) this.f14669n;
-                            cVar3.f14671a.unbindService(cVar3.f14681m);
-                            c cVar4 = (c) this.f14669n;
-                            cVar4.f14676g = false;
-                            cVar4.f14682n = null;
-                            cVar4.f14681m = null;
-                        }
-                        ((c) this.f14669n).e();
-                        return;
-                    } finally {
-                    }
-                }
-        }
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        com.google.android.gms.internal.cast.o.l(parcel, 2, this.f13469a);
+        com.google.android.gms.internal.cast.o.p(parcel, 3, this.f13470b);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

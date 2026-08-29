@@ -1,17 +1,30 @@
 package h7;
-public final class j5 implements q9.d {
-    public static final j5 f9978a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))));
+import android.os.Build;
+import android.util.Log;
+public abstract class j5 {
+    public static void a(Object obj, String str, String str2) {
+        String c3 = c(str);
+        if (Log.isLoggable(c3, 3)) {
+            Log.d(c3, String.format(str2, obj));
+        }
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+    public static void b(String str, String str2, Exception exc) {
+        String c3 = c(str);
+        if (Log.isLoggable(c3, 6)) {
+            Log.e(c3, str2, exc);
         }
-        throw new ClassCastException();
+    }
+
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
+        }
+        return "TRuntime.".concat(str);
     }
 }

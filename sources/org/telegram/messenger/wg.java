@@ -1,21 +1,21 @@
 package org.telegram.messenger;
+public final class wg implements Runnable {
+    public final int f22100a;
+    public final NotificationCenter f22101b;
 
-import android.media.SoundPool;
-public final class wg implements SoundPool.OnLoadCompleteListener {
-    public final int f22040a;
-
-    public wg(int i9) {
-        this.f22040a = i9;
+    public wg(NotificationCenter notificationCenter, int i10) {
+        this.f22100a = i10;
+        this.f22101b = notificationCenter;
     }
 
     @Override
-    public final void onLoadComplete(SoundPool soundPool, int i9, int i10) {
-        switch (this.f22040a) {
+    public final void run() {
+        switch (this.f22100a) {
             case 0:
-                NotificationsController.lambda$playOutChatSound$48(soundPool, i9, i10);
+                NotificationCenter.g(this.f22101b);
                 return;
             default:
-                NotificationsController.lambda$playInChatSound$39(soundPool, i9, i10);
+                NotificationCenter.b(this.f22101b);
                 return;
         }
     }

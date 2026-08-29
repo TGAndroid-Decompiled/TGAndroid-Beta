@@ -1,52 +1,78 @@
 package j7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class o extends j {
-    public final transient com.google.android.gms.internal.cast.j0 f14041c;
-    public final transient Object[] d;
-    public final transient int f14042e = 1;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Collection;
+public abstract class o extends AbstractCollection implements Serializable {
+    public static final Object[] f11126a = new Object[0];
 
-    public o(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f14041c = j0Var;
-        this.d = objArr;
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f14041c.get(key))) {
-                return true;
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract int i(Object[] objArr);
+
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int o() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] p() {
+        return null;
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f11126a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] p10 = p();
+            if (p10 == null) {
+                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
+            } else {
+                return Arrays.copyOfRange(p10, o(), n(), objArr.getClass());
             }
+        } else if (length > size) {
+            objArr[size] = null;
         }
-        return false;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        i iVar = this.f13981b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f13981b = iVar;
-        }
-        return iVar.i(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        i iVar = this.f13981b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f13981b = iVar;
-        }
-        return iVar.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.f14042e;
+        i(objArr);
+        return objArr;
     }
 }

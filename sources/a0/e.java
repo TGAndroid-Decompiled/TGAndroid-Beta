@@ -67,17 +67,17 @@ public final class e implements Collection {
     @Override
     public final boolean removeAll(Collection collection) {
         f fVar = this.f10a;
-        int i9 = fVar.f28c;
-        int i10 = 0;
+        int i10 = fVar.f28c;
+        int i11 = 0;
         boolean z10 = false;
-        while (i10 < i9) {
-            if (collection.contains(fVar.h(i10))) {
-                fVar.f(i10);
+        while (i11 < i10) {
+            if (collection.contains(fVar.h(i11))) {
+                fVar.f(i11);
+                i11--;
                 i10--;
-                i9--;
                 z10 = true;
             }
-            i10++;
+            i11++;
         }
         return z10;
     }
@@ -85,17 +85,17 @@ public final class e implements Collection {
     @Override
     public final boolean retainAll(Collection collection) {
         f fVar = this.f10a;
-        int i9 = fVar.f28c;
-        int i10 = 0;
+        int i10 = fVar.f28c;
+        int i11 = 0;
         boolean z10 = false;
-        while (i10 < i9) {
-            if (!collection.contains(fVar.h(i10))) {
-                fVar.f(i10);
+        while (i11 < i10) {
+            if (!collection.contains(fVar.h(i11))) {
+                fVar.f(i11);
+                i11--;
                 i10--;
-                i9--;
                 z10 = true;
             }
-            i10++;
+            i11++;
         }
         return z10;
     }
@@ -108,10 +108,10 @@ public final class e implements Collection {
     @Override
     public final Object[] toArray() {
         f fVar = this.f10a;
-        int i9 = fVar.f28c;
-        Object[] objArr = new Object[i9];
-        for (int i10 = 0; i10 < i9; i10++) {
-            objArr[i10] = fVar.h(i10);
+        int i10 = fVar.f28c;
+        Object[] objArr = new Object[i10];
+        for (int i11 = 0; i11 < i10; i11++) {
+            objArr[i11] = fVar.h(i11);
         }
         return objArr;
     }
@@ -119,15 +119,15 @@ public final class e implements Collection {
     @Override
     public final Object[] toArray(Object[] objArr) {
         f fVar = this.f10a;
-        int i9 = fVar.f28c;
-        if (objArr.length < i9) {
-            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i9);
+        int i10 = fVar.f28c;
+        if (objArr.length < i10) {
+            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i10);
         }
-        for (int i10 = 0; i10 < i9; i10++) {
-            objArr[i10] = fVar.h(i10);
+        for (int i11 = 0; i11 < i10; i11++) {
+            objArr[i11] = fVar.h(i11);
         }
-        if (objArr.length > i9) {
-            objArr[i9] = null;
+        if (objArr.length > i10) {
+            objArr[i10] = null;
         }
         return objArr;
     }

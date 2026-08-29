@@ -10,114 +10,114 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class s21 extends FrameLayout {
-    public final org.telegram.ui.Components.y5 f42540a;
-    public float f42541b;
-    public final Path f42542c;
+    public final org.telegram.ui.Components.d6 f42257a;
+    public float f42258b;
+    public final Path f42259c;
     public Boolean d;
-    public final y21 f42543e;
+    public final y21 f42260e;
 
     public s21(y21 y21Var, Context context) {
         super(context);
-        this.f42543e = y21Var;
-        this.f42540a = new org.telegram.ui.Components.y5(this, 250L, org.telegram.ui.Components.gr.h);
-        this.f42542c = new Path();
+        this.f42260e = y21Var;
+        this.f42257a = new org.telegram.ui.Components.d6(this, 250L, org.telegram.ui.Components.jr.h);
+        this.f42259c = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float f10;
-        int i9;
+        float f9;
         int i10;
+        int i11;
         boolean z10;
         boolean z11;
         boolean z12;
-        org.telegram.ui.Components.z41 z41Var;
+        org.telegram.ui.Components.k51 k51Var;
         View[] viewArr;
-        org.telegram.ui.Components.l41 G;
-        y21 y21Var = this.f42543e;
-        View[] viewPages = y21Var.f44691b.getViewPages();
-        float f11 = 0.0f;
-        this.f42541b = 0.0f;
+        org.telegram.ui.Components.w41 G;
+        y21 y21Var = this.f42260e;
+        View[] viewPages = y21Var.f44710b.getViewPages();
+        float f10 = 0.0f;
+        this.f42258b = 0.0f;
         int length = viewPages.length;
-        int i11 = 0;
-        while (i11 < length) {
-            View view = viewPages[i11];
+        int i12 = 0;
+        while (i12 < length) {
+            View view = viewPages[i12];
             if (view == null) {
                 viewArr = viewPages;
             } else {
                 x21 x21Var = (x21) view;
-                FrameLayout frameLayout = x21Var.f44339e;
-                org.telegram.ui.Components.i51 i51Var = x21Var.f44340f;
-                float clamp = Utilities.clamp(1.0f - Math.abs(x21Var.getTranslationX() / x21Var.getMeasuredWidth()), 1.0f, f11);
-                float f12 = this.f42541b;
+                FrameLayout frameLayout = x21Var.f44445e;
+                org.telegram.ui.Components.u51 u51Var = x21Var.f44446f;
+                float clamp = Utilities.clamp(1.0f - Math.abs(x21Var.getTranslationX() / x21Var.getMeasuredWidth()), 1.0f, f10);
+                float f11 = this.f42258b;
                 float paddingTop = frameLayout.getPaddingTop();
-                int i12 = 0;
+                int i13 = 0;
                 while (true) {
-                    int childCount = i51Var.getChildCount();
-                    z41Var = i51Var.U2;
-                    if (i12 >= childCount) {
+                    int childCount = u51Var.getChildCount();
+                    k51Var = u51Var.U2;
+                    if (i13 >= childCount) {
                         break;
                     }
-                    View childAt = i51Var.getChildAt(i12);
-                    i51Var.T2.getClass();
-                    int H = f2.z0.H(childAt);
+                    View childAt = u51Var.getChildAt(i13);
+                    u51Var.T2.getClass();
+                    int H = f2.w0.H(childAt);
                     View[] viewArr2 = viewPages;
-                    if (H >= 0 && H < z41Var.f35191x.size() && (G = z41Var.G(H)) != null && G.f48814a == 28) {
+                    if (H >= 0 && H < k51Var.f29942x.size() && (G = k51Var.G(H)) != null && G.f50845a == 28) {
                         paddingTop = childAt.getY() + frameLayout.getPaddingTop();
                     }
-                    i12++;
+                    i13++;
                     viewPages = viewArr2;
                 }
                 viewArr = viewPages;
-                this.f42541b = (paddingTop * clamp) + f12;
+                this.f42258b = (paddingTop * clamp) + f11;
                 if (x21Var.getVisibility() == 0) {
-                    bh.g gVar = x21Var.h;
-                    float f13 = -gVar.getHeight();
-                    int i13 = 0;
+                    bg.u1 u1Var = x21Var.h;
+                    float f12 = -u1Var.getHeight();
+                    int i14 = 0;
                     while (true) {
-                        if (i13 >= i51Var.getChildCount()) {
+                        if (i14 >= u51Var.getChildCount()) {
                             break;
                         }
-                        View childAt2 = i51Var.getChildAt(i13);
-                        i51Var.T2.getClass();
-                        if (z41Var.G(f2.z0.H(childAt2)).f48814a == 28) {
-                            f13 = childAt2.getY() + frameLayout.getPaddingTop();
+                        View childAt2 = u51Var.getChildAt(i14);
+                        u51Var.T2.getClass();
+                        if (k51Var.G(f2.w0.H(childAt2)).f50845a == 28) {
+                            f12 = childAt2.getY() + frameLayout.getPaddingTop();
                             break;
                         }
-                        i13++;
+                        i14++;
                     }
-                    gVar.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, f13));
+                    u1Var.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, f12));
                 }
             }
-            i11++;
+            i12++;
             viewPages = viewArr;
-            f11 = 0.0f;
-        }
-        if (this.f42541b <= AndroidUtilities.statusBarHeight) {
-            f10 = 1.0f;
-        } else {
             f10 = 0.0f;
         }
-        float d = this.f42540a.d(f10, false);
-        float f14 = AndroidUtilities.statusBarHeight;
-        float f15 = f14 * d;
-        this.f42541b = Math.max(f14, this.f42541b) - (AndroidUtilities.statusBarHeight * d);
+        if (this.f42258b <= AndroidUtilities.statusBarHeight) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.0f;
+        }
+        float d = this.f42257a.d(f9, false);
+        float f13 = AndroidUtilities.statusBarHeight;
+        float f14 = f13 * d;
+        this.f42258b = Math.max(f13, this.f42258b) - (AndroidUtilities.statusBarHeight * d);
         RectF rectF = AndroidUtilities.rectTmp;
-        i9 = ((org.telegram.ui.ActionBar.f3) y21Var).backgroundPaddingLeft;
-        float f16 = this.f42541b;
-        int width = getWidth();
         i10 = ((org.telegram.ui.ActionBar.f3) y21Var).backgroundPaddingLeft;
-        rectF.set(i9, f16, width - i10, AndroidUtilities.dp(8.0f) + getHeight());
+        float f15 = this.f42258b;
+        int width = getWidth();
+        i11 = ((org.telegram.ui.ActionBar.f3) y21Var).backgroundPaddingLeft;
+        rectF.set(i10, f15, width - i11, AndroidUtilities.dp(8.0f) + getHeight());
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, d);
-        canvas.drawRoundRect(rectF, lerp, lerp, y21Var.f44692c);
+        canvas.drawRoundRect(rectF, lerp, lerp, y21Var.f44711c);
         canvas.save();
-        Path path = this.f42542c;
+        Path path = this.f42259c;
         path.rewind();
         path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
         canvas.clipPath(path);
         super.dispatchDraw(canvas);
         canvas.restore();
-        if (f15 > AndroidUtilities.statusBarHeight / 2.0f) {
+        if (f14 > AndroidUtilities.statusBarHeight / 2.0f) {
             z10 = true;
         } else {
             z10 = false;
@@ -126,12 +126,12 @@ public final class s21 extends FrameLayout {
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        if (AndroidUtilities.computePerceivedBrightness(y21Var.getThemedColor(org.telegram.ui.ActionBar.f6.f23072h5)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(y21Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23133h5)) > 0.721f) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.f6.v(y21Var.getThemedColor(org.telegram.ui.ActionBar.f6.f23269s8), 855638016)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.g6.v(y21Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23329s8), 855638016)) > 0.721f) {
             z12 = true;
         } else {
             z12 = false;
@@ -145,8 +145,8 @@ public final class s21 extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f42541b) {
-            this.f42543e.dismiss();
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f42258b) {
+            this.f42260e.dismiss();
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -158,7 +158,7 @@ public final class s21 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

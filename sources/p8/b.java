@@ -1,43 +1,37 @@
 package p8;
+public final class b extends a {
+    public final char f45654a;
 
-import java.math.RoundingMode;
-public abstract class b {
-    public static final int[] f45505a;
+    public b(char c3) {
+        this.f45654a = c3;
+    }
 
-    static {
-        int[] iArr = new int[RoundingMode.values().length];
-        f45505a = iArr;
-        try {
-            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+    @Override
+    public final boolean a(char c3) {
+        if (c3 == this.f45654a) {
+            return true;
         }
-        try {
-            f45505a[RoundingMode.DOWN.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
+        return false;
+    }
+
+    public final String toString() {
+        char[] cArr = new char[6];
+        cArr[0] = '\\';
+        cArr[1] = 'u';
+        cArr[2] = 0;
+        cArr[3] = 0;
+        cArr[4] = 0;
+        cArr[5] = 0;
+        char c3 = this.f45654a;
+        for (int i10 = 0; i10 < 4; i10++) {
+            cArr[5 - i10] = "0123456789ABCDEF".charAt(c3 & 15);
+            c3 = (char) (c3 >> 4);
         }
-        try {
-            f45505a[RoundingMode.FLOOR.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            f45505a[RoundingMode.UP.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            f45505a[RoundingMode.CEILING.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            f45505a[RoundingMode.HALF_DOWN.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            f45505a[RoundingMode.HALF_UP.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            f45505a[RoundingMode.HALF_EVEN.ordinal()] = 8;
-        } catch (NoSuchFieldError unused8) {
-        }
+        String copyValueOf = String.copyValueOf(cArr);
+        StringBuilder sb2 = new StringBuilder(String.valueOf(copyValueOf).length() + 18);
+        sb2.append("CharMatcher.is('");
+        sb2.append(copyValueOf);
+        sb2.append("')");
+        return sb2.toString();
     }
 }

@@ -26,51 +26,51 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(Rectangle2D.Float r92) {
+    public void draw(Rectangle2D.Float r9) {
         this.paint.setStyle(Paint.Style.STROKE);
         Canvas canvas = this.canvas;
-        float f10 = r92.f47277x;
-        float f11 = r92.f47278y;
-        canvas.drawRect(f10, f11, f10 + r92.f47276w, f11 + r92.h, this.paint);
+        float f9 = r9.f47468x;
+        float f10 = r9.f47469y;
+        canvas.drawRect(f9, f10, f9 + r9.f47467w, f10 + r9.h, this.paint);
     }
 
     @Override
-    public void drawArc(int i9, int i10, int i11, int i12, int i13, int i14) {
+    public void drawArc(int i10, int i11, int i12, int i13, int i14, int i15) {
         this.paint.setStyle(Paint.Style.STROKE);
-        this.rectF.set(i9, i10, i9 + i11, i10 + i12);
-        this.canvas.drawArc(this.rectF, i13, i14, false, this.paint);
+        this.rectF.set(i10, i11, i10 + i12, i11 + i13);
+        this.canvas.drawArc(this.rectF, i14, i15, false, this.paint);
     }
 
     @Override
-    public void drawChars(char[] cArr, int i9, int i10, int i11, int i12) {
+    public void drawChars(char[] cArr, int i10, int i11, int i12, int i13) {
         Font font = this.font;
         if (font != null) {
             this.paint.setTypeface(font.typeface());
             this.paint.setTextSize(this.font.size());
         }
-        this.canvas.drawText(cArr, i9, i10, i11, i12, this.paint);
+        this.canvas.drawText(cArr, i10, i11, i12, i13, this.paint);
     }
 
     @Override
-    public void fill(Rectangle2D.Float r92) {
+    public void fill(Rectangle2D.Float r9) {
         this.paint.setStyle(Paint.Style.FILL);
         Canvas canvas = this.canvas;
-        float f10 = r92.f47277x;
-        float f11 = r92.f47278y;
-        canvas.drawRect(f10, f11, f10 + r92.f47276w, f11 + r92.h, this.paint);
+        float f9 = r9.f47468x;
+        float f10 = r9.f47469y;
+        canvas.drawRect(f9, f10, f9 + r9.f47467w, f10 + r9.h, this.paint);
     }
 
     @Override
-    public void fillArc(int i9, int i10, int i11, int i12, int i13, int i14) {
+    public void fillArc(int i10, int i11, int i12, int i13, int i14, int i15) {
         this.paint.setStyle(Paint.Style.FILL);
-        this.rectF.set(i9, i10, i9 + i11, i10 + i12);
-        this.canvas.drawArc(this.rectF, i13, i14, false, this.paint);
+        this.rectF.set(i10, i11, i10 + i12, i11 + i13);
+        this.canvas.drawArc(this.rectF, i14, i15, false, this.paint);
     }
 
     @Override
-    public void fillRect(int i9, int i10, int i11, int i12) {
+    public void fillRect(int i10, int i11, int i12, int i13) {
         this.paint.setStyle(Paint.Style.FILL);
-        this.canvas.drawRect(i9, i10, i9 + i11, i10 + i12, this.paint);
+        this.canvas.drawRect(i10, i11, i10 + i12, i11 + i13, this.paint);
     }
 
     @Override
@@ -117,8 +117,8 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void scale(double d, double d9) {
-        this.transform.scale(d, d9);
+    public void scale(double d, double d10) {
+        this.transform.scale(d, d10);
     }
 
     public void setCanvas(Canvas canvas) {
@@ -153,29 +153,29 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void translate(double d, double d9) {
-        this.transform.translate((float) d, (float) d9);
+    public void translate(double d, double d10) {
+        this.transform.translate((float) d, (float) d10);
     }
 
     @Override
-    public void rotate(double d, double d9, double d10) {
-        this.canvas.rotate((float) Math.toDegrees(d), (float) d9, (float) d10);
+    public void rotate(double d, double d10, double d11) {
+        this.canvas.rotate((float) Math.toDegrees(d), (float) d10, (float) d11);
     }
 
     @Override
-    public void draw(Line2D.Float r92) {
+    public void draw(Line2D.Float r9) {
         this.paint.setStyle(Paint.Style.STROKE);
-        this.canvas.drawLine((float) r92.f47270x1, (float) r92.f47272y1, (float) r92.f47271x2, (float) r92.f47273y2, this.paint);
+        this.canvas.drawLine((float) r9.f47461x1, (float) r9.f47463y1, (float) r9.f47462x2, (float) r9.f47464y2, this.paint);
     }
 
     @Override
-    public void draw(RoundRectangle2D.Float r62) {
+    public void draw(RoundRectangle2D.Float r6) {
         this.paint.setStyle(Paint.Style.STROKE);
         RectF rectF = this.rectF;
-        float f10 = r62.f47279x;
-        float f11 = r62.f47280y;
-        rectF.set(f10, f11, r62.width + f10, r62.height + f11);
-        this.canvas.drawRoundRect(this.rectF, r62.arcwidth, r62.archeight, this.paint);
+        float f9 = r6.f47470x;
+        float f10 = r6.f47471y;
+        rectF.set(f9, f10, r6.width + f9, r6.height + f10);
+        this.canvas.drawRoundRect(this.rectF, r6.arcwidth, r6.archeight, this.paint);
     }
 
     @Override

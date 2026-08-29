@@ -1,37 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.messenger.Utilities;
-public final class i9 implements m9 {
-    public final n9 f29391a;
-    public final g7.b6[] f29392b;
-    public final Runnable[] f29393c;
-    public final h50[] d;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class i9 implements vd.g, yd.a {
+    public final ImageReceiver f29350a;
+    public final e9 f29351b;
+    public long f29352c;
+    public boolean d;
+    public final j9 f29353e;
 
-    public i9(n9 n9Var, g7.b6[] b6VarArr, Runnable[] runnableArr, h50[] h50VarArr) {
-        this.f29391a = n9Var;
-        this.f29392b = b6VarArr;
-        this.f29393c = runnableArr;
-        this.d = h50VarArr;
+    public i9(j9 j9Var, ViewGroup viewGroup) {
+        this.f29353e = j9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
+        this.f29350a = imageReceiver;
+        imageReceiver.setRoundRadius(j9Var.f29622e / 2);
+        e9 e9Var = new e9((org.telegram.ui.ActionBar.c6) null);
+        this.f29351b = e9Var;
+        e9Var.u(AndroidUtilities.dp(22.0f));
     }
 
     @Override
-    public final void dispose() {
-        n9 n9Var = this.f29391a;
-        g7.b6[] b6VarArr = this.f29392b;
-        Runnable[] runnableArr = this.f29393c;
-        h50[] h50VarArr = this.d;
-        b6VarArr[0] = null;
-        if (n9Var.f31052e.contains(runnableArr)) {
-            Utilities.globalQueue.cancelRunnables(runnableArr);
-            n9Var.f31052e.remove(runnableArr);
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f29350a.onDetachedFromWindow();
         }
-        for (h50 h50Var : h50VarArr) {
-            Bitmap bitmap = (Bitmap) n9Var.f31050b.remove(h50Var);
-            n9Var.f31051c.remove(h50Var);
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
+        this.f29352c = 0L;
+    }
+
+    @Override
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
         }
+        return -this.f29353e.f29623f;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof i9) || this.f29352c != ((i9) obj).f29352c) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.f29353e.f29622e;
+    }
+
+    @Override
+    public final int getWidth() {
+        return this.f29353e.f29622e;
     }
 }

@@ -1,63 +1,73 @@
 package l4;
+public final class c implements c1 {
+    public final c1 f14289a;
+    public boolean f14290b;
+    public final d f14291c;
 
-import d5.f0;
-import d5.y;
-import h3.t0;
-import j3.r0;
-import m3.v;
-import m3.w;
-public final class c implements w {
-    public final int f16647a;
-    public final t0 f16648b;
-    public final m3.j f16649c = new m3.j();
-    public t0 d;
-    public w f16650e;
-    public long f16651f;
-
-    public c(int i9, int i10, t0 t0Var) {
-        this.f16647a = i10;
-        this.f16648b = t0Var;
+    public c(d dVar, c1 c1Var) {
+        this.f14291c = dVar;
+        this.f14289a = c1Var;
     }
 
     @Override
-    public final void a(int i9, y yVar) {
-        r0.a(this, yVar, i9);
+    public final void a() {
+        this.f14289a.a();
     }
 
     @Override
-    public final int b(com.google.android.exoplayer2.upstream.j jVar, int i9, boolean z10) {
-        w wVar = this.f16650e;
-        int i10 = f0.f4349a;
-        return wVar.b(jVar, i9, z10);
-    }
-
-    @Override
-    public final void c(t0 t0Var) {
-        t0 t0Var2 = this.f16648b;
-        if (t0Var2 != null) {
-            t0Var = t0Var.c(t0Var2);
+    public final int d(j3.u0 u0Var, m3.i iVar, int i10) {
+        d dVar = this.f14291c;
+        if (dVar.d()) {
+            return -3;
         }
-        this.d = t0Var;
-        w wVar = this.f16650e;
-        int i9 = f0.f4349a;
-        wVar.c(t0Var);
-    }
-
-    @Override
-    public final void d(int i9, y yVar) {
-        w wVar = this.f16650e;
-        int i10 = f0.f4349a;
-        wVar.a(i9, yVar);
-    }
-
-    @Override
-    public final void e(long j10, int i9, int i10, int i11, v vVar) {
-        long j11 = this.f16651f;
-        if (j11 != -9223372036854775807L && j10 >= j11) {
-            this.f16650e = this.f16649c;
+        if (this.f14290b) {
+            iVar.setFlags(4);
+            return -4;
         }
-        w wVar = this.f16650e;
-        int i12 = f0.f4349a;
-        wVar.e(j10, i9, i10, i11, vVar);
+        int d = this.f14289a.d(u0Var, iVar, i10);
+        if (d == -5) {
+            j3.t0 t0Var = u0Var.f10815b;
+            t0Var.getClass();
+            int i11 = t0Var.S;
+            int i12 = t0Var.R;
+            if (i12 == 0 && i11 == 0) {
+                return -5;
+            }
+            if (dVar.f14295e != 0) {
+                i12 = 0;
+            }
+            if (dVar.f14296f != Long.MIN_VALUE) {
+                i11 = 0;
+            }
+            j3.s0 a2 = t0Var.a();
+            a2.E = i12;
+            a2.F = i11;
+            u0Var.f10815b = new j3.t0(a2);
+            return -5;
+        }
+        long j10 = dVar.f14296f;
+        if (j10 != Long.MIN_VALUE && ((d == -4 && iVar.d >= j10) || (d == -3 && dVar.L() == Long.MIN_VALUE && !iVar.f16829c))) {
+            iVar.clear();
+            iVar.setFlags(4);
+            this.f14290b = true;
+            return -4;
+        }
+        return d;
+    }
+
+    @Override
+    public final boolean e() {
+        if (!this.f14291c.d() && this.f14289a.e()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int i(long j10) {
+        if (this.f14291c.d()) {
+            return -3;
+        }
+        return this.f14289a.i(j10);
     }
 }

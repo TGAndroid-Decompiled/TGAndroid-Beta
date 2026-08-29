@@ -1,28 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import org.telegram.ui.oc1;
-public final class qo extends oc1 {
-    public final int f31998g2;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class qo implements f5.d {
+    public final int f32015a;
+    public final gp f32016b;
 
-    public qo(Object obj, Bitmap bitmap, boolean z10, int i9) {
-        super(obj, bitmap, z10);
-        this.f31998g2 = i9;
+    public qo(gp gpVar, int i10) {
+        this.f32015a = i10;
+        this.f32016b = gpVar;
     }
 
     @Override
-    public final boolean U0() {
-        switch (this.f31998g2) {
+    public final void accept(Object obj) {
+        switch (this.f32015a) {
             case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
+                gp gpVar = this.f32016b;
+                gpVar.f28933b0 = (TL_stories.TL_premium_boostsStatus) obj;
+                gpVar.f28931a0 = true;
+                gpVar.E(true);
+                gpVar.Z = false;
+                return;
             default:
-                return true;
+                gp.m(this.f32016b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
         }
     }
 }

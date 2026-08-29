@@ -1,42 +1,40 @@
 package ig;
 
-import android.graphics.RenderNode;
-import g.x;
-public final class h {
-    public final RenderNode f11184a;
-    public final g f11185b;
-    public final x f11186c = new Object();
-    public long d = 0;
-    public int f11187e;
-    public int f11188f;
+import android.view.KeyEvent;
+import android.view.View;
+import j7.l1;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.ui.Components.j30;
+public final class h implements View.OnKeyListener {
+    public boolean f8981a;
+    public final HashSet f8982b;
+    public final Runnable f8983c;
+    public final k d;
 
-    public h(RenderNode renderNode, g gVar) {
-        this.f11184a = renderNode;
-        this.f11185b = gVar;
+    public h(k kVar, HashSet hashSet, Runnable runnable) {
+        this.d = kVar;
+        this.f8982b = hashSet;
+        this.f8983c = runnable;
     }
 
-    public final void a() {
-        long j10;
-        int width = this.f11184a.getWidth();
-        int height = this.f11184a.getHeight();
-        x xVar = this.f11186c;
-        xVar.f7045a = 0L;
-        boolean z10 = false;
-        xVar.f7046b = false;
-        g gVar = this.f11185b;
-        gVar.x0(xVar);
-        if (xVar.f7046b) {
-            j10 = -1;
-        } else {
-            j10 = xVar.f7045a;
+    @Override
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        k kVar = this.d;
+        ArrayList arrayList = kVar.f8996e;
+        if (i10 == 67) {
+            boolean z10 = true;
+            if (keyEvent.getAction() == 0) {
+                if (kVar.f8994b.length() != 0) {
+                    z10 = false;
+                }
+                this.f8981a = z10;
+                return false;
+            } else if (keyEvent.getAction() == 1 && this.f8981a && !arrayList.isEmpty()) {
+                kVar.a((j30) l1.i(1, arrayList), this.f8982b, this.f8983c);
+                return true;
+            }
         }
-        z10 = (this.f11184a.hasDisplayList() && width == this.f11187e && height == this.f11188f && j10 == this.d && j10 != -1) ? true : true;
-        this.f11187e = width;
-        this.f11188f = height;
-        this.d = j10;
-        if (z10) {
-            gVar.k(this.f11184a.beginRecording());
-            this.f11184a.endRecording();
-        }
+        return false;
     }
 }

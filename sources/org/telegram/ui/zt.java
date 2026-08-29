@@ -1,57 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_payments;
-public final class zt implements Utilities.Callback {
-    public final int f45247a;
-    public final long f45248b;
-    public final Object f45249c;
-    public final Object d;
+public final class zt implements Runnable {
+    public final int f45314a;
+    public final DataSettingsActivity f45315b;
 
-    public zt(Object obj, Object obj2, long j10, int i9) {
-        this.f45247a = i9;
-        this.f45249c = obj;
-        this.d = obj2;
-        this.f45248b = j10;
+    public zt(DataSettingsActivity dataSettingsActivity, int i10) {
+        this.f45314a = i10;
+        this.f45315b = dataSettingsActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        boolean z10;
-        int i9;
-        switch (this.f45247a) {
+    public final void run() {
+        int i10;
+        switch (this.f45314a) {
             case 0:
-                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f45249c;
-                Long l10 = (Long) obj;
-                AndroidUtilities.cancelRunOnUIThread((yt) this.d);
-                if (!dataSettingsActivity.S && System.currentTimeMillis() - this.f45248b <= 120) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                dataSettingsActivity.S = z10;
-                dataSettingsActivity.U = l10.longValue();
-                dataSettingsActivity.T = false;
-                if (dataSettingsActivity.f35454a != null && (i9 = dataSettingsActivity.f35461s) >= 0) {
-                    dataSettingsActivity.m0(i9);
-                    return;
-                }
+                this.f45315b.getMediaDataController().clearAllDrafts(true);
                 return;
             case 1:
-                Runnable runnable = (Runnable) obj;
-                ((org.telegram.ui.ActionBar.c2) this.d).q(150L);
-                dy dyVar = ((dx) this.f45249c).f37621b;
-                Boolean bool = dyVar.C.bot_participant;
-                if (bool != null && bool.booleanValue()) {
-                    dyVar.getMessagesController().addUserToChat(this.f45248b, dyVar.getMessagesController().getUser(Long.valueOf(dyVar.D)), 0, null, dyVar, false, runnable, new bf(8, runnable));
+                DataSettingsActivity dataSettingsActivity = this.f45315b;
+                dataSettingsActivity.T = true;
+                if (dataSettingsActivity.f35521a != null && (i10 = dataSettingsActivity.f35528s) >= 0) {
+                    dataSettingsActivity.n0(i10);
                     return;
                 }
-                runnable.run();
                 return;
             default:
-                ProfileActivity.j0((ProfileActivity) this.f45249c, (Context) this.d, this.f45248b, (TL_payments.connectedBotStarRef) obj);
+                x6.f44480i0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f45315b;
+                zt ztVar = new zt(dataSettingsActivity2, 1);
+                AndroidUtilities.runOnUIThread(ztVar, 100L);
+                x6.j0(new au(dataSettingsActivity2, ztVar, System.currentTimeMillis(), 0));
                 return;
         }
     }

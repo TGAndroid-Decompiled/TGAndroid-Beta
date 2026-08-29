@@ -1,53 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-public final class hr implements Runnable {
-    public final int f29175a;
-    public final kr f29176b;
+import android.graphics.drawable.Drawable;
+public final class hr implements Drawable.Callback {
+    public final int f29216a;
+    public final ir f29217b;
 
-    public hr(kr krVar, int i9) {
-        this.f29175a = i9;
-        this.f29176b = krVar;
+    public hr(ir irVar, int i10) {
+        this.f29216a = i10;
+        this.f29217b = irVar;
     }
 
     @Override
-    public final void run() {
-        View view;
-        switch (this.f29175a) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f29216a) {
             case 0:
-                kr krVar = this.f29176b;
-                if (krVar.f30227b == null && (view = krVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        krVar.f30227b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = krVar.f30227b;
-                if (editText != null) {
-                    if (editText.length() != 0 || krVar.f30229e) {
-                        try {
-                            krVar.performHapticFeedback(3, 2);
-                            krVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        krVar.f30227b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        krVar.f30227b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (krVar.f30230f) {
-                            krVar.postDelayed(krVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
+                ir irVar = this.f29217b;
+                if (irVar.f29455c < 1.0f) {
+                    irVar.invalidateSelf();
                     return;
                 }
                 return;
             default:
-                kr krVar2 = this.f29176b;
-                krVar2.f30231n = false;
-                krVar2.f30230f = true;
-                krVar2.h.run();
+                ir irVar2 = this.f29217b;
+                if (irVar2.f29455c > 0.0f) {
+                    irVar2.invalidateSelf();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f29216a) {
+            case 0:
+                ir irVar = this.f29217b;
+                if (irVar.f29455c < 1.0f) {
+                    irVar.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+            default:
+                ir irVar2 = this.f29217b;
+                if (irVar2.f29455c > 0.0f) {
+                    irVar2.scheduleSelf(runnable, j10);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f29216a) {
+            case 0:
+                ir irVar = this.f29217b;
+                if (irVar.f29455c < 1.0f) {
+                    irVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                ir irVar2 = this.f29217b;
+                if (irVar2.f29455c > 0.0f) {
+                    irVar2.unscheduleSelf(runnable);
+                    return;
+                }
                 return;
         }
     }

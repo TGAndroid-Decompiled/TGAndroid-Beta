@@ -1,33 +1,39 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class am {
-    public final ArrayList f26862a = new ArrayList();
-    public final HashMap f26863b = new HashMap();
-    public int f26864c;
-    public int d;
-    public int f26865e;
-    public float f26866f;
-    public final ArrayList f26867g;
-    public final hm h;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class am extends ViewOutlineProvider {
+    public final cm f26800a;
 
-    public am(hm hmVar, ArrayList arrayList) {
-        this.h = hmVar;
-        this.f26867g = arrayList;
-        a();
+    public am(cm cmVar) {
+        this.f26800a = cmVar;
     }
 
-    public static float b(float[] fArr, int i9, int i10) {
-        float f10 = 0.0f;
-        while (i9 < i10) {
-            f10 += fArr[i9];
-            i9++;
+    @Override
+    public final void getOutline(View view, Outline outline) {
+        org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) view;
+        if (r5Var.getTag() == null) {
+            return;
         }
-        return 1000.0f / f10;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.am.a():void");
+        int intValue = ((Integer) r5Var.getTag()).intValue();
+        cm cmVar = this.f26800a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = cmVar.v;
+        if (cmVar.d && chatAttachAlertPhotoLayout.P0 == chatAttachAlertPhotoLayout.Q0 && !chatAttachAlertPhotoLayout.K0) {
+            intValue++;
+        }
+        if (chatAttachAlertPhotoLayout.f26262c1) {
+            intValue++;
+        }
+        if (intValue == 0) {
+            int dp = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
+        } else if (intValue == chatAttachAlertPhotoLayout.I0 - 1) {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
+        } else {
+            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        }
     }
 }

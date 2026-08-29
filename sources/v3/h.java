@@ -1,80 +1,108 @@
 package v3;
 
-import d5.y;
-import g7.t;
-import h3.s0;
-import h3.t0;
-import java.util.ArrayList;
-import java.util.Arrays;
-import o8.z;
-import org.telegram.ui.Cells.e3;
-public final class h extends i {
-    public static final byte[] f48337o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] f48338p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean f48339n;
+import f5.d0;
+import o3.s;
+import o3.u;
+public final class h implements f {
+    public final long f49355a;
+    public final int f49356b;
+    public final long f49357c;
+    public final long d;
+    public final long f49358e;
+    public final long[] f49359f;
 
-    public static boolean e(y yVar, byte[] bArr) {
-        if (yVar.a() < bArr.length) {
-            return false;
-        }
-        int i9 = yVar.f4411b;
-        byte[] bArr2 = new byte[bArr.length];
-        yVar.c(0, bArr.length, bArr2);
-        yVar.C(i9);
-        return Arrays.equals(bArr2, bArr);
+    public h(long j10, int i10, long j11, long j12, long[] jArr) {
+        this.f49355a = j10;
+        this.f49356b = i10;
+        this.f49357c = j11;
+        this.f49359f = jArr;
+        this.d = j12;
+        this.f49358e = j12 != -1 ? j10 + j12 : -1L;
     }
 
     @Override
-    public final long b(y yVar) {
-        byte[] bArr = yVar.f4410a;
-        byte b10 = 0;
-        byte b11 = bArr[0];
-        if (bArr.length > 1) {
-            b10 = bArr[1];
-        }
-        return (this.f48346i * j3.b.e(b11, b10)) / 1000000;
+    public final long a() {
+        return this.f49358e;
     }
 
     @Override
-    public final boolean c(y yVar, long j10, e3 e3Var) {
-        if (e(yVar, f48337o)) {
-            byte[] copyOf = Arrays.copyOf(yVar.f4410a, yVar.f4412c);
-            int i9 = copyOf[9] & 255;
-            ArrayList a2 = j3.b.a(copyOf);
-            if (((t0) e3Var.f24286b) == null) {
-                s0 s0Var = new s0();
-                s0Var.f9705o = "audio/opus";
-                s0Var.B = i9;
-                s0Var.C = 48000;
-                s0Var.f9707q = a2;
-                e3Var.f24286b = new t0(s0Var);
-                return true;
+    public final long b(long j10) {
+        long j11;
+        double d;
+        long j12 = j10 - this.f49355a;
+        if (c() && j12 > this.f49356b) {
+            long[] jArr = this.f49359f;
+            f5.a.j(jArr);
+            double d10 = (j12 * 256.0d) / this.d;
+            int e10 = d0.e(jArr, (long) d10, true);
+            long j13 = this.f49357c;
+            long j14 = (e10 * j13) / 100;
+            long j15 = jArr[e10];
+            int i10 = e10 + 1;
+            long j16 = (j13 * i10) / 100;
+            if (e10 == 99) {
+                j11 = 256;
+            } else {
+                j11 = jArr[i10];
             }
-        } else if (e(yVar, f48338p)) {
-            d5.a.j((t0) e3Var.f24286b);
-            if (!this.f48339n) {
-                this.f48339n = true;
-                yVar.D(8);
-                z3.c a3 = t.a(z.v(t.b(yVar, false, false).f17270a));
-                if (a3 != null) {
-                    s0 a10 = ((t0) e3Var.f24286b).a();
-                    a10.f9699i = a3.a(((t0) e3Var.f24286b).f9767s);
-                    e3Var.f24286b = new t0(a10);
-                    return true;
-                }
+            if (j15 == j11) {
+                d = 0.0d;
+            } else {
+                d = (d10 - j15) / (j11 - j15);
             }
+            return Math.round(d * (j16 - j14)) + j14;
+        }
+        return 0L;
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.f49359f != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final s g(long j10) {
+        double d;
+        double d10;
+        boolean c3 = c();
+        int i10 = this.f49356b;
+        long j11 = this.f49355a;
+        if (!c3) {
+            u uVar = new u(0L, j11 + i10);
+            return new s(uVar, uVar);
+        }
+        long i11 = d0.i(j10, 0L, this.f49357c);
+        double d11 = (i11 * 100.0d) / this.f49357c;
+        double d12 = 0.0d;
+        if (d11 <= 0.0d) {
+            d = 256.0d;
+        } else if (d11 >= 100.0d) {
+            d = 256.0d;
+            d12 = 256.0d;
         } else {
-            d5.a.j((t0) e3Var.f24286b);
-            return false;
+            int i12 = (int) d11;
+            long[] jArr = this.f49359f;
+            f5.a.j(jArr);
+            double d13 = jArr[i12];
+            if (i12 == 99) {
+                d = 256.0d;
+                d10 = 256.0d;
+            } else {
+                d = 256.0d;
+                d10 = jArr[i12 + 1];
+            }
+            d12 = ((d10 - d13) * (d11 - i12)) + d13;
         }
-        return true;
+        long j12 = this.d;
+        u uVar2 = new u(i11, j11 + d0.i(Math.round((d12 / d) * j12), i10, j12 - 1));
+        return new s(uVar2, uVar2);
     }
 
     @Override
-    public final void d(boolean z10) {
-        super.d(z10);
-        if (z10) {
-            this.f48339n = false;
-        }
+    public final long h() {
+        return this.f49357c;
     }
 }

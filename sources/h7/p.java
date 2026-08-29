@@ -1,28 +1,12 @@
 package h7;
 
-import java.io.Serializable;
-public final class p extends f implements Serializable {
-    public final Object f10062b;
-    public final e f10063c;
-
-    public p(Object obj, e eVar) {
-        super(0, false);
-        this.f10062b = obj;
-        this.f10063c = eVar;
+import java.util.Date;
+public abstract class p {
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
     }
 
-    @Override
-    public final Object getKey() {
-        return this.f10062b;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.f10063c;
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public static Date b(long j10) {
+        return new Date((j10 - 2082844800) * 1000);
     }
 }

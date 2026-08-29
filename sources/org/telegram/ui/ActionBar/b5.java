@@ -39,7 +39,7 @@ public interface b5 {
 
     void setDrawerLayoutContainer(x3 x3Var);
 
-    void setFragmentPanTranslationOffset(int i9);
+    void setFragmentPanTranslationOffset(int i10);
 
     void setFragmentStack(List list);
 
@@ -49,7 +49,7 @@ public interface b5 {
 
     void setIsSheet(boolean z10);
 
-    void setNavigationBarColor(int i9);
+    void setNavigationBarColor(int i10);
 
     void setPulledDialogs(List list);
 

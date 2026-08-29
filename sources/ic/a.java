@@ -1,59 +1,66 @@
 package ic;
 
-import java.util.ArrayList;
-import java.util.Map;
-public final class a extends c {
-    public final a f11089e;
-    public ArrayList f11090f;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
+import java.util.List;
+import java.util.logging.Level;
+public final class a implements Runnable {
+    public final InputStream f8826a;
+    public final Socket f8827b;
+    public final l f8828c;
 
-    public a(String str, int i9, Map map, a aVar) {
-        super(i9, str, map);
-        this.f11089e = aVar;
+    public a(l lVar, InputStream inputStream, Socket socket) {
+        this.f8828c = lVar;
+        this.f8826a = inputStream;
+        this.f8827b = socket;
     }
 
     @Override
-    public final Map a() {
-        return this.f11093c;
-    }
-
-    public final void b(int i9) {
-        if (this.d > -1) {
-            return;
-        }
-        this.d = i9;
-        ArrayList arrayList = this.f11090f;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((a) obj).b(i9);
+    public final void run() {
+        OutputStream outputStream;
+        InputStream inputStream = this.f8826a;
+        l lVar = this.f8828c;
+        Socket socket = this.f8827b;
+        OutputStream outputStream2 = null;
+        try {
+            try {
+                outputStream = socket.getOutputStream();
+            } catch (Exception e10) {
+                e = e10;
             }
+        } catch (Throwable th2) {
+            th = th2;
         }
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("BlockImpl{name='");
-        sb2.append(this.f11091a);
-        sb2.append("', start=");
-        sb2.append(this.f11092b);
-        sb2.append(", end=");
-        sb2.append(this.d);
-        sb2.append(", attributes=");
-        sb2.append(this.f11093c);
-        sb2.append(", parent=");
-        a aVar = this.f11089e;
-        if (aVar != null) {
-            str = aVar.f11091a;
-        } else {
-            str = null;
+        try {
+            e eVar = new e(lVar, new d(0), this.f8826a, outputStream, socket.getInetAddress());
+            while (!socket.isClosed()) {
+                eVar.c();
+            }
+            l.d(outputStream);
+        } catch (Exception e11) {
+            e = e11;
+            outputStream2 = outputStream;
+            if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
+                l.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
+            }
+            l.d(outputStream2);
+            l.d(inputStream);
+            l.d(socket);
+            ((List) lVar.f8871c.f6283c).remove(this);
+        } catch (Throwable th3) {
+            th = th3;
+            outputStream2 = outputStream;
+            l.d(outputStream2);
+            l.d(inputStream);
+            l.d(socket);
+            ((List) lVar.f8871c.f6283c).remove(this);
+            throw th;
         }
-        sb2.append(str);
-        sb2.append(", children=");
-        sb2.append(this.f11090f);
-        sb2.append('}');
-        return sb2.toString();
+        l.d(inputStream);
+        l.d(socket);
+        ((List) lVar.f8871c.f6283c).remove(this);
     }
 }

@@ -1,58 +1,63 @@
 package s5;
 
-import aa.d;
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.Arrays;
-import q7.j;
-public final class b extends y5.a {
-    public static final Parcelable.Creator<b> CREATOR = new j(7);
-    public final boolean f47441a;
-    public final long f47442b;
-    public final long f47443c;
+import android.os.Build;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.Locale;
+public final class b {
+    public final String f47580a;
+    public final boolean f47581b;
+    public final String f47582c;
 
-    public b(long j10, long j11, boolean z10) {
-        this.f47441a = z10;
-        this.f47442b = j10;
-        this.f47443c = j11;
+    public b(String str, String str2) {
+        boolean z10;
+        String n10;
+        z5.l.g(str, "The log tag cannot be null or empty.");
+        this.f47580a = str;
+        if (str.length() <= 23) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f47581b = z10;
+        if (TextUtils.isEmpty(str2)) {
+            n10 = null;
+        } else {
+            n10 = a4.w.n("[", str2, "] ");
+        }
+        this.f47582c = n10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof b) {
-            b bVar = (b) obj;
-            if (this.f47441a == bVar.f47441a && this.f47442b == bVar.f47442b && this.f47443c == bVar.f47443c) {
-                return true;
+    public final void a(Exception exc, String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f47581b) {
+            String str2 = this.f47580a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr), exc);
             }
         }
-        return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f47441a), Long.valueOf(this.f47442b), Long.valueOf(this.f47443c)});
+    public final void b(String str, Object... objArr) {
+        if (!Build.TYPE.equals("user") && this.f47581b) {
+            String str2 = this.f47580a;
+            if (Log.isLoggable(str2, 3)) {
+                Log.d(str2, d(str, objArr));
+            }
+        }
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("CollectForDebugParcelable[skipPersistentStorage: ");
-        sb2.append(this.f47441a);
-        sb2.append(",collectForDebugStartTimeMillis: ");
-        sb2.append(this.f47442b);
-        sb2.append(",collectForDebugExpiryTimeMillis: ");
-        return d.q(sb2, this.f47443c, "]");
+    public final void c(Object... objArr) {
+        Log.e(this.f47580a, d("Bundle is null", objArr));
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.s(parcel, 1, 4);
-        parcel.writeInt(this.f47441a ? 1 : 0);
-        p8.s(parcel, 2, 8);
-        parcel.writeLong(this.f47443c);
-        p8.s(parcel, 3, 8);
-        parcel.writeLong(this.f47442b);
-        p8.r(parcel, q10);
+    public final String d(String str, Object... objArr) {
+        if (objArr.length != 0) {
+            str = String.format(Locale.ROOT, str, objArr);
+        }
+        String str2 = this.f47582c;
+        if (!TextUtils.isEmpty(str2)) {
+            return String.valueOf(str2).concat(String.valueOf(str));
+        }
+        return str;
     }
 }

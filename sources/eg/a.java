@@ -1,178 +1,104 @@
 package eg;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.View;
-import gh.x4;
-import hg.p0;
-import org.telegram.ui.Components.h21;
-import org.telegram.ui.Components.tn0;
-import org.telegram.ui.Components.up;
-import org.telegram.ui.Components.vc;
-import qh.q0;
-public final class a implements Drawable.Callback {
-    public final int f5120a;
-    public Object f5121b;
+import android.text.SpannableString;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+import android.util.Pair;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.jr;
+import org.telegram.ui.Components.n6;
+public final class a extends ReplacementSpan {
+    public final Drawable f5906a;
+    public final Drawable f5907b;
+    public boolean f5908c;
+    public boolean d;
+    public final n6 f5909e;
+    public final TextPaint f5910f;
+    public final int h;
 
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f5120a) {
-            case 0:
-                ((b) this.f5121b).f5124c.invalidate();
-                return;
-            case 1:
-                ((d) this.f5121b).f5150c.invalidate();
-                return;
-            case 2:
-                ((x4) this.f5121b).f9152f.invalidate();
-                return;
-            case 3:
-                p0 p0Var = (p0) this.f5121b;
-                View view = p0Var.W;
-                if (view != null) {
-                    view.invalidate();
-                    if (p0Var.R && p0Var.W.getParent() != null && (p0Var.W.getParent().getParent() instanceof View)) {
-                        ((View) p0Var.W.getParent().getParent()).invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                return;
-            case 5:
-                ((k2.d) this.f5121b).invalidateSelf();
-                return;
-            case 6:
-                ((up) this.f5121b).invalidateSelf();
-                return;
-            case 7:
-                ((tn0) this.f5121b).f32752b.run();
-                return;
-            case 8:
-                ((vc) this.f5121b).invalidateSelf();
-                return;
-            case 9:
-                ((h21) this.f5121b).invalidateSelf();
-                return;
-            default:
-                ((q0) this.f5121b).f46622b.invalidate();
-                return;
+    public a(org.telegram.ui.Cells.s1 s1Var, TextPaint textPaint, int i10) {
+        this.f5910f = textPaint;
+        n6 n6Var = new n6(false, false, true, false);
+        this.f5909e = n6Var;
+        n6Var.k(0.3f, 250L, jr.h);
+        n6Var.setCallback(s1Var);
+        n6Var.t(AndroidUtilities.dp(11.5f));
+        n6Var.u(AndroidUtilities.bold());
+        n6Var.q("", true, true);
+        n6Var.f30862b = 17;
+        Drawable mutate = s1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
+        this.f5906a = mutate;
+        Drawable mutate2 = s1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
+        this.f5907b = mutate2;
+        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
+        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
+        this.h = i10;
+        n6Var.q(i10 > 1 ? String.valueOf(i10) : "", false, true);
+    }
+
+    public static Pair a(org.telegram.ui.Cells.s1 s1Var, TextPaint textPaint, int i10) {
+        SpannableString spannableString = new SpannableString("d");
+        a aVar = new a(s1Var, textPaint, i10);
+        spannableString.setSpan(aVar, 0, 1, 33);
+        return new Pair(spannableString, aVar);
+    }
+
+    public final int b() {
+        int i10;
+        if (this.d) {
+            i10 = 8;
+        } else {
+            i10 = 0;
         }
+        return (int) (this.f5909e.e() + AndroidUtilities.dp(i10 + 16));
     }
 
     @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f5120a) {
-            case 0:
-                ((b) this.f5121b).f5124c.invalidate();
-                return;
-            case 1:
-                ((d) this.f5121b).f5150c.invalidate();
-                return;
-            case 2:
-                return;
-            case 3:
-                View view = ((p0) this.f5121b).W;
-                if (view != null) {
-                    view.scheduleDrawable(drawable, runnable, j10);
-                    return;
-                }
-                return;
-            case 4:
-                Drawable.Callback callback = (Drawable.Callback) this.f5121b;
-                if (callback != null) {
-                    callback.scheduleDrawable(drawable, runnable, j10);
-                    return;
-                }
-                return;
-            case 5:
-                ((k2.d) this.f5121b).scheduleSelf(runnable, j10);
-                return;
-            case 6:
-                ((up) this.f5121b).scheduleSelf(runnable, j10);
-                return;
-            case 7:
-                return;
-            case 8:
-                ((vc) this.f5121b).scheduleSelf(runnable, j10);
-                return;
-            case 9:
-            default:
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f9, int i12, int i13, int i14, Paint paint) {
+        int i15;
+        TextPaint textPaint = this.f5910f;
+        int color = textPaint.getColor();
+        n6 n6Var = this.f5909e;
+        int color2 = n6Var.f30861a.getColor();
+        Drawable drawable = this.f5907b;
+        Drawable drawable2 = this.f5906a;
+        if (color != color2) {
+            n6Var.r(textPaint.getColor());
+            int color3 = n6Var.f30861a.getColor();
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(n6Var.f30861a.getColor(), mode));
         }
+        canvas.save();
+        if (this.d && !this.f5908c) {
+            i15 = AndroidUtilities.dp(8.0f);
+        } else {
+            i15 = 0;
+        }
+        canvas.translate(f9 + i15, -AndroidUtilities.dp(0.2f));
+        if (this.h == 1) {
+            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
+            drawable2.draw(canvas);
+        } else {
+            drawable.draw(canvas);
+        }
+        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, (int) n6Var.d(), (int) n6Var.f30864e);
+        n6Var.setBounds(rect);
+        n6Var.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f5120a) {
-            case 0:
-                ((b) this.f5121b).f5124c.invalidate();
-                return;
-            case 1:
-                ((d) this.f5121b).f5150c.invalidate();
-                return;
-            case 2:
-                return;
-            case 3:
-                View view = ((p0) this.f5121b).W;
-                if (view != null) {
-                    view.unscheduleDrawable(drawable, runnable);
-                    return;
-                }
-                return;
-            case 4:
-                Drawable.Callback callback = (Drawable.Callback) this.f5121b;
-                if (callback != null) {
-                    callback.unscheduleDrawable(drawable, runnable);
-                    return;
-                }
-                return;
-            case 5:
-                ((k2.d) this.f5121b).unscheduleSelf(runnable);
-                return;
-            case 6:
-                ((up) this.f5121b).unscheduleSelf(runnable);
-                return;
-            case 7:
-                return;
-            case 8:
-                ((vc) this.f5121b).unscheduleSelf(runnable);
-                return;
-            case 9:
-            default:
-                return;
-        }
-    }
-
-    public a(Object obj, int i9) {
-        this.f5120a = i9;
-        this.f5121b = obj;
-    }
-
-    private final void a(Drawable drawable) {
-    }
-
-    private final void f(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void g(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void h(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void i(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void b(Drawable drawable, Runnable runnable, long j10) {
-    }
-
-    private final void c(Drawable drawable, Runnable runnable, long j10) {
-    }
-
-    private final void d(Drawable drawable, Runnable runnable, long j10) {
-    }
-
-    private final void e(Drawable drawable, Runnable runnable, long j10) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return b();
     }
 }

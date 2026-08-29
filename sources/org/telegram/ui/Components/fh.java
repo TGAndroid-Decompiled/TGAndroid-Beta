@@ -1,58 +1,55 @@
 package org.telegram.ui.Components;
-public final class fh implements Runnable {
-    public final int f28427a;
-    public final ki f28428b;
-    public final boolean f28429c;
 
-    public fh(ki kiVar, boolean z10, int i9) {
-        this.f28427a = i9;
-        this.f28428b = kiVar;
-        this.f28429c = z10;
+import android.view.KeyEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class fh implements Utilities.Callback4 {
+    public final int f28400a;
+    public final KeyEvent.Callback f28401b;
+
+    public fh(KeyEvent.Callback callback, int i10) {
+        this.f28400a = i10;
+        this.f28401b = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28427a) {
+    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+        switch (this.f28400a) {
             case 0:
-                boolean z10 = this.f28429c;
-                ki kiVar = this.f28428b;
-                if (!z10) {
-                    kiVar.Y0.setVisibility(8);
-                    return;
-                } else {
-                    kiVar.getClass();
-                    return;
-                }
+                ni niVar = (ni) this.f28401b;
+                CharSequence charSequence = (CharSequence) obj;
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                th thVar = niVar.A0;
+                thVar.setText(charSequence);
+                thVar.w(charSequence.length(), charSequence.length());
+                niVar.z1();
+                return;
             case 1:
-                boolean z11 = this.f28429c;
-                ki kiVar2 = this.f28428b;
-                if (!z11) {
-                    kiVar2.f30166w.setVisibility(8);
-                    return;
-                } else {
-                    kiVar2.getClass();
-                    return;
-                }
-            case 2:
-                boolean z12 = this.f28429c;
-                ki kiVar3 = this.f28428b;
-                if (!z12) {
-                    kiVar3.f30174y.setVisibility(8);
-                    return;
-                } else {
-                    kiVar3.getClass();
-                    return;
-                }
+                ni niVar2 = (ni) this.f28401b;
+                CharSequence charSequence2 = (CharSequence) obj;
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                wh whVar = niVar2.L0;
+                whVar.setText(charSequence2);
+                whVar.w(charSequence2.length(), charSequence2.length());
+                niVar2.z1();
+                return;
             default:
-                boolean z13 = this.f28429c;
-                ki kiVar4 = this.f28428b;
-                if (z13) {
-                    kiVar4.f30158t1.setVisibility(4);
-                    return;
-                } else {
-                    kiVar4.getClass();
-                    return;
-                }
+                ed edVar = (ed) this.f28401b;
+                Integer num5 = (Integer) obj2;
+                Integer num6 = (Integer) obj3;
+                Boolean bool3 = (Boolean) obj4;
+                nh.g gVar = edVar.f18076f;
+                gVar.setText((CharSequence) obj);
+                gVar.d();
+                gVar.k(true);
+                nh.e eVar = edVar.V;
+                AndroidUtilities.cancelRunOnUIThread(eVar);
+                eVar.run();
+                return;
         }
     }
 }

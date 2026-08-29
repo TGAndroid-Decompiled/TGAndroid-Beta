@@ -1,12 +1,10 @@
 package z3;
 
-import android.os.Parcelable;
-import h3.g1;
-import h3.t0;
-public interface b extends Parcelable {
-    byte[] getWrappedMetadataBytes();
+import o3.l;
+public interface b {
+    void a(long j10);
 
-    t0 getWrappedMetadataFormat();
+    boolean b(l lVar, long j10);
 
-    void populateMediaMetadata(g1 g1Var);
+    void c(int i10, long j10);
 }

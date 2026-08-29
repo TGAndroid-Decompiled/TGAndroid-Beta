@@ -1,81 +1,73 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CodeHighlighting;
-import org.telegram.tgnet.tl.TL_iv;
-public final class i2 extends View {
-    public final a70 f38988a;
-    public final j4 f38989b;
-    public final j2 f38990c;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+public final class i2 extends HorizontalScrollView {
+    public final int f39105a;
+    public final Object f39106b;
 
-    public i2(j2 j2Var, Context context, a70 a70Var, j4 j4Var) {
+    public i2(FrameLayout frameLayout, Context context, int i10) {
         super(context);
-        this.f38990c = j2Var;
-        this.f38988a = a70Var;
-        this.f38989b = j4Var;
+        this.f39105a = i10;
+        this.f39106b = frameLayout;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        j2 j2Var = this.f38990c;
-        if (j2Var.f39343c != null) {
-            canvas.save();
-            l4.v(this.f38988a, canvas, j2Var, 0);
-            j2Var.f39343c.draw(canvas, this);
-            canvas.restore();
-            j2Var.f39343c.f37805s = (int) getX();
-            j2Var.f39343c.v = (int) getY();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        int i11;
-        j2 j2Var = this.f38990c;
-        TL_iv.pageBlockPreformatted pageblockpreformatted = j2Var.f39345f;
-        int i12 = 1;
-        if (pageblockpreformatted != null) {
-            CharSequence charSequence = j2Var.h;
-            j4 j4Var = this.f38989b;
-            a70 a70Var = this.f38988a;
-            if (charSequence == null) {
-                TL_iv.RichText richText = pageblockpreformatted.text;
-                int dp = AndroidUtilities.dp(5000.0f);
-                HashSet hashSet = l4.X0;
-                j2Var.h = l4.C(a70Var, j4Var.A, this, richText, richText, pageblockpreformatted, dp);
-                if (!TextUtils.isEmpty(j2Var.f39345f.language)) {
-                    j2Var.h = CodeHighlighting.getHighlighted(j2Var.h, j2Var.f39345f.language);
+    public void onMeasure(int i10, int i11) {
+        switch (this.f39105a) {
+            case 1:
+                int mode = View.MeasureSpec.getMode(i10);
+                if (mode == 1073741824) {
+                    super.onMeasure(i10, i11);
+                    return;
                 }
-            }
-            e3 q10 = l4.q(a70Var, this, j2Var.h, null, AndroidUtilities.dp(5000.0f), 0, j2Var.f39345f, j4Var);
-            j2Var.f39343c = q10;
-            if (q10 != null) {
-                i11 = q10.d.getHeight();
-                int lineCount = j2Var.f39343c.d.getLineCount();
-                for (int i13 = 0; i13 < lineCount; i13++) {
-                    i12 = Math.max((int) Math.ceil(j2Var.f39343c.d.getLineWidth(i13)), i12);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
+                int measuredWidth = getMeasuredWidth();
+                int i12 = ((th.t3) this.f39106b).G;
+                if (mode == Integer.MIN_VALUE) {
+                    i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
                 }
-            } else {
-                i11 = 0;
-            }
-        } else {
-            i11 = 1;
+                setMeasuredDimension(Math.min(measuredWidth, i12), getMeasuredHeight());
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        setMeasuredDimension(AndroidUtilities.dp(32.0f) + i12, i11);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        j2 j2Var = this.f38990c;
-        if (!l4.l(this.f38988a, this.f38989b, motionEvent, j2Var, j2Var.f39343c, 0, 0) && !super.onTouchEvent(motionEvent)) {
-            return false;
+    public void onScrollChanged(int i10, int i11, int i12, int i13) {
+        org.telegram.ui.Cells.k9 textSelectionHelper;
+        switch (this.f39105a) {
+            case 0:
+                super.onScrollChanged(i10, i11, i12, i13);
+                d70 d70Var = (d70) this.f39106b;
+                if (d70Var.d != null) {
+                    d70Var.d = null;
+                    d70Var.f37383f = null;
+                    return;
+                }
+                return;
+            case 1:
+            default:
+                super.onScrollChanged(i10, i11, i12, i13);
+                return;
+            case 2:
+                super.onScrollChanged(i10, i11, i12, i13);
+                th.w2 w2Var = ((th.g5) this.f39106b).A;
+                if (w2Var != null && (textSelectionHelper = w2Var.f48834a.getTextSelectionHelper()) != null && textSelectionHelper.y()) {
+                    textSelectionHelper.x();
+                }
+                invalidate();
+                return;
         }
-        return true;
+    }
+
+    public i2(Context context, d70 d70Var) {
+        super(context);
+        this.f39105a = 0;
+        this.f39106b = d70Var;
     }
 }

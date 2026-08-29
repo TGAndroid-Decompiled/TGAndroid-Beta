@@ -1,36 +1,28 @@
 package k8;
-public final class t {
-    public final int f14705a;
-    public final long f14706b;
 
-    public t(int i9, long j10) {
-        this.f14705a = i9;
-        this.f14706b = j10;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class t extends a6.a {
+    public static final Parcelable.Creator<t> CREATOR = new c(15);
+    public final int f13558a;
+    public final boolean f13559b;
+    public final boolean f13560c;
+
+    public t(int i10, boolean z10, boolean z11) {
+        this.f13558a = i10;
+        this.f13559b = z10;
+        this.f13560c = z11;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof t) {
-                t tVar = (t) obj;
-                if (this.f14705a == tVar.f14705a && this.f14706b == tVar.f14706b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        long j10 = this.f14706b;
-        return ((this.f14705a ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("EventRecord{eventType=");
-        sb2.append(this.f14705a);
-        sb2.append(", eventTimestamp=");
-        return aa.d.q(sb2, this.f14706b, "}");
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        com.google.android.gms.internal.cast.o.s(parcel, 2, 4);
+        parcel.writeInt(this.f13558a);
+        com.google.android.gms.internal.cast.o.s(parcel, 3, 4);
+        parcel.writeInt(this.f13559b ? 1 : 0);
+        com.google.android.gms.internal.cast.o.s(parcel, 4, 4);
+        parcel.writeInt(this.f13560c ? 1 : 0);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

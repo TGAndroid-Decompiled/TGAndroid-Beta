@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.webkit.JavascriptInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class fu {
-    public final gu f28568a;
+import android.content.DialogInterface;
+public final class fu implements DialogInterface.OnShowListener {
+    public final mu f28533a;
 
-    public fu(gu guVar) {
-        this.f28568a = guVar;
+    public fu(mu muVar) {
+        this.f28533a = muVar;
     }
 
-    @JavascriptInterface
-    public void postEvent(String str, String str2) {
-        if ("loaded".equals(str)) {
-            AndroidUtilities.runOnUIThread(new np(this, 11));
+    @Override
+    public final void onShow(DialogInterface dialogInterface) {
+        s81 s81Var = this.f28533a.f30765c;
+        if (bg0.f27076l0.L && s81Var.f()) {
+            s81Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.z9(this, 1));
         }
     }
 }

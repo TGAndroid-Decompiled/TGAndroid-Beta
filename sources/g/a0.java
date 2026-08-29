@@ -10,120 +10,120 @@ import androidx.appcompat.widget.ActionBarContainer;
 import androidx.appcompat.widget.ActionBarContextView;
 import androidx.appcompat.widget.ActionBarOverlayLayout;
 import androidx.appcompat.widget.Toolbar;
-import f7.n7;
+import h7.m7;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
-import kh.g4;
+import lh.d5;
 import m.l1;
-import m.p3;
+import m.o3;
 import r0.b0;
 import r0.j0;
 import r0.m0;
-public final class a0 extends n7 implements m.c {
-    public static final AccelerateInterpolator f6922x = new AccelerateInterpolator();
-    public static final DecelerateInterpolator f6923y = new DecelerateInterpolator();
-    public Context f6924a;
-    public Context f6925b;
-    public ActionBarOverlayLayout f6926c;
+public final class a0 extends m7 implements m.c {
+    public static final AccelerateInterpolator f6832x = new AccelerateInterpolator();
+    public static final DecelerateInterpolator f6833y = new DecelerateInterpolator();
+    public Context f6834a;
+    public Context f6835b;
+    public ActionBarOverlayLayout f6836c;
     public ActionBarContainer d;
-    public l1 f6927e;
-    public ActionBarContextView f6928f;
-    public final View f6929g;
+    public l1 f6837e;
+    public ActionBarContextView f6838f;
+    public final View f6839g;
     public boolean h;
-    public z f6930i;
-    public z f6931j;
-    public we.b f6932k;
-    public boolean f6933l;
-    public final ArrayList f6934m;
-    public int f6935n;
-    public boolean f6936o;
-    public boolean f6937p;
-    public boolean f6938q;
-    public boolean f6939r;
-    public jb.d f6940s;
-    public boolean f6941t;
-    public final y f6942u;
+    public z f6840i;
+    public z f6841j;
+    public ze.b f6842k;
+    public boolean f6843l;
+    public final ArrayList f6844m;
+    public int f6845n;
+    public boolean f6846o;
+    public boolean f6847p;
+    public boolean f6848q;
+    public boolean f6849r;
+    public k.j f6850s;
+    public boolean f6851t;
+    public final y f6852u;
     public final y v;
-    public final fa.c f6943w;
+    public final za.c f6853w;
 
     public a0(Activity activity, boolean z10) {
         new ArrayList();
-        this.f6934m = new ArrayList();
-        this.f6935n = 0;
-        this.f6936o = true;
-        this.f6939r = true;
-        this.f6942u = new y(this, 0);
+        this.f6844m = new ArrayList();
+        this.f6845n = 0;
+        this.f6846o = true;
+        this.f6849r = true;
+        this.f6852u = new y(this, 0);
         this.v = new y(this, 1);
-        this.f6943w = new fa.c(this, 18);
+        this.f6853w = new za.c(this, 16);
         View decorView = activity.getWindow().getDecorView();
         b(decorView);
         if (z10) {
             return;
         }
-        this.f6929g = decorView.findViewById(16908290);
+        this.f6839g = decorView.findViewById(16908290);
     }
 
     public final void a(boolean z10) {
-        m0 i9;
+        m0 i10;
         m0 m0Var;
         long j10;
         if (z10) {
-            if (!this.f6938q) {
-                this.f6938q = true;
-                ActionBarOverlayLayout actionBarOverlayLayout = this.f6926c;
+            if (!this.f6848q) {
+                this.f6848q = true;
+                ActionBarOverlayLayout actionBarOverlayLayout = this.f6836c;
                 if (actionBarOverlayLayout != null) {
                     actionBarOverlayLayout.setShowingForActionMode(true);
                 }
                 d(false);
             }
-        } else if (this.f6938q) {
-            this.f6938q = false;
-            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f6926c;
+        } else if (this.f6848q) {
+            this.f6848q = false;
+            ActionBarOverlayLayout actionBarOverlayLayout2 = this.f6836c;
             if (actionBarOverlayLayout2 != null) {
                 actionBarOverlayLayout2.setShowingForActionMode(false);
             }
             d(false);
         }
         ActionBarContainer actionBarContainer = this.d;
-        WeakHashMap weakHashMap = j0.f46915a;
+        WeakHashMap weakHashMap = j0.f46829a;
         if (actionBarContainer.isLaidOut()) {
             if (z10) {
-                p3 p3Var = (p3) this.f6927e;
-                i9 = j0.a(p3Var.f17037a);
-                i9.a(0.0f);
-                i9.c(100L);
-                i9.d(new k.i(p3Var, 4));
-                m0Var = this.f6928f.i(0, 200L);
+                o3 o3Var = (o3) this.f6837e;
+                i10 = j0.a(o3Var.f16625a);
+                i10.a(0.0f);
+                i10.c(100L);
+                i10.d(new k.i(o3Var, 4));
+                m0Var = this.f6838f.i(0, 200L);
             } else {
-                p3 p3Var2 = (p3) this.f6927e;
-                m0 a2 = j0.a(p3Var2.f17037a);
+                o3 o3Var2 = (o3) this.f6837e;
+                m0 a2 = j0.a(o3Var2.f16625a);
                 a2.a(1.0f);
                 a2.c(200L);
-                a2.d(new k.i(p3Var2, 0));
-                i9 = this.f6928f.i(8, 100L);
+                a2.d(new k.i(o3Var2, 0));
+                i10 = this.f6838f.i(8, 100L);
                 m0Var = a2;
             }
-            jb.d dVar = new jb.d();
-            ArrayList arrayList = (ArrayList) dVar.f14293c;
-            arrayList.add(i9);
-            View view = (View) i9.f46927a.get();
+            k.j jVar = new k.j();
+            ArrayList arrayList = (ArrayList) jVar.f13241c;
+            arrayList.add(i10);
+            View view = (View) i10.f46841a.get();
             if (view != null) {
                 j10 = view.animate().getDuration();
             } else {
                 j10 = 0;
             }
-            View view2 = (View) m0Var.f46927a.get();
+            View view2 = (View) m0Var.f46841a.get();
             if (view2 != null) {
                 view2.animate().setStartDelay(j10);
             }
             arrayList.add(m0Var);
-            dVar.b();
+            jVar.b();
         } else if (z10) {
-            ((p3) this.f6927e).f17037a.setVisibility(4);
-            this.f6928f.setVisibility(0);
+            ((o3) this.f6837e).f16625a.setVisibility(4);
+            this.f6838f.setVisibility(0);
         } else {
-            ((p3) this.f6927e).f17037a.setVisibility(0);
-            this.f6928f.setVisibility(8);
+            ((o3) this.f6837e).f16625a.setVisibility(0);
+            this.f6838f.setVisibility(8);
         }
     }
 
@@ -132,7 +132,7 @@ public final class a0 extends n7 implements m.c {
         l1 wrapper;
         boolean z10;
         ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) view.findViewById(2131296411);
-        this.f6926c = actionBarOverlayLayout;
+        this.f6836c = actionBarOverlayLayout;
         if (actionBarOverlayLayout != null) {
             actionBarOverlayLayout.setActionBarVisibilityCallback(this);
         }
@@ -149,15 +149,15 @@ public final class a0 extends n7 implements m.c {
             }
             throw new IllegalStateException("Can't make a decor toolbar out of ".concat(str));
         }
-        this.f6927e = wrapper;
-        this.f6928f = (ActionBarContextView) view.findViewById(2131296311);
+        this.f6837e = wrapper;
+        this.f6838f = (ActionBarContextView) view.findViewById(2131296311);
         ActionBarContainer actionBarContainer = (ActionBarContainer) view.findViewById(2131296305);
         this.d = actionBarContainer;
-        l1 l1Var = this.f6927e;
-        if (l1Var != null && this.f6928f != null && actionBarContainer != null) {
-            Context context = ((p3) l1Var).f17037a.getContext();
-            this.f6924a = context;
-            if ((((p3) this.f6927e).f17038b & 4) != 0) {
+        l1 l1Var = this.f6837e;
+        if (l1Var != null && this.f6838f != null && actionBarContainer != null) {
+            Context context = ((o3) l1Var).f16625a.getContext();
+            this.f6834a = context;
+            if ((((o3) this.f6837e).f16626b & 4) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -165,23 +165,23 @@ public final class a0 extends n7 implements m.c {
             if (z10) {
                 this.h = true;
             }
-            int i9 = context.getApplicationInfo().targetSdkVersion;
-            this.f6927e.getClass();
+            int i10 = context.getApplicationInfo().targetSdkVersion;
+            this.f6837e.getClass();
             if (!context.getResources().getBoolean(2131034112)) {
-                ((p3) this.f6927e).getClass();
+                ((o3) this.f6837e).getClass();
                 this.d.setTabContainer(null);
             } else {
                 this.d.setTabContainer(null);
-                ((p3) this.f6927e).getClass();
+                ((o3) this.f6837e).getClass();
             }
-            this.f6927e.getClass();
-            ((p3) this.f6927e).f17037a.setCollapsible(false);
-            this.f6926c.setHasNonEmbeddedTabs(false);
-            TypedArray obtainStyledAttributes = this.f6924a.obtainStyledAttributes(null, f.a.f5269a, 2130968581, 0);
+            this.f6837e.getClass();
+            ((o3) this.f6837e).f16625a.setCollapsible(false);
+            this.f6836c.setHasNonEmbeddedTabs(false);
+            TypedArray obtainStyledAttributes = this.f6834a.obtainStyledAttributes(null, f.a.f6231a, 2130968581, 0);
             if (obtainStyledAttributes.getBoolean(14, false)) {
-                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f6926c;
-                if (actionBarOverlayLayout2.f476n) {
-                    this.f6941t = true;
+                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f6836c;
+                if (actionBarOverlayLayout2.f968n) {
+                    this.f6851t = true;
                     actionBarOverlayLayout2.setHideOnContentScrollEnabled(true);
                 } else {
                     throw new IllegalStateException("Action bar must be in overlay mode (Window.FEATURE_OVERLAY_ACTION_BAR) to enable hide on content scroll");
@@ -190,7 +190,7 @@ public final class a0 extends n7 implements m.c {
             int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(12, 0);
             if (dimensionPixelSize != 0) {
                 ActionBarContainer actionBarContainer2 = this.d;
-                WeakHashMap weakHashMap = j0.f46915a;
+                WeakHashMap weakHashMap = j0.f46829a;
                 b0.i(actionBarContainer2, dimensionPixelSize);
             }
             obtainStyledAttributes.recycle();
@@ -200,144 +200,144 @@ public final class a0 extends n7 implements m.c {
     }
 
     public final void c(boolean z10) {
-        int i9;
+        int i10;
         if (!this.h) {
             if (z10) {
-                i9 = 4;
+                i10 = 4;
             } else {
-                i9 = 0;
+                i10 = 0;
             }
-            p3 p3Var = (p3) this.f6927e;
-            int i10 = p3Var.f17038b;
+            o3 o3Var = (o3) this.f6837e;
+            int i11 = o3Var.f16626b;
             this.h = true;
-            p3Var.a((i9 & 4) | (i10 & (-5)));
+            o3Var.a((i10 & 4) | (i11 & (-5)));
         }
     }
 
     public final void d(boolean z10) {
         int[] iArr;
         int[] iArr2;
-        boolean z11 = this.f6937p;
-        boolean z12 = this.f6938q;
-        g4 g4Var = null;
-        fa.c cVar = this.f6943w;
-        View view = this.f6929g;
+        boolean z11 = this.f6847p;
+        boolean z12 = this.f6848q;
+        d5 d5Var = null;
+        za.c cVar = this.f6853w;
+        View view = this.f6839g;
         if (!z12 && z11) {
-            if (this.f6939r) {
-                this.f6939r = false;
-                jb.d dVar = this.f6940s;
-                if (dVar != null) {
-                    dVar.a();
+            if (this.f6849r) {
+                this.f6849r = false;
+                k.j jVar = this.f6850s;
+                if (jVar != null) {
+                    jVar.a();
                 }
-                int i9 = this.f6935n;
-                y yVar = this.f6942u;
-                if (i9 == 0 && z10) {
+                int i10 = this.f6845n;
+                y yVar = this.f6852u;
+                if (i10 == 0 && z10) {
                     this.d.setAlpha(1.0f);
                     this.d.setTransitioning(true);
-                    jb.d dVar2 = new jb.d();
-                    ArrayList arrayList = (ArrayList) dVar2.f14293c;
-                    float f10 = -this.d.getHeight();
+                    k.j jVar2 = new k.j();
+                    ArrayList arrayList = (ArrayList) jVar2.f13241c;
+                    float f9 = -this.d.getHeight();
                     if (z10) {
                         this.d.getLocationInWindow(new int[]{0, 0});
-                        f10 -= iArr2[1];
+                        f9 -= iArr2[1];
                     }
                     m0 a2 = j0.a(this.d);
-                    a2.e(f10);
-                    View view2 = (View) a2.f46927a.get();
+                    a2.e(f9);
+                    View view2 = (View) a2.f46841a.get();
                     if (view2 != null) {
                         if (cVar != null) {
-                            g4Var = new g4(cVar, view2);
+                            d5Var = new d5(cVar, view2);
                         }
-                        view2.animate().setUpdateListener(g4Var);
+                        view2.animate().setUpdateListener(d5Var);
                     }
-                    if (!dVar2.f14292b) {
+                    if (!jVar2.f13240b) {
                         arrayList.add(a2);
                     }
-                    if (this.f6936o && view != null) {
-                        m0 a3 = j0.a(view);
-                        a3.e(f10);
-                        if (!dVar2.f14292b) {
-                            arrayList.add(a3);
+                    if (this.f6846o && view != null) {
+                        m0 a10 = j0.a(view);
+                        a10.e(f9);
+                        if (!jVar2.f13240b) {
+                            arrayList.add(a10);
                         }
                     }
-                    boolean z13 = dVar2.f14292b;
+                    boolean z13 = jVar2.f13240b;
                     if (!z13) {
-                        dVar2.d = f6922x;
+                        jVar2.d = f6832x;
                     }
                     if (!z13) {
-                        dVar2.f14291a = 250L;
+                        jVar2.f13239a = 250L;
                     }
                     if (!z13) {
-                        dVar2.f14294e = yVar;
+                        jVar2.f13242e = yVar;
                     }
-                    this.f6940s = dVar2;
-                    dVar2.b();
+                    this.f6850s = jVar2;
+                    jVar2.b();
                     return;
                 }
                 yVar.c();
             }
-        } else if (!this.f6939r) {
-            this.f6939r = true;
-            jb.d dVar3 = this.f6940s;
-            if (dVar3 != null) {
-                dVar3.a();
+        } else if (!this.f6849r) {
+            this.f6849r = true;
+            k.j jVar3 = this.f6850s;
+            if (jVar3 != null) {
+                jVar3.a();
             }
             this.d.setVisibility(0);
-            int i10 = this.f6935n;
+            int i11 = this.f6845n;
             y yVar2 = this.v;
-            if (i10 == 0 && z10) {
+            if (i11 == 0 && z10) {
                 this.d.setTranslationY(0.0f);
-                float f11 = -this.d.getHeight();
+                float f10 = -this.d.getHeight();
                 if (z10) {
                     this.d.getLocationInWindow(new int[]{0, 0});
-                    f11 -= iArr[1];
+                    f10 -= iArr[1];
                 }
-                this.d.setTranslationY(f11);
-                jb.d dVar4 = new jb.d();
-                ArrayList arrayList2 = (ArrayList) dVar4.f14293c;
-                m0 a10 = j0.a(this.d);
-                a10.e(0.0f);
-                View view3 = (View) a10.f46927a.get();
+                this.d.setTranslationY(f10);
+                k.j jVar4 = new k.j();
+                ArrayList arrayList2 = (ArrayList) jVar4.f13241c;
+                m0 a11 = j0.a(this.d);
+                a11.e(0.0f);
+                View view3 = (View) a11.f46841a.get();
                 if (view3 != null) {
                     if (cVar != null) {
-                        g4Var = new g4(cVar, view3);
+                        d5Var = new d5(cVar, view3);
                     }
-                    view3.animate().setUpdateListener(g4Var);
+                    view3.animate().setUpdateListener(d5Var);
                 }
-                if (!dVar4.f14292b) {
-                    arrayList2.add(a10);
+                if (!jVar4.f13240b) {
+                    arrayList2.add(a11);
                 }
-                if (this.f6936o && view != null) {
-                    view.setTranslationY(f11);
-                    m0 a11 = j0.a(view);
-                    a11.e(0.0f);
-                    if (!dVar4.f14292b) {
-                        arrayList2.add(a11);
+                if (this.f6846o && view != null) {
+                    view.setTranslationY(f10);
+                    m0 a12 = j0.a(view);
+                    a12.e(0.0f);
+                    if (!jVar4.f13240b) {
+                        arrayList2.add(a12);
                     }
                 }
-                boolean z14 = dVar4.f14292b;
+                boolean z14 = jVar4.f13240b;
                 if (!z14) {
-                    dVar4.d = f6923y;
+                    jVar4.d = f6833y;
                 }
                 if (!z14) {
-                    dVar4.f14291a = 250L;
+                    jVar4.f13239a = 250L;
                 }
                 if (!z14) {
-                    dVar4.f14294e = yVar2;
+                    jVar4.f13242e = yVar2;
                 }
-                this.f6940s = dVar4;
-                dVar4.b();
+                this.f6850s = jVar4;
+                jVar4.b();
             } else {
                 this.d.setAlpha(1.0f);
                 this.d.setTranslationY(0.0f);
-                if (this.f6936o && view != null) {
+                if (this.f6846o && view != null) {
                     view.setTranslationY(0.0f);
                 }
                 yVar2.c();
             }
-            ActionBarOverlayLayout actionBarOverlayLayout = this.f6926c;
+            ActionBarOverlayLayout actionBarOverlayLayout = this.f6836c;
             if (actionBarOverlayLayout != null) {
-                WeakHashMap weakHashMap = j0.f46915a;
+                WeakHashMap weakHashMap = j0.f46829a;
                 r0.z.c(actionBarOverlayLayout);
             }
         }
@@ -345,13 +345,13 @@ public final class a0 extends n7 implements m.c {
 
     public a0(s sVar) {
         new ArrayList();
-        this.f6934m = new ArrayList();
-        this.f6935n = 0;
-        this.f6936o = true;
-        this.f6939r = true;
-        this.f6942u = new y(this, 0);
+        this.f6844m = new ArrayList();
+        this.f6845n = 0;
+        this.f6846o = true;
+        this.f6849r = true;
+        this.f6852u = new y(this, 0);
         this.v = new y(this, 1);
-        this.f6943w = new fa.c(this, 18);
+        this.f6853w = new za.c(this, 16);
         b(sVar.getWindow().getDecorView());
     }
 }

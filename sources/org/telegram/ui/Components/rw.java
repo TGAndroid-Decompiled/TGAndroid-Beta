@@ -1,66 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class rw extends e41 {
-    public final wy f32295b;
+import android.view.ViewGroup;
+public final class rw extends m2.g {
+    public final fz f32400s0;
 
-    public rw(wy wyVar) {
-        this.f32295b = wyVar;
+    public rw(fz fzVar, Context context) {
+        super(context);
+        this.f32400s0 = fzVar;
     }
 
     @Override
-    public final boolean a() {
-        return this.f32295b.f34432p1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f32295b.S0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f32295b.f34432p1.c();
-    }
-
-    @Override
-    public final boolean d(x31 x31Var, MotionEvent motionEvent) {
-        org.telegram.ui.ht q10 = org.telegram.ui.ht.q();
-        wy wyVar = this.f32295b;
-        wyVar.getMeasuredHeight();
-        return q10.r(motionEvent, x31Var, wyVar.f34393c2, wyVar.V1);
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, j jVar, MotionEvent motionEvent) {
-        org.telegram.ui.ht q10 = org.telegram.ui.ht.q();
-        wy wyVar = this.f32295b;
-        wyVar.getMeasuredHeight();
-        return q10.s(motionEvent, x31Var, jVar, wyVar.f34393c2, wyVar.V1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i9) {
-        this.f32295b.f34432p1.m(null, document, null, obj, null, z10, i9);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        wy wyVar = this.f32295b;
-        wyVar.f34432p1.r(stickerSetCovered);
-        if (z10) {
-            wyVar.Y(true);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f32400s0.f28592f) {
+            return false;
+        }
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
         }
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f32295b.f34432p1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f32295b.S0 = strArr;
+    public final void x(int i10, boolean z10) {
+        boolean z11;
+        fz fzVar = this.f32400s0;
+        bw bwVar = fzVar.E;
+        if (i10 == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        fz.a(fzVar, z11);
+        if (i10 == getCurrentItem()) {
+            if (i10 == 0) {
+                fzVar.M0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(bwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(jr.h);
+                ofFloat.start();
+                fzVar.H(1, 0);
+                if (bwVar != null) {
+                    bwVar.j(0, true);
+                    return;
+                }
+                return;
+            } else if (i10 == 1) {
+                fzVar.f28585d0.x0(0);
+                return;
+            } else {
+                fzVar.f28657z0.x0(1);
+                return;
+            }
+        }
+        super.x(i10, z10);
     }
 }

@@ -1,126 +1,90 @@
 package bg;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import java.util.ArrayList;
+import nh.e6;
+import nh.f5;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Cells.z6;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.vk0;
-public final class y1 extends vk0 {
-    public final g2 f2007c;
+import org.telegram.ui.Components.ga;
+import org.telegram.ui.Components.il0;
+public final class y1 extends il0 {
+    public final Context f2614c;
+    public final ga d;
+    public final e6 f2615e;
+    public final boolean f2616f;
+    public final f5 h;
 
-    public y1(g2 g2Var) {
-        this.f2007c = g2Var;
+    public y1(f5 f5Var, Context context, ga gaVar, e6 e6Var, boolean z10) {
+        this.h = f5Var;
+        this.f2614c = context;
+        this.d = gaVar;
+        this.f2615e = e6Var;
+        this.f2616f = z10;
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        if (q1Var.f5505f == 3) {
-            return true;
-        }
-        return false;
+    public final boolean D(f2.n1 n1Var) {
+        return true;
     }
 
     @Override
     public final int h() {
-        return this.f2007c.U.size() + 3;
+        return this.h.f2149o0.size();
     }
 
     @Override
-    public final int j(int i9) {
-        if (i9 != 0) {
-            int i10 = 1;
-            if (i9 != 1) {
-                i10 = 2;
-                if (i9 != 2) {
-                    return 3;
-                }
-            }
-            return i10;
-        }
-        return 0;
+    public final int j(int i10) {
+        ArrayList arrayList = this.h.f2149o0;
+        return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
     }
 
     @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        String str;
-        int i10 = q1Var.f5505f;
-        View view = q1Var.f5501a;
-        g2 g2Var = this.f2007c;
-        if (i10 == 3) {
-            TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) g2Var.U.get(i9 - 3);
-            fg.p pVar = (fg.p) view;
-            pVar.setBoost(tL_myBoost);
-            pVar.c(g2Var.T.contains(tL_myBoost), false);
-        } else if (i10 == 2) {
-            m4 m4Var = (m4) view;
-            m4Var.setTextSize(15.0f);
-            m4Var.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-            m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
-        } else if (i10 == 0) {
-            f2 f2Var = (f2) view;
-            g2Var.X = f2Var;
-            TLRPC.Chat chat = g2Var.V;
-            l80 l80Var = f2Var.f1761e;
-            try {
-                int i11 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
-                if (chat == null) {
-                    str = "";
+    public final void v(f2.n1 n1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        MessageObject.GroupedMessagePosition position;
+        boolean z12;
+        f5 f5Var = this.h;
+        ArrayList arrayList = f5Var.f2149o0;
+        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
+        View view = n1Var.f6432a;
+        if (view instanceof org.telegram.ui.Cells.s1) {
+            org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) view;
+            MessageObject.GroupedMessages groupedMessages = f5Var.f2150p0;
+            if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
+                if (position.minY != 0) {
+                    z12 = true;
                 } else {
-                    str = chat.title;
+                    z12 = false;
                 }
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i11, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), f6.f23061gc, 2, new af.e(g2Var, 13));
-                int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
-                replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
-                l80Var.setText(replaceTags, TextView.BufferType.EDITABLE);
-                l80Var.post(new c2(f2Var, indexOf, 0));
-            } catch (Exception e10) {
-                FileLog.e(e10);
-            }
-        }
-    }
-
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        View view;
-        b6 b6Var;
-        Context context = viewGroup.getContext();
-        g2 g2Var = this.f2007c;
-        if (i9 != 0) {
-            if (i9 != 1) {
-                if (i9 != 2) {
-                    if (i9 == 3) {
-                        b6Var = ((org.telegram.ui.ActionBar.f3) g2Var).resourcesProvider;
-                        view = new fg.p(context, true, false, b6Var, true);
-                    } else {
-                        view = new View(context);
-                    }
-                } else {
-                    view = new m4(context, 22);
-                }
+                z10 = z12;
             } else {
-                view = new z6(context, f6.w0(null, f6.f22947a7, false), 0);
+                z10 = false;
             }
-        } else {
-            f2 f2Var = new f2(context);
-            f2Var.a(g2Var.T, g2Var.V);
-            view = f2Var;
+            MessageObject.GroupedMessages groupedMessages2 = f5Var.f2150p0;
+            if (groupedMessages2 != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            s1Var.X3(messageObject, groupedMessages2, z11, z10, false, false);
+        } else if (view instanceof org.telegram.ui.Cells.v0) {
+            ((org.telegram.ui.Cells.v0) view).setMessageObject(messageObject);
         }
-        return j3.r0.s(view, view, -1, -2);
+    }
+
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        c2 c2Var = this.h.f2160z0;
+        Context context = this.f2614c;
+        if (i10 == 1) {
+            return new f2.n1(new w1(this, context, c2Var));
+        }
+        x1 x1Var = new x1(this, context, UserConfig.selectedAccount, c2Var);
+        x1Var.J7 = true;
+        return new f2.n1(x1Var);
     }
 }

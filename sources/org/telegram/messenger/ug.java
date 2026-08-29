@@ -1,34 +1,74 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import android.os.Bundle;
+import android.os.CancellationSignal;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationBadge;
+import org.telegram.messenger.PushListenerController;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.messenger.SendMessagesHelper;
 public final class ug implements Runnable {
-    public final int f21686a;
-    public final NotificationsController f21687b;
-    public final ArrayList f21688c;
+    public final int f21740a;
+    public final Object f21741b;
 
-    public ug(NotificationsController notificationsController, ArrayList arrayList, int i9) {
-        this.f21686a = i9;
-        this.f21687b = notificationsController;
-        this.f21688c = arrayList;
+    public ug(Object obj, int i10) {
+        this.f21740a = i10;
+        this.f21741b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f21686a) {
+        switch (this.f21740a) {
             case 0:
-                this.f21687b.lambda$removeDeletedHisoryFromNotifications$11(this.f21688c);
+                ((MusicPlayerService) this.f21741b).stopSelf();
                 return;
             case 1:
-                this.f21687b.lambda$processReadMessages$20(this.f21688c);
+                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f21741b);
                 return;
             case 2:
-                this.f21687b.lambda$forceShowPopupForReply$6(this.f21688c);
+                ((NotificationsSettingsFacade) this.f21741b).lambda$applyDialogNotificationsSettings$0();
                 return;
             case 3:
-                this.f21687b.lambda$removeDeletedMessagesFromNotifications$8(this.f21688c);
+                ((CancellationSignal) this.f21741b).cancel();
+                return;
+            case 4:
+                ((ProxyRotationController) this.f21741b).lambda$new$2();
+                return;
+            case 5:
+                ((PushListenerController.GooglePushListenerServiceProvider) this.f21741b).lambda$onRequestPushToken$1();
+                return;
+            case 6:
+                ((RichMessageLayout.PreviewView) this.f21741b).lambda$onTouchEvent$0();
+                return;
+            case 7:
+                ((RichMessageLayout.RichButtonRowBlock) this.f21741b).invalidate();
+                return;
+            case 8:
+                ((RichMessageLayout.RichButtonSpan) this.f21741b).invalidate();
+                return;
+            case 9:
+                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f21741b);
+                return;
+            case 10:
+                ((RichMessageLayout.Text) this.f21741b).lambda$scheduleLongPress$2();
+                return;
+            case 11:
+                ((SecretChatHelper) this.f21741b).lambda$startSecretChat$25();
+                return;
+            case 12:
+                ((SendMessagesHelper) this.f21741b).lambda$new$0();
+                return;
+            case 13:
+                ((MessagesStorage.StringCallback) this.f21741b).run(null);
+                return;
+            case 14:
+                ((SendMessagesHelper.LocationProvider) this.f21741b).lambda$start$0();
+                return;
+            case 15:
+                ((TelegramMediaSession) this.f21741b).onAccountSwitched();
                 return;
             default:
-                this.f21687b.lambda$processDialogsUpdateRead$28(this.f21688c);
+                ((TranslateController) this.f21741b).loadTranslatingDialogsCached();
                 return;
         }
     }

@@ -1,35 +1,45 @@
 package org.telegram.ui;
+public final class yc implements Runnable {
+    public final int f44834a;
+    public final hd f44835b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class yc implements RequestDelegate {
-    public final int f44817a;
-    public final id f44818b;
-
-    public yc(id idVar, int i9) {
-        this.f44817a = i9;
-        this.f44818b = idVar;
+    public yc(hd hdVar, int i10) {
+        this.f44834a = i10;
+        this.f44835b = hdVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f44817a) {
+    public final void run() {
+        switch (this.f44834a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.l0(29, this.f44818b, tLObject));
+                hd hdVar = this.f44835b;
+                hdVar.f38859f0 = true;
+                hdVar.h0();
                 return;
             case 1:
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new zc(this.f44818b, 3));
-                    return;
-                }
+                hd hdVar2 = this.f44835b;
+                hdVar2.f38876x = null;
+                hdVar2.f38877y = null;
+                hdVar2.f38861h0 = null;
+                hdVar2.f38862i0 = null;
+                hdVar2.f38864k0 = null;
+                hdVar2.f38863j0 = null;
+                hdVar2.f38865l0 = 0.0d;
+                hdVar2.e0(false, true);
+                hdVar2.f38856e.h(null, null, hdVar2.f38873s, null);
+                hdVar2.h.setAnimation(hdVar2.F);
+                hdVar2.F.K(0);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.l0(27, this.f44818b, tL_error));
+                this.f44835b.g0(true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t1(this.f44818b, tL_error, tLObject, 11));
+                hd hdVar3 = this.f44835b;
+                hdVar3.f38859f0 = true;
+                if (hdVar3.f38875w.length() > 0) {
+                    hdVar3.d0(hdVar3.f38875w.getText().toString());
+                }
+                hdVar3.h0();
                 return;
         }
     }

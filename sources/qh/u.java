@@ -1,38 +1,29 @@
 package qh;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.z41;
 public final class u implements TextWatcher {
-    public final v f46732a;
+    public final i0 f46780a;
 
-    public u(v vVar) {
-        this.f46732a = vVar;
+    public u(i0 i0Var) {
+        this.f46780a = i0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        v vVar = this.f46732a;
-        TL_iv.RichMessage richMessage = vVar.f46749e0;
-        if (richMessage != null && richMessage != null) {
-            vVar.f46749e0 = null;
-            vVar.f46746b0.g(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
-            z41 z41Var = vVar.V;
-            if (z41Var != null) {
-                z41Var.N(true);
-            }
-        }
-        vVar.O();
+        String obj = editable.toString();
+        i0 i0Var = this.f46780a;
+        boolean isEmpty = TextUtils.isEmpty(i0Var.N);
+        i0Var.N = obj;
+        i0Var.B.h(0L, i0Var.f46715e, 0L, 0L, null, false, obj, isEmpty);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

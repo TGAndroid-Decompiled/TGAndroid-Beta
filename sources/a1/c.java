@@ -1,185 +1,174 @@
 package a1;
 
-import a5.m;
+import a4.a0;
+import a4.b0;
+import a4.q;
+import a5.j;
+import ag.m2;
+import ag.s0;
+import ag.u0;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
-import android.view.View;
-import bg.h2;
-import bg.l1;
-import bg.q2;
-import bg.x0;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import android.widget.TextView;
+import bg.n3;
+import bg.u3;
+import bg.v3;
+import bg.y2;
 import c2.a1;
-import c2.z0;
-import ch.j;
+import c2.b1;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.c0;
 import com.google.firebase.messaging.e0;
-import com.google.firebase.messaging.t;
+import com.google.firebase.messaging.s;
 import com.google.firebase.messaging.z;
-import d3.h;
-import e5.s;
-import ff.p;
-import fh.c0;
-import fh.o1;
-import fh.p2;
-import gh.t0;
+import eg.f1;
+import eg.y1;
+import f3.h;
+import j3.t0;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ScheduledFuture;
-import n2.l;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
+import nh.m7;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.i5;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.nk0;
-import org.telegram.ui.Components.x4;
+import org.telegram.ui.Components.xi0;
 import org.telegram.ui.LaunchActivity;
-import r0.m1;
-import r0.o;
-import w2.i;
-import zf.k;
-public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Continuation, OnCompleteListener, p, o, BillingController.ProductDetailsResponseListenerLegacy, x4 {
+import org.telegram.ui.gq0;
+import org.telegram.ui.th;
+import org.telegram.ui.ws0;
+import y2.i;
+public final class c implements OnSuccessListener, a0, a9.e, s0, m2, b2, m7, ImageReceiver.ImageReceiverDelegate, vd.b, Continuation, OnCompleteListener, z9.a, g3.b {
     public final int f34a;
     public final Object f35b;
 
-    public c(a1 a1Var, z0 z0Var) {
-        this.f34a = 8;
-        this.f35b = a1Var;
+    public c(b1 b1Var, a1 a1Var) {
+        this.f34a = 14;
+        this.f35b = b1Var;
     }
 
     @Override
-    public void B(int i9, int i10, boolean z10) {
+    public Object I0(j jVar) {
+        return this.f35b;
+    }
+
+    @Override
+    public void N(int i10, float f9, float f10, vd.c cVar) {
+        bh.f.a((bh.f) this.f35b);
+    }
+
+    @Override
+    public Typeface a() {
+        return u0.a((Font) this.f35b);
+    }
+
+    @Override
+    public int b(Object obj) {
         t0 t0Var = (t0) this.f35b;
-        if (z10) {
-            long j10 = i9;
-            if (t0Var.E != j10) {
-                t0Var.E = j10;
-                t0Var.f8900r.setText(t0.o(j10));
-            }
-            t0Var.n(true);
+        q qVar = (q) obj;
+        String str = qVar.f105b;
+        if ((!str.equals(t0Var.B) && !str.equals(b0.b(t0Var))) || !qVar.c(t0Var, false)) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        xi0 lottieAnimation;
+        v3 v3Var = (v3) this.f35b;
+        if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
+            v3Var.q(lottieAnimation);
         }
     }
 
     @Override
-    public m1 L0(View view, m1 m1Var) {
-        ((fh.z0) this.f35b).h.i(m1Var);
-        return m1.f46928b;
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        i5.a(this, i10, str, drawable);
     }
 
-    public void a(Display display) {
-        s sVar = (s) this.f35b;
-        sVar.getClass();
-        if (display != null) {
-            long refreshRate = (long) (1.0E9d / display.getRefreshRate());
-            sVar.f4930k = refreshRate;
-            sVar.f4931l = (refreshRate * 80) / 100;
-            return;
+    @Override
+    public void e() {
+        float f9;
+        ws0 ws0Var = (ws0) this.f35b;
+        TextView textView = ws0Var.f2252u1;
+        boolean a2 = ws0Var.B0.a();
+        ImageView imageView = ws0Var.f2250s1;
+        imageView.animate().cancel();
+        ViewPropertyAnimator animate = imageView.animate();
+        float f10 = 0.6f;
+        if (a2) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.6f;
         }
-        d5.a.K("VideoFrameReleaseHelper", "Unable to query display refresh rate");
-        sVar.f4930k = -9223372036854775807L;
-        sVar.f4931l = -9223372036854775807L;
-    }
-
-    @Override
-    public void c(float f10, float f11, int i9, View view) {
-        q2.P((q2) this.f35b, view);
-    }
-
-    @Override
-    public void e(x9.b bVar) {
-        b9.b bVar2 = (b9.b) this.f35b;
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
+        animate.alpha(f9).translationY(0.0f).setDuration(150L).start();
+        imageView.setClickable(a2);
+        textView.animate().cancel();
+        ViewPropertyAnimator animate2 = textView.animate();
+        if (a2) {
+            f10 = 1.0f;
         }
-        bVar2.f1660b.set((b9.b) bVar.get());
+        animate2.alpha(f10).translationY(0.0f).setDuration(150L).start();
+        textView.setClickable(a2);
     }
 
     @Override
-    public void f(c2 c2Var, int i9) {
-        switch (this.f34a) {
-            case 2:
-                ((h2) this.f35b).run();
-                return;
-            case 3:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f35b;
-                o2 R = LaunchActivity.R();
-                if (R != null) {
-                    l1.S(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
-                    return;
-                }
-                return;
-            case 4:
-                ((x0) this.f35b).run();
-                return;
-            case 5:
-                ((h2) this.f35b).run();
-                return;
-            default:
-                ((c0) this.f35b).run();
-                return;
-        }
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void h(long j10) {
-        ((fh.e) this.f35b).a(j10, true);
-    }
-
-    @Override
-    public Object j() {
+    public Object f() {
         SQLiteDatabase a2;
-        int i9 = this.f34a;
+        int i10 = this.f34a;
         Object obj = this.f35b;
-        switch (i9) {
-            case 9:
-                h hVar = (h) ((d3.c) obj);
+        switch (i10) {
+            case 23:
+                h hVar = (h) ((f3.c) obj);
                 hVar.getClass();
-                int i10 = z2.a.f50267e;
-                t tVar = new t(24, false);
-                tVar.f4178c = null;
-                tVar.d = new ArrayList();
-                tVar.f4179e = null;
-                tVar.f4177b = "";
+                int i11 = b3.a.f1898e;
+                s sVar = new s(3, false);
+                sVar.f5186c = null;
+                sVar.d = new ArrayList();
+                sVar.f5187e = null;
+                sVar.f5185b = "";
                 HashMap hashMap = new HashMap();
                 a2 = hVar.a();
                 a2.beginTransaction();
                 try {
-                    z2.a aVar = (z2.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, tVar, 6));
+                    b3.a aVar = (b3.a) h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new androidx.car.app.utils.a(hVar, hashMap, sVar, 7));
                     a2.setTransactionSuccessful();
                     return aVar;
                 } finally {
                 }
-            case 10:
-                h hVar2 = (h) ((d3.d) obj);
-                long d = hVar2.f4302b.d() - hVar2.d.d;
+            case 24:
+                h hVar2 = (h) ((f3.d) obj);
+                long e10 = hVar2.f6539b.e() - hVar2.d.d;
                 a2 = hVar2.a();
                 a2.beginTransaction();
                 try {
-                    String[] strArr = {String.valueOf(d)};
+                    String[] strArr = {String.valueOf(e10)};
                     Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE timestamp_ms < ? GROUP BY transport_name", strArr);
                     while (rawQuery.moveToNext()) {
-                        int i11 = rawQuery.getInt(0);
-                        hVar2.e(i11, z2.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
+                        int i12 = rawQuery.getInt(0);
+                        hVar2.e(i12, b3.c.MESSAGE_TOO_OLD, rawQuery.getString(1));
                     }
                     rawQuery.close();
                     int delete = a2.delete("events", "timestamp_ms < ?", strArr);
@@ -188,87 +177,84 @@ public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Co
                     return Integer.valueOf(delete);
                 } finally {
                 }
-            case 11:
-                h hVar3 = (h) ((d3.c) ((c3.h) obj).f2306i);
+            case 25:
+                h hVar3 = (h) ((f3.c) ((e3.f) obj).f5818i);
                 a2 = hVar3.a();
                 a2.beginTransaction();
                 try {
                     a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f4302b.d()).execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar3.f6539b.e()).execute();
                     a2.setTransactionSuccessful();
                     return null;
                 } finally {
                 }
             default:
-                t tVar2 = (t) obj;
-                for (i iVar : (Iterable) ((h) ((d3.d) tVar2.f4178c)).c(new a9.b(19))) {
-                    ((m) tVar2.d).A(iVar, 1, false);
+                s sVar2 = (s) obj;
+                for (i iVar : (Iterable) ((h) ((f3.d) sVar2.f5186c)).c(new eg.c(6))) {
+                    ((androidx.biometric.e) sVar2.d).A(iVar, 1, false);
                 }
                 return null;
         }
     }
 
     @Override
-    public void l(Canvas canvas, int i9) {
-        j jVar = (j) this.f35b;
-        jVar.getClass();
-        canvas.save();
-        RectF rectF = jVar.f2483r;
-        canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
-        jVar.e(canvas, true, i9);
-        canvas.restore();
+    public void g(c2 c2Var, int i10) {
+        switch (this.f34a) {
+            case 5:
+                ((gq0) this.f35b).run();
+                return;
+            case 6:
+                ((bg.s0) this.f35b).f2498a.f2226b2.r();
+                return;
+            case 27:
+                ((y1) this.f35b).run();
+                return;
+            case 28:
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f35b;
+                o2 R = LaunchActivity.R();
+                if (R != null) {
+                    f1.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
+                    return;
+                }
+                return;
+            default:
+                ((eg.t0) this.f35b).run();
+                return;
+        }
+    }
+
+    @Override
+    public Bitmap h(BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile((String) this.f35b, options);
+    }
+
+    @Override
+    public void j(z9.b bVar) {
+        d9.b bVar2 = (d9.b) this.f35b;
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
+        }
+        bVar2.f5534b.set((d9.b) bVar.get());
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        i5.b(this, imageReceiver);
     }
 
     @Override
     public void onComplete(Task task) {
         switch (this.f34a) {
-            case 16:
-                com.google.firebase.messaging.c0.b((Intent) this.f35b);
-                return;
             case 17:
-                ((e0) this.f35b).f4140b.trySetResult(null);
+                c0.b((Intent) this.f35b);
+                return;
+            case 18:
+                ((e0) this.f35b).f5154b.trySetResult(null);
                 return;
             default:
                 ((ScheduledFuture) this.f35b).cancel(false);
                 return;
         }
-    }
-
-    @Override
-    public void onProductDetailsResponse(n2.g gVar, List list) {
-        int i9;
-        p2 p2Var = (p2) this.f35b;
-        ArrayList arrayList = p2Var.f6688j0;
-        Iterator it = list.iterator();
-        long j10 = 0;
-        while (true) {
-            i9 = 0;
-            if (!it.hasNext()) {
-                break;
-            }
-            l lVar = (l) it.next();
-            int size = arrayList.size();
-            while (true) {
-                if (i9 < size) {
-                    Object obj = arrayList.get(i9);
-                    i9++;
-                    k kVar = (k) obj;
-                    if (kVar.h() != null && kVar.h().equals(lVar.f18335c)) {
-                        kVar.h = lVar;
-                        if (kVar.f() > j10) {
-                            j10 = kVar.f();
-                        }
-                    }
-                }
-            }
-        }
-        int size2 = arrayList.size();
-        while (i9 < size2) {
-            Object obj2 = arrayList.get(i9);
-            i9++;
-            ((k) obj2).f50563g = j10;
-        }
-        AndroidUtilities.runOnUIThread(new o1(p2Var, 0));
     }
 
     @Override
@@ -278,14 +264,64 @@ public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Co
             case 0:
                 ((f) this.f35b).invoke(obj);
                 return;
-            case 7:
+            case 8:
+                y2 y2Var = (y2) this.f35b;
+                kb.b bVar = (kb.b) obj;
+                y2Var.f2628y0 = true;
+                y2Var.f2627x0 = false;
+                return;
+            case 9:
+                n3 n3Var = (n3) this.f35b;
+                kb.b bVar2 = (kb.b) obj;
+                ArrayList arrayList = new ArrayList();
+                for (int i10 = 0; i10 < bVar2.f13605a.size(); i10++) {
+                    kb.a aVar = (kb.a) bVar2.f13605a.get(i10);
+                    ?? obj2 = new Object();
+                    obj2.f2533a = aVar.f13601a;
+                    obj2.f2534b = aVar.d;
+                    obj2.f2535c = aVar.f13604e;
+                    obj2.d = aVar.f13602b;
+                    obj2.f2536e = aVar.f13603c;
+                    arrayList.add(obj2);
+                }
+                n3Var.run(arrayList);
+                return;
+            case 10:
+                u3 u3Var = (u3) this.f35b;
+                List list = (List) obj;
+                u3Var.getClass();
+                if (list.size() <= 0) {
+                    FileLog.d("objimg: no objects");
+                    return;
+                }
+                int i11 = ((hb.a) list.get(0)).f7984c;
+                String str = null;
+                if (h7.s.f7750a == null) {
+                    h7.s.f7750a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                }
+                if (i11 >= 0) {
+                    String[] strArr = h7.s.f7750a;
+                    if (i11 < strArr.length) {
+                        str = strArr[i11];
+                    }
+                }
+                u3Var.V = str;
+                StringBuilder sb2 = new StringBuilder("objimg: detected #");
+                sb2.append(((hb.a) list.get(0)).f7984c);
+                sb2.append(" ");
+                sb2.append(u3Var.V);
+                sb2.append(" ");
+                th.v(((hb.a) list.get(0)).f7982a, sb2);
+                Emoji.getEmojiDrawable(u3Var.V);
+                return;
+            case 13:
                 ((b1.f) this.f35b).invoke(obj);
                 return;
-            case 14:
+            case 15:
                 z zVar = (z) obj;
-                if (((FirebaseMessaging) this.f35b).f4101e.l() && zVar.h.a() != null) {
+                if (((FirebaseMessaging) this.f35b).f5115e.l() && zVar.h.a() != null) {
                     synchronized (zVar) {
-                        z10 = zVar.f4204g;
+                        z10 = zVar.f5213g;
                     }
                     if (!z10) {
                         zVar.h(0L);
@@ -294,11 +330,8 @@ public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Co
                     return;
                 }
                 return;
-            case 19:
-                ((b1.f) this.f35b).invoke(obj);
-                return;
             case 20:
-                ((e1.b) this.f35b).invoke(obj);
+                ((b1.f) this.f35b).invoke(obj);
                 return;
             default:
                 ((e1.b) this.f35b).invoke(obj);
@@ -308,38 +341,36 @@ public final class c implements OnSuccessListener, x9.a, b2, nk0, e3.b, ch.a, Co
 
     @Override
     public Object then(Task task) {
-        switch (this.f34a) {
-            case 15:
-                ((com.google.firebase.messaging.m) this.f35b).getClass();
-                Bundle bundle = (Bundle) task.getResult(IOException.class);
-                if (bundle != null) {
-                    String string = bundle.getString("registration_id");
-                    if (string != null || (string = bundle.getString("unregistered")) != null) {
-                        return string;
-                    }
-                    String string2 = bundle.getString("error");
-                    if (!"RST".equals(string2)) {
-                        if (string2 != null) {
-                            throw new IOException(string2);
-                        }
-                        Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
-                        throw new IOException("SERVICE_NOT_AVAILABLE");
-                    }
-                    throw new IOException("INSTANCE_ID_RESET");
+        ((bg.c2) this.f35b).getClass();
+        Bundle bundle = (Bundle) task.getResult(IOException.class);
+        if (bundle != null) {
+            String string = bundle.getString("registration_id");
+            if (string != null) {
+                return string;
+            }
+            String string2 = bundle.getString("unregistered");
+            if (string2 != null) {
+                return string2;
+            }
+            String string3 = bundle.getString("error");
+            if (!"RST".equals(string3)) {
+                if (string3 != null) {
+                    throw new IOException(string3);
                 }
+                Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
                 throw new IOException("SERVICE_NOT_AVAILABLE");
-            default:
-                ((CountDownLatch) this.f35b).countDown();
-                return null;
+            }
+            throw new IOException("INSTANCE_ID_RESET");
         }
+        throw new IOException("SERVICE_NOT_AVAILABLE");
     }
 
-    public c(Object obj, int i9) {
-        this.f34a = i9;
+    public c(Object obj, int i10) {
+        this.f34a = i10;
         this.f35b = obj;
     }
 
     @Override
-    public void g0(View view, float f10, float f11) {
+    public void z(float f9, int i10) {
     }
 }

@@ -21,8 +21,8 @@ public class LocationSharingService extends Service implements NotificationCente
 
     private ArrayList<LocationController.SharingLocationInfo> getInfos() {
         ArrayList<LocationController.SharingLocationInfo> arrayList = new ArrayList<>();
-        for (int i9 = 0; i9 < 4; i9++) {
-            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i9).sharingLocationsUI;
+        for (int i10 = 0; i10 < 4; i10++) {
+            ArrayList<LocationController.SharingLocationInfo> arrayList2 = LocationController.getInstance(i10).sharingLocationsUI;
             if (!arrayList2.isEmpty()) {
                 arrayList.addAll(arrayList2);
             }
@@ -39,8 +39,8 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     public static void lambda$onCreate$0() {
-        for (int i9 = 0; i9 < 4; i9++) {
-            LocationController.getInstance(i9).update();
+        for (int i10 = 0; i10 < 4; i10++) {
+            LocationController.getInstance(i10).update();
         }
     }
 
@@ -57,12 +57,12 @@ public class LocationSharingService extends Service implements NotificationCente
             if (infos.size() == 1) {
                 LocationController.SharingLocationInfo sharingLocationInfo = infos.get(0);
                 long dialogId = sharingLocationInfo.messageObject.getDialogId();
-                int i9 = sharingLocationInfo.messageObject.currentAccount;
+                int i10 = sharingLocationInfo.messageObject.currentAccount;
                 if (DialogObject.isUserDialog(dialogId)) {
-                    formatPluralString = UserObject.getFirstName(MessagesController.getInstance(i9).getUser(Long.valueOf(dialogId)));
+                    formatPluralString = UserObject.getFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(dialogId)));
                     string = LocaleController.getString(R.string.AttachLiveLocationIsSharing);
                 } else {
-                    TLRPC.Chat chat = MessagesController.getInstance(i9).getChat(Long.valueOf(-dialogId));
+                    TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialogId));
                     if (chat != null) {
                         formatPluralString = chat.title;
                     } else {
@@ -84,10 +84,10 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     @Override
-    public void didReceivedNotification(int i9, int i10, Object... objArr) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
-        if (i9 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new t5(this, 1));
+        if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
+            handler.post(new v5(this, 1));
         }
     }
 
@@ -101,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        t5 t5Var = new t5(this, 0);
-        this.runnable = t5Var;
-        handler.postDelayed(t5Var, 1000L);
+        v5 v5Var = new v5(this, 0);
+        this.runnable = v5Var;
+        handler.postDelayed(v5Var, 1000L);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     @Override
-    public int onStartCommand(Intent intent, int i9, int i10) {
+    public int onStartCommand(Intent intent, int i10, int i11) {
         if (getInfos().isEmpty()) {
             stopSelf();
         }
@@ -134,18 +134,18 @@ public class LocationSharingService extends Service implements NotificationCente
                 tVar.E.when = System.currentTimeMillis();
                 e0.t tVar2 = this.builder;
                 tVar2.E.icon = R.drawable.live_loc;
-                tVar2.f4766g = activity;
+                tVar2.f5736g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.t tVar3 = this.builder;
-                tVar3.f4782y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                tVar3.f5752y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 tVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }
             updateNotification(false);
             startForeground(6, this.builder.b());
             return 2;
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
             return 2;
         }
     }

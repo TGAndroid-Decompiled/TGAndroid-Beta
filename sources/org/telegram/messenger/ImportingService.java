@@ -8,15 +8,15 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     private e0.t builder;
 
     public ImportingService() {
-        for (int i9 = 0; i9 < 4; i9++) {
-            NotificationCenter.getInstance(i9).addObserver(this, NotificationCenter.historyImportProgressChanged);
-            NotificationCenter.getInstance(i9).addObserver(this, NotificationCenter.stickersImportProgressChanged);
+        for (int i10 = 0; i10 < 4; i10++) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.historyImportProgressChanged);
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
     }
 
     private boolean hasImportingHistory() {
-        for (int i9 = 0; i9 < 4; i9++) {
-            if (SendMessagesHelper.getInstance(i9).isImportingHistory()) {
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (SendMessagesHelper.getInstance(i10).isImportingHistory()) {
                 return true;
             }
         }
@@ -24,8 +24,8 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     }
 
     private boolean hasImportingStickers() {
-        for (int i9 = 0; i9 < 4; i9++) {
-            if (SendMessagesHelper.getInstance(i9).isImportingStickers()) {
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (SendMessagesHelper.getInstance(i10).isImportingStickers()) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     }
 
     @Override
-    public void didReceivedNotification(int i9, int i10, Object... objArr) {
-        if ((i9 == NotificationCenter.historyImportProgressChanged || i9 == NotificationCenter.stickersImportProgressChanged) && !hasImportingStickers() && !hasImportingStickers()) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if ((i10 == NotificationCenter.historyImportProgressChanged || i10 == NotificationCenter.stickersImportProgressChanged) && !hasImportingStickers() && !hasImportingStickers()) {
             stopSelf();
         }
     }
@@ -52,9 +52,9 @@ public class ImportingService extends Service implements NotificationCenter.Noti
         } catch (Throwable unused) {
         }
         new e0.n0(ApplicationLoader.applicationContext).b(5);
-        for (int i9 = 0; i9 < 4; i9++) {
-            NotificationCenter.getInstance(i9).removeObserver(this, NotificationCenter.historyImportProgressChanged);
-            NotificationCenter.getInstance(i9).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
+        for (int i10 = 0; i10 < 4; i10++) {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.historyImportProgressChanged);
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("destroy import service");
@@ -62,7 +62,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
     }
 
     @Override
-    public int onStartCommand(Intent intent, int i9, int i10) {
+    public int onStartCommand(Intent intent, int i10, int i11) {
         if (!hasImportingStickers() && !hasImportingHistory()) {
             stopSelf();
             return 2;
@@ -77,7 +77,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f4782y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f5752y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
             if (hasImportingHistory()) {
                 this.builder.p(LocaleController.getString(R.string.ImporImportingService));
@@ -88,9 +88,9 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             }
         }
         e0.t tVar3 = this.builder;
-        tVar3.f4772n = 100;
-        tVar3.f4773o = 0;
-        tVar3.f4774p = true;
+        tVar3.f5742n = 100;
+        tVar3.f5743o = 0;
+        tVar3.f5744p = true;
         startForeground(5, tVar3.b());
         new e0.n0(ApplicationLoader.applicationContext).d(5, this.builder.b());
         return 2;

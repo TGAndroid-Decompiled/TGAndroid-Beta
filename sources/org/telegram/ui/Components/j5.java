@@ -1,63 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public class j5 extends Drawable {
-    public final Drawable f29635a;
-    public final int f29636b;
-    public final int f29637c;
-    public int d = 255;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class j5 implements Runnable {
+    public final int f29551a;
+    public final l5 f29552b;
+    public final ArrayList f29553c;
+    public final HashSet d;
 
-    public j5(int i9, int i10, Drawable drawable) {
-        this.f29635a = drawable;
-        this.f29636b = i9;
-        this.f29637c = i10;
+    public j5(l5 l5Var, ArrayList arrayList, HashSet hashSet, int i10) {
+        this.f29551a = i10;
+        this.f29552b = l5Var;
+        this.f29553c = arrayList;
+        this.d = hashSet;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.f29635a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            drawable.setAlpha(this.d);
-            drawable.draw(canvas);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f29637c;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f29636b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        Drawable drawable = this.f29635a;
-        if (drawable != null) {
-            return drawable.getOpacity();
-        }
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        this.d = i9;
-        Drawable drawable = this.f29635a;
-        if (drawable != null) {
-            drawable.setAlpha(i9);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f29635a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
+    public final void run() {
+        switch (this.f29551a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new j5(this.f29552b, this.f29553c, this.d, 1));
+                return;
+            default:
+                l5 l5Var = this.f29552b;
+                l5Var.d(this.f29553c);
+                HashSet hashSet = this.d;
+                if (!hashSet.isEmpty()) {
+                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
+                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
+                    ConnectionsManager.getInstance(l5Var.f30232e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.zg(6, l5Var, arrayList));
+                    return;
+                }
+                return;
         }
     }
 }

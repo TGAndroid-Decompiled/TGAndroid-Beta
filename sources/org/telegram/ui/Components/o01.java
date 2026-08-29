@@ -1,25 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class o01 implements TextWatcher {
-    public final int f31248a;
-    public final p01 f31249b;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
+import java.util.ArrayList;
+public final class o01 {
+    public final View f31216a;
+    public final ArrayList f31217b;
+    public final Runnable f31218c;
+    public Runnable d;
+    public final Bitmap f31219e;
+    public final Matrix f31220f;
+    public float f31221g;
 
-    public o01(p01 p01Var, int i9) {
-        this.f31249b = p01Var;
-        this.f31248a = i9;
+    public o01(View view, Runnable runnable) {
+        this.f31221g = 1.0f;
+        this.f31216a = view;
+        this.f31217b = null;
+        this.f31218c = null;
+        this.d = runnable;
+        this.f31219e = null;
+        this.f31220f = null;
     }
 
-    @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o01.afterTextChanged(android.text.Editable):void");
+    public o01(ArrayList arrayList, sf.a aVar) {
+        this.f31221g = 1.0f;
+        this.f31216a = null;
+        this.f31217b = arrayList;
+        this.f31218c = null;
+        this.d = aVar;
+        this.f31219e = null;
+        this.f31220f = null;
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public o01(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f31221g = 1.0f;
+        this.f31216a = null;
+        this.f31217b = null;
+        this.f31218c = runnable;
+        this.d = runnable2;
+        this.f31220f = matrix;
+        this.f31219e = bitmap;
     }
 }

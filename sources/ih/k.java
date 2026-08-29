@@ -1,39 +1,41 @@
 package ih;
 
-import android.content.Context;
-import android.widget.FrameLayout;
+import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.vw;
-public final class k extends org.telegram.ui.ActionBar.m {
-    public final int d = 1;
-    public final FrameLayout f11655e;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class k implements DialogInterface.OnShowListener {
+    public final int f9258a;
+    public final EditTextBoldCursor f9259b;
 
-    public k(vw vwVar, Context context, com.google.firebase.messaging.l lVar) {
-        super(context, null, lVar);
-        this.f11655e = vwVar;
+    public k(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f9258a = i10;
+        this.f9259b = editTextBoldCursor;
     }
 
     @Override
-    public final void c(td.j jVar) {
-        switch (this.d) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f9258a) {
             case 0:
-                super.c(jVar);
-                ((vw) this.f11655e).invalidate();
+                bh.b bVar = (bh.b) this.f9259b;
+                bVar.requestFocus();
+                AndroidUtilities.showKeyboard(bVar);
+                return;
+            case 1:
+                v2 v2Var = (v2) this.f9259b;
+                v2Var.requestFocus();
+                AndroidUtilities.showKeyboard(v2Var);
+                return;
+            case 2:
+                sf.o oVar = (sf.o) this.f9259b;
+                oVar.requestFocus();
+                AndroidUtilities.showKeyboard(oVar);
                 return;
             default:
-                super.c(jVar);
-                float totalVisibility = getTotalVisibility();
-                dh.g gVar = ((org.telegram.ui.ActionBar.k) this.f11655e).B0;
-                if (gVar != null) {
-                    gVar.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
-                    return;
-                }
+                EditTextBoldCursor editTextBoldCursor = this.f9259b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                editTextBoldCursor.setSelection(0, editTextBoldCursor.length());
                 return;
         }
-    }
-
-    public k(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.b6 b6Var, com.google.firebase.messaging.l lVar) {
-        super(context, b6Var, lVar);
-        this.f11655e = kVar;
     }
 }

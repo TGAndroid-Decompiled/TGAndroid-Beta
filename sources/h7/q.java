@@ -1,81 +1,58 @@
 package h7;
-
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class q extends b7.x implements ListIterator {
-    public final int f10072b;
-    public int f10073c;
-    public final s d;
-
-    public q(s sVar, int i9) {
-        super(7);
-        int size = sVar.size();
-        if (i9 >= 0 && i9 <= size) {
-            this.f10072b = size;
-            this.f10073c = i9;
-            this.d = sVar;
-            return;
+public abstract class q {
+    public static final Class a(fd.c cVar) {
+        kotlin.jvm.internal.j.e(cVar, "<this>");
+        Class a2 = ((kotlin.jvm.internal.d) cVar).a();
+        if (a2.isPrimitive()) {
+            String name = a2.getName();
+            switch (name.hashCode()) {
+                case -1325958191:
+                    if (name.equals("double")) {
+                        return Double.class;
+                    }
+                    break;
+                case 104431:
+                    if (name.equals("int")) {
+                        return Integer.class;
+                    }
+                    break;
+                case 3039496:
+                    if (name.equals("byte")) {
+                        return Byte.class;
+                    }
+                    break;
+                case 3052374:
+                    if (name.equals("char")) {
+                        return Character.class;
+                    }
+                    break;
+                case 3327612:
+                    if (name.equals("long")) {
+                        return Long.class;
+                    }
+                    break;
+                case 3625364:
+                    if (name.equals("void")) {
+                        return Void.class;
+                    }
+                    break;
+                case 64711720:
+                    if (name.equals("boolean")) {
+                        return Boolean.class;
+                    }
+                    break;
+                case 97526364:
+                    if (name.equals("float")) {
+                        return Float.class;
+                    }
+                    break;
+                case 109413500:
+                    if (name.equals("short")) {
+                        return Short.class;
+                    }
+                    break;
+            }
         }
-        throw new IndexOutOfBoundsException(f7.b8.c(i9, size, "index"));
-    }
-
-    public final Object a(int i9) {
-        return this.d.get(i9);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.f10073c < this.f10072b) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f10073c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i9 = this.f10073c;
-            this.f10073c = i9 + 1;
-            return a(i9);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f10073c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i9 = this.f10073c - 1;
-            this.f10073c = i9;
-            return a(i9);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f10073c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        return a2;
     }
 }

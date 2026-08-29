@@ -1,33 +1,23 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class v00 extends AnimatorListenerAdapter {
-    public final int f43350a = 0;
-    public final nq f43351b;
+import android.content.Context;
+public final class v00 extends org.telegram.ui.Components.p00 {
+    public final int Q;
+    public final Object R;
 
-    public v00(nq nqVar) {
-        this.f43351b = nqVar;
+    public v00(Object obj, Context context, int i10) {
+        super(context, null);
+        this.Q = i10;
+        this.R = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f43350a) {
+    public final int getColumnsCount() {
+        switch (this.Q) {
             case 0:
-                ((f10) this.f43351b.d).f38097h0.unlock();
-                return;
+                return ((h10) this.R).f38738s;
             default:
-                nq nqVar = this.f43351b;
-                View view = nqVar.f40787b;
-                view.setAlpha(1.0f);
-                f2.z0.x0(view);
-                ((f10) nqVar.d).f38087b.removeView(view);
-                return;
+                return ((f10) this.R).d.f38738s;
         }
-    }
-
-    public v00(nq nqVar, f2.z0 z0Var) {
-        this.f43351b = nqVar;
     }
 }

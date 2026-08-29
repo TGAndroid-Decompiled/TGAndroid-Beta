@@ -1,33 +1,52 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.o50;
-public final class k0 implements RequestDelegate {
-    public final int f21906a;
-    public final int f21907b;
-    public final boolean f21908c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import org.telegram.ui.Cells.s1;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.pv0;
+import org.telegram.ui.el;
+public final class k0 implements Runnable {
+    public final int f21969a;
+    public final int f21970b;
+    public final boolean f21971c;
+    public final Object d;
+    public final Object f21972e;
 
-    public k0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i9, boolean z10, int i10) {
-        this.f21906a = i10;
-        this.d = notificationCenterDelegate;
-        this.f21907b = i9;
-        this.f21908c = z10;
+    public k0(int i10, int i11, Object obj, Object obj2, boolean z10) {
+        this.f21969a = i11;
+        this.d = obj;
+        this.f21972e = obj2;
+        this.f21970b = i10;
+        this.f21971c = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f21906a) {
-            case 0:
-                ((VoIPService) this.d).lambda$startGroupCall$29(this.f21907b, this.f21908c, tLObject, tL_error);
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new j0(this.f21907b, 6, (o50) this.d, tLObject, this.f21908c));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.k0.run():void");
+    }
+
+    public k0(el elVar, boolean z10, ArrayList arrayList, int i10) {
+        this.f21969a = 2;
+        this.d = elVar;
+        this.f21971c = z10;
+        this.f21972e = arrayList;
+        this.f21970b = i10;
+    }
+
+    public k0(pv0 pv0Var, boolean z10, int i10, s1 s1Var) {
+        this.f21969a = 5;
+        this.d = pv0Var;
+        this.f21971c = z10;
+        this.f21970b = i10;
+        this.f21972e = s1Var;
+    }
+
+    public k0(k51 k51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
+        this.f21969a = i11;
+        this.d = k51Var;
+        this.f21970b = i10;
+        this.f21972e = tL_messages_searchGlobal;
+        this.f21971c = z10;
     }
 }

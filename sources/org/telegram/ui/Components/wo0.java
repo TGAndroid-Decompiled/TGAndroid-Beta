@@ -1,108 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.PhotoViewer;
-public final class wo0 extends lg {
-    public final int f34302h0;
-    public final Object f34303i0;
+import org.telegram.messenger.AndroidUtilities;
+public final class wo0 implements Runnable {
+    public final int f34471a;
+    public final dq0 f34472b;
 
-    public wo0(Object obj, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var, int i10) {
-        super(i9, context, b6Var, true);
-        this.f34302h0 = i10;
-        this.f34303i0 = obj;
+    public wo0(dq0 dq0Var, int i10) {
+        this.f34471a = i10;
+        this.f34472b = dq0Var;
     }
 
     @Override
-    public boolean d() {
-        switch (this.f34302h0) {
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return ((qh.x1) this.f34303i0).k0();
-            default:
-                return super.d();
-        }
-    }
-
-    @Override
-    public final boolean f() {
-        switch (this.f34302h0) {
+    public final void run() {
+        switch (this.f34471a) {
             case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                if (!((qh.x1) this.f34303i0).H0 && this.f30444r <= 0) {
-                    return false;
-                }
-                return true;
-            default:
-                if (!((qh.s3) this.f34303i0).S && this.f30444r <= 0) {
-                    return false;
-                }
-                return true;
-        }
-    }
-
-    @Override
-    public int getFillColor() {
-        int i9 = this.f34302h0;
-        Object obj = this.f34303i0;
-        switch (i9) {
-            case 0:
-                return ((rp0) obj).getThemedColor(org.telegram.ui.ActionBar.f6.S5);
-            case 1:
-            default:
-                return super.getFillColor();
-            case 2:
-                int i10 = org.telegram.ui.ActionBar.f6.f23395zf;
-                Drawable[] drawableArr = PhotoViewer.P8;
-                return ((PhotoViewer) obj).z1(i10);
-        }
-    }
-
-    @Override
-    public boolean j() {
-        switch (this.f34302h0) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            default:
-                return super.j();
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f34302h0) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((org.telegram.ui.dy) this.f34303i0).E2.size(), new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
+                dq0 dq0Var = this.f34472b;
+                dq0Var.f27856w0 = true;
+                x10 x10Var = dq0Var.f27853u0;
+                x10Var.f34546r.setText("");
+                AndroidUtilities.showKeyboard(x10Var.f34546r);
                 return;
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                g5 g5Var = new g5(14);
+                dq0 dq0Var2 = this.f34472b;
+                if (dq0Var2.isKeyboardVisible()) {
+                    x10 x10Var2 = dq0Var2.f27853u0;
+                    if (x10Var2 != null) {
+                        AndroidUtilities.hideKeyboard(x10Var2.f34546r);
+                    }
+                    AndroidUtilities.runOnUIThread(g5Var, 300L);
+                    return;
+                }
+                g5Var.run();
                 return;
         }
-    }
-
-    public wo0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var, int i10) {
-        super(i9, context, b6Var, false);
-        this.f34302h0 = i10;
-        this.f34303i0 = notificationCenterDelegate;
     }
 }

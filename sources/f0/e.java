@@ -10,7 +10,7 @@ import androidx.biometric.o;
 import e0.n0;
 import java.util.concurrent.Executor;
 public abstract class e {
-    public static final Object f5293a = null;
+    public static final Object f6255a = null;
 
     public static int a(android.content.Context r5, java.lang.String r6, int r7, int r8, java.lang.String r9) {
         throw new UnsupportedOperationException("Method not decompiled: f0.e.a(android.content.Context, java.lang.String, int, int, java.lang.String):int");
@@ -29,15 +29,15 @@ public abstract class e {
         throw new NullPointerException("permission must be non-null");
     }
 
-    public static int c(Context context, int i9) {
+    public static int c(Context context, int i10) {
         if (Build.VERSION.SDK_INT >= 23) {
-            return a.a(context, i9);
+            return a.a(context, i10);
         }
-        return context.getResources().getColor(i9);
+        return context.getResources().getColor(i10);
     }
 
-    public static Drawable d(Context context, int i9) {
-        return context.getDrawable(i9);
+    public static Drawable d(Context context, int i10) {
+        return context.getDrawable(i10);
     }
 
     public static Executor e(Context context) {
@@ -49,14 +49,14 @@ public abstract class e {
 
     public static Object f(Context context, Class cls) {
         String str;
-        int i9 = Build.VERSION.SDK_INT;
-        if (i9 >= 23) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 23) {
             return a.b(context, cls);
         }
-        if (i9 >= 23) {
+        if (i10 >= 23) {
             str = a.c(context, cls);
         } else {
-            str = (String) d.f5292a.get(cls);
+            str = (String) d.f6254a.get(cls);
         }
         if (str != null) {
             return context.getSystemService(str);

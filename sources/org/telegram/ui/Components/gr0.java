@@ -1,52 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class gr0 extends f2.y0 {
-    public final ar0 f28854a;
+import android.content.Context;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class gr0 extends ih.x3 {
+    public final qu0 Q;
 
-    public gr0(ar0 ar0Var) {
-        this.f28854a = ar0Var;
+    public gr0(int i10, long j10, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.c6 c6Var, qu0 qu0Var) {
+        super(i10, j10, context, o2Var, c6Var);
+        this.Q = qu0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.n1 n1Var) {
-        boolean z10;
-        boolean z11;
-        if (view instanceof org.telegram.ui.Cells.r7) {
-            org.telegram.ui.Cells.r7 r7Var = (org.telegram.ui.Cells.r7) view;
-            ar0 ar0Var = this.f28854a;
-            ar0Var.f34761r.getClass();
-            int R = RecyclerView.R(r7Var);
-            int i9 = ar0Var.f34762s.J;
-            boolean z12 = true;
-            if (R < i9) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            r7Var.T = z10;
-            int i10 = R % i9;
-            if (i10 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            r7Var.R = z11;
-            if (i10 != i9 - 1) {
-                z12 = false;
-            }
-            r7Var.S = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-            return;
+    public final void p(boolean z10) {
+        float f9;
+        float f10;
+        qu0 qu0Var = this.Q;
+        TextView textView = qu0Var.m0;
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate = textView.animate();
+        float f11 = 1.0f;
+        if (z10) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.0f;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+        ViewPropertyAnimator alpha = animate.alpha(f9);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.4f;
+        }
+        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
+        if (!z10) {
+            f11 = 0.4f;
+        }
+        scaleX.scaleY(f11).withEndAction(new p90(3, this, z10)).start();
+        qu0Var.q1(true);
     }
 }

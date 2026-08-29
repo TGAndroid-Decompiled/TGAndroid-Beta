@@ -1,56 +1,27 @@
 package org.telegram.ui;
-public final class fg implements q0.a {
-    public final int f38256a;
-    public final qn f38257b;
 
-    public fg(qn qnVar, int i9) {
-        this.f38256a = i9;
-        this.f38257b = qnVar;
+import org.telegram.tgnet.TLRPC;
+public final class fg implements Runnable {
+    public final int f38147a;
+    public final tn f38148b;
+    public final TLRPC.User f38149c;
+
+    public fg(tn tnVar, TLRPC.User user, int i10) {
+        this.f38147a = i10;
+        this.f38148b = tnVar;
+        this.f38149c = user;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f38256a) {
+    public final void run() {
+        switch (this.f38147a) {
             case 0:
-                Integer num = (Integer) obj;
-                qn qnVar = this.f38257b;
-                qnVar.getClass();
-                if (num.intValue() == 0) {
-                    qnVar.f41930h1 = 0;
-                    qnVar.Bc(true);
-                    qnVar.getMessagesController().markReactionsAsRead(qnVar.P5, qnVar.b());
-                    return;
-                }
-                qnVar.Bc(true);
-                qnVar.j(num.intValue(), 0, false, 0, true, 0);
-                return;
-            case 1:
-                Integer num2 = (Integer) obj;
-                qn qnVar2 = this.f38257b;
-                qnVar2.getClass();
-                if (num2.intValue() == 0) {
-                    qnVar2.f41943i1 = 0;
-                    qnVar2.Ac(true);
-                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.P5, qnVar2.b());
-                    return;
-                }
-                int i9 = qnVar2.f41943i1 - 1;
-                qnVar2.f41943i1 = i9;
-                if (i9 <= 0) {
-                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.P5, qnVar2.b());
-                }
-                qnVar2.Ac(true);
-                qnVar2.j(num2.intValue(), 0, false, 0, true, 0);
+                tn tnVar = this.f38148b;
+                tnVar.getClass();
+                tnVar.presentFragment(tn.R9(this.f38149c.f22539id));
                 return;
             default:
-                qn qnVar3 = this.f38257b;
-                qnVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                qnVar3.f41859b7 = booleanValue;
-                if (!booleanValue) {
-                    qnVar3.r8();
-                    return;
-                }
+                this.f38148b.ma(this.f38149c);
                 return;
         }
     }

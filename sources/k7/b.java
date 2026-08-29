@@ -1,9 +1,10 @@
 package k7;
 
-import android.os.IInterface;
-import com.google.android.gms.common.api.Status;
-public interface b extends IInterface {
-    void h(Status status, v7.d dVar);
+import java.util.logging.Logger;
+public abstract class b {
+    public static final int f13464a = 0;
 
-    void y(Status status, v7.b bVar);
+    static {
+        Logger.getLogger(b.class.getName());
+    }
 }

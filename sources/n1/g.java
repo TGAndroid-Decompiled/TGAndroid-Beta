@@ -11,37 +11,37 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
-import k1.l;
-import kotlin.jvm.internal.i;
+import k1.m;
+import kotlin.jvm.internal.j;
 import m1.h;
-import m1.j;
+import m1.i;
 import m1.k;
 public final class g {
-    public static final g f18264a = new Object();
+    public static final g f17090a = new Object();
 
     public final b a(FileInputStream fileInputStream) {
-        int i9;
+        int i10;
         try {
             m1.f l10 = m1.f.l(fileInputStream);
             b bVar = new b(false);
             e[] pairs = (e[]) Arrays.copyOf(new e[0], 0);
-            i.e(pairs, "pairs");
-            if (!bVar.f18258b.get()) {
+            j.e(pairs, "pairs");
+            if (!bVar.f17084b.get()) {
                 if (pairs.length <= 0) {
                     Map j10 = l10.j();
-                    i.d(j10, "preferencesProto.preferencesMap");
+                    j.d(j10, "preferencesProto.preferencesMap");
                     for (Map.Entry entry : j10.entrySet()) {
                         String name = (String) entry.getKey();
                         k value = (k) entry.getValue();
-                        i.d(name, "name");
-                        i.d(value, "value");
-                        int x10 = value.x();
-                        if (x10 == 0) {
-                            i9 = -1;
+                        j.d(name, "name");
+                        j.d(value, "value");
+                        int x4 = value.x();
+                        if (x4 == 0) {
+                            i10 = -1;
                         } else {
-                            i9 = f.f18263a[j.b(x10)];
+                            i10 = f.f17089a[m1.j.b(x4)];
                         }
-                        switch (i9) {
+                        switch (i10) {
                             case -1:
                                 throw new IOException("Value case is null.", null);
                             case 0:
@@ -65,21 +65,21 @@ public final class g {
                             case 6:
                                 d dVar = new d(name);
                                 String v = value.v();
-                                i.d(v, "value.string");
+                                j.d(v, "value.string");
                                 bVar.b(dVar, v);
                                 break;
                             case 7:
                                 d dVar2 = new d(name);
-                                z k10 = value.w().k();
-                                i.d(k10, "value.stringSet.stringsList");
-                                bVar.b(dVar2, pc.g.p(k10));
+                                z k9 = value.w().k();
+                                j.d(k9, "value.stringSet.stringsList");
+                                bVar.b(dVar2, rc.g.p(k9));
                                 break;
                             case 8:
                                 throw new IOException("Value not set.", null);
                         }
                     }
-                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f18257a);
-                    i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
+                    Map unmodifiableMap = DesugarCollections.unmodifiableMap(bVar.f17083a);
+                    j.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
                     return new b(new LinkedHashMap(unmodifiableMap), true);
                 }
                 e eVar = pairs[0];
@@ -91,73 +91,73 @@ public final class g {
         }
     }
 
-    public final void b(Object obj, l lVar) {
+    public final void b(Object obj, m mVar) {
         x a2;
-        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f18257a);
-        i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
-        m1.d k10 = m1.f.k();
+        Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) obj).f17083a);
+        j.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
+        m1.d k9 = m1.f.k();
         for (Map.Entry entry : unmodifiableMap.entrySet()) {
             Object value = entry.getValue();
-            String str = ((d) entry.getKey()).f18262a;
+            String str = ((d) entry.getKey()).f17088a;
             if (value instanceof Boolean) {
-                m1.i y10 = k.y();
+                i y8 = k.y();
                 boolean booleanValue = ((Boolean) value).booleanValue();
-                y10.c();
-                k.m((k) y10.f835b, booleanValue);
-                a2 = y10.a();
+                y8.c();
+                k.m((k) y8.f1329b, booleanValue);
+                a2 = y8.a();
             } else if (value instanceof Float) {
-                m1.i y11 = k.y();
+                i y10 = k.y();
                 float floatValue = ((Number) value).floatValue();
-                y11.c();
-                k.n((k) y11.f835b, floatValue);
-                a2 = y11.a();
+                y10.c();
+                k.n((k) y10.f1329b, floatValue);
+                a2 = y10.a();
             } else if (value instanceof Double) {
-                m1.i y12 = k.y();
+                i y11 = k.y();
                 double doubleValue = ((Number) value).doubleValue();
-                y12.c();
-                k.l((k) y12.f835b, doubleValue);
-                a2 = y12.a();
+                y11.c();
+                k.l((k) y11.f1329b, doubleValue);
+                a2 = y11.a();
             } else if (value instanceof Integer) {
-                m1.i y13 = k.y();
+                i y12 = k.y();
                 int intValue = ((Number) value).intValue();
-                y13.c();
-                k.o((k) y13.f835b, intValue);
-                a2 = y13.a();
+                y12.c();
+                k.o((k) y12.f1329b, intValue);
+                a2 = y12.a();
             } else if (value instanceof Long) {
-                m1.i y14 = k.y();
+                i y13 = k.y();
                 long longValue = ((Number) value).longValue();
-                y14.c();
-                k.i((k) y14.f835b, longValue);
-                a2 = y14.a();
+                y13.c();
+                k.i((k) y13.f1329b, longValue);
+                a2 = y13.a();
             } else if (value instanceof String) {
-                m1.i y15 = k.y();
-                y15.c();
-                k.j((k) y15.f835b, (String) value);
-                a2 = y15.a();
+                i y14 = k.y();
+                y14.c();
+                k.j((k) y14.f1329b, (String) value);
+                a2 = y14.a();
             } else if (value instanceof Set) {
-                m1.i y16 = k.y();
+                i y15 = k.y();
                 m1.g l10 = h.l();
                 l10.c();
-                h.i((h) l10.f835b, (Set) value);
-                y16.c();
-                k.k((k) y16.f835b, l10);
-                a2 = y16.a();
+                h.i((h) l10.f1329b, (Set) value);
+                y15.c();
+                k.k((k) y15.f1329b, l10);
+                a2 = y15.a();
             } else {
-                throw new IllegalStateException(i.g(value.getClass().getName(), "PreferencesSerializer does not support type: "));
+                throw new IllegalStateException(j.g(value.getClass().getName(), "PreferencesSerializer does not support type: "));
             }
-            k10.getClass();
-            k10.c();
-            m1.f.i((m1.f) k10.f835b).put(str, (k) a2);
+            k9.getClass();
+            k9.c();
+            m1.f.i((m1.f) k9.f1329b).put(str, (k) a2);
         }
-        m1.f fVar = (m1.f) k10.a();
-        int a3 = fVar.a();
+        m1.f fVar = (m1.f) k9.a();
+        int a10 = fVar.a();
         Logger logger = androidx.datastore.preferences.protobuf.k.h;
-        if (a3 > 4096) {
-            a3 = 4096;
+        if (a10 > 4096) {
+            a10 = 4096;
         }
-        androidx.datastore.preferences.protobuf.k kVar = new androidx.datastore.preferences.protobuf.k(lVar, a3);
+        androidx.datastore.preferences.protobuf.k kVar = new androidx.datastore.preferences.protobuf.k(mVar, a10);
         fVar.c(kVar);
-        if (kVar.f774f > 0) {
+        if (kVar.f1268f > 0) {
             kVar.B();
         }
     }

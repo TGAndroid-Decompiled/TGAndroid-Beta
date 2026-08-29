@@ -40,13 +40,13 @@ public class DispatchQueueMainThreadSync extends Thread {
             this.handler.removeCallbacks(runnable);
             return;
         }
-        int i9 = 0;
-        while (i9 < this.postponedTasks.size()) {
-            if (this.postponedTasks.get(i9).runnable == runnable) {
-                this.postponedTasks.remove(i9);
-                i9--;
+        int i10 = 0;
+        while (i10 < this.postponedTasks.size()) {
+            if (this.postponedTasks.get(i10).runnable == runnable) {
+                this.postponedTasks.remove(i10);
+                i10--;
             }
-            i9++;
+            i10++;
         }
     }
 
@@ -83,7 +83,7 @@ public class DispatchQueueMainThreadSync extends Thread {
 
     public void recycle() {
         checkThread();
-        postRunnable(new e1(this, 18));
+        postRunnable(new d1(this, 18));
         this.isRecycled = true;
     }
 
@@ -99,8 +99,8 @@ public class DispatchQueueMainThreadSync extends Thread {
             @Override
             public void run() {
                 DispatchQueueMainThreadSync.this.isRunning = true;
-                for (int i9 = 0; i9 < DispatchQueueMainThreadSync.this.postponedTasks.size(); i9++) {
-                    ((PostponedTask) DispatchQueueMainThreadSync.this.postponedTasks.get(i9)).run();
+                for (int i10 = 0; i10 < DispatchQueueMainThreadSync.this.postponedTasks.size(); i10++) {
+                    ((PostponedTask) DispatchQueueMainThreadSync.this.postponedTasks.get(i10)).run();
                 }
                 DispatchQueueMainThreadSync.this.postponedTasks.clear();
             }
@@ -108,25 +108,25 @@ public class DispatchQueueMainThreadSync extends Thread {
         Looper.loop();
     }
 
-    public void sendMessage(Message message, int i9) {
+    public void sendMessage(Message message, int i10) {
         checkThread();
         if (this.isRecycled) {
             return;
         }
         if (!this.isRunning) {
-            this.postponedTasks.add(new PostponedTask(message, i9));
-        } else if (i9 <= 0) {
+            this.postponedTasks.add(new PostponedTask(message, i10));
+        } else if (i10 <= 0) {
             this.handler.sendMessage(message);
         } else {
-            this.handler.sendMessageDelayed(message, i9);
+            this.handler.sendMessageDelayed(message, i10);
         }
     }
 
     public DispatchQueueMainThreadSync(String str, boolean z10) {
         this.handler = null;
-        int i9 = indexPointer;
-        indexPointer = i9 + 1;
-        this.index = i9;
+        int i10 = indexPointer;
+        indexPointer = i10 + 1;
+        this.index = i10;
         this.postponedTasks = new ArrayList<>();
         setName(str);
         if (z10) {
@@ -139,10 +139,10 @@ public class DispatchQueueMainThreadSync extends Thread {
         Message message;
         Runnable runnable;
 
-        public PostponedTask(Message message, int i9) {
+        public PostponedTask(Message message, int i10) {
             DispatchQueueMainThreadSync.this = r1;
             this.message = message;
-            this.delay = i9;
+            this.delay = i10;
         }
 
         public void run() {

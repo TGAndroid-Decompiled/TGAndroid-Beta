@@ -1,49 +1,47 @@
 package b7;
 
-import android.location.Location;
+import android.os.Bundle;
 import android.os.Parcel;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import f7.h5;
-public final class h extends a7.a {
-    public final int f1559b;
-    public final TaskCompletionSource f1560c;
+import android.os.Parcelable;
+import com.google.android.gms.internal.cast.o;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class h extends a6.a {
+    public static final Parcelable.Creator<h> CREATOR = new w.a(19);
+    public final int f1953a;
+    public final Bundle f1954b;
 
-    public h(int i9, TaskCompletionSource taskCompletionSource) {
-        super("com.google.android.gms.location.internal.ILocationStatusCallback", 1);
-        this.f1559b = i9;
-        switch (i9) {
-            case 1:
-                this.f1560c = taskCompletionSource;
-                super("com.google.android.gms.location.internal.ISettingsCallbacks", 1);
-                return;
-            default:
-                this.f1560c = taskCompletionSource;
-                return;
+    public h(int i10, Bundle bundle) {
+        this.f1953a = i10;
+        this.f1954b = bundle;
+    }
+
+    public final boolean equals(java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: b7.h.equals(java.lang.Object):boolean");
+    }
+
+    public final int hashCode() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(Integer.valueOf(this.f1953a));
+        Bundle bundle = this.f1954b;
+        if (bundle != null) {
+            for (String str : bundle.keySet()) {
+                arrayList.add(str);
+                String string = bundle.getString(str);
+                if (string != null) {
+                    arrayList.add(string);
+                }
+            }
         }
+        return Arrays.hashCode(arrayList.toArray(new Object[0]));
     }
 
     @Override
-    public final boolean I0(Parcel parcel, int i9) {
-        switch (this.f1559b) {
-            case 0:
-                if (i9 == 1) {
-                    f.b(parcel);
-                    h5.a((Status) f.a(parcel, Status.CREATOR), (Location) f.a(parcel, Location.CREATOR), this.f1560c);
-                    return true;
-                }
-                return false;
-            default:
-                if (i9 == 1) {
-                    q7.g gVar = (q7.g) f.a(parcel, q7.g.CREATOR);
-                    f.b(parcel);
-                    Status status = gVar.f46102a;
-                    ?? obj = new Object();
-                    obj.f108a = gVar;
-                    h5.a(status, obj, this.f1560c);
-                    return true;
-                }
-                return false;
-        }
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        o.s(parcel, 1, 4);
+        parcel.writeInt(this.f1953a);
+        o.b(parcel, 2, this.f1954b);
+        o.r(parcel, q6);
     }
 }

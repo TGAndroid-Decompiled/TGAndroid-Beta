@@ -1,33 +1,17 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class xk extends UndoView {
-    public final qn f44535b0;
+public final class xk extends org.telegram.ui.Components.s50 {
+    public final tn Z0;
 
-    public xk(qn qnVar, Activity activity, qn qnVar2, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(activity, qnVar2, true, b6Var);
-        this.f44535b0 = qnVar;
+    public xk(tn tnVar, Activity activity, org.telegram.ui.Components.l50 l50Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity, l50Var, c6Var, true);
+        this.Z0 = tnVar;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        this.f44535b0.U7(characterStyle, false, null, null);
-    }
-
-    @Override
-    public final void k(long j10, int i9, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f10;
-        int i10;
-        vj vjVar = this.f44535b0.T1;
-        if (vjVar != null && (((i10 = vjVar.P) == 1 || i10 == 3) && vjVar.O)) {
-            f10 = AndroidUtilities.dp(vjVar.getStyleHeight());
-        } else {
-            f10 = 0.0f;
-        }
-        setAdditionalTranslationY(f10);
-        super.k(j10, i9, obj, obj2, runnable, runnable2);
+    public final void m(boolean z10, boolean z11) {
+        super.m(z10, z11);
+        this.Z0.f42958rc.a(z10, true);
     }
 }

@@ -2,21 +2,29 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class wi extends f2.n0 {
-    public final jh.k f34232r;
+public final class wi extends v41 {
+    public static final int f34421a = 0;
 
-    public wi(jh.k kVar, Context context) {
-        super(context);
-        this.f34232r = kVar;
+    static {
+        v41.setup(new v41());
     }
 
     @Override
-    public final int k(int i9, View view) {
-        return org.telegram.messenger.l0.A(7.0f, ((yi) this.f34232r.R).f34973n.getPaddingTop(), super.k(i9, view));
+    public final void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
+        xi xiVar = (xi) view;
+        CharSequence charSequence = w41Var.f34300l;
+        CharSequence charSequence2 = w41Var.f34301m;
+        xiVar.f34728b.setText(charSequence);
+        xiVar.f34729c.setText(charSequence2);
     }
 
     @Override
-    public final int m(int i9) {
-        return super.m(i9) * 2;
+    public final View createView(Context context, jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new xi(context, c6Var);
+    }
+
+    @Override
+    public final boolean isShadow() {
+        return true;
     }
 }

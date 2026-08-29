@@ -9,9 +9,9 @@ public final class f5 extends Drawable {
     public final int f22939a;
     public Paint f22940b;
 
-    public f5(int i9) {
-        this.f22939a = i9;
-        switch (i9) {
+    public f5(int i10) {
+        this.f22939a = i10;
+        switch (i10) {
             case 1:
                 this.f22940b = new Paint(1);
                 return;
@@ -28,7 +28,7 @@ public final class f5 extends Drawable {
                 return;
             default:
                 Paint paint = this.f22940b;
-                paint.setColor(f6.w0(null, f6.hl, false));
+                paint.setColor(g6.w0(null, g6.hl, false));
                 canvas.drawRoundRect(getBounds().left, getBounds().exactCenterY() - AndroidUtilities.dp(14.0f), getBounds().right, AndroidUtilities.dp(14.0f) + getBounds().exactCenterY(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
                 return;
         }
@@ -45,10 +45,10 @@ public final class f5 extends Drawable {
     }
 
     @Override
-    public final void setAlpha(int i9) {
+    public final void setAlpha(int i10) {
         switch (this.f22939a) {
             case 0:
-                this.f22940b.setAlpha(i9);
+                this.f22940b.setAlpha(i10);
                 return;
             default:
                 return;
@@ -57,10 +57,10 @@ public final class f5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i9 = this.f22939a;
+        int i10 = this.f22939a;
     }
 
-    private final void a(int i9) {
+    private final void a(int i10) {
     }
 
     private final void b(ColorFilter colorFilter) {

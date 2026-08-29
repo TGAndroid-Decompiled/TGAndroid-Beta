@@ -1,48 +1,57 @@
 package o1;
 
-import java.util.ArrayList;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class d extends i {
-    public final int f18778a;
-    public final Object f18779b;
-
-    public d(Object obj, int i9) {
-        this.f18778a = i9;
-        this.f18779b = obj;
-    }
+import android.view.View;
+public final class d extends j {
+    public final int f19022a;
 
     @Override
     public final float a(Object obj) {
-        switch (this.f18778a) {
+        switch (this.f19022a) {
             case 0:
-                return ((gb.a) this.f18779b).f7689a;
+                return ((View) obj).getAlpha();
+            case 1:
+                return ((View) obj).getTranslationX();
+            case 2:
+                return ((View) obj).getTranslationY();
+            case 3:
+                return ((View) obj).getScaleX();
+            case 4:
+                return ((View) obj).getScaleY();
+            case 5:
+                return ((View) obj).getRotation();
+            case 6:
+                return ((View) obj).getRotationX();
             default:
-                Integer num = (Integer) obj;
-                int intValue = num.intValue();
-                ArrayList arrayList = ((AnimatedPhoneNumberEditText) this.f18779b).f26071w;
-                if (intValue < arrayList.size()) {
-                    return ((Float) arrayList.get(num.intValue())).floatValue() * 100.0f;
-                }
-                return 0.0f;
+                return ((View) obj).getRotationY();
         }
     }
 
     @Override
-    public final void b(Object obj, float f10) {
-        switch (this.f18778a) {
+    public final void b(Object obj, float f9) {
+        switch (this.f19022a) {
             case 0:
-                ((gb.a) this.f18779b).f7689a = f10;
+                ((View) obj).setAlpha(f9);
+                return;
+            case 1:
+                ((View) obj).setTranslationX(f9);
+                return;
+            case 2:
+                ((View) obj).setTranslationY(f9);
+                return;
+            case 3:
+                ((View) obj).setScaleX(f9);
+                return;
+            case 4:
+                ((View) obj).setScaleY(f9);
+                return;
+            case 5:
+                ((View) obj).setRotation(f9);
+                return;
+            case 6:
+                ((View) obj).setRotationX(f9);
                 return;
             default:
-                Integer num = (Integer) obj;
-                int intValue = num.intValue();
-                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f18779b;
-                ArrayList arrayList = animatedPhoneNumberEditText.f26071w;
-                if (intValue < arrayList.size()) {
-                    arrayList.set(num.intValue(), Float.valueOf(f10 / 100.0f));
-                    animatedPhoneNumberEditText.invalidate();
-                    return;
-                }
+                ((View) obj).setRotationY(f9);
                 return;
         }
     }

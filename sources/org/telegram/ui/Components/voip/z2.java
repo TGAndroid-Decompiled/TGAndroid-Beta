@@ -1,57 +1,52 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class z2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33969a;
-    public final b3 f33970b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.View;
+import nh.m6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class z2 extends View {
+    public final TextPaint f34158a;
+    public final Paint f34159b;
+    public final float f34160c;
+    public final String d;
+    public volatile Bitmap f34161e;
 
-    public z2(b3 b3Var, int i9) {
-        this.f33969a = i9;
-        this.f33970b = b3Var;
+    public z2(Context context, String str) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f34158a = textPaint;
+        this.f34159b = new Paint(1);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        this.f34160c = textPaint.measureText(str);
+        this.d = str;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33969a) {
-            case 0:
-                b3 b3Var = this.f33970b;
-                b3Var.getClass();
-                b3Var.D = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                b3Var.invalidate();
-                b3Var.P.c();
-                return;
-            case 1:
-                b3 b3Var2 = this.f33970b;
-                b3Var2.getClass();
-                b3Var2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b3Var2.invalidate();
-                b3Var2.P.c();
-                return;
-            case 2:
-                b3 b3Var3 = this.f33970b;
-                b3Var3.getClass();
-                b3Var3.D = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                b3Var3.invalidate();
-                b3Var3.P.c();
-                return;
-            case 3:
-                b3 b3Var4 = this.f33970b;
-                b3Var4.getClass();
-                b3Var4.A = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                b3Var4.invalidate();
-                return;
-            case 4:
-                b3 b3Var5 = this.f33970b;
-                b3Var5.getClass();
-                b3Var5.B = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                b3Var5.invalidate();
-                return;
-            default:
-                b3 b3Var6 = this.f33970b;
-                b3Var6.getClass();
-                b3Var6.A = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                b3Var6.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f34161e != null) {
+            canvas.drawBitmap(this.f34161e, 0.0f, 0.0f, this.f34159b);
         }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (z10) {
+            Utilities.globalQueue.postRunnable(new m6(this, 22));
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f34160c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

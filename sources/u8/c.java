@@ -1,3 +1,5 @@
 package u8;
-public @interface c {
+
+import com.google.firebase.messaging.r;
+public class c extends r {
 }

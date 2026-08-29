@@ -1,73 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.location.Location;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class hk implements Runnable {
-    public final int f29104a;
-    public final xk f29105b;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.MessageObject;
+public final class hk implements ViewTreeObserver.OnPreDrawListener {
+    public final int f29191a;
+    public final MessageObject f29192b;
+    public final boolean f29193c;
+    public final ViewGroup d;
+    public final il0 f29194e;
 
-    public hk(xk xkVar, int i9) {
-        this.f29104a = i9;
-        this.f29105b = xkVar;
+    public hk(il0 il0Var, ViewGroup viewGroup, MessageObject messageObject, boolean z10, int i10) {
+        this.f29191a = i10;
+        this.f29194e = il0Var;
+        this.d = viewGroup;
+        this.f29192b = messageObject;
+        this.f29193c = z10;
     }
 
     @Override
-    public final void run() {
-        Location location;
-        switch (this.f29104a) {
+    public final boolean onPreDraw() {
+        switch (this.f29191a) {
             case 0:
-                xk xkVar = this.f29105b;
-                double[] dArr = xkVar.f27493b.f30159t2;
-                xkVar.a0(dArr[0], dArr[1]);
-                return;
+                org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) this.d;
+                g7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                ik ikVar = (ik) this.f29194e;
+                org.telegram.ui.z00 z00Var = ikVar.D;
+                jk jkVar = ikVar.T;
+                boolean s10 = jkVar.f28403b.T0.s();
+                boolean z10 = this.f29193c;
+                if (s10) {
+                    MessageObject messageObject = this.f29192b;
+                    int id2 = messageObject.getId();
+                    z00Var.f45005a = messageObject.getDialogId();
+                    z00Var.f45006b = id2;
+                    g7Var.b(jkVar.P.containsKey(z00Var), z10);
+                    return true;
+                }
+                g7Var.b(false, z10);
+                return true;
             case 1:
-                xk.L(this.f29105b);
-                return;
+                org.telegram.ui.Cells.p2 p2Var = (org.telegram.ui.Cells.p2) this.d;
+                p2Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.h10 h10Var = ((org.telegram.ui.a10) this.f29194e).f36394c;
+                boolean f9 = h10Var.f38733k0.f();
+                boolean z11 = this.f29193c;
+                if (f9) {
+                    org.telegram.ui.z00 z00Var2 = h10Var.O;
+                    MessageObject messageObject2 = this.f29192b;
+                    int id3 = messageObject2.getId();
+                    z00Var2.f45005a = messageObject2.getDialogId();
+                    z00Var2.f45006b = id3;
+                    p2Var.V(h10Var.f38733k0.b(h10Var.O), z11);
+                    return true;
+                }
+                p2Var.V(false, z11);
+                return true;
             case 2:
-                this.f29105b.X();
-                return;
+                org.telegram.ui.Cells.g7 g7Var2 = (org.telegram.ui.Cells.g7) this.d;
+                g7Var2.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.h10 h10Var2 = ((org.telegram.ui.c10) this.f29194e).v;
+                boolean f10 = h10Var2.f38733k0.f();
+                boolean z12 = this.f29193c;
+                if (f10) {
+                    org.telegram.ui.z00 z00Var3 = h10Var2.O;
+                    MessageObject messageObject3 = this.f29192b;
+                    int id4 = messageObject3.getId();
+                    z00Var3.f45005a = messageObject3.getDialogId();
+                    z00Var3.f45006b = id4;
+                    g7Var2.b(h10Var2.f38733k0.b(h10Var2.O), z12);
+                    return true;
+                }
+                g7Var2.b(false, z12);
+                return true;
             case 3:
-                AndroidUtilities.runOnUIThread(new hk(this.f29105b, 4));
-                return;
-            case 4:
-                View view = this.f29105b.I;
-                view.setTag(1);
-                view.animate().alpha(0.0f).setDuration(180L).start();
-                return;
-            case 5:
-                xk xkVar2 = this.f29105b;
-                of.p0 p0Var = xkVar2.K;
-                if (xkVar2.f34703p0) {
-                    xkVar2.f34703p0 = false;
-                    return;
+                org.telegram.ui.Cells.f7 f7Var = (org.telegram.ui.Cells.f7) this.d;
+                f7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.h10 h10Var3 = ((org.telegram.ui.c10) this.f29194e).v;
+                boolean f11 = h10Var3.f38733k0.f();
+                boolean z13 = this.f29193c;
+                if (f11) {
+                    org.telegram.ui.z00 z00Var4 = h10Var3.O;
+                    MessageObject messageObject4 = this.f29192b;
+                    int id5 = messageObject4.getId();
+                    z00Var4.f45005a = messageObject4.getDialogId();
+                    z00Var4.f45006b = id5;
+                    f7Var.e(h10Var3.f38733k0.b(h10Var3.O), z13);
+                    return true;
                 }
-                IMapsProvider.IMap iMap = xkVar2.D;
-                if (iMap != null && (location = xkVar2.f34701n0) != null) {
-                    location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    xkVar2.f34701n0.setLongitude(xkVar2.D.getCameraPosition().target.longitude);
-                }
-                p0Var.L(xkVar2.f34701n0);
-                p0Var.I();
-                return;
-            case 6:
-                uk ukVar = this.f29105b.B;
-                if (ukVar != null) {
-                    ukVar.a();
-                    return;
-                }
-                return;
-            case 7:
-                View view2 = this.f29105b.I;
-                if (view2.getTag() == null) {
-                    view2.animate().alpha(0.0f).setDuration(180L).start();
-                    return;
-                }
-                return;
+                f7Var.e(false, z13);
+                return true;
             default:
-                this.f29105b.a0(0.0d, 0.0d);
-                return;
+                org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) this.d;
+                j7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.h10 h10Var4 = ((org.telegram.ui.e10) this.f29194e).v;
+                boolean f12 = h10Var4.f38733k0.f();
+                boolean z14 = this.f29193c;
+                if (f12) {
+                    org.telegram.ui.z00 z00Var5 = h10Var4.O;
+                    MessageObject messageObject5 = this.f29192b;
+                    int id6 = messageObject5.getId();
+                    z00Var5.f45005a = messageObject5.getDialogId();
+                    z00Var5.f45006b = id6;
+                    j7Var.f(h10Var4.f38733k0.b(h10Var4.O), z14);
+                    return true;
+                }
+                j7Var.f(false, z14);
+                return true;
         }
     }
 }

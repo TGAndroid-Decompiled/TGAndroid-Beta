@@ -1,39 +1,26 @@
 package y3;
 
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.Surface;
-import java.nio.ByteBuffer;
-public interface k {
-    void a(long j10, int i9, int i10, int i11);
+import java.util.Arrays;
+public final class k {
+    public static final byte[] f50315f = {0, 0, 1};
+    public boolean f50316a;
+    public int f50317b;
+    public int f50318c;
+    public int d;
+    public byte[] f50319e;
 
-    void b(int i9, long j10);
-
-    int c();
-
-    int d(MediaCodec.BufferInfo bufferInfo);
-
-    void e(int i9, k3.d dVar, long j10);
-
-    void f(int i9);
-
-    void flush();
-
-    void g(Surface surface);
-
-    ByteBuffer getInputBuffer(int i9);
-
-    ByteBuffer getOutputBuffer(int i9);
-
-    MediaFormat getOutputFormat();
-
-    void h(e5.i iVar, Handler handler);
-
-    void release();
-
-    void releaseOutputBuffer(int i9, boolean z10);
-
-    void setParameters(Bundle bundle);
+    public final void a(int i10, int i11, byte[] bArr) {
+        if (!this.f50316a) {
+            return;
+        }
+        int i12 = i11 - i10;
+        byte[] bArr2 = this.f50319e;
+        int length = bArr2.length;
+        int i13 = this.f50318c + i12;
+        if (length < i13) {
+            this.f50319e = Arrays.copyOf(bArr2, i13 * 2);
+        }
+        System.arraycopy(bArr, i10, this.f50319e, this.f50318c, i12);
+        this.f50318c += i12;
+    }
 }

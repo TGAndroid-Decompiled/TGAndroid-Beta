@@ -4,22 +4,22 @@ import android.util.Log;
 import android.view.View;
 import java.lang.reflect.Field;
 public abstract class x0 {
-    public static final Field f46958a;
-    public static final Field f46959b;
-    public static final Field f46960c;
+    public static final Field f46872a;
+    public static final Field f46873b;
+    public static final Field f46874c;
     public static final boolean d;
 
     static {
         try {
             Field declaredField = View.class.getDeclaredField("mAttachInfo");
-            f46958a = declaredField;
+            f46872a = declaredField;
             declaredField.setAccessible(true);
             Class<?> cls = Class.forName("android.view.View$AttachInfo");
             Field declaredField2 = cls.getDeclaredField("mStableInsets");
-            f46959b = declaredField2;
+            f46873b = declaredField2;
             declaredField2.setAccessible(true);
             Field declaredField3 = cls.getDeclaredField("mContentInsets");
-            f46960c = declaredField3;
+            f46874c = declaredField3;
             declaredField3.setAccessible(true);
             d = true;
         } catch (ReflectiveOperationException e10) {

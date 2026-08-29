@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioTrack;
+import j7.l1;
 import java.nio.ByteBuffer;
 public class AudioTrackJNI {
     private AudioTrack audioTrack;
@@ -14,8 +15,8 @@ public class AudioTrackJNI {
         this.nativeInst = j10;
     }
 
-    private int getBufferSize(int i9, int i10) {
-        return Math.max(AudioTrack.getMinBufferSize(i10, 4, 2), i9);
+    private int getBufferSize(int i10, int i11) {
+        return Math.max(AudioTrack.getMinBufferSize(i11, 4, 2), i10);
     }
 
     public void lambda$startThread$0() {
@@ -73,17 +74,17 @@ public class AudioTrackJNI {
         throw new IllegalStateException("thread already started");
     }
 
-    public void init(int i9, int i10, int i11, int i12) {
-        int i13;
+    public void init(int i10, int i11, int i12, int i13) {
         int i14;
+        int i15;
         if (this.audioTrack == null) {
-            int bufferSize = getBufferSize(i12, 48000);
-            if (i11 == 1) {
-                i13 = 4;
+            int bufferSize = getBufferSize(i13, 48000);
+            if (i12 == 1) {
+                i14 = 4;
             } else {
-                i13 = 12;
+                i14 = 12;
             }
-            AudioTrack audioTrack = new AudioTrack(0, 48000, i13, 2, bufferSize, 1);
+            AudioTrack audioTrack = new AudioTrack(0, 48000, i14, 2, bufferSize, 1);
             this.audioTrack = audioTrack;
             if (audioTrack.getState() != 1) {
                 VLog.w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
@@ -91,14 +92,14 @@ public class AudioTrackJNI {
                     this.audioTrack.release();
                 } catch (Throwable unused) {
                 }
-                int bufferSize2 = getBufferSize(i12 * 6, 44100);
-                VLog.d(j3.r0.l(bufferSize2, "buffer size: "));
-                if (i11 == 1) {
-                    i14 = 4;
+                int bufferSize2 = getBufferSize(i13 * 6, 44100);
+                VLog.d(l1.k(bufferSize2, "buffer size: "));
+                if (i12 == 1) {
+                    i15 = 4;
                 } else {
-                    i14 = 12;
+                    i15 = 12;
                 }
-                this.audioTrack = new AudioTrack(0, 44100, i14, 2, bufferSize2, 1);
+                this.audioTrack = new AudioTrack(0, 44100, i15, 2, bufferSize2, 1);
                 this.needResampling = true;
                 return;
             }

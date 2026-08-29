@@ -1,31 +1,16 @@
 package org.telegram.ui;
 
-import com.google.android.gms.common.api.Status;
-public final class t9 implements com.google.android.gms.common.api.o {
-    public final int f42903a;
-
-    public t9(int i9) {
-        this.f42903a = i9;
+import com.google.android.gms.cast.MediaError;
+import org.telegram.messenger.FileLog;
+public final class t9 extends q5.g {
+    @Override
+    public final void b(MediaError mediaError) {
+        FileLog.e("Chromecast Media Error: " + mediaError);
     }
 
     @Override
-    public final void a(Status status) {
-        switch (this.f42903a) {
-            case 0:
-                d1.f.f4254b.decrementAndGet();
-                return;
-            case 1:
-                d1.f.f4254b.decrementAndGet();
-                return;
-            case 2:
-                d1.f.f4254b.decrementAndGet();
-                return;
-            case 3:
-                d1.f.f4254b.decrementAndGet();
-                return;
-            default:
-                d1.f.f4254b.decrementAndGet();
-                return;
-        }
+    public final void g() {
+        FileLog.d("onStatusUpdated");
+        d1.f.C();
     }
 }

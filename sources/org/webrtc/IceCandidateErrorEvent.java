@@ -6,11 +6,11 @@ public final class IceCandidateErrorEvent {
     public final int port;
     public final String url;
 
-    public IceCandidateErrorEvent(String str, int i9, String str2, int i10, String str3) {
+    public IceCandidateErrorEvent(String str, int i10, String str2, int i11, String str3) {
         this.address = str;
-        this.port = i9;
+        this.port = i10;
         this.url = str2;
-        this.errorCode = i10;
+        this.errorCode = i11;
         this.errorText = str3;
     }
 }

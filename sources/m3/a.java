@@ -1,34 +1,47 @@
 package m3;
-public final class a implements t {
-    public final c f17209a;
-    public final long f17210b;
-    public final long f17211c;
-    public final long d;
-    public final long f17212e;
-    public final long f17213f;
+public abstract class a {
+    private int flags;
 
-    public a(c cVar, long j10, long j11, long j12, long j13, long j14) {
-        this.f17209a = cVar;
-        this.f17210b = j10;
-        this.f17211c = j11;
-        this.d = j12;
-        this.f17212e = j13;
-        this.f17213f = j14;
+    public final void addFlag(int i10) {
+        this.flags = i10 | this.flags;
     }
 
-    @Override
-    public final boolean e() {
-        return true;
+    public void clear() {
+        this.flags = 0;
     }
 
-    @Override
-    public final s h(long j10) {
-        u uVar = new u(j10, b.a(this.f17209a.c(j10), 0L, this.f17211c, this.d, this.f17212e, this.f17213f));
-        return new s(uVar, uVar);
+    public final void clearFlag(int i10) {
+        this.flags = (~i10) & this.flags;
     }
 
-    @Override
-    public final long i() {
-        return this.f17210b;
+    public final boolean getFlag(int i10) {
+        if ((this.flags & i10) == i10) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean hasSupplementalData() {
+        return getFlag(268435456);
+    }
+
+    public final boolean isDecodeOnly() {
+        return getFlag(Integer.MIN_VALUE);
+    }
+
+    public final boolean isEndOfStream() {
+        return getFlag(4);
+    }
+
+    public final boolean isFirstSample() {
+        return getFlag(134217728);
+    }
+
+    public final boolean isKeyFrame() {
+        return getFlag(1);
+    }
+
+    public final void setFlags(int i10) {
+        this.flags = i10;
     }
 }

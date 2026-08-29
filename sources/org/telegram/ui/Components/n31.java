@@ -1,184 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.io.Serializable;
+import android.text.style.ClickableSpan;
 import java.util.ArrayList;
-import org.telegram.messenger.TranslateController;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-public final class n31 implements Runnable {
-    public final int f31012a = 1;
-    public final ArrayList f31013b;
-    public final ArrayList f31014c;
-    public final Object d;
-    public final Object f31015e;
-    public final Serializable f31016f;
-    public final Serializable h;
-    public final Object f31017n;
-    public final Object f31018r;
-    public final Object f31019s;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class n31 implements Utilities.Callback2 {
+    public final int f30840a;
+    public final v31 f30841b;
 
-    public n31(org.telegram.ui.nk nkVar, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, TranslateController translateController, org.telegram.ui.ActionBar.o1 o1Var, ArrayList arrayList2) {
-        this.d = nkVar;
-        this.f31015e = zArr;
-        this.f31016f = str;
-        this.f31017n = linearLayout;
-        this.f31013b = arrayList;
-        this.h = str2;
-        this.f31018r = translateController;
-        this.f31019s = o1Var;
-        this.f31014c = arrayList2;
+    public n31(v31 v31Var, int i10) {
+        this.f30840a = i10;
+        this.f30841b = v31Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        org.telegram.ui.ActionBar.g1 g1Var;
-        String y10;
-        switch (this.f31012a) {
+    public final void run(Object obj, Object obj2) {
+        String string;
+        String str;
+        switch (this.f30840a) {
             case 0:
-                final org.telegram.ui.nk nkVar = (org.telegram.ui.nk) this.d;
-                boolean[] zArr = (boolean[]) this.f31015e;
-                String str = (String) this.f31016f;
-                LinearLayout linearLayout = (LinearLayout) this.f31017n;
-                String str2 = (String) this.h;
-                final TranslateController translateController = (TranslateController) this.f31018r;
-                final org.telegram.ui.ActionBar.o1 o1Var = (org.telegram.ui.ActionBar.o1) this.f31019s;
-                boolean z11 = false;
-                if (!zArr[0]) {
-                    if (str != null && (y10 = z21.y(z21.D(str, null, null))) != null) {
-                        org.telegram.ui.ActionBar.g1 g1Var2 = new org.telegram.ui.ActionBar.g1(2, nkVar.getContext(), nkVar.d, false, false);
-                        g1Var2.setChecked(true);
-                        g1Var2.setText(y10);
-                        linearLayout.addView(g1Var2);
-                    }
-                    ArrayList arrayList = this.f31013b;
-                    int size = arrayList.size();
-                    int i9 = 0;
-                    while (i9 < size) {
-                        int i10 = i9 + 1;
-                        TranslateController.Language language = (TranslateController.Language) arrayList.get(i9);
-                        final String str3 = language.code;
-                        if (TextUtils.equals(str3, str2)) {
-                            i9 = i10;
-                        } else {
-                            org.telegram.ui.ActionBar.g1 g1Var3 = new org.telegram.ui.ActionBar.g1(2, nkVar.getContext(), nkVar.d, false, false);
-                            if (str != null && str.equals(str3)) {
-                                z11 = true;
-                            }
-                            g1Var3.setChecked(z11);
-                            g1Var3.setText(language.displayName);
-                            if (!z11) {
-                                g1Var = g1Var3;
-                                g1Var.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.nk nkVar2 = nkVar;
-                                                translateController.setDialogTranslateTo(nkVar2.f31533b, str3);
-                                                o1Var.d(true);
-                                                nkVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.nk nkVar3 = nkVar;
-                                                translateController.setDialogTranslateTo(nkVar3.f31533b, str3);
-                                                o1Var.d(true);
-                                                nkVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            } else {
-                                g1Var = g1Var3;
-                            }
-                            linearLayout.addView(g1Var);
-                            i9 = i10;
-                            z11 = false;
-                        }
-                    }
-                    linearLayout.addView(new org.telegram.ui.ActionBar.l1(nkVar.getContext(), nkVar.d), g7.e6.n(-1, 8));
-                    ArrayList arrayList2 = this.f31014c;
-                    int size2 = arrayList2.size();
-                    int i11 = 0;
-                    while (i11 < size2) {
-                        int i12 = i11 + 1;
-                        TranslateController.Language language2 = (TranslateController.Language) arrayList2.get(i11);
-                        final String str4 = language2.code;
-                        if (!TextUtils.equals(str4, str2)) {
-                            if (str != null && str.equals(str4)) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            org.telegram.ui.ActionBar.g1 g1Var4 = new org.telegram.ui.ActionBar.g1(2, nkVar.getContext(), nkVar.d, false, false);
-                            g1Var4.setChecked(z10);
-                            g1Var4.setText(language2.displayName);
-                            if (!z10) {
-                                g1Var4.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public final void onClick(View view) {
-                                        switch (r5) {
-                                            case 0:
-                                                org.telegram.ui.nk nkVar2 = nkVar;
-                                                translateController.setDialogTranslateTo(nkVar2.f31533b, str4);
-                                                o1Var.d(true);
-                                                nkVar2.b();
-                                                return;
-                                            default:
-                                                org.telegram.ui.nk nkVar3 = nkVar;
-                                                translateController.setDialogTranslateTo(nkVar3.f31533b, str4);
-                                                o1Var.d(true);
-                                                nkVar3.b();
-                                                return;
-                                        }
-                                    }
-                                });
-                            }
-                            linearLayout.addView(g1Var4);
-                        }
-                        i11 = i12;
-                    }
-                    zArr[0] = true;
-                    return;
+                ArrayList arrayList = (ArrayList) obj;
+                k51 k51Var = (k51) obj2;
+                final v31 v31Var = this.f30841b;
+                String[] strArr = v31Var.f33448e0;
+                arrayList.add(w41.B(null));
+                k51Var.A = 1;
+                k51Var.U();
+                String str2 = v31Var.f33444a0;
+                if (str2 != null) {
+                    string = k31.y(k31.D(str2, null, null));
+                } else {
+                    string = LocaleController.getString(R.string.AIEditorOriginalText);
                 }
+                arrayList.add(p31.b(3, "", string, null, null));
+                arrayList.add(t31.a(4, v31Var.W, v31Var.f33450g0, new fi0(6, v31Var, k51Var), new x80() {
+                    @Override
+                    public final void a(ClickableSpan clickableSpan) {
+                        v31.Q(v31.this, clickableSpan);
+                    }
+                }, null));
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append(k31.D(v31Var.f33445b0, null, null));
+                if (v31Var.f33446c0 == 1 || strArr == null) {
+                    str = "";
+                } else {
+                    str = a4.w.q(new StringBuilder(" ("), strArr[v31Var.f33446c0], ")");
+                }
+                sb2.append(str);
+                arrayList.add(p31.b(5, "", k31.y(sb2.toString()), null, new m31(v31Var, 4)));
+                arrayList.add(t31.a(6, v31Var.Y, false, null, new x80() {
+                    @Override
+                    public final void a(ClickableSpan clickableSpan) {
+                        v31.Q(v31.this, clickableSpan);
+                    }
+                }, null));
+                k51Var.T();
+                arrayList.add(w41.B(null));
+                k51Var.U();
+                arrayList.add(w41.c(1, R.drawable.msg_copy, LocaleController.getString(R.string.TranslateCopy)));
+                k51Var.T();
                 return;
             default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f31016f;
-                ArrayList arrayList4 = (ArrayList) this.h;
-                ArrayList arrayList5 = (ArrayList) this.f31017n;
-                ArrayList arrayList6 = (ArrayList) this.f31018r;
-                ArrayList arrayList7 = (ArrayList) this.f31019s;
-                notificationsCustomSettingsActivity.getMessagesController().putUsers(this.f31013b, true);
-                notificationsCustomSettingsActivity.getMessagesController().putChats(this.f31014c, true);
-                notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.f31015e, true);
-                int i13 = notificationsCustomSettingsActivity.f35550s;
-                if (i13 == 1) {
-                    notificationsCustomSettingsActivity.f35551w = arrayList3;
-                } else if (i13 == 0) {
-                    notificationsCustomSettingsActivity.f35551w = arrayList4;
-                } else if (i13 == 3) {
-                    notificationsCustomSettingsActivity.f35551w = arrayList5;
-                    notificationsCustomSettingsActivity.v = arrayList6;
-                } else {
-                    notificationsCustomSettingsActivity.f35551w = arrayList7;
-                }
-                notificationsCustomSettingsActivity.k0(true);
+                v31.R(this.f30841b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public n31(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
-        this.d = notificationsCustomSettingsActivity;
-        this.f31013b = arrayList;
-        this.f31014c = arrayList2;
-        this.f31015e = arrayList3;
-        this.f31016f = arrayList4;
-        this.h = arrayList5;
-        this.f31017n = arrayList6;
-        this.f31018r = arrayList7;
-        this.f31019s = arrayList8;
     }
 }

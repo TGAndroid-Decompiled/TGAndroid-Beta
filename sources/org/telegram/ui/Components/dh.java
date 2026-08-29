@@ -1,65 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class dh implements o1.g {
-    public final int f27735a = 1;
-    public final boolean f27736b;
-    public final float f27737c;
-    public final float d;
-    public final KeyEvent.Callback f27738e;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class dh implements mg.a {
+    public final int f27765a;
+    public final Object f27766b;
 
-    public dh(ki kiVar, float f10, float f11, boolean z10) {
-        this.f27738e = kiVar;
-        this.f27737c = f10;
-        this.d = f11;
-        this.f27736b = z10;
+    public dh(Object obj, int i10) {
+        this.f27765a = i10;
+        this.f27766b = obj;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        switch (this.f27735a) {
+    public final void e(Canvas canvas, RectF rectF) {
+        fi fiVar;
+        Canvas canvas2;
+        RectF rectF2;
+        float alpha;
+        fi fiVar2;
+        ih.o2 o2Var;
+        switch (this.f27765a) {
             case 0:
-                ki kiVar = (ki) this.f27738e;
-                LinearLayout linearLayout = kiVar.f30121h1;
-                LinearLayout linearLayout2 = kiVar.f30127j1;
-                float f12 = f10 / 500.0f;
-                kiVar.f30096a0.set(kiVar.f30160u0, Float.valueOf(f12));
-                kiVar.T0.setAlpha(AndroidUtilities.lerp(this.f27737c, this.d, f12));
-                kiVar.X1(kiVar.f30160u0, 0);
-                kiVar.X1(kiVar.f30163v0, 0);
-                if (!(kiVar.f30163v0 instanceof hm) || this.f27736b) {
-                    f12 = 1.0f - f12;
+                ni niVar = (ni) this.f27766b;
+                int i10 = 0;
+                while (i10 < 2) {
+                    if (i10 == 0) {
+                        fiVar = niVar.f31051u0;
+                    } else {
+                        fiVar = niVar.f31054v0;
+                    }
+                    if (fiVar != null && fiVar.f28404c != null && fiVar.getVisibility() == 0) {
+                        if (i10 == 0 && (fiVar2 = niVar.f31054v0) != null && fiVar2.getVisibility() == 0) {
+                            alpha = (1.0f - niVar.f31054v0.getAlpha()) * fiVar.getAlpha();
+                        } else {
+                            alpha = fiVar.getAlpha();
+                        }
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                        rg.c.a(fiVar.f28404c, canvas2, rectF2, fiVar.d, niVar.getContainerView(), (int) (alpha * 255.0f));
+                    } else {
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                    }
+                    i10++;
+                    canvas = canvas2;
+                    rectF = rectF2;
                 }
-                float clamp = Utilities.clamp(f12, 1.0f, 0.0f);
-                linearLayout2.setAlpha(clamp);
-                float f13 = 1.0f - clamp;
-                linearLayout.setAlpha(f13);
-                linearLayout.setTranslationX(clamp * (-AndroidUtilities.dp(16.0f)));
-                linearLayout2.setTranslationX(f13 * AndroidUtilities.dp(16.0f));
+                return;
+            case 1:
+                mg.a[] aVarArr = (mg.a[]) this.f27766b;
+                for (int i11 = 0; i11 < 3; i11++) {
+                    mg.a aVar = aVarArr[i11];
+                    if (aVar != null) {
+                        aVar.e(canvas, rectF);
+                    }
+                }
                 return;
             default:
-                fo0 fo0Var = (fo0) this.f27738e;
-                boolean z10 = this.f27736b;
-                if (z10) {
-                    if (f10 > this.f27737c / 2.0f || !fo0Var.f28536s) {
-                        return;
+                qu0 qu0Var = (qu0) this.f27766b;
+                for (it0 it0Var : qu0Var.f32070g0) {
+                    lg.k kVar = it0Var.f29468n;
+                    if (kVar != null) {
+                        kVar.e(canvas, rectF);
                     }
-                } else if (f10 < this.d / 2.0f || !fo0Var.f28535r) {
+                }
+                gr0 gr0Var = qu0Var.R;
+                if (gr0Var != null && (o2Var = gr0Var.N) != null) {
+                    o2Var.e(canvas, rectF);
                     return;
                 }
-                fo0Var.f28536s = !z10;
-                fo0Var.f28535r = z10;
                 return;
         }
     }
 
-    public dh(fo0 fo0Var, boolean z10, float f10, float f11) {
-        this.f27738e = fo0Var;
-        this.f27736b = z10;
-        this.f27737c = f10;
-        this.d = f11;
+    @Override
+    public final void g(g.x xVar, RectF rectF) {
+        switch (this.f27765a) {
+            case 0:
+            case 1:
+            default:
+                xVar.f6956b = true;
+                return;
+        }
     }
 }

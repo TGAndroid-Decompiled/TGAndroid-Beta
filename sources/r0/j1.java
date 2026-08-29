@@ -4,38 +4,38 @@ import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
 public class j1 {
-    public static final m1 f46919b;
-    public final m1 f46920a;
+    public static final m1 f46833b;
+    public final m1 f46834a;
 
     static {
         c1 y0Var;
-        int i9 = Build.VERSION.SDK_INT;
-        if (i9 >= 34) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 34) {
             y0Var = new b1();
-        } else if (i9 >= 30) {
+        } else if (i10 >= 30) {
             y0Var = new a1();
-        } else if (i9 >= 29) {
+        } else if (i10 >= 29) {
             y0Var = new z0();
         } else {
             y0Var = new y0();
         }
-        f46919b = y0Var.b().f46929a.a().f46929a.b().f46929a.c();
+        f46833b = y0Var.b().f46843a.a().f46843a.b().f46843a.c();
     }
 
     public j1(m1 m1Var) {
-        this.f46920a = m1Var;
+        this.f46834a = m1Var;
     }
 
     public m1 a() {
-        return this.f46920a;
+        return this.f46834a;
     }
 
     public m1 b() {
-        return this.f46920a;
+        return this.f46834a;
     }
 
     public m1 c() {
-        return this.f46920a;
+        return this.f46834a;
     }
 
     public j e() {
@@ -56,13 +56,13 @@ public class j1 {
         return false;
     }
 
-    public i0.b f(int i9) {
-        return i0.b.f10847e;
+    public i0.b f(int i10) {
+        return i0.b.f8185e;
     }
 
-    public i0.b g(int i9) {
-        if ((i9 & 8) == 0) {
-            return i0.b.f10847e;
+    public i0.b g(int i10) {
+        if ((i10 & 8) == 0) {
+            return i0.b.f8185e;
         }
         throw new IllegalArgumentException("Unable to query the maximum insets for IME");
     }
@@ -76,7 +76,7 @@ public class j1 {
     }
 
     public i0.b i() {
-        return i0.b.f10847e;
+        return i0.b.f8185e;
     }
 
     public i0.b j() {
@@ -84,15 +84,15 @@ public class j1 {
     }
 
     public i0.b k() {
-        return i0.b.f10847e;
+        return i0.b.f8185e;
     }
 
     public i0.b l() {
         return k();
     }
 
-    public m1 m(int i9, int i10, int i11, int i12) {
-        return f46919b;
+    public m1 m(int i10, int i11, int i12, int i13) {
+        return f46833b;
     }
 
     public boolean n() {
@@ -103,7 +103,7 @@ public class j1 {
         return false;
     }
 
-    public boolean p(int i9) {
+    public boolean p(int i10) {
         return true;
     }
 
@@ -119,6 +119,6 @@ public class j1 {
     public void s(i0.b bVar) {
     }
 
-    public void t(int i9) {
+    public void t(int i10) {
     }
 }

@@ -1,27 +1,23 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessagesController;
 public final class pe implements Runnable {
-    public final int f21238a;
-    public final MessagesStorage f21239b;
-    public final TLRPC.Message f21240c;
-    public final long d;
+    public final int f21257a;
+    public final MessagesController.DialogPhotos f21258b;
 
-    public pe(int i9, long j10, MessagesStorage messagesStorage, TLRPC.Message message) {
-        this.f21238a = i9;
-        this.f21239b = messagesStorage;
-        this.f21240c = message;
-        this.d = j10;
+    public pe(MessagesController.DialogPhotos dialogPhotos, int i10) {
+        this.f21257a = i10;
+        this.f21258b = dialogPhotos;
     }
 
     @Override
     public final void run() {
-        switch (this.f21238a) {
+        switch (this.f21257a) {
             case 0:
-                this.f21239b.lambda$updateMessageCustomParams$110(this.f21240c, this.d);
+                this.f21258b.lambda$loadCache$5();
                 return;
             default:
-                this.f21239b.lambda$markMessageAsSendErrorWithParams$210(this.f21240c, this.d);
+                this.f21258b.lambda$saveCache$6();
                 return;
         }
     }

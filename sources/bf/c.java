@@ -1,9 +1,14 @@
 package bf;
+public interface c {
+    void a();
 
-import org.telegram.tgnet.TLRPC;
-public final class c {
-    public TLRPC.Document f1672a;
-    public String f1673b;
-    public int f1674c;
-    public boolean d;
+    void b();
+
+    void c();
+
+    void d();
+
+    void e();
+
+    void f();
 }

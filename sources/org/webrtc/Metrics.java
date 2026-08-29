@@ -12,14 +12,14 @@ public class Metrics {
         public final int min;
         public final Map<Integer, Integer> samples = new HashMap();
 
-        public HistogramInfo(int i9, int i10, int i11) {
-            this.min = i9;
-            this.max = i10;
-            this.bucketCount = i11;
+        public HistogramInfo(int i10, int i11, int i12) {
+            this.min = i10;
+            this.max = i11;
+            this.bucketCount = i12;
         }
 
-        public void addSample(int i9, int i10) {
-            this.samples.put(Integer.valueOf(i9), Integer.valueOf(i10));
+        public void addSample(int i10, int i11) {
+            this.samples.put(Integer.valueOf(i10), Integer.valueOf(i11));
         }
     }
 

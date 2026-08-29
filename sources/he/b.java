@@ -1,65 +1,133 @@
 package he;
 
-import e2.c;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public abstract class b {
-    public static final Map f10514a;
-    public static final Pattern f10515b;
+import g4.h;
+import ge.c;
+import ie.e;
+import java.util.ArrayList;
+import le.p;
+public final class b extends ne.a {
+    public final ArrayList f7995c;
+    public final ArrayList d;
+    public final ge.a f7993a = new p();
+    public final ArrayList f7994b = new ArrayList();
+    public boolean f7996e = true;
 
-    static {
-        HashMap hashMap = new HashMap();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(b.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    if (readLine.length() != 0) {
-                        int indexOf = readLine.indexOf("=");
-                        hashMap.put(readLine.substring(0, indexOf), readLine.substring(indexOf + 1));
-                    }
+    public b(ArrayList arrayList, ArrayList arrayList2) {
+        this.f7995c = arrayList;
+        this.d = arrayList2;
+    }
+
+    public static ArrayList i(CharSequence charSequence) {
+        String trim = charSequence.toString().trim();
+        if (trim.startsWith("|")) {
+            trim = trim.substring(1);
+        }
+        ArrayList arrayList = new ArrayList();
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        while (i10 < trim.length()) {
+            char charAt = trim.charAt(i10);
+            if (charAt != '\\') {
+                if (charAt != '|') {
+                    sb2.append(charAt);
                 } else {
-                    bufferedReader.close();
-                    hashMap.put("NewLine", "\n");
-                    f10514a = hashMap;
-                    f10515b = Pattern.compile("^&#[Xx]?");
-                    return;
+                    arrayList.add(sb2.toString());
+                    sb2.setLength(0);
+                }
+            } else {
+                int i11 = i10 + 1;
+                if (i11 < trim.length() && trim.charAt(i11) == '|') {
+                    sb2.append('|');
+                    i10 = i11;
+                } else {
+                    sb2.append('\\');
                 }
             }
-        } catch (IOException e10) {
-            throw new IllegalStateException("Failed reading data for HTML named character references", e10);
+            i10++;
+        }
+        if (sb2.length() > 0) {
+            arrayList.add(sb2.toString());
+        }
+        return arrayList;
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        if (this.f7996e) {
+            this.f7996e = false;
+        } else {
+            this.f7994b.add(charSequence);
         }
     }
 
-    public static String a(String str) {
-        int i9;
-        Matcher matcher = f10515b.matcher(str);
-        if (matcher.find()) {
-            if (matcher.end() == 2) {
-                i9 = 10;
-            } else {
-                i9 = 16;
+    @Override
+    public final le.a e() {
+        return this.f7993a;
+    }
+
+    @Override
+    public final void g(me.a aVar) {
+        ArrayList arrayList;
+        String str;
+        ArrayList arrayList2 = this.d;
+        int size = arrayList2.size();
+        ?? pVar = new p();
+        ?? r32 = this.f7993a;
+        r32.b(pVar);
+        ?? pVar2 = new p();
+        pVar.b(pVar2);
+        int i10 = 0;
+        while (true) {
+            arrayList = this.f7995c;
+            if (i10 >= size) {
+                break;
             }
-            try {
-                int parseInt = Integer.parseInt(str.substring(matcher.end(), str.length() - 1), i9);
-                if (parseInt == 0) {
-                    return "�";
+            String str2 = (String) arrayList2.get(i10);
+            ?? pVar3 = new p();
+            if (i10 < arrayList.size()) {
+                pVar3.h = (c) arrayList.get(i10);
+            }
+            aVar.a(str2.trim(), pVar3);
+            pVar3.f7273g = true;
+            pVar2.b(pVar3);
+            i10++;
+        }
+        ArrayList arrayList3 = this.f7994b;
+        int size2 = arrayList3.size();
+        ?? r52 = 0;
+        int i11 = 0;
+        while (i11 < size2) {
+            Object obj = arrayList3.get(i11);
+            i11++;
+            ArrayList i12 = i((CharSequence) obj);
+            ?? pVar4 = new p();
+            for (int i13 = 0; i13 < size; i13++) {
+                if (i13 < i12.size()) {
+                    str = (String) i12.get(i13);
+                } else {
+                    str = "";
                 }
-                return new String(Character.toChars(parseInt));
-            } catch (IllegalArgumentException unused) {
-                return "�";
+                ?? pVar5 = new p();
+                if (i13 < arrayList.size()) {
+                    pVar5.h = (c) arrayList.get(i13);
+                }
+                aVar.a(str.trim(), pVar5);
+                pVar4.b(pVar5);
             }
+            if (r52 == 0) {
+                r52 = new p();
+                r32.b(r52);
+            }
+            r52.b(pVar4);
+            r52 = r52;
         }
-        String str2 = (String) f10514a.get(c.m(str, 1, 1));
-        if (str2 != null) {
-            return str2;
+    }
+
+    @Override
+    public final h h(e eVar) {
+        if (eVar.f8899a.toString().contains("|")) {
+            return h.a(eVar.f8900b);
         }
-        return str;
+        return null;
     }
 }

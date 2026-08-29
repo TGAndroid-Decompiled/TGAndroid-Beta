@@ -1,112 +1,109 @@
 package fh;
 
-import android.content.Context;
-import android.util.LongSparseArray;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.util.Property;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import bg.c3;
+import eg.z1;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.Components.vk0;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z41;
-public final class f extends sa implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final l41 T;
-    public final LongSparseArray U;
-    public ArrayList V;
-    public boolean W;
-    public z41 X;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Cells.s1;
+import org.telegram.ui.Components.PipRoundVideoView;
+import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.jr;
+import org.telegram.ui.Components.m50;
+import org.telegram.ui.Components.r6;
+import org.telegram.ui.Components.ub;
+import org.telegram.ui.em;
+import org.telegram.ui.kx;
+import org.telegram.ui.tn;
+import org.telegram.ui.xk;
+public final class f implements ViewTreeObserver.OnPreDrawListener {
+    public final int f6790a;
+    public final Object f6791b;
+    public final Object f6792c;
 
-    public f(Context context) {
-        super(context, null, false, false, false, false, false, 2, null);
-        int i9 = 0;
-        this.U = new LongSparseArray();
-        this.V = new ArrayList();
-        setBackgroundColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f22947a7, false));
-        GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
-        this.H = false;
-        this.G = AndroidUtilities.dp(12.0f);
-        fixNavigationBar();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setClickable(true);
-        this.T = l41.j(-1, linearLayout);
-        this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
-        this.d.setOverScrollMode(2);
-        this.X.N(false);
-        ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
-        int size = activeAuctions.size();
-        while (i9 < size) {
-            GiftAuctionController.Auction auction = activeAuctions.get(i9);
-            i9++;
-            GiftAuctionController.Auction auction2 = auction;
-            e eVar = new e(context, auction2);
-            eVar.f6416a.setOnClickListener(new fg.f(this, context, auction2, 1));
-            linearLayout.addView(eVar, g7.e6.n(-1, -2));
-            this.U.put(auction2.giftId, eVar);
+    public f(int i10, Object obj, Object obj2) {
+        this.f6790a = i10;
+        this.f6792c = obj;
+        this.f6791b = obj2;
+    }
+
+    @Override
+    public final boolean onPreDraw() {
+        float f9;
+        int i10 = this.f6790a;
+        Object obj = this.f6791b;
+        Object obj2 = this.f6792c;
+        switch (i10) {
+            case 0:
+                ((ViewTreeObserver) obj).removeOnPreDrawListener(this);
+                j jVar = (j) obj2;
+                ub ubVar = jVar.S;
+                if (ubVar != null) {
+                    int[] iArr = j.Z;
+                    ubVar.getLocationInWindow(iArr);
+                    float f10 = iArr[0];
+                    float translationY = iArr[1] - jVar.S.getTranslationY();
+                    ub ubVar2 = jVar.S;
+                    if (ubVar2.top) {
+                        f9 = ubVar2.getTopOffset();
+                    } else {
+                        f9 = -ubVar2.getBottomOffset();
+                    }
+                    jVar.f6816a.getLocationInWindow(iArr);
+                    jVar.T = (jVar.S.f33184a.getMeasuredWidth() / 2.0f) + (f10 - iArr[0]) + jVar.S.f33184a.getLeft();
+                    jVar.U = (jVar.S.f33184a.getMeasuredHeight() / 2.0f) + ((translationY + f9) - iArr[1]) + jVar.S.f33184a.getTop();
+                }
+                jVar.c();
+                return true;
+            case 1:
+                tn tnVar = ((em) obj2).M;
+                s1 s1Var = (s1) obj;
+                PipRoundVideoView pipRoundVideoView = PipRoundVideoView.B;
+                if (pipRoundVideoView != null) {
+                    pipRoundVideoView.e(true);
+                }
+                s1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageReceiver photoImage = s1Var.getPhotoImage();
+                float imageWidth = photoImage.getImageWidth();
+                hk0 cameraRect = tnVar.X2.getCameraRect();
+                float f11 = imageWidth / cameraRect.f29197c;
+                s1Var.getTransitionParams().f25195x0 = true;
+                s1Var.setAlpha(0.0f);
+                s1Var.setTimeAlpha(0.0f);
+                s1Var.getLocationOnScreen(r9);
+                int[] iArr2 = {(int) ((photoImage.getImageX() - s1Var.getAnimationOffsetX()) + iArr2[0]), (int) (((photoImage.getImageY() + s1Var.getPaddingTop()) - s1Var.getTranslationY()) + iArr2[1])};
+                m50 cameraContainer = tnVar.X2.getCameraContainer();
+                cameraContainer.setPivotX(0.0f);
+                cameraContainer.setPivotY(0.0f);
+                AnimatorSet animatorSet = new AnimatorSet();
+                cameraContainer.setImageReceiver(photoImage);
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, f11);
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, f11);
+                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.f29196b);
+                View buttonsLayout = tnVar.X2.getButtonsLayout();
+                Property property = View.ALPHA;
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(tnVar.X2.getPaint(), r6.f32221b, 0), ObjectAnimator.ofFloat(tnVar.X2.getMuteImageView(), property, 0.0f));
+                animatorSet.setInterpolator(jr.h);
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.f29195a);
+                ofFloat4.setInterpolator(jr.f29800f);
+                animatorSet2.playTogether(ofFloat4, animatorSet);
+                animatorSet2.setDuration(300L);
+                xk xkVar = tnVar.X2;
+                if (xkVar != null) {
+                    xkVar.setIsMessageTransition(true);
+                }
+                animatorSet2.addListener(new c3(15, this, cameraContainer));
+                animatorSet2.start();
+                return true;
+            default:
+                ((kx) obj2).f40034b.f38256a0[0].f37921a.getViewTreeObserver().removeOnPreDrawListener(this);
+                AndroidUtilities.runOnUIThread((z1) obj, 100L);
+                return false;
         }
-        onActiveAuctionsUpdate(activeAuctions);
-    }
-
-    @Override
-    public final void dismiss() {
-        GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.dismiss();
-    }
-
-    @Override
-    public final void onActiveAuctionsUpdate(List list) {
-        int i9;
-        this.V = new ArrayList(list);
-        this.f32408e.setTitle(y());
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
-            if (tL_starGiftAuctionState != null) {
-                i9 = tL_starGiftAuctionState.next_round_at;
-            } else {
-                i9 = 0;
-            }
-            e eVar = (e) this.U.get(auction.giftId);
-            if (eVar != null) {
-                eVar.b(this.W);
-                long max = Math.max(0, i9 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                eVar.a(max, this.W);
-                eVar.f6420f.a(max);
-            }
-        }
-    }
-
-    @Override
-    public final void onOpenAnimationEnd() {
-        super.onOpenAnimationEnd();
-        this.W = true;
-    }
-
-    @Override
-    public final vk0 v(wk0 wk0Var) {
-        z41 z41Var = new z41(this.d, getContext(), this.currentAccount, 0, true, new bh.c(this, 4), this.resourcesProvider);
-        this.X = z41Var;
-        z41Var.f35188r = false;
-        return z41Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        ArrayList arrayList = this.V;
-        if (arrayList == null) {
-            return null;
-        }
-        return LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(arrayList.size()));
     }
 }

@@ -28,8 +28,8 @@ public class KeepAliveJob extends JobIntentService {
                     }
                     startingJob = false;
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -76,8 +76,8 @@ public class KeepAliveJob extends JobIntentService {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("ended keep-alive job");
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }

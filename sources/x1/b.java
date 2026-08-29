@@ -1,22 +1,22 @@
 package x1;
 
 import android.util.Log;
-import d7.p;
+import f7.p;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b extends FutureTask {
-    public final a f48849a;
+    public final a f49984a;
 
     public b(a aVar, p pVar) {
         super(pVar);
-        this.f48849a = aVar;
+        this.f49984a = aVar;
     }
 
     @Override
     public final void done() {
-        a aVar = this.f48849a;
+        a aVar = this.f49984a;
         AtomicBoolean atomicBoolean = aVar.d;
         try {
             Object obj = get();
@@ -31,8 +31,8 @@ public final class b extends FutureTask {
             }
         } catch (ExecutionException e11) {
             throw new RuntimeException("An error occurred while executing doInBackground()", e11.getCause());
-        } catch (Throwable th) {
-            throw new RuntimeException("An error occurred while executing doInBackground()", th);
+        } catch (Throwable th2) {
+            throw new RuntimeException("An error occurred while executing doInBackground()", th2);
         }
     }
 }

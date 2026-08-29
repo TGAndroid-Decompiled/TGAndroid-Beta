@@ -4,7 +4,7 @@ import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
-import j3.r0;
+import j7.l1;
 import java.util.concurrent.Callable;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
@@ -85,13 +85,13 @@ public class SurfaceTextureHelper {
         }
     }
 
-    public void lambda$setFrameRotation$4(int i9) {
-        this.frameRotation = i9;
+    public void lambda$setFrameRotation$4(int i10) {
+        this.frameRotation = i10;
     }
 
-    public void lambda$setTextureSize$2(int i9, int i10) {
-        this.textureWidth = i9;
-        this.textureHeight = i10;
+    public void lambda$setTextureSize$2(int i10, int i11) {
+        this.textureWidth = i10;
+        this.textureHeight = i11;
         tryDeliverTextureFrame();
     }
 
@@ -190,20 +190,20 @@ public class SurfaceTextureHelper {
         return this.isTextureInUse;
     }
 
-    public void setFrameRotation(int i9) {
-        this.handler.post(new i(this, i9, 1));
+    public void setFrameRotation(int i10) {
+        this.handler.post(new i(this, i10, 1));
     }
 
-    public void setTextureSize(int i9, int i10) {
-        if (i9 > 0) {
-            if (i10 > 0) {
-                this.surfaceTexture.setDefaultBufferSize(i9, i10);
-                this.handler.post(new h3.y(this, i9, i10, 12));
+    public void setTextureSize(int i10, int i11) {
+        if (i10 > 0) {
+            if (i11 > 0) {
+                this.surfaceTexture.setDefaultBufferSize(i10, i11);
+                this.handler.post(new j3.y(this, i10, i11, 11));
                 return;
             }
-            throw new IllegalArgumentException(r0.l(i10, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(l1.k(i11, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(r0.l(i9, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(l1.k(i10, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {

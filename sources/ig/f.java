@@ -1,99 +1,257 @@
 package ig;
 
-import android.graphics.Color;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.RuntimeShader;
+import android.content.Context;
+import android.graphics.Rect;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import j7.l1;
+import nh.b9;
+import nh.d2;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class f {
-    public final RenderNode f11170a;
-    public final RuntimeShader f11171b;
-    public float f11172c;
-    public float d;
-    public float f11173e;
-    public float f11174f;
-    public float f11175g;
-    public float h;
-    public float f11176i;
-    public float f11177j;
-    public float f11178k;
-    public float f11179l;
-    public float f11180m;
-    public float f11181n;
-    public float f11182o;
-    public int f11183p;
+import org.telegram.ui.ActionBar.e5;
+import org.telegram.ui.ActionBar.w0;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.j30;
+import org.telegram.ui.Components.tc0;
+import org.telegram.ui.Components.um0;
+import org.telegram.ui.Components.w10;
+import org.telegram.ui.Components.x10;
+import org.telegram.ui.UsersSelectActivity;
+import org.telegram.ui.fe0;
+import org.telegram.ui.kx;
+import org.telegram.ui.q00;
+import org.telegram.ui.q70;
+import org.telegram.ui.s70;
+import org.telegram.ui.so;
+import org.telegram.ui.yo;
+import rf.f0;
+public final class f extends EditTextBoldCursor {
+    public final int f8978b;
+    public final Object f8979c;
 
-    public f(RenderNode renderNode) {
-        this.f11170a = renderNode;
-        RuntimeShader runtimeShader = new RuntimeShader(AndroidUtilities.readRes(R.raw.liquid_glass_shader));
-        this.f11171b = runtimeShader;
-        renderNode.setRenderEffect(RenderEffect.createRuntimeShaderEffect(runtimeShader, "img"));
+    public f(Object obj, Context context, int i10) {
+        super(context);
+        this.f8978b = i10;
+        this.f8979c = obj;
     }
 
-    public final void a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, int i9) {
-        float f19;
-        float f20;
-        float f21;
-        float f22;
-        float width = this.f11170a.getWidth();
-        float height = this.f11170a.getHeight();
-        float f23 = (0.0f + f10) / 2.0f;
-        float f24 = (0.0f + f11) / 2.0f;
-        float f25 = f11 - 0.0f;
-        float f26 = (f10 - 0.0f) / 2.0f;
-        float f27 = f25 / 2.0f;
-        float f28 = f12 + f15;
-        if (f28 > f25) {
-            float f29 = f12 / f28;
-            f19 = f25 * f29;
-            f20 = (1.0f - f29) * f25;
-        } else {
-            f19 = f12;
-            f20 = f15;
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f8978b) {
+            case 7:
+                ((um0) this.f8979c).getClass();
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        float f30 = f13 + f14;
-        if (f30 > f25) {
-            float f31 = f13 / f30;
-            f22 = f25 * (1.0f - f31);
-            f21 = f25 * f31;
-        } else {
-            f21 = f13;
-            f22 = f14;
+    }
+
+    @Override
+    public void onFocusChanged(boolean z10, int i10, Rect rect) {
+        float f9;
+        switch (this.f8978b) {
+            case 1:
+                super.onFocusChanged(z10, i10, rect);
+                if (!z10) {
+                    AndroidUtilities.hideKeyboard(((d2) this.f8979c).d);
+                    return;
+                }
+                return;
+            case 6:
+                super.onFocusChanged(z10, i10, rect);
+                tc0 tc0Var = (tc0) this.f8979c;
+                if (!z10 && !isFocused()) {
+                    f9 = 0.0f;
+                } else {
+                    f9 = 1.0f;
+                }
+                tc0Var.b(f9, f9, true);
+                return;
+            default:
+                super.onFocusChanged(z10, i10, rect);
+                return;
         }
-        if (Math.abs(this.f11172c - width) <= 0.1f && Math.abs(this.d - height) <= 0.1f && Math.abs(this.f11173e - f23) <= 0.1f && Math.abs(this.f11174f - f24) <= 0.1f && Math.abs(this.f11175g - f26) <= 0.1f && Math.abs(this.h - f27) <= 0.1f && Math.abs(this.f11176i - f19) <= 0.1f && Math.abs(this.f11177j - f21) <= 0.1f && Math.abs(this.f11178k - f22) <= 0.1f && Math.abs(this.f11179l - f20) <= 0.1f && Math.abs(this.f11180m - f16) <= 0.1f && Math.abs(this.f11181n - f17) <= 0.1f && Math.abs(this.f11182o - f18) <= 0.1f && this.f11183p == i9) {
-            return;
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f8978b) {
+            case 4:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append((CharSequence) getText());
+                yo yoVar = (yo) this.f8979c;
+                so soVar = yoVar.f44924f;
+                if (soVar != null && soVar.getTextView() != null && !TextUtils.isEmpty(yoVar.f44924f.getTextView().getText())) {
+                    sb2.append("\n");
+                    sb2.append(yoVar.f44924f.getTextView().getText());
+                }
+                accessibilityNodeInfo.setText(sb2);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
-        this.f11183p = i9;
-        float alpha = Color.alpha(i9) / 255.0f;
-        RuntimeShader runtimeShader = this.f11171b;
-        this.f11172c = width;
-        this.d = height;
-        runtimeShader.setFloatUniform("resolution", width, height);
-        RuntimeShader runtimeShader2 = this.f11171b;
-        this.f11173e = f23;
-        this.f11174f = f24;
-        runtimeShader2.setFloatUniform("center", f23, f24);
-        RuntimeShader runtimeShader3 = this.f11171b;
-        this.f11175g = f26;
-        this.h = f27;
-        runtimeShader3.setFloatUniform("size", f26, f27);
-        RuntimeShader runtimeShader4 = this.f11171b;
-        this.f11178k = f22;
-        this.f11177j = f21;
-        this.f11179l = f20;
-        this.f11176i = f19;
-        runtimeShader4.setFloatUniform("radius", f22, f21, f20, f19);
-        RuntimeShader runtimeShader5 = this.f11171b;
-        this.f11180m = f16;
-        runtimeShader5.setFloatUniform("thickness", f16);
-        RuntimeShader runtimeShader6 = this.f11171b;
-        this.f11181n = f17;
-        runtimeShader6.setFloatUniform("refract_intensity", f17);
-        RuntimeShader runtimeShader7 = this.f11171b;
-        this.f11182o = f18;
-        runtimeShader7.setFloatUniform("refract_index", f18);
-        this.f11171b.setFloatUniform("foreground_color_premultiplied", (Color.red(i9) / 255.0f) * alpha, (Color.green(i9) / 255.0f) * alpha, (Color.blue(i9) / 255.0f) * alpha, alpha);
-        this.f11170a.setRenderEffect(RenderEffect.createRuntimeShaderEffect(this.f11171b, "img"));
+    }
+
+    @Override
+    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        switch (this.f8978b) {
+            case 3:
+                w0 w0Var = (w0) this.f8979c;
+                if (i10 == 67 && w0Var.f23920e.length() == 0 && ((w0Var.h.getVisibility() == 0 && w0Var.h.length() > 0) || w0Var.p())) {
+                    if (w0Var.p()) {
+                        f0 f0Var = (f0) l1.i(1, w0Var.f23918c0);
+                        e5 e5Var = w0Var.D;
+                        if (e5Var != null) {
+                            e5Var.o(f0Var);
+                        }
+                        w0Var.C(f0Var);
+                        return true;
+                    }
+                    w0Var.f23936s.callOnClick();
+                    return true;
+                }
+                return super.onKeyDown(i10, keyEvent);
+            case 5:
+                x10 x10Var = (x10) this.f8979c;
+                if (i10 == 67 && x10Var.f34546r.length() == 0 && x10Var.d()) {
+                    if (!x10Var.d()) {
+                        return true;
+                    }
+                    f0 f0Var2 = (f0) l1.i(1, x10Var.B);
+                    w10 w10Var = x10Var.D;
+                    if (w10Var != null) {
+                        ((kx) w10Var).g(f0Var2);
+                    }
+                    x10Var.g(f0Var2);
+                    return true;
+                }
+                return super.onKeyDown(i10, keyEvent);
+            case 8:
+                q70 q70Var = (q70) this.f8979c;
+                s70 s70Var = q70Var.f41559f;
+                if (i10 == 67 && q70Var.d.length() == 0 && !s70Var.C.isEmpty()) {
+                    s70Var.f42297f.a((j30) l1.i(1, s70Var.C));
+                    s70Var.f42295c.e(!s70Var.C.isEmpty(), true);
+                    s70Var.c0();
+                    return true;
+                }
+                return super.onKeyDown(i10, keyEvent);
+            default:
+                return super.onKeyDown(i10, keyEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f8978b) {
+            case 3:
+                super.onMeasure(i10, i11);
+                setMeasuredDimension(AndroidUtilities.dp(3.0f) + Math.max(View.MeasureSpec.getSize(i10), getMeasuredWidth()), getMeasuredHeight());
+                return;
+            case 4:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 5:
+                super.onMeasure(i10, i11);
+                setPivotX(getPaddingLeft());
+                setPivotY(getMeasuredHeight() / 2.0f);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTextContextMenuItem(int i10) {
+        switch (this.f8978b) {
+            case 9:
+                if (i10 == 16908322 || i10 == 16908337) {
+                    ((fe0) this.f8979c).f38133y = true;
+                    postDelayed(new q00(this, 21), 1000L);
+                }
+                return super.onTextContextMenuItem(i10);
+            default:
+                return super.onTextContextMenuItem(i10);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f8978b) {
+            case 0:
+                k kVar = (k) this.f8979c;
+                j30 j30Var = kVar.f8997f;
+                if (j30Var != null) {
+                    j30Var.a();
+                    kVar.f8997f = null;
+                }
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    kVar.fullScroll(130);
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 1:
+                f fVar = ((d2) this.f8979c).d;
+                if (!fVar.isEnabled()) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                if (motionEvent.getAction() == 0) {
+                    fVar.requestFocus();
+                    AndroidUtilities.showKeyboard(fVar);
+                }
+                return super.onTouchEvent(motionEvent);
+            case 2:
+                b9 b9Var = (b9) this.f8979c;
+                j30 j30Var2 = b9Var.f17433e;
+                if (j30Var2 != null) {
+                    j30Var2.a();
+                    b9Var.f17433e = null;
+                }
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    b9Var.fullScroll(130);
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 3:
+                boolean onTouchEvent = super.onTouchEvent(motionEvent);
+                if (motionEvent.getAction() == 1 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return onTouchEvent;
+            case 4:
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+            default:
+                return super.onTouchEvent(motionEvent);
+            case 7:
+                if (!isEnabled()) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    ((um0) this.f8979c).getClass();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 10:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f8979c;
+                j30 j30Var3 = usersSelectActivity.L;
+                if (j30Var3 != null) {
+                    j30Var3.a();
+                    usersSelectActivity.L = null;
+                }
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

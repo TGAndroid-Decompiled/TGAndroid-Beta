@@ -3,19 +3,19 @@ package r0;
 import android.text.TextUtils;
 import android.view.View;
 public final class x extends p1.c {
-    public final int f46957e;
+    public final int f46871e;
 
-    public x(int i9, Class cls, int i10, int i11, int i12) {
-        this.f46957e = i12;
-        this.f45335a = i9;
+    public x(int i10, Class cls, int i11, int i12, int i13) {
+        this.f46871e = i13;
+        this.f45415a = i10;
         this.d = cls;
-        this.f45337c = i10;
-        this.f45336b = i11;
+        this.f45417c = i11;
+        this.f45416b = i12;
     }
 
     @Override
     public final Object b(View view) {
-        switch (this.f46957e) {
+        switch (this.f46871e) {
             case 0:
                 return Boolean.valueOf(e0.c(view));
             case 1:
@@ -27,7 +27,7 @@ public final class x extends p1.c {
 
     @Override
     public final void c(View view, Object obj) {
-        switch (this.f46957e) {
+        switch (this.f46871e) {
             case 0:
                 e0.f(view, ((Boolean) obj).booleanValue());
                 return;
@@ -46,7 +46,7 @@ public final class x extends p1.c {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f46957e) {
+        switch (this.f46871e) {
             case 0:
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj2;

@@ -1,33 +1,28 @@
 package org.telegram.ui.Components;
-public final class pm extends org.telegram.ui.rt0 {
-    public boolean f31690a;
-    public final int f31691b;
-    public final jn f31692c;
 
-    public pm(jn jnVar, int i9) {
-        this.f31692c = jnVar;
-        this.f31691b = i9;
+import android.animation.ValueAnimator;
+public final class pm implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31710a;
+    public final on f31711b;
+
+    public pm(on onVar, int i10) {
+        this.f31710a = i10;
+        this.f31711b = onVar;
     }
 
     @Override
-    public final void D() {
-        if (this.f31690a) {
-            this.f31692c.a0(this.f31691b);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31710a) {
+            case 0:
+                on onVar = this.f31711b;
+                onVar.getClass();
+                onVar.A.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                on onVar2 = this.f31711b;
+                onVar2.getClass();
+                onVar2.A.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-    }
-
-    @Override
-    public final void I() {
-        this.f31692c.d0(this.f31691b, null);
-    }
-
-    @Override
-    public final void V() {
-        this.f31690a = true;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
     }
 }

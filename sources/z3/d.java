@@ -1,68 +1,51 @@
 package z3;
 
-import e4.i;
-import g7.y8;
-import h3.t0;
-public final class d {
-    public static final d f50290a = new Object();
+import a4.k;
+import f5.d0;
+import o3.s;
+import o3.t;
+import o3.u;
+public final class d implements t {
+    public final k f50576a;
+    public final int f50577b;
+    public final long f50578c;
+    public final long d;
+    public final long f50579e;
 
-    public final y8 a(t0 t0Var) {
-        String str = t0Var.B;
-        if (str != null) {
-            char c10 = 65535;
-            switch (str.hashCode()) {
-                case -1354451219:
-                    if (str.equals("application/vnd.dvb.ait")) {
-                        c10 = 0;
-                        break;
-                    }
-                    break;
-                case -1348231605:
-                    if (str.equals("application/x-icy")) {
-                        c10 = 1;
-                        break;
-                    }
-                    break;
-                case -1248341703:
-                    if (str.equals("application/id3")) {
-                        c10 = 2;
-                        break;
-                    }
-                    break;
-                case 1154383568:
-                    if (str.equals("application/x-emsg")) {
-                        c10 = 3;
-                        break;
-                    }
-                    break;
-                case 1652648887:
-                    if (str.equals("application/x-scte35")) {
-                        c10 = 4;
-                        break;
-                    }
-                    break;
-            }
-            switch (c10) {
-                case 0:
-                    return new a4.b(0);
-                case 1:
-                    return new d4.a();
-                case 2:
-                    return new i(null);
-                case 3:
-                    return new a4.b(1);
-                case 4:
-                    return new g4.c();
-            }
-        }
-        throw new IllegalArgumentException(ta.b.d("Attempted to create decoder for unsupported MIME type: ", str));
+    public d(k kVar, int i10, long j10, long j11) {
+        this.f50576a = kVar;
+        this.f50577b = i10;
+        this.f50578c = j10;
+        long j12 = (j11 - j10) / kVar.f97c;
+        this.d = j12;
+        this.f50579e = d0.O(j12 * i10, 1000000L, kVar.f96b);
     }
 
-    public final boolean b(t0 t0Var) {
-        String str = t0Var.B;
-        if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
-            return false;
-        }
+    @Override
+    public final boolean c() {
         return true;
+    }
+
+    @Override
+    public final s g(long j10) {
+        k kVar = this.f50576a;
+        int i10 = this.f50577b;
+        long j11 = (kVar.f96b * j10) / (i10 * 1000000);
+        long j12 = this.d - 1;
+        long i11 = d0.i(j11, 0L, j12);
+        int i12 = kVar.f97c;
+        long j13 = this.f50578c;
+        long O = d0.O(i11 * i10, 1000000L, kVar.f96b);
+        u uVar = new u(O, (i12 * i11) + j13);
+        if (O < j10 && i11 != j12) {
+            long j14 = i11 + 1;
+            return new s(uVar, new u(d0.O(j14 * i10, 1000000L, kVar.f96b), (i12 * j14) + j13));
+        }
+        return new s(uVar, uVar);
+    }
+
+    @Override
+    public final long h() {
+        return this.f50579e;
     }
 }

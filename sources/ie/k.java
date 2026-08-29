@@ -1,36 +1,39 @@
 package ie;
 
-import f7.p8;
-public final class k extends p {
-    public final int f11116g;
-    public final String h;
-    public final String f11117i;
+import java.util.ArrayList;
+public final class k {
+    public StringBuilder d;
+    public String f8946e;
+    public String f8947f;
+    public char f8948g;
+    public StringBuilder h;
+    public int f8943a = 1;
+    public final StringBuilder f8944b = new StringBuilder();
+    public final ArrayList f8945c = new ArrayList();
+    public boolean f8949i = false;
 
-    public k(int i9, String str, String str2) {
-        this.f11116g = i9;
-        this.h = str;
-        this.f11117i = str2;
-    }
-
-    @Override
-    public final void a(p8 p8Var) {
-        switch (this.f11116g) {
-            case 0:
-                p8Var.i(this);
-                return;
-            default:
-                p8Var.s(this);
-                return;
+    public final void a() {
+        String str;
+        if (!this.f8949i) {
+            return;
         }
-    }
-
-    @Override
-    public final String f() {
-        switch (this.f11116g) {
-            case 0:
-                return "destination=" + this.h + ", title=" + this.f11117i;
-            default:
-                return "destination=" + this.h + ", title=" + this.f11117i;
+        String a2 = ke.a.a(this.f8947f);
+        StringBuilder sb2 = this.h;
+        if (sb2 != null) {
+            str = ke.a.a(sb2.toString());
+        } else {
+            str = null;
         }
+        String str2 = this.f8946e;
+        ?? pVar = new le.p();
+        pVar.f15202g = str2;
+        pVar.h = a2;
+        pVar.f15203i = str;
+        this.f8945c.add(pVar);
+        this.d = null;
+        this.f8949i = false;
+        this.f8946e = null;
+        this.f8947f = null;
+        this.h = null;
     }
 }

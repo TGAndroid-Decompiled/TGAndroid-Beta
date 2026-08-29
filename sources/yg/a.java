@@ -1,46 +1,36 @@
 package yg;
 
-import android.text.TextUtils;
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class a {
-    public final int f50199a;
-    public final TLRPC.Document f50200b;
-    public final String f50201c;
-    public final MessageObject d;
-    public final String f50202e;
-    public boolean f50203f;
-    public boolean f50204g;
-
-    public a(int i9, MessageObject messageObject, TLRPC.Document document, String str) {
-        this.f50199a = i9;
-        this.d = messageObject;
-        this.f50200b = document;
-        this.f50201c = str;
-        this.f50202e = TextUtils.isEmpty(str) ? FileLoader.getAttachFileName(document) : str;
-        a();
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.ll0;
+public abstract class a extends u51 {
+    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, c6 c6Var) {
+        super(context, i10, -1, false, callback2, callback5, null, c6Var, -1, 0);
+        this.f29729v2 = true;
+        setOverScrollMode(2);
     }
 
-    public final void a() {
-        boolean z10;
-        boolean z11 = false;
-        String str = this.f50201c;
-        if (str != null) {
-            z10 = new File(str).exists();
-        } else {
-            z10 = false;
+    public final void I1(View view) {
+        int i10;
+        if (view != null) {
+            float dp = AndroidUtilities.dp(92.0f);
+            float width = getWidth() - dp;
+            float x4 = view.getX();
+            float width2 = view.getWidth() + x4;
+            if (x4 < dp) {
+                i10 = (int) (x4 - dp);
+            } else if (width2 > width) {
+                i10 = (int) (width2 - width);
+            } else {
+                i10 = 0;
+            }
+            if (i10 != 0) {
+                AndroidUtilities.doOnLayout(this, new ll0(this, view, i10, 18));
+            }
         }
-        int i9 = this.f50199a;
-        if (!z10) {
-            z10 = FileLoader.getInstance(i9).getPathToAttach(this.f50200b).exists();
-        }
-        this.f50203f = z10;
-        String str2 = this.f50202e;
-        if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i9).isLoadingFile(str2)) {
-            z11 = true;
-        }
-        this.f50204g = z11;
     }
 }

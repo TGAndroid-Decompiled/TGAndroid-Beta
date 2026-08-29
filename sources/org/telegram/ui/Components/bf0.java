@@ -1,61 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class bf0 extends FrameLayout {
-    public final TextView f27194a;
-    public final TextView f27195b;
-    public final TextView f27196c;
-    public final boolean d;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+public final class bf0 {
+    public float f27066a = 0.0f;
+    public float f27067b = 25.0f;
+    public float f27068c = 50.0f;
+    public float d = 75.0f;
+    public float f27069e = 100.0f;
+    public float[] f27070f;
 
-    public bf0(Context context) {
-        super(context);
-        this.d = true;
-        setBackgroundColor(-15066598);
-        TextView textView = new TextView(context);
-        this.f27194a = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(-1);
-        textView.setGravity(17);
-        textView.setBackground(org.telegram.ui.ActionBar.f6.f0(-12763843, 0, -1));
-        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, g7.e6.e(-2, -1, 51));
-        TextView textView2 = new TextView(context);
-        this.f27195b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(-1);
-        textView2.setGravity(17);
-        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.f6.f0(-12763843, 0, -1));
-        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
-        textView2.setTypeface(AndroidUtilities.bold());
-        addView(textView2, g7.e6.e(-2, -1, 53));
-        TextView textView3 = new TextView(context);
-        this.f27196c = textView3;
-        textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 13.0f);
-        textView3.setTextColor(-1);
-        textView3.setGravity(17);
-        textView3.setBackgroundResource(R.drawable.photobadge);
-        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
-        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        addView(textView3, g7.e6.d(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
+    public final float[] a() {
+        float f9 = this.f27066a;
+        float f10 = this.f27069e;
+        int i10 = 5;
+        float[] fArr = {-0.001f, f9 / 100.0f, 0.0f, f9 / 100.0f, 0.25f, this.f27067b / 100.0f, 0.5f, this.f27068c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
+        int i11 = 100;
+        ArrayList arrayList = new ArrayList(100);
+        ArrayList arrayList2 = new ArrayList(100);
+        arrayList2.add(Float.valueOf(fArr[0]));
+        arrayList2.add(Float.valueOf(fArr[1]));
+        int i12 = 1;
+        while (i12 < i10) {
+            int i13 = (i12 - 1) * 2;
+            float f11 = fArr[i13];
+            float f12 = fArr[i13 + 1];
+            int i14 = i12 * 2;
+            float f13 = fArr[i14];
+            float f14 = fArr[i14 + 1];
+            int i15 = i12 + 1;
+            int i16 = i15 * 2;
+            float f15 = fArr[i16];
+            float f16 = fArr[i16 + 1];
+            int i17 = (i12 + 2) * 2;
+            float f17 = fArr[i17];
+            float f18 = fArr[i17 + 1];
+            int i18 = 1;
+            while (i18 < i11) {
+                float f19 = i18 * 0.01f;
+                float f20 = f19 * f19;
+                float f21 = f20 * f19;
+                float z10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + com.google.android.recaptcha.internal.a.z(f15, f11, f19, f13 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + com.google.android.recaptcha.internal.a.z(f16, f12, f19, f14 * 2.0f)) * 0.5f));
+                if (z10 > f11) {
+                    arrayList2.add(Float.valueOf(z10));
+                    arrayList2.add(Float.valueOf(max));
+                }
+                if ((i18 - 1) % 2 == 0) {
+                    arrayList.add(Float.valueOf(max));
+                }
+                i18++;
+                i11 = 100;
+            }
+            arrayList2.add(Float.valueOf(f15));
+            arrayList2.add(Float.valueOf(f16));
+            i12 = i15;
+            i10 = 5;
+            i11 = 100;
+        }
+        arrayList2.add(Float.valueOf(fArr[12]));
+        arrayList2.add(Float.valueOf(fArr[13]));
+        this.f27070f = new float[arrayList.size()];
+        int i19 = 0;
+        while (true) {
+            float[] fArr2 = this.f27070f;
+            if (i19 >= fArr2.length) {
+                break;
+            }
+            fArr2[i19] = ((Float) arrayList.get(i19)).floatValue();
+            i19++;
+        }
+        int size = arrayList2.size();
+        float[] fArr3 = new float[size];
+        for (int i20 = 0; i20 < size; i20++) {
+            fArr3[i20] = ((Float) arrayList2.get(i20)).floatValue();
+        }
+        return fArr3;
     }
 
-    public final void a() {
-        int i9;
-        this.f27196c.setVisibility(8);
-        if (this.d) {
-            i9 = -1;
-        } else {
-            i9 = -15095832;
+    public final boolean b() {
+        if (Math.abs(this.f27066a - 0.0f) < 1.0E-5d && Math.abs(this.f27067b - 25.0f) < 1.0E-5d && Math.abs(this.f27068c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f27069e - 100.0f) < 1.0E-5d) {
+            return true;
         }
-        this.f27195b.setTextColor(i9);
+        return false;
+    }
+
+    public final void c(InputSerializedData inputSerializedData, boolean z10) {
+        this.f27066a = inputSerializedData.readFloat(z10);
+        this.f27067b = inputSerializedData.readFloat(z10);
+        this.f27068c = inputSerializedData.readFloat(z10);
+        this.d = inputSerializedData.readFloat(z10);
+        this.f27069e = inputSerializedData.readFloat(z10);
+    }
+
+    public final void d(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeFloat(this.f27066a);
+        outputSerializedData.writeFloat(this.f27067b);
+        outputSerializedData.writeFloat(this.f27068c);
+        outputSerializedData.writeFloat(this.d);
+        outputSerializedData.writeFloat(this.f27069e);
     }
 }

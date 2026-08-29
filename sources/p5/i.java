@@ -1,38 +1,38 @@
 package p5;
 
+import ag.j2;
 import android.os.Parcel;
 import android.os.RemoteException;
-import android.util.Log;
-import java.util.ArrayList;
-import o5.o;
-public abstract class i {
-    public static final q5.b f45501a = new q5.b("MediaSessionUtils", null);
+import com.google.android.gms.internal.cast.o4;
+import com.google.android.gms.internal.cast.w6;
+public final class i {
+    public final c f45640a;
 
-    public static ArrayList a(o oVar) {
-        try {
-            Parcel O0 = oVar.O0(oVar.M0(), 3);
-            ArrayList createTypedArrayList = O0.createTypedArrayList(o5.d.CREATOR);
-            O0.recycle();
-            return createTypedArrayList;
-        } catch (RemoteException e10) {
-            Object[] objArr = {"getNotificationActions", o.class.getSimpleName()};
-            q5.b bVar = f45501a;
-            Log.e(bVar.f46009a, bVar.d("Unable to call %s on %s.", objArr), e10);
-            return null;
-        }
+    public i(c cVar) {
+        this.f45640a = cVar;
     }
 
-    public static int[] b(o oVar) {
-        try {
-            Parcel O0 = oVar.O0(oVar.M0(), 4);
-            int[] createIntArray = O0.createIntArray();
-            O0.recycle();
-            return createIntArray;
-        } catch (RemoteException e10) {
-            Object[] objArr = {"getCompactViewActionIndices", o.class.getSimpleName()};
-            q5.b bVar = f45501a;
-            Log.e(bVar.f46009a, bVar.d("Unable to call %s on %s.", objArr), e10);
-            return null;
+    public final void a() {
+        c cVar = this.f45640a;
+        q qVar = cVar.f45625e;
+        if (qVar != null) {
+            try {
+                q5.h hVar = cVar.f45629j;
+                if (hVar != null) {
+                    hVar.u();
+                }
+                o oVar = (o) qVar;
+                Parcel M0 = oVar.M0();
+                int i10 = com.google.android.gms.internal.cast.u.f4281a;
+                M0.writeInt(0);
+                oVar.Q0(M0, 1);
+            } catch (RemoteException e10) {
+                c.f45623m.a(e10, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
+            }
+            o4 o4Var = cVar.f45631l;
+            if (o4Var != null) {
+                a5.j.y(o4Var.f4220a, new w6(new j2(3, 4)));
+            }
         }
     }
 }

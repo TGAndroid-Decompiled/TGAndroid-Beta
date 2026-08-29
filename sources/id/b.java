@@ -1,15 +1,11 @@
 package id;
+public abstract class b {
+    public static final int f8875a = 0;
 
-import hd.b0;
-public final class b extends qc.a implements qc.f {
-    private volatile Object _preHandler;
-
-    public b() {
-        super(b0.f10412a);
-        this._preHandler = this;
-    }
-
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: id.b.c(java.lang.Throwable):void");
+    static {
+        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
+        for (int i10 = 0; i10 < 4; i10++) {
+            threadLocalArr[i10] = new ThreadLocal();
+        }
     }
 }

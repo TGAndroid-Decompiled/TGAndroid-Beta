@@ -1,19 +1,23 @@
 package l3;
 
-import d5.f0;
-public abstract class j implements k3.b {
-    public static final boolean f16640a;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public interface j {
+    public static final ByteBuffer f14106a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
 
-    static {
-        boolean z10;
-        if ("Amazon".equals(f0.f4351c)) {
-            String str = f0.d;
-            if ("AFTM".equals(str) || "AFTB".equals(str)) {
-                z10 = true;
-                f16640a = z10;
-            }
-        }
-        z10 = false;
-        f16640a = z10;
-    }
+    ByteBuffer a();
+
+    void b(ByteBuffer byteBuffer);
+
+    void c();
+
+    boolean d();
+
+    h e(h hVar);
+
+    void flush();
+
+    boolean isActive();
+
+    void reset();
 }

@@ -1,11 +1,7 @@
 package f7;
-public abstract class n {
-    public void b() {
-    }
 
-    public void c(androidx.biometric.t tVar) {
-    }
-
-    public void a(int i9, CharSequence charSequence) {
-    }
+import java.io.Closeable;
+import java.util.HashMap;
+public abstract class n implements Closeable {
+    public static final HashMap f6672a = new HashMap();
 }

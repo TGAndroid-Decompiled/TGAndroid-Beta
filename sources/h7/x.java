@@ -1,28 +1,30 @@
 package h7;
 
-import java.util.AbstractMap;
-public final class x extends s {
-    public final y f10169c;
-
-    public x(y yVar) {
-        this.f10169c = yVar;
-    }
-
-    @Override
-    public final Object get(int i9) {
-        y yVar = this.f10169c;
-        f7.b8.a(i9, yVar.f10181e);
-        int i10 = i9 + i9;
-        Object[] objArr = yVar.d;
-        Object obj = objArr[i10];
-        obj.getClass();
-        Object obj2 = objArr[i10 + 1];
-        obj2.getClass();
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
-    }
-
-    @Override
-    public final int size() {
-        return this.f10169c.f10181e;
+import android.content.Context;
+import android.util.Log;
+public abstract class x {
+    public static String a(Context context, int i10) {
+        if (context == null) {
+            return "";
+        }
+        if (i10 != 1) {
+            if (i10 != 7) {
+                switch (i10) {
+                    case 9:
+                        break;
+                    case 10:
+                        return context.getString(2131701350);
+                    case 11:
+                        return context.getString(2131701349);
+                    case 12:
+                        return context.getString(2131701347);
+                    default:
+                        Log.e("BiometricUtils", "Unknown error code: " + i10);
+                        return context.getString(2131701342);
+                }
+            }
+            return context.getString(2131701348);
+        }
+        return context.getString(2131701346);
     }
 }

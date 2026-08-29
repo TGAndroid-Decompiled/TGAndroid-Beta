@@ -1,103 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class zp implements TextWatcher {
-    public final int f35351a = 1;
-    public final int f35352b;
-    public final View f35353c;
+public abstract class zp extends Drawable {
+    public final Paint f35383a;
+    public long f35384b;
+    public final RectF f35385c;
+    public float d;
+    public boolean f35386e;
+    public int f35387f;
+    public int f35388g;
 
-    public zp(cq cqVar, int i9) {
-        this.f35353c = cqVar;
-        this.f35352b = i9;
+    public zp() {
+        this(2.0f);
+    }
+
+    public abstract int a();
+
+    @Override
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zp.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i9;
-        int i10 = this.f35351a;
-        int i11 = this.f35352b;
-        View view = this.f35353c;
-        boolean z10 = false;
-        switch (i10) {
-            case 0:
-                cq cqVar = (cq) view;
-                EditTextBoldCursor[] editTextBoldCursorArr = cqVar.A;
-                if (!cqVar.f27549r) {
-                    cqVar.f27549r = true;
-                    int i12 = 0;
-                    while (i12 < editable.length()) {
-                        char charAt = editable.charAt(i12);
-                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                            editable.replace(i12, i12 + 1, "");
-                            i12--;
-                        }
-                        i12++;
-                    }
-                    if (editable.length() == 0) {
-                        cqVar.f27549r = false;
-                        return;
-                    }
-                    try {
-                        i9 = Integer.parseInt(editTextBoldCursorArr[i11].getText().toString(), 16) | (-16777216);
-                    } catch (Exception unused) {
-                        i9 = -1;
-                    }
-                    cqVar.setColorInner(i9);
-                    int color = cqVar.getColor();
-                    if (editable.length() == 6) {
-                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
-                        editTextBoldCursorArr[i11].setSelection(editable.length());
-                    }
-                    cqVar.v[cqVar.O].a(color);
-                    cqVar.f27543a.n0(color, cqVar.O, true);
-                    cqVar.f27549r = false;
-                    return;
-                }
-                return;
-            default:
-                NumberTextView numberTextView = (NumberTextView) view;
-                int codePointCount = i11 - Character.codePointCount(editable, 0, editable.length());
-                if (codePointCount < 30) {
-                    if (numberTextView.getVisibility() == 0) {
-                        z10 = true;
-                    }
-                    numberTextView.a(codePointCount, z10);
-                    AndroidUtilities.updateViewVisibilityAnimated(numberTextView, true);
-                    return;
-                }
-                AndroidUtilities.updateViewVisibilityAnimated(numberTextView, false);
-                return;
-        }
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        int i12 = this.f35351a;
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        int i12 = this.f35351a;
+    public final int getOpacity() {
+        return -2;
     }
 
-    public zp(int i9, NumberTextView numberTextView) {
-        this.f35352b = i9;
-        this.f35353c = numberTextView;
+    public zp(float f9) {
+        Paint paint = new Paint(1);
+        this.f35383a = paint;
+        new DecelerateInterpolator();
+        this.f35385c = new RectF();
+        this.f35388g = 255;
+        paint.setColor(-1);
+        paint.setStrokeWidth(AndroidUtilities.dp(f9));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        this.f35387f = AndroidUtilities.dp(8.0f);
     }
 
-    private final void a(int i9, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void setAlpha(int i10) {
     }
 
-    private final void b(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i9, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

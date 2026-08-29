@@ -1,36 +1,24 @@
 package org.telegram.messenger;
 public final class ab implements Runnable {
-    public final int f19720a;
-    public final MessagesController f19721b;
-    public final Runnable f19722c;
-    public final long d;
+    public final int f19695a;
+    public final q0.a f19696b;
+    public final int f19697c;
 
-    public ab(long j10, Runnable runnable, MessagesController messagesController) {
-        this.f19720a = 1;
-        this.f19721b = messagesController;
-        this.f19722c = runnable;
-        this.d = j10;
+    public ab(q0.a aVar, int i10, int i11) {
+        this.f19695a = i11;
+        this.f19696b = aVar;
+        this.f19697c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19720a) {
+        switch (this.f19695a) {
             case 0:
-                MessagesController.Z4(this.d, this.f19722c, this.f19721b);
-                return;
-            case 1:
-                MessagesController.k3(this.d, this.f19722c, this.f19721b);
+                MessagesController.lambda$getNextReactionMentionInternal$1(this.f19696b, this.f19697c);
                 return;
             default:
-                MessagesController.p4(this.d, this.f19722c, this.f19721b);
+                MessagesController.lambda$getNextReactionMentionInternal$2(this.f19696b, this.f19697c);
                 return;
         }
-    }
-
-    public ab(MessagesController messagesController, long j10, Runnable runnable, int i9) {
-        this.f19720a = i9;
-        this.f19721b = messagesController;
-        this.d = j10;
-        this.f19722c = runnable;
     }
 }

@@ -1,37 +1,44 @@
 package xe;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class a extends FrameLayout {
-    public final Activity f49117a;
-    public int f49118b;
-    public int f49119c;
-    public boolean d;
+import com.google.firebase.messaging.d;
+import java.io.InputStream;
+public final class a extends d {
+    public final long d;
 
-    public a(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f49117a = launchActivity;
+    public a(InputStream inputStream, long j10, long j11) {
+        super(inputStream, j10);
+        this.d = j10 + j11;
+    }
+
+    public final long e() {
+        return this.d - this.f5149b;
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        boolean z10;
-        int size = View.MeasureSpec.getSize(i9);
-        int size2 = View.MeasureSpec.getSize(i10);
-        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.f49117a);
-        if (!isInPictureInPictureMode) {
-            this.f49118b = size;
-            this.f49119c = size2;
+    public final int read() {
+        if (this.f5149b == this.d) {
+            return -1;
         }
-        if (isInPictureInPictureMode && size < this.f49118b && size2 < this.f49119c) {
-            z10 = true;
-        } else {
-            z10 = false;
+        return super.read();
+    }
+
+    @Override
+    public final long skip(long j10) {
+        long j11 = this.f5149b;
+        long j12 = this.d;
+        if (j11 + j10 > j12) {
+            j10 = (int) (j12 - j11);
         }
-        this.d = z10;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        return super.skip(j10);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        long j10 = this.f5149b;
+        long j11 = this.d;
+        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
+            return super.read(bArr, i10, i11);
+        }
+        return -1;
     }
 }

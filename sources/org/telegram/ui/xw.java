@@ -1,19 +1,22 @@
 package org.telegram.ui;
-public final class xw extends f2.m0 {
-    public final cy I;
-    public final yw J;
 
-    public xw(yw ywVar, cy cyVar) {
-        this.J = ywVar;
-        this.I = cyVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class xw extends lh.p {
+    public final fy K0;
+
+    public xw(fy fyVar, Context context, fy fyVar2, int i10, int i11) {
+        super(context, fyVar2, i10, i11);
+        this.K0 = fyVar;
     }
 
     @Override
-    public final int R0() {
-        cy cyVar = this.I;
-        if (cyVar.f37357s == 0 && this.J.S.Z3() && cyVar.v == 2) {
-            return 1;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.l lVar;
+        lVar = ((org.telegram.ui.ActionBar.o2) this.K0).actionBar;
+        if (!lVar.s() && super.dispatchTouchEvent(motionEvent)) {
+            return true;
         }
-        return 0;
+        return false;
     }
 }

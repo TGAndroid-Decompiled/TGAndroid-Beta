@@ -2,74 +2,63 @@ package ih;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.animation.LinearInterpolator;
-import android.widget.LinearLayout;
-import gh.bb;
-import org.telegram.messenger.AndroidUtilities;
-public final class q0 extends LinearLayout {
-    public bb f11990a;
-    public final Path f11991b;
-    public final Paint f11992c;
-    public long d;
-    public final org.telegram.ui.Components.y5 f11993e;
-    public final t0 f11994f;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.ui.Components.hv0;
+import org.telegram.ui.Components.yb0;
+public final class q0 extends hv0 {
+    public final v0 f9333s0;
 
-    public q0(t0 t0Var, Context context) {
-        super(context);
-        this.f11994f = t0Var;
-        this.f11991b = new Path();
-        this.f11992c = new Paint(1);
-        this.d = 0L;
-        this.f11993e = new org.telegram.ui.Components.y5(this, 0L, 1000L, new LinearInterpolator());
+    public q0(v0 v0Var, Context context) {
+        super(context, null);
+        this.f9333s0 = v0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        Path path = this.f11991b;
-        path.rewind();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        t0 t0Var = this.f11994f;
-        v0 v0Var = t0Var.f12146f;
-        if (v0Var != null) {
-            int b10 = u.b(v0Var.f12220a, v0Var.b(), 3);
-            v0 v0Var2 = t0Var.f12146f;
-            int b11 = u.b(v0Var2.f12220a, v0Var2.b(), 5);
-            canvas.drawColor(b10);
-            long j10 = this.d;
-            v0 v0Var3 = t0Var.f12146f;
-            long j11 = v0Var3.f12221b;
-            org.telegram.ui.Components.y5 y5Var = this.f11993e;
-            if (j10 != j11) {
-                y5Var.d(v0Var3.a(), true);
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final void U(Drawable drawable) {
+        if (drawable instanceof yb0) {
+            ((yb0) drawable).p();
+        }
+        v0 v0Var = this.f9333s0;
+        v0Var.d.f46676a = v0Var.f9425c.c(drawable);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view == this.H) {
+            v0 v0Var = this.f9333s0;
+            qg.a aVar = v0Var.d.f46676a;
+            if (aVar instanceof qg.b) {
+                ((qg.b) aVar).b(getWidth(), getHeight());
             }
-            float d = y5Var.d(t0Var.f12146f.a(), false);
-            this.d = t0Var.f12146f.f12221b;
-            Paint paint = this.f11992c;
-            paint.setColor(b11);
-            paint.setAlpha(127);
-            canvas2 = canvas;
-            canvas2.drawRect(getWidth() * d, 0.0f, getWidth(), getHeight(), paint);
-        } else {
-            canvas2 = canvas;
+            v0Var.d.E0(canvas, 0.0f, 0.0f, getWidth(), getHeight());
+            return false;
         }
-        if (this.f11990a == null) {
-            this.f11990a = new bb(1, 250);
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final Drawable getNewDrawable() {
+        Drawable drawable = this.f9333s0.f9433y;
+        if (drawable != null) {
+            return drawable;
         }
-        this.f11990a.f(0, 0, getWidth(), getHeight());
-        bb bbVar = this.f11990a;
-        bbVar.h = 30.0f;
-        bbVar.d();
-        this.f11990a.b(canvas2, -1, 0.85f);
-        invalidate();
-        canvas2.restore();
-        super.dispatchDraw(canvas2);
+        return super.getNewDrawable();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f9333s0.o();
     }
 }

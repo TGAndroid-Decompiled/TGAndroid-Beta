@@ -1,64 +1,52 @@
 package qa;
 
-import g7.t6;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public final class b extends t6 {
-    public final Method f46120a = Class.class.getMethod("isRecord", null);
-    public final Method f46121b = Class.class.getMethod("getRecordComponents", null);
-    public final Method f46122c;
-    public final Method d;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class b extends na.u {
+    public static final a f46518c = new a();
+    public final Class f46519a;
+    public final o f46520b;
 
-    public b() {
-        Class<?> cls = Class.forName("java.lang.reflect.RecordComponent");
-        this.f46122c = cls.getMethod("getName", null);
-        this.d = cls.getMethod("getType", null);
+    public b(na.g gVar, na.u uVar, Class cls) {
+        this.f46520b = new o(gVar, uVar, cls);
+        this.f46519a = cls;
     }
 
     @Override
-    public final Method a(Class cls, Field field) {
-        try {
-            return cls.getMethod(field.getName(), null);
-        } catch (ReflectiveOperationException e10) {
-            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e10);
+    public final Object read(va.a aVar) {
+        if (aVar.x() == 9) {
+            aVar.t();
+            return null;
         }
-    }
-
-    @Override
-    public final Constructor b(Class cls) {
-        try {
-            Object[] objArr = (Object[]) this.f46121b.invoke(cls, null);
-            Class<?>[] clsArr = new Class[objArr.length];
-            for (int i9 = 0; i9 < objArr.length; i9++) {
-                clsArr[i9] = (Class) this.d.invoke(objArr[i9], null);
+        ArrayList arrayList = new ArrayList();
+        aVar.a();
+        while (aVar.k()) {
+            arrayList.add(((na.u) this.f46520b.f46559c).read(aVar));
+        }
+        aVar.e();
+        int size = arrayList.size();
+        Class cls = this.f46519a;
+        if (cls.isPrimitive()) {
+            Object newInstance = Array.newInstance(cls, size);
+            for (int i10 = 0; i10 < size; i10++) {
+                Array.set(newInstance, i10, arrayList.get(i10));
             }
-            return cls.getDeclaredConstructor(clsArr);
-        } catch (ReflectiveOperationException e10) {
-            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e10);
+            return newInstance;
         }
+        return arrayList.toArray((Object[]) Array.newInstance(cls, size));
     }
 
     @Override
-    public final String[] c(Class cls) {
-        try {
-            Object[] objArr = (Object[]) this.f46121b.invoke(cls, null);
-            String[] strArr = new String[objArr.length];
-            for (int i9 = 0; i9 < objArr.length; i9++) {
-                strArr[i9] = (String) this.f46122c.invoke(objArr[i9], null);
-            }
-            return strArr;
-        } catch (ReflectiveOperationException e10) {
-            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e10);
+    public final void write(va.b bVar, Object obj) {
+        if (obj == null) {
+            bVar.i();
+            return;
         }
-    }
-
-    @Override
-    public final boolean d(Class cls) {
-        try {
-            return ((Boolean) this.f46120a.invoke(cls, null)).booleanValue();
-        } catch (ReflectiveOperationException e10) {
-            throw new RuntimeException("Unexpected ReflectiveOperationException occurred (Gson 2.11.0). To support Java records, reflection is utilized to read out information about records. All these invocations happens after it is established that records exist in the JVM. This exception is unexpected behavior.", e10);
+        bVar.b();
+        int length = Array.getLength(obj);
+        for (int i10 = 0; i10 < length; i10++) {
+            this.f46520b.write(bVar, Array.get(obj, i10));
         }
+        bVar.e();
     }
 }

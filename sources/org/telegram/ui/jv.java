@@ -1,161 +1,202 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class jv implements org.telegram.ui.Components.vp0, org.telegram.ui.Components.nk0, org.telegram.ui.Components.ok0, w00, org.telegram.ui.ActionBar.b2, r0.o, org.telegram.ui.Components.ck0 {
-    public final int f39633a;
-    public final dy f39634b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.PhotoViewer;
+public final class jv implements View.OnClickListener {
+    public final int f39691a;
+    public final fy f39692b;
 
-    public jv(dy dyVar, int i9) {
-        this.f39633a = i9;
-        this.f39634b = dyVar;
+    public jv(fy fyVar, int i10) {
+        this.f39691a = i10;
+        this.f39692b = fyVar;
     }
 
     @Override
-    public r0.m1 L0(View view, r0.m1 m1Var) {
-        UndoView[] undoViewArr;
-        dy dyVar = this.f39634b;
-        dyVar.v.i(m1Var);
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        dyVar.f37637b4 = defaultWindowInsets.f10849b;
-        dyVar.f37643c4 = defaultWindowInsets.d;
-        int i9 = m1Var.f46929a.f(8).d;
-        if (dyVar.f37648d4 != i9) {
-            dyVar.f37648d4 = i9;
-            dyVar.fragmentView.requestLayout();
-        }
-        dyVar.B0.setPadding(0, dyVar.f37637b4, 0, 0);
-        dyVar.X4();
-        for (UndoView undoView : dyVar.f37731u0) {
-            if (undoView != null) {
-                int i10 = dyVar.f37643c4 + dyVar.f37654e4;
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) undoView.getLayoutParams();
-                if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i10) {
-                    marginLayoutParams.bottomMargin = i10;
-                    undoView.setLayoutParams(marginLayoutParams);
-                }
-            }
-        }
-        yw ywVar = dyVar.B3;
-        if (ywVar != null) {
-            r0.j0.b(ywVar, m1Var);
-        }
-        return r0.m1.f46928b;
-    }
-
-    @Override
-    public boolean a(int i9, View view) {
-        dy.m0(this.f39634b, i9);
-        return false;
-    }
-
-    @Override
-    public void b() {
-        dy dyVar = this.f39634b;
-        dyVar.M = true;
-        dyVar.fragmentView.invalidate();
-    }
-
-    @Override
-    public void c(float r7, float r8, int r9, android.view.View r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jv.c(float, float, int, android.view.View):void");
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        switch (this.f39633a) {
-            case 6:
-                dy.e0(this.f39634b);
-                return;
-            case 7:
-            default:
-                dy dyVar = this.f39634b;
-                dyVar.getMessagesController().hidePromoDialog();
-                dyVar.b4(false);
-                return;
-            case 8:
-                dy dyVar2 = this.f39634b;
-                dyVar2.getClass();
-                Intent permissionManagerIntent = XiaomiUtilities.getPermissionManagerIntent();
-                if (permissionManagerIntent != null) {
-                    try {
-                        try {
-                            dyVar2.getParentActivity().startActivity(permissionManagerIntent);
-                            return;
-                        } catch (Exception unused) {
-                            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                            dyVar2.getParentActivity().startActivity(intent);
-                            return;
-                        }
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
+    public final void onClick(View view) {
+        ArrayList arrayList;
+        CharSequence charSequence;
+        xw xwVar;
+        xw xwVar2;
+        switch (this.f39691a) {
+            case 0:
+                fy fyVar = this.f39692b;
+                if (fyVar.a4() && (arrayList = fyVar.f38383z2) != null && !arrayList.isEmpty() && fyVar.getParentActivity() != null) {
+                    int i10 = 0;
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) fyVar.f38383z2.get(0);
+                    qw qwVar = fyVar.f38373x1;
+                    if (qwVar != null) {
+                        charSequence = qwVar.getFieldText();
+                    } else {
+                        charSequence = photoEntry.caption;
+                    }
+                    ArrayList arrayList2 = fyVar.f38383z2;
+                    int size = arrayList2.size();
+                    while (i10 < size) {
+                        Object obj = arrayList2.get(i10);
+                        i10++;
+                        ((MediaController.PhotoEntry) obj).caption = charSequence;
+                    }
+                    PhotoViewer.t1().K2(null, fyVar, fyVar.getResourceProvider());
+                    PhotoViewer.t1().f35753l7 = true;
+                    PhotoViewer.t1().f35761m7 = charSequence;
+                    ArrayList arrayList3 = new ArrayList(fyVar.f38383z2);
+                    boolean[] zArr = new boolean[fyVar.f38383z2.size()];
+                    Arrays.fill(zArr, true);
+                    PhotoViewer.t1().f2(arrayList3, 0, 0, false, new lx(fyVar, zArr), null);
+                    PhotoViewer t12 = PhotoViewer.t1();
+                    t12.f35660b4 = true;
+                    CheckBox checkBox = t12.J0;
+                    if (checkBox != null) {
+                        checkBox.setVisibility(8);
+                    }
+                    PhotoViewer.CounterView counterView = t12.K0;
+                    if (counterView != null) {
+                        counterView.setVisibility(8);
                         return;
                     }
+                    return;
                 }
                 return;
-            case 9:
-                dy dyVar3 = this.f39634b;
-                dyVar3.getClass();
-                Intent intent2 = new Intent("android.settings.MANAGE_APP_USE_FULL_SCREEN_INTENT");
-                intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                try {
-                    dyVar3.getParentActivity().startActivity(intent2);
+            case 1:
+                fy fyVar2 = this.f39692b;
+                fyVar2.O4(true, false, true, false);
+                fyVar2.U.b(true);
+                AndroidUtilities.runOnUIThread(new ev(fyVar2, 3), 100L);
+                return;
+            case 2:
+                fy fyVar3 = this.f39692b;
+                if (fyVar3.C0 && (xwVar = fyVar3.A0) != null && !xwVar.g()) {
+                    fyVar3.x4(true, true);
                     return;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
+                } else {
+                    fyVar3.P4();
                     return;
                 }
-        }
-    }
-
-    @Override
-    public boolean f1(View view) {
-        switch (this.f39633a) {
-            case 1:
-                return false;
-            case 2:
-                return false;
+            case 3:
+                fy fyVar4 = this.f39692b;
+                if (fyVar4.C0 && (xwVar2 = fyVar4.A0) != null && !xwVar2.g()) {
+                    fyVar4.x4(true, true);
+                    return;
+                } else {
+                    fyVar4.P4();
+                    return;
+                }
+            case 4:
+                fy fyVar5 = this.f39692b;
+                fyVar5.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("community_id", fyVar5.T2);
+                fyVar5.presentFragment(new qh.q(bundle));
+                return;
+            case 5:
+                fy fyVar6 = this.f39692b;
+                ArrayList arrayList4 = fyVar6.E2;
+                if (fyVar6.f38379y2 != null && !arrayList4.isEmpty()) {
+                    ArrayList arrayList5 = new ArrayList();
+                    for (int i11 = 0; i11 < arrayList4.size(); i11++) {
+                        arrayList5.add(MessagesStorage.TopicKey.of(((Long) arrayList4.get(i11)).longValue(), 0L));
+                    }
+                    fyVar6.f38379y2.v(fyVar6, arrayList5, fyVar6.f38373x1.getFieldText(), false, fyVar6.F2, fyVar6.G2, fyVar6.H2, null);
+                    return;
+                }
+                return;
+            case 6:
+                this.f39692b.b4(true);
+                return;
+            case 7:
+                this.f39692b.finishPreviewFragment();
+                return;
+            case 8:
+                fy fyVar7 = this.f39692b;
+                fyVar7.f38362v0.setIsEditing(false);
+                fyVar7.I4(false);
+                return;
+            case 9:
+                fy fyVar8 = this.f39692b;
+                fyVar8.getClass();
+                fyVar8.showDialog(new cg.p1((org.telegram.ui.ActionBar.o2) fyVar8, 2, true));
+                return;
+            case 10:
+                fy fyVar9 = this.f39692b;
+                fyVar9.getContactsController().loadGlobalPrivacySetting();
+                fyVar9.K4();
+                return;
+            case 11:
+                this.f39692b.p4(view);
+                return;
+            case 12:
+                fy.s0(this.f39692b);
+                return;
+            case 13:
+                fy.J0(this.f39692b);
+                return;
+            case 14:
+                fy.u0(this.f39692b);
+                return;
+            case 15:
+                fy fyVar10 = this.f39692b;
+                fyVar10.showDialog(org.telegram.ui.Components.c5.m(fyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new mv(fyVar10, 1), new ev(fyVar10, 17), false, false, fyVar10.getResourceProvider()).f22729a);
+                return;
+            case 16:
+                fy.C0(this.f39692b);
+                return;
+            case 17:
+                fy.z0(this.f39692b);
+                return;
+            case 18:
+                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment.f35915f0 = true;
+                fy fyVar11 = this.f39692b;
+                fyVar11.presentFragment(premiumPreviewFragment);
+                AndroidUtilities.runOnUIThread(new ev(fyVar11, 21), 250L);
+                return;
+            case 19:
+                fy.Z(this.f39692b);
+                return;
+            case 20:
+                PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment2.f35915f0 = true;
+                fy fyVar12 = this.f39692b;
+                fyVar12.presentFragment(premiumPreviewFragment2);
+                AndroidUtilities.runOnUIThread(new ev(fyVar12, 15), 250L);
+                return;
+            case 21:
+                x6 x6Var = new x6();
+                fy fyVar13 = this.f39692b;
+                fyVar13.presentFragment(x6Var);
+                AndroidUtilities.runOnUIThread(new vv(fyVar13, 10), 250L);
+                return;
+            case 22:
+                fy.D0(this.f39692b);
+                return;
+            case 23:
+                fy.Y(this.f39692b);
+                return;
+            case 24:
+                fy.l0(this.f39692b);
+                return;
+            case 25:
+                fy fyVar14 = this.f39692b;
+                ye.d.s(fyVar14.getParentActivity(), fyVar14.getMessagesController().premiumManageSubscriptionUrl);
+                return;
+            case 26:
+                fy.k0(this.f39692b);
+                return;
+            case 27:
+                fy.y0(this.f39692b);
+                return;
             default:
-                return false;
+                fy.X(this.f39692b);
+                return;
         }
-    }
-
-    @Override
-    public void g0(View view, float f10, float f11) {
-        int i9 = this.f39633a;
-    }
-
-    public void h(int i9) {
-        ow owVar = this.f39634b.f37746x1;
-        if (owVar == null) {
-            return;
-        }
-        if (i9 == 0) {
-            owVar.p0(true);
-        } else {
-            owVar.x1(true, false);
-        }
-    }
-
-    public void i(boolean z10, ArrayList arrayList, ArrayList arrayList2, boolean z11) {
-        this.f39634b.W4(z10, arrayList, arrayList2, z11, true);
-    }
-
-    private final void d(View view, float f10, float f11) {
-    }
-
-    private final void e(View view, float f10, float f11) {
-    }
-
-    private final void g(View view, float f10, float f11) {
     }
 }

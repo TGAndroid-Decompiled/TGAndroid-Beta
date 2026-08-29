@@ -1,11 +1,18 @@
 package b7;
 
-import java.util.concurrent.Executor;
-public final class c implements Executor {
-    public static final c f1554a = new Object();
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class c {
+    public static final int f1941a = 0;
 
-    @Override
-    public final void execute(Runnable runnable) {
-        runnable.run();
+    static {
+        c.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
+        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

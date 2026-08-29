@@ -2,37 +2,37 @@ package w1;
 
 import a0.l;
 import androidx.lifecycle.p0;
-import c2.t;
-import v9.d;
+import c2.u;
+import m5.d;
 public class b extends p0 {
-    public static final d f48428f = new d(25);
+    public static final ya.a f49619f = new ya.a(23);
     public final l d = new l();
-    public boolean f48429e = false;
+    public boolean f49620e = false;
 
     @Override
     public final void b() {
         l lVar = this.d;
-        int i9 = lVar.f31c;
-        for (int i10 = 0; i10 < i9; i10++) {
-            a aVar = (a) lVar.f30b[i10];
-            k5.d dVar = aVar.f48425l;
+        int i10 = lVar.f31c;
+        for (int i11 = 0; i11 < i10; i11++) {
+            a aVar = (a) lVar.f30b[i11];
+            d dVar = aVar.f49616l;
             dVar.a();
-            dVar.f14647c = true;
-            t tVar = aVar.f48427n;
-            if (tVar != null) {
-                aVar.i(tVar);
+            dVar.f16868c = true;
+            u uVar = aVar.f49618n;
+            if (uVar != null) {
+                aVar.i(uVar);
             }
-            a aVar2 = dVar.f14645a;
+            a aVar2 = dVar.f16866a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f14645a = null;
-                    if (tVar != null) {
-                        boolean z10 = tVar.f2233b;
+                    dVar.f16866a = null;
+                    if (uVar != null) {
+                        boolean z10 = uVar.f2911b;
                     }
                     dVar.d = true;
-                    dVar.f14646b = false;
-                    dVar.f14647c = false;
-                    dVar.f14648e = false;
+                    dVar.f16867b = false;
+                    dVar.f16868c = false;
+                    dVar.f16869e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");
                 }
@@ -40,10 +40,10 @@ public class b extends p0 {
                 throw new IllegalStateException("No listener register");
             }
         }
-        int i11 = lVar.f31c;
+        int i12 = lVar.f31c;
         Object[] objArr = lVar.f30b;
-        for (int i12 = 0; i12 < i11; i12++) {
-            objArr[i12] = null;
+        for (int i13 = 0; i13 < i12; i13++) {
+            objArr[i13] = null;
         }
         lVar.f31c = 0;
     }

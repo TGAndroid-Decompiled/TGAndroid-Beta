@@ -9,50 +9,50 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class w21 implements View.OnClickListener {
-    public final int f43640a;
-    public final Object f43641b;
+    public final int f43828a;
+    public final Object f43829b;
 
-    public w21(Object obj, int i9) {
-        this.f43640a = i9;
-        this.f43641b = obj;
+    public w21(Object obj, int i10) {
+        this.f43828a = i10;
+        this.f43829b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        float f10;
-        switch (this.f43640a) {
+        float f9;
+        switch (this.f43828a) {
             case 0:
-                u21 u21Var = (u21) ((bh.g) this.f43641b).f2029e;
+                u21 u21Var = (u21) ((bg.u1) this.f43829b).f2545e;
                 if (u21Var != null) {
                     u21Var.run();
                     return;
                 }
                 return;
             case 1:
-                ((d31) this.f43641b).dismiss();
+                ((d31) this.f43829b).dismiss();
                 return;
             case 2:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f43641b;
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f43829b;
                 if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f36107a);
-                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f36109c;
+                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f36172a);
+                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f36174c;
                     saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f36107a, saveGalleryExceptions);
+                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f36172a, saveGalleryExceptions);
                 }
                 saveToGallerySettingsActivity.finishFragment();
                 return;
             case 3:
-                ((n31) this.f43641b).dismiss();
+                ((o31) this.f43829b).dismiss();
                 return;
             case 4:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f43641b;
-                MessageObject messageObject = secretMediaViewer.f36125d0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f43829b;
+                MessageObject messageObject = secretMediaViewer.f36190d0;
                 if (messageObject != null) {
                     TLRPC.Message message = messageObject.messageOwner;
                     if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        kh.x3 x3Var = secretMediaViewer.f36154r;
-                        if (x3Var.R) {
-                            x3Var.e(true);
+                        nh.t3 t3Var = secretMediaViewer.f36219r;
+                        if (t3Var.R) {
+                            t3Var.e(true);
                             return;
                         } else {
                             secretMediaViewer.l();
@@ -63,59 +63,59 @@ public final class w21 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                l61 l61Var = (l61) this.f43641b;
-                if (l61Var.W instanceof TLRPC.User) {
-                    kh.d dVar = l61Var.f40067d0;
+                n61 n61Var = (n61) this.f43829b;
+                if (n61Var.W instanceof TLRPC.User) {
+                    nh.d dVar = n61Var.f40729d0;
                     if (!dVar.J) {
                         dVar.setLoading(true);
-                        l61Var.S((TLRPC.User) l61Var.W, null, null);
+                        n61Var.T((TLRPC.User) n61Var.W, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 6:
-                l71.a((l71) this.f43641b);
+                o71.a((o71) this.f43829b);
                 return;
             case 7:
-                ((dd1) this.f43641b).c(true);
+                ((fd1) this.f43829b).c(true);
                 return;
             case 8:
-                ((dd1) ((bg.x) this.f43641b).f1991c).c(true);
+                ((fd1) ((eg.v) this.f43829b).f6146c).c(true);
                 return;
             case 9:
-                kd1 kd1Var = (kd1) this.f43641b;
-                ArrayList arrayList = kd1Var.f39812f;
-                HashSet hashSet = kd1Var.f39816w;
+                md1 md1Var = (md1) this.f43829b;
+                ArrayList arrayList = md1Var.f40533f;
+                HashSet hashSet = md1Var.f40537w;
                 if (!hashSet.isEmpty()) {
-                    TLRPC.User user = kd1Var.getMessagesController().getUser(Long.valueOf(kd1Var.getUserConfig().getClientUserId()));
+                    TLRPC.User user = md1Var.getMessagesController().getUser(Long.valueOf(md1Var.getUserConfig().getClientUserId()));
                     ArrayList arrayList2 = new ArrayList();
-                    for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i9)).f22380id))) {
-                            arrayList2.add((TLRPC.Chat) arrayList.get(i9));
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i10)).f22392id))) {
+                            arrayList2.add((TLRPC.Chat) arrayList.get(i10));
                         }
                     }
-                    for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                        TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i10);
-                        kd1Var.getMessagesController().putChat(chat, false);
-                        kd1Var.getMessagesController().deleteParticipantFromChat(chat.f22380id, user);
+                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                        TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
+                        md1Var.getMessagesController().putChat(chat, false);
+                        md1Var.getMessagesController().deleteParticipantFromChat(chat.f22392id, user);
                     }
-                    kd1Var.finishFragment();
+                    md1Var.finishFragment();
                     return;
                 }
                 return;
             default:
-                fi1 fi1Var = (fi1) this.f43641b;
-                org.telegram.ui.Cells.z1 z1Var = fi1Var.f38298a;
-                z1Var.c(!z1Var.b(), true);
-                fi1Var.f38300c.setEnabled(fi1Var.f38298a.b());
-                ViewPropertyAnimator animate = fi1Var.f38300c.animate();
-                if (fi1Var.f38298a.b()) {
-                    f10 = 1.0f;
+                gi1 gi1Var = (gi1) this.f43829b;
+                org.telegram.ui.Cells.y1 y1Var = gi1Var.f38597a;
+                y1Var.c(!y1Var.b(), true);
+                gi1Var.f38599c.setEnabled(gi1Var.f38597a.b());
+                ViewPropertyAnimator animate = gi1Var.f38599c.animate();
+                if (gi1Var.f38597a.b()) {
+                    f9 = 1.0f;
                 } else {
-                    f10 = 0.5f;
+                    f9 = 0.5f;
                 }
-                animate.alpha(f10).start();
+                animate.alpha(f9).start();
                 return;
         }
     }

@@ -1,59 +1,64 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class v8 extends f2.d1 {
-    public boolean f43402a;
-    public final i9 f43403b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.FragmentContextView;
+public final class v8 extends FragmentContextView {
+    public final int J0;
+    public final NotificationCenter.NotificationCenterDelegate K0;
 
-    public v8(i9 i9Var) {
-        this.f43403b = i9Var;
+    public v8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, org.telegram.ui.ActionBar.o2 o2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, o2Var, frameLayout, false, c6Var);
+        this.J0 = i10;
+        this.K0 = notificationCenterDelegate;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i9, int i10) {
-        int abs;
-        int i11;
-        ig.e eVar;
+    public final void setVisibility(int i10) {
         boolean z10;
-        i9 i9Var = this.f43403b;
-        ArrayList arrayList = i9Var.C;
-        int L0 = i9Var.f39072c.L0();
-        boolean z11 = false;
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(i9Var.f39072c.N0() - L0) + 1;
+        boolean z11;
+        boolean z12;
+        switch (this.J0) {
+            case 0:
+                h9 h9Var = (h9) this.K0;
+                org.telegram.ui.Components.fs fsVar = h9Var.I;
+                FrameLayout frameLayout = h9Var.J;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                fsVar.i(frameLayout, z10, true);
+                return;
+            case 1:
+                org.telegram.ui.Components.yi yiVar = (org.telegram.ui.Components.yi) this.K0;
+                org.telegram.ui.Components.fs fsVar2 = yiVar.f35079x;
+                FrameLayout frameLayout2 = yiVar.f35080y;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                fsVar2.i(frameLayout2, z11, true);
+                return;
+            default:
+                ze1 ze1Var = (ze1) this.K0;
+                org.telegram.ui.Components.fs fsVar3 = ze1Var.Q0;
+                FrameLayout frameLayout3 = ze1Var.B0;
+                if (i10 == 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                fsVar3.i(frameLayout3, z12, true);
+                return;
         }
-        if (abs > 0) {
-            int size = i9Var.d.U2.f35191x.size();
-            if (!i9Var.F && !i9Var.D && !arrayList.isEmpty() && abs + L0 >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.l0(17, this, (e9) j3.r0.j(1, arrayList)));
-            }
-        }
-        View childAt = recyclerView.getChildAt(0);
-        if (childAt != null) {
-            i11 = childAt.getTop();
-        } else {
-            i11 = 0;
-        }
-        if (i10 != 0 && this.f43402a) {
-            org.telegram.ui.Components.j10 j10Var = i9Var.f39074f;
-            if (i10 < 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            j10Var.e(z10, true);
-        }
-        this.f43402a = true;
-        i9Var.f39076r.b((L0 != 0 || i11 < i9Var.d.getPaddingTop()) ? true : true, true);
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = i9Var.U) != null) {
-            eVar.f(i9, i10);
-            i9Var.e0();
-        }
+    }
+
+    public v8(ze1 ze1Var, Context context, ze1 ze1Var2) {
+        super(context, ze1Var2, null, false, null);
+        this.J0 = 2;
+        this.K0 = ze1Var;
     }
 }

@@ -1,38 +1,42 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class ha0 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.pi0 f38736a;
-    public final org.telegram.ui.Components.mi0 f38737b;
-    public final boolean f38738c;
-    public final LaunchActivity d;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class ha0 implements Runnable {
+    public final int f38834a;
+    public final ia0 f38835b;
+    public final AccountInstance f38836c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.o2 f38837e;
 
-    public ha0(LaunchActivity launchActivity, org.telegram.ui.Components.pi0 pi0Var, org.telegram.ui.Components.mi0 mi0Var, boolean z10) {
-        this.d = launchActivity;
-        this.f38736a = pi0Var;
-        this.f38737b = mi0Var;
-        this.f38738c = z10;
+    public ha0(ia0 ia0Var, AccountInstance accountInstance, long j10, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
+        this.f38834a = i10;
+        this.f38835b = ia0Var;
+        this.f38836c = accountInstance;
+        this.d = j10;
+        this.f38837e = o2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        LaunchActivity launchActivity = this.d;
-        launchActivity.C0 = null;
-        launchActivity.f35536v0.invalidate();
-        launchActivity.f35516k0.invalidate();
-        launchActivity.f35516k0.setImageDrawable(null);
-        launchActivity.f35516k0.setVisibility(8);
-        launchActivity.f35518l0.setVisibility(8);
-        org.telegram.ui.Components.pi0 pi0Var = this.f38736a;
-        if (pi0Var != null) {
-            pi0Var.setImageDrawable(this.f38737b);
+    public final void run() {
+        switch (this.f38834a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ha0(this.f38835b, this.f38836c, this.d, this.f38837e, 1));
+                return;
+            default:
+                AccountInstance accountInstance = this.f38836c;
+                MessagesController messagesController = accountInstance.getMessagesController();
+                long j10 = this.d;
+                long j11 = -j10;
+                boolean z10 = false;
+                ChatObject.Call groupCall = messagesController.getGroupCall(j11, false);
+                TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j11));
+                accountInstance.getMessagesController().getInputPeer(j10);
+                org.telegram.ui.Components.voip.h2.m(chat, null, false, Boolean.valueOf((groupCall == null || !groupCall.call.rtmp_stream) ? true : true), this.f38835b.f39187g, this.f38837e, accountInstance);
+                return;
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
-        if (!this.f38738c && pi0Var != null) {
-            pi0Var.setVisibility(0);
-        }
-        dy.f37625t4 = false;
     }
 }

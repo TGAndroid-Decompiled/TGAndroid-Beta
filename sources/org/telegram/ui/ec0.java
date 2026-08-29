@@ -1,67 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
-public final class ec0 implements org.telegram.ui.Components.qs0 {
-    public final pc0 f37898a;
+public final class ec0 extends org.telegram.ui.ActionBar.k {
+    public final rc0 f37789a;
 
-    public ec0(pc0 pc0Var) {
-        this.f37898a = pc0Var;
+    public ec0(rc0 rc0Var) {
+        this.f37789a = rc0Var;
     }
 
     @Override
-    public final void Q() {
-        int c02;
-        boolean z10;
-        pc0 pc0Var = this.f37898a;
-        fc0 fc0Var = pc0Var.G0;
-        if (fc0Var == null) {
-            c02 = 0;
-        } else {
-            c02 = fc0Var.c0(8);
+    public final void b(int i10) {
+        rc0 rc0Var = this.f37789a;
+        if (i10 == -1) {
+            rc0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = rc0Var.f42064x0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = rc0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
+        } else if (i10 == 5) {
+            rc0Var.s0(false);
+        } else if (i10 == 6) {
+            rc0Var.r0(null);
         }
-        pc0Var.H0.setText(LocaleController.formatPluralString("LocationStories", c02, new Object[0]));
-        dc0 dc0Var = pc0Var.P;
-        if (c02 > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (dc0Var.f19454e0 != z10) {
-            dc0Var.f19454e0 = z10;
-            dc0Var.l();
-            pc0Var.Q.v0(0, AndroidUtilities.dp(200.0f), null);
-        }
-    }
-
-    @Override
-    public final boolean S() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.wk0 f() {
-        return this.f37898a.Q;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final void E() {
     }
 }

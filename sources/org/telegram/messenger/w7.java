@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class w7 implements Runnable {
-    public final int f21998a;
-    public final MediaDataController f21999b;
-    public final TLRPC.Document f22000c;
+    public final int f22064a;
+    public final MediaDataController f22065b;
+    public final ArrayList f22066c;
 
-    public w7(int i9, MediaDataController mediaDataController, TLRPC.Document document) {
-        this.f21998a = i9;
-        this.f21999b = mediaDataController;
-        this.f22000c = document;
+    public w7(MediaDataController mediaDataController, ArrayList arrayList, int i10) {
+        this.f22064a = i10;
+        this.f22065b = mediaDataController;
+        this.f22066c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f21998a) {
+        switch (this.f22064a) {
             case 0:
-                this.f21999b.lambda$removeRecentGif$25(this.f22000c);
+                this.f22065b.lambda$loadRepliesOfDraftReplies$0(this.f22066c);
                 return;
             default:
-                this.f21999b.lambda$addRecentGif$26(this.f22000c);
+                this.f22065b.lambda$broadcastPinnedMessage$168(this.f22066c);
                 return;
         }
     }

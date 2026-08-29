@@ -15,9 +15,9 @@ public class BigOperatorAtom extends Atom {
         this.type = 1;
     }
 
-    private static Box changeWidth(Box box, float f10) {
-        if (box != null && Math.abs(f10 - box.getWidth()) > 1.0E-7f) {
-            return new HorizontalBox(box, f10, 2);
+    private static Box changeWidth(Box box, float f9) {
+        if (box != null && Math.abs(f9 - box.getWidth()) > 1.0E-7f) {
+            return new HorizontalBox(box, f9, 2);
         }
         return box;
     }

@@ -1,51 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class nd0 extends TextView {
-    public final int f40701a;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class nd0 implements NotificationCenter.NotificationCenterDelegate {
+    public final pd0 f40782a;
 
-    public nd0(Context context, int i9) {
-        super(context);
-        this.f40701a = i9;
+    public nd0(pd0 pd0Var) {
+        this.f40782a = pd0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f40701a) {
-            case 4:
-                if (getPaddingLeft() > 0) {
-                    canvas.drawCircle((getPaddingLeft() - AndroidUtilities.dp(2.5f)) / 2.0f, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.5f), getPaint());
-                }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i9, int i10) {
-        switch (this.f40701a) {
-            case 0:
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(100.0f)), Integer.MIN_VALUE));
-                return;
-            case 1:
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 2:
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
-                return;
-            case 3:
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
-                return;
-            default:
-                super.onMeasure(i9, i10);
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        pd0 pd0Var = this.f40782a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                pd0Var.B = (GoogleSignInAccount) i7.l.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                pd0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e10) {
+                FileLog.e(e10);
+            }
         }
     }
 }

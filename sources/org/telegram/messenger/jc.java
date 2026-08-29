@@ -1,33 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_update;
 public final class jc implements Runnable {
-    public final int f20690a = 1;
-    public final MessagesController f20691b;
-    public final long f20692c;
-    public final TLObject d;
+    public final int f20672a;
+    public final MessagesController f20673b;
+    public final TL_update.TL_updatePeerBlocked f20674c;
 
-    public jc(MessagesController messagesController, long j10, TLObject tLObject) {
-        this.f20691b = messagesController;
-        this.f20692c = j10;
-        this.d = tLObject;
+    public jc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f20672a = i10;
+        this.f20673b = messagesController;
+        this.f20674c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f20690a) {
+        switch (this.f20672a) {
             case 0:
-                this.f20691b.lambda$deleteUserPhoto$114(this.d, this.f20692c);
+                this.f20673b.lambda$processUpdateArray$391(this.f20674c);
                 return;
             default:
-                this.f20691b.lambda$loadPeerSettings$79(this.f20692c, this.d);
+                this.f20673b.lambda$processUpdateArray$390(this.f20674c);
                 return;
         }
-    }
-
-    public jc(MessagesController messagesController, TLObject tLObject, long j10) {
-        this.f20691b = messagesController;
-        this.d = tLObject;
-        this.f20692c = j10;
     }
 }

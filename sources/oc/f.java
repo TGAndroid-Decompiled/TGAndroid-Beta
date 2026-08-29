@@ -1,39 +1,21 @@
 package oc;
 
-import java.io.Serializable;
-public final class f implements Serializable {
-    public final Object f19192a;
+import java.util.regex.Pattern;
+import le.p;
+public final class f extends h {
+    public static final Pattern f19477e = Pattern.compile("^&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
 
-    public static final Throwable a(Object obj) {
-        if (obj instanceof e) {
-            return ((e) obj).f19191a;
+    @Override
+    public final p b() {
+        String a2 = a(f19477e);
+        if (a2 != null) {
+            return f(ke.b.a(a2));
         }
         return null;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof f) {
-            if (!kotlin.jvm.internal.i.a(this.f19192a, ((f) obj).f19192a)) {
-                return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        Object obj = this.f19192a;
-        if (obj == null) {
-            return 0;
-        }
-        return obj.hashCode();
-    }
-
-    public final String toString() {
-        Object obj = this.f19192a;
-        if (obj instanceof e) {
-            return ((e) obj).toString();
-        }
-        return "Success(" + obj + ')';
+    @Override
+    public final char d() {
+        return '&';
     }
 }

@@ -1,26 +1,24 @@
 package org.telegram.ui.Components;
-public final class w4 {
-    public final int f34092a;
-    public final int f34093b;
-    public final int f34094c;
-    public final int d;
-    public final int f34095e;
-    public final int f34096f;
-    public final int f34097g;
-    public final int h;
 
-    public w4(org.telegram.ui.ActionBar.b6 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w4.<init>(org.telegram.ui.ActionBar.b6):void");
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class w4 extends FrameLayout {
+    public final org.telegram.ui.Cells.y1[] f34291a;
+
+    public w4(Context context, org.telegram.ui.Cells.y1[] y1VarArr) {
+        super(context);
+        this.f34291a = y1VarArr;
     }
 
-    public w4(int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        this.f34092a = i9;
-        this.f34093b = i10;
-        this.f34094c = i11;
-        this.d = i12;
-        this.f34095e = i13;
-        this.f34096f = i14;
-        this.f34097g = i15;
-        this.h = i16;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        org.telegram.ui.Cells.y1[] y1VarArr = this.f34291a;
+        if (y1VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + y1VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

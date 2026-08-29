@@ -4,15 +4,15 @@ import android.content.Context;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import j3.r0;
+import j7.l1;
 import java.util.Arrays;
 import org.webrtc.Logging;
 final class WebRtcAudioUtils {
     private static final String TAG = "WebRtcAudioUtilsExternal";
 
-    public static String audioEncodingToString(int i9) {
-        if (i9 != 0) {
-            switch (i9) {
+    public static String audioEncodingToString(int i10) {
+        if (i10 != 0) {
+            switch (i10) {
                 case 2:
                     return "PCM_16BIT";
                 case 3:
@@ -29,14 +29,14 @@ final class WebRtcAudioUtils {
                 case 9:
                     return "MP3";
                 default:
-                    return r0.l(i9, "Invalid encoding: ");
+                    return l1.k(i10, "Invalid encoding: ");
             }
         }
         return "INVALID";
     }
 
-    public static String audioSourceToString(int i9) {
-        switch (i9) {
+    public static String audioSourceToString(int i10) {
+        switch (i10) {
             case 0:
                 return "DEFAULT";
             case 1:
@@ -63,9 +63,9 @@ final class WebRtcAudioUtils {
         }
     }
 
-    public static String channelMaskToString(int i9) {
-        if (i9 != 12) {
-            if (i9 != 16) {
+    public static String channelMaskToString(int i10) {
+        if (i10 != 12) {
+            if (i10 != 16) {
                 return "INVALID";
             }
             return "IN_MONO";
@@ -73,8 +73,8 @@ final class WebRtcAudioUtils {
         return "IN_STEREO";
     }
 
-    public static String deviceTypeToString(int i9) {
-        switch (i9) {
+    public static String deviceTypeToString(int i10) {
+        switch (i10) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -187,15 +187,15 @@ final class WebRtcAudioUtils {
         boolean isVolumeFixed = audioManager.isVolumeFixed();
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
-            for (int i9 = 0; i9 < 6; i9++) {
-                int i10 = iArr[i9];
+            for (int i10 = 0; i10 < 6; i10++) {
+                int i11 = iArr[i10];
                 StringBuilder sb2 = new StringBuilder();
-                sb2.append("  " + streamTypeToString(i10) + ": ");
+                sb2.append("  " + streamTypeToString(i11) + ": ");
                 sb2.append("volume=");
-                sb2.append(audioManager.getStreamVolume(i10));
+                sb2.append(audioManager.getStreamVolume(i11));
                 sb2.append(", max=");
-                sb2.append(audioManager.getStreamMaxVolume(i10));
-                logIsStreamMute(str, audioManager, i10, sb2);
+                sb2.append(audioManager.getStreamMaxVolume(i11));
+                logIsStreamMute(str, audioManager, i11, sb2);
                 Logging.d(str, sb2.toString());
             }
         }
@@ -205,18 +205,18 @@ final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i9, StringBuilder sb2) {
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i10, StringBuilder sb2) {
         if (Build.VERSION.SDK_INT >= 23) {
             sb2.append(", muted=");
-            sb2.append(audioManager.isStreamMute(i9));
+            sb2.append(audioManager.isStreamMute(i10));
         }
     }
 
-    public static String modeToString(int i9) {
-        if (i9 != 0) {
-            if (i9 != 1) {
-                if (i9 != 2) {
-                    if (i9 != 3) {
+    public static String modeToString(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
                         return "MODE_INVALID";
                     }
                     return "MODE_IN_COMMUNICATION";
@@ -235,13 +235,13 @@ final class WebRtcAudioUtils {
         return false;
     }
 
-    private static String streamTypeToString(int i9) {
-        if (i9 != 0) {
-            if (i9 != 1) {
-                if (i9 != 2) {
-                    if (i9 != 3) {
-                        if (i9 != 4) {
-                            if (i9 != 5) {
+    private static String streamTypeToString(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 5) {
                                 return "STREAM_INVALID";
                             }
                             return "STREAM_NOTIFICATION";

@@ -1,21 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
-public final class w01 extends org.telegram.ui.ActionBar.d5 {
-    public final SparseIntArray R;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class w01 extends f2.a1 {
+    public final ThemeEditorView.EditorAlert f34263a;
 
-    public w01(boolean z10, SparseIntArray sparseIntArray) {
-        super(2, z10, false, null);
-        this.R = sparseIntArray;
+    public w01(ThemeEditorView.EditorAlert editorAlert) {
+        this.f34263a = editorAlert;
     }
 
     @Override
-    public final int g(int i9) {
-        return this.R.get(i9);
-    }
-
-    @Override
-    public final int h(int i9) {
-        return this.R.get(i9);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.s(this.f34263a);
     }
 }

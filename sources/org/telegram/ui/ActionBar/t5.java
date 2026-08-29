@@ -2,45 +2,49 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 public final class t5 extends Drawable {
-    public final RectF f23793a = new RectF();
-    public final int f23794b;
-    public final int f23795c;
+    public final RectF f23815a = new RectF();
+    public final View f23816b;
+    public final View f23817c;
     public final int d;
-    public final int f23796e;
-    public final float f23797f;
+    public final Paint f23818e;
 
-    public t5(int i9, int i10, int i11, int i12, float f10) {
-        this.f23794b = i9;
-        this.f23795c = i10;
-        this.d = i11;
-        this.f23796e = i12;
-        this.f23797f = f10;
+    public t5(View view, View view2, int i10, Paint paint) {
+        this.f23816b = view;
+        this.f23817c = view2;
+        this.d = i10;
+        this.f23818e = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f23793a;
-        rectF.set(bounds);
-        rectF.left += this.f23794b;
-        rectF.top += this.f23795c;
-        rectF.right -= this.d;
-        rectF.bottom -= this.f23796e;
-        float f10 = this.f23797f;
-        canvas.drawRoundRect(rectF, f10, f10, f6.f23379z);
+        RectF rectF = this.f23815a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        g6.s(this.f23816b, this.f23817c, null);
+        float f9 = this.d;
+        Paint paint = this.f23818e;
+        if (paint == null) {
+            paint = g6.S0("paintChatActionBackground");
+        }
+        canvas.drawRoundRect(rectF, f9, f9, paint);
+        if (g6.a1()) {
+            canvas.drawRoundRect(rectF, f9, f9, g6.S0("paintChatActionBackgroundDarken"));
+        }
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override
-    public final void setAlpha(int i9) {
+    public final void setAlpha(int i10) {
     }
 
     @Override

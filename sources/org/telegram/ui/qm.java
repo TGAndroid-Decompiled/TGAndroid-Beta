@@ -1,45 +1,52 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.Components.UndoView;
 public final class qm implements Runnable {
-    public final int f41834a;
-    public final cn f41835b;
-    public final TLRPC.Chat f41836c;
+    public final int f41750a;
+    public final fn f41751b;
+    public final MessageObject f41752c;
 
-    public qm(cn cnVar, TLRPC.Chat chat, int i9) {
-        this.f41834a = i9;
-        this.f41835b = cnVar;
-        this.f41836c = chat;
+    public qm(fn fnVar, MessageObject messageObject, int i10) {
+        this.f41750a = i10;
+        this.f41751b = fnVar;
+        this.f41752c = messageObject;
     }
 
     @Override
     public final void run() {
-        String str;
-        int i9 = this.f41834a;
-        TLRPC.Chat chat = this.f41836c;
-        cn cnVar = this.f41835b;
-        switch (i9) {
+        int i10;
+        switch (this.f41750a) {
             case 0:
-                cnVar.o(chat);
+                fn fnVar = this.f41751b;
+                tn tnVar = fnVar.f38212a;
+                tnVar.Q7();
+                UndoView undoView = tnVar.f42989u3;
+                if (undoView != null) {
+                    if (tnVar.U.getVisibility() == 0 && tnVar.N.getVisibility() != 0) {
+                        i10 = 16;
+                    } else {
+                        i10 = 17;
+                    }
+                    MessageObject messageObject = this.f41752c;
+                    undoView.k(0L, i10, messageObject.getDiceEmoji(), null, null, new qm(fnVar, messageObject, 2));
+                    return;
+                }
                 return;
             case 1:
-                cnVar.b(chat);
-                return;
-            case 2:
-                cnVar.f37236a.ka(chat);
+                tn tnVar2 = this.f41751b.f38212a;
+                tnVar2.f42971sb = this.f41752c.getId();
+                tnVar2.f42984tb = 0;
                 return;
             default:
-                org.telegram.ui.Components.oc a02 = org.telegram.ui.Components.oc.a0(cnVar.f37236a);
-                int i10 = R.raw.contact_check;
-                int i11 = R.string.YouJoinedChannel;
-                if (chat == null) {
-                    str = "";
-                } else {
-                    str = chat.title;
+                tn tnVar3 = this.f41751b.f38212a;
+                if (tnVar3.f7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f41752c.getDiceEmoji(), tnVar3.P5, tnVar3.f42856j5, tnVar3.T3, null, false, null, null, null, true, 0, 0, null, false);
+                    of2.sendMessageChatArguments = tnVar3.C8();
+                    tnVar3.getSendMessagesHelper().sendMessage(of2);
+                    return;
                 }
-                a02.Q(i10, 36, LocaleController.formatString(i11, str)).k(true);
                 return;
         }
     }

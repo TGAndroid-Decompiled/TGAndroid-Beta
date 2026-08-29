@@ -1,11 +1,12 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-public final class zj {
-    public int f35317a;
-    public String f35318b;
-    public String f35319c = "";
-    public String d = "";
-    public String f35320e;
-    public File f35321f;
+import java.util.ArrayList;
+public interface zj {
+    void O();
+
+    void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11);
+
+    void m(long j10, ArrayList arrayList, boolean z10, int i10);
+
+    void x();
 }

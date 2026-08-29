@@ -1,14 +1,26 @@
 package bg;
 
-import org.telegram.ui.ActionBar.b6;
-public final class y {
-    public final h1 f2001a;
-    public final b6 f2002b;
-    public final a0 f2003c;
+import android.widget.PopupWindow;
+import nh.t5;
+import org.telegram.ui.Components.iv0;
+public final class y implements PopupWindow.OnDismissListener {
+    public final int f2612a;
+    public final iv0 f2613b;
 
-    public y(a0 a0Var, h1 h1Var, b6 b6Var) {
-        this.f2003c = a0Var;
-        this.f2001a = h1Var;
-        this.f2002b = b6Var;
+    public y(iv0 iv0Var, int i10) {
+        this.f2612a = i10;
+        this.f2613b = iv0Var;
+    }
+
+    @Override
+    public final void onDismiss() {
+        switch (this.f2612a) {
+            case 0:
+                ((g1) this.f2613b).O1.d();
+                return;
+            default:
+                ((t5) this.f2613b).E1.d();
+                return;
+        }
     }
 }

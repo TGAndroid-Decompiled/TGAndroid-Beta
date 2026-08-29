@@ -1,27 +1,74 @@
 package f8;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.identity.intents.model.UserAddress;
-import g7.p8;
-public final class b extends y5.a {
-    public static final Parcelable.Creator<b> CREATOR = new r(6);
-    public String f5914a;
-    public String f5915b;
-    public String f5916c;
-    public int d;
-    public UserAddress f5917e;
+import android.content.Context;
+import android.util.Log;
+import com.google.android.gms.internal.vision.t2;
+public final class b {
+    public int f6687a;
+    public int f6688b;
+    public boolean f6689c;
+    public final Object d;
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.l(parcel, 1, this.f5914a);
-        p8.l(parcel, 2, this.f5915b);
-        p8.l(parcel, 3, this.f5916c);
-        int i10 = this.d;
-        p8.s(parcel, 4, 4);
-        parcel.writeInt(i10);
-        p8.k(parcel, 5, this.f5917e, i9);
-        p8.r(parcel, q10);
+    public b(Context context) {
+        this.f6687a = 0;
+        this.f6689c = true;
+        this.f6688b = 0;
+        this.d = context;
+    }
+
+    public c a() {
+        boolean z10;
+        ?? obj = new Object();
+        int i10 = this.f6688b;
+        obj.f7133a = i10;
+        int i11 = this.f6687a;
+        obj.f7134b = i11;
+        boolean z11 = false;
+        obj.f7135c = 0;
+        obj.d = false;
+        obj.f7136e = this.f6689c;
+        obj.f7137f = -1.0f;
+        if (i10 != 2 && i11 == 2) {
+            Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        if (obj.f7134b == 2 && obj.f7135c == 1) {
+            Log.e("FaceDetector", "Classification is not supported with contour.");
+        } else {
+            z11 = z10;
+        }
+        if (z11) {
+            return new c(new t2((Context) this.d, (g8.c) obj));
+        }
+        throw new IllegalArgumentException("Invalid build options");
+    }
+
+    public void b(int i10) {
+        if (i10 != 0 && i10 != 1 && i10 != 2) {
+            StringBuilder sb2 = new StringBuilder(34);
+            sb2.append("Invalid landmark type: ");
+            sb2.append(i10);
+            throw new IllegalArgumentException(sb2.toString());
+        }
+        this.f6687a = i10;
+    }
+
+    public void c(int i10) {
+        if (i10 != 0 && i10 != 1 && i10 != 2) {
+            StringBuilder sb2 = new StringBuilder(25);
+            sb2.append("Invalid mode: ");
+            sb2.append(i10);
+            throw new IllegalArgumentException(sb2.toString());
+        }
+        this.f6688b = i10;
+    }
+
+    public b(ne.a... aVarArr) {
+        this.f6687a = -1;
+        this.f6688b = -1;
+        this.f6689c = false;
+        this.d = aVarArr;
     }
 }

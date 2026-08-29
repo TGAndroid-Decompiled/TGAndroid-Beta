@@ -1,92 +1,100 @@
 package v3;
 
-import d5.f0;
-import d5.y;
-import g7.t;
-import h3.t1;
-import m3.k;
-import m3.l;
-import m3.m;
+import f5.w;
+import l3.p0;
+import o3.j;
+import o3.k;
+import o3.l;
+import o3.m;
+import o3.q;
 public final class d implements k {
-    public m f48324a;
-    public i f48325b;
-    public boolean f48326c;
+    public final int f49334a;
+    public final long f49335b;
+    public final w f49336c;
+    public final p0 d;
+    public final q f49337e;
+    public final o1.a f49338f;
+    public final j f49339g;
+    public m h;
+    public o3.w f49340i;
+    public o3.w f49341j;
+    public int f49342k;
+    public b4.c f49343l;
+    public long f49344m;
+    public long f49345n;
+    public long f49346o;
+    public int f49347p;
+    public f f49348q;
+    public boolean f49349r;
+    public boolean f49350s;
+    public long f49351t;
 
-    public final boolean a(l lVar) {
-        boolean z10;
-        f fVar = new f();
-        if (fVar.a(lVar, true) && (fVar.f48331a & 2) == 2) {
-            int min = Math.min(fVar.f48334e, 8);
-            y yVar = new y(min);
-            lVar.c(0, min, yVar.f4410a);
-            yVar.C(0);
-            if (yVar.a() >= 5 && yVar.r() == 127 && yVar.s() == 1179402563) {
-                this.f48325b = new i();
-                return true;
-            }
-            yVar.C(0);
-            try {
-                z10 = t.c(1, yVar, true);
-            } catch (t1 unused) {
-                z10 = false;
-            }
-            if (z10) {
-                this.f48325b = new i();
-            } else {
-                yVar.C(0);
-                if (h.e(yVar, h.f48337o)) {
-                    this.f48325b = new i();
-                }
-            }
-            return true;
+    public d(int i10) {
+        this(i10, -9223372036854775807L);
+    }
+
+    public final a a(l lVar, boolean z10) {
+        w wVar = this.f49336c;
+        lVar.a(0, 4, wVar.f6640a);
+        wVar.C(0);
+        int e10 = wVar.e();
+        p0 p0Var = this.d;
+        p0Var.a(e10);
+        return new o3.g(lVar.getLength(), p0Var.f14156e, p0Var.f14154b, z10, lVar.getPosition());
+    }
+
+    public final boolean b(o3.l r9) {
+        throw new UnsupportedOperationException("Method not decompiled: v3.d.b(o3.l):boolean");
+    }
+
+    public final boolean c(o3.l r18, boolean r19) {
+        throw new UnsupportedOperationException("Method not decompiled: v3.d.c(o3.l, boolean):boolean");
+    }
+
+    @Override
+    public final int d(o3.l r43, o3.n r44) {
+        throw new UnsupportedOperationException("Method not decompiled: v3.d.d(o3.l, o3.n):int");
+    }
+
+    @Override
+    public final boolean e(l lVar) {
+        return c(lVar, true);
+    }
+
+    @Override
+    public final void f(long j10, long j11) {
+        this.f49342k = 0;
+        this.f49344m = -9223372036854775807L;
+        this.f49345n = 0L;
+        this.f49347p = 0;
+        this.f49351t = j11;
+        f fVar = this.f49348q;
+        if ((fVar instanceof b) && !((b) fVar).d(j11)) {
+            this.f49350s = true;
+            this.f49341j = this.f49339g;
         }
-        return false;
     }
 
     @Override
-    public final int b(m3.l r21, m3.n r22) {
-        throw new UnsupportedOperationException("Method not decompiled: v3.d.b(m3.l, m3.n):int");
+    public final void i(m mVar) {
+        this.h = mVar;
+        o3.w Z1 = mVar.Z1(0, 1);
+        this.f49340i = Z1;
+        this.f49341j = Z1;
+        this.h.e1();
     }
 
-    @Override
-    public final void c(m mVar) {
-        this.f48324a = mVar;
-    }
-
-    @Override
-    public final boolean f(l lVar) {
-        try {
-            return a(lVar);
-        } catch (t1 unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final void g(long j10, long j11) {
-        i iVar = this.f48325b;
-        if (iVar != null) {
-            e eVar = iVar.f48340a;
-            f fVar = eVar.f48327a;
-            fVar.f48331a = 0;
-            fVar.f48332b = 0L;
-            fVar.f48333c = 0;
-            fVar.d = 0;
-            fVar.f48334e = 0;
-            eVar.f48328b.z(0);
-            eVar.f48329c = -1;
-            eVar.f48330e = false;
-            if (j10 == 0) {
-                iVar.d(!iVar.f48349l);
-            } else if (iVar.h != 0) {
-                long j12 = (iVar.f48346i * j11) / 1000000;
-                iVar.f48343e = j12;
-                g gVar = iVar.d;
-                int i9 = f0.f4349a;
-                gVar.O(j12);
-                iVar.h = 2;
-            }
-        }
+    public d(int i10, long j10) {
+        this.f49334a = i10;
+        this.f49335b = j10;
+        this.f49336c = new w(10);
+        this.d = new Object();
+        this.f49337e = new q();
+        this.f49344m = -9223372036854775807L;
+        this.f49338f = new o1.a(1);
+        j jVar = new j();
+        this.f49339g = jVar;
+        this.f49341j = jVar;
     }
 
     @Override

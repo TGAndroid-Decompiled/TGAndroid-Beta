@@ -1,35 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class vn implements View.OnClickListener {
-    public final int f33412a;
-    public final yn f33413b;
-    public final TLRPC.Document f33414c;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class vn extends org.telegram.ui.ActionBar.o1 {
+    public final xn f33593o;
 
-    public vn(yn ynVar, TLRPC.Document document, int i9) {
-        this.f33412a = i9;
-        this.f33413b = ynVar;
-        this.f33414c = document;
+    public vn(xn xnVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f33593o = xnVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f33412a) {
-            case 0:
-                xn xnVar = this.f33413b.d;
-                if (xnVar != null) {
-                    xnVar.d(this.f33414c);
-                    return;
-                }
-                return;
-            default:
-                xn xnVar2 = this.f33413b.d;
-                if (xnVar2 != null) {
-                    xnVar2.d(this.f33414c);
-                    return;
-                }
-                return;
+    public final void dismiss() {
+        d(true);
+        org.telegram.ui.tn tnVar = this.f33593o.C;
+        if (tnVar != null) {
+            tnVar.getClass();
+            tnVar.g8(false, true, 0.0f);
         }
     }
 }

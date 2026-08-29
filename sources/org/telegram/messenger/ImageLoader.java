@@ -65,8 +65,8 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jb0;
-import org.telegram.ui.Components.mi0;
+import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.yb0;
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
     public static final String AUTOPLAY_FILTER_NONLOOP = "gl";
@@ -74,7 +74,7 @@ public class ImageLoader {
     public static final int CACHE_TYPE_ENCRYPTED = 2;
     public static final int CACHE_TYPE_NONE = 0;
     private static final boolean DEBUG_MODE = false;
-    private me.c cacheOutQueue;
+    private pe.c cacheOutQueue;
     private DispatchQueue cacheThumbOutQueue;
     private boolean canForce8888;
     private int currentArtworkTasksCount;
@@ -104,7 +104,7 @@ public class ImageLoader {
     private static byte[] headerThumb = new byte[12];
     private static volatile ImageLoader Instance = null;
     private HashMap<String, Integer> bitmapUseCounts = new HashMap<>();
-    ArrayList<org.telegram.ui.Components.x5> cachedAnimatedFileDrawables = new ArrayList<>();
+    ArrayList<org.telegram.ui.Components.c6> cachedAnimatedFileDrawables = new ArrayList<>();
     private HashMap<String, CacheImage> imageLoadingByUrl = new HashMap<>();
     private HashMap<String, CacheImage> imageLoadingByUrlPframe = new HashMap<>();
     public ConcurrentHashMap<String, CacheImage> imageLoadingByKeys = new ConcurrentHashMap<>();
@@ -118,30 +118,30 @@ public class ImageLoader {
     public class AnonymousClass5 implements FileLoader.FileLoaderDelegate {
         final int val$currentAccount;
 
-        public AnonymousClass5(int i9) {
+        public AnonymousClass5(int i10) {
             ImageLoader.this = r1;
-            this.val$currentAccount = i9;
+            this.val$currentAccount = i10;
         }
 
-        public void lambda$fileDidFailedLoad$6(String str, int i9, int i10) {
-            ImageLoader.this.fileDidFailedLoad(str, i9);
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoadFailed, str, Integer.valueOf(i9));
+        public void lambda$fileDidFailedLoad$6(String str, int i10, int i11) {
+            ImageLoader.this.fileDidFailedLoad(str, i10);
+            NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoadFailed, str, Integer.valueOf(i10));
         }
 
-        public static void lambda$fileDidFailedUpload$3(int i9, String str, boolean z10) {
-            NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploadFailed, str, Boolean.valueOf(z10));
+        public static void lambda$fileDidFailedUpload$3(int i10, String str, boolean z10) {
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploadFailed, str, Boolean.valueOf(z10));
         }
 
-        public void lambda$fileDidFailedUpload$4(int i9, String str, boolean z10) {
-            AndroidUtilities.runOnUIThread(new r4(i9, str, z10));
+        public void lambda$fileDidFailedUpload$4(int i10, String str, boolean z10) {
+            AndroidUtilities.runOnUIThread(new t4(i10, str, z10));
             ImageLoader.this.fileProgresses.remove(str);
         }
 
-        public void lambda$fileDidLoaded$5(File file, String str, int i9, Object obj, int i10) {
+        public void lambda$fileDidLoaded$5(File file, String str, int i10, Object obj, int i11) {
             FilePathDatabase.FileMeta fileMetadataFromParent;
             MessageObject messageObject;
-            int i11;
-            if (file != null && ((str.endsWith(".mp4") || str.endsWith(".jpg")) && (fileMetadataFromParent = FileLoader.getFileMetadataFromParent(i9, obj)) != null)) {
+            int i12;
+            if (file != null && ((str.endsWith(".mp4") || str.endsWith(".jpg")) && (fileMetadataFromParent = FileLoader.getFileMetadataFromParent(i10, obj)) != null)) {
                 if (obj instanceof MessageObject) {
                     messageObject = (MessageObject) obj;
                 } else {
@@ -149,26 +149,26 @@ public class ImageLoader {
                 }
                 long j10 = fileMetadataFromParent.dialogId;
                 if (j10 >= 0) {
-                    i11 = 1;
-                } else if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i9).getChat(Long.valueOf(-j10)))) {
-                    i11 = 4;
+                    i12 = 1;
+                } else if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(-j10)))) {
+                    i12 = 4;
                 } else {
-                    i11 = 2;
+                    i12 = 2;
                 }
-                if (SaveToGallerySettingsHelper.needSave(i11, fileMetadataFromParent, messageObject, i9)) {
+                if (SaveToGallerySettingsHelper.needSave(i12, fileMetadataFromParent, messageObject, i10)) {
                     AndroidUtilities.addMediaToGallery(file.toString());
                 }
             }
-            NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoaded, str, file);
-            ImageLoader.this.fileDidLoaded(str, file, i10);
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoaded, str, file);
+            ImageLoader.this.fileDidLoaded(str, file, i11);
         }
 
-        public static void lambda$fileDidUploaded$1(int i9, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j10) {
-            NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploaded, str, inputFile, inputEncryptedFile, bArr, bArr2, Long.valueOf(j10));
+        public static void lambda$fileDidUploaded$1(int i10, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j10) {
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploaded, str, inputFile, inputEncryptedFile, bArr, bArr2, Long.valueOf(j10));
         }
 
-        public void lambda$fileDidUploaded$2(int i9, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j10) {
-            AndroidUtilities.runOnUIThread(new x4(i9, str, inputFile, inputEncryptedFile, bArr, bArr2, j10));
+        public void lambda$fileDidUploaded$2(int i10, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j10) {
+            AndroidUtilities.runOnUIThread(new z4(i10, str, inputFile, inputEncryptedFile, bArr, bArr2, j10));
             ImageLoader.this.fileProgresses.remove(str);
         }
 
@@ -177,12 +177,12 @@ public class ImageLoader {
             if (cacheImage != null) {
                 ImageLoader.this.imageLoadingByUrl.remove(str);
                 ArrayList arrayList = new ArrayList();
-                for (int i9 = 0; i9 < cacheImage.imageReceiverArray.size(); i9++) {
-                    String str2 = cacheImage.keys.get(i9);
-                    String str3 = cacheImage.filters.get(i9);
-                    int intValue = cacheImage.types.get(i9).intValue();
-                    ImageReceiver imageReceiver = cacheImage.imageReceiverArray.get(i9);
-                    int intValue2 = cacheImage.imageReceiverGuidsArray.get(i9).intValue();
+                for (int i10 = 0; i10 < cacheImage.imageReceiverArray.size(); i10++) {
+                    String str2 = cacheImage.keys.get(i10);
+                    String str3 = cacheImage.filters.get(i10);
+                    int intValue = cacheImage.types.get(i10).intValue();
+                    ImageReceiver imageReceiver = cacheImage.imageReceiverArray.get(i10);
+                    int intValue2 = cacheImage.imageReceiverGuidsArray.get(i10).intValue();
                     CacheImage cacheImage2 = ImageLoader.this.imageLoadingByKeys.get(str2);
                     if (cacheImage2 == null) {
                         cacheImage2 = new CacheImage();
@@ -207,16 +207,16 @@ public class ImageLoader {
                     }
                     cacheImage2.addImageReceiver(imageReceiver, str2, str3, intValue, intValue2);
                 }
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    CacheOutTask cacheOutTask = (CacheOutTask) arrayList.get(i10);
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    CacheOutTask cacheOutTask = (CacheOutTask) arrayList.get(i11);
                     if (cacheOutTask.cacheImage.type != 1) {
-                        me.c cVar = ImageLoader.this.cacheOutQueue;
-                        int i11 = cacheOutTask.cacheImage.priority;
-                        if (i11 != 1) {
+                        pe.c cVar = ImageLoader.this.cacheOutQueue;
+                        int i12 = cacheOutTask.cacheImage.priority;
+                        if (i12 != 1) {
                             cVar.getClass();
-                            cacheOutTask = new me.b(i11, cacheOutTask);
+                            cacheOutTask = new pe.b(i12, cacheOutTask);
                         }
-                        cVar.f17683a.execute(cacheOutTask);
+                        cVar.f45721a.execute(cacheOutTask);
                     } else {
                         ImageLoader.this.cacheThumbOutQueue.postRunnable(cacheOutTask);
                     }
@@ -224,33 +224,33 @@ public class ImageLoader {
             }
         }
 
-        public static void lambda$fileLoadProgressChanged$8(int i9, String str, long j10, long j11) {
-            NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoadProgressChanged, str, Long.valueOf(j10), Long.valueOf(j11));
+        public static void lambda$fileLoadProgressChanged$8(int i10, String str, long j10, long j11) {
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoadProgressChanged, str, Long.valueOf(j10), Long.valueOf(j11));
         }
 
-        public static void lambda$fileUploadProgressChanged$0(int i9, String str, long j10, long j11, boolean z10) {
-            NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploadProgressChanged, str, Long.valueOf(j10), Long.valueOf(j11), Boolean.valueOf(z10));
+        public static void lambda$fileUploadProgressChanged$0(int i10, String str, long j10, long j11, boolean z10) {
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileUploadProgressChanged, str, Long.valueOf(j10), Long.valueOf(j11), Boolean.valueOf(z10));
         }
 
         @Override
-        public void fileDidFailedLoad(String str, int i9) {
+        public void fileDidFailedLoad(String str, int i10) {
             ImageLoader.this.fileProgresses.remove(str);
-            AndroidUtilities.runOnUIThread(new w4(this, str, i9, this.val$currentAccount, 0));
+            AndroidUtilities.runOnUIThread(new y4(this, str, i10, this.val$currentAccount, 0));
         }
 
         @Override
         public void fileDidFailedUpload(String str, boolean z10) {
-            Utilities.stageQueue.postRunnable(new t4(this, this.val$currentAccount, str, z10));
+            Utilities.stageQueue.postRunnable(new v4(this, this.val$currentAccount, str, z10));
         }
 
         @Override
-        public void fileDidLoaded(final String str, final File file, final Object obj, final int i9) {
+        public void fileDidLoaded(final String str, final File file, final Object obj, final int i10) {
             ImageLoader.this.fileProgresses.remove(str);
-            final int i10 = this.val$currentAccount;
+            final int i11 = this.val$currentAccount;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.this.lambda$fileDidLoaded$5(file, str, i10, obj, i9);
+                    ImageLoader.AnonymousClass5.this.lambda$fileDidLoaded$5(file, str, i11, obj, i10);
                 }
             });
         }
@@ -258,11 +258,11 @@ public class ImageLoader {
         @Override
         public void fileDidUploaded(final String str, final TLRPC.InputFile inputFile, final TLRPC.InputEncryptedFile inputEncryptedFile, final byte[] bArr, final byte[] bArr2, final long j10) {
             DispatchQueue dispatchQueue = Utilities.stageQueue;
-            final int i9 = this.val$currentAccount;
+            final int i10 = this.val$currentAccount;
             dispatchQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.this.lambda$fileDidUploaded$2(i9, str, inputFile, inputEncryptedFile, bArr, bArr2, j10);
+                    ImageLoader.AnonymousClass5.this.lambda$fileDidUploaded$2(i10, str, inputFile, inputEncryptedFile, bArr, bArr2, j10);
                 }
             });
         }
@@ -279,7 +279,7 @@ public class ImageLoader {
                 return;
             }
             fileLoadOperation.lastProgressUpdateTime = elapsedRealtime;
-            AndroidUtilities.runOnUIThread(new v4(this.val$currentAccount, str, j10, j11));
+            AndroidUtilities.runOnUIThread(new x4(this.val$currentAccount, str, j10, j11));
         }
 
         @Override
@@ -291,11 +291,11 @@ public class ImageLoader {
                 return;
             }
             fileUploadOperation.lastProgressUpdateTime = elapsedRealtime;
-            final int i9 = this.val$currentAccount;
+            final int i10 = this.val$currentAccount;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(i9, str, j10, j11, z10);
+                    ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(i10, str, j10, j11, z10);
                 }
             });
         }
@@ -315,11 +315,11 @@ public class ImageLoader {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("file system changed");
             }
-            e1 e1Var = new e1(this, 3);
+            d1 d1Var = new d1(this, 3);
             if ("android.intent.action.MEDIA_UNMOUNTED".equals(intent.getAction())) {
-                AndroidUtilities.runOnUIThread(e1Var, 1000L);
+                AndroidUtilities.runOnUIThread(d1Var, 1000L);
             } else {
-                e1Var.run();
+                d1Var.run();
             }
         }
     }
@@ -377,7 +377,7 @@ public class ImageLoader {
 
         @Override
         public void onCancelled() {
-            ImageLoader.this.imageLoadQueue.postRunnable(new z4(this, 0));
+            ImageLoader.this.imageLoadQueue.postRunnable(new b5(this, 0));
         }
 
         @Override
@@ -406,13 +406,13 @@ public class ImageLoader {
                     inputStream2 = this.httpConnection.getInputStream();
                     try {
                         byteArrayOutputStream2 = new ByteArrayOutputStream();
-                    } catch (Throwable th) {
+                    } catch (Throwable th2) {
                         inputStream = inputStream2;
-                        th = th;
+                        th = th2;
                         byteArrayOutputStream = null;
                     }
-                } catch (Throwable th2) {
-                    th = th2;
+                } catch (Throwable th3) {
+                    th = th3;
                     inputStream = null;
                     byteArrayOutputStream = null;
                 }
@@ -436,8 +436,8 @@ public class ImageLoader {
                             if (inputStream2 != null) {
                                 try {
                                     inputStream2.close();
-                                } catch (Throwable th3) {
-                                    FileLog.e(th3);
+                                } catch (Throwable th4) {
+                                    FileLog.e(th4);
                                 }
                             }
                             try {
@@ -457,8 +457,8 @@ public class ImageLoader {
                         if (inputStream2 != null) {
                             try {
                                 inputStream2.close();
-                            } catch (Throwable th4) {
-                                FileLog.e(th4);
+                            } catch (Throwable th5) {
+                                FileLog.e(th5);
                             }
                         }
                         try {
@@ -477,14 +477,14 @@ public class ImageLoader {
                     if (inputStream2 != null) {
                         try {
                             inputStream2.close();
-                        } catch (Throwable th5) {
-                            FileLog.e(th5);
+                        } catch (Throwable th6) {
+                            FileLog.e(th6);
                         }
                     }
                     byteArrayOutputStream2.close();
-                } catch (Throwable th6) {
+                } catch (Throwable th7) {
                     inputStream = inputStream2;
-                    th = th6;
+                    th = th7;
                     byteArrayOutputStream = byteArrayOutputStream2;
                     try {
                         if (th instanceof SocketTimeoutException) {
@@ -511,8 +511,8 @@ public class ImageLoader {
                         if (inputStream != null) {
                             try {
                                 inputStream.close();
-                            } catch (Throwable th7) {
-                                FileLog.e(th7);
+                            } catch (Throwable th8) {
+                                FileLog.e(th8);
                             }
                         }
                         if (byteArrayOutputStream != null) {
@@ -530,8 +530,8 @@ public class ImageLoader {
                         if (inputStream != null) {
                             try {
                                 inputStream.close();
-                            } catch (Throwable th8) {
-                                FileLog.e(th8);
+                            } catch (Throwable th9) {
+                                FileLog.e(th9);
                             }
                         }
                         if (byteArrayOutputStream != null) {
@@ -549,11 +549,11 @@ public class ImageLoader {
         @Override
         public void onPostExecute(String str) {
             if (str != null) {
-                ImageLoader.this.imageLoadQueue.postRunnable(new c3(2, this, str));
+                ImageLoader.this.imageLoadQueue.postRunnable(new d3(2, this, str));
             } else if (this.canRetry) {
                 ImageLoader.this.artworkLoadError(this.cacheImage.url);
             }
-            ImageLoader.this.imageLoadQueue.postRunnable(new z4(this, 1));
+            ImageLoader.this.imageLoadQueue.postRunnable(new b5(this, 1));
         }
     }
 
@@ -599,21 +599,21 @@ public class ImageLoader {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.CacheImage.lambda$setImageAndClear$0(android.graphics.drawable.Drawable, java.util.ArrayList, java.util.ArrayList, java.lang.String):void");
         }
 
-        public void addImageReceiver(ImageReceiver imageReceiver, String str, String str2, int i9, int i10) {
+        public void addImageReceiver(ImageReceiver imageReceiver, String str, String str2, int i10, int i11) {
             int indexOf = this.imageReceiverArray.indexOf(imageReceiver);
             if (indexOf >= 0 && Objects.equals(this.imageReceiverArray.get(indexOf).getImageKey(), str)) {
-                this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i10));
+                this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i11));
                 return;
             }
             this.imageReceiverArray.add(imageReceiver);
-            this.imageReceiverGuidsArray.add(Integer.valueOf(i10));
+            this.imageReceiverGuidsArray.add(Integer.valueOf(i11));
             this.keys.add(str);
             this.filters.add(str2);
-            this.types.add(Integer.valueOf(i9));
-            ImageLoader.this.imageLoadingByTag.put(imageReceiver.getTag(i9), this);
+            this.types.add(Integer.valueOf(i10));
+            ImageLoader.this.imageLoadingByTag.put(imageReceiver.getTag(i10), this);
         }
 
-        public void changePriority(int i9) {
+        public void changePriority(int i10) {
             TLRPC.Document document;
             SecureDocument secureDocument;
             WebFile webFile;
@@ -666,27 +666,27 @@ public class ImageLoader {
                     str = fileLocation;
                     webFile2 = webFile;
                 }
-                FileLoader.getInstance(this.currentAccount).changePriority(i9, document, secureDocument, webFile2, fileLocation, str, null);
+                FileLoader.getInstance(this.currentAccount).changePriority(i10, document, secureDocument, webFile2, fileLocation, str, null);
             }
         }
 
         public void removeImageReceiver(ImageReceiver imageReceiver) {
-            int i9 = this.type;
-            int i10 = 0;
-            while (i10 < this.imageReceiverArray.size()) {
-                ImageReceiver imageReceiver2 = this.imageReceiverArray.get(i10);
+            int i10 = this.type;
+            int i11 = 0;
+            while (i11 < this.imageReceiverArray.size()) {
+                ImageReceiver imageReceiver2 = this.imageReceiverArray.get(i11);
                 if (imageReceiver2 == null || imageReceiver2 == imageReceiver) {
-                    this.imageReceiverArray.remove(i10);
-                    this.imageReceiverGuidsArray.remove(i10);
-                    this.keys.remove(i10);
-                    this.filters.remove(i10);
-                    i9 = this.types.remove(i10).intValue();
+                    this.imageReceiverArray.remove(i11);
+                    this.imageReceiverGuidsArray.remove(i11);
+                    this.keys.remove(i11);
+                    this.filters.remove(i11);
+                    i10 = this.types.remove(i11).intValue();
                     if (imageReceiver2 != null) {
-                        ImageLoader.this.imageLoadingByTag.remove(imageReceiver2.getTag(i9));
+                        ImageLoader.this.imageLoadingByTag.remove(imageReceiver2.getTag(i10));
                     }
-                    i10--;
+                    i11--;
                 }
-                i10++;
+                i11++;
             }
             if (this.imageReceiverArray.isEmpty()) {
                 if (this.imageLocation != null && !ImageLoader.this.forceLoadingImages.containsKey(this.key)) {
@@ -702,20 +702,20 @@ public class ImageLoader {
                     }
                 }
                 if (this.cacheTask != null) {
-                    if (i9 != 1) {
-                        me.c cVar = ImageLoader.this.cacheOutQueue;
+                    if (i10 != 1) {
+                        pe.c cVar = ImageLoader.this.cacheOutQueue;
                         CacheOutTask cacheOutTask = this.cacheTask;
                         if (cacheOutTask == null) {
                             cVar.getClass();
                         } else {
-                            cVar.f17683a.remove(cacheOutTask);
+                            cVar.f45721a.remove(cacheOutTask);
                         }
-                        me.c cVar2 = ImageLoader.this.cacheOutQueue;
+                        pe.c cVar2 = ImageLoader.this.cacheOutQueue;
                         Runnable runnable = this.runningTask;
                         if (runnable == null) {
                             cVar2.getClass();
                         } else {
-                            cVar2.f17683a.remove(runnable);
+                            cVar2.f45721a.remove(runnable);
                         }
                     } else {
                         ImageLoader.this.cacheThumbOutQueue.cancelRunnable(this.cacheTask);
@@ -747,17 +747,17 @@ public class ImageLoader {
             }
         }
 
-        public void replaceImageReceiver(ImageReceiver imageReceiver, String str, String str2, int i9, int i10) {
+        public void replaceImageReceiver(ImageReceiver imageReceiver, String str, String str2, int i10, int i11) {
             int indexOf = this.imageReceiverArray.indexOf(imageReceiver);
             if (indexOf != -1) {
-                if (this.types.get(indexOf).intValue() != i9) {
+                if (this.types.get(indexOf).intValue() != i10) {
                     ArrayList<ImageReceiver> arrayList = this.imageReceiverArray;
                     indexOf = arrayList.subList(indexOf + 1, arrayList.size()).indexOf(imageReceiver);
                     if (indexOf == -1) {
                         return;
                     }
                 }
-                this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i10));
+                this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i11));
                 this.keys.set(indexOf, str);
                 this.filters.set(indexOf, str2);
             }
@@ -767,12 +767,12 @@ public class ImageLoader {
             CacheImage cacheImage;
             if (drawable != null) {
                 cacheImage = this;
-                AndroidUtilities.runOnUIThread(new a5(cacheImage, drawable, new ArrayList(this.imageReceiverArray), new ArrayList(this.imageReceiverGuidsArray), str, 0));
+                AndroidUtilities.runOnUIThread(new c5(cacheImage, drawable, new ArrayList(this.imageReceiverArray), new ArrayList(this.imageReceiverGuidsArray), str, 0));
             } else {
                 cacheImage = this;
             }
-            for (int i9 = 0; i9 < cacheImage.imageReceiverArray.size(); i9++) {
-                ImageLoader.this.imageLoadingByTag.remove(cacheImage.imageReceiverArray.get(i9).getTag(cacheImage.type));
+            for (int i10 = 0; i10 < cacheImage.imageReceiverArray.size(); i10++) {
+                ImageLoader.this.imageLoadingByTag.remove(cacheImage.imageReceiverArray.get(i10).getTag(cacheImage.type));
             }
             cacheImage.imageReceiverArray.clear();
             cacheImage.imageReceiverGuidsArray.clear();
@@ -789,12 +789,12 @@ public class ImageLoader {
             }
         }
 
-        public void setImageReceiverGuid(ImageReceiver imageReceiver, int i9) {
+        public void setImageReceiverGuid(ImageReceiver imageReceiver, int i10) {
             int indexOf = this.imageReceiverArray.indexOf(imageReceiver);
             if (indexOf == -1) {
                 return;
             }
-            this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i9));
+            this.imageReceiverGuidsArray.set(indexOf, Integer.valueOf(i10));
         }
     }
 
@@ -810,46 +810,46 @@ public class ImageLoader {
         }
 
         private Bitmap applyWallpaperSetting(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
-            int k10;
-            int i9;
+            int k9;
+            int i10;
             if (wallPaper.pattern && wallPaper.settings != null) {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
                 boolean z10 = true;
                 if (wallPaperSettings.second_background_color == 0) {
-                    i9 = AndroidUtilities.getPatternColor(wallPaperSettings.background_color);
+                    i10 = AndroidUtilities.getPatternColor(wallPaperSettings.background_color);
                     canvas.drawColor(i0.a.k(wallPaper.settings.background_color, 255));
                 } else if (wallPaperSettings.third_background_color == 0) {
-                    int k11 = i0.a.k(wallPaperSettings.background_color, 255);
-                    int k12 = i0.a.k(wallPaper.settings.second_background_color, 255);
-                    int averageColor = AndroidUtilities.getAverageColor(k11, k12);
-                    GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.n9.d(wallPaper.settings.rotation), new int[]{k11, k12});
+                    int k10 = i0.a.k(wallPaperSettings.background_color, 255);
+                    int k11 = i0.a.k(wallPaper.settings.second_background_color, 255);
+                    int averageColor = AndroidUtilities.getAverageColor(k10, k11);
+                    GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.s9.d(wallPaper.settings.rotation), new int[]{k10, k11});
                     gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                     gradientDrawable.draw(canvas);
-                    i9 = averageColor;
+                    i10 = averageColor;
                 } else {
-                    int k13 = i0.a.k(wallPaperSettings.background_color, 255);
-                    int k14 = i0.a.k(wallPaper.settings.second_background_color, 255);
-                    int k15 = i0.a.k(wallPaper.settings.third_background_color, 255);
-                    int i10 = wallPaper.settings.fourth_background_color;
-                    if (i10 == 0) {
-                        k10 = 0;
+                    int k12 = i0.a.k(wallPaperSettings.background_color, 255);
+                    int k13 = i0.a.k(wallPaper.settings.second_background_color, 255);
+                    int k14 = i0.a.k(wallPaper.settings.third_background_color, 255);
+                    int i11 = wallPaper.settings.fourth_background_color;
+                    if (i11 == 0) {
+                        k9 = 0;
                     } else {
-                        k10 = i0.a.k(i10, 255);
+                        k9 = i0.a.k(i11, 255);
                     }
-                    int g10 = jb0.g(k13, k14, k15, k10);
-                    jb0 jb0Var = new jb0();
-                    jb0Var.n(k13, k14, k15, k10);
-                    jb0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    jb0Var.t(bitmap, wallPaper.settings.intensity);
-                    jb0Var.draw(canvas);
-                    i9 = g10;
+                    int g10 = yb0.g(k12, k13, k14, k9);
+                    yb0 yb0Var = new yb0();
+                    yb0Var.n(k12, k13, k14, k9);
+                    yb0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    yb0Var.t(bitmap, wallPaper.settings.intensity);
+                    yb0Var.draw(canvas);
+                    i10 = g10;
                     z10 = false;
                 }
                 if (z10) {
                     Paint paint = new Paint(2);
-                    paint.setColorFilter(new PorterDuffColorFilter(i9, PorterDuff.Mode.SRC_IN));
+                    paint.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
                     paint.setAlpha((int) ((wallPaper.settings.intensity / 100.0f) * 255.0f));
                     canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
                 }
@@ -870,30 +870,30 @@ public class ImageLoader {
             Drawable drawable2;
             String str;
             BitmapDrawable bitmapDrawable;
-            mi0 mi0Var;
+            xi0 xi0Var;
             boolean z10 = false;
-            if (drawable instanceof mi0) {
-                mi0 mi0Var2 = (mi0) drawable;
+            if (drawable instanceof xi0) {
+                xi0 xi0Var2 = (xi0) drawable;
                 Drawable drawable3 = (Drawable) ImageLoader.this.lottieMemCache.get(this.cacheImage.key);
                 if (drawable3 == null) {
-                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, mi0Var2);
-                    mi0Var = mi0Var2;
+                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, xi0Var2);
+                    xi0Var = xi0Var2;
                 } else {
-                    mi0Var2.A(false);
-                    mi0Var = drawable3;
+                    xi0Var2.A(false);
+                    xi0Var = drawable3;
                 }
                 ImageLoader.this.incrementUseCount(this.cacheImage.key);
                 str = this.cacheImage.key;
-                drawable2 = mi0Var;
-            } else if (drawable instanceof org.telegram.ui.Components.x5) {
-                org.telegram.ui.Components.x5 x5Var = (org.telegram.ui.Components.x5) drawable;
-                if (x5Var.f34520j0) {
+                drawable2 = xi0Var;
+            } else if (drawable instanceof org.telegram.ui.Components.c6) {
+                org.telegram.ui.Components.c6 c6Var = (org.telegram.ui.Components.c6) drawable;
+                if (c6Var.f27327j0) {
                     BitmapDrawable fromLottieCache = ImageLoader.this.getFromLottieCache(this.cacheImage.key);
                     if (fromLottieCache == null) {
-                        ImageLoader.this.lottieMemCache.put(this.cacheImage.key, x5Var);
-                        bitmapDrawable = x5Var;
+                        ImageLoader.this.lottieMemCache.put(this.cacheImage.key, c6Var);
+                        bitmapDrawable = c6Var;
                     } else {
-                        x5Var.u();
+                        c6Var.u();
                         bitmapDrawable = fromLottieCache;
                     }
                     ImageLoader.this.incrementUseCount(this.cacheImage.key);
@@ -937,34 +937,34 @@ public class ImageLoader {
             ImageLoader.this.imageLoadQueue.postRunnable(new f0(this, drawable2, str, 2), this.cacheImage.priority);
         }
 
-        private void loadLastFrame(mi0 mi0Var, int i9, int i10, boolean z10, boolean z11) {
+        private void loadLastFrame(xi0 xi0Var, int i10, int i11, boolean z10, boolean z11) {
             Bitmap createBitmap;
             Canvas canvas;
-            int i11;
+            int i12;
             Drawable bitmapDrawable;
             if (z10 && z11) {
-                float f10 = i9 * 1.2f;
-                float f11 = i10 * 1.2f;
-                createBitmap = Bitmap.createBitmap((int) f10, (int) f11, Bitmap.Config.ARGB_8888);
+                float f9 = i10 * 1.2f;
+                float f10 = i11 * 1.2f;
+                createBitmap = Bitmap.createBitmap((int) f9, (int) f10, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(createBitmap);
-                canvas.scale(2.0f, 2.0f, f10 / 2.0f, f11 / 2.0f);
+                canvas.scale(2.0f, 2.0f, f9 / 2.0f, f10 / 2.0f);
             } else {
-                createBitmap = Bitmap.createBitmap(i9, i10, Bitmap.Config.ARGB_8888);
+                createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(createBitmap);
             }
-            mi0Var.b();
-            Bitmap createBitmap2 = Bitmap.createBitmap(mi0Var.f30842b, mi0Var.f30844c, Bitmap.Config.ARGB_8888);
+            xi0Var.b();
+            Bitmap createBitmap2 = Bitmap.createBitmap(xi0Var.f34732b, xi0Var.f34734c, Bitmap.Config.ARGB_8888);
             if (z10) {
-                i11 = mi0Var.f30847e[0] - 1;
+                i12 = xi0Var.f34737e[0] - 1;
             } else {
-                i11 = 0;
+                i12 = 0;
             }
-            mi0Var.A0 = i11;
-            mi0Var.a(createBitmap2);
-            mi0Var.c();
+            xi0Var.A0 = i12;
+            xi0Var.a(createBitmap2);
+            xi0Var.c();
             canvas.save();
             if (!z10 || !z11) {
-                canvas.scale(createBitmap2.getWidth() / i9, createBitmap2.getHeight() / i10, i9 / 2.0f, i10 / 2.0f);
+                canvas.scale(createBitmap2.getWidth() / i10, createBitmap2.getHeight() / i11, i10 / 2.0f, i11 / 2.0f);
             }
             Paint paint = new Paint(1);
             paint.setFilterBitmap(true);
@@ -975,13 +975,13 @@ public class ImageLoader {
                 canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
                 bitmapDrawable = new BitmapDrawable(createBitmap);
             }
-            mi0Var.A(false);
+            xi0Var.A(false);
             createBitmap2.recycle();
             onPostExecute(bitmapDrawable);
         }
 
         private void onPostExecute(Drawable drawable) {
-            AndroidUtilities.runOnUIThread(new c3(3, this, drawable));
+            AndroidUtilities.runOnUIThread(new d3(3, this, drawable));
         }
 
         public void cancel() {
@@ -1013,12 +1013,12 @@ public class ImageLoader {
         private RandomAccessFile fileOutputStream = null;
         private boolean canRetry = true;
 
-        public HttpFileTask(String str, File file, String str2, int i9) {
+        public HttpFileTask(String str, File file, String str2, int i10) {
             ImageLoader.this = r1;
             this.url = str;
             this.tempFile = file;
             this.ext = str2;
-            this.currentAccount = i9;
+            this.currentAccount = i10;
         }
 
         public void lambda$reportProgress$0(long j10, long j11) {
@@ -1027,7 +1027,7 @@ public class ImageLoader {
 
         public void lambda$reportProgress$1(long j10, long j11) {
             ImageLoader.this.fileProgresses.put(this.url, new long[]{j10, j11});
-            AndroidUtilities.runOnUIThread(new b5(this, j10, j11, 0));
+            AndroidUtilities.runOnUIThread(new d5(this, j10, j11, 0));
         }
 
         private void reportProgress(long j10, long j11) {
@@ -1039,7 +1039,7 @@ public class ImageLoader {
                 }
             }
             this.lastProgressTime = elapsedRealtime;
-            Utilities.stageQueue.postRunnable(new b5(this, j10, j11, 1));
+            Utilities.stageQueue.postRunnable(new d5(this, j10, j11, 1));
         }
 
         @Override
@@ -1083,15 +1083,15 @@ public class ImageLoader {
 
         public void lambda$onCancelled$8() {
             ImageLoader.this.fileProgresses.remove(this.cacheImage.url);
-            AndroidUtilities.runOnUIThread(new d5(this, 3));
+            AndroidUtilities.runOnUIThread(new f5(this, 3));
         }
 
         public void lambda$onPostExecute$3(Boolean bool) {
             if (bool.booleanValue()) {
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.cacheImage.currentAccount);
-                int i9 = NotificationCenter.fileLoaded;
+                int i10 = NotificationCenter.fileLoaded;
                 CacheImage cacheImage = this.cacheImage;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i9, cacheImage.url, cacheImage.finalFilePath);
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i10, cacheImage.url, cacheImage.finalFilePath);
                 return;
             }
             NotificationCenter.getInstance(this.cacheImage.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoadFailed, this.cacheImage.url, 2);
@@ -1099,7 +1099,7 @@ public class ImageLoader {
 
         public void lambda$onPostExecute$4(Boolean bool) {
             ImageLoader.this.fileProgresses.remove(this.cacheImage.url);
-            AndroidUtilities.runOnUIThread(new e5(this, bool, 0));
+            AndroidUtilities.runOnUIThread(new g5(this, bool, 0));
         }
 
         public void lambda$onPostExecute$5() {
@@ -1112,7 +1112,7 @@ public class ImageLoader {
 
         public void lambda$reportProgress$1(long j10, long j11) {
             ImageLoader.this.fileProgresses.put(this.cacheImage.url, new long[]{j10, j11});
-            AndroidUtilities.runOnUIThread(new f5(this, j10, j11, 0));
+            AndroidUtilities.runOnUIThread(new h5(this, j10, j11, 0));
         }
 
         private void reportProgress(long j10, long j11) {
@@ -1124,13 +1124,13 @@ public class ImageLoader {
                 }
             }
             this.lastProgressTime = elapsedRealtime;
-            Utilities.stageQueue.postRunnable(new f5(this, j10, j11, 1));
+            Utilities.stageQueue.postRunnable(new h5(this, j10, j11, 1));
         }
 
         @Override
         public void onCancelled() {
-            ImageLoader.this.imageLoadQueue.postRunnable(new d5(this, 0), this.cacheImage.priority);
-            Utilities.stageQueue.postRunnable(new d5(this, 1));
+            ImageLoader.this.imageLoadQueue.postRunnable(new f5(this, 0), this.cacheImage.priority);
+            Utilities.stageQueue.postRunnable(new f5(this, 1));
         }
 
         @Override
@@ -1147,14 +1147,14 @@ public class ImageLoader {
                 CacheImage cacheImage = this.cacheImage;
                 imageLoader.fileDidLoaded(cacheImage.url, cacheImage.finalFilePath, 0);
             }
-            Utilities.stageQueue.postRunnable(new e5(this, bool, 1));
-            ImageLoader.this.imageLoadQueue.postRunnable(new d5(this, 2), this.cacheImage.priority);
+            Utilities.stageQueue.postRunnable(new g5(this, bool, 1));
+            ImageLoader.this.imageLoadQueue.postRunnable(new f5(this, 2), this.cacheImage.priority);
         }
 
-        public HttpImageTask(CacheImage cacheImage, int i9, String str) {
+        public HttpImageTask(CacheImage cacheImage, int i10, String str) {
             ImageLoader.this = r1;
             this.cacheImage = cacheImage;
-            this.imageSize = i9;
+            this.imageSize = i10;
             this.overrideUrl = str;
         }
 
@@ -1179,7 +1179,7 @@ public class ImageLoader {
         public PhotoSizeFromPhoto(TLRPC.Photo photo) {
             this.photo = photo;
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_inputPhoto.f22399id = photo.f22404id;
+            tL_inputPhoto.f22411id = photo.f22416id;
             tL_inputPhoto.file_reference = photo.file_reference;
             tL_inputPhoto.access_hash = photo.access_hash;
             this.inputPhoto = tL_inputPhoto;
@@ -1204,9 +1204,9 @@ public class ImageLoader {
         private int mediaType;
         private File originalPath;
 
-        public ThumbGenerateTask(int i9, File file, ThumbGenerateInfo thumbGenerateInfo) {
+        public ThumbGenerateTask(int i10, File file, ThumbGenerateInfo thumbGenerateInfo) {
             ImageLoader.this = r1;
-            this.mediaType = i9;
+            this.mediaType = i10;
             this.originalPath = file;
             this.info = thumbGenerateInfo;
         }
@@ -1218,13 +1218,13 @@ public class ImageLoader {
         public void lambda$run$1(String str, ArrayList arrayList, BitmapDrawable bitmapDrawable, ArrayList arrayList2) {
             removeTask();
             if (this.info.filter != null) {
-                StringBuilder e10 = ta.b.e(str, "@");
-                e10.append(this.info.filter);
-                str = e10.toString();
+                StringBuilder f9 = u3.c.f(str, "@");
+                f9.append(this.info.filter);
+                str = f9.toString();
             }
             String str2 = str;
-            for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                ((ImageReceiver) arrayList.get(i9)).setImageBitmapByKey(bitmapDrawable, str2, 0, false, ((Integer) arrayList2.get(i9)).intValue());
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                ((ImageReceiver) arrayList.get(i10)).setImageBitmapByKey(bitmapDrawable, str2, 0, false, ((Integer) arrayList2.get(i10)).intValue());
             }
             if (!str2.contains("nocache")) {
                 ImageLoader.this.memCache.put(str2, bitmapDrawable);
@@ -1236,20 +1236,20 @@ public class ImageLoader {
             if (thumbGenerateInfo == null) {
                 return;
             }
-            ImageLoader.this.imageLoadQueue.postRunnable(new c3(4, this, FileLoader.getAttachFileName(thumbGenerateInfo.parentDocument)));
+            ImageLoader.this.imageLoadQueue.postRunnable(new d3(4, this, FileLoader.getAttachFileName(thumbGenerateInfo.parentDocument)));
         }
 
         @Override
         public void run() {
             int min;
-            int i9;
+            int i10;
             Bitmap createScaledBitmap;
             try {
                 if (this.info == null) {
                     removeTask();
                     return;
                 }
-                String str = "q_" + this.info.parentDocument.dc_id + "_" + this.info.parentDocument.f22386id;
+                String str = "q_" + this.info.parentDocument.dc_id + "_" + this.info.parentDocument.f22398id;
                 File file = new File(FileLoader.getDirectory(4), str + ".jpg");
                 if (!file.exists() && this.originalPath.exists()) {
                     if (this.info.big) {
@@ -1259,30 +1259,30 @@ public class ImageLoader {
                         Point point2 = AndroidUtilities.displaySize;
                         min = Math.min(180, Math.min(point2.x, point2.y) / 4);
                     }
-                    int i10 = this.mediaType;
+                    int i11 = this.mediaType;
                     Bitmap bitmap = null;
-                    if (i10 == 0) {
-                        float f10 = min;
-                        bitmap = ImageLoader.loadBitmap(this.originalPath.toString(), null, f10, f10, false);
+                    if (i11 == 0) {
+                        float f9 = min;
+                        bitmap = ImageLoader.loadBitmap(this.originalPath.toString(), null, f9, f9, false);
                     } else {
-                        int i11 = 2;
-                        if (i10 == 2) {
+                        int i12 = 2;
+                        if (i11 == 2) {
                             String file2 = this.originalPath.toString();
                             if (!this.info.big) {
-                                i11 = 1;
+                                i12 = 1;
                             }
-                            bitmap = SendMessagesHelper.createVideoThumbnail(file2, i11);
-                        } else if (i10 == 3) {
+                            bitmap = SendMessagesHelper.createVideoThumbnail(file2, i12);
+                        } else if (i11 == 3) {
                             String lowerCase = this.originalPath.toString().toLowerCase();
                             if (lowerCase.endsWith("mp4")) {
                                 String file3 = this.originalPath.toString();
                                 if (!this.info.big) {
-                                    i11 = 1;
+                                    i12 = 1;
                                 }
-                                bitmap = SendMessagesHelper.createVideoThumbnail(file3, i11);
+                                bitmap = SendMessagesHelper.createVideoThumbnail(file3, i12);
                             } else if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".jpeg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif")) {
-                                float f11 = min;
-                                bitmap = ImageLoader.loadBitmap(lowerCase, null, f11, f11, false);
+                                float f10 = min;
+                                bitmap = ImageLoader.loadBitmap(lowerCase, null, f10, f10, false);
                             }
                         }
                     }
@@ -1293,46 +1293,46 @@ public class ImageLoader {
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     if (width != 0 && height != 0) {
-                        float f12 = width;
-                        float f13 = min;
-                        float f14 = height;
-                        float min2 = Math.min(f12 / f13, f14 / f13);
-                        if (min2 > 1.0f && (createScaledBitmap = Bitmaps.createScaledBitmap(bitmap, (int) (f12 / min2), (int) (f14 / min2), true)) != bitmap) {
+                        float f11 = width;
+                        float f12 = min;
+                        float f13 = height;
+                        float min2 = Math.min(f11 / f12, f13 / f12);
+                        if (min2 > 1.0f && (createScaledBitmap = Bitmaps.createScaledBitmap(bitmap, (int) (f11 / min2), (int) (f13 / min2), true)) != bitmap) {
                             bitmap.recycle();
                             bitmap = createScaledBitmap;
                         }
                         FileOutputStream fileOutputStream = new FileOutputStream(file);
                         Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
                         if (this.info.big) {
-                            i9 = 83;
+                            i10 = 83;
                         } else {
-                            i9 = 60;
+                            i10 = 60;
                         }
-                        bitmap.compress(compressFormat, i9, fileOutputStream);
+                        bitmap.compress(compressFormat, i10, fileOutputStream);
                         try {
                             fileOutputStream.close();
                         } catch (Exception e10) {
                             FileLog.e(e10);
                         }
-                        AndroidUtilities.runOnUIThread(new a5(this, str, new ArrayList(this.info.imageReceiverArray), new BitmapDrawable(bitmap), new ArrayList(this.info.imageReceiverGuidsArray)));
+                        AndroidUtilities.runOnUIThread(new c5(this, str, new ArrayList(this.info.imageReceiverArray), new BitmapDrawable(bitmap), new ArrayList(this.info.imageReceiverGuidsArray)));
                         return;
                     }
                     removeTask();
                     return;
                 }
                 removeTask();
-            } catch (Throwable th) {
-                FileLog.e(th);
+            } catch (Throwable th2) {
+                FileLog.e(th2);
                 removeTask();
             }
         }
     }
 
     public ImageLoader() {
-        int i9;
+        int i10;
         ?? obj = new Object();
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        obj.f17683a = new me.a(obj, new PriorityBlockingQueue(10, new d2.a(5)));
+        obj.f45721a = new pe.a(obj, new PriorityBlockingQueue(10, new d2.a(6)));
         this.cacheOutQueue = obj;
         this.cacheThumbOutQueue = new DispatchQueue("cacheThumbOutQueue");
         this.thumbGeneratingQueue = new DispatchQueue("thumbGeneratingQueue");
@@ -1357,13 +1357,13 @@ public class ImageLoader {
         boolean z10 = memoryClass >= 192;
         this.canForce8888 = z10;
         if (z10) {
-            i9 = 30;
+            i10 = 30;
         } else {
-            i9 = 15;
+            i10 = 15;
         }
-        int min = Math.min(i9, memoryClass / 7) * 1048576;
-        float f10 = min;
-        this.memCache = new LruCache<BitmapDrawable>((int) (0.8f * f10)) {
+        int min = Math.min(i10, memoryClass / 7) * 1048576;
+        float f9 = min;
+        this.memCache = new LruCache<BitmapDrawable>((int) (0.8f * f9)) {
             {
                 ImageLoader.this = this;
             }
@@ -1389,7 +1389,7 @@ public class ImageLoader {
                 return ImageLoader.this.sizeOfBitmapDrawable(bitmapDrawable);
             }
         };
-        this.smallImagesMemCache = new LruCache<BitmapDrawable>((int) (f10 * 0.2f)) {
+        this.smallImagesMemCache = new LruCache<BitmapDrawable>((int) (f9 * 0.2f)) {
             {
                 ImageLoader.this = this;
             }
@@ -1433,24 +1433,24 @@ public class ImageLoader {
             @Override
             public void entryRemoved(boolean z11, String str, BitmapDrawable bitmapDrawable, BitmapDrawable bitmapDrawable2) {
                 Integer num = (Integer) ImageLoader.this.bitmapUseCounts.get(str);
-                boolean z12 = bitmapDrawable instanceof org.telegram.ui.Components.x5;
+                boolean z12 = bitmapDrawable instanceof org.telegram.ui.Components.c6;
                 if (z12) {
-                    ImageLoader.this.cachedAnimatedFileDrawables.remove((org.telegram.ui.Components.x5) bitmapDrawable);
+                    ImageLoader.this.cachedAnimatedFileDrawables.remove((org.telegram.ui.Components.c6) bitmapDrawable);
                 }
                 if (num == null || num.intValue() == 0) {
                     if (z12) {
-                        ((org.telegram.ui.Components.x5) bitmapDrawable).u();
+                        ((org.telegram.ui.Components.c6) bitmapDrawable).u();
                     }
-                    if (bitmapDrawable instanceof mi0) {
-                        ((mi0) bitmapDrawable).A(false);
+                    if (bitmapDrawable instanceof xi0) {
+                        ((xi0) bitmapDrawable).A(false);
                     }
                 }
             }
 
             @Override
             public BitmapDrawable put(String str, BitmapDrawable bitmapDrawable) {
-                if (bitmapDrawable instanceof org.telegram.ui.Components.x5) {
-                    ImageLoader.this.cachedAnimatedFileDrawables.add((org.telegram.ui.Components.x5) bitmapDrawable);
+                if (bitmapDrawable instanceof org.telegram.ui.Components.c6) {
+                    ImageLoader.this.cachedAnimatedFileDrawables.add((org.telegram.ui.Components.c6) bitmapDrawable);
                 }
                 return (BitmapDrawable) super.put(str, (String) bitmapDrawable);
             }
@@ -1471,8 +1471,8 @@ public class ImageLoader {
         }
         AndroidUtilities.createEmptyFile(new File(cacheDir, ".nomedia"));
         sparseArray.put(4, cacheDir);
-        for (int i10 = 0; i10 < 4; i10++) {
-            FileLoader.getInstance(i10).setDelegate(new AnonymousClass5(i10));
+        for (int i11 = 0; i11 < 4; i11++) {
+            FileLoader.getInstance(i11).setDelegate(new AnonymousClass5(i11));
         }
         FileLoader.setMediaDirs(sparseArray);
         AnonymousClass6 anonymousClass6 = new AnonymousClass6();
@@ -1499,10 +1499,10 @@ public class ImageLoader {
     }
 
     public void artworkLoadError(String str) {
-        this.imageLoadQueue.postRunnable(new o4(this, str, 0));
+        this.imageLoadQueue.postRunnable(new q4(this, str, 0));
     }
 
-    private boolean canMoveFiles(File file, File file2, int i9) {
+    private boolean canMoveFiles(File file, File file2, int i10) {
         File file3;
         File file4;
         byte[] bArr;
@@ -1510,15 +1510,15 @@ public class ImageLoader {
         RandomAccessFile randomAccessFile2 = null;
         try {
             try {
-                if (i9 == 0) {
+                if (i10 == 0) {
                     file3 = new File(file, "000000000_999999_temp.f");
                     file4 = new File(file2, "000000000_999999.f");
                 } else {
-                    if (i9 != 3 && i9 != 5 && i9 != 6) {
-                        if (i9 == 1) {
+                    if (i10 != 3 && i10 != 5 && i10 != 6) {
+                        if (i10 == 1) {
                             file3 = new File(file, "000000000_999999_temp.f");
                             file4 = new File(file2, "000000000_999999.f");
-                        } else if (i9 == 2) {
+                        } else if (i10 == 2) {
                             file3 = new File(file, "000000000_999999_temp.f");
                             file4 = new File(file2, "000000000_999999.f");
                         } else {
@@ -1532,8 +1532,8 @@ public class ImageLoader {
                 bArr = new byte[1024];
                 file3.createNewFile();
                 randomAccessFile = new RandomAccessFile(file3, "rws");
-            } catch (Throwable th) {
-                th = th;
+            } catch (Throwable th2) {
+                th = th2;
             }
         } catch (Exception e10) {
             e = e10;
@@ -1562,8 +1562,8 @@ public class ImageLoader {
                 }
             }
             return false;
-        } catch (Throwable th2) {
-            th = th2;
+        } catch (Throwable th3) {
+            th = th3;
             randomAccessFile2 = randomAccessFile;
             if (randomAccessFile2 != null) {
                 try {
@@ -1576,27 +1576,27 @@ public class ImageLoader {
         }
     }
 
-    private void createLoadOperationForImageReceiver(final ImageReceiver imageReceiver, final String str, final String str2, final String str3, final ImageLocation imageLocation, final String str4, final long j10, final int i9, final int i10, final int i11, final int i12) {
+    private void createLoadOperationForImageReceiver(final ImageReceiver imageReceiver, final String str, final String str2, final String str3, final ImageLocation imageLocation, final String str4, final long j10, final int i10, final int i11, final int i12, final int i13) {
         final boolean z10;
         long j11;
         if (imageReceiver != null && str2 != null && str != null && imageLocation != null) {
-            int tag = imageReceiver.getTag(i10);
+            int tag = imageReceiver.getTag(i11);
             if (tag == 0) {
                 tag = this.lastImageNum;
-                imageReceiver.setTag(tag, i10);
-                int i13 = this.lastImageNum + 1;
-                this.lastImageNum = i13;
-                if (i13 == Integer.MAX_VALUE) {
+                imageReceiver.setTag(tag, i11);
+                int i14 = this.lastImageNum + 1;
+                this.lastImageNum = i14;
+                if (i14 == Integer.MAX_VALUE) {
                     this.lastImageNum = 0;
                 }
             }
-            final int i14 = tag;
+            final int i15 = tag;
             final boolean isNeedsQualityThumb = imageReceiver.isNeedsQualityThumb();
             final Object parentObject = imageReceiver.getParentObject();
             final TLRPC.Document qualityThumbDocument = imageReceiver.getQualityThumbDocument();
             final boolean isShouldGenerateQualityThumb = imageReceiver.isShouldGenerateQualityThumb();
             final int currentAccount = imageReceiver.getCurrentAccount();
-            if (i10 == 0 && imageReceiver.isCurrentKeyQuality()) {
+            if (i11 == 0 && imageReceiver.isCurrentKeyQuality()) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -1604,7 +1604,7 @@ public class ImageLoader {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$7(i11, str2, str, i14, imageReceiver, i12, str4, i10, imageLocation, z10, parentObject, currentAccount, qualityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i9, j10);
+                    ImageLoader.this.lambda$createLoadOperationForImageReceiver$7(i12, str2, str, i15, imageReceiver, i13, str4, i11, imageLocation, z10, parentObject, currentAccount, qualityThumbDocument, isNeedsQualityThumb, isShouldGenerateQualityThumb, str3, i10, j10);
                 }
             };
             DispatchQueue dispatchQueue = this.imageLoadQueue;
@@ -1619,9 +1619,9 @@ public class ImageLoader {
     }
 
     public static Drawable createStripedBitmap(ArrayList<TLRPC.PhotoSize> arrayList) {
-        for (int i9 = 0; i9 < arrayList.size(); i9++) {
-            if (arrayList.get(i9) instanceof TLRPC.TL_photoStrippedSize) {
-                return new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), getStrippedPhotoBitmap(((TLRPC.TL_photoStrippedSize) arrayList.get(i9)).bytes, "b"));
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (arrayList.get(i10) instanceof TLRPC.TL_photoStrippedSize) {
+                return new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), getStrippedPhotoBitmap(((TLRPC.TL_photoStrippedSize) arrayList.get(i10)).bytes, "b"));
             }
         }
         return null;
@@ -1657,13 +1657,13 @@ public class ImageLoader {
                         gZIPInputStream.close();
                         return sb3;
                     }
-                } catch (Throwable th) {
+                } catch (Throwable th2) {
                     try {
                         bufferedReader.close();
-                    } catch (Throwable th2) {
-                        th.addSuppressed(th2);
+                    } catch (Throwable th3) {
+                        th2.addSuppressed(th3);
                     }
-                    throw th;
+                    throw th2;
                 }
             }
         } catch (Exception unused) {
@@ -1671,15 +1671,15 @@ public class ImageLoader {
         }
     }
 
-    public void fileDidFailedLoad(String str, int i9) {
-        if (i9 == 1) {
+    public void fileDidFailedLoad(String str, int i10) {
+        if (i10 == 1) {
             return;
         }
-        this.imageLoadQueue.postRunnable(new o4(this, str, 4));
+        this.imageLoadQueue.postRunnable(new q4(this, str, 4));
     }
 
-    public void fileDidLoaded(String str, File file, int i9) {
-        this.imageLoadQueue.postRunnable(new h0(this, str, i9, file, 4));
+    public void fileDidLoaded(String str, File file, int i10) {
+        this.imageLoadQueue.postRunnable(new h0(this, str, i10, file, 4));
     }
 
     public static TLRPC.PhotoSize fileToSize(String str, boolean z10) {
@@ -1691,8 +1691,8 @@ public class ImageLoader {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(str, options);
-            int i9 = options.outWidth;
-            int i10 = options.outHeight;
+            int i10 = options.outWidth;
+            int i11 = options.outHeight;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
             tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
             tL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
@@ -1700,15 +1700,15 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.file_reference = new byte[0];
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
             tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
-            tL_photoSize_layer127.f22405w = i9;
-            tL_photoSize_layer127.h = i10;
-            if (i9 <= 100 && i10 <= 100) {
+            tL_photoSize_layer127.f22417w = i10;
+            tL_photoSize_layer127.h = i11;
+            if (i10 <= 100 && i11 <= 100) {
                 tL_photoSize_layer127.type = "s";
-            } else if (i9 <= 320 && i10 <= 320) {
+            } else if (i10 <= 320 && i11 <= 320) {
                 tL_photoSize_layer127.type = "m";
-            } else if (i9 <= 800 && i10 <= 800) {
+            } else if (i10 <= 800 && i11 <= 800) {
                 tL_photoSize_layer127.type = "x";
-            } else if (i9 <= 1280 && i10 <= 1280) {
+            } else if (i10 <= 1280 && i11 <= 1280) {
                 tL_photoSize_layer127.type = "y";
             } else {
                 tL_photoSize_layer127.type = "w";
@@ -1716,7 +1716,7 @@ public class ImageLoader {
             StringBuilder sb2 = new StringBuilder();
             sb2.append(tL_fileLocationToBeDeprecated.volume_id);
             sb2.append("_");
-            String l10 = aa.d.l(tL_fileLocationToBeDeprecated.local_id, ".jpg", sb2);
+            String l10 = a4.w.l(tL_fileLocationToBeDeprecated.local_id, ".jpg", sb2);
             if (z10) {
                 directory = FileLoader.getDirectory(4);
             } else if (tL_fileLocationToBeDeprecated.volume_id != -2147483648L) {
@@ -1745,8 +1745,8 @@ public class ImageLoader {
                         photoSize.bytes = bArr2;
                         randomAccessFile.readFully(bArr2, 0, bArr2.length);
                     }
-                } catch (Throwable th) {
-                    FileLog.e(th);
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
                 }
             }
         }
@@ -1756,8 +1756,8 @@ public class ImageLoader {
         if (list == null) {
             return null;
         }
-        for (int i9 = 0; i9 < list.size(); i9++) {
-            ImageReceiver imageReceiver = list.get(i9);
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            ImageReceiver imageReceiver = list.get(i10);
             if (str.equals(imageReceiver.getImageKey())) {
                 return imageReceiver.getImageDrawable();
             }
@@ -1770,27 +1770,27 @@ public class ImageLoader {
 
     private static TLRPC.PhotoSize findPhotoCachedSize(TLRPC.Message message) {
         TLRPC.MessageMedia messageMedia = message.media;
-        int i9 = 0;
+        int i10 = 0;
         if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
             int size = messageMedia.photo.sizes.size();
-            while (i9 < size) {
-                TLRPC.PhotoSize photoSize = message.media.photo.sizes.get(i9);
+            while (i10 < size) {
+                TLRPC.PhotoSize photoSize = message.media.photo.sizes.get(i10);
                 if (photoSize instanceof TLRPC.TL_photoCachedSize) {
                     return photoSize;
                 }
-                i9++;
+                i10++;
             }
             return null;
         } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
                 int size2 = document.thumbs.size();
-                while (i9 < size2) {
-                    TLRPC.PhotoSize photoSize2 = message.media.document.thumbs.get(i9);
+                while (i10 < size2) {
+                    TLRPC.PhotoSize photoSize2 = message.media.document.thumbs.get(i10);
                     if (photoSize2 instanceof TLRPC.TL_photoCachedSize) {
                         return photoSize2;
                     }
-                    i9++;
+                    i10++;
                 }
                 return null;
             }
@@ -1799,12 +1799,12 @@ public class ImageLoader {
             TLRPC.Photo photo = messageMedia.webpage.photo;
             if (photo != null) {
                 int size3 = photo.sizes.size();
-                while (i9 < size3) {
-                    TLRPC.PhotoSize photoSize3 = message.media.webpage.photo.sizes.get(i9);
+                while (i10 < size3) {
+                    TLRPC.PhotoSize photoSize3 = message.media.webpage.photo.sizes.get(i10);
                     if (photoSize3 instanceof TLRPC.TL_photoCachedSize) {
                         return photoSize3;
                     }
-                    i9++;
+                    i10++;
                 }
                 return null;
             }
@@ -1817,33 +1817,33 @@ public class ImageLoader {
     }
 
     public static MessageThumb generateMessageThumb(TLRPC.Message message) {
-        int i9;
         int i10;
+        int i11;
         Bitmap strippedPhotoBitmap;
         byte[] bArr;
         TLRPC.PhotoSize findPhotoCachedSize = findPhotoCachedSize(message);
         if (findPhotoCachedSize != null && (bArr = findPhotoCachedSize.bytes) != null && bArr.length != 0) {
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
             TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f22405w = findPhotoCachedSize.f22405w;
+            tL_photoSize_layer127.f22417w = findPhotoCachedSize.f22417w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;
             tL_photoSize_layer127.type = findPhotoCachedSize.type;
             if (pathToAttach.exists() && message.grouped_id == 0) {
-                PointF C2 = org.telegram.ui.Cells.t1.C2(findPhotoCachedSize.f22405w, findPhotoCachedSize.h, 0, 0);
+                PointF C2 = org.telegram.ui.Cells.s1.C2(findPhotoCachedSize.f22417w, findPhotoCachedSize.h, 0, 0);
                 Locale locale = Locale.US;
                 String str = findPhotoCachedSize.location.volume_id + "_" + findPhotoCachedSize.location.local_id + "@" + ((int) (C2.x / AndroidUtilities.density)) + "_" + ((int) (C2.y / AndroidUtilities.density)) + "_b";
                 if (!getInstance().isInMemCache(str, false)) {
                     String path = pathToAttach.getPath();
-                    float f10 = C2.x;
-                    float f11 = AndroidUtilities.density;
-                    Bitmap loadBitmap = loadBitmap(path, null, (int) (f10 / f11), (int) (C2.y / f11), false);
+                    float f9 = C2.x;
+                    float f10 = AndroidUtilities.density;
+                    Bitmap loadBitmap = loadBitmap(path, null, (int) (f9 / f10), (int) (C2.y / f10), false);
                     if (loadBitmap != null) {
                         Utilities.blurBitmap(loadBitmap, 3);
-                        float f12 = C2.x;
-                        float f13 = AndroidUtilities.density;
-                        Bitmap createScaledBitmap = Bitmaps.createScaledBitmap(loadBitmap, (int) (f12 / f13), (int) (C2.y / f13), true);
+                        float f11 = C2.x;
+                        float f12 = AndroidUtilities.density;
+                        Bitmap createScaledBitmap = Bitmaps.createScaledBitmap(loadBitmap, (int) (f11 / f12), (int) (C2.y / f12), true);
                         if (createScaledBitmap != loadBitmap) {
                             loadBitmap.recycle();
                             loadBitmap = createScaledBitmap;
@@ -1856,39 +1856,39 @@ public class ImageLoader {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
                 int size = messageMedia.document.thumbs.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    TLRPC.PhotoSize photoSize = message.media.document.thumbs.get(i11);
+                for (int i12 = 0; i12 < size; i12++) {
+                    TLRPC.PhotoSize photoSize = message.media.document.thumbs.get(i12);
                     if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
                         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(message.media.document.thumbs, 320);
                         if (closestPhotoSizeWithSize != null) {
-                            i10 = closestPhotoSizeWithSize.h;
-                            i9 = closestPhotoSizeWithSize.f22405w;
+                            i11 = closestPhotoSizeWithSize.h;
+                            i10 = closestPhotoSizeWithSize.f22417w;
                         } else {
-                            int i12 = 0;
+                            int i13 = 0;
                             while (true) {
-                                if (i12 < message.media.document.attributes.size()) {
-                                    if (message.media.document.attributes.get(i12) instanceof TLRPC.TL_documentAttributeVideo) {
-                                        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) message.media.document.attributes.get(i12);
-                                        i10 = tL_documentAttributeVideo.h;
-                                        i9 = tL_documentAttributeVideo.f22387w;
+                                if (i13 < message.media.document.attributes.size()) {
+                                    if (message.media.document.attributes.get(i13) instanceof TLRPC.TL_documentAttributeVideo) {
+                                        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) message.media.document.attributes.get(i13);
+                                        i11 = tL_documentAttributeVideo.h;
+                                        i10 = tL_documentAttributeVideo.f22399w;
                                         break;
                                     }
-                                    i12++;
+                                    i13++;
                                 } else {
-                                    i9 = 0;
                                     i10 = 0;
+                                    i11 = 0;
                                     break;
                                 }
                             }
                         }
-                        PointF C22 = org.telegram.ui.Cells.t1.C2(i9, i10, 0, 0);
+                        PointF C22 = org.telegram.ui.Cells.s1.C2(i10, i11, 0, 0);
                         Locale locale2 = Locale.US;
                         String str2 = ImageLocation.getStrippedKey(message, message, photoSize) + "_false@" + ((int) (C22.x / AndroidUtilities.density)) + "_" + ((int) (C22.y / AndroidUtilities.density)) + "_b";
                         if (!getInstance().isInMemCache(str2, false) && (strippedPhotoBitmap = getStrippedPhotoBitmap(photoSize.bytes, null)) != null) {
                             Utilities.blurBitmap(strippedPhotoBitmap, 3);
-                            float f14 = C22.x;
-                            float f15 = AndroidUtilities.density;
-                            Bitmap createScaledBitmap2 = Bitmaps.createScaledBitmap(strippedPhotoBitmap, (int) (f14 / f15), (int) (C22.y / f15), true);
+                            float f13 = C22.x;
+                            float f14 = AndroidUtilities.density;
+                            Bitmap createScaledBitmap2 = Bitmaps.createScaledBitmap(strippedPhotoBitmap, (int) (f13 / f14), (int) (C22.y / f14), true);
                             if (createScaledBitmap2 != strippedPhotoBitmap) {
                                 strippedPhotoBitmap.recycle();
                                 strippedPhotoBitmap = createScaledBitmap2;
@@ -1902,19 +1902,19 @@ public class ImageLoader {
         return null;
     }
 
-    private void generateThumb(int i9, File file, ThumbGenerateInfo thumbGenerateInfo) {
-        if ((i9 == 0 || i9 == 2 || i9 == 3) && file != null && thumbGenerateInfo != null) {
+    private void generateThumb(int i10, File file, ThumbGenerateInfo thumbGenerateInfo) {
+        if ((i10 == 0 || i10 == 2 || i10 == 3) && file != null && thumbGenerateInfo != null) {
             if (this.thumbGenerateTasks.get(FileLoader.getAttachFileName(thumbGenerateInfo.parentDocument)) == null) {
-                this.thumbGeneratingQueue.postRunnable(new ThumbGenerateTask(i9, file, thumbGenerateInfo));
+                this.thumbGeneratingQueue.postRunnable(new ThumbGenerateTask(i10, file, thumbGenerateInfo));
             }
         }
     }
 
     public BitmapDrawable getFromLottieCache(String str) {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
-        if (bitmapDrawable instanceof org.telegram.ui.Components.x5) {
-            org.telegram.ui.Components.x5 x5Var = (org.telegram.ui.Components.x5) bitmapDrawable;
-            if (!x5Var.Y && x5Var.C0 < 15) {
+        if (bitmapDrawable instanceof org.telegram.ui.Components.c6) {
+            org.telegram.ui.Components.c6 c6Var = (org.telegram.ui.Components.c6) bitmapDrawable;
+            if (!c6Var.Y && c6Var.C0 < 15) {
                 return bitmapDrawable;
             }
             this.lottieMemCache.remove(str);
@@ -1962,8 +1962,8 @@ public class ImageLoader {
                         imageLoader = new ImageLoader();
                         Instance = imageLoader;
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             return imageLoader;
@@ -1974,10 +1974,10 @@ public class ImageLoader {
     private File getPublicStorageDir() {
         File file = ApplicationLoader.applicationContext.getExternalMediaDirs()[0];
         if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
-            for (int i9 = 0; i9 < ApplicationLoader.applicationContext.getExternalMediaDirs().length; i9++) {
-                File file2 = ApplicationLoader.applicationContext.getExternalMediaDirs()[i9];
+            for (int i10 = 0; i10 < ApplicationLoader.applicationContext.getExternalMediaDirs().length; i10++) {
+                File file2 = ApplicationLoader.applicationContext.getExternalMediaDirs()[i10];
                 if (file2 != null && file2.getPath().startsWith(SharedConfig.storageCacheDir)) {
-                    file = ApplicationLoader.applicationContext.getExternalMediaDirs()[i9];
+                    file = ApplicationLoader.applicationContext.getExternalMediaDirs()[i10];
                 }
             }
         }
@@ -2037,8 +2037,8 @@ public class ImageLoader {
             return false;
         }
         String[] split = str.split("_");
-        for (int i9 = 0; i9 < split.length; i9++) {
-            if ("g".equals(split[i9]) || "gl".equals(split[i9]) || "pframe".equals(split[i9])) {
+        for (int i10 = 0; i10 < split.length; i10++) {
+            if ("g".equals(split[i10]) || "gl".equals(split[i10]) || "pframe".equals(split[i10])) {
                 return true;
             }
         }
@@ -2046,7 +2046,7 @@ public class ImageLoader {
     }
 
     public void httpFileLoadError(String str) {
-        this.imageLoadQueue.postRunnable(new o4(this, str, 3));
+        this.imageLoadQueue.postRunnable(new q4(this, str, 3));
     }
 
     public boolean isAnimatedAvatar(String str) {
@@ -2089,19 +2089,19 @@ public class ImageLoader {
     }
 
     public void lambda$cancelLoadingForImageReceiver$4(boolean z10, ImageReceiver imageReceiver) {
-        int i9 = 0;
+        int i10 = 0;
         while (true) {
-            int i10 = 3;
-            if (i9 < 3) {
-                if (i9 <= 0 || z10) {
-                    if (i9 == 0) {
-                        i10 = 1;
-                    } else if (i9 == 1) {
-                        i10 = 0;
+            int i11 = 3;
+            if (i10 < 3) {
+                if (i10 <= 0 || z10) {
+                    if (i10 == 0) {
+                        i11 = 1;
+                    } else if (i10 == 1) {
+                        i11 = 0;
                     }
-                    int tag = imageReceiver.getTag(i10);
+                    int tag = imageReceiver.getTag(i11);
                     if (tag != 0) {
-                        if (i9 == 0) {
+                        if (i10 == 0) {
                             removeFromWaitingForThumb(tag, imageReceiver);
                         }
                         CacheImage cacheImage = this.imageLoadingByTag.get(tag);
@@ -2109,7 +2109,7 @@ public class ImageLoader {
                             cacheImage.removeImageReceiver(imageReceiver);
                         }
                     }
-                    i9++;
+                    i10++;
                 } else {
                     return;
                 }
@@ -2119,22 +2119,22 @@ public class ImageLoader {
         }
     }
 
-    public void lambda$changeFileLoadingPriorityForImageReceiver$3(ImageReceiver imageReceiver, int i9) {
+    public void lambda$changeFileLoadingPriorityForImageReceiver$3(ImageReceiver imageReceiver, int i10) {
         CacheImage cacheImage;
-        int i10 = 0;
+        int i11 = 0;
         while (true) {
-            int i11 = 3;
-            if (i10 < 3) {
-                if (i10 == 0) {
-                    i11 = 1;
-                } else if (i10 == 1) {
-                    i11 = 0;
+            int i12 = 3;
+            if (i11 < 3) {
+                if (i11 == 0) {
+                    i12 = 1;
+                } else if (i11 == 1) {
+                    i12 = 0;
                 }
-                int tag = imageReceiver.getTag(i11);
+                int tag = imageReceiver.getTag(i12);
                 if (tag != 0 && (cacheImage = this.imageLoadingByTag.get(tag)) != null) {
-                    cacheImage.changePriority(i9);
+                    cacheImage.changePriority(i10);
                 }
-                i10++;
+                i11++;
             } else {
                 return;
             }
@@ -2149,7 +2149,7 @@ public class ImageLoader {
     }
 
     public void lambda$checkMediaPaths$1(Runnable runnable) {
-        AndroidUtilities.runOnUIThread(new c2(13, createMediaPaths(), runnable));
+        AndroidUtilities.runOnUIThread(new c2(14, createMediaPaths(), runnable));
     }
 
     public void lambda$createLoadOperationForImageReceiver$7(int r26, java.lang.String r27, java.lang.String r28, int r29, org.telegram.messenger.ImageReceiver r30, int r31, java.lang.String r32, int r33, org.telegram.messenger.ImageLocation r34, boolean r35, java.lang.Object r36, int r37, org.telegram.tgnet.TLRPC.Document r38, boolean r39, boolean r40, java.lang.String r41, int r42, long r43) {
@@ -2163,10 +2163,10 @@ public class ImageLoader {
         }
     }
 
-    public void lambda$fileDidLoaded$11(String str, int i9, File file) {
+    public void lambda$fileDidLoaded$11(String str, int i10, File file) {
         ThumbGenerateInfo thumbGenerateInfo = this.waitingForQualityThumb.get(str);
         if (thumbGenerateInfo != null && thumbGenerateInfo.parentDocument != null) {
-            generateThumb(i9, file, thumbGenerateInfo);
+            generateThumb(i10, file, thumbGenerateInfo);
             this.waitingForQualityThumb.remove(str);
         }
         CacheImage cacheImage = this.imageLoadingByUrl.get(str);
@@ -2174,12 +2174,12 @@ public class ImageLoader {
             this.imageLoadingByUrl.remove(str);
             this.imageLoadingByUrlPframe.remove(str);
             ArrayList arrayList = new ArrayList();
-            for (int i10 = 0; i10 < cacheImage.imageReceiverArray.size(); i10++) {
-                String str2 = cacheImage.keys.get(i10);
-                String str3 = cacheImage.filters.get(i10);
-                int intValue = cacheImage.types.get(i10).intValue();
-                ImageReceiver imageReceiver = cacheImage.imageReceiverArray.get(i10);
-                int intValue2 = cacheImage.imageReceiverGuidsArray.get(i10).intValue();
+            for (int i11 = 0; i11 < cacheImage.imageReceiverArray.size(); i11++) {
+                String str2 = cacheImage.keys.get(i11);
+                String str3 = cacheImage.filters.get(i11);
+                int intValue = cacheImage.types.get(i11).intValue();
+                ImageReceiver imageReceiver = cacheImage.imageReceiverArray.get(i11);
+                int intValue2 = cacheImage.imageReceiverGuidsArray.get(i11).intValue();
                 CacheImage cacheImage2 = this.imageLoadingByKeys.get(str2);
                 if (cacheImage2 == null) {
                     cacheImage2 = new CacheImage();
@@ -2204,18 +2204,18 @@ public class ImageLoader {
                 }
                 cacheImage2.addImageReceiver(imageReceiver, str2, str3, intValue, intValue2);
             }
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                CacheOutTask cacheOutTask = (CacheOutTask) arrayList.get(i11);
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                CacheOutTask cacheOutTask = (CacheOutTask) arrayList.get(i12);
                 if (cacheOutTask.cacheImage.type == 1) {
                     this.cacheThumbOutQueue.postRunnable(cacheOutTask);
                 } else {
-                    me.c cVar = this.cacheOutQueue;
-                    int i12 = cacheOutTask.cacheImage.priority;
-                    if (i12 != 1) {
+                    pe.c cVar = this.cacheOutQueue;
+                    int i13 = cacheOutTask.cacheImage.priority;
+                    if (i13 != 1) {
                         cVar.getClass();
-                        cacheOutTask = new me.b(i12, cacheOutTask);
+                        cacheOutTask = new pe.b(i13, cacheOutTask);
                     }
-                    cVar.f17683a.execute(cacheOutTask);
+                    cVar.f45721a.execute(cacheOutTask);
                 }
             }
         }
@@ -2263,13 +2263,13 @@ public class ImageLoader {
         cacheImage.imageLocation = forPath;
         cacheImage.ext = httpUrlExtension;
         cacheImage.parentObject = null;
-        int i9 = forPath.imageType;
-        if (i9 != 0) {
-            cacheImage.imageType = i9;
+        int i10 = forPath.imageType;
+        if (i10 != 0) {
+            cacheImage.imageType = i10;
         }
         cacheImage.url = str2;
         this.imageLoadingByUrl.put(str2, cacheImage);
-        cacheImage.tempFilePath = new File(FileLoader.getDirectory(4), ta.b.j(Utilities.MD5(forPath.path), "_temp.jpg"));
+        cacheImage.tempFilePath = new File(FileLoader.getDirectory(4), u3.c.k(Utilities.MD5(forPath.path), "_temp.jpg"));
         cacheImage.finalFilePath = file;
         ArtworkLoadTask artworkLoadTask = new ArtworkLoadTask(cacheImage);
         cacheImage.artworkTask = artworkLoadTask;
@@ -2282,18 +2282,18 @@ public class ImageLoader {
         runHttpFileLoadTasks(null, 0);
     }
 
-    public void lambda$runHttpFileLoadTasks$14(HttpFileTask httpFileTask, int i9) {
+    public void lambda$runHttpFileLoadTasks$14(HttpFileTask httpFileTask, int i10) {
         ImageLoader imageLoader;
         if (httpFileTask != null) {
             this.currentHttpFileLoadTasksCount--;
         }
         if (httpFileTask != null) {
-            if (i9 == 1) {
+            if (i10 == 1) {
                 if (httpFileTask.canRetry) {
                     imageLoader = this;
-                    c3 c3Var = new c3(1, this, new HttpFileTask(httpFileTask.url, httpFileTask.tempFile, httpFileTask.ext, httpFileTask.currentAccount));
-                    imageLoader.retryHttpsTasks.put(httpFileTask.url, c3Var);
-                    AndroidUtilities.runOnUIThread(c3Var, 1000L);
+                    d3 d3Var = new d3(1, this, new HttpFileTask(httpFileTask.url, httpFileTask.tempFile, httpFileTask.ext, httpFileTask.currentAccount));
+                    imageLoader.retryHttpsTasks.put(httpFileTask.url, d3Var);
+                    AndroidUtilities.runOnUIThread(d3Var, 1000L);
                 } else {
                     imageLoader = this;
                     imageLoader.httpFileLoadTasksByKeys.remove(httpFileTask.url);
@@ -2301,7 +2301,7 @@ public class ImageLoader {
                 }
             } else {
                 imageLoader = this;
-                if (i9 == 2) {
+                if (i10 == 2) {
                     imageLoader.httpFileLoadTasksByKeys.remove(httpFileTask.url);
                     File file = new File(FileLoader.getDirectory(4), Utilities.MD5(httpFileTask.url) + "." + httpFileTask.ext);
                     if (!httpFileTask.tempFile.renameTo(file)) {
@@ -2376,8 +2376,8 @@ public class ImageLoader {
         }
     }
 
-    private void removeFromWaitingForThumb(int i9, ImageReceiver imageReceiver) {
-        String str = this.waitingForQualityThumbByTag.get(i9);
+    private void removeFromWaitingForThumb(int i10, ImageReceiver imageReceiver) {
+        String str = this.waitingForQualityThumbByTag.get(i10);
         if (str != null) {
             ThumbGenerateInfo thumbGenerateInfo = this.waitingForQualityThumb.get(str);
             if (thumbGenerateInfo != null) {
@@ -2390,25 +2390,25 @@ public class ImageLoader {
                     this.waitingForQualityThumb.remove(str);
                 }
             }
-            this.waitingForQualityThumbByTag.remove(i9);
+            this.waitingForQualityThumbByTag.remove(i10);
         }
     }
 
     public void lambda$replaceImageInCache$5(String str, String str2, ImageLocation imageLocation) {
         ArrayList<String> filterKeys;
-        for (int i9 = 0; i9 < 2; i9++) {
-            if (i9 == 0) {
+        for (int i10 = 0; i10 < 2; i10++) {
+            if (i10 == 0) {
                 filterKeys = this.memCache.getFilterKeys(str);
             } else {
                 filterKeys = this.smallImagesMemCache.getFilterKeys(str);
             }
             if (filterKeys != null) {
-                for (int i10 = 0; i10 < filterKeys.size(); i10++) {
-                    String str3 = filterKeys.get(i10);
-                    String z10 = aa.d.z(str, "@", str3);
-                    String z11 = aa.d.z(str2, "@", str3);
-                    performReplace(z10, z11);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReplacedPhotoInMemCache, z10, z11, imageLocation);
+                for (int i11 = 0; i11 < filterKeys.size(); i11++) {
+                    String str3 = filterKeys.get(i11);
+                    String y8 = a4.w.y(str, "@", str3);
+                    String y10 = a4.w.y(str2, "@", str3);
+                    performReplace(y8, y10);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReplacedPhotoInMemCache, y8, y10, imageLocation);
                 }
             } else {
                 performReplace(str, str2);
@@ -2431,8 +2431,8 @@ public class ImageLoader {
         }
     }
 
-    public void runHttpFileLoadTasks(HttpFileTask httpFileTask, int i9) {
-        AndroidUtilities.runOnUIThread(new p4(this, httpFileTask, i9, 0));
+    public void runHttpFileLoadTasks(HttpFileTask httpFileTask, int i10) {
+        AndroidUtilities.runOnUIThread(new r4(this, httpFileTask, i10, 0));
     }
 
     public void runHttpTasks(boolean z10) {
@@ -2455,15 +2455,15 @@ public class ImageLoader {
         if (messageMedia == null) {
             return;
         }
-        int i9 = 0;
+        int i10 = 0;
         if (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) {
             TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageMedia;
-            while (i9 < tL_messageMediaPaidMedia.extended_media.size()) {
-                TLRPC.MessageExtendedMedia messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i9);
+            while (i10 < tL_messageMediaPaidMedia.extended_media.size()) {
+                TLRPC.MessageExtendedMedia messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i10);
                 if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
                     saveMessageThumbs(message, ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media);
                 }
-                i9++;
+                i10++;
             }
             return;
         }
@@ -2478,12 +2478,12 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
             tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
-        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f22405w <= 50) {
+        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f22417w <= 50) {
             tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tL_photoSize_layer127.f22405w = findPhotoCachedSize.f22405w;
+            tL_photoSize_layer127.f22417w = findPhotoCachedSize.f22417w;
         } else {
             boolean z10 = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
@@ -2521,7 +2521,7 @@ public class ImageLoader {
                 randomAccessFile2.close();
             }
             tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f22405w = findPhotoCachedSize.f22405w;
+            tL_photoSize_layer127.f22417w = findPhotoCachedSize.f22417w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;
@@ -2530,44 +2530,44 @@ public class ImageLoader {
         TLRPC.MessageMedia messageMedia2 = message.media;
         if (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) {
             int size = messageMedia2.photo.sizes.size();
-            while (i9 < size) {
-                if (message.media.photo.sizes.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    message.media.photo.sizes.set(i9, tL_photoSize_layer127);
+            while (i10 < size) {
+                if (message.media.photo.sizes.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    message.media.photo.sizes.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         } else if (messageMedia2 instanceof TLRPC.TL_messageMediaDocument) {
             int size2 = messageMedia2.document.thumbs.size();
-            while (i9 < size2) {
-                if (message.media.document.thumbs.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    message.media.document.thumbs.set(i9, tL_photoSize_layer127);
+            while (i10 < size2) {
+                if (message.media.document.thumbs.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    message.media.document.thumbs.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         } else if (messageMedia2 instanceof TLRPC.TL_messageMediaWebPage) {
             int size3 = messageMedia2.webpage.photo.sizes.size();
-            while (i9 < size3) {
-                if (message.media.webpage.photo.sizes.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    message.media.webpage.photo.sizes.set(i9, tL_photoSize_layer127);
+            while (i10 < size3) {
+                if (message.media.webpage.photo.sizes.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    message.media.webpage.photo.sizes.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         }
     }
 
     public static void saveMessagesThumbs(ArrayList<TLRPC.Message> arrayList) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                saveMessageThumbs(arrayList.get(i9));
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                saveMessageThumbs(arrayList.get(i10));
             }
         }
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f10, float f11, int i9, boolean z10) {
-        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f10, f11, i9, z10, 0, 0, false);
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f9, float f10, int i10, boolean z10) {
+        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f9, f10, i10, z10, 0, 0, false);
     }
 
     private static org.telegram.tgnet.TLRPC.PhotoSize scaleAndSaveImageInternal(org.telegram.tgnet.TLRPC.PhotoSize r2, android.graphics.Bitmap r3, android.graphics.Bitmap.CompressFormat r4, boolean r5, int r6, int r7, float r8, float r9, float r10, int r11, boolean r12, boolean r13, boolean r14) {
@@ -2583,8 +2583,8 @@ public class ImageLoader {
             } else {
                 try {
                     str = AndroidUtilities.getPath(uri);
-                } catch (Throwable th) {
-                    FileLog.e(th);
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
                 }
             }
         }
@@ -2595,30 +2595,30 @@ public class ImageLoader {
                 InputStream openInputStream = ApplicationLoader.applicationContext.getContentResolver().openInputStream(uri);
                 BitmapFactory.decodeStream(openInputStream, null, options);
                 openInputStream.close();
-            } catch (Throwable th2) {
-                FileLog.e(th2);
+            } catch (Throwable th3) {
+                FileLog.e(th3);
                 return false;
             }
         }
-        float f10 = options.outWidth;
-        float f11 = options.outHeight;
-        if (f10 / f11 > 10.0f || f11 / f10 > 10.0f) {
+        float f9 = options.outWidth;
+        float f10 = options.outHeight;
+        if (f9 / f10 > 10.0f || f10 / f9 > 10.0f) {
             return true;
         }
         return false;
     }
 
     public int sizeOfBitmapDrawable(BitmapDrawable bitmapDrawable) {
-        if (bitmapDrawable instanceof org.telegram.ui.Components.x5) {
-            org.telegram.ui.Components.x5 x5Var = (org.telegram.ui.Components.x5) bitmapDrawable;
-            return Math.max(x5Var.getIntrinsicHeight() * x5Var.getIntrinsicWidth(), x5Var.f34516f0 * x5Var.f34514e0) * 12;
-        } else if (bitmapDrawable instanceof mi0) {
-            mi0 mi0Var = (mi0) bitmapDrawable;
-            int i9 = mi0Var.f30842b * mi0Var.f30844c;
-            if (mi0Var.C) {
-                return i9 * 2;
+        if (bitmapDrawable instanceof org.telegram.ui.Components.c6) {
+            org.telegram.ui.Components.c6 c6Var = (org.telegram.ui.Components.c6) bitmapDrawable;
+            return Math.max(c6Var.getIntrinsicHeight() * c6Var.getIntrinsicWidth(), c6Var.f27323f0 * c6Var.f27321e0) * 12;
+        } else if (bitmapDrawable instanceof xi0) {
+            xi0 xi0Var = (xi0) bitmapDrawable;
+            int i10 = xi0Var.f34732b * xi0Var.f34734c;
+            if (xi0Var.C) {
+                return i10 * 2;
             }
-            return i9 * 8;
+            return i10 * 8;
         } else {
             return bitmapDrawable.getBitmap().getByteCount();
         }
@@ -2642,7 +2642,7 @@ public class ImageLoader {
         if (imageReceiver == null || (imageKey = imageReceiver.getImageKey()) == null) {
             return;
         }
-        this.imageLoadQueue.postRunnable(new o4(this, imageKey, 1));
+        this.imageLoadQueue.postRunnable(new q4(this, imageKey, 1));
     }
 
     public void cancelLoadHttpFile(String str) {
@@ -2663,7 +2663,7 @@ public class ImageLoader {
         if (imageReceiver == null) {
             return;
         }
-        HashMap hashMap = org.telegram.ui.web.d2.f43836f;
+        HashMap hashMap = org.telegram.ui.web.f2.f44033f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -2673,39 +2673,39 @@ public class ImageLoader {
                 Map.Entry entry = (Map.Entry) it.next();
                 String str = (String) entry.getKey();
                 ArrayList arrayList = (ArrayList) entry.getValue();
-                int i9 = 0;
+                int i10 = 0;
                 while (true) {
-                    if (i9 >= arrayList.size()) {
+                    if (i10 >= arrayList.size()) {
                         break;
-                    } else if (((Pair) arrayList.get(i9)).first == imageReceiver) {
-                        arrayList.remove(i9);
+                    } else if (((Pair) arrayList.get(i10)).first == imageReceiver) {
+                        arrayList.remove(i10);
                         break;
                     } else {
-                        i9++;
+                        i10++;
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    org.telegram.ui.web.d2.f43836f.remove(str);
+                    org.telegram.ui.web.f2.f44033f.remove(str);
                     break;
                 }
             }
         }
         ArrayList<Runnable> loadingOperations = imageReceiver.getLoadingOperations();
         if (!loadingOperations.isEmpty()) {
-            for (int i10 = 0; i10 < loadingOperations.size(); i10++) {
-                this.imageLoadQueue.cancelRunnable(loadingOperations.get(i10));
+            for (int i11 = 0; i11 < loadingOperations.size(); i11++) {
+                this.imageLoadQueue.cancelRunnable(loadingOperations.get(i11));
             }
             loadingOperations.clear();
         }
         imageReceiver.addLoadingImageRunnable(null);
-        this.imageLoadQueue.postRunnable(new l6(this, z10, imageReceiver, 2));
+        this.imageLoadQueue.postRunnable(new p6(this, z10, imageReceiver, 2));
     }
 
     public void changeFileLoadingPriorityForImageReceiver(ImageReceiver imageReceiver) {
         if (imageReceiver == null) {
             return;
         }
-        this.imageLoadQueue.postRunnable(new p4(this, imageReceiver, imageReceiver.getFileLoadingPriority(), 4));
+        this.imageLoadQueue.postRunnable(new r4(this, imageReceiver, imageReceiver.getFileLoadingPriority(), 4));
     }
 
     public void checkMediaPaths() {
@@ -2735,7 +2735,7 @@ public class ImageLoader {
         return false;
     }
 
-    public me.c getCacheOutQueue() {
+    public pe.c getCacheOutQueue() {
         return this.cacheOutQueue;
     }
 
@@ -2784,15 +2784,15 @@ public class ImageLoader {
             str3 = fileLocation.volume_id + "_" + fileLocation.local_id;
         } else if (tLObject instanceof TLRPC.Document) {
             TLRPC.Document document = (TLRPC.Document) tLObject;
-            str3 = document.dc_id + "_" + document.f22386id;
+            str3 = document.dc_id + "_" + document.f22398id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
-            str3 = secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f22515id;
+            str3 = secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f22527id;
         } else if (tLObject instanceof WebFile) {
             str3 = Utilities.MD5(((WebFile) tLObject).url);
         }
         if (str2 != null) {
-            str3 = aa.d.z(str3, "@", str2);
+            str3 = a4.w.y(str3, "@", str2);
         }
         return getFromMemCache(str3);
     }
@@ -2842,13 +2842,13 @@ public class ImageLoader {
         return this.httpFileLoadTasksByKeys.containsKey(str);
     }
 
-    public void loadHttpFile(String str, String str2, int i9) {
+    public void loadHttpFile(String str, String str2, int i10) {
         if (str != null && str.length() != 0 && !this.httpFileLoadTasksByKeys.containsKey(str)) {
             String httpUrlExtension = getHttpUrlExtension(str, str2);
             File directory = FileLoader.getDirectory(4);
             File file = new File(directory, Utilities.MD5(str) + "_temp." + httpUrlExtension);
             file.delete();
-            HttpFileTask httpFileTask = new HttpFileTask(str, file, httpUrlExtension, i9);
+            HttpFileTask httpFileTask = new HttpFileTask(str, file, httpUrlExtension, i10);
             this.httpFileLoadTasks.add(httpFileTask);
             this.httpFileLoadTasksByKeys.put(str, httpFileTask);
             runHttpFileLoadTasks(null, 0);
@@ -2874,13 +2874,13 @@ public class ImageLoader {
     }
 
     public void onFragmentStackChanged() {
-        for (int i9 = 0; i9 < this.cachedAnimatedFileDrawables.size(); i9++) {
-            this.cachedAnimatedFileDrawables.get(i9).f34533u0 = 0;
+        for (int i10 = 0; i10 < this.cachedAnimatedFileDrawables.size(); i10++) {
+            this.cachedAnimatedFileDrawables.get(i10).f27340u0 = 0;
         }
     }
 
     public void preloadArtwork(String str) {
-        this.imageLoadQueue.postRunnable(new o4(this, str, 2));
+        this.imageLoadQueue.postRunnable(new q4(this, str, 2));
     }
 
     public void putImageToCache(BitmapDrawable bitmapDrawable, String str, boolean z10) {
@@ -2895,8 +2895,8 @@ public class ImageLoader {
     }
 
     public void putThumbsToCache(ArrayList<MessageThumb> arrayList) {
-        for (int i9 = 0; i9 < arrayList.size(); i9++) {
-            putImageToCache(arrayList.get(i9).drawable, arrayList.get(i9).key, true);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            putImageToCache(arrayList.get(i10).drawable, arrayList.get(i10).key, true);
         }
     }
 
@@ -2915,41 +2915,41 @@ public class ImageLoader {
 
     public void replaceImageInCache(String str, String str2, ImageLocation imageLocation, boolean z10) {
         if (z10) {
-            AndroidUtilities.runOnUIThread(new gk(this, str, str2, imageLocation, 8));
+            AndroidUtilities.runOnUIThread(new ok(this, str, str2, imageLocation, 8));
         } else {
             lambda$replaceImageInCache$5(str, str2, imageLocation);
         }
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, float f10, float f11, int i9, boolean z10, boolean z11) {
-        return scaleAndSaveImage(photoSize, bitmap, Bitmap.CompressFormat.JPEG, false, f10, f11, i9, z10, 0, 0, z11);
+    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, float f9, float f10, int i10, boolean z10, boolean z11) {
+        return scaleAndSaveImage(photoSize, bitmap, Bitmap.CompressFormat.JPEG, false, f9, f10, i10, z10, 0, 0, z11);
     }
 
     public void checkMediaPaths(Runnable runnable) {
-        me.c cVar = this.cacheOutQueue;
-        cVar.f17683a.execute(new c2(12, this, runnable));
+        pe.c cVar = this.cacheOutQueue;
+        cVar.f45721a.execute(new c2(13, this, runnable));
     }
 
     public void loadImageForImageReceiver(org.telegram.messenger.ImageReceiver r37, java.util.List<org.telegram.messenger.ImageReceiver> r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.loadImageForImageReceiver(org.telegram.messenger.ImageReceiver, java.util.List):void");
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f10, float f11, int i9, boolean z10, int i10, int i11) {
-        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f10, f11, i9, z10, i10, i11, false);
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f9, float f10, int i10, boolean z10, int i11, int i12) {
+        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, false, f9, f10, i10, z10, i11, i12, false);
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f10, float f11, boolean z10, int i9, boolean z11, int i10, int i11) {
-        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, z10, f10, f11, i9, z11, i10, i11, false);
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, float f9, float f10, boolean z10, int i10, boolean z11, int i11, int i12) {
+        return scaleAndSaveImage(null, bitmap, Bitmap.CompressFormat.JPEG, z10, f9, f10, i10, z11, i11, i12, false);
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, Bitmap.CompressFormat compressFormat, float f10, float f11, int i9, boolean z10, int i10, int i11) {
-        return scaleAndSaveImage(null, bitmap, compressFormat, false, f10, f11, i9, z10, i10, i11, false);
+    public static TLRPC.PhotoSize scaleAndSaveImage(Bitmap bitmap, Bitmap.CompressFormat compressFormat, float f9, float f10, int i10, boolean z10, int i11, int i12) {
+        return scaleAndSaveImage(null, bitmap, compressFormat, false, f9, f10, i10, z10, i11, i12, false);
     }
 
-    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, Bitmap.CompressFormat compressFormat, boolean z10, float f10, float f11, int i9, boolean z11, int i10, int i11, boolean z12) {
+    public static TLRPC.PhotoSize scaleAndSaveImage(TLRPC.PhotoSize photoSize, Bitmap bitmap, Bitmap.CompressFormat compressFormat, boolean z10, float f9, float f10, int i10, boolean z11, int i11, int i12, boolean z12) {
         boolean z13;
-        float f12;
-        int i12;
+        float f11;
+        int i13;
         float max;
         if (bitmap == null) {
             return null;
@@ -2957,38 +2957,38 @@ public class ImageLoader {
         float width = bitmap.getWidth();
         float height = bitmap.getHeight();
         if (width != 0.0f && height != 0.0f) {
-            float max2 = Math.max(width / f10, height / f11);
-            if (i10 == 0 || i11 == 0 || (width >= i10 && height >= i11)) {
+            float max2 = Math.max(width / f9, height / f10);
+            if (i11 == 0 || i12 == 0 || (width >= i11 && height >= i12)) {
                 z13 = false;
             } else {
-                if (i12 >= 0 || height <= i11) {
-                    if (width > f12) {
-                        float f13 = i11;
-                        if (height < f13) {
-                            max = height / f13;
+                if (i13 >= 0 || height <= i12) {
+                    if (width > f11) {
+                        float f12 = i12;
+                        if (height < f12) {
+                            max = height / f12;
                         }
                     }
-                    max = Math.max(width / f12, height / i11);
+                    max = Math.max(width / f11, height / i12);
                 } else {
-                    max = width / f12;
+                    max = width / f11;
                 }
                 max2 = max;
                 z13 = true;
             }
-            float f14 = max2;
-            int i13 = (int) (width / f14);
-            int i14 = (int) (height / f14);
-            if (i14 != 0 && i13 != 0) {
+            float f13 = max2;
+            int i14 = (int) (width / f13);
+            int i15 = (int) (height / f13);
+            if (i15 != 0 && i14 != 0) {
                 try {
-                    return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z10, i13, i14, width, height, f14, i9, z11, z13, z12);
-                } catch (Throwable th) {
-                    FileLog.e(th);
+                    return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z10, i14, i15, width, height, f13, i10, z11, z13, z12);
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
                     getInstance().clearMemory();
                     System.gc();
                     try {
-                        return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z10, i13, i14, width, height, f14, i9, z11, z13, z12);
-                    } catch (Throwable th2) {
-                        FileLog.e(th2);
+                        return scaleAndSaveImageInternal(photoSize, bitmap, compressFormat, z10, i14, i15, width, height, f13, i10, z11, z13, z12);
+                    } catch (Throwable th3) {
+                        FileLog.e(th3);
                     }
                 }
             }
@@ -2997,27 +2997,27 @@ public class ImageLoader {
     }
 
     private static TLRPC.PhotoSize findPhotoCachedSize(TLRPC.MessageMedia messageMedia) {
-        int i9 = 0;
+        int i10 = 0;
         if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
             int size = messageMedia.photo.sizes.size();
-            while (i9 < size) {
-                TLRPC.PhotoSize photoSize = messageMedia.photo.sizes.get(i9);
+            while (i10 < size) {
+                TLRPC.PhotoSize photoSize = messageMedia.photo.sizes.get(i10);
                 if (photoSize instanceof TLRPC.TL_photoCachedSize) {
                     return photoSize;
                 }
-                i9++;
+                i10++;
             }
             return null;
         } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
             TLRPC.Document document = messageMedia.document;
             if (document != null) {
                 int size2 = document.thumbs.size();
-                while (i9 < size2) {
-                    TLRPC.PhotoSize photoSize2 = messageMedia.document.thumbs.get(i9);
+                while (i10 < size2) {
+                    TLRPC.PhotoSize photoSize2 = messageMedia.document.thumbs.get(i10);
                     if (photoSize2 instanceof TLRPC.TL_photoCachedSize) {
                         return photoSize2;
                     }
-                    i9++;
+                    i10++;
                 }
                 return null;
             }
@@ -3026,12 +3026,12 @@ public class ImageLoader {
             TLRPC.Photo photo = messageMedia.webpage.photo;
             if (photo != null) {
                 int size3 = photo.sizes.size();
-                while (i9 < size3) {
-                    TLRPC.PhotoSize photoSize3 = messageMedia.webpage.photo.sizes.get(i9);
+                while (i10 < size3) {
+                    TLRPC.PhotoSize photoSize3 = messageMedia.webpage.photo.sizes.get(i10);
                     if (photoSize3 instanceof TLRPC.TL_photoCachedSize) {
                         return photoSize3;
                     }
-                    i9++;
+                    i10++;
                 }
                 return null;
             }
@@ -3057,13 +3057,13 @@ public class ImageLoader {
             tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
             tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         }
-        int i9 = 0;
-        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f22405w <= 50) {
+        int i10 = 0;
+        if (findPhotoCachedSize.h <= 50 && findPhotoCachedSize.f22417w <= 50) {
             tL_photoSize_layer127 = new TLRPC.TL_photoStrippedSize();
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.bytes = findPhotoCachedSize.bytes;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
-            tL_photoSize_layer127.f22405w = findPhotoCachedSize.f22405w;
+            tL_photoSize_layer127.f22417w = findPhotoCachedSize.f22417w;
         } else {
             boolean z10 = true;
             File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(findPhotoCachedSize, true);
@@ -3101,7 +3101,7 @@ public class ImageLoader {
                 randomAccessFile2.close();
             }
             tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
-            tL_photoSize_layer127.f22405w = findPhotoCachedSize.f22405w;
+            tL_photoSize_layer127.f22417w = findPhotoCachedSize.f22417w;
             tL_photoSize_layer127.h = findPhotoCachedSize.h;
             tL_photoSize_layer127.location = findPhotoCachedSize.location;
             tL_photoSize_layer127.size = findPhotoCachedSize.size;
@@ -3109,30 +3109,30 @@ public class ImageLoader {
         }
         if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
             int size = messageMedia.photo.sizes.size();
-            while (i9 < size) {
-                if (messageMedia.photo.sizes.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    messageMedia.photo.sizes.set(i9, tL_photoSize_layer127);
+            while (i10 < size) {
+                if (messageMedia.photo.sizes.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    messageMedia.photo.sizes.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
             int size2 = messageMedia.document.thumbs.size();
-            while (i9 < size2) {
-                if (messageMedia.document.thumbs.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    messageMedia.document.thumbs.set(i9, tL_photoSize_layer127);
+            while (i10 < size2) {
+                if (messageMedia.document.thumbs.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    messageMedia.document.thumbs.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
             int size3 = messageMedia.webpage.photo.sizes.size();
-            while (i9 < size3) {
-                if (messageMedia.webpage.photo.sizes.get(i9) instanceof TLRPC.TL_photoCachedSize) {
-                    messageMedia.webpage.photo.sizes.set(i9, tL_photoSize_layer127);
+            while (i10 < size3) {
+                if (messageMedia.webpage.photo.sizes.get(i10) instanceof TLRPC.TL_photoCachedSize) {
+                    messageMedia.webpage.photo.sizes.set(i10, tL_photoSize_layer127);
                     return;
                 }
-                i9++;
+                i10++;
             }
         }
     }

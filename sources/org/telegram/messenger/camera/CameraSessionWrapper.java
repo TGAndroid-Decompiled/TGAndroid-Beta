@@ -198,15 +198,15 @@ public class CameraSessionWrapper {
         }
     }
 
-    public void setZoom(float f10) {
+    public void setZoom(float f9) {
         Camera2Session camera2Session = this.camera2Session;
         if (camera2Session != null) {
-            camera2Session.setZoom(AndroidUtilities.lerp(camera2Session.getMinZoom(), this.camera2Session.getMaxZoom(), f10));
+            camera2Session.setZoom(AndroidUtilities.lerp(camera2Session.getMinZoom(), this.camera2Session.getMaxZoom(), f9));
             return;
         }
         CameraSession cameraSession = this.camera1Session;
         if (cameraSession != null) {
-            cameraSession.setZoom(f10);
+            cameraSession.setZoom(f9);
         }
     }
 

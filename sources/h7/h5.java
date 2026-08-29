@@ -1,17 +1,22 @@
 package h7;
-public final class h5 implements q9.d {
-    public static final h5 f9946a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+import java.nio.ByteBuffer;
+public abstract class h5 {
+    public b4.c a(b4.e eVar) {
+        boolean z10;
+        ByteBuffer byteBuffer = eVar.f16828b;
+        byteBuffer.getClass();
+        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        throw new ClassCastException();
+        f5.a.f(z10);
+        if (eVar.isDecodeOnly()) {
+            return null;
+        }
+        return b(eVar, byteBuffer);
     }
+
+    public abstract b4.c b(b4.e eVar, ByteBuffer byteBuffer);
 }

@@ -1,63 +1,186 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class zr extends View {
-    public final td.a f35360a;
-    public final Paint f35361b;
-    public final RectF f35362c;
-    public final RectF d;
-    public final RectF f35363e;
-    public final np f35364f;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class zr {
+    public final int f35401a;
+    public String f35402b;
+    public final ArrayList f35403c;
+    public final boolean[] d;
+    public boolean[] f35404e;
+    public boolean f35405f;
+    public final int f35406g;
+    public int h;
+    public int f35407i;
+    public final as f35408j;
 
-    public zr(Context context) {
-        super(context);
-        this.f35360a = new td.a(this, gr.h, 380L);
-        Paint paint = new Paint(1);
-        this.f35361b = paint;
-        this.f35362c = new RectF();
-        this.d = new RectF();
-        this.f35363e = new RectF();
-        this.f35364f = new np(this, 5);
-        paint.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.hl, false));
-        invalidate();
+    public zr(as asVar, int i10, ArrayList arrayList) {
+        this.f35408j = asVar;
+        this.f35401a = i10;
+        int size = arrayList.size();
+        this.f35406g = size;
+        this.f35407i = 0;
+        if (size > 0) {
+            this.f35403c = arrayList;
+            this.d = new boolean[size];
+            this.f35405f = true;
+            g();
+        }
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f35364f, 3000L);
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f35406g; i10++) {
+            if (!this.d[i10] || ((zArr = this.f35404e) != null && !zArr[i10])) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f35364f);
+    public final boolean b() {
+        int i10;
+        if (this.f35404e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f35406g;
+        }
+        if (i10 > 1) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10 = this.f35360a.f47775e;
-        RectF rectF = this.d;
-        RectF rectF2 = this.f35362c;
-        RectF rectF3 = this.f35363e;
-        AndroidUtilities.lerp(rectF, rectF2, f10, rectF3);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), 0, f10);
-        canvas.drawRoundRect(rectF3, lerp, lerp, this.f35361b);
+    public final boolean c() {
+        int i10;
+        if (this.f35404e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f35406g;
+        }
+        if (i10 > 0) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        int paddingTop = getPaddingTop();
-        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f35362c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        int dp = ((currentActionBarHeight / 2) + paddingTop) - AndroidUtilities.dp(15.0f);
-        int dp2 = AndroidUtilities.dp(12.0f);
-        this.d.set(AndroidUtilities.dp(12.0f), dp, AndroidUtilities.dp(30.0f) + dp2, AndroidUtilities.dp(30.0f) + dp);
+    public final void d() {
+        boolean[] zArr;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            int i11 = this.f35406g;
+            zArr = this.d;
+            if (i10 >= i11) {
+                break;
+            } else if (!zArr[i10] || ((zArr2 = this.f35404e) != null && !zArr2[i10])) {
+                i10++;
+            }
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        f();
+        this.f35408j.T.N(true);
+    }
+
+    public final void e(int i10) {
+        boolean[] zArr = this.f35404e;
+        if (zArr != null && !zArr[i10]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i10];
+        zArr2[i10] = !z10;
+        if (!z10) {
+            this.f35407i++;
+        } else {
+            this.f35407i--;
+        }
+        this.f35408j.T.N(true);
+    }
+
+    public final void f() {
+        this.f35407i = 0;
+        this.h = 0;
+        for (int i10 = 0; i10 < this.f35406g; i10++) {
+            boolean[] zArr = this.f35404e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i10]) {
+                    this.f35407i++;
+                }
+            } else if (zArr[i10]) {
+                this.h++;
+                if (zArr2[i10]) {
+                    this.f35407i++;
+                }
+            }
+        }
+    }
+
+    public final void g() {
+        TLObject tLObject;
+        String formatName;
+        String formatString;
+        String formatString2;
+        String formatString3;
+        String formatString4;
+        int i10 = this.f35406g;
+        if (i10 != 0) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                boolean[] zArr = this.f35404e;
+                if (zArr == null || zArr[i11]) {
+                    tLObject = (TLObject) this.f35403c.get(i11);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
+            } else {
+                formatName = ContactsController.formatName(tLObject);
+            }
+            int i12 = this.f35401a;
+            if (i12 == 0) {
+                this.f35402b = LocaleController.getString(R.string.DeleteReportSpam);
+            } else if (i12 == 1) {
+                if (b()) {
+                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
+                } else {
+                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
+                }
+                this.f35402b = formatString4;
+            } else if (i12 == 3) {
+                if (b()) {
+                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
+                } else {
+                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
+                }
+                this.f35402b = formatString3;
+            } else if (i12 == 2) {
+                if (this.f35408j.f26843c0) {
+                    if (b()) {
+                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
+                    } else {
+                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
+                    }
+                    this.f35402b = formatString2;
+                    return;
+                }
+                if (b()) {
+                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
+                } else {
+                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
+                }
+                this.f35402b = formatString;
+            }
+        }
     }
 }

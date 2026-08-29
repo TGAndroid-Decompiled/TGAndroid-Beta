@@ -15,10 +15,10 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public final class b implements OnSuccessListener, GenericProvider, org.telegram.ui.ActionBar.b2, Vector.TLDeserializer {
-    public final int f19783a;
+    public final int f19756a;
 
-    public b(int i9) {
-        this.f19783a = i9;
+    public b(int i10) {
+        this.f19756a = i10;
     }
 
     public static Bitmap.CompressFormat a() {
@@ -37,26 +37,26 @@ public final class b implements OnSuccessListener, GenericProvider, org.telegram
         return Stream.VivifiedWrapper.convert(Files.list(path));
     }
 
-    public static void g(WindowManager.LayoutParams layoutParams, int i9) {
-        layoutParams.layoutInDisplayCutoutMode = i9;
+    public static void f(WindowManager.LayoutParams layoutParams, int i10) {
+        layoutParams.layoutInDisplayCutoutMode = i10;
     }
 
     @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
-        switch (this.f19783a) {
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        switch (this.f19756a) {
             case 26:
-                return TLRPC.Peer.TLdeserialize(inputSerializedData, i9, z10);
+                return TLRPC.Peer.TLdeserialize(inputSerializedData, i10, z10);
             case 27:
-                return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i9, z10);
+                return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i10, z10);
             case 28:
-                return TLRPC.MessageEntity.TLdeserialize(inputSerializedData, i9, z10);
+                return TLRPC.MessageEntity.TLdeserialize(inputSerializedData, i10, z10);
             default:
-                return TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, i9, z10);
+                return TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
         c2Var.dismiss();
     }
 
@@ -73,7 +73,7 @@ public final class b implements OnSuccessListener, GenericProvider, org.telegram
         TLRPC.MessageEntity lambda$getEntities$182;
         TLRPC.MessageEntity lambda$getEntities$183;
         TLRPC.MessageEntity lambda$getEntities$184;
-        switch (this.f19783a) {
+        switch (this.f19756a) {
             case 3:
                 lambda$formatSpannableSimple$15 = AndroidUtilities.lambda$formatSpannableSimple$15((Integer) obj);
                 return lambda$formatSpannableSimple$15;

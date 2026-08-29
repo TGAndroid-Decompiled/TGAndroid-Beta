@@ -1,67 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseIntArray;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.WebFile;
-public final class mi implements Utilities.CallbackReturn {
-    public final int f30838a;
-    public final Object f30839b;
+import org.telegram.messenger.NotificationCenter;
+public final class mi extends View {
+    public final int f30703a = 0;
+    public final int f30704b;
+    public final Object f30705c;
+    public final Object d;
+    public final Object f30706e;
 
-    public mi(Object obj, int i9) {
-        this.f30838a = i9;
-        this.f30839b = obj;
+    public mi(ViewGroup viewGroup, int i10) {
+        super(viewGroup.getContext());
+        this.f30705c = new ArrayList();
+        this.f30706e = new org.telegram.ui.q00(this, 27);
+        this.d = viewGroup;
+        this.f30704b = i10;
+    }
+
+    public void a() {
+        org.telegram.ui.q00 q00Var = (org.telegram.ui.q00) this.f30706e;
+        ArrayList arrayList = (ArrayList) this.f30705c;
+        boolean isEmpty = arrayList.isEmpty();
+        int i10 = this.f30704b;
+        if (isEmpty && getVisibility() != 8) {
+            NotificationCenter.getInstance(i10).removeDelayed(q00Var);
+            NotificationCenter.getInstance(i10).doOnIdle(q00Var);
+        } else if (!arrayList.isEmpty() && getVisibility() != 0) {
+            NotificationCenter.getInstance(i10).removeDelayed(q00Var);
+            setVisibility(0);
+        }
     }
 
     @Override
-    public final Object run(Object obj) {
-        int i9;
-        switch (this.f30838a) {
+    public final void onDraw(Canvas canvas) {
+        switch (this.f30703a) {
             case 0:
-                return Boolean.valueOf(vi.J((vi) this.f30839b, (MessageObject) obj));
-            case 1:
-                zg.f fVar = (zg.f) this.f30839b;
-                View view = (View) obj;
-                ImageReceiver imageReceiver = new ImageReceiver(view);
-                int i10 = R.raw.map_placeholder;
-                int i11 = org.telegram.ui.ActionBar.f6.Pb;
-                if (org.telegram.ui.ActionBar.f6.I.q()) {
-                    i9 = 3;
-                } else {
-                    i9 = 6;
-                }
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(i10, i11, i9 * 0.12f);
-                svgThumb.setAspectCenter(true);
-                svgThumb.setColorKey(org.telegram.ui.ActionBar.f6.f23237qe);
-                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f50839b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new up(svgThumb), (Object) null, 0);
-                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.o8(imageReceiver, 1));
-                imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
-                return new vc(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
-            case 2:
-                int i12 = ((SparseIntArray) this.f30839b).get(((Integer) obj).intValue(), -1);
-                if (i12 == -1) {
-                    return Boolean.TRUE;
-                }
-                boolean z10 = true;
-                if (i12 != 1) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
+                jf.b0 b0Var = (jf.b0) this.d;
+                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f30705c;
+                int i10 = this.f30704b;
+                b0Var.b(org.telegram.ui.ActionBar.g6.l1(0.5f, org.telegram.ui.ActionBar.g6.v0(i10, c6Var)));
+                b0Var.draw(canvas);
+                jf.b0 b0Var2 = (jf.b0) this.f30706e;
+                b0Var2.b(org.telegram.ui.ActionBar.g6.l1(0.95f, org.telegram.ui.ActionBar.g6.v0(i10, c6Var)));
+                b0Var2.draw(canvas);
+                return;
             default:
-                i51 i51Var = (i51) this.f30839b;
-                View view2 = (View) obj;
-                i51Var.getClass();
-                if (view2.getParent() != i51Var) {
-                    return Boolean.FALSE;
+                ArrayList arrayList = (ArrayList) this.f30705c;
+                if (!arrayList.isEmpty()) {
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        ((org.telegram.ui.kh0) arrayList.get(i11)).a(canvas);
+                    }
+                    return;
                 }
-                return Boolean.valueOf(!z41.K(i51Var.T(view2).f5505f));
+                return;
         }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f30703a) {
+            case 0:
+                super.onSizeChanged(i10, i11, i12, i13);
+                int i14 = AndroidUtilities.statusBarHeight;
+                jf.b0 b0Var = (jf.b0) this.d;
+                b0Var.c(AndroidUtilities.dp(12.0f) + i14, 0);
+                b0Var.setBounds(0, 0, i10, AndroidUtilities.dp(52.0f) + i14);
+                jf.b0 b0Var2 = (jf.b0) this.f30706e;
+                b0Var2.c(i14 / 3, 0);
+                b0Var2.setBounds(0, 0, i10, i14);
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    public mi(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context);
+        this.d = new jf.b0(2);
+        this.f30706e = new jf.b0(2);
+        this.f30705c = c6Var;
+        this.f30704b = i10;
     }
 }

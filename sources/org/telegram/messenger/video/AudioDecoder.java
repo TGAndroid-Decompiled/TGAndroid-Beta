@@ -1,5 +1,6 @@
 package org.telegram.messenger.video;
 
+import a4.w;
 import android.media.MediaCodec;
 import android.media.MediaCrypto;
 import android.media.MediaExtractor;
@@ -52,27 +53,27 @@ public class AudioDecoder {
     }
 
     private void selectTrack() {
-        int i9 = this.audioIndex;
-        this.trackIndex = i9;
-        if (i9 == -1) {
+        int i10 = this.audioIndex;
+        this.trackIndex = i10;
+        if (i10 == -1) {
             int trackCount = this.extractor.getTrackCount();
-            int i10 = 0;
+            int i11 = 0;
             while (true) {
-                if (i10 < trackCount) {
-                    String string = this.extractor.getTrackFormat(i10).getString("mime");
+                if (i11 < trackCount) {
+                    String string = this.extractor.getTrackFormat(i11).getString("mime");
                     if (string != null && string.startsWith("audio/")) {
-                        this.trackIndex = i10;
+                        this.trackIndex = i11;
                         break;
                     }
-                    i10++;
+                    i11++;
                 } else {
                     break;
                 }
             }
         }
-        int i11 = this.trackIndex;
-        if (i11 >= 0) {
-            this.extractor.selectTrack(i11);
+        int i12 = this.trackIndex;
+        if (i12 >= 0) {
+            this.extractor.selectTrack(i12);
             return;
         }
         throw new RuntimeException("No audio track found in source");
@@ -237,8 +238,8 @@ public class AudioDecoder {
         this.extractor.release();
     }
 
-    public void releaseOutputBuffer(int i9) {
-        this.decoder.releaseOutputBuffer(i9, false);
+    public void releaseOutputBuffer(int i10) {
+        this.decoder.releaseOutputBuffer(i10, false);
     }
 
     public void setEndTimeUs(long j10) {
@@ -277,7 +278,7 @@ public class AudioDecoder {
         StringBuilder sb2 = new StringBuilder("StartTimeUs(");
         sb2.append(this.startTimeUs);
         sb2.append(") must be less than or equal to EndTimeUs(");
-        throw new RuntimeException(aa.d.q(sb2, this.endTimeUs, ")"));
+        throw new RuntimeException(w.p(sb2, this.endTimeUs, ")"));
     }
 
     public void stop() {
@@ -285,12 +286,12 @@ public class AudioDecoder {
         this.decodingDone = true;
     }
 
-    public AudioDecoder(String str, int i9) {
+    public AudioDecoder(String str, int i10) {
         this.audioIndex = -1;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
         mediaExtractor.setDataSource(str);
-        this.audioIndex = i9;
+        this.audioIndex = i10;
         init();
     }
 }

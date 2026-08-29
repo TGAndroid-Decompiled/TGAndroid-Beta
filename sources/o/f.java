@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f18742a;
-    public c f18743b;
-    public final WeakHashMap f18744c = new WeakHashMap();
+    public c f18983a;
+    public c f18984b;
+    public final WeakHashMap f18985c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
@@ -15,59 +15,59 @@ public class f implements Iterable {
 
     public final int hashCode() {
         Iterator it = iterator();
-        int i9 = 0;
+        int i10 = 0;
         while (true) {
             b bVar = (b) it;
             if (bVar.hasNext()) {
-                i9 += ((Map.Entry) bVar.next()).hashCode();
+                i10 += ((Map.Entry) bVar.next()).hashCode();
             } else {
-                return i9;
+                return i10;
             }
         }
     }
 
     public c i(Object obj) {
-        c cVar = this.f18742a;
-        while (cVar != null && !cVar.f18736a.equals(obj)) {
-            cVar = cVar.f18738c;
+        c cVar = this.f18983a;
+        while (cVar != null && !cVar.f18977a.equals(obj)) {
+            cVar = cVar.f18979c;
         }
         return cVar;
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f18742a, this.f18743b, 0);
-        this.f18744c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f18983a, this.f18984b, 0);
+        this.f18985c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 
     public Object n(Object obj) {
-        c i9 = i(obj);
-        if (i9 == null) {
+        c i10 = i(obj);
+        if (i10 == null) {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f18744c;
+        WeakHashMap weakHashMap = this.f18985c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
-                eVar.a(i9);
+                eVar.a(i10);
             }
         }
-        c cVar = i9.d;
+        c cVar = i10.d;
         if (cVar != null) {
-            cVar.f18738c = i9.f18738c;
+            cVar.f18979c = i10.f18979c;
         } else {
-            this.f18742a = i9.f18738c;
+            this.f18983a = i10.f18979c;
         }
-        c cVar2 = i9.f18738c;
+        c cVar2 = i10.f18979c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f18743b = cVar;
+            this.f18984b = cVar;
         }
-        i9.f18738c = null;
-        i9.d = null;
-        return i9.f18737b;
+        i10.f18979c = null;
+        i10.d = null;
+        return i10.f18978b;
     }
 
     public final String toString() {

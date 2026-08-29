@@ -1,24 +1,41 @@
 package h7;
 
-import java.util.Arrays;
-public final class m8 {
-    public final Float f10029a;
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class m8 {
+    public static long f7707a;
+    public static Method f7708b;
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
         }
-        if (!(obj instanceof m8)) {
-            return false;
-        }
-        m8 m8Var = (m8) obj;
-        if (x5.l.l(null, null) && x5.l.l(this.f10029a, m8Var.f10029a) && x5.l.l(null, null)) {
-            return true;
-        }
-        return false;
+        Trace.beginSection(str);
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, this.f10029a, null});
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return j2.a.a();
+        }
+        try {
+            if (f7708b == null) {
+                f7707a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f7708b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            }
+            return ((Boolean) f7708b.invoke(null, Long.valueOf(f7707a))).booleanValue();
+        } catch (Exception e10) {
+            if (e10 instanceof InvocationTargetException) {
+                Throwable cause = e10.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e10);
+            return false;
+        }
     }
 }

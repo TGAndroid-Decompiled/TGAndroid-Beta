@@ -1,23 +1,31 @@
 package org.telegram.ui.ActionBar;
+public final class h0 implements Runnable {
+    public final int f23464a;
+    public final w0 f23465b;
+    public final int f23466c;
 
-import android.view.View;
-public final class h0 implements View.OnClickListener {
-    public final int f23444a;
-    public final g1 f23445b;
-
-    public h0(g1 g1Var, int i9) {
-        this.f23444a = i9;
-        this.f23445b = g1Var;
+    public h0(w0 w0Var, int i10, int i11) {
+        this.f23464a = i11;
+        this.f23465b = w0Var;
+        this.f23466c = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f23444a) {
+    public final void run() {
+        switch (this.f23464a) {
             case 0:
-                this.f23445b.b();
+                w0 w0Var = this.f23465b;
+                if (w0Var.f23915b.getSwipeBack() != null) {
+                    w0Var.f23915b.getSwipeBack().e(this.f23466c);
+                    return;
+                }
                 return;
             default:
-                this.f23445b.b();
+                w0 w0Var2 = this.f23465b;
+                if (w0Var2.f23915b.getSwipeBack() != null) {
+                    w0Var2.f23915b.getSwipeBack().e(this.f23466c);
+                    return;
+                }
                 return;
         }
     }

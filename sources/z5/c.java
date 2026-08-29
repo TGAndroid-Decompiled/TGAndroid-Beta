@@ -1,69 +1,22 @@
 package z5;
+public final class c implements b {
+    public final a8.a f50587a;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.t3;
-import x5.g;
-import x5.p;
-public final class c extends g {
-    public final p Q;
-
-    public c(Context context, Looper looper, t3 t3Var, p pVar, k kVar, l lVar) {
-        super(context, looper, 270, t3Var, kVar, lVar, 0);
-        this.Q = pVar;
+    public c(a8.a aVar) {
+        this.f50587a = aVar;
     }
 
     @Override
-    public final int l() {
-        return 203400000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final void a(w5.a aVar) {
+        boolean c3 = aVar.c();
+        a8.a aVar2 = this.f50587a;
+        if (c3) {
+            aVar2.m(null, aVar2.O);
+            return;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.service.IClientTelemetryService");
-        if (queryLocalInterface instanceof a) {
-            return (a) queryLocalInterface;
+        m mVar = aVar2.G;
+        if (mVar != null) {
+            ((com.google.android.gms.common.api.l) mVar.f50656a).onConnectionFailed(aVar);
         }
-        return new b7.a(iBinder, "com.google.android.gms.common.internal.service.IClientTelemetryService", 10);
-    }
-
-    @Override
-    public final u5.c[] r() {
-        return u6.b.f48132b;
-    }
-
-    @Override
-    public final Bundle t() {
-        p pVar = this.Q;
-        pVar.getClass();
-        Bundle bundle = new Bundle();
-        String str = pVar.f48964a;
-        if (str != null) {
-            bundle.putString("api", str);
-        }
-        return bundle;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.common.internal.service.IClientTelemetryService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.common.telemetry.service.START";
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
     }
 }

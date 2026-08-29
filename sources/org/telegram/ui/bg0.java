@@ -16,39 +16,39 @@ public final class bg0 extends AnimatedPhoneNumberEditText {
     }
 
     @Override
-    public final void onFocusChanged(boolean z10, int i9, Rect rect) {
-        float f10;
-        super.onFocusChanged(z10, i9, rect);
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
+        float f9;
+        super.onFocusChanged(z10, i10, rect);
         eg0 eg0Var = this.C;
         fg0 fg0Var = eg0Var.R;
-        org.telegram.ui.Components.fc0 fc0Var = eg0Var.f37936f;
-        if (!z10 && !eg0Var.f37932a.isFocused()) {
-            f10 = 0.0f;
+        org.telegram.ui.Components.uc0 uc0Var = eg0Var.f37814f;
+        if (!z10 && !eg0Var.f37810a.isFocused()) {
+            f9 = 0.0f;
         } else {
-            f10 = 1.0f;
+            f9 = 1.0f;
         }
-        fc0Var.b(f10, f10, true);
+        uc0Var.b(f9, f9, true);
         if (z10) {
-            fg0Var.f38263c.setEditText(this);
-            fg0Var.f38263c.setDispatchBackWhenEmpty(true);
-            if (eg0Var.f37941x == 2) {
+            fg0Var.f38155c.setEditText(this);
+            fg0Var.f38155c.setDispatchBackWhenEmpty(true);
+            if (eg0Var.f37819x == 2) {
                 eg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
             }
-        } else if (eg0Var.f37941x == 2) {
+        } else if (eg0Var.f37819x == 2) {
             eg0Var.setCountryButtonText(null);
         }
     }
 
     @Override
-    public final boolean onKeyDown(int i9, KeyEvent keyEvent) {
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         eg0 eg0Var = this.C;
-        kj0 kj0Var = eg0Var.f37932a;
-        if (i9 == 67 && eg0Var.f37933b.length() == 0) {
-            kj0Var.requestFocus();
-            kj0Var.setSelection(kj0Var.length());
-            kj0Var.dispatchKeyEvent(keyEvent);
+        ij0 ij0Var = eg0Var.f37810a;
+        if (i10 == 67 && eg0Var.f37811b.length() == 0) {
+            ij0Var.requestFocus();
+            ij0Var.setSelection(ij0Var.length());
+            ij0Var.dispatchKeyEvent(keyEvent);
         }
-        return super.onKeyDown(i9, keyEvent);
+        return super.onKeyDown(i10, keyEvent);
     }
 
     @Override

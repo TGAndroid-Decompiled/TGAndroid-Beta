@@ -1,78 +1,61 @@
 package a7;
 
-import android.os.BadParcelableException;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import p6.e;
 public abstract class a extends Binder implements IInterface {
-    public final int f103a;
-
-    public a(int i9) {
-        this.f103a = i9;
-    }
-
-    public static void E0(Parcel parcel) {
-        int i9 = b.f104a;
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
+    @Override
+    public boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
+        if (i10 > 16777215) {
+            if (super.onTransact(i10, parcel, parcel2, i11)) {
+                return true;
+            }
+        } else {
+            parcel.enforceInterface(getInterfaceDescriptor());
         }
-        StringBuilder sb2 = new StringBuilder(String.valueOf(dataAvail).length() + 45);
-        sb2.append("Parcel data not fully consumed, unread size: ");
-        sb2.append(dataAvail);
-        throw new BadParcelableException(sb2.toString());
+        e eVar = (e) this;
+        if (i10 != 1) {
+            boolean z10 = false;
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        if (i10 != 5) {
+                            return false;
+                        }
+                        String stringFlagValue = eVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
+                        parcel2.writeNoException();
+                        parcel2.writeString(stringFlagValue);
+                        return true;
+                    }
+                    long longFlagValue = eVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
+                    parcel2.writeNoException();
+                    parcel2.writeLong(longFlagValue);
+                    return true;
+                }
+                int intFlagValue = eVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
+                parcel2.writeNoException();
+                parcel2.writeInt(intFlagValue);
+                return true;
+            }
+            String readString = parcel.readString();
+            int i12 = b.f215a;
+            if (parcel.readInt() != 0) {
+                z10 = true;
+            }
+            boolean booleanFlagValue = eVar.getBooleanFlagValue(readString, z10, parcel.readInt());
+            parcel2.writeNoException();
+            parcel2.writeInt(booleanFlagValue ? 1 : 0);
+            return true;
+        }
+        eVar.init(j6.b.J0(parcel.readStrongBinder()));
+        parcel2.writeNoException();
+        return true;
     }
-
-    public abstract boolean F0(int i9, Parcel parcel, Parcel parcel2);
-
-    public abstract boolean G0(int i9, Parcel parcel, Parcel parcel2);
-
-    public boolean H0(int i9, Parcel parcel, Parcel parcel2) {
-        return false;
-    }
-
-    public abstract boolean I0(Parcel parcel, int i9);
 
     @Override
     public IBinder asBinder() {
-        int i9 = this.f103a;
         return this;
-    }
-
-    @Override
-    public boolean onTransact(int r5, android.os.Parcel r6, android.os.Parcel r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: a7.a.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
-    }
-
-    public a(String str, int i9) {
-        this.f103a = i9;
-        switch (i9) {
-            case 2:
-                attachInterface(this, str);
-                return;
-            case 3:
-                attachInterface(this, str);
-                return;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            default:
-                attachInterface(this, str);
-                return;
-            case 8:
-                attachInterface(this, str);
-                return;
-            case 9:
-                attachInterface(this, str);
-                return;
-            case 10:
-                attachInterface(this, str);
-                return;
-            case 11:
-                attachInterface(this, str);
-                return;
-        }
     }
 }

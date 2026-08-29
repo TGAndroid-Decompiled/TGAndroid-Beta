@@ -1,32 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class ms0 extends bu0 {
-    public final eu0 C;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class ms0 implements org.telegram.ui.Cells.i7 {
+    public final qu0 f30760a;
 
-    public ms0(eu0 eu0Var, Context context) {
-        super(eu0Var, context, 0, false);
-        this.C = eu0Var;
+    public ms0(qu0 qu0Var) {
+        this.f30760a = qu0Var;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        eu0 eu0Var = this.C;
-        xs0 W = eu0Var.W(8);
-        if (W != null && W.f34761r.getVisibility() == 0) {
-            eu0Var.W.l();
+    public final void a(String str, boolean z10) {
+        qu0 qu0Var = this.f30760a;
+        org.telegram.ui.ActionBar.o2 o2Var = qu0Var.f32093r1;
+        if (z10) {
+            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(o2Var.getParentActivity(), null, false, false);
+            f3Var.fixNavigationBar();
+            f3Var.title = str;
+            f3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            ag.y1 y1Var = new ag.y1(6, this, str);
+            f3Var.items = charSequenceArr;
+            f3Var.onClickListener = y1Var;
+            o2Var.showDialog(f3Var);
+            return;
         }
-        if (W != null) {
-            or0 or0Var = W.f34763w;
-            ih.n6 n6Var = this.f27281s;
-            if (n6Var != null && (n6Var.k() || (eu0Var.i0() && this.f27281s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            or0Var.e(z10, true);
-        }
+        qu0Var.R0(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        qu0 qu0Var = this.f30760a;
+        mu.I(qu0Var.f32093r1, messageObject, qu0Var.f32084n1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean c() {
+        return !this.f30760a.f32111y1;
     }
 }

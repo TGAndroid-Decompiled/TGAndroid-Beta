@@ -1,113 +1,119 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class xz extends g00 {
-    public final yz A;
+public final class xz extends FrameLayout {
+    public final TextView f44677a;
+    public final ImageView f44678b;
+    public boolean f44679c;
 
-    public xz(yz yzVar, Context context, int i9, int i10) {
-        super(context, null, i9, i10);
-        this.A = yzVar;
-    }
-
-    @Override
-    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        yz yzVar = this.A;
-        yzVar.d.U.remove(tL_exportedChatlistInvite);
-        yzVar.d.S();
-        yzVar.d.T(true);
-    }
-
-    @Override
-    public final void c() {
-        org.telegram.ui.Components.x60 F = org.telegram.ui.Components.x60.F(this.A.d.container, null, this);
-        F.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyLink), new Runnable(this) {
-            public final xz f44283b;
-
-            {
-                this.f44283b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f44283b;
-                        String str = xzVar.f38400x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.oc(xzVar.A.d.V, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44283b.d();
-                        return;
-                    default:
-                        this.f44283b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable(this) {
-            public final xz f44283b;
-
-            {
-                this.f44283b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f44283b;
-                        String str = xzVar.f38400x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.oc(xzVar.A.d.V, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44283b.d();
-                        return;
-                    default:
-                        this.f44283b.a();
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new Runnable(this) {
-            public final xz f44283b;
-
-            {
-                this.f44283b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        xz xzVar = this.f44283b;
-                        String str = xzVar.f38400x;
-                        if (str != null && AndroidUtilities.addToClipboard(str)) {
-                            new org.telegram.ui.Components.oc(xzVar.A.d.V, null).k(false).j();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44283b.d();
-                        return;
-                    default:
-                        this.f44283b.a();
-                        return;
-                }
-            }
-        }, true);
+    public xz(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        float f9;
+        float f10;
+        float f11;
+        float f12;
+        TextView textView = new TextView(context);
+        this.f44677a = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.q6, false));
+        textView.setTextSize(1, 16.0f);
+        textView.setText(LocaleController.getString(R.string.CreateNewLink));
         if (LocaleController.isRTL) {
-            F.f34562i = 3;
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        F.Z();
+        textView.setGravity(i10);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i11 = 16;
+        } else {
+            i11 = 0;
+        }
+        if (z10) {
+            i12 = 0;
+        } else {
+            i12 = 16;
+        }
+        textView.setPadding(i11, 0, i12, 0);
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            f9 = 0.0f;
+        } else {
+            f9 = 64.0f;
+        }
+        if (z11) {
+            f10 = 64.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        addView(textView, i7.f6.d(-1, -2.0f, 23, f9, 0.0f, f10, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f44678b = imageView;
+        Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
+        Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
+        int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Oh, false);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23190k7, false), mode));
+        imageView.setImageDrawable(new org.telegram.ui.Components.jq(drawable, drawable2));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        boolean z12 = LocaleController.isRTL;
+        int i13 = (z12 ? 5 : 3) | 16;
+        if (z12) {
+            f11 = 0.0f;
+        } else {
+            f11 = 16.0f;
+        }
+        if (z12) {
+            f12 = 16.0f;
+        } else {
+            f12 = 0.0f;
+        }
+        addView(imageView, i7.f6.d(32, 32.0f, i13, f11, 0.0f, f12, 0.0f));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f44679c) {
+            TextView textView = this.f44677a;
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.g6.f23183k0);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
+    }
+
+    @Override
+    public final void setEnabled(boolean z10) {
+        float f9;
+        super.setEnabled(z10);
+        float f10 = 0.5f;
+        if (z10) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.5f;
+        }
+        this.f44677a.setAlpha(f9);
+        if (z10) {
+            f10 = 1.0f;
+        }
+        this.f44678b.setAlpha(f10);
     }
 }

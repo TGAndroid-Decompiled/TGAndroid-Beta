@@ -1,40 +1,39 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-public final class gw extends f2.y {
-    public final wy Q;
+import org.telegram.messenger.AndroidUtilities;
+public final class gw extends f2.v0 {
+    public final fz f29004a;
 
-    public gw(wy wyVar) {
-        super(5);
-        this.Q = wyVar;
+    public gw(fz fzVar) {
+        this.f29004a = fzVar;
     }
 
     @Override
-    public final int o0(int i9, f2.g1 g1Var, f2.n1 n1Var) {
-        int o02 = super.o0(i9, g1Var, n1Var);
-        wy wyVar = this.Q;
-        if (o02 != 0 && wyVar.f34466z0.getScrollState() == 1) {
-            wyVar.T1 = false;
-            wyVar.Z();
+    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.k1 k1Var) {
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        fz fzVar = this.f29004a;
+        f2.p0 adapter = fzVar.f28585d0.getAdapter();
+        jy jyVar = fzVar.f28605j0;
+        int i10 = 0;
+        if (adapter == jyVar && R == jyVar.E) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
-        if (wyVar.P0 == null) {
-            of.b1 b1Var = new of.b1(wyVar, wyVar.Y0, wyVar.f34432p1.a(), wyVar.f34432p1.f(), 1);
-            wyVar.P0 = b1Var;
-            b1Var.a();
+        if (R == 0) {
+            jyVar.getClass();
         }
-        wyVar.P0.b();
-        return o02;
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, f2.n1 n1Var, int i9) {
-        try {
-            rh.n nVar = new rh.n(recyclerView.getContext(), 2);
-            nVar.f5443a = i9;
-            w0(nVar);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = AndroidUtilities.dp(2.0f);
+        ky kyVar = fzVar.f28589e0;
+        jyVar.getClass();
+        if (!kyVar.E1(R)) {
+            i10 = AndroidUtilities.dp(2.0f);
         }
+        rect.right = i10;
     }
 }

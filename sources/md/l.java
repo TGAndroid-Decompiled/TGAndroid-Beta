@@ -1,61 +1,26 @@
 package md;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public class l {
-    public static final AtomicReferenceFieldUpdater f17660a = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_cur$volatile");
-    private volatile Object _cur$volatile = new n(8, false);
+import jd.f1;
+public final class l extends uc.c {
+    public m f17003a;
+    public c f17004b;
+    public o f17005c;
+    public f1 d;
+    public Object f17006e;
+    public Object f17007f;
+    public final m h;
+    public int f17008n;
 
-    public final boolean a(Runnable runnable) {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f17660a;
-            n nVar = (n) atomicReferenceFieldUpdater.get(this);
-            int a2 = nVar.a(runnable);
-            if (a2 == 0) {
-                return true;
-            }
-            if (a2 != 1) {
-                if (a2 == 2) {
-                    return false;
-                }
-            } else {
-                n c10 = nVar.c();
-                while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c10) && atomicReferenceFieldUpdater.get(this) == nVar) {
-                }
-            }
-        }
+    public l(m mVar, uc.c cVar) {
+        super(cVar);
+        this.h = mVar;
     }
 
-    public final void b() {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f17660a;
-            n nVar = (n) atomicReferenceFieldUpdater.get(this);
-            if (nVar.b()) {
-                return;
-            }
-            n c10 = nVar.c();
-            while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c10) && atomicReferenceFieldUpdater.get(this) == nVar) {
-            }
-        }
-    }
-
-    public final int c() {
-        n nVar = (n) f17660a.get(this);
-        nVar.getClass();
-        long j10 = n.f17663f.get(nVar);
-        return 1073741823 & (((int) ((j10 & 1152921503533105152L) >> 30)) - ((int) (1073741823 & j10)));
-    }
-
-    public final Object d() {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f17660a;
-            n nVar = (n) atomicReferenceFieldUpdater.get(this);
-            Object d = nVar.d();
-            if (d != n.f17664g) {
-                return d;
-            }
-            n c10 = nVar.c();
-            while (!atomicReferenceFieldUpdater.compareAndSet(this, nVar, c10) && atomicReferenceFieldUpdater.get(this) == nVar) {
-            }
-        }
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f17007f = obj;
+        this.f17008n |= Integer.MIN_VALUE;
+        this.h.e(null, this);
+        return tc.a.f48210a;
     }
 }

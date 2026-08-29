@@ -1,11 +1,26 @@
 package xc;
+public abstract class a {
+    public static final Integer f50115a;
 
-import java.io.ByteArrayOutputStream;
-import kotlin.jvm.internal.i;
-public final class a extends ByteArrayOutputStream {
-    public final byte[] a() {
-        byte[] buf = ((ByteArrayOutputStream) this).buf;
-        i.d(buf, "buf");
-        return buf;
+    static {
+        Integer num;
+        Object obj;
+        Integer num2 = null;
+        try {
+            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
+        } catch (Throwable unused) {
+        }
+        if (obj instanceof Integer) {
+            num = (Integer) obj;
+            if (num != null && num.intValue() > 0) {
+                num2 = num;
+            }
+            f50115a = num2;
+        }
+        num = null;
+        if (num != null) {
+            num2 = num;
+        }
+        f50115a = num2;
     }
 }

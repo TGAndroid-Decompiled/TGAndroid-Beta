@@ -1,27 +1,34 @@
 package qd;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
-import md.t;
-public final class j extends t {
-    public final AtomicReferenceArray f46159e;
+import jd.e0;
+public final class j extends i {
+    public final Runnable f46629c;
 
-    public j(long j10, j jVar, int i9) {
-        super(j10, jVar, i9);
-        this.f46159e = new AtomicReferenceArray(i.f46158f);
+    public j(Runnable runnable, long j10, a5.c cVar) {
+        super(j10, cVar);
+        this.f46629c = runnable;
     }
 
     @Override
-    public final int g() {
-        return i.f46158f;
-    }
-
-    @Override
-    public final void h(int i9, qc.h hVar) {
-        this.f46159e.set(i9, i.f46157e);
-        i();
+    public final void run() {
+        try {
+            this.f46629c.run();
+        } finally {
+            this.f46628b.getClass();
+        }
     }
 
     public final String toString() {
-        return "SemaphoreSegment[id=" + this.f17670c + ", hashCode=" + hashCode() + ']';
+        StringBuilder sb2 = new StringBuilder("Task[");
+        Runnable runnable = this.f46629c;
+        sb2.append(runnable.getClass().getSimpleName());
+        sb2.append('@');
+        sb2.append(e0.k(runnable));
+        sb2.append(", ");
+        sb2.append(this.f46627a);
+        sb2.append(", ");
+        sb2.append(this.f46628b);
+        sb2.append(']');
+        return sb2.toString();
     }
 }

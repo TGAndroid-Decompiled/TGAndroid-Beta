@@ -10,53 +10,52 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.po;
-import org.telegram.ui.tc1;
-import org.telegram.ui.wq;
+import org.telegram.ui.Components.tc;
+import org.telegram.ui.so;
+import org.telegram.ui.vc1;
 public final class i extends ClickableSpan {
-    public final int f24494a;
-    public final Object f24495b;
-    public final Object f24496c;
+    public final int f24469a;
+    public final Object f24470b;
+    public final Object f24471c;
 
-    public i(int i9, Object obj, Object obj2) {
-        this.f24494a = i9;
-        this.f24496c = obj;
-        this.f24495b = obj2;
+    public i(int i10, Object obj, Object obj2) {
+        this.f24469a = i10;
+        this.f24471c = obj;
+        this.f24470b = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f24494a) {
+        switch (this.f24469a) {
             case 0:
-                j jVar = (j) this.f24496c;
-                jVar.d((ClickableSpan) this.f24495b, jVar.f24529a, 0.0f);
+                j jVar = (j) this.f24471c;
+                jVar.d((ClickableSpan) this.f24470b, jVar.f24517a, 0.0f);
                 return;
             case 1:
-                w0 w0Var = (w0) this.f24496c;
-                if (w0Var.T0 != null) {
-                    w0Var.P((CharacterStyle) this.f24495b);
+                v0 v0Var = (v0) this.f24471c;
+                if (v0Var.T0 != null) {
+                    v0Var.Q((CharacterStyle) this.f24470b);
                     return;
                 }
                 return;
             case 2:
-                CharacterStyle characterStyle = (CharacterStyle) this.f24495b;
-                if (characterStyle instanceof p1) {
-                    ((p1) characterStyle).onClick(view);
+                CharacterStyle characterStyle = (CharacterStyle) this.f24470b;
+                if (characterStyle instanceof o1) {
+                    ((o1) characterStyle).onClick(view);
                     return;
                 }
-                t1 t1Var = ((q1) this.f24496c).d;
-                k1 k1Var = t1Var.Fc;
-                if (k1Var != null) {
-                    k1Var.R0(t1Var, characterStyle, false);
+                s1 s1Var = ((p1) this.f24471c).d;
+                j1 j1Var = s1Var.Fc;
+                if (j1Var != null) {
+                    j1Var.V0(s1Var, characterStyle, false);
                     return;
                 }
                 return;
             case 3:
                 try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f24495b));
-                    if (oc.a((org.telegram.ui.ma) this.f24496c)) {
-                        oc.j((org.telegram.ui.ma) this.f24496c).j();
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f24470b));
+                    if (tc.a((org.telegram.ui.la) this.f24471c)) {
+                        tc.j((org.telegram.ui.la) this.f24471c).j();
                         return;
                     }
                     return;
@@ -65,25 +64,25 @@ public final class i extends ClickableSpan {
                     return;
                 }
             case 4:
-                Context context = ((x1) this.f24496c).getContext();
-                ve.e.s(context, "https://fragment.com/username/" + ((String) this.f24495b));
+                Context context = ((w1) this.f24471c).getContext();
+                ye.d.s(context, "https://fragment.com/username/" + ((String) this.f24470b));
                 return;
             case 5:
-                Context context2 = ((po) this.f24496c).getContext();
-                ve.e.s(context2, "https://fragment.com/username/" + ((String) this.f24495b));
+                Context context2 = ((so) this.f24471c).getContext();
+                ye.d.s(context2, "https://fragment.com/username/" + ((String) this.f24470b));
                 return;
             case 6:
-                ((wq) this.f24496c).run();
+                ((org.telegram.ui.Components.z2) this.f24471c).run();
                 return;
             case 7:
-                AndroidUtilities.addToClipboard((CharSequence) this.f24495b);
-                ((Runnable) this.f24496c).run();
+                AndroidUtilities.addToClipboard((CharSequence) this.f24470b);
+                ((Runnable) this.f24471c).run();
                 return;
             default:
                 try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f24495b));
-                    if (oc.a((tc1) this.f24496c)) {
-                        oc.j((tc1) this.f24496c).j();
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f24470b));
+                    if (tc.a((vc1) this.f24471c)) {
+                        tc.j((vc1) this.f24471c).j();
                         return;
                     }
                     return;
@@ -96,7 +95,7 @@ public final class i extends ClickableSpan {
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f24494a) {
+        switch (this.f24469a) {
             case 3:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
@@ -112,7 +111,7 @@ public final class i extends ClickableSpan {
             case 6:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.Gi, (org.telegram.ui.ActionBar.b6) this.f24495b));
+                textPaint.setColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Gi, (org.telegram.ui.ActionBar.c6) this.f24470b));
                 return;
             case 7:
                 textPaint.setColor(textPaint.linkColor);
@@ -127,15 +126,15 @@ public final class i extends ClickableSpan {
         }
     }
 
-    public i(Object obj, Runnable runnable, int i9) {
-        this.f24494a = i9;
-        this.f24495b = obj;
-        this.f24496c = runnable;
+    public i(Object obj, Runnable runnable, int i10) {
+        this.f24469a = i10;
+        this.f24470b = obj;
+        this.f24471c = runnable;
     }
 
-    public i(String str, org.telegram.ui.ActionBar.o2 o2Var, int i9) {
-        this.f24494a = i9;
-        this.f24496c = o2Var;
-        this.f24495b = str;
+    public i(String str, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
+        this.f24469a = i10;
+        this.f24471c = o2Var;
+        this.f24470b = str;
     }
 }

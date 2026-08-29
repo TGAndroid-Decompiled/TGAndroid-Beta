@@ -1,10 +1,12 @@
 package org.telegram.ui.Components;
-public interface ib {
-    void a(gc gcVar);
 
-    void b();
+import android.widget.FrameLayout;
+public abstract class ib extends FrameLayout implements nb {
+    @Override
+    public final void c() {
+    }
 
-    void c();
-
-    void d();
+    @Override
+    public final void d() {
+    }
 }

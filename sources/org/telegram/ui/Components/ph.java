@@ -1,58 +1,32 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.LocaleController;
 public final class ph extends FrameLayout {
-    public final int f31659a = 0;
-    public int f31660b;
-    public final Object f31661c;
-    public final Object d;
-    public final NotificationCenter.NotificationCenterDelegate f31662e;
+    public final int f31674a;
+    public final ni f31675b;
 
-    public ph(pf.l lVar, Context context) {
+    public ph(ni niVar, Context context, int i10) {
         super(context);
-        this.f31662e = lVar;
-        this.f31660b = -1;
-        this.f31661c = new Rect();
-        this.d = new y5(this, 220L, gr.h);
+        this.f31674a = i10;
+        this.f31675b = niVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f31659a) {
-            case 0:
-                org.telegram.ui.s10 s10Var = (org.telegram.ui.s10) this.d;
-                Path path = (Path) this.f31661c;
-                ki kiVar = (ki) this.f31662e;
-                kg.d dVar = kiVar.f30171x0;
-                if (dVar != null) {
-                    dVar.setBounds(0, (int) kiVar.R1, getMeasuredWidth(), getMeasuredHeight());
-                    kiVar.f30171x0.draw(canvas);
-                }
-                float dp = AndroidUtilities.dp(20.0f);
-                int dp2 = AndroidUtilities.dp(7.0f);
-                int dp3 = AndroidUtilities.dp(7.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f10 = dp2;
-                rectF.set(getPaddingLeft(), f10, getWidth() - getPaddingRight(), getHeight() - dp3);
-                path.rewind();
-                path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        switch (this.f31674a) {
+            case 2:
                 canvas.save();
-                canvas.clipPath(path);
-                canvas.saveLayerAlpha(rectF, 255, 31);
+                canvas.clipRect(0.0f, this.f31675b.R1, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
-                rectF.set(getPaddingLeft(), f10, getWidth() - getPaddingRight(), AndroidUtilities.dp(6.0f) + dp2);
-                s10Var.b(canvas, rectF, 1, 1.0f);
-                rectF.set(getPaddingLeft(), (getHeight() - dp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - dp3);
-                s10Var.b(canvas, rectF, 3, 1.0f);
-                canvas.restore();
                 canvas.restore();
                 return;
             default:
@@ -62,67 +36,142 @@ public final class ph extends FrameLayout {
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f31659a) {
-            case 1:
-                float width = getWidth() / 2.0f;
-                pf.l lVar = (pf.l) this.f31662e;
-                float d = ((y5) this.d).d(lVar.f45669n.getWidth(), false);
-                Rect rect = (Rect) this.f31661c;
-                float f10 = d / 2.0f;
-                rect.set((int) (width - (lVar.f45669n.getScaleX() * f10)), (int) (((1.0f - lVar.f45669n.getScaleY()) * lVar.f45669n.getHeight()) + lVar.f45669n.getY()), (int) ((lVar.f45669n.getScaleX() * f10) + width), (int) (lVar.f45669n.getY() + lVar.f45669n.getHeight()));
-                lVar.f45670r.setBounds(rect);
-                lVar.f45670r.draw(canvas);
-                return super.drawChild(canvas, view, j10);
+    public void onDraw(Canvas canvas) {
+        switch (this.f31674a) {
+            case 2:
+                ni niVar = this.f31675b;
+                ph phVar = niVar.f31069z0;
+                if (niVar.f31066y0.getAlpha() > 0.0f) {
+                    float f9 = niVar.S1;
+                    if (f9 != 0.0f && f9 != phVar.getTop() + niVar.S1) {
+                        ValueAnimator valueAnimator = niVar.T1;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        float top = niVar.S1 - (phVar.getTop() + niVar.R1);
+                        niVar.R1 = top;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                        niVar.T1 = ofFloat;
+                        ofFloat.addUpdateListener(new j6(this, 10));
+                        niVar.T1.setInterpolator(jr.f29800f);
+                        niVar.T1.setDuration(200L);
+                        niVar.T1.start();
+                        niVar.S1 = 0.0f;
+                        return;
+                    }
+                    return;
+                }
+                return;
             default:
-                return super.drawChild(canvas, view, j10);
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        switch (this.f31659a) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f31674a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                ni niVar = this.f31675b;
+                fi fiVar = niVar.f31051u0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = niVar.f31005f0;
+                if (fiVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
+                } else {
+                    jk jkVar = niVar.f31023l0;
+                    if (fiVar == jkVar) {
+                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", jkVar.getSelectedItemsCount(), new Object[0]));
+                    } else {
+                        yi yiVar = niVar.f31011h0;
+                        if (fiVar == yiVar) {
+                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", yiVar.getSelectedItemsCount(), new Object[0]));
+                        }
+                    }
+                }
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f31674a) {
             case 0:
-                int i13 = this.f31660b;
-                ki kiVar = (ki) this.f31662e;
-                int top = i13 - kiVar.f30166w.getTop();
-                super.onLayout(z10, i9, i10, i11, i12);
-                this.f31660b = getHeight();
-                if (kiVar.f30166w.getVisibility() == 0 && getHeight() - kiVar.f30166w.getTop() != top) {
-                    kiVar.f30166w.setTranslationY(kiVar.f30166w.getTranslationY() + ((getHeight() - kiVar.f30166w.getTop()) - top));
-                    kiVar.f30166w.animate().translationY(0.0f).setDuration(320L).setInterpolator(gr.h).start();
+                if (this.f31675b.f31002e1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f31674a) {
+            case 1:
+                ni niVar = this.f31675b;
+                if (niVar.D && niVar.E != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(niVar.E))), 1073741824), i11);
                     return;
                 }
+                super.onMeasure(i10, i11);
                 return;
             default:
-                super.onLayout(z10, i9, i10, i11, i12);
+                super.onMeasure(i10, i11);
                 return;
         }
     }
 
     @Override
-    public void onMeasure(int i9, int i10) {
-        switch (this.f31659a) {
-            case 1:
-                pf.l lVar = (pf.l) this.f31662e;
-                lVar.f45669n.measure(i9, i10);
-                invalidate();
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(Math.max(this.f31660b, AndroidUtilities.dp(36.0f) + lVar.f45669n.getMeasuredHeight()), 1073741824));
-                if (this.f31660b < 0) {
-                    this.f31660b = getMeasuredHeight();
-                    return;
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f31674a) {
+            case 0:
+                if (this.f31675b.f31002e1.getVisibility() != 0) {
+                    return false;
                 }
-                return;
+                return super.onTouchEvent(motionEvent);
             default:
-                super.onMeasure(i9, i10);
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f9) {
+        switch (this.f31674a) {
+            case 0:
+                super.setAlpha(f9);
+                ni niVar = this.f31675b;
+                niVar.a2(0);
+                ni.O(niVar).invalidate();
+                return;
+            case 1:
+            default:
+                super.setAlpha(f9);
+                return;
+            case 2:
+                super.setAlpha(f9);
+                invalidate();
                 return;
         }
     }
 
-    public ph(ki kiVar, Context context) {
-        super(context);
-        this.f31662e = kiVar;
-        this.f31661c = new Path();
-        this.d = new org.telegram.ui.s10();
+    @Override
+    public void setTranslationY(float f9) {
+        switch (this.f31674a) {
+            case 1:
+                super.setTranslationY(f9);
+                this.f31675b.f31051u0.j();
+                return;
+            default:
+                super.setTranslationY(f9);
+                return;
+        }
     }
 }

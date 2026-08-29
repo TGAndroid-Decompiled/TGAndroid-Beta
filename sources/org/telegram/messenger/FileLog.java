@@ -29,8 +29,8 @@ public class FileLog {
     public static boolean databaseIsMalformed = false;
     private static long dumpedHeap = 0;
     private static HashSet<String> excludeRequests = null;
-    private static la.a exclusionStrategy = null;
-    private static la.g gson = null;
+    private static na.a exclusionStrategy = null;
+    private static na.g gson = null;
     private static boolean gsonDisabled = false;
     private static final String mtproto_tag = "MTProto";
     private static HashSet<String> privateFields = null;
@@ -47,31 +47,31 @@ public class FileLog {
     private OutputStreamWriter tlStreamWriter = null;
     private File tlRequestsFile = null;
 
-    public static class ByteArrayHexAdapter extends la.u {
+    public static class ByteArrayHexAdapter extends na.u {
         @Override
-        public byte[] read(ta.a aVar) {
+        public byte[] read(va.a aVar) {
             String v = aVar.v();
             int length = v.length();
             byte[] bArr = new byte[length / 2];
-            for (int i9 = 0; i9 < length; i9 += 2) {
-                bArr[i9 / 2] = (byte) (Character.digit(v.charAt(i9 + 1), 16) + (Character.digit(v.charAt(i9), 16) << 4));
+            for (int i10 = 0; i10 < length; i10 += 2) {
+                bArr[i10 / 2] = (byte) (Character.digit(v.charAt(i10 + 1), 16) + (Character.digit(v.charAt(i10), 16) << 4));
             }
             return bArr;
         }
 
         @Override
-        public void write(ta.c cVar, byte[] bArr) {
+        public void write(va.b bVar, byte[] bArr) {
             if (bArr == null) {
-                cVar.i();
+                bVar.i();
                 return;
             }
             StringBuilder sb2 = new StringBuilder((bArr.length * 2) + 2);
             sb2.append("0x");
             int length = bArr.length;
-            for (int i9 = 0; i9 < length; i9++) {
-                sb2.append(String.format("%02x", Integer.valueOf(bArr[i9] & 255)));
+            for (int i10 = 0; i10 < length; i10++) {
+                sb2.append(String.format("%02x", Integer.valueOf(bArr[i10] & 255)));
             }
-            cVar.r(sb2.toString());
+            bVar.r(sb2.toString());
         }
     }
 
@@ -81,19 +81,19 @@ public class FileLog {
         }
     }
 
-    public static class TLObjectDeserializer implements la.o {
+    public static class TLObjectDeserializer implements na.o {
         private TLObjectDeserializer() {
         }
 
         @Override
-        public la.i serialize(TLObject tLObject, Type type, la.n nVar) {
+        public na.i serialize(TLObject tLObject, Type type, na.n nVar) {
             Field[] fields;
-            la.l lVar = new la.l();
+            na.l lVar = new na.l();
             String name = tLObject.getClass().getName();
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? la.k.f16726a : new la.m(name));
+            lVar.o("_", name == null ? na.k.f17193a : new na.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -103,7 +103,7 @@ public class FileLog {
                             if (obj != null) {
                                 Class<?> cls = obj.getClass();
                                 if (!cls.isInstance(DispatchQueue.class)) {
-                                    if (!cls.isInstance(org.telegram.ui.Components.x5.class)) {
+                                    if (!cls.isInstance(org.telegram.ui.Components.c6.class)) {
                                         if (!cls.isInstance(ColorStateList.class)) {
                                             if (cls.isInstance(Context.class)) {
                                             }
@@ -111,7 +111,7 @@ public class FileLog {
                                     }
                                 }
                             }
-                            lVar.o(field.getName(), ((n5.a0) nVar).j(obj));
+                            lVar.o(field.getName(), ((org.telegram.ui.Components.n) nVar).s(obj));
                         } catch (IllegalAccessException e10) {
                             e10.printStackTrace();
                         }
@@ -148,28 +148,28 @@ public class FileLog {
             privateFields.add("constructorName");
             privateFields.add("parentRichText");
             privateFields.add("parentBlock");
-            for (int i9 = 0; i9 < 32; i9++) {
+            for (int i10 = 0; i10 < 32; i10++) {
                 HashSet<String> hashSet2 = privateFields;
-                hashSet2.add("FLAG_" + i9);
+                hashSet2.add("FLAG_" + i10);
             }
             HashSet<String> hashSet3 = new HashSet<>();
             excludeRequests = hashSet3;
             hashSet3.add("TL_upload_getFile");
             excludeRequests.add("TL_upload_getWebFile");
-            exclusionStrategy = new la.a() {
+            exclusionStrategy = new na.a() {
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.x5.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
+                    if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.c6.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
                         return false;
                     }
                     return true;
                 }
 
                 @Override
-                public boolean shouldSkipField(la.b bVar) {
+                public boolean shouldSkipField(na.b bVar) {
                     HashSet hashSet4 = FileLog.privateFields;
-                    Field field = bVar.f16709a;
-                    Field field2 = bVar.f16709a;
+                    Field field = bVar.f17176a;
+                    Field field2 = bVar.f17176a;
                     if (!hashSet4.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -179,49 +179,49 @@ public class FileLog {
                     return true;
                 }
             };
-            na.g gVar = na.g.f18535c;
+            pa.f fVar = pa.f.f45679c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            la.c cVar = la.g.h;
-            la.p pVar = la.g.f16717i;
-            la.q qVar = la.g.f16718j;
+            na.c cVar = na.g.h;
+            na.p pVar = na.g.f17184i;
+            na.q qVar = na.g.f17185j;
             ArrayDeque arrayDeque = new ArrayDeque();
-            la.a aVar = exclusionStrategy;
+            na.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
-            na.g clone = gVar.clone();
-            ArrayList arrayList3 = new ArrayList(gVar.f18536a);
-            clone.f18536a = arrayList3;
+            pa.f clone = fVar.clone();
+            ArrayList arrayList3 = new ArrayList(fVar.f45680a);
+            clone.f45680a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
-            boolean z11 = byteArrayHexAdapter instanceof la.o;
-            if (!la.i.class.isAssignableFrom(byte[].class)) {
+            boolean z11 = byteArrayHexAdapter instanceof na.o;
+            if (!na.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
-                    sa.a aVar2 = new sa.a(byte[].class);
-                    if (aVar2.f47503b == aVar2.f47502a) {
+                    ua.a aVar2 = new ua.a(byte[].class);
+                    if (aVar2.f49164b == aVar2.f49163a) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    arrayList.add(new oa.z(byteArrayHexAdapter, aVar2, z10, null));
+                    arrayList.add(new qa.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
-                sa.a aVar3 = new sa.a(byte[].class);
-                oa.x0 x0Var = oa.h1.f19125a;
-                arrayList.add(new oa.x0(aVar3, byteArrayHexAdapter, 2));
+                ua.a aVar3 = new ua.a(byte[].class);
+                qa.x0 x0Var = qa.h1.f46531a;
+                arrayList.add(new qa.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
                 arrayList.add(of2);
                 TLObjectDeserializer tLObjectDeserializer = new TLObjectDeserializer();
-                if (!la.i.class.isAssignableFrom(TLObject.class)) {
-                    arrayList2.add(new oa.z(tLObjectDeserializer, null, false, TLObject.class));
+                if (!na.i.class.isAssignableFrom(TLObject.class)) {
+                    arrayList2.add(new qa.z(tLObjectDeserializer, null, false, TLObject.class));
                     ArrayList arrayList4 = new ArrayList(arrayList2.size() + arrayList.size() + 3);
                     arrayList4.addAll(arrayList);
                     Collections.reverse(arrayList4);
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = ra.f.f47105a;
-                    gson = new la.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
+                    boolean z12 = ta.f.f48188a;
+                    gson = new na.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
                 throw new IllegalArgumentException("Cannot override built-in adapter for " + TLObject.class);
@@ -271,7 +271,7 @@ public class FileLog {
         }
     }
 
-    public static void dumpResponseAndRequest(final int i9, TLObject tLObject, TLObject tLObject2, final TLRPC.TL_error tL_error, final long j10, final long j11, final int i10) {
+    public static void dumpResponseAndRequest(final int i10, TLObject tLObject, TLObject tLObject2, final TLRPC.TL_error tL_error, final long j10, final long j11, final int i11) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             String simpleName = tLObject.getClass().getSimpleName();
             checkGson();
@@ -289,17 +289,17 @@ public class FileLog {
                     getInstance().logQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            FileLog.lambda$dumpResponseAndRequest$0(j10, j11, i10, i9, currentTimeMillis, str, str3, tL_error);
+                            FileLog.lambda$dumpResponseAndRequest$0(j10, j11, i11, i10, currentTimeMillis, str, str3, tL_error);
                         }
                     });
-                } catch (Throwable th) {
-                    e(th, BuildVars.DEBUG_PRIVATE_VERSION);
+                } catch (Throwable th2) {
+                    e(th2, BuildVars.DEBUG_PRIVATE_VERSION);
                 }
             }
         }
     }
 
-    public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i9) {
+    public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             try {
                 checkGson();
@@ -308,18 +308,18 @@ public class FileLog {
                 sb2.append(tLObject.getClass().getSimpleName());
                 sb2.append(" : ");
                 sb2.append(gsonDisabled ? tLObject : gson.e(tLObject));
-                getInstance().logQueue.postRunnable(new v4(System.currentTimeMillis(), j10, i9, sb2.toString()));
+                getInstance().logQueue.postRunnable(new x4(System.currentTimeMillis(), j10, i10, sb2.toString()));
             } catch (Throwable unused) {
             }
         }
     }
 
-    public static void e(String str, Throwable th) {
+    public static void e(String str, Throwable th2) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
-            Log.e("tmessages", str, th);
+            Log.e("tmessages", str, th2);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new c2(7, str, th));
+                getInstance().logQueue.postRunnable(new c2(8, str, th2));
             }
         }
     }
@@ -328,8 +328,8 @@ public class FileLog {
         getInstance().init();
     }
 
-    public static void fatal(Throwable th) {
-        fatal(th, true);
+    public static void fatal(Throwable th2) {
+        fatal(th2, true);
     }
 
     public static FileLog getInstance() {
@@ -346,8 +346,8 @@ public class FileLog {
                             fileLog.init();
                         }
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             return fileLog;
@@ -367,8 +367,8 @@ public class FileLog {
             FileLog fileLog = getInstance();
             fileLog.networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
             return getInstance().networkFile.getAbsolutePath();
-        } catch (Throwable th) {
-            th.printStackTrace();
+        } catch (Throwable th2) {
+            th2.printStackTrace();
             return "";
         }
     }
@@ -385,8 +385,8 @@ public class FileLog {
             FileLog fileLog = getInstance();
             fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
             return getInstance().tonlibFile.getAbsolutePath();
-        } catch (Throwable th) {
-            th.printStackTrace();
+        } catch (Throwable th2) {
+            th2.printStackTrace();
             return "";
         }
     }
@@ -441,9 +441,9 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpResponseAndRequest$0(long j10, long j11, int i9, int i10, long j12, String str, String str2, TLRPC.TL_error tL_error) {
+    public static void lambda$dumpResponseAndRequest$0(long j10, long j11, int i10, int i11, long j12, String str, String str2, TLRPC.TL_error tL_error) {
         try {
-            String str3 = "requestMsgId=" + j10 + " requestingTime=" + (System.currentTimeMillis() - j11) + " request_token=" + i9 + " account=" + i10;
+            String str3 = "requestMsgId=" + j10 + " requestingTime=" + (System.currentTimeMillis() - j11) + " request_token=" + i10 + " account=" + i11;
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j12) + " " + str3);
             getInstance().tlStreamWriter.write("\n");
             getInstance().tlStreamWriter.write(str);
@@ -467,14 +467,14 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpUnparsedMessage$1(long j10, long j11, int i9, String str) {
+    public static void lambda$dumpUnparsedMessage$1(long j10, long j11, int i10, String str) {
         try {
-            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j10) + " msgId=" + j11 + " account=" + i9);
+            getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j10) + " msgId=" + j11 + " account=" + i10);
             getInstance().tlStreamWriter.write("\n");
             getInstance().tlStreamWriter.write(str);
             getInstance().tlStreamWriter.write("\n\n");
             getInstance().tlStreamWriter.flush();
-            Log.d("MTProto", "msgId=" + j11 + " account=" + i9);
+            Log.d("MTProto", "msgId=" + j11 + " account=" + i10);
             Log.d("MTProto", str);
             Log.d("MTProto", " ");
         } catch (Exception e10) {
@@ -482,15 +482,15 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$2(String str, Throwable th) {
+    public static void lambda$e$2(String str, Throwable th2) {
         try {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
             outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
-            getInstance().streamWriter.write(th.toString());
-            StackTraceElement[] stackTrace = th.getStackTrace();
-            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+            getInstance().streamWriter.write(th2.toString());
+            StackTraceElement[] stackTrace = th2.getStackTrace();
+            for (int i10 = 0; i10 < stackTrace.length; i10++) {
                 OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
-                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i9] + "\n");
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i10] + "\n");
             }
             getInstance().streamWriter.flush();
         } catch (Exception e10) {
@@ -508,23 +508,23 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$4(Throwable th) {
+    public static void lambda$e$4(Throwable th2) {
         try {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
-            StackTraceElement[] stackTrace = th.getStackTrace();
-            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th2 + "\n");
+            StackTraceElement[] stackTrace = th2.getStackTrace();
+            for (int i10 = 0; i10 < stackTrace.length; i10++) {
                 OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
-                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i9] + "\n");
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace[i10] + "\n");
             }
-            Throwable cause = th.getCause();
+            Throwable cause = th2.getCause();
             if (cause != null) {
                 OutputStreamWriter outputStreamWriter3 = getInstance().streamWriter;
                 outputStreamWriter3.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
                 StackTraceElement[] stackTrace2 = cause.getStackTrace();
-                for (int i10 = 0; i10 < stackTrace2.length; i10++) {
+                for (int i11 = 0; i11 < stackTrace2.length; i11++) {
                     OutputStreamWriter outputStreamWriter4 = getInstance().streamWriter;
-                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i10] + "\n");
+                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i11] + "\n");
                 }
             }
             getInstance().streamWriter.flush();
@@ -533,23 +533,23 @@ public class FileLog {
         }
     }
 
-    public static void lambda$fatal$5(Throwable th) {
+    public static void lambda$fatal$5(Throwable th2) {
         try {
             OutputStreamWriter outputStreamWriter = getInstance().streamWriter;
-            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
-            StackTraceElement[] stackTrace = th.getStackTrace();
-            for (int i9 = 0; i9 < stackTrace.length; i9++) {
+            outputStreamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th2 + "\n");
+            StackTraceElement[] stackTrace = th2.getStackTrace();
+            for (int i10 = 0; i10 < stackTrace.length; i10++) {
                 OutputStreamWriter outputStreamWriter2 = getInstance().streamWriter;
-                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: \tat " + stackTrace[i9] + "\n");
+                outputStreamWriter2.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: \tat " + stackTrace[i10] + "\n");
             }
-            Throwable cause = th.getCause();
+            Throwable cause = th2.getCause();
             if (cause != null) {
                 OutputStreamWriter outputStreamWriter3 = getInstance().streamWriter;
                 outputStreamWriter3.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: Caused by " + cause + "\n");
                 StackTraceElement[] stackTrace2 = cause.getStackTrace();
-                for (int i10 = 0; i10 < stackTrace2.length; i10++) {
+                for (int i11 = 0; i11 < stackTrace2.length; i11++) {
                     OutputStreamWriter outputStreamWriter4 = getInstance().streamWriter;
-                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i10] + "\n");
+                    outputStreamWriter4.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: \tat " + stackTrace2[i11] + "\n");
                 }
             }
             getInstance().streamWriter.flush();
@@ -571,8 +571,8 @@ public class FileLog {
         }
     }
 
-    private static boolean needSent(Throwable th) {
-        if (!(th instanceof InterruptedException) && !(th instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th instanceof IgnoreSentException)) {
+    private static boolean needSent(Throwable th2) {
+        if (!(th2 instanceof InterruptedException) && !(th2 instanceof MediaCodecVideoConvertor.ConversionCanceledException) && !(th2 instanceof IgnoreSentException)) {
             return true;
         }
         return false;
@@ -611,21 +611,21 @@ public class FileLog {
         }
     }
 
-    public static void fatal(Throwable th, boolean z10) {
+    public static void fatal(Throwable th2, boolean z10) {
         if (BuildVars.LOGS_ENABLED) {
-            if (th instanceof OutOfMemoryError) {
+            if (th2 instanceof OutOfMemoryError) {
                 getInstance().dumpMemory(false);
             }
-            if (z10 && BuildVars.DEBUG_VERSION && needSent(th)) {
-                AndroidUtilities.appCenterLog(th);
+            if (z10 && BuildVars.DEBUG_VERSION && needSent(th2)) {
+                AndroidUtilities.appCenterLog(th2);
             }
             ensureInitied();
-            th.printStackTrace();
+            th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new d3(1, th));
+                getInstance().logQueue.postRunnable(new e3(1, th2));
                 return;
             }
-            th.printStackTrace();
+            th2.printStackTrace();
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
                 System.exit(2);
             }
@@ -642,35 +642,35 @@ public class FileLog {
         }
     }
 
-    public static void e(Throwable th) {
-        e(th, true);
+    public static void e(Throwable th2) {
+        e(th2, true);
     }
 
-    public static void e(Throwable th, boolean z10) {
+    public static void e(Throwable th2, boolean z10) {
         if (BuildVars.LOGS_ENABLED) {
-            if (BuildVars.DEBUG_VERSION && needSent(th) && z10) {
-                AndroidUtilities.appCenterLog(th);
+            if (BuildVars.DEBUG_VERSION && needSent(th2) && z10) {
+                AndroidUtilities.appCenterLog(th2);
             }
-            if (BuildVars.DEBUG_VERSION && th.getMessage() != null && th.getMessage().contains("disk image is malformed") && !databaseIsMalformed) {
+            if (BuildVars.DEBUG_VERSION && th2.getMessage() != null && th2.getMessage().contains("disk image is malformed") && !databaseIsMalformed) {
                 d("copy malformed files");
                 databaseIsMalformed = true;
                 File file = new File(ApplicationLoader.getFilesDirFixed(), "malformed_database/");
                 file.mkdirs();
                 ArrayList<File> databaseFiles = MessagesStorage.getInstance(UserConfig.selectedAccount).getDatabaseFiles();
-                for (int i9 = 0; i9 < databaseFiles.size(); i9++) {
+                for (int i10 = 0; i10 < databaseFiles.size(); i10++) {
                     try {
-                        AndroidUtilities.copyFile(databaseFiles.get(i9), new File(file, databaseFiles.get(i9).getName()));
+                        AndroidUtilities.copyFile(databaseFiles.get(i10), new File(file, databaseFiles.get(i10).getName()));
                     } catch (IOException e10) {
                         e(e10);
                     }
                 }
             }
             ensureInitied();
-            th.printStackTrace();
+            th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new d3(0, th));
+                getInstance().logQueue.postRunnable(new e3(0, th2));
             } else {
-                th.printStackTrace();
+                th2.printStackTrace();
             }
         }
     }

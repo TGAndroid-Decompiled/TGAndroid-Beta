@@ -1,87 +1,89 @@
 package m5;
 
-import android.net.Uri;
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import j$.util.DesugarCollections;
-import j3.r0;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-public final class d extends y5.a {
-    public static final Parcelable.Creator<d> CREATOR = new v(17);
-    public final String f17379a;
-    public final String f17380b;
-    public final List f17381c;
-    public final String d;
-    public final Uri f17382e;
-    public final String f17383f;
-    public final String h;
-    public final Boolean f17384n;
-    public final Boolean f17385r;
+import android.os.AsyncTask;
+import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
+import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Semaphore;
+public final class d {
+    public w1.a f16866a;
+    public boolean f16867b = false;
+    public boolean f16868c = false;
+    public boolean d = true;
+    public boolean f16869e = false;
+    public Executor f16870f;
+    public volatile x1.a f16871g;
+    public volatile x1.a h;
+    public final Semaphore f16872i;
+    public final Set f16873j;
 
-    public d(String str, String str2, ArrayList arrayList, String str3, Uri uri, String str4, String str5, Boolean bool, Boolean bool2) {
-        this.f17379a = str;
-        this.f17380b = str2;
-        this.f17381c = arrayList;
-        this.d = str3;
-        this.f17382e = uri;
-        this.f17383f = str4;
-        this.h = str5;
-        this.f17384n = bool;
-        this.f17385r = bool2;
+    public d(SignInHubActivity signInHubActivity, Set set) {
+        signInHubActivity.getApplicationContext();
+        this.f16872i = new Semaphore(0);
+        this.f16873j = set;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final void a() {
+        if (this.f16871g != null) {
+            boolean z10 = this.f16867b;
+            if (!z10) {
+                if (z10) {
+                    c();
+                } else {
+                    this.f16869e = true;
+                }
+            }
+            if (this.h != null) {
+                this.f16871g.getClass();
+                this.f16871g = null;
+                return;
+            }
+            this.f16871g.getClass();
+            x1.a aVar = this.f16871g;
+            aVar.f49982c.set(true);
+            if (aVar.f49980a.cancel(false)) {
+                this.h = this.f16871g;
+            }
+            this.f16871g = null;
         }
-        if (!(obj instanceof d)) {
-            return false;
-        }
-        d dVar = (d) obj;
-        if (q5.a.d(this.f17379a, dVar.f17379a) && q5.a.d(this.f17380b, dVar.f17380b) && q5.a.d(this.f17381c, dVar.f17381c) && q5.a.d(this.d, dVar.d) && q5.a.d(this.f17382e, dVar.f17382e) && q5.a.d(this.f17383f, dVar.f17383f) && q5.a.d(this.h, dVar.h)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f17379a, this.f17380b, this.f17381c, this.d, this.f17382e, this.f17383f});
+    public final void b() {
+        if (this.h == null && this.f16871g != null) {
+            this.f16871g.getClass();
+            if (this.f16870f == null) {
+                this.f16870f = AsyncTask.THREAD_POOL_EXECUTOR;
+            }
+            x1.a aVar = this.f16871g;
+            Executor executor = this.f16870f;
+            if (aVar.f49981b != 1) {
+                int b10 = m1.j.b(aVar.f49981b);
+                if (b10 != 1) {
+                    if (b10 != 2) {
+                        throw new IllegalStateException("We should never reach this state");
+                    }
+                    throw new IllegalStateException("Cannot execute task: the task has already been executed (a task can be executed only once)");
+                }
+                throw new IllegalStateException("Cannot execute task: the task is already running.");
+            }
+            aVar.f49981b = 2;
+            executor.execute(aVar.f49980a);
+        }
+    }
+
+    public final void c() {
+        a();
+        this.f16871g = new x1.a(this);
+        b();
     }
 
     public final String toString() {
-        int size;
-        List list = this.f17381c;
-        if (list == null) {
-            size = 0;
-        } else {
-            size = list.size();
-        }
-        String valueOf = String.valueOf(this.f17382e);
-        StringBuilder q10 = r0.q("applicationId: ", this.f17379a, ", name: ", this.f17380b, ", namespaces.count: ");
-        q10.append(size);
-        q10.append(", senderAppIdentifier: ");
-        q10.append(this.d);
-        q10.append(", senderAppLaunchUrl: ");
-        r0.A(q10, valueOf, ", iconUrl: ", this.f17383f, ", type: ");
-        q10.append(this.h);
-        return q10.toString();
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.l(parcel, 2, this.f17379a);
-        p8.l(parcel, 3, this.f17380b);
-        p8.n(parcel, 5, DesugarCollections.unmodifiableList(this.f17381c));
-        p8.l(parcel, 6, this.d);
-        p8.k(parcel, 7, this.f17382e, i9);
-        p8.l(parcel, 8, this.f17383f);
-        p8.l(parcel, 9, this.h);
-        p8.a(parcel, 10, this.f17384n);
-        p8.a(parcel, 11, this.f17385r);
-        p8.r(parcel, q10);
+        StringBuilder sb2 = new StringBuilder(64);
+        Class<?> cls = getClass();
+        sb2.append(cls.getSimpleName());
+        sb2.append("{");
+        sb2.append(Integer.toHexString(System.identityHashCode(cls)));
+        sb2.append(" id=0}");
+        return sb2.toString();
     }
 }

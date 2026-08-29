@@ -1,10 +1,32 @@
 package v2;
-public final class c implements q9.d {
-    public static final c f48258a = new Object();
-    public static final q9.c f48259b = q9.c.c("logRequest");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ((q9.e) obj2).g(f48259b, ((i) ((o) obj)).f48288a);
+import a4.w;
+public final class c {
+    public final String f49327a;
+
+    public c(String str) {
+        if (str != null) {
+            this.f49327a = str;
+            return;
+        }
+        throw new NullPointerException("name is null");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        return this.f49327a.equals(((c) obj).f49327a);
+    }
+
+    public final int hashCode() {
+        return this.f49327a.hashCode() ^ 1000003;
+    }
+
+    public final String toString() {
+        return w.q(new StringBuilder("Encoding{name=\""), this.f49327a, "\"}");
     }
 }

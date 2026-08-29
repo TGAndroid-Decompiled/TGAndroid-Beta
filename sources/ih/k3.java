@@ -1,47 +1,53 @@
 package ih;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-import org.telegram.ui.Components.tj0;
-public final class k3 implements tj0 {
-    public final i4 f11670a;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+public final class k3 extends ScrollView {
+    public final int f9267a;
 
-    public k3(i4 i4Var) {
-        this.f11670a = i4Var;
+    public k3(Context context, int i10) {
+        super(context);
+        this.f9267a = i10;
     }
 
     @Override
-    public final void d(View view, hg.r0 r0Var, boolean z10, boolean z11) {
-        h3 h3Var = new h3(this, r0Var, view, 0);
-        if (!z10) {
-            this.f11670a.n0(h3Var);
-        } else {
-            h3Var.run();
+    public void onMeasure(int i10, int i11) {
+        switch (this.f9267a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
     }
 
     @Override
-    public final boolean n() {
-        return true;
+    public boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        switch (this.f9267a) {
+            case 2:
+                return false;
+            default:
+                return super.onRequestFocusInDescendants(i10, rect);
+        }
     }
 
     @Override
-    public final boolean p() {
-        ((d9) this.f11670a.M1).b(false);
-        return false;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void s(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i9, boolean z10) {
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        switch (this.f9267a) {
+            case 2:
+                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+                rect.top = AndroidUtilities.dp(20.0f) + rect.top;
+                rect.bottom = AndroidUtilities.dp(50.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z10);
+        }
     }
 }

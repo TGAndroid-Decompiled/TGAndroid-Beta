@@ -1,33 +1,27 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class le implements Runnable {
-    public final int f20890a = 0;
-    public final MessagesStorage f20891b;
-    public final boolean f20892c;
-    public final ArrayList d;
+import java.util.function.ToLongFunction;
+import org.telegram.messenger.NotificationsController;
+public final class le implements ToLongFunction {
+    public final int f20855a;
 
-    public le(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
-        this.f20891b = messagesStorage;
-        this.d = arrayList;
-        this.f20892c = z10;
+    public le(int i10) {
+        this.f20855a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20890a) {
+    public final long applyAsLong(Object obj) {
+        long j10;
+        long j11;
+        switch (this.f20855a) {
             case 0:
-                this.f20891b.lambda$putEphemeralMessages$204(this.d, this.f20892c);
-                return;
+                return Long.parseLong((String) obj);
+            case 1:
+                j10 = ((NotificationsController.StoryNotification) obj).date;
+                return j10;
             default:
-                this.f20891b.lambda$putContacts$146(this.f20892c, this.d);
-                return;
+                j11 = ((NotificationsController.StoryNotification) obj).date;
+                return j11;
         }
-    }
-
-    public le(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
-        this.f20891b = messagesStorage;
-        this.f20892c = z10;
-        this.d = arrayList;
     }
 }

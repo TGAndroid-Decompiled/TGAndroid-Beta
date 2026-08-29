@@ -1,14 +1,12 @@
 package g9;
-public final class e implements q9.d {
-    public static final e f7505a = new Object();
-    public static final q9.c f7506b = q9.c.c("files");
-    public static final q9.c f7507c = q9.c.c("orgId");
+public final class e {
+    public final String f7151a;
+    public final String f7152b;
+    public final String f7153c;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        q9.e eVar = (q9.e) obj2;
-        e0 e0Var = (e0) ((j1) obj);
-        eVar.g(f7506b, e0Var.f7508a);
-        eVar.g(f7507c, e0Var.f7509b);
+    public e(String str, String str2, String str3) {
+        this.f7151a = str;
+        this.f7152b = str2;
+        this.f7153c = str3;
     }
 }

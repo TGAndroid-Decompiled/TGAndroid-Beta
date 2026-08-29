@@ -1,72 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-import org.telegram.messenger.AndroidUtilities;
-public final class qf0 extends Drawable {
-    public final Paint f31931a;
-    public final int f31932b;
-    public boolean f31933c;
-    public float d;
-    public long f31934e;
-    public View f31935f;
-    public int f31936g = 255;
-    public float h = 300.0f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class qf0 extends AnimatorListenerAdapter {
+    public final int f31928a;
+    public final rf0 f31929b;
 
-    public qf0(int i9) {
-        this.f31932b = AndroidUtilities.dp(i9);
-        Paint paint = new Paint(1);
-        this.f31931a = paint;
-        paint.setColor(-1);
+    public qf0(rf0 rf0Var, int i10) {
+        this.f31928a = i10;
+        this.f31929b = rf0Var;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f10;
-        if (this.f31933c != z10) {
-            this.f31933c = z10;
-            if (!z11) {
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31928a) {
+            case 0:
+                rf0 rf0Var = this.f31929b;
+                rf0Var.h = false;
+                rf0Var.f32282a = rf0Var.f32284c;
+                rf0Var.invalidate();
+                int i10 = rf0Var.F;
+                if (i10 >= 0) {
+                    rf0Var.b(i10);
+                    rf0Var.F = -1;
+                    return;
                 }
-                this.d = f10;
-            }
-            this.f31934e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
+                return;
+            default:
+                rf0 rf0Var2 = this.f31929b;
+                rf0Var2.f32287n = false;
+                rf0Var2.h = false;
+                rf0Var2.invalidate();
+                int i11 = rf0Var2.F;
+                if (i11 >= 0) {
+                    rf0Var2.b(i11);
+                    rf0Var2.F = -1;
+                }
+                rf0Var2.a();
+                return;
         }
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qf0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f31932b;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f31932b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        this.f31936g = i9;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31931a.setColorFilter(colorFilter);
     }
 }

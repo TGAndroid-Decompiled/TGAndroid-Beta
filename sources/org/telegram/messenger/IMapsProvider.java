@@ -17,9 +17,9 @@ public interface IMapsProvider {
         public final LatLng target;
         public final float zoom;
 
-        public CameraPosition(LatLng latLng, float f10) {
+        public CameraPosition(LatLng latLng, float f9) {
             this.target = latLng;
-            this.zoom = f10;
+            this.zoom = f9;
         }
     }
 
@@ -43,25 +43,25 @@ public interface IMapsProvider {
 
         void setCenter(LatLng latLng);
 
-        void setFillColor(int i9);
+        void setFillColor(int i10);
 
         void setRadius(double d);
 
-        void setStrokeColor(int i9);
+        void setStrokeColor(int i10);
     }
 
     public interface ICircleOptions {
         ICircleOptions center(LatLng latLng);
 
-        ICircleOptions fillColor(int i9);
+        ICircleOptions fillColor(int i10);
 
         ICircleOptions radius(double d);
 
-        ICircleOptions strokeColor(int i9);
+        ICircleOptions strokeColor(int i10);
 
         ICircleOptions strokePattern(List<PatternItem> list);
 
-        ICircleOptions strokeWidth(int i9);
+        ICircleOptions strokeWidth(int i10);
     }
 
     public interface ILatLngBounds {
@@ -81,7 +81,7 @@ public interface IMapsProvider {
 
         void animateCamera(ICameraUpdate iCameraUpdate);
 
-        void animateCamera(ICameraUpdate iCameraUpdate, int i9, ICancelableCallback iCancelableCallback);
+        void animateCamera(ICameraUpdate iCameraUpdate, int i10, ICancelableCallback iCancelableCallback);
 
         void animateCamera(ICameraUpdate iCameraUpdate, ICancelableCallback iCancelableCallback);
 
@@ -99,7 +99,7 @@ public interface IMapsProvider {
 
         void setMapStyle(IMapStyleOptions iMapStyleOptions);
 
-        void setMapType(int i9);
+        void setMapType(int i10);
 
         void setMyLocationEnabled(boolean z10);
 
@@ -115,7 +115,7 @@ public interface IMapsProvider {
 
         void setOnMyLocationChangeListener(q0.a aVar);
 
-        void setPadding(int i9, int i10, int i11, int i12);
+        void setPadding(int i10, int i11, int i12, int i13);
     }
 
     public interface IMapStyleOptions {
@@ -152,23 +152,23 @@ public interface IMapsProvider {
 
         void remove();
 
-        void setIcon(int i9);
+        void setIcon(int i10);
 
         void setIcon(Bitmap bitmap);
 
         void setPosition(LatLng latLng);
 
-        void setRotation(int i9);
+        void setRotation(int i10);
 
         void setTag(Object obj);
     }
 
     public interface IMarkerOptions {
-        IMarkerOptions anchor(float f10, float f11);
+        IMarkerOptions anchor(float f9, float f10);
 
         IMarkerOptions flat(boolean z10);
 
-        IMarkerOptions icon(int i9);
+        IMarkerOptions icon(int i10);
 
         IMarkerOptions icon(Bitmap bitmap);
 
@@ -199,9 +199,9 @@ public interface IMapsProvider {
         public final double latitude;
         public final double longitude;
 
-        public LatLng(double d, double d9) {
+        public LatLng(double d, double d10) {
             this.latitude = d;
-            this.longitude = d9;
+            this.longitude = d10;
         }
     }
 
@@ -210,7 +210,7 @@ public interface IMapsProvider {
         public static final int REASON_DEVELOPER_ANIMATION = 3;
         public static final int REASON_GESTURE = 1;
 
-        void onCameraMoveStarted(int i9);
+        void onCameraMoveStarted(int i10);
     }
 
     public interface OnMarkerClickListener {
@@ -222,16 +222,16 @@ public interface IMapsProvider {
         public static final class Dash extends PatternItem {
             public final int length;
 
-            public Dash(int i9) {
-                this.length = i9;
+            public Dash(int i10) {
+                this.length = i10;
             }
         }
 
         public static final class Gap extends PatternItem {
             public final int length;
 
-            public Gap(int i9) {
-                this.length = i9;
+            public Gap(int i10) {
+                this.length = i10;
             }
         }
     }
@@ -242,13 +242,13 @@ public interface IMapsProvider {
 
     void initializeMaps(Context context);
 
-    IMapStyleOptions loadRawResourceStyle(Context context, int i9);
+    IMapStyleOptions loadRawResourceStyle(Context context, int i10);
 
     ICameraUpdate newCameraUpdateLatLng(LatLng latLng);
 
-    ICameraUpdate newCameraUpdateLatLngBounds(ILatLngBounds iLatLngBounds, int i9);
+    ICameraUpdate newCameraUpdateLatLngBounds(ILatLngBounds iLatLngBounds, int i10);
 
-    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f10);
+    ICameraUpdate newCameraUpdateLatLngZoom(LatLng latLng, float f9);
 
     ICircleOptions onCreateCircleOptions();
 

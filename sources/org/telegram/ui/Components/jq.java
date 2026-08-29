@@ -1,107 +1,178 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class jq extends View {
-    public final Paint f29819a;
-    public final Paint f29820b;
-    public final RectF f29821c;
-    public int d;
-    public long f29822e;
-    public int f29823f;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public class jq extends Drawable implements Drawable.Callback {
+    public Drawable f29784a;
+    public final Drawable f29785b;
+    public final int f29786c;
+    public final int d;
+    public int f29787e;
+    public int f29788f;
     public int h;
-    public int f29824n;
-    public int f29825r;
+    public int f29789n;
+    public boolean f29790r;
+    public int f29791s;
+    public int v;
+    public boolean f29792w;
+    public float f29793x;
 
-    public jq(Context context, int i9) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f29819a = paint;
-        Paint paint2 = new Paint(1);
-        this.f29820b = paint2;
-        this.f29821c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i9 == 0) {
-            this.f29823f = org.telegram.ui.ActionBar.f6.B7;
-            this.h = org.telegram.ui.ActionBar.f6.C7;
-        } else if (i9 == 1) {
-            this.f29823f = org.telegram.ui.ActionBar.f6.D7;
-            this.h = org.telegram.ui.ActionBar.f6.E7;
-        } else if (i9 == 2) {
-            this.f29823f = org.telegram.ui.ActionBar.f6.F7;
-            this.h = org.telegram.ui.ActionBar.f6.G7;
-        } else if (i9 == 3) {
-            this.f29823f = org.telegram.ui.ActionBar.f6.H7;
-            this.h = org.telegram.ui.ActionBar.f6.I7;
+    public jq(Drawable drawable, Drawable drawable2, int i10, int i11) {
+        this.f29784a = drawable;
+        this.f29785b = drawable2;
+        this.f29786c = i10;
+        this.d = i11;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
         }
-        b();
     }
 
-    public final void a(int i9, int i10) {
-        this.f29823f = -1;
-        this.h = -1;
-        this.f29824n = i9;
-        this.f29825r = i10;
-        b();
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(this.f29793x, 0.0f);
+        if (this.f29790r) {
+            Rect bounds = getBounds();
+            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
+        }
+        Drawable drawable = this.f29784a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f29784a.draw(canvas);
+        }
+        Drawable drawable2 = this.f29785b;
+        if (drawable2 != null) {
+            boolean z10 = this.f29792w;
+            int i10 = this.d;
+            int i11 = this.f29786c;
+            if (z10) {
+                Rect bounds2 = getBounds();
+                if (i11 != 0) {
+                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
+                } else {
+                    drawable2.setBounds(bounds2);
+                }
+            } else if (this.f29787e != 0) {
+                int centerX = (getBounds().centerX() - (this.f29787e / 2)) + i11 + this.f29791s;
+                int centerY = getBounds().centerY();
+                int i12 = this.f29788f;
+                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
+                drawable2.setBounds(centerX, i13, this.f29787e + centerX, i12 + i13);
+            } else {
+                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
+                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
+                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+            }
+            drawable2.draw(canvas);
+        }
+        canvas.restore();
     }
 
-    public final void b() {
-        int i9 = this.f29823f;
-        Paint paint = this.f29819a;
-        if (i9 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.f6.w0(null, i9, false));
-        } else {
-            paint.setColor(this.f29824n);
+    @Override
+    public final Drawable.ConstantState getConstantState() {
+        return this.f29785b.getConstantState();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        int i10 = this.f29789n;
+        if (i10 != 0) {
+            return i10;
         }
+        return this.f29784a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
         int i10 = this.h;
-        Paint paint2 = this.f29820b;
-        if (i10 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.f6.w0(null, i10, false));
-        } else {
-            paint2.setColor(this.f29825r);
+        if (i10 != 0) {
+            return i10;
         }
-        invalidate();
+        return this.f29784a.getIntrinsicWidth();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f29822e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
+    public final int getMinimumHeight() {
+        int i10 = this.f29789n;
+        if (i10 != 0) {
+            return i10;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f29822e;
-        this.f29822e = currentTimeMillis;
-        this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f29821c;
-        rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f29819a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f29820b);
-        invalidate();
+        return this.f29784a.getMinimumHeight();
     }
 
     @Override
-    public void setVisibility(int i9) {
-        super.setVisibility(i9);
-        this.f29822e = System.currentTimeMillis();
-        invalidate();
+    public final int getMinimumWidth() {
+        int i10 = this.h;
+        if (i10 != 0) {
+            return i10;
+        }
+        return this.f29784a.getMinimumWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return this.f29785b.getOpacity();
+    }
+
+    @Override
+    public final int[] getState() {
+        return this.f29785b.getState();
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final boolean isStateful() {
+        return this.f29785b.isStateful();
+    }
+
+    @Override
+    public final void jumpToCurrentState() {
+        this.f29785b.jumpToCurrentState();
+    }
+
+    @Override
+    public final boolean onStateChange(int[] iArr) {
+        return true;
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        scheduleSelf(runnable, j10);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f29785b.setAlpha(i10);
+        this.f29784a.setAlpha(i10);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.f29785b.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final boolean setState(int[] iArr) {
+        this.f29785b.setState(iArr);
+        return true;
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
+    }
+
+    public jq(Drawable drawable, Drawable drawable2) {
+        this.f29784a = drawable;
+        this.f29785b = drawable2;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
+        }
     }
 }

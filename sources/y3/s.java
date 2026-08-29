@@ -1,45 +1,67 @@
 package y3;
 
-import android.text.TextUtils;
-import j3.r0;
-public final class s {
-    public final String f49552a;
-    public final boolean f49553b;
-    public final boolean f49554c;
+import j3.t0;
+public final class s implements h {
+    public final String f50402a;
+    public final f5.w f50403b;
+    public final f5.v f50404c;
+    public o3.w d;
+    public String f50405e;
+    public t0 f50406f;
+    public int f50407g;
+    public int h;
+    public int f50408i;
+    public int f50409j;
+    public long f50410k;
+    public boolean f50411l;
+    public int f50412m;
+    public int f50413n;
+    public int f50414o;
+    public boolean f50415p;
+    public long f50416q;
+    public int f50417r;
+    public long f50418s;
+    public int f50419t;
+    public String f50420u;
 
-    public s(String str, boolean z10, boolean z11) {
-        this.f49552a = str;
-        this.f49553b = z10;
-        this.f49554c = z11;
+    public s(String str) {
+        this.f50402a = str;
+        f5.w wVar = new f5.w(1024);
+        this.f50403b = wVar;
+        byte[] bArr = wVar.f6640a;
+        this.f50404c = new f5.v(bArr, bArr.length);
+        this.f50410k = -9223372036854775807L;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && obj.getClass() == s.class) {
-                s sVar = (s) obj;
-                if (TextUtils.equals(this.f49552a, sVar.f49552a) && this.f49553b == sVar.f49553b && this.f49554c == sVar.f49554c) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    @Override
+    public final void a() {
+        this.f50407g = 0;
+        this.f50410k = -9223372036854775807L;
+        this.f50411l = false;
     }
 
-    public final int hashCode() {
-        int i9;
-        int f10 = r0.f(31, 31, this.f49552a);
-        int i10 = 1237;
-        if (this.f49553b) {
-            i9 = 1231;
-        } else {
-            i9 = 1237;
+    @Override
+    public final void c(f5.w r24) {
+        throw new UnsupportedOperationException("Method not decompiled: y3.s.c(f5.w):void");
+    }
+
+    @Override
+    public final void e(o3.m mVar, d0 d0Var) {
+        d0Var.a();
+        d0Var.b();
+        this.d = mVar.Z1(d0Var.d, 1);
+        d0Var.b();
+        this.f50405e = d0Var.f50261e;
+    }
+
+    @Override
+    public final void f(int i10, long j10) {
+        if (j10 != -9223372036854775807L) {
+            this.f50410k = j10;
         }
-        int i11 = (f10 + i9) * 31;
-        if (this.f49554c) {
-            i10 = 1231;
-        }
-        return i11 + i10;
+    }
+
+    @Override
+    public final void d() {
     }
 }

@@ -1,96 +1,74 @@
 package q3;
 
-import d5.y;
-import m3.h;
-import m3.j;
-import m3.k;
-import m3.l;
-import m3.m;
+import f5.d0;
+import f5.w;
+import o3.k;
+import o3.l;
+import o3.m;
 public final class b implements k {
-    public final y f45986a = new y(4);
-    public final y f45987b = new y(9);
-    public final y f45988c = new y(11);
-    public final y d = new y();
-    public final c f45989e;
-    public m f45990f;
-    public int f45991g;
-    public boolean h;
-    public long f45992i;
-    public int f45993j;
-    public int f45994k;
-    public int f45995l;
-    public long f45996m;
-    public boolean f45997n;
-    public a f45998o;
-    public d f45999p;
+    public int f46220c;
+    public c f46221e;
+    public long h;
+    public e f46224i;
+    public int f46228m;
+    public boolean f46229n;
+    public final w f46218a = new w(12);
+    public final c8.a f46219b = new Object();
+    public m d = new ya.a(15);
+    public e[] f46223g = new e[0];
+    public long f46226k = -1;
+    public long f46227l = -1;
+    public int f46225j = -1;
+    public long f46222f = -9223372036854775807L;
 
-    public b() {
-        ?? aVar = new a8.a(new j());
-        aVar.f46000b = -9223372036854775807L;
-        aVar.f46001c = new long[0];
-        aVar.d = new long[0];
-        this.f45989e = aVar;
-        this.f45991g = 1;
-    }
-
-    public final y a(l lVar) {
-        int i9 = this.f45995l;
-        y yVar = this.d;
-        byte[] bArr = yVar.f4410a;
-        if (i9 > bArr.length) {
-            yVar.A(0, new byte[Math.max(bArr.length * 2, i9)]);
-        } else {
-            yVar.C(0);
-        }
-        yVar.B(this.f45995l);
-        lVar.readFully(yVar.f4410a, 0, this.f45995l);
-        return yVar;
+    @Override
+    public final int d(o3.l r23, o3.n r24) {
+        throw new UnsupportedOperationException("Method not decompiled: q3.b.d(o3.l, o3.n):int");
     }
 
     @Override
-    public final int b(m3.l r32, m3.n r33) {
-        throw new UnsupportedOperationException("Method not decompiled: q3.b.b(m3.l, m3.n):int");
-    }
-
-    @Override
-    public final void c(m mVar) {
-        this.f45990f = mVar;
-    }
-
-    @Override
-    public final boolean f(l lVar) {
-        y yVar = this.f45986a;
-        h hVar = (h) lVar;
-        hVar.g(yVar.f4410a, 0, 3, false);
-        yVar.C(0);
-        if (yVar.t() == 4607062) {
-            hVar.g(yVar.f4410a, 0, 2, false);
-            yVar.C(0);
-            if ((yVar.w() & 250) == 0) {
-                hVar.g(yVar.f4410a, 0, 4, false);
-                yVar.C(0);
-                int e10 = yVar.e();
-                hVar.f17238f = 0;
-                hVar.a(e10, false);
-                hVar.g(yVar.f4410a, 0, 4, false);
-                yVar.C(0);
-                if (yVar.e() == 0) {
-                    return true;
-                }
+    public final boolean e(l lVar) {
+        w wVar = this.f46218a;
+        lVar.a(0, 12, wVar.f6640a);
+        wVar.C(0);
+        if (wVar.g() == 1179011410) {
+            wVar.D(4);
+            if (wVar.g() == 541677121) {
+                return true;
             }
         }
         return false;
     }
 
     @Override
-    public final void g(long j10, long j11) {
-        if (j10 == 0) {
-            this.f45991g = 1;
-            this.h = false;
-        } else {
-            this.f45991g = 3;
+    public final void f(long j10, long j11) {
+        e[] eVarArr;
+        this.h = -1L;
+        this.f46224i = null;
+        for (e eVar : this.f46223g) {
+            if (eVar.f46244j == 0) {
+                eVar.h = 0;
+            } else {
+                eVar.h = eVar.f46246l[d0.e(eVar.f46245k, j10, true)];
+            }
         }
-        this.f45993j = 0;
+        if (j10 == 0) {
+            if (this.f46223g.length == 0) {
+                this.f46220c = 0;
+                return;
+            } else {
+                this.f46220c = 3;
+                return;
+            }
+        }
+        this.f46220c = 6;
+    }
+
+    @Override
+    public final void i(m mVar) {
+        this.f46220c = 0;
+        this.d = mVar;
+        this.h = -1L;
     }
 
     @Override

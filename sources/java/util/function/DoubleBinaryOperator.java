@@ -1,4 +1,4 @@
 package java.util.function;
 public interface DoubleBinaryOperator {
-    double applyAsDouble(double d, double d9);
+    double applyAsDouble(double d, double d10);
 }

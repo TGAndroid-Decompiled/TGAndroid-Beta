@@ -1,41 +1,30 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class qf implements Runnable {
-    public final int f21332a;
-    public final MessagesStorage f21333b;
-    public final ArrayList f21334c;
-    public final int d;
+    public final int f21364a;
+    public final MessagesStorage f21365b;
+    public final a0.h f21366c;
 
-    public qf(int i9, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f21332a = 1;
-        this.f21333b = messagesStorage;
-        this.f21334c = arrayList;
-        this.d = i9;
+    public qf(MessagesStorage messagesStorage, a0.h hVar, int i10) {
+        this.f21364a = i10;
+        this.f21365b = messagesStorage;
+        this.f21366c = hVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f21332a) {
+        switch (this.f21364a) {
             case 0:
-                this.f21333b.lambda$putWallpapers$78(this.d, this.f21334c);
+                this.f21365b.lambda$getDialogs$239(this.f21366c);
                 return;
             case 1:
-                this.f21333b.lambda$unpinAllDialogsExceptNew$247(this.f21334c, this.d);
+                this.f21365b.lambda$markMessagesAsDeletedInternal$225(this.f21366c);
                 return;
             case 2:
-                this.f21333b.lambda$getDownloadQueue$185(this.d, this.f21334c);
+                this.f21365b.lambda$putWebPages$188(this.f21366c);
                 return;
             default:
-                this.f21333b.lambda$putWidgetDialogs$166(this.d, this.f21334c);
+                this.f21365b.lambda$deleteEphemeralMessages$205(this.f21366c);
                 return;
         }
-    }
-
-    public qf(MessagesStorage messagesStorage, int i9, ArrayList arrayList, int i10) {
-        this.f21332a = i10;
-        this.f21333b = messagesStorage;
-        this.d = i9;
-        this.f21334c = arrayList;
     }
 }

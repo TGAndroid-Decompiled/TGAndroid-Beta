@@ -1,40 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ym extends f2.n0 {
-    public final dj f35027r;
+import org.telegram.messenger.Utilities;
+public final class ym implements Utilities.Callback {
+    public final int f35101a;
+    public final Utilities.Callback f35102b;
 
-    public ym(dj djVar, Context context) {
-        super(context);
-        this.f35027r = djVar;
+    public ym(int i10, Utilities.Callback callback) {
+        this.f35101a = i10;
+        this.f35102b = callback;
     }
 
     @Override
-    public final int k(int i9, View view) {
-        int i10;
-        jn jnVar = (jn) this.f35027r.V;
-        if (jnVar.R0) {
-            i9 = -1;
+    public final void run(Object obj) {
+        switch (this.f35101a) {
+            case 0:
+                this.f35102b.run(new ch.e((String) obj));
+                return;
+            default:
+                int[] iArr = (int[]) obj;
+                boolean z10 = false;
+                if (iArr.length >= 1 && iArr[0] == 0) {
+                    z10 = true;
+                }
+                this.f35102b.run(Boolean.valueOf(z10));
+                return;
         }
-        int k10 = super.k(i9, view);
-        if (jnVar.R0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!jnVar.R0) {
-            k10 = org.telegram.messenger.l0.A(7.0f, jnVar.N0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (jnVar.R0 && k10 == 0 && (i10 = jnVar.S0) >= 0) {
-            jn.J(jnVar, i10);
-            jnVar.S0 = -1;
-        }
-        jnVar.R0 = false;
-        return k10;
-    }
-
-    @Override
-    public final int m(int i9) {
-        return super.m(i9) * 2;
     }
 }

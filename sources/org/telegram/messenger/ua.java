@@ -1,23 +1,24 @@
 package org.telegram.messenger;
 public final class ua implements Runnable {
-    public final int f21648a;
-    public final q0.a f21649b;
-    public final int f21650c;
+    public final int f21717a;
+    public final Runnable f21718b;
 
-    public ua(q0.a aVar, int i9, int i10) {
-        this.f21648a = i10;
-        this.f21649b = aVar;
-        this.f21650c = i9;
+    public ua(int i10, Runnable runnable) {
+        this.f21717a = i10;
+        this.f21718b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f21648a) {
+        switch (this.f21717a) {
             case 0:
-                MessagesController.lambda$getNextReactionMentionInternal$1(this.f21649b, this.f21650c);
+                MessagesController.lambda$unblockPeer$110(this.f21718b);
+                return;
+            case 1:
+                this.f21718b.run();
                 return;
             default:
-                MessagesController.lambda$getNextReactionMentionInternal$2(this.f21649b, this.f21650c);
+                SendMessagesHelper.lambda$prepareSendingPoll$134(this.f21718b);
                 return;
         }
     }

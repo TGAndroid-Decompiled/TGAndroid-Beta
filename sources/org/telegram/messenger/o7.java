@@ -1,50 +1,30 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.Utilities;
 public final class o7 implements Runnable {
-    public final int f21118a;
-    public final Utilities.Callback f21119b;
+    public final int f21123a;
+    public final MediaDataController f21124b;
+    public final long f21125c;
+    public final long d;
+    public final int[] f21126e;
 
-    public o7(int i9, Utilities.Callback callback) {
-        this.f21118a = i9;
-        this.f21119b = callback;
+    public o7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
+        this.f21123a = i10;
+        this.f21124b = mediaDataController;
+        this.f21125c = j10;
+        this.d = j11;
+        this.f21126e = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f21118a) {
+        switch (this.f21123a) {
             case 0:
-                MediaDataController.lambda$loadStickers$98(this.f21119b);
+                this.f21124b.lambda$getMediaCounts$128(this.f21125c, this.d, this.f21126e);
                 return;
             case 1:
-                MediaDataController.lambda$loadStickers$99(this.f21119b);
-                return;
-            case 2:
-                MediaDataController.lambda$loadBotInfo$198(this.f21119b);
-                return;
-            case 3:
-                MediaDataController.lambda$loadStickers$94(this.f21119b);
-                return;
-            case 4:
-                MediaDataController.lambda$loadStickers$95(this.f21119b);
-                return;
-            case 5:
-                MediaDataController.lambda$loadStickers$96(this.f21119b);
-                return;
-            case 6:
-                this.f21119b.run(null);
-                return;
-            case 7:
-                MessagesController.lambda$addUserToChat$301(this.f21119b);
-                return;
-            case 8:
-                MessagesController.lambda$addUserToChat$305(this.f21119b);
-                return;
-            case 9:
-                this.f21119b.run(null);
+                this.f21124b.lambda$getMediaCounts$127(this.f21125c, this.d, this.f21126e);
                 return;
             default:
-                ShortcutResultReceiver.a(this.f21119b);
+                this.f21124b.lambda$getMediaCounts$130(this.f21125c, this.d, this.f21126e);
                 return;
         }
     }

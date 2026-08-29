@@ -8,10 +8,10 @@ import org.telegram.tgnet.TLRPC;
 public class AuthTokensHelper {
     public static void addLogOutToken(TLRPC.TL_auth_loggedOut tL_auth_loggedOut) {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0);
-        int i9 = sharedPreferences.getInt("count", 0);
+        int i10 = sharedPreferences.getInt("count", 0);
         SerializedData serializedData = new SerializedData(tL_auth_loggedOut.getObjectSize());
         tL_auth_loggedOut.serializeToStream(serializedData);
-        sharedPreferences.edit().putString(j3.r0.l(i9, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i9 + 1).apply();
+        sharedPreferences.edit().putString(j7.l1.k(i10, "log_out_token_"), Utilities.bytesToHex(serializedData.toByteArray())).putInt("count", i10 + 1).apply();
         BackupAgent.requestBackup();
     }
 
@@ -22,14 +22,14 @@ public class AuthTokensHelper {
 
     public static ArrayList<TLRPC.TL_auth_authorization> getSavedLogInTokens() {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens_login", 0);
-        int i9 = sharedPreferences.getInt("count", 0);
-        if (i9 == 0) {
+        int i10 = sharedPreferences.getInt("count", 0);
+        if (i10 == 0) {
             return null;
         }
         ArrayList<TLRPC.TL_auth_authorization> arrayList = new ArrayList<>();
-        for (int i10 = 0; i10 < i9; i10++) {
+        for (int i11 = 0; i11 < i10; i11++) {
             try {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i10, "")));
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i11, "")));
                 TLRPC.auth_Authorization TLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize instanceof TLRPC.TL_auth_authorization) {
                     arrayList.add((TLRPC.TL_auth_authorization) TLdeserialize);
@@ -43,13 +43,13 @@ public class AuthTokensHelper {
 
     public static ArrayList<TLRPC.TL_auth_loggedOut> getSavedLogOutTokens() {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0);
-        int i9 = sharedPreferences.getInt("count", 0);
-        if (i9 == 0) {
+        int i10 = sharedPreferences.getInt("count", 0);
+        if (i10 == 0) {
             return null;
         }
         ArrayList<TLRPC.TL_auth_loggedOut> arrayList = new ArrayList<>();
-        for (int i10 = 0; i10 < i9; i10++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_out_token_" + i10, "")));
+        for (int i11 = 0; i11 < i10; i11++) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_out_token_" + i11, "")));
             TLRPC.TL_auth_loggedOut TLdeserialize = TLRPC.TL_auth_loggedOut.TLdeserialize(serializedData, serializedData.readInt32(true), true);
             if (TLdeserialize != null) {
                 arrayList.add(TLdeserialize);
@@ -74,16 +74,16 @@ public class AuthTokensHelper {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens_login", 0);
         ArrayList arrayList2 = new ArrayList();
         sharedPreferences.edit().clear().apply();
-        for (int i9 = 0; i9 < Math.min(20, arrayList.size()); i9++) {
-            arrayList2.add(arrayList.get(i9));
+        for (int i10 = 0; i10 < Math.min(20, arrayList.size()); i10++) {
+            arrayList2.add(arrayList.get(i10));
         }
         if (arrayList2.size() > 0) {
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putInt("count", arrayList2.size());
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_authorization) arrayList2.get(i10)).getObjectSize());
-                ((TLRPC.TL_auth_authorization) arrayList2.get(i10)).serializeToStream(serializedData);
-                edit.putString("log_in_token_" + i10, Utilities.bytesToHex(serializedData.toByteArray()));
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_authorization) arrayList2.get(i11)).getObjectSize());
+                ((TLRPC.TL_auth_authorization) arrayList2.get(i11)).serializeToStream(serializedData);
+                edit.putString("log_in_token_" + i11, Utilities.bytesToHex(serializedData.toByteArray()));
             }
             edit.apply();
             BackupAgent.requestBackup();
@@ -95,16 +95,16 @@ public class AuthTokensHelper {
         ArrayList arrayList2 = new ArrayList();
         sharedPreferences.edit().clear().apply();
         System.currentTimeMillis();
-        for (int i9 = 0; i9 < Math.min(20, arrayList.size()); i9++) {
-            arrayList2.add(arrayList.get(i9));
+        for (int i10 = 0; i10 < Math.min(20, arrayList.size()); i10++) {
+            arrayList2.add(arrayList.get(i10));
         }
         if (arrayList2.size() > 0) {
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putInt("count", arrayList2.size());
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_loggedOut) arrayList2.get(i10)).getObjectSize());
-                ((TLRPC.TL_auth_loggedOut) arrayList2.get(i10)).serializeToStream(serializedData);
-                edit.putString("log_out_token_" + i10, Utilities.bytesToHex(serializedData.toByteArray()));
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                SerializedData serializedData = new SerializedData(((TLRPC.TL_auth_loggedOut) arrayList2.get(i11)).getObjectSize());
+                ((TLRPC.TL_auth_loggedOut) arrayList2.get(i11)).serializeToStream(serializedData);
+                edit.putString("log_out_token_" + i11, Utilities.bytesToHex(serializedData.toByteArray()));
             }
             edit.apply();
         }

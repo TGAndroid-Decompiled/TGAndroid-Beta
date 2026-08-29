@@ -1,67 +1,54 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.StatsController;
-public final class gu implements org.telegram.ui.Components.jk0, org.telegram.ui.ActionBar.b2 {
-    public final ku f38604a;
+import android.text.TextUtils;
+public final class gu extends zf.a {
+    public final int f38662c;
+    public final int d;
+    public final int f38663e;
+    public final CharSequence f38664f;
+    public final CharSequence f38665g;
+    public final int h;
 
-    public gu(ku kuVar) {
-        this.f38604a = kuVar;
+    public gu(int i10, String str) {
+        super(i10, false);
+        this.f38664f = str;
     }
 
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        int i10;
-        int i11;
-        int i12;
-        ku kuVar = this.f38604a;
-        ou ouVar = kuVar.f39930k3;
-        ArrayList arrayList = kuVar.f39921b3;
-        arrayList.clear();
-        int i13 = 0;
-        while (true) {
-            ju[] juVarArr = kuVar.f39922c3;
-            if (i13 >= juVarArr.length) {
-                i10 = ((org.telegram.ui.ActionBar.o2) ouVar).currentAccount;
-                StatsController.getInstance(i10).resetStats(0);
-                i11 = ((org.telegram.ui.ActionBar.o2) ouVar).currentAccount;
-                StatsController.getInstance(i11).resetStats(1);
-                i12 = ((org.telegram.ui.ActionBar.o2) ouVar).currentAccount;
-                StatsController.getInstance(i12).resetStats(2);
-                kuVar.T2 = true;
-                kuVar.z1();
-                kuVar.A1(true);
-                return;
-            }
-            ju juVar = juVarArr[i13];
-            if (juVar.f32679c > 0) {
-                arrayList.add(Integer.valueOf(juVar.d));
-            }
-            i13++;
-        }
+    public static gu b(CharSequence charSequence, String str) {
+        return new gu(-1, 0, 0, 0, charSequence, str);
     }
 
-    @Override
-    public int run() {
-        ku kuVar = this.f38604a;
-        ArrayList arrayList = kuVar.Y2;
-        int i9 = 0;
-        while (true) {
-            if (i9 < arrayList.size()) {
-                if (((fu) arrayList.get(i9)).f48814a == 5) {
-                    break;
-                }
-                i9++;
-            } else {
-                i9 = -1;
-                break;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof gu)) {
+            return false;
+        }
+        gu guVar = (gu) obj;
+        CharSequence charSequence = guVar.f38664f;
+        int i10 = guVar.f50845a;
+        int i11 = this.f50845a;
+        if (i10 != i11) {
+            return false;
+        }
+        CharSequence charSequence2 = this.f38664f;
+        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
+            if (i11 != 2) {
+                return true;
             }
+            if (guVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || guVar.d != this.d || guVar.f38663e != this.f38663e || guVar.f38662c != this.f38662c) {
+                return false;
+            }
+            return true;
         }
-        if (i9 < 0) {
-            return -1;
-        }
-        kuVar.V2.h1(i9, AndroidUtilities.dp(60.0f));
-        return i9;
+        return TextUtils.equals(charSequence2, charSequence);
+    }
+
+    public gu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
+        super(2, false);
+        this.h = i10;
+        this.f38662c = i11;
+        this.d = i12;
+        this.f38663e = i13;
+        this.f38664f = charSequence;
+        this.f38665g = charSequence2;
     }
 }

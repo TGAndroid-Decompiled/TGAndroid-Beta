@@ -1,76 +1,35 @@
 package c2;
 
-import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.util.Log;
 import android.util.SparseArray;
-public final class s0 implements IBinder.DeathRecipient {
-    public final Messenger f2225a;
-    public final v0 f2226b;
-    public final Messenger f2227c;
-    public int f2229f;
-    public int f2230g;
-    public final z0 f2231i;
-    public int d = 1;
-    public int f2228e = 1;
-    public final SparseArray h = new SparseArray();
+public final class s0 implements Runnable {
+    public final int f2895a;
+    public final t0 f2896b;
 
-    public s0(z0 z0Var, Messenger messenger) {
-        this.f2231i = z0Var;
-        this.f2225a = messenger;
-        v0 v0Var = new v0(this);
-        this.f2226b = v0Var;
-        this.f2227c = new Messenger(v0Var);
-    }
-
-    public final void a(int i9) {
-        int i10 = this.d;
-        this.d = i10 + 1;
-        b(5, i10, i9, null, null);
-    }
-
-    public final boolean b(int i9, int i10, int i11, Bundle bundle, Bundle bundle2) {
-        Message obtain = Message.obtain();
-        obtain.what = i9;
-        obtain.arg1 = i10;
-        obtain.arg2 = i11;
-        obtain.obj = bundle;
-        obtain.setData(bundle2);
-        obtain.replyTo = this.f2227c;
-        try {
-            this.f2225a.send(obtain);
-            return true;
-        } catch (DeadObjectException unused) {
-            return false;
-        } catch (RemoteException e10) {
-            if (i9 != 2) {
-                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e10);
-                return false;
-            }
-            return false;
-        }
+    public s0(t0 t0Var, int i10) {
+        this.f2895a = i10;
+        this.f2896b = t0Var;
     }
 
     @Override
-    public final void binderDied() {
-        this.f2231i.f2274s.post(new r0(this, 1));
-    }
-
-    public final void c(int i9, int i10) {
-        Bundle h = aa.d.h(i10, "volume");
-        int i11 = this.d;
-        this.d = i11 + 1;
-        b(7, i11, i9, null, h);
-    }
-
-    public final void d(int i9, int i10) {
-        Bundle h = aa.d.h(i10, "volume");
-        int i11 = this.d;
-        this.d = i11 + 1;
-        b(8, i11, i9, null, h);
+    public final void run() {
+        switch (this.f2895a) {
+            case 0:
+                SparseArray sparseArray = this.f2896b.h;
+                int size = sparseArray.size();
+                for (int i10 = 0; i10 < size; i10++) {
+                    ((x0) sparseArray.valueAt(i10)).getClass();
+                    x0.a(null, null);
+                }
+                sparseArray.clear();
+                return;
+            default:
+                t0 t0Var = this.f2896b;
+                a1 a1Var = t0Var.f2909i;
+                if (a1Var.f2767y == t0Var) {
+                    a1Var.p();
+                    return;
+                }
+                return;
+        }
     }
 }

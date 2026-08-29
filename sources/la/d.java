@@ -1,66 +1,37 @@
 package la;
-public final class d extends u {
-    public final int f16713a;
 
-    @Override
-    public final Object read(ta.a aVar) {
-        switch (this.f16713a) {
-            case 0:
-                if (aVar.x() == 9) {
-                    aVar.t();
-                    return null;
-                }
-                return Double.valueOf(aVar.o());
-            case 1:
-                if (aVar.x() == 9) {
-                    aVar.t();
-                    return null;
-                }
-                return Float.valueOf((float) aVar.o());
-            default:
-                aVar.C();
-                return null;
-        }
+import java.util.regex.Pattern;
+import l3.g0;
+public final class d {
+    public final aa.d f15117a;
+    public final g0 f15118b;
+    public final k f15119c;
+    public final sd.d d = sd.e.a();
+
+    public d(sc.h hVar, aa.d dVar, ja.b bVar, g0 g0Var, k1.f fVar) {
+        this.f15117a = dVar;
+        this.f15118b = g0Var;
+        this.f15119c = new k(fVar);
     }
 
-    public String toString() {
-        switch (this.f16713a) {
-            case 2:
-                return "AnonymousOrNonStaticLocalClassAdapter";
-            default:
-                return super.toString();
-        }
+    public static String b(String str) {
+        Pattern compile = Pattern.compile("/");
+        kotlin.jvm.internal.j.d(compile, "compile(...)");
+        String replaceAll = compile.matcher(str).replaceAll("");
+        kotlin.jvm.internal.j.d(replaceAll, "replaceAll(...)");
+        return replaceAll;
     }
 
-    @Override
-    public final void write(ta.c cVar, Object obj) {
-        switch (this.f16713a) {
-            case 0:
-                Number number = (Number) obj;
-                if (number == null) {
-                    cVar.i();
-                    return;
-                }
-                double doubleValue = number.doubleValue();
-                g.a(doubleValue);
-                cVar.n(doubleValue);
-                return;
-            case 1:
-                Number number2 = (Number) obj;
-                if (number2 == null) {
-                    cVar.i();
-                    return;
-                }
-                float floatValue = number2.floatValue();
-                g.a(floatValue);
-                if (!(number2 instanceof Float)) {
-                    number2 = Float.valueOf(floatValue);
-                }
-                cVar.q(number2);
-                return;
-            default:
-                cVar.i();
-                return;
+    public final Boolean a() {
+        e eVar = this.f15119c.f15142b;
+        if (eVar != null) {
+            return eVar.f15120a;
         }
+        kotlin.jvm.internal.j.h("sessionConfigs");
+        throw null;
+    }
+
+    public final java.lang.Object c(sc.c r25) {
+        throw new UnsupportedOperationException("Method not decompiled: la.d.c(sc.c):java.lang.Object");
     }
 }

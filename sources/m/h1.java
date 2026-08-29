@@ -17,34 +17,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 public final class h1 {
-    public static final RectF f16949l = new RectF();
-    public static final ConcurrentHashMap f16950m = new ConcurrentHashMap();
-    public int f16951a = 0;
-    public boolean f16952b = false;
-    public float f16953c = -1.0f;
+    public static final RectF f16548l = new RectF();
+    public static final ConcurrentHashMap f16549m = new ConcurrentHashMap();
+    public int f16550a = 0;
+    public boolean f16551b = false;
+    public float f16552c = -1.0f;
     public float d = -1.0f;
-    public float f16954e = -1.0f;
-    public int[] f16955f = new int[0];
-    public boolean f16956g = false;
+    public float f16553e = -1.0f;
+    public int[] f16554f = new int[0];
+    public boolean f16555g = false;
     public TextPaint h;
-    public final TextView f16957i;
-    public final Context f16958j;
-    public final g1 f16959k;
+    public final TextView f16556i;
+    public final Context f16557j;
+    public final g1 f16558k;
 
     static {
         new ConcurrentHashMap();
     }
 
     public h1(TextView textView) {
-        this.f16957i = textView;
-        this.f16958j = textView.getContext();
-        int i9 = Build.VERSION.SDK_INT;
-        if (i9 >= 29) {
-            this.f16959k = new f1();
-        } else if (i9 >= 23) {
-            this.f16959k = new e1();
+        this.f16556i = textView;
+        this.f16557j = textView.getContext();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 29) {
+            this.f16558k = new f1();
+        } else if (i10 >= 23) {
+            this.f16558k = new e1();
         } else {
-            this.f16959k = new g1();
+            this.f16558k = new g1();
         }
     }
 
@@ -53,16 +53,16 @@ public final class h1 {
         if (length != 0) {
             Arrays.sort(iArr);
             ArrayList arrayList = new ArrayList();
-            for (int i9 : iArr) {
-                if (i9 > 0 && Collections.binarySearch(arrayList, Integer.valueOf(i9)) < 0) {
-                    arrayList.add(Integer.valueOf(i9));
+            for (int i10 : iArr) {
+                if (i10 > 0 && Collections.binarySearch(arrayList, Integer.valueOf(i10)) < 0) {
+                    arrayList.add(Integer.valueOf(i10));
                 }
             }
             if (length != arrayList.size()) {
                 int size = arrayList.size();
                 int[] iArr2 = new int[size];
-                for (int i10 = 0; i10 < size; i10++) {
-                    iArr2[i10] = ((Integer) arrayList.get(i10)).intValue();
+                for (int i11 = 0; i11 < size; i11++) {
+                    iArr2[i11] = ((Integer) arrayList.get(i11)).intValue();
                 }
                 return iArr2;
             }
@@ -72,7 +72,7 @@ public final class h1 {
 
     public static Method d(String str) {
         try {
-            ConcurrentHashMap concurrentHashMap = f16950m;
+            ConcurrentHashMap concurrentHashMap = f16549m;
             Method method = (Method) concurrentHashMap.get(str);
             if (method == null && (method = TextView.class.getDeclaredMethod(str, null)) != null) {
                 method.setAccessible(true);
@@ -98,24 +98,24 @@ public final class h1 {
     public final void a() {
         int measuredWidth;
         if (f()) {
-            if (this.f16952b) {
-                if (this.f16957i.getMeasuredHeight() > 0 && this.f16957i.getMeasuredWidth() > 0) {
-                    if (this.f16959k.b(this.f16957i)) {
+            if (this.f16551b) {
+                if (this.f16556i.getMeasuredHeight() > 0 && this.f16556i.getMeasuredWidth() > 0) {
+                    if (this.f16558k.b(this.f16556i)) {
                         measuredWidth = 1048576;
                     } else {
-                        measuredWidth = (this.f16957i.getMeasuredWidth() - this.f16957i.getTotalPaddingLeft()) - this.f16957i.getTotalPaddingRight();
+                        measuredWidth = (this.f16556i.getMeasuredWidth() - this.f16556i.getTotalPaddingLeft()) - this.f16556i.getTotalPaddingRight();
                     }
-                    int height = (this.f16957i.getHeight() - this.f16957i.getCompoundPaddingBottom()) - this.f16957i.getCompoundPaddingTop();
+                    int height = (this.f16556i.getHeight() - this.f16556i.getCompoundPaddingBottom()) - this.f16556i.getCompoundPaddingTop();
                     if (measuredWidth > 0 && height > 0) {
-                        RectF rectF = f16949l;
+                        RectF rectF = f16548l;
                         synchronized (rectF) {
                             try {
                                 rectF.setEmpty();
                                 rectF.right = measuredWidth;
                                 rectF.bottom = height;
-                                float c10 = c(rectF);
-                                if (c10 != this.f16957i.getTextSize()) {
-                                    g(c10, 0);
+                                float c3 = c(rectF);
+                                if (c3 != this.f16556i.getTextSize()) {
+                                    g(c3, 0);
                                 }
                             } finally {
                             }
@@ -127,7 +127,7 @@ public final class h1 {
                     return;
                 }
             }
-            this.f16952b = true;
+            this.f16551b = true;
         }
     }
 
@@ -135,15 +135,15 @@ public final class h1 {
         CharSequence charSequence;
         StaticLayout a2;
         CharSequence transformation;
-        int length = this.f16955f.length;
+        int length = this.f16554f.length;
         if (length != 0) {
-            int i9 = length - 1;
-            int i10 = 1;
-            int i11 = 0;
-            while (i10 <= i9) {
-                int i12 = (i10 + i9) / 2;
-                int i13 = this.f16955f[i12];
-                TextView textView = this.f16957i;
+            int i10 = length - 1;
+            int i11 = 1;
+            int i12 = 0;
+            while (i11 <= i10) {
+                int i13 = (i11 + i10) / 2;
+                int i14 = this.f16554f[i13];
+                TextView textView = this.f16556i;
                 CharSequence text = textView.getText();
                 TransformationMethod transformationMethod = textView.getTransformationMethod();
                 if (transformationMethod != null && (transformation = transformationMethod.getTransformation(text, textView)) != null) {
@@ -151,7 +151,7 @@ public final class h1 {
                 } else {
                     charSequence = text;
                 }
-                int i14 = Build.VERSION.SDK_INT;
+                int i15 = Build.VERSION.SDK_INT;
                 int b10 = b1.b(textView);
                 TextPaint textPaint = this.h;
                 if (textPaint == null) {
@@ -160,50 +160,50 @@ public final class h1 {
                     textPaint.reset();
                 }
                 this.h.set(textView.getPaint());
-                this.h.setTextSize(i13);
+                this.h.setTextSize(i14);
                 Layout.Alignment alignment = (Layout.Alignment) e(textView, "getLayoutAlignment", Layout.Alignment.ALIGN_NORMAL);
                 int round = Math.round(rectF.right);
-                if (i14 >= 23) {
-                    a2 = d1.a(charSequence, alignment, round, b10, this.f16957i, this.h, this.f16959k);
+                if (i15 >= 23) {
+                    a2 = d1.a(charSequence, alignment, round, b10, this.f16556i, this.h, this.f16558k);
                 } else {
                     a2 = b1.a(charSequence, alignment, round, textView, this.h);
                 }
                 if ((b10 != -1 && (a2.getLineCount() > b10 || a2.getLineEnd(a2.getLineCount() - 1) != charSequence.length())) || a2.getHeight() > rectF.bottom) {
-                    i11 = i12 - 1;
-                    i9 = i11;
+                    i12 = i13 - 1;
+                    i10 = i12;
                 } else {
-                    int i15 = i12 + 1;
-                    i11 = i10;
-                    i10 = i15;
+                    int i16 = i13 + 1;
+                    i12 = i11;
+                    i11 = i16;
                 }
             }
-            return this.f16955f[i11];
+            return this.f16554f[i12];
         }
         throw new IllegalStateException("No available text sizes to choose from.");
     }
 
     public final boolean f() {
-        if (j() && this.f16951a != 0) {
+        if (j() && this.f16550a != 0) {
             return true;
         }
         return false;
     }
 
-    public final void g(float f10, int i9) {
+    public final void g(float f9, int i10) {
         Resources resources;
-        Context context = this.f16958j;
+        Context context = this.f16557j;
         if (context == null) {
             resources = Resources.getSystem();
         } else {
             resources = context.getResources();
         }
-        float applyDimension = TypedValue.applyDimension(i9, f10, resources.getDisplayMetrics());
-        TextView textView = this.f16957i;
+        float applyDimension = TypedValue.applyDimension(i10, f9, resources.getDisplayMetrics());
+        TextView textView = this.f16556i;
         if (applyDimension != textView.getPaint().getTextSize()) {
             textView.getPaint().setTextSize(applyDimension);
             boolean a2 = c1.a(textView);
             if (textView.getLayout() != null) {
-                this.f16952b = false;
+                this.f16551b = false;
                 try {
                     Method d = d("nullLayouts");
                     if (d != null) {
@@ -223,60 +223,60 @@ public final class h1 {
     }
 
     public final boolean h() {
-        if (j() && this.f16951a == 1) {
-            if (!this.f16956g || this.f16955f.length == 0) {
-                int floor = ((int) Math.floor((this.f16954e - this.d) / this.f16953c)) + 1;
+        if (j() && this.f16550a == 1) {
+            if (!this.f16555g || this.f16554f.length == 0) {
+                int floor = ((int) Math.floor((this.f16553e - this.d) / this.f16552c)) + 1;
                 int[] iArr = new int[floor];
-                for (int i9 = 0; i9 < floor; i9++) {
-                    iArr[i9] = Math.round((i9 * this.f16953c) + this.d);
+                for (int i10 = 0; i10 < floor; i10++) {
+                    iArr[i10] = Math.round((i10 * this.f16552c) + this.d);
                 }
-                this.f16955f = b(iArr);
+                this.f16554f = b(iArr);
             }
-            this.f16952b = true;
+            this.f16551b = true;
         } else {
-            this.f16952b = false;
+            this.f16551b = false;
         }
-        return this.f16952b;
+        return this.f16551b;
     }
 
     public final boolean i() {
         boolean z10;
-        int[] iArr = this.f16955f;
+        int[] iArr = this.f16554f;
         int length = iArr.length;
         if (length > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f16956g = z10;
+        this.f16555g = z10;
         if (z10) {
-            this.f16951a = 1;
+            this.f16550a = 1;
             this.d = iArr[0];
-            this.f16954e = iArr[length - 1];
-            this.f16953c = -1.0f;
+            this.f16553e = iArr[length - 1];
+            this.f16552c = -1.0f;
         }
         return z10;
     }
 
     public final boolean j() {
-        return !(this.f16957i instanceof t);
+        return !(this.f16556i instanceof t);
     }
 
-    public final void k(float f10, float f11, float f12) {
-        if (f10 > 0.0f) {
-            if (f11 > f10) {
-                if (f12 > 0.0f) {
-                    this.f16951a = 1;
-                    this.d = f10;
-                    this.f16954e = f11;
-                    this.f16953c = f12;
-                    this.f16956g = false;
+    public final void k(float f9, float f10, float f11) {
+        if (f9 > 0.0f) {
+            if (f10 > f9) {
+                if (f11 > 0.0f) {
+                    this.f16550a = 1;
+                    this.d = f9;
+                    this.f16553e = f10;
+                    this.f16552c = f11;
+                    this.f16555g = false;
                     return;
                 }
-                throw new IllegalArgumentException("The auto-size step granularity (" + f12 + "px) is less or equal to (0px)");
+                throw new IllegalArgumentException("The auto-size step granularity (" + f11 + "px) is less or equal to (0px)");
             }
-            throw new IllegalArgumentException("Maximum auto-size text size (" + f11 + "px) is less or equal to minimum auto-size text size (" + f10 + "px)");
+            throw new IllegalArgumentException("Maximum auto-size text size (" + f10 + "px) is less or equal to minimum auto-size text size (" + f9 + "px)");
         }
-        throw new IllegalArgumentException("Minimum auto-size text size (" + f10 + "px) is less or equal to (0px)");
+        throw new IllegalArgumentException("Minimum auto-size text size (" + f9 + "px) is less or equal to (0px)");
     }
 }

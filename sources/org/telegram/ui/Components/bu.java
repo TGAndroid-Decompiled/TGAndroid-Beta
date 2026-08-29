@@ -1,63 +1,132 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
+import android.graphics.Canvas;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.CharacterStyle;
+import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bu extends WebViewClient {
-    public final gu f27278a;
+import org.telegram.messenger.Emoji;
+public final class bu extends gh.s {
+    public final v80 N;
+    public z80 O;
+    public boolean P;
+    public boolean Q;
+    public boolean R;
 
-    public bu(gu guVar) {
-        this.f27278a = guVar;
+    public bu(Context context) {
+        super(context, null, true);
+        this.N = new v80(this);
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        gu guVar = this.f27278a;
-        ImageView imageView = guVar.f28876x;
-        if (!guVar.f28877y) {
-            guVar.f28872n.setVisibility(4);
-            guVar.h.setVisibility(4);
-            imageView.setEnabled(true);
-            imageView.setAlpha(1.0f);
+    public final ClickableSpan a(int i10, int i11) {
+        Layout layout = getLayout();
+        if (layout == null) {
+            return null;
         }
+        int paddingLeft = i10 - getPaddingLeft();
+        int paddingTop = i11 - getPaddingTop();
+        int lineForVertical = layout.getLineForVertical(paddingTop);
+        float f9 = paddingLeft;
+        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f9);
+        float lineLeft = getLayout().getLineLeft(lineForVertical);
+        if (lineLeft <= f9 && layout.getLineWidth(lineForVertical) + lineLeft >= f9 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
+            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                return clickableSpanArr[0];
+            }
+        }
+        return null;
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        org.telegram.ui.ActionBar.b6 b6Var;
-        gu guVar = this.f27278a;
-        try {
-            if (!AndroidUtilities.isSafeToShow(guVar.getContext())) {
+    public final void onDraw(Canvas canvas) {
+        float paddingLeft;
+        canvas.save();
+        if (!this.P) {
+            float f9 = 0.0f;
+            if (this.Q) {
+                paddingLeft = 0.0f;
+            } else {
+                paddingLeft = getPaddingLeft();
+            }
+            if (!this.R) {
+                f9 = getPaddingTop();
+            }
+            canvas.translate(paddingLeft, f9);
+        }
+        if (this.N.f(canvas)) {
+            invalidate();
+        }
+        canvas.restore();
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        CharacterStyle characterStyle;
+        v80 v80Var = this.N;
+        if (v80Var != null) {
+            Layout layout = getLayout();
+            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
+            if (a2 != null && motionEvent.getAction() == 0) {
+                z80 z80Var = new z80(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
+                this.O = z80Var;
+                v80Var.a(z80Var, null);
+                SpannableString spannableString = new SpannableString(layout.getText());
+                int spanStart = spannableString.getSpanStart(this.O.f35285i);
+                int spanEnd = spannableString.getSpanEnd(this.O.f35285i);
+                s80 b10 = this.O.b();
+                b10.d(layout, spanStart, getPaddingTop());
+                layout.getSelectionPath(spanStart, spanEnd, b10);
+                AndroidUtilities.runOnUIThread(new rp(this, z80Var, a2), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
-            Context context = guVar.getContext();
-            b6Var = ((org.telegram.ui.ActionBar.f3) guVar).resourcesProvider;
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, b6Var);
-            alertDialog$Builder.f22702a.N = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f22702a.P = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new np(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            return false;
+            if (motionEvent.getAction() == 1) {
+                v80Var.d(true);
+                z80 z80Var2 = this.O;
+                if (z80Var2 != null && (characterStyle = z80Var2.f35285i) == a2) {
+                    if (characterStyle != null) {
+                        ((ClickableSpan) characterStyle).onClick(this);
+                    }
+                    this.O = null;
+                    return true;
+                }
+                this.O = null;
+            }
+            if (motionEvent.getAction() == 3) {
+                v80Var.d(true);
+                this.O = null;
+            }
         }
+        if (this.O != null || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (this.f27278a.f28877y) {
-            ve.e.s(webView.getContext(), str);
-            return true;
-        }
-        return super.shouldOverrideUrlLoading(webView, str);
+    public void setDisablePaddingsOffset(boolean z10) {
+        this.P = z10;
+    }
+
+    @Override
+    public void setDisablePaddingsOffsetX(boolean z10) {
+        this.Q = z10;
+    }
+
+    @Override
+    public void setDisablePaddingsOffsetY(boolean z10) {
+        this.R = z10;
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
     }
 }

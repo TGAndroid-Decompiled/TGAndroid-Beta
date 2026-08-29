@@ -1,261 +1,318 @@
 package gh;
 
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import java.util.Arrays;
+import android.graphics.SurfaceTexture;
+import android.opengl.GLES20;
+import android.opengl.GLES30;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.xf;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.bq;
-import org.telegram.ui.cz0;
-import org.telegram.ui.dy;
-import org.telegram.ui.dz0;
-import org.telegram.ui.o50;
-public final class i implements Runnable {
-    public final int f8263a = 0;
-    public final long f8264b;
-    public final boolean f8265c;
-    public final Object d;
-    public final Object f8266e;
-    public final Object f8267f;
-    public final Object h;
+import org.telegram.messenger.Utilities;
+public final class i extends Thread {
+    public EGLContext A;
+    public int B;
+    public int C;
+    public int D;
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public int[] K;
+    public float L;
+    public final j M;
+    public final f f7382c;
+    public final SurfaceTexture d;
+    public boolean f7384f;
+    public int h;
+    public int f7385n;
+    public int f7386r;
+    public EGL10 v;
+    public EGLDisplay f7388w;
+    public EGLConfig f7389x;
+    public EGLSurface f7390y;
+    public volatile boolean f7380a = true;
+    public volatile boolean f7381b = false;
+    public final Object f7383e = new Object();
+    public final float f7387s = AndroidUtilities.dpf2(1.2f);
+    public boolean I = true;
+    public int J = 0;
 
-    public i(r rVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, long j10) {
-        this.f8266e = rVar;
-        this.f8267f = tL_error;
-        this.d = tLObject;
-        this.h = twoStepVerificationActivity;
-        this.f8265c = z10;
-        this.f8264b = j10;
+    public i(j jVar, SurfaceTexture surfaceTexture, int i10, int i11, f fVar) {
+        this.M = jVar;
+        this.f7382c = fVar;
+        this.d = surfaceTexture;
+        this.h = i10;
+        this.f7385n = i11;
+        this.f7386r = (int) Utilities.clamp(((i10 * i11) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+    }
+
+    public static void a() {
+        while (true) {
+            int glGetError = GLES20.glGetError();
+            if (glGetError != 0) {
+                FileLog.e("spoiler gles error " + glGetError);
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void b() {
+        int[] iArr = this.K;
+        if (iArr != null) {
+            GLES20.glDeleteBuffers(2, iArr, 0);
+        }
+        int[] iArr2 = new int[2];
+        this.K = iArr2;
+        GLES20.glGenBuffers(2, iArr2, 0);
+        for (int i10 = 0; i10 < 2; i10++) {
+            GLES20.glBindBuffer(34962, this.K[i10]);
+            GLES20.glBufferData(34962, this.f7386r * 24, null, 35048);
+        }
+        a();
     }
 
     @Override
     public final void run() {
-        SpannableStringBuilder replaceTags;
-        org.telegram.ui.Components.t5 t5Var;
-        int i9 = this.f8263a;
-        long j10 = this.f8264b;
-        boolean z10 = this.f8265c;
-        Object obj = this.h;
-        Object obj2 = this.d;
-        Object obj3 = this.f8267f;
-        Object obj4 = this.f8266e;
-        switch (i9) {
-            case 0:
-                r rVar = (r) obj4;
-                TLObject tLObject = (TLObject) obj2;
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
-                if (((TLRPC.TL_error) obj3) == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    twoStepVerificationActivity.E = password;
-                    TwoStepVerificationActivity.l0(password);
-                    rVar.g0(this.f8265c, this.f8264b, twoStepVerificationActivity.k0(), twoStepVerificationActivity);
-                    return;
-                }
-                return;
-            case 1:
-                ih.i4 i4Var = (ih.i4) obj4;
-                final MessagesController messagesController = (MessagesController) obj3;
-                String str = (String) obj;
-                TLObject tLObject2 = (TLObject) obj2;
-                ih.v6 storiesController = messagesController.getStoriesController();
-                final long j11 = this.f8264b;
-                final boolean z11 = this.f8265c;
-                storiesController.i0(j11, z11, false);
-                org.telegram.ui.Cells.e3 e3Var = new org.telegram.ui.Cells.e3(1);
-                e3Var.f24286b = new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                messagesController.getStoriesController().i0(j11, !z11, false);
-                                return;
-                            default:
-                                messagesController.getStoriesController().i0(j11, z11, true);
-                                return;
-                        }
-                    }
-                };
-                e3Var.f24287c = new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                messagesController.getStoriesController().i0(j11, !z11, false);
-                                return;
-                            default:
-                                messagesController.getStoriesController().i0(j11, z11, true);
-                                return;
-                        }
-                    }
-                };
-                if (!z11) {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToDialogs, ContactsController.formatName(str, null, 10)));
+        float f9;
+        int i10;
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.v = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
+        this.f7388w = eglGetDisplay;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            this.f7380a = false;
+        } else {
+            if (!this.v.eglInitialize(eglGetDisplay, new int[2])) {
+                this.f7380a = false;
+            } else {
+                EGLConfig[] eGLConfigArr = new EGLConfig[1];
+                if (!this.v.eglChooseConfig(this.f7388w, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+                    this.f7380a = false;
                 } else {
-                    replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
-                }
-                gc V = new oc(i4Var.Z0, i4Var.f11603x0).V(Arrays.asList(tLObject2), replaceTags, null, e3Var);
-                V.f28730a = 2;
-                V.k(true);
-                return;
-            case 2:
-                ih.v6 v6Var = (ih.v6) obj4;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
-                d5.d dVar = (d5.d) obj2;
-                org.telegram.ui.ActionBar.b6 b6Var = (org.telegram.ui.ActionBar.b6) obj;
-                if (tL_error != null) {
-                    if (tL_error.text.contains("BOOSTS_REQUIRED")) {
-                        if (z10) {
-                            MessagesController messagesController2 = MessagesController.getInstance(v6Var.f12236a);
-                            ChannelBoostsController boostsController = messagesController2.getBoostsController();
-                            long j12 = this.f8264b;
-                            boostsController.getBoostsStats(j12, new y1(v6Var, dVar, messagesController2, j12));
-                            return;
-                        }
-                        dVar.accept(Boolean.FALSE);
-                        return;
-                    } else if (tL_error.text.startsWith("STORY_LIVE_ALREADY_")) {
-                        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
-                        if (z10 && R != null) {
-                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, b6Var);
-                            String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22702a;
-                            c2Var.N = string;
-                            c2Var.P = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
-                            org.telegram.messenger.l0.o(R.string.OK, alertDialog$Builder, null);
-                        }
-                        dVar.accept(Boolean.FALSE);
-                        return;
-                    } else if (tL_error.text.equalsIgnoreCase("PREMIUM_ACCOUNT_REQUIRED")) {
-                        org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
-                        if (z10 && R2 != null) {
-                            R2.showDialog(new zf.x0(R2, 14, true));
-                        }
-                        dVar.accept(Boolean.FALSE);
-                        return;
+                    EGLConfig eGLConfig = eGLConfigArr[0];
+                    this.f7389x = eGLConfig;
+                    EGLContext eglCreateContext = this.v.eglCreateContext(this.f7388w, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+                    this.A = eglCreateContext;
+                    if (eglCreateContext == null) {
+                        this.f7380a = false;
                     } else {
-                        oc X = oc.X();
-                        if (X != null) {
-                            X.d0(tL_error, false);
-                        }
-                        dVar.accept(Boolean.FALSE);
-                        return;
-                    }
-                }
-                dVar.accept(Boolean.TRUE);
-                return;
-            case 3:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
-                String str2 = (String) obj2;
-                TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((xf) obj4).f34670a;
-                if (editTextBoldCursor != null) {
-                    int selectionEnd = editTextBoldCursor.getSelectionEnd();
-                    if (selectionEnd < 0) {
-                        selectionEnd = 0;
-                    }
-                    try {
-                        try {
-                            chatActivityEnterView.N2 = 2;
-                            if (str2 == null) {
-                                str2 = "😀";
-                            }
-                            SpannableString spannableString = new SpannableString(str2);
-                            if (document != null) {
-                                t5Var = new org.telegram.ui.Components.t5(document, editTextBoldCursor.getPaint().getFontMetricsInt());
+                        EGLSurface eglCreateWindowSurface = this.v.eglCreateWindowSurface(this.f7388w, this.f7389x, this.d, null);
+                        this.f7390y = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface == null) {
+                            this.f7380a = false;
+                        } else if (!this.v.eglMakeCurrent(this.f7388w, eglCreateWindowSurface, eglCreateWindowSurface, this.A)) {
+                            this.f7380a = false;
+                        } else {
+                            b();
+                            int glCreateShader = GLES20.glCreateShader(35633);
+                            int glCreateShader2 = GLES20.glCreateShader(35632);
+                            if (glCreateShader != 0 && glCreateShader2 != 0) {
+                                GLES20.glShaderSource(glCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex));
+                                GLES20.glCompileShader(glCreateShader);
+                                int[] iArr = new int[1];
+                                GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+                                if (iArr[0] == 0) {
+                                    FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
+                                    GLES20.glDeleteShader(glCreateShader);
+                                    this.f7380a = false;
+                                } else {
+                                    GLES20.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment));
+                                    GLES20.glCompileShader(glCreateShader2);
+                                    GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
+                                    if (iArr[0] == 0) {
+                                        FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
+                                        GLES20.glDeleteShader(glCreateShader2);
+                                        this.f7380a = false;
+                                    } else {
+                                        int glCreateProgram = GLES20.glCreateProgram();
+                                        this.B = glCreateProgram;
+                                        if (glCreateProgram == 0) {
+                                            this.f7380a = false;
+                                        } else {
+                                            GLES20.glAttachShader(glCreateProgram, glCreateShader);
+                                            GLES20.glAttachShader(this.B, glCreateShader2);
+                                            GLES30.glTransformFeedbackVaryings(this.B, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
+                                            GLES20.glLinkProgram(this.B);
+                                            GLES20.glGetProgramiv(this.B, 35714, iArr, 0);
+                                            if (iArr[0] == 0) {
+                                                FileLog.e("SpoilerEffect2, link draw program error: " + GLES20.glGetProgramInfoLog(this.B));
+                                                this.f7380a = false;
+                                            } else {
+                                                this.C = GLES20.glGetUniformLocation(this.B, "reset");
+                                                this.D = GLES20.glGetUniformLocation(this.B, "time");
+                                                this.E = GLES20.glGetUniformLocation(this.B, "deltaTime");
+                                                this.F = GLES20.glGetUniformLocation(this.B, "size");
+                                                this.G = GLES20.glGetUniformLocation(this.B, "r");
+                                                this.H = GLES20.glGetUniformLocation(this.B, "seed");
+                                                GLES20.glViewport(0, 0, this.h, this.f7385n);
+                                                GLES20.glEnable(3042);
+                                                GLES20.glBlendFunc(770, 771);
+                                                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                                                GLES20.glUseProgram(this.B);
+                                                GLES20.glUniform2f(this.F, this.h, this.f7385n);
+                                                int i11 = this.C;
+                                                if (this.I) {
+                                                    f9 = 1.0f;
+                                                } else {
+                                                    f9 = 0.0f;
+                                                }
+                                                GLES20.glUniform1f(i11, f9);
+                                                GLES20.glUniform1f(this.G, this.f7387s);
+                                                GLES20.glUniform1f(this.H, Utilities.fastRandom.nextInt(256) / 256.0f);
+                                            }
+                                        }
+                                    }
+                                }
                             } else {
-                                t5Var = new org.telegram.ui.Components.t5(j10, editTextBoldCursor.getPaint().getFontMetricsInt());
+                                this.f7380a = false;
                             }
-                            if (!z10) {
-                                t5Var.fromEmojiKeyboard = true;
-                            }
-                            t5Var.cacheType = org.telegram.ui.Components.k5.g();
-                            spannableString.setSpan(t5Var, 0, spannableString.length(), 33);
-                            editTextBoldCursor.setText(editTextBoldCursor.getText().insert(selectionEnd, spannableString));
-                            editTextBoldCursor.setSelection(spannableString.length() + selectionEnd, selectionEnd + spannableString.length());
-                        } catch (Exception e10) {
-                            FileLog.e(e10);
                         }
-                        chatActivityEnterView.N2 = 0;
-                        return;
-                    } catch (Throwable th) {
-                        chatActivityEnterView.N2 = 0;
-                        throw th;
                     }
                 }
-                return;
-            case 4:
-                o50.y((o50) obj4, (org.telegram.ui.ActionBar.c2[]) obj2, this.f8265c, (TLRPC.TL_error) obj3, this.f8264b, (TL_phone.inviteToGroupCall) obj);
-                return;
-            default:
-                dz0 dz0Var = (dz0) obj4;
-                ProfileActivity profileActivity = dz0Var.f37761b;
-                bq bqVar = new bq(profileActivity.f35920a1, -j10, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z10, null);
-                bqVar.T0 = new cz0(dz0Var, (dy) obj);
-                profileActivity.presentFragment(bqVar);
-                return;
+            }
         }
-    }
-
-    public i(ih.i4 i4Var, MessagesController messagesController, long j10, boolean z10, String str, TLObject tLObject) {
-        this.f8266e = i4Var;
-        this.f8267f = messagesController;
-        this.f8264b = j10;
-        this.f8265c = z10;
-        this.h = str;
-        this.d = tLObject;
-    }
-
-    public i(ih.v6 v6Var, TLRPC.TL_error tL_error, boolean z10, long j10, d5.d dVar, org.telegram.ui.ActionBar.b6 b6Var) {
-        this.f8266e = v6Var;
-        this.f8267f = tL_error;
-        this.f8265c = z10;
-        this.f8264b = j10;
-        this.d = dVar;
-        this.h = b6Var;
-    }
-
-    public i(xf xfVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j10, boolean z10) {
-        this.f8266e = xfVar;
-        this.f8267f = editTextBoldCursor;
-        this.d = str;
-        this.h = document;
-        this.f8264b = j10;
-        this.f8265c = z10;
-    }
-
-    public i(o50 o50Var, org.telegram.ui.ActionBar.c2[] c2VarArr, boolean z10, TLRPC.TL_error tL_error, long j10, TL_phone.inviteToGroupCall invitetogroupcall) {
-        this.f8266e = o50Var;
-        this.d = c2VarArr;
-        this.f8265c = z10;
-        this.f8267f = tL_error;
-        this.f8264b = j10;
-        this.h = invitetogroupcall;
-    }
-
-    public i(dz0 dz0Var, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z10, dy dyVar) {
-        this.f8266e = dz0Var;
-        this.f8264b = j10;
-        this.f8267f = tL_chatAdminRights;
-        this.d = str;
-        this.f8265c = z10;
-        this.h = dyVar;
+        long nanoTime = System.nanoTime();
+        while (this.f7380a) {
+            long nanoTime2 = System.nanoTime();
+            double d = (nanoTime2 - nanoTime) / 1.0E9d;
+            j jVar = this.M;
+            double d10 = jVar.f7392a;
+            if (d < d10) {
+                double d11 = d10 - d;
+                long j10 = (long) (d11 * 1000.0d);
+                i10 = 3;
+                try {
+                    Thread.sleep(j10, (int) ((d11 - (j10 / 1000.0d)) * 1.0E9d));
+                } catch (Exception unused) {
+                }
+                d = this.M.f7392a;
+            } else {
+                i10 = 3;
+                double d12 = jVar.f7393b;
+                if (d > d12) {
+                    d = d12;
+                }
+            }
+            while (this.f7381b) {
+                try {
+                    Thread.sleep(1000L);
+                } catch (Exception unused2) {
+                }
+            }
+            synchronized (this.f7383e) {
+                try {
+                    if (this.f7384f) {
+                        GLES20.glUniform2f(this.F, this.h, this.f7385n);
+                        GLES20.glViewport(0, 0, this.h, this.f7385n);
+                        int clamp = (int) Utilities.clamp(((this.h * this.f7385n) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+                        if (clamp > this.f7386r) {
+                            this.I = true;
+                            b();
+                        }
+                        this.f7386r = clamp;
+                        this.f7384f = false;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            float f10 = (float) d;
+            EGL10 egl102 = this.v;
+            EGLDisplay eGLDisplay = this.f7388w;
+            EGLSurface eGLSurface = this.f7390y;
+            if (!egl102.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.A)) {
+                this.f7380a = false;
+            } else {
+                float f11 = f10 * 0.65f;
+                float f12 = this.L + f11;
+                this.L = f12;
+                if (f12 > 1000.0f) {
+                    this.L = 0.0f;
+                }
+                GLES20.glClear(16384);
+                GLES20.glBindBuffer(34962, this.K[this.J]);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
+                GLES20.glEnableVertexAttribArray(2);
+                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
+                GLES20.glEnableVertexAttribArray(i10);
+                GLES30.glBindBufferBase(35982, 0, this.K[1 - this.J]);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
+                GLES20.glEnableVertexAttribArray(2);
+                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
+                GLES20.glEnableVertexAttribArray(i10);
+                GLES20.glUniform1f(this.D, this.L);
+                GLES20.glUniform1f(this.E, f11);
+                GLES30.glBeginTransformFeedback(0);
+                GLES20.glDrawArrays(0, 0, this.f7386r);
+                GLES30.glEndTransformFeedback();
+                if (this.I) {
+                    this.I = false;
+                    GLES20.glUniform1f(this.C, 0.0f);
+                }
+                this.J = 1 - this.J;
+                this.v.eglSwapBuffers(this.f7388w, this.f7390y);
+                a();
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.f7382c);
+            AndroidUtilities.runOnUIThread(this.f7382c);
+            nanoTime = nanoTime2;
+        }
+        int[] iArr2 = this.K;
+        if (iArr2 != null) {
+            try {
+                GLES20.glDeleteBuffers(2, iArr2, 0);
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
+            this.K = null;
+        }
+        int i12 = this.B;
+        if (i12 != 0) {
+            try {
+                GLES20.glDeleteProgram(i12);
+            } catch (Exception e11) {
+                FileLog.e(e11);
+            }
+            this.B = 0;
+        }
+        EGL10 egl103 = this.v;
+        if (egl103 != null) {
+            try {
+                EGLDisplay eGLDisplay2 = this.f7388w;
+                EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
+                egl103.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
+            } catch (Exception e12) {
+                FileLog.e(e12);
+            }
+            try {
+                this.v.eglDestroySurface(this.f7388w, this.f7390y);
+            } catch (Exception e13) {
+                FileLog.e(e13);
+            }
+            try {
+                this.v.eglDestroyContext(this.f7388w, this.A);
+            } catch (Exception e14) {
+                FileLog.e(e14);
+            }
+        }
+        try {
+            this.d.release();
+        } catch (Exception e15) {
+            FileLog.e(e15);
+        }
+        a();
     }
 }

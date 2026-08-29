@@ -1,34 +1,78 @@
 package f7;
 
-import android.os.Build;
-public abstract class m {
-    public static boolean a(int i9) {
-        if ((i9 & 32768) != 0) {
-            return true;
-        }
-        return false;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+public abstract class m implements ExecutorService, AutoCloseable {
+    @Override
+    public final boolean awaitTermination(long j10, TimeUnit timeUnit) {
+        return ((ab.i) this).f314a.awaitTermination(j10, timeUnit);
     }
 
-    public static boolean b(int i9) {
-        if (i9 != 15 && i9 != 255) {
-            if (i9 != 32768) {
-                if (i9 != 32783) {
-                    if (i9 != 33023 && i9 != 0) {
-                        return false;
-                    }
-                    return true;
-                }
-                int i10 = Build.VERSION.SDK_INT;
-                if (i10 >= 28 && i10 <= 29) {
-                    return false;
-                }
-                return true;
-            } else if (Build.VERSION.SDK_INT < 30) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return true;
+    @Override
+    public final void close() {
+        b9.b.f(this);
+    }
+
+    @Override
+    public final List invokeAll(Collection collection) {
+        return ((ab.i) this).f314a.invokeAll(collection);
+    }
+
+    @Override
+    public final Object invokeAny(Collection collection) {
+        return ((ab.i) this).f314a.invokeAny(collection);
+    }
+
+    @Override
+    public final boolean isShutdown() {
+        return ((ab.i) this).f314a.isShutdown();
+    }
+
+    @Override
+    public final boolean isTerminated() {
+        return ((ab.i) this).f314a.isTerminated();
+    }
+
+    @Override
+    public final void shutdown() {
+        ((ab.i) this).f314a.shutdown();
+    }
+
+    @Override
+    public final List shutdownNow() {
+        return ((ab.i) this).f314a.shutdownNow();
+    }
+
+    @Override
+    public final Future submit(Runnable runnable) {
+        return ((ab.i) this).f314a.submit(runnable);
+    }
+
+    public final String toString() {
+        return ((ab.i) this).f314a.toString();
+    }
+
+    @Override
+    public final List invokeAll(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((ab.i) this).f314a.invokeAll(collection, j10, timeUnit);
+    }
+
+    @Override
+    public final Object invokeAny(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((ab.i) this).f314a.invokeAny(collection, j10, timeUnit);
+    }
+
+    @Override
+    public final Future submit(Runnable runnable, Object obj) {
+        return ((ab.i) this).f314a.submit(runnable, obj);
+    }
+
+    @Override
+    public final Future submit(Callable callable) {
+        return ((ab.i) this).f314a.submit(callable);
     }
 }

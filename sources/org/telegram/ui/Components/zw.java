@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
-public final class zw extends g7.f6 {
-    public final wy f35383a;
 
-    public zw(wy wyVar) {
-        this.f35383a = wyVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class zw extends AnimatorListenerAdapter {
+    public final int f35435a;
+    public final boolean f35436b;
+    public final fz f35437c;
+
+    public zw(fz fzVar, boolean z10, int i10) {
+        this.f35435a = i10;
+        this.f35437c = fzVar;
+        this.f35436b = z10;
     }
 
     @Override
-    public final void a() {
-        wy wyVar = this.f35383a;
-        wyVar.f34387b0 = false;
-        wyVar.L.x1();
-    }
-
-    @Override
-    public final void b() {
-        wy wyVar = this.f35383a;
-        wyVar.L.x1();
-        wyVar.f34387b0 = true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35435a) {
+            case 0:
+                if (!this.f35436b) {
+                    this.f35437c.f28649x.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f35436b) {
+                    this.f35437c.f28653y.setVisibility(4);
+                    return;
+                }
+                return;
+        }
     }
 }

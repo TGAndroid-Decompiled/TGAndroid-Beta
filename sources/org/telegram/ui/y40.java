@@ -1,103 +1,80 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class y40 extends Dialog {
-    public final ih.b3 f44717a;
-    public final fh.l2 f44718b;
-    public Bitmap f44719c;
-    public Paint d;
-    public BitmapShader f44720e;
-    public final Matrix f44721f;
-    public float h;
-    public ValueAnimator f44722n;
-    public boolean f44723r;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class y40 implements org.telegram.ui.Components.r40 {
+    public float f44738a;
+    public TLRPC.FileLocation f44739b;
+    public TLRPC.FileLocation f44740c;
+    public ImageLocation d;
+    public final long f44741e;
+    public final r50 f44742f;
 
-    public y40(Context context, fh.l2 l2Var) {
-        super(context, R.style.TransparentDialog);
-        this.f44721f = new Matrix();
-        this.f44718b = l2Var;
-        l2Var.setVisibility(4);
-        AndroidUtilities.makeGlobalBlurBitmap(new df(29, this, l2Var), 14.0f);
-        ih.b3 b3Var = new ih.b3(this, context, l2Var);
-        this.f44717a = b3Var;
-        b3Var.setOnClickListener(new a(this, 29));
-    }
-
-    public final void b(float f10, x40 x40Var) {
-        ValueAnimator valueAnimator = this.f44722n;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f44722n = null;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f10);
-        this.f44722n = ofFloat;
-        ofFloat.addUpdateListener(new f3(this, 16));
-        this.f44722n.addListener(new gh.o5(this, f10, x40Var, 4));
-        this.f44722n.setDuration(420L);
-        this.f44722n.setInterpolator(org.telegram.ui.Components.gr.h);
-        this.f44722n.start();
+    public y40(r50 r50Var, long j10) {
+        this.f44742f = r50Var;
+        this.f44741e = j10;
     }
 
     @Override
-    public final void dismiss() {
-        if (this.f44723r) {
-            return;
-        }
-        this.f44723r = true;
-        b(0.0f, new x40(this, 0));
-        try {
-            WindowManager.LayoutParams attributes = getWindow().getAttributes();
-            attributes.flags |= 16;
-            getWindow().setAttributes(attributes);
-        } catch (Exception e10) {
-            FileLog.e(e10);
+    public final void D(float f9) {
+        this.f44742f.f41871b.O(this.d, f9);
+        a(f9);
+    }
+
+    @Override
+    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        AndroidUtilities.runOnUIThread(new wc(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 2));
+    }
+
+    public final void a(float f9) {
+        this.f44738a = f9;
+        x40 x40Var = this.f44742f.M;
+        if (x40Var != null) {
+            for (int i10 = 0; i10 < x40Var.getChildCount(); i10++) {
+                View childAt = x40Var.getChildAt(i10);
+                if (childAt instanceof org.telegram.ui.Cells.c4) {
+                    org.telegram.ui.Cells.c4 c4Var = (org.telegram.ui.Cells.c4) childAt;
+                    if (c4Var.c()) {
+                        org.telegram.ui.Cells.w3 w3Var = c4Var.f24162x;
+                        w3Var.setProgress(f9);
+                        if (f9 < 1.0f) {
+                            AndroidUtilities.updateViewVisibilityAnimated(w3Var, true, 1.0f, true);
+                        } else {
+                            AndroidUtilities.updateViewVisibilityAnimated(w3Var, false, 1.0f, true);
+                        }
+                    }
+                }
+            }
         }
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        setContentView(this.f44717a, new ViewGroup.LayoutParams(-1, -1));
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i9 = attributes.flags & (-3);
-        attributes.softInputMode = 48;
-        attributes.flags = (-2013069056) | i9;
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags = i9 | (-2013060864);
-            AndroidUtilities.logFlagSecure();
-        }
-        attributes.flags |= 1152;
-        if (Build.VERSION.SDK_INT >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
-        window.setAttributes(attributes);
+    public final boolean e() {
+        return true;
     }
 
     @Override
-    public final void show() {
-        super.show();
-        b(1.0f, null);
-        AndroidUtilities.runOnUIThread(new x40(this, 1), 16L);
+    public final zt0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public final String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public final boolean u() {
+        return false;
+    }
+
+    @Override
+    public final void P() {
+    }
+
+    @Override
+    public final void K(boolean z10, boolean z11) {
     }
 }

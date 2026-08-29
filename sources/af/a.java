@@ -1,37 +1,37 @@
 package af;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import g7.n;
-import org.telegram.messenger.ApplicationLoader;
-public final class a {
-    public final SharedPreferences f148a;
-    public long f149b;
-    public long f150c;
-    public int d;
+import android.app.Activity;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.LaunchActivity;
+public final class a extends FrameLayout {
+    public final Activity f364a;
+    public int f365b;
+    public int f366c;
+    public boolean d;
 
-    public a(String str) {
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
-        this.f148a = sharedPreferences;
-        this.f149b = sharedPreferences.getLong("estimated", 400L);
-        this.d = sharedPreferences.getInt("count", 0);
+    public a(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f364a = launchActivity;
     }
 
-    public final void a() {
-        int b10;
-        if (this.f150c == 0) {
-            return;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        boolean isInPictureInPictureMode = AndroidUtilities.isInPictureInPictureMode(this.f364a);
+        if (!isInPictureInPictureMode) {
+            this.f365b = size;
+            this.f366c = size2;
         }
-        this.f149b = (((SystemClock.uptimeMillis() - this.f150c) * (10 - b10)) / 10) + ((this.f149b * n.b(this.d, 0, 9)) / 10);
-        this.f150c = 0L;
-        this.d++;
-        this.f148a.edit().putLong("estimated", this.f149b).putInt("count", this.d).apply();
-    }
-
-    public final float b() {
-        if (this.f149b > 0) {
-            return n.a(((float) (SystemClock.uptimeMillis() - this.f150c)) / ((float) this.f149b), 0.0f, 1.0f);
+        if (isInPictureInPictureMode && size < this.f365b && size2 < this.f366c) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return 0.5f;
+        this.d = z10;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 }

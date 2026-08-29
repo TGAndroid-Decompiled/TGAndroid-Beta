@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class l31 extends wf.a {
-    public final SaveToGallerySettingsHelper.DialogException f39987c;
+public final class l31 extends zf.a {
+    public final SaveToGallerySettingsHelper.DialogException f40083c;
     public final String d;
 
-    public l31(int i9) {
-        super(i9, false);
-        this.f39987c = null;
+    public l31(int i10) {
+        super(i10, false);
+        this.f40083c = null;
     }
 
     public final boolean equals(Object obj) {
@@ -20,15 +20,15 @@ public final class l31 extends wf.a {
             return false;
         }
         l31 l31Var = (l31) obj;
-        if (this.f48814a != l31Var.f48814a) {
+        if (this.f50845a != l31Var.f50845a) {
             return false;
         }
         String str = this.d;
         if (str != null) {
             return Objects.equals(str, l31Var.d);
         }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f39987c;
-        if (dialogException2 == null || (dialogException = l31Var.f39987c) == null || dialogException2.dialogId == dialogException.dialogId) {
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f40083c;
+        if (dialogException2 == null || (dialogException = l31Var.f40083c) == null || dialogException2.dialogId == dialogException.dialogId) {
             return true;
         }
         return false;
@@ -36,12 +36,12 @@ public final class l31 extends wf.a {
 
     public l31(SaveToGallerySettingsHelper.DialogException dialogException) {
         super(2, false);
-        this.f39987c = dialogException;
+        this.f40083c = dialogException;
     }
 
-    public l31(int i9, String str) {
-        super(i9, false);
+    public l31(int i10, String str) {
+        super(i10, false);
         this.d = str;
-        this.f39987c = null;
+        this.f40083c = null;
     }
 }

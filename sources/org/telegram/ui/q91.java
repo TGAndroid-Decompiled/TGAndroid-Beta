@@ -1,31 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class q91 extends c91 {
-    public final int v;
-    public final int f41727w;
-    public int f41728x;
-    public org.telegram.ui.Components.v41 f41729y;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.tl.TL_stats;
+public final class q91 {
+    public TL_stats.PostInteractionCounters f41601a;
+    public MessageObject f41602b;
 
-    public q91(Context context, int i9, int i10, qf.f fVar, int i11) {
-        super(context, i10, fVar, null);
-        this.v = i9;
-        this.f41727w = i11;
-    }
-
-    @Override
-    public final void b(e91 e91Var) {
-        int i9;
-        if (e91Var != null && (i9 = this.f41728x) >= 0) {
-            e91Var.a(this.v, this.f41727w, i9, this.f41729y);
+    public final int a() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f41601a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).forwards;
+        }
+        return 0;
     }
 
-    @Override
-    public final void c() {
+    public final int b() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f41601a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).story_id;
+        }
+        return 0;
     }
 
-    @Override
-    public final void f() {
+    public final int c() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f41601a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).reactions;
+        }
+        return 0;
+    }
+
+    public final int d() {
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f41601a;
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
+            return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
+        }
+        if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersStory) {
+            return ((TL_stats.TL_postInteractionCountersStory) postInteractionCounters).views;
+        }
+        return 0;
     }
 }

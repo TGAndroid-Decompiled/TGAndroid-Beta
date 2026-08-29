@@ -1,45 +1,32 @@
 package org.telegram.messenger;
+public final class lb implements Runnable {
+    public final int f20846a;
+    public final MessagesController f20847b;
+    public final a0.h f20848c;
+    public final a0.h d;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.zp0;
-public final class lb implements RequestDelegate {
-    public final int f20866a = 0;
-    public final int f20867b;
-    public final boolean f20868c;
-    public final TLRPC.User d;
-    public final NotificationCenter.NotificationCenterDelegate f20869e;
-    public final Object f20870f;
-
-    public lb(MessagesController messagesController, int i9, TLRPC.Chat chat, TLRPC.User user, boolean z10) {
-        this.f20869e = messagesController;
-        this.f20867b = i9;
-        this.f20870f = chat;
-        this.d = user;
-        this.f20868c = z10;
+    public lb(MessagesController messagesController, a0.h hVar, a0.h hVar2, int i10) {
+        this.f20846a = i10;
+        this.f20847b = messagesController;
+        this.f20848c = hVar;
+        this.d = hVar2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20866a) {
+    public final void run() {
+        switch (this.f20846a) {
             case 0:
-                TLRPC.User user = this.d;
-                boolean z10 = this.f20868c;
-                ((MessagesController) this.f20869e).lambda$pinMessage$130(this.f20867b, (TLRPC.Chat) this.f20870f, user, z10, tLObject, tL_error);
+                this.f20847b.lambda$checkDeletingTask$86(this.f20848c, this.d);
+                return;
+            case 1:
+                this.f20847b.lambda$updatePrintingStrings$170(this.f20848c, this.d);
+                return;
+            case 2:
+                this.f20847b.lambda$getNewDeleteTask$83(this.f20848c, this.d);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new s1((zp0) this.f20869e, (String) this.f20870f, this.f20867b, tLObject, this.f20868c, this.d));
+                this.f20847b.lambda$checkDeletingTask$85(this.f20848c, this.d);
                 return;
         }
-    }
-
-    public lb(zp0 zp0Var, String str, int i9, boolean z10, TLRPC.User user) {
-        this.f20869e = zp0Var;
-        this.f20870f = str;
-        this.f20867b = i9;
-        this.f20868c = z10;
-        this.d = user;
     }
 }

@@ -6,12 +6,12 @@ public abstract class IUpdateLayout {
     public IUpdateLayout(Activity activity, ViewGroup viewGroup) {
     }
 
-    public void createUpdateUI(int i9) {
+    public void createUpdateUI(int i10) {
     }
 
     public void updateFileProgress(Object[] objArr) {
     }
 
-    public void updateAppUpdateViews(int i9, boolean z10) {
+    public void updateAppUpdateViews(int i10, boolean z10) {
     }
 }

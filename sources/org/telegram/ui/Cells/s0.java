@@ -2,44 +2,44 @@ package org.telegram.ui.Cells;
 
 import java.util.ArrayList;
 public final class s0 implements Runnable {
-    public final int f25138a;
-    public final w0 f25139b;
+    public final int f25263a;
+    public final v0 f25264b;
 
-    public s0(w0 w0Var, int i9) {
-        this.f25138a = i9;
-        this.f25139b = w0Var;
+    public s0(v0 v0Var, int i10) {
+        this.f25263a = i10;
+        this.f25264b = v0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25138a) {
+        switch (this.f25263a) {
             case 0:
-                this.f25139b.J();
+                this.f25264b.J();
                 return;
             case 1:
-                w0 w0Var = this.f25139b;
-                t0 t0Var = w0Var.T0;
+                v0 v0Var = this.f25264b;
+                t0 t0Var = v0Var.T0;
                 if (t0Var != null) {
-                    t0Var.p1(w0Var);
+                    t0Var.y1(v0Var);
                     return;
                 }
                 return;
             case 2:
-                w0 w0Var2 = this.f25139b;
-                w0Var2.post(new s0(w0Var2, 4));
+                v0 v0Var2 = this.f25264b;
+                v0Var2.post(new s0(v0Var2, 4));
                 return;
             case 3:
-                this.f25139b.requestLayout();
+                this.f25264b.requestLayout();
                 return;
             default:
-                w0 w0Var3 = this.f25139b;
-                w0Var3.C = false;
-                w0Var3.getMessageObject().isSpoilersRevealed = true;
-                ArrayList arrayList = w0Var3.f25843g1.f25722c;
+                v0 v0Var3 = this.f25264b;
+                v0Var3.C = false;
+                v0Var3.getMessageObject().isSpoilersRevealed = true;
+                ArrayList arrayList = v0Var3.f25776g1.f3254e;
                 if (arrayList != null) {
                     arrayList.clear();
                 }
-                w0Var3.invalidate();
+                v0Var3.invalidate();
                 return;
         }
     }

@@ -1,47 +1,146 @@
 package z6;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.ArrayList;
+import j$.lang.Iterable$CC;
+import j$.util.Collection;
+import j$.util.Spliterator;
+import j$.util.Spliterators;
+import j$.util.stream.Stream;
+import java.io.Serializable;
+import java.util.AbstractCollection;
 import java.util.Arrays;
-public final class h extends y5.a {
-    public static final Parcelable.Creator<h> CREATOR = new w7.i(21);
-    public final int f50321a;
-    public final Bundle f50322b;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+public abstract class h extends AbstractCollection implements Serializable, Collection {
+    public static final Object[] f50713a = new Object[0];
 
-    public h(int i9, Bundle bundle) {
-        this.f50321a = i9;
-        this.f50322b = bundle;
-    }
-
-    public final boolean equals(java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: z6.h.equals(java.lang.Object):boolean");
-    }
-
-    public final int hashCode() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(Integer.valueOf(this.f50321a));
-        Bundle bundle = this.f50322b;
-        if (bundle != null) {
-            for (String str : bundle.keySet()) {
-                arrayList.add(str);
-                String string = bundle.getString(str);
-                if (string != null) {
-                    arrayList.add(string);
-                }
-            }
-        }
-        return Arrays.hashCode(arrayList.toArray(new Object[0]));
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.s(parcel, 1, 4);
-        parcel.writeInt(this.f50321a);
-        p8.b(parcel, 2, this.f50322b);
-        p8.r(parcel, q10);
+    public final boolean addAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void forEach(Consumer consumer) {
+        Iterable$CC.$default$forEach(this, consumer);
+    }
+
+    public int i(Object[] objArr) {
+        d0 p10 = p();
+        int i10 = 0;
+        while (p10.hasNext()) {
+            objArr[i10] = p10.next();
+            i10++;
+        }
+        return i10;
+    }
+
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int o() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract d0 p();
+
+    @Override
+    public Stream parallelStream() {
+        return Stream.Wrapper.convert(parallelStream());
+    }
+
+    public Object[] q() {
+        return null;
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean removeIf(Predicate predicate) {
+        return Collection.CC.$default$removeIf(this, predicate);
+    }
+
+    @Override
+    public final boolean retainAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        return Spliterator.Wrapper.convert(spliterator());
+    }
+
+    @Override
+    public java.util.stream.Stream stream() {
+        return Stream.Wrapper.convert(stream());
+    }
+
+    @Override
+    public Object[] toArray(IntFunction intFunction) {
+        Object[] array;
+        array = toArray((Object[]) intFunction.apply(0));
+        return array;
+    }
+
+    @Override
+    public j$.util.stream.Stream parallelStream() {
+        return Collection.CC.$default$parallelStream(this);
+    }
+
+    @Override
+    public final j$.util.Spliterator spliterator() {
+        return Spliterators.spliterator(this, 1296);
+    }
+
+    @Override
+    public j$.util.stream.Stream stream() {
+        return Collection.CC.$default$stream(this);
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f50713a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] q6 = q();
+            if (q6 == null) {
+                if (length != 0) {
+                    objArr = Arrays.copyOf(objArr, 0);
+                }
+                objArr = Arrays.copyOf(objArr, size);
+            } else {
+                return Arrays.copyOfRange(q6, o(), n(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        i(objArr);
+        return objArr;
     }
 }

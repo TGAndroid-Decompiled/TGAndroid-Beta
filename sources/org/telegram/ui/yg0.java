@@ -3,67 +3,67 @@ package org.telegram.ui;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class yg0 extends f2.s {
-    public int f44859b;
-    public int f44860c;
+public final class yg0 extends f2.q {
+    public int f44869b;
+    public int f44870c;
     public int d;
-    public int f44861e;
-    public int f44862f;
-    public int f44863g;
+    public int f44871e;
+    public int f44872f;
+    public int f44873g;
     public int h;
-    public final SparseIntArray f44864i = new SparseIntArray();
-    public final SparseIntArray f44865j = new SparseIntArray();
-    public final ArrayList f44866k = new ArrayList();
-    public final ArrayList f44867l = new ArrayList();
-    public final hh0 f44868m;
+    public final SparseIntArray f44874i = new SparseIntArray();
+    public final SparseIntArray f44875j = new SparseIntArray();
+    public final ArrayList f44876k = new ArrayList();
+    public final ArrayList f44877l = new ArrayList();
+    public final hh0 f44878m;
 
     public yg0(hh0 hh0Var) {
-        this.f44868m = hh0Var;
+        this.f44878m = hh0Var;
     }
 
-    public static void g(int i9, int i10, SparseIntArray sparseIntArray) {
-        if (i10 >= 0) {
-            sparseIntArray.put(i10, i9);
+    public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
+        if (i11 >= 0) {
+            sparseIntArray.put(i11, i10);
         }
     }
 
     @Override
-    public final boolean a(int i9, int i10) {
-        return b(i9, i10);
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
     }
 
     @Override
-    public final boolean b(int i9, int i10) {
-        int i11;
+    public final boolean b(int i10, int i11) {
         int i12;
+        int i13;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         TLRPC.TL_chatInviteExported tL_chatInviteExported2;
-        int i13 = this.f44860c;
-        hh0 hh0Var = this.f44868m;
-        if (((i9 >= i13 && i9 < this.d) || (i9 >= this.f44861e && i9 < this.f44862f)) && ((i10 >= (i12 = hh0Var.f38816y) && i10 < hh0Var.A) || (i10 >= hh0Var.D && i10 < hh0Var.E))) {
-            if (i10 >= i12 && i10 < hh0Var.A) {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) hh0Var.f38799e0.get(i10 - i12);
+        int i14 = this.f44870c;
+        hh0 hh0Var = this.f44878m;
+        if (((i10 >= i14 && i10 < this.d) || (i10 >= this.f44871e && i10 < this.f44872f)) && ((i11 >= (i13 = hh0Var.f38937y) && i11 < hh0Var.A) || (i11 >= hh0Var.D && i11 < hh0Var.E))) {
+            if (i11 >= i13 && i11 < hh0Var.A) {
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) hh0Var.f38920e0.get(i11 - i13);
             } else {
-                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) hh0Var.f38801f0.get(i10 - hh0Var.D);
+                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) hh0Var.f38922f0.get(i11 - hh0Var.D);
             }
-            int i14 = this.f44860c;
-            if (i9 >= i14 && i9 < this.d) {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f44866k.get(i9 - i14);
+            int i15 = this.f44870c;
+            if (i10 >= i15 && i10 < this.d) {
+                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f44876k.get(i10 - i15);
             } else {
-                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f44867l.get(i9 - this.f44861e);
+                tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f44877l.get(i10 - this.f44871e);
             }
             return tL_chatInviteExported2.link.equals(tL_chatInviteExported.link);
         }
-        int i15 = this.f44863g;
-        if (i9 >= i15 && i9 < this.h && i10 >= (i11 = hh0Var.Q) && i10 < hh0Var.R) {
-            if (i9 - i15 != i10 - i11) {
+        int i16 = this.f44873g;
+        if (i10 >= i16 && i10 < this.h && i11 >= (i12 = hh0Var.Q) && i11 < hh0Var.R) {
+            if (i10 - i16 != i11 - i12) {
                 return false;
             }
             return true;
         }
-        int i16 = this.f44864i.get(i9, -1);
-        int i17 = this.f44865j.get(i10, -1);
-        if (i16 < 0 || i16 != i17) {
+        int i17 = this.f44874i.get(i10, -1);
+        int i18 = this.f44875j.get(i11, -1);
+        if (i17 < 0 || i17 != i18) {
             return false;
         }
         return true;
@@ -71,22 +71,22 @@ public final class yg0 extends f2.s {
 
     @Override
     public final int d() {
-        return this.f44868m.T;
+        return this.f44878m.T;
     }
 
     @Override
     public final int e() {
-        return this.f44859b;
+        return this.f44869b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
         sparseIntArray.clear();
-        hh0 hh0Var = this.f44868m;
-        g(1, hh0Var.f38812r, sparseIntArray);
-        g(2, hh0Var.f38813s, sparseIntArray);
+        hh0 hh0Var = this.f44878m;
+        g(1, hh0Var.f38933r, sparseIntArray);
+        g(2, hh0Var.f38934s, sparseIntArray);
         g(3, hh0Var.v, sparseIntArray);
-        g(4, hh0Var.f38814w, sparseIntArray);
-        g(5, hh0Var.f38815x, sparseIntArray);
+        g(4, hh0Var.f38935w, sparseIntArray);
+        g(5, hh0Var.f38936x, sparseIntArray);
         g(6, hh0Var.H, sparseIntArray);
         g(7, hh0Var.J, sparseIntArray);
         g(8, hh0Var.K, sparseIntArray);

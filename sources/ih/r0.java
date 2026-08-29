@@ -1,53 +1,26 @@
 package ih;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.s10;
-public final class r0 extends TextView {
-    public int f12054a;
-    public final s10 f12055b;
+import android.app.Activity;
+import android.view.Menu;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.tn;
+public final class r0 extends ChatActivityEnterView {
+    public final v0 f9350j5;
 
-    public r0(Context context) {
-        super(context);
-        this.f12054a = -1;
-        this.f12055b = new s10();
+    public r0(v0 v0Var, Activity activity, q0 q0Var) {
+        super(activity, q0Var, null, false, null);
+        this.f9350j5 = v0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f12054a < 0) {
-            int i9 = 0;
-            if (getLayout() != null) {
-                i9 = (int) getLayout().getLineWidth(0);
-            }
-            this.f12054a = i9;
-        }
-        if (this.f12054a > AndroidUtilities.dp(100.0f)) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            super.onDraw(canvas);
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
-            this.f12055b.b(canvas, rectF, 2, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return;
-        }
-        super.onDraw(canvas);
+    public final void A0(float f9) {
+        v0 v0Var = this.f9350j5;
+        v0Var.f9427f.setInputBubbleHeight(f9);
+        v0Var.o();
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE), i10);
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        this.f12054a = -1;
+    public final void h0(Menu menu) {
+        tn.k8(menu, null, false, false, false, false);
     }
 }

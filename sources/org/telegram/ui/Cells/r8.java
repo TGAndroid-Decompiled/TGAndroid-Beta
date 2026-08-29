@@ -1,34 +1,230 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r8 extends AnimatorListenerAdapter {
-    public final int f25126a;
-    public final int f25127b;
-    public final t8 f25128c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.hp;
+public final class r8 extends FrameLayout {
+    public final TextView f25240a;
+    public final TextView f25241b;
+    public final hp f25242c;
+    public boolean d;
+    public boolean f25243e;
+    public int f25244f;
+    public float h;
+    public float f25245n;
 
-    public r8(t8 t8Var, int i9, int i10) {
-        this.f25126a = i10;
-        this.f25128c = t8Var;
-        this.f25127b = i9;
+    static {
+        new fh.g("animationProgress", 3);
+    }
+
+    public r8(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        float f9;
+        float f10;
+        int i12;
+        int i13;
+        float f11;
+        float f12;
+        this.f25244f = 50;
+        TextView textView = new TextView(context);
+        this.f25240a = textView;
+        org.telegram.ui.b.r(textView, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        textView.setGravity(i10 | 16);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        int i14 = i11 | 48;
+        if (z10) {
+            f9 = 21;
+        } else {
+            f9 = 64.0f;
+        }
+        if (z10) {
+            f10 = 64.0f;
+        } else {
+            f10 = 21;
+        }
+        addView(textView, i7.f6.d(-1, -1.0f, i14, f9, 0.0f, f10, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f25241b = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23450z6, false));
+        textView2.setTextSize(1, 13.0f);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        textView2.setGravity(i12);
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setPadding(0, 0, 0, 0);
+        textView2.setEllipsize(truncateAt);
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        int i15 = i13 | 48;
+        if (z11) {
+            f11 = 21;
+        } else {
+            f11 = 64.0f;
+        }
+        if (z11) {
+            f12 = 64.0f;
+        } else {
+            f12 = 21;
+        }
+        addView(textView2, i7.f6.d(-2, -2.0f, i15, f11, 36.0f, f12, 0.0f));
+        hp hpVar = new hp(context, 21, null);
+        this.f25242c = hpVar;
+        hpVar.setDrawUnchecked(true);
+        hpVar.setDrawBackgroundAsArc(10);
+        hpVar.setDuration(100L);
+        hpVar.b(org.telegram.ui.ActionBar.g6.f23135h7, org.telegram.ui.ActionBar.g6.f23171j7, org.telegram.ui.ActionBar.g6.f23190k7);
+        addView(hpVar, i7.f6.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+        setClipChildren(false);
+    }
+
+    public void setAnimationProgress(float f9) {
+        this.h = f9;
+        Math.max(this.f25245n, getMeasuredWidth() - this.f25245n);
+        AndroidUtilities.dp(40.0f);
+        getMeasuredHeight();
+    }
+
+    public final void b(String str, String str2, boolean z10, boolean z11) {
+        TextView textView = this.f25240a;
+        textView.setText(str);
+        TextView textView2 = this.f25241b;
+        textView2.setText(str2);
+        this.d = z11;
+        textView2.setVisibility(0);
+        this.f25243e = z10;
+        if (z10) {
+            textView2.setLines(0);
+            textView2.setMaxLines(0);
+            textView2.setSingleLine(false);
+            textView2.setEllipsize(null);
+            textView2.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
+        } else {
+            textView2.setLines(1);
+            textView2.setMaxLines(1);
+            textView2.setSingleLine(true);
+            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setPadding(0, 0, 0, 0);
+        }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        layoutParams.height = -2;
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        textView.setLayoutParams(layoutParams);
+        setWillNotDraw(!z11);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25126a) {
-            case 0:
-                t8 t8Var = this.f25128c;
-                t8Var.f25714r = 0;
-                t8Var.setBackgroundColor(this.f25127b);
-                t8Var.invalidate();
-                return;
-            default:
-                int i9 = this.f25127b;
-                t8 t8Var2 = this.f25128c;
-                t8Var2.setBackgroundColor(i9);
-                t8Var2.f25714r = 0;
-                t8Var2.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(64.0f);
+            }
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(64.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f23183k0);
         }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.checkbox");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f25242c.f29211a.f26324q);
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(this.f25240a.getText());
+        TextView textView = this.f25241b;
+        if (textView != null) {
+            sb2.append("\n");
+            sb2.append(textView.getText());
+        }
+        accessibilityNodeInfo.setText(sb2);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f9;
+        if (this.f25243e) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+            return;
+        }
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (this.f25241b.getVisibility() == 0) {
+            f9 = 64.0f;
+        } else {
+            f9 = this.f25244f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f9) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.f25245n = motionEvent.getX();
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        clearAnimation();
+        super.setBackgroundColor(i10);
+    }
+
+    public void setChecked(boolean z10) {
+        this.f25242c.a(z10, true);
+    }
+
+    public void setHeight(int i10) {
+        this.f25244f = i10;
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.f25240a.setTypeface(typeface);
     }
 }

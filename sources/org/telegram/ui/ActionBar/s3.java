@@ -8,7 +8,7 @@ public interface s3 {
 
     void dismiss(boolean z10);
 
-    int getNavigationBarColor(int i9);
+    int getNavigationBarColor(int i10);
 
     t3 mo37getWindowView();
 

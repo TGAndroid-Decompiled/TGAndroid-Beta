@@ -8,20 +8,20 @@ import android.os.PowerManager;
 import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
-public final class n extends f2.x {
-    public final int f6992c = 1;
+public final class n extends f2.v {
+    public final int f6902c = 0;
     public final q d;
-    public final Object f6993e;
+    public final Object f6903e;
 
-    public n(q qVar, a5.m mVar) {
+    public n(q qVar, androidx.biometric.e eVar) {
         super(qVar);
         this.d = qVar;
-        this.f6993e = mVar;
+        this.f6903e = eVar;
     }
 
     @Override
     public final IntentFilter d() {
-        switch (this.f6992c) {
+        switch (this.f6902c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,20 +41,20 @@ public final class n extends f2.x {
         boolean z10;
         long j10;
         Location location2;
-        switch (this.f6992c) {
+        switch (this.f6902c) {
             case 0:
-                if (((PowerManager) this.f6993e).isPowerSaveMode()) {
+                if (((PowerManager) this.f6903e).isPowerSaveMode()) {
                     return 2;
                 }
                 return 1;
             default:
-                a5.m mVar = (a5.m) this.f6993e;
-                x xVar = (x) mVar.d;
-                LocationManager locationManager = (LocationManager) mVar.f99c;
-                if (xVar.f7045a > System.currentTimeMillis()) {
-                    z10 = xVar.f7046b;
+                androidx.biometric.e eVar = (androidx.biometric.e) this.f6903e;
+                x xVar = (x) eVar.d;
+                LocationManager locationManager = (LocationManager) eVar.f1031c;
+                if (xVar.f6955a > System.currentTimeMillis()) {
+                    z10 = xVar.f6956b;
                 } else {
-                    Context context = (Context) mVar.f98b;
+                    Context context = (Context) eVar.f1030b;
                     Location location3 = null;
                     if (f0.e.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
@@ -91,13 +91,13 @@ public final class n extends f2.x {
                         w wVar = w.d;
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (wVar.f7044c == 1) {
+                        if (wVar.f6954c == 1) {
                             z10 = true;
                         }
-                        long j11 = wVar.f7043b;
-                        long j12 = wVar.f7042a;
+                        long j11 = wVar.f6953b;
+                        long j12 = wVar.f6952a;
                         wVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j13 = wVar.f7043b;
+                        long j13 = wVar.f6953b;
                         if (j11 != -1 && j12 != -1) {
                             if (currentTimeMillis > j12) {
                                 j11 = j13;
@@ -108,12 +108,12 @@ public final class n extends f2.x {
                         } else {
                             j10 = currentTimeMillis + 43200000;
                         }
-                        xVar.f7046b = z10;
-                        xVar.f7045a = j10;
+                        xVar.f6956b = z10;
+                        xVar.f6955a = j10;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
-                        int i9 = Calendar.getInstance().get(11);
-                        if (i9 < 6 || i9 >= 22) {
+                        int i10 = Calendar.getInstance().get(11);
+                        if (i10 < 6 || i10 >= 22) {
                             z10 = true;
                         }
                     }
@@ -127,7 +127,7 @@ public final class n extends f2.x {
 
     @Override
     public final void k() {
-        switch (this.f6992c) {
+        switch (this.f6902c) {
             case 0:
                 this.d.d(true);
                 return;
@@ -140,6 +140,6 @@ public final class n extends f2.x {
     public n(q qVar, Context context) {
         super(qVar);
         this.d = qVar;
-        this.f6993e = (PowerManager) context.getApplicationContext().getSystemService("power");
+        this.f6903e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 }

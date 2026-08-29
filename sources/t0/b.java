@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.inputmethod.EditorInfo;
 public abstract class b {
-    public static final String[] f47586a = new String[0];
+    public static final String[] f48080a = new String[0];
 
     public static String[] a(EditorInfo editorInfo) {
-        int i9 = Build.VERSION.SDK_INT;
-        String[] strArr = f47586a;
-        if (i9 >= 25) {
+        int i10 = Build.VERSION.SDK_INT;
+        String[] strArr = f48080a;
+        if (i10 >= 25) {
             String[] strArr2 = editorInfo.contentMimeTypes;
             if (strArr2 != null) {
                 return strArr2;
@@ -43,7 +43,7 @@ public abstract class b {
         editorInfo.extras.putStringArray("android.support.v13.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES", strArr);
     }
 
-    public static void c(EditorInfo editorInfo, CharSequence charSequence, int i9, int i10) {
+    public static void c(EditorInfo editorInfo, CharSequence charSequence, int i10, int i11) {
         SpannableStringBuilder spannableStringBuilder;
         if (editorInfo.extras == null) {
             editorInfo.extras = new Bundle();
@@ -54,7 +54,7 @@ public abstract class b {
             spannableStringBuilder = null;
         }
         editorInfo.extras.putCharSequence("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SURROUNDING_TEXT", spannableStringBuilder);
-        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_HEAD", i9);
-        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_END", i10);
+        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_HEAD", i10);
+        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_END", i11);
     }
 }

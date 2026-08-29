@@ -1,20 +1,38 @@
 package we;
 
-import java.util.ArrayList;
-public final class g {
-    public final ArrayList f48813a;
+import java.util.logging.Logger;
+public final class g extends ue.a {
+    public static final Logger f49872s = Logger.getLogger(g.class.getName());
+    public byte f49873r;
 
-    public g(ArrayList arrayList) {
-        this.f48813a = arrayList;
+    public static boolean b(m mVar) {
+        boolean z10;
+        mVar.mark(3);
+        try {
+            if (mVar.read() == 73 && mVar.read() == 68) {
+                if (mVar.read() == 51) {
+                    z10 = true;
+                    return z10;
+                }
+            }
+            z10 = false;
+            return z10;
+        } finally {
+            mVar.reset();
+        }
     }
 
-    public final f a(int i9) {
-        return (f) this.f48813a.get(i9);
+    public static d9.c c(e eVar) {
+        b b10 = eVar.b();
+        eVar.c(3, b.ISO_8859_1);
+        return new d9.c(4, eVar.d(200, b10), eVar.c((int) eVar.f49863a.e(), b10));
     }
 
-    public g(f fVar) {
-        ArrayList arrayList = new ArrayList(1);
-        this.f48813a = arrayList;
-        arrayList.add(fVar);
+    public static String e(e eVar) {
+        return eVar.c((int) eVar.f49863a.e(), eVar.b());
+    }
+
+    public final void d(we.e r12) {
+        throw new UnsupportedOperationException("Method not decompiled: we.g.d(we.e):void");
     }
 }

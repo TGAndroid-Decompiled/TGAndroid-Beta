@@ -12,11 +12,11 @@ public final class ly0 extends iz0 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ih.z2 z2Var;
+        lh.x2 x2Var;
         super.dispatchDraw(canvas);
-        org.telegram.ui.Components.k5 k5Var = this.f31331e;
-        if (k5Var != null && (z2Var = k5Var.f29951k) != null) {
-            z2Var.startAnimation();
+        org.telegram.ui.Components.p5 p5Var = this.f32906e;
+        if (p5Var != null && (x2Var = p5Var.f31593k) != null) {
+            x2Var.startAnimation();
         }
     }
 

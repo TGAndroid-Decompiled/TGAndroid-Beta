@@ -1,105 +1,27 @@
 package org.telegram.messenger;
-public final class p9 implements Runnable {
-    public final int f21223a;
-    public final MessagesController f21224b;
 
-    public p9(MessagesController messagesController, int i9) {
-        this.f21223a = i9;
-        this.f21224b = messagesController;
+import org.telegram.tgnet.TLObject;
+public final class p9 implements Runnable {
+    public final int f21240a;
+    public final MediaDataController f21241b;
+    public final String f21242c;
+    public final TLObject d;
+
+    public p9(MediaDataController mediaDataController, String str, TLObject tLObject, int i10) {
+        this.f21240a = i10;
+        this.f21241b = mediaDataController;
+        this.f21242c = str;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f21223a) {
+        switch (this.f21240a) {
             case 0:
-                this.f21224b.lambda$new$18();
-                return;
-            case 1:
-                this.f21224b.lambda$new$39();
-                return;
-            case 2:
-                this.f21224b.requestIsUserContactBlocked();
-                return;
-            case 3:
-                this.f21224b.lambda$new$505();
-                return;
-            case 4:
-                this.f21224b.lambda$updateTimerProc$158();
-                return;
-            case 5:
-                this.f21224b.lambda$updateTimerProc$161();
-                return;
-            case 6:
-                this.f21224b.lambda$applyAppConfig$36();
-                return;
-            case 7:
-                this.f21224b.lambda$applyAppConfig$37();
-                return;
-            case 8:
-                this.f21224b.lambda$processUpdates$380();
-                return;
-            case 9:
-                this.f21224b.lambda$migrateDialogs$213();
-                return;
-            case 10:
-                this.f21224b.lambda$loadRemoteFilters$26();
-                return;
-            case 11:
-                this.f21224b.lambda$loadRemoteFilters$27();
-                return;
-            case 12:
-                this.f21224b.lambda$loadRemoteFilters$28();
-                return;
-            case 13:
-                this.f21224b.lambda$loadRemoteFilters$29();
-                return;
-            case 14:
-                this.f21224b.lambda$cleanup$52();
-                return;
-            case 15:
-                this.f21224b.lambda$cleanup$53();
-                return;
-            case 16:
-                this.f21224b.lambda$cleanup$54();
-                return;
-            case 17:
-                this.f21224b.lambda$toggleChannelInvitesHistory$287();
-                return;
-            case 18:
-                this.f21224b.lambda$removeWebBrowserException$514();
-                return;
-            case 19:
-                this.f21224b.lambda$checkPromoInfoInternal$166();
-                return;
-            case 20:
-                this.f21224b.lambda$toggleChatJoinToSend$279();
-                return;
-            case 21:
-                this.f21224b.lambda$migrateDialogs$215();
-                return;
-            case 22:
-                this.f21224b.lambda$scheduleTranscriptionUpdate$38();
-                return;
-            case 23:
-                this.f21224b.lambda$processUpdateArray$409();
-                return;
-            case 24:
-                this.f21224b.lambda$processUpdateArray$410();
-                return;
-            case 25:
-                this.f21224b.lambda$processUpdateArray$411();
-                return;
-            case 26:
-                this.f21224b.lambda$registerForPush$323();
-                return;
-            case 27:
-                this.f21224b.lambda$updateEmojiStatusUntil$474();
-                return;
-            case 28:
-                this.f21224b.lambda$toggleChannelForum$285();
+                this.f21241b.lambda$fetchStickerSetInternal$41(this.f21242c, this.d);
                 return;
             default:
-                this.f21224b.lambda$toggleChannelSignatures$283();
+                this.f21241b.lambda$verifyAnimatedStickerMessageInternal$69(this.f21242c, this.d);
                 return;
         }
     }

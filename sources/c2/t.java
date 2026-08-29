@@ -1,249 +1,162 @@
 package c2;
 
-import android.os.Bundle;
-import android.os.CancellationSignal;
-import android.util.SparseBooleanArray;
-import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
-import com.google.android.gms.internal.play_billing.x3;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-public final class t implements f9.j, f2.o0, androidx.lifecycle.a0 {
-    public final int f2232a;
-    public boolean f2233b;
-    public Object f2234c;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.os.RemoteException;
+import android.util.Log;
+import h7.k5;
+import j$.util.Objects;
+public abstract class t {
+    public final Context f2897a;
+    public boolean f2898b;
+    public boolean f2899c;
+    public final Object d;
+    public final Object f2900e;
+    public Object f2901f;
+    public Object h;
+    public Object f2902n;
 
-    public t(int i9) {
-        this.f2232a = i9;
+    public t(Context context, String str, String str2) {
+        this.d = new Object();
+        this.f2898b = false;
+        this.f2899c = false;
+        this.f2897a = context;
+        this.f2900e = str;
+        this.f2901f = str2.length() != 0 ? "com.google.android.gms.vision.dynamite.".concat(str2) : new String("com.google.android.gms.vision.dynamite.");
+        this.h = str2;
     }
 
-    public static t f(Bundle bundle) {
-        n nVar;
-        if (bundle == null) {
+    public r c(String str) {
+        if (str != null) {
             return null;
         }
-        ArrayList arrayList = new ArrayList();
-        ArrayList parcelableArrayList = bundle.getParcelableArrayList("routes");
-        if (parcelableArrayList != null) {
-            for (int i9 = 0; i9 < parcelableArrayList.size(); i9++) {
-                Bundle bundle2 = (Bundle) parcelableArrayList.get(i9);
-                if (bundle2 != null) {
-                    nVar = new n(bundle2);
-                } else {
-                    nVar = null;
-                }
-                arrayList.add(nVar);
+        throw new IllegalArgumentException("initialMemberRouteId cannot be null.");
+    }
+
+    public abstract s d(String str);
+
+    public s e(String str, String str2) {
+        if (str != null) {
+            if (str2 != null) {
+                return d(str);
+            }
+            throw new IllegalArgumentException("routeGroupId cannot be null");
+        }
+        throw new IllegalArgumentException("routeId cannot be null");
+    }
+
+    public abstract void f(o oVar);
+
+    public void g(u uVar) {
+        d0.b();
+        if (((u) this.f2902n) != uVar) {
+            this.f2902n = uVar;
+            if (!this.f2899c) {
+                this.f2899c = true;
+                ((a4.d) this.f2900e).sendEmptyMessage(1);
             }
         }
-        return new t(arrayList, bundle.getBoolean("supportsDynamicGroupRoute", false));
     }
 
-    @Override
-    public void E(Object obj) {
-        this.f2233b = true;
-        k5.i iVar = (k5.i) this.f2234c;
-        iVar.getClass();
-        Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) iVar.f14659b;
-        signInHubActivity.setResult(signInHubActivity.N, signInHubActivity.O);
-        signInHubActivity.finish();
-    }
-
-    @Override
-    public void I(int i9, int i10) {
-        this.f2233b = true;
-        ((f2.r0) this.f2234c).s(i9, i10);
-    }
-
-    @Override
-    public void J0(int i9, int i10) {
-        this.f2233b = true;
-        ((f2.r0) this.f2234c).t(i9, i10);
-    }
-
-    @Override
-    public void a(f9.i iVar, int i9) {
-        StringBuilder sb2 = (StringBuilder) this.f2234c;
-        if (this.f2233b) {
-            this.f2233b = false;
-        } else {
-            sb2.append(", ");
+    public void h(o oVar) {
+        d0.b();
+        if (!Objects.equals((o) this.h, oVar)) {
+            this.h = oVar;
+            if (!this.f2898b) {
+                this.f2898b = true;
+                ((a4.d) this.f2900e).sendEmptyMessage(2);
+            }
         }
-        sb2.append(i9);
     }
 
-    public void b(int i9) {
-        d5.a.i(!this.f2233b);
-        ((SparseBooleanArray) this.f2234c).append(i9, true);
+    public abstract Object i(k6.e eVar, Context context);
+
+    public abstract void j();
+
+    public boolean k() {
+        if (m() != null) {
+            return true;
+        }
+        return false;
     }
 
-    public d5.g c() {
-        d5.a.i(!this.f2233b);
-        this.f2233b = true;
-        return new d5.g((SparseBooleanArray) this.f2234c);
-    }
-
-    public void d() {
-        synchronized (this) {
+    public void l() {
+        synchronized (this.d) {
+            if (this.f2902n == null) {
+                return;
+            }
             try {
-                if (this.f2233b) {
-                    return;
+                j();
+            } catch (RemoteException e10) {
+                Log.e((String) this.f2900e, "Could not finalize native handle", e10);
+            }
+        }
+    }
+
+    public Object m() {
+        k6.e eVar;
+        synchronized (this.d) {
+            Object obj = this.f2902n;
+            if (obj != null) {
+                return obj;
+            }
+            try {
+                eVar = k6.e.c(this.f2897a, k6.e.f13451c, (String) this.f2901f);
+            } catch (k6.b unused) {
+                String str = "com.google.android.gms.vision." + ((String) this.h);
+                if (Log.isLoggable("Vision", 3)) {
+                    Log.d("Vision", "Cannot load thick client module, fall back to load optional module " + str);
                 }
-                this.f2233b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2234c;
-                if (cancellationSignal != null) {
-                    try {
-                        cancellationSignal.cancel();
-                    } catch (Throwable th) {
-                        synchronized (this) {
-                            notifyAll();
-                            throw th;
+                try {
+                    eVar = k6.e.c(this.f2897a, k6.e.f13450b, str);
+                } catch (k6.b e10) {
+                    k5.a(e10, "Error loading optional module %s", str);
+                    if (!this.f2898b) {
+                        String str2 = (String) this.h;
+                        if (Log.isLoggable("Vision", 3)) {
+                            Log.d("Vision", "Broadcasting download intent for dependency " + str2);
                         }
+                        Intent intent = new Intent();
+                        intent.setClassName("com.google.android.gms", "com.google.android.gms.vision.DependencyBroadcastReceiverProxy");
+                        intent.putExtra("com.google.android.gms.vision.DEPENDENCIES", (String) this.h);
+                        intent.setAction("com.google.android.gms.vision.DEPENDENCY");
+                        this.f2897a.sendBroadcast(intent);
+                        this.f2898b = true;
                     }
+                    eVar = null;
                 }
-                synchronized (this) {
-                    notifyAll();
+            }
+            if (eVar != null) {
+                try {
+                    this.f2902n = i(eVar, this.f2897a);
+                } catch (RemoteException | k6.b e11) {
+                    Log.e((String) this.f2900e, "Error creating remote native handle", e11);
                 }
-            } catch (Throwable th2) {
-                throw th2;
+            }
+            boolean z10 = this.f2899c;
+            if (!z10 && this.f2902n == null) {
+                Log.w((String) this.f2900e, "Native handle not yet available. Reverting to no-op handle.");
+                this.f2899c = true;
+            } else if (z10 && this.f2902n != null) {
+                Log.w((String) this.f2900e, "Native handle is now available.");
+            }
+            return this.f2902n;
+        }
+    }
+
+    public t(Context context, m5.i iVar) {
+        this.f2900e = new a4.d(this, 5);
+        if (context != null) {
+            this.f2897a = context;
+            if (iVar == null) {
+                this.d = new m5.i(new ComponentName(context, getClass()), 7);
+                return;
+            } else {
+                this.d = iVar;
+                return;
             }
         }
-    }
-
-    public boolean e() {
-        return this.f2233b;
-    }
-
-    public boolean g(int i9, CharSequence charSequence) {
-        if (charSequence != null && i9 >= 0 && charSequence.length() - i9 >= 0) {
-            p0.e eVar = (p0.e) this.f2234c;
-            if (eVar == null) {
-                return e();
-            }
-            eVar.getClass();
-            char c10 = 2;
-            for (int i10 = 0; i10 < i9 && c10 == 2; i10++) {
-                byte directionality = Character.getDirectionality(charSequence.charAt(i10));
-                t tVar = p0.f.f45332a;
-                if (directionality != 0) {
-                    if (directionality != 1 && directionality != 2) {
-                        switch (directionality) {
-                            case 14:
-                            case 15:
-                                break;
-                            case 16:
-                            case 17:
-                                break;
-                            default:
-                                c10 = 2;
-                                break;
-                        }
-                    }
-                    c10 = 0;
-                }
-                c10 = 1;
-            }
-            if (c10 == 0) {
-                return true;
-            }
-            if (c10 == 1) {
-                return false;
-            }
-            return e();
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void h(x3 x3Var) {
-        if (this.f2233b) {
-            com.google.android.gms.internal.play_billing.u.h("BillingLogger", "Skipping logging since initialization failed.");
-            return;
-        }
-        try {
-            ((w2.p) this.f2234c).a(new t2.a(null, x3Var, t2.d.f47601a, null), new v0.l(1));
-        } catch (Throwable unused) {
-            com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
-        }
-    }
-
-    @Override
-    public void j1(int i9, int i10) {
-        ((f2.r0) this.f2234c).r(i9, i10, null);
-    }
-
-    @Override
-    public void t(int i9, int i10) {
-        this.f2233b = true;
-        ((f2.r0) this.f2234c).p(i9, i10);
-    }
-
-    public String toString() {
-        switch (this.f2232a) {
-            case 0:
-                StringBuilder sb2 = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f2234c;
-                sb2.append(Arrays.toString(list.toArray()));
-                sb2.append(", isValid=");
-                int size = list.size();
-                boolean z10 = false;
-                int i9 = 0;
-                while (true) {
-                    if (i9 < size) {
-                        n nVar = (n) list.get(i9);
-                        if (nVar != null && nVar.e()) {
-                            i9++;
-                        }
-                    } else {
-                        z10 = true;
-                    }
-                }
-                sb2.append(z10);
-                sb2.append(" }");
-                return sb2.toString();
-            case 8:
-                return ((k5.i) this.f2234c).toString();
-            default:
-                return super.toString();
-        }
-    }
-
-    public t(Object obj, int i9) {
-        this.f2232a = i9;
-        this.f2234c = obj;
-    }
-
-    public t() {
-        this.f2232a = 1;
-        this.f2234c = new SparseBooleanArray();
-    }
-
-    public t(ArrayList arrayList, boolean z10) {
-        this.f2232a = 0;
-        if (arrayList.isEmpty()) {
-            this.f2234c = Collections.EMPTY_LIST;
-        } else {
-            this.f2234c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
-        }
-        this.f2233b = z10;
-    }
-
-    public t(p0.e eVar, boolean z10) {
-        this(eVar, 7);
-        this.f2232a = 7;
-        this.f2233b = z10;
-    }
-
-    public t(k5.d dVar, k5.i iVar) {
-        this.f2232a = 8;
-        this.f2233b = false;
-        this.f2234c = iVar;
-    }
-
-    public t(StringBuilder sb2) {
-        this.f2232a = 2;
-        this.f2234c = sb2;
-        this.f2233b = true;
+        throw new IllegalArgumentException("context must not be null");
     }
 }

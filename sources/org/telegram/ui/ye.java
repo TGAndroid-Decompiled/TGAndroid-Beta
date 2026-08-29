@@ -1,25 +1,29 @@
 package org.telegram.ui;
 public final class ye implements Runnable {
-    public final int f44844a;
-    public final qn f44845b;
-    public final long f44846c;
-    public final long d;
+    public final int f44849a;
+    public final tn f44850b;
+    public final boolean f44851c;
 
-    public ye(qn qnVar, long j10, long j11, int i9) {
-        this.f44844a = i9;
-        this.f44845b = qnVar;
-        this.f44846c = j10;
-        this.d = j11;
+    public ye(tn tnVar, boolean z10, int i10) {
+        this.f44849a = i10;
+        this.f44850b = tnVar;
+        this.f44851c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f44844a) {
+        String str;
+        switch (this.f44849a) {
             case 0:
-                qn.n0(this.f44845b, this.f44846c, this.d);
+                if (this.f44851c) {
+                    str = "upload_speed";
+                } else {
+                    str = "download_speed";
+                }
+                this.f44850b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             default:
-                qn.k1(this.f44845b, this.f44846c, this.d);
+                this.f44850b.yc(0, this.f44851c);
                 return;
         }
     }

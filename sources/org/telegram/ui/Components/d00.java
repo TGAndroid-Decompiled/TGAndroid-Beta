@@ -1,141 +1,193 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.content.Context;
 import android.graphics.RectF;
-import android.text.TextPaint;
+import android.text.StaticLayout;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 public final class d00 extends View {
-    public int A;
-    public RectF B;
-    public float C;
-    public ValueAnimator D;
-    public boolean f27608a;
-    public boolean f27609b;
-    public boolean f27610c;
-    public String d;
-    public TextPaint f27611e;
-    public Paint f27612f;
-    public Paint h;
-    public Paint f27613n;
-    public int f27614r;
-    public int f27615s;
+    public float A;
+    public float B;
+    public boolean C;
+    public boolean D;
+    public int E;
+    public int F;
+    public StaticLayout G;
+    public StaticLayout H;
+    public StaticLayout I;
+    public CharSequence J;
+    public u5 K;
+    public StaticLayout L;
+    public u5 M;
+    public StaticLayout N;
+    public u5 O;
+    public StaticLayout P;
+    public boolean Q;
+    public boolean R;
+    public boolean S;
+    public float T;
+    public int U;
+    public int V;
+    public int W;
+    public ValueAnimator f27606a;
+    public float f27607a0;
+    public c00 f27608b;
+    public float f27609b0;
+    public int f27610c;
+    public float f27611c0;
+    public int d;
+    public float f27612d0;
+    public int f27613e;
+    public float f27614e0;
+    public final RectF f27615f;
+    public float f27616f0;
+    public float f27617g0;
+    public CharSequence h;
+    public boolean f27618h0;
+    public final f00 f27619i0;
+    public boolean f27620n;
+    public u5 f27621r;
+    public StaticLayout f27622s;
     public int v;
-    public int f27616w;
-    public int f27617x;
-    public int f27618y;
+    public boolean f27623w;
+    public float f27624x;
+    public float f27625y;
 
-    public final void a(boolean z10, boolean z11) {
-        this.f27609b = z10;
-        float f10 = 0.0f;
-        if (this.f27608a && z11) {
-            ValueAnimator valueAnimator = this.D;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.D.cancel();
-            }
-            float f11 = this.C;
-            if (z10) {
-                f10 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.D = ofFloat;
-            ofFloat.addUpdateListener(new e6(this, 24));
-            this.D.setDuration(300L);
-            this.D.start();
+    public d00(f00 f00Var, Context context) {
+        super(context);
+        this.f27619i0 = f00Var;
+        this.f27615f = new RectF();
+        this.E = -1;
+    }
+
+    public final void a() {
+        this.f27623w = false;
+        this.D = false;
+        this.Q = false;
+        this.C = false;
+        this.S = false;
+        this.f27606a = null;
+        invalidate();
+    }
+
+    public final void b(float f9, int i10) {
+        if (i10 == 6) {
+            this.f27625y = 0.0f;
             return;
         }
-        if (z10) {
-            f10 = 1.0f;
-        }
-        this.C = f10;
+        AnimatorSet animatorSet = new AnimatorSet();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f9));
+        ofFloat.addUpdateListener(new wz(this, 1));
+        animatorSet.playTogether(ofFloat);
+        animatorSet.setDuration(50L);
+        animatorSet.addListener(new jh.za(this, i10, f9, 1));
+        animatorSet.start();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f10;
-        Canvas canvas2;
-        int i9 = this.f27616w;
-        RectF rectF = this.B;
-        Paint paint = this.h;
-        Paint paint2 = this.f27613n;
-        Paint paint3 = this.f27612f;
-        TextPaint textPaint = this.f27611e;
-        super.draw(canvas);
-        float f11 = this.C;
-        if (f11 <= 0.5f) {
-            f10 = f11 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f27614r) + ((int) ((Color.red(this.f27615s) - Color.red(this.f27614r)) * f10)), Color.green(this.f27614r) + ((int) ((Color.green(this.f27615s) - Color.green(this.f27614r)) * f10)), Color.blue(this.f27614r) + ((int) ((Color.blue(this.f27615s) - Color.blue(this.f27614r)) * f10))));
-            textPaint.setColor(Color.rgb(Color.red(this.f27615s) + ((int) ((Color.red(this.v) - Color.red(this.f27615s)) * f10)), Color.green(this.f27615s) + ((int) ((Color.green(this.v) - Color.green(this.f27615s)) * f10)), Color.blue(this.f27615s) + ((int) ((Color.blue(this.v) - Color.blue(this.f27615s)) * f10))));
-        } else {
-            textPaint.setColor(this.v);
-            paint3.setColor(this.f27615s);
-            f10 = 1.0f;
-        }
-        int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f27615s);
-        canvas.drawRoundRect(rectF, i9 / 2.0f, i9 / 2.0f, paint3);
-        canvas.drawRoundRect(rectF, i9 / 2.0f, i9 / 2.0f, paint);
-        String str = this.d;
-        if (str != null) {
-            canvas.drawText(str, (f10 * this.f27618y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
-        }
-        float f12 = 2.0f - (this.C / 0.5f);
-        canvas.save();
-        canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
-        canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
-        if (this.C > 0.5f) {
-            paint2.setColor(this.v);
-            float f13 = 1.0f - f12;
-            canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f13)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f13)), paint2);
-            canvas2.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) ((AndroidUtilities.dp(8.0f) * f13) + AndroidUtilities.dpf2(7.0f)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f13)), paint2);
-        } else {
-            canvas2 = canvas;
-        }
-        canvas2.restore();
+    public int getId() {
+        return this.f27608b.f27251a;
     }
 
     @Override
     public final void onAttachedToWindow() {
+        int i10;
+        int i11;
+        int i12;
+        this.f27618h0 = true;
         super.onAttachedToWindow();
-        this.f27608a = true;
+        int i13 = 26;
+        if (this.f27608b.f27256g) {
+            i10 = 26;
+        } else {
+            i10 = 0;
+        }
+        this.f27621r = y5.update(i10, this, this.f27621r, this.f27622s);
+        if (this.f27608b.f27256g) {
+            i11 = 26;
+        } else {
+            i11 = 0;
+        }
+        this.K = y5.update(i11, this, this.K, this.L);
+        if (this.f27608b.f27256g) {
+            i12 = 26;
+        } else {
+            i12 = 0;
+        }
+        this.M = y5.update(i12, this, this.M, this.N);
+        if (!this.f27608b.f27256g) {
+            i13 = 0;
+        }
+        this.O = y5.update(i13, this, this.O, this.P);
     }
 
     @Override
     public final void onDetachedFromWindow() {
+        this.f27618h0 = false;
         super.onDetachedFromWindow();
-        this.f27608a = false;
+        this.f27623w = false;
+        this.D = false;
+        this.Q = false;
+        this.C = false;
+        this.S = false;
+        ValueAnimator valueAnimator = this.f27606a;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f27606a.removeAllUpdateListeners();
+            this.f27606a.cancel();
+            this.f27606a = null;
+        }
+        invalidate();
+        y5.release(this, this.f27621r);
+        y5.release(this, this.K);
+        y5.release(this, this.M);
+        y5.release(this, this.O);
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        int measureText;
-        Paint paint = this.h;
-        RectF rectF = this.B;
-        int i11 = this.A;
-        String str = this.d;
-        if (str == null) {
-            measureText = 0;
+    public final void onDraw(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d00.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i10;
+        int i11;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        c00 c00Var = this.f27608b;
+        if (c00Var != null && (i11 = this.f27619i0.H) != -1 && c00Var.f27251a == i11) {
+            z10 = true;
         } else {
-            measureText = (int) this.f27611e.measureText(str);
+            z10 = false;
         }
-        setMeasuredDimension((i11 * 2) + measureText + (this.f27617x << 1), AndroidUtilities.dp(4.0f) + this.f27616w);
-        if (getMeasuredWidth() != 0) {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF.inset((paint.getStrokeWidth() / 2.0f) + i11, (paint.getStrokeWidth() / 2.0f) + i11);
+        accessibilityNodeInfo.setSelected(z10);
+        accessibilityNodeInfo.addAction(16);
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
+        if (this.f27608b != null) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(this.f27608b.f27252b);
+            c00 c00Var2 = this.f27608b;
+            if (c00Var2 != null) {
+                i10 = c00Var2.d;
+            } else {
+                i10 = 0;
+            }
+            if (i10 > 0) {
+                sb2.append("\n");
+                sb2.append(LocaleController.formatPluralString("AccDescrUnreadCount", i10, new Object[0]));
+            }
+            accessibilityNodeInfo.setContentDescription(sb2);
         }
     }
 
-    public void setChecked(boolean z10) {
-        a(z10, true);
-    }
-
-    public void setText(String str) {
-        this.d = str;
-        requestLayout();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f27608b.a(false) + this.f27619i0.J, View.MeasureSpec.getSize(i11));
     }
 }

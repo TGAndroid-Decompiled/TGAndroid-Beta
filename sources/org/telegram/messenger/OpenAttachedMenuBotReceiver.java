@@ -23,8 +23,8 @@ public class OpenAttachedMenuBotReceiver extends Activity {
                 intent2.putExtras(intent);
                 startActivity(intent2);
                 finish();
-            } catch (Throwable th) {
-                FileLog.e(th);
+            } catch (Throwable th2) {
+                FileLog.e(th2);
             }
         } else {
             finish();

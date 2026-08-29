@@ -1,43 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class a10 implements Runnable {
-    public final FragmentContextView f26618a;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class a10 extends CharacterStyle implements UpdateAppearance {
+    public int f26616a;
+    public int f26617b;
+    public float f26618c;
+    public final org.telegram.ui.ActionBar.c6 d;
 
-    public a10(FragmentContextView fragmentContextView) {
-        this.f26618a = fragmentContextView;
+    public a10(int i10) {
+        this(i10, null);
     }
 
     @Override
-    public final void run() {
-        String formatFullDuration;
-        FragmentContextView fragmentContextView = this.f26618a;
-        org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
-        if (fragmentContextView.f26377b0 != null && (o2Var instanceof org.telegram.ui.qn)) {
-            ChatObject.Call groupCall = fragmentContextView.f26391n.getGroupCall();
-            if (groupCall != null && groupCall.isScheduled()) {
-                int currentTime = groupCall.call.schedule_date - o2Var.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    formatFullDuration = LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]);
-                } else {
-                    formatFullDuration = AndroidUtilities.formatFullDuration(currentTime);
-                }
-                i6 i6Var = fragmentContextView.f26382e0;
-                if (!fragmentContextView.f26380d0) {
-                    formatFullDuration = LocaleController.getString(R.string.VoipChatNotify);
-                }
-                i6Var.q(formatFullDuration, true, true);
-                AndroidUtilities.runOnUIThread(fragmentContextView.f26386h0, 1000L);
-                fragmentContextView.f26396r.invalidate();
-                return;
-            }
-            fragmentContextView.f26379c0 = false;
-            fragmentContextView.f26385g0 = false;
-            return;
+    public final void updateDrawState(TextPaint textPaint) {
+        this.f26616a = org.telegram.ui.ActionBar.g6.l1(this.f26618c, org.telegram.ui.ActionBar.g6.v0(this.f26617b, this.d));
+        int color = textPaint.getColor();
+        int i10 = this.f26616a;
+        if (color != i10) {
+            textPaint.setColor(i10);
         }
-        fragmentContextView.f26385g0 = false;
+    }
+
+    public a10(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f26618c = 1.0f;
+        this.f26617b = i10;
+        this.d = c6Var;
     }
 }

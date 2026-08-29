@@ -1,155 +1,90 @@
 package ih;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.Collections;
+import android.app.Activity;
+import android.content.DialogInterface;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.vw;
-public final class j extends wk0 {
-    public final int T2;
-    public final vw U2;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class j implements DialogInterface.OnDismissListener {
+    public final int f9245a;
+    public final Object f9246b;
+    public final Object f9247c;
+    public final Object d;
 
-    public j(vw vwVar, Context context, int i9) {
-        super(context, null);
-        this.T2 = i9;
-        this.U2 = vwVar;
+    public j(Object obj, Object obj2, Object obj3, int i10) {
+        this.f9245a = i10;
+        this.f9247c = obj;
+        this.d = obj2;
+        this.f9246b = obj3;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        boolean z10;
-        switch (this.T2) {
-            case 1:
-                vw vwVar = this.U2;
-                ArrayList arrayList = vwVar.L;
-                arrayList.clear();
-                int i9 = 0;
-                for (int i10 = 0; i10 < getChildCount(); i10++) {
-                    q qVar = (q) getChildAt(i10);
-                    int R = RecyclerView.R(qVar);
-                    qVar.f11980b = R;
-                    boolean z11 = true;
-                    qVar.f11979a = true;
-                    if (R == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    qVar.d = z10;
-                    if (R != vwVar.f12051y.size() - 1) {
-                        z11 = false;
-                    }
-                    qVar.f11981c = z11;
-                    arrayList.add(qVar);
-                }
-                Collections.sort(arrayList, vwVar.f12043s0);
-                while (i9 < arrayList.size()) {
-                    q qVar2 = (q) arrayList.get(i9);
-                    int save = canvas.save();
-                    canvas.translate(qVar2.getX(), qVar2.getY());
-                    if (qVar2.getAlpha() != 1.0f) {
-                        canvas2 = canvas;
-                        canvas2.saveLayerAlpha(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), (int) (qVar2.getAlpha() * 255.0f), 31);
-                    } else {
-                        canvas2 = canvas;
-                    }
-                    canvas2.scale(qVar2.getScaleX(), qVar2.getScaleY(), AndroidUtilities.dp(14.0f), qVar2.getCy());
-                    qVar2.draw(canvas2);
-                    canvas2.restoreToCount(save);
-                    i9++;
-                    canvas = canvas2;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f9245a) {
+            case 0:
+                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.d;
+                Activity activity = (Activity) this.f9246b;
+                AndroidUtilities.hideKeyboard((bh.b) this.f9247c);
+                if (o2Var != null) {
+                    AndroidUtilities.requestAdjustResize(activity, o2Var.getClassGuid());
+                    return;
                 }
                 return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.T2) {
-            case 0:
-                if (motionEvent.getAction() == 0) {
-                    vw vwVar = this.U2;
-                    if (vwVar.V > 0.2f || vwVar.getAlpha() == 0.0f) {
-                        return false;
-                    }
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.T2) {
-            case 0:
-                if (this.U2.L.contains(view)) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void k0(int i9, int i10) {
-        switch (this.T2) {
             case 1:
-                kh.x3 x3Var = this.U2.F;
-                if (x3Var != null) {
-                    x3Var.e(true);
+                AndroidUtilities.hideKeyboard((v2) this.d);
+                AndroidUtilities.requestAdjustResize((Activity) this.f9246b, ((x3) this.f9247c).f9501a.getClassGuid());
+                return;
+            case 2:
+                org.telegram.ui.ActionBar.o2 o2Var2 = (org.telegram.ui.ActionBar.o2) this.d;
+                Activity activity2 = (Activity) this.f9246b;
+                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f9247c);
+                if (o2Var2 != null) {
+                    AndroidUtilities.requestAdjustResize(activity2, o2Var2.getClassGuid());
+                    return;
+                }
+                return;
+            case 3:
+                ((Utilities.Callback) this.f9247c).run(Integer.valueOf(((org.telegram.ui.Components.r3) this.f9246b).getValue() + (((org.telegram.ui.Components.p3) this.d).getValue() * 60)));
+                return;
+            case 4:
+                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.f9247c;
+                boolean[] zArr = (boolean[]) this.d;
+                String str = (String) this.f9246b;
+                z0Var.getClass();
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    z0Var.v("requested_chat_failed", org.telegram.ui.web.z0.x(str, "req_id"));
+                    return;
+                }
+                return;
+            case 5:
+                ph.q0 q0Var = (ph.q0) this.f9247c;
+                boolean[] zArr2 = (boolean[]) this.d;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f9246b;
+                q0Var.getClass();
+                if (!zArr2[0]) {
+                    q0Var.d = true;
+                    q0Var.f46000e = false;
+                    q0Var.l();
+                    Iterator it = q0Var.f46001f.iterator();
+                    while (it.hasNext()) {
+                        ((Runnable) it.next()).run();
+                    }
+                    zArr2[0] = true;
+                    sVar.run(Boolean.TRUE, Boolean.FALSE);
                     return;
                 }
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.T2) {
-            case 1:
-                return false;
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        switch (this.T2) {
-            case 0:
-                ArrayList arrayList = this.U2.U;
-                super.onLayout(z10, i9, i10, i11, i12);
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    ((Runnable) arrayList.get(i13)).run();
+                boolean[] zArr3 = (boolean[]) this.d;
+                Utilities.Callback callback = (Utilities.Callback) this.f9246b;
+                if (!((boolean[]) this.f9247c)[0] && !zArr3[0]) {
+                    zArr3[0] = true;
+                    callback.run("USER_DECLINED");
+                    return;
                 }
-                arrayList.clear();
                 return;
-            default:
-                super.onLayout(z10, i9, i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.T2) {
-            case 1:
-                return false;
-            default:
-                return super.onTouchEvent(motionEvent);
         }
     }
 }

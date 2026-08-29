@@ -2,30 +2,20 @@ package q7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import g7.p8;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-public final class e extends y5.a {
-    public static final Parcelable.Creator<e> CREATOR = new j(6);
-    public final List f46099a;
-    public final boolean f46100b;
-    public final boolean f46101c;
+import com.google.android.gms.internal.cast.o;
+import o6.w0;
+public final class e extends a6.a {
+    public static final Parcelable.Creator<e> CREATOR = new w0(15);
+    public final byte[] f46419a;
 
-    public e(ArrayList arrayList, boolean z10, boolean z11) {
-        this.f46099a = arrayList;
-        this.f46100b = z10;
-        this.f46101c = z11;
+    public e(byte[] bArr) {
+        this.f46419a = bArr;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.p(parcel, 1, DesugarCollections.unmodifiableList(this.f46099a));
-        p8.s(parcel, 2, 4);
-        parcel.writeInt(this.f46100b ? 1 : 0);
-        p8.s(parcel, 3, 4);
-        parcel.writeInt(this.f46101c ? 1 : 0);
-        p8.r(parcel, q10);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        o.c(parcel, 2, this.f46419a);
+        o.r(parcel, q6);
     }
 }

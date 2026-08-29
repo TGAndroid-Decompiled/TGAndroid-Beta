@@ -1,40 +1,68 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class le1 extends FrameLayout {
-    public TextView f40121a;
-    public float f40122b;
-    public boolean f40123c;
+public final class le1 extends f2.l {
+    public Runnable F;
+    public int G;
+    public final ze1 H;
+
+    public le1(ze1 ze1Var) {
+        this.H = ze1Var;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i9 = 1;
-        if (this.f40123c) {
-            float f10 = this.f40122b + 0.013333334f;
-            this.f40122b = f10;
-            if (f10 > 1.0f) {
-                this.f40123c = false;
-                this.f40122b = 1.0f;
-            }
-        } else {
-            float f11 = this.f40122b - 0.013333334f;
-            this.f40122b = f11;
-            if (f11 < 0.0f) {
-                this.f40123c = true;
-                this.f40122b = 0.0f;
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.F = null;
             }
         }
-        TextView textView = this.f40121a;
-        float interpolation = org.telegram.ui.Components.gr.f28844f.getInterpolation(this.f40122b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i9 = -1;
+    }
+
+    @Override
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.F = null;
         }
-        textView.setTranslationX(interpolation * i9);
-        invalidate();
+        ke1 ke1Var = new ke1(this, 0);
+        this.F = ke1Var;
+        AndroidUtilities.runOnUIThread(ke1Var);
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        ke1 ke1Var = new ke1(this, 1);
+        this.F = ke1Var;
+        AndroidUtilities.runOnUIThread(ke1Var);
+    }
+
+    @Override
+    public final void z(f2.n1 n1Var) {
+        ze1 ze1Var = this.H;
+        View view = ze1Var.X0;
+        if (view == n1Var.f6432a) {
+            view.setTranslationX(0.0f);
+            be1 be1Var = ze1Var.K;
+            if (be1Var != null) {
+                be1Var.B.clear();
+            }
+            View view2 = ze1Var.X0;
+            if (view2 instanceof we1) {
+                we1 we1Var = (we1) view2;
+                we1Var.setTopicIcon(we1Var.U4);
+            }
+            ze1Var.X0 = null;
+        }
     }
 }

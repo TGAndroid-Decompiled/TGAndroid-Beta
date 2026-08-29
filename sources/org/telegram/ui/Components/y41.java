@@ -1,19 +1,29 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-public final class y41 extends View {
-    public int f34851a;
+public final class y41 extends URLSpan {
+    public final h01 f34922a;
 
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f34851a, 1073741824));
+    public y41(String str, h01 h01Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f34922a = h01Var;
     }
 
-    public void setHeight(int i9) {
-        if (this.f34851a == i9) {
-            return;
+    @Override
+    public final void onClick(View view) {
+        ye.d.p(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        h01 h01Var = this.f34922a;
+        if (h01Var != null) {
+            h01Var.a(textPaint);
         }
-        this.f34851a = i9;
-        requestLayout();
+        textPaint.setUnderlineText(true);
     }
 }

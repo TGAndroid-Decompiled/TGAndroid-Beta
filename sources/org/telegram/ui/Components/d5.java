@@ -1,19 +1,15 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class d5 implements Runnable {
-    public final int f27654a;
-    public final g5 f27655b;
-    public final ArrayList f27656c;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class d5 extends MetricAffectingSpan {
+    public String f27659a;
 
-    public d5(g5 g5Var, ArrayList arrayList, int i9) {
-        this.f27654a = i9;
-        this.f27655b = g5Var;
-        this.f27656c = arrayList;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d5.run():void");
+    public final void updateMeasureState(TextPaint textPaint) {
     }
 }

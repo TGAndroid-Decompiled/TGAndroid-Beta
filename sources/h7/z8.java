@@ -1,3 +1,4 @@
 package h7;
-public abstract class z8 {
+public interface z8 {
+    void a(ag.j2 j2Var);
 }

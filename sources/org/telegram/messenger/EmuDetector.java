@@ -179,8 +179,8 @@ public class EmuDetector {
 
     private boolean checkQEmuDrivers() {
         File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
-        for (int i9 = 0; i9 < 2; i9++) {
-            File file = fileArr[i9];
+        for (int i10 = 0; i10 < 2; i10++) {
+            File file = fileArr[i10];
             if (file.exists() && file.canRead()) {
                 byte[] bArr = new byte[1024];
                 try {
@@ -204,18 +204,18 @@ public class EmuDetector {
 
     private boolean checkQEmuProps() {
         Property[] propertyArr;
-        int i9 = 0;
+        int i10 = 0;
         for (Property property : PROPERTIES) {
             String prop = getProp(this.mContext, property.name);
             String str = property.seek_value;
             if (str == null && prop != null) {
-                i9++;
+                i10++;
             }
             if (str != null && prop.contains(str)) {
-                i9++;
+                i10++;
             }
         }
-        if (i9 < 5) {
+        if (i10 < 5) {
             return false;
         }
         return true;

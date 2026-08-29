@@ -1,52 +1,34 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
+import android.animation.ValueAnimator;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-public final class k2 extends FrameLayout {
-    public static final int h = 0;
-    public final float f33637a;
-    public float f33638b;
-    public float f33639c;
-    public float d;
-    public float f33640e;
-    public final l2 f33641f;
+public final class k2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33787a;
+    public final o2 f33788b;
 
-    public k2(l2 l2Var, Context context) {
-        super(context);
-        this.f33641f = l2Var;
-        this.f33637a = ViewConfiguration.get(context).getScaledTouchSlop();
-        setOutlineProvider(new bg.q1(16));
-        setClipToOutline(true);
+    public k2(o2 o2Var, int i10) {
+        this.f33787a = i10;
+        this.f33788b = o2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        l2 l2Var = this.f33641f;
-        l2Var.f33657n.setPivotX(l2Var.f33658r.getMeasuredWidth());
-        l2Var.f33657n.setPivotY(l2Var.f33658r.getMeasuredHeight());
-        l2Var.f33657n.setTranslationX((1.0f / getScaleX()) * (-AndroidUtilities.dp(4.0f)) * l2Var.f33659s);
-        l2Var.f33657n.setTranslationY((1.0f / getScaleY()) * (-AndroidUtilities.dp(4.0f)) * l2Var.f33659s);
-        l2Var.f33657n.setRoundCorners((1.0f / getScaleY()) * AndroidUtilities.dp(8.0f) * l2Var.f33659s);
-        l2Var.f33657n.setScaleX(((1.0f - l2Var.f33659s) * 0.6f) + 0.4f);
-        l2Var.f33657n.setScaleY(((1.0f - l2Var.f33659s) * 0.6f) + 0.4f);
-        l2Var.f33657n.setAlpha(Math.min(1.0f, 1.0f - l2Var.f33659s));
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, i10);
-        this.f33638b = AndroidUtilities.dp(16.0f);
-        this.f33639c = AndroidUtilities.dp(16.0f);
-        this.d = AndroidUtilities.dp(60.0f);
-        this.f33640e = AndroidUtilities.dp(16.0f);
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.k2.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33787a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o2 o2Var = this.f33788b;
+                WindowManager.LayoutParams layoutParams = o2Var.d;
+                layoutParams.x = (int) floatValue;
+                AndroidUtilities.updateViewLayout(o2Var.f33896c, o2Var.f33894a, layoutParams);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o2 o2Var2 = this.f33788b;
+                WindowManager.LayoutParams layoutParams2 = o2Var2.d;
+                layoutParams2.y = (int) floatValue2;
+                AndroidUtilities.updateViewLayout(o2Var2.f33896c, o2Var2.f33894a, layoutParams2);
+                return;
+        }
     }
 }

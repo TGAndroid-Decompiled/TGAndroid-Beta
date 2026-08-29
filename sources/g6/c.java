@@ -1,32 +1,13 @@
 package g6;
 
-import android.content.Context;
-public final class c {
-    public static final c f7119b;
-    public b f7120a;
-
+import java.util.regex.Pattern;
+public abstract class c {
     static {
-        ?? obj = new Object();
-        obj.f7120a = null;
-        f7119b = obj;
+        Pattern.compile("\\\\.");
+        Pattern.compile("[\\\\\"/\b\f\n\r\t]");
     }
 
-    public static b a(Context context) {
-        b bVar;
-        c cVar = f7119b;
-        synchronized (cVar) {
-            try {
-                if (cVar.f7120a == null) {
-                    if (context.getApplicationContext() != null) {
-                        context = context.getApplicationContext();
-                    }
-                    cVar.f7120a = new b(context, 0);
-                }
-                bVar = cVar.f7120a;
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        return bVar;
+    public static boolean a(java.lang.Object r4, java.lang.Object r5) {
+        throw new UnsupportedOperationException("Method not decompiled: g6.c.a(java.lang.Object, java.lang.Object):boolean");
     }
 }

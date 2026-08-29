@@ -1,27 +1,50 @@
 package g7;
 
-import java.util.Map;
-public final class e implements q9.d {
-    public static final e f7159b = new e(0);
-    public static final e f7160c = new e(1);
-    public final int f7161a;
+import h7.o7;
+import j$.util.Objects;
+public final class e extends d {
+    public static final e f7128e = new e(0, new Object[0]);
+    public final transient Object[] f7129c;
+    public final transient int d;
 
-    public e(int i9) {
-        this.f7161a = i9;
+    public e(int i10, Object[] objArr) {
+        this.f7129c = objArr;
+        this.d = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f7161a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                q9.e eVar = (q9.e) obj2;
-                eVar.g(f.f7168g, entry.getKey());
-                eVar.g(f.h, entry.getValue());
-                return;
-            default:
-                q9.e eVar2 = (q9.e) obj2;
-                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
-        }
+    public final Object get(int i10) {
+        o7.a(i10, this.d);
+        Object obj = this.f7129c[i10];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final int i(Object[] objArr) {
+        Object[] objArr2 = this.f7129c;
+        int i10 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i10);
+        return i10;
+    }
+
+    @Override
+    public final int n() {
+        return this.d;
+    }
+
+    @Override
+    public final int o() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] p() {
+        return this.f7129c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

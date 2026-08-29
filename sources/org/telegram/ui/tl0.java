@@ -1,61 +1,54 @@
 package org.telegram.ui;
 
+import android.text.Editable;
 import android.text.TextWatcher;
-import java.util.regex.Pattern;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class tl0 implements TextWatcher {
-    public final int f43028a;
-    public final Object f43029b;
-    public String f43030c;
-    public final Object d;
+    public final EditTextBoldCursor f42724a;
+    public final String f42725b;
+    public final vm0 f42726c;
 
-    public tl0(wm0 wm0Var, EditTextBoldCursor editTextBoldCursor, String str, int i9) {
-        this.f43028a = i9;
-        this.d = wm0Var;
-        this.f43029b = editTextBoldCursor;
-        this.f43030c = str;
+    public tl0(vm0 vm0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.f42726c = vm0Var;
+        this.f42724a = editTextBoldCursor;
+        this.f42725b = str;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tl0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        switch (this.f43028a) {
-            case 0:
-            case 1:
-                return;
-            default:
-                this.f43030c = charSequence.toString();
-                return;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        EditTextBoldCursor editTextBoldCursor = this.f42724a;
+        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
+                    z10 = true;
+                    break;
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
         }
+        vm0 vm0Var = this.f42726c;
+        if (z10 && !vm0Var.f43658q0) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+            return;
+        }
+        vm0Var.f43656p0[intValue] = z10;
+        vm0.J0(vm0Var, editTextBoldCursor, this.f42725b, editable, false);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        int i12 = this.f43028a;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
-    public tl0(xf.w wVar) {
-        this.f43028a = 2;
-        this.d = wVar;
-        this.f43029b = Pattern.compile("^[0-9a-fA-F]*$");
-    }
-
-    private final void a(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i9, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i9, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

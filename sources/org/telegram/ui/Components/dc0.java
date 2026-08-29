@@ -1,309 +1,168 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Color;
+import android.graphics.ComposeShader;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class dc0 extends xj0 implements DownloadController.FileDownloadProgressListener {
-    public static final Paint D;
-    public static final Paint E;
-    public static final TextPaint F;
-    public static final TextPaint G;
-    public static final TextPaint H;
-    public static final TextPaint I;
-    public static final TextPaint J;
-    public static final TextPaint K;
-    public static final DecelerateInterpolator L;
-    public String A;
-    public String B;
-    public String C;
-    public long f27707a;
-    public float f27708b;
-    public float f27709c;
-    public long d;
-    public float f27710e;
-    public float f27711f;
-    public boolean h;
-    public View f27712n;
-    public MessageObject f27713r;
-    public int f27714s;
-    public boolean v;
-    public boolean f27715w;
-    public Drawable f27716x;
-    public String f27717y;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
+import android.os.Build;
+import org.telegram.messenger.Utilities;
+public final class dc0 {
+    public static final float[] f27734k = new float[4];
+    public static final Matrix f27735l = new Matrix();
+    public final bc0 d;
+    public int f27739e;
+    public int f27740f;
+    public int f27741g;
+    public int h;
+    public final l3.g0 f27736a = new l3.g0(new r2(12));
+    public final ag.j2 f27737b = new ag.j2(16, (byte) 0);
+    public final e10 f27738c = new e10();
+    public final Matrix f27742i = new Matrix();
+    public final RectF f27743j = new RectF();
 
-    static {
-        Paint paint = new Paint();
-        D = paint;
-        Paint paint2 = new Paint(1);
-        E = paint2;
-        TextPaint textPaint = new TextPaint(1);
-        F = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        G = textPaint2;
-        TextPaint textPaint3 = new TextPaint(1);
-        H = textPaint3;
-        TextPaint textPaint4 = new TextPaint(1);
-        I = textPaint4;
-        TextPaint textPaint5 = new TextPaint(1);
-        J = textPaint5;
-        TextPaint textPaint6 = new TextPaint(1);
-        K = textPaint6;
-        L = new DecelerateInterpolator();
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(-14209998);
-        textPaint.setColor(-1);
-        textPaint2.setColor(-1);
-        textPaint3.setColor(-10327179);
-        textPaint4.setColor(-10327179);
-        textPaint5.setColor(-1);
-        textPaint6.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint2.setTypeface(AndroidUtilities.bold());
-        textPaint4.setTypeface(AndroidUtilities.bold());
-        textPaint5.setTypeface(AndroidUtilities.bold());
-        textPaint6.setTypeface(AndroidUtilities.bold());
-    }
-
-    public final void a() {
-        String attachFileName;
-        MessageObject messageObject = this.f27713r;
-        if (messageObject != null) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (message.media != null) {
-                if ((TextUtils.isEmpty(message.attachPath) || !new File(this.f27713r.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.f27713r.messageOwner).exists()) {
-                    attachFileName = FileLoader.getAttachFileName(this.f27713r.getDocument());
-                } else {
-                    attachFileName = null;
-                }
-                this.f27715w = false;
-                if (attachFileName == null) {
-                    this.h = false;
-                    this.v = false;
-                    this.f27715w = true;
-                    DownloadController.getInstance(this.f27713r.currentAccount).removeLoadingFileObserver(this);
-                } else {
-                    DownloadController.getInstance(this.f27713r.currentAccount).addLoadingFileObserver(attachFileName, this);
-                    boolean isLoadingFile = FileLoader.getInstance(this.f27713r.currentAccount).isLoadingFile(attachFileName);
-                    this.v = isLoadingFile;
-                    if (isLoadingFile) {
-                        this.h = true;
-                        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                        if (fileProgress == null) {
-                            fileProgress = Float.valueOf(0.0f);
-                        }
-                        b(fileProgress.floatValue(), false);
-                    } else {
-                        this.h = false;
-                    }
-                }
-                this.f27712n.invalidate();
-            }
-        }
-        this.v = false;
-        this.f27715w = true;
-        this.h = false;
-        b(0.0f, false);
-        DownloadController.getInstance(this.f27713r.currentAccount).removeLoadingFileObserver(this);
-        this.f27712n.invalidate();
-    }
-
-    public final void b(float f10, boolean z10) {
-        if (!z10) {
-            this.f27710e = f10;
-            this.f27709c = f10;
+    public dc0() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.d = new bc0();
         } else {
-            this.f27709c = this.f27710e;
+            this.d = null;
         }
-        this.C = String.format("%d%%", Integer.valueOf((int) (100.0f * f10)));
-        if (f10 != 1.0f) {
-            this.f27711f = 1.0f;
-        }
-        this.f27708b = f10;
-        this.d = 0L;
-        this.f27707a = System.currentTimeMillis();
-        this.f27712n.invalidate();
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        String str;
-        TextPaint textPaint;
-        String str2;
-        TextPaint textPaint2;
-        String str3;
-        TextPaint textPaint3;
-        String string;
-        int dp;
-        TextPaint textPaint4;
-        String str4;
-        TextPaint textPaint5;
-        Rect bounds = getBounds();
-        int width = bounds.width();
-        int height = bounds.height();
-        canvas.save();
-        canvas.translate(bounds.left, bounds.top);
-        canvas.drawRect(0.0f, 0.0f, width, height, D);
-        int y10 = org.telegram.messenger.ll.y(240.0f, height, 2);
-        int y11 = org.telegram.messenger.ll.y(48.0f, width, 2);
-        Drawable drawable = this.f27716x;
-        drawable.setBounds(y11, y10, AndroidUtilities.dp(48.0f) + y11, AndroidUtilities.dp(48.0f) + y10);
-        drawable.draw(canvas);
-        canvas.drawText(this.f27717y, (width - ((int) Math.ceil(textPaint.measureText(str)))) / 2, AndroidUtilities.dp(31.0f) + y10, F);
-        canvas.drawText(this.A, (width - ((int) Math.ceil(textPaint2.measureText(str2)))) / 2, AndroidUtilities.dp(96.0f) + y10, G);
-        canvas.drawText(this.B, (width - ((int) Math.ceil(textPaint3.measureText(str3)))) / 2, AndroidUtilities.dp(125.0f) + y10, H);
-        if (this.f27715w) {
-            string = LocaleController.getString(R.string.OpenFile);
-            textPaint4 = K;
-            dp = 0;
+    public static void a(Matrix matrix, float[] fArr) {
+        Matrix matrix2 = f27735l;
+        matrix.invert(matrix2);
+        float[] fArr2 = f27734k;
+        fArr2[0] = 0.0f;
+        fArr2[1] = 0.0f;
+        fArr2[2] = 1.0f;
+        fArr2[3] = 1.0f;
+        matrix2.mapPoints(fArr2);
+        fArr[0] = fArr2[2] - fArr2[0];
+        fArr[1] = fArr2[3] - fArr2[1];
+        fArr[2] = fArr2[0];
+        fArr[3] = fArr2[1];
+    }
+
+    public static boolean b(float f9) {
+        if (Math.abs(f9 - 1.0f) <= 1.0E-4f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.f27743j;
+        rectF2.set(0.0f, 0.0f, this.f27739e, this.f27740f);
+        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
+        Matrix matrix = this.f27742i;
+        matrix.setRectToRect(rectF2, rectF, scaleToFit);
+        e10 e10Var = this.f27738c;
+        cc0 cc0Var = (cc0) e10Var.f27906c;
+        cc0Var.f27433b.set(matrix);
+        BitmapShader bitmapShader = cc0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        cc0 cc0Var2 = (cc0) e10Var.d;
+        cc0Var2.f27433b.set(matrix);
+        BitmapShader bitmapShader2 = cc0Var2.d;
+        if (bitmapShader2 != null) {
+            bitmapShader2.setLocalMatrix(matrix);
+        }
+        bc0 bc0Var = this.d;
+        if (bc0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr = bc0Var.f27030g;
+            a(matrix, fArr);
+            bc0Var.f27028e.a(fArr);
+            bc0Var.f27029f.a(fArr);
+        }
+    }
+
+    public final void d(Matrix matrix) {
+        boolean z10;
+        e10 e10Var = this.f27738c;
+        float[] fArr = (float[]) e10Var.h;
+        a(matrix, fArr);
+        cc0 cc0Var = (cc0) e10Var.f27907e;
+        cc0Var.f27433b.set(matrix);
+        BitmapShader bitmapShader = cc0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        boolean z11 = false;
+        if (b(fArr[0]) && b(fArr[1])) {
+            z10 = true;
         } else {
-            if (this.v) {
-                string = LocaleController.getString(R.string.Cancel).toUpperCase();
-            } else {
-                string = LocaleController.getString(R.string.TapToDownload);
-            }
-            dp = AndroidUtilities.dp(28.0f);
-            textPaint4 = I;
+            z10 = false;
         }
-        canvas.drawText(string, (width - ((int) Math.ceil(textPaint4.measureText(string)))) / 2, org.telegram.messenger.l0.C(235.0f, y10, dp), textPaint4);
-        if (this.h) {
-            if (this.C != null) {
-                canvas.drawText(this.C, (width - ((int) Math.ceil(textPaint5.measureText(str4)))) / 2, AndroidUtilities.dp(210.0f) + y10, J);
+        cc0Var.a(z10);
+        bc0 bc0Var = this.d;
+        if (bc0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr2 = bc0Var.f27030g;
+            a(matrix, fArr2);
+            cc0 cc0Var2 = bc0Var.d;
+            if (b(fArr2[0]) && b(fArr2[1])) {
+                z11 = true;
             }
-            int y12 = org.telegram.messenger.ll.y(240.0f, width, 2);
-            int dp2 = AndroidUtilities.dp(232.0f) + y10;
-            Paint paint = E;
-            paint.setColor(-10327179);
-            paint.setAlpha((int) (this.f27711f * 255.0f));
-            float f10 = dp2;
-            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.f27710e)) + y12, f10, AndroidUtilities.dp(240.0f) + y12, AndroidUtilities.dp(2.0f) + dp2, paint);
-            paint.setColor(-1);
-            paint.setAlpha((int) (this.f27711f * 255.0f));
-            float f11 = y12;
-            canvas.drawRect(f11, f10, (AndroidUtilities.dp(240.0f) * this.f27710e) + f11, AndroidUtilities.dp(2.0f) + dp2, paint);
-            long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f27707a;
-            this.f27707a = currentTimeMillis;
-            float f12 = this.f27710e;
-            if (f12 != 1.0f) {
-                float f13 = this.f27708b;
-                if (f12 != f13) {
-                    float f14 = this.f27709c;
-                    float f15 = f13 - f14;
-                    if (f15 > 0.0f) {
-                        long j11 = this.d + j10;
-                        this.d = j11;
-                        if (j11 >= 300) {
-                            this.f27710e = f13;
-                            this.f27709c = f13;
-                            this.d = 0L;
-                        } else {
-                            this.f27710e = (L.getInterpolation(((float) j11) / 300.0f) * f15) + f14;
-                        }
-                    }
-                    this.f27712n.invalidate();
+            cc0Var2.a(z11);
+            bc0Var.f27028e.b(fArr2);
+            bc0Var.f27029f.b(fArr2);
+        }
+    }
+
+    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
+        Bitmap bitmap3;
+        Bitmap bitmap4 = (Bitmap) this.f27736a.o(bitmap2);
+        if (i12 >= 0) {
+            int k9 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
+            ag.j2 j2Var = this.f27737b;
+            rg.a aVar = (rg.a) j2Var.f559c;
+            if (aVar.a(bitmap) || k9 != j2Var.f558b || ((Bitmap) j2Var.d) == null) {
+                Bitmap bitmap5 = (Bitmap) j2Var.d;
+                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) j2Var.d).getHeight() != bitmap.getHeight()) {
+                    j2Var.d = Bitmap.createBitmap(bitmap);
                 }
+                Utilities.applySoftLight(bitmap, (Bitmap) j2Var.d, k9);
+                aVar.b(bitmap);
+                j2Var.f558b = k9;
             }
-            int i9 = (this.f27710e > 1.0f ? 1 : (this.f27710e == 1.0f ? 0 : -1));
-            if (i9 >= 0 && i9 == 0) {
-                float f16 = this.f27711f;
-                if (f16 != 0.0f) {
-                    float f17 = f16 - (((float) j10) / 200.0f);
-                    this.f27711f = f17;
-                    if (f17 <= 0.0f) {
-                        this.f27711f = 0.0f;
-                    }
-                    this.f27712n.invalidate();
-                }
+            bitmap3 = (Bitmap) j2Var.d;
+        } else {
+            bitmap3 = null;
+        }
+        Bitmap bitmap6 = bitmap3;
+        this.f27739e = bitmap.getWidth();
+        this.f27740f = bitmap.getHeight();
+        this.f27741g = bitmap4.getWidth();
+        this.h = bitmap4.getHeight();
+        bc0 bc0Var = this.d;
+        if (bc0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
+            return bc0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
+        }
+        e10 e10Var = this.f27738c;
+        zs zsVar = (zs) e10Var.f27908f;
+        zs zsVar2 = (zs) e10Var.f27909g;
+        cc0 cc0Var = (cc0) e10Var.d;
+        Paint paint = (Paint) e10Var.f27905b;
+        cc0 cc0Var2 = (cc0) e10Var.f27906c;
+        boolean b10 = cc0Var2.b(bitmap);
+        cc0 cc0Var3 = (cc0) e10Var.f27907e;
+        boolean b11 = b10 | cc0Var3.b(bitmap4);
+        if (i12 >= 0) {
+            if ((cc0Var.b(bitmap6) | b11) || e10Var.f27904a != 1) {
+                e10Var.f27904a = 1;
+                paint.setShader(new ComposeShader(cc0Var2.d, new ComposeShader(cc0Var.d, cc0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
+                return paint;
             }
+        } else if ((zsVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | zsVar.a(-16777216)) || e10Var.f27904a != 2) {
+            e10Var.f27904a = 2;
+            paint.setShader(new ComposeShader((jf.k) zsVar.f35410b, new ComposeShader(new ComposeShader(cc0Var2.d, cc0Var3.d, PorterDuff.Mode.DST_IN), (jf.k) zsVar2.f35410b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+            return paint;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f27712n.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f27712n.getMeasuredWidth();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return this.f27712n.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return this.f27712n.getMeasuredWidth();
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.f27714s;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z10) {
-        a();
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j10, long j11) {
-        if (!this.h) {
-            a();
-        }
-        b(Math.min(1.0f, ((float) j10) / ((float) j11)), true);
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-        b(1.0f, true);
-        a();
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        Drawable drawable = this.f27716x;
-        if (drawable != null) {
-            drawable.setAlpha(i9);
-        }
-        D.setAlpha(i9);
-        F.setAlpha(i9);
-        G.setAlpha(i9);
-        H.setAlpha(i9);
-        I.setAlpha(i9);
-        J.setAlpha(i9);
-        K.setAlpha(i9);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
+        return paint;
     }
 }

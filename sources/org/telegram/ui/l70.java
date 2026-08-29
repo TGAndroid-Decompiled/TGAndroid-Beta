@@ -1,26 +1,23 @@
 package org.telegram.ui;
+public final class l70 implements Runnable {
+    public final int f40110a;
+    public final s70 f40111b;
 
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class l70 extends TimerTask {
-    public final String f40071a;
-    public final m70 f40072b;
-
-    public l70(m70 m70Var, String str) {
-        this.f40072b = m70Var;
-        this.f40071a = str;
+    public l70(s70 s70Var, int i10) {
+        this.f40110a = i10;
+        this.f40111b = s70Var;
     }
 
     @Override
     public final void run() {
-        m70 m70Var = this.f40072b;
-        try {
-            m70Var.f40343f.cancel();
-            m70Var.f40343f = null;
-        } catch (Exception e10) {
-            FileLog.e(e10);
+        switch (this.f40110a) {
+            case 0:
+                s70 s70Var = this.f40111b;
+                s70Var.h.postOnAnimation(new l70(s70Var, 1));
+                return;
+            default:
+                this.f40111b.Y();
+                return;
         }
-        AndroidUtilities.runOnUIThread(new k70(this, this.f40071a, 0));
     }
 }

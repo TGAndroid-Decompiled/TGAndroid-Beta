@@ -1,63 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class lc extends ClickableSpan {
-    public final int f30413a;
-    public final Runnable f30414b;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+public final class lc extends jb {
+    public final h9 f30284a;
+    public final y80 f30285b;
+    public final y80 f30286c;
+    public final LinearLayout d;
 
-    public lc(int i9, Runnable runnable) {
-        this.f30413a = i9;
-        this.f30414b = runnable;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f30413a) {
-            case 0:
-                this.f30414b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f30414b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 2:
-                Runnable runnable2 = this.f30414b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable3 = this.f30414b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
-                return;
+    public lc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(context, c6Var);
+        h9 h9Var = new h9(context, false);
+        this.f30284a = h9Var;
+        h9Var.setStyle(11);
+        h9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+        addView(h9Var, i7.f6.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
+        if (!z10) {
+            cg.c2 c2Var = new cg.c2(context, 3, null);
+            this.f30285b = c2Var;
+            NotificationCenter.listenEmojiLoading(c2Var);
+            c2Var.setTypeface(Typeface.SANS_SERIF);
+            c2Var.setTextSize(1, 15.0f);
+            c2Var.setEllipsize(TextUtils.TruncateAt.END);
+            c2Var.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+            c2Var.setGravity(LocaleController.isRTL ? 5 : 3);
+            addView(c2Var, i7.f6.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
+        } else {
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.d = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, i7.f6.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
+            cg.c2 c2Var2 = new cg.c2(context, 4, null);
+            this.f30285b = c2Var2;
+            NotificationCenter.listenEmojiLoading(c2Var2);
+            Typeface typeface = Typeface.SANS_SERIF;
+            c2Var2.setTypeface(typeface);
+            c2Var2.setTextSize(1, 14.0f);
+            c2Var2.setTypeface(AndroidUtilities.bold());
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            c2Var2.setEllipsize(truncateAt);
+            c2Var2.setMaxLines(1);
+            linearLayout.addView(c2Var2);
+            y80 y80Var = new y80(context, null);
+            this.f30286c = y80Var;
+            y80Var.setTypeface(typeface);
+            y80Var.setTextSize(1, 12.0f);
+            y80Var.setEllipsize(truncateAt);
+            y80Var.setSingleLine(false);
+            y80Var.setMaxLines(3);
+            y80Var.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Gi));
+            linearLayout.addView(y80Var, i7.f6.t(-2, -2, 0, 0, 0, 0, 0));
         }
+        this.f30285b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Gi));
+        setTextColor(getThemedColor(org.telegram.ui.ActionBar.g6.Hi));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.g6.Fi));
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f30413a) {
-            case 0:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                textPaint.setUnderlineText(false);
-                return;
-            case 2:
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                return;
+    public CharSequence getAccessibilityText() {
+        return this.f30285b.getText();
+    }
+
+    public void setTextColor(int i10) {
+        this.f30285b.setTextColor(i10);
+        y80 y80Var = this.f30286c;
+        if (y80Var != null) {
+            y80Var.setTextColor(i10);
         }
     }
 }

@@ -1,36 +1,27 @@
 package org.telegram.ui.Components.voip;
 
 import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j70;
-public final class c2 extends j70 {
-    public final TLRPC.User f33464c;
-    public final TLRPC.Chat d;
-    public final String f33465e;
-    public final TLRPC.InputPeer f33466f;
-    public final boolean h;
-    public final boolean f33467n;
-    public final Activity f33468r;
-    public final org.telegram.ui.ActionBar.o2 f33469s;
-    public final AccountInstance v;
+import android.content.Intent;
+public final class c2 implements org.telegram.ui.ActionBar.b2 {
+    public final int f33653a;
+    public final Activity f33654b;
+    public final Intent f33655c;
 
-    public c2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.o2 o2Var, AccountInstance accountInstance) {
-        super(context, chat);
-        this.f33464c = user;
-        this.d = chat2;
-        this.f33465e = str;
-        this.f33466f = inputPeer;
-        this.h = z10;
-        this.f33467n = z11;
-        this.f33468r = activity;
-        this.f33469s = o2Var;
-        this.v = accountInstance;
+    public c2(Activity activity, Intent intent, int i10) {
+        this.f33653a = i10;
+        this.f33654b = activity;
+        this.f33655c = intent;
     }
 
     @Override
-    public final void m() {
-        e2.b(this.f33464c, this.d, this.f33465e, this.f33466f, true, this.h, this.f33467n, false, this.f33468r, this.f33469s, this.v, false, false, false);
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f33653a) {
+            case 0:
+                this.f33654b.startActivity(this.f33655c);
+                return;
+            default:
+                this.f33654b.startActivity(this.f33655c);
+                return;
+        }
     }
 }

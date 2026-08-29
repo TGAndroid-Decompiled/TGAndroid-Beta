@@ -1,9 +1,12 @@
 package org.telegram.ui.Components;
+public final class ex0 extends org.telegram.ui.pt0 {
+    @Override
+    public final boolean P() {
+        return true;
+    }
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ex0 extends AlertDialog$Builder {
-    public ArrayList f28214c;
-    public int d;
-    public org.telegram.ui.ActionBar.o2 f28215e;
+    @Override
+    public final boolean z() {
+        return false;
+    }
 }

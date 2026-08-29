@@ -1,47 +1,66 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class nl extends AnimatorListenerAdapter {
-    public final boolean f40768a;
-    public final boolean f40769b;
-    public final boolean f40770c;
-    public final qn d;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class nl extends pt0 {
+    public final MessageObject f40838a;
+    public final MediaController.PhotoEntry f40839b;
+    public final tn f40840c;
 
-    public nl(qn qnVar, boolean z10, boolean z11, boolean z12) {
-        this.d = qnVar;
-        this.f40768a = z10;
-        this.f40769b = z11;
-        this.f40770c = z12;
+    public nl(tn tnVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
+        this.f40840c = tnVar;
+        this.f40838a = messageObject;
+        this.f40839b = photoEntry;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i9;
-        int i10;
-        qn qnVar = this.d;
-        qnVar.I2 = null;
-        ImageView imageView = qnVar.F2;
-        int i11 = 4;
-        if (this.f40768a) {
-            i9 = 0;
+    public final zt0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return tn.A1(this.f40840c, this.f40838a, null, i10, z10, true);
+    }
+
+    @Override
+    public final boolean O() {
+        tn tnVar = this.f40840c;
+        if (tnVar.U != null && tnVar.x9()) {
+            tnVar.U.P();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final MessageObject U() {
+        MessageObject messageObject = this.f40840c.f42880l5;
+        MessageObject messageObject2 = this.f40838a;
+        if (messageObject == messageObject2) {
+            return messageObject2;
+        }
+        return null;
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+        this.f40840c.U.f1(charSequence, false);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        tn tnVar = this.f40840c;
+        if (tnVar.f42880l5 != this.f40838a) {
+            return;
+        }
+        MediaController.PhotoEntry photoEntry = this.f40839b;
+        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
+            tnVar.U.d0();
         } else {
-            i9 = 4;
+            tnVar.r(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
         }
-        imageView.setVisibility(i9);
-        ImageView imageView2 = qnVar.H2;
-        if (this.f40769b) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView2.setVisibility(i10);
-        RadialProgressView radialProgressView = qnVar.G2;
-        if (this.f40770c) {
-            i11 = 0;
-        }
-        radialProgressView.setVisibility(i11);
     }
 }

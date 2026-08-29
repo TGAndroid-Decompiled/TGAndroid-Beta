@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.CacheFetcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class dw0 extends CacheFetcher {
-    @Override
-    public final void getRemote(int i9, Object obj, long j10, Utilities.Callback4 callback4) {
-        TLRPC.TL_messages_searchCustomEmoji tL_messages_searchCustomEmoji = new TLRPC.TL_messages_searchCustomEmoji();
-        tL_messages_searchCustomEmoji.emoticon = (String) obj;
-        tL_messages_searchCustomEmoji.hash = j10;
-        ConnectionsManager.getInstance(i9).sendRequest(tL_messages_searchCustomEmoji, new bw0(callback4, 1));
+import android.graphics.drawable.Drawable;
+public abstract class dw0 extends Drawable {
+    public final void a() {
+        jf.j d = jf.j.d();
+        d.getClass();
+        jf.j.c();
+        d.f11641e.add(this);
     }
+
+    public abstract void b(int i10);
+
+    public abstract void c(boolean z10);
+
+    public abstract void d();
+
+    public abstract void e();
 }

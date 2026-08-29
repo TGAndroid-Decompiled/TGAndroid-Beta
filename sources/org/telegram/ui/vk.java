@@ -1,35 +1,39 @@
 package org.telegram.ui;
-public final class vk implements Runnable {
-    public final int f43505a;
-    public final wk f43506b;
 
-    public vk(wk wkVar, int i9) {
-        this.f43505a = i9;
-        this.f43506b = wkVar;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class vk implements org.telegram.ui.Components.ek0 {
+    public final tn f43615a;
+
+    public vk(tn tnVar) {
+        this.f43615a = tnVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43505a) {
-            case 0:
-                ak akVar = this.f43506b.D.U;
-                if (akVar != null) {
-                    akVar.P0 = false;
-                    org.telegram.ui.Components.uf ufVar = akVar.Q0;
-                    if (ufVar != null) {
-                        ufVar.u(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ak akVar2 = this.f43506b.D.U;
-                if (akVar2 != null) {
-                    akVar2.G0();
-                    return;
-                }
-                return;
-        }
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final void Q(android.view.View r24, kg.q0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vk.Q(android.view.View, kg.q0, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void G(Canvas canvas, RectF rectF, float f9, float f10, float f11, int i10, boolean z10) {
     }
 }

@@ -1,102 +1,60 @@
 package jh;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import f2.g1;
-import f2.n1;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.s7;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.qu0;
-import org.telegram.ui.Components.zy;
-public final class h extends zy {
-    public final int X = 0;
-    public final Object Y;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.c80;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class h implements RequestDelegate {
+    public final int f12138a;
+    public final boolean f12139b;
+    public final long f12140c;
+    public final Object d;
+    public final Object f12141e;
 
-    public h() {
-        super(100, false);
-        this.Y = new Object();
+    public h(MessagesController messagesController, boolean z10, TLRPC.User user, long j10) {
+        this.f12138a = 1;
+        this.d = messagesController;
+        this.f12139b = z10;
+        this.f12141e = user;
+        this.f12140c = j10;
     }
 
     @Override
-    public int A() {
-        switch (this.X) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12138a) {
             case 0:
-                return 0;
-            default:
-                return super.A();
-        }
-    }
-
-    @Override
-    public qu0 D1(int i9) {
-        switch (this.X) {
-            case 0:
-                qu0 qu0Var = (qu0) this.Y;
-                qu0Var.f32027b = 100.0f;
-                qu0Var.f32026a = 100.0f;
-                return qu0Var;
-            default:
-                return super.D1(i9);
-        }
-    }
-
-    @Override
-    public void U(g1 g1Var, n1 n1Var, View view, s0.d dVar) {
-        k8.o oVar;
-        switch (this.X) {
-            case 0:
-                super.U(g1Var, n1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47292a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                if (collectionItemInfo != null) {
-                    oVar = new k8.o(collectionItemInfo);
-                } else {
-                    oVar = null;
-                }
-                if (oVar != null) {
-                    Object obj = oVar.f14703a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                        return;
-                    }
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new i((q) this.d, tL_error, tLObject, (TwoStepVerificationActivity) this.f12141e, this.f12139b, this.f12140c));
                 return;
-            default:
-                super.U(g1Var, n1Var, view, dVar);
-                return;
-        }
-    }
-
-    @Override
-    public int W0(n1 n1Var) {
-        switch (this.X) {
             case 1:
-                if (((i51) this.Y).W2) {
-                    return AndroidUtilities.displaySize.y;
-                }
-                return super.W0(n1Var);
-            default:
-                return super.W0(n1Var);
-        }
-    }
-
-    @Override
-    public void z0(n1 n1Var, int[] iArr) {
-        switch (this.X) {
-            case 0:
-                super.z0(n1Var, iArr);
-                iArr[1] = Math.max(iArr[1], s7.a(1) * 2);
+                long j10 = this.f12140c;
+                ((MessagesController) this.d).lambda$deleteParticipantFromChat$316(this.f12139b, (TLRPC.User) this.f12141e, j10, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.d).lambda$checkChatInviter$375((TLRPC.Chat) this.f12141e, this.f12139b, this.f12140c, tLObject, tL_error);
                 return;
             default:
-                super.z0(n1Var, iArr);
+                c80.s((c80) this.d, this.f12140c, this.f12139b, (TLRPC.TL_messages_importChatInvite) this.f12141e, tLObject, tL_error);
                 return;
         }
     }
 
-    public h(i51 i51Var, int i9) {
-        super(i9, false);
-        this.Y = i51Var;
+    public h(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, long j10, int i10) {
+        this.f12138a = i10;
+        this.d = notificationCenterDelegate;
+        this.f12141e = obj;
+        this.f12139b = z10;
+        this.f12140c = j10;
+    }
+
+    public h(c80 c80Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f12138a = 3;
+        this.d = c80Var;
+        this.f12140c = j10;
+        this.f12139b = z10;
+        this.f12141e = tL_messages_importChatInvite;
     }
 }

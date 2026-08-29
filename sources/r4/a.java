@@ -1,27 +1,50 @@
 package r4;
 
-import android.graphics.Bitmap;
-import android.text.Layout;
-public final class a {
-    public CharSequence f47030a = null;
-    public final Bitmap f47031b = null;
-    public Layout.Alignment f47032c = null;
-    public Layout.Alignment d = null;
-    public float f47033e = -3.4028235E38f;
-    public int f47034f = Integer.MIN_VALUE;
-    public int f47035g = Integer.MIN_VALUE;
-    public float h = -3.4028235E38f;
-    public int f47036i = Integer.MIN_VALUE;
-    public int f47037j = Integer.MIN_VALUE;
-    public float f47038k = -3.4028235E38f;
-    public float f47039l = -3.4028235E38f;
-    public final float f47040m = -3.4028235E38f;
-    public final boolean f47041n = false;
-    public final int f47042o = -16777216;
-    public int f47043p = Integer.MIN_VALUE;
-    public float f47044q;
+import android.net.Uri;
+import android.os.SystemClock;
+import com.google.android.exoplayer2.upstream.j0;
+import com.google.android.exoplayer2.upstream.k0;
+import f5.d0;
+import f7.v;
+import java.util.HashMap;
+import java.util.List;
+import p2.u;
+public final class a implements r {
+    public final c f46935a;
 
-    public final b a() {
-        return new b(this.f47030a, this.f47032c, this.d, this.f47031b, this.f47033e, this.f47034f, this.f47035g, this.h, this.f47036i, this.f47037j, this.f47038k, this.f47039l, this.f47040m, this.f47041n, this.f47042o, this.f47043p, this.f47044q);
+    public a(c cVar) {
+        this.f46935a = cVar;
+    }
+
+    @Override
+    public final void a() {
+        this.f46935a.f46947e.remove(this);
+    }
+
+    @Override
+    public final boolean c(Uri uri, u uVar, boolean z10) {
+        b bVar;
+        c cVar = this.f46935a;
+        HashMap hashMap = cVar.d;
+        if (cVar.f46952w == null) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            m mVar = cVar.f46951s;
+            int i10 = d0.f6579a;
+            List list = mVar.f46999e;
+            int i11 = 0;
+            for (int i12 = 0; i12 < list.size(); i12++) {
+                b bVar2 = (b) hashMap.get(((l) list.get(i12)).f46993a);
+                if (bVar2 != null && elapsedRealtime < bVar2.f46941n) {
+                    i11++;
+                }
+            }
+            j0 j0Var = new j0(1, 0, cVar.f46951s.f46999e.size(), i11);
+            cVar.f46946c.getClass();
+            k0 z11 = v.z(j0Var, uVar);
+            if (z11 != null && z11.f3576a == 2 && (bVar = (b) hashMap.get(uri)) != null) {
+                b.a(bVar, z11.f3577b);
+            }
+        }
+        return false;
     }
 }

@@ -1,82 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ci0 extends Drawable {
-    public final View f27497a;
-    public final Paint f27498b;
-    public final Path f27499c;
-    public int d;
-    public boolean f27500e;
-    public final y5 f27501f;
+import android.animation.ValueAnimator;
+public final class ci0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27488a;
+    public final ei0 f27489b;
 
-    public ci0(View view) {
-        Paint paint = new Paint(1);
-        this.f27498b = paint;
-        Path path = new Path();
-        this.f27499c = path;
-        this.d = 255;
-        this.f27497a = view;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f27501f = new y5(view, 0L, 350L, gr.h);
-        float dpf2 = AndroidUtilities.dpf2(4.66f);
-        float dpf22 = AndroidUtilities.dpf2(2.16f);
-        path.rewind();
-        path.moveTo(dpf2 / 2.0f, 0.0f);
-        float f10 = (-dpf2) / 2.0f;
-        path.lineTo(f10, 0.0f);
-        float f11 = f10 + dpf22;
-        path.lineTo(f11, -dpf22);
-        path.moveTo(f10, 0.0f);
-        path.lineTo(f11, dpf22);
+    public ci0(ei0 ei0Var, int i10) {
+        this.f27488a = i10;
+        this.f27489b = ei0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        float e10 = this.f27501f.e(this.f27500e);
-        float dpf2 = AndroidUtilities.dpf2(2.51f);
-        canvas.save();
-        canvas.translate(centerX, centerY);
-        canvas.save();
-        canvas.translate(dpf2, dpf2);
-        canvas.rotate(45.0f);
-        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e10), 1.0f);
-        Path path = this.f27499c;
-        Paint paint = this.f27498b;
-        canvas.drawPath(path, paint);
-        canvas.restore();
-        canvas.save();
-        float f10 = -dpf2;
-        canvas.translate(f10, f10);
-        canvas.rotate(225.0f);
-        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e10), 1.0f);
-        canvas.drawPath(path, paint);
-        canvas.restore();
-        canvas.restore();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        this.d = i9;
-        this.f27498b.setAlpha(i9);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27488a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0 ei0Var = this.f27489b;
+                ei0Var.v = floatValue;
+                org.telegram.ui.Cells.p2 p2Var = ei0Var.H;
+                if (p2Var != null) {
+                    p2Var.invalidate();
+                }
+                jl0 jl0Var = ei0Var.I;
+                if (jl0Var != null) {
+                    jl0Var.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0 ei0Var2 = this.f27489b;
+                ei0Var2.f28088w = floatValue2;
+                org.telegram.ui.Cells.p2 p2Var2 = ei0Var2.H;
+                if (p2Var2 != null) {
+                    p2Var2.invalidate();
+                }
+                jl0 jl0Var2 = ei0Var2.I;
+                if (jl0Var2 != null) {
+                    jl0Var2.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0 ei0Var3 = this.f27489b;
+                ei0Var3.f28082p = floatValue3;
+                org.telegram.ui.Cells.p2 p2Var3 = ei0Var3.H;
+                if (p2Var3 != null) {
+                    p2Var3.invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0 ei0Var4 = this.f27489b;
+                ei0Var4.f28081o = floatValue4;
+                org.telegram.ui.Cells.p2 p2Var4 = ei0Var4.H;
+                if (p2Var4 != null) {
+                    p2Var4.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0 ei0Var5 = this.f27489b;
+                ei0Var5.f28089x = floatValue5;
+                org.telegram.ui.Cells.p2 p2Var5 = ei0Var5.H;
+                if (p2Var5 != null) {
+                    p2Var5.invalidate();
+                    return;
+                }
+                return;
+            case 5:
+                ei0 ei0Var6 = this.f27489b;
+                ei0Var6.getClass();
+                ei0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.ui.Cells.p2 p2Var6 = ei0Var6.H;
+                if (p2Var6 != null) {
+                    p2Var6.invalidate();
+                    return;
+                }
+                return;
+            case 6:
+                ei0 ei0Var7 = this.f27489b;
+                ei0Var7.getClass();
+                ei0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0Var7.F = true;
+                org.telegram.ui.Cells.p2 p2Var7 = ei0Var7.H;
+                if (p2Var7 != null) {
+                    p2Var7.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ei0 ei0Var8 = this.f27489b;
+                ei0Var8.getClass();
+                ei0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ei0Var8.F = false;
+                org.telegram.ui.Cells.p2 p2Var8 = ei0Var8.H;
+                if (p2Var8 != null) {
+                    p2Var8.invalidate();
+                    return;
+                }
+                return;
+        }
     }
 }

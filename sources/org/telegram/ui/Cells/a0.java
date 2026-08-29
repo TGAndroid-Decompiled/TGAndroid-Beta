@@ -4,46 +4,46 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.uu0;
-public abstract class a0 extends ViewGroup implements uu0 {
-    public boolean f24041a;
-    public androidx.emoji2.text.i f24042b;
-    public int f24043c;
-    public m.i3 d;
-    public Runnable f24044e;
+import org.telegram.ui.Components.ev0;
+public abstract class a0 extends ViewGroup implements ev0 {
+    public boolean f24061a;
+    public androidx.emoji2.text.j f24062b;
+    public int f24063c;
+    public lh.m7 d;
+    public Runnable f24064e;
 
     public a0(Context context) {
         super(context);
-        this.f24041a = false;
-        this.f24042b = null;
-        this.f24043c = 0;
+        this.f24061a = false;
+        this.f24062b = null;
+        this.f24063c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
         setHapticFeedbackEnabled(true);
     }
 
-    public static float n(Drawable drawable, float f10, float f11, float f12) {
-        float intrinsicWidth = (drawable.getIntrinsicWidth() * f12) / drawable.getIntrinsicHeight();
-        int i9 = (int) f10;
-        int i10 = (int) f11;
-        drawable.setBounds(i9, i10, ((int) intrinsicWidth) + i9, ((int) f12) + i10);
+    public static float n(Drawable drawable, float f9, float f10, float f11) {
+        float intrinsicWidth = (drawable.getIntrinsicWidth() * f11) / drawable.getIntrinsicHeight();
+        int i10 = (int) f9;
+        int i11 = (int) f10;
+        drawable.setBounds(i10, i11, ((int) intrinsicWidth) + i10, ((int) f11) + i11);
         return intrinsicWidth;
     }
 
-    public static void o(int i9, int i10, Drawable drawable) {
-        drawable.setBounds(i9, i10, drawable.getIntrinsicWidth() + i9, drawable.getIntrinsicHeight() + i10);
+    public static void o(int i10, int i11, Drawable drawable) {
+        drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
     }
 
-    public static void p(Drawable drawable, float f10, float f11) {
-        int i9 = (int) f10;
-        int i10 = (int) f11;
-        drawable.setBounds(i9, i10, drawable.getIntrinsicWidth() + i9, drawable.getIntrinsicHeight() + i10);
+    public static void p(Drawable drawable, float f9, float f10) {
+        int i10 = (int) f9;
+        int i11 = (int) f10;
+        drawable.setBounds(i10, i11, drawable.getIntrinsicWidth() + i10, drawable.getIntrinsicHeight() + i11);
     }
 
     @Override
     public final void g(Runnable runnable) {
-        this.f24044e = runnable;
+        this.f24064e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements uu0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f24044e;
+        Runnable runnable = this.f24064e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,14 +69,14 @@ public abstract class a0 extends ViewGroup implements uu0 {
     }
 
     public final void k() {
-        this.f24041a = false;
-        androidx.emoji2.text.i iVar = this.f24042b;
-        if (iVar != null) {
-            removeCallbacks(iVar);
+        this.f24061a = false;
+        androidx.emoji2.text.j jVar = this.f24062b;
+        if (jVar != null) {
+            removeCallbacks(jVar);
         }
-        m.i3 i3Var = this.d;
-        if (i3Var != null) {
-            removeCallbacks(i3Var);
+        lh.m7 m7Var = this.d;
+        if (m7Var != null) {
+            removeCallbacks(m7Var);
         }
     }
 
@@ -89,12 +89,12 @@ public abstract class a0 extends ViewGroup implements uu0 {
     }
 
     public final void q() {
-        if (this.f24041a) {
+        if (this.f24061a) {
             return;
         }
-        this.f24041a = true;
+        this.f24061a = true;
         if (this.d == null) {
-            this.d = new m.i3(this, 4);
+            this.d = new lh.m7(this, 7);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

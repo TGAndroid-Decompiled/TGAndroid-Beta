@@ -2,12 +2,12 @@ package q0;
 
 import j$.util.Objects;
 public final class b {
-    public final Object f45893a;
-    public final Object f45894b;
+    public final Object f46194a;
+    public final Object f46195b;
 
     public b(Object obj, Object obj2) {
-        this.f45893a = obj;
-        this.f45894b = obj2;
+        this.f46194a = obj;
+        this.f46195b = obj2;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (!Objects.equals(bVar.f45893a, this.f45893a) || !Objects.equals(bVar.f45894b, this.f45894b)) {
+        if (!Objects.equals(bVar.f46194a, this.f46194a) || !Objects.equals(bVar.f46195b, this.f46195b)) {
             return false;
         }
         return true;
@@ -23,21 +23,21 @@ public final class b {
 
     public final int hashCode() {
         int hashCode;
-        int i9 = 0;
-        Object obj = this.f45893a;
+        int i10 = 0;
+        Object obj = this.f46194a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
-        Object obj2 = this.f45894b;
+        Object obj2 = this.f46195b;
         if (obj2 != null) {
-            i9 = obj2.hashCode();
+            i10 = obj2.hashCode();
         }
-        return i9 ^ hashCode;
+        return i10 ^ hashCode;
     }
 
     public final String toString() {
-        return "Pair{" + this.f45893a + " " + this.f45894b + "}";
+        return "Pair{" + this.f46194a + " " + this.f46195b + "}";
     }
 }

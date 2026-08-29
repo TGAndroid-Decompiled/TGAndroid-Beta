@@ -7,8 +7,8 @@ public final class b implements Runnable {
     public final int f32a;
     public final i f33b;
 
-    public b(i iVar, int i9) {
-        this.f32a = i9;
+    public b(i iVar, int i10) {
+        this.f32a = i10;
         this.f33b = iVar;
     }
 

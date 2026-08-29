@@ -2,14 +2,14 @@ package i1;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import f2.j1;
+import f2.g1;
 public abstract class b implements Parcelable {
-    public final Parcelable f10870a;
-    public static final a f10869b = new b();
-    public static final Parcelable.Creator<b> CREATOR = new j1(1);
+    public final Parcelable f8208a;
+    public static final a f8207b = new b();
+    public static final Parcelable.Creator<b> CREATOR = new g1(1);
 
     public b() {
-        this.f10870a = null;
+        this.f8208a = null;
     }
 
     @Override
@@ -18,13 +18,13 @@ public abstract class b implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeParcelable(this.f10870a, i9);
+    public void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeParcelable(this.f8208a, i10);
     }
 
     public b(Parcelable parcelable) {
         if (parcelable != null) {
-            this.f10870a = parcelable == f10869b ? null : parcelable;
+            this.f8208a = parcelable == f8207b ? null : parcelable;
             return;
         }
         throw new IllegalArgumentException("superState must not be null");
@@ -32,6 +32,6 @@ public abstract class b implements Parcelable {
 
     public b(Parcel parcel, ClassLoader classLoader) {
         Parcelable readParcelable = parcel.readParcelable(classLoader);
-        this.f10870a = readParcelable == null ? f10869b : readParcelable;
+        this.f8208a = readParcelable == null ? f8207b : readParcelable;
     }
 }

@@ -1,96 +1,38 @@
 package ed;
-
-import g7.y5;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import qc.i;
-import sc.h;
-public final class c implements Iterator, qc.c {
-    public int f5109a;
-    public Object f5110b;
-    public qc.c f5111c;
-
-    public final RuntimeException a() {
-        int i9 = this.f5109a;
-        if (i9 != 4) {
-            if (i9 != 5) {
-                return new IllegalStateException("Unexpected state of the iterator: " + this.f5109a);
-            }
-            return new IllegalStateException("Iterator has failed.");
-        }
-        return new NoSuchElementException();
+public final class c extends a {
+    static {
+        new a((char) 1, (char) 0);
     }
 
-    public final void c(Object obj, h hVar) {
-        this.f5110b = obj;
-        this.f5109a = 3;
-        this.f5111c = hVar;
-        rc.a aVar = rc.a.f47127a;
-    }
-
-    @Override
-    public final qc.h getContext() {
-        return i.f46140a;
-    }
-
-    @Override
-    public final boolean hasNext() {
-        int i9;
-        while (true) {
-            i9 = this.f5109a;
-            if (i9 != 0) {
-                break;
-            }
-            this.f5109a = 5;
-            qc.c cVar = this.f5111c;
-            kotlin.jvm.internal.i.b(cVar);
-            this.f5111c = null;
-            cVar.resumeWith(oc.i.f19197a);
-        }
-        if (i9 != 1) {
-            if (i9 == 2 || i9 == 3) {
-                return true;
-            }
-            if (i9 == 4) {
+    public final boolean equals(Object obj) {
+        c cVar;
+        char c3;
+        char c6;
+        if (obj instanceof c) {
+            char c10 = this.f5875a;
+            char c11 = this.f5876b;
+            if (c10 < c11 || c10 == c11 || (c3 = (cVar = (c) obj).f5875a) < (c6 = cVar.f5876b) || c3 == c6) {
+                c cVar2 = (c) obj;
+                if (c10 == cVar2.f5875a && c11 == cVar2.f5876b) {
+                    return true;
+                }
                 return false;
             }
-            throw a();
+            return true;
         }
-        kotlin.jvm.internal.i.b(null);
-        throw null;
+        return false;
     }
 
-    @Override
-    public final Object next() {
-        int i9 = this.f5109a;
-        if (i9 != 0 && i9 != 1) {
-            if (i9 != 2) {
-                if (i9 == 3) {
-                    this.f5109a = 0;
-                    Object obj = this.f5110b;
-                    this.f5110b = null;
-                    return obj;
-                }
-                throw a();
-            }
-            this.f5109a = 1;
-            kotlin.jvm.internal.i.b(null);
-            throw null;
-        } else if (hasNext()) {
-            return next();
-        } else {
-            throw new NoSuchElementException();
+    public final int hashCode() {
+        char c3 = this.f5875a;
+        char c6 = this.f5876b;
+        if (c3 < c6 || c3 == c6) {
+            return (c3 * 31) + c6;
         }
+        return -1;
     }
 
-    @Override
-    public final void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        y5.b(obj);
-        this.f5109a = 4;
+    public final String toString() {
+        return this.f5875a + ".." + this.f5876b;
     }
 }

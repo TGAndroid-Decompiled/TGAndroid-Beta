@@ -1,74 +1,44 @@
 package d8;
 
-import android.content.Context;
-import android.util.Log;
-import com.google.android.gms.internal.vision.t2;
-public final class b {
-    public int f4454a;
-    public int f4455b;
-    public boolean f4456c;
-    public final Object d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.internal.cast.o;
+public final class b extends a6.a {
+    public static final Parcelable.Creator<b> CREATOR = new d6.d(3);
+    public int f5471a;
+    public int f5472b;
+    public int f5473c;
+    public int d;
+    public int f5474e;
+    public int f5475f;
+    public boolean h;
+    public String f5476n;
 
-    public b(Context context) {
-        this.f4454a = 0;
-        this.f4456c = true;
-        this.f4455b = 0;
-        this.d = context;
-    }
-
-    public c a() {
-        boolean z10;
-        ?? obj = new Object();
-        int i9 = this.f4455b;
-        obj.f4980a = i9;
-        int i10 = this.f4454a;
-        obj.f4981b = i10;
-        boolean z11 = false;
-        obj.f4982c = 0;
-        obj.d = false;
-        obj.f4983e = this.f4456c;
-        obj.f4984f = -1.0f;
-        if (i9 != 2 && i10 == 2) {
-            Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (obj.f4981b == 2 && obj.f4982c == 1) {
-            Log.e("FaceDetector", "Classification is not supported with contour.");
-        } else {
-            z11 = z10;
-        }
-        if (z11) {
-            return new c(new t2((Context) this.d, (e8.b) obj));
-        }
-        throw new IllegalArgumentException("Invalid build options");
-    }
-
-    public void b(int i9) {
-        if (i9 != 0 && i9 != 1 && i9 != 2) {
-            StringBuilder sb2 = new StringBuilder(34);
-            sb2.append("Invalid landmark type: ");
-            sb2.append(i9);
-            throw new IllegalArgumentException(sb2.toString());
-        }
-        this.f4454a = i9;
-    }
-
-    public void c(int i9) {
-        if (i9 != 0 && i9 != 1 && i9 != 2) {
-            StringBuilder sb2 = new StringBuilder(25);
-            sb2.append("Invalid mode: ");
-            sb2.append(i9);
-            throw new IllegalArgumentException(sb2.toString());
-        }
-        this.f4455b = i9;
-    }
-
-    public b(ke.a... aVarArr) {
-        this.f4454a = -1;
-        this.f4455b = -1;
-        this.f4456c = false;
-        this.d = aVarArr;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        int i11 = this.f5471a;
+        o.s(parcel, 2, 4);
+        parcel.writeInt(i11);
+        int i12 = this.f5472b;
+        o.s(parcel, 3, 4);
+        parcel.writeInt(i12);
+        int i13 = this.f5473c;
+        o.s(parcel, 4, 4);
+        parcel.writeInt(i13);
+        int i14 = this.d;
+        o.s(parcel, 5, 4);
+        parcel.writeInt(i14);
+        int i15 = this.f5474e;
+        o.s(parcel, 6, 4);
+        parcel.writeInt(i15);
+        int i16 = this.f5475f;
+        o.s(parcel, 7, 4);
+        parcel.writeInt(i16);
+        boolean z10 = this.h;
+        o.s(parcel, 8, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        o.l(parcel, 9, this.f5476n);
+        o.r(parcel, q6);
     }
 }

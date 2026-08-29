@@ -1,10 +1,10 @@
 package jb;
-public final class b {
-    public final c f14288a;
-    public final ya.d f14289b;
 
-    public b(c cVar, ya.d dVar) {
-        this.f14288a = cVar;
-        this.f14289b = dVar;
-    }
+import java.util.ArrayList;
+public interface b {
+    ArrayList a(fb.a aVar);
+
+    void zzb();
+
+    void zzc();
 }

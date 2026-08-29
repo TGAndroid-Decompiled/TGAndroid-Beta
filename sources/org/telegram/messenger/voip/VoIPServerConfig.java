@@ -15,8 +15,8 @@ public class VoIPServerConfig {
         return config.optDouble(str, d);
     }
 
-    public static int getInt(String str, int i9) {
-        return config.optInt(str, i9);
+    public static int getInt(String str, int i10) {
+        return config.optInt(str, i10);
     }
 
     public static String getString(String str, String str2) {

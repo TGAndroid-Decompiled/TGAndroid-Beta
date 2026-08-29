@@ -1,10 +1,35 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public interface wx {
-    boolean C();
+import android.content.Context;
+public final class wx implements Runnable {
+    public final int f44394a;
+    public final xx f44395b;
 
-    boolean I(dy dyVar);
+    public wx(xx xxVar, int i10) {
+        this.f44394a = i10;
+        this.f44395b = xxVar;
+    }
 
-    boolean v(dy dyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i9, int i10, we1 we1Var);
+    @Override
+    public final void run() {
+        int i10;
+        switch (this.f44394a) {
+            case 0:
+                xx xxVar = this.f44395b;
+                fy fyVar = xxVar.A0;
+                Context context = xxVar.getContext();
+                i10 = ((org.telegram.ui.ActionBar.o2) fyVar).currentAccount;
+                fyVar.showDialog(new cg.v0(3, i10, context, fyVar, null));
+                return;
+            default:
+                fy fyVar2 = this.f44395b.A0;
+                cx cxVar = fyVar2.I0;
+                if (cxVar != null) {
+                    cxVar.dismiss();
+                    fyVar2.I0 = null;
+                    return;
+                }
+                return;
+        }
+    }
 }

@@ -1,59 +1,43 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.app.Activity;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
 public final class y20 implements Runnable {
-    public final int f34839a;
-    public final a30 f34840b;
-    public final String f34841c;
-    public final int d;
+    public final int f34902a;
+    public final Context f34903b;
 
-    public y20(a30 a30Var, String str, int i9, int i10) {
-        this.f34839a = i10;
-        this.f34840b = a30Var;
-        this.f34841c = str;
-        this.d = i9;
+    public y20(Context context, int i10) {
+        this.f34902a = i10;
+        this.f34903b = context;
     }
 
     @Override
     public final void run() {
-        long j10;
-        switch (this.f34839a) {
+        switch (this.f34902a) {
             case 0:
-                a30 a30Var = this.f34840b;
-                String str = this.f34841c;
-                int i9 = this.d;
-                if (a30Var.f26651e != null) {
-                    a30Var.f26651e = null;
-                    AndroidUtilities.runOnUIThread(new y20(a30Var, str, i9, 1));
+                w20.j(this.f34903b);
+                return;
+            case 1:
+                ye.d.s(this.f34903b, LocaleController.getString(R.string.StarsTOSLink));
+                return;
+            case 2:
+                Activity findActivity = AndroidUtilities.findActivity(this.f34903b);
+                if (findActivity instanceof LaunchActivity) {
+                    ((LaunchActivity) findActivity).p0(new PremiumPreviewFragment(0, cg.v0.A1(10)));
                     return;
                 }
                 return;
             default:
-                a30 a30Var2 = this.f34840b;
-                String str2 = this.f34841c;
-                int i10 = this.d;
-                ArrayList arrayList = null;
-                a30Var2.f26651e = null;
-                if (!ChatObject.isChannel(a30Var2.f26656w.R) && a30Var2.f26656w.S != null) {
-                    arrayList = new ArrayList(a30Var2.f26656w.S.participants.participants);
+                Activity findActivity2 = AndroidUtilities.findActivity(this.f34903b);
+                if (findActivity2 instanceof LaunchActivity) {
+                    ((LaunchActivity) findActivity2).p0(new PremiumPreviewFragment(0, cg.v0.A1(9)));
+                    return;
                 }
-                ArrayList arrayList2 = arrayList;
-                if (arrayList2 != null) {
-                    Utilities.searchQueue.postRunnable(new c3.d(a30Var2, str2, i10, arrayList2, 19));
-                } else {
-                    a30Var2.h = false;
-                }
-                of.v1 v1Var = a30Var2.d;
-                boolean canAddUsers = ChatObject.canAddUsers(a30Var2.f26656w.R);
-                if (ChatObject.isChannel(a30Var2.f26656w.R)) {
-                    j10 = a30Var2.f26656w.R.f22380id;
-                } else {
-                    j10 = 0;
-                }
-                v1Var.g(str2, canAddUsers, false, true, false, j10, false, 2, i10);
                 return;
         }
     }

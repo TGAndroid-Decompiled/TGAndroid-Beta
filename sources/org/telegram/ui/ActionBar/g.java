@@ -2,187 +2,135 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.view.KeyEvent;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.p8;
-import org.telegram.ui.Components.w8;
-import org.telegram.ui.fg0;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.jf;
+import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.t9;
+import org.telegram.ui.di0;
+import org.telegram.ui.ki0;
+import org.telegram.ui.xh0;
 public final class g extends AnimatorListenerAdapter {
-    public final int f23397a;
-    public boolean f23398b;
-    public final boolean f23399c;
+    public final int f22958a = 0;
+    public final boolean f22959b;
+    public final boolean f22960c;
     public final Object d;
+    public final KeyEvent.Callback f22961e;
 
-    public g(Object obj, boolean z10, boolean z11, int i9) {
-        this.f23397a = i9;
-        this.d = obj;
-        this.f23398b = z10;
-        this.f23399c = z11;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f23397a) {
-            case 1:
-                this.f23398b = true;
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                actionBarLayout.Z0 = false;
-                actionBarLayout.f22679s.setAlpha(1.0f);
-                ActionBarLayout.a(actionBarLayout, true);
-                actionBarLayout.f22654d1 = null;
-                return;
-            case 2:
-            default:
-                super.onAnimationCancel(animator);
-                return;
-            case 3:
-                ki kiVar = (ki) this.d;
-                if (animator.equals(kiVar.I0)) {
-                    kiVar.I0 = null;
-                    return;
-                }
-                return;
-            case 4:
-                ((h90) this.d).f29000b2 = null;
-                return;
-            case 5:
-                fg0 fg0Var = (fg0) this.d;
-                AnimatorSet[] animatorSetArr = fg0Var.G;
-                boolean z10 = this.f23398b;
-                if (animatorSetArr[!z10 ? 1 : 0] != null && animatorSetArr[!z10 ? 1 : 0].equals(animator)) {
-                    fg0Var.G[!z10 ? 1 : 0] = null;
-                    return;
-                }
-                return;
-        }
+    public g(l lVar, ArrayList arrayList, boolean z10, boolean z11) {
+        this.f22961e = lVar;
+        this.d = arrayList;
+        this.f22959b = z10;
+        this.f22960c = z11;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f10;
-        ci ciVar;
-        int i9;
-        w0 w0Var;
-        switch (this.f23397a) {
+        float f9;
+        jf jfVar;
+        org.telegram.ui.Cells.s1 s1Var;
+        ViewGroup viewGroup;
+        xh0 xh0Var;
+        switch (this.f22958a) {
             case 0:
-                k kVar = (k) this.d;
-                h5 h5Var = kVar.f23583n[1];
-                if (h5Var != null && h5Var.getParent() != null) {
-                    ((ViewGroup) kVar.f23583n[1].getParent()).removeView(kVar.f23583n[1]);
-                }
-                kVar.f23583n[1] = null;
-                kVar.f23594t0 = false;
-                if (this.f23398b && this.f23399c) {
-                    kVar.f23590r.setVisibility(8);
-                }
-                kVar.requestLayout();
-                return;
-            case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (!this.f23398b) {
-                    actionBarLayout.Z0 = false;
-                    actionBarLayout.f22679s.setAlpha(1.0f);
-                    ActionBarLayout.a(actionBarLayout, this.f23399c);
-                    actionBarLayout.f22654d1 = null;
-                    return;
-                }
-                return;
-            case 2:
-                w8 w8Var = (w8) this.d;
-                w8Var.C = null;
-                boolean z10 = this.f23398b;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                w8Var.h0(f10, false);
-                if (this.f23399c) {
-                    p8 p8Var = w8Var.f34138a;
-                    p8Var.f33319w = -1.0f;
-                    p8Var.setExpanded(z10);
-                    return;
-                }
-                return;
-            case 3:
-                boolean z11 = this.f23398b;
-                ki kiVar = (ki) this.d;
-                if (animator.equals(kiVar.I0)) {
-                    if (!z11) {
-                        if (!kiVar.J) {
-                            kiVar.f30178z0.setVisibility(4);
-                        }
-                        kiVar.D0.setVisibility(4);
-                    } else if (kiVar.O0 && ((ciVar = kiVar.f30160u0) == null || ciVar.I())) {
-                        kiVar.f30158t1.setVisibility(4);
-                    }
-                    if (this.f23399c) {
-                        kiVar.b2();
-                        fh.v vVar = kiVar.K0;
-                        if (z11) {
-                            i9 = 0;
+                ArrayList arrayList = (ArrayList) this.d;
+                l lVar = (l) this.f22961e;
+                int i10 = 0;
+                while (true) {
+                    int size = arrayList.size();
+                    boolean z10 = this.f22959b;
+                    if (i10 < size) {
+                        View view = (View) arrayList.get(i10);
+                        if (z10) {
+                            view.setVisibility(4);
+                            view.setAlpha(0.0f);
                         } else {
-                            i9 = 8;
+                            view.setAlpha(1.0f);
                         }
-                        vVar.setVisibility(i9);
-                    }
-                    kiVar.I0 = null;
-                    return;
-                }
-                return;
-            case 4:
-                h90 h90Var = (h90) this.d;
-                k90 k90Var = h90Var.f29003e2;
-                if (h90Var.f29000b2 != null) {
-                    h90Var.f29000b2 = null;
-                    if (!this.f23398b) {
-                        k90Var.B.setVisibility(4);
-                        FrameLayout frameLayout = k90Var.O;
-                        if (frameLayout != null) {
-                            frameLayout.setVisibility(4);
+                        i10++;
+                    } else {
+                        if (z10 && !this.f22960c) {
+                            h5 h5Var = lVar.f23618n[0];
+                            if (h5Var != null) {
+                                h5Var.setVisibility(8);
+                            }
+                            h5 h5Var2 = lVar.f23618n[1];
+                            if (h5Var2 != null) {
+                                h5Var2.setVisibility(8);
+                            }
                         }
-                        w0 w0Var2 = k90Var.D;
-                        if (w0Var2 != null) {
-                            w0Var2.setVisibility(8);
-                        }
-                        if (this.f23399c && (w0Var = k90Var.C) != null) {
-                            w0Var.setVisibility(8);
+                        t9 t9Var = lVar.f23603f;
+                        if (t9Var != null && !z10) {
+                            t9Var.setVisibility(8);
                             return;
                         }
                         return;
                     }
-                    k90Var.f30039s.setVisibility(4);
-                    w0 w0Var3 = k90Var.C;
-                    if (w0Var3 != null) {
-                        w0Var3.setVisibility(8);
+                }
+                break;
+            default:
+                Runnable runnable = (Runnable) this.d;
+                ki0 ki0Var = (ki0) this.f22961e;
+                di0 di0Var = ki0Var.G;
+                boolean z11 = this.f22959b;
+                if (z11) {
+                    f9 = 1.0f;
+                } else {
+                    f9 = 0.0f;
+                }
+                ki0Var.A = f9;
+                ki0Var.f39902x = false;
+                ki0Var.f39903y = false;
+                ki0Var.D.setAlpha(f9);
+                if (z11) {
+                    ki0Var.f39901w = false;
+                    ki0Var.v = false;
+                }
+                jf jfVar2 = ki0Var.O;
+                if (jfVar2 != null) {
+                    jfVar2.setAlpha(1.0f);
+                }
+                org.telegram.ui.Cells.s1 s1Var2 = ki0Var.f39890n0;
+                if (s1Var2 != null) {
+                    s1Var2.setVisibility(0);
+                }
+                og ogVar = ki0Var.S;
+                if (ogVar != null && !ki0Var.f39896s) {
+                    ogVar.setAlpha(1.0f);
+                }
+                if (!z11 && (xh0Var = ki0Var.T) != null) {
+                    xh0Var.setAlpha(0.0f);
+                }
+                if (!this.f22960c && (viewGroup = ki0Var.V) != null) {
+                    viewGroup.setAlpha(ki0Var.A);
+                }
+                di0Var.invalidate();
+                di0Var.setAlpha(ki0Var.A);
+                ki0Var.B.invalidate();
+                ki0Var.C.invalidate();
+                if (runnable != null) {
+                    if (!z11 && (s1Var = ki0Var.f39890n0) != null && s1Var.isAttachedToWindow()) {
+                        ki0Var.f39890n0.post(runnable);
+                        return;
+                    } else if (!z11 && (jfVar = ki0Var.O) != null && jfVar.isAttachedToWindow()) {
+                        ki0Var.O.post(runnable);
+                        return;
+                    } else {
+                        AndroidUtilities.runOnUIThread(runnable);
                         return;
                     }
-                    return;
-                }
-                return;
-            default:
-                fg0 fg0Var = (fg0) this.d;
-                AnimatorSet[] animatorSetArr = fg0Var.G;
-                boolean z12 = this.f23398b;
-                if (animatorSetArr[!z12 ? 1 : 0] != null && animatorSetArr[!z12 ? 1 : 0].equals(animator) && !this.f23399c && z12 && fg0Var.I.getAlpha() != 1.0f) {
-                    fg0Var.I.setAlpha(1.0f);
-                    fg0Var.I.setScaleX(1.0f);
-                    fg0Var.I.setScaleY(1.0f);
-                    fg0Var.I.setVisibility(0);
-                    return;
                 }
                 return;
         }
     }
 
-    public g(ActionBarLayout actionBarLayout, boolean z10) {
-        this.f23397a = 1;
-        this.d = actionBarLayout;
-        this.f23399c = z10;
+    public g(ki0 ki0Var, boolean z10, boolean z11, Runnable runnable) {
+        this.f22961e = ki0Var;
+        this.f22959b = z10;
+        this.f22960c = z11;
+        this.d = runnable;
     }
 }

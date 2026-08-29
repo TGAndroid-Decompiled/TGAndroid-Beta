@@ -1,47 +1,45 @@
 package w3;
-public final class a implements m3.k {
-    public final b f48477a = new b(null, 0);
-    public final d5.y f48478b = new d5.y(2786);
-    public boolean f48479c;
 
-    @Override
-    public final int b(m3.l lVar, m3.n nVar) {
-        d5.y yVar = this.f48478b;
-        int read = ((m3.h) lVar).read(yVar.f4410a, 0, 2786);
-        if (read == -1) {
-            return -1;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class a extends nc.k {
+    public final long f49632c;
+    public final ArrayList d;
+    public final ArrayList f49633e;
+
+    public a(int i10, long j10) {
+        super(i10, 1);
+        this.f49632c = j10;
+        this.d = new ArrayList();
+        this.f49633e = new ArrayList();
+    }
+
+    public final a e(int i10) {
+        ArrayList arrayList = this.f49633e;
+        int size = arrayList.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            a aVar = (a) arrayList.get(i11);
+            if (aVar.f17285b == i10) {
+                return aVar;
+            }
         }
-        yVar.C(0);
-        yVar.B(read);
-        boolean z10 = this.f48479c;
-        b bVar = this.f48477a;
-        if (!z10) {
-            bVar.k(4, 0L);
-            this.f48479c = true;
+        return null;
+    }
+
+    public final b f(int i10) {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        for (int i11 = 0; i11 < size; i11++) {
+            b bVar = (b) arrayList.get(i11);
+            if (bVar.f17285b == i10) {
+                return bVar;
+            }
         }
-        bVar.g(yVar);
-        return 0;
+        return null;
     }
 
     @Override
-    public final void c(m3.m mVar) {
-        this.f48477a.j(mVar, new d0(0, 1));
-        mVar.B();
-        mVar.y(new m3.o(-9223372036854775807L));
-    }
-
-    @Override
-    public final boolean f(m3.l r14) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.a.f(m3.l):boolean");
-    }
-
-    @Override
-    public final void g(long j10, long j11) {
-        this.f48479c = false;
-        this.f48477a.h();
-    }
-
-    @Override
-    public final void release() {
+    public final String toString() {
+        return nc.k.a(this.f17285b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f49633e.toArray());
     }
 }

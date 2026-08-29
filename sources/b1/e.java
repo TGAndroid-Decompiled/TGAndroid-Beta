@@ -2,79 +2,80 @@ package b1;
 
 import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
-import f7.f0;
-import oc.i;
-import zc.p;
+import bd.p;
+import h7.g5;
+import kotlin.jvm.internal.j;
+import qc.i;
 public final class e implements p {
-    public final int f1397a;
+    public final int f1887a;
 
-    public e(int i9) {
-        this.f1397a = i9;
+    public e(int i10) {
+        this.f1887a = i10;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        qc.b bVar;
-        int i9 = this.f1397a;
-        i iVar = i.f19197a;
-        switch (i9) {
+        sc.b bVar;
+        int i10 = this.f1887a;
+        i iVar = i.f46603a;
+        switch (i10) {
             case 0:
-                zc.a f10 = (zc.a) obj2;
-                kotlin.jvm.internal.i.e(f10, "f");
-                int i10 = d.d;
-                f0.a((CancellationSignal) obj, f10);
+                bd.a f9 = (bd.a) obj2;
+                j.e(f9, "f");
+                int i11 = d.d;
+                g5.a((CancellationSignal) obj, f9);
                 return iVar;
             case 1:
-                zc.a f11 = (zc.a) obj2;
-                kotlin.jvm.internal.i.e(f11, "f");
+                bd.a f10 = (bd.a) obj2;
+                j.e(f10, "f");
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.g.a((CancellationSignal) obj)) {
+                    f10.invoke();
+                }
+                return iVar;
+            case 2:
+                bd.a f11 = (bd.a) obj2;
+                j.e(f11, "f");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a((CancellationSignal) obj)) {
                     f11.invoke();
                 }
                 return iVar;
-            case 2:
-                zc.a f12 = (zc.a) obj2;
-                kotlin.jvm.internal.i.e(f12, "f");
+            case 3:
+                bd.a f12 = (bd.a) obj2;
+                j.e(f12, "f");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a((CancellationSignal) obj)) {
                     f12.invoke();
                 }
                 return iVar;
-            case 3:
-                zc.a f13 = (zc.a) obj2;
-                kotlin.jvm.internal.i.e(f13, "f");
-                CredentialProviderPlayServicesImpl.Companion.getClass();
-                if (!a1.g.a((CancellationSignal) obj)) {
-                    f13.invoke();
-                }
-                return iVar;
             case 4:
                 String acc = (String) obj;
-                qc.f element = (qc.f) obj2;
-                kotlin.jvm.internal.i.e(acc, "acc");
-                kotlin.jvm.internal.i.e(element, "element");
+                sc.f element = (sc.f) obj2;
+                j.e(acc, "acc");
+                j.e(element, "element");
                 if (acc.length() == 0) {
                     return element.toString();
                 }
                 return acc + ", " + element;
             default:
-                qc.h acc2 = (qc.h) obj;
-                qc.f element2 = (qc.f) obj2;
-                kotlin.jvm.internal.i.e(acc2, "acc");
-                kotlin.jvm.internal.i.e(element2, "element");
-                qc.h minusKey = acc2.minusKey(element2.getKey());
-                qc.i iVar2 = qc.i.f46140a;
+                sc.h acc2 = (sc.h) obj;
+                sc.f element2 = (sc.f) obj2;
+                j.e(acc2, "acc");
+                j.e(element2, "element");
+                sc.h minusKey = acc2.minusKey(element2.getKey());
+                sc.i iVar2 = sc.i.f47711a;
                 if (minusKey != iVar2) {
-                    qc.d dVar = qc.d.f46139a;
-                    qc.e eVar = (qc.e) minusKey.get(dVar);
+                    sc.d dVar = sc.d.f47710a;
+                    sc.e eVar = (sc.e) minusKey.get(dVar);
                     if (eVar == null) {
-                        bVar = new qc.b(element2, minusKey);
+                        bVar = new sc.b(element2, minusKey);
                     } else {
-                        qc.h minusKey2 = minusKey.minusKey(dVar);
+                        sc.h minusKey2 = minusKey.minusKey(dVar);
                         if (minusKey2 == iVar2) {
-                            return new qc.b(eVar, element2);
+                            return new sc.b(eVar, element2);
                         }
-                        bVar = new qc.b(eVar, new qc.b(element2, minusKey2));
+                        bVar = new sc.b(eVar, new sc.b(element2, minusKey2));
                     }
                     return bVar;
                 }

@@ -1,36 +1,28 @@
 package j7;
 
-import java.util.Iterator;
-public final class p extends j {
-    public final transient r f14050c;
-    public final transient q d;
+import java.io.Serializable;
+public final class p extends f implements Serializable {
+    public final Object f11145b;
+    public final e f11146c;
 
-    public p(r rVar, q qVar) {
-        this.f14050c = rVar;
-        this.d = qVar;
+    public p(Object obj, e eVar) {
+        super(0, false);
+        this.f11145b = obj;
+        this.f11146c = eVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.f14050c.get(obj) != null) {
-            return true;
-        }
-        return false;
+    public final Object getKey() {
+        return this.f11145b;
     }
 
     @Override
-    public final int i(Object[] objArr) {
-        return this.d.i(objArr);
+    public final Object getValue() {
+        return this.f11146c;
     }
 
     @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        this.f14050c.getClass();
-        return 1;
+    public final Object setValue(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -8,5 +8,5 @@ public interface j {
 
     void onCreateCredential(Context context, b bVar, CancellationSignal cancellationSignal, Executor executor, i iVar);
 
-    void onGetCredential(Context context, o oVar, CancellationSignal cancellationSignal, Executor executor, i iVar);
+    void onGetCredential(Context context, n nVar, CancellationSignal cancellationSignal, Executor executor, i iVar);
 }

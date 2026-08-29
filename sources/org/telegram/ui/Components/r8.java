@@ -1,37 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class r8 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f32107a;
-    public final float f32108b;
-    public final boolean f32109c;
-    public final w8 d;
+public final class r8 extends gq {
+    public final int f32230b0;
 
-    public r8(w8 w8Var, float f10, float f11, boolean z10) {
-        this.d = w8Var;
-        this.f32107a = f10;
-        this.f32108b = f11;
-        this.f32109c = z10;
+    public r8(Context context, boolean z10, fq fqVar, int i10) {
+        super(context, z10, fqVar);
+        this.f32230b0 = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        w8 w8Var = this.d;
-        w8Var.J = floatValue;
-        float lerp = AndroidUtilities.lerp(this.f32107a, this.f32108b, floatValue);
-        kVar = ((org.telegram.ui.ActionBar.o2) w8Var).actionBar;
-        kVar.getTitleTextView().setAlpha(w8Var.J);
-        if (w8Var.B && !this.f32109c) {
-            w8Var.h0(1.0f - w8Var.J, false);
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f32230b0) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
         }
-        w8Var.f34144r.setTranslationY(lerp);
-        w8Var.f34147x.setTranslationY(lerp);
-        w8Var.fragmentView.invalidate();
-        kVar2 = ((org.telegram.ui.ActionBar.o2) w8Var).actionBar;
-        kVar2.invalidate();
     }
 }

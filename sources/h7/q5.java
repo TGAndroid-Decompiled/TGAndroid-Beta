@@ -1,17 +1,21 @@
 package h7;
-public final class q5 implements q9.d {
-    public static final q5 f10077a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(8, e2.c.s(h0.class, e2.c.j(7, e2.c.s(h0.class, e2.c.j(6, e2.c.s(h0.class, e2.c.j(5, e2.c.s(h0.class, e2.c.j(4, e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+import android.os.Bundle;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
+public abstract class q5 {
+    public static Map a(String str, Bundle bundle) {
+        Map map = (Map) bundle.getSerializable(str);
+        if (map == null) {
+            return com.google.android.gms.internal.cast.s0.f4252n;
         }
-        throw new ClassCastException();
+        HashMap hashMap = new HashMap();
+        for (Map.Entry entry : map.entrySet()) {
+            if (entry != null && entry.getKey() != null && entry.getValue() != null) {
+                hashMap.put((Integer) entry.getKey(), (Integer) entry.getValue());
+            }
+        }
+        return DesugarCollections.unmodifiableMap(hashMap);
     }
 }

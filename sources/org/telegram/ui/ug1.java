@@ -1,94 +1,138 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowInsets;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class ug1 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.voip.r1, r0.o, org.telegram.ui.Components.voip.h3 {
-    public final int f43257a;
-    public final mh1 f43258b;
+public final class ug1 extends org.telegram.ui.Components.z71 {
+    public boolean P;
+    public final Path Q;
+    public final vg1 R;
 
-    public ug1(mh1 mh1Var, int i9) {
-        this.f43257a = i9;
-        this.f43258b = mh1Var;
+    public ug1(vg1 vg1Var, Context context) {
+        super(context, null);
+        this.R = vg1Var;
+        this.Q = new Path();
     }
 
     @Override
-    public r0.m1 L0(View view, r0.m1 m1Var) {
-        WindowInsets g10 = m1Var.g();
-        mh1 mh1Var = this.f43258b;
-        mh1Var.f40455n0 = g10;
-        ((FrameLayout.LayoutParams) mh1Var.f40443f0.getLayoutParams()).bottomMargin = mh1Var.f40455n0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) mh1Var.f40429a0.getLayoutParams()).bottomMargin = mh1Var.f40455n0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) mh1Var.D.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) mh1Var.E.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) mh1Var.G.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(56.0f);
-        ((FrameLayout.LayoutParams) mh1Var.T.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(135.0f);
-        ((FrameLayout.LayoutParams) mh1Var.J.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(17.0f);
-        ((FrameLayout.LayoutParams) mh1Var.f40470y.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(93.0f);
-        ((FrameLayout.LayoutParams) mh1Var.K.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop();
-        ((FrameLayout.LayoutParams) mh1Var.N.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(118.0f);
-        ((FrameLayout.LayoutParams) mh1Var.M.getLayoutParams()).topMargin = mh1Var.f40455n0.getSystemWindowInsetTop() + AndroidUtilities.dp(380.0f);
-        ((FrameLayout.LayoutParams) mh1Var.V.getLayoutParams()).bottomMargin = mh1Var.f40455n0.getSystemWindowInsetBottom();
-        ((FrameLayout.LayoutParams) mh1Var.I0.getLayoutParams()).bottomMargin = mh1Var.f40455n0.getSystemWindowInsetBottom();
-        mh1Var.U.setInsets(mh1Var.f40455n0);
-        mh1Var.V.setInsets(mh1Var.f40455n0);
-        mh1Var.f40461s.requestLayout();
-        fh1 fh1Var = mh1Var.f40452k0;
-        if (fh1Var != null) {
-            fh1Var.setBottomPadding(mh1Var.f40455n0.getSystemWindowInsetBottom());
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.P) {
+            Path path = this.Q;
+            path.rewind();
+            float dpf2 = AndroidUtilities.dpf2(24.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
+            path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
         }
-        return r0.m1.f46928b;
-    }
-
-    @Override
-    public void d(org.telegram.ui.Components.voip.i3 i3Var) {
-        int i9;
-        switch (this.f43257a) {
-            case 5:
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    mh1 mh1Var = this.f43258b;
-                    AndroidUtilities.cancelRunOnUIThread(mh1Var.O0);
-                    mh1Var.N0 = false;
-                    boolean isMicMute = sharedInstance.isMicMute();
-                    boolean z10 = !isMicMute;
-                    if (mh1Var.f40462s0.isTouchExplorationEnabled()) {
-                        if (!isMicMute) {
-                            i9 = R.string.AccDescrVoipMicOff;
-                        } else {
-                            i9 = R.string.AccDescrVoipMicOn;
-                        }
-                        i3Var.announceForAccessibility(LocaleController.getString(i9));
-                    }
-                    sharedInstance.setMicMute(z10, false, true);
-                    mh1Var.m0 = mh1Var.f40453l0;
-                    mh1Var.H();
-                    return;
-                }
-                return;
-            default:
-                mh1.i(this.f43258b);
-                return;
+        super.dispatchDraw(canvas);
+        if (this.P) {
+            canvas.restore();
         }
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        switch (this.f43257a) {
-            case 0:
-                eh1 eh1Var = this.f43258b.f40458q0;
-                if (eh1Var != null) {
-                    eh1Var.b();
-                    return;
-                }
-                return;
-            default:
-                this.f43258b.f40458q0.b();
-                return;
+    public float getAvailableTranslationX() {
+        return getMeasuredWidth();
+    }
+
+    @Override
+    public long getManualScrollDuration() {
+        return 320L;
+    }
+
+    @Override
+    public final boolean j(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.o2 X = ((ng0) this.R).X();
+        if (!(X instanceof mg0)) {
+            return false;
         }
+        return ((mg0) X).S(motionEvent, false);
+    }
+
+    @Override
+    public final boolean k(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.o2 X = ((ng0) this.R).X();
+        if (X instanceof mg0) {
+            return ((mg0) X).S(motionEvent, true);
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        super.setLayoutParams(layoutParams);
+    }
+
+    public void setTabletLayout(boolean z10) {
+        if (this.P == z10) {
+            return;
+        }
+        this.P = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void t(View view, View view2, int i10, int i11) {
+        this.R.U();
+    }
+
+    @Override
+    public final void u() {
+        fy fyVar;
+        vg1 vg1Var = this.R;
+        ng0 ng0Var = (ng0) vg1Var;
+        if (ng0Var.B != null) {
+            ng0Var.m0(ng0Var.f43594c.getCurrentPosition(), true);
+            ng0Var.n0(0.0f, false);
+        }
+        ng0Var.d0();
+        ug1 ug1Var = ng0Var.f43594c;
+        if (ug1Var != null) {
+            int currentPosition = ug1Var.getCurrentPosition();
+            if (currentPosition != 2 && ng0Var.f40798x) {
+                ng0Var.W(2);
+                ng0Var.f40798x = false;
+            }
+            if (currentPosition != 3) {
+                ng0Var.W(3);
+            }
+            Integer num = ng0Var.E;
+            if (num != null && currentPosition == 0 && (fyVar = ng0Var.F) != null) {
+                fyVar.w4(num.intValue());
+                ng0Var.E = null;
+            }
+        }
+        vg1Var.U();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        vg1 vg1Var = this.R;
+        ng0 ng0Var = (ng0) vg1Var;
+        boolean z11 = !z10;
+        if (ng0Var.B != null) {
+            float positionAnimated = ng0Var.f43594c.getPositionAnimated();
+            ng0Var.n0(positionAnimated, z11);
+            if (!z10) {
+                ng0Var.m0(Math.round(positionAnimated), true);
+            }
+        }
+        ng0Var.h0();
+        ng0Var.d0();
+        ng0Var.f43593b.invalidate();
+        vg1Var.U();
+        vg1Var.checkSystemBarColors();
     }
 }

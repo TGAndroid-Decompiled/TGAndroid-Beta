@@ -1,30 +1,23 @@
 package d7;
 
-import f7.r6;
-import j$.util.Objects;
-import java.util.AbstractMap;
-public final class h extends d {
-    public final i f4431c;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import h7.o5;
+public final class h extends x {
+    public final TaskCompletionSource f5437b;
+    public final i f5438c;
 
-    public h(i iVar) {
-        this.f4431c = iVar;
+    public h(TaskCompletionSource taskCompletionSource, i iVar) {
+        this.f5437b = taskCompletionSource;
+        this.f5438c = iVar;
     }
 
     @Override
-    public final Object get(int i9) {
-        i iVar = this.f4431c;
-        r6.a(i9, iVar.f4433e);
-        Object[] objArr = iVar.d;
-        int i10 = i9 + i9;
-        Object obj = objArr[i10];
-        Objects.requireNonNull(obj);
-        Object obj2 = objArr[i10 + 1];
-        Objects.requireNonNull(obj2);
-        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    public final void g0(v vVar) {
+        o5.a(vVar.f5468a, null, this.f5437b);
     }
 
     @Override
-    public final int size() {
-        return this.f4431c.f4433e;
+    public final void zze() {
+        this.f5438c.J0();
     }
 }

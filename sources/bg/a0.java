@@ -1,106 +1,69 @@
 package bg;
 
-import android.app.Activity;
-import android.content.res.Configuration;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.gc;
-public final class a0 extends org.telegram.ui.ActionBar.f3 {
-    public static a0 f1690e;
-    public final w f1691b;
-    public final q2 f1692c;
-    public boolean d;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.ka0;
+public final class a0 implements o1.g {
+    public final int f2077a;
+    public final FrameLayout f2078b;
+    public final boolean f2079c;
 
-    public a0(Activity activity, h1 h1Var, q2 q2Var, b6 b6Var, boolean z10) {
-        super(activity, b6Var, true, false);
-        boolean z11;
-        this.f1692c = q2Var;
-        setApplyBottomPadding(false);
-        setApplyTopPadding(false);
-        this.useBackgroundTopPadding = false;
-        setBackgroundColor(0);
-        fixNavigationBar();
-        if (i0.a.f(f6.v0(f6.f23072h5, this.resourcesProvider)) > 0.699999988079071d) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        AndroidUtilities.setLightStatusBar(this, z11);
-        this.d = getContext().getResources().getConfiguration().orientation == 2;
-        w wVar = new w(this, getContext(), q2Var, b6Var, h1Var);
-        this.f1691b = wVar;
-        wVar.setOverScrollMode(2);
-        wVar.setClipToPadding(false);
-        wVar.setAdapter(new x(h1Var, q2Var));
-        wVar.setPosition(0);
-        setCustomView(wVar);
-        h1Var.f1822p0 = new v(this, 0);
-        h1Var.f1820n0 = new we.b(9, this, q2Var);
-        q2Var.f1938q0 = new y(this, h1Var, b6Var);
-        q2Var.f1936o0 = new v(this, 1);
-        if (!z10) {
-            MessagesController.getInstance(this.currentAccount).getStoriesController().R();
-        }
-        gc.a(this.container, new z(0));
-    }
-
-    public static void m(org.telegram.ui.ActionBar.o2 o2Var, b6 b6Var, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        org.telegram.ui.ActionBar.o2 o2Var2;
-        if (f1690e != null) {
-            return;
-        }
-        boolean z10 = b6Var instanceof ih.b;
-        if (z10) {
-            o2Var2 = new i1(o2Var);
-        } else {
-            o2Var2 = o2Var;
-        }
-        a0 a0Var = new a0(o2Var.getParentActivity(), new h1(o2Var2, j10, prepaidGiveaway), new q2(o2Var2, j10), o2Var2.getResourceProvider(), z10);
-        a0Var.show();
-        f1690e = a0Var;
+    public a0(FrameLayout frameLayout, boolean z10, int i10) {
+        this.f2077a = i10;
+        this.f2078b = frameLayout;
+        this.f2079c = z10;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        f1690e = null;
-    }
-
-    @Override
-    public final void onBackPressed() {
-        w wVar = this.f1691b;
-        if (wVar.getCurrentPosition() > 0) {
-            q2 q2Var = this.f1692c;
-            if (q2Var.R()) {
+    public final void a(o1.i iVar, boolean z10, float f9, float f10) {
+        int i10;
+        switch (this.f2077a) {
+            case 0:
+                g1 g1Var = (g1) this.f2078b;
+                t2 t2Var = g1Var.f2249r1;
+                if (iVar == g1Var.B1) {
+                    g1Var.B1 = null;
+                    if (!this.f2079c) {
+                        t2Var.setVisibility(8);
+                    }
+                    t2Var.setMaskProvider(null);
+                    return;
+                }
                 return;
-            }
-            if (isKeyboardVisible()) {
-                AndroidUtilities.hideKeyboard(q2Var.getContainerView());
-            }
-            wVar.D(0);
-            return;
+            case 1:
+                g1 g1Var2 = (g1) this.f2078b;
+                a1 a1Var = g1Var2.C1;
+                if (iVar == g1Var2.I1) {
+                    g1Var2.I1 = null;
+                    if (!this.f2079c) {
+                        a1Var.setVisibility(8);
+                        ag.h1.e(g1Var2.L1).g();
+                        a1Var.getAdapter().l();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                ka0 ka0Var = (ka0) this.f2078b;
+                if (!z10) {
+                    ka0Var.G = null;
+                    boolean z11 = this.f2079c;
+                    if (z11) {
+                        i10 = 8;
+                    } else {
+                        i10 = 0;
+                    }
+                    ka0Var.setVisibility(i10);
+                    if (ka0Var.J && z11) {
+                        ka0Var.J = false;
+                        ka0Var.f29996b.setLayoutManager(ka0Var.getNeededLayoutManager());
+                        ka0Var.E = true;
+                        ka0Var.o(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        super.onBackPressed();
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        boolean z10;
-        this.f1692c.onConfigurationChanged(configuration);
-        if (getContext().getResources().getConfiguration().orientation == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
-        super.onConfigurationChanged(configuration);
     }
 }

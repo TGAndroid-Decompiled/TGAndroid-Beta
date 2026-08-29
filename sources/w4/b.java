@@ -1,28 +1,23 @@
 package w4;
-public final class b {
-    public final int f48740a;
-    public final int f48741b;
-    public final int f48742c;
-    public final int d;
-    public final int f48743e;
-    public final int f48744f;
-    public final int f48745g;
-    public final int h;
-    public final int f48746i;
-    public final int f48747j;
-    public final int f48748k;
 
-    public b(int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19) {
-        this.f48740a = i9;
-        this.f48741b = i10;
-        this.f48742c = i11;
-        this.d = i12;
-        this.f48743e = i13;
-        this.f48744f = i14;
-        this.f48745g = i15;
-        this.h = i16;
-        this.f48746i = i17;
-        this.f48747j = i18;
-        this.f48748k = i19;
+import f5.w;
+import java.util.zip.Inflater;
+import t4.e;
+public final class b extends e {
+    public final w f49754b;
+    public final w f49755c;
+    public final a d;
+    public Inflater f49756e;
+
+    public b() {
+        super("PgsDecoder");
+        this.f49754b = new w();
+        this.f49755c = new w();
+        this.d = new a();
+    }
+
+    @Override
+    public final t4.f c(int r40, boolean r41, byte[] r42) {
+        throw new UnsupportedOperationException("Method not decompiled: w4.b.c(int, boolean, byte[]):t4.f");
     }
 }

@@ -1,32 +1,35 @@
 package ih;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class z4 extends View {
-    public final int f12372a;
-    public final c5 f12373b;
+import org.telegram.ui.ActionBar.g6;
+public final class z4 extends org.telegram.ui.ActionBar.g1 {
+    public final int H;
+    public long I;
+    public x4 J;
 
-    public z4(c5 c5Var, Context context, int i9) {
-        super(context);
-        this.f12372a = i9;
-        this.f12373b = c5Var;
+    public z4(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(0, context, c6Var, false, false);
+        this.H = i10;
+        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        int v02 = g6.v0(g6.E8, c6Var);
+        int i11 = g6.F8;
+        c(v02, g6.v0(i11, c6Var));
+        e(g6.v0(i11, c6Var), PorterDuff.Mode.SRC_IN);
+        this.f22965c.setTranslationX(AndroidUtilities.dp(2.0f));
+        a(2);
+        setBackground(null);
+        this.f22965c.addOnAttachStateChangeListener(new df.b(this, 3));
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        switch (this.f12372a) {
-            case 0:
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f12373b.d.f11478e), 1073741824));
-                return;
-            default:
-                g5 g5Var = this.f12373b.d;
-                int i11 = g5Var.f11484x.J;
-                if (i11 >= g5Var.f11481r.getPaddingTop() && !g5Var.N) {
-                    i11 = 0;
-                }
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(i11, 1073741824));
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+            size = AndroidUtilities.dp(250.0f);
         }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
     }
 }

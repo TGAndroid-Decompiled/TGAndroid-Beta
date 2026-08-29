@@ -5,23 +5,23 @@ import android.text.Selection;
 import android.text.Spannable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import androidx.emoji2.text.k;
+import androidx.emoji2.text.l;
 public final class i implements TextWatcher {
-    public final EditText f45911a;
-    public h f45912b;
-    public boolean f45913c = true;
+    public final EditText f46212a;
+    public h f46213b;
+    public boolean f46214c = true;
 
     public i(EditText editText) {
-        this.f45911a = editText;
+        this.f46212a = editText;
     }
 
-    public static void a(EditText editText, int i9) {
+    public static void a(EditText editText, int i10) {
         int length;
-        if (i9 == 1 && editText != null && editText.isAttachedToWindow()) {
+        if (i10 == 1 && editText != null && editText.isAttachedToWindow()) {
             Editable editableText = editText.getEditableText();
             int selectionStart = Selection.getSelectionStart(editableText);
             int selectionEnd = Selection.getSelectionEnd(editableText);
-            k a2 = k.a();
+            l a2 = l.a();
             if (editableText == null) {
                 length = 0;
             } else {
@@ -40,25 +40,25 @@ public final class i implements TextWatcher {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        EditText editText = this.f45911a;
-        if (!editText.isInEditMode() && this.f45913c && k.f856j != null && i10 <= i11 && (charSequence instanceof Spannable)) {
-            int b10 = k.a().b();
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        EditText editText = this.f46212a;
+        if (!editText.isInEditMode() && this.f46214c && l.f1353j != null && i11 <= i12 && (charSequence instanceof Spannable)) {
+            int b10 = l.a().b();
             if (b10 != 0) {
                 if (b10 != 1) {
                     if (b10 != 3) {
                         return;
                     }
                 } else {
-                    k.a().e(i9, i11 + i9, (Spannable) charSequence);
+                    l.a().e(i10, i12 + i10, (Spannable) charSequence);
                     return;
                 }
             }
-            k a2 = k.a();
-            if (this.f45912b == null) {
-                this.f45912b = new h(editText);
+            l a2 = l.a();
+            if (this.f46213b == null) {
+                this.f46213b = new h(editText);
             }
-            a2.f(this.f45912b);
+            a2.f(this.f46213b);
         }
     }
 
@@ -67,6 +67,6 @@ public final class i implements TextWatcher {
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,21 +1,20 @@
 package org.telegram.ui.Components;
-public final class pu0 extends o1.i {
-    public final nu0 f31762a;
-    public final ou0 f31763b;
-    public float f31764c = 1.0f;
 
-    public pu0(nu0 nu0Var, ou0 ou0Var) {
-        this.f31762a = nu0Var;
-        this.f31763b = ou0Var;
-    }
+import android.content.Context;
+public final class pu0 {
+    public final int f31773a;
+    public final int f31774b;
+    public final ou0 f31775c;
+    public final nu0 d;
+    public final qu0 f31776e;
 
-    @Override
-    public final float a(Object obj) {
-        return this.f31762a.get(obj) * this.f31764c;
-    }
-
-    @Override
-    public final void b(Object obj, float f10) {
-        this.f31763b.b(obj, f10 / this.f31764c);
+    public pu0(qu0 qu0Var, Context context, int i10) {
+        this.f31776e = qu0Var;
+        this.f31774b = i10;
+        int i11 = qu0Var.W1;
+        qu0Var.W1 = i11 + 1;
+        this.f31773a = (i11 & 65535) | 65536;
+        this.f31775c = new ou0(this, context, i10);
+        this.d = new nu0(qu0Var, context, i10, false);
     }
 }

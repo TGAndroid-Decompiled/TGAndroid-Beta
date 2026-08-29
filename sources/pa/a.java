@@ -1,49 +1,34 @@
 package pa;
 
-import j$.util.DesugarTimeZone;
-import java.util.TimeZone;
-public abstract class a {
-    public static final TimeZone f45507a = DesugarTimeZone.getTimeZone("UTC");
+import j$.util.Objects;
+import java.io.Serializable;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.Type;
+public final class a implements GenericArrayType, Serializable {
+    public final Type f45667a;
 
-    public static boolean a(String str, int i9, char c10) {
-        if (i9 < str.length() && str.charAt(i9) == c10) {
+    public a(Type type) {
+        Objects.requireNonNull(type);
+        this.f45667a = d.a(type);
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof GenericArrayType) && d.e(this, (GenericArrayType) obj)) {
             return true;
         }
         return false;
     }
 
-    public static java.util.Date b(java.lang.String r17, java.text.ParsePosition r18) {
-        throw new UnsupportedOperationException("Method not decompiled: pa.a.b(java.lang.String, java.text.ParsePosition):java.util.Date");
+    @Override
+    public final Type getGenericComponentType() {
+        return this.f45667a;
     }
 
-    public static int c(int i9, int i10, String str) {
-        int i11;
-        int i12;
-        if (i9 >= 0 && i10 <= str.length() && i9 <= i10) {
-            if (i9 < i10) {
-                i12 = i9 + 1;
-                int digit = Character.digit(str.charAt(i9), 10);
-                if (digit >= 0) {
-                    i11 = -digit;
-                } else {
-                    throw new NumberFormatException("Invalid number: " + str.substring(i9, i10));
-                }
-            } else {
-                i11 = 0;
-                i12 = i9;
-            }
-            while (i12 < i10) {
-                int i13 = i12 + 1;
-                int digit2 = Character.digit(str.charAt(i12), 10);
-                if (digit2 >= 0) {
-                    i11 = (i11 * 10) - digit2;
-                    i12 = i13;
-                } else {
-                    throw new NumberFormatException("Invalid number: " + str.substring(i9, i10));
-                }
-            }
-            return -i11;
-        }
-        throw new NumberFormatException(str);
+    public final int hashCode() {
+        return this.f45667a.hashCode();
+    }
+
+    public final String toString() {
+        return d.k(this.f45667a) + "[]";
     }
 }

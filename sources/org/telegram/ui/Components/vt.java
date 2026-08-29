@@ -1,132 +1,136 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
+import android.graphics.drawable.Drawable;
+import android.view.ActionMode;
+import android.view.Menu;
 import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class vt extends dh.u {
-    public final i80 N;
-    public m80 O;
-    public boolean P;
-    public boolean Q;
-    public boolean R;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.XiaomiUtilities;
+public final class vt extends st {
+    public Drawable f34179c;
+    public final int d;
+    public final au f34180e;
 
-    public vt(Context context) {
-        super(context, null, true);
-        this.N = new i80(this);
+    public vt(au auVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
+        this.f34180e = auVar;
+        this.d = i10;
+        this.f34179c = null;
     }
 
     @Override
-    public final ClickableSpan a(int i9, int i10) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
-        }
-        int paddingLeft = i9 - getPaddingLeft();
-        int paddingTop = i10 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f10 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f10);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f10 && layout.getLineWidth(lineForVertical) + lineLeft >= f10 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                return clickableSpanArr[0];
-            }
-        }
-        return null;
+    public final int emojiCacheType() {
+        return this.f34180e.h();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.P) {
-            float f10 = 0.0f;
-            if (this.Q) {
-                paddingLeft = 0.0f;
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        boolean z10;
+        au auVar = this.f34180e;
+        if (auVar.a()) {
+            if (auVar.H == 3) {
+                z10 = true;
             } else {
-                paddingLeft = getPaddingLeft();
+                z10 = false;
             }
-            if (!this.R) {
-                f10 = getPaddingTop();
+            org.telegram.ui.tn.k8(menu, null, z10, true, true, true);
+            return;
+        }
+        auVar.i(menu);
+    }
+
+    @Override
+    public final int getActionModeStyle() {
+        int i10 = this.d;
+        if (i10 == 2 || i10 == 3) {
+            return 2;
+        }
+        return super.getActionModeStyle();
+    }
+
+    @Override
+    public final void onLineCountChanged(int i10, int i11) {
+        this.f34180e.q(i10, i11);
+    }
+
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        boolean z10;
+        super.onSelectionChanged(i10, i11);
+        au auVar = this.f34180e;
+        ol0 ol0Var = auVar.f26884c;
+        if (ol0Var != null) {
+            boolean z11 = false;
+            if (i11 != i10) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            canvas.translate(paddingLeft, f10);
+            if (auVar.a() && z10) {
+                XiaomiUtilities.isMIUI();
+                z11 = true;
+            }
+            if (auVar.f26887n != z11) {
+                auVar.f26887n = z11;
+                if (z11) {
+                    this.f34179c = ol0Var.d;
+                    ol0Var.a(R.drawable.msg_edit, true);
+                    return;
+                }
+                ol0Var.b(this.f34179c, true);
+                this.f34179c = null;
+            }
         }
-        if (this.N.f(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        i80 i80Var = this.N;
-        if (i80Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a2 != null && motionEvent.getAction() == 0) {
-                m80 m80Var = new m80(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.O = m80Var;
-                i80Var.a(m80Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.O.f30768i);
-                int spanEnd = spannableString.getSpanEnd(this.O.f30768i);
-                f80 b10 = this.O.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new np(this, m80Var, a2), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                i80Var.d(true);
-                m80 m80Var2 = this.O;
-                if (m80Var2 != null && (characterStyle = m80Var2.f30768i) == a2) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.O = null;
-                    return true;
+        int i10;
+        wt wtVar;
+        au auVar = this.f34180e;
+        if (auVar.f26885e && motionEvent.getAction() == 0) {
+            auVar.u();
+            if (auVar.f26891x && (wtVar = auVar.d) != null) {
+                wtVar.t(false);
+                auVar.f26891x = false;
+                auVar.k(true);
+                AndroidUtilities.showKeyboard(this);
+            } else {
+                if (AndroidUtilities.usingHardwareInput) {
+                    i10 = 0;
+                } else {
+                    i10 = 2;
                 }
-                this.O = null;
+                auVar.x(i10);
             }
-            if (motionEvent.getAction() == 3) {
-                i80Var.d(true);
-                this.O = null;
+            auVar.v();
+        }
+        if (motionEvent.getAction() == 0) {
+            boolean isFocused = isFocused();
+            requestFocus();
+            if (!AndroidUtilities.showKeyboard(this)) {
+                clearFocus();
+                requestFocus();
+            }
+            if (!isFocused) {
+                setSelection(getText().length());
             }
         }
-        if (this.O != null || super.onTouchEvent(motionEvent)) {
-            return true;
+        try {
+            return super.onTouchEvent(motionEvent);
+        } catch (Exception e10) {
+            FileLog.e(e10);
+            return false;
         }
-        return false;
     }
 
     @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.P = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.Q = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.R = z10;
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void scrollTo(int i10, int i11) {
+        if (this.f34180e.t(i11)) {
+            super.scrollTo(i10, i11);
+        }
     }
 }

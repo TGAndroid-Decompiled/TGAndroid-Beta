@@ -1,4 +1,3 @@
 package m;
-public abstract class u3 extends o2 {
-    public static final int f17109a = 0;
+public interface u3 {
 }

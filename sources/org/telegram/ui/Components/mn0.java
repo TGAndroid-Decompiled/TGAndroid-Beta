@@ -1,82 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class mn0 extends View.AccessibilityDelegate {
-    public static final String f30896c = "android.widget.SeekBar";
-    public final HashMap f30897a = new HashMap(4);
-    public final af.b f30898b = new af.b(this, 13);
+import android.content.Context;
+public final class mn0 extends rf.a0 {
+    public final org.telegram.ui.fy E0;
+    public final Context F0;
+    public final org.telegram.ui.ox G0;
 
-    public abstract boolean a();
-
-    public abstract boolean b();
-
-    public abstract void c(boolean z10);
-
-    public CharSequence d() {
-        return null;
-    }
-
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f30896c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
-        }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
-        }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
-        }
-    }
-
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
-    }
-
-    public boolean g(View view, int i9, Bundle bundle) {
-        boolean z10 = false;
-        if (i9 != 4096 && i9 != 8192) {
-            return false;
-        }
-        if (i9 == 8192) {
-            z10 = true;
-        }
-        c(z10);
-        if (view != null) {
-            WeakHashMap weakHashMap = r0.j0.f46915a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f30897a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new jg0(8, this, view);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f30898b);
-                } else {
-                    view.removeCallbacks(runnable);
-                }
-                view.postDelayed(runnable, 400L);
-            }
-        }
-        return true;
+    public mn0(org.telegram.ui.ox oxVar, Context context, org.telegram.ui.fy fyVar, int i10, int i11, f2.l lVar, boolean z10, org.telegram.ui.fy fyVar2, Context context2) {
+        super(context, fyVar, i10, i11, lVar, z10);
+        this.G0 = oxVar;
+        this.E0 = fyVar2;
+        this.F0 = context2;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i9, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i9, bundle)) {
-            return true;
+    public final void l() {
+        jh.e1 e1Var;
+        int i10 = this.f47168x0;
+        super.l();
+        org.telegram.ui.ox oxVar = this.G0;
+        if (!oxVar.E0 && (e1Var = oxVar.R) != null) {
+            e1Var.u0(0);
+            oxVar.E0 = true;
         }
-        return g(view, i9, bundle);
+        if (h() != 0 || i10 == 0 || this.f47171z0 > 0) {
+            return;
+        }
+        oxVar.S.e(false, false);
     }
 }

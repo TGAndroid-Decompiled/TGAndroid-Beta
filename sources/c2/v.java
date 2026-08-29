@@ -2,62 +2,31 @@ package c2;
 
 import android.os.Bundle;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 public final class v {
-    public static final v f2236c = new v(new Bundle(), null);
-    public final Bundle f2237a;
-    public List f2238b;
+    public ArrayList f2913a = new ArrayList();
 
-    public v(Bundle bundle, ArrayList arrayList) {
-        this.f2237a = bundle;
-        this.f2238b = arrayList;
-    }
-
-    public static v b(Bundle bundle) {
-        if (bundle == null) {
-            return null;
+    public w a() {
+        if (this.f2913a == null) {
+            return w.f2914c;
         }
-        return new v(bundle, null);
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("controlCategories", this.f2913a);
+        return new w(bundle, this.f2913a);
     }
 
-    public final void a() {
-        if (this.f2238b == null) {
-            ArrayList<String> stringArrayList = this.f2237a.getStringArrayList("controlCategories");
-            this.f2238b = stringArrayList;
-            if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f2238b = Collections.EMPTY_LIST;
-            }
+    public void b(StringBuilder sb2) {
+        String str;
+        if (((Boolean) com.google.android.recaptcha.internal.a.j(1, this.f2913a)).booleanValue()) {
+            str = "</ol>";
+        } else {
+            str = "</ul>";
         }
+        sb2.append(str);
     }
 
-    public final ArrayList c() {
-        a();
-        return new ArrayList(this.f2238b);
-    }
-
-    public final boolean d() {
-        a();
-        return this.f2238b.isEmpty();
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof v) {
-            v vVar = (v) obj;
-            a();
-            vVar.a();
-            return this.f2238b.equals(vVar.f2238b);
+    public void c(StringBuilder sb2) {
+        while (!this.f2913a.isEmpty()) {
+            b(sb2);
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        a();
-        return this.f2238b.hashCode();
-    }
-
-    public final String toString() {
-        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
     }
 }

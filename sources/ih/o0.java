@@ -1,36 +1,41 @@
 package ih;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.Components.i51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z41;
-public final class o0 extends k41 {
-    public static final int f11876a = 0;
+import org.telegram.ui.Components.o6;
+public final class o0 implements Runnable {
+    public final int f9306a;
+    public final v0 f9307b;
 
-    static {
-        k41.setup(new k41());
+    public o0(v0 v0Var, int i10) {
+        this.f9306a = i10;
+        this.f9307b = v0Var;
     }
 
     @Override
-    public final void bindView(View view, l41 l41Var, boolean z10, z41 z41Var, i51 i51Var) {
-        ((p0) view).set((u0) l41Var.G);
-    }
-
-    @Override
-    public final View createView(Context context, wk0 wk0Var, int i9, int i10, org.telegram.ui.ActionBar.b6 b6Var) {
-        p0 p0Var = new p0(i9, context, false);
-        p0Var.setLayoutParams(new f2.a1(-2, -2));
-        return p0Var;
-    }
-
-    @Override
-    public final boolean equals(l41 l41Var, l41 l41Var2) {
-        if (l41Var.G == l41Var2.G) {
-            return true;
+    public final void run() {
+        switch (this.f9306a) {
+            case 0:
+                v0 v0Var = this.f9307b;
+                ah.i iVar = v0Var.h;
+                sg.f fVar = v0Var.f9427f;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                t0 t0Var = v0Var.D;
+                if (t0Var != null) {
+                    t0Var.setTranslationY(-iVar.c());
+                }
+                o6 o6Var = v0Var.f9431w;
+                if (o6Var != null) {
+                    o6Var.setTranslationY(-iVar.c());
+                }
+                v0Var.o();
+                return;
+            case 1:
+                this.f9307b.D.performClick();
+                return;
+            default:
+                this.f9307b.dismiss();
+                return;
         }
-        return false;
     }
 }

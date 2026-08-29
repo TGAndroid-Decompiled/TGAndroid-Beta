@@ -1,11 +1,11 @@
 package ih;
 
-import android.content.Context;
-public final class k5 extends g5 {
-    public final l5 T;
-
-    public k5(l5 l5Var, m9 m9Var, Context context, s4 s4Var, hg.i iVar) {
-        super(m9Var, context, s4Var, iVar);
-        this.T = l5Var;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.u51;
+public final class k5 extends u51 {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

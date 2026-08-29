@@ -4,12 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 public final class o0 extends View.BaseSavedState {
-    public static final Parcelable.Creator<o0> CREATOR = new h5.h(15);
-    public boolean f17022a;
+    public static final Parcelable.Creator<o0> CREATOR = new i4.g(22);
+    public boolean f16621a;
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        super.writeToParcel(parcel, i9);
-        parcel.writeByte(this.f17022a ? (byte) 1 : (byte) 0);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        super.writeToParcel(parcel, i10);
+        parcel.writeByte(this.f16621a ? (byte) 1 : (byte) 0);
     }
 }

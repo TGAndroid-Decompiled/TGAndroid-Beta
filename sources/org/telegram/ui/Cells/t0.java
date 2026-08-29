@@ -2,37 +2,37 @@ package org.telegram.ui.Cells;
 
 import org.telegram.tgnet.TLRPC;
 public interface t0 {
-    void C0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+    void J(v0 v0Var, int i10);
 
-    void E(w0 w0Var, int i9);
+    void K1(v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
 
-    void I(w0 w0Var);
+    org.telegram.ui.ActionBar.o2 O0();
 
-    void L(w0 w0Var, int i9, int i10);
+    void Q0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
-    void N1(w0 w0Var, String str);
-
-    void O(w0 w0Var);
-
-    void V0(w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize);
-
-    boolean Z1(w0 w0Var, float f10, float f11);
+    void W(v0 v0Var);
 
     long a();
 
-    void a2(w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11);
-
     long b();
 
-    void c0(w0 w0Var);
+    void b0(v0 v0Var, int i10, int i11);
 
-    boolean h();
+    boolean f();
 
-    void o1(long j10);
+    void g1(v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize);
 
-    void p1(w0 w0Var);
+    void h2(v0 v0Var, String str);
 
-    void v1(w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
+    void i0(v0 v0Var);
 
-    org.telegram.ui.ActionBar.o2 y0();
+    void q0(v0 v0Var);
+
+    boolean r2(v0 v0Var, float f9, float f10);
+
+    void t2(v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f9, float f10);
+
+    void x1(long j10);
+
+    void y1(v0 v0Var);
 }

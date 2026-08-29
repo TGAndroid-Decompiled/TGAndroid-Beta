@@ -1,34 +1,21 @@
 package org.telegram.ui.Components;
+public final class hf0 implements Runnable {
+    public final int f29174a;
+    public final mf0 f29175b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class hf0 extends AnimatorListenerAdapter {
-    public final int f29069a;
-    public final PipRoundVideoView f29070b;
-
-    public hf0(PipRoundVideoView pipRoundVideoView, int i9) {
-        this.f29069a = i9;
-        this.f29070b = pipRoundVideoView;
+    public hf0(mf0 mf0Var, int i10) {
+        this.f29174a = i10;
+        this.f29175b = mf0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29069a) {
+    public final void run() {
+        switch (this.f29174a) {
             case 0:
-                PipRoundVideoView pipRoundVideoView = this.f29070b;
-                if (animator.equals(pipRoundVideoView.f26430r)) {
-                    pipRoundVideoView.f26430r = null;
-                    return;
-                }
+                this.f29175b.e();
                 return;
             default:
-                PipRoundVideoView pipRoundVideoView2 = this.f29070b;
-                pipRoundVideoView2.a(false);
-                Runnable runnable = pipRoundVideoView2.f26431s;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f29175b.g();
                 return;
         }
     }

@@ -1,27 +1,24 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import java.util.ArrayList;
-public final class ge1 extends ue1 {
-    public final we1 f38529e3;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class ge1 extends org.telegram.ui.Components.x60 {
+    public final long f38571w0;
+    public final ie1 f38572x0;
 
-    public ge1(we1 we1Var, Context context) {
-        super(we1Var, context);
-        this.f38529e3 = we1Var;
+    public ge1(ie1 ie1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.o2 o2Var, long j11) {
+        super(context, i10, hVar, j10, o2Var, null);
+        this.f38572x0 = ie1Var;
+        this.f38571w0 = j11;
     }
 
     @Override
-    public final boolean S0() {
-        ArrayList arrayList = this.f38529e3.f43744b;
-        if (getAdapter() == null || this.T1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((me1) arrayList.get(0)).f40405c == null || ((me1) arrayList.get(0)).f40405c.f22432id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
-            return false;
+    public final boolean X() {
+        TLRPC.Chat chat = this.f38572x0.f39228b.getMessagesController().getChat(Long.valueOf(this.f38571w0));
+        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
+            return true;
         }
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
-        this.f38529e3.x0();
+        return false;
     }
 }

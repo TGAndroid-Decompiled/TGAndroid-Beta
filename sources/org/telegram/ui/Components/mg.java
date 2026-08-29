@@ -1,79 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class mg extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h5 f30810a;
-    public final RectF f30811b;
-    public final Paint f30812c;
-    public final Drawable d;
-    public boolean f30813e;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class mg extends j1.b {
+    public final int[] f30682o;
+    public final ChatActivityEnterView.RecordCircle f30683p;
 
-    public mg(Activity activity) {
-        super(activity);
-        this.f30811b = new RectF();
-        this.f30812c = new Paint(1);
-        this.f30813e = false;
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(activity);
-        this.f30810a = h5Var;
-        addView(h5Var, g7.e6.c(-1.0f, -1));
-        setWillNotDraw(false);
-        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
-        this.d = drawable;
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        setClipToPadding(false);
-        setClipChildren(false);
-        g7.g6.a(this);
+    public mg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
+        super(recordCircle2);
+        this.f30683p = recordCircle;
+        this.f30682o = new int[2];
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if ((view instanceof org.telegram.ui.ActionBar.h5) && this.f30813e) {
-            org.telegram.ui.ActionBar.h5 h5Var = (org.telegram.ui.ActionBar.h5) view;
-            canvas.save();
-            canvas.scale(0.8f, 0.8f);
-            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = h5Var.getTextPaint().getColor();
-            h5Var.getTextPaint().setColor(-1);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            h5Var.getTextPaint().setColor(color);
-            canvas.restore();
-            return drawChild;
+    public final int g(float f9, float f10) {
+        Rect rect;
+        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+        if (chatActivityEnterView.f26165n4 && chatActivityEnterView.I1 != null) {
+            if (chatActivityEnterView.O3.contains((int) f9, (int) f10)) {
+                return 1;
+            }
+            if (chatActivityEnterView.N3.contains(f9, f10)) {
+                return 2;
+            }
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f26120f1;
+            if (slideTextView != null && (rect = slideTextView.F) != null) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(rect);
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f26120f1;
+                int[] iArr = this.f30682o;
+                slideTextView2.getLocationOnScreen(iArr);
+                rectF.offset(iArr[0], iArr[1]);
+                chatActivityEnterView.I1.getLocationOnScreen(iArr);
+                rectF.offset(-iArr[0], -iArr[1]);
+                if (rectF.contains(f9, f10)) {
+                    return 3;
+                }
+                return -1;
+            }
+            return -1;
         }
-        return super.drawChild(canvas, view, j10);
+        return -1;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f30813e) {
-            canvas.save();
-            int dp = AndroidUtilities.dp(26.0f);
-            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
-            float f10 = dp;
-            RectF rectF = this.f30811b;
-            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f10);
-            float f11 = f10 / 2.0f;
-            canvas.drawRoundRect(rectF, f11, f11, this.f30812c);
-            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
-            Drawable drawable = this.d;
-            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
-            drawable.draw(canvas);
-            canvas.restore();
+    public final void h(ArrayList arrayList) {
+        if (ChatActivityEnterView.this.f26165n4) {
+            arrayList.add(1);
+            arrayList.add(3);
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
-        this.f30812c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public final boolean k(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final void l(int i10, s0.c cVar) {
+        Rect rect;
+        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+        if (i10 == 1) {
+            cVar.h(chatActivityEnterView.O3);
+            cVar.o(LocaleController.getString("Send", R.string.Send));
+        } else if (i10 == 2) {
+            Rect rect2 = chatActivityEnterView.P3;
+            RectF rectF = chatActivityEnterView.N3;
+            rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            cVar.h(chatActivityEnterView.P3);
+            cVar.o(LocaleController.getString(R.string.Stop));
+        } else if (i10 == 3 && chatActivityEnterView.I1 != null) {
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f26120f1;
+            if (slideTextView != null && (rect = slideTextView.F) != null) {
+                Rect rect3 = AndroidUtilities.rectTmp2;
+                rect3.set(rect);
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f26120f1;
+                int[] iArr = this.f30682o;
+                slideTextView2.getLocationOnScreen(iArr);
+                rect3.offset(iArr[0], iArr[1]);
+                chatActivityEnterView.I1.getLocationOnScreen(iArr);
+                rect3.offset(-iArr[0], -iArr[1]);
+                cVar.h(rect3);
+            }
+            cVar.o(LocaleController.getString("Cancel", R.string.Cancel));
+        }
     }
 }

@@ -29,30 +29,30 @@ public final class n0 extends e2 implements p0 {
     }
 
     @Override
-    public final void h(CharSequence charSequence) {
+    public final void i(CharSequence charSequence) {
         this.O = charSequence;
     }
 
     @Override
-    public final void l(int i9) {
-        this.R = i9;
+    public final void l(int i10) {
+        this.R = i10;
     }
 
     @Override
-    public final void m(int i9, int i10) {
+    public final void m(int i10, int i11) {
         ViewTreeObserver viewTreeObserver;
         y yVar = this.K;
         boolean isShowing = yVar.isShowing();
-        r();
+        s();
         yVar.setInputMethodMode(2);
-        g();
-        s1 s1Var = this.f16932c;
+        h();
+        s1 s1Var = this.f16531c;
         s1Var.setChoiceMode(1);
-        h0.d(s1Var, i9);
-        h0.c(s1Var, i10);
+        h0.d(s1Var, i10);
+        h0.c(s1Var, i11);
         q0 q0Var = this.S;
         int selectedItemPosition = q0Var.getSelectedItemPosition();
-        s1 s1Var2 = this.f16932c;
+        s1 s1Var2 = this.f16531c;
         if (yVar.isShowing() && s1Var2 != null) {
             s1Var2.setListSelectionHidden(false);
             s1Var2.setSelection(selectedItemPosition);
@@ -61,58 +61,58 @@ public final class n0 extends e2 implements p0 {
             }
         }
         if (!isShowing && (viewTreeObserver = q0Var.getViewTreeObserver()) != null) {
-            androidx.mediarouter.app.k kVar = new androidx.mediarouter.app.k(this, 4);
-            viewTreeObserver.addOnGlobalLayoutListener(kVar);
-            yVar.setOnDismissListener(new m0(this, kVar));
+            androidx.mediarouter.app.h hVar = new androidx.mediarouter.app.h(this, 4);
+            viewTreeObserver.addOnGlobalLayoutListener(hVar);
+            yVar.setOnDismissListener(new m0(this, hVar));
         }
     }
 
     @Override
-    public final void o(ListAdapter listAdapter) {
-        super.o(listAdapter);
+    public final void p(ListAdapter listAdapter) {
+        super.p(listAdapter);
         this.P = (k0) listAdapter;
     }
 
-    public final void r() {
-        int i9;
+    public final void s() {
         int i10;
+        int i11;
         q0 q0Var = this.S;
-        Rect rect = q0Var.f17059n;
+        Rect rect = q0Var.f16656n;
         y yVar = this.K;
         Drawable background = yVar.getBackground();
         if (background != null) {
             background.getPadding(rect);
-            if (w3.a(q0Var)) {
-                i9 = rect.right;
+            if (v3.a(q0Var)) {
+                i10 = rect.right;
             } else {
-                i9 = -rect.left;
+                i10 = -rect.left;
             }
         } else {
-            i9 = 0;
+            i10 = 0;
             rect.right = 0;
             rect.left = 0;
         }
         int paddingLeft = q0Var.getPaddingLeft();
         int paddingRight = q0Var.getPaddingRight();
         int width = q0Var.getWidth();
-        int i11 = q0Var.h;
-        if (i11 == -2) {
+        int i12 = q0Var.h;
+        if (i12 == -2) {
             int a2 = q0Var.a(this.P, yVar.getBackground());
-            int i12 = (q0Var.getContext().getResources().getDisplayMetrics().widthPixels - rect.left) - rect.right;
-            if (a2 > i12) {
-                a2 = i12;
+            int i13 = (q0Var.getContext().getResources().getDisplayMetrics().widthPixels - rect.left) - rect.right;
+            if (a2 > i13) {
+                a2 = i13;
             }
-            q(Math.max(a2, (width - paddingLeft) - paddingRight));
-        } else if (i11 == -1) {
-            q((width - paddingLeft) - paddingRight);
+            r(Math.max(a2, (width - paddingLeft) - paddingRight));
+        } else if (i12 == -1) {
+            r((width - paddingLeft) - paddingRight);
         } else {
-            q(i11);
+            r(i12);
         }
-        if (w3.a(q0Var)) {
-            i10 = (((width - paddingRight) - this.f16933e) - this.R) + i9;
+        if (v3.a(q0Var)) {
+            i11 = (((width - paddingRight) - this.f16532e) - this.R) + i10;
         } else {
-            i10 = paddingLeft + this.R + i9;
+            i11 = paddingLeft + this.R + i10;
         }
-        this.f16934f = i10;
+        this.f16533f = i11;
     }
 }

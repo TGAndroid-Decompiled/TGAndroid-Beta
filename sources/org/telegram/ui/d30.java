@@ -1,21 +1,25 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class d30 extends f2.n {
-    public final o50 F;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class d30 extends TextView {
+    public final RectF f37284a;
+    public final r50 f37285b;
 
-    public d30(o50 o50Var) {
-        this.F = o50Var;
+    public d30(r50 r50Var, Context context) {
+        super(context);
+        this.f37285b = r50Var;
+        this.f37284a = new RectF();
     }
 
     @Override
-    public final void P(f2.q1 q1Var) {
-        ViewGroup viewGroup;
-        o50 o50Var = this.F;
-        o50Var.M.invalidate();
-        o50Var.W1.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.f3) o50Var).containerView;
-        viewGroup.invalidate();
-        o50.I0(o50Var);
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f37284a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f37285b.f41878c1);
+        super.onDraw(canvas);
     }
 }

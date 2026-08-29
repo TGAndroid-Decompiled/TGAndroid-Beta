@@ -6,7 +6,7 @@ public class ResourceParseException extends JMathTeXException {
         super(str);
     }
 
-    public ResourceParseException(String str, Throwable th) {
-        super(str, th);
+    public ResourceParseException(String str, Throwable th2) {
+        super(str, th2);
     }
 }

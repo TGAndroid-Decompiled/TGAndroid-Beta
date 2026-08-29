@@ -2658,12 +2658,14 @@
 "UseProxyUsername" = "Username";
 "UseProxySocks5" = "SOCKS5 Proxy";
 "UseProxyTelegram" = "MTProto Proxy";
+"UseProxyWeb" = "WEB Proxy";
 "UseProxyTelegramError" = "The proxy you are using is not configured correctly and will be disabled. Please find another one.";
 "UseProxySponsor" = "Proxy sponsor";
 "UseProxySponsorInfo" = "This channel is shown by your proxy server. To remove this channel from your chat list, disable the proxy in Telegram Settings.";
 "UseProxyInfo" = "SOCKS5 proxy settings.";
 "UseProxyTelegramInfo" = "MTProto proxy settings.";
 "UseProxyTelegramInfo2" = "This proxy may display a sponsored channel in your chat list. This doesn\'t reveal any of your Telegram traffic.";
+"UseProxyWebInfo" = "WEB proxy uses an HTTPS page inside a private WebView. Enter a hostname without a scheme or path and a 16-byte MTProxy secret. This proof of concept requires a current Android System WebView and is intended for foreground testing.";
 "UseProxyForCalls" = "Use proxy for calls";
 "UseProxyForCallsInfo" = "Proxy servers may degrade the quality of your calls.";
 "ConnectingToProxyEnable" = "Enable";

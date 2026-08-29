@@ -3,7 +3,7 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import ta.b;
+import u3.c;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -79,12 +79,12 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, b.d("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, c.e("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();
-            for (int i9 = 0; i9 < columnCount; i9++) {
-                sb2.append(query.stringValue(i9));
+            for (int i10 = 0; i10 < columnCount; i10++) {
+                sb2.append(query.stringValue(i10));
                 sb2.append(", ");
             }
             FileLog.d("EXPLAIN QUERY PLAN " + sb2.toString());

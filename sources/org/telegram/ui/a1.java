@@ -2,65 +2,55 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class a1 extends AnimatorListenerAdapter {
-    public final int f36325a;
-    public final l4 f36326b;
+    public final m4 f36393a;
 
-    public a1(l4 l4Var, int i9) {
-        this.f36326b = l4Var;
-        this.f36325a = i9;
+    public a1(m4 m4Var) {
+        this.f36393a = m4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        l4 l4Var = this.f36326b;
-        ArrayList arrayList = l4Var.Z;
-        if (l4Var.f40012b0.f24021f) {
-            ArrayList arrayList2 = new ArrayList();
-            l4Var.f40026q0[0].setBackgroundDrawable(null);
-            p3[] p3VarArr = l4Var.f40026q0;
-            p3 p3Var = p3VarArr[1];
-            p3VarArr[1] = p3VarArr[0];
-            p3VarArr[0] = p3Var;
-            l4Var.f40014d0.i();
-            l4Var.V0.a(l4Var.f40026q0[0].getBackgroundColor(), true);
-            l4Var.W0.a(l4Var.f40026q0[1].getBackgroundColor(), true);
-            y3 y3Var = l4Var.G;
-            if (y3Var != null) {
-                y3Var.m();
+        m4 m4Var = this.f36393a;
+        z3 z3Var = m4Var.G;
+        if (m4Var.f40390b0.f24040e) {
+            m4Var.f40404q0[0].setBackgroundDrawable(null);
+            q3[] q3VarArr = m4Var.f40404q0;
+            q3 q3Var = q3VarArr[1];
+            q3VarArr[1] = q3VarArr[0];
+            q3VarArr[0] = q3Var;
+            m4Var.f40392d0.i();
+            m4Var.V0.a(m4Var.f40404q0[0].getBackgroundColor(), true);
+            m4Var.W0.a(m4Var.f40404q0[1].getBackgroundColor(), true);
+            if (z3Var != null) {
+                z3Var.m();
             }
-            for (int size = arrayList.size() - 1; size > this.f36325a; size--) {
-                arrayList2.add(arrayList.remove(size));
+            Object j10 = com.google.android.recaptcha.internal.a.j(1, m4Var.Z);
+            m4Var.K0.T(m4Var.f40404q0[0].f41513b);
+            org.telegram.ui.Cells.k9 k9Var = m4Var.K0;
+            k9Var.E0 = m4Var.f40404q0[0].d;
+            k9Var.f(true);
+            m4Var.i0(false);
+            m4Var.f0();
+            m4Var.f40404q0[1].b();
+            m4Var.f40404q0[1].setVisibility(8);
+            if (j10 instanceof d3) {
+                ((d3) j10).a();
             }
-            l4Var.K0.T(l4Var.f40026q0[0].f41320b);
-            org.telegram.ui.Cells.n9 n9Var = l4Var.K0;
-            n9Var.E0 = l4Var.f40026q0[0].d;
-            n9Var.f(true);
-            l4Var.i0(false);
-            l4Var.f0();
-            l4Var.f40026q0[1].b();
-            l4Var.f40026q0[1].setVisibility(8);
-            int size2 = arrayList2.size();
-            int i9 = 0;
-            while (i9 < size2) {
-                Object obj = arrayList2.get(i9);
-                i9++;
-                if (obj instanceof c3) {
-                    ((c3) obj).a();
-                }
-                if (obj instanceof TLRPC.WebPage) {
-                    org.telegram.ui.web.d2.o((TLRPC.WebPage) obj);
-                }
+            if (j10 instanceof TLRPC.WebPage) {
+                org.telegram.ui.web.f2.o((TLRPC.WebPage) j10);
             }
+        } else if (z3Var != null) {
+            z3Var.release();
+            m4Var.s();
         } else {
-            l4Var.U();
-            l4Var.M();
+            m4Var.U();
+            m4Var.M();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = l4Var.f40012b0;
-        articleViewer$WindowView.f24021f = false;
+        ArticleViewer$WindowView articleViewer$WindowView = m4Var.f40390b0;
+        articleViewer$WindowView.f24040e = false;
         articleViewer$WindowView.d = false;
-        l4Var.P0 = false;
+        m4Var.P0 = false;
     }
 }

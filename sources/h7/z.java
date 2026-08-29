@@ -1,36 +1,21 @@
 package h7;
 
-import java.util.Iterator;
-public final class z extends t {
-    public final transient b0 f10190c;
-    public final transient a0 d;
-
-    public z(b0 b0Var, a0 a0Var) {
-        this.f10190c = b0Var;
-        this.d = a0Var;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.f10190c.get(obj) != null) {
-            return true;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class z {
+    public static Object a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() != 0) {
+            return creator.createFromParcel(parcel);
         }
-        return false;
+        return null;
     }
 
-    @Override
-    public final int i(Object[] objArr) {
-        return this.d.i(objArr);
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        this.f10190c.getClass();
-        return 1;
+    public static void b(Parcel parcel, Parcelable parcelable, int i10) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, i10);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

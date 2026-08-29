@@ -16,7 +16,7 @@ public class UnderOverArrowAtom extends Atom {
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box strutBox;
         Box create;
-        float f10;
+        float f9;
         Atom atom = this.base;
         if (atom != null) {
             strutBox = atom.createBox(teXEnvironment);
@@ -26,10 +26,10 @@ public class UnderOverArrowAtom extends Atom {
         float width = new SpaceAtom(3, 1.0f, 0.0f, 0.0f).createBox(teXEnvironment).getWidth();
         if (this.dble) {
             create = XLeftRightArrowFactory.create(teXEnvironment, strutBox.getWidth());
-            f10 = width * 4.0f;
+            f9 = width * 4.0f;
         } else {
             create = XLeftRightArrowFactory.create(this.left, teXEnvironment, strutBox.getWidth());
-            f10 = -width;
+            f9 = -width;
         }
         VerticalBox verticalBox = new VerticalBox();
         if (this.over) {
@@ -41,7 +41,7 @@ public class UnderOverArrowAtom extends Atom {
             return verticalBox;
         }
         verticalBox.add(new HorizontalBox(strutBox, create.getWidth(), 2));
-        verticalBox.add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
+        verticalBox.add(new StrutBox(0.0f, f9, 0.0f, 0.0f));
         verticalBox.add(create);
         verticalBox.setDepth((verticalBox.getHeight() + verticalBox.getDepth()) - strutBox.getHeight());
         verticalBox.setHeight(strutBox.getHeight());

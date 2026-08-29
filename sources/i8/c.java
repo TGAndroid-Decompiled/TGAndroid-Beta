@@ -1,78 +1,20 @@
 package i8;
 
+import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
-public final class c implements Parcelable.Creator {
-    public final int f10953a;
+import com.google.android.gms.internal.cast.o;
+public final class c extends a6.a {
+    public static final Parcelable.Creator<c> CREATOR = new i4.g(6);
+    public String f8563a;
+    public d f8564b;
+    public f f8565c;
 
     @Override
-    public final java.lang.Object createFromParcel(android.os.Parcel r10) {
-        throw new UnsupportedOperationException("Method not decompiled: i8.c.createFromParcel(android.os.Parcel):java.lang.Object");
-    }
-
-    @Override
-    public final Object[] newArray(int i9) {
-        switch (this.f10953a) {
-            case 0:
-                return new b[i9];
-            case 1:
-                return new e[i9];
-            case 2:
-                return new f[i9];
-            case 3:
-                return new g[i9];
-            case 4:
-                return new h[i9];
-            case 5:
-                return new i[i9];
-            case 6:
-                return new j[i9];
-            case 7:
-                return new DataItemAssetParcelable[i9];
-            case 8:
-                return new m[i9];
-            case 9:
-                return new n[i9];
-            case 10:
-                return new o[i9];
-            case 11:
-                return new p[i9];
-            case 12:
-                return new q[i9];
-            case 13:
-                return new r[i9];
-            case 14:
-                return new s[i9];
-            case 15:
-                return new t[i9];
-            case 16:
-                return new u[i9];
-            case 17:
-                return new v[i9];
-            case 18:
-                return new w[i9];
-            case 19:
-                return new x[i9];
-            case 20:
-                return new y[i9];
-            case 21:
-                return new z[i9];
-            case 22:
-                return new a0[i9];
-            case 23:
-                return new b0[i9];
-            case 24:
-                return new c0[i9];
-            case 25:
-                return new d0[i9];
-            case 26:
-                return new c1[i9];
-            case 27:
-                return new m0[i9];
-            case 28:
-                return new g0[i9];
-            default:
-                return new n0[i9];
-        }
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        o.l(parcel, 2, this.f8563a);
+        o.k(parcel, 3, this.f8564b, i10);
+        o.k(parcel, 5, this.f8565c, i10);
+        o.r(parcel, q6);
     }
 }

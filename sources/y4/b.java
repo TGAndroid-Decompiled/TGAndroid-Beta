@@ -1,16 +1,28 @@
 package y4;
-
-import java.util.regex.Pattern;
-import o8.c0;
 public final class b {
-    public static final Pattern f49561b = Pattern.compile("\\s+");
-    public static final c0 f49562c = c0.t(2, "auto", "none");
-    public static final c0 d = c0.t(3, "dot", "sesame", "circle");
-    public static final c0 f49563e = c0.t(2, "filled", "open");
-    public static final c0 f49564f = c0.t(3, "after", "before", "outside");
-    public final int f49565a;
+    public final int f50473a;
+    public final int f50474b;
+    public final int f50475c;
+    public final int d;
+    public final int f50476e;
+    public final int f50477f;
+    public final int f50478g;
+    public final int h;
+    public final int f50479i;
+    public final int f50480j;
+    public final int f50481k;
 
-    public b(int i9, int i10, int i11) {
-        this.f49565a = i9;
+    public b(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20) {
+        this.f50473a = i10;
+        this.f50474b = i11;
+        this.f50475c = i12;
+        this.d = i13;
+        this.f50476e = i14;
+        this.f50477f = i15;
+        this.f50478g = i16;
+        this.h = i17;
+        this.f50479i = i18;
+        this.f50480j = i19;
+        this.f50481k = i20;
     }
 }

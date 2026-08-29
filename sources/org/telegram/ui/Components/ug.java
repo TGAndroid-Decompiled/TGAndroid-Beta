@@ -1,35 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ug implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32996a;
-    public final ki f32997b;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public interface ug {
+    hv0 A();
 
-    public ug(ki kiVar, int i9) {
-        this.f32996a = i9;
-        this.f32997b = kiVar;
-    }
+    boolean F();
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32996a) {
-            case 0:
-                this.f32997b.b2();
-                return;
-            case 1:
-                this.f32997b.f30178z0.invalidate();
-                return;
-            case 2:
-                ki.m(this.f32997b, valueAnimator);
-                return;
-            case 3:
-                ki kiVar = this.f32997b;
-                kiVar.getClass();
-                kiVar.K1(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                this.f32997b.b2();
-                return;
-        }
-    }
+    long H();
+
+    long a();
+
+    long b();
+
+    TLRPC.Chat g();
+
+    ChatObject.Call getGroupCall();
+
+    TLRPC.User i();
+
+    void j(int i10, int i11, boolean z10, int i12, boolean z11, int i13);
+
+    boolean n();
+
+    xn o();
+
+    void p();
 }

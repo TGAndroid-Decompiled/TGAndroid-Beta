@@ -1,60 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class h9 implements Runnable {
-    public final int f28995a = 0;
-    public final n9 f28996b;
-    public final Runnable[] f28997c;
-    public final h50 d;
-    public final int f28998e;
-    public final g7.b6[] f28999f;
+import org.telegram.tgnet.TLObject;
+public class h9 extends View {
+    public final g9 f29141a;
+    public cg.r1 f29142b;
+    public zz0 f29143c;
+    public Paint d;
 
-    public h9(n9 n9Var, h50 h50Var, Runnable[] runnableArr, int i9, g7.b6[] b6VarArr) {
-        this.f28996b = n9Var;
-        this.d = h50Var;
-        this.f28997c = runnableArr;
-        this.f28998e = i9;
-        this.f28999f = b6VarArr;
+    public h9(Context context, boolean z10) {
+        super(context);
+        this.f29141a = new g9(this, z10);
+    }
+
+    public final void a(boolean z10) {
+        this.f29141a.b(z10, true);
+    }
+
+    public final void b(int i10, TLObject tLObject, int i11) {
+        this.f29141a.l(i10, tLObject, i11);
     }
 
     @Override
-    public final void run() {
-        switch (this.f28995a) {
-            case 0:
-                n9 n9Var = this.f28996b;
-                h50 h50Var = this.d;
-                Runnable[] runnableArr = this.f28997c;
-                int i9 = this.f28998e;
-                g7.b6[] b6VarArr = this.f28999f;
-                try {
-                    GradientDrawable.Orientation orientation = n9Var.getOrientation();
-                    int[] iArr = n9Var.f31049a;
-                    int i10 = h50Var.f28978a;
-                    int i11 = h50Var.f28979b;
-                    Rect e10 = n9.e(orientation, i10, i11);
-                    Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e10.left, e10.top, e10.right, e10.bottom);
-                    AndroidUtilities.runOnUIThread(new ff.k0(n9Var, runnableArr, createBitmap, h50Var, i9, b6VarArr));
-                    return;
-                } catch (Throwable th) {
-                    AndroidUtilities.runOnUIThread(new h9(n9Var, runnableArr, h50Var, i9, b6VarArr));
-                    throw th;
-                }
-            default:
-                n9.a(this.f28996b, this.f28997c, null, this.d, this.f28998e, this.f28999f);
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f29141a.g();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f29141a.h();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        this.f29141a.i(canvas);
+        if (this.f29143c != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
+            this.f29142b.e(rectF);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f29142b.f3319f);
+            this.f29143c.c(rectF.centerX() - (this.f29143c.f35462c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 
-    public h9(n9 n9Var, Runnable[] runnableArr, h50 h50Var, int i9, g7.b6[] b6VarArr) {
-        this.f28996b = n9Var;
-        this.f28997c = runnableArr;
-        this.d = h50Var;
-        this.f28998e = i9;
-        this.f28999f = b6VarArr;
+    @Override
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int measuredWidth = getMeasuredWidth();
+        g9 g9Var = this.f29141a;
+        g9Var.f28836p = measuredWidth;
+        g9Var.f28835o = getMeasuredHeight();
+    }
+
+    public void setAvatarsTextSize(int i10) {
+        this.f29141a.j(i10);
+    }
+
+    public void setCentered(boolean z10) {
+        this.f29141a.f28832l = z10;
+    }
+
+    public void setCount(int i10) {
+        this.f29141a.k(i10);
+    }
+
+    public void setDelegate(Runnable runnable) {
+        this.f29141a.f28830j = runnable;
+    }
+
+    public void setSize(int i10) {
+        this.f29141a.f28839s = i10;
+    }
+
+    public void setStepFactor(float f9) {
+        this.f29141a.f28840t = f9;
+    }
+
+    public void setStyle(int i10) {
+        g9 g9Var = this.f29141a;
+        g9Var.f28831k = i10;
+        g9Var.f();
     }
 }

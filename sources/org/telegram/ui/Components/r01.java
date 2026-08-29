@@ -1,118 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class r01 extends vk0 {
-    public final Context f32046c;
-    public int d;
-    public ArrayList f32047e = new ArrayList();
-    public ArrayList f32048f = new ArrayList();
-    public org.telegram.ui.rl h;
-    public String f32049n;
-    public final ThemeEditorView.EditorAlert f32050r;
+public final class r01 implements f81 {
+    public final ThemeEditorView f32155a;
 
-    public r01(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f32050r = editorAlert;
-        this.f32046c = context;
+    public r01(ThemeEditorView themeEditorView) {
+        this.f32155a = themeEditorView;
     }
 
-    public static CharSequence E(String str, String str2) {
-        if (TextUtils.isEmpty(str)) {
-            return "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String trim = str.trim();
-        String lowerCase = trim.toLowerCase();
-        int i9 = 0;
+    @Override
+    public final void a() {
+        int i10 = 0;
         while (true) {
-            int indexOf = lowerCase.indexOf(str2, i9);
-            if (indexOf == -1) {
-                break;
-            }
-            int length = str2.length() + indexOf;
-            if (i9 != 0 && i9 != indexOf + 1) {
-                spannableStringBuilder.append((CharSequence) trim.substring(i9, indexOf));
-            } else if (i9 == 0 && indexOf != 0) {
-                spannableStringBuilder.append((CharSequence) trim.substring(0, indexOf));
-            }
-            String substring = trim.substring(indexOf, Math.min(trim.length(), length));
-            if (substring.startsWith(" ")) {
-                spannableStringBuilder.append((CharSequence) " ");
-            }
-            String trim2 = substring.trim();
-            int length2 = spannableStringBuilder.length();
-            spannableStringBuilder.append((CharSequence) trim2);
-            spannableStringBuilder.setSpan(new ForegroundColorSpan(-11697229), length2, trim2.length() + length2, 33);
-            i9 = length;
-        }
-        if (i9 != -1 && i9 < trim.length()) {
-            spannableStringBuilder.append((CharSequence) trim.substring(i9));
-        }
-        return spannableStringBuilder;
-    }
-
-    @Override
-    public final boolean D(f2.q1 q1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        if (this.f32047e.isEmpty()) {
-            return 0;
-        }
-        return this.f32047e.size() + 1;
-    }
-
-    @Override
-    public final int j(int i9) {
-        if (i9 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        int b10;
-        if (q1Var.f5505f == 0) {
-            boolean z10 = true;
-            int i10 = i9 - 1;
-            org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) ((ArrayList) this.f32047e.get(i10)).get(0);
-            if (h6Var.f23498f == org.telegram.ui.ActionBar.f6.Nd) {
-                b10 = 0;
+            ThemeEditorView themeEditorView = this.f32155a;
+            if (i10 < themeEditorView.f26567c.size()) {
+                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) themeEditorView.f26567c.get(i10);
+                int w02 = org.telegram.ui.ActionBar.g6.w0(i6Var.f23539j, i6Var.f23536f, false);
+                i6Var.f23538i = w02;
+                if (i10 == 0) {
+                    themeEditorView.f26574l.f26576b.c(w02);
+                }
+                i10++;
             } else {
-                b10 = h6Var.b();
+                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f26574l;
+                int i11 = ThemeEditorView.EditorAlert.I;
+                editorAlert.K(true);
+                return;
             }
-            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) q1Var.f5501a;
-            w8Var.f25911a.setText((CharSequence) this.f32048f.get(i10));
-            w8Var.f25912b = b10;
-            if (b10 != 0) {
-                z10 = false;
-            }
-            w8Var.setWillNotDraw(z10);
-            w8Var.invalidate();
         }
     }
 
     @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        View w8Var;
-        Context context = this.f32046c;
-        if (i9 != 0) {
-            w8Var = new View(context);
-            w8Var.setLayoutParams(new f2.a1(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            w8Var = new org.telegram.ui.Cells.w8(context);
-            w8Var.setLayoutParams(new f2.a1(-1, -2));
+    public final void b(File file, Bitmap bitmap, boolean z10) {
+        org.telegram.ui.ActionBar.f6 f6Var = this.f32155a.f26575m;
+        org.telegram.ui.ActionBar.g6.rl.delete(org.telegram.ui.ActionBar.g6.Nd);
+        org.telegram.ui.ActionBar.g6.rl.delete(org.telegram.ui.ActionBar.g6.Od);
+        org.telegram.ui.ActionBar.g6.rl.delete(org.telegram.ui.ActionBar.g6.Pd);
+        org.telegram.ui.ActionBar.g6.rl.delete(org.telegram.ui.ActionBar.g6.Qd);
+        org.telegram.ui.ActionBar.g6.rl.delete(org.telegram.ui.ActionBar.g6.Rd);
+        org.telegram.ui.ActionBar.g6.f23128h0 = null;
+        f6Var.v(null);
+        if (bitmap != null) {
+            org.telegram.ui.ActionBar.g6.f23093f0 = new BitmapDrawable(bitmap);
+            org.telegram.ui.ActionBar.g6.r1(f6Var, false, false, false);
+            int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(org.telegram.ui.ActionBar.g6.f23093f0);
+            int i10 = calcDrawableColor[0];
+            org.telegram.ui.ActionBar.g6.f23040c0 = i10;
+            org.telegram.ui.ActionBar.g6.X = i10;
+            int i11 = calcDrawableColor[1];
+            org.telegram.ui.ActionBar.g6.f23056d0 = i11;
+            org.telegram.ui.ActionBar.g6.f23021b0 = i11;
+            Drawable drawable = org.telegram.ui.ActionBar.g6.f23074e0;
+            if (drawable != null) {
+                org.telegram.ui.ActionBar.g6.i(drawable);
+            }
+            org.telegram.ui.ActionBar.g6.h(org.telegram.ui.ActionBar.g6.f23074e0);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+            return;
         }
-        return new f2.q1(w8Var);
+        org.telegram.ui.ActionBar.g6.f23093f0 = null;
+        org.telegram.ui.ActionBar.g6.f23074e0 = null;
+        org.telegram.ui.ActionBar.g6.r1(f6Var, false, false, false);
+        org.telegram.ui.ActionBar.g6.o1(true);
     }
 }

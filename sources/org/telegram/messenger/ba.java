@@ -1,43 +1,31 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class ba implements Runnable {
-    public final int f19825a;
-    public final MessagesController f19826b;
-    public final ArrayList f19827c;
+    public final int f19794a;
+    public final MessagesController f19795b;
+    public final long f19796c;
+    public final int d;
+    public final boolean f19797e;
+    public final int f19798f;
+    public final int h;
 
-    public ba(MessagesController messagesController, ArrayList arrayList, int i9) {
-        this.f19825a = i9;
-        this.f19826b = messagesController;
-        this.f19827c = arrayList;
+    public ba(MessagesController messagesController, long j10, int i10, boolean z10, int i11, int i12, int i13) {
+        this.f19794a = i13;
+        this.f19795b = messagesController;
+        this.f19796c = j10;
+        this.d = i10;
+        this.f19797e = z10;
+        this.f19798f = i11;
+        this.h = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f19825a) {
+        switch (this.f19794a) {
             case 0:
-                MessagesController.t1(this.f19826b, this.f19827c);
-                return;
-            case 1:
-                MessagesController.s2(this.f19826b, this.f19827c);
-                return;
-            case 2:
-                MessagesController.A2(this.f19826b, this.f19827c);
-                return;
-            case 3:
-                MessagesController.K4(this.f19826b, this.f19827c);
-                return;
-            case 4:
-                MessagesController.P3(this.f19826b, this.f19827c);
-                return;
-            case 5:
-                MessagesController.b5(this.f19826b, this.f19827c);
-                return;
-            case 6:
-                MessagesController.d0(this.f19826b, this.f19827c);
+                MessagesController.J(this.d, this.f19798f, this.h, this.f19796c, this.f19795b, this.f19797e);
                 return;
             default:
-                MessagesController.R2(this.f19826b, this.f19827c);
+                MessagesController.q1(this.d, this.f19798f, this.h, this.f19796c, this.f19795b, this.f19797e);
                 return;
         }
     }

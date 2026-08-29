@@ -1,26 +1,19 @@
 package od;
 
-import hd.a0;
-public final class e extends h {
-    public static final e d;
+import jd.c0;
+public final class e implements c0 {
+    public final sc.h f19510a;
 
-    static {
-        int i9 = k.f19226c;
-        int i10 = k.d;
-        long j10 = k.f19227e;
-        String str = k.f19224a;
-        ?? a0Var = new a0();
-        a0Var.f19220c = new c(i9, j10, str, i10);
-        d = a0Var;
+    public e(sc.h hVar) {
+        this.f19510a = hVar;
     }
 
     @Override
-    public final void close() {
-        throw new UnsupportedOperationException("Dispatchers.Default cannot be closed");
+    public final sc.h c() {
+        return this.f19510a;
     }
 
-    @Override
     public final String toString() {
-        return "Dispatchers.Default";
+        return "CoroutineScope(coroutineContext=" + this.f19510a + ')';
     }
 }

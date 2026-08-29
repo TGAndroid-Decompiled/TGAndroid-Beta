@@ -1,4 +1,5 @@
 package ee;
-public final class a {
-    public final int f5114a;
+
+import le.e;
+public final class a extends e {
 }

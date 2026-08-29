@@ -1,46 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class x8 implements Runnable {
-    public final xl f34600a;
+import j$.util.Objects;
+public final class x8 {
+    public int f34648a;
+    public boolean f34649b;
+    public int f34650c;
+    public int d;
+    public int f34651e;
+    public int f34652f;
 
-    public x8(xl xlVar) {
-        this.f34600a = xlVar;
+    public final x8 a() {
+        ?? obj = new Object();
+        obj.f34650c = this.f34650c;
+        obj.d = this.d;
+        obj.f34651e = this.f34651e;
+        obj.f34652f = this.f34652f;
+        obj.f34649b = this.f34649b;
+        return obj;
     }
 
-    @Override
-    public final void run() {
-        ih.z2 z2Var;
-        xl xlVar = this.f34600a;
-        AndroidUtilities.runOnUIThread(xlVar.f34895y, 1000L);
-        TLRPC.TL_emojiList tL_emojiList = xlVar.f34890n;
-        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && xlVar.f34893w == 1.0f) {
-            if (xlVar.f34894x || ((z2Var = xlVar.f34886b.f29951k) != null && z2Var.hasImageLoaded())) {
-                int i9 = xlVar.v + 1;
-                xlVar.v = i9;
-                xlVar.f34892s++;
-                if (i9 > tL_emojiList.document_id.size() - 1) {
-                    xlVar.v = 0;
-                }
-                if (xlVar.f34892s > 6) {
-                    xlVar.f34892s = 0;
-                }
-                k5 k5Var = new k5(4, xlVar.f34891r, tL_emojiList.document_id.get(xlVar.v).longValue());
-                xlVar.f34885a = k5Var;
-                xlVar.d.setAnimatedEmojiDrawable(k5Var);
-                int[] iArr = w8.Y[xlVar.f34892s];
-                int i10 = iArr[0];
-                int i11 = iArr[1];
-                int i12 = iArr[2];
-                int i13 = iArr[3];
-                z10 z10Var = new z10();
-                xlVar.f34889f = z10Var;
-                z10Var.d(i10, i11, i12, i13);
-                xlVar.f34893w = 0.0f;
-                xlVar.b();
-                xlVar.invalidate();
-            }
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof x8)) {
+            return false;
+        }
+        x8 x8Var = (x8) obj;
+        if (this.f34650c == x8Var.f34650c && this.d == x8Var.d && this.f34651e == x8Var.f34651e && this.f34652f == x8Var.f34652f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f34648a), Integer.valueOf(this.f34650c), Integer.valueOf(this.d), Integer.valueOf(this.f34651e), Integer.valueOf(this.f34652f));
     }
 }

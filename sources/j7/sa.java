@@ -1,3 +1,5 @@
 package j7;
-public abstract class sa {
+
+import android.os.IInterface;
+public interface sa extends IInterface {
 }

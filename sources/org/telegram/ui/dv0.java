@@ -3,44 +3,44 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
-public final class dv0 implements org.telegram.ui.Components.tj0 {
-    public final qn f37615a;
-    public final MessageObject f37616b;
-    public final org.telegram.ui.Components.uj0 f37617c;
+public final class dv0 implements org.telegram.ui.Components.ek0 {
+    public final tn f37637a;
+    public final MessageObject f37638b;
+    public final org.telegram.ui.Components.fk0 f37639c;
     public final iv0 d;
 
-    public dv0(iv0 iv0Var, qn qnVar, MessageObject messageObject, org.telegram.ui.Components.uj0 uj0Var) {
+    public dv0(iv0 iv0Var, tn tnVar, MessageObject messageObject, org.telegram.ui.Components.fk0 fk0Var) {
         this.d = iv0Var;
-        this.f37615a = qnVar;
-        this.f37616b = messageObject;
-        this.f37617c = uj0Var;
+        this.f37637a = tnVar;
+        this.f37638b = messageObject;
+        this.f37639c = fk0Var;
     }
 
     @Override
-    public final void d(android.view.View r13, hg.r0 r14, boolean r15, boolean r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dv0.d(android.view.View, hg.r0, boolean, boolean):void");
+    public final boolean O() {
+        return false;
     }
 
     @Override
-    public final boolean n() {
+    public final void Q(android.view.View r13, kg.q0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dv0.Q(android.view.View, kg.q0, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean j() {
         return true;
     }
 
     @Override
-    public final boolean p() {
+    public final boolean w() {
         return false;
     }
 
     @Override
-    public final boolean u() {
-        return false;
+    public final void H() {
     }
 
     @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void s(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i9, boolean z10) {
+    public final void G(Canvas canvas, RectF rectF, float f9, float f10, float f11, int i10, boolean z10) {
     }
 }

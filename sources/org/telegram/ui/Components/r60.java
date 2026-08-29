@@ -1,243 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.TextView;
-public final class r60 extends AnimatorListenerAdapter {
-    public final int f32085a;
-    public final Object f32086b;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class r60 extends il0 {
+    public final x60 f32226c;
 
-    public r60(Object obj, int i9) {
-        this.f32085a = i9;
-        this.f32086b = obj;
+    public r60(x60 x60Var) {
+        this.f32226c = x60Var;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f32085a) {
-            case 9:
-                ((ag0) this.f32086b).h = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final boolean D(f2.n1 n1Var) {
+        int i10 = n1Var.f6436f;
+        if (i10 == 3 || i10 == 1) {
+            return true;
         }
+        return false;
+    }
+
+    public final TLObject E(int i10) {
+        int i11;
+        int i12;
+        x60 x60Var = this.f32226c;
+        if (x60Var.f34612i0 != null) {
+            TLRPC.Dialog dialog = (TLRPC.Dialog) x60Var.f34613j0.get(i10 - x60Var.U);
+            if (DialogObject.isUserDialog(dialog.f22396id)) {
+                i12 = ((org.telegram.ui.ActionBar.f3) x60Var).currentAccount;
+                return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f22396id));
+            }
+            i11 = ((org.telegram.ui.ActionBar.f3) x60Var).currentAccount;
+            return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f22396id));
+        }
+        return (TLObject) x60Var.f34604a0.get(i10 - x60Var.U);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32085a) {
-            case 0:
-                x60 x60Var = (x60) this.f32086b;
-                v60 v60Var = x60Var.f34584x;
-                if (v60Var != null) {
-                    v60Var.setProgress(1.0f);
-                    x60Var.f34584x.invalidate();
+    public final int h() {
+        return this.f32226c.Y;
+    }
+
+    @Override
+    public final int j(int i10) {
+        x60 x60Var = this.f32226c;
+        if (i10 == x60Var.T) {
+            return 1;
+        }
+        x60Var.getClass();
+        if (i10 == 0) {
+            return 2;
+        }
+        if (i10 >= x60Var.U && i10 < x60Var.V) {
+            return 3;
+        }
+        if (i10 == x60Var.X) {
+            return 4;
+        }
+        if (i10 == x60Var.W) {
+            return 5;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(f2.n1 n1Var, int i10) {
+        long j10;
+        boolean z10;
+        long j11;
+        boolean z11;
+        int i11 = n1Var.f6436f;
+        View view = n1Var.f6432a;
+        if (i11 != 2) {
+            if (i11 == 3) {
+                org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) view;
+                TLObject E = E(i10);
+                Object object = e4Var.getObject();
+                if (object instanceof TLRPC.User) {
+                    j10 = ((TLRPC.User) object).f22539id;
+                } else if (object instanceof TLRPC.Chat) {
+                    j10 = -((TLRPC.Chat) object).f22392id;
+                } else {
+                    j10 = 0;
                 }
-                x60Var.m0 = null;
-                return;
-            case 1:
-                wz wzVar = (wz) this.f32086b;
-                ((g70) wzVar.f34477e).A = false;
-                TextView[] textViewArr = (TextView[]) wzVar.d;
-                TextView textView = textViewArr[0];
-                textViewArr[0] = textViewArr[1];
-                textViewArr[1] = textView;
-                return;
-            case 2:
-                t70 t70Var = (t70) this.f32086b;
-                if (!t70Var.f32641f) {
-                    t70Var.f32639c.setVisibility(8);
-                    return;
+                x60 x60Var = this.f32226c;
+                boolean z12 = false;
+                if (i10 != x60Var.V) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return;
-            case 3:
-                a80 a80Var = (a80) this.f32086b;
-                FrameLayout frameLayout = a80Var.f26721b;
-                kh.h6 h6Var = (kh.h6) a80Var.f26722c;
-                if (h6Var.getParent() != null) {
-                    frameLayout.removeView(h6Var);
+                e4Var.e(E, null, null, z10);
+                if (E instanceof TLRPC.User) {
+                    j11 = ((TLRPC.User) E).f22539id;
+                } else if (E instanceof TLRPC.Chat) {
+                    j11 = -((TLRPC.Chat) E).f22392id;
+                } else {
+                    j11 = 0;
                 }
-                frameLayout.getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Cells.ca) a80Var.d);
-                return;
-            case 4:
-                wa0 wa0Var = (wa0) this.f32086b;
-                wa0Var.V.h = null;
-                wa0Var.e(wa0Var.O, wa0Var.N);
-                return;
-            case 5:
-                NumberTextView numberTextView = (NumberTextView) this.f32086b;
-                numberTextView.d = null;
-                numberTextView.f26413b.clear();
-                return;
-            case 6:
-                yc0 yc0Var = (yc0) this.f32086b;
-                yc0Var.setVisibility(8);
-                yc0Var.h();
-                yc0Var.L = 0.0f;
-                yc0Var.f(0.0f);
-                yc0Var.setAlpha(0.0f);
-                return;
-            case 7:
-                AnimatorSet animatorSet = (AnimatorSet) this.f32086b;
-                if (animatorSet != null) {
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            case 8:
-                ye yeVar = (ye) this.f32086b;
-                AnimatorSet animatorSet2 = (AnimatorSet) ((kh.z8) yeVar.f34957c).f16469e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ((kh.z8) yeVar.f34957c).f16469e = null;
-                    return;
-                }
-                return;
-            case 9:
-                return;
-            case 10:
-                fg0 fg0Var = (fg0) this.f32086b;
-                fg0Var.f28420f = false;
-                fg0Var.B = null;
-                return;
-            case 11:
-                ((uh0) this.f32086b).b();
-                return;
-            case 12:
-                ((ej0) this.f32086b).h.setVisibility(8);
-                return;
-            case 13:
-                wk0 wk0Var = (wk0) this.f32086b;
-                View view = wk0Var.Y0;
-                if (view != null) {
-                    view.setVisibility(8);
-                }
-                if (wk0Var.b1()) {
-                    wk0Var.invalidate();
-                    return;
-                }
-                return;
-            case 14:
-                sl0 sl0Var = (sl0) this.f32086b;
-                if (sl0Var.f32514s != null) {
-                    sl0Var.j();
-                    sl0Var.f32514s.invalidate();
-                    sl0Var.f32500e.invalidate();
-                    sl0Var.invalidate();
-                    sl0Var.f32514s = null;
-                    return;
-                }
-                return;
-            case 15:
-                ((xl0) this.f32086b).d = false;
-                return;
-            case 16:
-                ((hn0) this.f32086b).I0.setVisibility(8);
-                return;
-            case 17:
-                fo0 fo0Var = (fo0) this.f32086b;
-                if (animator == fo0Var.h) {
-                    fo0Var.h = null;
-                    return;
-                }
-                return;
-            case 18:
-                ((qp0) this.f32086b).f32007e = null;
-                return;
-            case 19:
-                yp0 yp0Var = (yp0) this.f32086b;
-                if (yp0Var.getParent() != null) {
-                    ((ViewGroup) yp0Var.getParent()).removeView(yp0Var);
-                    return;
-                }
-                return;
-            case 20:
-                zr0 zr0Var = (zr0) this.f32086b;
-                View view2 = zr0Var.f35367c;
-                view2.setAlpha(1.0f);
-                f2.z0.x0(view2);
-                zr0Var.f35365a.removeView(view2);
-                return;
-            case 21:
-                mu0 mu0Var = (mu0) this.f32086b;
-                if (mu0Var.f30924f == animator) {
-                    mu0Var.f30924f = null;
-                    return;
-                }
-                return;
-            case 22:
-                ew0 ew0Var = (ew0) this.f32086b;
-                ew0.y1(ew0Var, ((Float) ew0Var.f28203l3.getAnimatedValue()).floatValue());
-                ew0Var.f28203l3 = null;
-                return;
-            case 23:
-                cx0 cx0Var = (cx0) this.f32086b;
-                cx0Var.f27593x.setVisibility(8);
-                cx0Var.B.setImageDrawable(null);
-                return;
-            case 24:
-                int i9 = 0;
-                while (true) {
-                    jx0[] jx0VarArr = (jx0[]) this.f32086b;
-                    if (i9 < jx0VarArr.length) {
-                        jx0 jx0Var = jx0VarArr[i9];
-                        if (jx0Var != null) {
-                            jx0Var.d = false;
-                        }
-                        i9++;
-                    } else {
+                if (j11 != 0) {
+                    a0.h hVar = x60Var.P;
+                    if (hVar != null && hVar.h(j11) >= 0) {
+                        e4Var.c(true, false);
+                        e4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                }
-            case 25:
-                super.onAnimationEnd(animator);
-                ((kx0) this.f32086b).D = null;
-                return;
-            case 26:
-                ((nx0) this.f32086b).f31207e = false;
-                return;
-            case 27:
-                ((uz0) this.f32086b).setVisibility(4);
-                return;
-            case 28:
-                ((e11) this.f32086b).setVisibility(8);
-                return;
-            default:
-                ih.b3 b3Var = ((v11) this.f32086b).f33230f;
-                b3Var.setScaleX(1.0f);
-                b3Var.setScaleY(1.0f);
-                b3Var.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f32085a) {
-            case 15:
-                xl0 xl0Var = (xl0) this.f32086b;
-                xl0Var.d = true;
-                if (xl0Var.getParent() instanceof HorizontalScrollView) {
-                    ((HorizontalScrollView) xl0Var.getParent()).requestDisallowInterceptTouchEvent(false);
+                    if (x60Var.f34605b0.h(j11) >= 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (j10 == j11) {
+                        z12 = true;
+                    }
+                    e4Var.c(z11, z12);
+                    e4Var.setCheckBoxEnabled(true);
                     return;
                 }
                 return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+            }
+            return;
         }
+        view.requestLayout();
     }
 
-    public r60(zr0 zr0Var, f2.z0 z0Var) {
-        this.f32085a = 20;
-        this.f32086b = zr0Var;
-    }
-
-    private final void a(Animator animator) {
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.w4 w4Var;
+        boolean z10;
+        Context context = viewGroup.getContext();
+        if (i10 != 2) {
+            x60 x60Var = this.f32226c;
+            if (i10 != 3) {
+                if (i10 != 4) {
+                    if (i10 != 5) {
+                        org.telegram.ui.Cells.w4 w4Var2 = new org.telegram.ui.Cells.w4(context);
+                        w4Var2.b(LocaleController.getString(R.string.VoipGroupCopyInviteLink), R.drawable.msg_link, 7, true);
+                        int i11 = org.telegram.ui.ActionBar.g6.f23240n5;
+                        w4Var2.a(i11, i11);
+                        w4Var = w4Var2;
+                    } else {
+                        q60 q60Var = new q60(context, null, 0, null, 0);
+                        q60Var.setLayoutParams(new f2.x0(-1, -1));
+                        q60Var.f32122e.setVisibility(8);
+                        org.telegram.ui.xt xtVar = x60Var.f34612i0;
+                        gh.s sVar = q60Var.d;
+                        if (xtVar != null) {
+                            sVar.setText(LocaleController.getString(R.string.FilterNoChats));
+                        } else {
+                            sVar.setText(LocaleController.getString(R.string.NoContacts));
+                        }
+                        q60Var.setAnimateLayoutChange(true);
+                        w4Var = q60Var;
+                    }
+                } else {
+                    w4Var = new View(context);
+                }
+            } else {
+                if (x60Var.f34612i0 != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                w4Var = new org.telegram.ui.Cells.e4(context, 1, 0, z10);
+            }
+        } else {
+            w4Var = new cg.h0(this, context, 15);
+        }
+        return new f2.n1(w4Var);
     }
 }

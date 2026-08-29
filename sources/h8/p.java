@@ -1,70 +1,14 @@
 package h8;
+public abstract class p {
+    public static final com.google.android.gms.common.api.e f7915a = new com.google.android.gms.common.api.e("Wallet.API", new b6.b(4), new Object());
+    public static final w5.c f7916b;
+    public static final w5.c[] f7917c;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
-public final class p extends Handler {
-    public boolean f10250a;
-    public final o f10251b;
-    public final k f10252c;
-
-    public p(k kVar, Looper looper) {
-        super(looper);
-        this.f10252c = kVar;
-        this.f10251b = new Object();
-    }
-
-    public final synchronized void a(String str) {
-        ComponentName componentName;
-        if (!this.f10250a) {
-            return;
-        }
-        if (Log.isLoggable("WearableLS", 2)) {
-            componentName = this.f10252c.zza;
-            String valueOf = String.valueOf(componentName);
-            Log.v("WearableLS", "unbindService: " + str + ", " + valueOf);
-        }
-        try {
-            this.f10252c.unbindService(this.f10251b);
-        } catch (RuntimeException e10) {
-            Log.e("WearableLS", "Exception when unbinding from local service", e10);
-        }
-        this.f10250a = false;
-    }
-
-    @Override
-    public final void dispatchMessage(Message message) {
-        Intent intent;
-        ComponentName componentName;
-        synchronized (this) {
-            try {
-                if (!this.f10250a) {
-                    if (Log.isLoggable("WearableLS", 2)) {
-                        componentName = this.f10252c.zza;
-                        Log.v("WearableLS", "bindService: ".concat(String.valueOf(componentName)));
-                    }
-                    k kVar = this.f10252c;
-                    intent = kVar.zzd;
-                    kVar.bindService(intent, this.f10251b, 1);
-                    this.f10250a = true;
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        try {
-            super.dispatchMessage(message);
-            if (!hasMessages(0)) {
-                a("dispatch");
-            }
-        } catch (Throwable th2) {
-            if (!hasMessages(0)) {
-                a("dispatch");
-            }
-            throw th2;
-        }
+    static {
+        w5.c cVar = new w5.c("wallet", 1L);
+        w5.c cVar2 = new w5.c("wallet_biometric_auth_keys", 1L);
+        w5.c cVar3 = new w5.c("wallet_payment_dynamic_update", 2L);
+        f7916b = cVar3;
+        f7917c = new w5.c[]{cVar, cVar2, cVar3, new w5.c("wallet_1p_initialize_buyflow", 1L), new w5.c("wallet_warm_up_ui_process", 1L), new w5.c("wallet_get_setup_wizard_intent", 4L), new w5.c("wallet_get_payment_card_recognition_intent", 1L)};
     }
 }

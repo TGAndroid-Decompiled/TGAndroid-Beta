@@ -2,34 +2,34 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class e implements Runnable {
-    public final int f20137a;
-    public final ArrayList f20138b;
+    public final int f20081a;
+    public final ArrayList f20082b;
 
-    public e(ArrayList arrayList, int i9) {
-        this.f20137a = i9;
-        this.f20138b = arrayList;
+    public e(ArrayList arrayList, int i10) {
+        this.f20081a = i10;
+        this.f20082b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20137a) {
+        switch (this.f20081a) {
             case 0:
-                AndroidUtilities.g(this.f20138b);
+                AndroidUtilities.g(this.f20082b);
                 return;
             case 1:
-                AndroidUtilities.B(this.f20138b);
+                AndroidUtilities.B(this.f20082b);
                 return;
             case 2:
-                DispatchQueuePoolBackground.d(this.f20138b);
+                DispatchQueuePoolBackground.d(this.f20082b);
                 return;
             case 3:
-                DispatchQueuePoolBackground.b(this.f20138b);
+                DispatchQueuePoolBackground.b(this.f20082b);
                 return;
             case 4:
-                MessagesStorage.lambda$getWallpapers$80(this.f20138b);
+                MessagesStorage.lambda$getWallpapers$80(this.f20082b);
                 return;
             default:
-                MessagesStorage.lambda$updateWidgets$165(this.f20138b);
+                MessagesStorage.lambda$updateWidgets$165(this.f20082b);
                 return;
         }
     }

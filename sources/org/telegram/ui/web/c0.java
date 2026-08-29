@@ -1,32 +1,37 @@
 package org.telegram.ui.web;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.qn;
-public final class c0 extends qn {
-    public boolean Mc;
-    public final TLRPC.User Nc;
-    public final long Oc;
-    public final y0 Pc;
+import android.app.Activity;
+import nh.d6;
+import org.json.JSONObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.r9;
+public final class c0 implements NotificationCenter.NotificationCenterDelegate {
+    public final z0 f43994a;
 
-    public c0(y0 y0Var, Bundle bundle, TLRPC.User user, long j10) {
-        super(bundle);
-        this.Pc = y0Var;
-        this.Nc = user;
-        this.Oc = j10;
+    public c0(z0 z0Var) {
+        this.f43994a = z0Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Mc) {
-            this.Mc = true;
-            oc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Nc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Pc.Q)), new b0(this, this.Oc, 0)), R.raw.contact_check).j();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.onRequestPermissionResultReceived;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == 5000) {
+                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
+                int i13 = iArr[0];
+                z0 z0Var = this.f43994a;
+                if (i13 == 0) {
+                    Activity activity = z0Var.S;
+                    if (activity != null) {
+                        z0Var.f44265c0 = r9.e0(activity, 3, new d6(z0Var, 11));
+                        return;
+                    }
+                    return;
+                }
+                z0Var.v("scan_qr_popup_closed", new JSONObject());
+            }
         }
     }
 }

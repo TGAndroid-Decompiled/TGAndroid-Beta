@@ -24,26 +24,26 @@ public class BotGuardHelper extends BaseController {
         }
     }
 
-    private BotGuardHelper(int i9) {
-        super(i9);
+    private BotGuardHelper(int i10) {
+        super(i10);
         this.queryIdToBotId = new LongSparseLongArray();
     }
 
-    public static BotGuardHelper getInstance(int i9) {
+    public static BotGuardHelper getInstance(int i10) {
         BotGuardHelper botGuardHelper;
-        BotGuardHelper botGuardHelper2 = Instance[i9];
+        BotGuardHelper botGuardHelper2 = Instance[i10];
         if (botGuardHelper2 == null) {
             synchronized (BotForumHelper.class) {
                 try {
-                    botGuardHelper = Instance[i9];
+                    botGuardHelper = Instance[i10];
                     if (botGuardHelper == null) {
                         BotGuardHelper[] botGuardHelperArr = Instance;
-                        BotGuardHelper botGuardHelper3 = new BotGuardHelper(i9);
-                        botGuardHelperArr[i9] = botGuardHelper3;
+                        BotGuardHelper botGuardHelper3 = new BotGuardHelper(i10);
+                        botGuardHelperArr[i10] = botGuardHelper3;
                         botGuardHelper = botGuardHelper3;
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             return botGuardHelper;
@@ -58,18 +58,18 @@ public class BotGuardHelper extends BaseController {
 
     public void closeGuardBotWebApp(long j10, long j11, TLRPC.JoinChatBotResult joinChatBotResult) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.guardBotDecisionResult, new GuardBotDecisionResultNotification(j10, this.queryIdToBotId.get(j11, 0L), j11, joinChatBotResult));
-        HashSet hashSet = mh.c3.S0;
+        HashSet hashSet = ph.p2.S0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
-                mh.c3 c3Var = (mh.c3) it.next();
-                mh.s4 s4Var = c3Var.f17770r0;
-                if (s4Var != null && s4Var.f18110g == 5) {
-                    long j12 = s4Var.f18106b;
+                ph.p2 p2Var = (ph.p2) it.next();
+                ph.y3 y3Var = p2Var.f45979r0;
+                if (y3Var != null && y3Var.f46168g == 5) {
+                    long j12 = y3Var.f46164b;
                     if (j12 == j10 || j12 == 0) {
-                        TLObject tLObject = s4Var.f18119q;
+                        TLObject tLObject = y3Var.f46177q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j11) {
-                            c3Var.k(false);
+                            p2Var.k(false);
                             return;
                         }
                     }
@@ -90,7 +90,7 @@ public class BotGuardHelper extends BaseController {
         TLRPC.User user = getMessagesController().getUser(Long.valueOf(j11));
         if (!z10) {
             if (!SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j11) && !getMessagesController().whitelistedBots.contains(Long.valueOf(j11))) {
-                org.telegram.ui.Components.y4.o(R, user, new m0(this, j10, j11, j12, 0), new w1(6));
+                org.telegram.ui.Components.c5.o(R, user, new l0(this, j10, j11, j12, 0), new w1(6));
                 return;
             } else {
                 openGuardBotWebApp(j10, j11, j12, true);
@@ -99,14 +99,14 @@ public class BotGuardHelper extends BaseController {
         }
         this.queryIdToBotId.put(j12, j11);
         org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
-        mh.s4 b10 = mh.s4.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
+        ph.y3 b10 = ph.y3.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
         b10.d = j12;
-        mh.c3 c3Var = new mh.c3(LaunchActivity.C1, null);
-        c3Var.w(false);
-        c3Var.f17777w0 = true;
-        c3Var.f17758g0 = LaunchActivity.C1;
-        c3Var.s(R2, b10);
-        c3Var.show();
+        ph.p2 p2Var = new ph.p2(LaunchActivity.C1, null);
+        p2Var.w(false);
+        p2Var.f45986w0 = true;
+        p2Var.f45967g0 = LaunchActivity.C1;
+        p2Var.s(R2, b10);
+        p2Var.show();
     }
 
     public static void lambda$openGuardBotWebApp$1() {

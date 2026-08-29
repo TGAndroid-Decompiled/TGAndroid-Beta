@@ -1,27 +1,11 @@
 package ih;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class l1 extends TLRPC.TL_messageMediaStory {
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class l1 extends FrameLayout {
     @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.user_id = inputSerializedData.readInt64(z10);
-        this.f22402id = inputSerializedData.readInt32(z10);
-        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        this.via_mention = inputSerializedData.readBool(z10);
-        this.peer = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(this.user_id);
-    }
-
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt32(-946147811);
-        outputSerializedData.writeInt64(this.user_id);
-        outputSerializedData.writeInt32(this.f22402id);
-        this.storyItem.serializeToStream(outputSerializedData);
-        outputSerializedData.writeBool(this.via_mention);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), 1073741824));
     }
 }

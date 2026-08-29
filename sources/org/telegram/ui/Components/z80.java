@@ -1,307 +1,207 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import j$.util.DesugarCollections;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.charset.StandardCharsets;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.text.style.CharacterStyle;
+import android.view.ViewConfiguration;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public abstract class z80 {
-    public static final Pattern f35244a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f35245b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f35246c = Pattern.compile("^(\\d+)[.)]\\s");
+import org.telegram.messenger.LiteMode;
+public final class z80 {
+    public static final ArrayList f35278s = new ArrayList();
+    public int f35279a;
+    public int f35280b;
+    public Paint f35281c;
+    public Paint d;
+    public int f35282e;
+    public int f35283f;
+    public final CharacterStyle f35285i;
+    public final float f35286j;
+    public final float f35287k;
+    public Rect f35289m;
+    public float f35290n;
+    public final long f35293q;
+    public final ArrayList f35284g = new ArrayList();
+    public int h = 0;
+    public final Path f35288l = new Path();
+    public long f35291o = -1;
+    public long f35292p = -1;
+    public final boolean f35294r = !LiteMode.isEnabled(360928);
 
-    public static TL_iv.RichText a(ie.p pVar, TL_iv.PageBlock pageBlock) {
-        w80 w80Var = new w80(pageBlock);
-        pVar.a(w80Var);
-        return g(h(w80.x(w80Var.f34151c)));
+    public z80(CharacterStyle characterStyle, org.telegram.ui.ActionBar.c6 c6Var, float f9, float f10, int i10) {
+        this.f35285i = characterStyle;
+        d(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Ld, c6Var));
+        this.f35286j = f9;
+        this.f35287k = f10;
+        this.f35293q = Math.min(ViewConfiguration.getTapTimeout() * 1.8f, ViewConfiguration.getLongPressTimeout() * 0.8f);
     }
 
-    public static List b(TL_iv.RichText richText) {
-        int i9;
-        if (richText == null) {
-            return Collections.singletonList(j(""));
-        }
-        if (k(richText) <= 8192) {
-            return Collections.singletonList(richText);
-        }
-        String l10 = l(richText);
-        ArrayList arrayList = new ArrayList();
-        int i10 = 0;
-        while (i10 < l10.length()) {
-            if (l10.length() - i10 <= 8192) {
-                arrayList.add(j(l10.substring(i10)));
-                return arrayList;
-            }
-            int i11 = i10 + 8192;
-            int i12 = i10 + 8191;
-            int lastIndexOf = l10.lastIndexOf(10, i12);
-            if (lastIndexOf <= i10) {
-                lastIndexOf = l10.lastIndexOf(32, i12);
-            }
-            if (lastIndexOf <= i10) {
-                i9 = 0;
-            } else {
-                i11 = lastIndexOf;
-                i9 = 1;
-            }
-            arrayList.add(j(l10.substring(i10, i11)));
-            i10 = i11 + i9;
-        }
-        return arrayList;
-    }
-
-    public static TL_iv.textMath c(String str) {
-        String trim;
-        TL_iv.textMath textmath = new TL_iv.textMath();
-        if (str == null) {
-            trim = "";
+    public final boolean a(Canvas canvas) {
+        int dp;
+        boolean z10;
+        boolean z11;
+        float f9;
+        boolean z12;
+        boolean z13;
+        float min;
+        boolean z14 = this.f35294r;
+        if (z14) {
+            dp = 0;
         } else {
-            trim = str.trim();
+            dp = AndroidUtilities.dp(4.0f);
         }
-        textmath.source = trim;
-        textmath.tried = true;
-        qh.q a2 = qh.q.a(trim, AndroidUtilities.dp(20.0f), true);
-        if (a2 != null) {
-            textmath.f22605w = a2.f46619b;
-            textmath.h = a2.f46620c;
-            textmath.depth = a2.d;
-            textmath.bitmap = a2.f46618a;
-        }
-        return textmath;
-    }
-
-    public static TL_iv.RichText d(TL_iv.RichText richText) {
-        if (richText == null) {
-            return null;
-        }
-        if (k(richText) <= 8192) {
-            return richText;
-        }
-        String l10 = l(richText);
-        return j(l10.substring(0, Math.min(l10.length(), 8192)));
-    }
-
-    public static void e(ArrayList arrayList, List list) {
-        List unmodifiableList;
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            ic.a aVar = (ic.a) it.next();
-            arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f11090f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            e(arrayList, unmodifiableList);
-        }
-    }
-
-    public static TLRPC.TL_webPage f(MessageObject messageObject) {
-        TLRPC.Document document;
-        File file;
-        String str;
-        String str2;
-        if (messageObject.messageOwner != null && (document = messageObject.getDocument()) != null) {
-            if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
-                file = new File(messageObject.messageOwner.attachPath);
-            } else {
-                file = null;
-            }
-            if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true);
-            }
-            if (file == null || !file.exists()) {
-                file = FileLoader.getInstance(messageObject.currentAccount).getPathToMessage(messageObject.messageOwner, true, true);
-            }
-            if (file != null && file.exists() && file.length() <= 65536) {
-                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeFilename.class);
-                if (tL_documentAttributeFilename != null) {
-                    str = tL_documentAttributeFilename.file_name;
-                } else {
-                    str = null;
-                }
-                TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-                String str3 = "";
-                if (str == null) {
-                    str2 = "";
-                } else {
-                    str2 = str;
-                }
-                tL_webPage.url = str2;
-                if (str != null) {
-                    str3 = str;
-                }
-                tL_webPage.display_url = str3;
-                if (!TextUtils.isEmpty(str)) {
-                    tL_webPage.flags |= 4;
-                    tL_webPage.title = str;
-                }
-                TL_iv.TL_page tL_page = new TL_iv.TL_page();
-                tL_page.local = file;
-                tL_page.url = tL_webPage.url;
-                try {
-                    FileInputStream fileInputStream = new FileInputStream(file);
-                    byte[] bArr = new byte[(int) file.length()];
-                    fileInputStream.read(bArr);
-                    String str4 = new String(bArr, StandardCharsets.UTF_8);
-                    fileInputStream.close();
-                    if (str4.length() <= 65536) {
-                        String i9 = i(str4, tL_page.blocks);
-                        if (!TextUtils.isEmpty(i9)) {
-                            tL_webPage.flags |= 4;
-                            tL_webPage.title = i9;
-                        }
-                        tL_webPage.flags |= 1024;
-                        tL_webPage.cached_page = tL_page;
-                        return tL_webPage;
-                    }
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                }
-            }
-        }
-        return null;
-    }
-
-    public static TL_iv.RichText g(TL_iv.RichText richText) {
-        if (richText == null) {
-            return null;
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
-            for (int i9 = 0; i9 < textconcat.texts.size(); i9++) {
-                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
-                arrayList.set(i9, g(arrayList.get(i9)));
-            }
-            return textconcat;
-        } else if (richText instanceof y80) {
-            y80 y80Var = (y80) richText;
-            TL_iv.textStrike g10 = g(y80Var.text);
-            int i10 = y80Var.f34896a;
-            if ((i10 & 4) != 0) {
-                TL_iv.textFixed textfixed = new TL_iv.textFixed();
-                textfixed.text = g10;
-                g10 = textfixed;
-            }
-            if ((i10 & 32) != 0) {
-                TL_iv.textStrike textstrike = new TL_iv.textStrike();
-                textstrike.text = g10;
-                g10 = textstrike;
-            }
-            if ((i10 & 16) != 0) {
-                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
-                textunderline.text = g10;
-                g10 = textunderline;
-            }
-            if ((i10 & 64) != 0) {
-                TL_iv.textMarked textmarked = new TL_iv.textMarked();
-                textmarked.text = g10;
-                g10 = textmarked;
-            }
-            if ((i10 & 128) != 0) {
-                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
-                textsubscript.text = g10;
-                g10 = textsubscript;
-            }
-            if ((i10 & 256) != 0) {
-                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
-                textsuperscript.text = g10;
-                g10 = textsuperscript;
-            }
-            if ((i10 & 2) != 0) {
-                TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                textitalic.text = g10;
-                g10 = textitalic;
-            }
-            if ((i10 & 1) != 0) {
-                TL_iv.textBold textbold = new TL_iv.textBold();
-                textbold.text = g10;
-                return textbold;
-            }
-            return g10;
+        if (this.f35279a != dp) {
+            z10 = true;
         } else {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                richText.text = g(richText2);
-            }
-            return richText;
+            z10 = false;
         }
-    }
-
-    public static org.telegram.tgnet.tl.TL_iv.RichText h(org.telegram.tgnet.tl.TL_iv.RichText r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z80.h(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
-    }
-
-    public static java.lang.String i(java.lang.String r23, java.util.ArrayList r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z80.i(java.lang.String, java.util.ArrayList):java.lang.String");
-    }
-
-    public static TL_iv.textPlain j(String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
-        if (str == null) {
-            str = "";
+        if (this.f35281c == null) {
+            Paint paint = new Paint(1);
+            this.f35281c = paint;
+            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            this.f35281c.setColor(this.f35280b);
+            this.f35282e = Color.alpha(this.f35280b);
         }
-        textplain.text = str;
-        return textplain;
-    }
-
-    public static int k(TL_iv.RichText richText) {
-        int i9 = 0;
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return 0;
+        if (this.d == null) {
+            Paint paint2 = new Paint(1);
+            this.d = paint2;
+            paint2.setStyle(Paint.Style.FILL_AND_STROKE);
+            this.d.setColor(this.f35280b);
+            this.f35283f = Color.alpha(this.f35280b);
         }
-        if (richText instanceof TL_iv.textPlain) {
-            String str = ((TL_iv.textPlain) richText).text;
-            if (str == null) {
-                return 0;
+        if (z10) {
+            this.f35279a = dp;
+            if (dp <= 0) {
+                this.f35281c.setPathEffect(null);
+                this.d.setPathEffect(null);
+            } else {
+                this.f35281c.setPathEffect(new CornerPathEffect(this.f35279a));
+                this.d.setPathEffect(new CornerPathEffect(this.f35279a));
             }
-            return str.length();
-        } else if (richText instanceof TL_iv.textConcat) {
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                TL_iv.RichText richText2 = arrayList.get(i10);
-                i10++;
-                i9 += k(richText2);
+        }
+        Rect rect = this.f35289m;
+        float f10 = this.f35287k;
+        float f11 = this.f35286j;
+        ArrayList arrayList = this.f35284g;
+        if (rect == null && this.h > 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            ((s80) arrayList.get(0)).computeBounds(rectF, false);
+            this.f35289m = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            for (int i10 = 1; i10 < this.h; i10++) {
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                ((s80) arrayList.get(i10)).computeBounds(rectF2, false);
+                Rect rect2 = this.f35289m;
+                rect2.left = Math.min(rect2.left, (int) rectF2.left);
+                Rect rect3 = this.f35289m;
+                rect3.top = Math.min(rect3.top, (int) rectF2.top);
+                Rect rect4 = this.f35289m;
+                rect4.right = Math.max(rect4.right, (int) rectF2.right);
+                Rect rect5 = this.f35289m;
+                rect5.bottom = Math.max(rect5.bottom, (int) rectF2.bottom);
             }
-            return i9;
+            z11 = z14;
+            z12 = false;
+            f9 = f11;
+            z13 = true;
+            this.f35290n = (float) Math.sqrt(Math.max(Math.max(Math.pow(this.f35289m.top - f10, 2.0d) + Math.pow(this.f35289m.left - f11, 2.0d), Math.pow(this.f35289m.top - f10, 2.0d) + Math.pow(this.f35289m.right - f11, 2.0d)), Math.max(Math.pow(this.f35289m.bottom - f10, 2.0d) + Math.pow(this.f35289m.left - f11, 2.0d), Math.pow(this.f35289m.bottom - f10, 2.0d) + Math.pow(this.f35289m.right - f11, 2.0d))));
         } else {
-            return k(richText.text);
+            z11 = z14;
+            f9 = f11;
+            z12 = false;
+            z13 = true;
         }
+        if (z11) {
+            for (int i11 = 0; i11 < this.h; i11++) {
+                canvas.drawPath((Path) arrayList.get(i11), this.d);
+            }
+        } else {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            if (this.f35291o < 0) {
+                this.f35291o = elapsedRealtime;
+            }
+            float interpolation = jr.f29800f.getInterpolation(Math.min(1.0f, ((float) (elapsedRealtime - this.f35291o)) / ((float) this.f35293q)));
+            long j10 = this.f35292p;
+            if (j10 < 0) {
+                min = 0.0f;
+            } else {
+                min = Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j10)) / 100.0f));
+            }
+            float f12 = 1.0f - min;
+            this.f35281c.setAlpha((int) (Math.min(1.0f, interpolation * 5.0f) * this.f35282e * 0.2f * f12));
+            this.f35281c.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
+            for (int i12 = 0; i12 < this.h; i12++) {
+                ((s80) arrayList.get(i12)).a();
+                canvas.drawPath((Path) arrayList.get(i12), this.f35281c);
+            }
+            this.d.setAlpha((int) (this.f35283f * 0.8f * f12));
+            this.d.setStrokeWidth(Math.min(1.0f, 0.0f) * AndroidUtilities.dp(5.0f));
+            int i13 = (interpolation > 1.0f ? 1 : (interpolation == 1.0f ? 0 : -1));
+            if (i13 < 0) {
+                float f13 = interpolation * this.f35290n;
+                canvas.save();
+                Path path = this.f35288l;
+                path.reset();
+                path.addCircle(f9, f10, f13, Path.Direction.CW);
+                canvas.clipPath(path);
+                for (int i14 = 0; i14 < this.h; i14++) {
+                    canvas.drawPath((Path) arrayList.get(i14), this.d);
+                }
+                canvas.restore();
+            } else {
+                for (int i15 = 0; i15 < this.h; i15++) {
+                    canvas.drawPath((Path) arrayList.get(i15), this.d);
+                }
+            }
+            if (i13 < 0 || this.f35292p >= 0) {
+                return z13;
+            }
+        }
+        return z12;
     }
 
-    public static String l(TL_iv.RichText richText) {
-        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
-            if (richText instanceof TL_iv.textPlain) {
-                return ((TL_iv.textPlain) richText).text;
-            }
-            if (richText instanceof TL_iv.textConcat) {
-                StringBuilder sb2 = new StringBuilder();
-                ArrayList<TL_iv.RichText> arrayList = richText.texts;
-                int size = arrayList.size();
-                int i9 = 0;
-                while (i9 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i9);
-                    i9++;
-                    sb2.append(l(richText2));
-                }
-                return sb2.toString();
-            }
-            return l(richText.text);
+    public final s80 b() {
+        s80 s80Var;
+        ArrayList arrayList = f35278s;
+        if (!arrayList.isEmpty()) {
+            s80Var = (s80) arrayList.remove(0);
+        } else {
+            s80Var = new s80(0);
         }
-        return "";
+        s80Var.f31451c = !this.f35294r;
+        s80Var.reset();
+        ArrayList arrayList2 = this.f35284g;
+        arrayList2.add(s80Var);
+        this.h = arrayList2.size();
+        return s80Var;
+    }
+
+    public final void c() {
+        ArrayList arrayList = this.f35284g;
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        f35278s.addAll(arrayList);
+        arrayList.clear();
+        this.h = 0;
+    }
+
+    public final void d(int i10) {
+        this.f35280b = i10;
+        Paint paint = this.f35281c;
+        if (paint != null) {
+            paint.setColor(i10);
+            this.f35282e = Color.alpha(i10);
+        }
+        Paint paint2 = this.d;
+        if (paint2 != null) {
+            paint2.setColor(i10);
+            this.f35283f = Color.alpha(i10);
+        }
     }
 }

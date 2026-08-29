@@ -1,75 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.Canvas;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class m50 extends FrameLayout {
-    public final RectF f30695a;
-    public boolean f30696b;
-    public Boolean f30697c;
-    public final a60 d;
+import org.telegram.messenger.ImageReceiver;
+public abstract class m50 extends FrameLayout {
+    public ImageReceiver f30574a;
+    public float f30575b;
+    public final s50 f30576c;
 
-    public m50(a60 a60Var, Context context) {
+    public m50(s50 s50Var, Context context) {
         super(context);
-        this.d = a60Var;
-        this.f30695a = new RectF();
+        this.f30576c = s50Var;
+        s50Var.setWillNotDraw(false);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m50.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            a60 a60Var = this.d;
-            if (a60Var.V != 0 && motionEvent.getY() < a60Var.V) {
-                a60Var.dismiss();
-                return true;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f9 = this.f30575b;
+        if (f9 != 1.0f) {
+            float f10 = f9 + 0.064f;
+            this.f30575b = f10;
+            if (f10 > 1.0f) {
+                this.f30575b = 1.0f;
             }
+            invalidate();
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
-        a60.N(this.d);
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        int i11;
-        int i12;
-        int size = View.MeasureSpec.getSize(i10);
-        a60 a60Var = this.d;
-        a60Var.W = true;
-        i11 = ((org.telegram.ui.ActionBar.f3) a60Var).backgroundPaddingLeft;
-        int i13 = AndroidUtilities.statusBarHeight;
-        i12 = ((org.telegram.ui.ActionBar.f3) a60Var).backgroundPaddingLeft;
-        setPadding(i11, i13, i12, 0);
-        a60Var.W = false;
-        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f30696b = true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+        if (this.f30574a != null) {
+            canvas.save();
+            float imageWidth = this.f30574a.getImageWidth();
+            int i10 = this.f30576c.J0;
+            if (imageWidth != i10) {
+                float imageWidth2 = i10 / this.f30574a.getImageWidth();
+                canvas.scale(imageWidth2, imageWidth2);
+            }
+            canvas.translate(-this.f30574a.getImageX(), -this.f30574a.getImageY());
+            float alpha = this.f30574a.getAlpha();
+            this.f30574a.setAlpha(this.f30575b);
+            this.f30574a.draw(canvas);
+            this.f30574a.setAlpha(alpha);
+            canvas.restore();
         }
-        return false;
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.d.W) {
-            return;
+    public void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f30574a == null) {
+            this.f30575b = 0.0f;
         }
-        super.requestLayout();
+        this.f30574a = imageReceiver;
+        invalidate();
     }
 }

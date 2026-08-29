@@ -25,9 +25,9 @@ class LowLatencyAudioBufferManager {
                 this.prevUnderrunCount = underrunCount;
                 this.ticksUntilNextDecrease = 10;
             } else if (this.keepLoweringBufferSize) {
-                int i9 = this.ticksUntilNextDecrease - 1;
-                this.ticksUntilNextDecrease = i9;
-                if (i9 <= 0) {
+                int i10 = this.ticksUntilNextDecrease - 1;
+                this.ticksUntilNextDecrease = i10;
+                if (i10 <= 0) {
                     int playbackRate2 = audioTrack.getPlaybackRate() / 100;
                     int bufferSizeInFrames2 = audioTrack.getBufferSizeInFrames();
                     int max = Math.max(playbackRate2, bufferSizeInFrames2 - playbackRate2);

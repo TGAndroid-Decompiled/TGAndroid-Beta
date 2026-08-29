@@ -1,54 +1,11 @@
 package r4;
+public final class e extends h {
+    public final boolean f46955w;
+    public final boolean f46956x;
 
-import java.nio.ByteBuffer;
-import k3.m;
-public abstract class e extends m implements g {
-    public final String f47059a;
-
-    public e(String str) {
-        super(new j[2], new k[2]);
-        this.f47059a = str;
-        setInitialInputBufferSize(1024);
-    }
-
-    public abstract f c(int i9, boolean z10, byte[] bArr);
-
-    @Override
-    public final k3.i createInputBuffer() {
-        return new j();
-    }
-
-    @Override
-    public final k3.k createOutputBuffer() {
-        return new d(this, 1);
-    }
-
-    @Override
-    public final k3.g createUnexpectedDecodeException(Throwable th) {
-        return new Exception("Unexpected decode error", th);
-    }
-
-    @Override
-    public final k3.g decode(k3.i iVar, k3.k kVar, boolean z10) {
-        j jVar = (j) iVar;
-        k kVar2 = (k) kVar;
-        try {
-            ByteBuffer byteBuffer = jVar.f14608b;
-            byteBuffer.getClass();
-            kVar2.a(jVar.d, c(byteBuffer.limit(), z10, byteBuffer.array()), jVar.f47061n);
-            kVar2.clearFlag(Integer.MIN_VALUE);
-            return null;
-        } catch (h e10) {
-            return e10;
-        }
-    }
-
-    @Override
-    public final String getName() {
-        return this.f47059a;
-    }
-
-    @Override
-    public final void a(long j10) {
+    public e(String str, g gVar, long j10, int i10, long j11, n3.c cVar, String str2, String str3, long j12, long j13, boolean z10, boolean z11, boolean z12) {
+        super(str, gVar, j10, i10, j11, cVar, str2, str3, j12, j13, z10);
+        this.f46955w = z11;
+        this.f46956x = z12;
     }
 }

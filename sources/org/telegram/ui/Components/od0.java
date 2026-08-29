@@ -1,34 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Rect;
-import android.view.View;
-import androidx.core.widget.NestedScrollView;
-public final class od0 extends NestedScrollView {
-    public View S;
-    public final wd0 T;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.LaunchActivity;
+public final class od0 extends nd0 {
+    public final pd0 U;
 
-    public od0(wd0 wd0Var, Activity activity) {
-        super(activity);
-        this.T = wd0Var;
+    public od0(pd0 pd0Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.U = pd0Var;
     }
 
     @Override
-    public final int f(Rect rect) {
-        if (this.S != null && this.T.d.getTop() == getPaddingTop()) {
-            int f10 = super.f(rect);
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.S.getTop() - getScrollY()) + rect.top) + f10);
-            if (currentActionBarHeight > 0) {
-                return org.telegram.messenger.ll.w(10.0f, currentActionBarHeight, f10);
-            }
-            return f10;
+    public final void f(float f9) {
+        LaunchActivity launchActivity = LaunchActivity.C1;
+        if (launchActivity == null) {
+            return;
         }
-        return 0;
+        org.telegram.ui.ActionBar.x3 x3Var = launchActivity.f35603v0;
+        x3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f9));
+        x3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f9));
     }
 
     @Override
-    public final void requestChildFocus(View view, View view2) {
-        this.S = view2;
-        super.requestChildFocus(view, view2);
+    public final void h() {
+        pd0.a(this.U);
+        LaunchActivity launchActivity = LaunchActivity.C1;
+        if (launchActivity == null) {
+            return;
+        }
+        org.telegram.ui.ActionBar.x3 x3Var = launchActivity.f35603v0;
+        x3Var.setScaleX(1.0f);
+        x3Var.setScaleY(1.0f);
     }
 }

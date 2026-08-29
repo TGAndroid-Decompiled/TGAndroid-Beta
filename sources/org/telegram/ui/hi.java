@@ -1,22 +1,41 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class hi extends org.telegram.ui.Components.yn {
-    public final qn I;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class hi {
+    public boolean f38938a;
+    public final boolean f38939b;
+    public final SparseArray f38940c;
+    public final tn d;
 
-    public hi(qn qnVar, Activity activity, int i9, TLRPC.Document document, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(activity, i9, document, b6Var);
-        this.I = qnVar;
+    public hi(tn tnVar, boolean z10, SparseArray sparseArray) {
+        this.d = tnVar;
+        this.f38939b = z10;
+        this.f38940c = sparseArray;
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
-        float y10 = getY();
-        qn qnVar = this.I;
-        float y11 = qnVar.N0.getY() + y10;
-        this.F = qnVar.T0.getBackgroundSizeY();
-        this.E = y11;
+    public final boolean a(int i10) {
+        tn tnVar = this.d;
+        int i11 = i10 - tnVar.f43013w0.F;
+        if (i11 >= 0 && i11 < tnVar.q6.size()) {
+            MessageObject messageObject = (MessageObject) tnVar.q6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f38940c;
+                boolean z10 = this.f38939b;
+                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
+                }
+                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hi.b(int, boolean, float, float):void");
     }
 }

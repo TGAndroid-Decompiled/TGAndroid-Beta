@@ -1,43 +1,27 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class c41 implements ax0 {
-    public final TLRPC.InputStickerSet f27364a;
-    public final h41 f27365b;
+import org.telegram.messenger.AndroidUtilities;
+public final class c41 implements gv0 {
+    public int f27305a;
+    public boolean f27306b;
+    public final d41 f27307c;
 
-    public c41(h41 h41Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f27365b = h41Var;
-        this.f27364a = inputStickerSet;
+    public c41(d41 d41Var) {
+        this.f27307c = d41Var;
     }
 
     @Override
-    public final void a() {
-        h41 h41Var = this.f27365b;
-        f2.r0 adapter = h41Var.f28972n.getAdapter();
-        g41 g41Var = h41Var.f28974s;
-        TLRPC.InputStickerSet inputStickerSet = this.f27364a;
-        int i9 = 0;
-        if (adapter == g41Var) {
-            while (i9 < g41Var.f28644e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) g41Var.f28644e.get(i9);
-                if (stickerSetCovered.set.f22407id == inputStickerSet.f22400id) {
-                    g41Var.F(stickerSetCovered, null);
-                    return;
+    public final void G(int i10, boolean z10) {
+        if (this.f27305a != i10 || this.f27306b != z10) {
+            this.f27305a = i10;
+            this.f27306b = z10;
+            if (i10 > AndroidUtilities.dp(20.0f)) {
+                d41 d41Var = this.f27307c;
+                if (!d41Var.f27652t0) {
+                    d41Var.A0.setAllowNestedScroll(false);
+                    d41Var.f27652t0 = true;
                 }
-                i9++;
             }
-            return;
-        }
-        of.y1 y1Var = h41Var.v;
-        ArrayList arrayList = y1Var.A;
-        while (i9 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i9);
-            if (stickerSetCovered2.set.f22407id == inputStickerSet.f22400id) {
-                y1Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i9++;
         }
     }
 }

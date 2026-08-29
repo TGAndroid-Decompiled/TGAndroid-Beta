@@ -11,7 +11,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import ru.noties.jlatexmath.android.R;
 import ru.noties.jlatexmath.awt.Color;
-import ta.b;
+import u3.c;
 public class JLatexMathView extends View {
     public static final int ALIGN_CENTER = 1;
     public static final int ALIGN_END = 2;
@@ -35,14 +35,14 @@ public class JLatexMathView extends View {
         init(context, null);
     }
 
-    private static float alignment(int i9, float f10) {
-        if (i9 == 0) {
+    private static float alignment(int i10, float f9) {
+        if (i10 == 0) {
             return 0.0f;
         }
-        if (1 == i9) {
-            return f10 / 2.0f;
+        if (1 == i10) {
+            return f9 / 2.0f;
         }
-        return f10;
+        return f9;
     }
 
     private void init(Context context, AttributeSet attributeSet) {
@@ -67,18 +67,18 @@ public class JLatexMathView extends View {
             obtainStyledAttributes.recycle();
             if (isInEditMode()) {
                 JLatexMathAndroid.init(context);
-                String j10 = b.j(b.j(b.j(b.j("\\begin{array}{l}\\forall\\varepsilon\\in\\mathbb{R}_+^*\\ \\exists\\eta>0\\ |x-x_0|\\leq\\eta\\Longrightarrow|f(x)-f(x_0)|\\leq\\varepsilon\\\\\\det\\begin{bmatrix}a_{11}&a_{12}&\\cdots&a_{1n}\\\\a_{21}&\\ddots&&\\vdots\\\\\\vdots&&\\ddots&\\vdots\\\\a_{n1}&\\cdots&\\cdots&a_{nn}\\end{bmatrix}\\overset{\\mathrm{def}}{=}\\sum_{\\sigma\\in\\mathfrak{S}_n}\\varepsilon(\\sigma)\\prod_{k=1}^n a_{k\\sigma(k)}\\\\\\sideset{_\\alpha^\\beta}{_\\gamma^\\delta}{\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}}\\\\\\int_0^\\infty{x^{2n} e^{-a x^2}\\,dx} = \\frac{2n-1}{2a} \\int_0^\\infty{x^{2(n-1)} e^{-a x^2}\\,dx} = \\frac{(2n-1)!!}{2^{n+1}} \\sqrt{\\frac{\\pi}{a^{2n+1}}}\\\\", "\\int_a^b{f(x)\\,dx} = (b - a) \\sum\\limits_{n = 1}^\\infty  {\\sum\\limits_{m = 1}^{2^n  - 1} {\\left( { - 1} \\right)^{m + 1} } } 2^{ - n} f(a + m\\left( {b - a} \\right)2^{-n} )\\\\"), "\\int_{-\\pi}^{\\pi} \\sin(\\alpha x) \\sin^n(\\beta x) dx = \\textstyle{\\left \\{ \\begin{array}{cc} (-1)^{(n+1)/2} (-1)^m \\frac{2 \\pi}{2^n} \\binom{n}{m} & n \\mbox{ odd},\\ \\alpha = \\beta (2m-n) \\\\ 0 & \\mbox{otherwise} \\\\ \\end{array} \\right .}\\\\"), "L = \\int_a^b \\sqrt{ \\left|\\sum_{i,j=1}^ng_{ij}(\\gamma(t))\\left(\\frac{d}{dt}x^i\\circ\\gamma(t)\\right)\\left(\\frac{d}{dt}x^j\\circ\\gamma(t)\\right)\\right|}\\,dt\\\\"), "\\begin{array}{rl} s &= \\int_a^b\\left\\|\\frac{d}{dt}\\vec{r}\\,(u(t),v(t))\\right\\|\\,dt \\\\ &= \\int_a^b \\sqrt{u'(t)^2\\,\\vec{r}_u\\cdot\\vec{r}_u + 2u'(t)v'(t)\\, \\vec{r}_u\\cdot\\vec{r}_v+ v'(t)^2\\,\\vec{r}_v\\cdot\\vec{r}_v}\\,\\,\\, dt. \\end{array}\\\\");
-                setLatex(j10 + "\\end{array}");
+                String k9 = c.k(c.k(c.k(c.k("\\begin{array}{l}\\forall\\varepsilon\\in\\mathbb{R}_+^*\\ \\exists\\eta>0\\ |x-x_0|\\leq\\eta\\Longrightarrow|f(x)-f(x_0)|\\leq\\varepsilon\\\\\\det\\begin{bmatrix}a_{11}&a_{12}&\\cdots&a_{1n}\\\\a_{21}&\\ddots&&\\vdots\\\\\\vdots&&\\ddots&\\vdots\\\\a_{n1}&\\cdots&\\cdots&a_{nn}\\end{bmatrix}\\overset{\\mathrm{def}}{=}\\sum_{\\sigma\\in\\mathfrak{S}_n}\\varepsilon(\\sigma)\\prod_{k=1}^n a_{k\\sigma(k)}\\\\\\sideset{_\\alpha^\\beta}{_\\gamma^\\delta}{\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}}\\\\\\int_0^\\infty{x^{2n} e^{-a x^2}\\,dx} = \\frac{2n-1}{2a} \\int_0^\\infty{x^{2(n-1)} e^{-a x^2}\\,dx} = \\frac{(2n-1)!!}{2^{n+1}} \\sqrt{\\frac{\\pi}{a^{2n+1}}}\\\\", "\\int_a^b{f(x)\\,dx} = (b - a) \\sum\\limits_{n = 1}^\\infty  {\\sum\\limits_{m = 1}^{2^n  - 1} {\\left( { - 1} \\right)^{m + 1} } } 2^{ - n} f(a + m\\left( {b - a} \\right)2^{-n} )\\\\"), "\\int_{-\\pi}^{\\pi} \\sin(\\alpha x) \\sin^n(\\beta x) dx = \\textstyle{\\left \\{ \\begin{array}{cc} (-1)^{(n+1)/2} (-1)^m \\frac{2 \\pi}{2^n} \\binom{n}{m} & n \\mbox{ odd},\\ \\alpha = \\beta (2m-n) \\\\ 0 & \\mbox{otherwise} \\\\ \\end{array} \\right .}\\\\"), "L = \\int_a^b \\sqrt{ \\left|\\sum_{i,j=1}^ng_{ij}(\\gamma(t))\\left(\\frac{d}{dt}x^i\\circ\\gamma(t)\\right)\\left(\\frac{d}{dt}x^j\\circ\\gamma(t)\\right)\\right|}\\,dt\\\\"), "\\begin{array}{rl} s &= \\int_a^b\\left\\|\\frac{d}{dt}\\vec{r}\\,(u(t),v(t))\\right\\|\\,dt \\\\ &= \\int_a^b \\sqrt{u'(t)^2\\,\\vec{r}_u\\cdot\\vec{r}_u + 2u'(t)v'(t)\\, \\vec{r}_u\\cdot\\vec{r}_v+ v'(t)^2\\,\\vec{r}_v\\cdot\\vec{r}_v}\\,\\,\\, dt. \\end{array}\\\\");
+                setLatex(k9 + "\\end{array}");
             }
-        } catch (Throwable th) {
+        } catch (Throwable th2) {
             obtainStyledAttributes.recycle();
-            throw th;
+            throw th2;
         }
     }
 
-    public JLatexMathView align(int i9, int i10) {
-        this.alignVertical = i9;
-        this.alignHorizontal = i10;
+    public JLatexMathView align(int i10, int i11) {
+        this.alignVertical = i10;
+        this.alignHorizontal = i11;
         return this;
     }
 
@@ -100,38 +100,38 @@ public class JLatexMathView extends View {
         }
         int save = canvas.save();
         try {
-            float f10 = this.left;
+            float f9 = this.left;
+            if (f9 > 0.0f) {
+                canvas.translate(f9, 0.0f);
+            }
+            float f10 = this.top;
             if (f10 > 0.0f) {
-                canvas.translate(f10, 0.0f);
+                canvas.translate(0.0f, f10);
             }
-            float f11 = this.top;
-            if (f11 > 0.0f) {
-                canvas.translate(0.0f, f11);
-            }
-            float f12 = this.scale;
-            if (f12 > 0.0f && Float.compare(f12, 1.0f) != 0) {
-                float f13 = this.scale;
-                canvas.scale(f13, f13);
+            float f11 = this.scale;
+            if (f11 > 0.0f && Float.compare(f11, 1.0f) != 0) {
+                float f12 = this.scale;
+                canvas.scale(f12, f12);
             }
             this.drawable.draw(canvas);
             canvas.restoreToCount(save);
-        } catch (Throwable th) {
+        } catch (Throwable th2) {
             canvas.restoreToCount(save);
-            throw th;
+            throw th2;
         }
     }
 
     @Override
-    public void onMeasure(int i9, int i10) {
+    public void onMeasure(int i10, int i11) {
         float min;
         if (this.drawable == null) {
-            super.onMeasure(i9, i10);
+            super.onMeasure(i10, i11);
             return;
         }
-        int mode = View.MeasureSpec.getMode(i9);
-        int size = View.MeasureSpec.getSize(i9);
-        int mode2 = View.MeasureSpec.getMode(i10);
-        int size2 = View.MeasureSpec.getSize(i10);
+        int mode = View.MeasureSpec.getMode(i10);
+        int size = View.MeasureSpec.getSize(i10);
+        int mode2 = View.MeasureSpec.getMode(i11);
+        int size2 = View.MeasureSpec.getSize(i11);
         int intrinsicWidth = this.drawable.getIntrinsicWidth();
         int intrinsicHeight = this.drawable.getIntrinsicHeight();
         int paddingLeft = getPaddingLeft();
@@ -159,16 +159,16 @@ public class JLatexMathView extends View {
         } else {
             min = Math.min(paddingRight2 / intrinsicWidth, paddingBottom2 / intrinsicHeight);
         }
-        int i11 = (int) ((intrinsicWidth * min) + 0.5f);
-        int i12 = (int) ((intrinsicHeight * min) + 0.5f);
+        int i12 = (int) ((intrinsicWidth * min) + 0.5f);
+        int i13 = (int) ((intrinsicHeight * min) + 0.5f);
         if (1073741824 != mode) {
-            size = i11 + paddingLeft + getPaddingRight();
+            size = i12 + paddingLeft + getPaddingRight();
         }
         if (1073741824 != mode2) {
-            size2 = i12 + paddingTop + getPaddingBottom();
+            size2 = i13 + paddingTop + getPaddingBottom();
         }
-        float alignment = alignment(this.alignHorizontal, ((size - paddingLeft) - getPaddingRight()) - i11);
-        float alignment2 = alignment(this.alignVertical, ((size2 - paddingTop) - getPaddingBottom()) - i12);
+        float alignment = alignment(this.alignHorizontal, ((size - paddingLeft) - getPaddingRight()) - i12);
+        float alignment2 = alignment(this.alignVertical, ((size2 - paddingTop) - getPaddingBottom()) - i13);
         this.scale = min;
         this.left = paddingLeft + alignment;
         this.top = paddingTop + alignment2;
@@ -184,13 +184,13 @@ public class JLatexMathView extends View {
         requestLayout();
     }
 
-    public JLatexMathView textColor(int i9) {
-        this.textColor = i9;
+    public JLatexMathView textColor(int i10) {
+        this.textColor = i10;
         return this;
     }
 
-    public JLatexMathView textSize(int i9) {
-        this.textSize = i9;
+    public JLatexMathView textSize(int i10) {
+        this.textSize = i10;
         return this;
     }
 

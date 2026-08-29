@@ -1,105 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.ColorFilter;
-import android.util.SparseIntArray;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class x41 extends org.telegram.ui.Components.nv {
-    public final int f44365c0;
-    public final b61 f44366d0;
+public final class x41 extends FrameLayout {
+    public final Path f44461a;
+    public final Paint f44462b;
+    public final boolean f44463c;
+    public final boolean d;
+    public final org.telegram.ui.ActionBar.c6 f44464e;
+    public final Integer f44465f;
+    public final d61 h;
 
-    public x41(b61 b61Var, Context context, org.telegram.ui.ActionBar.b6 b6Var, boolean z10, boolean z11, int i9, n21 n21Var, int i10, int i11) {
-        super(context, b6Var, z10, z11, false, true, i9, n21Var, i10, false);
-        this.f44366d0 = b61Var;
-        this.f44365c0 = i11;
+    public x41(d61 d61Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.c6 c6Var, Integer num) {
+        super(context);
+        this.h = d61Var;
+        this.f44463c = z10;
+        this.d = z11;
+        this.f44464e = c6Var;
+        this.f44465f = num;
+        this.f44461a = new Path();
+        this.f44462b = new Paint(1);
     }
 
     @Override
-    public final ColorFilter getEmojiColorFilter() {
-        return this.f44366d0.f36678g1;
-    }
-
-    @Override
-    public final boolean h(int i9) {
-        int i10;
-        int i11;
-        p51 p51Var;
-        int i12;
-        int i13;
-        b61 b61Var = this.f44366d0;
-        SparseIntArray sparseIntArray = b61Var.f36704t0;
-        int i14 = 0;
-        if (b61Var.f36703s1) {
-            return false;
-        }
-        int i15 = this.f44365c0;
-        if (i15 == 4 && i9 == 0) {
-            b61Var.M = !b61Var.M;
-            b61Var.W.setVisibility(8);
-            org.telegram.ui.Components.nv nvVar = b61Var.V[b61Var.M ? 1 : 0];
-            b61Var.W = nvVar;
-            nvVar.setVisibility(0);
-            org.telegram.ui.Components.jv jvVar = b61Var.W.f31188x;
-            Context context = getContext();
-            if (b61Var.M) {
-                i12 = R.drawable.msg_emoji_stickers;
+    public final void dispatchDraw(Canvas canvas) {
+        float intValue;
+        d61 d61Var = this.h;
+        if (!d61Var.M0) {
+            super.dispatchDraw(canvas);
+        } else if (this.f44463c) {
+            canvas.save();
+            boolean z10 = this.d;
+            Paint paint = this.f44462b;
+            if (z10) {
+                org.telegram.ui.ActionBar.g6.m(paint);
+            }
+            paint.setColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.G8, this.f44464e));
+            paint.setAlpha((int) (getAlpha() * 255.0f));
+            Integer num = this.f44465f;
+            if (num == null) {
+                intValue = getWidth() / 2.0f;
             } else {
-                i12 = R.drawable.msg_emoji_smiles;
+                intValue = num.intValue();
             }
-            jvVar.setDrawable(context.getDrawable(i12));
-            org.telegram.ui.Components.jv jvVar2 = b61Var.W.f31188x;
-            if (b61Var.M) {
-                i13 = R.string.AccDescrStickers;
+            float dp = intValue + AndroidUtilities.dp(20.0f);
+            float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
+            float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
+            if (d61Var.n()) {
+                AndroidUtilities.rectTmp.set((dp - (d61Var.W0 * dp)) + getPaddingLeft(), com.google.android.recaptcha.internal.a.z(1.0f, d61Var.X0, height, getPaddingTop()), ((width - dp) * d61Var.W0) + getPaddingLeft() + dp, getPaddingTop() + height);
             } else {
-                i13 = R.string.Emoji;
+                AndroidUtilities.rectTmp.set((dp - (d61Var.W0 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * d61Var.W0) + getPaddingLeft() + dp, (height * d61Var.X0) + getPaddingTop());
             }
-            jvVar2.setContentDescription(LocaleController.getString(i13));
-            b61Var.B(true, false, false);
-            b61Var.f36690n0.h1(0, 0);
-            return true;
-        }
-        org.telegram.ui.Components.jv jvVar3 = this.A;
-        if (jvVar3 != null && this.U) {
-            i10 = 1;
+            Path path = this.f44461a;
+            path.rewind();
+            path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+            canvas.drawPath(path, paint);
+            canvas.clipPath(path);
+            super.dispatchDraw(canvas);
+            canvas.restore();
         } else {
-            i10 = 0;
+            super.dispatchDraw(canvas);
         }
-        int i16 = i10 + 1;
-        if (jvVar3 != null && this.U && i9 == 1) {
-            i11 = b61Var.f36689n;
-        } else {
-            if ((i15 != 4 || i9 != 0) && i9 > 0) {
-                int i17 = i9 - i16;
-                if (sparseIntArray.indexOfKey(i17) >= 0) {
-                    i11 = sparseIntArray.get(i17);
-                }
-            }
-            i11 = 0;
-        }
-        if (i15 == 6) {
-            i14 = 7;
-        }
-        b61.a(b61Var, i11, AndroidUtilities.dp(i14 - 2));
-        b61Var.W.j(i9, true);
-        b61Var.f36669d0.H1 = true;
-        b61Var.v(null, true, true);
-        s41 s41Var = b61Var.f36664b0;
-        if (s41Var != null && (p51Var = s41Var.f41687n) != null) {
-            p51Var.F1(null);
-        }
-        return true;
-    }
-
-    @Override
-    public final void i(org.telegram.ui.Components.jv jvVar) {
-        ValueAnimator valueAnimator = this.f44366d0.Q1;
-        if (valueAnimator != null && !valueAnimator.isRunning()) {
-            return;
-        }
-        jvVar.setScaleX(0.0f);
-        jvVar.setScaleY(0.0f);
     }
 }

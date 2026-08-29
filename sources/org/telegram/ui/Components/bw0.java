@@ -1,51 +1,98 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bw0 implements RequestDelegate {
-    public final int f27297a;
-    public final Utilities.Callback4 f27298b;
+import android.os.Build;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public abstract class bw0 {
+    public static final Layout.Alignment[] f27242a = Layout.Alignment.values();
 
-    public bw0(Utilities.Callback4 callback4, int i9) {
-        this.f27297a = i9;
-        this.f27298b = callback4;
+    public static Layout.Alignment a() {
+        Layout.Alignment[] alignmentArr = f27242a;
+        if (alignmentArr.length >= 5) {
+            return alignmentArr[4];
+        }
+        return Layout.Alignment.ALIGN_OPPOSITE;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27297a) {
-            case 0:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f27298b;
-                if (z10) {
-                    Boolean bool = Boolean.TRUE;
-                    callback4.run(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
+    public static StaticLayout b(CharSequence charSequence, TextPaint textPaint, int i10, float f9, int i11, int i12) {
+        return c(charSequence, textPaint, i10, Layout.Alignment.ALIGN_NORMAL, f9, false, TextUtils.TruncateAt.END, i11, i12, true);
+    }
+
+    public static StaticLayout c(CharSequence charSequence, TextPaint textPaint, int i10, Layout.Alignment alignment, float f9, boolean z10, TextUtils.TruncateAt truncateAt, int i11, int i12, boolean z11) {
+        StaticLayout staticLayout;
+        int offsetForHorizontal;
+        TextUtils.TruncateAt truncateAt2;
+        SpannableStringBuilder spannableStringBuilder;
+        try {
+            if (i12 == 1) {
+                int indexOf = TextUtils.indexOf(charSequence, "\n") - 1;
+                if (indexOf > 0) {
+                    spannableStringBuilder = SpannableStringBuilder.valueOf(charSequence.subSequence(0, indexOf)).append((CharSequence) "…");
                 } else {
-                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
+                    spannableStringBuilder = charSequence;
                 }
-            default:
-                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f27298b;
-                if (z11) {
-                    Boolean bool2 = Boolean.TRUE;
-                    callback42.run(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
+                CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, textPaint, i11, TextUtils.TruncateAt.END);
+                return new StaticLayout(ellipsize, 0, ellipsize.length(), textPaint, i10, alignment, 1.0f, f9, z10);
+            }
+            if (Build.VERSION.SDK_INT >= 23) {
+                staticLayout = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f9, 1.0f).setIncludePad(z10).setEllipsize(null).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(1).setHyphenationFrequency(0).build();
+                int i13 = 0;
+                while (true) {
+                    if (i13 >= staticLayout.getLineCount()) {
+                        break;
+                    } else if (staticLayout.getLineRight(i13) > i10) {
+                        staticLayout = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f9, 1.0f).setIncludePad(z10).setEllipsize(null).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(0).setHyphenationFrequency(0).build();
+                        break;
+                    } else {
+                        i13++;
+                    }
+                }
+            } else {
+                staticLayout = new StaticLayout(charSequence, textPaint, i10, alignment, 1.0f, f9, z10);
+            }
+            if (staticLayout.getLineCount() <= i12) {
+                return staticLayout;
+            }
+            int i14 = i12 - 1;
+            float lineLeft = staticLayout.getLineLeft(i14);
+            float lineWidth = staticLayout.getLineWidth(i14);
+            if (lineLeft != 0.0f) {
+                offsetForHorizontal = staticLayout.getOffsetForHorizontal(i14, lineLeft);
+            } else {
+                offsetForHorizontal = staticLayout.getOffsetForHorizontal(i14, lineWidth);
+            }
+            if (lineWidth < i11 - AndroidUtilities.dp(10.0f)) {
+                offsetForHorizontal += 3;
+            }
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
+            spannableStringBuilder2.append((CharSequence) "…");
+            if (Build.VERSION.SDK_INT >= 23) {
+                StaticLayout.Builder includePad = StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f9, 1.0f).setIncludePad(z10);
+                if (((y5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), y5.class)).length > 0) {
+                    truncateAt2 = null;
                 } else {
-                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
+                    truncateAt2 = truncateAt;
                 }
+                return includePad.setEllipsize(truncateAt2).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(z11 ? 1 : 0).setHyphenationFrequency(0).build();
+            }
+            return new StaticLayout(spannableStringBuilder2, textPaint, i10, alignment, 1.0f, f9, z10);
+        } catch (Exception e10) {
+            FileLog.e(e10);
+            return null;
         }
+    }
+
+    public static StaticLayout d(CharSequence charSequence, TextPaint textPaint, int i10, boolean z10, int i11, int i12) {
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        if (Build.VERSION.SDK_INT >= 23) {
+            return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i11).setAlignment(alignment).setLineSpacing(0.0f, 1.0f).setIncludePad(z10).setEllipsize(truncateAt).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(1).setHyphenationFrequency(0).build();
+        }
+        return c(charSequence, textPaint, i10, alignment, 0.0f, z10, truncateAt, i11, i12, true);
     }
 }

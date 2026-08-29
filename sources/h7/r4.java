@@ -1,30 +1,17 @@
 package h7;
+public final class r4 implements s9.d {
+    public static final r4 f7748a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class r4 extends y5.a {
-    public static final Parcelable.Creator<r4> CREATOR = new s5(0);
-    public final String f10084a;
-    public final String f10085b;
-    public final float f10086c;
-    public final int d;
-
-    public r4(float f10, int i9, String str, String str2) {
-        this.f10085b = str2;
-        this.f10086c = f10;
-        this.f10084a = str;
-        this.d = i9;
+    static {
+        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(12, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(11, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(10, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(9, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(8, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(7, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(6, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(5, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(4, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(3, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(2, com.google.android.recaptcha.internal.a.p(i.class, new e(1)))))))))))))))))))))))));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = g7.p8.q(parcel, 20293);
-        g7.p8.l(parcel, 2, this.f10085b);
-        g7.p8.s(parcel, 3, 4);
-        parcel.writeFloat(this.f10086c);
-        g7.p8.l(parcel, 4, this.f10084a);
-        g7.p8.s(parcel, 5, 4);
-        parcel.writeInt(this.d);
-        g7.p8.r(parcel, q10);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            s9.e eVar = (s9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

@@ -4,9 +4,9 @@ public class BetaUpdate {
     public final String version;
     public final int versionCode;
 
-    public BetaUpdate(String str, int i9, String str2) {
+    public BetaUpdate(String str, int i10, String str2) {
         this.version = str;
-        this.versionCode = i9;
+        this.versionCode = i10;
         this.changelog = str2;
     }
 

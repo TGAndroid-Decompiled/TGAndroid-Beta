@@ -1,316 +1,218 @@
 package od;
 
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicLongFieldUpdater;
+import i7.a7;
+import i7.c7;
+import java.util.ArrayList;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import kotlin.jvm.internal.p;
-public final class a extends Thread {
-    public static final AtomicIntegerFieldUpdater f19198r = AtomicIntegerFieldUpdater.newUpdater(a.class, "workerCtl$volatile");
-    public final m f19199a;
-    public final p f19200b;
-    public b f19201c;
-    public long d;
-    public long f19202e;
-    public int f19203f;
-    public boolean h;
-    private volatile int indexInArray;
-    public final c f19204n;
-    private volatile Object nextParkedWorker;
-    private volatile int workerCtl$volatile;
+import jd.a0;
+import jd.b0;
+import jd.b2;
+import jd.c2;
+import jd.e0;
+import jd.f1;
+import jd.g2;
+import jd.w0;
+public abstract class a {
+    public static final fc.a f19501a = new fc.a("NO_DECISION", 2);
+    public static final fc.a f19502b = new fc.a("CLOSED", 2);
+    public static final fc.a f19503c = new fc.a("UNDEFINED", 2);
+    public static final fc.a d = new fc.a("REUSABLE_CLAIMED", 2);
+    public static final fc.a f19504e = new fc.a("CONDITION_FALSE", 2);
+    public static final fc.a f19505f = new fc.a("NO_THREAD_ELEMENTS", 2);
 
-    public a(c cVar, int i9) {
-        this.f19204n = cVar;
-        setDaemon(true);
-        setContextClassLoader(c.class.getClassLoader());
-        this.f19199a = new m();
-        this.f19200b = new Object();
-        this.f19201c = b.d;
-        this.nextParkedWorker = c.v;
-        int nanoTime = (int) System.nanoTime();
-        this.f19203f = nanoTime == 0 ? 42 : nanoTime;
-        g(i9);
-    }
-
-    public final i a(boolean z10) {
-        i f10;
-        i f11;
-        long j10;
-        b bVar = this.f19201c;
-        b bVar2 = b.f19205a;
-        c cVar = this.f19204n;
-        i iVar = null;
-        boolean z11 = true;
-        m mVar = this.f19199a;
-        if (bVar != bVar2) {
-            AtomicLongFieldUpdater atomicLongFieldUpdater = c.f19211r;
-            do {
-                j10 = atomicLongFieldUpdater.get(cVar);
-                if (((int) ((9223367638808264704L & j10) >> 42)) == 0) {
-                    mVar.getClass();
-                    loop1: while (true) {
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f19231b;
-                        i iVar2 = (i) atomicReferenceFieldUpdater.get(mVar);
-                        if (iVar2 != null && iVar2.f19222b.f2981a == 1) {
-                            while (!atomicReferenceFieldUpdater.compareAndSet(mVar, iVar2, null)) {
-                                if (atomicReferenceFieldUpdater.get(mVar) != iVar2) {
-                                    break;
-                                }
-                            }
-                            iVar = iVar2;
-                            break loop1;
-                        }
+    public static final Object a(u uVar, long j10, bd.p pVar) {
+        while (true) {
+            if (uVar.f19536c >= j10 && !uVar.d()) {
+                return uVar;
+            }
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f19508a;
+            Object obj = atomicReferenceFieldUpdater.get(uVar);
+            fc.a aVar = f19502b;
+            if (obj == aVar) {
+                return aVar;
+            }
+            u uVar2 = (u) ((d) obj);
+            if (uVar2 == null) {
+                uVar2 = (u) pVar.invoke(Long.valueOf(uVar.f19536c + 1), uVar);
+                while (!atomicReferenceFieldUpdater.compareAndSet(uVar, null, uVar2)) {
+                    if (atomicReferenceFieldUpdater.get(uVar) != null) {
+                        break;
                     }
-                    int i9 = m.d.get(mVar);
-                    int i10 = m.f19232c.get(mVar);
-                    while (true) {
-                        if (i9 != i10 && m.f19233e.get(mVar) != 0) {
-                            i10--;
-                            i b10 = mVar.b(i10, true);
-                            if (b10 != null) {
-                                iVar = b10;
-                                break;
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                    if (iVar == null) {
-                        i iVar3 = (i) cVar.f19217f.d();
-                        if (iVar3 == null) {
-                            return j(1);
-                        }
-                        return iVar3;
-                    }
-                    return iVar;
                 }
-            } while (!c.f19211r.compareAndSet(cVar, j10, j10 - 4398046511104L));
-            this.f19201c = b.f19205a;
+                if (uVar.d()) {
+                    uVar.e();
+                }
+            }
+            uVar = uVar2;
         }
-        if (z10) {
-            if (e(cVar.f19213a * 2) != 0) {
-                z11 = false;
-            }
-            if (z11 && (f11 = f()) != null) {
-                return f11;
-            }
-            mVar.getClass();
-            i iVar4 = (i) m.f19231b.getAndSet(mVar, null);
-            if (iVar4 == null) {
-                iVar4 = mVar.a();
-            }
-            if (iVar4 != null) {
-                return iVar4;
-            }
-            if (!z11 && (f10 = f()) != null) {
-                return f10;
-            }
-        } else {
-            i f12 = f();
-            if (f12 != null) {
-                return f12;
-            }
-        }
-        return j(3);
     }
 
-    public final int b() {
-        return this.indexInArray;
+    public static final u b(Object obj) {
+        if (obj != f19502b) {
+            return (u) obj;
+        }
+        throw new IllegalStateException("Does not contain segment");
     }
 
-    public final Object c() {
-        return this.nextParkedWorker;
-    }
-
-    public final int e(int i9) {
-        int i10 = this.f19203f;
-        int i11 = i10 ^ (i10 << 13);
-        int i12 = i11 ^ (i11 >> 17);
-        int i13 = i12 ^ (i12 << 5);
-        this.f19203f = i13;
-        int i14 = i9 - 1;
-        if ((i14 & i9) == 0) {
-            return i13 & i14;
-        }
-        return (i13 & Integer.MAX_VALUE) % i9;
-    }
-
-    public final i f() {
-        int e10 = e(2);
-        c cVar = this.f19204n;
-        if (e10 == 0) {
-            i iVar = (i) cVar.f19216e.d();
-            if (iVar != null) {
-                return iVar;
-            }
-            return (i) cVar.f19217f.d();
-        }
-        i iVar2 = (i) cVar.f19217f.d();
-        if (iVar2 != null) {
-            return iVar2;
-        }
-        return (i) cVar.f19216e.d();
-    }
-
-    public final void g(int i9) {
-        String valueOf;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f19204n.d);
-        sb2.append("-worker-");
-        if (i9 == 0) {
-            valueOf = "TERMINATED";
-        } else {
-            valueOf = String.valueOf(i9);
-        }
-        sb2.append(valueOf);
-        setName(sb2.toString());
-        this.indexInArray = i9;
-    }
-
-    public final void h(Object obj) {
-        this.nextParkedWorker = obj;
-    }
-
-    public final boolean i(b bVar) {
-        boolean z10;
-        b bVar2 = this.f19201c;
-        if (bVar2 == b.f19205a) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10) {
-            c.f19211r.addAndGet(this.f19204n, 4398046511104L);
-        }
-        if (bVar2 != bVar) {
-            this.f19201c = bVar;
-        }
-        return z10;
-    }
-
-    public final i j(int i9) {
-        boolean z10;
-        long j10;
-        i iVar;
-        long j11;
-        long j12;
-        i iVar2;
-        int i10;
-        AtomicLongFieldUpdater atomicLongFieldUpdater = c.f19211r;
-        c cVar = this.f19204n;
-        int i11 = (int) (atomicLongFieldUpdater.get(cVar) & 2097151);
-        i iVar3 = null;
-        if (i11 < 2) {
-            return null;
-        }
-        int e10 = e(i11);
-        int i12 = 0;
-        long j13 = Long.MAX_VALUE;
-        while (i12 < i11) {
-            e10++;
-            if (e10 > i11) {
-                e10 = 1;
-            }
-            a aVar = (a) cVar.h.b(e10);
-            if (aVar != null && aVar != this) {
-                m mVar = aVar.f19199a;
-                if (i9 == 3) {
-                    iVar = mVar.a();
-                    j10 = 0;
+    public static final void c(Throwable th2, sc.h hVar) {
+        Throwable runtimeException;
+        for (kd.b bVar : f.f19511a) {
+            try {
+                bVar.c(th2);
+            } catch (Throwable th3) {
+                if (th2 == th3) {
+                    runtimeException = th2;
                 } else {
-                    mVar.getClass();
-                    int i13 = m.d.get(mVar);
-                    int i14 = m.f19232c.get(mVar);
-                    if (i9 == 1) {
-                        z10 = true;
+                    runtimeException = new RuntimeException("Exception while trying to handle coroutine exception", th3);
+                    a7.a(runtimeException, th2);
+                }
+                Thread currentThread = Thread.currentThread();
+                currentThread.getUncaughtExceptionHandler().uncaughtException(currentThread, runtimeException);
+            }
+        }
+        try {
+            a7.a(th2, new g(hVar));
+        } catch (Throwable unused) {
+        }
+        Thread currentThread2 = Thread.currentThread();
+        currentThread2.getUncaughtExceptionHandler().uncaughtException(currentThread2, th2);
+    }
+
+    public static final boolean d(Object obj) {
+        if (obj == f19502b) {
+            return true;
+        }
+        return false;
+    }
+
+    public static final Object e(Object obj, Object obj2) {
+        if (obj == null) {
+            return obj2;
+        }
+        if (obj instanceof ArrayList) {
+            ((ArrayList) obj).add(obj2);
+            return obj;
+        }
+        ArrayList arrayList = new ArrayList(4);
+        arrayList.add(obj);
+        arrayList.add(obj2);
+        return arrayList;
+    }
+
+    public static final void f(sc.h hVar, Object obj) {
+        if (obj != f19505f) {
+            if (obj instanceof z) {
+                z zVar = (z) obj;
+                b2[] b2VarArr = zVar.f19545b;
+                int length = b2VarArr.length - 1;
+                if (length < 0) {
+                    return;
+                }
+                b2 b2Var = b2VarArr[length];
+                kotlin.jvm.internal.j.b(null);
+                Object obj2 = zVar.f19544a[length];
+                throw null;
+            }
+            Object fold = hVar.fold(null, x.d);
+            kotlin.jvm.internal.j.c(fold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
+            a4.w.u(fold);
+            throw null;
+        }
+    }
+
+    public static final void g(Object obj, sc.c cVar) {
+        Object vVar;
+        g2 g2Var;
+        if (cVar instanceof h) {
+            h hVar = (h) cVar;
+            a0 a0Var = hVar.d;
+            uc.c cVar2 = hVar.f19514e;
+            Throwable a2 = qc.f.a(obj);
+            if (a2 == null) {
+                vVar = obj;
+            } else {
+                vVar = new jd.v(a2, false);
+            }
+            cVar2.getContext();
+            if (a0Var.e()) {
+                hVar.f19515f = vVar;
+                hVar.f11490c = 1;
+                a0Var.c(cVar2.getContext(), hVar);
+                return;
+            }
+            w0 a10 = c2.a();
+            if (a10.f11536c >= 4294967296L) {
+                hVar.f19515f = vVar;
+                hVar.f11490c = 1;
+                rc.e eVar = a10.f11537e;
+                if (eVar == null) {
+                    eVar = new rc.e();
+                    a10.f11537e = eVar;
+                }
+                eVar.addLast(hVar);
+                return;
+            }
+            a10.h(true);
+            try {
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f11447b);
+                if (f1Var != null && !f1Var.isActive()) {
+                    CancellationException cancellationException = f1Var.getCancellationException();
+                    hVar.c(vVar, cancellationException);
+                    hVar.resumeWith(c7.a(cancellationException));
+                } else {
+                    Object obj2 = hVar.h;
+                    sc.h context = cVar2.getContext();
+                    Object k9 = k(context, obj2);
+                    if (k9 != f19505f) {
+                        g2Var = e0.v(cVar2, context, k9);
                     } else {
-                        z10 = false;
+                        g2Var = null;
                     }
-                    while (true) {
-                        if (i13 != i14) {
-                            j10 = 0;
-                            if (!z10 || m.f19233e.get(mVar) != 0) {
-                                int i15 = i13 + 1;
-                                iVar = mVar.b(i13, z10);
-                                if (iVar != null) {
-                                    break;
-                                }
-                                i13 = i15;
-                            } else {
-                                break;
-                            }
-                        } else {
-                            j10 = 0;
-                            break;
-                        }
+                    cVar2.resumeWith(obj);
+                    if (g2Var == null || g2Var.M()) {
+                        f(context, k9);
                     }
-                    iVar = iVar3;
                 }
-                p pVar = this.f19200b;
-                if (iVar != null) {
-                    pVar.f16499a = iVar;
-                    iVar2 = iVar3;
-                    j12 = -1;
-                    j11 = -1;
-                } else {
-                    while (true) {
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = m.f19231b;
-                        i iVar4 = (i) atomicReferenceFieldUpdater.get(mVar);
-                        if (iVar4 == null) {
-                            j11 = -1;
-                            break;
-                        }
-                        j11 = -1;
-                        if (iVar4.f19222b.f2981a == 1) {
-                            i10 = 1;
-                        } else {
-                            i10 = 2;
-                        }
-                        if ((i10 & i9) == 0) {
-                            break;
-                        }
-                        k.f19228f.getClass();
-                        m mVar2 = mVar;
-                        long nanoTime = System.nanoTime() - iVar4.f19221a;
-                        long j14 = k.f19225b;
-                        if (nanoTime < j14) {
-                            j12 = j14 - nanoTime;
-                            iVar2 = null;
-                            break;
-                        }
-                        do {
-                            iVar2 = null;
-                            if (atomicReferenceFieldUpdater.compareAndSet(mVar2, iVar4, null)) {
-                                pVar.f16499a = iVar4;
-                                j12 = -1;
-                                break;
-                            }
-                        } while (atomicReferenceFieldUpdater.get(mVar2) == iVar4);
-                        mVar = mVar2;
-                        iVar3 = null;
-                    }
-                    j12 = -2;
-                    iVar2 = iVar3;
-                }
-                if (j12 == j11) {
-                    i iVar5 = (i) pVar.f16499a;
-                    pVar.f16499a = iVar2;
-                    return iVar5;
-                } else if (j12 > j10) {
-                    j13 = Math.min(j13, j12);
+                do {
+                } while (a10.j());
+            } finally {
+                try {
+                    return;
+                } finally {
                 }
             }
-            i12++;
-            iVar3 = null;
+            return;
         }
-        if (j13 == Long.MAX_VALUE) {
-            j13 = 0;
-        }
-        this.f19202e = j13;
-        return null;
+        cVar.resumeWith(obj);
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: od.a.run():void");
+    public static final long i(java.lang.String r21, long r22, long r24, long r26) {
+        throw new UnsupportedOperationException("Method not decompiled: od.a.i(java.lang.String, long, long, long):long");
+    }
+
+    public static int j(int i10, int i11, String str) {
+        int i12;
+        if ((i11 & 8) != 0) {
+            i12 = Integer.MAX_VALUE;
+        } else {
+            i12 = 2097150;
+        }
+        return (int) i(str, i10, 1, i12);
+    }
+
+    public static final Object k(sc.h hVar, Object obj) {
+        if (obj == null) {
+            obj = hVar.fold(0, x.f19539c);
+            kotlin.jvm.internal.j.b(obj);
+        }
+        if (obj == 0) {
+            return f19505f;
+        }
+        if (obj instanceof Integer) {
+            return hVar.fold(new z(((Number) obj).intValue(), hVar), x.f19540e);
+        }
+        a4.w.u(obj);
+        throw null;
     }
 }

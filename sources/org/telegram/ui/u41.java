@@ -1,68 +1,54 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class u41 extends AnimatorListenerAdapter {
-    public final int f43125a;
-    public final boolean f43126b;
-    public final b61 f43127c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class u41 extends s51 {
+    public final d61 A;
 
-    public u41(b61 b61Var, boolean z10, int i9) {
-        this.f43125a = i9;
-        this.f43127c = b61Var;
-        this.f43126b = z10;
+    public u41(d61 d61Var, Context context, boolean z10) {
+        super(d61Var, context, z10);
+        this.A = d61Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i9;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        int i10;
-        switch (this.f43125a) {
-            case 0:
-                b61 b61Var = this.f43127c;
-                o41 o41Var = b61Var.f36672e0;
-                int i11 = 8;
-                boolean z10 = this.f43126b;
-                if (z10) {
-                    i9 = 0;
-                } else {
-                    i9 = 8;
-                }
-                o41Var.setVisibility(i9);
-                y41 y41Var = b61Var.f36669d0;
-                if (!z10) {
-                    i11 = 0;
-                }
-                y41Var.setVisibility(i11);
-                b61Var.A1 = null;
-                if (!z10 && (arrayList2 = b61Var.f36712w1) != null) {
-                    arrayList2.clear();
-                    ArrayList arrayList3 = b61Var.f36720z1;
-                    if (arrayList3 != null) {
-                        arrayList3.clear();
-                    }
-                    b61Var.m0.E(false);
-                }
-                if (!z10 && (arrayList = b61Var.f36715x1) != null) {
-                    arrayList.clear();
-                    return;
-                }
-                return;
-            default:
-                b61 b61Var2 = this.f43127c;
-                FrameLayout frameLayout = b61Var2.f36675f0;
-                if (this.f43126b && b61Var2.f36672e0.getVisibility() == 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
-                }
-                frameLayout.setVisibility(i10);
-                b61Var2.D1 = null;
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float y8;
+        d61 d61Var = this.A;
+        n31 n31Var = d61Var.f37324c0;
+        u41 u41Var = d61Var.f37321b0;
+        d51 d51Var = d61Var.Q;
+        if (d51Var != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            float x4 = n31Var.getX() + u41Var.getX();
+            float y10 = n31Var.getY() + u41Var.getY();
+            kg.w wVar = (kg.w) d51Var;
+            kg.d0 d0Var = (kg.d0) wVar.f13882b;
+            kg.c0 c0Var = d0Var.f13681a;
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f9 = 0;
+            rectF.set(f9, f9, measuredWidth, measuredHeight);
+            org.telegram.ui.Components.ek0 delegate = ((org.telegram.ui.Components.fk0) wVar.f13883c).getDelegate();
+            float x10 = c0Var.getX() + x4;
+            if (d0Var.f13702y == 1) {
+                y8 = c0Var.getY() - AndroidUtilities.statusBarHeight;
+            } else {
+                y8 = c0Var.getY() + d0Var.f13683c.getY();
+            }
+            delegate.G(canvas, rectF, 0.0f, x10, y8 + y10, 255, true);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void setTranslationY(float f9) {
+        if (f9 != getTranslationY()) {
+            super.setTranslationY(f9);
+            if (this.A.Q != null) {
+                invalidate();
+            }
         }
     }
 }

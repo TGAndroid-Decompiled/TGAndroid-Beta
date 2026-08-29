@@ -1,36 +1,55 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
-import org.json.JSONObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.s9;
-public final class a0 implements NotificationCenter.NotificationCenterDelegate {
-    public final y0 f43793a;
+import android.webkit.WebView;
+import java.io.Serializable;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a0 implements Runnable {
+    public final int f43970a;
+    public final Object f43971b;
+    public final Object f43972c;
+    public final Object d;
+    public final Serializable f43973e;
+    public final Object f43974f;
 
-    public a0(y0 y0Var) {
-        this.f43793a = y0Var;
+    public a0(Object obj, String str, Serializable serializable, String str2, String str3, int i10) {
+        this.f43970a = i10;
+        this.f43971b = obj;
+        this.f43973e = str;
+        this.d = serializable;
+        this.f43974f = str2;
+        this.f43972c = str3;
     }
 
     @Override
-    public final void didReceivedNotification(int i9, int i10, Object... objArr) {
-        int i11 = NotificationCenter.onRequestPermissionResultReceived;
-        if (i9 == i11) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == 5000) {
-                NotificationCenter.getGlobalInstance().removeObserver(this, i11);
-                int i12 = iArr[0];
-                y0 y0Var = this.f43793a;
-                if (i12 == 0) {
-                    Activity activity = y0Var.S;
-                    if (activity != null) {
-                        y0Var.f44075c0 = s9.d0(activity, 3, new n5.a0(y0Var, 11));
-                        return;
-                    }
-                    return;
-                }
-                y0Var.v("scan_qr_popup_closed", new JSONObject());
-            }
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.a0.run():void");
+    }
+
+    public a0(z0 z0Var, TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.c2 c2Var) {
+        this.f43970a = 1;
+        this.f43971b = z0Var;
+        this.f43972c = tLObject;
+        this.f43973e = strArr;
+        this.d = tL_error;
+        this.f43974f = c2Var;
+    }
+
+    public a0(z0 z0Var, TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
+        this.f43970a = 0;
+        this.f43971b = z0Var;
+        this.d = tL_error;
+        this.f43973e = str;
+        this.f43974f = tL_inputInvoiceSlug;
+        this.f43972c = tLObject;
+    }
+
+    public a0(boolean[] zArr, WebView webView, z1 z1Var, String str, x1 x1Var) {
+        this.f43970a = 4;
+        this.f43971b = zArr;
+        this.d = webView;
+        this.f43974f = z1Var;
+        this.f43973e = str;
+        this.f43972c = x1Var;
     }
 }

@@ -1,38 +1,24 @@
 package j3;
-public final class l implements Runnable {
-    public final int f13288a;
-    public final m f13289b;
-    public final k3.f f13290c;
 
-    public l(m mVar, k3.f fVar, int i9) {
-        this.f13288a = i9;
-        this.f13289b = mVar;
-        this.f13290c = fVar;
+import android.content.Context;
+public class l {
+    public final Context f10615a;
+    public final ab.b f10616b = new ab.b(1);
+    public int f10617c = 0;
+
+    public l(Context context) {
+        this.f10615a = context;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f13288a) {
-            case 0:
-                m mVar = this.f13289b;
-                k3.f fVar = this.f13290c;
-                n nVar = mVar.f13292b;
-                int i9 = d5.f0.f4349a;
-                i3.f fVar2 = ((h3.h0) nVar).f9440a.f9557r;
-                i3.a k10 = fVar2.k();
-                fVar2.l(k10, 1007, new i3.d(k10, fVar, 16));
-                return;
-            default:
-                m mVar2 = this.f13289b;
-                k3.f fVar3 = this.f13290c;
-                synchronized (fVar3) {
-                }
-                n nVar2 = mVar2.f13292b;
-                int i10 = d5.f0.f4349a;
-                i3.f fVar4 = ((h3.h0) nVar2).f9440a.f9557r;
-                i3.a i11 = fVar4.i((j4.d0) fVar4.d.f4163e);
-                fVar4.l(i11, 1013, new i3.d(i11, fVar3, 4));
-                return;
-        }
+    public l3.k0 a(Context context) {
+        androidx.biometric.e eVar = new androidx.biometric.e(29);
+        l3.g a2 = l3.g.a(context);
+        a2.getClass();
+        eVar.f1030b = a2;
+        return eVar.c();
+    }
+
+    public final j3.e[] b(android.os.Handler r22, j3.h0 r23, j3.h0 r24, j3.h0 r25, j3.h0 r26) {
+        throw new UnsupportedOperationException("Method not decompiled: j3.l.b(android.os.Handler, j3.h0, j3.h0, j3.h0, j3.h0):j3.e[]");
     }
 }

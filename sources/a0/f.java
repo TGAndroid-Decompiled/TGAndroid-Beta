@@ -33,7 +33,7 @@ public final class f extends k implements Map, j$.util.Map {
     public final Set entrySet() {
         a aVar = this.d;
         if (aVar == null) {
-            a aVar2 = new a(this, 0);
+            a aVar2 = new a(0, this);
             this.d = aVar2;
             return aVar2;
         }
@@ -55,11 +55,11 @@ public final class f extends k implements Map, j$.util.Map {
     }
 
     public final boolean j(Collection collection) {
-        int i9 = this.f28c;
+        int i10 = this.f28c;
         for (Object obj : collection) {
             super.remove(obj);
         }
-        if (i9 != this.f28c) {
+        if (i10 != this.f28c) {
             return true;
         }
         return false;
@@ -84,17 +84,17 @@ public final class f extends k implements Map, j$.util.Map {
     @Override
     public final void putAll(java.util.Map map) {
         int size = map.size() + this.f28c;
-        int i9 = this.f28c;
+        int i10 = this.f28c;
         int[] iArr = this.f26a;
         if (iArr.length < size) {
             int[] copyOf = Arrays.copyOf(iArr, size);
-            kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
+            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
             this.f26a = copyOf;
             Object[] copyOf2 = Arrays.copyOf(this.f27b, size * 2);
-            kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
+            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
             this.f27b = copyOf2;
         }
-        if (this.f28c == i9) {
+        if (this.f28c == i10) {
             for (Map.Entry entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
             }

@@ -2,37 +2,29 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.widget.TextView;
-public final class vk extends TextView {
-    public final int f33400a;
-    public float f33401b;
-    public float f33402c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vk extends rf.j0 {
+    public final bl J;
 
-    public vk(Context context, int i9) {
-        super(context);
-        this.f33400a = i9;
+    public vk(bl blVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(context, c6Var, z10, false);
+        this.J = blVar;
     }
 
     @Override
-    public final float getTranslationX() {
-        switch (this.f33400a) {
-            case 0:
-                return this.f33401b;
-            default:
-                return this.f33401b;
+    public final void l() {
+        bl blVar = this.J;
+        vk vkVar = blVar.N;
+        org.telegram.ui.ActionBar.w0 w0Var = blVar.A;
+        if (w0Var != null) {
+            w0Var.setShowSearchProgress(vkVar.F);
         }
-    }
-
-    @Override
-    public final void setTranslationX(float f10) {
-        switch (this.f33400a) {
-            case 0:
-                this.f33401b = f10;
-                setTranslationY(this.f33402c + f10);
-                return;
-            default:
-                this.f33401b = f10;
-                setTranslationY(this.f33402c + f10);
-                return;
+        TextView textView = blVar.f27180y;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, vkVar.f47182x)));
         }
+        super.l();
     }
 }

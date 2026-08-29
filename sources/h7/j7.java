@@ -1,30 +1,58 @@
 package h7;
 
-import java.util.Arrays;
-public final class j7 {
-    public final i7 f9979a;
-    public final Integer f9980b;
-
-    public j7(g5.b bVar) {
-        this.f9979a = (i7) bVar.f7111b;
-        this.f9980b = (Integer) bVar.f7112c;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.th;
+public abstract class j7 {
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String j10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                j10 = "null";
+            } else {
+                try {
+                    j10 = obj.toString();
+                } catch (Exception e10) {
+                    String y8 = a4.w.y(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(y8), (Throwable) e10);
+                    j10 = th.j("<", y8, " threw ", e10.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = j10;
+            i11++;
         }
-        if (!(obj instanceof j7)) {
-            return false;
+        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) str, i12, indexOf);
+            sb2.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
         }
-        j7 j7Var = (j7) obj;
-        if (x5.l.l(this.f9979a, j7Var.f9979a) && x5.l.l(this.f9980b, j7Var.f9980b) && x5.l.l(null, null) && x5.l.l(null, null)) {
-            return true;
+        sb2.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb2.append(", ");
+                sb2.append(objArr[i13]);
+            }
+            sb2.append(']');
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f9979a, this.f9980b, null, null});
+        return sb2.toString();
     }
 }

@@ -1,22 +1,49 @@
 package ih;
 
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class d6 implements RequestDelegate {
-    public final long f11327a;
-    public final d5.d f11328b;
-    public final v6 f11329c;
+import org.telegram.ui.Components.jl0;
+public final class d6 extends f2.v0 {
+    public final PointF f9105a = new PointF();
+    public final e6 f9106b;
 
-    public d6(v6 v6Var, long j10, d5.d dVar) {
-        this.f11329c = v6Var;
-        this.f11327a = j10;
-        this.f11328b = dVar;
+    public d6(e6 e6Var) {
+        this.f9106b = e6Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new gh.e2(this, tLObject, this.f11327a, this.f11328b, 10));
+    public final void b(Canvas canvas, RecyclerView recyclerView) {
+        float f9;
+        float f10;
+        cg.h0 h0Var;
+        float height = recyclerView.getHeight();
+        e6 e6Var = this.f9106b;
+        z5 z5Var = e6Var.f9140o0;
+        y5 y5Var = e6Var.f9130d0;
+        jl0 jl0Var = e6Var.d;
+        PointF pointF = this.f9105a;
+        if (sg.i.b(y5Var, jl0Var, pointF)) {
+            f9 = pointF.x;
+            height = Math.min(height, pointF.y);
+            f10 = Math.max(0.0f, pointF.y + y5Var.getMeasuredHeight());
+        } else {
+            f9 = 0.0f;
+            f10 = 0.0f;
+        }
+        if (sg.i.b(z5Var, jl0Var, pointF)) {
+            height = Math.min(height, pointF.y);
+            f10 = Math.max(f10, pointF.y + z5Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
+        }
+        if (height < f10 && (h0Var = y5Var.H) != null) {
+            float height2 = (f10 - height) / h0Var.getHeight();
+            canvas.save();
+            canvas.clipRect(0.0f, height, recyclerView.getWidth(), f10);
+            canvas.translate(f9, height);
+            canvas.scale(height2, height2);
+            y5Var.H.draw(canvas);
+            canvas.restore();
+        }
     }
 }

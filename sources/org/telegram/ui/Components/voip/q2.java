@@ -1,23 +1,25 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import org.webrtc.TextureViewRenderer;
-public final class q2 extends TextureViewRenderer {
-    public final r2 f33766a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q2 extends AnimatorListenerAdapter {
+    public final int f33942a;
+    public final r2 f33943b;
 
-    public q2(r2 r2Var, Context context) {
-        super(context);
-        this.f33766a = r2Var;
+    public q2(r2 r2Var, int i10) {
+        this.f33942a = i10;
+        this.f33943b = r2Var;
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        super.onFirstFrameRendered();
-        this.f33766a.b();
-    }
-
-    @Override
-    public final void onSizeChanged(int i9, int i10, int i11, int i12) {
-        super.onSizeChanged(i9, i10, i11, i12);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33942a) {
+            case 0:
+                this.f33943b.f33970b.setVisibility(8);
+                return;
+            default:
+                this.f33943b.f33971c.setVisibility(8);
+                return;
+        }
     }
 }

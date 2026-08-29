@@ -2,540 +2,288 @@ package f2;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.util.SparseIntArray;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.WeakHashMap;
-public class y extends m0 {
-    public boolean I;
-    public int J;
-    public int[] K;
-    public View[] L;
-    public final SparseIntArray M;
-    public final SparseIntArray N;
-    public x O;
-    public final Rect P;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.el0;
+import org.telegram.ui.Components.g20;
+import org.telegram.ui.Components.h20;
+import org.telegram.ui.Components.jl0;
+public final class y implements z0 {
+    public final int f6511a = 0;
+    public final Object f6512b;
 
-    public y(int i9) {
-        this.I = false;
-        this.J = -1;
-        this.M = new SparseIntArray();
-        this.N = new SparseIntArray();
-        this.O = new v(0);
-        this.P = new Rect();
-        y1(i9);
+    public y(e0 e0Var) {
+        this.f6512b = e0Var;
     }
 
     @Override
-    public final void A0(n1 n1Var, k0 k0Var, androidx.datastore.preferences.protobuf.i iVar) {
-        int i9 = this.J;
-        for (int i10 = 0; i10 < this.J && k0Var.b(n1Var) && i9 > 0; i10++) {
-            int i11 = k0Var.d;
-            iVar.a(i11, Math.max(0, k0Var.f5408g));
-            i9 -= this.O.i(i11);
-            k0Var.d += k0Var.f5406e;
-        }
-    }
-
-    public final void A1() {
-        int C;
-        int F;
-        if (this.f5432o == 1) {
-            C = this.f5572m - E();
-            F = D();
-        } else {
-            C = this.f5573n - C();
-            F = F();
-        }
-        int i9 = C - F;
-        this.K = q1(this.J, i9, this.K);
-    }
-
-    @Override
-    public int I(g1 g1Var, n1 n1Var) {
-        if (this.f5432o == 0) {
-            return this.J;
-        }
-        if (n1Var.b() < 1) {
-            return 0;
-        }
-        return t1(n1Var.b() - 1, g1Var, n1Var) + 1;
-    }
-
-    @Override
-    public final View Q0(g1 g1Var, n1 n1Var, int i9, int i10, int i11) {
-        int i12;
-        G0();
-        int j10 = this.f5434q.j();
-        int f10 = this.f5434q.f();
-        if (i10 > i9) {
-            i12 = 1;
-        } else {
-            i12 = -1;
-        }
-        View view = null;
-        View view2 = null;
-        while (i9 != i10) {
-            View q10 = q(i9);
-            int H = z0.H(q10);
-            if (H >= 0 && H < i11 && u1(H, g1Var, n1Var) == 0) {
-                if (((a1) q10.getLayoutParams()).f5311a.j()) {
-                    if (view2 == null) {
-                        view2 = q10;
+    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
+        switch (this.f6511a) {
+            case 0:
+                e0 e0Var = (e0) this.f6512b;
+                ag.q1 q1Var = e0Var.E;
+                ((GestureDetector) e0Var.J.f19159b).onTouchEvent(motionEvent);
+                VelocityTracker velocityTracker = e0Var.F;
+                if (velocityTracker != null) {
+                    velocityTracker.addMovement(motionEvent);
+                }
+                if (e0Var.f6307w != -1) {
+                    int actionMasked = motionEvent.getActionMasked();
+                    int findPointerIndex = motionEvent.findPointerIndex(e0Var.f6307w);
+                    if (findPointerIndex >= 0) {
+                        e0Var.h(actionMasked, findPointerIndex, motionEvent);
                     }
-                } else if (this.f5434q.d(q10) < f10 && this.f5434q.a(q10) >= j10) {
-                    return q10;
+                    n1 n1Var = e0Var.f6301c;
+                    if (n1Var != null) {
+                        int i10 = 0;
+                        if (actionMasked != 1) {
+                            if (actionMasked != 2) {
+                                if (actionMasked != 3) {
+                                    if (actionMasked == 6) {
+                                        int actionIndex = motionEvent.getActionIndex();
+                                        if (motionEvent.getPointerId(actionIndex) == e0Var.f6307w) {
+                                            if (actionIndex == 0) {
+                                                i10 = 1;
+                                            }
+                                            e0Var.f6307w = motionEvent.getPointerId(i10);
+                                            e0Var.s(e0Var.A, actionIndex, motionEvent);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                VelocityTracker velocityTracker2 = e0Var.F;
+                                if (velocityTracker2 != null) {
+                                    velocityTracker2.clear();
+                                }
+                            } else if (findPointerIndex >= 0) {
+                                e0Var.s(e0Var.A, findPointerIndex, motionEvent);
+                                e0Var.n(n1Var);
+                                e0Var.D.removeCallbacks(q1Var);
+                                q1Var.run();
+                                e0Var.D.invalidate();
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        e0Var.p(null, 0);
+                        e0Var.f6307w = -1;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
+        int findPointerIndex;
+        boolean z10;
+        View E;
+        cl0 cl0Var;
+        switch (this.f6511a) {
+            case 0:
+                e0 e0Var = (e0) this.f6512b;
+                ((GestureDetector) e0Var.J.f19159b).onTouchEvent(motionEvent);
+                int actionMasked = motionEvent.getActionMasked();
+                z zVar = null;
+                if (actionMasked == 0) {
+                    e0Var.f6307w = motionEvent.getPointerId(0);
+                    e0Var.d = motionEvent.getX();
+                    e0Var.f6302e = motionEvent.getY();
+                    VelocityTracker velocityTracker = e0Var.F;
+                    if (velocityTracker != null) {
+                        velocityTracker.recycle();
+                    }
+                    e0Var.F = VelocityTracker.obtain();
+                    if (e0Var.f6301c == null) {
+                        ArrayList arrayList = e0Var.B;
+                        if (!arrayList.isEmpty()) {
+                            View k9 = e0Var.k(motionEvent);
+                            int size = arrayList.size() - 1;
+                            while (true) {
+                                if (size >= 0) {
+                                    z zVar2 = (z) arrayList.get(size);
+                                    if (zVar2.f6516e.f6432a == k9) {
+                                        zVar = zVar2;
+                                    } else {
+                                        size--;
+                                    }
+                                }
+                            }
+                        }
+                        if (zVar != null) {
+                            n1 n1Var = zVar.f6516e;
+                            e0Var.d -= zVar.f6519r;
+                            e0Var.f6302e -= zVar.f6520s;
+                            e0Var.j(n1Var, true);
+                            if (e0Var.f6299a.remove(n1Var.f6432a)) {
+                                e0Var.f6308x.a(e0Var.D, n1Var);
+                            }
+                            e0Var.p(n1Var, zVar.f6517f);
+                            e0Var.s(e0Var.A, 0, motionEvent);
+                        }
+                    }
+                } else if (actionMasked != 3 && actionMasked != 1) {
+                    int i10 = e0Var.f6307w;
+                    if (i10 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i10)) >= 0) {
+                        e0Var.h(actionMasked, findPointerIndex, motionEvent);
+                    }
                 } else {
-                    if (view == null) {
-                        view = q10;
+                    e0Var.f6307w = -1;
+                    e0Var.p(null, 0);
+                }
+                VelocityTracker velocityTracker2 = e0Var.F;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.addMovement(motionEvent);
+                }
+                if (e0Var.f6301c != null) {
+                    return true;
+                }
+                return false;
+            default:
+                int actionMasked2 = motionEvent.getActionMasked();
+                jl0 jl0Var = (jl0) this.f6512b;
+                Rect rect = jl0Var.C1;
+                if (jl0Var.getScrollState() == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if ((actionMasked2 == 0 || actionMasked2 == 5) && jl0Var.J1 == null && z10) {
+                    float x4 = motionEvent.getX();
+                    float y8 = motionEvent.getY();
+                    jl0Var.V0 = false;
+                    u0 itemAnimator = jl0Var.getItemAnimator();
+                    if ((jl0Var.f29699g1 || itemAnimator == null || !itemAnimator.k()) && jl0Var.E0(y8) && (E = jl0Var.E(x4, y8)) != null && jl0Var.F0(E)) {
+                        jl0Var.J1 = E;
+                    }
+                    if (jl0Var.J1 instanceof ViewGroup) {
+                        float x10 = motionEvent.getX() - jl0Var.J1.getLeft();
+                        float y10 = motionEvent.getY() - jl0Var.J1.getTop();
+                        ViewGroup viewGroup = (ViewGroup) jl0Var.J1;
+                        int childCount = viewGroup.getChildCount() - 1;
+                        while (true) {
+                            if (childCount >= 0) {
+                                View childAt = viewGroup.getChildAt(childCount);
+                                if (x10 >= childAt.getLeft() && x10 <= childAt.getRight() && y10 >= childAt.getTop() && y10 <= childAt.getBottom() && childAt.isClickable()) {
+                                    jl0Var.J1 = null;
+                                } else {
+                                    childCount--;
+                                }
+                            }
+                        }
+                    }
+                    jl0Var.K1 = -1;
+                    View view = jl0Var.J1;
+                    if (view != null) {
+                        if (jl0Var.f29693d1) {
+                            jl0Var.K1 = RecyclerView.S(view);
+                        } else {
+                            jl0Var.K1 = RecyclerView.R(view);
+                        }
+                        MotionEvent obtain = MotionEvent.obtain(0L, 0L, motionEvent.getActionMasked(), motionEvent.getX() - jl0Var.J1.getLeft(), motionEvent.getY() - jl0Var.J1.getTop(), 0);
+                        if (jl0Var.J1.onTouchEvent(obtain)) {
+                            jl0Var.L1 = true;
+                        }
+                        obtain.recycle();
                     }
                 }
-            }
-            i9 += i12;
-        }
-        if (view != null) {
-            return view;
-        }
-        return view2;
-    }
-
-    @Override
-    public final android.view.View R(android.view.View r23, int r24, f2.g1 r25, f2.n1 r26) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.y.R(android.view.View, int, f2.g1, f2.n1):android.view.View");
-    }
-
-    @Override
-    public void U(g1 g1Var, n1 n1Var, View view, s0.d dVar) {
-        boolean z10;
-        boolean z11;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47292a;
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        if (!(layoutParams instanceof w)) {
-            T(view, dVar);
-            return;
-        }
-        w wVar = (w) layoutParams;
-        int t12 = t1(wVar.b(), g1Var, n1Var);
-        if (this.f5432o == 0) {
-            int i9 = wVar.f5544e;
-            int i10 = wVar.f5545f;
-            int i11 = this.J;
-            if (i11 > 1 && i10 == i11) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(i9, i10, t12, 1, z11, false));
-            return;
-        }
-        int i12 = wVar.f5544e;
-        int i13 = wVar.f5545f;
-        int i14 = this.J;
-        if (i14 > 1 && i13 == i14) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(t12, 1, i12, i13, z10, false));
-    }
-
-    @Override
-    public void V(RecyclerView recyclerView, int i9, int i10) {
-        this.O.j();
-        ((SparseIntArray) this.O.f5560b).clear();
-    }
-
-    @Override
-    public void W(RecyclerView recyclerView) {
-        this.O.j();
-        ((SparseIntArray) this.O.f5560b).clear();
-    }
-
-    @Override
-    public void X(RecyclerView recyclerView, int i9, int i10) {
-        this.O.j();
-        ((SparseIntArray) this.O.f5560b).clear();
-    }
-
-    @Override
-    public void Y(RecyclerView recyclerView, int i9, int i10) {
-        this.O.j();
-        ((SparseIntArray) this.O.f5560b).clear();
-    }
-
-    @Override
-    public void Z0(f2.g1 r18, f2.n1 r19, f2.k0 r20, f2.j0 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.y.Z0(f2.g1, f2.n1, f2.k0, f2.j0):void");
-    }
-
-    @Override
-    public void a0(RecyclerView recyclerView, int i9, int i10, Object obj) {
-        this.O.j();
-        ((SparseIntArray) this.O.f5560b).clear();
-    }
-
-    @Override
-    public final void a1(g1 g1Var, n1 n1Var, i0 i0Var, int i9) {
-        boolean z10;
-        A1();
-        if (n1Var.b() > 0 && !n1Var.f5474g) {
-            if (i9 == 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            int u12 = u1(i0Var.f5384b, g1Var, n1Var);
-            if (z10) {
-                while (u12 > 0) {
-                    int i10 = i0Var.f5384b;
-                    if (i10 <= 0) {
-                        break;
+                if (jl0Var.J1 != null && !jl0Var.L1) {
+                    try {
+                        jl0Var.I1.r(motionEvent);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
                     }
-                    int i11 = i10 - 1;
-                    i0Var.f5384b = i11;
-                    u12 = u1(i11, g1Var, n1Var);
                 }
-            } else {
-                int b10 = n1Var.b() - 1;
-                int i12 = i0Var.f5384b;
-                while (i12 < b10) {
-                    int i13 = i12 + 1;
-                    int u13 = u1(i13, g1Var, n1Var);
-                    if (u13 <= u12) {
-                        break;
+                if (actionMasked2 != 0 && actionMasked2 != 5) {
+                    if ((actionMasked2 == 1 || actionMasked2 == 6 || actionMasked2 == 3 || !z10) && jl0Var.J1 != null) {
+                        dg.d dVar = jl0Var.f29688a1;
+                        if (dVar != null) {
+                            AndroidUtilities.cancelRunOnUIThread(dVar);
+                            jl0Var.f29688a1 = null;
+                        }
+                        View view2 = jl0Var.J1;
+                        jl0Var.h1(view2, 0.0f, 0.0f, false);
+                        jl0Var.J1 = null;
+                        jl0Var.L1 = false;
+                        jl0Var.k1(motionEvent, view2);
+                        if ((actionMasked2 == 1 || actionMasked2 == 6 || actionMasked2 == 3) && (cl0Var = jl0Var.U0) != null && jl0Var.V0) {
+                            cl0Var.h();
+                            jl0Var.V0 = false;
+                        }
                     }
-                    i12 = i13;
-                    u12 = u13;
+                } else if (!jl0Var.L1 && jl0Var.J1 != null) {
+                    float x11 = motionEvent.getX();
+                    float y11 = motionEvent.getY();
+                    dg.d dVar2 = new dg.d(this, x11, y11, 1);
+                    jl0Var.f29688a1 = dVar2;
+                    AndroidUtilities.runOnUIThread(dVar2, ViewConfiguration.getTapTimeout());
+                    if (jl0Var.J1.isEnabled()) {
+                        View view3 = jl0Var.J1;
+                        if (jl0Var.H0(view3, x11 - view3.getX(), y11 - jl0Var.J1.getY())) {
+                            jl0Var.i1(jl0Var.K1, jl0Var.J1);
+                            org.telegram.ui.Cells.z zVar3 = jl0Var.f29736z1;
+                            if (zVar3 != null) {
+                                Drawable current = zVar3.getCurrent();
+                                if (current instanceof TransitionDrawable) {
+                                    if (jl0Var.T0 == null && jl0Var.S0 == null) {
+                                        ((TransitionDrawable) current).resetTransition();
+                                    } else {
+                                        ((TransitionDrawable) current).startTransition(ViewConfiguration.getLongPressTimeout());
+                                    }
+                                }
+                                jl0Var.f29736z1.setHotspot(motionEvent.getX(), motionEvent.getY());
+                            }
+                            jl0Var.v1();
+                        }
+                    }
+                    rect.setEmpty();
+                } else {
+                    rect.setEmpty();
                 }
-                i0Var.f5384b = i12;
-            }
-        }
-        r1();
-    }
-
-    @Override
-    public void b0(g1 g1Var, n1 n1Var) {
-        boolean z10 = n1Var.f5474g;
-        SparseIntArray sparseIntArray = this.N;
-        SparseIntArray sparseIntArray2 = this.M;
-        if (z10) {
-            int r10 = r();
-            for (int i9 = 0; i9 < r10; i9++) {
-                w wVar = (w) q(i9).getLayoutParams();
-                int b10 = wVar.b();
-                sparseIntArray2.put(b10, wVar.f5545f);
-                sparseIntArray.put(b10, wVar.f5544e);
-            }
-        }
-        super.b0(g1Var, n1Var);
-        sparseIntArray2.clear();
-        sparseIntArray.clear();
-    }
-
-    @Override
-    public final void c0(n1 n1Var) {
-        super.c0(n1Var);
-        this.I = false;
-    }
-
-    @Override
-    public final boolean f(a1 a1Var) {
-        return a1Var instanceof w;
-    }
-
-    @Override
-    public final int h(n1 n1Var) {
-        return C0(n1Var);
-    }
-
-    @Override
-    public final int i(n1 n1Var) {
-        return D0(n1Var);
-    }
-
-    @Override
-    public int k(n1 n1Var) {
-        return C0(n1Var);
-    }
-
-    @Override
-    public int l(n1 n1Var) {
-        return D0(n1Var);
-    }
-
-    @Override
-    public final void l1(boolean z10) {
-        throw new UnsupportedOperationException("GridLayoutManager does not support stack from end. Consider using reverse layout");
-    }
-
-    @Override
-    public final int m0(int i9, g1 g1Var, n1 n1Var) {
-        A1();
-        r1();
-        return super.m0(i9, g1Var, n1Var);
-    }
-
-    @Override
-    public final a1 n() {
-        if (this.f5432o == 0) {
-            return new w(-2, -1);
-        }
-        return new w(-1, -2);
-    }
-
-    @Override
-    public final a1 o(Context context, AttributeSet attributeSet) {
-        ?? a1Var = new a1(context, attributeSet);
-        a1Var.f5544e = -1;
-        a1Var.f5545f = 0;
-        return a1Var;
-    }
-
-    @Override
-    public int o0(int i9, g1 g1Var, n1 n1Var) {
-        A1();
-        r1();
-        return super.o0(i9, g1Var, n1Var);
-    }
-
-    @Override
-    public final a1 p(ViewGroup.LayoutParams layoutParams) {
-        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
-            ?? a1Var = new a1((ViewGroup.MarginLayoutParams) layoutParams);
-            a1Var.f5544e = -1;
-            a1Var.f5545f = 0;
-            return a1Var;
-        }
-        ?? a1Var2 = new a1(layoutParams);
-        a1Var2.f5544e = -1;
-        a1Var2.f5545f = 0;
-        return a1Var2;
-    }
-
-    public final void p1(int i9, g1 g1Var, n1 n1Var, boolean z10) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 0;
-        if (z10) {
-            i11 = i9;
-            i10 = 0;
-            i12 = 1;
-        } else {
-            i10 = i9 - 1;
-            i11 = -1;
-            i12 = -1;
-        }
-        while (i10 != i11) {
-            View view = this.L[i10];
-            w wVar = (w) view.getLayoutParams();
-            int v12 = v1(((a1) view.getLayoutParams()).b(), g1Var, n1Var);
-            wVar.f5545f = v12;
-            wVar.f5544e = i13;
-            i13 += v12;
-            i10 += i12;
-        }
-    }
-
-    public int[] q1(int i9, int i10, int[] iArr) {
-        int i11;
-        if (iArr == null || iArr.length != i9 + 1 || iArr[iArr.length - 1] != i10) {
-            iArr = new int[i9 + 1];
-        }
-        int i12 = 0;
-        iArr[0] = 0;
-        int i13 = i10 / i9;
-        int i14 = i10 % i9;
-        int i15 = 0;
-        for (int i16 = 1; i16 <= i9; i16++) {
-            i12 += i14;
-            if (i12 > 0 && i9 - i12 < i14) {
-                i11 = i13 + 1;
-                i12 -= i9;
-            } else {
-                i11 = i13;
-            }
-            i15 += i11;
-            iArr[i16] = i15;
-        }
-        return iArr;
-    }
-
-    @Override
-    public final void r0(Rect rect, int i9, int i10) {
-        int g10;
-        int g11;
-        if (this.K == null) {
-            super.r0(rect, i9, i10);
-        }
-        int E = E() + D();
-        int C = C() + F();
-        if (this.f5432o == 1) {
-            int height = rect.height() + C;
-            RecyclerView recyclerView = this.f5563b;
-            WeakHashMap weakHashMap = r0.j0.f46915a;
-            g11 = z0.g(i10, height, recyclerView.getMinimumHeight());
-            int[] iArr = this.K;
-            g10 = z0.g(i9, iArr[iArr.length - 1] + E, this.f5563b.getMinimumWidth());
-        } else {
-            int width = rect.width() + E;
-            RecyclerView recyclerView2 = this.f5563b;
-            WeakHashMap weakHashMap2 = r0.j0.f46915a;
-            g10 = z0.g(i9, width, recyclerView2.getMinimumWidth());
-            int[] iArr2 = this.K;
-            g11 = z0.g(i10, iArr2[iArr2.length - 1] + C, this.f5563b.getMinimumHeight());
-        }
-        this.f5563b.setMeasuredDimension(g10, g11);
-    }
-
-    public final void r1() {
-        View[] viewArr = this.L;
-        if (viewArr != null && viewArr.length == this.J) {
-            return;
-        }
-        this.L = new View[this.J];
-    }
-
-    public final int s1(int i9, int i10) {
-        if (this.f5432o == 1 && Y0()) {
-            int[] iArr = this.K;
-            int i11 = this.J;
-            return iArr[i11 - i9] - iArr[(i11 - i9) - i10];
-        }
-        int[] iArr2 = this.K;
-        return iArr2[i10 + i9] - iArr2[i9];
-    }
-
-    public final int t1(int i9, g1 g1Var, n1 n1Var) {
-        if (!n1Var.f5474g) {
-            return this.O.g(i9, this.J);
-        }
-        int b10 = g1Var.b(i9);
-        if (b10 == -1) {
-            Log.w("GridLayoutManager", "Cannot find span size for pre layout position. " + i9);
-            return 0;
-        }
-        return this.O.g(b10, this.J);
-    }
-
-    @Override
-    public int u(g1 g1Var, n1 n1Var) {
-        if (this.f5432o == 1) {
-            return this.J;
-        }
-        if (n1Var.b() < 1) {
-            return 0;
-        }
-        return t1(n1Var.b() - 1, g1Var, n1Var) + 1;
-    }
-
-    public final int u1(int i9, g1 g1Var, n1 n1Var) {
-        if (!n1Var.f5474g) {
-            return this.O.h(i9, this.J);
-        }
-        int i10 = this.N.get(i9, -1);
-        if (i10 != -1) {
-            return i10;
-        }
-        int b10 = g1Var.b(i9);
-        if (b10 == -1) {
-            Log.w("GridLayoutManager", "Cannot find span size for pre layout position. It is not cached, not in the adapter. Pos:" + i9);
-            return 0;
-        }
-        return this.O.h(b10, this.J);
-    }
-
-    public final int v1(int i9, g1 g1Var, n1 n1Var) {
-        if (!n1Var.f5474g) {
-            return this.O.i(i9);
-        }
-        int i10 = this.M.get(i9, -1);
-        if (i10 != -1) {
-            return i10;
-        }
-        int b10 = g1Var.b(i9);
-        if (b10 == -1) {
-            Log.w("GridLayoutManager", "Cannot find span size for pre layout position. It is not cached, not in the adapter. Pos:" + i9);
-            return 1;
-        }
-        return this.O.i(b10);
-    }
-
-    public void w1(View view, int i9, boolean z10) {
-        int i10;
-        int i11;
-        w wVar = (w) view.getLayoutParams();
-        Rect rect = wVar.f5312b;
-        int i12 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) wVar).topMargin + ((ViewGroup.MarginLayoutParams) wVar).bottomMargin;
-        int i13 = rect.left + rect.right + ((ViewGroup.MarginLayoutParams) wVar).leftMargin + ((ViewGroup.MarginLayoutParams) wVar).rightMargin;
-        int s12 = s1(wVar.f5544e, wVar.f5545f);
-        if (this.f5432o == 1) {
-            i11 = z0.s(false, s12, i9, i13, ((ViewGroup.MarginLayoutParams) wVar).width);
-            i10 = z0.s(true, this.f5434q.k(), this.f5571l, i12, ((ViewGroup.MarginLayoutParams) wVar).height);
-        } else {
-            int s10 = z0.s(false, s12, i9, i12, ((ViewGroup.MarginLayoutParams) wVar).height);
-            int s11 = z0.s(true, this.f5434q.k(), this.f5570k, i13, ((ViewGroup.MarginLayoutParams) wVar).width);
-            i10 = s10;
-            i11 = s11;
-        }
-        x1(i11, i10, view, z10);
-    }
-
-    public final void x1(int i9, int i10, View view, boolean z10) {
-        boolean u02;
-        a1 a1Var = (a1) view.getLayoutParams();
-        if (z10) {
-            if (this.f5567g && z0.N(view.getMeasuredWidth(), i9, ((ViewGroup.MarginLayoutParams) a1Var).width) && z0.N(view.getMeasuredHeight(), i10, ((ViewGroup.MarginLayoutParams) a1Var).height)) {
-                u02 = false;
-            } else {
-                u02 = true;
-            }
-        } else {
-            u02 = u0(view, i9, i10, a1Var);
-        }
-        if (u02) {
-            view.measure(i9, i10);
+                return false;
         }
     }
 
     @Override
-    public boolean y0() {
-        if (this.B == null && !this.I) {
-            return true;
+    public final void c(boolean z10) {
+        switch (this.f6511a) {
+            case 0:
+                if (z10) {
+                    ((e0) this.f6512b).p(null, 0);
+                    return;
+                }
+                return;
+            default:
+                ((jl0) this.f6512b).I0(true);
+                return;
         }
-        return false;
     }
 
-    public void y1(int i9) {
-        if (i9 == this.J) {
-            return;
-        }
-        this.I = true;
-        if (i9 >= 1) {
-            this.J = i9;
-            this.O.j();
-            l0();
-            return;
-        }
-        throw new IllegalArgumentException(j3.r0.l(i9, "Span count should be at least 1. Provided "));
+    public y(jl0 jl0Var, Context context) {
+        this.f6512b = jl0Var;
+        o4.g gVar = new o4.g(context, (h20) new el0(this));
+        jl0Var.I1 = gVar;
+        ((g20) gVar.f19159b).f28736t = false;
     }
 
-    public final void z1(x xVar) {
-        this.O = xVar;
-    }
-
-    public y(int i9, boolean z10) {
-        super(1, z10);
-        this.I = false;
-        this.J = -1;
-        this.M = new SparseIntArray();
-        this.N = new SparseIntArray();
-        this.O = new v(0);
-        this.P = new Rect();
-        y1(i9);
+    private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {
     }
 }

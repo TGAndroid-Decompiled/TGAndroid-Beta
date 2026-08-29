@@ -1,25 +1,43 @@
 package ih;
 
-import j$.util.Objects;
-public final class o extends wf.a {
-    public final long f11875c;
+import android.content.Context;
+import android.view.MotionEvent;
+import jh.ab;
+import org.telegram.messenger.AndroidUtilities;
+public final class o extends ab {
+    public final t f9305i0;
 
-    public o(long j10) {
-        super(0, false);
-        this.f11875c = j10;
+    public o(t tVar, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
+        this.f9305i0 = tVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final boolean d(float f9) {
+        if (getProgress() <= 0.99d && f9 <= getMeasuredWidth() * 0.9f) {
+            return false;
         }
-        if ((obj instanceof o) && this.f11875c == ((o) obj).f11875c) {
-            return true;
-        }
-        return false;
+        t.U(this.f9305i0);
+        return true;
     }
 
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f11875c));
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - AndroidUtilities.dp(48.0f)) {
+            return false;
+        }
+        super.dispatchTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void e(int i10) {
+        t.T(this.f9305i0, i10);
+    }
+
+    @Override
+    public final void setValue(int i10) {
+        super.setValue(i10);
+        t.T(this.f9305i0, i10);
     }
 }

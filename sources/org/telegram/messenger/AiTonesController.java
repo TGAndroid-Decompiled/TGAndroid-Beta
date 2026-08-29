@@ -15,8 +15,8 @@ public final class AiTonesController {
     private int requestId = -1;
     private long requestedTime = 0;
 
-    public AiTonesController(int i9) {
-        this.currentAccount = i9;
+    public AiTonesController(int i10) {
+        this.currentAccount = i10;
     }
 
     public void lambda$request$0(TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
@@ -44,9 +44,9 @@ public final class AiTonesController {
 
     public void add(TL_aicompose.AiComposeTone aiComposeTone) {
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-            long j10 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f22591id;
-            for (int i9 = 0; i9 < this.tones.size(); i9++) {
-                if ((this.tones.get(i9) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i9)).f22591id == j10) {
+            long j10 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f22603id;
+            for (int i10 = 0; i10 < this.tones.size(); i10++) {
+                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f22603id == j10) {
                     return;
                 }
             }
@@ -64,9 +64,9 @@ public final class AiTonesController {
     }
 
     public void edit(TL_aicompose.TL_aiComposeTone tL_aiComposeTone) {
-        for (int i9 = 0; i9 < this.tones.size(); i9++) {
-            if ((this.tones.get(i9) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i9)).f22591id == tL_aiComposeTone.f22591id) {
-                this.tones.set(i9, tL_aiComposeTone);
+        for (int i10 = 0; i10 < this.tones.size(); i10++) {
+            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f22603id == tL_aiComposeTone.f22603id) {
+                this.tones.set(i10, tL_aiComposeTone);
                 notifyUpdate();
                 return;
             }
@@ -74,13 +74,13 @@ public final class AiTonesController {
     }
 
     public int getSavedTonesCount() {
-        int i9 = 0;
-        for (int i10 = 0; i10 < this.tones.size(); i10++) {
-            if (this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) {
-                i9++;
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.tones.size(); i11++) {
+            if (this.tones.get(i11) instanceof TL_aicompose.TL_aiComposeTone) {
+                i10++;
             }
         }
-        return i9;
+        return i10;
     }
 
     public void invalidate() {
@@ -134,7 +134,7 @@ public final class AiTonesController {
         }
         TL_aicompose.getTones gettones = new TL_aicompose.getTones();
         gettones.hash = this.hash;
-        this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new Object(), new he(this, 1));
+        this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new Object(), new oe(this, 1));
     }
 
     public void unsave(TL_aicompose.AiComposeTone aiComposeTone) {

@@ -1,34 +1,32 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MediaController;
 public final class u6 implements Runnable {
-    public final int f21628a = 0;
-    public final MediaDataController f21629b;
-    public final TLRPC.Message f21630c;
-    public final MessagesStorage.TopicKey d;
+    public final int f21699a;
+    public final MediaController.MediaLoader f21700b;
+    public final int f21701c;
 
-    public u6(MediaDataController mediaDataController, MessagesStorage.TopicKey topicKey, TLRPC.Message message) {
-        this.f21629b = mediaDataController;
-        this.d = topicKey;
-        this.f21630c = message;
+    public u6(MediaController.MediaLoader mediaLoader, int i10, int i11) {
+        this.f21699a = i11;
+        this.f21700b = mediaLoader;
+        this.f21701c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21628a) {
+        switch (this.f21699a) {
             case 0:
-                this.f21629b.lambda$putBotKeyboard$200(this.d, this.f21630c);
+                this.f21700b.lambda$didReceivedNotification$11(this.f21701c);
+                return;
+            case 1:
+                this.f21700b.lambda$copyFile$9(this.f21701c);
+                return;
+            case 2:
+                this.f21700b.lambda$copyFile$10(this.f21701c);
                 return;
             default:
-                this.f21629b.lambda$loadBotKeyboard$195(this.f21630c, this.d);
+                this.f21700b.lambda$processLivePhotoMessage$6(this.f21701c);
                 return;
         }
-    }
-
-    public u6(MediaDataController mediaDataController, TLRPC.Message message, MessagesStorage.TopicKey topicKey) {
-        this.f21629b = mediaDataController;
-        this.f21630c = message;
-        this.d = topicKey;
     }
 }

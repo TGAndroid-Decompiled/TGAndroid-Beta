@@ -1,49 +1,54 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class ji0 extends f2.y0 {
+import android.content.Context;
+public final class ji0 extends org.telegram.ui.Cells.s1 {
+    public int Be;
+    public int Ce;
+    public int De;
+    public final ki0 Ee;
+
+    public ji0(ki0 ki0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, i10, true, null, c6Var);
+        this.Ee = ki0Var;
+        this.Be = Integer.MAX_VALUE;
+        this.Ce = Integer.MAX_VALUE;
+        this.De = -1;
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.n1 n1Var) {
-        org.telegram.ui.Cells.t1 t1Var;
-        MessageObject.GroupedMessages currentMessagesGroup;
-        MessageObject.GroupedMessagePosition currentPosition;
-        int i9 = 0;
-        rect.bottom = 0;
-        if ((view instanceof org.telegram.ui.Cells.t1) && (currentMessagesGroup = (t1Var = (org.telegram.ui.Cells.t1) view).getCurrentMessagesGroup()) != null && (currentPosition = t1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
-            Point point = AndroidUtilities.displaySize;
-            float max = Math.max(point.x, point.y) * 0.5f;
-            int extraInsetHeight = t1Var.getExtraInsetHeight();
-            int i10 = 0;
-            while (true) {
-                float[] fArr = currentPosition.siblingHeights;
-                if (i10 >= fArr.length) {
-                    break;
-                }
-                extraInsetHeight += (int) Math.ceil(fArr[i10] * max);
-                i10++;
+    public final boolean isPressed() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int id2;
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.Vc.f25191w0 && i11 != 0 && this.Be != Integer.MAX_VALUE && i13 != 0 && this.Ce != Integer.MAX_VALUE) {
+            int i14 = this.De;
+            int i15 = 0;
+            if (getMessageObject() == null) {
+                id2 = 0;
+            } else {
+                id2 = getMessageObject().getId();
             }
-            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
-            int size = currentMessagesGroup.posArray.size();
-            while (true) {
-                if (i9 < size) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i9);
-                    byte b10 = groupedMessagePosition.minY;
-                    byte b11 = currentPosition.minY;
-                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
-                        round = org.telegram.messenger.l0.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f19646ph), round);
-                        break;
-                    }
-                    i9++;
-                } else {
-                    break;
+            if (i14 == id2) {
+                if (!this.Ee.f39897s0) {
+                    setTranslationY(-(i11 - this.Be));
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.jr.h).start();
                 }
+                this.Be = getTop();
+                this.Ce = getBottom();
+                if (getMessageObject() != null) {
+                    i15 = getMessageObject().getId();
+                }
+                this.De = i15;
             }
-            rect.bottom = -round;
         }
+    }
+
+    @Override
+    public final gh.j w3() {
+        return gh.j.d(1, this, this.Ee.B);
     }
 }

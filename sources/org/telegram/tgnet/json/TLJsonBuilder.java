@@ -41,8 +41,8 @@ public class TLJsonBuilder {
         write(str, Boolean.valueOf(z10));
     }
 
-    public void writeInt32(String str, int i9) {
-        writeString(str, Integer.toString(i9, 10));
+    public void writeInt32(String str, int i10) {
+        writeString(str, Integer.toString(i10, 10));
     }
 
     public void writeInt64(String str, long j10) {

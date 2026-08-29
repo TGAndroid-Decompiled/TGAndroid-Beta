@@ -1,15 +1,23 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import java.util.concurrent.Executor;
 import org.telegram.messenger.AndroidUtilities;
-public final class ib0 extends z11 {
-    public ib0(Bundle bundle) {
-        super(bundle);
+public final class ib0 implements Executor {
+    public final int f39196a;
+
+    public ib0(int i10) {
+        this.f39196a = i10;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        AndroidUtilities.runOnUIThread(new o00(this, 16));
+    public final void execute(Runnable runnable) {
+        switch (this.f39196a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(runnable);
+                return;
+            default:
+                runnable.run();
+                return;
+        }
     }
 }

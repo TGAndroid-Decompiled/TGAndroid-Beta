@@ -1,6 +1,12 @@
 package y3;
-public final class h {
-    public long f49497a;
-    public long f49498b;
-    public boolean f49499c;
+public interface h {
+    void a();
+
+    void c(f5.w wVar);
+
+    void d();
+
+    void e(o3.m mVar, d0 d0Var);
+
+    void f(int i10, long j10);
 }

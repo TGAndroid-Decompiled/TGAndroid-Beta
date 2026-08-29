@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f45280id;
+    private final String f45360id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +10,7 @@ public class RTCStats {
     public RTCStats(long j10, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j10;
         this.type = str;
-        this.f45280id = str2;
+        this.f45360id = str2;
         this.members = map;
     }
 
@@ -18,11 +18,11 @@ public class RTCStats {
         if (obj instanceof Object[]) {
             Object[] objArr = (Object[]) obj;
             sb2.append('[');
-            for (int i9 = 0; i9 < objArr.length; i9++) {
-                if (i9 != 0) {
+            for (int i10 = 0; i10 < objArr.length; i10++) {
+                if (i10 != 0) {
                     sb2.append(", ");
                 }
-                appendValue(sb2, objArr[i9]);
+                appendValue(sb2, objArr[i10]);
             }
             sb2.append(']');
         } else if (obj instanceof String) {
@@ -39,7 +39,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f45280id;
+        return this.f45360id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,12 +55,12 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder n10 = e2.c.n("{ timestampUs: ");
+        StringBuilder n10 = com.google.android.recaptcha.internal.a.n("{ timestampUs: ");
         n10.append(this.timestampUs);
         n10.append(", type: ");
         n10.append(this.type);
         n10.append(", id: ");
-        n10.append(this.f45280id);
+        n10.append(this.f45360id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
             n10.append(", ");
             n10.append(entry.getKey());

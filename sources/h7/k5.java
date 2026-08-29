@@ -1,17 +1,20 @@
 package h7;
-public final class k5 implements q9.d {
-    public static final k5 f9993a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, new e0(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+import android.util.Log;
+public abstract class k5 {
+    public static void a(Exception exc, String str, Object... objArr) {
+        if (Log.isLoggable("Vision", 6)) {
+            if (Log.isLoggable("Vision", 3)) {
+                Log.e("Vision", String.format(str, objArr), exc);
+                return;
+            }
+            String format = String.format(str, objArr);
+            String valueOf = String.valueOf(exc);
+            StringBuilder sb2 = new StringBuilder(valueOf.length() + format.length() + 2);
+            sb2.append(format);
+            sb2.append(": ");
+            sb2.append(valueOf);
+            Log.e("Vision", sb2.toString());
         }
-        throw new ClassCastException();
     }
 }

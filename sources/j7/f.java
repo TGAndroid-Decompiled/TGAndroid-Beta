@@ -1,28 +1,77 @@
 package j7;
 
-import java.io.Serializable;
-public final class f extends h7.f implements Serializable {
-    public final Object f13707b;
-    public final h7.e f13708c;
+import java.util.Map;
+public abstract class f implements Map.Entry {
+    public final int f10999a;
 
-    public f(Object obj, h7.e eVar) {
-        super(1, false);
-        this.f13707b = obj;
-        this.f13708c = eVar;
+    @Override
+    public final boolean equals(Object obj) {
+        switch (this.f10999a) {
+            case 0:
+                if (!(obj instanceof Map.Entry)) {
+                    return false;
+                }
+                Map.Entry entry = (Map.Entry) obj;
+                if (!h7.t8.a(getKey(), entry.getKey()) || !h7.t8.a(getValue(), entry.getValue())) {
+                    return false;
+                }
+                return true;
+            default:
+                if (!(obj instanceof Map.Entry)) {
+                    return false;
+                }
+                Map.Entry entry2 = (Map.Entry) obj;
+                if (!i7.q.a(getKey(), entry2.getKey()) || !i7.q.a(getValue(), entry2.getValue())) {
+                    return false;
+                }
+                return true;
+        }
     }
 
     @Override
-    public final Object getKey() {
-        return this.f13707b;
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        switch (this.f10999a) {
+            case 0:
+                Object key = getKey();
+                Object value = getValue();
+                int i10 = 0;
+                if (key == null) {
+                    hashCode = 0;
+                } else {
+                    hashCode = key.hashCode();
+                }
+                if (value != null) {
+                    i10 = value.hashCode();
+                }
+                return hashCode ^ i10;
+            default:
+                Object key2 = getKey();
+                Object value2 = getValue();
+                int i11 = 0;
+                if (key2 == null) {
+                    hashCode2 = 0;
+                } else {
+                    hashCode2 = key2.hashCode();
+                }
+                if (value2 != null) {
+                    i11 = value2.hashCode();
+                }
+                return hashCode2 ^ i11;
+        }
     }
 
-    @Override
-    public final Object getValue() {
-        return this.f13708c;
+    public final String toString() {
+        switch (this.f10999a) {
+            case 0:
+                return getKey() + "=" + getValue();
+            default:
+                return a4.w.y(String.valueOf(getKey()), "=", String.valueOf(getValue()));
+        }
     }
 
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public f(int i10, boolean z10) {
+        this.f10999a = i10;
     }
 }

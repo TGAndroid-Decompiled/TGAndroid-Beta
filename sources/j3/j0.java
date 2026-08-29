@@ -1,40 +1,20 @@
 package j3;
-public final class j0 {
-    public static final j0 f13283a = new Object();
+public final class j0 implements l1 {
+    public final Object f10550a;
+    public r2 f10551b;
 
-    public static int a(int i9) {
-        switch (i9) {
-            case 5:
-                return 80000;
-            case 6:
-            case 18:
-                return 768000;
-            case 7:
-                return 192000;
-            case 8:
-                return 2250000;
-            case 9:
-                return 40000;
-            case 10:
-                return 100000;
-            case 11:
-                return 16000;
-            case 12:
-                return 7000;
-            case 13:
-            case 19:
-            default:
-                throw new IllegalArgumentException();
-            case 14:
-                return 3062500;
-            case 15:
-                return 8000;
-            case 16:
-                return 256000;
-            case 17:
-                return 336000;
-            case 20:
-                return 63750;
-        }
+    public j0(Object obj, r2 r2Var) {
+        this.f10550a = obj;
+        this.f10551b = r2Var;
+    }
+
+    @Override
+    public final Object a() {
+        return this.f10550a;
+    }
+
+    @Override
+    public final r2 b() {
+        return this.f10551b;
     }
 }

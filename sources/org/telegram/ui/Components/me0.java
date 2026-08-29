@@ -1,57 +1,45 @@
 package org.telegram.ui.Components;
+public final class me0 extends q6 {
+    public final int f30668b;
+    public final pe0 f30669c;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class me0 {
-    public final ne0 f30802a = new ne0();
-    public final ne0 f30803b = new ne0();
-    public final ne0 f30804c = new ne0();
-    public final ne0 d = new ne0();
-    public final ByteBuffer f30805e;
-    public int f30806f;
-
-    public me0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.f30805e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public me0(pe0 pe0Var, int i10) {
+        super("thumbAnimationProgress", 0);
+        this.f30668b = i10;
+        switch (i10) {
+            case 1:
+                this.f30669c = pe0Var;
+                super("thumbImageVisibleProgress", 0);
+                return;
+            default:
+                this.f30669c = pe0Var;
+                return;
+        }
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.f30805e;
-        byteBuffer.position(0);
-        ne0 ne0Var = this.f30802a;
-        if (ne0Var.f31087f == null) {
-            ne0Var.a();
+    @Override
+    public final void b(Object obj, float f9) {
+        switch (this.f30668b) {
+            case 0:
+                this.f30669c.f31662r = f9;
+                ((pe0) obj).invalidate();
+                return;
+            default:
+                this.f30669c.f31661n = f9;
+                ((pe0) obj).invalidate();
+                return;
         }
-        float[] fArr = ne0Var.f31087f;
-        ne0 ne0Var2 = this.f30803b;
-        if (ne0Var2.f31087f == null) {
-            ne0Var2.a();
-        }
-        float[] fArr2 = ne0Var2.f31087f;
-        ne0 ne0Var3 = this.f30804c;
-        if (ne0Var3.f31087f == null) {
-            ne0Var3.a();
-        }
-        float[] fArr3 = ne0Var3.f31087f;
-        ne0 ne0Var4 = this.d;
-        if (ne0Var4.f31087f == null) {
-            ne0Var4.a();
-        }
-        float[] fArr4 = ne0Var4.f31087f;
-        for (int i9 = 0; i9 < 200; i9++) {
-            byteBuffer.put((byte) (fArr2[i9] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i9] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i9] * 255.0f));
-            byteBuffer.put((byte) (fArr[i9] * 255.0f));
-        }
-        byteBuffer.position(0);
     }
 
-    public final boolean b() {
-        if (this.f30802a.b() && this.f30803b.b() && this.f30804c.b() && this.d.b()) {
-            return true;
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f30668b) {
+            case 0:
+                pe0 pe0Var = (pe0) obj;
+                return Float.valueOf(this.f30669c.f31662r);
+            default:
+                pe0 pe0Var2 = (pe0) obj;
+                return Float.valueOf(this.f30669c.f31661n);
         }
-        return false;
     }
 }

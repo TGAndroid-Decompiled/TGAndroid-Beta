@@ -1,71 +1,105 @@
 package k8;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.os.Build;
-import android.util.Base64;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Iterator;
-public abstract class e {
-    public static final g0 f14683a = new g0("PhoneskyVerificationUtils");
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+import org.telegram.ui.th;
+public final class e extends a6.a {
+    public static final Parcelable.Creator<e> CREATOR = new c(1);
+    public final f f13494a;
+    public final int f13495b;
+    public final int f13496c;
+    public final int d;
 
-    public static int a(Context context) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo("com.android.vending", 64);
-            ApplicationInfo applicationInfo = packageInfo.applicationInfo;
-            if (applicationInfo != null && applicationInfo.enabled && b(packageInfo.signatures)) {
-                return packageInfo.versionCode;
-            }
-            return 0;
-        } catch (PackageManager.NameNotFoundException unused) {
-            return 0;
-        }
+    public e(f fVar, int i10, int i11, int i12) {
+        this.f13494a = fVar;
+        this.f13495b = i10;
+        this.f13496c = i11;
+        this.d = i12;
     }
 
-    public static boolean b(Signature[] signatureArr) {
-        String str;
-        g0 g0Var = f14683a;
-        if (signatureArr != null && (r2 = signatureArr.length) != 0) {
-            ArrayList arrayList = new ArrayList();
-            for (Signature signature : signatureArr) {
-                byte[] byteArray = signature.toByteArray();
-                try {
-                    MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-                    messageDigest.update(byteArray);
-                    str = Base64.encodeToString(messageDigest.digest(), 11);
-                } catch (NoSuchAlgorithmException unused) {
-                    str = "";
+    public final void b(j8.c cVar) {
+        f fVar = this.f13494a;
+        int i10 = this.f13495b;
+        if (i10 != 1) {
+            int i11 = this.d;
+            int i12 = this.f13496c;
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        Log.w("ChannelEventParcelable", "Unknown type: " + i10);
+                        return;
+                    }
+                    cVar.onOutputClosed(fVar, i12, i11);
+                    return;
                 }
-                arrayList.add(str);
-                if (!"8P1sW0EPJcslw7UzRsiXL64w-O50Ed-RBICtay1g24M".equals(str)) {
-                    String str2 = Build.TAGS;
-                    if ((str2.contains("dev-keys") || str2.contains("test-keys")) && "GXWy8XF3vIml3_MfnmSmyuKBpT3B0dWbHRR_4cgq-gA".equals(str)) {
-                        return true;
+                cVar.onInputClosed(fVar, i12, i11);
+                return;
+            }
+            cVar.onChannelClosed(fVar, i12, i11);
+            return;
+        }
+        cVar.onChannelOpened(fVar);
+    }
+
+    public final String toString() {
+        String str;
+        String str2;
+        String valueOf = String.valueOf(this.f13494a);
+        int i10 = this.f13495b;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        str = Integer.toString(i10);
+                    } else {
+                        str = "OUTPUT_CLOSED";
                     }
                 } else {
-                    return true;
+                    str = "INPUT_CLOSED";
                 }
+            } else {
+                str = "CHANNEL_CLOSED";
             }
-            StringBuilder sb2 = new StringBuilder();
-            Iterator it = arrayList.iterator();
-            if (it.hasNext()) {
-                while (true) {
-                    sb2.append((CharSequence) it.next());
-                    if (!it.hasNext()) {
-                        break;
-                    }
-                    sb2.append((CharSequence) ", ");
-                }
-            }
-            g0Var.c(aa.d.o("Play Store package certs are not valid. Found these sha256 certs: [", sb2.toString(), "]."), new Object[0]);
-            return false;
+        } else {
+            str = "CHANNEL_OPENED";
         }
-        g0Var.c("Play Store package is not signed -- possibly self-built package. Could not verify.", new Object[0]);
-        return false;
+        int i11 = this.f13496c;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 != 3) {
+                        str2 = Integer.toString(i11);
+                    } else {
+                        str2 = "CLOSE_REASON_LOCAL_CLOSE";
+                    }
+                } else {
+                    str2 = "CLOSE_REASON_REMOTE_CLOSE";
+                }
+            } else {
+                str2 = "CLOSE_REASON_DISCONNECTED";
+            }
+        } else {
+            str2 = "CLOSE_REASON_NORMAL";
+        }
+        StringBuilder k9 = th.k("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        k9.append(str2);
+        k9.append(", appErrorCode=");
+        k9.append(this.d);
+        k9.append("]");
+        return k9.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        com.google.android.gms.internal.cast.o.k(parcel, 2, this.f13494a, i10);
+        com.google.android.gms.internal.cast.o.s(parcel, 3, 4);
+        parcel.writeInt(this.f13495b);
+        com.google.android.gms.internal.cast.o.s(parcel, 4, 4);
+        parcel.writeInt(this.f13496c);
+        com.google.android.gms.internal.cast.o.s(parcel, 5, 4);
+        parcel.writeInt(this.d);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

@@ -1,29 +1,22 @@
 package org.telegram.ui.Components;
+public final class em0 {
+    public static final em0 f28113a;
+    public static final em0 f28114b;
+    public static final em0[] f28115c;
 
-import android.view.View;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-public final class em0 implements View.OnClickListener {
-    public final fm0 f28085a;
-
-    public em0(fm0 fm0Var) {
-        this.f28085a = fm0Var;
+    static {
+        ?? r02 = new Enum("LINE", 0);
+        f28113a = r02;
+        ?? r12 = new Enum("TAB", 1);
+        f28114b = r12;
+        f28115c = new em0[]{r02, r12};
     }
 
-    @Override
-    public final void onClick(View view) {
-        gm0 gm0Var = this.f28085a.f28513c;
-        for (int i9 = 0; i9 < gm0Var.f28811e.size(); i9++) {
-            MessageObject messageObject = (MessageObject) gm0Var.f28811e.get(i9);
-            if (gm0Var.D) {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
-            } else {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
-                DownloadController.getInstance(gm0Var.d).updateFilesLoadingPriority();
-            }
-        }
-        gm0Var.d(true);
+    public static em0 valueOf(String str) {
+        return (em0) Enum.valueOf(em0.class, str);
+    }
+
+    public static em0[] values() {
+        return (em0[]) f28115c.clone();
     }
 }

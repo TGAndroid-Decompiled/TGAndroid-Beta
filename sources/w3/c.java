@@ -1,47 +1,59 @@
 package w3;
-public final class c implements m3.k {
-    public final b f48510a = new b(null, 1);
-    public final d5.y f48511b = new d5.y(16384);
-    public boolean f48512c;
 
-    @Override
-    public final int b(m3.l lVar, m3.n nVar) {
-        d5.y yVar = this.f48511b;
-        int read = ((m3.h) lVar).read(yVar.f4410a, 0, 16384);
-        if (read == -1) {
-            return -1;
+import f5.w;
+import i7.h0;
+public final class c {
+    public final int f49635a;
+    public int f49636b;
+    public int f49637c;
+    public long d;
+    public final boolean f49638e;
+    public final w f49639f;
+    public final w f49640g;
+    public int h;
+    public int f49641i;
+
+    public c(w wVar, w wVar2, boolean z10) {
+        this.f49640g = wVar;
+        this.f49639f = wVar2;
+        this.f49638e = z10;
+        wVar2.C(12);
+        this.f49635a = wVar2.u();
+        wVar.C(12);
+        this.f49641i = wVar.u();
+        h0.a("first_chunk must be 1", wVar.e() == 1);
+        this.f49636b = -1;
+    }
+
+    public final boolean a() {
+        long s10;
+        int i10;
+        int i11 = this.f49636b + 1;
+        this.f49636b = i11;
+        if (i11 == this.f49635a) {
+            return false;
         }
-        yVar.C(0);
-        yVar.B(read);
-        boolean z10 = this.f48512c;
-        b bVar = this.f48510a;
-        if (!z10) {
-            bVar.k(4, 0L);
-            this.f48512c = true;
+        boolean z10 = this.f49638e;
+        w wVar = this.f49639f;
+        if (z10) {
+            s10 = wVar.v();
+        } else {
+            s10 = wVar.s();
         }
-        bVar.g(yVar);
-        return 0;
-    }
-
-    @Override
-    public final void c(m3.m mVar) {
-        this.f48510a.j(mVar, new d0(0, 1));
-        mVar.B();
-        mVar.y(new m3.o(-9223372036854775807L));
-    }
-
-    @Override
-    public final boolean f(m3.l r15) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.f(m3.l):boolean");
-    }
-
-    @Override
-    public final void g(long j10, long j11) {
-        this.f48512c = false;
-        this.f48510a.h();
-    }
-
-    @Override
-    public final void release() {
+        this.d = s10;
+        if (this.f49636b == this.h) {
+            w wVar2 = this.f49640g;
+            this.f49637c = wVar2.u();
+            wVar2.D(4);
+            int i12 = this.f49641i - 1;
+            this.f49641i = i12;
+            if (i12 > 0) {
+                i10 = wVar2.u() - 1;
+            } else {
+                i10 = -1;
+            }
+            this.h = i10;
+        }
+        return true;
     }
 }

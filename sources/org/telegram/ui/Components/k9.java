@@ -1,17 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class k9 extends g7.b6 {
-    public final ViewGroup f30030a;
-    public final n9 f30031b;
-
-    public k9(n9 n9Var, ViewGroup viewGroup) {
-        this.f30031b = n9Var;
-        this.f30030a = viewGroup;
-    }
-
-    @Override
-    public final void a() {
-        this.f30030a.invalidate();
-    }
+import org.telegram.tgnet.TLRPC;
+public final class k9 {
+    public Class f29969a;
+    public int f29970b;
+    public TLRPC.Chat f29971c;
+    public TLRPC.User d;
+    public TLRPC.TL_forumTopic f29972e;
+    public long f29973f;
+    public int f29974g;
+    public int h;
 }

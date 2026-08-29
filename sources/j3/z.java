@@ -1,22 +1,34 @@
 package j3;
 
-import android.media.AudioDeviceInfo;
-import android.media.AudioTrack;
-public abstract class z {
-    public static void a(s sVar, Object obj) {
-        d0 d0Var;
-        AudioDeviceInfo d = i3.i.d(obj);
-        i0 i0Var = (i0) sVar;
-        if (d == null) {
-            d0Var = null;
-        } else {
-            i0Var.getClass();
-            d0Var = new d0(d);
+import org.telegram.ui.ActionBar.c6;
+public final class z implements f5.j, og.c {
+    public final int f10864a;
+    public final int f10865b;
+    public final int f10866c;
+
+    public z(int i10, int i11, int i12) {
+        this.f10864a = i12;
+        this.f10865b = i10;
+        this.f10866c = i11;
+    }
+
+    @Override
+    public int f(c6 c6Var, boolean z10) {
+        if (z10) {
+            return this.f10865b;
         }
-        i0Var.Y = d0Var;
-        AudioTrack audioTrack = i0Var.f13277u;
-        if (audioTrack != null) {
-            b0.a(audioTrack, d0Var);
+        return this.f10866c;
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        switch (this.f10864a) {
+            case 0:
+                ((a2) obj).onSurfaceSizeChanged(this.f10865b, this.f10866c);
+                return;
+            default:
+                ((a2) obj).onSurfaceSizeChanged(this.f10865b, this.f10866c);
+                return;
         }
     }
 }

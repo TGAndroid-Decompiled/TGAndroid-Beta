@@ -1,31 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class om extends AnimatorListenerAdapter {
-    public final int f31411a;
-    public final jn f31412b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class om implements wk, org.telegram.ui.ActionBar.b2 {
+    public final Utilities.Callback f31390a;
 
-    public om(jn jnVar, int i9) {
-        this.f31411a = i9;
-        this.f31412b = jnVar;
+    public om(Utilities.Callback callback) {
+        this.f31390a = callback;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31411a) {
-            case 0:
-                this.f31412b.A.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f31412b.A.setTranslationY(0.0f);
-                return;
-            default:
-                jn jnVar = this.f31412b;
-                jnVar.f29767b1 = false;
-                jnVar.A.setTranslationY(0.0f);
-                jnVar.Z();
-                return;
+    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
+        this.f31390a.run(new ch.g(messageMedia));
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        Utilities.Callback callback = this.f31390a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
     }
 }

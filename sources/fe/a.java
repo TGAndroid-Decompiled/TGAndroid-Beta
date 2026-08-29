@@ -1,34 +1,50 @@
 package fe;
-public final class a extends ke.a {
-    public final ie.b f6045a = new ie.p();
 
-    public static boolean i(e eVar, int i9) {
-        CharSequence charSequence = eVar.f6062a;
-        if (eVar.f6067g < 4 && i9 < charSequence.length() && charSequence.charAt(i9) == '>') {
-            return true;
+import ie.c;
+import le.p;
+import le.s;
+public final class a implements oe.a {
+    @Override
+    public final void a(s sVar, s sVar2, int i10) {
+        p pVar = new p();
+        for (p pVar2 = (p) sVar.f15208f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f15208f) {
+            pVar.b(pVar2);
         }
-        return false;
+        pVar.g();
+        p pVar3 = (p) sVar.f15208f;
+        pVar.f15208f = pVar3;
+        if (pVar3 != null) {
+            pVar3.f15207e = pVar;
+        }
+        pVar.f15207e = sVar;
+        sVar.f15208f = pVar;
+        p pVar4 = (p) sVar.f15205b;
+        pVar.f15205b = pVar4;
+        if (((p) pVar.f15208f) == null) {
+            pVar4.d = pVar;
+        }
     }
 
     @Override
-    public final ie.a e() {
-        return this.f6045a;
+    public final char b() {
+        return '~';
     }
 
     @Override
-    public final e4.h h(e eVar) {
-        char charAt;
-        int i9 = eVar.f6065e;
-        if (i(eVar, i9)) {
-            int i10 = eVar.f6064c + eVar.f6067g;
-            int i11 = i10 + 1;
-            CharSequence charSequence = eVar.f6062a;
-            int i12 = i9 + 1;
-            if (i12 < charSequence.length() && ((charAt = charSequence.charAt(i12)) == '\t' || charAt == ' ')) {
-                i11 = i10 + 2;
-            }
-            return new e4.h(-1, i11, false);
+    public final int c(c cVar, c cVar2) {
+        if (cVar.f8894g >= 2 && cVar2.f8894g >= 2) {
+            return 2;
         }
-        return null;
+        return 0;
+    }
+
+    @Override
+    public final int d() {
+        return 2;
+    }
+
+    @Override
+    public final char e() {
+        return '~';
     }
 }

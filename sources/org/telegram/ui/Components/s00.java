@@ -1,92 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class s00 extends URLSpan {
-    public static final int f32328e = 0;
-    public final String f32329a;
-    public final TLRPC.TL_messageEntityFormattedDate f32330b;
-    public final vz0 f32331c;
-    public final boolean d;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class s00 extends il0 {
+    public final y00 f32432c;
 
-    public s00(String str, vz0 vz0Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
-        super(str);
-        this.f32329a = str;
-        this.f32330b = tL_messageEntityFormattedDate;
-        this.f32331c = vz0Var;
-        this.d = false;
+    public s00(y00 y00Var) {
+        this.f32432c = y00Var;
     }
 
-    public static CharSequence a(CharSequence charSequence, boolean z10) {
-        String str;
-        if (charSequence instanceof Spanned) {
-            Spanned spanned = (Spanned) charSequence;
-            int i9 = 0;
-            s00[] s00VarArr = (s00[]) spanned.getSpans(0, spanned.length(), s00.class);
-            int length = s00VarArr.length;
-            ?? r42 = 0;
-            while (i9 < length) {
-                s00 s00Var = s00VarArr[i9];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = s00Var.f32330b;
-                if (tL_messageEntityFormattedDate.flags != 0 && (s00Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
-                    if (r42 == 0) {
-                        charSequence = new SpannableStringBuilder(spanned);
-                        r42 = charSequence;
-                    }
-                    int spanStart = r42.getSpanStart(s00Var);
-                    int spanEnd = r42.getSpanEnd(s00Var);
-                    if (z10) {
-                        str = LocaleController.formatEntityFormattedDate(s00Var.f32330b);
-                    } else {
-                        str = s00Var.f32329a;
-                    }
-                    r42.removeSpan(s00Var);
-                    r42.replace(spanStart, spanEnd, str);
-                    r42.setSpan(new s00(s00Var, z10), spanStart, str.length() + spanStart, 33);
-                }
-                i9++;
-                r42 = r42;
+    @Override
+    public final boolean D(f2.n1 n1Var) {
+        if (n1Var.f6436f == 2) {
+            int b10 = n1Var.b();
+            y00 y00Var = this.f32432c;
+            if (b10 >= y00Var.f34876n0 && n1Var.b() <= y00Var.f34877o0) {
+                return true;
             }
+            return false;
         }
-        return charSequence;
-    }
-
-    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
-        return a(spannableStringBuilder, false);
+        return false;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i9 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        vz0 vz0Var = this.f32331c;
-        if (vz0Var != null) {
-            vz0Var.a(textPaint);
+    public final int h() {
+        return this.f32432c.f34874k0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        y00 y00Var = this.f32432c;
+        y00Var.getClass();
+        if (i10 == 0) {
+            return 0;
         }
-        if (i9 == color) {
-            z10 = true;
+        if (i10 != y00Var.f34875l0 && i10 != y00Var.f34878p0 && i10 != y00Var.f34882t0) {
+            if (i10 != y00Var.m0 && i10 != y00Var.f34879q0) {
+                return 2;
+            }
+            return 3;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(f2.n1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s00.v(f2.n1, int):void");
+    }
+
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        x00 x00Var;
+        x00 x00Var2;
+        y00 y00Var = this.f32432c;
+        if (i10 == 0) {
+            boolean z10 = false;
+            x00Var = new x00(y00Var, y00Var.getContext(), ((y00Var.V instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || y00Var.W != null) ? true : true, y00Var.f34865b0, y00Var.Z, y00Var.f34864a0);
+            y00Var.f34873j0 = x00Var;
         } else {
-            z10 = false;
+            x00Var = null;
+            if (i10 == 1) {
+                ?? y8Var = new org.telegram.ui.Cells.y8(y00Var.getContext());
+                y8Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23009a7, false));
+                x00Var2 = y8Var;
+            } else if (i10 == 2) {
+                ?? e4Var = new org.telegram.ui.Cells.e4(y00Var.getContext(), 1, 0, false);
+                e4Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false));
+                x00Var = e4Var;
+            } else if (i10 == 3) {
+                ?? v00Var = new v00(y00Var.getContext());
+                v00Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false));
+                x00Var2 = v00Var;
+            }
+            x00Var = x00Var2;
         }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public s00(s00 s00Var, boolean z10) {
-        super(s00Var.f32329a);
-        this.f32329a = s00Var.f32329a;
-        this.f32330b = s00Var.f32330b;
-        this.f32331c = s00Var.f32331c;
-        this.d = z10;
-    }
-
-    @Override
-    public final void onClick(View view) {
+        return new f2.n1(x00Var);
     }
 }

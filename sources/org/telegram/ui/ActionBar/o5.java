@@ -3,9 +3,9 @@ package org.telegram.ui.ActionBar;
 import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public final class o5 extends g7.b6 {
+public final class o5 extends i7.c6 {
     @Override
-    public final void b(int i9, int i10) {
+    public final void b(int i10, int i11) {
         boolean z10;
         Point point = AndroidUtilities.displaySize;
         boolean z11 = true;
@@ -14,7 +14,7 @@ public final class o5 extends g7.b6 {
         } else {
             z10 = false;
         }
-        if (i9 > i10) {
+        if (i10 > i11) {
             z11 = false;
         }
         if (z10 == z11) {

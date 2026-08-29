@@ -1,46 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class e7 implements o1.g {
-    public final int f27963a;
-    public final Object f27964b;
+import org.telegram.messenger.MessageObject;
+public final class e7 implements Runnable {
+    public final int f27936a;
+    public final g8 f27937b;
+    public final j70 f27938c;
+    public final MessageObject d;
 
-    public e7(Object obj, int i9) {
-        this.f27963a = i9;
-        this.f27964b = obj;
+    public e7(g8 g8Var, MessageObject messageObject, j70 j70Var, int i10) {
+        this.f27936a = i10;
+        this.f27937b = g8Var;
+        this.d = messageObject;
+        this.f27938c = j70Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f10, float f11) {
-        ViewGroup viewGroup;
-        switch (this.f27963a) {
+    public final void run() {
+        switch (this.f27936a) {
             case 0:
-                ((c8) this.f27964b).P.setBufferedProgress(f10 / 1000.0f);
+                g8 g8Var = this.f27937b;
+                g8Var.getClass();
+                this.f27938c.u();
+                g8Var.q0(this.d);
                 return;
             case 1:
-                gc gcVar = (gc) this.f27964b;
-                gcVar.f28742o = (int) f10;
-                gcVar.l();
+                g8 g8Var2 = this.f27937b;
+                g8Var2.getClass();
+                this.f27938c.u();
+                g8Var2.z0(this.d);
                 return;
             case 2:
-                if (Math.abs(f10) > ((lb) this.f27964b).getWidth()) {
-                    hVar.c();
-                    return;
-                }
+                g8 g8Var3 = this.f27937b;
+                MessageObject messageObject = this.d;
+                g8Var3.v0(messageObject, false, new e7(g8Var3, messageObject, this.f27938c, 5), false);
                 return;
             case 3:
-                ki kiVar = (ki) ((gh.m3) this.f27964b).d;
-                ci ciVar = kiVar.f30163v0;
-                if (ciVar == kiVar.f30123i0 || ciVar == kiVar.f30126j0 || (kiVar.B && kiVar.f30144p1 != null)) {
-                    kiVar.a2(1);
-                }
-                kiVar.f30163v0.k(kiVar.f30122h2);
-                viewGroup = ((org.telegram.ui.ActionBar.f3) kiVar).containerView;
-                viewGroup.invalidate();
+                g8 g8Var4 = this.f27937b;
+                g8Var4.getClass();
+                this.f27938c.u();
+                g8Var4.q0(this.d);
+                return;
+            case 4:
+                g8 g8Var5 = this.f27937b;
+                g8Var5.getClass();
+                this.f27938c.u();
+                g8Var5.z0(this.d);
+                return;
+            case 5:
+                g8.v(this.f27937b, this.d, this.f27938c);
+                return;
+            case 6:
+                g8 g8Var6 = this.f27937b;
+                g8Var6.v0(this.d, true, new f7(g8Var6, this.f27938c, 4), false);
+                return;
+            case 7:
+                g8.K(this.f27937b, this.d, this.f27938c);
                 return;
             default:
-                ((jb0) this.f27964b).z();
+                this.f27937b.u0(this.d);
+                this.f27938c.u();
                 return;
         }
+    }
+
+    public e7(g8 g8Var, j70 j70Var, MessageObject messageObject, int i10) {
+        this.f27936a = i10;
+        this.f27937b = g8Var;
+        this.f27938c = j70Var;
+        this.d = messageObject;
     }
 }

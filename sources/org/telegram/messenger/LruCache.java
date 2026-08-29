@@ -11,9 +11,9 @@ public class LruCache<T> {
     private int maxSize;
     private int size;
 
-    public LruCache(int i9) {
-        if (i9 > 0) {
-            this.maxSize = i9;
+    public LruCache(int i10) {
+        if (i10 > 0) {
+            this.maxSize = i10;
             this.map = new LinkedHashMap<>(0, 0.75f, true);
             this.mapFilters = new LinkedHashMap<>();
             return;
@@ -29,12 +29,12 @@ public class LruCache<T> {
         throw new IllegalStateException("Negative size: " + str + "=" + t10);
     }
 
-    private void trimToSize(int i9, String str) {
+    private void trimToSize(int i10, String str) {
         ArrayList<String> arrayList;
         synchronized (this) {
             try {
                 Iterator<Map.Entry<String, T>> it = this.map.entrySet().iterator();
-                while (it.hasNext() && this.size > i9 && !this.map.isEmpty()) {
+                while (it.hasNext() && this.size > i10 && !this.map.isEmpty()) {
                     Map.Entry<String, T> next = it.next();
                     String key = next.getKey();
                     if (str == null || !str.equals(key)) {
@@ -77,8 +77,8 @@ public class LruCache<T> {
                         return t10;
                     }
                     return null;
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -114,8 +114,8 @@ public class LruCache<T> {
                     if (put != null) {
                         this.size -= safeSizeOf(str, put);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             String[] split = str.split("@");
@@ -148,8 +148,8 @@ public class LruCache<T> {
                     if (remove != null) {
                         this.size -= safeSizeOf(str, remove);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             if (remove != null) {

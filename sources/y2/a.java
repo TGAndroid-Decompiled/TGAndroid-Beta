@@ -1,43 +1,18 @@
 package y2;
-public final class a implements nc.a {
-    public static final Object f49462c = new Object();
-    public volatile b f49463a;
-    public volatile Object f49464b;
-
-    public static nc.a a(b bVar) {
-        if (bVar instanceof a) {
-            return bVar;
-        }
-        ?? obj = new Object();
-        obj.f49464b = f49462c;
-        obj.f49463a = bVar;
-        return obj;
-    }
+public final class a implements s9.d {
+    public static final a f50163a = new Object();
+    public static final s9.c f50164b = new s9.c("window", u3.c.h(u3.c.g(v9.d.class, new v9.a(1))));
+    public static final s9.c f50165c = new s9.c("logSourceMetrics", u3.c.h(u3.c.g(v9.d.class, new v9.a(2))));
+    public static final s9.c d = new s9.c("globalMetrics", u3.c.h(u3.c.g(v9.d.class, new v9.a(3))));
+    public static final s9.c f50166e = new s9.c("appNamespace", u3.c.h(u3.c.g(v9.d.class, new v9.a(4))));
 
     @Override
-    public final Object mo28get() {
-        Object obj;
-        Object obj2 = this.f49464b;
-        Object obj3 = f49462c;
-        if (obj2 == obj3) {
-            synchronized (this) {
-                try {
-                    obj = this.f49464b;
-                    if (obj == obj3) {
-                        obj = this.f49463a.mo28get();
-                        Object obj4 = this.f49464b;
-                        if (obj4 != obj3 && obj4 != obj) {
-                            throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
-                        }
-                        this.f49464b = obj;
-                        this.f49463a = null;
-                    }
-                } catch (Throwable th) {
-                    throw th;
-                }
-            }
-            return obj;
-        }
-        return obj2;
+    public final void a(Object obj, Object obj2) {
+        b3.a aVar = (b3.a) obj;
+        s9.e eVar = (s9.e) obj2;
+        eVar.e(f50164b, aVar.f1899a);
+        eVar.e(f50165c, aVar.f1900b);
+        eVar.e(d, aVar.f1901c);
+        eVar.e(f50166e, aVar.d);
     }
 }

@@ -1,78 +1,83 @@
 package org.telegram.messenger;
-public final class re implements Runnable {
-    public final int f21405a;
-    public final MessagesStorage f21406b;
-    public final int f21407c;
-    public final long d;
-    public final long f21408e;
 
-    public re(int i9, long j10, long j11, MessagesStorage messagesStorage) {
-        this.f21405a = 4;
-        this.f21406b = messagesStorage;
-        this.d = j10;
-        this.f21407c = i9;
-        this.f21408e = j11;
+import java.util.ArrayList;
+public final class re implements Runnable {
+    public final int f21454a;
+    public final MessagesStorage f21455b;
+    public final ArrayList f21456c;
+
+    public re(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f21454a = i10;
+        this.f21455b = messagesStorage;
+        this.f21456c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f21405a) {
+        switch (this.f21454a) {
             case 0:
-                long j10 = this.d;
-                long j11 = this.f21408e;
-                this.f21406b.lambda$deleteAllReactionsFromChat$84(this.f21407c, j10, j11);
+                this.f21455b.lambda$markMessagesAsDeletedInternal$230(this.f21456c);
                 return;
             case 1:
-                long j12 = this.d;
-                long j13 = this.f21408e;
-                this.f21406b.lambda$updateMessageTopicId$214(this.f21407c, j12, j13);
+                this.f21455b.lambda$markVoiceMessageContentAsRead$216(this.f21456c);
                 return;
             case 2:
-                long j14 = this.f21408e;
-                int i9 = this.f21407c;
-                this.f21406b.lambda$markMessagePollVotesAsRead$263(this.d, j14, i9);
+                this.f21455b.lambda$emptyMessagesMedia$96(this.f21456c);
                 return;
             case 3:
-                long j15 = this.f21408e;
-                int i10 = this.f21407c;
-                this.f21406b.lambda$markMessageReactionsAsRead$262(this.d, j15, i10);
+                this.f21455b.lambda$emptyMessagesMedia$97(this.f21456c);
                 return;
             case 4:
-                int i11 = this.f21407c;
-                long j16 = this.f21408e;
-                this.f21406b.lambda$loadPendingTasks$13(this.d, i11, j16);
+                this.f21455b.lambda$loadUserInfo$128(this.f21456c);
                 return;
             case 5:
-                long j17 = this.f21408e;
-                int i12 = this.f21407c;
-                this.f21406b.lambda$loadPendingTasks$32(this.d, j17, i12);
+                this.f21455b.lambda$replaceMessageIfExists$233(this.f21456c);
                 return;
             case 6:
-                long j18 = this.d;
-                long j19 = this.f21408e;
-                this.f21406b.lambda$markMentionMessageAsRead$112(this.f21407c, j18, j19);
+                this.f21455b.lambda$markMessagesAsDeletedByRandoms$220(this.f21456c);
+                return;
+            case 7:
+                this.f21455b.lambda$deleteFromDownloadQueue$183(this.f21456c);
+                return;
+            case 8:
+                this.f21455b.lambda$deleteContacts$147(this.f21456c);
+                return;
+            case 9:
+                this.f21455b.lambda$updateMessageVerifyFlags$195(this.f21456c);
+                return;
+            case 10:
+                this.f21455b.lambda$putMessagesInternal$198(this.f21456c);
+                return;
+            case 11:
+                this.f21455b.lambda$putMessagesInternal$197(this.f21456c);
+                return;
+            case 12:
+                this.f21455b.lambda$markMessagesAsDeletedByRandoms$221(this.f21456c);
+                return;
+            case 13:
+                this.f21455b.lambda$markMessagesAsDeletedInternal$224(this.f21456c);
+                return;
+            case 14:
+                this.f21455b.lambda$markMessagesAsDeletedInternal$227(this.f21456c);
+                return;
+            case 15:
+                this.f21455b.lambda$onReactionsUpdate$105(this.f21456c);
+                return;
+            case 16:
+                this.f21455b.lambda$deleteDialog$88(this.f21456c);
+                return;
+            case 17:
+                this.f21455b.lambda$saveDialogFiltersOrder$75(this.f21456c);
+                return;
+            case 18:
+                this.f21455b.lambda$putMessages$236(this.f21456c);
+                return;
+            case 19:
+                this.f21455b.lambda$putMessages$237(this.f21456c);
                 return;
             default:
-                long j20 = this.f21408e;
-                int i13 = this.f21407c;
-                this.f21406b.lambda$resetMentionsCount$114(this.d, j20, i13);
+                this.f21455b.lambda$putWebPages$187(this.f21456c);
                 return;
         }
-    }
-
-    public re(MessagesStorage messagesStorage, int i9, long j10, long j11, int i10) {
-        this.f21405a = i10;
-        this.f21406b = messagesStorage;
-        this.f21407c = i9;
-        this.d = j10;
-        this.f21408e = j11;
-    }
-
-    public re(MessagesStorage messagesStorage, long j10, long j11, int i9, int i10) {
-        this.f21405a = i10;
-        this.f21406b = messagesStorage;
-        this.d = j10;
-        this.f21408e = j11;
-        this.f21407c = i9;
     }
 }

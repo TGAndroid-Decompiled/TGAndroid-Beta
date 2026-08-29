@@ -1,9 +1,10 @@
 package h7;
-public final class e7 {
-    public Long f9917a;
-    public Long f9918b;
-    public Long f9919c;
-    public Long d;
-    public Long f9920e;
-    public Long f9921f;
+
+import java.util.logging.Logger;
+public abstract class e7 {
+    public static final int f7604a = 0;
+
+    static {
+        Logger.getLogger(e7.class.getName());
+    }
 }

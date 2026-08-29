@@ -1,63 +1,29 @@
 package q5;
 
-import android.os.Build;
-import android.text.TextUtils;
-import android.util.Log;
-import java.util.Locale;
-public final class b {
-    public final String f46009a;
-    public final boolean f46010b;
-    public final String f46011c;
+import android.os.Parcel;
+import android.os.Parcelable;
+import o6.w0;
+public final class b extends a6.a {
+    public static final Parcelable.Creator<b> CREATOR = new w0(12);
+    public final int f46362a;
+    public final int f46363b;
+    public final int f46364c;
 
-    public b(String str, String str2) {
-        boolean z10;
-        String o6;
-        x5.l.g(str, "The log tag cannot be null or empty.");
-        this.f46009a = str;
-        if (str.length() <= 23) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f46010b = z10;
-        if (TextUtils.isEmpty(str2)) {
-            o6 = null;
-        } else {
-            o6 = aa.d.o("[", str2, "] ");
-        }
-        this.f46011c = o6;
+    public b(int i10, int i11, int i12) {
+        this.f46362a = i10;
+        this.f46363b = i11;
+        this.f46364c = i12;
     }
 
-    public final void a(Exception exc, String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f46010b) {
-            String str2 = this.f46009a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr), exc);
-            }
-        }
-    }
-
-    public final void b(String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f46010b) {
-            String str2 = this.f46009a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr));
-            }
-        }
-    }
-
-    public final void c(Object... objArr) {
-        Log.e(this.f46009a, d("Bundle is null", objArr));
-    }
-
-    public final String d(String str, Object... objArr) {
-        if (objArr.length != 0) {
-            str = String.format(Locale.ROOT, str, objArr);
-        }
-        String str2 = this.f46011c;
-        if (!TextUtils.isEmpty(str2)) {
-            return String.valueOf(str2).concat(String.valueOf(str));
-        }
-        return str;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        com.google.android.gms.internal.cast.o.s(parcel, 2, 4);
+        parcel.writeInt(this.f46362a);
+        com.google.android.gms.internal.cast.o.s(parcel, 3, 4);
+        parcel.writeInt(this.f46363b);
+        com.google.android.gms.internal.cast.o.s(parcel, 4, 4);
+        parcel.writeInt(this.f46364c);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

@@ -1,62 +1,111 @@
 package bh;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.z;
-import org.telegram.ui.Components.sa;
-import org.telegram.ui.Components.vk0;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z41;
-import org.telegram.ui.df;
-import org.telegram.ui.e91;
-import org.telegram.ui.s91;
-public final class k extends sa {
-    public z41 T;
-    public final e91 U;
+import android.text.TextUtils;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class k {
+    public final i f2684a;
+    public final TLRPC.TL_messageMediaPoll f2685b;
+    public final TLRPC.TL_inputMediaPoll f2686c;
+    public final long d;
+    public final String f2687e;
+    public final ArrayList f2688f;
 
-    public k(Activity activity, b6 b6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
-        super(activity, null, true, false, false, false, false, 2, b6Var);
-        setBackgroundColor(f6.v0(f6.f22947a7, b6Var));
-        this.occupyNavigationBar = true;
-        this.drawNavigationBar = false;
-        this.H = false;
-        this.G = AndroidUtilities.dp(12.0f);
-        this.U = s91.e0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
-        wk0 wk0Var = this.d;
-        int i9 = this.backgroundPaddingLeft;
-        wk0Var.setPadding(i9, 0, i9, AndroidUtilities.navigationBarHeight);
-        this.d.setClipToPadding(false);
-        this.d.setSections(true);
-        z n10 = this.f32408e.n();
-        n10.a(-1, R.drawable.ic_close_white);
-        n10.setTranslationX(-AndroidUtilities.dp(5.0f));
-        this.T.N(false);
-    }
-
-    public static int O(int i9, long j10, int i10, df dfVar) {
-        TL_stats.TL_statsGetPollStats tL_statsGetPollStats = new TL_stats.TL_statsGetPollStats();
-        tL_statsGetPollStats.peer = MessagesController.getInstance(i9).getInputPeer(j10);
-        tL_statsGetPollStats.msg_id = i10;
-        return ConnectionsManager.getInstance(i9).sendRequestTyped(tL_statsGetPollStats, new Object(), new c(dfVar, 2));
-    }
-
-    @Override
-    public final vk0 v(wk0 wk0Var) {
-        z41 z41Var = new z41(wk0Var, getContext(), this.currentAccount, 0, true, new c(this, 1), this.resourcesProvider);
-        this.T = z41Var;
-        z41Var.f35188r = false;
-        return z41Var;
-    }
-
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.PollV2StatsPollStats);
+    public k(i iVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j10, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f2684a = iVar;
+        this.d = j10;
+        this.f2687e = str;
+        this.f2688f = arrayList;
+        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
+        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+        tL_inputMediaPoll.poll = tL_poll;
+        TLRPC.Poll poll = tL_messageMediaPoll.poll;
+        tL_poll.f22418id = poll.f22418id;
+        tL_poll.flags = poll.flags;
+        tL_poll.closed = poll.closed;
+        tL_poll.public_voters = poll.public_voters;
+        tL_poll.multiple_choice = poll.multiple_choice;
+        tL_poll.open_answers = poll.open_answers;
+        tL_poll.revoting_disabled = poll.revoting_disabled;
+        tL_poll.shuffle_answers = poll.shuffle_answers;
+        tL_poll.subscribers_only = poll.subscribers_only;
+        tL_poll.countries_iso2 = poll.countries_iso2;
+        tL_poll.hide_results_until_close = poll.hide_results_until_close;
+        tL_poll.creator = poll.creator;
+        tL_poll.quiz = poll.quiz;
+        tL_poll.answers = new ArrayList<>(tL_messageMediaPoll.poll.answers);
+        ArrayList<TLRPC.PollAnswer> arrayList3 = tL_messageMediaPoll.poll.answers;
+        int size = arrayList3.size();
+        int i10 = 0;
+        while (i10 < size) {
+            TLRPC.PollAnswer pollAnswer = arrayList3.get(i10);
+            i10++;
+            new TLRPC.TL_inputPollAnswer().text = pollAnswer.text;
+        }
+        TLRPC.Poll poll2 = tL_inputMediaPoll.poll;
+        TLRPC.Poll poll3 = tL_messageMediaPoll.poll;
+        poll2.question = poll3.question;
+        poll2.close_period = poll3.close_period;
+        poll2.close_date = poll3.close_date;
+        poll2.hash = poll3.hash;
+        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+        if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
+            TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
+            tL_inputMediaPoll.solution = pollResults2.solution;
+            tL_inputMediaPoll.solution_entities = pollResults2.solution_entities;
+            tL_inputMediaPoll.flags |= 2;
+        }
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            tL_inputMediaPoll.correct_answers = new ArrayList<>(arrayList2);
+            tL_inputMediaPoll.flags |= 1;
+        }
+        if (iVar != null) {
+            SparseArray sparseArray = iVar.f2669a;
+            int size2 = sparseArray.size();
+            for (int i11 = 0; i11 < size2; i11++) {
+                int keyAt = sparseArray.keyAt(i11);
+                h hVar = (h) sparseArray.valueAt(i11);
+                if (hVar instanceof ch.e) {
+                    TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
+                    tL_inputMediaWebPage.url = ((ch.e) hVar).f3491b;
+                    tL_inputMediaWebPage.optional = true;
+                    i.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
+                } else if (hVar instanceof ch.g) {
+                    i.k(tL_inputMediaPoll, keyAt, kf.d.h(((ch.g) hVar).f3500b));
+                } else if (hVar instanceof ch.i) {
+                    TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
+                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                    TLRPC.Document document = ((ch.i) hVar).f3503b;
+                    tL_inputDocument.f22404id = document.f22398id;
+                    tL_inputDocument.access_hash = document.access_hash;
+                    tL_inputDocument.file_reference = document.file_reference;
+                    tL_inputMediaDocument.f22453id = tL_inputDocument;
+                    i.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
+                }
+            }
+            int size3 = sparseArray.size();
+            for (int i12 = 0; i12 < size3; i12++) {
+                int keyAt2 = sparseArray.keyAt(i12);
+                h hVar2 = (h) sparseArray.valueAt(i12);
+                if (hVar2 instanceof ch.e) {
+                    TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
+                    TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
+                    tL_messageMediaWebPage.webpage = tL_webPage;
+                    String str2 = ((ch.e) hVar2).f3491b;
+                    tL_webPage.display_url = str2;
+                    tL_webPage.url = str2;
+                    i.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
+                } else if (hVar2 instanceof ch.g) {
+                    i.l(tL_messageMediaPoll, keyAt2, ((ch.g) hVar2).f3500b);
+                } else if (hVar2 instanceof ch.i) {
+                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                    tL_messageMediaDocument.document = ((ch.i) hVar2).f3503b;
+                    i.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
+                }
+            }
+        }
+        this.f2685b = tL_messageMediaPoll;
+        this.f2686c = tL_inputMediaPoll;
     }
 }

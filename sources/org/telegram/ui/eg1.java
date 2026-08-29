@@ -1,47 +1,88 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class eg1 implements Utilities.Callback {
-    public final int f37943a;
-    public final UserInfoActivity f37944b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class eg1 extends ViewGroup {
+    public final Paint f37821a;
+    public View f37822b;
+    public boolean f37823c;
 
-    public eg1(UserInfoActivity userInfoActivity, int i9) {
-        this.f37943a = i9;
-        this.f37944b = userInfoActivity;
+    public eg1(Context context) {
+        super(context);
+        this.f37821a = new Paint(1);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f37943a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f37944b;
-                userInfoActivity.F = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.c51 c51Var = userInfoActivity.f36283x;
-                if (c51Var != null) {
-                    c51Var.U2.N(true);
-                }
-                userInfoActivity.a0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f37944b;
-                if (userInfoActivity2.G != chat) {
-                    userInfoActivity2.G = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.l0.p(R.string.EditProfileChannelSet, org.telegram.ui.Components.oc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.a0(true);
-                    org.telegram.ui.Components.c51 c51Var2 = userInfoActivity2.f36283x;
-                    if (c51Var2 != null) {
-                        c51Var2.U2.N(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int w02 = org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.Oh, false);
+        int h = i0.a.h(org.telegram.ui.ActionBar.g6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23062d6, false)), w02);
+        Paint paint = this.f37821a;
+        paint.setColor(w02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(h);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        View view = this.f37822b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
+        }
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f37823c != z10) {
+            this.f37823c = z10;
+            WeakHashMap weakHashMap = r0.j0.f46829a;
+            r0.z.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f37822b = view;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
         }
     }
 }

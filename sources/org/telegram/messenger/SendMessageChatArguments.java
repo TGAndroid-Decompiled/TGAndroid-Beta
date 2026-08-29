@@ -14,9 +14,9 @@ public class SendMessageChatArguments {
             return new SendMessageChatArguments(this);
         }
 
-        public void setQuickReplyShortcut(String str, int i9) {
+        public void setQuickReplyShortcut(String str, int i10) {
             this.quickReplyShortcut = str;
-            this.quickReplyShortcutId = i9;
+            this.quickReplyShortcutId = i10;
         }
 
         public void setWelcomeMessageChatId(long j10) {

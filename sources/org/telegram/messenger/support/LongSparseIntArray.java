@@ -8,29 +8,29 @@ public class LongSparseIntArray implements Cloneable {
         this(10);
     }
 
-    private static int binarySearch(long[] jArr, int i9, int i10, long j10) {
-        int i11 = i10 + i9;
-        int i12 = i9 - 1;
-        int i13 = i11;
-        while (i13 - i12 > 1) {
-            int i14 = (i13 + i12) / 2;
-            if (jArr[i14] < j10) {
-                i12 = i14;
+    private static int binarySearch(long[] jArr, int i10, int i11, long j10) {
+        int i12 = i11 + i10;
+        int i13 = i10 - 1;
+        int i14 = i12;
+        while (i14 - i13 > 1) {
+            int i15 = (i14 + i13) / 2;
+            if (jArr[i15] < j10) {
+                i13 = i15;
             } else {
-                i13 = i14;
+                i14 = i15;
             }
         }
-        if (i13 == i11) {
-            return ~i11;
+        if (i14 == i12) {
+            return ~i12;
         }
-        if (jArr[i13] == j10) {
-            return i13;
+        if (jArr[i14] == j10) {
+            return i14;
         }
-        return ~i13;
+        return ~i14;
     }
 
-    private void growKeyAndValueArrays(int i9) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i9);
+    private void growKeyAndValueArrays(int i10) {
+        int idealLongArraySize = ArrayUtils.idealLongArraySize(i10);
         long[] jArr = new long[idealLongArraySize];
         int[] iArr = new int[idealLongArraySize];
         long[] jArr2 = this.mKeys;
@@ -41,18 +41,18 @@ public class LongSparseIntArray implements Cloneable {
         this.mValues = iArr;
     }
 
-    public void append(long j10, int i9) {
-        int i10 = this.mSize;
-        if (i10 != 0 && j10 <= this.mKeys[i10 - 1]) {
-            put(j10, i9);
+    public void append(long j10, int i10) {
+        int i11 = this.mSize;
+        if (i11 != 0 && j10 <= this.mKeys[i11 - 1]) {
+            put(j10, i10);
             return;
         }
-        if (i10 >= this.mKeys.length) {
-            growKeyAndValueArrays(i10 + 1);
+        if (i11 >= this.mKeys.length) {
+            growKeyAndValueArrays(i11 + 1);
         }
-        this.mKeys[i10] = j10;
-        this.mValues[i10] = i9;
-        this.mSize = i10 + 1;
+        this.mKeys[i11] = j10;
+        this.mValues[i11] = i10;
+        this.mSize = i11 + 1;
     }
 
     public void clear() {
@@ -75,48 +75,48 @@ public class LongSparseIntArray implements Cloneable {
     }
 
     public int indexOfValue(long j10) {
-        for (int i9 = 0; i9 < this.mSize; i9++) {
-            if (this.mValues[i9] == j10) {
-                return i9;
+        for (int i10 = 0; i10 < this.mSize; i10++) {
+            if (this.mValues[i10] == j10) {
+                return i10;
             }
         }
         return -1;
     }
 
-    public long keyAt(int i9) {
-        return this.mKeys[i9];
+    public long keyAt(int i10) {
+        return this.mKeys[i10];
     }
 
-    public void put(long j10, int i9) {
+    public void put(long j10, int i10) {
         int binarySearch = binarySearch(this.mKeys, 0, this.mSize, j10);
         if (binarySearch >= 0) {
-            this.mValues[binarySearch] = i9;
+            this.mValues[binarySearch] = i10;
             return;
         }
-        int i10 = ~binarySearch;
-        int i11 = this.mSize;
-        if (i11 >= this.mKeys.length) {
-            growKeyAndValueArrays(i11 + 1);
-        }
+        int i11 = ~binarySearch;
         int i12 = this.mSize;
-        if (i12 - i10 != 0) {
-            long[] jArr = this.mKeys;
-            int i13 = i10 + 1;
-            System.arraycopy(jArr, i10, jArr, i13, i12 - i10);
-            int[] iArr = this.mValues;
-            System.arraycopy(iArr, i10, iArr, i13, this.mSize - i10);
+        if (i12 >= this.mKeys.length) {
+            growKeyAndValueArrays(i12 + 1);
         }
-        this.mKeys[i10] = j10;
-        this.mValues[i10] = i9;
+        int i13 = this.mSize;
+        if (i13 - i11 != 0) {
+            long[] jArr = this.mKeys;
+            int i14 = i11 + 1;
+            System.arraycopy(jArr, i11, jArr, i14, i13 - i11);
+            int[] iArr = this.mValues;
+            System.arraycopy(iArr, i11, iArr, i14, this.mSize - i11);
+        }
+        this.mKeys[i11] = j10;
+        this.mValues[i11] = i10;
         this.mSize++;
     }
 
-    public void removeAt(int i9) {
+    public void removeAt(int i10) {
         long[] jArr = this.mKeys;
-        int i10 = i9 + 1;
-        System.arraycopy(jArr, i10, jArr, i9, this.mSize - i10);
+        int i11 = i10 + 1;
+        System.arraycopy(jArr, i11, jArr, i10, this.mSize - i11);
         int[] iArr = this.mValues;
-        System.arraycopy(iArr, i10, iArr, i9, this.mSize - i10);
+        System.arraycopy(iArr, i11, iArr, i10, this.mSize - i11);
         this.mSize--;
     }
 
@@ -124,12 +124,12 @@ public class LongSparseIntArray implements Cloneable {
         return this.mSize;
     }
 
-    public int valueAt(int i9) {
-        return this.mValues[i9];
+    public int valueAt(int i10) {
+        return this.mValues[i10];
     }
 
-    public LongSparseIntArray(int i9) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i9);
+    public LongSparseIntArray(int i10) {
+        int idealLongArraySize = ArrayUtils.idealLongArraySize(i10);
         this.mKeys = new long[idealLongArraySize];
         this.mValues = new int[idealLongArraySize];
         this.mSize = 0;
@@ -150,8 +150,8 @@ public class LongSparseIntArray implements Cloneable {
         }
     }
 
-    public int get(long j10, int i9) {
+    public int get(long j10, int i10) {
         int binarySearch = binarySearch(this.mKeys, 0, this.mSize, j10);
-        return binarySearch < 0 ? i9 : this.mValues[binarySearch];
+        return binarySearch < 0 ? i10 : this.mValues[binarySearch];
     }
 }

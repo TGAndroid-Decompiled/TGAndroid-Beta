@@ -1,25 +1,62 @@
 package org.telegram.ui;
-public final class om0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f41199a;
-    public final sm0 f41200b;
 
-    public om0(sm0 sm0Var, int i9) {
-        this.f41199a = i9;
-        this.f41200b = sm0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+public final class om0 extends TextView {
+    public final int f41197a;
+
+    public om0(Context context, int i10) {
+        super(context);
+        this.f41197a = i10;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        switch (this.f41199a) {
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f41197a) {
+            case 2:
+                super.dispatchDraw(canvas);
+                canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
+                return;
+            case 3:
+            default:
+                super.dispatchDraw(canvas);
+                return;
+            case 4:
+                if (getPaddingLeft() > 0) {
+                    canvas.drawCircle((getPaddingLeft() - AndroidUtilities.dp(2.5f)) / 2.0f, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.5f), getPaint());
+                }
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f41197a) {
             case 0:
-                sm0 sm0Var = this.f41200b;
-                sm0Var.c(true);
-                sm0Var.M.finishFragment();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
                 return;
             default:
-                sm0 sm0Var2 = this.f41200b;
-                sm0Var2.c(true);
-                sm0Var2.M.K1(0, true, null);
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.f41197a) {
+            case 3:
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                return;
+            default:
+                super.setText(charSequence, bufferType);
                 return;
         }
     }

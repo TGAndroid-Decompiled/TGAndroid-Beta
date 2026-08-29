@@ -1,15 +1,25 @@
 package v2;
-public final class d implements q9.d {
-    public static final d f48260a = new Object();
-    public static final q9.c f48261b = q9.c.c("clientType");
-    public static final q9.c f48262c = q9.c.c("androidClientInfo");
+public final class d {
+    public static final d f49328a;
+    public static final d f49329b;
+    public static final d f49330c;
+    public static final d[] d;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        q9.e eVar = (q9.e) obj2;
-        j jVar = (j) ((q) obj);
-        jVar.getClass();
-        eVar.g(f48261b, p.f48304a);
-        eVar.g(f48262c, jVar.f48289a);
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f49328a = r02;
+        ?? r12 = new Enum("VERY_LOW", 1);
+        f49329b = r12;
+        ?? r32 = new Enum("HIGHEST", 2);
+        f49330c = r32;
+        d = new d[]{r02, r12, r32};
+    }
+
+    public static d valueOf(String str) {
+        return (d) Enum.valueOf(d.class, str);
+    }
+
+    public static d[] values() {
+        return (d[]) d.clone();
     }
 }

@@ -1,73 +1,108 @@
 package h5;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import x5.l;
-public final class a extends y5.a {
-    public static final Parcelable.Creator<a> CREATOR = new h(2);
-    public final boolean f9832a;
-    public final String f9833b;
-    public final String f9834c;
-    public final boolean d;
-    public final String f9835e;
-    public final ArrayList f9836f;
-    public final boolean h;
+import f5.d0;
+import f5.w;
+import j3.e;
+import j3.i0;
+import j3.t0;
+import java.nio.ByteBuffer;
+import m3.i;
+public final class a extends e {
+    public final i f7537a;
+    public final w f7538b;
+    public i0 f7539c;
+    public long d;
 
-    public a(boolean z10, String str, String str2, boolean z11, String str3, ArrayList arrayList, boolean z12) {
-        boolean z13 = true;
-        if (z11 && z12) {
-            z13 = false;
-        }
-        l.a("filterByAuthorizedAccounts and requestVerifiedPhoneNumber must not both be true; the Verified Phone Number feature only works in sign-ups.", z13);
-        this.f9832a = z10;
-        if (z10) {
-            l.i(str, "serverClientId must be provided if Google ID tokens are requested");
-        }
-        this.f9833b = str;
-        this.f9834c = str2;
-        this.d = z11;
-        ArrayList arrayList2 = null;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            arrayList2 = new ArrayList(arrayList);
-            Collections.sort(arrayList2);
-        }
-        this.f9836f = arrayList2;
-        this.f9835e = str3;
-        this.h = z12;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (this.f9832a == aVar.f9832a && l.l(this.f9833b, aVar.f9833b) && l.l(this.f9834c, aVar.f9834c) && this.d == aVar.d && l.l(this.f9835e, aVar.f9835e) && l.l(this.f9836f, aVar.f9836f) && this.h == aVar.h) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f9832a), this.f9833b, this.f9834c, Boolean.valueOf(this.d), this.f9835e, this.f9836f, Boolean.valueOf(this.h)});
+    public a() {
+        super(6);
+        this.f7537a = new i(1, 0);
+        this.f7538b = new w();
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.s(parcel, 1, 4);
-        parcel.writeInt(this.f9832a ? 1 : 0);
-        p8.l(parcel, 2, this.f9833b);
-        p8.l(parcel, 3, this.f9834c);
-        p8.s(parcel, 4, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        p8.l(parcel, 5, this.f9835e);
-        p8.n(parcel, 6, this.f9836f);
-        p8.s(parcel, 7, 4);
-        parcel.writeInt(this.h ? 1 : 0);
-        p8.r(parcel, q10);
+    public final String getName() {
+        return "CameraMotionRenderer";
+    }
+
+    @Override
+    public final void handleMessage(int i10, Object obj) {
+        if (i10 == 8) {
+            this.f7539c = (i0) obj;
+        }
+    }
+
+    @Override
+    public final boolean isEnded() {
+        return hasReadStreamToEnd();
+    }
+
+    @Override
+    public final boolean isReady() {
+        return true;
+    }
+
+    @Override
+    public final void onDisabled() {
+        i0 i0Var = this.f7539c;
+        if (i0Var != null) {
+            i0Var.c();
+        }
+    }
+
+    @Override
+    public final void onPositionReset(long j10, boolean z10) {
+        this.d = Long.MIN_VALUE;
+        i0 i0Var = this.f7539c;
+        if (i0Var != null) {
+            i0Var.c();
+        }
+    }
+
+    @Override
+    public final void render(long j10, long j11) {
+        float[] fArr;
+        while (!hasReadStreamToEnd() && this.d < 100000 + j10) {
+            i iVar = this.f7537a;
+            iVar.clear();
+            if (readSource(getFormatHolder(), iVar, 0) == -4 && !iVar.isEndOfStream()) {
+                this.d = iVar.d;
+                if (this.f7539c != null && !iVar.isDecodeOnly()) {
+                    iVar.c();
+                    ByteBuffer byteBuffer = iVar.f16828b;
+                    int i10 = d0.f6579a;
+                    if (byteBuffer.remaining() != 16) {
+                        fArr = null;
+                    } else {
+                        byte[] array = byteBuffer.array();
+                        int limit = byteBuffer.limit();
+                        w wVar = this.f7538b;
+                        wVar.A(limit, array);
+                        wVar.C(byteBuffer.arrayOffset() + 4);
+                        float[] fArr2 = new float[3];
+                        for (int i11 = 0; i11 < 3; i11++) {
+                            fArr2[i11] = Float.intBitsToFloat(wVar.g());
+                        }
+                        fArr = fArr2;
+                    }
+                    if (fArr != null) {
+                        this.f7539c.b();
+                    }
+                }
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final int supportsFormat(t0 t0Var) {
+        if ("application/x-camera-motion".equals(t0Var.B)) {
+            return com.google.android.recaptcha.internal.a.b(4, 0, 0);
+        }
+        return com.google.android.recaptcha.internal.a.b(0, 0, 0);
+    }
+
+    @Override
+    public final void onStreamChanged(t0[] t0VarArr, long j10, long j11) {
     }
 }

@@ -1,91 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class so0 extends wk0 {
-    public final int T2;
-    public final rp0 U2;
+import org.telegram.messenger.Utilities;
+public final class so0 {
+    public final eu f32697a;
+    public final long f32698b;
+    public final float f32699c;
+    public final float d;
+    public final float f32700e;
 
-    public so0(rp0 rp0Var, Context context, org.telegram.ui.ActionBar.b6 b6Var, int i9) {
-        super(context, b6Var);
-        this.T2 = i9;
-        this.U2 = rp0Var;
+    public so0(View view) {
+        eu euVar = new eu(1, view);
+        this.f32698b = System.currentTimeMillis();
+        this.f32697a = euVar;
+        this.f32699c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f32700e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final boolean E0(float f10) {
-        float f11;
-        float f12;
-        switch (this.T2) {
-            case 0:
-                rp0 rp0Var = this.U2;
-                if (rp0Var.f32246d0 && rp0Var.f32255k0[1] != null) {
-                    f11 = 111.0f;
-                } else {
-                    f11 = 58.0f;
-                }
-                if (f10 >= AndroidUtilities.dp(f11) + rp0Var.C0.f10849b) {
-                    return true;
-                }
-                return false;
-            default:
-                rp0 rp0Var2 = this.U2;
-                if (rp0Var2.f32246d0 && rp0Var2.f32255k0[1] != null) {
-                    f12 = 111.0f;
-                } else {
-                    f12 = 58.0f;
-                }
-                if (f10 >= AndroidUtilities.dp(f12) + rp0Var2.C0.f10849b) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f10;
-        float f11;
-        switch (this.T2) {
-            case 0:
-                rp0 rp0Var = this.U2;
-                wk0 wk0Var = rp0Var.A;
-                if (wk0Var.getVisibility() != 8) {
-                    canvas.save();
-                    int i9 = rp0Var.f32256l0;
-                    if (rp0Var.f32246d0 && rp0Var.f32255k0[1] != null) {
-                        f10 = 111.0f;
-                    } else {
-                        f10 = 58.0f;
-                    }
-                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i9, getWidth(), getHeight());
-                }
-                super.draw(canvas);
-                if (wk0Var.getVisibility() != 8) {
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                rp0 rp0Var2 = this.U2;
-                wk0 wk0Var2 = rp0Var2.A;
-                if (wk0Var2.getVisibility() != 8) {
-                    canvas.save();
-                    int i10 = rp0Var2.f32256l0;
-                    if (rp0Var2.f32246d0 && rp0Var2.f32255k0[1] != null) {
-                        f11 = 111.0f;
-                    } else {
-                        f11 = 58.0f;
-                    }
-                    canvas.clipRect(0, AndroidUtilities.dp(f11) + i10, getWidth(), getHeight());
-                }
-                super.draw(canvas);
-                if (wk0Var2.getVisibility() != 8) {
-                    canvas.restore();
-                    return;
-                }
-                return;
+    public final void a(Canvas canvas, float f9) {
+        eu euVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f32698b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f32699c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f9);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f9, ((float) Math.sin(currentTimeMillis * this.f32700e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f9);
+        canvas.translate(-0.0f, -0.0f);
+        if (f9 > 0.0f && (euVar = this.f32697a) != null) {
+            euVar.run();
         }
     }
 }

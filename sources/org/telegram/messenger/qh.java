@@ -1,34 +1,39 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import org.telegram.messenger.RichMessageLayout;
+import android.os.SystemClock;
+import org.telegram.messenger.SharedConfig;
 public final class qh implements Runnable {
-    public final int f21337a = 0;
-    public final RichMessageLayout.Text f21338b;
-    public final RichMessageLayout f21339c;
-    public final View d;
+    public final int f21370a;
+    public final SharedConfig.ProxyInfo f21371b;
+    public final long f21372c;
 
-    public qh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f21338b = text;
-        this.d = view;
-        this.f21339c = richMessageLayout;
+    public qh(SharedConfig.ProxyInfo proxyInfo, long j10, int i10) {
+        this.f21370a = i10;
+        this.f21371b = proxyInfo;
+        this.f21372c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f21337a) {
+        int i10 = this.f21370a;
+        long j10 = this.f21372c;
+        SharedConfig.ProxyInfo proxyInfo = this.f21371b;
+        switch (i10) {
             case 0:
-                this.f21338b.lambda$revealSpoilers$4(this.d, this.f21339c);
+                ProxyRotationController.lambda$new$0(proxyInfo, j10);
                 return;
             default:
-                this.f21338b.lambda$revealSpoilers$3(this.f21339c, this.d);
+                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
+                proxyInfo.checking = false;
+                if (j10 == -1) {
+                    proxyInfo.available = false;
+                    proxyInfo.ping = 0L;
+                } else {
+                    proxyInfo.ping = j10;
+                    proxyInfo.available = true;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
                 return;
         }
-    }
-
-    public qh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f21338b = text;
-        this.f21339c = richMessageLayout;
-        this.d = view;
     }
 }

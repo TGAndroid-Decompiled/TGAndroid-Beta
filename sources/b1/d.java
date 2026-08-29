@@ -5,36 +5,37 @@ import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Parcel;
 import android.os.ResultReceiver;
-import f7.f0;
-import j3.r0;
+import bd.l;
+import bd.p;
+import h7.g5;
+import j7.l1;
 import java.util.LinkedHashSet;
 import java.util.concurrent.Executor;
-import kotlin.jvm.internal.i;
-import pc.r;
-import zc.l;
-import zc.p;
+import kotlin.jvm.internal.j;
+import rc.r;
+import v0.i;
 public abstract class d {
-    public static final a f1394a = new Object();
-    public static final LinkedHashSet f1395b;
-    public static final int f1396c;
+    public static final a f1884a = new Object();
+    public static final LinkedHashSet f1885b;
+    public static final int f1886c;
     public static final int d = 0;
 
     static {
         Integer[] numArr = {7, 20};
         LinkedHashSet linkedHashSet = new LinkedHashSet(r.a(2));
-        for (int i9 = 0; i9 < 2; i9++) {
-            linkedHashSet.add(numArr[i9]);
+        for (int i10 = 0; i10 < 2; i10++) {
+            linkedHashSet.add(numArr[i10]);
         }
-        f1395b = linkedHashSet;
-        f1396c = 1;
+        f1885b = linkedHashSet;
+        f1886c = 1;
     }
 
     public static void a(ResultReceiver resultReceiver, Intent intent, String str) {
-        i.e(resultReceiver, "resultReceiver");
+        j.e(resultReceiver, "resultReceiver");
         intent.putExtra("TYPE", str);
-        intent.putExtra("ACTIVITY_REQUEST_CODE", f1396c);
+        intent.putExtra("ACTIVITY_REQUEST_CODE", f1886c);
         Parcel obtain = Parcel.obtain();
-        i.d(obtain, "obtain(...)");
+        j.d(obtain, "obtain(...)");
         resultReceiver.writeToParcel(obtain, 0);
         obtain.setDataPosition(0);
         obtain.recycle();
@@ -42,22 +43,22 @@ public abstract class d {
         intent.setFlags(65536);
     }
 
-    public static boolean b(Bundle bundle, p pVar, Executor executor, v0.i callback, CancellationSignal cancellationSignal) {
-        i.e(executor, "executor");
-        i.e(callback, "callback");
+    public static boolean b(Bundle bundle, p pVar, Executor executor, i callback, CancellationSignal cancellationSignal) {
+        j.e(executor, "executor");
+        j.e(callback, "callback");
         if (!bundle.getBoolean("FAILURE_RESPONSE")) {
             return false;
         }
-        f0.a(cancellationSignal, new b(executor, callback, pVar.invoke(bundle.getString("EXCEPTION_TYPE"), bundle.getString("EXCEPTION_MESSAGE")), 0));
+        g5.a(cancellationSignal, new b(executor, callback, pVar.invoke(bundle.getString("EXCEPTION_TYPE"), bundle.getString("EXCEPTION_MESSAGE")), 0));
         return true;
     }
 
-    public static final boolean c(int i9, p pVar, l lVar, CancellationSignal cancellationSignal) {
-        if (i9 != -1) {
+    public static final boolean c(int i10, p pVar, l lVar, CancellationSignal cancellationSignal) {
+        if (i10 != -1) {
             ?? obj = new Object();
-            obj.f16499a = new w0.c(r0.m(i9, "activity with result code: ", " indicating not RESULT_OK"), 2);
-            if (i9 == 0) {
-                obj.f16499a = new w0.b("activity is cancelled by the user.");
+            obj.f13927a = new w0.c(l1.l(i10, "activity with result code: ", " indicating not RESULT_OK"), 2);
+            if (i10 == 0) {
+                obj.f13927a = new w0.b("activity is cancelled by the user.");
             }
             pVar.invoke(cancellationSignal, new c(lVar, obj, 0));
             return true;

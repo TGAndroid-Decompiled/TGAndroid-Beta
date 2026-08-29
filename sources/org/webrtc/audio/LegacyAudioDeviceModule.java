@@ -17,8 +17,8 @@ public class LegacyAudioDeviceModule implements AudioDeviceModule {
     }
 
     @Override
-    public final boolean setPreferredMicrophoneFieldDimension(float f10) {
-        return a.b(this, f10);
+    public final boolean setPreferredMicrophoneFieldDimension(float f9) {
+        return a.b(this, f9);
     }
 
     @Override

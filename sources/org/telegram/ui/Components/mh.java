@@ -1,177 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class mh extends FrameLayout {
-    public final int f30836a;
-    public final ki f30837b;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class mh implements org.telegram.ui.yp0 {
+    public boolean f30691a;
+    public final HashMap f30692b;
+    public final ArrayList f30693c;
+    public final ni d;
 
-    public mh(ki kiVar, Context context, int i9) {
-        super(context);
-        this.f30836a = i9;
-        this.f30837b = kiVar;
+    public mh(ni niVar, HashMap hashMap, ArrayList arrayList) {
+        this.d = niVar;
+        this.f30692b = hashMap;
+        this.f30693c = arrayList;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f30836a) {
-            case 2:
-                canvas.save();
-                canvas.clipRect(0.0f, this.f30837b.R1, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
+    public final boolean e() {
+        return true;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f30836a) {
-            case 2:
-                ki kiVar = this.f30837b;
-                mh mhVar = kiVar.f30178z0;
-                if (kiVar.f30175y0.getAlpha() > 0.0f) {
-                    float f10 = kiVar.S1;
-                    if (f10 != 0.0f && f10 != mhVar.getTop() + kiVar.S1) {
-                        ValueAnimator valueAnimator = kiVar.T1;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
+    public final void h(int i10, boolean z10, boolean z11) {
+        String str;
+        if (!z10) {
+            HashMap hashMap = this.f30692b;
+            if (!hashMap.isEmpty() && !this.f30691a) {
+                this.f30691a = true;
+                ArrayList arrayList = new ArrayList();
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f30693c;
+                    if (i11 < arrayList2.size()) {
+                        Object obj = hashMap.get(arrayList2.get(i11));
+                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                        arrayList.add(sendingMediaInfo);
+                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                        String str2 = searchImage.imagePath;
+                        if (str2 != null) {
+                            sendingMediaInfo.path = str2;
+                        } else {
+                            sendingMediaInfo.searchImage = searchImage;
                         }
-                        float top = kiVar.S1 - (mhVar.getTop() + kiVar.R1);
-                        kiVar.R1 = top;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                        kiVar.T1 = ofFloat;
-                        ofFloat.addUpdateListener(new e6(this, 10));
-                        kiVar.T1.setInterpolator(gr.f28844f);
-                        kiVar.T1.setDuration(200L);
-                        kiVar.T1.start();
-                        kiVar.S1 = 0.0f;
+                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                        CharSequence charSequence = searchImage.caption;
+                        if (charSequence != null) {
+                            str = charSequence.toString();
+                        } else {
+                            str = null;
+                        }
+                        sendingMediaInfo.caption = str;
+                        sendingMediaInfo.entities = searchImage.entities;
+                        sendingMediaInfo.masks = searchImage.stickers;
+                        sendingMediaInfo.ttl = searchImage.ttl;
+                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                        if (botInlineResult != null && searchImage.type == 1) {
+                            sendingMediaInfo.inlineResult = botInlineResult;
+                            sendingMediaInfo.params = searchImage.params;
+                        }
+                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                        i11++;
+                    } else {
+                        ((org.telegram.ui.tn) this.d.f30990b0).d8(i10, arrayList, z11);
                         return;
                     }
-                    return;
                 }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+            }
         }
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f30836a) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                ki kiVar = this.f30837b;
-                ci ciVar = kiVar.f30160u0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kiVar.f30114f0;
-                if (ciVar == chatAttachAlertPhotoLayout) {
-                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
-                } else {
-                    fk fkVar = kiVar.f30132l0;
-                    if (ciVar == fkVar) {
-                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", fkVar.getSelectedItemsCount(), new Object[0]));
-                    } else {
-                        vi viVar = kiVar.f30120h0;
-                        if (ciVar == viVar) {
-                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", viVar.getSelectedItemsCount(), new Object[0]));
-                        }
-                    }
-                }
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
+    public final void a() {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30836a) {
-            case 0:
-                if (this.f30837b.f30111e1.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
+    public final void b(Editable editable) {
     }
 
     @Override
-    public void onMeasure(int i9, int i10) {
-        switch (this.f30836a) {
-            case 1:
-                ki kiVar = this.f30837b;
-                if (kiVar.D && kiVar.E != 0) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i9), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(kiVar.E))), 1073741824), i10);
-                    return;
-                }
-                super.onMeasure(i9, i10);
-                return;
-            default:
-                super.onMeasure(i9, i10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30836a) {
-            case 0:
-                if (this.f30837b.f30111e1.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        switch (this.f30836a) {
-            case 0:
-                super.setAlpha(f10);
-                ki kiVar = this.f30837b;
-                kiVar.a2(0);
-                ki.N(kiVar).invalidate();
-                return;
-            case 1:
-            default:
-                super.setAlpha(f10);
-                return;
-            case 2:
-                super.setAlpha(f10);
-                invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f10) {
-        switch (this.f30836a) {
-            case 1:
-                super.setTranslationY(f10);
-                this.f30837b.f30160u0.j();
-                return;
-            default:
-                super.setTranslationY(f10);
-                return;
-        }
+    public final void g() {
     }
 }

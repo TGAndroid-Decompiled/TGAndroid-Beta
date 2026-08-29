@@ -12,19 +12,19 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o51;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.b61;
+import org.telegram.ui.Components.c61;
 import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
-    private String getVersionName(int i9) {
-        if (i9 != 0) {
-            if (i9 != 1) {
-                if (i9 != 4) {
-                    if (i9 != 5) {
-                        if (i9 != 6) {
-                            if (i9 != 7) {
+    private String getVersionName(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 4) {
+                    if (i10 != 5) {
+                        if (i10 != 6) {
+                            if (i10 != 7) {
                                 return "unknown";
                             }
                             return "release";
@@ -41,16 +41,16 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public void appCenterLogInternal(Throwable th) {
+    public void appCenterLogInternal(Throwable th2) {
         try {
-            a9.e eVar = (a9.e) s8.h.c().b(a9.e.class);
-            if (eVar != null) {
-                eVar.a(th);
+            c9.c cVar = (c9.c) u8.g.c().b(c9.c.class);
+            if (cVar != null) {
+                cVar.a(th2);
                 return;
             }
             throw new NullPointerException("FirebaseCrashlytics component is not present.");
-        } catch (Throwable th2) {
-            FileLog.e(th2, false);
+        } catch (Throwable th3) {
+            FileLog.e(th3, false);
         }
     }
 
@@ -65,7 +65,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean checkApkInstallPermissions(Context context) {
         if (Build.VERSION.SDK_INT >= 26 && !ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.y4.j(context, null).show();
+            org.telegram.ui.Components.c5.j(context, null).show();
             return false;
         }
         return true;
@@ -77,8 +77,8 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             if (BuildVars.DEBUG_VERSION && SystemClock.elapsedRealtime() - lastUpdateCheckTime >= 3600000) {
                 lastUpdateCheckTime = SystemClock.elapsedRealtime();
             }
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
     }
 
@@ -173,9 +173,9 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
-    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i9) {
+    public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new o51(context, betaUpdate).show();
+            new b61(context, betaUpdate).show();
             return true;
         } catch (Exception e10) {
             FileLog.e(e10);
@@ -198,28 +198,28 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
                     str2 = str2 + " [TEST SERVER]";
                 }
-                a9.e eVar = (a9.e) s8.h.c().b(a9.e.class);
-                if (eVar != null) {
-                    eVar.d(str2);
-                    eVar.c("version", getVersionName(4));
-                    eVar.c("model", Build.MODEL);
-                    eVar.c("manufacturer", Build.MANUFACTURER);
+                c9.c cVar = (c9.c) u8.g.c().b(c9.c.class);
+                if (cVar != null) {
+                    cVar.d(str2);
+                    cVar.c("version", getVersionName(4));
+                    cVar.c("model", Build.MODEL);
+                    cVar.c("manufacturer", Build.MANUFACTURER);
                     if (Build.VERSION.SDK_INT >= 31) {
                         str = Build.SOC_MODEL;
-                        eVar.c("soc_model", str);
-                        eVar.c("soc_manufacturer", Build.SOC_MANUFACTURER);
+                        cVar.c("soc_model", str);
+                        cVar.c("soc_manufacturer", Build.SOC_MANUFACTURER);
                     }
-                    eVar.c("device", Build.DEVICE);
-                    eVar.c("product", Build.PRODUCT);
-                    eVar.c("hardware", Build.HARDWARE);
-                    eVar.c("user", Build.USER);
-                    eVar.b();
+                    cVar.c("device", Build.DEVICE);
+                    cVar.c("product", Build.PRODUCT);
+                    cVar.c("hardware", Build.HARDWARE);
+                    cVar.c("user", Build.USER);
+                    cVar.b();
                     return;
                 }
                 throw new NullPointerException("FirebaseCrashlytics component is not present.");
             }
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
     }
 
@@ -228,7 +228,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (!isCustomUpdate()) {
             return null;
         }
-        return new p51(activity, viewGroup);
+        return new c61(activity, viewGroup);
     }
 
     @Override

@@ -10,41 +10,41 @@ import java.util.ArrayList;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public class WearReplyReceiver extends BroadcastReceiver {
-    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j10, long j11, int i9, int[] iArr) {
+    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
         accountInstance.getMessagesController().putUser(user, true);
-        sendMessage(accountInstance, charSequence, j10, j11, i9, iArr);
+        sendMessage(accountInstance, charSequence, j10, j11, i10, iArr);
     }
 
-    public void lambda$onReceive$1(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i9, int[] iArr) {
-        AndroidUtilities.runOnUIThread(new kc(this, accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), charSequence, j10, j11, i9, iArr, 2));
+    public void lambda$onReceive$1(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i10, int[] iArr) {
+        AndroidUtilities.runOnUIThread(new qc(this, accountInstance, accountInstance.getMessagesStorage().getUserSync(j10), charSequence, j10, j11, i10, iArr, 2));
     }
 
-    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j10, long j11, int i9, int[] iArr) {
+    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
         accountInstance.getMessagesController().putChat(chat, true);
-        sendMessage(accountInstance, charSequence, j10, j11, i9, iArr);
+        sendMessage(accountInstance, charSequence, j10, j11, i10, iArr);
     }
 
-    public void lambda$onReceive$3(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i9, int[] iArr) {
-        AndroidUtilities.runOnUIThread(new kc(this, accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), charSequence, j10, j11, i9, iArr, 3));
+    public void lambda$onReceive$3(AccountInstance accountInstance, long j10, CharSequence charSequence, long j11, int i10, int[] iArr) {
+        AndroidUtilities.runOnUIThread(new qc(this, accountInstance, accountInstance.getMessagesStorage().getChatSync(-j10), charSequence, j10, j11, i10, iArr, 3));
     }
 
-    private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j10, long j11, int i9, int[] iArr) {
+    private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j10, long j11, int i10, int[] iArr) {
         MessageObject messageObject;
         MessageObject messageObject2 = null;
-        if (i9 != 0) {
+        if (i10 != 0) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.message = "";
-            tL_message.f22401id = i9;
+            tL_message.f22413id = i10;
             tL_message.peer_id = accountInstance.getMessagesController().getPeer(j10);
             messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_message, false, false);
         } else {
             messageObject = null;
         }
-        int i10 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
-        if (i10 != 0) {
+        int i11 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
+        if (i11 != 0) {
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             tL_message2.message = "";
-            tL_message2.f22401id = (int) j11;
+            tL_message2.f22413id = (int) j11;
             tL_message2.peer_id = accountInstance.getMessagesController().getPeer(j10);
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = new TLRPC.TL_messageActionTopicCreate();
             tL_message2.action = tL_messageActionTopicCreate;
@@ -55,14 +55,14 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (iArr != null && iArr.length > 0) {
             ArrayList<Integer> arrayList = new ArrayList<>(iArr.length);
             int length = iArr.length;
-            int i11 = 0;
-            while (i11 < length) {
-                i11 = j3.r0.e(iArr[i11], i11, 1, arrayList);
+            int i12 = 0;
+            while (i12 < length) {
+                i12 = org.telegram.ui.th.d(iArr[i12], i12, 1, arrayList);
             }
             accountInstance.getMessagesStorage().markVoiceMessageContentAsRead(j10, arrayList);
         }
-        if (i10 == 0) {
-            accountInstance.getMessagesController().markDialogAsRead(j10, i9, i9, 0, false, j11, 0, true, 0);
+        if (i11 == 0) {
+            accountInstance.getMessagesController().markDialogAsRead(j10, i10, i10, 0, false, j11, 0, true, 0);
         }
     }
 
@@ -83,20 +83,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                     if (DialogObject.isUserDialog(longExtra)) {
                         if (accountInstance.getMessagesController().getUser(Long.valueOf(longExtra)) == null) {
                             Utilities.globalQueue.postRunnable(new Runnable(this) {
-                                public final WearReplyReceiver f21094b;
+                                public final WearReplyReceiver f21770b;
 
                                 {
-                                    this.f21094b = this;
+                                    this.f21770b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r10) {
                                         case 0:
-                                            this.f21094b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f21770b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                         default:
-                                            this.f21094b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                            this.f21770b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                             return;
                                     }
                                 }
@@ -105,20 +105,20 @@ public class WearReplyReceiver extends BroadcastReceiver {
                         }
                     } else if (DialogObject.isChatDialog(longExtra) && accountInstance.getMessagesController().getChat(Long.valueOf(-longExtra)) == null) {
                         Utilities.globalQueue.postRunnable(new Runnable(this) {
-                            public final WearReplyReceiver f21094b;
+                            public final WearReplyReceiver f21770b;
 
                             {
-                                this.f21094b = this;
+                                this.f21770b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r10) {
                                     case 0:
-                                        this.f21094b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f21770b.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                     default:
-                                        this.f21094b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
+                                        this.f21770b.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                                         return;
                                 }
                             }

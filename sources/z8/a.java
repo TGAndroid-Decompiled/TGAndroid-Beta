@@ -1,30 +1,83 @@
 package z8;
 
-import android.os.StrictMode;
-import java.util.Locale;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicLong;
-import xf.o0;
-public final class a implements ThreadFactory {
-    public static final ThreadFactory f50358e = Executors.defaultThreadFactory();
-    public final AtomicLong f50359a = new AtomicLong();
-    public final String f50360b;
-    public final int f50361c;
-    public final StrictMode.ThreadPolicy d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.internal.cast.o;
+import w5.k;
+public final class a extends a6.a {
+    public static final Parcelable.Creator<a> CREATOR = new k(25);
+    public int f50784a;
+    public final boolean f50785b;
+    public final String f50786c;
+    public final String d;
+    public final byte[] f50787e;
+    public final boolean f50788f;
 
-    public a(String str, int i9, StrictMode.ThreadPolicy threadPolicy) {
-        this.f50360b = str;
-        this.f50361c = i9;
-        this.d = threadPolicy;
+    public a() {
+        this.f50784a = 0;
+        this.f50785b = true;
+        this.f50786c = null;
+        this.d = null;
+        this.f50787e = null;
+        this.f50788f = false;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("MetadataImpl { { eventStatus: '");
+        sb2.append(this.f50784a);
+        sb2.append("' } { uploadable: '");
+        sb2.append(this.f50785b);
+        sb2.append("' } ");
+        String str = this.f50786c;
+        if (str != null) {
+            sb2.append("{ completionToken: '");
+            sb2.append(str);
+            sb2.append("' } ");
+        }
+        String str2 = this.d;
+        if (str2 != null) {
+            sb2.append("{ accountName: '");
+            sb2.append(str2);
+            sb2.append("' } ");
+        }
+        byte[] bArr = this.f50787e;
+        if (bArr != null) {
+            sb2.append("{ ssbContext: [ ");
+            for (byte b10 : bArr) {
+                sb2.append("0x");
+                sb2.append(Integer.toHexString(b10));
+                sb2.append(" ");
+            }
+            sb2.append("] } ");
+        }
+        sb2.append("{ contextOnly: '");
+        sb2.append(this.f50788f);
+        sb2.append("' } }");
+        return sb2.toString();
     }
 
     @Override
-    public final Thread newThread(Runnable runnable) {
-        Thread newThread = f50358e.newThread(new o0(7, this, runnable));
-        Locale locale = Locale.ROOT;
-        long andIncrement = this.f50359a.getAndIncrement();
-        newThread.setName(this.f50360b + " Thread #" + andIncrement);
-        return newThread;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        int i11 = this.f50784a;
+        o.s(parcel, 1, 4);
+        parcel.writeInt(i11);
+        o.s(parcel, 2, 4);
+        parcel.writeInt(this.f50785b ? 1 : 0);
+        o.l(parcel, 3, this.f50786c);
+        o.l(parcel, 4, this.d);
+        o.c(parcel, 5, this.f50787e);
+        o.s(parcel, 6, 4);
+        parcel.writeInt(this.f50788f ? 1 : 0);
+        o.r(parcel, q6);
+    }
+
+    public a(int i10, boolean z10, String str, String str2, byte[] bArr, boolean z11) {
+        this.f50784a = i10;
+        this.f50785b = z10;
+        this.f50786c = str;
+        this.d = str2;
+        this.f50787e = bArr;
+        this.f50788f = z11;
     }
 }

@@ -5,7 +5,7 @@ import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.mc;
 public final class s2 extends d3 {
     public final f3 D;
 
@@ -33,7 +33,7 @@ public final class s2 extends d3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        gc.a(this, new bg.z(9));
+        mc.a(this, new eg.x(7));
     }
 
     @Override
@@ -46,6 +46,6 @@ public final class s2 extends d3 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        gc.h(this);
+        mc.h(this);
     }
 }

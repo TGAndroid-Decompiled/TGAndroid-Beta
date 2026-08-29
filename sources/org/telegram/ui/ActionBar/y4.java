@@ -1,6 +1,6 @@
 package org.telegram.ui.ActionBar;
 public interface y4 {
-    void a(float f10);
+    void a(float f9);
 
     void b(ActionBarLayout actionBarLayout, boolean z10);
 

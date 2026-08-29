@@ -1,121 +1,62 @@
 package n4;
 
-import android.net.Uri;
-import d5.f0;
-import h3.a1;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-public final class c implements i4.a {
-    public final long f18390a;
-    public final long f18391b;
-    public final long f18392c;
-    public final boolean d;
-    public final long f18393e;
-    public final long f18394f;
-    public final long f18395g;
-    public final long h;
-    public final b9.c f18396i;
-    public final a1 f18397j;
-    public final Uri f18398k;
-    public final i f18399l;
-    public final List f18400m;
+import f5.d0;
+import j3.t0;
+import j7.l1;
+import o3.v;
+import o3.w;
+public final class c implements w {
+    public final int f17114a;
+    public final t0 f17115b;
+    public final o3.j f17116c = new o3.j();
+    public t0 d;
+    public w f17117e;
+    public long f17118f;
 
-    public c(long j10, long j11, long j12, boolean z10, long j13, long j14, long j15, long j16, i iVar, b9.c cVar, a1 a1Var, Uri uri, ArrayList arrayList) {
-        this.f18390a = j10;
-        this.f18391b = j11;
-        this.f18392c = j12;
-        this.d = z10;
-        this.f18393e = j13;
-        this.f18394f = j14;
-        this.f18395g = j15;
-        this.h = j16;
-        this.f18399l = iVar;
-        this.f18396i = cVar;
-        this.f18398k = uri;
-        this.f18397j = a1Var;
-        this.f18400m = arrayList;
+    public c(int i10, int i11, t0 t0Var) {
+        this.f17114a = i11;
+        this.f17115b = t0Var;
     }
 
     @Override
-    public final Object a(List list) {
-        long j10;
-        long j11;
-        LinkedList linkedList = new LinkedList(list);
-        Collections.sort(linkedList);
-        linkedList.add(new i4.b());
-        ArrayList arrayList = new ArrayList();
-        long j12 = 0;
-        int i9 = 0;
-        while (true) {
-            j10 = -9223372036854775807L;
-            if (i9 >= this.f18400m.size()) {
-                break;
-            }
-            if (((i4.b) linkedList.peek()).f10923a != i9) {
-                long c10 = c(i9);
-                if (c10 != -9223372036854775807L) {
-                    j12 += c10;
-                }
-            } else {
-                h b10 = b(i9);
-                List list2 = b10.f18419c;
-                i4.b bVar = (i4.b) linkedList.poll();
-                int i10 = bVar.f10923a;
-                ArrayList arrayList2 = new ArrayList();
-                while (true) {
-                    int i11 = bVar.f10924b;
-                    a aVar = (a) list2.get(i11);
-                    List list3 = aVar.f18384c;
-                    ArrayList arrayList3 = new ArrayList();
-                    do {
-                        arrayList3.add((m) list3.get(bVar.f10925c));
-                        bVar = (i4.b) linkedList.poll();
-                        if (bVar.f10923a != i10) {
-                            break;
-                        }
-                    } while (bVar.f10924b == i11);
-                    j11 = j12;
-                    arrayList2.add(new a(aVar.f18382a, aVar.f18383b, arrayList3, aVar.d, aVar.f18385e, aVar.f18386f));
-                    if (bVar.f10923a != i10) {
-                        break;
-                    }
-                    j12 = j11;
-                }
-                linkedList.addFirst(bVar);
-                arrayList.add(new h(b10.f18417a, b10.f18418b - j11, arrayList2, b10.d));
-                j12 = j11;
-            }
-            i9++;
-        }
-        long j13 = j12;
-        long j14 = this.f18391b;
-        if (j14 != -9223372036854775807L) {
-            j10 = j14 - j13;
-        }
-        a1 a1Var = this.f18397j;
-        Uri uri = this.f18398k;
-        return new c(this.f18390a, j10, this.f18392c, this.d, this.f18393e, this.f18394f, this.f18395g, this.h, this.f18399l, this.f18396i, a1Var, uri, arrayList);
+    public final int a(com.google.android.exoplayer2.upstream.j jVar, int i10, boolean z10) {
+        w wVar = this.f17117e;
+        int i11 = d0.f6579a;
+        return wVar.a(jVar, i10, z10);
     }
 
-    public final h b(int i9) {
-        return (h) this.f18400m.get(i9);
-    }
-
-    public final long c(int i9) {
-        List list = this.f18400m;
-        if (i9 == list.size() - 1) {
-            long j10 = this.f18391b;
-            if (j10 == -9223372036854775807L) {
-                return -9223372036854775807L;
-            }
-            return j10 - ((h) list.get(i9)).f18418b;
+    @Override
+    public final void b(t0 t0Var) {
+        t0 t0Var2 = this.f17115b;
+        if (t0Var2 != null) {
+            t0Var = t0Var.c(t0Var2);
         }
-        return ((h) list.get(i9 + 1)).f18418b - ((h) list.get(i9)).f18418b;
+        this.d = t0Var;
+        w wVar = this.f17117e;
+        int i10 = d0.f6579a;
+        wVar.b(t0Var);
     }
 
-    public final long d(int i9) {
-        return f0.H(c(i9));
+    @Override
+    public final void c(long j10, int i10, int i11, int i12, v vVar) {
+        long j11 = this.f17118f;
+        if (j11 != -9223372036854775807L && j10 >= j11) {
+            this.f17117e = this.f17116c;
+        }
+        w wVar = this.f17117e;
+        int i13 = d0.f6579a;
+        wVar.c(j10, i10, i11, i12, vVar);
+    }
+
+    @Override
+    public final void d(int i10, f5.w wVar) {
+        w wVar2 = this.f17117e;
+        int i11 = d0.f6579a;
+        wVar2.e(i10, wVar);
+    }
+
+    @Override
+    public final void e(int i10, f5.w wVar) {
+        l1.a(this, wVar, i10);
     }
 }

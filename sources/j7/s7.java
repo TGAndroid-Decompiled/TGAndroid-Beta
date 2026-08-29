@@ -1,17 +1,18 @@
 package j7;
-public final class s7 implements q9.d {
-    public static final s7 f14096a = new Object();
+public enum s7 implements f0 {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final int f11178a;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, j3.r0.i(5, j3.r0.r(w.class, j3.r0.i(4, j3.r0.r(w.class, j3.r0.i(3, j3.r0.r(w.class, j3.r0.i(2, j3.r0.r(w.class, new s(1)))))))))));
+    s7(int i10) {
+        this.f11178a = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int zza() {
+        return this.f11178a;
     }
 }

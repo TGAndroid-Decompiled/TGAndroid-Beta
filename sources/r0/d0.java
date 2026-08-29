@@ -6,7 +6,7 @@ public abstract class d0 {
         return view.getImportantForAutofill();
     }
 
-    public static void b(View view, int i9) {
-        view.setImportantForAutofill(i9);
+    public static void b(View view, int i10) {
+        view.setImportantForAutofill(i10);
     }
 }

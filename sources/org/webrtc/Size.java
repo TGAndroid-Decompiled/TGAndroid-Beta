@@ -3,9 +3,9 @@ public class Size {
     public int height;
     public int width;
 
-    public Size(int i9, int i10) {
-        this.width = i9;
-        this.height = i10;
+    public Size(int i10, int i11) {
+        this.width = i10;
+        this.height = i11;
     }
 
     public boolean equals(Object obj) {

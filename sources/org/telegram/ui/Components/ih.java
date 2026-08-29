@@ -1,77 +1,58 @@
 package org.telegram.ui.Components;
+public final class ih implements Runnable {
+    public final int f29389a;
+    public final ni f29390b;
+    public final boolean f29391c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class ih extends AnimatorListenerAdapter {
-    public final int f29442a;
-    public final boolean f29443b;
-    public final rh f29444c;
-
-    public ih(rh rhVar, boolean z10, int i9) {
-        this.f29442a = i9;
-        this.f29444c = rhVar;
-        this.f29443b = z10;
+    public ih(ni niVar, boolean z10, int i10) {
+        this.f29389a = i10;
+        this.f29390b = niVar;
+        this.f29391c = z10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i9;
-        switch (this.f29442a) {
+    public final void run() {
+        switch (this.f29389a) {
             case 0:
-                rh rhVar = this.f29444c;
-                ki kiVar = rhVar.f32175e;
-                boolean z10 = this.f29443b;
+                boolean z10 = this.f29391c;
+                ni niVar = this.f29390b;
                 if (!z10) {
-                    kiVar.A1.setVisibility(8);
+                    niVar.Y0.setVisibility(8);
+                    return;
                 } else {
-                    kiVar.f30158t1.setVisibility(8);
-                }
-                if (z10) {
-                    i9 = AndroidUtilities.dp(36.0f);
-                } else {
-                    i9 = 0;
-                }
-                for (int i10 = 0; i10 < kiVar.f30157t0.size(); i10++) {
-                    ((mh.g4) kiVar.f30157t0.valueAt(i10)).setMeasureOffsetY(i9);
-                }
-                if (rhVar.f32172a == animator) {
-                    rhVar.f32172a = null;
+                    niVar.getClass();
                     return;
                 }
-                return;
-            default:
-                ki kiVar2 = this.f29444c.f32175e;
-                boolean z11 = this.f29443b;
-                kiVar2.f30172x1 = z11;
+            case 1:
+                boolean z11 = this.f29391c;
+                ni niVar2 = this.f29390b;
                 if (!z11) {
-                    kiVar2.f30176y1.setVisibility(8);
+                    niVar2.f31057w.setVisibility(8);
+                    return;
+                } else {
+                    niVar2.getClass();
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f29442a) {
-            case 0:
-                ki kiVar = this.f29444c.f32175e;
-                if (this.f29443b) {
-                    kiVar.A1.setAlpha(0.0f);
-                    kiVar.A1.setVisibility(0);
-                    int dp = AndroidUtilities.dp(36.0f);
-                    for (int i9 = 0; i9 < kiVar.f30157t0.size(); i9++) {
-                        ((mh.g4) kiVar.f30157t0.valueAt(i9)).setMeasureOffsetY(dp);
-                    }
+            case 2:
+                boolean z12 = this.f29391c;
+                ni niVar3 = this.f29390b;
+                if (!z12) {
+                    niVar3.f31065y.setVisibility(8);
+                    return;
+                } else {
+                    niVar3.getClass();
                     return;
                 }
-                kiVar.f30158t1.setAlpha(0.0f);
-                kiVar.f30158t1.setVisibility(0);
-                return;
             default:
-                super.onAnimationStart(animator);
-                return;
+                boolean z13 = this.f29391c;
+                ni niVar4 = this.f29390b;
+                if (z13) {
+                    niVar4.f31049t1.setVisibility(4);
+                    return;
+                } else {
+                    niVar4.getClass();
+                    return;
+                }
         }
     }
 }

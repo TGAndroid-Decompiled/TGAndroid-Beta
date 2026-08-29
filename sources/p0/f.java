@@ -1,8 +1,8 @@
 package p0;
 
-import c2.t;
+import c2.u;
 public abstract class f {
-    public static final t f45332a = new t((e) null, false);
-    public static final t f45333b = new t((e) null, true);
-    public static final t f45334c = new t(e.f45331a, false);
+    public static final u f45412a = new u((e) null, false);
+    public static final u f45413b = new u((e) null, true);
+    public static final u f45414c = new u(e.f45411a, false);
 }

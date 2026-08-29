@@ -1,30 +1,34 @@
 package g4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import d5.y;
-import f8.r;
-public final class j extends b {
-    public static final Parcelable.Creator<j> CREATOR = new r(19);
-    public final long f7107a;
-    public final long f7108b;
+import j3.g1;
+import j3.t0;
+public abstract class j implements b4.b {
+    public final String f7006a;
 
-    public j(long j10, long j11) {
-        this.f7107a = j10;
-        this.f7108b = j11;
-    }
-
-    public static long a(long j10, y yVar) {
-        long r10 = yVar.r();
-        if ((128 & r10) != 0) {
-            return 8589934591L & ((((r10 & 1) << 32) | yVar.s()) + j10);
-        }
-        return -9223372036854775807L;
+    public j(String str) {
+        this.f7006a = str;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeLong(this.f7107a);
-        parcel.writeLong(this.f7108b);
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public final byte[] getWrappedMetadataBytes() {
+        return null;
+    }
+
+    @Override
+    public final t0 getWrappedMetadataFormat() {
+        return null;
+    }
+
+    public String toString() {
+        return this.f7006a;
+    }
+
+    @Override
+    public void populateMediaMetadata(g1 g1Var) {
     }
 }

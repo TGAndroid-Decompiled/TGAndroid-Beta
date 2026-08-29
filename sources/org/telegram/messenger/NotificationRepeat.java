@@ -7,12 +7,12 @@ public class NotificationRepeat extends IntentService {
         super("NotificationRepeat");
     }
 
-    public static void a(int i9) {
-        lambda$onHandleIntent$0(i9);
+    public static void a(int i10) {
+        lambda$onHandleIntent$0(i10);
     }
 
-    public static void lambda$onHandleIntent$0(int i9) {
-        NotificationsController.getInstance(i9).repeatNotificationMaybe();
+    public static void lambda$onHandleIntent$0(int i10) {
+        NotificationsController.getInstance(i10).repeatNotificationMaybe();
     }
 
     @Override
@@ -22,7 +22,7 @@ public class NotificationRepeat extends IntentService {
             if (!UserConfig.isValidAccount(intExtra)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new mh.k2(intExtra, 3));
+            AndroidUtilities.runOnUIThread(new d6(intExtra, 2));
         }
     }
 }

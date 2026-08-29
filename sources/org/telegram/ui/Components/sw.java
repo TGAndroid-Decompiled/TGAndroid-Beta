@@ -1,33 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class sw extends AnimatorListenerAdapter {
-    public final int f32561a;
-    public final boolean f32562b;
-    public final wy f32563c;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class sw extends ImageView {
+    public final fz f32736a;
 
-    public sw(wy wyVar, boolean z10, int i9) {
-        this.f32561a = i9;
-        this.f32563c = wyVar;
-        this.f32562b = z10;
+    public sw(fz fzVar, Context context) {
+        super(context);
+        this.f32736a = fzVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32561a) {
-            case 0:
-                if (!this.f32562b) {
-                    this.f32563c.f34458x.setVisibility(4);
-                    return;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        fy fyVar;
+        int action = motionEvent.getAction();
+        fz fzVar = this.f32736a;
+        if (action == 0) {
+            fzVar.L1 = true;
+            fzVar.M1 = false;
+            AndroidUtilities.runOnUIThread(new i8(fzVar, 350, 4), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            fzVar.L1 = false;
+            if (!fzVar.M1 && (fyVar = fzVar.f28623p1) != null && fyVar.k()) {
+                try {
+                    fzVar.f28649x.performHapticFeedback(3);
+                } catch (Exception unused) {
                 }
-                return;
-            default:
-                if (!this.f32562b) {
-                    this.f32563c.f34462y.setVisibility(4);
-                    return;
-                }
-                return;
+            }
         }
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

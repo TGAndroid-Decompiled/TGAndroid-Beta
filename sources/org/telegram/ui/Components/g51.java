@@ -1,25 +1,19 @@
 package org.telegram.ui.Components;
-public final class g51 extends f2.x {
-    public final f51 f28655c;
-    public final i51 d;
 
-    public g51(i51 i51Var, f51 f51Var) {
-        this.d = i51Var;
-        this.f28655c = f51Var;
+import org.telegram.messenger.Utilities;
+public final class g51 implements Utilities.Callback0Return {
+    public final int f28759a;
+    public final Object f28760b;
+    public final Object f28761c;
+
+    public g51(int i10, Object obj, Object obj2) {
+        this.f28759a = i10;
+        this.f28760b = obj;
+        this.f28761c = obj2;
     }
 
     @Override
-    public final int i(int i9) {
-        int i10;
-        z41 z41Var = this.d.U2;
-        f51 f51Var = this.f28655c;
-        if (z41Var == null) {
-            return f51Var.J;
-        }
-        l41 G = z41Var.G(i9);
-        if (G != null && (i10 = G.f30348u) != -1) {
-            return i10;
-        }
-        return f51Var.J;
+    public final java.lang.Object run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g51.run():java.lang.Object");
     }
 }

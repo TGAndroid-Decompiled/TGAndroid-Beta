@@ -1,15 +1,41 @@
 package jf;
 
-import d7.u;
-import java.nio.ShortBuffer;
-import ya.b;
-public interface a {
-    public static final wa.a f14337i = new wa.a(11);
-    public static final u f14338j = new u(12);
-    public static final b f14339k = new b(11);
-    public static final za.a f14340l = new za.a(11);
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a extends TLObject {
+    public int f11547a;
+    public long f11548b;
+    public TLRPC.InputStorePaymentPurpose f11549c;
 
-    int B1(int i9, int i10, int i11);
+    public static a a(SerializedData serializedData, int i10) {
+        TLObject tLObject;
+        if (i10 != 495638674) {
+            tLObject = null;
+        } else {
+            tLObject = new TLObject();
+        }
+        return (a) TLObject.TLdeserialize(a.class, tLObject, serializedData, i10, true);
+    }
 
-    void H0(ShortBuffer shortBuffer, int i9, ShortBuffer shortBuffer2, int i10);
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        this.f11547a = inputSerializedData.readInt32(z10);
+        this.f11548b = inputSerializedData.readInt64(z10);
+        if ((this.f11547a & 1) != 0) {
+            this.f11549c = TLRPC.InputStorePaymentPurpose.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+    }
+
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(495638674);
+        outputSerializedData.writeInt32(this.f11547a);
+        outputSerializedData.writeInt64(this.f11548b);
+        if ((this.f11547a & 1) != 0) {
+            this.f11549c.serializeToStream(outputSerializedData);
+        }
+    }
 }

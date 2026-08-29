@@ -1,61 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class wz0 extends MetricAffectingSpan {
-    public final int f34478a;
-    public final vz0 f34479b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class wz0 implements org.telegram.ui.ActionBar.b2 {
+    public final int f34519a;
+    public final yz0 f34520b;
 
-    public wz0(vz0 vz0Var, int i9) {
-        this.f34479b = vz0Var;
-        if (i9 > 0) {
-            this.f34478a = i9;
-        }
-    }
-
-    public final void a(TextPaint textPaint) {
-        vz0 vz0Var = this.f34479b;
-        if (g7.z7.a(vz0Var.f34062a, 49152)) {
-            float textSize = textPaint.getTextSize();
-            textPaint.setTextSize(0.75f * textSize);
-            if (g7.z7.a(vz0Var.f34062a, 32768)) {
-                textPaint.baselineShift -= (int) (textSize * 0.35f);
-            } else if (g7.z7.a(vz0Var.f34062a, 16384)) {
-                textPaint.baselineShift += (int) (textSize * 0.12f);
-            }
-        }
-    }
-
-    public final vz0 b() {
-        return this.f34479b;
-    }
-
-    public final boolean c() {
-        if ((this.f34479b.f34062a & 256) > 0) {
-            return true;
-        }
-        return false;
+    public wz0(yz0 yz0Var, int i10) {
+        this.f34519a = i10;
+        this.f34520b = yz0Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i9 = this.f34478a;
-        if (i9 != 0) {
-            textPaint.setTextSize(i9);
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f34519a) {
+            case 0:
+                this.f34520b.a();
+                return;
+            case 1:
+                yz0 yz0Var = this.f34520b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yz0Var.getContext());
+                alertDialog$Builder.f22714a.P = LocaleController.getString(R.string.TosDeclineDeleteAccount);
+                alertDialog$Builder.f22714a.N = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new wz0(yz0Var, 2));
+                j7.l1.u(R.string.Cancel, alertDialog$Builder, null);
+                return;
+            default:
+                yz0 yz0Var2 = this.f34520b;
+                org.telegram.ui.ActionBar.c2 c2Var2 = new org.telegram.ui.ActionBar.c2(yz0Var2.getContext(), 3, null);
+                c2Var2.f22783c0 = false;
+                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
+                deleteaccount.reason = "Decline ToS update";
+                ConnectionsManager.getInstance(yz0Var2.d).sendRequest(deleteaccount, new org.telegram.ui.zg(19, yz0Var2, c2Var2));
+                c2Var2.show();
+                return;
         }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f34479b.a(textPaint);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        int i9 = this.f34478a;
-        if (i9 != 0) {
-            textPaint.setTextSize(i9);
-        }
-        a(textPaint);
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        this.f34479b.a(textPaint);
     }
 }

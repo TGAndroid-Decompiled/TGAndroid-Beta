@@ -12,13 +12,13 @@ import org.telegram.tgnet.tl.TL_stars;
 public class TL_payments {
 
     public static abstract class StarGiftActiveAuctions extends TLObject {
-        public static StarGiftActiveAuctions TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return (StarGiftActiveAuctions) TLObject.TLdeserialize(StarGiftActiveAuctions.class, fromConstructor(i9), inputSerializedData, i9, z10);
+        public static StarGiftActiveAuctions TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (StarGiftActiveAuctions) TLObject.TLdeserialize(StarGiftActiveAuctions.class, fromConstructor(i10), inputSerializedData, i10, z10);
         }
 
-        private static StarGiftActiveAuctions fromConstructor(int i9) {
-            if (i9 != -1359565892) {
-                if (i9 != -617358640) {
+        private static StarGiftActiveAuctions fromConstructor(int i10) {
+            if (i10 != -1359565892) {
+                if (i10 != -617358640) {
                     return null;
                 }
                 return new TL_starGiftActiveAuctionsNotModified();
@@ -33,14 +33,14 @@ public class TL_payments {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
 
-        public static TL_StarGiftAuctionAcquiredGifts TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static TL_StarGiftAuctionAcquiredGifts TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TL_StarGiftAuctionAcquiredGifts tL_StarGiftAuctionAcquiredGifts;
-            if (2103169520 != i9) {
+            if (2103169520 != i10) {
                 tL_StarGiftAuctionAcquiredGifts = null;
             } else {
                 tL_StarGiftAuctionAcquiredGifts = new TL_StarGiftAuctionAcquiredGifts();
             }
-            return (TL_StarGiftAuctionAcquiredGifts) TLObject.TLdeserialize(TL_StarGiftAuctionAcquiredGifts.class, tL_StarGiftAuctionAcquiredGifts, inputSerializedData, i9, z10);
+            return (TL_StarGiftAuctionAcquiredGifts) TLObject.TLdeserialize(TL_StarGiftAuctionAcquiredGifts.class, tL_StarGiftAuctionAcquiredGifts, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -68,14 +68,14 @@ public class TL_payments {
         public TL_stars.TL_StarGiftAuctionUserState user_state;
         public ArrayList<TLRPC.User> users;
 
-        public static TL_StarGiftAuctionState TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static TL_StarGiftAuctionState TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TL_StarGiftAuctionState tL_StarGiftAuctionState;
-            if (1798960364 != i9) {
+            if (1798960364 != i10) {
                 tL_StarGiftAuctionState = null;
             } else {
                 tL_StarGiftAuctionState = new TL_StarGiftAuctionState();
             }
-            return (TL_StarGiftAuctionState) TLObject.TLdeserialize(TL_StarGiftAuctionState.class, tL_StarGiftAuctionState, inputSerializedData, i9, z10);
+            return (TL_StarGiftAuctionState) TLObject.TLdeserialize(TL_StarGiftAuctionState.class, tL_StarGiftAuctionState, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -111,8 +111,8 @@ public class TL_payments {
         }
 
         @Override
-        public StarGiftActiveAuctions deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return StarGiftActiveAuctions.TLdeserialize(inputSerializedData, i9, z10);
+        public StarGiftActiveAuctions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return StarGiftActiveAuctions.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -127,8 +127,8 @@ public class TL_payments {
         }
 
         @Override
-        public TL_StarGiftAuctionAcquiredGifts deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TL_StarGiftAuctionAcquiredGifts.TLdeserialize(inputSerializedData, i9, z10);
+        public TL_StarGiftAuctionAcquiredGifts deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_StarGiftAuctionAcquiredGifts.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -145,8 +145,8 @@ public class TL_payments {
         }
 
         @Override
-        public TL_StarGiftAuctionState deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TL_StarGiftAuctionState.TLdeserialize(inputSerializedData, i9, z10);
+        public TL_StarGiftAuctionState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_StarGiftAuctionState.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -163,8 +163,8 @@ public class TL_payments {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -193,8 +193,8 @@ public class TL_payments {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -226,8 +226,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -250,14 +250,14 @@ public class TL_payments {
         public boolean revoked;
         public String url;
 
-        public static connectedBotStarRef TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static connectedBotStarRef TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             connectedBotStarRef connectedbotstarref;
-            if (429997937 != i9) {
+            if (429997937 != i10) {
                 connectedbotstarref = null;
             } else {
                 connectedbotstarref = new connectedBotStarRef();
             }
-            return (connectedBotStarRef) TLObject.TLdeserialize(connectedBotStarRef.class, connectedbotstarref, inputSerializedData, i9, z10);
+            return (connectedBotStarRef) TLObject.TLdeserialize(connectedBotStarRef.class, connectedbotstarref, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -300,14 +300,14 @@ public class TL_payments {
         public ArrayList<connectedBotStarRef> connected_bots = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static connectedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static connectedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             connectedStarRefBots connectedstarrefbots;
-            if (-1730811363 != i9) {
+            if (-1730811363 != i10) {
                 connectedstarrefbots = null;
             } else {
                 connectedstarrefbots = new connectedStarRefBots();
             }
-            return (connectedStarRefBots) TLObject.TLdeserialize(connectedStarRefBots.class, connectedstarrefbots, inputSerializedData, i9, z10);
+            return (connectedStarRefBots) TLObject.TLdeserialize(connectedStarRefBots.class, connectedstarrefbots, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -334,8 +334,8 @@ public class TL_payments {
         public boolean revoked;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -355,8 +355,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -376,8 +376,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return connectedStarRefBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return connectedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -403,8 +403,8 @@ public class TL_payments {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return suggestedStarRefBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -430,14 +430,14 @@ public class TL_payments {
         public int end_date;
         public int flags;
 
-        public static starRefProgram TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static starRefProgram TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             starRefProgram starrefprogram;
-            if (-586389774 != i9) {
+            if (-586389774 != i10) {
                 starrefprogram = null;
             } else {
                 starrefprogram = new starRefProgram();
             }
-            return (starRefProgram) TLObject.TLdeserialize(starRefProgram.class, starrefprogram, inputSerializedData, i9, z10);
+            return (starRefProgram) TLObject.TLdeserialize(starRefProgram.class, starrefprogram, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -482,14 +482,14 @@ public class TL_payments {
         public ArrayList<starRefProgram> suggested_bots = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static suggestedStarRefBots TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             suggestedStarRefBots suggestedstarrefbots;
-            if (-1261053863 != i9) {
+            if (-1261053863 != i10) {
                 suggestedstarrefbots = null;
             } else {
                 suggestedstarrefbots = new suggestedStarRefBots();
             }
-            return (suggestedStarRefBots) TLObject.TLdeserialize(suggestedStarRefBots.class, suggestedstarrefbots, inputSerializedData, i9, z10);
+            return (suggestedStarRefBots) TLObject.TLdeserialize(suggestedStarRefBots.class, suggestedstarrefbots, inputSerializedData, i10, z10);
         }
 
         @Override

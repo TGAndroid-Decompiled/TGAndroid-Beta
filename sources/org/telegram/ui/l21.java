@@ -5,34 +5,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class l21 implements Runnable {
-    public final int f39980a;
-    public final org.telegram.messenger.video.a f39981b;
-    public final org.telegram.ui.Components.oc f39982c;
-    public final Context d;
-    public final ih.j0 f39983e;
+    public final int f40076a;
+    public final org.telegram.ui.ActionBar.o2 f40077b;
+    public final Context f40078c;
+    public final org.telegram.ui.ActionBar.c6 d;
+    public final org.telegram.ui.Components.ii0 f40079e;
 
-    public l21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.oc ocVar, Context context, ih.j0 j0Var, int i9) {
-        this.f39980a = i9;
-        this.f39981b = aVar;
-        this.f39982c = ocVar;
-        this.d = context;
-        this.f39983e = j0Var;
+    public l21(org.telegram.ui.ActionBar.o2 o2Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.ii0 ii0Var, int i10) {
+        this.f40076a = i10;
+        this.f40077b = o2Var;
+        this.f40078c = context;
+        this.d = c6Var;
+        this.f40079e = ii0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39980a) {
+        switch (this.f40076a) {
             case 0:
-                this.f39981b.run();
-                this.f39982c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 2), this.f39983e)).j();
+                org.telegram.ui.Components.tc.a0(this.f40077b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f40078c, 4), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.f40079e);
                 return;
             case 1:
-                this.f39981b.run();
-                this.f39982c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 5), this.f39983e)).j();
+                org.telegram.ui.Components.tc.a0(this.f40077b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f40078c, 3), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.f40079e);
                 return;
             default:
-                this.f39981b.run();
-                this.f39982c.c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new cv(this.d, 6), this.f39983e)).j();
+                org.telegram.ui.Components.tc.a0(this.f40077b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new dv(this.f40078c, 7), this.d)).j();
+                AndroidUtilities.runOnUIThread(this.f40079e);
                 return;
         }
     }

@@ -1,15 +1,9 @@
 package org.telegram.ui.Components;
-public final class qd0 extends org.telegram.ui.ActionBar.j {
-    public final wd0 f31887a;
-
-    public qd0(wd0 wd0Var) {
-        this.f31887a = wd0Var;
-    }
-
-    @Override
-    public final void b(int i9) {
-        if (i9 == -1) {
-            this.f31887a.dismiss();
-        }
-    }
+public final class qd0 {
+    public float f31923a;
+    public float f31924b;
+    public float f31925c;
+    public float d;
+    public float f31926e;
+    public float f31927f;
 }

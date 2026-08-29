@@ -1,81 +1,56 @@
 package org.telegram.ui;
+public final class rj implements Runnable {
+    public final int f42123a;
+    public final tn f42124b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class rj extends org.telegram.ui.Cells.w0 {
-    public final qn f42438g2;
-
-    public rj(Context context, org.telegram.ui.ActionBar.b6 b6Var, qn qnVar) {
-        super(context, b6Var, false);
-        this.f42438g2 = qnVar;
+    public rj(tn tnVar, int i10) {
+        this.f42123a = i10;
+        this.f42124b = tnVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        qn qnVar = this.f42438g2;
-        if (qnVar.f42135x8 == null) {
-            float y10 = ((qnVar.f42077t0.getY() + qnVar.o9) - getY()) - AndroidUtilities.dp(4.0f);
-            if (y10 > 0.0f) {
-                if (y10 < getMeasuredHeight()) {
-                    canvas.save();
-                    canvas.clipRect(0.0f, y10, getMeasuredWidth(), getMeasuredHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                    return;
-                }
+    public final void run() {
+        int i10 = this.f42123a;
+        tn tnVar = this.f42124b;
+        switch (i10) {
+            case 0:
+                tn.i2(tnVar);
                 return;
-            }
-            super.onDraw(canvas);
+            case 1:
+                tn.i2(tnVar);
+                return;
+            case 2:
+                int i11 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 3:
+                int i12 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 4:
+                int i13 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 5:
+                int i14 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 6:
+                int i15 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 7:
+                int i16 = tn.Dc;
+                tnVar.Ma();
+                return;
+            case 8:
+                int i17 = tn.Dc;
+                tnVar.Ma();
+                return;
+            default:
+                int i18 = tn.Dc;
+                tnVar.Ma();
+                return;
         }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            qn qnVar = this.f42438g2;
-            kVar = ((org.telegram.ui.ActionBar.o2) qnVar).actionBar;
-            if (!kVar.s() && !qnVar.A9()) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            qn qnVar = this.f42438g2;
-            kVar = ((org.telegram.ui.ActionBar.o2) qnVar).actionBar;
-            if (!kVar.s() && !qnVar.A9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        int i9;
-        super.setAlpha(f10);
-        if (f10 > 0.0f) {
-            i9 = 0;
-        } else {
-            i9 = 4;
-        }
-        setVisibility(i9);
-    }
-
-    @Override
-    public final void setTranslationY(float f10) {
-        if (getTranslationY() != f10) {
-            invalidate();
-        }
-        super.setTranslationY(f10);
     }
 }

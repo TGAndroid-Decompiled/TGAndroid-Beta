@@ -17,7 +17,7 @@ public class GlRectDrawer extends GlGenericDrawer {
         }
 
         @Override
-        public void onPrepareShader(GlShader glShader, float[] fArr, int i9, int i10, int i11, int i12) {
+        public void onPrepareShader(GlShader glShader, float[] fArr, int i10, int i11, int i12, int i13) {
         }
     }
 }

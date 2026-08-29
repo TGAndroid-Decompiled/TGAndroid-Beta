@@ -20,9 +20,9 @@ public final class d implements Iterator, Map.Entry {
             if (obj instanceof Map.Entry) {
                 Map.Entry entry = (Map.Entry) obj;
                 Object key = entry.getKey();
-                int i9 = this.f8b;
+                int i10 = this.f8b;
                 f fVar = this.d;
-                if (kotlin.jvm.internal.i.a(key, fVar.e(i9)) && kotlin.jvm.internal.i.a(entry.getValue(), fVar.h(this.f8b))) {
+                if (kotlin.jvm.internal.j.a(key, fVar.e(i10)) && kotlin.jvm.internal.j.a(entry.getValue(), fVar.h(this.f8b))) {
                     return true;
                 }
                 return false;
@@ -60,20 +60,20 @@ public final class d implements Iterator, Map.Entry {
     public final int hashCode() {
         int hashCode;
         if (this.f9c) {
-            int i9 = this.f8b;
+            int i10 = this.f8b;
             f fVar = this.d;
-            Object e10 = fVar.e(i9);
+            Object e10 = fVar.e(i10);
             Object h = fVar.h(this.f8b);
-            int i10 = 0;
+            int i11 = 0;
             if (e10 == null) {
                 hashCode = 0;
             } else {
                 hashCode = e10.hashCode();
             }
             if (h != null) {
-                i10 = h.hashCode();
+                i11 = h.hashCode();
             }
-            return hashCode ^ i10;
+            return hashCode ^ i11;
         }
         throw new IllegalStateException("This container does not support retaining Map.Entry objects");
     }

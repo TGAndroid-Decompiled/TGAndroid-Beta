@@ -1,93 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class dr extends Drawable {
-    public final Drawable f27788a;
-    public final RectF f27789b = new RectF();
-    public final Paint f27790c;
-    public final Paint d;
-    public int f27791e;
-    public final int f27792f;
-    public float f27793g;
-    public boolean h;
-    public float f27794i;
-    public float f27795j;
-    public float f27796k;
+import org.telegram.messenger.R;
+public final class dr extends v41 {
+    public static final int f27862a = 0;
 
-    public dr(Context context, int i9, int i10) {
-        Paint paint = new Paint(1);
-        this.f27790c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f27788a = context.getDrawable(i9);
-        this.f27792f = i10;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    static {
+        v41.setup(new v41());
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f10 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                this.f27793g = f10;
-            } else {
-                if (!z10) {
-                    f10 = 1.0f;
-                }
-                this.f27793g = f10;
-            }
-            invalidateSelf();
+    @Override
+    public final void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
+        org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
+        w8Var.c(w41Var.f34300l, w41Var.f34302n, !w41Var.f34298j);
+        gh.s sVar = w8Var.f25875a;
+        if (w41Var.f34300l instanceof SpannableStringBuilder) {
+            sVar.setTextSize(1, 13.0f);
+            sVar.setTranslationY(AndroidUtilities.dp(2.0f));
+            sVar.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         }
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dr.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f27788a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f27788a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i9, int i10, int i11, int i12) {
-        super.setBounds(i9, i10, i11, i12);
-        this.f27788a.setBounds(i9, i10, i11, i12);
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final View createView(Context context, jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context, c6Var, true);
+        w8Var.setBackgroundColor(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23062d6, c6Var));
+        Drawable mutate = context.getDrawable(R.drawable.msg_copy).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.L6, c6Var), PorterDuff.Mode.MULTIPLY));
+        w8Var.setImage(mutate);
+        w8Var.setImageClickListener(new bg.q(this, context, w8Var, 25));
+        return w8Var;
     }
 }

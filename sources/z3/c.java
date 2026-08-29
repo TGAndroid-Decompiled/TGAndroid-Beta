@@ -1,101 +1,52 @@
 package z3;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import d5.f0;
-import g7.s6;
-import java.util.Arrays;
-import java.util.List;
-public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new Object();
-    public final b[] f50288a;
-    public final long f50289b;
+import i7.v8;
+import o3.k;
+import o3.l;
+import o3.m;
+import o3.w;
+public final class c implements k {
+    public m f50570a;
+    public w f50571b;
+    public int f50572c;
+    public long d;
+    public b f50573e;
+    public int f50574f;
+    public long f50575g;
 
-    public c(b... bVarArr) {
-        this(-9223372036854775807L, bVarArr);
-    }
-
-    public final c a(c cVar) {
-        if (cVar != null) {
-            b[] bVarArr = cVar.f50288a;
-            if (bVarArr.length != 0) {
-                int i9 = f0.f4349a;
-                b[] bVarArr2 = this.f50288a;
-                Object[] copyOf = Arrays.copyOf(bVarArr2, bVarArr2.length + bVarArr.length);
-                System.arraycopy(bVarArr, 0, copyOf, bVarArr2.length, bVarArr.length);
-                return new c(this.f50289b, (b[]) copyOf);
-            }
-        }
-        return this;
+    @Override
+    public final int d(o3.l r21, o3.n r22) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.c.d(o3.l, o3.n):int");
     }
 
     @Override
-    public final int describeContents() {
-        return 0;
+    public final boolean e(l lVar) {
+        return v8.a(lVar);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && c.class == obj.getClass()) {
-            c cVar = (c) obj;
-            if (Arrays.equals(this.f50288a, cVar.f50288a) && this.f50289b == cVar.f50289b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return s6.a(this.f50289b) + (Arrays.hashCode(this.f50288a) * 31);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("entries=");
-        sb2.append(Arrays.toString(this.f50288a));
-        long j10 = this.f50289b;
-        if (j10 == -9223372036854775807L) {
-            str = "";
+    @Override
+    public final void f(long j10, long j11) {
+        int i10;
+        if (j10 == 0) {
+            i10 = 0;
         } else {
-            str = ", presentationTimeUs=" + j10;
+            i10 = 4;
         }
-        sb2.append(str);
-        return sb2.toString();
+        this.f50572c = i10;
+        b bVar = this.f50573e;
+        if (bVar != null) {
+            bVar.a(j11);
+        }
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        b[] bVarArr = this.f50288a;
-        parcel.writeInt(bVarArr.length);
-        for (b bVar : bVarArr) {
-            parcel.writeParcelable(bVar, 0);
-        }
-        parcel.writeLong(this.f50289b);
+    public final void i(m mVar) {
+        this.f50570a = mVar;
+        this.f50571b = mVar.Z1(0, 1);
+        mVar.e1();
     }
 
-    public c(long j10, b... bVarArr) {
-        this.f50289b = j10;
-        this.f50288a = bVarArr;
-    }
-
-    public c(List list) {
-        this((b[]) list.toArray(new b[0]));
-    }
-
-    public c(Parcel parcel) {
-        this.f50288a = new b[parcel.readInt()];
-        int i9 = 0;
-        while (true) {
-            b[] bVarArr = this.f50288a;
-            if (i9 < bVarArr.length) {
-                bVarArr[i9] = (b) parcel.readParcelable(b.class.getClassLoader());
-                i9++;
-            } else {
-                this.f50289b = parcel.readLong();
-                return;
-            }
-        }
+    @Override
+    public final void release() {
     }
 }

@@ -1,93 +1,103 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class fl0 extends FrameLayout {
-    public final int f38305a;
-    public final org.telegram.ui.ActionBar.b6 f38306b;
-    public final FrameLayout f38307c;
-    public final org.telegram.ui.Components.o9 d;
-    public final TextView f38308e;
-    public final TextView f38309f;
-    public final ImageView h;
-    public boolean f38310n;
-    public String f38311r;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fl0 implements View.OnClickListener {
+    public final int f38208a;
+    public final vm0 f38209b;
 
-    public fl0(Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context);
-        this.f38305a = i9;
-        this.f38306b = b6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f38307c = frameLayout;
-        addView(frameLayout, g7.e6.d(36, 36.0f, 19, 18.5f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.o9 o9Var = new org.telegram.ui.Components.o9(context);
-        this.d = o9Var;
-        o9Var.setImageResource(R.drawable.msg2_permissions);
-        int i10 = org.telegram.ui.ActionBar.f6.G6;
-        int l1 = org.telegram.ui.ActionBar.f6.l1(0.3f, org.telegram.ui.ActionBar.f6.v0(i10, b6Var));
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        o9Var.setColorFilter(new PorterDuffColorFilter(l1, mode));
-        frameLayout.addView(o9Var, g7.e6.e(36, 36, 17));
-        TextView b10 = g7.i6.b(context, 15.0f, i10, true, null);
-        this.f38308e = b10;
-        b10.setSingleLine();
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        b10.setEllipsize(truncateAt);
-        addView(b10, g7.e6.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
-        int i11 = org.telegram.ui.ActionBar.f6.f23369y6;
-        TextView b11 = g7.i6.b(context, 13.0f, i11, false, null);
-        this.f38309f = b11;
-        b11.setSingleLine();
-        b11.setEllipsize(truncateAt);
-        addView(b11, g7.e6.d(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.h = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_ab_other);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, i11, false), mode));
-        imageView.setBackground(org.telegram.ui.ActionBar.f6.f0(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f23092i6, b6Var), 1, -1));
-        addView(imageView, g7.e6.d(32, 32.0f, 21, 0.0f, 0.0f, 13.0f, 0.0f));
+    public fl0(vm0 vm0Var, int i10) {
+        this.f38208a = i10;
+        this.f38209b = vm0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        super.onDraw(canvas);
-        if (this.f38310n) {
-            Paint T0 = org.telegram.ui.ActionBar.f6.T0("paintDivider", this.f38306b);
-            if (T0 == null) {
-                T0 = org.telegram.ui.ActionBar.f6.f23121k0;
-            }
-            Paint paint = T0;
-            float f11 = 72.0f;
-            if (LocaleController.isRTL) {
-                f10 = 0.0f;
-            } else {
-                f10 = 72.0f;
-            }
-            float dp = AndroidUtilities.dp(f10);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f11 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f11), getMeasuredHeight(), paint);
+    public final void onClick(View view) {
+        switch (this.f38208a) {
+            case 0:
+                vm0 vm0Var = this.f38209b;
+                vm0Var.O0 = 2;
+                vm0Var.D1();
+                return;
+            case 1:
+                this.f38209b.d1();
+                return;
+            case 2:
+                vm0 vm0Var2 = this.f38209b;
+                vm0Var2.O0 = 3;
+                vm0Var2.D1();
+                return;
+            case 3:
+                vm0 vm0Var3 = this.f38209b;
+                vm0Var3.O0 = 1;
+                vm0Var3.D1();
+                return;
+            case 4:
+                vm0 vm0Var4 = this.f38209b;
+                vm0Var4.O0 = 4;
+                vm0Var4.D1();
+                return;
+            case 5:
+                vm0.e0(this.f38209b);
+                return;
+            case 6:
+                vm0 vm0Var5 = this.f38209b;
+                vm0Var5.f43636f = true;
+                vm0Var5.H.callOnClick();
+                vm0Var5.f43636f = false;
+                return;
+            case 7:
+                vm0 vm0Var6 = this.f38209b;
+                vm0Var6.O0 = 0;
+                vm0Var6.D1();
+                return;
+            case 8:
+                vm0 vm0Var7 = this.f38209b;
+                vm0Var7.O0 = 4;
+                vm0Var7.D1();
+                return;
+            case 9:
+                this.f38209b.d1();
+                return;
+            case 10:
+                vm0.b0(this.f38209b);
+                return;
+            case 11:
+                vm0.c0(this.f38209b);
+                return;
+            case 12:
+                this.f38209b.C1();
+                return;
+            case 13:
+                vm0 vm0Var8 = this.f38209b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vm0Var8.getParentActivity());
+                alertDialog$Builder.f22714a.N = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f22714a.P = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new hl0(vm0Var8, 5));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22714a;
+                vm0Var8.showDialog(c2Var);
+                TextView textView = (TextView) c2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23295q7, false));
+                    return;
+                }
+                return;
+            case 14:
+                this.f38209b.C1();
+                return;
+            case 15:
+                vm0.V(this.f38209b);
+                return;
+            default:
+                vm0 vm0Var9 = this.f38209b;
+                vm0Var9.f43636f = true;
+                vm0Var9.H.callOnClick();
+                vm0Var9.f43636f = false;
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

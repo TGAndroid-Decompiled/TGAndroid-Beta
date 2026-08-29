@@ -1,34 +1,23 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class xk0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.g1 f44536a;
-    public final PasscodeActivity f44537b;
+public final class xk0 extends FrameLayout {
+    public final org.telegram.ui.Components.aj0 f44603a;
 
-    public xk0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.g1 g1Var) {
-        this.f44537b = passcodeActivity;
-        this.f44536a = g1Var;
-    }
-
-    @Override
-    public final void b(int i9) {
-        PasscodeActivity passcodeActivity = this.f44537b;
-        if (i9 == -1) {
-            passcodeActivity.finishFragment();
-            return;
-        }
-        int i10 = 1;
-        if (i9 == 1) {
-            if (passcodeActivity.f35575y != 0) {
-                i10 = 0;
-            }
-            passcodeActivity.f35575y = i10;
-            AndroidUtilities.runOnUIThread(new cf0(12, this, this.f44536a), 150L);
-            passcodeActivity.h.setText("");
-            for (vr vrVar : passcodeActivity.f35570n.f42755f) {
-                vrVar.setText("");
-            }
-            passcodeActivity.k0();
-        }
+    public xk0(Context context) {
+        super(context);
+        ?? imageView = new ImageView(context);
+        this.f44603a = imageView;
+        imageView.setOnClickListener(new t50(this, 14));
+        int dp = AndroidUtilities.dp(120.0f);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);
+        layoutParams.gravity = 1;
+        addView((View) imageView, layoutParams);
+        setPadding(0, AndroidUtilities.dp(32.0f), 0, 0);
+        setLayoutParams(new f2.x0(-1, -2));
     }
 }

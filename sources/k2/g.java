@@ -6,11 +6,11 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 public abstract class g extends Drawable implements j0.b {
-    public Drawable f14533a;
+    public Drawable f13345a;
 
     @Override
     public void applyTheme(Resources.Theme theme) {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             drawable.applyTheme(theme);
         }
@@ -18,7 +18,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final void clearColorFilter() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             drawable.clearColorFilter();
         } else {
@@ -28,7 +28,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final Drawable getCurrent() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getCurrent();
         }
@@ -37,7 +37,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final int getMinimumHeight() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getMinimumHeight();
         }
@@ -46,7 +46,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final int getMinimumWidth() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getMinimumWidth();
         }
@@ -55,7 +55,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -64,7 +64,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final int[] getState() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getState();
         }
@@ -73,7 +73,7 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final Region getTransparentRegion() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.getTransparentRegion();
         }
@@ -82,68 +82,68 @@ public abstract class g extends Drawable implements j0.b {
 
     @Override
     public final void jumpToCurrentState() {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             drawable.jumpToCurrentState();
         }
     }
 
     @Override
-    public boolean onLevelChange(int i9) {
-        Drawable drawable = this.f14533a;
+    public boolean onLevelChange(int i10) {
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
-            return drawable.setLevel(i9);
+            return drawable.setLevel(i10);
         }
-        return super.onLevelChange(i9);
+        return super.onLevelChange(i10);
     }
 
     @Override
-    public final void setChangingConfigurations(int i9) {
-        Drawable drawable = this.f14533a;
+    public final void setChangingConfigurations(int i10) {
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
-            drawable.setChangingConfigurations(i9);
+            drawable.setChangingConfigurations(i10);
         } else {
-            super.setChangingConfigurations(i9);
+            super.setChangingConfigurations(i10);
         }
     }
 
     @Override
-    public final void setColorFilter(int i9, PorterDuff.Mode mode) {
-        Drawable drawable = this.f14533a;
+    public final void setColorFilter(int i10, PorterDuff.Mode mode) {
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
-            drawable.setColorFilter(i9, mode);
+            drawable.setColorFilter(i10, mode);
         } else {
-            super.setColorFilter(i9, mode);
+            super.setColorFilter(i10, mode);
         }
     }
 
     @Override
     public final void setFilterBitmap(boolean z10) {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             drawable.setFilterBitmap(z10);
         }
     }
 
     @Override
-    public final void setHotspot(float f10, float f11) {
-        Drawable drawable = this.f14533a;
+    public final void setHotspot(float f9, float f10) {
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
-            drawable.setHotspot(f10, f11);
+            drawable.setHotspot(f9, f10);
         }
     }
 
     @Override
-    public final void setHotspotBounds(int i9, int i10, int i11, int i12) {
-        Drawable drawable = this.f14533a;
+    public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
-            drawable.setHotspotBounds(i9, i10, i11, i12);
+            drawable.setHotspotBounds(i10, i11, i12, i13);
         }
     }
 
     @Override
     public final boolean setState(int[] iArr) {
-        Drawable drawable = this.f14533a;
+        Drawable drawable = this.f13345a;
         if (drawable != null) {
             return drawable.setState(iArr);
         }

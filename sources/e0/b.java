@@ -27,42 +27,42 @@ import javax.crypto.Mac;
 import m.a1;
 import org.telegram.messenger.FileLog;
 public abstract class b {
-    public static void A(LayerDrawable layerDrawable, LayerDrawable layerDrawable2, int i9) {
-        layerDrawable2.setLayerGravity(i9, layerDrawable.getLayerGravity(i9));
-        layerDrawable2.setLayerWidth(i9, layerDrawable.getLayerWidth(i9));
-        layerDrawable2.setLayerHeight(i9, layerDrawable.getLayerHeight(i9));
-        layerDrawable2.setLayerInsetLeft(i9, layerDrawable.getLayerInsetLeft(i9));
-        layerDrawable2.setLayerInsetRight(i9, layerDrawable.getLayerInsetRight(i9));
-        layerDrawable2.setLayerInsetTop(i9, layerDrawable.getLayerInsetTop(i9));
-        layerDrawable2.setLayerInsetBottom(i9, layerDrawable.getLayerInsetBottom(i9));
-        layerDrawable2.setLayerInsetStart(i9, layerDrawable.getLayerInsetStart(i9));
-        layerDrawable2.setLayerInsetEnd(i9, layerDrawable.getLayerInsetEnd(i9));
+    public static void A(LayerDrawable layerDrawable, LayerDrawable layerDrawable2, int i10) {
+        layerDrawable2.setLayerGravity(i10, layerDrawable.getLayerGravity(i10));
+        layerDrawable2.setLayerWidth(i10, layerDrawable.getLayerWidth(i10));
+        layerDrawable2.setLayerHeight(i10, layerDrawable.getLayerHeight(i10));
+        layerDrawable2.setLayerInsetLeft(i10, layerDrawable.getLayerInsetLeft(i10));
+        layerDrawable2.setLayerInsetRight(i10, layerDrawable.getLayerInsetRight(i10));
+        layerDrawable2.setLayerInsetTop(i10, layerDrawable.getLayerInsetTop(i10));
+        layerDrawable2.setLayerInsetBottom(i10, layerDrawable.getLayerInsetBottom(i10));
+        layerDrawable2.setLayerInsetStart(i10, layerDrawable.getLayerInsetStart(i10));
+        layerDrawable2.setLayerInsetEnd(i10, layerDrawable.getLayerInsetEnd(i10));
     }
 
-    public static j4.c B(Object obj) {
+    public static androidx.biometric.e B(Object obj) {
         FingerprintManager.CryptoObject cryptoObject = (FingerprintManager.CryptoObject) obj;
         if (cryptoObject != null) {
             if (cryptoObject.getCipher() != null) {
-                return new j4.c(cryptoObject.getCipher());
+                return new androidx.biometric.e(cryptoObject.getCipher());
             }
             if (cryptoObject.getSignature() != null) {
-                return new j4.c(cryptoObject.getSignature());
+                return new androidx.biometric.e(cryptoObject.getSignature());
             }
             if (cryptoObject.getMac() != null) {
-                return new j4.c(cryptoObject.getMac());
+                return new androidx.biometric.e(cryptoObject.getMac());
             }
             return null;
         }
         return null;
     }
 
-    public static FingerprintManager.CryptoObject C(j4.c cVar) {
-        if (cVar == null) {
+    public static FingerprintManager.CryptoObject C(androidx.biometric.e eVar) {
+        if (eVar == null) {
             return null;
         }
-        Mac mac = (Mac) cVar.d;
-        Signature signature = (Signature) cVar.f13431b;
-        Cipher cipher = (Cipher) cVar.f13432c;
+        Mac mac = (Mac) eVar.d;
+        Signature signature = (Signature) eVar.f1030b;
+        Cipher cipher = (Cipher) eVar.f1031c;
         if (cipher != null) {
             return new FingerprintManager.CryptoObject(cipher);
         }
@@ -96,11 +96,11 @@ public abstract class b {
     }
 
     public static FingerprintManager f(Context context) {
-        int i9 = Build.VERSION.SDK_INT;
-        if (i9 == 23) {
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 == 23) {
             return (FingerprintManager) context.getSystemService(FingerprintManager.class);
         }
-        if (i9 > 23 && context.getPackageManager().hasSystemFeature("android.hardware.fingerprint")) {
+        if (i10 > 23 && context.getPackageManager().hasSystemFeature("android.hardware.fingerprint")) {
             return (FingerprintManager) context.getSystemService(FingerprintManager.class);
         }
         return null;
@@ -120,11 +120,11 @@ public abstract class b {
 
     public static boolean j(Context context) {
         try {
-            FingerprintManager d = a9.b.d(context.getSystemService("fingerprint"));
-            if (d == null) {
+            FingerprintManager f9 = eg.c.f(context.getSystemService("fingerprint"));
+            if (f9 == null) {
                 return false;
             }
-            return d.hasEnrolledFingerprints();
+            return f9.hasEnrolledFingerprints();
         } catch (Exception e10) {
             FileLog.e(e10);
             return false;
@@ -141,11 +141,11 @@ public abstract class b {
 
     public static boolean m(Context context) {
         try {
-            FingerprintManager d = a9.b.d(context.getSystemService("fingerprint"));
-            if (d == null) {
+            FingerprintManager f9 = eg.c.f(context.getSystemService("fingerprint"));
+            if (f9 == null) {
                 return false;
             }
-            return d.isHardwareDetected();
+            return f9.isHardwareDetected();
         } catch (Exception e10) {
             FileLog.e(e10);
             return false;
@@ -164,12 +164,12 @@ public abstract class b {
         return AppOpsManager.permissionToOp(str);
     }
 
-    public static void q(Activity activity, String[] strArr, int i9) {
-        activity.requestPermissions(strArr, i9);
+    public static void q(Activity activity, String[] strArr, int i10) {
+        activity.requestPermissions(strArr, i10);
     }
 
-    public static void r(a1 a1Var, int i9) {
-        a1Var.setBreakStrategy(i9);
+    public static void r(a1 a1Var, int i10) {
+        a1Var.setBreakStrategy(i10);
     }
 
     public static void s(TextView textView, ColorStateList colorStateList) {
@@ -180,67 +180,67 @@ public abstract class b {
         textView.setCompoundDrawableTintMode(mode);
     }
 
-    public static void u(a1 a1Var, int i9) {
-        a1Var.setHyphenationFrequency(i9);
+    public static void u(a1 a1Var, int i10) {
+        a1Var.setHyphenationFrequency(i10);
     }
 
     public static void v(Notification.Builder builder, Icon icon) {
         builder.setLargeIcon(icon);
     }
 
-    public static boolean w(int i9, Drawable drawable) {
-        return drawable.setLayoutDirection(i9);
+    public static boolean w(int i10, Drawable drawable) {
+        return drawable.setLayoutDirection(i10);
     }
 
     public static void x(PopupWindow popupWindow, boolean z10) {
         popupWindow.setOverlapAnchor(z10);
     }
 
-    public static void y(PopupWindow popupWindow, int i9) {
-        popupWindow.setWindowLayoutType(i9);
+    public static void y(PopupWindow popupWindow, int i10) {
+        popupWindow.setWindowLayoutType(i10);
     }
 
     public static Icon z(IconCompat iconCompat, Context context) {
         Icon createWithBitmap;
-        switch (iconCompat.f675a) {
+        switch (iconCompat.f1169a) {
             case -1:
-                return (Icon) iconCompat.f676b;
+                return (Icon) iconCompat.f1170b;
             case 0:
             default:
                 throw new IllegalArgumentException("Unknown type");
             case 1:
-                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f676b);
+                createWithBitmap = Icon.createWithBitmap((Bitmap) iconCompat.f1170b);
                 break;
             case 2:
-                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.f678e);
+                createWithBitmap = Icon.createWithResource(iconCompat.h(), iconCompat.f1172e);
                 break;
             case 3:
-                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f676b, iconCompat.f678e, iconCompat.f679f);
+                createWithBitmap = Icon.createWithData((byte[]) iconCompat.f1170b, iconCompat.f1172e, iconCompat.f1173f);
                 break;
             case 4:
-                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f676b);
+                createWithBitmap = Icon.createWithContentUri((String) iconCompat.f1170b);
                 break;
             case 5:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    createWithBitmap = g6.a.b((Bitmap) iconCompat.f676b);
+                    createWithBitmap = i6.a.b((Bitmap) iconCompat.f1170b);
                     break;
                 } else {
-                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f676b, false));
+                    createWithBitmap = Icon.createWithBitmap(IconCompat.b((Bitmap) iconCompat.f1170b, false));
                     break;
                 }
             case 6:
-                int i9 = Build.VERSION.SDK_INT;
-                if (i9 >= 30) {
+                int i10 = Build.VERSION.SDK_INT;
+                if (i10 >= 30) {
                     createWithBitmap = g0.f.d(iconCompat.j());
                     break;
                 } else if (context != null) {
-                    InputStream k10 = iconCompat.k(context);
-                    if (k10 != null) {
-                        if (i9 >= 26) {
-                            createWithBitmap = g6.a.b(BitmapFactory.decodeStream(k10));
+                    InputStream k9 = iconCompat.k(context);
+                    if (k9 != null) {
+                        if (i10 >= 26) {
+                            createWithBitmap = i6.a.b(BitmapFactory.decodeStream(k9));
                             break;
                         } else {
-                            createWithBitmap = Icon.createWithBitmap(IconCompat.b(BitmapFactory.decodeStream(k10), false));
+                            createWithBitmap = Icon.createWithBitmap(IconCompat.b(BitmapFactory.decodeStream(k9), false));
                             break;
                         }
                     } else {
@@ -250,12 +250,12 @@ public abstract class b {
                     throw new IllegalArgumentException("Context is required to resolve the file uri of the icon: " + iconCompat.j());
                 }
         }
-        ColorStateList colorStateList = iconCompat.f680g;
+        ColorStateList colorStateList = iconCompat.f1174g;
         if (colorStateList != null) {
             createWithBitmap.setTintList(colorStateList);
         }
         PorterDuff.Mode mode = iconCompat.h;
-        if (mode != IconCompat.f674k) {
+        if (mode != IconCompat.f1168k) {
             createWithBitmap.setTintMode(mode);
         }
         return createWithBitmap;

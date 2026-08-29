@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.KeyEvent;
-public final class qr extends vr {
+public final class qr extends ur {
     public final int I;
     public final int J;
     public final sr K;
 
-    public qr(sr srVar, Context context, int i9, int i10) {
+    public qr(sr srVar, Context context, int i10, int i11) {
         super(context);
         this.K = srVar;
-        this.I = i9;
-        this.J = i10;
-        this.f43567e = 1.0f;
-        this.f43568f = new o1.j(this, vr.E);
-        this.h = new o1.j(this, vr.F);
-        this.f43569n = new o1.j(this, vr.G);
-        this.f43570r = new o1.j(this, vr.H);
-        this.f43571s = true;
+        this.I = i10;
+        this.J = i11;
+        this.f43319e = 1.0f;
+        this.f43320f = new o1.k(this, ur.E);
+        this.h = new o1.k(this, ur.F);
+        this.f43321n = new o1.k(this, ur.G);
+        this.f43322r = new o1.k(this, ur.H);
+        this.f43323s = true;
         this.v = 1.0f;
-        this.f43572w = 1.0f;
+        this.f43324w = 1.0f;
         this.D = false;
         setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.G6, false));
+        setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.G6, false));
         setMovementMethod(null);
-        addTextChangedListener(new o0(this, 5));
+        addTextChangedListener(new p0(this, 5));
     }
 
     @Override
@@ -34,44 +34,44 @@ public final class qr extends vr {
         }
         int keyCode = keyEvent.getKeyCode();
         sr srVar = this.K;
-        int length = srVar.f42755f.length;
-        int i9 = this.I;
-        if (i9 >= length) {
+        int length = srVar.f42455f.length;
+        int i10 = this.I;
+        if (i10 >= length) {
             return false;
         }
         if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && srVar.f42755f[i9].length() == 1) {
-                srVar.f42755f[i9].m();
-                srVar.f42755f[i9].setText("");
+            if (keyCode == 67 && srVar.f42455f[i10].length() == 1) {
+                srVar.f42455f[i10].m();
+                srVar.f42455f[i10].setText("");
                 return true;
-            } else if (keyCode == 67 && srVar.f42755f[i9].length() == 0 && i9 > 0) {
-                vr[] vrVarArr = srVar.f42755f;
-                vrVarArr[i9 - 1].setSelection(vrVarArr[i9 - 1].length());
-                for (int i10 = 0; i10 < i9; i10++) {
-                    if (i10 == i9 - 1) {
-                        srVar.f42755f[i9 - 1].requestFocus();
+            } else if (keyCode == 67 && srVar.f42455f[i10].length() == 0 && i10 > 0) {
+                ur[] urVarArr = srVar.f42455f;
+                urVarArr[i10 - 1].setSelection(urVarArr[i10 - 1].length());
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 == i10 - 1) {
+                        srVar.f42455f[i10 - 1].requestFocus();
                     } else {
-                        srVar.f42755f[i10].clearFocus();
+                        srVar.f42455f[i11].clearFocus();
                     }
                 }
-                srVar.f42755f[i9 - 1].m();
-                srVar.f42755f[i9 - 1].setText("");
+                srVar.f42455f[i10 - 1].m();
+                srVar.f42455f[i10 - 1].setText("");
                 return true;
             } else {
                 if (keyCode >= 7 && keyCode <= 16) {
                     String num = Integer.toString(keyCode - 7);
-                    if (srVar.f42755f[i9].getText() != null && num.equals(srVar.f42755f[i9].getText().toString())) {
-                        if (i9 >= this.J - 1) {
+                    if (srVar.f42455f[i10].getText() != null && num.equals(srVar.f42455f[i10].getText().toString())) {
+                        if (i10 >= this.J - 1) {
                             srVar.a();
                         } else {
-                            srVar.f42755f[i9 + 1].requestFocus();
+                            srVar.f42455f[i10 + 1].requestFocus();
                         }
                         return true;
                     }
-                    if (srVar.f42755f[i9].length() > 0) {
-                        srVar.f42755f[i9].m();
+                    if (srVar.f42455f[i10].length() > 0) {
+                        srVar.f42455f[i10].m();
                     }
-                    srVar.f42755f[i9].setText(num);
+                    srVar.f42455f[i10].setText(num);
                 }
                 return true;
             }

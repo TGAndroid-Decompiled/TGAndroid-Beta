@@ -1,58 +1,45 @@
 package h8;
 
-import j3.r0;
-public abstract class j {
-    public static final com.google.android.gms.common.api.e f10246a = new com.google.android.gms.common.api.e("Wearable.API", new b7.d(5), new Object());
-    public static final u5.c[] f10247b = {new u5.c("app_client", 4), new u5.c("carrier_auth", 1), new u5.c("wear3_oem_companion", 1), new u5.c("wear_consent", 2), new u5.c("wear_consent_recordoptin", 1), new u5.c("wear_consent_supervised", 1), new u5.c("wear_fast_pair_account_key_sync", 1), new u5.c("wear_get_related_configs", 1), new u5.c("wear_get_node_id", 1), new u5.c("wear_retry_connection", 1), new u5.c("wear_set_cloud_sync_setting_by_node", 1), new u5.c("wear_update_config", 1), new u5.c("wear_update_connection_retry_strategy", 1), new u5.c("wearable_services", 1)};
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class j extends a6.a {
+    public static final Parcelable.Creator<j> CREATOR = new g8.b(10);
+    public boolean f7898a;
+    public boolean f7899b;
+    public c f7900c;
+    public boolean d;
+    public m f7901e;
+    public ArrayList f7902f;
+    public l h;
+    public n f7903n;
+    public boolean f7904r;
+    public String f7905s;
+    public Bundle v;
 
-    public static String a(int i9) {
-        switch (i9) {
-            case -1:
-                return "SUCCESS_CACHE";
-            case 0:
-                return "SUCCESS";
-            case 1:
-            case 9:
-            case 11:
-            case 12:
-            default:
-                return r0.l(i9, "unknown status code: ");
-            case 2:
-                return "SERVICE_VERSION_UPDATE_REQUIRED";
-            case 3:
-                return "SERVICE_DISABLED";
-            case 4:
-                return "SIGN_IN_REQUIRED";
-            case 5:
-                return "INVALID_ACCOUNT";
-            case 6:
-                return "RESOLUTION_REQUIRED";
-            case 7:
-                return "NETWORK_ERROR";
-            case 8:
-                return "INTERNAL_ERROR";
-            case 10:
-                return "DEVELOPER_ERROR";
-            case 13:
-                return "ERROR";
-            case 14:
-                return "INTERRUPTED";
-            case 15:
-                return "TIMEOUT";
-            case 16:
-                return "CANCELED";
-            case 17:
-                return "API_NOT_CONNECTED";
-            case 18:
-                return "DEAD_CLIENT";
-            case 19:
-                return "REMOTE_EXCEPTION";
-            case 20:
-                return "CONNECTION_SUSPENDED_DURING_CALL";
-            case 21:
-                return "RECONNECTION_TIMED_OUT_DURING_UPDATE";
-            case 22:
-                return "RECONNECTION_TIMED_OUT";
-        }
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        boolean z10 = this.f7898a;
+        com.google.android.gms.internal.cast.o.s(parcel, 1, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        boolean z11 = this.f7899b;
+        com.google.android.gms.internal.cast.o.s(parcel, 2, 4);
+        parcel.writeInt(z11 ? 1 : 0);
+        com.google.android.gms.internal.cast.o.k(parcel, 3, this.f7900c, i10);
+        boolean z12 = this.d;
+        com.google.android.gms.internal.cast.o.s(parcel, 4, 4);
+        parcel.writeInt(z12 ? 1 : 0);
+        com.google.android.gms.internal.cast.o.k(parcel, 5, this.f7901e, i10);
+        com.google.android.gms.internal.cast.o.h(parcel, 6, this.f7902f);
+        com.google.android.gms.internal.cast.o.k(parcel, 7, this.h, i10);
+        com.google.android.gms.internal.cast.o.k(parcel, 8, this.f7903n, i10);
+        boolean z13 = this.f7904r;
+        com.google.android.gms.internal.cast.o.s(parcel, 9, 4);
+        parcel.writeInt(z13 ? 1 : 0);
+        com.google.android.gms.internal.cast.o.l(parcel, 10, this.f7905s);
+        com.google.android.gms.internal.cast.o.b(parcel, 11, this.v);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

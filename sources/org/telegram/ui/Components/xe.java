@@ -1,31 +1,19 @@
 package org.telegram.ui.Components;
+public final class xe implements k71, b5 {
+    public final ChatActivityEnterView f34704a;
 
-import android.app.Dialog;
-import android.view.ViewTreeObserver;
-public final class xe implements ViewTreeObserver.OnPreDrawListener {
-    public final int f34665a;
-    public final Dialog f34666b;
-    public final ChatActivityEnterView f34667c;
-
-    public xe(ChatActivityEnterView chatActivityEnterView, Dialog dialog, int i9) {
-        this.f34665a = i9;
-        this.f34667c = chatActivityEnterView;
-        this.f34666b = dialog;
+    public xe(ChatActivityEnterView chatActivityEnterView) {
+        this.f34704a = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f34665a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f34667c;
-                chatActivityEnterView.f26141l0.getViewTreeObserver().removeOnPreDrawListener(this);
-                chatActivityEnterView.f26141l0.postDelayed(new fg(this.f34666b, 18), 100L);
-                return true;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34667c;
-                chatActivityEnterView2.f26141l0.getViewTreeObserver().removeOnPreDrawListener(this);
-                chatActivityEnterView2.f26141l0.postDelayed(new fg(this.f34666b, 18), 100L);
-                return true;
+    public void I(int i10, int i11, boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f34704a;
+        boolean T0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
+        ff ffVar = chatActivityEnterView.H0;
+        if (ffVar != null) {
+            ffVar.h(!T0);
+            chatActivityEnterView.H0 = null;
         }
     }
 }

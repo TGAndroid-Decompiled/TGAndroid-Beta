@@ -1,22 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class zi0 extends e00 {
-    public final ej0 Q;
+public final class zi0 extends Drawable {
+    public final int f35353a;
+    public final int f35354b;
+    public final aj0 f35355c;
 
-    public zi0(ej0 ej0Var, Context context, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context, b6Var);
-        this.Q = ej0Var;
+    public zi0(aj0 aj0Var, int i10, int i11) {
+        this.f35355c = aj0Var;
+        this.f35353a = i10;
+        this.f35354b = i11;
     }
 
     @Override
-    public final int getAdditionalHeight() {
-        ca0 ca0Var;
-        ej0 ej0Var = this.Q;
-        if (!ej0Var.D.isEmpty() && (ca0Var = ej0Var.F) != null) {
-            return AndroidUtilities.dp(8.0f) + ca0Var.getMeasuredHeight();
-        }
-        return 0;
+    public final void draw(Canvas canvas) {
+        Rect rect = AndroidUtilities.rectTmp2;
+        int centerX = getBounds().centerX();
+        float f9 = this.f35353a;
+        int dp = centerX - (AndroidUtilities.dp(f9) / 2);
+        int centerY = getBounds().centerY();
+        float f10 = this.f35354b;
+        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f9) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
+        aj0 aj0Var = this.f35355c;
+        aj0Var.f26789c.setImageCoords(rect);
+        aj0Var.f26789c.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f35355c.f26789c.setAlpha(i10 / 255.0f);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f35355c.f26789c.setColorFilter(colorFilter);
     }
 }

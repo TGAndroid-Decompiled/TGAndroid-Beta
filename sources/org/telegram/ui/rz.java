@@ -1,26 +1,21 @@
 package org.telegram.ui;
+public final class rz implements Runnable {
+    public final int f42236a;
+    public final p00 f42237b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class rz implements RequestDelegate {
-    public final int f42514a;
-    public final n00 f42515b;
-
-    public rz(n00 n00Var, int i9) {
-        this.f42514a = i9;
-        this.f42515b = n00Var;
+    public rz(p00 p00Var, int i10) {
+        this.f42236a = i10;
+        this.f42237b = p00Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f42514a) {
+    public final void run() {
+        switch (this.f42236a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.p61(22, this.f42515b, tLObject));
+                p00.V(this.f42237b);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new jq(this.f42515b, tL_error, tLObject, 6));
+                p00.W(this.f42237b);
                 return;
         }
     }

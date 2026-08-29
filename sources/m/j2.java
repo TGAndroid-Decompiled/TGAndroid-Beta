@@ -10,51 +10,51 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class j2 extends s1 {
     public f2 A;
     public l.m B;
-    public final int f16981x;
-    public final int f16982y;
+    public final int f16578x;
+    public final int f16579y;
 
     public j2(Context context, boolean z10) {
         super(context, z10);
         if (1 == i2.a(context.getResources().getConfiguration())) {
-            this.f16981x = 21;
-            this.f16982y = 22;
+            this.f16578x = 21;
+            this.f16579y = 22;
             return;
         }
-        this.f16981x = 22;
-        this.f16982y = 21;
+        this.f16578x = 22;
+        this.f16579y = 21;
     }
 
     @Override
     public final boolean onHoverEvent(MotionEvent motionEvent) {
         l.h hVar;
-        int i9;
+        int i10;
         l.m mVar;
         int pointToPosition;
-        int i10;
+        int i11;
         if (this.A != null) {
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
                 HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
-                i9 = headerViewListAdapter.getHeadersCount();
+                i10 = headerViewListAdapter.getHeadersCount();
                 hVar = (l.h) headerViewListAdapter.getWrappedAdapter();
             } else {
                 hVar = (l.h) adapter;
-                i9 = 0;
+                i10 = 0;
             }
-            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i10 = pointToPosition - i9) >= 0 && i10 < hVar.getCount()) {
-                mVar = hVar.getItem(i10);
+            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i11 = pointToPosition - i10) >= 0 && i11 < hVar.getCount()) {
+                mVar = hVar.getItem(i11);
             } else {
                 mVar = null;
             }
             l.m mVar2 = this.B;
             if (mVar2 != mVar) {
-                l.k kVar = hVar.f16548a;
+                l.k kVar = hVar.f13976a;
                 if (mVar2 != null) {
-                    this.A.k(kVar, mVar2);
+                    this.A.g(kVar, mVar2);
                 }
                 this.B = mVar;
                 if (mVar != null) {
-                    this.A.y(kVar, mVar);
+                    this.A.o(kVar, mVar);
                 }
             }
         }
@@ -62,15 +62,15 @@ public final class j2 extends s1 {
     }
 
     @Override
-    public final boolean onKeyDown(int i9, KeyEvent keyEvent) {
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.h hVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i9 == this.f16981x) {
+        if (listMenuItemView != null && i10 == this.f16578x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i9 == this.f16982y) {
+        } else if (listMenuItemView != null && i10 == this.f16579y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
@@ -78,10 +78,10 @@ public final class j2 extends s1 {
             } else {
                 hVar = (l.h) adapter;
             }
-            hVar.f16548a.c(false);
+            hVar.f13976a.c(false);
             return true;
         } else {
-            return super.onKeyDown(i9, keyEvent);
+            return super.onKeyDown(i10, keyEvent);
         }
     }
 

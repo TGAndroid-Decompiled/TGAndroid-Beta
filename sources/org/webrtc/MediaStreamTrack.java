@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import j3.r0;
+import j7.l1;
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
@@ -12,18 +12,18 @@ public class MediaStreamTrack {
         
         private final int nativeIndex;
 
-        MediaType(int i9) {
-            this.nativeIndex = i9;
+        MediaType(int i10) {
+            this.nativeIndex = i10;
         }
 
-        public static MediaType fromNativeIndex(int i9) {
+        public static MediaType fromNativeIndex(int i10) {
             MediaType[] values;
             for (MediaType mediaType : values()) {
-                if (mediaType.getNative() == i9) {
+                if (mediaType.getNative() == i10) {
                     return mediaType;
                 }
             }
-            throw new IllegalArgumentException(r0.l(i9, "Unknown native media type: "));
+            throw new IllegalArgumentException(l1.k(i10, "Unknown native media type: "));
         }
 
         public int getNative() {
@@ -35,8 +35,8 @@ public class MediaStreamTrack {
         LIVE,
         ENDED;
 
-        public static State fromNativeIndex(int i9) {
-            return values()[i9];
+        public static State fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 

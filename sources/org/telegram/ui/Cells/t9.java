@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
-public final class t9 {
-    public final CharSequence f25719a;
 
-    public t9(String str) {
-        this.f25719a = str;
-    }
+import android.text.Layout;
+public interface t9 extends s9 {
+    Layout getStaticTextLayout();
+
+    CharSequence getText();
 }

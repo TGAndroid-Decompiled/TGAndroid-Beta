@@ -1,20 +1,50 @@
 package d5;
-public final class r {
-    public final int f4380a;
-    public final boolean f4381b;
-    public final int f4382c;
-    public final int d;
-    public final int[] f4383e;
-    public final int f4384f;
-    public final float f4385g;
 
-    public r(int i9, boolean z10, int i10, int i11, int[] iArr, int i12, int i13, int i14, float f10) {
-        this.f4380a = i9;
-        this.f4381b = z10;
-        this.f4382c = i10;
-        this.d = i11;
-        this.f4383e = iArr;
-        this.f4384f = i12;
-        this.f4385g = f10;
-    }
+import j3.t0;
+import java.util.List;
+import l4.j1;
+public interface r {
+    j1 a();
+
+    void b(long j10, long j11, long j12, List list, n4.l[] lVarArr);
+
+    int c();
+
+    boolean d(int i10, long j10);
+
+    boolean e(int i10, long j10);
+
+    void f(boolean z10);
+
+    t0 g(int i10);
+
+    void h();
+
+    int i(int i10);
+
+    int j(long j10, List list);
+
+    void k();
+
+    int l();
+
+    int length();
+
+    int m(t0 t0Var);
+
+    t0 n();
+
+    int o();
+
+    boolean p(long j10, n4.e eVar, List list);
+
+    void q(float f9);
+
+    Object r();
+
+    void s();
+
+    void t();
+
+    int u(int i10);
 }

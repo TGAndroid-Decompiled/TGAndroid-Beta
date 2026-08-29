@@ -1,5 +1,5 @@
 package s0;
 
-import g7.k7;
-public abstract class j extends k7 {
+import i7.o7;
+public abstract class j extends o7 {
 }

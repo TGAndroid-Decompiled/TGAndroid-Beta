@@ -1,38 +1,45 @@
 package z6;
+public final class l extends m {
+    public final transient int f50734c;
+    public final transient int d;
+    public final m f50735e;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-public final class l extends y5.a {
-    public static final Parcelable.Creator<l> CREATOR = new w7.i(24);
-    public final boolean f50335a;
-
-    public l(boolean z10) {
-        this.f50335a = z10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if ((obj instanceof l) && this.f50335a == ((l) obj).f50335a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        if (this.f50335a) {
-            return 1;
-        }
-        return 0;
+    public l(m mVar, int i10, int i11) {
+        this.f50735e = mVar;
+        this.f50734c = i10;
+        this.d = i11;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.s(parcel, 1, 4);
-        parcel.writeInt(this.f50335a ? 1 : 0);
-        p8.r(parcel, q10);
+    public final Object get(int i10) {
+        a.e(i10, this.d);
+        return this.f50735e.get(i10 + this.f50734c);
+    }
+
+    @Override
+    public final int n() {
+        return this.f50735e.o() + this.f50734c + this.d;
+    }
+
+    @Override
+    public final int o() {
+        return this.f50735e.o() + this.f50734c;
+    }
+
+    @Override
+    public final Object[] q() {
+        return this.f50735e.q();
+    }
+
+    @Override
+    public final m subList(int i10, int i11) {
+        a.m(i10, i11, this.d);
+        int i12 = this.f50734c;
+        return this.f50735e.subList(i10 + i12, i11 + i12);
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

@@ -1,22 +1,33 @@
 package ih;
 
-import android.view.SurfaceView;
-import android.view.TextureView;
-import android.view.View;
-import java.util.ArrayList;
-public final class h4 {
-    public f1 f11500a;
-    public l9 f11501b;
-    public SurfaceView f11502c;
-    public c5.c d;
-    public TextureView f11503e;
-    public boolean f11504f;
-    public ArrayList f11505g;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h4 extends AnimatorListenerAdapter {
+    public final int f9221a;
+    public final boolean f9222b;
+    public final r5 f9223c;
 
-    public final void a() {
-        ArrayList arrayList = this.f11505g;
-        for (int i9 = 0; i9 < arrayList.size(); i9++) {
-            ((View) arrayList.get(i9)).invalidate();
+    public h4(r5 r5Var, boolean z10, int i10) {
+        this.f9221a = i10;
+        this.f9223c = r5Var;
+        this.f9222b = z10;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f9221a) {
+            case 0:
+                if (!this.f9222b) {
+                    this.f9223c.f9364y.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f9222b) {
+                    this.f9223c.f9362w.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 }

@@ -1,31 +1,31 @@
 package org.scilab.forge.jlatexmath;
 
-import aa.d;
+import a4.w;
 import java.util.HashMap;
-import ta.b;
+import u3.c;
 public class NewEnvironmentMacro extends NewCommandMacro {
-    public static void addNewEnvironment(String str, String str2, String str3, int i9) {
-        String j10 = b.j(str, "@env");
-        StringBuilder e10 = b.e(str2, " #");
-        int i10 = i9 + 1;
-        e10.append(i10);
-        e10.append(" ");
-        e10.append(str3);
-        NewCommandMacro.addNewCommand(j10, e10.toString(), i10);
+    public static void addNewEnvironment(String str, String str2, String str3, int i10) {
+        String k9 = c.k(str, "@env");
+        StringBuilder f9 = c.f(str2, " #");
+        int i11 = i10 + 1;
+        f9.append(i11);
+        f9.append(" ");
+        f9.append(str3);
+        NewCommandMacro.addNewCommand(k9, f9.toString(), i11);
     }
 
-    public static void addReNewEnvironment(String str, String str2, String str3, int i9) {
+    public static void addReNewEnvironment(String str, String str2, String str3, int i10) {
         HashMap<String, String> hashMap = NewCommandMacro.macrocode;
         if (hashMap.get(str + "@env") != null) {
-            String j10 = b.j(str, "@env");
-            StringBuilder e10 = b.e(str2, " #");
-            int i10 = i9 + 1;
-            e10.append(i10);
-            e10.append(" ");
-            e10.append(str3);
-            NewCommandMacro.addReNewCommand(j10, e10.toString(), i10);
+            String k9 = c.k(str, "@env");
+            StringBuilder f9 = c.f(str2, " #");
+            int i11 = i10 + 1;
+            f9.append(i11);
+            f9.append(" ");
+            f9.append(str3);
+            NewCommandMacro.addReNewCommand(k9, f9.toString(), i11);
             return;
         }
-        throw new ParseException(d.o("Environment ", str, "is not defined ! Use newenvironment instead ..."));
+        throw new ParseException(w.n("Environment ", str, "is not defined ! Use newenvironment instead ..."));
     }
 }

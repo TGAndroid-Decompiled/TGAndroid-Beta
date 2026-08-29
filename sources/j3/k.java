@@ -1,35 +1,43 @@
 package j3;
-public final class k implements Runnable {
-    public final int f13284a;
-    public final m f13285b;
-    public final Exception f13286c;
+public final class k implements f5.n {
+    public final c2.e0 f10563a;
+    public final q0 f10564b;
+    public e f10565c;
+    public f5.n d;
+    public boolean f10566e = true;
+    public boolean f10567f;
 
-    public k(m mVar, Exception exc, int i9) {
-        this.f13284a = i9;
-        this.f13285b = mVar;
-        this.f13286c = exc;
+    public k(q0 q0Var, f5.y yVar) {
+        this.f10564b = q0Var;
+        this.f10563a = new c2.e0(yVar);
     }
 
     @Override
-    public final void run() {
-        int i9 = this.f13284a;
-        Exception exc = this.f13286c;
-        m mVar = this.f13285b;
-        switch (i9) {
-            case 0:
-                n nVar = mVar.f13292b;
-                int i10 = d5.f0.f4349a;
-                i3.f fVar = ((h3.h0) nVar).f9440a.f9557r;
-                i3.a k10 = fVar.k();
-                fVar.l(k10, 1029, new h9.a(k10, exc, 16));
-                return;
-            default:
-                n nVar2 = mVar.f13292b;
-                int i11 = d5.f0.f4349a;
-                i3.f fVar2 = ((h3.h0) nVar2).f9440a.f9557r;
-                i3.a k11 = fVar2.k();
-                fVar2.l(k11, 1014, new i3.d(k11, exc, 13));
-                return;
+    public final x1 getPlaybackParameters() {
+        f5.n nVar = this.d;
+        if (nVar != null) {
+            return nVar.getPlaybackParameters();
         }
+        return (x1) this.f10563a.f2830e;
+    }
+
+    @Override
+    public final long getPositionUs() {
+        if (this.f10566e) {
+            return this.f10563a.getPositionUs();
+        }
+        f5.n nVar = this.d;
+        nVar.getClass();
+        return nVar.getPositionUs();
+    }
+
+    @Override
+    public final void setPlaybackParameters(x1 x1Var) {
+        f5.n nVar = this.d;
+        if (nVar != null) {
+            nVar.setPlaybackParameters(x1Var);
+            x1Var = this.d.getPlaybackParameters();
+        }
+        this.f10563a.setPlaybackParameters(x1Var);
     }
 }

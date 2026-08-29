@@ -7,102 +7,102 @@ import android.widget.BaseAdapter;
 import androidx.appcompat.view.menu.ListMenuItemView;
 import java.util.ArrayList;
 public final class h extends BaseAdapter {
-    public final k f16548a;
-    public int f16549b = -1;
-    public boolean f16550c;
+    public final k f13976a;
+    public int f13977b = -1;
+    public boolean f13978c;
     public final boolean d;
-    public final LayoutInflater f16551e;
-    public final int f16552f;
+    public final LayoutInflater f13979e;
+    public final int f13980f;
 
-    public h(k kVar, LayoutInflater layoutInflater, boolean z10, int i9) {
+    public h(k kVar, LayoutInflater layoutInflater, boolean z10, int i10) {
         this.d = z10;
-        this.f16551e = layoutInflater;
-        this.f16548a = kVar;
-        this.f16552f = i9;
+        this.f13979e = layoutInflater;
+        this.f13976a = kVar;
+        this.f13980f = i10;
         a();
     }
 
     public final void a() {
-        k kVar = this.f16548a;
+        k kVar = this.f13976a;
         m mVar = kVar.v;
         if (mVar != null) {
             kVar.i();
-            ArrayList arrayList = kVar.f16561j;
+            ArrayList arrayList = kVar.f13989j;
             int size = arrayList.size();
-            for (int i9 = 0; i9 < size; i9++) {
-                if (((m) arrayList.get(i9)) == mVar) {
-                    this.f16549b = i9;
+            for (int i10 = 0; i10 < size; i10++) {
+                if (((m) arrayList.get(i10)) == mVar) {
+                    this.f13977b = i10;
                     return;
                 }
             }
         }
-        this.f16549b = -1;
+        this.f13977b = -1;
     }
 
     @Override
-    public final m getItem(int i9) {
+    public final m getItem(int i10) {
         ArrayList l10;
         boolean z10 = this.d;
-        k kVar = this.f16548a;
+        k kVar = this.f13976a;
         if (z10) {
             kVar.i();
-            l10 = kVar.f16561j;
+            l10 = kVar.f13989j;
         } else {
             l10 = kVar.l();
         }
-        int i10 = this.f16549b;
-        if (i10 >= 0 && i9 >= i10) {
-            i9++;
+        int i11 = this.f13977b;
+        if (i11 >= 0 && i10 >= i11) {
+            i10++;
         }
-        return (m) l10.get(i9);
+        return (m) l10.get(i10);
     }
 
     @Override
     public final int getCount() {
         ArrayList l10;
         boolean z10 = this.d;
-        k kVar = this.f16548a;
+        k kVar = this.f13976a;
         if (z10) {
             kVar.i();
-            l10 = kVar.f16561j;
+            l10 = kVar.f13989j;
         } else {
             l10 = kVar.l();
         }
-        if (this.f16549b < 0) {
+        if (this.f13977b < 0) {
             return l10.size();
         }
         return l10.size() - 1;
     }
 
     @Override
-    public final long getItemId(int i9) {
-        return i9;
+    public final long getItemId(int i10) {
+        return i10;
     }
 
     @Override
-    public final View getView(int i9, View view, ViewGroup viewGroup) {
-        int i10;
+    public final View getView(int i10, View view, ViewGroup viewGroup) {
+        int i11;
         boolean z10 = false;
         if (view == null) {
-            view = this.f16551e.inflate(this.f16552f, viewGroup, false);
+            view = this.f13979e.inflate(this.f13980f, viewGroup, false);
         }
-        int i11 = getItem(i9).f16579b;
-        int i12 = i9 - 1;
-        if (i12 >= 0) {
-            i10 = getItem(i12).f16579b;
+        int i12 = getItem(i10).f14007b;
+        int i13 = i10 - 1;
+        if (i13 >= 0) {
+            i11 = getItem(i13).f14007b;
         } else {
-            i10 = i11;
+            i11 = i12;
         }
         ListMenuItemView listMenuItemView = (ListMenuItemView) view;
-        if (this.f16548a.m() && i11 != i10) {
+        if (this.f13976a.m() && i12 != i11) {
             z10 = true;
         }
         listMenuItemView.setGroupDividerEnabled(z10);
         y yVar = (y) view;
-        if (this.f16550c) {
+        if (this.f13978c) {
             listMenuItemView.setForceShowIcon(true);
         }
-        yVar.b(getItem(i9));
+        yVar.b(getItem(i10));
         return view;
     }
 

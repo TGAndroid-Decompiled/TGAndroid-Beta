@@ -1,40 +1,43 @@
 package nh;
+public final class n implements Runnable {
+    public final int f18160a;
+    public final wa f18161b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import g7.e6;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.w5;
-import org.telegram.ui.Components.o9;
-public final class n extends FrameLayout implements w5 {
-    public final o9 f18681a;
-
-    public n(Context context) {
-        super(context);
-        o9 o9Var = new o9(context);
-        this.f18681a = o9Var;
-        o9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(o9Var, e6.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+    public n(wa waVar, int i10) {
+        this.f18160a = i10;
+        this.f18161b = waVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Drawable drawable = f6.S0;
-        o9 o9Var = this.f18681a;
-        ff.s.a(canvas, drawable, (o9Var.getWidth() / 2.0f) + o9Var.getLeft(), (o9Var.getHeight() / 2.0f) + o9Var.getTop(), o9Var.getHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(136.0f), 1073741824));
-    }
-
-    @Override
-    public final void d() {
+    public final void run() {
+        switch (this.f18160a) {
+            case 0:
+                this.f18161b.n();
+                return;
+            case 1:
+                wa waVar = this.f18161b;
+                waVar.G0 = false;
+                waVar.H0 = Integer.MIN_VALUE;
+                waVar.invalidate();
+                waVar.O0.setVisibility(0);
+                waVar.P0.setVisibility(0);
+                return;
+            default:
+                gb gbVar = this.f18161b.O1;
+                va vaVar = gbVar.T0;
+                if (vaVar != null) {
+                    vaVar.K = false;
+                    vaVar.c();
+                    va vaVar2 = gbVar.T0;
+                    vaVar2.m(0L);
+                    qb qbVar = vaVar2.B;
+                    if (qbVar != null) {
+                        qbVar.setProgress(0L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

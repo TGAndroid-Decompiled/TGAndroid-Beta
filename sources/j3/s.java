@@ -1,3 +1,3 @@
 package j3;
-public interface s {
+public interface s extends c2 {
 }

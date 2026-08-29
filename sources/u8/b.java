@@ -1,3 +1,3 @@
 package u8;
-public @interface b {
+public abstract class b {
 }

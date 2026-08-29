@@ -1,12 +1,19 @@
 package org.telegram.ui.Cells;
+
+import android.graphics.Rect;
+import android.text.Layout;
 public interface v9 {
-    int getBottom();
+    Layout getLayout();
 
-    int getTop();
+    CharSequence getPrefix();
 
-    float getX();
+    int getRow();
 
-    float getY();
+    Rect getSelectionBounds();
 
-    void invalidate();
+    CharSequence getText();
+
+    int getX();
+
+    int getY();
 }

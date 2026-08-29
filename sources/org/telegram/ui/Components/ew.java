@@ -1,20 +1,28 @@
 package org.telegram.ui.Components;
-public final class ew implements Runnable {
-    public final int f28189a;
-    public final ky f28190b;
 
-    public ew(ky kyVar, int i9) {
-        this.f28189a = i9;
-        this.f28190b = kyVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ew extends FrameLayout {
+    public final fz f28193a;
+
+    public ew(fz fzVar, Context context) {
+        super(context);
+        this.f28193a = fzVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28189a) {
-            case 0:
-            default:
-                this.f28190b.d();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        fz fzVar = this.f28193a;
+        iw iwVar = fzVar.f28608k0;
+        if (view == fzVar.f28585d0) {
+            canvas.save();
+            canvas.clipRect(0.0f, iwVar.getY() + iwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
         }
+        return super.drawChild(canvas, view, j10);
     }
 }

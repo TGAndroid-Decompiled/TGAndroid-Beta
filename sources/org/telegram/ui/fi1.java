@@ -1,47 +1,147 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.content.Intent;
+import android.view.View;
+import android.webkit.JsPromptResult;
+import androidx.car.app.IStartCarApp;
+import androidx.car.app.notification.CarAppNotificationBroadcastReceiver;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fi1 {
-    public org.telegram.ui.Cells.z1 f38298a;
-    public org.telegram.ui.ActionBar.c2 f38299b;
-    public TextView f38300c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.tgnet.tl.TL_payments;
+public final class fi1 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.bl0, Utilities.Callback3Return, mc0, th.l0, org.telegram.ui.Components.qt, th.a4, androidx.car.app.utils.e {
+    public final int f38189a;
+    public final Object f38190b;
+    public final Object f38191c;
 
-    public static void a(Context context, d5.d dVar, Runnable runnable) {
-        ?? obj = new Object();
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-        alertDialog$Builder.f22702a.N = LocaleController.getString(R.string.TermsOfUse);
-        LinearLayout f10 = org.telegram.messenger.ll.f(context, 1);
-        TextView textView = new TextView(context);
-        textView.setLetterSpacing(0.025f);
-        textView.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23108j5, false));
-        textView.setTextSize(1, 14.0f);
-        f10.addView(textView, g7.e6.t(-1, -2, 0, 24, 0, 24, 0));
-        org.telegram.ui.Cells.z1 z1Var = new org.telegram.ui.Cells.z1(context, 1, null);
-        obj.f38298a = z1Var;
-        z1Var.getTextView().getLayoutParams().width = -1;
-        obj.f38298a.getTextView().setTextSize(1, 14.0f);
-        f10.addView(obj.f38298a, g7.e6.t(-1, 48, 3, 8, 0, 8, 0));
-        boolean[] zArr = new boolean[1];
-        org.telegram.messenger.l0.m(R.string.BotWebAppDisclaimerSubtitle, textView);
-        obj.f38298a.e(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new cv(context, 8)), "", false, false, false);
-        alertDialog$Builder.n(f10);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new ei1(0, dVar, zArr));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new fk0(10));
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22702a;
-        obj.f38299b = c2Var;
-        c2Var.show();
-        TextView textView2 = (TextView) obj.f38299b.d(-1);
-        obj.f38300c = textView2;
-        textView2.setEnabled(false);
-        obj.f38300c.setAlpha(0.5f);
-        obj.f38298a.setOnClickListener(new w21(obj, 10));
-        obj.f38298a.setBackground(org.telegram.ui.ActionBar.f6.f0(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23092i6, false), 7, -1));
-        obj.f38299b.setOnDismissListener(new org.telegram.ui.Components.k2(zArr, runnable));
+    public fi1(int i10, Object obj, Object obj2) {
+        this.f38189a = i10;
+        this.f38190b = obj;
+        this.f38191c = obj2;
+    }
+
+    @Override
+    public org.telegram.ui.Components.j70 b(th.d1 d1Var) {
+        th.p pVar = (th.p) ((oc.i) this.f38190b).f19484c;
+        org.telegram.ui.Components.j70 j70Var = new org.telegram.ui.Components.j70(pVar, (org.telegram.ui.ActionBar.c6) this.f38191c, d1Var, false, false, true);
+        pVar.D = j70Var;
+        return j70Var;
+    }
+
+    @Override
+    public boolean c(int i10, View view) {
+        return ph.d3.B0((ph.d3) this.f38190b, (Context) this.f38191c, view, i10);
+    }
+
+    @Override
+    public void call() {
+        int i10 = CarAppNotificationBroadcastReceiver.f1134a;
+        ((IStartCarApp) this.f38190b).startCarApp((Intent) this.f38191c);
+    }
+
+    @Override
+    public void d(org.telegram.tgnet.TLRPC.MessageMedia r1, int r2, boolean r3, int r4, long r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fi1.d(org.telegram.tgnet.TLRPC$MessageMedia, int, boolean, int, long):void");
+    }
+
+    @Override
+    public void e1() {
+        switch (this.f38189a) {
+            case 11:
+                ((th.h0) this.f38190b).i();
+                ((th.g0) this.f38191c).l0();
+                return;
+            default:
+                th.g5 g5Var = (th.g5) this.f38190b;
+                th.j5 j5Var = (th.j5) this.f38191c;
+                TL_iv.pageTableCell pagetablecell = j5Var.f48527b;
+                if (pagetablecell != null) {
+                    th.x5.d(pagetablecell, j5Var.f48526a.getText());
+                }
+                th.w2 w2Var = g5Var.A;
+                if (w2Var != null && g5Var.f48892a != null) {
+                    th.p3.O1(w2Var.f48834a);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f38189a) {
+            case 0:
+                ((f5.d) this.f38190b).accept(Boolean.TRUE);
+                ((boolean[]) this.f38191c)[0] = true;
+                c2Var.dismiss();
+                return;
+            case 1:
+                org.telegram.ui.web.p.Y((org.telegram.ui.web.p) this.f38190b, (HashSet) this.f38191c);
+                return;
+            case 2:
+                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.f38190b;
+                TL_bots.allowSendMessage allowsendmessage = new TL_bots.allowSendMessage();
+                allowsendmessage.bot = MessagesController.getInstance(z0Var.I).getInputUser(z0Var.Q);
+                ConnectionsManager.getInstance(z0Var.I).sendRequest(allowsendmessage, new eg.z(z0Var, (String[]) this.f38191c, c2Var, 22));
+                return;
+            case 3:
+                boolean[] zArr = (boolean[]) this.f38191c;
+                JsPromptResult jsPromptResult = (JsPromptResult) this.f38190b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    jsPromptResult.cancel();
+                    return;
+                }
+                return;
+            case 4:
+                ph.d3.y0((ph.d3) this.f38190b, (TL_payments.connectedBotStarRef) this.f38191c);
+                return;
+            case 5:
+            default:
+                sf.r.Z((sf.r) this.f38190b, (TL_account.TL_businessChatLink) this.f38191c);
+                return;
+            case 6:
+                rf.v0 v0Var = (rf.v0) this.f38190b;
+                v0Var.getClass();
+                ((boolean[]) this.f38191c)[0] = true;
+                v0Var.Q();
+                return;
+        }
+    }
+
+    @Override
+    public void run(long j10) {
+        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
+        tL_inlineButtonTypeUserProfile.user_id = j10;
+        ((th.m3) this.f38190b).a((String) this.f38191c, tL_inlineButtonTypeUserProfile);
+    }
+
+    public fi1(boolean[] zArr, JsPromptResult jsPromptResult) {
+        this.f38189a = 3;
+        this.f38191c = zArr;
+        this.f38190b = jsPromptResult;
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3) {
+        sf.l lVar = (sf.l) this.f38190b;
+        TLRPC.Document document = (TLRPC.Document) obj2;
+        Boolean bool = (Boolean) obj3;
+        lVar.f47846w = false;
+        AndroidUtilities.cancelRunOnUIThread(lVar.d);
+        sf.j jVar = lVar.f47843n;
+        lVar.f47847x = document;
+        jVar.setSticker(document);
+        ((org.telegram.ui.Cells.m8) ((View) this.f38191c)).setValueSticker(document);
+        lVar.e0(true);
+        return Boolean.TRUE;
     }
 }

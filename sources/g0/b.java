@@ -9,41 +9,41 @@ import android.os.PersistableBundle;
 import android.text.TextUtils;
 import e0.p0;
 import f0.h;
-import g7.p6;
+import i7.u6;
 import java.util.Arrays;
 public final class b {
-    public final c f7052a;
+    public final c f6962a;
 
     public b(Context context, ShortcutInfo shortcutInfo) {
         p0[] p0VarArr;
         String string;
         ?? obj = new Object();
-        this.f7052a = obj;
-        obj.f7053a = context;
-        obj.f7054b = shortcutInfo.getId();
+        this.f6962a = obj;
+        obj.f6963a = context;
+        obj.f6964b = shortcutInfo.getId();
         shortcutInfo.getPackage();
         Intent[] intents = shortcutInfo.getIntents();
-        obj.f7055c = (Intent[]) Arrays.copyOf(intents, intents.length);
+        obj.f6965c = (Intent[]) Arrays.copyOf(intents, intents.length);
         obj.d = shortcutInfo.getActivity();
-        obj.f7056e = shortcutInfo.getShortLabel();
-        obj.f7057f = shortcutInfo.getLongLabel();
-        obj.f7058g = shortcutInfo.getDisabledMessage();
+        obj.f6966e = shortcutInfo.getShortLabel();
+        obj.f6967f = shortcutInfo.getLongLabel();
+        obj.f6968g = shortcutInfo.getDisabledMessage();
         if (Build.VERSION.SDK_INT >= 28) {
             shortcutInfo.getDisabledReason();
         } else {
             shortcutInfo.isEnabled();
         }
-        obj.f7060j = shortcutInfo.getCategories();
+        obj.f6970j = shortcutInfo.getCategories();
         PersistableBundle extras = shortcutInfo.getExtras();
         h hVar = null;
         if (extras != null && extras.containsKey("extraPersonCount")) {
-            int i9 = extras.getInt("extraPersonCount");
-            p0VarArr = new p0[i9];
-            int i10 = 0;
-            while (i10 < i9) {
+            int i10 = extras.getInt("extraPersonCount");
+            p0VarArr = new p0[i10];
+            int i11 = 0;
+            while (i11 < i10) {
                 StringBuilder sb2 = new StringBuilder("extraPerson_");
-                int i11 = i10 + 1;
-                sb2.append(i11);
+                int i12 = i11 + 1;
+                sb2.append(i12);
                 PersistableBundle persistableBundle = extras.getPersistableBundle(sb2.toString());
                 String string2 = persistableBundle.getString("name");
                 String string3 = persistableBundle.getString("uri");
@@ -51,23 +51,23 @@ public final class b {
                 boolean z10 = persistableBundle.getBoolean("isBot");
                 boolean z11 = persistableBundle.getBoolean("isImportant");
                 ?? obj2 = new Object();
-                obj2.f4749a = string2;
-                obj2.f4750b = null;
-                obj2.f4751c = string3;
+                obj2.f5719a = string2;
+                obj2.f5720b = null;
+                obj2.f5721c = string3;
                 obj2.d = string4;
-                obj2.f4752e = z10;
-                obj2.f4753f = z11;
-                p0VarArr[i10] = obj2;
-                i10 = i11;
+                obj2.f5722e = z10;
+                obj2.f5723f = z11;
+                p0VarArr[i11] = obj2;
+                i11 = i12;
             }
         } else {
             p0VarArr = 0;
         }
-        obj.f7059i = p0VarArr;
+        obj.f6969i = p0VarArr;
         shortcutInfo.getUserHandle();
         shortcutInfo.getLastChangedTimestamp();
-        int i12 = Build.VERSION.SDK_INT;
-        if (i12 >= 30) {
+        int i13 = Build.VERSION.SDK_INT;
+        if (i13 >= 30) {
             shortcutInfo.isCached();
         }
         shortcutInfo.isDynamic();
@@ -76,11 +76,11 @@ public final class b {
         shortcutInfo.isImmutable();
         shortcutInfo.isEnabled();
         shortcutInfo.hasKeyFieldsOnly();
-        c cVar = this.f7052a;
-        if (i12 >= 29) {
+        c cVar = this.f6962a;
+        if (i13 >= 29) {
             if (shortcutInfo.getLocusId() != null) {
                 LocusId locusId = shortcutInfo.getLocusId();
-                p6.a(locusId, "locusId cannot be null");
+                u6.a(locusId, "locusId cannot be null");
                 String id2 = locusId.getId();
                 if (!TextUtils.isEmpty(id2)) {
                     hVar = new h(id2);
@@ -94,15 +94,15 @@ public final class b {
                 hVar = new h(string);
             }
         }
-        cVar.f7061k = hVar;
-        this.f7052a.f7063m = shortcutInfo.getRank();
-        this.f7052a.f7064n = shortcutInfo.getExtras();
+        cVar.f6971k = hVar;
+        this.f6962a.f6973m = shortcutInfo.getRank();
+        this.f6962a.f6974n = shortcutInfo.getExtras();
     }
 
     public final c a() {
-        c cVar = this.f7052a;
-        if (!TextUtils.isEmpty(cVar.f7056e)) {
-            Intent[] intentArr = cVar.f7055c;
+        c cVar = this.f6962a;
+        if (!TextUtils.isEmpty(cVar.f6966e)) {
+            Intent[] intentArr = cVar.f6965c;
             if (intentArr != null && intentArr.length != 0) {
                 return cVar;
             }

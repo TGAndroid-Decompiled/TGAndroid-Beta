@@ -1,17 +1,21 @@
 package h7;
-public final class f5 implements q9.d {
-    public static final f5 f9926a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.ResolveInfo;
+public abstract class f5 {
+    public static boolean a(Context context) {
+        ApplicationInfo applicationInfo;
+        Intent putExtra = new Intent().addFlags(268435456).setAction("com.android.settings.panel.action.MEDIA_OUTPUT").putExtra("com.android.settings.panel.extra.PACKAGE_NAME", context.getPackageName());
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(putExtra, 0)) {
+            ActivityInfo activityInfo = resolveInfo.activityInfo;
+            if (activityInfo != null && (applicationInfo = activityInfo.applicationInfo) != null && (applicationInfo.flags & 129) != 0) {
+                context.startActivity(putExtra);
+                return true;
+            }
         }
-        throw new ClassCastException();
+        return false;
     }
 }

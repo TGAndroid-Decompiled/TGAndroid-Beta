@@ -4,29 +4,29 @@ import android.text.InputFilter;
 import android.text.Selection;
 import android.text.Spannable;
 import android.widget.TextView;
-import androidx.emoji2.text.k;
+import androidx.emoji2.text.l;
 import java.lang.ref.WeakReference;
-public final class c extends androidx.emoji2.text.h {
-    public final WeakReference f45900a;
-    public final WeakReference f45901b;
+public final class c extends androidx.emoji2.text.i {
+    public final WeakReference f46201a;
+    public final WeakReference f46202b;
 
     public c(TextView textView, d dVar) {
-        this.f45900a = new WeakReference(textView);
-        this.f45901b = new WeakReference(dVar);
+        this.f46201a = new WeakReference(textView);
+        this.f46202b = new WeakReference(dVar);
     }
 
     @Override
     public final void a() {
         InputFilter[] filters;
         int length;
-        TextView textView = (TextView) this.f45900a.get();
-        InputFilter inputFilter = (InputFilter) this.f45901b.get();
+        TextView textView = (TextView) this.f46201a.get();
+        InputFilter inputFilter = (InputFilter) this.f46202b.get();
         if (inputFilter != null && textView != null && (filters = textView.getFilters()) != null) {
             for (InputFilter inputFilter2 : filters) {
                 if (inputFilter2 == inputFilter) {
                     if (textView.isAttachedToWindow()) {
                         CharSequence text = textView.getText();
-                        k a2 = k.a();
+                        l a2 = l.a();
                         if (text == null) {
                             length = 0;
                         } else {

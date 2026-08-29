@@ -10,40 +10,40 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.PopupWindow;
 public abstract class s implements b0, x, AdapterView.OnItemClickListener {
-    public Rect f16609a;
+    public Rect f14037a;
 
-    public static int m(ListAdapter listAdapter, Context context, int i9) {
+    public static int m(ListAdapter listAdapter, Context context, int i10) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
         int count = listAdapter.getCount();
         FrameLayout frameLayout = null;
         View view = null;
-        int i10 = 0;
         int i11 = 0;
-        for (int i12 = 0; i12 < count; i12++) {
-            int itemViewType = listAdapter.getItemViewType(i12);
-            if (itemViewType != i11) {
+        int i12 = 0;
+        for (int i13 = 0; i13 < count; i13++) {
+            int itemViewType = listAdapter.getItemViewType(i13);
+            if (itemViewType != i12) {
                 view = null;
-                i11 = itemViewType;
+                i12 = itemViewType;
             }
             if (frameLayout == null) {
                 frameLayout = new FrameLayout(context);
             }
-            view = listAdapter.getView(i12, view, frameLayout);
+            view = listAdapter.getView(i13, view, frameLayout);
             view.measure(makeMeasureSpec, makeMeasureSpec2);
             int measuredWidth = view.getMeasuredWidth();
-            if (measuredWidth >= i9) {
-                return i9;
+            if (measuredWidth >= i10) {
+                return i10;
             }
-            if (measuredWidth > i10) {
-                i10 = measuredWidth;
+            if (measuredWidth > i11) {
+                i11 = measuredWidth;
             }
         }
-        return i10;
+        return i11;
     }
 
     @Override
-    public final boolean b(m mVar) {
+    public final boolean c(m mVar) {
         return false;
     }
 
@@ -59,34 +59,34 @@ public abstract class s implements b0, x, AdapterView.OnItemClickListener {
     public abstract void o(boolean z10);
 
     @Override
-    public final void onItemClick(AdapterView adapterView, View view, int i9, long j10) {
+    public final void onItemClick(AdapterView adapterView, View view, int i10, long j10) {
         h hVar;
-        int i10;
+        int i11;
         ListAdapter listAdapter = (ListAdapter) adapterView.getAdapter();
         if (listAdapter instanceof HeaderViewListAdapter) {
             hVar = (h) ((HeaderViewListAdapter) listAdapter).getWrappedAdapter();
         } else {
             hVar = (h) listAdapter;
         }
-        k kVar = hVar.f16548a;
-        MenuItem menuItem = (MenuItem) listAdapter.getItem(i9);
+        k kVar = hVar.f13976a;
+        MenuItem menuItem = (MenuItem) listAdapter.getItem(i10);
         if (!(this instanceof e)) {
-            i10 = 0;
+            i11 = 0;
         } else {
-            i10 = 4;
+            i11 = 4;
         }
-        kVar.q(menuItem, this, i10);
+        kVar.q(menuItem, this, i11);
     }
 
-    public abstract void p(int i9);
+    public abstract void p(int i10);
 
-    public abstract void q(int i9);
+    public abstract void q(int i10);
 
     public abstract void r(PopupWindow.OnDismissListener onDismissListener);
 
     public abstract void s(boolean z10);
 
-    public abstract void t(int i9);
+    public abstract void t(int i10);
 
     @Override
     public final void i(Context context, k kVar) {

@@ -1,21 +1,13 @@
 package o3;
-public final class d implements a {
-    public final int f18826a;
-    public final int f18827b;
-    public final int f18828c;
-    public final int d;
-    public final int f18829e;
+public final class d {
+    public static final d d = new d(-3, -9223372036854775807L, -1);
+    public final int f19079a;
+    public final long f19080b;
+    public final long f19081c;
 
-    public d(int i9, int i10, int i11, int i12, int i13) {
-        this.f18826a = i9;
-        this.f18827b = i10;
-        this.f18828c = i11;
-        this.d = i12;
-        this.f18829e = i13;
-    }
-
-    @Override
-    public final int getType() {
-        return 1752331379;
+    public d(int i10, long j10, long j11) {
+        this.f19079a = i10;
+        this.f19080b = j10;
+        this.f19081c = j11;
     }
 }

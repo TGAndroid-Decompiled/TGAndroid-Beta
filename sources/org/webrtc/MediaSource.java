@@ -9,8 +9,8 @@ public class MediaSource {
         ENDED,
         MUTED;
 
-        public static State fromNativeIndex(int i9) {
-            return values()[i9];
+        public static State fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 

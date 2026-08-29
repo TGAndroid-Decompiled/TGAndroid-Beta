@@ -1,41 +1,38 @@
 package ih;
+public final class w1 implements Runnable {
+    public final int f9484a;
+    public final y1 f9485b;
+    public final boolean f9486c;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.x60;
-public final class w1 implements View.OnLongClickListener {
-    public final int f12286a;
-    public final i4 f12287b;
-
-    public w1(i4 i4Var, int i9) {
-        this.f12286a = i9;
-        this.f12287b = i4Var;
+    public w1(y1 y1Var, boolean z10, int i10) {
+        this.f9484a = i10;
+        this.f9485b = y1Var;
+        this.f9486c = z10;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f12286a) {
+    public final void run() {
+        switch (this.f9484a) {
             case 0:
-                i4 i4Var = this.f12287b;
-                boolean z10 = false;
-                if (i4Var.D0(true)) {
-                    return false;
+                boolean z10 = this.f9486c;
+                y1 y1Var = this.f9485b;
+                if (!z10) {
+                    y1Var.C.setVisibility(8);
+                    return;
+                } else {
+                    y1Var.getClass();
+                    return;
                 }
-                x60 F = x60.F(i4Var.F0.v, i4Var.f11603x0, view);
-                F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new x1(i4Var, 6), false);
-                if (i4Var.H3 > 0) {
-                    z10 = true;
-                }
-                F.l(R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new x1(i4Var, 7), z10);
-                F.V(5);
-                F.U = true;
-                F.Z();
-                return true;
             default:
-                i4 i4Var2 = this.f12287b;
-                i4Var2.H0.k(i4Var2.D0(false));
-                return true;
+                boolean z11 = this.f9486c;
+                y1 y1Var2 = this.f9485b;
+                if (!z11) {
+                    y1Var2.v.setVisibility(8);
+                    return;
+                } else {
+                    y1Var2.getClass();
+                    return;
+                }
         }
     }
 }

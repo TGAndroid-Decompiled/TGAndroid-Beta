@@ -1,24 +1,22 @@
 package org.telegram.ui.Components;
-public final class h0 implements Runnable {
-    public final int f28905a;
-    public final i0 f28906b;
 
-    public h0(i0 i0Var, int i9) {
-        this.f28905a = i9;
-        this.f28906b = i0Var;
+import android.view.View;
+public final class h0 implements View.OnClickListener {
+    public final int f29020a;
+    public final Object f29021b;
+
+    public h0(Object obj, int i10) {
+        this.f29020a = i10;
+        this.f29021b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28905a) {
-            case 0:
-                this.f28906b.invalidateSelf();
-                return;
-            default:
-                i0 i0Var = this.f28906b;
-                i0Var.f29253c.d(0.0f, true);
-                i0Var.invalidateSelf();
-                return;
-        }
+    public final void onClick(android.view.View r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h0.onClick(android.view.View):void");
+    }
+
+    public h0(j70 j70Var, org.telegram.ui.ef0 ef0Var) {
+        this.f29020a = 28;
+        this.f29021b = j70Var;
     }
 }

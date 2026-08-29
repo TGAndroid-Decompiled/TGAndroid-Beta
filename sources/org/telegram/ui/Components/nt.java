@@ -1,35 +1,25 @@
 package org.telegram.ui.Components;
-public final class nt implements Runnable {
-    public final int f31180a;
-    public final ot f31181b;
 
-    public nt(ot otVar, int i9) {
-        this.f31180a = i9;
-        this.f31181b = otVar;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class nt implements Utilities.Callback {
+    public final st f31132a;
+    public final int f31133b;
+    public final int f31134c;
+
+    public nt(st stVar, int i10, int i11) {
+        this.f31132a = stVar;
+        this.f31133b = i10;
+        this.f31134c = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31180a) {
-            case 0:
-                ot otVar = this.f31181b;
-                otVar.post(new nt(otVar, 1));
-                return;
-            case 1:
-                ot otVar2 = this.f31181b;
-                otVar2.invalidateSpoilers();
-                otVar2.b();
-                return;
-            case 2:
-                ot.a(this.f31181b);
-                return;
-            case 3:
-                ot otVar3 = this.f31181b;
-                otVar3.post(new nt(otVar3, 4));
-                return;
-            default:
-                this.f31181b.setSpoilersRevealed(false, true);
-                return;
-        }
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        st stVar = this.f31132a;
+        Editable text = stVar.getText();
+        int i10 = this.f31133b;
+        text.replace(i10, this.f31134c, charSequence);
+        stVar.setSelection(i10, charSequence.length() + i10);
     }
 }

@@ -1,44 +1,58 @@
 package rb;
+public final class c {
+    public static final int[][] f47094c = {new int[]{21522, 0}, new int[]{20773, 1}, new int[]{24188, 2}, new int[]{23371, 3}, new int[]{17913, 4}, new int[]{16590, 5}, new int[]{20375, 6}, new int[]{19104, 7}, new int[]{30660, 8}, new int[]{29427, 9}, new int[]{32170, 10}, new int[]{30877, 11}, new int[]{26159, 12}, new int[]{25368, 13}, new int[]{27713, 14}, new int[]{26998, 15}, new int[]{5769, 16}, new int[]{5054, 17}, new int[]{7399, 18}, new int[]{6608, 19}, new int[]{1890, 20}, new int[]{597, 21}, new int[]{3340, 22}, new int[]{2107, 23}, new int[]{13663, 24}, new int[]{12392, 25}, new int[]{16177, 26}, new int[]{14854, 27}, new int[]{9396, 28}, new int[]{8579, 29}, new int[]{11994, 30}, new int[]{11245, 31}};
+    public final b f47095a;
+    public final byte f47096b;
 
-import d5.p;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import lb.h;
-import n2.w;
-public abstract class c {
-    public static final int[] f47113a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
-    public static final Charset f47114b = StandardCharsets.ISO_8859_1;
-
-    public static void a(java.lang.String r8, pb.d r9, lb.a r10, java.nio.charset.Charset r11) {
-        throw new UnsupportedOperationException("Method not decompiled: rb.c.a(java.lang.String, pb.d, lb.a, java.nio.charset.Charset):void");
+    public c(int i10) {
+        int i11 = (i10 >> 3) & 3;
+        if (i11 >= 0 && i11 < 4) {
+            this.f47095a = b.d[i11];
+            this.f47096b = (byte) (i10 & 7);
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public static boolean b(String str) {
-        byte[] bytes = str.getBytes(h.f16762b);
-        int length = bytes.length;
-        if (length % 2 != 0) {
-            return false;
-        }
-        for (int i9 = 0; i9 < length; i9 += 2) {
-            int i10 = bytes[i9] & 255;
-            if ((i10 < 129 || i10 > 159) && (i10 < 224 || i10 > 235)) {
-                return false;
+    public static c a(int i10, int i11) {
+        int bitCount;
+        int i12 = Integer.MAX_VALUE;
+        int i13 = 0;
+        for (int i14 = 0; i14 < 32; i14++) {
+            int[] iArr = f47094c[i14];
+            int i15 = iArr[0];
+            if (i15 != i10 && i15 != i11) {
+                int bitCount2 = Integer.bitCount(i10 ^ i15);
+                if (bitCount2 < i12) {
+                    i13 = iArr[1];
+                    i12 = bitCount2;
+                }
+                if (i10 != i11 && (bitCount = Integer.bitCount(i15 ^ i11)) < i12) {
+                    i13 = iArr[1];
+                    i12 = bitCount;
+                }
+            } else {
+                return new c(iArr[1]);
             }
         }
-        return true;
+        if (i12 <= 3) {
+            return new c(i13);
+        }
+        return null;
     }
 
-    public static boolean c(int i9, pb.e eVar, pb.b bVar) {
-        int i10 = eVar.d;
-        w wVar = eVar.f45530c[bVar.ordinal()];
-        int i11 = wVar.f18360b;
-        int i12 = 0;
-        for (p pVar : (p[]) wVar.f18361c) {
-            i12 += pVar.f4376a;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof c)) {
+            return false;
         }
-        if (i10 - (i12 * i11) < (i9 + 7) / 8) {
+        c cVar = (c) obj;
+        if (this.f47095a != cVar.f47095a || this.f47096b != cVar.f47096b) {
             return false;
         }
         return true;
+    }
+
+    public final int hashCode() {
+        return (this.f47095a.ordinal() << 3) | this.f47096b;
     }
 }

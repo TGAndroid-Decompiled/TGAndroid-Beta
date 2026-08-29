@@ -1,60 +1,58 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
+import android.widget.LinearLayout;
 public final class s0 implements View.OnClickListener {
-    public final int f32326a;
-    public final boolean[] f32327b;
+    public final int f32429a = 1;
+    public final LinearLayout f32430b;
+    public final int[] f32431c;
 
-    public s0(int i9, boolean[] zArr) {
-        this.f32326a = i9;
-        this.f32327b = zArr;
+    public s0(LinearLayout linearLayout, int[] iArr) {
+        this.f32430b = linearLayout;
+        this.f32431c = iArr;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32326a) {
+        boolean z10;
+        boolean z11;
+        switch (this.f32429a) {
             case 0:
-                boolean[] zArr = this.f32327b;
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((org.telegram.ui.Cells.z1) view).c(z10, true);
-                return;
-            case 1:
-                boolean[] zArr2 = this.f32327b;
-                boolean z11 = !zArr2[0];
-                zArr2[0] = z11;
-                ((org.telegram.ui.Cells.z1) view).c(z11, true);
-                return;
-            case 2:
-                boolean[] zArr3 = this.f32327b;
-                boolean z12 = !zArr3[0];
-                zArr3[0] = z12;
-                ((org.telegram.ui.Cells.z1) view).c(z12, true);
-                return;
-            case 3:
-                boolean[] zArr4 = this.f32327b;
-                boolean z13 = !zArr4[0];
-                zArr4[0] = z13;
-                ((org.telegram.ui.Cells.z1) view).c(z13, true);
-                return;
-            case 4:
-                boolean[] zArr5 = this.f32327b;
-                boolean z14 = !zArr5[0];
-                zArr5[0] = z14;
-                ((org.telegram.ui.Cells.z1) view).c(z14, true);
-                return;
-            case 5:
-                boolean[] zArr6 = this.f32327b;
-                boolean z15 = !zArr6[0];
-                zArr6[0] = z15;
-                ((org.telegram.ui.Cells.z1) view).c(z15, true);
+                this.f32431c[0] = ((Integer) view.getTag()).intValue();
+                LinearLayout linearLayout = this.f32430b;
+                int childCount = linearLayout.getChildCount();
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = linearLayout.getChildAt(i10);
+                    if (childAt instanceof org.telegram.ui.Cells.i6) {
+                        org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) childAt;
+                        if (childAt == view) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        i6Var.f24501c.a(z10, true);
+                    }
+                }
                 return;
             default:
-                boolean[] zArr7 = this.f32327b;
-                boolean z16 = !zArr7[0];
-                zArr7[0] = z16;
-                ((org.telegram.ui.Cells.z1) view).c(z16, true);
+                LinearLayout linearLayout2 = this.f32430b;
+                int childCount2 = linearLayout2.getChildCount();
+                for (int i11 = 0; i11 < childCount2; i11++) {
+                    org.telegram.ui.Cells.i6 i6Var2 = (org.telegram.ui.Cells.i6) linearLayout2.getChildAt(i11);
+                    if (i6Var2 == view) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    i6Var2.f24501c.a(z11, true);
+                }
+                this.f32431c[0] = org.telegram.ui.Cells.s8.f25670f[((Integer) view.getTag()).intValue()];
                 return;
         }
+    }
+
+    public s0(int[] iArr, LinearLayout linearLayout) {
+        this.f32431c = iArr;
+        this.f32430b = linearLayout;
     }
 }

@@ -1,31 +1,63 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-public final class sa0 implements mk0 {
-    public final wa0 f32416a;
+public final class sa0 extends z71 {
+    public final rb0 P;
 
-    public sa0(wa0 wa0Var) {
-        this.f32416a = wa0Var;
+    public sa0(rb0 rb0Var, Context context, nb0 nb0Var) {
+        super(context, nb0Var);
+        this.P = rb0Var;
     }
 
     @Override
-    public final void a(int i9, View view) {
-        wa0 wa0Var = this.f32416a;
-        if (wa0Var.f34168a == 1 && wa0Var.f34174r.previewMessages.size() > 1) {
-            int id2 = wa0Var.f34174r.previewMessages.get(i9).getId();
-            boolean z10 = wa0Var.f34174r.selectedIds.get(id2, false);
-            boolean z11 = !z10;
-            if (wa0Var.f34174r.selectedIds.size() != 1 || !z10) {
-                if (z10) {
-                    wa0Var.f34174r.selectedIds.delete(id2);
-                } else {
-                    wa0Var.f34174r.selectedIds.put(id2, z11);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.P.f32253f.f35261e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    lb0 lb0Var = (lb0) view;
+                    if (lb0Var.f30273a == 0) {
+                        z10 = lb0Var.f30276e.f25946i;
+                        break;
+                    }
                 }
-                if (view instanceof org.telegram.ui.Cells.t1) {
-                    ((org.telegram.ui.Cells.t1) view).L3(z11, z11, true);
-                }
-                wa0Var.k(true);
+                i10++;
+            } else {
+                z10 = false;
+                break;
             }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
+    }
+
+    @Override
+    public final void u() {
+        View view = this.f35261e[0];
+        if (view instanceof lb0) {
+            ((lb0) view).f30276e.W();
+        }
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        rb0 rb0Var = this.P;
+        rb0Var.f32252e.setSelectedTab(rb0Var.f32253f.getPositionAnimated());
+        View[] viewArr = this.f35261e;
+        View view = viewArr[0];
+        if (view instanceof lb0) {
+            ((lb0) view).f30276e.H();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof lb0) {
+            ((lb0) view2).f30276e.H();
         }
     }
 }

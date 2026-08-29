@@ -1,36 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class o5 implements q5 {
-    public final View f31287a;
-    public final boolean f31288b;
-    public Layout f31289c;
-    public t5 d;
-    public Rect f31290e;
-    public k5 f31291f;
-    public Emoji.EmojiDrawable h;
-    public boolean f31292n;
-    public float f31293r;
-    public float f31294s;
-    public boolean v;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public class o5 extends Drawable {
+    public final Drawable f31257a;
+    public final int f31258b;
+    public final int f31259c;
+    public int d = 255;
 
-    public o5(View view, boolean z10) {
-        this.f31287a = view;
-        this.f31288b = z10;
+    public o5(int i10, int i11, Drawable drawable) {
+        this.f31257a = drawable;
+        this.f31258b = i10;
+        this.f31259c = i11;
     }
 
     @Override
-    public final void invalidate() {
-        View view = this.f31287a;
-        if (view != null) {
-            if (this.f31288b && view.getParent() != null) {
-                ((View) view.getParent()).invalidate();
-            } else {
-                view.invalidate();
-            }
+    public void draw(Canvas canvas) {
+        Drawable drawable = this.f31257a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            drawable.setAlpha(this.d);
+            drawable.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f31259c;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f31258b;
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = this.f31257a;
+        if (drawable != null) {
+            return drawable.getOpacity();
+        }
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+        Drawable drawable = this.f31257a;
+        if (drawable != null) {
+            drawable.setAlpha(i10);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f31257a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
         }
     }
 }

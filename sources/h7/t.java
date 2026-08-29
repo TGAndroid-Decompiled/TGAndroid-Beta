@@ -1,41 +1,13 @@
 package h7;
 
-import java.util.Set;
-public abstract class t extends o implements Set {
-    public transient s f10119b;
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this || obj == this) {
-            return true;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.util.Log;
+public abstract class t {
+    public static void a() {
+        int glGetError = GLES20.glGetError();
+        if (glGetError != 0) {
+            Log.d("Paint", GLUtils.getEGLErrorString(glGetError));
         }
-        if (obj instanceof Set) {
-            Set set = (Set) obj;
-            try {
-                if (size() == set.size()) {
-                    if (containsAll(set)) {
-                        return true;
-                    }
-                    return false;
-                }
-            } catch (ClassCastException | NullPointerException unused) {
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        int i9;
-        int i10 = 0;
-        for (Object obj : this) {
-            if (obj != null) {
-                i9 = obj.hashCode();
-            } else {
-                i9 = 0;
-            }
-            i10 += i9;
-        }
-        return i10;
     }
 }

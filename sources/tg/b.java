@@ -1,92 +1,63 @@
 package tg;
 
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import g7.t8;
-import java.util.Collections;
-import java.util.HashSet;
-import y8.j;
-import y8.r;
-public final class b {
-    public int f47915a;
-    public int f47916b;
-    public Object f47917c;
-    public final Object d;
-    public final Object f47918e;
-    public Object f47919f;
-    public final Object f47920g;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import i7.f6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.np;
+import org.telegram.ui.Components.qq;
+public final class b extends FrameLayout {
+    public final c6 f48323a;
+    public a f48324b;
+    public qq f48325c;
+    public boolean d;
 
-    public b(Class cls, Class[] clsArr) {
-        this.f47917c = null;
-        HashSet hashSet = new HashSet();
-        this.d = hashSet;
-        this.f47918e = new HashSet();
-        this.f47915a = 0;
-        this.f47916b = 0;
-        this.f47920g = new HashSet();
-        hashSet.add(r.a(cls));
-        for (Class cls2 : clsArr) {
-            t8.a(cls2, "Null interface");
-            ((HashSet) this.d).add(r.a(cls2));
-        }
+    public b(Context context, c6 c6Var) {
+        super(context);
+        this.f48323a = c6Var;
     }
 
-    public void a(j jVar) {
-        if (!((HashSet) this.d).contains(jVar.f49642a)) {
-            ((HashSet) this.f47918e).add(jVar);
-            return;
+    public final void a(int i10, boolean z10) {
+        if (this.f48325c == null) {
+            qq qqVar = new qq(getContext(), this.f48323a);
+            this.f48325c = qqVar;
+            qqVar.setReverse(this.d);
+            addView(this.f48325c, f6.e(-1, 28, 48));
         }
-        throw new IllegalArgumentException("Components are not allowed to depend on interfaces they themselves provide.");
+        this.f48325c.f32029a.c(i10, z10);
     }
 
-    public y8.a b() {
-        boolean z10;
-        if (((y8.d) this.f47919f) != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10) {
-            return new y8.a((String) this.f47917c, new HashSet((HashSet) this.d), new HashSet((HashSet) this.f47918e), this.f47915a, this.f47916b, (y8.d) this.f47919f, (HashSet) this.f47920g);
-        }
-        throw new IllegalStateException("Missing required property: factory.");
+    public final void b(boolean z10, boolean z11) {
+        super.setEnabled(z10);
+        this.f48324b.e(z10, z11);
     }
 
-    public void c(int i9) {
-        boolean z10;
-        if (this.f47915a == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void c(boolean z10, boolean z11) {
+        a aVar = this.f48324b;
+        if (aVar.d == null) {
+            if (!z10) {
+                return;
+            }
+            np npVar = new np(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
+            aVar.f48320e = npVar;
+            npVar.f31108f = 90.0f;
+            ImageView imageView = new ImageView(aVar.getContext());
+            aVar.d = imageView;
+            imageView.setBackground(aVar.f48320e);
+            aVar.d.setVisibility(8);
+            aVar.addView(aVar.d, f6.e(46, 46, 17));
         }
-        if (z10) {
-            this.f47915a = i9;
-            return;
+        vd.a aVar2 = aVar.f48317a;
+        if (!aVar2.f49506f && aVar2.f49505e == 0.0f) {
+            aVar.f48320e.f31106c = -1L;
         }
-        throw new IllegalStateException("Instantiation type has already been set.");
+        aVar2.a(z10, z11);
     }
 
-    public b(r rVar, r[] rVarArr) {
-        this.f47917c = null;
-        HashSet hashSet = new HashSet();
-        this.d = hashSet;
-        this.f47918e = new HashSet();
-        this.f47915a = 0;
-        this.f47916b = 0;
-        this.f47920g = new HashSet();
-        hashSet.add(rVar);
-        for (r rVar2 : rVarArr) {
-            t8.a(rVar2, "Null interface");
-        }
-        Collections.addAll((HashSet) this.d, rVarArr);
-    }
-
-    public b() {
-        this.f47917c = new RectF();
-        this.f47919f = new Path();
-        this.d = new RectF();
-        this.f47918e = new RectF();
-        this.f47920g = new PointF();
+    @Override
+    public void setEnabled(boolean z10) {
+        b(z10, false);
     }
 }

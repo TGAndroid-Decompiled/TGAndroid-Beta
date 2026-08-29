@@ -19,17 +19,17 @@ public final class ContactsLoadingObserver {
 
     private ContactsLoadingObserver(Callback callback) {
         this.callback = callback;
-        int i9 = UserConfig.selectedAccount;
-        this.currentAccount = i9;
-        this.releaseRunnable = new e1(this, 17);
-        this.contactsController = ContactsController.getInstance(i9);
-        this.notificationCenter = NotificationCenter.getInstance(i9);
+        int i10 = UserConfig.selectedAccount;
+        this.currentAccount = i10;
+        this.releaseRunnable = new d1(this, 17);
+        this.contactsController = ContactsController.getInstance(i10);
+        this.notificationCenter = NotificationCenter.getInstance(i10);
         this.handler = new Handler(Looper.myLooper());
     }
 
-    public void lambda$new$0(int i9, int i10, Object[] objArr) {
-        if (i9 == NotificationCenter.contactsDidLoad) {
-            onContactsLoadingStateUpdated(i10, false);
+    public void lambda$new$0(int i10, int i11, Object[] objArr) {
+        if (i10 == NotificationCenter.contactsDidLoad) {
+            onContactsLoadingStateUpdated(i11, false);
         }
     }
 
@@ -41,7 +41,7 @@ public final class ContactsLoadingObserver {
         new ContactsLoadingObserver(callback).start(j10);
     }
 
-    private boolean onContactsLoadingStateUpdated(int i9, boolean z10) {
+    private boolean onContactsLoadingStateUpdated(int i10, boolean z10) {
         if (!this.released) {
             boolean z11 = this.contactsController.contactsLoaded;
             if (z11 || z10) {

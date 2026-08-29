@@ -41,58 +41,58 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         }
         String action = intent.getAction();
         action.getClass();
-        char c10 = 65535;
+        char c3 = 65535;
         switch (action.hashCode()) {
             case -1925342171:
                 if (action.equals("org.telegram.android.musicplayer.repeat")) {
-                    c10 = 0;
+                    c3 = 0;
                     break;
                 }
                 break;
             case -1461225938:
                 if (action.equals("org.telegram.android.musicplayer.close")) {
-                    c10 = 1;
+                    c3 = 1;
                     break;
                 }
                 break;
             case -1449542100:
                 if (action.equals("org.telegram.android.musicplayer.pause")) {
-                    c10 = 2;
+                    c3 = 2;
                     break;
                 }
                 break;
             case -1293741059:
                 if (action.equals("org.telegram.android.musicplayer.next")) {
-                    c10 = 3;
+                    c3 = 3;
                     break;
                 }
                 break;
             case -1293675458:
                 if (action.equals("org.telegram.android.musicplayer.play")) {
-                    c10 = 4;
+                    c3 = 4;
                     break;
                 }
                 break;
             case -549244379:
                 if (action.equals("android.media.AUDIO_BECOMING_NOISY")) {
-                    c10 = 5;
+                    c3 = 5;
                     break;
                 }
                 break;
             case 40087297:
                 if (action.equals("org.telegram.android.musicplayer.previous")) {
-                    c10 = 6;
+                    c3 = 6;
                     break;
                 }
                 break;
             case 1421978031:
                 if (action.equals("org.telegram.android.musicplayer.shuffle")) {
-                    c10 = 7;
+                    c3 = 7;
                     break;
                 }
                 break;
         }
-        switch (c10) {
+        switch (c3) {
             case 0:
                 SharedConfig.setRepeatMode((SharedConfig.repeatMode + 1) % 3);
                 return;

@@ -13,10 +13,10 @@ public class Glue {
         glueTable = glueSettingsParser.createGlueTable();
     }
 
-    public Glue(float f10, float f11, float f12, String str) {
-        this.space = f10;
-        this.stretch = f11;
-        this.shrink = f12;
+    public Glue(float f9, float f10, float f11, String str) {
+        this.space = f9;
+        this.stretch = f10;
+        this.shrink = f11;
         this.name = str;
     }
 
@@ -26,14 +26,14 @@ public class Glue {
         return new GlueBox((this.space / 18.0f) * quad, (this.stretch / 18.0f) * quad, (this.shrink / 18.0f) * quad);
     }
 
-    public static Box get(int i9, int i10, TeXEnvironment teXEnvironment) {
-        if (i9 > 7) {
-            i9 = 0;
-        }
+    public static Box get(int i10, int i11, TeXEnvironment teXEnvironment) {
         if (i10 > 7) {
             i10 = 0;
         }
-        return glueTypes[glueTable[i9][i10][teXEnvironment.getStyle() / 2]].createBox(teXEnvironment);
+        if (i11 > 7) {
+            i11 = 0;
+        }
+        return glueTypes[glueTable[i10][i11][teXEnvironment.getStyle() / 2]].createBox(teXEnvironment);
     }
 
     public String getName() {

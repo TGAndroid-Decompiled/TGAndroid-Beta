@@ -1,17 +1,24 @@
 package j7;
-public final class j7 implements q9.d {
-    public static final j7 f13990a = new Object();
+public enum j7 implements f0 {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f11058a;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, j3.r0.i(4, j3.r0.r(w.class, j3.r0.i(3, j3.r0.r(w.class, j3.r0.i(2, j3.r0.r(w.class, new s(1)))))))));
+    j7(int i10) {
+        this.f11058a = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int zza() {
+        return this.f11058a;
     }
 }

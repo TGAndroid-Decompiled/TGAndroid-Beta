@@ -1,13 +1,17 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-public final class u30 extends org.telegram.ui.Components.bc0 {
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class u30 extends FrameLayout {
     public u30(LaunchActivity launchActivity) {
-        super(launchActivity, null);
+        super(launchActivity);
     }
 
     @Override
-    public final CharSequence d(int i9) {
-        return LocaleController.formatPluralString("Minutes", i9, new Object[0]);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.95f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

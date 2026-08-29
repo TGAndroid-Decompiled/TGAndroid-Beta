@@ -1,42 +1,37 @@
 package m5;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.Arrays;
-public final class h extends y5.a {
-    public static final Parcelable.Creator<h> CREATOR = new v(1);
-    public final String f17409a;
-    public final String f17410b;
+import ag.j2;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
+import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
+import com.google.android.gms.common.api.m;
+import java.util.Set;
+public abstract class h {
+    public static final j2 f16877a = new j2("GoogleSignInCommon", new String[0]);
 
-    public h(String str, String str2) {
-        this.f17409a = str;
-        this.f17410b = str2;
+    public static Intent a(Context context, GoogleSignInOptions googleSignInOptions) {
+        f16877a.g("getSignInIntent()", new Object[0]);
+        SignInConfiguration signInConfiguration = new SignInConfiguration(context.getPackageName(), googleSignInOptions);
+        Intent intent = new Intent("com.google.android.gms.auth.GOOGLE_SIGN_IN");
+        intent.setPackage(context.getPackageName());
+        intent.setClass(context, SignInHubActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("config", signInConfiguration);
+        intent.putExtra("config", bundle);
+        return intent;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static void b(Context context) {
+        i.J(context).L();
+        Set<m> set = m.f3964a;
+        synchronized (set) {
         }
-        if (!(obj instanceof h)) {
-            return false;
+        for (m mVar : set) {
+            mVar.f();
         }
-        h hVar = (h) obj;
-        if (x5.l.l(this.f17409a, hVar.f17409a) && x5.l.l(this.f17410b, hVar.f17410b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f17409a, this.f17410b});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.l(parcel, 1, this.f17409a);
-        p8.l(parcel, 2, this.f17410b);
-        p8.r(parcel, q10);
+        com.google.android.gms.common.api.internal.h.a();
     }
 }

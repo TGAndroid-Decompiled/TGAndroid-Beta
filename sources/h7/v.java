@@ -1,7 +1,11 @@
 package h7;
+public abstract class v {
+    public void b() {
+    }
 
-import java.util.Collection;
-import java.util.Set;
-public interface v extends Collection {
-    Set zza();
+    public void c(androidx.biometric.u uVar) {
+    }
+
+    public void a(int i10, CharSequence charSequence) {
+    }
 }

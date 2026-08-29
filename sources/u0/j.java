@@ -14,19 +14,19 @@ public final class j {
         if (Log.isLoggable("ReceiveContent", 3)) {
             Log.d("ReceiveContent", "onReceive: " + hVar);
         }
-        r0.g gVar = hVar.f46902a;
+        r0.g gVar = hVar.f46816a;
         if (gVar.e() == 2) {
             return hVar;
         }
         ClipData a2 = gVar.a();
-        int f10 = gVar.f();
+        int f9 = gVar.f();
         TextView textView = (TextView) view;
         Editable editable = (Editable) textView.getText();
         Context context = textView.getContext();
         boolean z10 = false;
-        for (int i9 = 0; i9 < a2.getItemCount(); i9++) {
-            ClipData.Item itemAt = a2.getItemAt(i9);
-            if ((f10 & 1) != 0) {
+        for (int i10 = 0; i10 < a2.getItemCount(); i10++) {
+            ClipData.Item itemAt = a2.getItemAt(i10);
+            if ((f9 & 1) != 0) {
                 coerceToStyledText = itemAt.coerceToText(context);
                 if (coerceToStyledText instanceof Spanned) {
                     coerceToStyledText = coerceToStyledText.toString();

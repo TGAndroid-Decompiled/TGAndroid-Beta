@@ -19,20 +19,20 @@ public final class f4 {
             boolean z10 = this.f22934b;
             v4 v4Var = this.f22933a;
             if (!z10 && !this.f22935c && !this.d && this.f22936e) {
-                View view = v4Var.f23873a;
-                i4 i4Var = v4Var.f23882l;
+                View view = v4Var.f23893a;
+                i4 i4Var = v4Var.f23902l;
                 view.removeOnLayoutChangeListener(i4Var);
-                v4Var.f23873a.addOnLayoutChangeListener(i4Var);
+                v4Var.f23893a.addOnLayoutChangeListener(i4Var);
                 v4Var.c();
                 this.f22938g = System.currentTimeMillis();
                 return;
             }
-            t4 t4Var = v4Var.f23874b;
+            t4 t4Var = v4Var.f23894b;
             if (!t4Var.f()) {
                 return;
             }
             t4Var.G = true;
-            t4Var.f23790x.start();
+            t4Var.f23812x.start();
             t4Var.D.setEmpty();
         }
     }

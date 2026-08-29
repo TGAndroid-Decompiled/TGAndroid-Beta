@@ -75,7 +75,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f22527id % 7);
+        return (int) (user.f22539id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -129,7 +129,7 @@ public class UserObject {
         return 0L;
     }
 
-    public static MessagesController.PeerColor getPeerColorForAvatar(int i9, TLRPC.User user) {
+    public static MessagesController.PeerColor getPeerColorForAvatar(int i10, TLRPC.User user) {
         return null;
     }
 
@@ -184,8 +184,8 @@ public class UserObject {
             return user.username;
         }
         if (user.usernames != null) {
-            for (int i9 = 0; i9 < user.usernames.size(); i9++) {
-                TLRPC.TL_username tL_username = user.usernames.get(i9);
+            for (int i10 = 0; i10 < user.usernames.size(); i10++) {
+                TLRPC.TL_username tL_username = user.usernames.get(i10);
                 if (tL_username != null && (((tL_username.active && !z10) || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                     return tL_username.username;
                 }
@@ -213,7 +213,7 @@ public class UserObject {
         if (user != null && !isDeleted(user)) {
             String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
             if (removeRTL.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return ll.g(new StringBuilder("+"), user.phone, ne.b.c());
+                return x3.k(new StringBuilder("+"), user.phone, qe.b.c());
             }
             return removeRTL;
         }
@@ -242,8 +242,8 @@ public class UserObject {
                 return true;
             }
             if (user.usernames != null) {
-                for (int i9 = 0; i9 < user.usernames.size(); i9++) {
-                    TLRPC.TL_username tL_username = user.usernames.get(i9);
+                for (int i10 = 0; i10 < user.usernames.size(); i10++) {
+                    TLRPC.TL_username tL_username = user.usernames.get(i10);
                     if (tL_username != null && tL_username.active && str.equalsIgnoreCase(tL_username.username)) {
                         return true;
                     }
@@ -254,7 +254,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f22527id == 2666000) {
+        if (user != null && user.f22539id == 2666000) {
             return true;
         }
         return false;
@@ -267,12 +267,12 @@ public class UserObject {
         return false;
     }
 
-    public static boolean isBotForum(int i9, long j10) {
-        return isBotForum(MessagesController.getInstance(i9).getUser(Long.valueOf(j10)));
+    public static boolean isBotForum(int i10, long j10) {
+        return isBotForum(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
-    public static boolean isBotForumWithEditableTopics(int i9, long j10) {
-        return isBotForumWithEditableTopics(MessagesController.getInstance(i9).getUser(Long.valueOf(j10)));
+    public static boolean isBotForumWithEditableTopics(int i10, long j10) {
+        return isBotForumWithEditableTopics(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
     }
 
     public static boolean isContact(TLRPC.User user) {
@@ -315,7 +315,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f22528id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f22540id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -354,7 +354,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j10 = user.f22527id;
+            long j10 = user.f22539id;
             return j10 == 708513 || j10 == 1271266957;
         }
         return false;

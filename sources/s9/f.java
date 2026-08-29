@@ -1,4 +1,3 @@
 package s9;
-public interface f {
-    int a();
+public interface f extends a {
 }

@@ -1,35 +1,51 @@
 package f2;
 
-import android.view.animation.Interpolator;
-import org.telegram.messenger.ll;
-public final class c0 implements Interpolator {
-    public final int f5335a;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.WeakHashMap;
+public final class c0 extends GestureDetector.SimpleOnGestureListener {
+    public boolean f6284a = true;
+    public final e0 f6285b;
 
-    public c0(int i9) {
-        this.f5335a = i9;
+    public c0(e0 e0Var) {
+        this.f6285b = e0Var;
     }
 
     @Override
-    public final float getInterpolation(float f10) {
-        switch (this.f5335a) {
-            case 0:
-                return f10 * f10 * f10 * f10 * f10;
-            case 1:
-            case 2:
-            case 4:
-                float f11 = f10 - 1.0f;
-                return (f11 * f11 * f11 * f11 * f11) + 1.0f;
-            case 3:
-                return (float) Math.pow(f10, 2.0d);
-            default:
-                if (f10 < 0.33f) {
-                    return (f10 / 0.33f) * 0.1f;
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final void onLongPress(MotionEvent motionEvent) {
+        n1 T;
+        if (this.f6284a) {
+            e0 e0Var = this.f6285b;
+            View k9 = e0Var.k(motionEvent);
+            b0 b0Var = e0Var.f6308x;
+            if (k9 != null && (T = e0Var.D.T(k9)) != null) {
+                RecyclerView recyclerView = e0Var.D;
+                int e10 = b0Var.e(recyclerView, T);
+                WeakHashMap weakHashMap = r0.j0.f46829a;
+                if ((b0Var.b(e10, recyclerView.getLayoutDirection()) & 16711680) != 0) {
+                    int pointerId = motionEvent.getPointerId(0);
+                    int i10 = e0Var.f6307w;
+                    if (pointerId == i10) {
+                        int findPointerIndex = motionEvent.findPointerIndex(i10);
+                        float x4 = motionEvent.getX(findPointerIndex);
+                        float y8 = motionEvent.getY(findPointerIndex);
+                        e0Var.d = x4;
+                        e0Var.f6302e = y8;
+                        e0Var.f6305r = 0.0f;
+                        e0Var.f6304n = 0.0f;
+                        if (b0Var.k()) {
+                            e0Var.p(T, 2);
+                        }
+                    }
                 }
-                float f12 = f10 - 0.33f;
-                if (f12 < 0.33f) {
-                    return ll.c(f12, 0.34f, 0.15f, 0.1f);
-                }
-                return (((f12 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
+            }
         }
     }
 }

@@ -1,17 +1,10 @@
 package j7;
-public final class m8 implements q9.d {
-    public static final m8 f14027a = new Object();
+public final class m8 {
+    public final n8 f11107a;
+    public final w f11108b;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, j3.r0.i(2, j3.r0.r(w.class, new s(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public m8(g9.l lVar) {
+        this.f11107a = (n8) lVar.f7168b;
+        this.f11108b = (w) lVar.f7169c;
     }
 }

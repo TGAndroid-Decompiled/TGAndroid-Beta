@@ -1,18 +1,20 @@
 package ld;
 
-import ha.u;
-import java.util.concurrent.CancellationException;
-public final class a extends CancellationException {
-    public final transient u f16836a;
+import i7.i8;
+public final class a {
+    public static final a[] f15159a;
 
-    public a(u uVar) {
-        super("Flow was aborted, no more elements needed");
-        this.f16836a = uVar;
+    static {
+        a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
+        f15159a = aVarArr;
+        i8.a(aVarArr);
     }
 
-    @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
+    }
+
+    public static a[] values() {
+        return (a[]) f15159a.clone();
     }
 }

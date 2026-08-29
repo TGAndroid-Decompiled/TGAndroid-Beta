@@ -1,21 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class j01 extends wk0 {
-    public final ThemeEditorView.EditorAlert T2;
-
-    public j01(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context, null);
-        this.T2 = editorAlert;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
+public class j01 extends ViewSwitcher {
+    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
+        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z10) {
+                getNextView().setText(charSequence);
+                showNext();
+                return;
+            }
+            getCurrentView().setText(charSequence);
+        }
     }
 
     @Override
-    public final boolean E0(float f10) {
-        if (f10 >= AndroidUtilities.dp(48.0f) + this.T2.A + AndroidUtilities.statusBarHeight) {
-            return true;
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        if (view instanceof TextView) {
+            super.addView(view, i10, layoutParams);
+            return;
         }
-        return false;
+        throw new IllegalArgumentException();
+    }
+
+    public void setText(CharSequence charSequence) {
+        a(charSequence, true, false);
+    }
+
+    @Override
+    public TextView getCurrentView() {
+        return (TextView) super.getCurrentView();
+    }
+
+    @Override
+    public TextView getNextView() {
+        return (TextView) super.getNextView();
     }
 }

@@ -17,14 +17,14 @@ public class TL_communities {
         public TLRPC.Peer peer;
         public boolean visible;
 
-        public static CommunityPeer TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static CommunityPeer TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             CommunityPeer communityPeer;
-            if (i9 != 1981030077) {
+            if (i10 != 1981030077) {
                 communityPeer = null;
             } else {
                 communityPeer = new CommunityPeer();
             }
-            return (CommunityPeer) TLObject.TLdeserialize(CommunityPeer.class, communityPeer, inputSerializedData, i9, z10);
+            return (CommunityPeer) TLObject.TLdeserialize(CommunityPeer.class, communityPeer, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -59,14 +59,14 @@ public class TL_communities {
         public long requested_by;
         public boolean visible;
 
-        public static CommunityPeerRequest TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static CommunityPeerRequest TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             CommunityPeerRequest communityPeerRequest;
-            if (i9 != 2078997125) {
+            if (i10 != 2078997125) {
                 communityPeerRequest = null;
             } else {
                 communityPeerRequest = new CommunityPeerRequest();
             }
-            return (CommunityPeerRequest) TLObject.TLdeserialize(CommunityPeerRequest.class, communityPeerRequest, inputSerializedData, i9, z10);
+            return (CommunityPeerRequest) TLObject.TLdeserialize(CommunityPeerRequest.class, communityPeerRequest, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -98,14 +98,14 @@ public class TL_communities {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static ParticipantJoinedChats TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static ParticipantJoinedChats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             ParticipantJoinedChats participantJoinedChats;
-            if (i9 != -1921494742) {
+            if (i10 != -1921494742) {
                 participantJoinedChats = null;
             } else {
                 participantJoinedChats = new ParticipantJoinedChats();
             }
-            return (ParticipantJoinedChats) TLObject.TLdeserialize(ParticipantJoinedChats.class, participantJoinedChats, inputSerializedData, i9, z10);
+            return (ParticipantJoinedChats) TLObject.TLdeserialize(ParticipantJoinedChats.class, participantJoinedChats, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -135,14 +135,14 @@ public class TL_communities {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static PeerLinkRequests TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static PeerLinkRequests TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             PeerLinkRequests peerLinkRequests;
-            if (i9 != 574926765) {
+            if (i10 != 574926765) {
                 peerLinkRequests = null;
             } else {
                 peerLinkRequests = new PeerLinkRequests();
             }
-            return (PeerLinkRequests) TLObject.TLdeserialize(PeerLinkRequests.class, peerLinkRequests, inputSerializedData, i9, z10);
+            return (PeerLinkRequests) TLObject.TLdeserialize(PeerLinkRequests.class, peerLinkRequests, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -161,13 +161,13 @@ public class TL_communities {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             boolean z10;
             outputSerializedData.writeInt32(574926765);
-            int i9 = this.flags;
+            int i10 = this.flags;
             if (this.next_offset != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            int flag = TLObject.setFlag(i9, 1, z10);
+            int flag = TLObject.setFlag(i10, 1, z10);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.total_count);
@@ -210,8 +210,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -224,8 +224,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.messages_Chats deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.messages_Chats.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.messages_Chats deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.messages_Chats.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -242,8 +242,8 @@ public class TL_communities {
         }
 
         @Override
-        public ParticipantJoinedChats deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return ParticipantJoinedChats.TLdeserialize(inputSerializedData, i9, z10);
+        public ParticipantJoinedChats deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return ParticipantJoinedChats.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -262,8 +262,8 @@ public class TL_communities {
         }
 
         @Override
-        public PeerLinkRequests deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return PeerLinkRequests.TLdeserialize(inputSerializedData, i9, z10);
+        public PeerLinkRequests deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return PeerLinkRequests.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -283,8 +283,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -304,8 +304,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -327,8 +327,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -356,8 +356,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -379,8 +379,8 @@ public class TL_communities {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 

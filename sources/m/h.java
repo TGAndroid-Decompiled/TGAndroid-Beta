@@ -12,7 +12,7 @@ public final class h extends w implements j {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        g7.m.a(this, getContentDescription());
+        i7.v.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 
@@ -37,8 +37,8 @@ public final class h extends w implements j {
     }
 
     @Override
-    public final boolean setFrame(int i9, int i10, int i11, int i12) {
-        boolean frame = super.setFrame(i9, i10, i11, i12);
+    public final boolean setFrame(int i10, int i11, int i12, int i13) {
+        boolean frame = super.setFrame(i10, i11, i12, i13);
         Drawable drawable = getDrawable();
         Drawable background = getBackground();
         if (drawable != null && background != null) {

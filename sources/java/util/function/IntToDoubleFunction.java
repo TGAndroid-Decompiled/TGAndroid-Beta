@@ -1,4 +1,4 @@
 package java.util.function;
 public interface IntToDoubleFunction {
-    double applyAsDouble(int i9);
+    double applyAsDouble(int i10);
 }

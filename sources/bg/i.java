@@ -1,17 +1,30 @@
 package bg;
+public interface i {
+    void B(boolean z10);
 
-import org.telegram.messenger.Utilities;
-public final class i implements Utilities.Callback {
-    public final int f1830a;
-    public final Object f1831b;
+    void C();
 
-    public i(Object obj, int i9) {
-        this.f1830a = i9;
-        this.f1831b = obj;
-    }
+    void b(k kVar);
 
-    @Override
-    public final void run(java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: bg.i.run(java.lang.Object):void");
-    }
+    void g(boolean z10);
+
+    void h(boolean z10);
+
+    void j();
+
+    void k();
+
+    void m(boolean z10);
+
+    boolean p();
+
+    boolean r();
+
+    int[] t(k kVar);
+
+    void v(float f9, float f10, float[] fArr);
+
+    void x();
+
+    boolean y(k kVar);
 }

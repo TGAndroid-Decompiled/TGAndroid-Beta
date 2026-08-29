@@ -1,72 +1,168 @@
 package gh;
 
-import android.text.TextUtils;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.View;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class j implements View.OnFocusChangeListener {
-    public final int f8318a;
-    public final Object f8319b;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class j {
+    public static HashMap f7391n;
+    public final double f7392a;
+    public final double f7393b;
+    public final int f7394c;
+    public final bh.d d;
+    public final g f7395e;
+    public i f7396f;
+    public final int f7397g;
+    public final int h;
+    public boolean f7398i;
+    public final ArrayList f7399j = new ArrayList();
+    public final HashMap f7400k = new HashMap();
+    public int f7401l = 0;
+    public final f f7402m = new f(this, 0);
 
-    public j(Object obj, int i9) {
-        this.f8318a = i9;
-        this.f8319b = obj;
+    public j(int i10, bh.d dVar, int i11, int i12) {
+        double d = 1.0d / ((int) AndroidUtilities.screenRefreshRate);
+        this.f7392a = d;
+        this.f7393b = d * 4.0d;
+        this.f7394c = i10;
+        this.f7397g = i11;
+        this.h = i12;
+        this.d = dVar;
+        g gVar = new g(this, dVar.getContext());
+        this.f7395e = gVar;
+        gVar.setSurfaceTextureListener(new h(this, 0));
+        gVar.setOpaque(false);
+        dVar.addView(gVar);
     }
 
-    @Override
-    public final void onFocusChange(View view, boolean z10) {
-        float f10;
-        switch (this.f8318a) {
-            case 0:
-                n nVar = ((r) this.f8319b).I;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                nVar.b(f10, f10, true);
-                return;
-            case 1:
-                o0 o0Var = (o0) this.f8319b;
-                o0Var.Y.c(z10, !TextUtils.isEmpty(o0Var.Z.getText()));
-                return;
-            case 2:
-                t0 t0Var = (t0) this.f8319b;
-                t0Var.f8898f.c(z10, !TextUtils.isEmpty(t0Var.h.getText()));
-                return;
-            case 3:
-                x0 x0Var = (x0) this.f8319b;
-                x0Var.f9128b.c(z10, !TextUtils.isEmpty(x0Var.f9129c.getText()));
-                return;
-            case 4:
-                hg.p pVar = (hg.p) this.f8319b;
-                if (z10) {
-                    pVar.n(true);
-                    Runnable runnable = pVar.f10604e;
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
+    public static j d(int i10, View view, ViewGroup viewGroup) {
+        int min;
+        if (view != null) {
+            if (f7391n == null) {
+                f7391n = new HashMap();
+            }
+            j jVar = (j) f7391n.get(Integer.valueOf(i10));
+            if (jVar == null) {
+                int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                if (devicePerformanceClass != 1) {
+                    if (devicePerformanceClass != 2) {
+                        Point point = AndroidUtilities.displaySize;
+                        min = Math.min(720, (int) (((point.x + point.y) / 2.0f) * 0.7f));
+                    } else {
+                        Point point2 = AndroidUtilities.displaySize;
+                        min = Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
                     }
-                    return;
+                } else {
+                    Point point3 = AndroidUtilities.displaySize;
+                    min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
-                pVar.m();
-                return;
-            case 5:
-                qh.s5.a((qh.s5) this.f8319b, z10);
-                return;
-            case 6:
-                EditTextBoldCursor editTextBoldCursor = ((xf.v) this.f8319b).f49389c;
-                if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
-                    editTextBoldCursor.setText("0");
-                    return;
+                if (viewGroup != null) {
+                    HashMap hashMap = f7391n;
+                    Integer valueOf = Integer.valueOf(i10);
+                    bh.d dVar = new bh.d(viewGroup.getContext(), 3);
+                    viewGroup.addView(dVar);
+                    j jVar2 = new j(i10, dVar, min, min);
+                    hashMap.put(valueOf, jVar2);
+                    jVar = jVar2;
+                } else {
+                    return null;
                 }
-                return;
-            default:
-                EditTextBoldCursor editTextBoldCursor2 = ((xf.w) this.f8319b).d;
-                if (!z10 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
-                    editTextBoldCursor2.setText("0");
-                    return;
+            }
+            jVar.a(view);
+            return jVar;
+        }
+        return null;
+    }
+
+    public static j e(View view) {
+        Activity findActivity = AndroidUtilities.findActivity(view.getContext());
+        ViewGroup viewGroup = null;
+        if (findActivity != null) {
+            View rootView = findActivity.findViewById(16908290).getRootView();
+            if (rootView instanceof ViewGroup) {
+                viewGroup = (ViewGroup) rootView;
+            }
+        }
+        return d(0, view, viewGroup);
+    }
+
+    public static void f(boolean z10) {
+        i iVar;
+        HashMap hashMap = f7391n;
+        if (hashMap != null) {
+            for (j jVar : hashMap.values()) {
+                if (jVar.f7394c == 0 && (iVar = jVar.f7396f) != null) {
+                    iVar.f7381b = z10;
                 }
-                return;
+            }
+        }
+    }
+
+    public final void a(View view) {
+        if (!this.f7398i) {
+            ArrayList arrayList = this.f7399j;
+            if (!arrayList.contains(view)) {
+                arrayList.add(view);
+                int i10 = this.f7401l;
+                this.f7401l = i10 + 1;
+                this.f7400k.put(view, Integer.valueOf(i10));
+            }
+        }
+    }
+
+    public final void b(View view) {
+        this.f7399j.remove(view);
+        this.f7400k.remove(view);
+        if (!this.f7398i) {
+            f fVar = this.f7402m;
+            AndroidUtilities.cancelRunOnUIThread(fVar);
+            AndroidUtilities.runOnUIThread(fVar, 30L);
+        }
+    }
+
+    public final void c(Canvas canvas, View view, int i10, int i11, float f9, boolean z10) {
+        if (canvas != null && view != null) {
+            canvas.save();
+            Integer num = (Integer) this.f7400k.get(view);
+            if (num == null) {
+                num = 0;
+            }
+            int i12 = this.f7397g;
+            int i13 = this.h;
+            if (i10 > i12 || i11 > i13) {
+                float max = Math.max(i10 / i12, i11 / i13);
+                canvas.scale(max, max);
+            }
+            if (num.intValue() % 4 == 1) {
+                canvas.rotate(180.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            if (num.intValue() % 4 == 2) {
+                canvas.scale(-1.0f, 1.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            if (num.intValue() % 4 == 3) {
+                canvas.scale(1.0f, -1.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            g gVar = this.f7395e;
+            if (z10) {
+                Bitmap bitmap = gVar.getBitmap();
+                if (bitmap != null) {
+                    Paint paint = new Paint(7);
+                    paint.setColor(-1);
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                    bitmap.recycle();
+                }
+            } else {
+                gVar.setAlpha(f9);
+                gVar.draw(canvas);
+            }
+            canvas.restore();
         }
     }
 }

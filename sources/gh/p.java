@@ -1,24 +1,14 @@
 package gh;
 
-import android.content.Context;
-public final class p extends kh.d {
-    public final int f8698d0;
+import android.view.View;
+import java.util.List;
+public final class p {
+    public final o4.g f7447a;
+    public boolean f7448b;
+    public int f7449c;
+    public int d;
 
-    public p(int i9, Context context, org.telegram.ui.ActionBar.b6 b6Var, boolean z10) {
-        super(context, b6Var, z10);
-        this.f8698d0 = i9;
-    }
-
-    @Override
-    public boolean i() {
-        switch (this.f8698d0) {
-            case 0:
-                return false;
-            case 1:
-            default:
-                return super.i();
-            case 2:
-                return false;
-        }
+    public p(View view, List list, o oVar) {
+        this.f7447a = new o4.g(view.getContext(), new n(this, view, list, oVar));
     }
 }

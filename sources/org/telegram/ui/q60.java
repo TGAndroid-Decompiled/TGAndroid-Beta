@@ -1,4 +1,9 @@
 package org.telegram.ui;
-public interface q60 {
-    void a(r60 r60Var, long j10);
+public final class q60 extends zf.a {
+    public final String f41546c;
+
+    public q60(String str) {
+        super(5, true);
+        this.f41546c = str;
+    }
 }

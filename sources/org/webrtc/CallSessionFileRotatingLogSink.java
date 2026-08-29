@@ -4,9 +4,9 @@ import org.webrtc.Logging;
 public class CallSessionFileRotatingLogSink {
     private long nativeSink;
 
-    public CallSessionFileRotatingLogSink(String str, int i9, Logging.Severity severity) {
+    public CallSessionFileRotatingLogSink(String str, int i10, Logging.Severity severity) {
         if (str != null) {
-            this.nativeSink = nativeAddSink(str, i9, severity.ordinal());
+            this.nativeSink = nativeAddSink(str, i10, severity.ordinal());
             return;
         }
         throw new IllegalArgumentException("dirPath may not be null.");
@@ -19,7 +19,7 @@ public class CallSessionFileRotatingLogSink {
         throw new IllegalArgumentException("dirPath may not be null.");
     }
 
-    private static native long nativeAddSink(String str, int i9, int i10);
+    private static native long nativeAddSink(String str, int i10, int i11);
 
     private static native void nativeDeleteSink(long j10);
 

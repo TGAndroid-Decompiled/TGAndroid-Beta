@@ -1,95 +1,80 @@
 package q7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import b7.r;
-import g7.p8;
-import java.util.Arrays;
-public final class b extends y5.a {
-    public static final Parcelable.Creator<b> CREATOR = new j(2);
-    public final long f46094a;
-    public final int f46095b;
-    public final boolean f46096c;
-    public final String d;
-    public final b7.l f46097e;
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import android.text.TextUtils;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import h8.p;
+import m.s3;
+public final class b extends z5.g {
+    public final Context Q;
+    public final int R;
+    public final String S;
+    public final int T;
+    public final boolean U;
 
-    public b(long j10, int i9, boolean z10, String str, b7.l lVar) {
-        this.f46094a = j10;
-        this.f46095b = i9;
-        this.f46096c = z10;
-        this.d = str;
-        this.f46097e = lVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (this.f46094a != bVar.f46094a || this.f46095b != bVar.f46095b || this.f46096c != bVar.f46096c || !x5.l.l(this.d, bVar.d) || !x5.l.l(this.f46097e, bVar.f46097e)) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f46094a), Integer.valueOf(this.f46095b), Boolean.valueOf(this.f46096c)});
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder n10 = e2.c.n("LastLocationRequest[");
-        long j10 = this.f46094a;
-        if (j10 != Long.MAX_VALUE) {
-            n10.append("maxAge=");
-            r.a(n10, j10);
-        }
-        int i9 = this.f46095b;
-        if (i9 != 0) {
-            n10.append(", ");
-            if (i9 != 0) {
-                if (i9 != 1) {
-                    if (i9 == 2) {
-                        str = "GRANULARITY_FINE";
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                } else {
-                    str = "GRANULARITY_COARSE";
-                }
-            } else {
-                str = "GRANULARITY_PERMISSION_LEVEL";
-            }
-            n10.append(str);
-        }
-        if (this.f46096c) {
-            n10.append(", bypass");
-        }
-        String str2 = this.d;
-        if (str2 != null) {
-            n10.append(", moduleId=");
-            n10.append(str2);
-        }
-        b7.l lVar = this.f46097e;
-        if (lVar != null) {
-            n10.append(", impersonation=");
-            n10.append(lVar);
-        }
-        n10.append(']');
-        return n10.toString();
+    public b(Context context, Looper looper, s3 s3Var, k kVar, l lVar, int i10) {
+        super(context, looper, 4, s3Var, kVar, lVar, 0);
+        this.Q = context;
+        this.R = i10;
+        this.S = null;
+        this.T = 1;
+        this.U = true;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.s(parcel, 1, 8);
-        parcel.writeLong(this.f46094a);
-        p8.s(parcel, 2, 4);
-        parcel.writeInt(this.f46095b);
-        p8.s(parcel, 3, 4);
-        parcel.writeInt(this.f46096c ? 1 : 0);
-        p8.l(parcel, 4, this.d);
-        p8.k(parcel, 5, this.f46097e, i9);
-        p8.r(parcel, q10);
+    public final boolean C() {
+        return true;
+    }
+
+    public final Bundle G() {
+        String packageName = this.Q.getPackageName();
+        Bundle bundle = new Bundle();
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_ENVIRONMENT", this.R);
+        bundle.putBoolean("com.google.android.gms.wallet.EXTRA_USING_ANDROID_PAY_BRAND", this.U);
+        bundle.putString("androidPackageName", packageName);
+        String str = this.S;
+        if (!TextUtils.isEmpty(str)) {
+            bundle.putParcelable("com.google.android.gms.wallet.EXTRA_BUYER_ACCOUNT", new Account(str, "com.google"));
+        }
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_THEME", this.T);
+        return bundle;
+    }
+
+    @Override
+    public final int k() {
+        return 12600000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IOwService");
+        if (queryLocalInterface instanceof i) {
+            return (i) queryLocalInterface;
+        }
+        return new i(iBinder);
+    }
+
+    @Override
+    public final w5.c[] r() {
+        return p.f7917c;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.wallet.internal.IOwService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.wallet.service.BIND";
     }
 }

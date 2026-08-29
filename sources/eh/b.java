@@ -1,67 +1,46 @@
 package eh;
 
-import android.content.Context;
 import android.view.View;
+import android.view.WindowInsets;
+import cg.m2;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.c9;
-public final class b extends c9 {
-    public final int f5173e;
+import org.telegram.ui.Components.y10;
+import r0.m1;
+import r0.o;
+public final class b implements y10, o {
+    public final f f6210a;
 
-    public b(int i9, Context context, boolean z10) {
-        super(context, z10);
-        this.f5173e = i9;
+    public b(f fVar) {
+        this.f6210a = fVar;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.f5173e) {
-            case 1:
-                if (ih.v.f12218c) {
-                    ih.v.f12217b.add(this);
-                    return;
-                } else {
-                    super.invalidate();
-                    return;
-                }
-            default:
-                super.invalidate();
-                return;
+    public m1 I0(View view, m1 m1Var) {
+        boolean z10;
+        WindowInsets g10 = m1Var.g();
+        f fVar = this.f6210a;
+        fVar.processLegacyContainerInsets(g10);
+        vd.a aVar = fVar.U;
+        if (m1Var.f46843a.f(8).d > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        aVar.a(z10, true);
+        return m1.f46842b;
     }
 
     @Override
-    public void onMeasure(int i9, int i10) {
-        int e10;
-        switch (this.f5173e) {
-            case 0:
-                int i11 = this.f27425a.f27085n;
-                if (i11 == 0) {
-                    e10 = 0;
-                } else {
-                    e10 = e2.c.e(i11, 1, 20, 24);
-                }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(e10), 1073741824), i10);
-                return;
-            default:
-                super.onMeasure(i9, i10);
-                return;
+    public void a(int i10) {
+        int min = Math.min(i10, AndroidUtilities.dp(144.0f));
+        if (i10 > 0) {
+            min -= AndroidUtilities.dp(8.0f);
         }
-    }
-
-    @Override
-    public void invalidate(int i9, int i10, int i11, int i12) {
-        switch (this.f5173e) {
-            case 1:
-                if (ih.v.f12218c) {
-                    ih.v.f12217b.add(this);
-                    return;
-                } else {
-                    super.invalidate(i9, i10, i11, i12);
-                    return;
-                }
-            default:
-                super.invalidate(i9, i10, i11, i12);
-                return;
+        f fVar = this.f6210a;
+        if (fVar.f6226h0 != min) {
+            fVar.f6226h0 = min;
+            fVar.T.a(min);
+            fVar.f6222d0.postOnAnimation(new m2(fVar, 13));
         }
     }
 }

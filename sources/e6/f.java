@@ -1,121 +1,64 @@
 package e6;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Process;
-import android.os.WorkSource;
-import android.util.Log;
-import java.lang.reflect.Method;
-public abstract class f {
-    public static final Method f4966a;
-    public static final Method f4967b;
-    public static final Method f4968c;
-    public static final Method d;
-    public static Boolean f4969e;
+import android.os.Parcel;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import h7.o5;
+public final class f extends c7.a implements d {
+    public final int f5833b;
+    public final TaskCompletionSource f5834c;
 
-    static {
-        Method method;
-        Method method2;
-        Method method3;
-        Method method4;
-        Class<?> cls = Integer.TYPE;
-        Process.myUid();
-        try {
-            method = WorkSource.class.getMethod("add", cls);
-        } catch (Exception unused) {
-            method = null;
-        }
-        f4966a = method;
-        try {
-            method2 = WorkSource.class.getMethod("add", cls, String.class);
-        } catch (Exception unused2) {
-            method2 = null;
-        }
-        f4967b = method2;
-        try {
-            method3 = WorkSource.class.getMethod("size", null);
-        } catch (Exception unused3) {
-            method3 = null;
-        }
-        f4968c = method3;
-        try {
-            WorkSource.class.getMethod("get", cls);
-        } catch (Exception unused4) {
-        }
-        try {
-            WorkSource.class.getMethod("getName", cls);
-        } catch (Exception unused5) {
-        }
-        if (Build.VERSION.SDK_INT >= 28) {
-            try {
-                WorkSource.class.getMethod("createWorkChain", null);
-            } catch (Exception e10) {
-                Log.w("WorkSourceUtil", "Missing WorkChain API createWorkChain", e10);
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 28) {
-            try {
-                Class.forName("android.os.WorkSource$WorkChain").getMethod("addNode", cls, String.class);
-            } catch (Exception e11) {
-                Log.w("WorkSourceUtil", "Missing WorkChain class", e11);
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 28) {
-            try {
-                method4 = WorkSource.class.getMethod("isEmpty", null);
-                try {
-                    method4.setAccessible(true);
-                } catch (Exception unused6) {
+    public f(int i10, TaskCompletionSource taskCompletionSource) {
+        super("com.google.android.gms.common.moduleinstall.internal.IModuleInstallCallbacks", 10);
+        this.f5833b = i10;
+        this.f5834c = taskCompletionSource;
+    }
+
+    @Override
+    public final boolean F0(int i10, Parcel parcel, Parcel parcel2) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        return false;
+                    }
+                    Status status = (Status) w6.a.a(parcel, Status.CREATOR);
+                    w6.a.b(parcel);
+                    throw new UnsupportedOperationException();
                 }
-            } catch (Exception unused7) {
+                Status status2 = (Status) w6.a.a(parcel, Status.CREATOR);
+                d6.b bVar = (d6.b) w6.a.a(parcel, d6.b.CREATOR);
+                w6.a.b(parcel);
+                throw new UnsupportedOperationException();
             }
-            d = method4;
-            f4969e = null;
+            w6.a.b(parcel);
+            u((Status) w6.a.a(parcel, Status.CREATOR), (d6.c) w6.a.a(parcel, d6.c.CREATOR));
+            return true;
         }
-        method4 = null;
-        d = method4;
-        f4969e = null;
+        w6.a.b(parcel);
+        f0((Status) w6.a.a(parcel, Status.CREATOR), (d6.a) w6.a.a(parcel, d6.a.CREATOR));
+        return true;
     }
 
-    public static void a(WorkSource workSource, int i9, String str) {
-        Method method = f4967b;
-        if (method != null) {
-            if (str == null) {
-                str = "";
-            }
-            try {
-                method.invoke(workSource, Integer.valueOf(i9), str);
+    @Override
+    public void f0(Status status, d6.a aVar) {
+        switch (this.f5833b) {
+            case 0:
+                o5.b(status, aVar, this.f5834c);
                 return;
-            } catch (Exception e10) {
-                Log.wtf("WorkSourceUtil", "Unable to assign blame through WorkSource", e10);
-                return;
-            }
-        }
-        Method method2 = f4966a;
-        if (method2 != null) {
-            try {
-                method2.invoke(workSource, Integer.valueOf(i9));
-            } catch (Exception e11) {
-                Log.wtf("WorkSourceUtil", "Unable to assign blame through WorkSource", e11);
-            }
+            default:
+                throw new UnsupportedOperationException();
         }
     }
 
-    public static synchronized boolean b(Context context) {
-        synchronized (f.class) {
-            Boolean bool = f4969e;
-            if (bool != null) {
-                return bool.booleanValue();
-            }
-            boolean z10 = false;
-            if (context == null) {
-                return false;
-            }
-            if (f0.e.b(context, "android.permission.UPDATE_DEVICE_STATS") == 0) {
-                z10 = true;
-            }
-            f4969e = Boolean.valueOf(z10);
-            return z10;
+    @Override
+    public void u(Status status, d6.c cVar) {
+        switch (this.f5833b) {
+            case 1:
+                o5.b(status, cVar, this.f5834c);
+                return;
+            default:
+                throw new UnsupportedOperationException();
         }
     }
 }

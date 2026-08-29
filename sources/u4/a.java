@@ -1,14 +1,12 @@
 package u4;
-
-import d5.y;
 public final class a {
-    public final y f48088a = new y();
-    public final int[] f48089b = new int[256];
-    public boolean f48090c;
-    public int d;
-    public int f48091e;
-    public int f48092f;
-    public int f48093g;
-    public int h;
-    public int f48094i;
+    public final int f49026a;
+    public final boolean f49027b;
+    public int f49028c;
+
+    public a(int i10, boolean z10, int i11) {
+        this.f49026a = i10;
+        this.f49027b = z10;
+        this.f49028c = i11;
+    }
 }

@@ -1,59 +1,19 @@
 package h7;
+public final class d extends com.google.android.gms.internal.cast.j0 {
+    public final transient Object[] f7578e;
 
-import java.util.List;
-import java.util.ListIterator;
-public final class d extends c implements ListIterator {
-    public final e f9899e;
-
-    public d(e eVar) {
-        super(eVar);
-        this.f9899e = eVar;
+    public d(Object[] objArr) {
+        super(3);
+        this.f7578e = objArr;
     }
 
     @Override
-    public final void add(Object obj) {
-        e eVar = this.f9899e;
-        boolean isEmpty = eVar.isEmpty();
-        b();
-        ((ListIterator) this.f9891b).add(obj);
-        ((h) eVar.h).d++;
-        if (isEmpty) {
-            eVar.p();
-        }
+    public final java.lang.Object get(java.lang.Object r4) {
+        throw new UnsupportedOperationException("Method not decompiled: h7.d.get(java.lang.Object):java.lang.Object");
     }
 
     @Override
-    public final boolean hasPrevious() {
-        b();
-        return ((ListIterator) this.f9891b).hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        b();
-        return ((ListIterator) this.f9891b).nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        b();
-        return ((ListIterator) this.f9891b).previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        b();
-        return ((ListIterator) this.f9891b).previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        b();
-        ((ListIterator) this.f9891b).set(obj);
-    }
-
-    public d(e eVar, int i9) {
-        super(eVar, ((List) eVar.f9908c).listIterator(i9));
-        this.f9899e = eVar;
+    public final int size() {
+        return 1;
     }
 }

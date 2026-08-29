@@ -1,81 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.WindowManager;
-import org.telegram.messenger.FileLog;
-public final class pb extends uj0 {
-    public final int f31604h1 = 0;
-    public final Object f31605i1;
+import android.view.ViewGroup;
+import java.util.LinkedList;
+public final class pb implements o1.g {
+    public final int f31630a;
+    public final Object f31631b;
+    public final Object f31632c;
 
-    public pb(org.telegram.ui.ht htVar, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(4, i9, context, null, b6Var);
-        this.f31605i1 = htVar;
+    public pb(int i10, Object obj, Object obj2) {
+        this.f31630a = i10;
+        this.f31631b = obj;
+        this.f31632c = obj2;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        gc gcVar;
-        switch (this.f31604h1) {
+    public final void a(o1.i iVar, boolean z10, float f9, float f10) {
+        ViewGroup viewGroup;
+        switch (this.f31630a) {
             case 0:
-                rb rbVar = (rb) this.f31605i1;
-                if (motionEvent.getAction() == 0) {
-                    gc gcVar2 = rbVar.f32125n;
-                    if (gcVar2 != null) {
-                        gcVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (gcVar = rbVar.f32125n) != null) {
-                    gcVar.i(true);
+                ig igVar = (ig) this.f31632c;
+                ((rb) this.f31631b).setInOutOffset(0.0f);
+                if (!z10) {
+                    igVar.run();
+                    return;
                 }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void j() {
-        switch (this.f31604h1) {
+                return;
             case 1:
-                super.j();
-                org.telegram.ui.ht htVar = (org.telegram.ui.ht) this.f31605i1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = htVar.f38934x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    htVar.f38934x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) htVar.f38933w.getSystemService("window")).updateViewLayout(htVar.f38935y, htVar.f38934x);
-                    return;
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                    return;
-                }
-            default:
-                super.j();
+                ni.r((ni) this.f31631b, (g) this.f31632c);
                 return;
-        }
-    }
-
-    @Override
-    public void m() {
-        switch (this.f31604h1) {
-            case 0:
-                gc gcVar = gc.f28729w;
-                if (gcVar != null) {
-                    gcVar.i(false);
+            case 2:
+                ni niVar = (ni) ((jh.l3) this.f31631b).d;
+                niVar.f31054v0.setTranslationY(0.0f);
+                niVar.f31054v0.k(niVar.f31013h2);
+                viewGroup = ((org.telegram.ui.ActionBar.f3) niVar).containerView;
+                viewGroup.invalidate();
+                ((zg) this.f31632c).run();
+                niVar.a2(0);
+                return;
+            case 3:
+                nd0 nd0Var = (nd0) this.f31631b;
+                yb0 yb0Var = (yb0) this.f31632c;
+                LinkedList linkedList = nd0Var.I;
+                nd0Var.H = null;
+                yb0Var.D = null;
+                yb0Var.z();
+                if (!z10) {
+                    yb0Var.h = 1.0f;
+                    yb0Var.z();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        nd0Var.J.poll();
+                        return;
+                    }
+                    return;
                 }
-                ((rb) this.f31605i1).d.getReactionsWindow().f10576c.setOnClickListener(new f0(this, 5));
                 return;
             default:
+                ph.m3 m3Var = (ph.m3) this.f31631b;
+                Runnable runnable = (Runnable) this.f31632c;
+                if (iVar == m3Var.C) {
+                    m3Var.C = null;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    Runnable runnable2 = m3Var.A;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                    float f11 = m3Var.h;
+                    if (f11 != -1.0f) {
+                        boolean z11 = m3Var.f45909s;
+                        m3Var.f45909s = true;
+                        m3Var.setOffsetY(f11);
+                        m3Var.h = -1.0f;
+                        m3Var.f45909s = z11;
+                    }
+                    m3Var.f45907n = -2.1474836E9f;
+                    return;
+                }
                 return;
         }
-    }
-
-    public pb(rb rbVar, org.telegram.ui.ActionBar.o2 o2Var, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(3, i9, context, o2Var, b6Var);
-        this.f31605i1 = rbVar;
     }
 }

@@ -1,17 +1,13 @@
 package h7;
-public final class y5 implements q9.d {
-    public static final y5 f10189a = new Object();
 
-    static {
-        e2.c.u(e2.c.s(h0.class, new e0(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class y5 {
+    public static boolean a(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, com.google.android.gms.internal.cast.g4 g4Var, Object obj, Object obj2) {
+        while (!atomicReferenceFieldUpdater.compareAndSet(g4Var, obj, obj2)) {
+            if (atomicReferenceFieldUpdater.get(g4Var) != obj && atomicReferenceFieldUpdater.get(g4Var) != obj) {
+                return false;
+            }
         }
-        throw new ClassCastException();
+        return true;
     }
 }

@@ -2,85 +2,76 @@ package g4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import f8.r;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-public final class e extends b {
-    public static final Parcelable.Creator<e> CREATOR = new r(16);
-    public final long f7085a;
-    public final boolean f7086b;
-    public final boolean f7087c;
-    public final boolean d;
-    public final boolean f7088e;
-    public final long f7089f;
-    public final long h;
-    public final List f7090n;
-    public final boolean f7091r;
-    public final long f7092s;
-    public final int v;
-    public final int f7093w;
-    public final int f7094x;
+import f5.d0;
+public final class e extends j {
+    public static final Parcelable.Creator<e> CREATOR = new d6.d(23);
+    public final String f6996b;
+    public final String f6997c;
+    public final String d;
 
-    public e(long j10, boolean z10, boolean z11, boolean z12, boolean z13, long j11, long j12, List list, boolean z14, long j13, int i9, int i10, int i11) {
-        this.f7085a = j10;
-        this.f7086b = z10;
-        this.f7087c = z11;
-        this.d = z12;
-        this.f7088e = z13;
-        this.f7089f = j11;
-        this.h = j12;
-        this.f7090n = DesugarCollections.unmodifiableList(list);
-        this.f7091r = z14;
-        this.f7092s = j13;
-        this.v = i9;
-        this.f7093w = i10;
-        this.f7094x = i11;
+    public e(String str, String str2, String str3) {
+        super("COMM");
+        this.f6996b = str;
+        this.f6997c = str2;
+        this.d = str3;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && e.class == obj.getClass()) {
+            e eVar = (e) obj;
+            if (d0.a(this.f6997c, eVar.f6997c) && d0.a(this.f6996b, eVar.f6996b) && d0.a(this.d, eVar.d)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i10;
+        int i11;
+        int i12 = 0;
+        String str = this.f6996b;
+        if (str != null) {
+            i10 = str.hashCode();
+        } else {
+            i10 = 0;
+        }
+        int i13 = (527 + i10) * 31;
+        String str2 = this.f6997c;
+        if (str2 != null) {
+            i11 = str2.hashCode();
+        } else {
+            i11 = 0;
+        }
+        int i14 = (i13 + i11) * 31;
+        String str3 = this.d;
+        if (str3 != null) {
+            i12 = str3.hashCode();
+        }
+        return i14 + i12;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeLong(this.f7085a);
-        parcel.writeByte(this.f7086b ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.f7087c ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.d ? (byte) 1 : (byte) 0);
-        parcel.writeByte(this.f7088e ? (byte) 1 : (byte) 0);
-        parcel.writeLong(this.f7089f);
-        parcel.writeLong(this.h);
-        List list = this.f7090n;
-        int size = list.size();
-        parcel.writeInt(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            d dVar = (d) list.get(i10);
-            parcel.writeInt(dVar.f7082a);
-            parcel.writeLong(dVar.f7083b);
-            parcel.writeLong(dVar.f7084c);
-        }
-        parcel.writeByte(this.f7091r ? (byte) 1 : (byte) 0);
-        parcel.writeLong(this.f7092s);
-        parcel.writeInt(this.v);
-        parcel.writeInt(this.f7093w);
-        parcel.writeInt(this.f7094x);
+    public final String toString() {
+        return this.f7006a + ": language=" + this.f6996b + ", description=" + this.f6997c;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f7006a);
+        parcel.writeString(this.f6996b);
+        parcel.writeString(this.d);
     }
 
     public e(Parcel parcel) {
-        this.f7085a = parcel.readLong();
-        this.f7086b = parcel.readByte() == 1;
-        this.f7087c = parcel.readByte() == 1;
-        this.d = parcel.readByte() == 1;
-        this.f7088e = parcel.readByte() == 1;
-        this.f7089f = parcel.readLong();
-        this.h = parcel.readLong();
-        int readInt = parcel.readInt();
-        ArrayList arrayList = new ArrayList(readInt);
-        for (int i9 = 0; i9 < readInt; i9++) {
-            arrayList.add(new d(parcel.readInt(), parcel.readLong(), parcel.readLong()));
-        }
-        this.f7090n = DesugarCollections.unmodifiableList(arrayList);
-        this.f7091r = parcel.readByte() == 1;
-        this.f7092s = parcel.readLong();
-        this.v = parcel.readInt();
-        this.f7093w = parcel.readInt();
-        this.f7094x = parcel.readInt();
+        super("COMM");
+        String readString = parcel.readString();
+        int i10 = d0.f6579a;
+        this.f6996b = readString;
+        this.f6997c = parcel.readString();
+        this.d = parcel.readString();
     }
 }

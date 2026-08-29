@@ -1,217 +1,113 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
+import android.text.SpannableStringBuilder;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.TopicsController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class fe1 extends org.telegram.ui.ActionBar.j {
-    public final Context f38245a;
-    public final we1 f38246b;
+import org.telegram.tgnet.tl.TL_payments;
+public final class fe1 implements Utilities.Callback {
+    public final int f38134a = 1;
+    public final int f38135b;
+    public final long f38136c;
+    public final Object d;
+    public final Object f38137e;
+    public final Object f38138f;
+    public final Object f38139g;
 
-    public fe1(we1 we1Var, Context context) {
-        this.f38246b = we1Var;
-        this.f38245a = context;
+    public fe1(int i10, long j10, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f38135b = i10;
+        this.d = connectedbotstarref;
+        this.f38137e = f3Var;
+        this.f38138f = context;
+        this.f38136c = j10;
+        this.f38139g = c6Var;
     }
 
     @Override
-    public final void b(int i9) {
+    public final void run(Object obj) {
         int i10;
-        TLRPC.ChatParticipants chatParticipants;
-        boolean z10;
-        int i11;
-        boolean z11;
-        se1 se1Var;
-        TLRPC.TL_forumTopic tL_forumTopic;
-        we1 we1Var = this.f38246b;
-        TopicsController topicsController = we1Var.f43774s;
-        ArrayList arrayList = we1Var.f43744b;
-        HashSet hashSet = we1Var.W;
-        long j10 = we1Var.f43741a;
-        if (i9 == -1) {
-            if (hashSet.size() > 0) {
-                we1Var.B0();
-                return;
-            } else {
-                we1Var.finishFragment();
-                return;
-            }
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = null;
-        int i12 = 0;
-        switch (i9) {
-            case 1:
-                we1Var.getMessagesController().getTopicsController().toggleViewForumAsMessages(j10, true);
-                we1Var.E = true;
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", j10);
-                qn qnVar = new qn(bundle);
-                qnVar.f41914fa = true;
-                we1Var.presentFragment(qnVar);
-                return;
-            case 2:
-                TLRPC.ChatFull chatFull = we1Var.getMessagesController().getChatFull(j10);
-                TLRPC.ChatFull chatFull2 = we1Var.F;
-                if (chatFull2 != null && (chatParticipants = chatFull2.participants) != null) {
-                    chatFull.participants = chatParticipants;
+        SpannableStringBuilder replaceTags;
+        int i11 = this.f38134a;
+        Object obj2 = this.f38139g;
+        Object obj3 = this.f38138f;
+        Object obj4 = this.f38137e;
+        Object obj5 = this.d;
+        switch (i11) {
+            case 0:
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj4;
+                int[] iArr = (int[]) obj3;
+                ArrayList arrayList = (ArrayList) obj2;
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
+                ze1 ze1Var = ((ie1) obj5).f39228b;
+                if (tL_messages_invitedUsers2 != null) {
+                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
-                if (chatFull != null) {
-                    a0.h hVar = new a0.h();
-                    if (chatFull.participants != null) {
-                        while (i12 < chatFull.participants.participants.size()) {
-                            hVar.k(null, chatFull.participants.participants.get(i12).user_id);
-                            i12++;
-                        }
-                    }
-                    long j11 = chatFull.f22381id;
-                    i10 = ((org.telegram.ui.ActionBar.o2) we1Var).currentAccount;
-                    de1 de1Var = new de1(this, this.f38245a, i10, hVar, chatFull.f22381id, we1Var, j11);
-                    de1Var.f29981h0 = new d3.e(this, j11, 11);
-                    de1Var.show();
-                    return;
-                }
-                return;
-            case 3:
-                rd1 Z = rd1.Z(j10, 0L);
-                we1Var.presentFragment(Z);
-                AndroidUtilities.runOnUIThread(new md1(Z, 1), 200L);
-                return;
-            case 4:
-            case 5:
-                if (hashSet.size() > 0) {
-                    we1Var.f43784y0 = true;
-                    we1Var.J0 = true;
-                    TopicsController topicsController2 = we1Var.f43774s;
-                    long j12 = we1Var.f43741a;
-                    int intValue = ((Integer) hashSet.iterator().next()).intValue();
-                    if (i9 == 4) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    topicsController2.pinTopic(j12, intValue, z10, we1Var);
-                }
-                we1Var.B0();
-                return;
-            case 6:
-                Iterator it = hashSet.iterator();
-                while (it.hasNext()) {
-                    we1Var.getNotificationsController().muteDialog(-j10, ((Integer) it.next()).intValue(), we1Var.f43782x0);
-                }
-                we1Var.B0();
-                return;
-            case 7:
-                we1Var.C0(hashSet, new ky0(this, 21));
-                return;
-            case 8:
-                ArrayList arrayList2 = new ArrayList(hashSet);
-                for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-                    TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j10, ((Integer) arrayList2.get(i13)).intValue());
-                    if (findTopic != null) {
-                        we1Var.getMessagesController().markMentionsAsRead(-j10, findTopic.f22432id);
-                        MessagesController messagesController = we1Var.getMessagesController();
-                        long j13 = -j10;
-                        int i14 = findTopic.top_message;
-                        TLRPC.Message message = findTopic.topMessage;
-                        if (message != null) {
-                            i11 = message.date;
-                        } else {
-                            i11 = 0;
-                        }
-                        messagesController.markDialogAsRead(j13, i14, 0, i11, false, findTopic.f22432id, 0, true, 0);
-                        we1Var.getMessagesStorage().updateRepliesMaxReadId(we1Var.f43741a, findTopic.f22432id, findTopic.top_message, 0, true);
-                    }
-                }
-                we1Var.B0();
-                return;
-            case 9:
-            case 10:
-                we1Var.J0 = true;
-                ArrayList arrayList3 = new ArrayList(hashSet);
-                for (int i15 = 0; i15 < arrayList3.size(); i15++) {
-                    int intValue2 = ((Integer) arrayList3.get(i15)).intValue();
-                    if (i9 == 9) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    topicsController.toggleCloseTopic(j10, intValue2, z11);
-                }
-                we1Var.B0();
-                return;
-            case 11:
-                TLRPC.Chat chat = we1Var.getMessagesController().getChat(Long.valueOf(j10));
-                org.telegram.ui.Components.y4.s(we1Var, false, chat, null, false, true, false, false, new nl0(25, this, chat));
-                return;
-            case 12:
-            case 13:
-                int i16 = 0;
-                while (true) {
-                    if (i16 < we1Var.J.getChildCount()) {
-                        View childAt = we1Var.J.getChildAt(i16);
-                        if ((childAt instanceof se1) && (tL_forumTopic = (se1Var = (se1) childAt).J) != null && tL_forumTopic.f22432id == 1) {
-                            tL_forumTopic2 = tL_forumTopic;
-                        } else {
-                            i16++;
-                        }
-                    } else {
-                        se1Var = null;
-                    }
-                }
-                if (tL_forumTopic2 == null) {
-                    while (true) {
-                        if (i12 < arrayList.size()) {
-                            if (arrayList.get(i12) != null && ((me1) arrayList.get(i12)).f40405c != null && ((me1) arrayList.get(i12)).f40405c.f22432id == 1) {
-                                tL_forumTopic2 = ((me1) arrayList.get(i12)).f40405c;
+                int i12 = iArr[0] + 1;
+                iArr[0] = i12;
+                if (i12 == this.f38135b) {
+                    boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
+                    long j10 = this.f38136c;
+                    if (isEmpty) {
+                        org.telegram.ui.Components.tc a02 = org.telegram.ui.Components.tc.a0(ze1Var);
+                        TLRPC.Chat chat = ze1Var.getMessagesController().getChat(Long.valueOf(j10));
+                        a02.getClass();
+                        if (arrayList.size() == 0) {
+                            replaceTags = null;
+                        } else if (arrayList.size() == 1) {
+                            if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
                             } else {
-                                i12++;
+                                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, "**" + UserObject.getFirstName((TLRPC.User) arrayList.get(0)) + "**"));
                             }
+                        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+                            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedMembersToChannel", arrayList.size(), new Object[0]));
+                        } else {
+                            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedSubscribersToChannel", arrayList.size(), new Object[0]));
                         }
+                        a02.V(arrayList, replaceTags, null, null).j();
+                        return;
                     }
-                }
-                if (tL_forumTopic2 != null) {
-                    if (we1Var.f43781x <= 0) {
-                        we1Var.A = true;
-                        we1Var.f43783y = 2;
-                    }
-                    we1Var.getMessagesController().getTopicsController().toggleShowTopic(j10, 1, tL_forumTopic2.hidden);
-                    if (se1Var != null) {
-                        we1Var.X0 = se1Var;
-                    }
-                    we1Var.J.z1(!tL_forumTopic2.hidden, se1Var);
-                    we1Var.U0(true, true);
-                    if (se1Var != null) {
-                        se1Var.setTopicIcon(se1Var.U4);
-                    }
-                }
-                we1Var.B0();
-                return;
-            case 14:
-                if (ChatObject.hasAdminRights(we1Var.getMessagesController().getChat(Long.valueOf(j10)))) {
-                    u5 u5Var = new u5(-j10);
-                    TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = we1Var.T;
-                    u5Var.N = tL_premium_boostsStatus;
-                    if (tL_premium_boostsStatus != null) {
-                        u5Var.getMessagesController().getBoostsController().userCanBoostChannel(u5Var.L, u5Var.N, new m5(u5Var, 0));
-                    }
-                    we1Var.presentFragment(u5Var);
+                    TLRPC.Chat chat2 = ze1Var.getMessagesController().getChat(Long.valueOf(j10));
+                    i10 = ((org.telegram.ui.ActionBar.o2) ze1Var).currentAccount;
+                    org.telegram.ui.Components.c5.f(i10, chat2, tL_messages_invitedUsers);
                     return;
                 }
-                we1Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(-j10));
-                return;
-            case 15:
-                y21.K(-j10, we1Var);
                 return;
             default:
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj5;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj4;
+                Context context = (Context) obj3;
+                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) obj2;
+                TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
+                int i13 = this.f38135b;
+                long j11 = this.f38136c;
+                if (connectedbotstarref2 == null) {
+                    TLRPC.User user = MessagesController.getInstance(i13).getUser(Long.valueOf(connectedbotstarref.bot_id));
+                    if (user != null) {
+                        MessagesController.getInstance(i13).loadFullUser(user, 0, true, new ph.s2(f3Var, context, i13, j11, c6Var, 1));
+                        return;
+                    }
+                    return;
+                }
+                f3Var.dismiss();
+                ph.d3.H0(context, i13, connectedbotstarref2, j11, c6Var);
                 return;
         }
+    }
+
+    public fe1(ie1 ie1Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, ArrayList arrayList, long j10) {
+        this.d = ie1Var;
+        this.f38137e = tL_messages_invitedUsers;
+        this.f38138f = iArr;
+        this.f38135b = i10;
+        this.f38139g = arrayList;
+        this.f38136c = j10;
     }
 }

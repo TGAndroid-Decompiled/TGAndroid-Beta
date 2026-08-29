@@ -1,4 +1,3 @@
 package m6;
-public interface a {
-    int a();
+public final class a extends Exception {
 }

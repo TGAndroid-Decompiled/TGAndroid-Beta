@@ -1,29 +1,50 @@
 package org.telegram.ui.Components;
+public final class b1 implements org.telegram.ui.ActionBar.b2 {
+    public final int f26931a;
+    public final Runnable f26932b;
 
-import android.view.View;
-public final class b1 implements View.OnClickListener {
-    public final int f26965a;
-    public final org.telegram.ui.Cells.z1[] f26966b;
-
-    public b1(org.telegram.ui.Cells.z1[] z1VarArr, int i9) {
-        this.f26965a = i9;
-        this.f26966b = z1VarArr;
+    public b1(int i10, Runnable runnable) {
+        this.f26931a = i10;
+        this.f26932b = runnable;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f26965a) {
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f26931a) {
             case 0:
-                Integer num = (Integer) view.getTag();
-                int intValue = num.intValue();
-                org.telegram.ui.Cells.z1[] z1VarArr = this.f26966b;
-                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
+                Runnable runnable = this.f26932b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 1:
+                this.f26932b.run();
+                return;
+            case 2:
+                this.f26932b.run();
+                return;
+            case 3:
+                this.f26932b.run();
+                return;
+            case 4:
+                this.f26932b.run();
+                c2Var.dismiss();
+                return;
+            case 5:
+                Runnable runnable2 = this.f26932b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
             default:
-                Integer num2 = (Integer) view.getTag();
-                int intValue2 = num2.intValue();
-                org.telegram.ui.Cells.z1[] z1VarArr2 = this.f26966b;
-                z1VarArr2[intValue2].c(!z1VarArr2[num2.intValue()].b(), true);
+                c2Var.dismiss();
+                Runnable runnable3 = this.f26932b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
                 return;
         }
     }

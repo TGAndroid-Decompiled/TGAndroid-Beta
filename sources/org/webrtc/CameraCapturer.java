@@ -59,8 +59,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                         CameraCapturer cameraCapturer2 = CameraCapturer.this;
                         cameraCapturer2.switchCameraInternal(cameraCapturer2.switchEventsHandler, str);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -95,8 +95,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                         Logging.w("CameraCapturer", "Opening camera failed, retry: " + str);
                         CameraCapturer.this.createSessionInternal(500);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -112,8 +112,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     } else {
                         CameraCapturer.this.eventsHandler.onCameraClosed();
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -129,8 +129,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     }
                     CameraCapturer.this.eventsHandler.onCameraDisconnected();
                     CameraCapturer.this.stopCapture();
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -146,8 +146,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     }
                     CameraCapturer.this.eventsHandler.onCameraError(str);
                     CameraCapturer.this.stopCapture();
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -162,8 +162,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     } else {
                         CameraCapturer.this.eventsHandler.onCameraOpening(CameraCapturer.this.cameraName);
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -183,8 +183,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     }
                     CameraCapturer.this.cameraStatistics.addFrame();
                     CameraCapturer.this.capturerObserver.onFrameCaptured(videoFrame);
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -238,15 +238,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(aa.d.r(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a4.w.q(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
 
     public static int access$1710(CameraCapturer cameraCapturer) {
-        int i9 = cameraCapturer.openAttemptsRemaining;
-        cameraCapturer.openAttemptsRemaining = i9 - 1;
-        return i9;
+        int i10 = cameraCapturer.openAttemptsRemaining;
+        cameraCapturer.openAttemptsRemaining = i10 - 1;
+        return i10;
     }
 
     public void checkIsOnCameraThread() {
@@ -257,15 +257,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         throw new RuntimeException("Not on camera thread.");
     }
 
-    public void createSessionInternal(int i9) {
-        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i9 + 10000);
+    public void createSessionInternal(int i10) {
+        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i10 + 10000);
         this.cameraThreadHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 CameraCapturer cameraCapturer = CameraCapturer.this;
                 cameraCapturer.createCameraSession(cameraCapturer.createSessionCallback, CameraCapturer.this.cameraSessionEventsHandler, CameraCapturer.this.applicationContext, CameraCapturer.this.surfaceHelper, CameraCapturer.this.cameraName, CameraCapturer.this.width, CameraCapturer.this.height, CameraCapturer.this.framerate);
             }
-        }, i9);
+        }, i10);
     }
 
     public void reportCameraSwitchError(String str, CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
@@ -278,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(ta.b.d("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(u3.c.e("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -315,8 +315,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 this.openAttemptsRemaining = 1;
                 createSessionInternal(0);
                 Logging.d("CameraCapturer", "switchCamera done");
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -327,17 +327,17 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i9, int i10, int i11) {
-        StringBuilder o6 = e2.c.o("changeCaptureFormat: ", i9, "x", i10, "@");
-        o6.append(i11);
-        Logging.d("CameraCapturer", o6.toString());
+    public void changeCaptureFormat(int i10, int i11, int i12) {
+        StringBuilder o10 = com.google.android.recaptcha.internal.a.o("changeCaptureFormat: ", i10, "x", i11, "@");
+        o10.append(i12);
+        Logging.d("CameraCapturer", o10.toString());
         synchronized (this.stateLock) {
             stopCapture();
-            startCapture(i9, i10, i11);
+            startCapture(i10, i11, i12);
         }
     }
 
-    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i9, int i10, int i11);
+    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12);
 
     @Override
     public void dispose() {
@@ -391,17 +391,17 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void startCapture(int i9, int i10, int i11) {
-        StringBuilder o6 = e2.c.o("startCapture: ", i9, "x", i10, "@");
-        o6.append(i11);
-        Logging.d("CameraCapturer", o6.toString());
+    public void startCapture(int i10, int i11, int i12) {
+        StringBuilder o10 = com.google.android.recaptcha.internal.a.o("startCapture: ", i10, "x", i11, "@");
+        o10.append(i12);
+        Logging.d("CameraCapturer", o10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {
                     if (!this.sessionOpening && this.currentSession == null) {
-                        this.width = i9;
-                        this.height = i10;
-                        this.framerate = i11;
+                        this.width = i10;
+                        this.height = i11;
+                        this.framerate = i12;
                         this.sessionOpening = true;
                         this.openAttemptsRemaining = 3;
                         createSessionInternal(0);
@@ -409,8 +409,8 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     }
                     Logging.w("CameraCapturer", "Session already open");
                     return;
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }

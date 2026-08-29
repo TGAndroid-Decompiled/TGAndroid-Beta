@@ -6,50 +6,50 @@ import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewConfiguration;
 public final class a3 extends TouchDelegate {
-    public final View f16893a;
-    public final Rect f16894b;
-    public final Rect f16895c;
+    public final View f16492a;
+    public final Rect f16493b;
+    public final Rect f16494c;
     public final Rect d;
-    public final int f16896e;
-    public boolean f16897f;
+    public final int f16495e;
+    public boolean f16496f;
 
     public a3(Rect rect, Rect rect2, View view) {
         super(rect, view);
         int scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-        this.f16896e = scaledTouchSlop;
+        this.f16495e = scaledTouchSlop;
         Rect rect3 = new Rect();
-        this.f16894b = rect3;
+        this.f16493b = rect3;
         Rect rect4 = new Rect();
         this.d = rect4;
         Rect rect5 = new Rect();
-        this.f16895c = rect5;
+        this.f16494c = rect5;
         rect3.set(rect);
         rect4.set(rect);
-        int i9 = -scaledTouchSlop;
-        rect4.inset(i9, i9);
+        int i10 = -scaledTouchSlop;
+        rect4.inset(i10, i10);
         rect5.set(rect2);
-        this.f16893a = view;
+        this.f16492a = view;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         boolean z11;
-        int x10 = (int) motionEvent.getX();
-        int y10 = (int) motionEvent.getY();
+        int x4 = (int) motionEvent.getX();
+        int y8 = (int) motionEvent.getY();
         int action = motionEvent.getAction();
         boolean z12 = true;
         if (action != 0) {
             if (action != 1 && action != 2) {
                 if (action == 3) {
-                    z11 = this.f16897f;
-                    this.f16897f = false;
+                    z11 = this.f16496f;
+                    this.f16496f = false;
                 }
                 z10 = true;
                 z12 = false;
             } else {
-                z11 = this.f16897f;
-                if (z11 && !this.d.contains(x10, y10)) {
+                z11 = this.f16496f;
+                if (z11 && !this.d.contains(x4, y8)) {
                     z12 = z11;
                     z10 = false;
                 }
@@ -57,8 +57,8 @@ public final class a3 extends TouchDelegate {
             z12 = z11;
             z10 = true;
         } else {
-            if (this.f16894b.contains(x10, y10)) {
-                this.f16897f = true;
+            if (this.f16493b.contains(x4, y8)) {
+                this.f16496f = true;
                 z10 = true;
             }
             z10 = true;
@@ -67,12 +67,12 @@ public final class a3 extends TouchDelegate {
         if (!z12) {
             return false;
         }
-        Rect rect = this.f16895c;
-        View view = this.f16893a;
-        if (z10 && !rect.contains(x10, y10)) {
+        Rect rect = this.f16494c;
+        View view = this.f16492a;
+        if (z10 && !rect.contains(x4, y8)) {
             motionEvent.setLocation(view.getWidth() / 2, view.getHeight() / 2);
         } else {
-            motionEvent.setLocation(x10 - rect.left, y10 - rect.top);
+            motionEvent.setLocation(x4 - rect.left, y8 - rect.top);
         }
         return view.dispatchTouchEvent(motionEvent);
     }

@@ -1,148 +1,73 @@
 package pb;
+public final class a {
+    public static final a h;
+    public final int[] f45710a;
+    public final int[] f45711b;
+    public final b f45712c;
+    public final b d;
+    public final int f45713e;
+    public final int f45714f;
+    public final int f45715g;
 
-import com.google.android.exoplayer2.upstream.w;
-import lb.h;
-public abstract class a {
-    public static final char[] f45508a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
-
-    public static void a(w wVar, StringBuilder sb2, int i9, boolean z10) {
-        while (i9 > 1) {
-            if (wVar.d() >= 11) {
-                int e10 = wVar.e(11);
-                sb2.append(f(e10 / 45));
-                sb2.append(f(e10 % 45));
-                i9 -= 2;
-            } else {
-                throw kb.c.a();
-            }
-        }
-        if (i9 == 1) {
-            if (wVar.d() >= 6) {
-                sb2.append(f(wVar.e(6)));
-            } else {
-                throw kb.c.a();
-            }
-        }
-        if (z10) {
-            for (int length = sb2.length(); length < sb2.length(); length++) {
-                if (sb2.charAt(length) == '%') {
-                    if (length < sb2.length() - 1) {
-                        int i10 = length + 1;
-                        if (sb2.charAt(i10) == '%') {
-                            sb2.deleteCharAt(i10);
-                        }
-                    }
-                    sb2.setCharAt(length, (char) 29);
-                }
-            }
-        }
+    static {
+        new a(4201, 4096, 1);
+        new a(1033, 1024, 1);
+        new a(67, 64, 1);
+        new a(19, 16, 1);
+        h = new a(285, 256, 0);
+        new a(301, 256, 1);
     }
 
-    public static void b(com.google.android.exoplayer2.upstream.w r24, java.lang.StringBuilder r25, int r26, lb.c r27, java.util.ArrayList r28) {
-        throw new UnsupportedOperationException("Method not decompiled: pb.a.b(com.google.android.exoplayer2.upstream.w, java.lang.StringBuilder, int, lb.c, java.util.ArrayList):void");
+    public a(int i10, int i11, int i12) {
+        this.f45714f = i10;
+        this.f45713e = i11;
+        this.f45715g = i12;
+        this.f45710a = new int[i11];
+        this.f45711b = new int[i11];
+        int i13 = 1;
+        for (int i14 = 0; i14 < i11; i14++) {
+            this.f45710a[i14] = i13;
+            i13 *= 2;
+            if (i13 >= i11) {
+                i13 = (i13 ^ i10) & (i11 - 1);
+            }
+        }
+        for (int i15 = 0; i15 < i11 - 1; i15++) {
+            this.f45711b[this.f45710a[i15]] = i15;
+        }
+        this.f45712c = new b(this, new int[]{0});
+        this.d = new b(this, new int[]{1});
     }
 
-    public static void c(w wVar, StringBuilder sb2, int i9) {
-        int i10;
-        if (h.f16763c != null) {
-            if (i9 * 13 <= wVar.d()) {
-                byte[] bArr = new byte[i9 * 2];
-                int i11 = 0;
-                while (i9 > 0) {
-                    int e10 = wVar.e(13);
-                    int i12 = (e10 % 96) | ((e10 / 96) << 8);
-                    if (i12 < 2560) {
-                        i10 = 41377;
-                    } else {
-                        i10 = 42657;
-                    }
-                    int i13 = i12 + i10;
-                    bArr[i11] = (byte) ((i13 >> 8) & 255);
-                    bArr[i11 + 1] = (byte) (i13 & 255);
-                    i11 += 2;
-                    i9--;
-                }
-                sb2.append(new String(bArr, h.f16763c));
-                return;
+    public final b a(int i10, int i11) {
+        if (i10 >= 0) {
+            if (i11 == 0) {
+                return this.f45712c;
             }
-            throw kb.c.a();
+            int[] iArr = new int[i10 + 1];
+            iArr[0] = i11;
+            return new b(this, iArr);
         }
-        throw kb.c.a();
+        throw new IllegalArgumentException();
     }
 
-    public static void d(w wVar, StringBuilder sb2, int i9) {
-        int i10;
-        if (h.f16762b != null) {
-            if (i9 * 13 <= wVar.d()) {
-                byte[] bArr = new byte[i9 * 2];
-                int i11 = 0;
-                while (i9 > 0) {
-                    int e10 = wVar.e(13);
-                    int i12 = (e10 % 192) | ((e10 / 192) << 8);
-                    if (i12 < 7936) {
-                        i10 = 33088;
-                    } else {
-                        i10 = 49472;
-                    }
-                    int i13 = i12 + i10;
-                    bArr[i11] = (byte) (i13 >> 8);
-                    bArr[i11 + 1] = (byte) i13;
-                    i11 += 2;
-                    i9--;
-                }
-                sb2.append(new String(bArr, h.f16762b));
-                return;
-            }
-            throw kb.c.a();
+    public final int b(int i10) {
+        if (i10 != 0) {
+            int i11 = this.f45711b[i10];
+            return this.f45710a[(this.f45713e - i11) - 1];
         }
-        throw kb.c.a();
+        throw new ArithmeticException();
     }
 
-    public static void e(w wVar, StringBuilder sb2, int i9) {
-        while (i9 >= 3) {
-            if (wVar.d() >= 10) {
-                int e10 = wVar.e(10);
-                if (e10 < 1000) {
-                    sb2.append(f(e10 / 100));
-                    sb2.append(f((e10 / 10) % 10));
-                    sb2.append(f(e10 % 10));
-                    i9 -= 3;
-                } else {
-                    throw kb.c.a();
-                }
-            } else {
-                throw kb.c.a();
-            }
+    public final int c(int i10, int i11) {
+        if (i10 != 0 && i11 != 0) {
+            int[] iArr = this.f45711b;
+            return this.f45710a[(iArr[i10] + iArr[i11]) % (this.f45713e - 1)];
         }
-        if (i9 == 2) {
-            if (wVar.d() >= 7) {
-                int e11 = wVar.e(7);
-                if (e11 < 100) {
-                    sb2.append(f(e11 / 10));
-                    sb2.append(f(e11 % 10));
-                    return;
-                }
-                throw kb.c.a();
-            }
-            throw kb.c.a();
-        } else if (i9 == 1) {
-            if (wVar.d() >= 4) {
-                int e12 = wVar.e(4);
-                if (e12 < 10) {
-                    sb2.append(f(e12));
-                    return;
-                }
-                throw kb.c.a();
-            }
-            throw kb.c.a();
-        }
+        return 0;
     }
 
-    public static char f(int i9) {
-        char[] cArr = f45508a;
-        if (i9 < cArr.length) {
-            return cArr[i9];
-        }
-        throw kb.c.a();
+    public final String toString() {
+        return "GF(0x" + Integer.toHexString(this.f45714f) + ',' + this.f45713e + ')';
     }
 }

@@ -2,35 +2,36 @@ package y7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.q;
-import g7.p8;
-import java.util.ArrayList;
-import java.util.List;
-import w7.i;
-public final class f extends y5.a implements q {
-    public static final Parcelable.Creator<f> CREATOR = new i(15);
-    public final List f49614a;
-    public final String f49615b;
+import com.google.android.gms.internal.cast.o;
+import w5.k;
+public final class f extends a6.a {
+    public static final Parcelable.Creator<f> CREATOR = new k(10);
+    public final long f50505a;
+    public final a[] f50506b;
+    public final int f50507c;
+    public final boolean d;
 
-    public f(String str, ArrayList arrayList) {
-        this.f49614a = arrayList;
-        this.f49615b = str;
-    }
-
-    @Override
-    public final Status i() {
-        if (this.f49615b != null) {
-            return Status.f2737e;
+    public f(long j10, a[] aVarArr, int i10, boolean z10) {
+        this.f50505a = j10;
+        this.f50506b = aVarArr;
+        this.d = z10;
+        if (z10) {
+            this.f50507c = i10;
+        } else {
+            this.f50507c = -1;
         }
-        return Status.f2740r;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.n(parcel, 1, this.f49614a);
-        p8.l(parcel, 2, this.f49615b);
-        p8.r(parcel, q10);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = o.q(parcel, 20293);
+        o.s(parcel, 2, 8);
+        parcel.writeLong(this.f50505a);
+        o.o(parcel, 3, this.f50506b, i10);
+        o.s(parcel, 4, 4);
+        parcel.writeInt(this.f50507c);
+        o.s(parcel, 5, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        o.r(parcel, q6);
     }
 }

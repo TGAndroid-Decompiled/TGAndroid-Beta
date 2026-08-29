@@ -1,10 +1,19 @@
 package ib;
 
-import java.util.ArrayList;
-public final class b {
-    public final ArrayList f11082a;
+import hb.c;
+import z5.l;
+public final class b extends c {
+    public static final b f8825b;
 
-    public b(ArrayList arrayList) {
-        this.f11082a = arrayList;
+    static {
+        ?? obj = new Object();
+        obj.f8824a = -1.0f;
+        boolean z10 = false;
+        if (Float.compare(0.5f, 0.0f) >= 0 && Float.compare(0.5f, 1.0f) <= 0) {
+            z10 = true;
+        }
+        l.a("Confidence Threshold should be in range [0.0f, 1.0f].", z10);
+        obj.f8824a = 0.5f;
+        f8825b = new c(obj);
     }
 }

@@ -1,3 +1,4 @@
 package u8;
-public @interface d {
+public final class d {
+    public final g f49125a;
 }

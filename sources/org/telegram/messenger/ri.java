@@ -1,27 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_update;
+import java.util.ArrayList;
 public final class ri implements Runnable {
-    public final int f21422a;
-    public final SendMessagesHelper f21423b;
-    public final TL_update.TL_updateNewChannelMessage f21424c;
-    public final long d;
+    public final int f21468a;
+    public final SendMessagesHelper f21469b;
+    public final long f21470c;
+    public final ArrayList d;
 
-    public ri(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j10, int i9) {
-        this.f21422a = i9;
-        this.f21423b = sendMessagesHelper;
-        this.f21424c = tL_updateNewChannelMessage;
-        this.d = j10;
+    public ri(SendMessagesHelper sendMessagesHelper, long j10, ArrayList arrayList, int i10) {
+        this.f21468a = i10;
+        this.f21469b = sendMessagesHelper;
+        this.f21470c = j10;
+        this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f21422a) {
+        switch (this.f21468a) {
             case 0:
-                this.f21423b.lambda$performSendMessageRequest$93(this.f21424c, this.d);
+                SendMessagesHelper.u(this.f21469b, this.f21470c, this.d);
+                return;
+            case 1:
+                SendMessagesHelper.k1(this.f21469b, this.f21470c, this.d);
                 return;
             default:
-                this.f21423b.lambda$performSendMessageRequestMulti$68(this.f21424c, this.d);
+                SendMessagesHelper.R0(this.f21469b, this.f21470c, this.d);
                 return;
         }
     }

@@ -1,130 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.R;
 public final class sc {
-    public float A;
-    public float B;
-    public float C;
-    public float D;
-    public final uc E;
-    public final Paint f32419a;
-    public Bitmap f32420b;
-    public float f32421c;
-    public float d;
-    public final y5 f32422e;
-    public final y5 f32423f;
-    public float f32424g;
-    public final y5 h;
-    public float f32425i;
-    public final y5 f32426j;
-    public final i6 f32427k;
-    public float f32428l;
-    public final y5 f32429m;
-    public boolean f32430n;
-    public final y5 f32431o;
-    public final Path f32432p;
-    public final Paint f32433q;
-    public final RectF f32434r;
-    public final Paint f32435s;
-    public final Paint f32436t;
-    public final RectF f32437u;
-    public RadialGradient v;
-    public Matrix f32438w;
-    public float f32439x;
-    public float f32440y;
-    public float f32441z;
+    public static final sc A;
+    public static final sc B;
+    public static final sc C;
+    public static final sc D;
+    public static final sc E;
+    public static final sc[] F;
+    public static final sc f32602e;
+    public static final sc f32603f;
+    public static final sc h;
+    public static final sc f32604n;
+    public static final sc f32605r;
+    public static final sc f32606s;
+    public static final sc v;
+    public static final sc f32607w;
+    public static final sc f32608x;
+    public static final sc f32609y;
+    public final String f32610a;
+    public final int f32611b;
+    public final boolean f32612c;
+    public final rc d;
 
-    public sc(uc ucVar) {
-        this.E = ucVar;
-        Paint paint = new Paint(3);
-        this.f32419a = paint;
-        paint.setColor(-1);
-        gr grVar = gr.h;
-        this.f32422e = new y5(ucVar, 650L, grVar);
-        this.f32423f = new y5(ucVar, 650L, grVar);
-        gr grVar2 = gr.f28845g;
-        this.h = new y5(ucVar, 0L, 150L, grVar2);
-        this.f32425i = 1.0f;
-        this.f32426j = new y5(ucVar, 0L, 150L, grVar2);
-        i6 i6Var = new i6(false, true, true, false);
-        this.f32427k = i6Var;
-        this.f32429m = new y5(ucVar, 0L, 150L, grVar2);
-        this.f32431o = new y5(ucVar, 0L, 200L, grVar);
-        i6Var.r(-1);
-        i6Var.k(0.35f, 200L, grVar);
-        i6Var.u(AndroidUtilities.bold());
-        i6Var.t(AndroidUtilities.dp(15.0f));
-        i6Var.f29333b = 17;
-        this.f32432p = new Path();
-        Paint paint2 = new Paint(1);
-        this.f32433q = paint2;
-        this.f32434r = new RectF();
-        this.f32435s = new Paint(1);
-        Paint paint3 = new Paint(1);
-        this.f32436t = paint3;
-        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        this.f32437u = new RectF();
+    static {
+        int i10 = R.string.PhotoSavedHint;
+        rc rcVar = rc.SAVED_TO_GALLERY;
+        sc scVar = new sc("PHOTO", 0, "PhotoSavedHint", i10, rcVar);
+        f32602e = scVar;
+        sc scVar2 = new sc("PHOTOS", 1, "PhotosSavedHint", rcVar);
+        f32603f = scVar2;
+        sc scVar3 = new sc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, rcVar);
+        h = scVar3;
+        sc scVar4 = new sc("VIDEOS", 3, "VideosSavedHint", rcVar);
+        f32604n = scVar4;
+        sc scVar5 = new sc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, rcVar);
+        f32605r = scVar5;
+        sc scVar6 = new sc("LIVEPHOTOS", 5, "LivePhotosSavedHint", rcVar);
+        f32606s = scVar6;
+        sc scVar7 = new sc("MEDIA", 6, "MediaSavedHint", rcVar);
+        v = scVar7;
+        int i11 = R.string.PhotoSavedToDownloadsHintLinked;
+        rc rcVar2 = rc.SAVED_TO_DOWNLOADS;
+        sc scVar8 = new sc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, rcVar2);
+        f32607w = scVar8;
+        sc scVar9 = new sc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, rcVar2);
+        f32608x = scVar9;
+        sc scVar10 = new sc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, rc.SAVED_TO_GIFS);
+        f32609y = scVar10;
+        sc scVar11 = new sc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, rcVar2);
+        A = scVar11;
+        int i12 = R.string.AudioSavedHint;
+        rc rcVar3 = rc.SAVED_TO_MUSIC;
+        sc scVar12 = new sc("AUDIO", 11, "AudioSavedHint", i12, rcVar3);
+        B = scVar12;
+        sc scVar13 = new sc("AUDIOS", 12, "AudiosSavedHint", rcVar3);
+        C = scVar13;
+        sc scVar14 = new sc("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, rcVar2);
+        D = scVar14;
+        sc scVar15 = new sc("UNKNOWNS", 14, "FilesSavedHintLinked", rcVar2);
+        E = scVar15;
+        F = new sc[]{scVar, scVar2, scVar3, scVar4, scVar5, scVar6, scVar7, scVar8, scVar9, scVar10, scVar11, scVar12, scVar13, scVar14, scVar15};
     }
 
-    public final void a(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18, float f19) {
-        double d;
-        if (f19 > 0.0f && LiteMode.isEnabled(360928)) {
-            long currentTimeMillis = System.currentTimeMillis();
-            float sqrt = (float) Math.sqrt(2.0d);
-            if (uc.U < 0) {
-                uc.U = currentTimeMillis;
-            }
-            float f20 = ((float) (currentTimeMillis - uc.U)) / 10000.0f;
-            Bitmap bitmap = this.f32420b;
-            if (bitmap != null) {
-                int width = bitmap.getWidth();
-                float f21 = width;
-                float dpf2 = AndroidUtilities.dpf2(15.0f) / f21;
-                float f22 = 7.0f;
-                int floor = (int) Math.floor((f14 % 360.0f) / 7.0f);
-                int ceil = (int) Math.ceil((f15 % 360.0f) / 7.0f);
-                while (floor <= ceil) {
-                    float f23 = floor * f22;
-                    float sin = (float) (((((Math.sin(2000.0f * f23) + 1.0d) * 0.25d) + 1.0d) * (100.0f + f20)) % 1.0d);
-                    float f24 = f21 * sqrt;
-                    float f25 = f20;
-                    double lerp = AndroidUtilities.lerp(f16 - f24, f17 + f24, sin);
-                    float b10 = (float) j3.r0.b(uc.a(f23), lerp, f10);
-                    int i9 = width;
-                    float sin2 = (float) ((Math.sin(uc.a(f23)) * lerp) + f11);
-                    float abs = (Math.abs(sin - 0.5f) * (-1.75f)) + 1.0f;
-                    float B = e2.c.B((float) (Math.sin(sin * 3.141592653589793d) - 1.0d), 0.25f, 1.0f, abs * 0.65f * f19);
-                    Paint paint = this.f32419a;
-                    paint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, AndroidUtilities.lerp(1.0f, Math.min(g7.w.a(b10, sin2, f12, f13) / AndroidUtilities.dpf2(64.0f), 1.0f), f18) * B)) * 255.0f));
-                    float f26 = dpf2;
-                    float sin3 = f26 * ((float) ((((Math.sin(f23) + 1.0d) * 0.25d) + 0.800000011920929d) * e2.c.B((float) (Math.sin(d) - 1.0d), 0.25f, 1.0f, 0.75f)));
-                    canvas.save();
-                    canvas.translate(b10, sin2);
-                    canvas.scale(sin3, sin3);
-                    float f27 = -(i9 >> 1);
-                    canvas.drawBitmap(this.f32420b, f27, f27, paint);
-                    canvas.restore();
-                    floor++;
-                    sqrt = sqrt;
-                    width = i9;
-                    f21 = f21;
-                    dpf2 = f26;
-                    f20 = f25;
-                    f22 = 7.0f;
-                }
-            }
-        }
+    public sc(String str, int i10, String str2, int i11, rc rcVar) {
+        this.f32610a = str2;
+        this.f32611b = i11;
+        this.d = rcVar;
+        this.f32612c = false;
+    }
+
+    public static sc valueOf(String str) {
+        return (sc) Enum.valueOf(sc.class, str);
+    }
+
+    public static sc[] values() {
+        return (sc[]) F.clone();
+    }
+
+    public sc(String str, int i10, String str2, rc rcVar) {
+        this.f32610a = str2;
+        this.d = rcVar;
+        this.f32611b = 0;
+        this.f32612c = true;
     }
 }

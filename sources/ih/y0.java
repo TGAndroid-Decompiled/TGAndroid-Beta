@@ -1,17 +1,47 @@
 package ih;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class y0 implements RequestDelegate {
-    public final int f12337a;
-    public final f1 f12338b;
+import org.telegram.messenger.Utilities;
+public final class y0 implements Runnable {
+    public final int f9517a;
+    public final h2 f9518b;
+    public final Utilities.Callback f9519c;
 
-    public y0(f1 f1Var, int i9) {
-        this.f12337a = i9;
-        this.f12338b = f1Var;
+    public y0(h2 h2Var, Utilities.Callback callback, int i10) {
+        this.f9517a = i10;
+        this.f9518b = h2Var;
+        this.f9519c = callback;
     }
 
     @Override
-    public final void run(final org.telegram.tgnet.TLObject r18, final org.telegram.tgnet.TLRPC.TL_error r19) {
-        throw new UnsupportedOperationException("Method not decompiled: ih.y0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void run() {
+        switch (this.f9517a) {
+            case 0:
+                h2 h2Var = this.f9518b;
+                Utilities.Callback callback = this.f9519c;
+                if (callback != null) {
+                    h2Var.getClass();
+                    callback.run(Boolean.FALSE);
+                }
+                h2Var.dismiss();
+                return;
+            case 1:
+                h2 h2Var2 = this.f9518b;
+                Utilities.Callback callback2 = this.f9519c;
+                if (callback2 != null) {
+                    h2Var2.getClass();
+                    callback2.run(Boolean.FALSE);
+                }
+                h2Var2.dismiss();
+                return;
+            default:
+                h2 h2Var3 = this.f9518b;
+                Utilities.Callback callback3 = this.f9519c;
+                if (callback3 != null) {
+                    h2Var3.getClass();
+                    callback3.run(Boolean.FALSE);
+                }
+                h2Var3.dismiss();
+                return;
+        }
     }
 }

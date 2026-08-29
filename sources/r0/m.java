@@ -3,13 +3,13 @@ package r0;
 import android.view.View;
 import android.view.ViewGroup;
 public interface m {
-    void E(ViewGroup viewGroup, int i9, int i10, int[] iArr, int i11);
+    void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12);
 
-    void c(ViewGroup viewGroup, int i9, int i10, int i11, int i12, int i13);
+    void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14);
 
-    void p(int i9, View view);
+    void n(int i10, View view);
 
-    boolean q(View view, View view2, int i9, int i10);
+    boolean o(View view, View view2, int i10, int i11);
 
-    void t(View view, View view2, int i9, int i10);
+    void s(View view, View view2, int i10, int i11);
 }

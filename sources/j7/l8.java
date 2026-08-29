@@ -1,17 +1,12 @@
 package j7;
-public final class l8 implements q9.d {
-    public static final l8 f14016a = new Object();
+public final class l8 {
+    public final m7 f11083a;
+    public final n8 f11084b;
+    public final k7 f11085c;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, j3.r0.i(12, j3.r0.r(w.class, j3.r0.i(11, j3.r0.r(w.class, j3.r0.i(10, j3.r0.r(w.class, j3.r0.i(9, j3.r0.r(w.class, j3.r0.i(8, j3.r0.r(w.class, j3.r0.i(7, j3.r0.r(w.class, j3.r0.i(6, j3.r0.r(w.class, j3.r0.i(5, j3.r0.r(w.class, j3.r0.i(4, j3.r0.r(w.class, j3.r0.i(3, j3.r0.r(w.class, j3.r0.i(2, j3.r0.r(w.class, new s(1)))))))))))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public l8(androidx.biometric.e eVar) {
+        this.f11083a = (m7) eVar.f1030b;
+        this.f11084b = (n8) eVar.f1031c;
+        this.f11085c = (k7) eVar.d;
     }
 }

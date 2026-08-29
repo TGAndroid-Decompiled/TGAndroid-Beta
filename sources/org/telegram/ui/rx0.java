@@ -1,160 +1,227 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class rx0 implements Runnable {
-    public final int f42507a;
-    public final Object f42508b;
-    public final Object f42509c;
-    public final Object d;
-    public final Object f42510e;
-    public final Object f42511f;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class rx0 implements org.telegram.ui.ActionBar.h6 {
+    public final int f42223a;
+    public final org.telegram.ui.ActionBar.o2 f42224b;
 
-    public rx0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i9) {
-        this.f42507a = i9;
-        this.f42508b = obj;
-        this.f42509c = obj2;
-        this.d = obj3;
-        this.f42510e = obj4;
-        this.f42511f = obj5;
+    public rx0(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f42223a = i10;
+        this.f42224b = o2Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42507a) {
+    public final void a(float f9) {
+        int i10 = this.f42223a;
+    }
+
+    @Override
+    public final void b() {
+        ValueAnimator valueAnimator;
+        int i10;
+        int i11 = this.f42223a;
+        int i12 = 0;
+        org.telegram.ui.ActionBar.o2 o2Var = this.f42224b;
+        switch (i11) {
             case 0:
-                ProfileActivity.W((ProfileActivity) this.f42508b, (TLObject) this.f42509c, (TLRPC.UserFull) this.d, (TL_account.TL_birthday) this.f42510e, (TLRPC.TL_error) this.f42511f);
+                ProfileActivity.V((ProfileActivity) o2Var);
                 return;
             case 1:
-                f01 f01Var = (f01) this.f42508b;
-                ArrayList arrayList = (ArrayList) this.d;
-                ArrayList arrayList2 = (ArrayList) this.f42510e;
-                ArrayList arrayList3 = (ArrayList) this.f42511f;
-                org.telegram.ui.ActionBar.o2 o2Var = f01Var.f38065e;
-                if (((String) this.f42509c).equals(f01Var.f38072y)) {
-                    if (!f01Var.f38070w && (o2Var instanceof ProfileActivity)) {
-                        try {
-                            ((ProfileActivity) o2Var).L.f28883b.getImageReceiver().startAnimation();
-                            ((ProfileActivity) o2Var).L.d.setText(LocaleController.getString(R.string.SettingsNoResults));
-                        } catch (Exception e10) {
-                            FileLog.e(e10);
+                t01 t01Var = (t01) o2Var;
+                org.telegram.ui.Components.jl0 jl0Var = t01Var.f42511a;
+                if (jl0Var != null) {
+                    int childCount = jl0Var.getChildCount();
+                    while (i12 < childCount) {
+                        View childAt = t01Var.f42511a.getChildAt(i12);
+                        if (childAt instanceof org.telegram.ui.Cells.ra) {
+                            ((org.telegram.ui.Cells.ra) childAt).b();
                         }
-                    }
-                    f01Var.f38070w = true;
-                    f01Var.f38068r = arrayList;
-                    f01Var.f38069s = arrayList2;
-                    f01Var.f38067n = arrayList3;
-                    f01Var.l();
-                    if (o2Var instanceof ProfileActivity) {
-                        try {
-                            ((ProfileActivity) o2Var).L.f28883b.getImageReceiver().startAnimation();
-                            return;
-                        } catch (Exception e11) {
-                            FileLog.e(e11);
-                            return;
-                        }
+                        i12++;
                     }
                     return;
                 }
                 return;
             case 2:
-                b61 b61Var = (b61) this.f42508b;
-                View view = (View) this.f42509c;
-                b61Var.getClass();
-                b61Var.p(view, Long.valueOf(((org.telegram.ui.Components.t5) this.d).documentId), (TLRPC.Document) this.f42510e, ((k51) this.f42511f).v, null);
-                return;
-            case 3:
-                l61 l61Var = (l61) this.f42508b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f42511f;
-                TLObject tLObject = (TLObject) this.f42509c;
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.d;
-                TLRPC.User user = (TLRPC.User) this.f42510e;
-                l61Var.getClass();
-                if (tL_error == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    twoStepVerificationActivity.E = password;
-                    TwoStepVerificationActivity.l0(password);
-                    l61Var.S(user, twoStepVerificationActivity.k0(), twoStepVerificationActivity);
+                l11 l11Var = (l11) o2Var;
+                if (l11Var.h != null && ((valueAnimator = l11Var.D) == null || !valueAnimator.isRunning())) {
+                    org.telegram.ui.Cells.y9 y9Var = l11Var.h;
+                    if (l11Var.C) {
+                        i10 = org.telegram.ui.ActionBar.g6.q6;
+                    } else {
+                        i10 = org.telegram.ui.ActionBar.g6.f23450z6;
+                    }
+                    y9Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, i10, false));
+                }
+                if (l11Var.f40053a != null) {
+                    int i13 = 0;
+                    while (true) {
+                        EditTextBoldCursor[] editTextBoldCursorArr = l11Var.f40053a;
+                        if (i13 < editTextBoldCursorArr.length) {
+                            editTextBoldCursorArr[i13].setLineColors(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23189k6, false), org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23206l6, false), org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23279p7, false));
+                            i13++;
+                        } else {
+                            return;
+                        }
+                    }
+                } else {
                     return;
                 }
+                break;
+            case 3:
+                a21 a21Var = (a21) o2Var;
+                a21Var.getClass();
+                a21Var.setNavigationBarColor(a21Var.getThemedColor(org.telegram.ui.ActionBar.g6.f23009a7));
                 return;
             case 4:
-                pf.r1 r1Var = (pf.r1) this.f42508b;
-                Runnable runnable = (Runnable) this.f42511f;
-                r1Var.f45768e = false;
-                int i9 = r1Var.f45765a;
-                MessagesController.getInstance(i9).putUsers((ArrayList) this.f42509c, true);
-                MessagesController.getInstance(i9).putChats((ArrayList) this.d, true);
-                ArrayList arrayList4 = r1Var.f45766b;
-                arrayList4.clear();
-                arrayList4.addAll((ArrayList) this.f42510e);
-                if (runnable != null) {
-                    runnable.run();
-                } else {
-                    r1Var.i(null, false);
-                }
-                NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
+                i21 i21Var = (i21) o2Var;
+                i21Var.f39110a.setBackgroundColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23009a7, false));
+                i21Var.f39112c.l();
                 return;
             case 5:
-                pf.r1 r1Var2 = (pf.r1) this.f42508b;
-                pf.q1 q1Var = (pf.q1) this.f42510e;
-                MessageObject messageObject = (MessageObject) this.f42511f;
-                int i10 = r1Var2.f45765a;
-                MessagesController.getInstance(i10).putUsers((ArrayList) this.f42509c, true);
-                MessagesController.getInstance(i10).putChats((ArrayList) this.d, true);
-                q1Var.f45759e = messageObject;
-                if (messageObject != null) {
-                    messageObject.applyQuickReply(q1Var.f45757b, q1Var.f45756a);
+                t91 t91Var = (t91) o2Var;
+                u81 u81Var = t91Var.O;
+                if (u81Var != null) {
+                    int childCount2 = u81Var.getChildCount();
+                    for (int i14 = 0; i14 < childCount2; i14++) {
+                        t91.l0(t91Var.O.getChildAt(i14));
+                    }
+                    int hiddenChildCount = t91Var.O.getHiddenChildCount();
+                    for (int i15 = 0; i15 < hiddenChildCount; i15++) {
+                        t91.l0(t91Var.O.V(i15));
+                    }
+                    int cachedChildCount = t91Var.O.getCachedChildCount();
+                    for (int i16 = 0; i16 < cachedChildCount; i16++) {
+                        t91.l0(t91Var.O.P(i16));
+                    }
+                    int attachedScrapChildCount = t91Var.O.getAttachedScrapChildCount();
+                    while (i12 < attachedScrapChildCount) {
+                        t91.l0(t91Var.O.O(i12));
+                        i12++;
+                    }
+                    t91Var.O.getRecycledViewPool().a();
                 }
-                r1Var2.l();
-                NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
-                return;
-            default:
-                pf.r1 r1Var3 = (pf.r1) this.f42508b;
-                TLObject tLObject2 = (TLObject) this.f42509c;
-                ArrayList<Integer> arrayList5 = (ArrayList) this.d;
-                TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = (TLRPC.TL_messages_sendQuickReplyMessages) this.f42510e;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f42511f;
-                r1Var3.getClass();
-                if (tLObject2 instanceof TLRPC.TL_messages_messages) {
-                    ArrayList<TLRPC.Message> arrayList6 = ((TLRPC.TL_messages_messages) tLObject2).messages;
-                    arrayList5.clear();
-                    int size = arrayList6.size();
-                    int i11 = 0;
-                    while (i11 < size) {
-                        TLRPC.Message message = arrayList6.get(i11);
-                        i11++;
-                        arrayList5.add(Integer.valueOf(message.f22401id));
-                    }
-                    tL_messages_sendQuickReplyMessages.f22495id = arrayList5;
-                    for (int i12 = 0; i12 < arrayList5.size(); i12++) {
-                        tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
-                    }
-                    ConnectionsManager.getInstance(r1Var3.f45765a).sendRequest(tL_messages_sendQuickReplyMessages, null);
+                tf.f fVar = t91Var.W;
+                if (fVar != null) {
+                    fVar.f48233g = true;
                     return;
                 }
-                FileLog.e("received " + tLObject2 + " " + tL_error2 + " on getQuickReplyMessages when trying to send quick reply");
+                return;
+            case 6:
+                ThemeActivity themeActivity = (ThemeActivity) o2Var;
+                for (int i17 = 0; i17 < themeActivity.f36292b.getChildCount(); i17++) {
+                    View childAt2 = themeActivity.f36292b.getChildAt(i17);
+                    if (childAt2 instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) childAt2).getAdapter().l();
+                    } else if (childAt2 instanceof go0) {
+                        ((go0) childAt2).a();
+                    }
+                }
+                for (int i18 = 0; i18 < themeActivity.f36292b.getCachedChildCount(); i18++) {
+                    View P = themeActivity.f36292b.P(i18);
+                    if (P instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) P).getAdapter().l();
+                    } else if (P instanceof go0) {
+                        ((go0) P).a();
+                    }
+                }
+                for (int i19 = 0; i19 < themeActivity.f36292b.getHiddenChildCount(); i19++) {
+                    View V = themeActivity.f36292b.V(i19);
+                    if (V instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) V).getAdapter().l();
+                    } else if (V instanceof go0) {
+                        ((go0) V).a();
+                    }
+                }
+                while (i12 < themeActivity.f36292b.getAttachedScrapChildCount()) {
+                    View O = themeActivity.f36292b.O(i12);
+                    if (O instanceof org.telegram.ui.Cells.t) {
+                        ((org.telegram.ui.Cells.t) O).getAdapter().l();
+                    } else if (O instanceof go0) {
+                        ((go0) O).a();
+                    }
+                    i12++;
+                }
+                return;
+            case 7:
+                qc1.W((qc1) o2Var);
+                return;
+            case 8:
+                md1 md1Var = (md1) o2Var;
+                org.telegram.ui.Components.jl0 jl0Var2 = md1Var.f40529a;
+                if (jl0Var2 != null) {
+                    int childCount3 = jl0Var2.getChildCount();
+                    for (int i20 = 0; i20 < childCount3; i20++) {
+                        View childAt3 = md1Var.f40529a.getChildAt(i20);
+                        if (childAt3 instanceof org.telegram.ui.Cells.e4) {
+                            ((org.telegram.ui.Cells.e4) childAt3).f(0);
+                        }
+                    }
+                }
+                org.telegram.ui.Components.jl0 jl0Var3 = md1Var.f40530b;
+                if (jl0Var3 != null) {
+                    int childCount4 = jl0Var3.getChildCount();
+                    for (int i21 = 0; i21 < childCount4; i21++) {
+                        View childAt4 = md1Var.f40530b.getChildAt(i21);
+                        if (childAt4 instanceof org.telegram.ui.Cells.e4) {
+                            ((org.telegram.ui.Cells.e4) childAt4).f(0);
+                        }
+                    }
+                }
+                md1Var.f40531c.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.g6.Oh));
+                md1Var.B.setProgressColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23134h6, false));
+                return;
+            case 9:
+                ze1.X((ze1) o2Var);
+                return;
+            default:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) o2Var;
+                org.telegram.ui.Components.jl0 jl0Var4 = usersSelectActivity.d;
+                if (jl0Var4 != null) {
+                    int childCount5 = jl0Var4.getChildCount();
+                    for (int i22 = 0; i22 < childCount5; i22++) {
+                        View childAt5 = usersSelectActivity.d.getChildAt(i22);
+                        if (childAt5 instanceof org.telegram.ui.Cells.e4) {
+                            ((org.telegram.ui.Cells.e4) childAt5).f(0);
+                        }
+                    }
+                    return;
+                }
                 return;
         }
     }
 
-    public rx0(l61 l61Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
-        this.f42507a = 3;
-        this.f42508b = l61Var;
-        this.f42511f = tL_error;
-        this.f42509c = tLObject;
-        this.d = twoStepVerificationActivity;
-        this.f42510e = user;
+    private final void c(float f9) {
+    }
+
+    private final void d(float f9) {
+    }
+
+    private final void e(float f9) {
+    }
+
+    private final void f(float f9) {
+    }
+
+    private final void g(float f9) {
+    }
+
+    private final void h(float f9) {
+    }
+
+    private final void i(float f9) {
+    }
+
+    private final void j(float f9) {
+    }
+
+    private final void k(float f9) {
+    }
+
+    private final void l(float f9) {
+    }
+
+    private final void m(float f9) {
     }
 }

@@ -9,7 +9,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.voip.e2;
+import org.telegram.ui.Components.voip.h2;
 public final class VoIPPendingCall {
     private AccountInstance accountInstance;
     private final Activity activity;
@@ -24,8 +24,8 @@ public final class VoIPPendingCall {
     private VoIPPendingCall(Activity activity, long j10, boolean z10, long j11, AccountInstance accountInstance) {
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = new NotificationCenter.NotificationCenterDelegate() {
             @Override
-            public final void didReceivedNotification(int i9, int i10, Object[] objArr) {
-                VoIPPendingCall.this.lambda$new$0(i9, i10, objArr);
+            public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+                VoIPPendingCall.this.lambda$new$0(i10, i11, objArr);
             }
         };
         this.observer = notificationCenterDelegate;
@@ -59,8 +59,8 @@ public final class VoIPPendingCall {
         return false;
     }
 
-    public void lambda$new$0(int i9, int i10, Object[] objArr) {
-        if (i9 == NotificationCenter.didUpdateConnectionState) {
+    public void lambda$new$0(int i10, int i11, Object[] objArr) {
+        if (i10 == NotificationCenter.didUpdateConnectionState) {
             onConnectionStateUpdated(false);
         }
     }
@@ -77,16 +77,16 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f22527id);
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f22539id);
             boolean z12 = this.video;
             if (userFull != null && userFull.video_calls_available) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            e2.n(user, z12, z11, this.activity, userFull, this.accountInstance);
+            h2.n(user, z12, z11, this.activity, userFull, this.accountInstance);
         } else if (isAirplaneMode()) {
-            e2.n(null, this.video, false, this.activity, null, this.accountInstance);
+            h2.n(null, this.video, false, this.activity, null, this.accountInstance);
         }
         release();
         return true;

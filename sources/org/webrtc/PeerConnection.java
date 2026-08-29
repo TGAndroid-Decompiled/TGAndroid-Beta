@@ -44,8 +44,8 @@ public class PeerConnection {
             this.bitMask = num;
         }
 
-        public static AdapterType fromNativeIndex(int i9) {
-            return BY_BITMASK.get(Integer.valueOf(i9));
+        public static AdapterType fromNativeIndex(int i10) {
+            return BY_BITMASK.get(Integer.valueOf(i10));
         }
     }
 
@@ -74,8 +74,8 @@ public class PeerConnection {
         DISCONNECTED,
         CLOSED;
 
-        public static IceConnectionState fromNativeIndex(int i9) {
-            return values()[i9];
+        public static IceConnectionState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -84,8 +84,8 @@ public class PeerConnection {
         GATHERING,
         COMPLETE;
 
-        public static IceGatheringState fromNativeIndex(int i9) {
-            return values()[i9];
+        public static IceGatheringState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -323,8 +323,8 @@ public class PeerConnection {
         FAILED,
         CLOSED;
 
-        public static PeerConnectionState fromNativeIndex(int i9) {
-            return values()[i9];
+        public static PeerConnectionState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -555,8 +555,8 @@ public class PeerConnection {
         HAVE_REMOTE_PRANSWER,
         CLOSED;
 
-        public static SignalingState fromNativeIndex(int i9) {
-            return values()[i9];
+        public static SignalingState fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
@@ -578,9 +578,9 @@ public class PeerConnection {
         return nativeCreatePeerConnectionObserver(observer);
     }
 
-    private native boolean nativeAddIceCandidate(String str, int i9, String str2);
+    private native boolean nativeAddIceCandidate(String str, int i10, String str2);
 
-    private native void nativeAddIceCandidateWithObserver(String str, int i9, String str2, AddIceObserver addIceObserver);
+    private native void nativeAddIceCandidateWithObserver(String str, int i10, String str2, AddIceObserver addIceObserver);
 
     private native boolean nativeAddLocalStream(long j10);
 
@@ -656,7 +656,7 @@ public class PeerConnection {
 
     private native SignalingState nativeSignalingState();
 
-    private native boolean nativeStartRtcEventLog(int i9, int i10);
+    private native boolean nativeStartRtcEventLog(int i10, int i11);
 
     private native void nativeStopRtcEventLog();
 
@@ -838,8 +838,8 @@ public class PeerConnection {
         return nativeSignalingState();
     }
 
-    public boolean startRtcEventLog(int i9, int i10) {
-        return nativeStartRtcEventLog(i9, i10);
+    public boolean startRtcEventLog(int i10, int i11) {
+        return nativeStartRtcEventLog(i10, i11);
     }
 
     public void stopRtcEventLog() {

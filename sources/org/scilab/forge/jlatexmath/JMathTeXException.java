@@ -6,7 +6,7 @@ public class JMathTeXException extends RuntimeException {
         super(str);
     }
 
-    public JMathTeXException(String str, Throwable th) {
-        super(str, th);
+    public JMathTeXException(String str, Throwable th2) {
+        super(str, th2);
     }
 }

@@ -1,53 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class i41 extends MetricAffectingSpan {
-    public Typeface f29312a;
-    public int f29313b;
-    public int f29314c;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public final class i41 extends jl0 {
+    public final p41 T2;
+    public final s41 U2;
 
-    public i41(Typeface typeface) {
-        this.f29314c = -1;
-        this.f29312a = typeface;
+    public i41(s41 s41Var, Context context, p41 p41Var) {
+        super(context, null);
+        this.U2 = s41Var;
+        this.T2 = p41Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i9 = this.f29314c;
-        if (i9 >= 0) {
-            this.f29313b = org.telegram.ui.ActionBar.f6.w0(null, i9, false);
+    public final boolean E0(float f9) {
+        if (f9 >= AndroidUtilities.dp(58.0f) + this.U2.A) {
+            return true;
         }
-        Typeface typeface = this.f29312a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i10 = this.f29313b;
-        if (i10 != 0) {
-            textPaint.setColor(i10);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+        return false;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f29312a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.U2.B = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.T2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
         }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+        return true;
     }
 
-    public i41() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f29314c = -1;
-        this.f29312a = typeface;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.U2.H != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
     }
 
-    public i41(Typeface typeface, int i9) {
-        this.f29314c = -1;
-        this.f29312a = typeface;
-        this.f29313b = i9;
+    @Override
+    public final void requestLayout() {
+        if (!this.U2.D) {
+            super.requestLayout();
+        }
     }
 }

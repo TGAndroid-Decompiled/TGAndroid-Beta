@@ -11,7 +11,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if ("android.app.action.NOTIFICATION_CHANNEL_BLOCK_STATE_CHANGED".equals(intent.getAction())) {
             String stringExtra = intent.getStringExtra("android.app.extra.NOTIFICATION_CHANNEL_ID");
-            int i9 = 0;
+            int i10 = 0;
             boolean booleanExtra = intent.getBooleanExtra("android.app.extra.BLOCKED_STATE", false);
             if (!TextUtils.isEmpty(stringExtra) && !stringExtra.contains("_ia_")) {
                 String[] split = stringExtra.split("_");
@@ -30,7 +30,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                             return;
                         }
                         SharedPreferences notificationsSettings = AccountInstance.getInstance(intValue).getNotificationsSettings();
-                        int i10 = Integer.MAX_VALUE;
+                        int i11 = Integer.MAX_VALUE;
                         if (split[1].startsWith("channel")) {
                             if (stringExtra.equals(notificationsSettings.getString("channels", null))) {
                                 if (BuildVars.LOGS_ENABLED) {
@@ -39,9 +39,9 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit = notificationsSettings.edit();
                                 String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(2);
                                 if (booleanExtra) {
-                                    i9 = Integer.MAX_VALUE;
+                                    i10 = Integer.MAX_VALUE;
                                 }
-                                edit.putInt(globalNotificationsKey, i9).commit();
+                                edit.putInt(globalNotificationsKey, i10).commit();
                                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(2);
                             } else {
                                 return;
@@ -54,9 +54,9 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit2 = notificationsSettings.edit();
                                 String globalNotificationsKey2 = NotificationsController.getGlobalNotificationsKey(0);
                                 if (!booleanExtra) {
-                                    i10 = 0;
+                                    i11 = 0;
                                 }
-                                edit2.putInt(globalNotificationsKey2, i10).commit();
+                                edit2.putInt(globalNotificationsKey2, i11).commit();
                                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(0);
                             } else {
                                 return;
@@ -69,9 +69,9 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit3 = notificationsSettings.edit();
                                 String globalNotificationsKey3 = NotificationsController.getGlobalNotificationsKey(1);
                                 if (booleanExtra) {
-                                    i9 = Integer.MAX_VALUE;
+                                    i10 = Integer.MAX_VALUE;
                                 }
-                                edit3.putInt(globalNotificationsKey3, i9).commit();
+                                edit3.putInt(globalNotificationsKey3, i10).commit();
                                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
                             } else {
                                 return;
@@ -95,11 +95,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         FileLog.d("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String d = ta.b.d("notify2_", sharedPrefKey);
+                                    String e10 = u3.c.e("notify2_", sharedPrefKey);
                                     if (booleanExtra) {
-                                        i9 = 2;
+                                        i10 = 2;
                                     }
-                                    edit4.putInt(d, i9);
+                                    edit4.putInt(e10, i10);
                                     if (!booleanExtra) {
                                         edit4.remove("notifyuntil_" + sharedPrefKey);
                                     }

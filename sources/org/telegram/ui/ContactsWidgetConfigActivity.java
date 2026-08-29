@@ -8,8 +8,8 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
     public int A = 0;
 
     @Override
-    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i9, int i10) {
-        if (!c(intent, z10, z11, z12, i9, i10)) {
+    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i10, int i11) {
+        if (!c(intent, z10, z11, z12, i10, i11)) {
             return;
         }
         Bundle extras = intent.getExtras();
@@ -17,20 +17,20 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
             this.A = extras.getInt("appWidgetId", 0);
         }
         if (this.A != 0) {
-            org.telegram.messenger.l0.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            my myVar = new my(1, this.A);
-            myVar.f40556y = new b1(this, 27);
+            org.telegram.messenger.x3.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            oy oyVar = new oy(1, this.A);
+            oyVar.f41247y = new c1(this, 27);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, myVar);
+                    this.d.c(-1, oyVar);
                 }
-            } else if (this.f35469c.getFragmentStack().isEmpty()) {
-                this.f35469c.c(-1, myVar);
+            } else if (this.f35536c.getFragmentStack().isEmpty()) {
+                this.f35536c.c(-1, oyVar);
             }
             if (!AndroidUtilities.isTablet()) {
-                this.f35470e.setVisibility(8);
+                this.f35537e.setVisibility(8);
             }
-            this.f35469c.c0();
+            this.f35536c.c0();
             if (AndroidUtilities.isTablet()) {
                 this.d.c0();
             }

@@ -1,3 +1,3 @@
 package fd;
-public abstract class h extends g {
+public interface h extends a {
 }

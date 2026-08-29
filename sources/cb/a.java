@@ -1,38 +1,21 @@
 package cb;
 
-import f7.c9;
-import f7.g9;
-import f7.z8;
+import java.util.Arrays;
+import z5.l;
 public final class a {
-    public final c9 f2332a;
-    public final e f2333b;
-    public final ya.d f2334c;
+    public static final a f3028a = new Object();
 
-    public a(e eVar, ya.d dVar) {
-        String str;
-        c9 a2;
-        this.f2333b = eVar;
-        this.f2334c = dVar;
-        if (true != eVar.f2344g) {
-            str = "play-services-mlkit-language-id";
-        } else {
-            str = "language-id";
-        }
-        synchronized (g9.class) {
-            byte b10 = (byte) (((byte) 1) | 2);
-            if (b10 == 3) {
-                a2 = g9.a(new z8(str));
-            } else {
-                StringBuilder sb2 = new StringBuilder();
-                if ((b10 & 1) == 0) {
-                    sb2.append(" enableFirelog");
-                }
-                if ((b10 & 2) == 0) {
-                    sb2.append(" firelogEventType");
-                }
-                throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if ((obj instanceof a) && l.l(null, null) && l.l(null, null)) {
+                return true;
             }
+            return false;
         }
-        this.f2332a = a2;
+        return true;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, null});
     }
 }

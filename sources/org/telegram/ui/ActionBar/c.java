@@ -1,43 +1,17 @@
 package org.telegram.ui.ActionBar;
+public final class c implements Runnable {
+    public final int f22771a;
+    public final Object f22772b;
+    public final Object f22773c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c extends AnimatorListenerAdapter {
-    public final int f22754a;
-    public final boolean f22755b;
-    public final k f22756c;
-
-    public c(k kVar, boolean z10, int i9) {
-        this.f22754a = i9;
-        this.f22756c = kVar;
-        this.f22755b = z10;
+    public c(int i10, Object obj, Object obj2) {
+        this.f22771a = i10;
+        this.f22772b = obj;
+        this.f22773c = obj2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        float f11;
-        switch (this.f22754a) {
-            case 0:
-                if (this.f22755b) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                k kVar = this.f22756c;
-                kVar.f23585n1 = f10;
-                kVar.b();
-                return;
-            default:
-                if (this.f22755b) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.0f;
-                }
-                k kVar2 = this.f22756c;
-                kVar2.f23585n1 = f11;
-                kVar2.b();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.c.run():void");
     }
 }

@@ -1,26 +1,38 @@
 package wc;
+
+import java.lang.reflect.Method;
+import kotlin.jvm.internal.j;
 public abstract class a {
-    public static final Integer f48785a;
+    public static final Method f49849a;
 
     static {
-        Integer num;
-        Object obj;
-        Integer num2 = null;
-        try {
-            obj = Class.forName("android.os.Build$VERSION").getField("SDK_INT").get(null);
-        } catch (Throwable unused) {
-        }
-        if (obj instanceof Integer) {
-            num = (Integer) obj;
-            if (num != null && num.intValue() > 0) {
-                num2 = num;
+        Method method;
+        Method[] methods = Throwable.class.getMethods();
+        j.b(methods);
+        int length = methods.length;
+        int i10 = 0;
+        while (true) {
+            method = null;
+            if (i10 >= length) {
+                break;
             }
-            f48785a = num2;
+            Method method2 = methods[i10];
+            if (j.a(method2.getName(), "addSuppressed")) {
+                Class<?>[] parameterTypes = method2.getParameterTypes();
+                j.d(parameterTypes, "getParameterTypes(...)");
+                if (parameterTypes.length == 1) {
+                    method = parameterTypes[0];
+                }
+                if (j.a(method, Throwable.class)) {
+                    method = method2;
+                    break;
+                }
+            }
+            i10++;
         }
-        num = null;
-        if (num != null) {
-            num2 = num;
+        f49849a = method;
+        int length2 = methods.length;
+        for (int i11 = 0; i11 < length2 && !j.a(methods[i11].getName(), "getSuppressed"); i11++) {
         }
-        f48785a = num2;
     }
 }

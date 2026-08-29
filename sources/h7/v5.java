@@ -1,17 +1,6 @@
 package h7;
-public final class v5 implements q9.d {
-    public static final v5 f10153a = new Object();
-
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(12, e2.c.s(h0.class, e2.c.j(11, e2.c.s(h0.class, e2.c.j(10, e2.c.s(h0.class, e2.c.j(9, e2.c.s(h0.class, e2.c.j(8, e2.c.s(h0.class, e2.c.j(7, e2.c.s(h0.class, e2.c.j(6, e2.c.s(h0.class, e2.c.j(5, e2.c.s(h0.class, e2.c.j(4, e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))))))))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class v5 {
+    public static int a(int i10) {
+        return (int) (Integer.rotateLeft((int) (i10 * (-862048943)), 15) * 461845907);
     }
 }

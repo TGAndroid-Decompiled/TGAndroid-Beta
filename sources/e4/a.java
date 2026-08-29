@@ -2,80 +2,127 @@ package e4;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.f0;
-import h3.g1;
-import java.util.Arrays;
-public final class a extends j {
-    public static final Parcelable.Creator<a> CREATOR = new c.c(6);
-    public final String f4828b;
-    public final String f4829c;
-    public final int d;
-    public final byte[] f4830e;
+import b4.b;
+import d6.d;
+import f5.d0;
+import j3.g1;
+import j3.t0;
+import j7.l1;
+public class a implements b {
+    public static final Parcelable.Creator<a> CREATOR = new d(15);
+    public final String f5819a;
+    public final String f5820b;
 
-    public a(int i9, String str, String str2, byte[] bArr) {
-        super("APIC");
-        this.f4828b = str;
-        this.f4829c = str2;
-        this.d = i9;
-        this.f4830e = bArr;
+    public a(String str, String str2) {
+        this.f5819a = str;
+        this.f5820b = str2;
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj != null && a.class == obj.getClass()) {
+        if (obj != null && getClass() == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && f0.a(this.f4828b, aVar.f4828b) && f0.a(this.f4829c, aVar.f4829c) && Arrays.equals(this.f4830e, aVar.f4830e)) {
+            if (this.f5819a.equals(aVar.f5819a) && this.f5820b.equals(aVar.f5820b)) {
                 return true;
             }
         }
         return false;
     }
 
+    @Override
+    public final byte[] getWrappedMetadataBytes() {
+        return null;
+    }
+
+    @Override
+    public final t0 getWrappedMetadataFormat() {
+        return null;
+    }
+
     public final int hashCode() {
-        int i9;
-        int i10 = (527 + this.d) * 31;
-        int i11 = 0;
-        String str = this.f4828b;
-        if (str != null) {
-            i9 = str.hashCode();
-        } else {
-            i9 = 0;
-        }
-        int i12 = (i10 + i9) * 31;
-        String str2 = this.f4829c;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return Arrays.hashCode(this.f4830e) + ((i12 + i11) * 31);
+        return this.f5820b.hashCode() + l1.f(527, 31, this.f5819a);
     }
 
     @Override
     public final void populateMediaMetadata(g1 g1Var) {
-        g1Var.a(this.d, this.f4830e);
+        String str = this.f5819a;
+        str.getClass();
+        char c3 = 65535;
+        switch (str.hashCode()) {
+            case 62359119:
+                if (str.equals("ALBUM")) {
+                    c3 = 0;
+                    break;
+                }
+                break;
+            case 79833656:
+                if (str.equals("TITLE")) {
+                    c3 = 1;
+                    break;
+                }
+                break;
+            case 428414940:
+                if (str.equals("DESCRIPTION")) {
+                    c3 = 2;
+                    break;
+                }
+                break;
+            case 1746739798:
+                if (str.equals("ALBUMARTIST")) {
+                    c3 = 3;
+                    break;
+                }
+                break;
+            case 1939198791:
+                if (str.equals("ARTIST")) {
+                    c3 = 4;
+                    break;
+                }
+                break;
+        }
+        String str2 = this.f5820b;
+        switch (c3) {
+            case 0:
+                g1Var.f10450c = str2;
+                return;
+            case 1:
+                g1Var.f10448a = str2;
+                return;
+            case 2:
+                g1Var.f10453g = str2;
+                return;
+            case 3:
+                g1Var.d = str2;
+                return;
+            case 4:
+                g1Var.f10449b = str2;
+                return;
+            default:
+                return;
+        }
     }
 
-    @Override
     public final String toString() {
-        return this.f4850a + ": mimeType=" + this.f4828b + ", description=" + this.f4829c;
+        return "VC: " + this.f5819a + "=" + this.f5820b;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeString(this.f4828b);
-        parcel.writeString(this.f4829c);
-        parcel.writeInt(this.d);
-        parcel.writeByteArray(this.f4830e);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f5819a);
+        parcel.writeString(this.f5820b);
     }
 
     public a(Parcel parcel) {
-        super("APIC");
         String readString = parcel.readString();
-        int i9 = f0.f4349a;
-        this.f4828b = readString;
-        this.f4829c = parcel.readString();
-        this.d = parcel.readInt();
-        this.f4830e = parcel.createByteArray();
+        int i10 = d0.f6579a;
+        this.f5819a = readString;
+        this.f5820b = parcel.readString();
     }
 }

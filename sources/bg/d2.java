@@ -1,213 +1,347 @@
 package bg;
 
-import android.graphics.Bitmap;
-import android.os.Looper;
-import android.util.LongSparseArray;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver;
-import gh.oa;
-import gh.v7;
-import ih.s5;
-import ih.v6;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.util.SparseIntArray;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+import i7.f6;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.regex.Pattern;
+import nh.e6;
+import nh.f5;
+import nh.o7;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.c8;
-import org.telegram.ui.Components.k5;
-import org.telegram.ui.Components.y4;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.qn;
-public final class d2 implements Runnable {
-    public final int f1735a;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.ga;
+import org.telegram.ui.Components.hk0;
+public abstract class d2 extends k {
+    public d5 A0;
+    public d5 B0;
+    public d5 C0;
+    public d5 D0;
+    public d5 E0;
+    public d5 F0;
+    public d5 G0;
+    public d5 H0;
+    public final u1 m0;
+    public final v1 f2148n0;
+    public final ArrayList f2149o0;
+    public final MessageObject.GroupedMessages f2150p0;
+    public boolean f2151q0;
+    public boolean f2152r0;
+    public TextureView f2153s0;
+    public boolean f2154t0;
+    public int f2155u0;
+    public int f2156v0;
+    public boolean f2157w0;
+    public boolean f2158x0;
+    public final SparseIntArray f2159y0;
+    public final c2 f2160z0;
 
-    public d2(int i9) {
-        this.f1735a = i9;
+    public d2(Context context, PointF pointF, ArrayList arrayList, ga gaVar, boolean z10, e6 e6Var) {
+        super(context, pointF);
+        t1 t1Var;
+        TLRPC.Message message;
+        TLRPC.Message tL_messageService;
+        Boolean D;
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Peer peer;
+        this.f2149o0 = new ArrayList();
+        this.f2155u0 = 1;
+        this.f2156v0 = 1;
+        this.f2157w0 = true;
+        this.f2158x0 = g6.I.q();
+        this.f2159y0 = new SparseIntArray();
+        f5 f5Var = (f5) this;
+        ?? obj = new Object();
+        obj.f2122f = f5Var;
+        TextPaint textPaint = new TextPaint();
+        obj.f2118a = textPaint;
+        TextPaint textPaint2 = new TextPaint();
+        obj.f2119b = textPaint2;
+        TextPaint textPaint3 = new TextPaint();
+        obj.f2120c = textPaint3;
+        new Paint(3);
+        obj.d = new Paint(3);
+        Paint paint = new Paint(3);
+        obj.f2121e = paint;
+        textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+        textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint3.setTypeface(AndroidUtilities.bold());
+        paint.setColor(352321536);
+        this.f2160z0 = obj;
+        setRotation(0.0f);
+        setScale(1.0f);
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            MessageObject messageObject = (MessageObject) arrayList.get(i10);
+            TLRPC.Message message2 = messageObject.messageOwner;
+            int i11 = message2.date;
+            if (message2 instanceof TLRPC.TL_message) {
+                tL_messageService = new TLRPC.TL_message();
+            } else if (message2 instanceof TLRPC.TL_messageService) {
+                tL_messageService = new TLRPC.TL_messageService();
+            } else {
+                message = message2;
+                D = o7.D(messageObject);
+                if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
+                    message.from_id = peer;
+                    message.peer_id = peer;
+                    message.flags &= -5;
+                    message.fwd_from = null;
+                }
+                message.voiceTranscriptionOpen = false;
+                int i12 = messageObject.currentAccount;
+                MessageObject messageObject2 = new MessageObject(i12, message, messageObject.replyMessageObject, MessagesController.getInstance(i12).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
+                messageObject2.setType();
+                this.f2149o0.add(messageObject2);
+            }
+            tL_messageService.f22413id = message2.f22413id;
+            tL_messageService.from_id = message2.from_id;
+            tL_messageService.peer_id = message2.peer_id;
+            tL_messageService.date = message2.date;
+            tL_messageService.expire_date = message2.expire_date;
+            tL_messageService.action = message2.action;
+            tL_messageService.message = message2.message;
+            tL_messageService.media = message2.media;
+            tL_messageService.flags = message2.flags;
+            tL_messageService.mentioned = message2.mentioned;
+            tL_messageService.media_unread = message2.media_unread;
+            tL_messageService.out = message2.out;
+            tL_messageService.unread = message2.unread;
+            tL_messageService.entities = message2.entities;
+            tL_messageService.via_bot_name = message2.via_bot_name;
+            tL_messageService.reply_markup = message2.reply_markup;
+            tL_messageService.views = message2.views;
+            tL_messageService.forwards = message2.forwards;
+            tL_messageService.replies = message2.replies;
+            tL_messageService.edit_date = message2.edit_date;
+            tL_messageService.silent = message2.silent;
+            tL_messageService.post = message2.post;
+            tL_messageService.from_scheduled = message2.from_scheduled;
+            tL_messageService.legacy = message2.legacy;
+            tL_messageService.edit_hide = message2.edit_hide;
+            tL_messageService.pinned = message2.pinned;
+            tL_messageService.fwd_from = message2.fwd_from;
+            tL_messageService.via_bot_id = message2.via_bot_id;
+            tL_messageService.reply_to = message2.reply_to;
+            tL_messageService.post_author = message2.post_author;
+            tL_messageService.grouped_id = message2.grouped_id;
+            tL_messageService.reactions = message2.reactions;
+            tL_messageService.restriction_reason = message2.restriction_reason;
+            tL_messageService.ttl_period = message2.ttl_period;
+            tL_messageService.noforwards = message2.noforwards;
+            tL_messageService.invert_media = message2.invert_media;
+            tL_messageService.send_state = message2.send_state;
+            tL_messageService.fwd_msg_id = message2.fwd_msg_id;
+            tL_messageService.attachPath = message2.attachPath;
+            tL_messageService.params = message2.params;
+            tL_messageService.random_id = message2.random_id;
+            tL_messageService.local_id = message2.local_id;
+            tL_messageService.dialog_id = message2.dialog_id;
+            tL_messageService.ttl = message2.ttl;
+            tL_messageService.destroyTime = message2.destroyTime;
+            tL_messageService.destroyTimeMillis = message2.destroyTimeMillis;
+            tL_messageService.layer = message2.layer;
+            tL_messageService.seq_in = message2.seq_in;
+            tL_messageService.seq_out = message2.seq_out;
+            tL_messageService.with_my_score = message2.with_my_score;
+            tL_messageService.replyMessage = message2.replyMessage;
+            tL_messageService.reqId = message2.reqId;
+            tL_messageService.realId = message2.realId;
+            tL_messageService.stickerVerified = message2.stickerVerified;
+            tL_messageService.isThreadMessage = message2.isThreadMessage;
+            tL_messageService.voiceTranscription = message2.voiceTranscription;
+            tL_messageService.voiceTranscriptionOpen = message2.voiceTranscriptionOpen;
+            tL_messageService.voiceTranscriptionRated = message2.voiceTranscriptionRated;
+            tL_messageService.voiceTranscriptionFinal = message2.voiceTranscriptionFinal;
+            tL_messageService.voiceTranscriptionForce = message2.voiceTranscriptionForce;
+            tL_messageService.voiceTranscriptionId = message2.voiceTranscriptionId;
+            tL_messageService.premiumEffectWasPlayed = message2.premiumEffectWasPlayed;
+            tL_messageService.originalLanguage = message2.originalLanguage;
+            tL_messageService.translatedToLanguage = message2.translatedToLanguage;
+            tL_messageService.translatedText = message2.translatedText;
+            tL_messageService.replyStory = message2.replyStory;
+            message = tL_messageService;
+            D = o7.D(messageObject);
+            if (D != null) {
+                message.from_id = peer;
+                message.peer_id = peer;
+                message.flags &= -5;
+                message.fwd_from = null;
+            }
+            message.voiceTranscriptionOpen = false;
+            int i122 = messageObject.currentAccount;
+            MessageObject messageObject22 = new MessageObject(i122, message, messageObject.replyMessageObject, MessagesController.getInstance(i122).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
+            messageObject22.setType();
+            this.f2149o0.add(messageObject22);
+        }
+        this.f2150p0 = null;
+        if (this.f2149o0.size() > 1) {
+            MessageObject.GroupedMessages groupedMessages = new MessageObject.GroupedMessages();
+            this.f2150p0 = groupedMessages;
+            groupedMessages.messages.addAll(this.f2149o0);
+            groupedMessages.groupId = ((MessageObject) this.f2149o0.get(0)).getGroupId();
+            groupedMessages.calculate();
+        }
+        u1 u1Var = new u1(f5Var, context);
+        this.m0 = u1Var;
+        addView(u1Var, f6.c(-1.0f, -1));
+        v1 v1Var = new v1(f5Var, context, this.f2160z0);
+        this.f2148n0 = v1Var;
+        v1Var.setAdapter(new y1(f5Var, context, gaVar, e6Var, z10));
+        z1 z1Var = new z1(f5Var);
+        z1Var.O = new a2(f5Var);
+        v1Var.setLayoutManager(z1Var);
+        v1Var.i(new Object());
+        u1Var.addView(v1Var, f6.c(-1.0f, -1));
+        if (e6Var != null && e6Var.f17598g) {
+            ag.i0 i0Var = new ag.i0(f5Var, 2);
+            t1 t1Var2 = new t1(f5Var, 0);
+            e6Var.f17594b = i0Var;
+            e6Var.f17595c = t1Var2;
+            TextureView textureView = e6Var.f17593a;
+            if (textureView != null) {
+                i0Var.run(textureView);
+            }
+            if (e6Var.d && (t1Var = e6Var.f17595c) != null) {
+                t1Var.run(Integer.valueOf(e6Var.f17596e), Integer.valueOf(e6Var.f17597f));
+            }
+        }
+        k();
+    }
+
+    public org.telegram.ui.Cells.s1 getCell() {
+        v1 v1Var = this.f2148n0;
+        if (v1Var != null) {
+            for (int i10 = 0; i10 < v1Var.getChildCount(); i10++) {
+                if (v1Var.getChildAt(i10) instanceof org.telegram.ui.Cells.s1) {
+                    return (org.telegram.ui.Cells.s1) v1Var.getChildAt(i10);
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static org.telegram.ui.Cells.s1 q(f5 f5Var) {
+        return f5Var.getCell();
     }
 
     @Override
-    public final void run() {
-        switch (this.f1735a) {
-            case 0:
-                g3.d0(0, null);
-                return;
-            case 1:
-                int i9 = AlarmManagerSchedulerBroadcastReceiver.f2499a;
-                return;
-            case 2:
-                a6.a aVar = ff.h.B;
-                if (aVar != null) {
-                    ArrayList arrayList = null;
-                    for (int i10 = 0; i10 < ff.h.f6178y; i10++) {
-                        if (((Bitmap[]) aVar.d)[i10] != null) {
-                            if (arrayList == null) {
-                                arrayList = new ArrayList();
-                            }
-                            arrayList.add(((Bitmap[]) aVar.d)[i10]);
-                        }
-                        ((Bitmap[]) aVar.d)[i10] = null;
-                        ((ff.d0[]) aVar.f101b)[i10] = null;
-                    }
-                    if (!arrayList.isEmpty()) {
-                        Utilities.globalQueue.postRunnable(new ff.e(arrayList, 0));
-                    }
-                    ff.h.B = null;
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
-                if (R != 0) {
-                    ?? obj = new Object();
-                    obj.f23653a = true;
-                    R.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj);
-                    return;
-                }
-                return;
-            case 4:
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                return;
-            case 5:
-                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(new oa());
-                    return;
-                }
-                return;
-            case 6:
-                v7[][] v7VarArr = v7.S;
-                return;
-            case 7:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-            case 8:
-                return;
-            case 9:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
-                return;
-            case 10:
-                ih.k1.j();
-                return;
-            case 11:
-                ih.k1 k1Var = ih.k1.V;
-                k1Var.f11659e.invalidate();
-                if (!k1Var.f11659e.isInLayout()) {
-                    k1Var.f11659e.requestLayout();
-                    k1Var.d.requestLayout();
-                    k1Var.f11660f.requestLayout();
-                    return;
-                }
-                return;
-            case 12:
-                int i11 = s5.h;
-                return;
-            case 13:
-                Comparator comparator = v6.X;
-                return;
-            case 14:
-                int i12 = kh.f0.f15193t0;
-                return;
-            case 15:
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null) {
-                    myLooper.quit();
-                    return;
-                }
-                return;
-            case 16:
-                return;
-            case 17:
-                MessagesController.getGlobalMainSettings().edit().putInt("storydualhint", MessagesController.getGlobalMainSettings().getInt("storydualhint", 0) + 1).apply();
-                return;
-            case 18:
-                HashSet hashSet = mh.c3.S0;
-                return;
-            case 19:
-                return;
-            case 20:
-                int i13 = oh.g.B;
-                return;
-            case 21:
-                f6.E(false);
-                return;
-            case 22:
-                int i14 = qn.Dc;
-                return;
-            case 23:
-                return;
-            case 24:
-                hg.n0.b(true);
-                return;
-            case 25:
-                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                int i15 = NotificationCenter.didSetNewTheme;
-                Boolean bool = Boolean.TRUE;
-                globalInstance.lambda$postNotificationNameOnUIThread$1(i15, Boolean.FALSE, bool, bool);
-                return;
-            case 26:
-                Pattern pattern = y4.f34847a;
-                return;
-            case 27:
-                org.telegram.ui.ActionBar.o2 U2 = LaunchActivity.U();
-                if (U2 != 0) {
-                    ?? obj2 = new Object();
-                    obj2.f23653a = true;
-                    U2.showAsSheet(new PremiumPreviewFragment(0, "schedule_repeat"), obj2);
-                    return;
-                }
-                return;
-            case 28:
-                AndroidUtilities.cancelRunOnUIThread(k5.v);
-                try {
-                    if (k5.f29937q != null) {
-                        for (int i16 = 0; i16 < k5.f29937q.size(); i16++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) k5.f29937q.valueAt(i16);
-                            int i17 = 0;
-                            while (i17 < longSparseArray.size()) {
-                                if (!((k5) longSparseArray.valueAt(i17)).f29943a) {
-                                    longSparseArray.removeAt(i17);
-                                    i17--;
-                                }
-                                i17++;
-                            }
-                        }
-                        return;
-                    }
-                    return;
-                } catch (Exception e10) {
-                    if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        FileLog.e(e10);
-                        return;
-                    }
-                    return;
-                }
-            default:
-                c8 c8Var = c8.P0;
-                return;
+    public final j a() {
+        return new j1(this, getContext());
+    }
+
+    @Override
+    public float getBounceScale() {
+        return 0.02f;
+    }
+
+    @Override
+    public hk0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        return new hk0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getScale() * getMeasuredWidth() * scaleX) + AndroidUtilities.dp(71.0f), (getScale() * getMeasuredHeight() * scaleX) + AndroidUtilities.dp(71.0f));
+    }
+
+    @Override
+    public final void k() {
+        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
+        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
+        m();
+        if (this.f2152r0) {
+            s();
         }
     }
 
-    public d2(Object obj, int i9) {
-        this.f1735a = i9;
+    @Override
+    public final void onMeasure(int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: bg.d2.onMeasure(int, int):void");
     }
 
-    private final void a() {
+    public final float r(RectF rectF) {
+        float y8;
+        float f9;
+        float f10;
+        float dp;
+        float f11 = 2.1474836E9f;
+        float f12 = 2.1474836E9f;
+        float f13 = -2.1474836E9f;
+        float f14 = -2.1474836E9f;
+        int i10 = 0;
+        while (true) {
+            v1 v1Var = this.f2148n0;
+            if (i10 < v1Var.getChildCount()) {
+                View childAt = v1Var.getChildAt(i10);
+                boolean z10 = childAt instanceof org.telegram.ui.Cells.s1;
+                u1 u1Var = this.m0;
+                if (z10) {
+                    org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) childAt;
+                    if (s1Var.getMessageObject() != null && s1Var.getMessageObject().isRoundVideo() && s1Var.getPhotoImage() != null) {
+                        f9 = s1Var.getPhotoImage().getImageX() + s1Var.getX() + u1Var.getX();
+                        f10 = s1Var.getPhotoImage().getImageX2() + s1Var.getX() + u1Var.getX();
+                        dp = s1Var.getPhotoImage().getImageY() + s1Var.getY() + u1Var.getY();
+                        float y10 = u1Var.getY();
+                        y8 = s1Var.getPhotoImage().getImageY2() + s1Var.getY() + y10;
+                    } else {
+                        float x4 = childAt.getX() + u1Var.getX() + s1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
+                        if (this.f2150p0 == null) {
+                            x4 += AndroidUtilities.dp(8.0f);
+                        }
+                        float x10 = ((childAt.getX() + u1Var.getX()) + s1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
+                        float y11 = childAt.getY() + u1Var.getY() + s1Var.getBackgroundDrawableTop();
+                        y8 = ((childAt.getY() + u1Var.getY()) + s1Var.getBackgroundDrawableBottom()) - AndroidUtilities.dp(1.0f);
+                        f9 = x4;
+                        f10 = x10;
+                        dp = AndroidUtilities.dp(2.0f) + y11;
+                    }
+                    f11 = Math.min(Math.min(f11, f9), f10);
+                    f13 = Math.max(Math.max(f13, f9), f10);
+                    f12 = Math.min(Math.min(f12, dp), y8);
+                    f14 = Math.max(Math.max(f14, dp), y8);
+                } else if (childAt instanceof org.telegram.ui.Cells.v0) {
+                    org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) childAt;
+                    if (v0Var.B0.d()) {
+                        float x11 = v0Var.getX() + u1Var.getX() + v0Var.getBoundsLeft();
+                        float x12 = v0Var.getX() + u1Var.getX() + v0Var.getBoundsRight();
+                        float y12 = v0Var.getY() + u1Var.getY();
+                        float y13 = v0Var.getY() + u1Var.getY() + v0Var.getMeasuredHeight();
+                        f11 = Math.min(Math.min(f11, x11), x12);
+                        f13 = Math.max(Math.max(f13, x11), x12);
+                        f12 = Math.min(Math.min(f12, y12), y13);
+                        f14 = Math.max(Math.max(f14, y12), y13);
+                    }
+                }
+                i10++;
+            } else {
+                rectF.set(f11, f12, f13, f14);
+                return AndroidUtilities.dp(SharedConfig.bubbleRadius);
+            }
+        }
     }
 
-    private final void b() {
+    public final void s() {
+        v1 v1Var = this.f2148n0;
+        v1Var.invalidate();
+        for (int i10 = 0; i10 < v1Var.getChildCount(); i10++) {
+            v1Var.getChildAt(i10).invalidate();
+        }
     }
 
-    private final void c() {
-    }
-
-    private final void e() {
+    public void setupTheme(nh.o7 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: bg.d2.setupTheme(nh.o7):void");
     }
 }

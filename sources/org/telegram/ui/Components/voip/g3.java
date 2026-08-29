@@ -1,29 +1,22 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class g3 extends AnimatorListenerAdapter {
-    public final int f33535a;
-    public final i3 f33536b;
-
-    public g3(i3 i3Var, int i9) {
-        this.f33535a = i9;
-        this.f33536b = i3Var;
-    }
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.ui.Components.sv0;
+public final class g3 extends View {
+    public sv0 f33714a;
+    public boolean f33715b;
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33535a) {
-            case 0:
-                i3 i3Var = this.f33536b;
-                i3Var.f33572r = 0;
-                i3Var.invalidate();
-                return;
-            default:
-                i3 i3Var2 = this.f33536b;
-                i3Var2.f33573s = 0;
-                i3Var2.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        sv0 sv0Var;
+        if (!this.f33715b && (sv0Var = this.f33714a) != null) {
+            sv0Var.b(canvas, this);
         }
+    }
+
+    public void setState(boolean z10) {
+        this.f33715b = z10;
+        invalidate();
     }
 }

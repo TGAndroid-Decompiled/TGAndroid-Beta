@@ -1,37 +1,72 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class h4 extends bc0 {
-    public final int[] f28959s0;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class h4 extends LinearLayout {
+    public final int f29050a;
+    public boolean f29051b;
+    public final qc0 f29052c;
 
-    public h4(Context context, org.telegram.ui.ActionBar.b6 b6Var, int[] iArr) {
-        super(context, b6Var);
-        this.f28959s0 = iArr;
+    public h4(Context context, qc0 qc0Var, int i10) {
+        super(context);
+        this.f29050a = i10;
+        this.f29052c = qc0Var;
+        this.f29051b = false;
     }
 
     @Override
-    public final CharSequence d(int i9) {
-        int i10 = this.f28959s0[i9];
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.MuteNever);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        switch (this.f29050a) {
+            case 0:
+                g4 g4Var = (g4) this.f29052c;
+                this.f29051b = true;
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i12 = 3;
+                } else {
+                    i12 = 5;
+                }
+                g4Var.setItemCount(i12);
+                g4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                this.f29051b = false;
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                l4 l4Var = (l4) this.f29052c;
+                this.f29051b = true;
+                Point point2 = AndroidUtilities.displaySize;
+                if (point2.x > point2.y) {
+                    i13 = 3;
+                } else {
+                    i13 = 5;
+                }
+                l4Var.setItemCount(i13);
+                l4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
+                this.f29051b = false;
+                super.onMeasure(i10, i11);
+                return;
         }
-        if (i10 < 60) {
-            return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.f29050a) {
+            case 0:
+                if (!this.f29051b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                if (!this.f29051b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
         }
-        if (i10 < 1440) {
-            return LocaleController.formatPluralString("Hours", i10 / 60, new Object[0]);
-        }
-        if (i10 < 10080) {
-            return LocaleController.formatPluralString("Days", i10 / 1440, new Object[0]);
-        }
-        if (i10 < 44640) {
-            return LocaleController.formatPluralString("Weeks", i10 / 10080, new Object[0]);
-        }
-        if (i10 < 525600) {
-            return LocaleController.formatPluralString("Months", i10 / 44640, new Object[0]);
-        }
-        return LocaleController.formatPluralString("Years", i10 / 525600, new Object[0]);
     }
 }

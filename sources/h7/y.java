@@ -1,52 +1,28 @@
 package h7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class y extends t {
-    public final transient com.google.android.gms.internal.cast.j0 f10180c;
-    public final transient Object[] d;
-    public final transient int f10181e = 1;
-
-    public y(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f10180c = j0Var;
-        this.d = objArr;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f10180c.get(key))) {
-                return true;
-            }
+import android.app.KeyguardManager;
+import android.content.Context;
+import android.os.Build;
+public abstract class y {
+    public static KeyguardManager a(Context context) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            return androidx.biometric.i0.a(context);
         }
-        return false;
-    }
-
-    @Override
-    public final int i(Object[] objArr) {
-        s sVar = this.f10119b;
-        if (sVar == null) {
-            sVar = new x(this);
-            this.f10119b = sVar;
+        Object systemService = context.getSystemService("keyguard");
+        if (systemService instanceof KeyguardManager) {
+            return (KeyguardManager) systemService;
         }
-        return sVar.i(objArr);
+        return null;
     }
 
-    @Override
-    public final Iterator iterator() {
-        s sVar = this.f10119b;
-        if (sVar == null) {
-            sVar = new x(this);
-            this.f10119b = sVar;
+    public static boolean b(Context context) {
+        KeyguardManager a2 = a(context);
+        if (a2 == null) {
+            return false;
         }
-        return sVar.listIterator(0);
-    }
-
-    @Override
-    public final int size() {
-        return this.f10181e;
+        if (Build.VERSION.SDK_INT >= 23) {
+            return androidx.biometric.i0.b(a2);
+        }
+        return androidx.biometric.h0.a(a2);
     }
 }

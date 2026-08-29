@@ -1,19 +1,30 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class t40 {
-    public final ByteBuffer[] f32621a = new ByteBuffer[10];
-    public final long[] f32622b = new long[10];
-    public final int[] f32623c = new int[10];
-    public int d;
-    public int f32624e;
-    public boolean f32625f;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class t40 extends FrameLayout {
+    public View f32863a;
+    public TextView f32864b;
+    public aj0 f32865c;
+    public LinearLayout d;
 
-    public t40() {
-        for (int i9 = 0; i9 < 10; i9++) {
-            this.f32621a[i9] = ByteBuffer.allocateDirect(2048);
-            this.f32621a[i9].order(ByteOrder.nativeOrder());
-        }
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setGravity(int i10) {
+        this.f32864b.setGravity(i10);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f32864b.setText(charSequence);
+    }
+
+    public void setTextColor(int i10) {
+        this.f32864b.setTextColor(i10);
     }
 }

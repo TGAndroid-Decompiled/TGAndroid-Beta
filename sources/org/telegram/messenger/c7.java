@@ -1,37 +1,27 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class c7 implements Runnable {
-    public final int f19922a;
-    public final MediaDataController f19923b;
-    public final TLObject f19924c;
+import org.telegram.tgnet.TLRPC;
+public final class c7 implements RequestDelegate {
+    public final int f19880a;
+    public final MediaDataController f19881b;
+    public final String f19882c;
 
-    public c7(MediaDataController mediaDataController, TLObject tLObject, int i9) {
-        this.f19922a = i9;
-        this.f19923b = mediaDataController;
-        this.f19924c = tLObject;
+    public c7(MediaDataController mediaDataController, String str, int i10) {
+        this.f19880a = i10;
+        this.f19881b = mediaDataController;
+        this.f19882c = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19922a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19880a) {
             case 0:
-                this.f19923b.lambda$checkPremiumGiftStickers$75(this.f19924c);
-                return;
-            case 1:
-                this.f19923b.lambda$loadReactions$13(this.f19924c);
-                return;
-            case 2:
-                this.f19923b.lambda$checkTonGiftStickers$77(this.f19924c);
-                return;
-            case 3:
-                this.f19923b.lambda$checkDefaultTopicIcons$81(this.f19924c);
-                return;
-            case 4:
-                this.f19923b.lambda$clearRecentStickers$18(this.f19924c);
+                this.f19881b.lambda$verifyAnimatedStickerMessageInternal$70(this.f19882c, tLObject, tL_error);
                 return;
             default:
-                this.f19923b.lambda$checkGenericAnimations$79(this.f19924c);
+                this.f19881b.lambda$fetchStickerSetInternal$42(this.f19882c, tLObject, tL_error);
                 return;
         }
     }

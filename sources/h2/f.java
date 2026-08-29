@@ -1,12 +1,12 @@
 package h2;
 public final class f {
-    public final String f9327a;
-    public final String f9328b;
-    public final g0.c f9329c;
+    public final String f7521a;
+    public final String f7522b;
+    public final g0.c f7523c;
 
     public f(g0.c cVar, String str, String str2) {
-        this.f9329c = cVar;
-        this.f9327a = str;
-        this.f9328b = str2;
+        this.f7523c = cVar;
+        this.f7521a = str;
+        this.f7522b = str2;
     }
 }

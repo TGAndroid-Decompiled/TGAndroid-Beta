@@ -1,34 +1,85 @@
 package org.telegram.ui.ActionBar;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class k0 implements TextWatcher {
-    public final w0 f23604a;
-
-    public k0(w0 w0Var) {
-        this.f23604a = w0Var;
-    }
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class k0 implements ActionMode.Callback {
+    public final int f23578a;
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        w0 w0Var = this.f23604a;
-        e5 e5Var = w0Var.D;
-        if (e5Var != null) {
-            e5Var.q(w0Var.f23906e);
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        switch (this.f23578a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            default:
+                return false;
         }
-        w0Var.j();
-        if (!w0Var.f23904c0.isEmpty() && !TextUtils.isEmpty(w0Var.f23906e.getText()) && w0Var.f23905d0 >= 0) {
-            w0Var.f23905d0 = -1;
-            w0Var.y();
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f23578a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            default:
+                return false;
         }
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        int i10 = this.f23578a;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f23578a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return false;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    private final void a(ActionMode actionMode) {
+    }
+
+    private final void b(ActionMode actionMode) {
+    }
+
+    private final void c(ActionMode actionMode) {
+    }
+
+    private final void d(ActionMode actionMode) {
+    }
+
+    private final void e(ActionMode actionMode) {
+    }
+
+    private final void f(ActionMode actionMode) {
     }
 }

@@ -1,31 +1,31 @@
 package a0;
 
-import d7.u;
+import ag.o1;
 import java.util.LinkedHashMap;
 public class j {
     public final int f21a;
-    public final k5.i f22b;
-    public final u f23c;
+    public final o1 f22b;
+    public final ya.a f23c;
     public int d;
     public int f24e;
     public int f25f;
 
-    public j(int i9) {
-        this.f21a = i9;
-        if (i9 > 0) {
-            this.f22b = new k5.i(4);
-            this.f23c = new u(3);
+    public j(int i10) {
+        this.f21a = i10;
+        if (i10 > 0) {
+            this.f22b = new o1(3);
+            this.f23c = new ya.a(3);
             return;
         }
         throw new IllegalArgumentException("maxSize <= 0");
     }
 
     public final Object a(Object key) {
-        kotlin.jvm.internal.i.e(key, "key");
+        kotlin.jvm.internal.j.e(key, "key");
         synchronized (this.f23c) {
-            k5.i iVar = this.f22b;
-            iVar.getClass();
-            Object obj = ((LinkedHashMap) iVar.f14659b).get(key);
+            o1 o1Var = this.f22b;
+            o1Var.getClass();
+            Object obj = ((LinkedHashMap) o1Var.f624b).get(key);
             if (obj != null) {
                 this.f24e++;
                 return obj;
@@ -37,12 +37,12 @@ public class j {
 
     public final Object b(Object key, Object obj) {
         Object put;
-        kotlin.jvm.internal.i.e(key, "key");
+        kotlin.jvm.internal.j.e(key, "key");
         synchronized (this.f23c) {
             this.d++;
-            k5.i iVar = this.f22b;
-            iVar.getClass();
-            put = ((LinkedHashMap) iVar.f14659b).put(key, obj);
+            o1 o1Var = this.f22b;
+            o1Var.getClass();
+            put = ((LinkedHashMap) o1Var.f624b).put(key, obj);
             if (put != null) {
                 this.d--;
             }
@@ -56,20 +56,20 @@ public class j {
     }
 
     public final String toString() {
-        int i9;
+        int i10;
         String str;
         synchronized (this.f23c) {
             try {
-                int i10 = this.f24e;
-                int i11 = this.f25f + i10;
-                if (i11 != 0) {
-                    i9 = (i10 * 100) / i11;
+                int i11 = this.f24e;
+                int i12 = this.f25f + i11;
+                if (i12 != 0) {
+                    i10 = (i11 * 100) / i12;
                 } else {
-                    i9 = 0;
+                    i10 = 0;
                 }
-                str = "LruCache[maxSize=" + this.f21a + ",hits=" + this.f24e + ",misses=" + this.f25f + ",hitRate=" + i9 + "%]";
-            } catch (Throwable th) {
-                throw th;
+                str = "LruCache[maxSize=" + this.f21a + ",hits=" + this.f24e + ",misses=" + this.f25f + ",hitRate=" + i10 + "%]";
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
         return str;

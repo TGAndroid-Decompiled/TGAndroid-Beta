@@ -1,47 +1,34 @@
 package na;
 
-import la.u;
-public final class f extends u {
-    public volatile u f18530a;
-    public final boolean f18531b;
-    public final boolean f18532c;
-    public final la.g d;
-    public final sa.a f18533e;
-    public final g f18534f;
+import qa.y;
+public class f extends y {
+    public u f17183a = null;
 
-    public f(g gVar, boolean z10, boolean z11, la.g gVar2, sa.a aVar) {
-        this.f18534f = gVar;
-        this.f18531b = z10;
-        this.f18532c = z11;
-        this.d = gVar2;
-        this.f18533e = aVar;
+    @Override
+    public final u a() {
+        u uVar = this.f17183a;
+        if (uVar != null) {
+            return uVar;
+        }
+        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
     }
 
     @Override
-    public final Object read(ta.a aVar) {
-        if (this.f18531b) {
-            aVar.C();
-            return null;
+    public final Object read(va.a aVar) {
+        u uVar = this.f17183a;
+        if (uVar != null) {
+            return uVar.read(aVar);
         }
-        u uVar = this.f18530a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f18534f, this.f18533e);
-            this.f18530a = uVar;
-        }
-        return uVar.read(aVar);
+        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
     }
 
     @Override
-    public final void write(ta.c cVar, Object obj) {
-        if (this.f18532c) {
-            cVar.i();
+    public final void write(va.b bVar, Object obj) {
+        u uVar = this.f17183a;
+        if (uVar != null) {
+            uVar.write(bVar, obj);
             return;
         }
-        u uVar = this.f18530a;
-        if (uVar == null) {
-            uVar = this.d.c(this.f18534f, this.f18533e);
-            this.f18530a = uVar;
-        }
-        uVar.write(cVar, obj);
+        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
     }
 }

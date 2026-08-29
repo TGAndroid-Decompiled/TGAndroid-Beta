@@ -1,56 +1,31 @@
 package ih;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.vw;
-public final class n extends wf.b {
-    public final boolean d;
-    public final vw f11837e;
+import android.content.Context;
+import android.view.View;
+import jh.z9;
+public final class n implements View.OnClickListener {
+    public final int f9285a;
+    public final Context f9286b;
+    public final org.telegram.ui.ActionBar.c6 f9287c;
 
-    public n(vw vwVar, boolean z10) {
-        this.f11837e = vwVar;
-        this.d = z10;
+    public n(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f9285a = i10;
+        this.f9286b = context;
+        this.f9287c = c6Var;
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList;
-        boolean z10 = this.d;
-        vw vwVar = this.f11837e;
-        if (z10) {
-            arrayList = vwVar.f12051y;
-        } else {
-            arrayList = vwVar.f12049x;
+    public final void onClick(View view) {
+        switch (this.f9285a) {
+            case 0:
+                new z9(this.f9286b, this.f9287c).show();
+                return;
+            case 1:
+                new z9(this.f9286b, this.f9287c).show();
+                return;
+            default:
+                new z9(this.f9286b, this.f9287c).show();
+                return;
         }
-        return arrayList.size();
-    }
-
-    @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        q qVar = (q) q1Var.f5501a;
-        qVar.f11980b = i9;
-        boolean z10 = this.d;
-        vw vwVar = this.f11837e;
-        if (z10) {
-            qVar.setDialogId(((o) vwVar.f12051y.get(i9)).f11875c);
-        } else {
-            qVar.setDialogId(((o) vwVar.f12049x.get(i9)).f11875c);
-        }
-    }
-
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        q qVar = new q(this.f11837e, viewGroup.getContext());
-        boolean z10 = this.d;
-        qVar.J = z10;
-        if (z10) {
-            qVar.d(1.0f, 1.0f, 0.0f, false);
-        }
-        return new f2.q1(qVar);
     }
 }

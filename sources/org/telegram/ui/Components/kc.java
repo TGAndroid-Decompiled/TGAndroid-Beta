@@ -1,57 +1,92 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class kc implements Utilities.Callback {
-    public final int f30050a = 0;
-    public final long f30051b;
-    public final int f30052c;
-    public final Object d;
+public final class kc extends ib {
+    public Runnable f30007a;
+    public Runnable f30008b;
+    public mc f30009c;
+    public final TextView d;
+    public boolean f30010e;
 
-    public kc(int i9, gc gcVar, long j10) {
-        this.f30052c = i9;
-        this.d = gcVar;
-        this.f30051b = j10;
+    public kc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, boolean z11) {
+        super(context);
+        int w02;
+        int i10 = org.telegram.ui.ActionBar.g6.Gi;
+        if (c6Var != null) {
+            w02 = c6Var.C0(i10);
+        } else {
+            w02 = org.telegram.ui.ActionBar.g6.w0(null, i10, false);
+        }
+        if (z10) {
+            TextView textView = new TextView(context);
+            this.d = textView;
+            textView.setBackground(org.telegram.ui.ActionBar.g6.f0((w02 & 16777215) | 419430400, 7, -1));
+            textView.setTextSize(1, 14.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setTextColor(w02);
+            org.telegram.ui.b.i(R.string.UndoNoCaps, textView, 16);
+            float f9 = z11 ? 34.0f : 12.0f;
+            boolean z12 = LocaleController.isRTL;
+            i7.l6.a(textView, z12 ? 12.0f : f9, 8.0f, z12 ? f9 : 12.0f, 8.0f);
+            addView(textView, i7.f6.i(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
+        }
+        if (z11) {
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource(R.drawable.chats_undo);
+            imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+            if (!z10) {
+                imageView.setBackground(org.telegram.ui.ActionBar.g6.f0((w02 & 16777215) | 419430400, 1, -1));
+            }
+            boolean z13 = LocaleController.isRTL;
+            i7.l6.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
+            addView(imageView, i7.f6.h(56.0f, 48.0f, 16));
+        }
+        setOnClickListener(new h0(this, 6));
     }
 
     @Override
-    public final void run(Object obj) {
-        Object string;
-        TLRPC.StickerSet stickerSet;
-        int i9 = this.f30050a;
-        int i10 = this.f30052c;
-        long j10 = this.f30051b;
-        Object obj2 = this.d;
-        switch (i9) {
-            case 0:
-                gc gcVar = (gc) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i10 == 1) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
-                    } else if (i10 == 2) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
-                    } else {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
-                    }
-                } else {
-                    string = LocaleController.getString(R.string.AddEmojiNotFound);
-                }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.wq(5, gcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
-                return;
-            default:
-                ((eu0) obj2).getStoriesController().b(i10, j10, (ArrayList) obj);
-                return;
+    public final void a(mc mcVar) {
+        this.f30009c = mcVar;
+    }
+
+    @Override
+    public final void b() {
+        this.f30009c = null;
+        Runnable runnable = this.f30008b;
+        if (runnable != null && !this.f30010e) {
+            runnable.run();
         }
     }
 
-    public kc(eu0 eu0Var, long j10, int i9) {
-        this.d = eu0Var;
-        this.f30051b = j10;
-        this.f30052c = i9;
+    public final void e(CharSequence charSequence) {
+        TextView textView = this.d;
+        if (textView != null) {
+            textView.setText(charSequence);
+        }
+    }
+
+    public final void f() {
+        if (this.f30009c != null) {
+            this.f30010e = true;
+            Runnable runnable = this.f30007a;
+            if (runnable != null) {
+                runnable.run();
+            }
+            mc mcVar = this.f30009c;
+            if (mcVar != null) {
+                mcVar.b();
+            }
+        }
+    }
+
+    public kc(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        this(context, c6Var, z10, !z10);
     }
 }

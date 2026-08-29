@@ -1,69 +1,94 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class mm0 extends EditTextBoldCursor {
-    public final b5 f30891b;
-    public int f30892c;
-    public final i6 d;
-    public final org.telegram.ui.ActionBar.b6 f30893e;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class mm0 implements Runnable {
+    public final int f30729a = 1;
+    public final tm0 f30730b;
+    public final String f30731c;
+    public final ArrayList d;
+    public final ArrayList f30732e;
 
-    public mm0(Context context, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context);
-        this.f30893e = b6Var;
-        this.f30891b = new b5(this);
-        i6 i6Var = new i6(false, true, true, false);
-        this.d = i6Var;
-        i6Var.k(0.2f, 160L, gr.h);
-        i6Var.t(AndroidUtilities.dp(15.33f));
-        i6Var.setCallback(this);
-        i6Var.f29333b = 5;
+    public mm0(tm0 tm0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f30730b = tm0Var;
+        this.f30731c = str;
+        this.d = arrayList;
+        this.f30732e = arrayList2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i9;
-        super.dispatchDraw(canvas);
-        if (this.f30892c < 0) {
-            i9 = org.telegram.ui.ActionBar.f6.f23212p7;
-        } else {
-            i9 = org.telegram.ui.ActionBar.f6.P5;
+    public final void run() {
+        switch (this.f30729a) {
+            case 0:
+                tm0 tm0Var = this.f30730b;
+                int i10 = tm0Var.d;
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList3 = this.d;
+                    int size = arrayList3.size();
+                    String str = this.f30731c;
+                    if (i11 < size) {
+                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
+                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
+                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
+                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
+                            messageObject.setQuery(tm0Var.G);
+                            arrayList.add(messageObject);
+                        }
+                        i11++;
+                    } else {
+                        int i12 = 0;
+                        while (true) {
+                            ArrayList arrayList4 = this.f30732e;
+                            if (i12 < arrayList4.size()) {
+                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
+                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
+                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
+                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
+                                    messageObject2.setQuery(tm0Var.G);
+                                    arrayList2.add(messageObject2);
+                                }
+                                i12++;
+                            } else {
+                                AndroidUtilities.runOnUIThread(new mm0(tm0Var, str, arrayList, arrayList2));
+                                return;
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                tm0 tm0Var2 = this.f30730b;
+                qw0 qw0Var = tm0Var2.f32977a;
+                if (this.f30731c.equals(tm0Var2.H)) {
+                    if (tm0Var2.f32983r == 0) {
+                        tm0Var2.J.b(0);
+                    }
+                    tm0Var2.e(this.d, this.f30732e, true);
+                    if (tm0Var2.f32983r == 0) {
+                        qw0Var.e(false, true);
+                        y80 y80Var = qw0Var.f32122e;
+                        qw0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
+                        y80Var.setVisibility(0);
+                        y80Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        int a2 = this.f30891b.a(org.telegram.ui.ActionBar.f6.v0(i9, this.f30893e), false);
-        i6 i6Var = this.d;
-        i6Var.r(a2);
-        i6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        i6Var.draw(canvas);
     }
 
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
-        super.onTextChanged(charSequence, i9, i10, i11);
-        i6 i6Var = this.d;
-        if (i6Var != null) {
-            this.f30892c = 12 - charSequence.length();
-            i6Var.b();
-            String str = "";
-            if (this.f30892c <= 4) {
-                str = "" + this.f30892c;
-            }
-            i6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public mm0(tm0 tm0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
+        this.f30730b = tm0Var;
+        this.d = arrayList;
+        this.f30731c = str;
+        this.f30732e = arrayList2;
     }
 }

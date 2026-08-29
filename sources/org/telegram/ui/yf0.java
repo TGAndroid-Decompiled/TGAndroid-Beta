@@ -18,28 +18,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yf0 implements RequestDelegate {
-    public final int f44854a;
-    public final eg0 f44855b;
+    public final int f44860a;
+    public final eg0 f44861b;
 
-    public yf0(eg0 eg0Var, int i9) {
-        this.f44854a = i9;
-        this.f44855b = eg0Var;
+    public yf0(eg0 eg0Var, int i10) {
+        this.f44860a = i10;
+        this.f44861b = eg0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f44854a) {
+        switch (this.f44860a) {
             case 0:
-                final eg0 eg0Var = this.f44855b;
+                final eg0 eg0Var = this.f44861b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        int i9;
+                        int i10;
                         lt ltVar;
                         switch (r4) {
                             case 0:
                                 eg0 eg0Var2 = eg0Var;
-                                kj0 kj0Var = eg0Var2.f37932a;
+                                ij0 ij0Var = eg0Var2.f37810a;
                                 HashMap hashMap = eg0Var2.C;
                                 ArrayList arrayList = eg0Var2.A;
                                 HashMap hashMap2 = eg0Var2.B;
@@ -48,20 +48,20 @@ public final class yf0 implements RequestDelegate {
                                     hashMap2.clear();
                                     hashMap.clear();
                                     TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
-                                    for (int i10 = 0; i10 < tL_help_countriesList.countries.size(); i10++) {
-                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i10);
-                                        for (int i11 = 0; i11 < tL_help_country.country_codes.size(); i11++) {
-                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i11);
+                                    for (int i11 = 0; i11 < tL_help_countriesList.countries.size(); i11++) {
+                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i11);
+                                        for (int i12 = 0; i12 < tL_help_country.country_codes.size(); i12++) {
+                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i12);
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f40225a = str;
+                                                obj.f40272a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f40226b = str2;
+                                                obj.f40273b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f40225a = str2;
+                                                    obj.f40272a = str2;
                                                 }
-                                                obj.f40227c = tL_help_countryCode.country_code;
+                                                obj.f40274c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -80,25 +80,25 @@ public final class yf0 implements RequestDelegate {
                                     }
                                     fg0 fg0Var = eg0Var2.R;
                                     if (fg0Var.B == 2) {
-                                        i9 = ((org.telegram.ui.ActionBar.o2) fg0Var).currentAccount;
-                                        String d = ne.b.d(UserConfig.getInstance(i9).getClientPhone(), false);
+                                        i10 = ((org.telegram.ui.ActionBar.o2) fg0Var).currentAccount;
+                                        String d = qe.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
                                         if (!TextUtils.isEmpty(d)) {
                                             if (d.length() > 4) {
-                                                for (int i12 = 4; i12 >= 1; i12--) {
-                                                    String substring = d.substring(0, i12);
+                                                for (int i13 = 4; i13 >= 1; i13--) {
+                                                    String substring = d.substring(0, i13);
                                                     List list2 = (List) hashMap2.get(substring);
                                                     lt ltVar2 = null;
                                                     if (list2 != null) {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                ltVar = (lt) j3.r0.k(1, list2);
+                                                                ltVar = (lt) j7.l1.j(1, list2);
                                                                 int size = arrayList.size();
-                                                                int i13 = 0;
+                                                                int i14 = 0;
                                                                 while (true) {
-                                                                    if (i13 < size) {
-                                                                        Object obj2 = arrayList.get(i13);
-                                                                        i13++;
+                                                                    if (i14 < size) {
+                                                                        Object obj2 = arrayList.get(i14);
+                                                                        i14++;
                                                                         lt ltVar3 = (lt) obj2;
                                                                         if (Objects.equals(ltVar3.d, string)) {
                                                                             ltVar = ltVar3;
@@ -106,7 +106,7 @@ public final class yf0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                ltVar = (lt) j3.r0.k(1, list2);
+                                                                ltVar = (lt) j7.l1.j(1, list2);
                                                             }
                                                             ltVar2 = ltVar;
                                                         } else {
@@ -114,11 +114,11 @@ public final class yf0 implements RequestDelegate {
                                                         }
                                                     }
                                                     if (ltVar2 != null) {
-                                                        kj0Var.setText(substring);
+                                                        ij0Var.setText(substring);
                                                         return;
                                                     }
                                                 }
-                                                kj0Var.setText(d.substring(0, 1));
+                                                ij0Var.setText(d.substring(0, 1));
                                                 return;
                                             }
                                             return;
@@ -136,8 +136,8 @@ public final class yf0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject;
-                                    if (!TwoStepVerificationActivity.h0(password, true)) {
-                                        org.telegram.ui.Components.y4.x0(fg0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                                    if (!TwoStepVerificationActivity.i0(password, true)) {
+                                        org.telegram.ui.Components.c5.x0(fg0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();
@@ -154,16 +154,16 @@ public final class yf0 implements RequestDelegate {
                 });
                 return;
             default:
-                final eg0 eg0Var2 = this.f44855b;
+                final eg0 eg0Var2 = this.f44861b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        int i9;
+                        int i10;
                         lt ltVar;
                         switch (r4) {
                             case 0:
                                 eg0 eg0Var22 = eg0Var2;
-                                kj0 kj0Var = eg0Var22.f37932a;
+                                ij0 ij0Var = eg0Var22.f37810a;
                                 HashMap hashMap = eg0Var22.C;
                                 ArrayList arrayList = eg0Var22.A;
                                 HashMap hashMap2 = eg0Var22.B;
@@ -172,20 +172,20 @@ public final class yf0 implements RequestDelegate {
                                     hashMap2.clear();
                                     hashMap.clear();
                                     TLRPC.TL_help_countriesList tL_help_countriesList = (TLRPC.TL_help_countriesList) tLObject;
-                                    for (int i10 = 0; i10 < tL_help_countriesList.countries.size(); i10++) {
-                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i10);
-                                        for (int i11 = 0; i11 < tL_help_country.country_codes.size(); i11++) {
-                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i11);
+                                    for (int i11 = 0; i11 < tL_help_countriesList.countries.size(); i11++) {
+                                        TLRPC.TL_help_country tL_help_country = tL_help_countriesList.countries.get(i11);
+                                        for (int i12 = 0; i12 < tL_help_country.country_codes.size(); i12++) {
+                                            TLRPC.TL_help_countryCode tL_help_countryCode = tL_help_country.country_codes.get(i12);
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f40225a = str;
+                                                obj.f40272a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f40226b = str2;
+                                                obj.f40273b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f40225a = str2;
+                                                    obj.f40272a = str2;
                                                 }
-                                                obj.f40227c = tL_help_countryCode.country_code;
+                                                obj.f40274c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -204,25 +204,25 @@ public final class yf0 implements RequestDelegate {
                                     }
                                     fg0 fg0Var = eg0Var22.R;
                                     if (fg0Var.B == 2) {
-                                        i9 = ((org.telegram.ui.ActionBar.o2) fg0Var).currentAccount;
-                                        String d = ne.b.d(UserConfig.getInstance(i9).getClientPhone(), false);
+                                        i10 = ((org.telegram.ui.ActionBar.o2) fg0Var).currentAccount;
+                                        String d = qe.b.d(UserConfig.getInstance(i10).getClientPhone(), false);
                                         if (!TextUtils.isEmpty(d)) {
                                             if (d.length() > 4) {
-                                                for (int i12 = 4; i12 >= 1; i12--) {
-                                                    String substring = d.substring(0, i12);
+                                                for (int i13 = 4; i13 >= 1; i13--) {
+                                                    String substring = d.substring(0, i13);
                                                     List list2 = (List) hashMap2.get(substring);
                                                     lt ltVar2 = null;
                                                     if (list2 != null) {
                                                         if (list2.size() > 1) {
                                                             String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, null);
                                                             if (string != null) {
-                                                                ltVar = (lt) j3.r0.k(1, list2);
+                                                                ltVar = (lt) j7.l1.j(1, list2);
                                                                 int size = arrayList.size();
-                                                                int i13 = 0;
+                                                                int i14 = 0;
                                                                 while (true) {
-                                                                    if (i13 < size) {
-                                                                        Object obj2 = arrayList.get(i13);
-                                                                        i13++;
+                                                                    if (i14 < size) {
+                                                                        Object obj2 = arrayList.get(i14);
+                                                                        i14++;
                                                                         lt ltVar3 = (lt) obj2;
                                                                         if (Objects.equals(ltVar3.d, string)) {
                                                                             ltVar = ltVar3;
@@ -230,7 +230,7 @@ public final class yf0 implements RequestDelegate {
                                                                     }
                                                                 }
                                                             } else {
-                                                                ltVar = (lt) j3.r0.k(1, list2);
+                                                                ltVar = (lt) j7.l1.j(1, list2);
                                                             }
                                                             ltVar2 = ltVar;
                                                         } else {
@@ -238,11 +238,11 @@ public final class yf0 implements RequestDelegate {
                                                         }
                                                     }
                                                     if (ltVar2 != null) {
-                                                        kj0Var.setText(substring);
+                                                        ij0Var.setText(substring);
                                                         return;
                                                     }
                                                 }
-                                                kj0Var.setText(d.substring(0, 1));
+                                                ij0Var.setText(d.substring(0, 1));
                                                 return;
                                             }
                                             return;
@@ -260,8 +260,8 @@ public final class yf0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject;
-                                    if (!TwoStepVerificationActivity.h0(password, true)) {
-                                        org.telegram.ui.Components.y4.x0(fg0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                                    if (!TwoStepVerificationActivity.i0(password, true)) {
+                                        org.telegram.ui.Components.c5.x0(fg0Var2.getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
                                         return;
                                     }
                                     Bundle bundle = new Bundle();

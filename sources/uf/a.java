@@ -1,27 +1,14 @@
 package uf;
 
-import org.telegram.ui.Components.l6;
+import org.telegram.messenger.SegmentTree;
 public final class a {
-    public final CharSequence f48196a;
-    public final int f48197b = 2;
-    public final Runnable f48198c;
-    public final float d;
-    public final float f48199e;
-    public final l6 f48200f;
-
-    public a(String str, Runnable runnable) {
-        this.f48196a = str;
-        this.f48198c = runnable;
-    }
-
-    public a(String str) {
-        this.f48196a = str;
-    }
-
-    public a(String str, float f10, float f11, l6 l6Var) {
-        this.f48196a = str;
-        this.d = f10;
-        this.f48199e = f11;
-        this.f48200f = l6Var;
-    }
+    public long[] f49190a;
+    public SegmentTree f49191b;
+    public String f49192c;
+    public String d;
+    public int f49195g;
+    public long f49193e = 0;
+    public long f49194f = Long.MAX_VALUE;
+    public int h = -16777216;
+    public int f49196i = -1;
 }

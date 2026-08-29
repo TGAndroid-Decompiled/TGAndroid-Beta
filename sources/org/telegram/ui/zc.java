@@ -1,45 +1,54 @@
 package org.telegram.ui;
-public final class zc implements Runnable {
-    public final int f45105a;
-    public final id f45106b;
 
-    public zc(id idVar, int i9) {
-        this.f45105a = i9;
-        this.f45106b = idVar;
+import android.view.View;
+public final class zc implements View.OnClickListener {
+    public final int f45131a;
+    public final hd f45132b;
+
+    public zc(hd hdVar, int i10) {
+        this.f45131a = i10;
+        this.f45132b = hdVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45105a) {
+    public final void onClick(View view) {
+        boolean z10;
+        switch (this.f45131a) {
             case 0:
-                id idVar = this.f45106b;
-                idVar.f39111f0 = true;
-                idVar.g0();
+                hd.X(this.f45132b, view);
                 return;
             case 1:
-                id idVar2 = this.f45106b;
-                idVar2.f39128x = null;
-                idVar2.f39129y = null;
-                idVar2.f39113h0 = null;
-                idVar2.f39114i0 = null;
-                idVar2.f39116k0 = null;
-                idVar2.f39115j0 = null;
-                idVar2.f39117l0 = 0.0d;
-                idVar2.d0(false, true);
-                idVar2.f39108e.h(null, null, idVar2.f39125s, null);
-                idVar2.h.setAnimation(idVar2.F);
-                idVar2.F.K(0);
+                hd hdVar = this.f45132b;
+                org.telegram.ui.Components.s40 s40Var = hdVar.v;
+                if (hdVar.f38876x != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                s40Var.o(z10, new yc(hdVar, 1), new s5(hdVar, 2), 0);
+                hdVar.F.K(0);
+                hdVar.F.N(43);
+                hdVar.h.d();
                 return;
             case 2:
-                this.f45106b.f0(true);
-                return;
-            default:
-                id idVar3 = this.f45106b;
-                idVar3.f39111f0 = true;
-                if (idVar3.f39127w.length() > 0) {
-                    idVar3.c0(idVar3.f39127w.getText().toString());
+                hd hdVar2 = this.f45132b;
+                if (!hdVar2.f38859f0) {
+                    hdVar2.f0();
+                    return;
+                } else if (hdVar2.W) {
+                    hdVar2.W = false;
+                    hdVar2.h0();
+                    return;
+                } else {
+                    return;
                 }
-                idVar3.g0();
+            default:
+                hd hdVar3 = this.f45132b;
+                if (!hdVar3.W) {
+                    hdVar3.W = true;
+                    hdVar3.h0();
+                    return;
+                }
                 return;
         }
     }

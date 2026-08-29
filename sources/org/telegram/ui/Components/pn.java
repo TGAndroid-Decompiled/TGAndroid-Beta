@@ -1,75 +1,94 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.we1;
-public final class pn extends o9 {
-    public final org.telegram.ui.Cells.l6 C;
-    public final org.telegram.ui.ActionBar.o2 D;
-    public final boolean E;
-    public final org.telegram.ui.ActionBar.b6 F;
-    public final tn G;
+import org.telegram.tgnet.TLRPC;
+public final class pn extends fi {
+    public final hz f31713n;
+    public final jl0 f31714r;
+    public final int f31715s;
+    public final org.telegram.ui.u7 v;
+    public int f31716w;
 
-    public pn(tn tnVar, Context context, org.telegram.ui.ActionBar.o2 o2Var, boolean z10, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context);
-        this.G = tnVar;
-        this.D = o2Var;
-        this.E = z10;
-        this.F = b6Var;
-        this.C = new org.telegram.ui.Cells.l6(this);
+    public pn(int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, ni niVar) {
+        super(context, c6Var, niVar);
+        this.f31715s = i10;
+        hz hzVar = new hz(context, c6Var);
+        this.f31713n = hzVar;
+        hzVar.setText(LocaleController.getString(R.string.NoPhotos));
+        hzVar.setOnTouchListener(null);
+        hzVar.setTextSize(16);
+        addView(hzVar, i7.f6.c(-2.0f, -1));
+        hzVar.a(R.raw.media_forbidden, 150, 150);
+        TLRPC.Chat k12 = this.f28403b.k1();
+        if (i10 == 1) {
+            hzVar.setText(ChatObject.getRestrictedErrorText(k12, 7));
+        } else if (i10 == 3) {
+            hzVar.setText(ChatObject.getRestrictedErrorText(k12, 18));
+        } else if (i10 == 4) {
+            hzVar.setText(ChatObject.getRestrictedErrorText(k12, 19));
+        } else {
+            hzVar.setText(ChatObject.getRestrictedErrorText(k12, 22));
+        }
+        hzVar.c();
+        jl0 jl0Var = new jl0(context, c6Var);
+        this.f31714r = jl0Var;
+        jl0Var.setSectionsType(2);
+        jl0Var.setVerticalScrollBarEnabled(false);
+        jl0Var.setLayoutManager(new f2.j0());
+        jl0Var.setClipToPadding(false);
+        org.telegram.ui.u7 u7Var = new org.telegram.ui.u7(this, 4);
+        this.v = u7Var;
+        jl0Var.setAdapter(u7Var);
+        jl0Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+        jl0Var.setOnScrollListener(new cg.g2(this, 26));
+        addView(jl0Var, i7.f6.c(-1.0f, -1));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j10;
-        tn tnVar = this.G;
-        if (tnVar.f32726b && this.f31331e == null) {
-            org.telegram.ui.Cells.l6 l6Var = this.C;
-            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            l6Var.f11716a = true;
-            l6Var.v = true;
-            l6Var.J = this.F;
-            Integer num = tnVar.f32728c;
-            if (num != null) {
-                l6Var.f11738z = num.intValue();
-            }
-            org.telegram.ui.qn qnVar = tnVar.C;
-            if (qnVar != null) {
-                j10 = qnVar.a();
-            } else {
-                org.telegram.ui.ActionBar.o2 o2Var = this.D;
-                if (o2Var instanceof we1) {
-                    j10 = -((we1) o2Var).f43741a;
-                } else {
-                    j10 = 0;
-                }
-            }
-            ih.p7.h(j10, canvas, this.f31328a, l6Var);
-            return;
+    public int getCurrentItemTop() {
+        jl0 jl0Var = this.f31714r;
+        if (jl0Var.getChildCount() <= 0) {
+            return Integer.MAX_VALUE;
         }
-        super.onDraw(canvas);
+        int i10 = 0;
+        View childAt = jl0Var.getChildAt(0);
+        vk0 vk0Var = (vk0) jl0Var.G(childAt);
+        int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
+        if (top > 0 && vk0Var != null && vk0Var.b() == 0) {
+            i10 = top;
+        }
+        if (top < 0 || vk0Var == null || vk0Var.b() != 0) {
+            top = i10;
+        }
+        int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
+        hz hzVar = this.f31713n;
+        hzVar.setTranslationY(((measuredHeight - hzVar.getMeasuredHeight()) / 2) + top);
+        return AndroidUtilities.dp(12.0f) + top;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.E && getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            return;
-        }
-        accessibilityNodeInfo.setVisibleToUser(false);
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(4.0f) + getListTopPadding();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.G.f32726b && this.C.a(motionEvent, this)) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
+    public int getListTopPadding() {
+        return this.f31714r.getPaddingTop();
+    }
+
+    @Override
+    public void setTranslationY(float f9) {
+        super.setTranslationY(f9);
+        this.f28403b.getSheetContainer().invalidate();
+    }
+
+    @Override
+    public final void y(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pn.y(int, int):void");
     }
 }

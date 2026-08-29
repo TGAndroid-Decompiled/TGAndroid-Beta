@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.ue0;
+import org.telegram.ui.Components.yw0;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 public class VideoFileRenderer implements VideoSink {
@@ -26,17 +26,17 @@ public class VideoFileRenderer implements VideoSink {
     private final FileOutputStream videoOutFile;
     private YuvConverter yuvConverter;
 
-    public VideoFileRenderer(String str, int i9, int i10, final EglBase.Context context) {
-        if (i9 % 2 != 1 && i10 % 2 != 1) {
+    public VideoFileRenderer(String str, int i10, int i11, final EglBase.Context context) {
+        if (i10 % 2 != 1 && i11 % 2 != 1) {
             this.outputFileName = str;
-            this.outputFileWidth = i9;
-            this.outputFileHeight = i10;
-            int i11 = ((i9 * i10) * 3) / 2;
-            this.outputFrameSize = i11;
-            this.outputFrameBuffer = ByteBuffer.allocateDirect(i11);
+            this.outputFileWidth = i10;
+            this.outputFileHeight = i11;
+            int i12 = ((i10 * i11) * 3) / 2;
+            this.outputFrameSize = i12;
+            this.outputFrameBuffer = ByteBuffer.allocateDirect(i12);
             FileOutputStream fileOutputStream = new FileOutputStream(str);
             this.videoOutFile = fileOutputStream;
-            fileOutputStream.write(("YUV4MPEG2 C420 W" + i9 + " H" + i10 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
+            fileOutputStream.write(("YUV4MPEG2 C420 W" + i10 + " H" + i11 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
             HandlerThread handlerThread = new HandlerThread("VideoFileRendererRenderThread");
             this.renderThread = handlerThread;
             handlerThread.start();
@@ -94,35 +94,35 @@ public class VideoFileRenderer implements VideoSink {
     }
 
     public void lambda$onFrame$0(VideoFrame videoFrame) {
-        int i9;
         int i10;
+        int i11;
         VideoFrame.Buffer buffer = videoFrame.getBuffer();
         if (videoFrame.getRotation() % 180 == 0) {
-            i9 = this.outputFileWidth;
-        } else {
-            i9 = this.outputFileHeight;
-        }
-        int i11 = i9;
-        if (videoFrame.getRotation() % 180 == 0) {
-            i10 = this.outputFileHeight;
-        } else {
             i10 = this.outputFileWidth;
+        } else {
+            i10 = this.outputFileHeight;
         }
         int i12 = i10;
+        if (videoFrame.getRotation() % 180 == 0) {
+            i11 = this.outputFileHeight;
+        } else {
+            i11 = this.outputFileWidth;
+        }
+        int i13 = i11;
         float width = buffer.getWidth() / buffer.getHeight();
-        float f10 = i11 / i12;
+        float f9 = i12 / i13;
         int width2 = buffer.getWidth();
         int height = buffer.getHeight();
-        if (f10 > width) {
-            height = (int) ((width / f10) * height);
+        if (f9 > width) {
+            height = (int) ((width / f9) * height);
         } else {
-            width2 = (int) ((f10 / width) * width2);
+            width2 = (int) ((f9 / width) * width2);
         }
-        VideoFrame.Buffer cropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i11, i12);
+        VideoFrame.Buffer cropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i12, i13);
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new ue0(this, i420, videoFrame, 29));
+        this.fileThreadHandler.post(new yw0(this, i420, videoFrame, 18));
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
-import ta.b;
+import u3.c;
 public final class EncryptedFileDataSource extends g {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -18,8 +18,8 @@ public final class EncryptedFileDataSource extends g {
     private Uri uri;
 
     public static class EncryptedFileDataSourceException extends IOException {
-        public EncryptedFileDataSourceException(Throwable th) {
-            super(th);
+        public EncryptedFileDataSourceException(Throwable th2) {
+            super(th2);
         }
     }
 
@@ -54,21 +54,21 @@ public final class EncryptedFileDataSource extends g {
 
     @Override
     public long open(q qVar) {
-        Uri uri = qVar.f2585a;
-        long j10 = qVar.f2589f;
-        long j11 = qVar.f2588e;
+        Uri uri = qVar.f3599a;
+        long j10 = qVar.f3603f;
+        long j11 = qVar.f3602e;
         this.uri = uri;
-        File file = new File(qVar.f2585a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), b.j(file.getName(), ".key")));
+        File file = new File(qVar.f3599a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), c.k(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j11);
         transferInitializing(qVar);
         long length = (int) file.length();
         if (j11 <= length) {
-            int i9 = (int) (length - j11);
-            this.bytesRemaining = i9;
+            int i10 = (int) (length - j11);
+            this.bytesRemaining = i10;
             if (j10 != -1) {
-                this.bytesRemaining = (int) Math.min(i9, j10);
+                this.bytesRemaining = (int) Math.min(i10, j10);
             }
             this.opened = true;
             transferStarted(qVar);
@@ -81,17 +81,17 @@ public final class EncryptedFileDataSource extends g {
     }
 
     @Override
-    public int read(byte[] bArr, int i9, int i10) {
-        if (i10 == 0) {
+    public int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
             return 0;
         }
-        int i11 = this.bytesRemaining;
-        if (i11 == 0) {
+        int i12 = this.bytesRemaining;
+        if (i12 == 0) {
             return -1;
         }
-        int min = Math.min(i10, i11);
+        int min = Math.min(i11, i12);
         try {
-            this.fileInputStream.read(bArr, i9, min);
+            this.fileInputStream.read(bArr, i10, min);
         } catch (IOException e10) {
             e10.printStackTrace();
         }

@@ -1,47 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
+import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class v51 implements View.OnLayoutChangeListener {
-    public Boolean f33266a;
-    public boolean f33267b;
-    public final org.telegram.ui.Cells.e3 f33268c;
+public final class v51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33465a;
+    public final View f33466b;
 
-    public v51(org.telegram.ui.Cells.e3 e3Var, View view) {
-        this.f33268c = e3Var;
-        o1.j jVar = new o1.j(view, o1.h.f18783n, 0.0f);
-        e3Var.f24287c = jVar;
-        jVar.f18800u.a(1.0f);
-        ((o1.j) e3Var.f24287c).f18800u.b(350.0f);
+    public v51(int i10, View view) {
+        this.f33465a = i10;
+        this.f33466b = view;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        boolean z10;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.f33266a;
-        if (bool == null || bool.booleanValue() != z10) {
-            this.f33266a = Boolean.valueOf(z10);
-            this.f33267b = true;
-        }
-        if (i14 != 0 && i14 != i10 && !this.f33267b) {
-            org.telegram.ui.Cells.e3 e3Var = this.f33268c;
-            ((o1.j) e3Var.f24287c).c();
-            if (view.getVisibility() != 0) {
-                view.setTranslationY(0.0f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33465a) {
+            case 0:
+                w51 w51Var = (w51) this.f33466b;
+                w51Var.getClass();
+                w51Var.C = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w51Var.invalidate();
                 return;
-            }
-            ((o1.j) e3Var.f24287c).f18800u.f18807i = 0.0f;
-            view.setTranslationY((i14 - i10) + 0.0f);
-            ((o1.j) e3Var.f24287c).f();
-            return;
+            case 1:
+                d61 d61Var = (d61) this.f33466b;
+                d61Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d61Var.f27679b = floatValue;
+                d61Var.setTranslationY(floatValue);
+                return;
+            default:
+                y71 y71Var = (y71) this.f33466b;
+                y71Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y71Var.setAnimationIdicatorProgress(floatValue2);
+                x71 x71Var = y71Var.f34963y;
+                if (x71Var != null) {
+                    ((n) x71Var).j(floatValue2);
+                    return;
+                }
+                return;
         }
-        this.f33267b = false;
     }
 }

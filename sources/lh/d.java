@@ -1,35 +1,32 @@
 package lh;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import f2.q1;
-import kh.b8;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z41;
-public final class d extends z41 {
-    public final g J;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class d implements Runnable {
+    public final int f15448a;
+    public final p f15449b;
 
-    public d(g gVar, wk0 wk0Var, Activity activity, int i9, int i10, b8 b8Var, b6 b6Var) {
-        super(wk0Var, activity, i9, i10, true, b8Var, b6Var);
-        this.J = gVar;
+    public d(p pVar, int i10) {
+        this.f15448a = i10;
+        this.f15449b = pVar;
     }
 
     @Override
-    public final q1 x(ViewGroup viewGroup, int i9) {
-        b6 b6Var;
-        if (i9 == 42) {
-            g gVar = this.J;
-            Activity parentActivity = gVar.getParentActivity();
-            int i10 = f6.L6;
-            b6Var = ((o2) gVar).resourceProvider;
-            m4 m4Var = new m4(parentActivity, i10, 21, 0, false, b6Var);
-            m4Var.setHeight(25);
-            return new q1(m4Var);
+    public final void run() {
+        switch (this.f15448a) {
+            case 0:
+                this.f15449b.p(true, false);
+                return;
+            case 1:
+                p pVar = this.f15449b;
+                nh.t3 t3Var = pVar.F;
+                if (t3Var != null) {
+                    t3Var.e(true);
+                }
+                pVar.f16043a0.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            default:
+                this.f15449b.c();
+                return;
         }
-        return super.x(viewGroup, i9);
     }
 }

@@ -1,33 +1,31 @@
 package org.telegram.messenger;
-public final class qk implements Runnable {
-    public final int f21354a;
-    public final TranslateController f21355b;
-    public final String f21356c;
-    public final MessageObject d;
-    public final long f21357e;
-    public final int f21358f;
 
-    public qk(TranslateController translateController, String str, MessageObject messageObject, long j10, int i9, int i10) {
-        this.f21354a = i10;
-        this.f21355b = translateController;
-        this.f21356c = str;
-        this.d = messageObject;
-        this.f21357e = j10;
-        this.f21358f = i9;
+import java.util.ArrayList;
+public final class qk implements Runnable {
+    public final int f21381a;
+    public final TopicsController f21382b;
+    public final long f21383c;
+    public final ArrayList d;
+    public final boolean f21384e;
+    public final long f21385f;
+
+    public qk(TopicsController topicsController, long j10, ArrayList arrayList, boolean z10, long j11, int i10) {
+        this.f21381a = i10;
+        this.f21382b = topicsController;
+        this.f21383c = j10;
+        this.d = arrayList;
+        this.f21384e = z10;
+        this.f21385f = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f21354a) {
+        switch (this.f21381a) {
             case 0:
-                long j10 = this.f21357e;
-                int i9 = this.f21358f;
-                this.f21355b.lambda$checkLanguage$16(this.f21356c, this.d, j10, i9);
+                TopicsController.x(this.f21382b, this.f21383c, this.d, this.f21384e, this.f21385f);
                 return;
             default:
-                long j11 = this.f21357e;
-                int i10 = this.f21358f;
-                this.f21355b.lambda$checkLanguage$12(this.f21356c, this.d, j11, i10);
+                TopicsController.s(this.f21382b, this.f21383c, this.d, this.f21384e, this.f21385f);
                 return;
         }
     }

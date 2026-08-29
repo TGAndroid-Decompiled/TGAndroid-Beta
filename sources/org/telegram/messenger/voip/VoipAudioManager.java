@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.media.AudioManager;
+import nh.b6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Utilities;
@@ -28,11 +29,11 @@ public class VoipAudioManager {
 
     public void lambda$isBluetoothAndSpeakerOnAsync$2(Utilities.Callback2 callback2) {
         AudioManager audioManager = getAudioManager();
-        AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.l(callback2, audioManager.isBluetoothScoOn(), audioManager.isSpeakerphoneOn(), 2));
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.k(callback2, audioManager.isBluetoothScoOn(), audioManager.isSpeakerphoneOn(), 2));
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new l0(1, this, callback2));
+        Utilities.globalQueue.postRunnable(new b6(28, this, callback2));
     }
 
     public boolean isSpeakerphoneOn() {
@@ -45,7 +46,7 @@ public class VoipAudioManager {
 
     public void setSpeakerphoneOn(boolean z10) {
         this.isSpeakerphoneOn = Boolean.valueOf(z10);
-        Utilities.globalQueue.postRunnable(new eh.f(21, getAudioManager(), z10));
+        Utilities.globalQueue.postRunnable(new hh.f(20, getAudioManager(), z10));
     }
 
     private VoipAudioManager() {

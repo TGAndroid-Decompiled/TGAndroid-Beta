@@ -1,23 +1,43 @@
 package lf;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import java.util.List;
-public final class b extends BitmapDrawable {
-    public final List f16855a;
+import org.telegram.messenger.video.AudioConversions;
+public final class b extends a {
+    public final long f15212b;
+    public int f15213c;
 
-    public b(Bitmap bitmap, List list) {
-        super(bitmap);
-        this.f16855a = list;
+    public b(long j10) {
+        this.f15212b = j10;
     }
 
-    public static BitmapDrawable a(Bitmap bitmap, List list) {
-        if (bitmap == null) {
-            return null;
+    @Override
+    public final short a() {
+        if (c()) {
+            this.f15213c--;
+            return (short) 0;
         }
-        if (list != null && !list.isEmpty()) {
-            return new b(bitmap, list);
+        throw new RuntimeException("Audio input has no remaining value.");
+    }
+
+    @Override
+    public final int b() {
+        return -1;
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.f15213c > 0) {
+            return true;
         }
-        return new BitmapDrawable(bitmap);
+        return false;
+    }
+
+    @Override
+    public final void d() {
+        this.f15213c = 0;
+    }
+
+    @Override
+    public final void e(int i10, int i11) {
+        this.f15213c = AudioConversions.usToShorts(this.f15212b, i10, i11);
     }
 }

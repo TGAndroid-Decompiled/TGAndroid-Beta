@@ -22,8 +22,8 @@ public class NotchInfoUtils {
     }
 
     public static NotchInfo getInfo(Context context) {
-        float f10;
-        int i9;
+        float f9;
+        int i10;
         boolean z10;
         if (Build.VERSION.SDK_INT < 28) {
             return null;
@@ -37,55 +37,55 @@ public class NotchInfoUtils {
             }
             String trim = string.trim();
             DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-            int i10 = displayMetrics.widthPixels;
-            float f11 = displayMetrics.density;
-            int i11 = 3;
-            int i12 = 5;
+            int i11 = displayMetrics.widthPixels;
+            float f10 = displayMetrics.density;
+            int i12 = 3;
+            int i13 = 5;
             boolean z11 = false;
             if (trim.endsWith("@right")) {
-                f10 = i10;
+                f9 = i11;
                 trim = trim.substring(0, trim.length() - 6).trim();
-                i9 = 5;
+                i10 = 5;
             } else if (trim.endsWith("@left")) {
                 trim = trim.substring(0, trim.length() - 5).trim();
-                f10 = 0.0f;
-                i9 = 3;
+                f9 = 0.0f;
+                i10 = 3;
             } else {
-                f10 = i10 / 2.0f;
-                i9 = 17;
+                f9 = i11 / 2.0f;
+                i10 = 17;
             }
             boolean endsWith = trim.endsWith("@dp");
             if (endsWith) {
-                trim = e2.c.m(trim, 3, 0);
+                trim = com.google.android.recaptcha.internal.a.m(trim, 3, 0);
             }
             if (trim.contains("@bottom")) {
                 trim = trim.split("@bottom", 2)[0].trim();
             }
             try {
-                i0.d[] c10 = f7.i8.c(trim);
+                i0.d[] c3 = h7.c8.c(trim);
                 Path path = new Path();
-                i0.d.b(c10, path);
+                i0.d.b(c3, path);
                 Matrix matrix = new Matrix();
                 if (endsWith) {
-                    matrix.postScale(f11, f11);
+                    matrix.postScale(f10, f10);
                 }
-                matrix.postTranslate(f10, 0.0f);
+                matrix.postTranslate(f9, 0.0f);
                 path.transform(matrix);
                 notchInfo.path = path;
                 RectF rectF = new RectF();
                 path.computeBounds(rectF, true);
                 notchInfo.bounds = rectF;
                 DisplayMetrics displayMetrics2 = context.getResources().getDisplayMetrics();
-                if (i9 != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= AndroidUtilities.dp(2.0f)) {
-                    i9 = 17;
+                if (i10 != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= AndroidUtilities.dp(2.0f)) {
+                    i10 = 17;
                 }
-                if (i9 != 17 || rectF.left >= displayMetrics2.widthPixels / 4.0f) {
-                    i11 = i9;
+                if (i10 != 17 || rectF.left >= displayMetrics2.widthPixels / 4.0f) {
+                    i12 = i10;
                 }
-                if (i11 != 17 || rectF.right <= (displayMetrics2.widthPixels / 4.0f) * 3.0f) {
-                    i12 = i11;
+                if (i12 != 17 || rectF.right <= (displayMetrics2.widthPixels / 4.0f) * 3.0f) {
+                    i13 = i12;
                 }
-                notchInfo.gravity = i12;
+                notchInfo.gravity = i13;
                 notchInfo.rawPath = trim;
                 if (!trim.contains("C") && !trim.contains("S") && !trim.contains("Q")) {
                     z10 = false;
@@ -95,8 +95,8 @@ public class NotchInfoUtils {
                 notchInfo.isAccurate = z10;
                 notchInfo.isLikelyCircle = (rectF.width() <= ((float) AndroidUtilities.dp(32.0f)) || rectF.width() <= rectF.height()) ? true : true;
                 return notchInfo;
-            } catch (Throwable th) {
-                FileLog.e("Failed to parse notch info", th);
+            } catch (Throwable th2) {
+                FileLog.e("Failed to parse notch info", th2);
             }
         }
         return null;

@@ -1,12 +1,17 @@
 package h7;
-public final class x0 {
-    public final w0 f10170a;
-    public final Integer f10171b;
-    public final f7 f10172c;
+public final class x0 implements s9.d {
+    public static final x0 f7796a = new Object();
 
-    public x0(a5.m mVar) {
-        this.f10170a = (w0) mVar.f98b;
-        this.f10171b = (Integer) mVar.f99c;
-        this.f10172c = (f7) mVar.d;
+    static {
+        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(3, com.google.android.recaptcha.internal.a.p(i.class, com.google.android.recaptcha.internal.a.h(2, com.google.android.recaptcha.internal.a.p(i.class, new e(1)))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            s9.e eVar = (s9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

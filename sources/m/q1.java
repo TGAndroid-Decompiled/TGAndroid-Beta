@@ -8,23 +8,23 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 public final class q1 extends Drawable implements Drawable.Callback {
-    public Drawable f17060a;
-    public boolean f17061b;
+    public Drawable f16657a;
+    public boolean f16658b;
 
     public final void a(Canvas canvas) {
-        this.f17060a.draw(canvas);
+        this.f16657a.draw(canvas);
     }
 
-    public final void b(float f10, float f11) {
-        this.f17060a.setHotspot(f10, f11);
+    public final void b(float f9, float f10) {
+        this.f16657a.setHotspot(f9, f10);
     }
 
-    public final void c(int i9, int i10, int i11, int i12) {
-        this.f17060a.setHotspotBounds(i9, i10, i11, i12);
+    public final void c(int i10, int i11, int i12, int i13) {
+        this.f16657a.setHotspotBounds(i10, i11, i12, i13);
     }
 
     public final boolean d(boolean z10, boolean z11) {
-        if (!super.setVisible(z10, z11) && !this.f17060a.setVisible(z10, z11)) {
+        if (!super.setVisible(z10, z11) && !this.f16657a.setVisible(z10, z11)) {
             return false;
         }
         return true;
@@ -32,59 +32,59 @@ public final class q1 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f17061b) {
+        if (this.f16658b) {
             a(canvas);
         }
     }
 
     @Override
     public final int getChangingConfigurations() {
-        return this.f17060a.getChangingConfigurations();
+        return this.f16657a.getChangingConfigurations();
     }
 
     @Override
     public final Drawable getCurrent() {
-        return this.f17060a.getCurrent();
+        return this.f16657a.getCurrent();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f17060a.getIntrinsicHeight();
+        return this.f16657a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f17060a.getIntrinsicWidth();
+        return this.f16657a.getIntrinsicWidth();
     }
 
     @Override
     public final int getMinimumHeight() {
-        return this.f17060a.getMinimumHeight();
+        return this.f16657a.getMinimumHeight();
     }
 
     @Override
     public final int getMinimumWidth() {
-        return this.f17060a.getMinimumWidth();
+        return this.f16657a.getMinimumWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return this.f17060a.getOpacity();
+        return this.f16657a.getOpacity();
     }
 
     @Override
     public final boolean getPadding(Rect rect) {
-        return this.f17060a.getPadding(rect);
+        return this.f16657a.getPadding(rect);
     }
 
     @Override
     public final int[] getState() {
-        return this.f17060a.getState();
+        return this.f16657a.getState();
     }
 
     @Override
     public final Region getTransparentRegion() {
-        return this.f17060a.getTransparentRegion();
+        return this.f16657a.getTransparentRegion();
     }
 
     @Override
@@ -94,27 +94,27 @@ public final class q1 extends Drawable implements Drawable.Callback {
 
     @Override
     public final boolean isAutoMirrored() {
-        return this.f17060a.isAutoMirrored();
+        return this.f16657a.isAutoMirrored();
     }
 
     @Override
     public final boolean isStateful() {
-        return this.f17060a.isStateful();
+        return this.f16657a.isStateful();
     }
 
     @Override
     public final void jumpToCurrentState() {
-        this.f17060a.jumpToCurrentState();
+        this.f16657a.jumpToCurrentState();
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f17060a.setBounds(rect);
+        this.f16657a.setBounds(rect);
     }
 
     @Override
-    public final boolean onLevelChange(int i9) {
-        return this.f17060a.setLevel(i9);
+    public final boolean onLevelChange(int i10) {
+        return this.f16657a.setLevel(i10);
     }
 
     @Override
@@ -123,75 +123,75 @@ public final class q1 extends Drawable implements Drawable.Callback {
     }
 
     @Override
-    public final void setAlpha(int i9) {
-        this.f17060a.setAlpha(i9);
+    public final void setAlpha(int i10) {
+        this.f16657a.setAlpha(i10);
     }
 
     @Override
     public final void setAutoMirrored(boolean z10) {
-        this.f17060a.setAutoMirrored(z10);
+        this.f16657a.setAutoMirrored(z10);
     }
 
     @Override
-    public final void setChangingConfigurations(int i9) {
-        this.f17060a.setChangingConfigurations(i9);
+    public final void setChangingConfigurations(int i10) {
+        this.f16657a.setChangingConfigurations(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f17060a.setColorFilter(colorFilter);
+        this.f16657a.setColorFilter(colorFilter);
     }
 
     @Override
     public final void setDither(boolean z10) {
-        this.f17060a.setDither(z10);
+        this.f16657a.setDither(z10);
     }
 
     @Override
     public final void setFilterBitmap(boolean z10) {
-        this.f17060a.setFilterBitmap(z10);
+        this.f16657a.setFilterBitmap(z10);
     }
 
     @Override
-    public final void setHotspot(float f10, float f11) {
-        if (this.f17061b) {
-            b(f10, f11);
+    public final void setHotspot(float f9, float f10) {
+        if (this.f16658b) {
+            b(f9, f10);
         }
     }
 
     @Override
-    public final void setHotspotBounds(int i9, int i10, int i11, int i12) {
-        if (this.f17061b) {
-            c(i9, i10, i11, i12);
+    public final void setHotspotBounds(int i10, int i11, int i12, int i13) {
+        if (this.f16658b) {
+            c(i10, i11, i12, i13);
         }
     }
 
     @Override
     public final boolean setState(int[] iArr) {
-        if (this.f17061b) {
-            return this.f17060a.setState(iArr);
+        if (this.f16658b) {
+            return this.f16657a.setState(iArr);
         }
         return false;
     }
 
     @Override
-    public final void setTint(int i9) {
-        this.f17060a.setTint(i9);
+    public final void setTint(int i10) {
+        this.f16657a.setTint(i10);
     }
 
     @Override
     public final void setTintList(ColorStateList colorStateList) {
-        this.f17060a.setTintList(colorStateList);
+        this.f16657a.setTintList(colorStateList);
     }
 
     @Override
     public final void setTintMode(PorterDuff.Mode mode) {
-        this.f17060a.setTintMode(mode);
+        this.f16657a.setTintMode(mode);
     }
 
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
-        if (this.f17061b) {
+        if (this.f16658b) {
             return d(z10, z11);
         }
         return false;

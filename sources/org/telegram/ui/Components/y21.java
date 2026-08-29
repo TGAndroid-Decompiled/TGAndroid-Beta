@@ -1,44 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class y21 extends f2.r0 {
-    public Context f34842c;
-    public View d;
-    public int f34843e;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class y21 extends f2.a1 {
+    public final k31 f34904a;
 
-    public final void D(View view) {
-        if (this.d == view) {
+    public y21(k31 k31Var) {
+        this.f34904a = k31Var;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, int i10) {
+        k31 k31Var = this.f34904a;
+        x21 x21Var = k31Var.D;
+        if (i10 == 0) {
+            k31Var.C = false;
+        }
+        if ((i10 == 0 || i10 == 2) && k31Var.A(false) > 0.0f && k31Var.A(false) < AndroidUtilities.dp(96.0f) && x21Var.canScrollVertically(1) && k31.u(k31Var)) {
+            k31Var.C = true;
+            x21Var.v0(0, (int) k31Var.A(false), null);
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        float f9;
+        k31 k31Var = this.f34904a;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) k31Var).containerView;
+        viewGroup.invalidate();
+        boolean canScrollVertically = k31Var.D.canScrollVertically(1);
+        View view = k31Var.H;
+        Boolean bool = k31Var.M;
+        if (bool != null && bool.booleanValue() == canScrollVertically) {
             return;
         }
-        this.f34843e++;
-        this.d = view;
-        m(1);
-    }
-
-    @Override
-    public final int h() {
-        return 2;
-    }
-
-    @Override
-    public final int j(int i9) {
-        if (i9 == 0) {
-            return 0;
+        k31Var.M = Boolean.valueOf(canScrollVertically);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (canScrollVertically) {
+            f9 = 1.0f;
+        } else {
+            f9 = 0.0f;
         }
-        return this.f34843e;
-    }
-
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        if (i9 == 0) {
-            return new f2.q1(new an(this.f34842c, 14));
-        }
-        return new f2.q1(this.d);
-    }
-
-    @Override
-    public final void v(f2.q1 q1Var, int i9) {
+        org.telegram.ui.b.q(animate.alpha(f9), jr.h, 320L);
     }
 }

@@ -1,40 +1,23 @@
 package cf;
 
-import android.os.Bundle;
-public final class a implements Runnable {
-    public final int f2373a;
-    public final b f2374b;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.view.View;
+import c2.p;
+public interface a {
+    void a(p pVar);
 
-    public a(b bVar, String str, Bundle bundle, int i9) {
-        this.f2373a = i9;
-        this.f2374b = bVar;
-    }
+    Bitmap b();
 
-    @Override
-    public final void run() {
-        switch (this.f2373a) {
-            case 0:
-                this.f2374b.f2376b.getClass();
-                return;
-            case 1:
-                this.f2374b.f2376b.getClass();
-                return;
-            case 2:
-                this.f2374b.f2376b.getClass();
-                return;
-            default:
-                this.f2374b.f2376b.getClass();
-                return;
-        }
-    }
+    void c(Canvas canvas);
 
-    public a(b bVar, int i9, Bundle bundle) {
-        this.f2373a = 0;
-        this.f2374b = bVar;
-    }
+    Bitmap d();
 
-    public a(b bVar, Bundle bundle) {
-        this.f2373a = 2;
-        this.f2374b = bVar;
-    }
+    void e(p pVar);
+
+    void f(Canvas canvas);
+
+    boolean g();
+
+    View h();
 }

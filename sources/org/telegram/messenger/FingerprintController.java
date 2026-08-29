@@ -59,7 +59,7 @@ public class FingerprintController {
                 keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new w3(1, z10));
+                AndroidUtilities.runOnUIThread(new y3(1, z10));
             } catch (InvalidAlgorithmParameterException e10) {
                 FileLog.e(e10);
             } catch (Exception e11) {
@@ -127,9 +127,9 @@ public class FingerprintController {
             return;
         }
         Context context = ApplicationLoader.applicationContext;
-        ef.a aVar = ef.b.f5119a;
-        if (aVar.v0(context) && aVar.d(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new w3(0, z10));
+        hf.a aVar = hf.b.f7997a;
+        if (aVar.H0(context) && aVar.d(ApplicationLoader.applicationContext)) {
+            Utilities.globalQueue.postRunnable(new y3(0, z10));
         }
     }
 }

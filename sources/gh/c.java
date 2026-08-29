@@ -1,85 +1,91 @@
 package gh;
 
-import android.text.SpannableStringBuilder;
+import android.animation.ValueAnimator;
+import android.graphics.Path;
+import android.text.Layout;
+import android.view.View;
+import i7.w;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.ll;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.ob;
-public final class c implements Runnable {
-    public final int f7890a;
-    public final r f7891b;
+import org.telegram.ui.Components.ct;
+import org.telegram.ui.Components.mi0;
+public final class c extends Path {
+    public final View f7362a;
+    public final Layout f7363b;
+    public final Stack f7364c;
+    public final List d;
+    public final int f7365e;
+    public final int f7366f;
+    public final ArrayList f7367g;
 
-    public c(r rVar, int i9) {
-        this.f7890a = i9;
-        this.f7891b = rVar;
+    public c(View view, Layout layout, Stack stack, List list, int i10, int i11, ArrayList arrayList) {
+        this.f7362a = view;
+        this.f7363b = layout;
+        this.f7364c = stack;
+        this.d = list;
+        this.f7365e = i10;
+        this.f7366f = i11;
+        this.f7367g = arrayList;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        String formatPluralStringSpaced;
-        int i9 = this.f7890a;
-        r rVar = this.f7891b;
-        switch (i9) {
-            case 0:
-                c cVar = rVar.f8781j0;
-                int currentTime = rVar.getConnectionsManager().getCurrentTime();
-                p pVar = rVar.N;
-                if (rVar.L <= 0 && rVar.C <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                pVar.setEnabled(z10);
-                if (currentTime < rVar.C) {
-                    rVar.N.g(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true, true);
-                    if (rVar.f8780i0 == null) {
-                        rVar.f8780i0 = new SpannableStringBuilder("l");
-                        eq eqVar = new eq(R.drawable.mini_switch_lock, 0);
-                        eqVar.setTopOffset(1);
-                        rVar.f8780i0.setSpan(eqVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) rVar.f8780i0).append((CharSequence) r.i0(rVar.C - currentTime));
-                    rVar.N.f(spannableStringBuilder, true);
-                    gc gcVar = rVar.W;
-                    if (gcVar != null) {
-                        org.telegram.ui.Components.lb lbVar = gcVar.f28733e;
-                        if ((lbVar instanceof ob) && lbVar.isAttachedToWindow()) {
-                            ll.q(R.string.BotStarsWithdrawalToast, new Object[]{r.i0(rVar.C - currentTime)}, ((ob) rVar.W.f28733e).f31343b);
-                        }
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(cVar);
-                    AndroidUtilities.runOnUIThread(cVar, 1000L);
-                    return;
-                }
-                rVar.N.f(null, true);
-                p pVar2 = rVar.N;
-                if (rVar.K) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) rVar.L);
-                }
-                pVar2.g(oa.V0(false, formatPluralStringSpaced, rVar.P), true, true);
-                return;
-            case 1:
-                r.T(rVar);
-                return;
-            case 2:
-                r.U(rVar);
-                return;
-            case 3:
-                ve.e.s(rVar.getParentActivity(), LocaleController.getString(R.string.BotMonetizationBalanceInfoLink));
-                return;
-            case 4:
-                ve.e.s(rVar.getParentActivity(), LocaleController.getString(R.string.BotStarsWithdrawInfoLink));
-                return;
-            default:
-                rVar.O.setLoading(false);
-                return;
+    public final void addRect(float f9, float f10, float f11, float f12, Path.Direction direction) {
+        k kVar;
+        float f13;
+        Stack stack = this.f7364c;
+        int i10 = 0;
+        if (stack != null && !stack.isEmpty()) {
+            kVar = (k) stack.remove(0);
+        } else {
+            kVar = new k();
         }
+        kVar.f7424y = false;
+        ArrayList arrayList = this.f7367g;
+        if (arrayList != null) {
+            float f14 = (f10 + f12) / 2.0f;
+            while (true) {
+                if (i10 >= arrayList.size()) {
+                    break;
+                }
+                mi0 mi0Var = (mi0) arrayList.get(i10);
+                if (f14 >= mi0Var.f30708b && f14 <= mi0Var.f30709c) {
+                    kVar.f7424y = true;
+                    break;
+                }
+                i10++;
+            }
+        }
+        kVar.f7414n = -1.0f;
+        ValueAnimator valueAnimator = kVar.f7418r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        kVar.f7416p = true;
+        int max = (int) Math.max(f9, this.f7365e);
+        int i11 = (int) f10;
+        int i12 = this.f7366f;
+        if (i12 <= 0) {
+            f13 = 2.1474836E9f;
+        } else {
+            f13 = i12;
+        }
+        kVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
+        kVar.h(this.f7363b.getPaint().getColor());
+        kVar.f7420t = ct.f27566c;
+        int width = kVar.getBounds().width() / AndroidUtilities.dp(6.0f);
+        int i13 = k.B;
+        int b10 = w.b(width * i13, i13, k.A);
+        Stack stack2 = kVar.f7405c;
+        kVar.d = b10;
+        while (kVar.h.size() + stack2.size() < b10) {
+            stack2.push(new Object());
+        }
+        View view = this.f7362a;
+        if (view != null) {
+            kVar.f7409i = view;
+        }
+        this.d.add(kVar);
     }
 }

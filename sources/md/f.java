@@ -1,19 +1,19 @@
 package md;
+public final class f extends uc.c {
+    public g f16988a;
+    public Object f16989b;
+    public final g f16990c;
+    public int d;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ServiceConfigurationError;
-public abstract class f {
-    public static final Collection f17648a;
+    public f(g gVar, uc.c cVar) {
+        super(cVar);
+        this.f16990c = gVar;
+    }
 
-    static {
-        try {
-            Iterator it = Arrays.asList(new id.b()).iterator();
-            kotlin.jvm.internal.i.e(it, "<this>");
-            f17648a = ed.d.a(new ed.a(new ed.e(it, 1)));
-        } catch (Throwable th) {
-            throw new ServiceConfigurationError(th.getMessage(), th);
-        }
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        this.f16989b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f16990c.c(null, this);
     }
 }

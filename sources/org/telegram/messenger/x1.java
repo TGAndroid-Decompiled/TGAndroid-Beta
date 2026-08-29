@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.NotificationCenter;
 public final class x1 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f22070a;
-    public final Object f22071b;
+    public final int f22137a;
+    public final Object f22138b;
 
-    public x1(Object obj, int i9) {
-        this.f22070a = i9;
-        this.f22071b = obj;
+    public x1(Object obj, int i10) {
+        this.f22137a = i10;
+        this.f22138b = obj;
     }
 
     @Override
-    public final void didReceivedNotification(int i9, int i10, Object[] objArr) {
-        switch (this.f22070a) {
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        switch (this.f22137a) {
             case 0:
-                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f22071b, i9, i10, objArr);
+                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f22138b, i10, i11, objArr);
                 return;
             default:
-                ((TelegramMediaSession) this.f22071b).lambda$new$0(i9, i10, objArr);
+                ((TelegramMediaSession) this.f22138b).lambda$new$0(i10, i11, objArr);
                 return;
         }
     }

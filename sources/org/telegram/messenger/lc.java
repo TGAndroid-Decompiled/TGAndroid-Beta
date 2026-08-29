@@ -1,23 +1,21 @@
 package org.telegram.messenger;
 public final class lc implements Runnable {
-    public final int f20871a;
-    public final boolean[] f20872b;
-    public final Runnable[] f20873c;
+    public final int f20849a;
+    public final boolean[] f20850b;
 
-    public lc(boolean[] zArr, Runnable[] runnableArr, int i9) {
-        this.f20871a = i9;
-        this.f20872b = zArr;
-        this.f20873c = runnableArr;
+    public lc(int i10, boolean[] zArr) {
+        this.f20849a = i10;
+        this.f20850b = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f20871a) {
+        switch (this.f20849a) {
             case 0:
-                MessagesController.lambda$ensureMessagesLoaded$461(this.f20872b, this.f20873c);
+                MessagesController.lambda$openByUserName$456(this.f20850b);
                 return;
             default:
-                PasskeysController.lambda$login$12(this.f20872b, this.f20873c);
+                MessagesController.lambda$openApp$497(this.f20850b);
                 return;
         }
     }

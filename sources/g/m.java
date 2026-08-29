@@ -14,16 +14,16 @@ import android.view.accessibility.AccessibilityEvent;
 import java.util.ArrayList;
 import java.util.List;
 public final class m implements Window.Callback {
-    public final Window.Callback f6988a;
-    public boolean f6989b;
-    public boolean f6990c;
+    public final Window.Callback f6898a;
+    public boolean f6899b;
+    public boolean f6900c;
     public boolean d;
-    public final q f6991e;
+    public final q f6901e;
 
     public m(q qVar, Window.Callback callback) {
-        this.f6991e = qVar;
+        this.f6901e = qVar;
         if (callback != null) {
-            this.f6988a = callback;
+            this.f6898a = callback;
             return;
         }
         throw new IllegalArgumentException("Window callback may not be null");
@@ -31,38 +31,38 @@ public final class m implements Window.Callback {
 
     public final void a(Window.Callback callback) {
         try {
-            this.f6989b = true;
+            this.f6899b = true;
             callback.onContentChanged();
         } finally {
-            this.f6989b = false;
+            this.f6899b = false;
         }
     }
 
-    public final boolean b(int i9, Menu menu) {
-        return this.f6988a.onMenuOpened(i9, menu);
+    public final boolean b(int i10, Menu menu) {
+        return this.f6898a.onMenuOpened(i10, menu);
     }
 
-    public final void c(int i9, Menu menu) {
-        this.f6988a.onPanelClosed(i9, menu);
+    public final void c(int i10, Menu menu) {
+        this.f6898a.onPanelClosed(i10, menu);
     }
 
-    public final void d(List list, Menu menu, int i9) {
-        k.k.a(this.f6988a, list, menu, i9);
+    public final void d(List list, Menu menu, int i10) {
+        k.l.a(this.f6898a, list, menu, i10);
     }
 
     @Override
     public final boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {
-        return this.f6988a.dispatchGenericMotionEvent(motionEvent);
+        return this.f6898a.dispatchGenericMotionEvent(motionEvent);
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        boolean z10 = this.f6990c;
-        Window.Callback callback = this.f6988a;
+        boolean z10 = this.f6900c;
+        Window.Callback callback = this.f6898a;
         if (z10) {
             return callback.dispatchKeyEvent(keyEvent);
         }
-        if (!this.f6991e.i(keyEvent) && !callback.dispatchKeyEvent(keyEvent)) {
+        if (!this.f6901e.j(keyEvent) && !callback.dispatchKeyEvent(keyEvent)) {
             return false;
         }
         return true;
@@ -75,17 +75,17 @@ public final class m implements Window.Callback {
 
     @Override
     public final boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        return this.f6988a.dispatchPopulateAccessibilityEvent(accessibilityEvent);
+        return this.f6898a.dispatchPopulateAccessibilityEvent(accessibilityEvent);
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return this.f6988a.dispatchTouchEvent(motionEvent);
+        return this.f6898a.dispatchTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean dispatchTrackballEvent(MotionEvent motionEvent) {
-        return this.f6988a.dispatchTrackballEvent(motionEvent);
+        return this.f6898a.dispatchTrackballEvent(motionEvent);
     }
 
     public final k.e e(android.view.ActionMode.Callback r11) {
@@ -94,57 +94,57 @@ public final class m implements Window.Callback {
 
     @Override
     public final void onActionModeFinished(ActionMode actionMode) {
-        this.f6988a.onActionModeFinished(actionMode);
+        this.f6898a.onActionModeFinished(actionMode);
     }
 
     @Override
     public final void onActionModeStarted(ActionMode actionMode) {
-        this.f6988a.onActionModeStarted(actionMode);
+        this.f6898a.onActionModeStarted(actionMode);
     }
 
     @Override
     public final void onAttachedToWindow() {
-        this.f6988a.onAttachedToWindow();
+        this.f6898a.onAttachedToWindow();
     }
 
     @Override
     public final void onContentChanged() {
-        if (this.f6989b) {
-            this.f6988a.onContentChanged();
+        if (this.f6899b) {
+            this.f6898a.onContentChanged();
         }
     }
 
     @Override
-    public final boolean onCreatePanelMenu(int i9, Menu menu) {
-        if (i9 == 0 && !(menu instanceof l.k)) {
+    public final boolean onCreatePanelMenu(int i10, Menu menu) {
+        if (i10 == 0 && !(menu instanceof l.k)) {
             return false;
         }
-        return this.f6988a.onCreatePanelMenu(i9, menu);
+        return this.f6898a.onCreatePanelMenu(i10, menu);
     }
 
     @Override
-    public final View onCreatePanelView(int i9) {
-        return this.f6988a.onCreatePanelView(i9);
+    public final View onCreatePanelView(int i10) {
+        return this.f6898a.onCreatePanelView(i10);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f6988a.onDetachedFromWindow();
+        this.f6898a.onDetachedFromWindow();
     }
 
     @Override
-    public final boolean onMenuItemSelected(int i9, MenuItem menuItem) {
-        return this.f6988a.onMenuItemSelected(i9, menuItem);
+    public final boolean onMenuItemSelected(int i10, MenuItem menuItem) {
+        return this.f6898a.onMenuItemSelected(i10, menuItem);
     }
 
     @Override
-    public final boolean onMenuOpened(int i9, Menu menu) {
-        a0 q10;
-        b(i9, menu);
-        if (i9 == 108 && (q10 = this.f6991e.q()) != null) {
-            ArrayList arrayList = q10.f6934m;
-            if (true != q10.f6933l) {
-                q10.f6933l = true;
+    public final boolean onMenuOpened(int i10, Menu menu) {
+        a0 r6;
+        b(i10, menu);
+        if (i10 == 108 && (r6 = this.f6901e.r()) != null) {
+            ArrayList arrayList = r6.f6844m;
+            if (true != r6.f6843l) {
+                r6.f6843l = true;
                 if (arrayList.size() > 0) {
                     arrayList.get(0).getClass();
                     throw new ClassCastException();
@@ -155,82 +155,82 @@ public final class m implements Window.Callback {
     }
 
     @Override
-    public final void onPanelClosed(int i9, Menu menu) {
+    public final void onPanelClosed(int i10, Menu menu) {
         if (this.d) {
-            this.f6988a.onPanelClosed(i9, menu);
+            this.f6898a.onPanelClosed(i10, menu);
             return;
         }
-        c(i9, menu);
-        q qVar = this.f6991e;
-        if (i9 == 108) {
-            a0 q10 = qVar.q();
-            if (q10 != null) {
-                ArrayList arrayList = q10.f6934m;
-                if (q10.f6933l) {
-                    q10.f6933l = false;
+        c(i10, menu);
+        q qVar = this.f6901e;
+        if (i10 == 108) {
+            a0 r6 = qVar.r();
+            if (r6 != null) {
+                ArrayList arrayList = r6.f6844m;
+                if (r6.f6843l) {
+                    r6.f6843l = false;
                     if (arrayList.size() > 0) {
                         arrayList.get(0).getClass();
                         throw new ClassCastException();
                     }
                 }
             }
-        } else if (i9 == 0) {
-            p p6 = qVar.p(i9);
-            if (p6.f7005m) {
-                qVar.h(p6, false);
+        } else if (i10 == 0) {
+            p p10 = qVar.p(i10);
+            if (p10.f6915m) {
+                qVar.h(p10, false);
             }
         }
     }
 
     @Override
     public final void onPointerCaptureChanged(boolean z10) {
-        k.l.a(this.f6988a, z10);
+        k.m.a(this.f6898a, z10);
     }
 
     @Override
-    public final boolean onPreparePanel(int i9, View view, Menu menu) {
+    public final boolean onPreparePanel(int i10, View view, Menu menu) {
         l.k kVar;
         if (menu instanceof l.k) {
             kVar = (l.k) menu;
         } else {
             kVar = null;
         }
-        if (i9 == 0 && kVar == null) {
+        if (i10 == 0 && kVar == null) {
             return false;
         }
         if (kVar != null) {
-            kVar.f16574x = true;
+            kVar.f14002x = true;
         }
-        boolean onPreparePanel = this.f6988a.onPreparePanel(i9, view, menu);
+        boolean onPreparePanel = this.f6898a.onPreparePanel(i10, view, menu);
         if (kVar != null) {
-            kVar.f16574x = false;
+            kVar.f14002x = false;
         }
         return onPreparePanel;
     }
 
     @Override
-    public final void onProvideKeyboardShortcuts(List list, Menu menu, int i9) {
-        l.k kVar = this.f6991e.p(0).h;
+    public final void onProvideKeyboardShortcuts(List list, Menu menu, int i10) {
+        l.k kVar = this.f6901e.p(0).h;
         if (kVar != null) {
-            d(list, kVar, i9);
+            d(list, kVar, i10);
         } else {
-            d(list, menu, i9);
+            d(list, menu, i10);
         }
     }
 
     @Override
     public final boolean onSearchRequested(SearchEvent searchEvent) {
-        return k.j.a(this.f6988a, searchEvent);
+        return k.k.a(this.f6898a, searchEvent);
     }
 
     @Override
     public final void onWindowAttributesChanged(WindowManager.LayoutParams layoutParams) {
-        this.f6988a.onWindowAttributesChanged(layoutParams);
+        this.f6898a.onWindowAttributesChanged(layoutParams);
     }
 
     @Override
     public final void onWindowFocusChanged(boolean z10) {
-        this.f6988a.onWindowFocusChanged(z10);
+        this.f6898a.onWindowFocusChanged(z10);
     }
 
     @Override
@@ -238,22 +238,22 @@ public final class m implements Window.Callback {
         if (Build.VERSION.SDK_INT >= 23) {
             return null;
         }
-        if (this.f6991e.D) {
+        if (this.f6901e.D) {
             return e(callback);
         }
-        return this.f6988a.onWindowStartingActionMode(callback);
+        return this.f6898a.onWindowStartingActionMode(callback);
     }
 
     @Override
     public final boolean onSearchRequested() {
-        return this.f6988a.onSearchRequested();
+        return this.f6898a.onSearchRequested();
     }
 
     @Override
-    public final ActionMode onWindowStartingActionMode(ActionMode.Callback callback, int i9) {
-        if (this.f6991e.D && i9 == 0) {
+    public final ActionMode onWindowStartingActionMode(ActionMode.Callback callback, int i10) {
+        if (this.f6901e.D && i10 == 0) {
             return e(callback);
         }
-        return k.j.b(this.f6988a, callback, i9);
+        return k.k.b(this.f6898a, callback, i10);
     }
 }

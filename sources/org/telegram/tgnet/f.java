@@ -6,18 +6,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.g5;
+import org.telegram.messenger.i5;
 public final class f implements OnSuccessListener, OnFailureListener, ImageReceiver.ImageReceiverDelegate {
-    public final int f22560a;
-    public final long f22561b;
-    public final int f22562c;
+    public final int f22572a;
+    public final long f22573b;
+    public final int f22574c;
     public final Object d;
 
-    public f(int i9, int i10, long j10, Utilities.Callback callback) {
-        this.f22560a = i9;
+    public f(int i10, int i11, long j10, Utilities.Callback callback) {
+        this.f22572a = i10;
         this.d = callback;
-        this.f22562c = i10;
-        this.f22561b = j10;
+        this.f22574c = i11;
+        this.f22573b = j10;
     }
 
     @Override
@@ -26,29 +26,29 @@ public final class f implements OnSuccessListener, OnFailureListener, ImageRecei
     }
 
     @Override
-    public void didSetImageBitmap(int i9, String str, Drawable drawable) {
-        g5.a(this, i9, str, drawable);
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        i5.a(this, i10, str, drawable);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        g5.b(this, imageReceiver);
+        i5.b(this, imageReceiver);
     }
 
     @Override
     public void onFailure(Exception exc) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f22560a, this.f22561b, this.f22562c, (String) this.d, exc);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f22572a, this.f22573b, this.f22574c, (String) this.d, exc);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f22560a, this.f22561b, this.f22562c, (String) this.d, (IntegrityTokenResponse) obj);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f22572a, this.f22573b, this.f22574c, (String) this.d, (IntegrityTokenResponse) obj);
     }
 
-    public f(int i9, long j10, String str, int i10) {
-        this.f22560a = i9;
-        this.f22561b = j10;
-        this.f22562c = i10;
+    public f(int i10, long j10, String str, int i11) {
+        this.f22572a = i10;
+        this.f22573b = j10;
+        this.f22574c = i11;
         this.d = str;
     }
 }

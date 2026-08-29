@@ -1,69 +1,75 @@
 package q5;
 
-import android.os.SystemClock;
-import android.text.TextUtils;
-import j3.r0;
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.regex.Pattern;
-import org.json.JSONObject;
-public abstract class a {
-    public static final Pattern f46007a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f46008b = new Random(SystemClock.elapsedRealtime());
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.RemoteException;
+import o6.w0;
+public final class a extends a6.a {
+    public final String f46357a;
+    public final String f46358b;
+    public final k f46359c;
+    public final f d;
+    public final boolean f46360e;
+    public final boolean f46361f;
+    public static final s5.b h = new s5.b("CastMediaOptions", null);
+    public static final Parcelable.Creator<a> CREATOR = new w0(10);
 
-    public static String a(String str, JSONObject jSONObject) {
-        if (jSONObject != null && jSONObject.has(str)) {
-            return jSONObject.optString(str);
-        }
-        return null;
-    }
-
-    public static void b(String str) {
-        if (!TextUtils.isEmpty(str)) {
-            if (str.length() <= 128) {
-                if (str.startsWith("urn:x-cast:")) {
-                    if (str.length() != 11) {
-                        return;
-                    }
-                    throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\" and have non-empty suffix");
-                }
-                throw new IllegalArgumentException("Namespace must begin with the prefix \"urn:x-cast:\"");
+    public a(String str, String str2, IBinder iBinder, f fVar, boolean z10, boolean z11) {
+        k aVar;
+        this.f46357a = str;
+        this.f46358b = str2;
+        if (iBinder == null) {
+            aVar = 0;
+        } else {
+            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.IImagePicker");
+            if (queryLocalInterface instanceof k) {
+                aVar = (k) queryLocalInterface;
+            } else {
+                aVar = new com.google.android.gms.internal.cast.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 0);
             }
-            throw new IllegalArgumentException("Invalid namespace length");
         }
-        throw new IllegalArgumentException("Namespace cannot be null or empty");
+        this.f46359c = aVar;
+        this.d = fVar;
+        this.f46360e = z10;
+        this.f46361f = z11;
     }
 
-    public static ArrayList c(int[] iArr) {
-        ArrayList arrayList = new ArrayList();
-        int length = iArr.length;
-        int i9 = 0;
-        while (i9 < length) {
-            i9 = r0.e(iArr[i9], i9, 1, arrayList);
+    public final void b() {
+        k kVar = this.f46359c;
+        if (kVar != null) {
+            try {
+                Parcel O0 = kVar.O0(kVar.M0(), 2);
+                j6.a J0 = j6.b.J0(O0.readStrongBinder());
+                O0.recycle();
+                if (j6.b.K0(J0) != null) {
+                    throw new ClassCastException();
+                }
+            } catch (RemoteException e10) {
+                h.a(e10, "Unable to call %s on %s.", "getWrappedClientObject", k.class.getSimpleName());
+            }
         }
-        return arrayList;
     }
 
-    public static boolean d(Object obj, Object obj2) {
-        if (obj == null && obj2 == null) {
-            return true;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        IBinder iBinder;
+        int q6 = com.google.android.gms.internal.cast.o.q(parcel, 20293);
+        com.google.android.gms.internal.cast.o.l(parcel, 2, this.f46357a);
+        com.google.android.gms.internal.cast.o.l(parcel, 3, this.f46358b);
+        k kVar = this.f46359c;
+        if (kVar == null) {
+            iBinder = null;
+        } else {
+            iBinder = kVar.f3996b;
         }
-        if (obj != null && obj2 != null && obj.equals(obj2)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static int[] e(AbstractCollection abstractCollection) {
-        int[] iArr = new int[abstractCollection.size()];
-        Iterator it = abstractCollection.iterator();
-        int i9 = 0;
-        while (it.hasNext()) {
-            iArr[i9] = ((Integer) it.next()).intValue();
-            i9++;
-        }
-        return iArr;
+        com.google.android.gms.internal.cast.o.f(parcel, 4, iBinder);
+        com.google.android.gms.internal.cast.o.k(parcel, 5, this.d, i10);
+        com.google.android.gms.internal.cast.o.s(parcel, 6, 4);
+        parcel.writeInt(this.f46360e ? 1 : 0);
+        com.google.android.gms.internal.cast.o.s(parcel, 7, 4);
+        parcel.writeInt(this.f46361f ? 1 : 0);
+        com.google.android.gms.internal.cast.o.r(parcel, q6);
     }
 }

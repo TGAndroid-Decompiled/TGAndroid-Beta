@@ -15,7 +15,7 @@ public interface ILocationServiceProvider {
     public interface IAPIConnectionCallbacks {
         void onConnected(Bundle bundle);
 
-        void onConnectionSuspended(int i9);
+        void onConnectionSuspended(int i10);
     }
 
     public interface IAPIOnConnectionFailedListener {
@@ -31,7 +31,7 @@ public interface ILocationServiceProvider {
 
         void setInterval(long j10);
 
-        void setPriority(int i9);
+        void setPriority(int i10);
     }
 
     public interface IMapApiClient {

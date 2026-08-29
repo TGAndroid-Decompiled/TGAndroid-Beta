@@ -5,72 +5,72 @@ import android.animation.AnimatorListenerAdapter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Cells.n6;
-import org.telegram.ui.Cells.x7;
-import org.telegram.ui.Components.fg0;
-import org.telegram.ui.Components.q9;
+import org.telegram.ui.Cells.l6;
+import org.telegram.ui.Cells.v7;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.v9;
 public final class a1 extends AnimatorListenerAdapter {
-    public final int f22707a;
-    public final float f22708b;
-    public final Object f22709c;
+    public final int f22723a;
+    public final float f22724b;
+    public final Object f22725c;
 
-    public a1(Object obj, float f10, int i9) {
-        this.f22707a = i9;
-        this.f22709c = obj;
-        this.f22708b = f10;
+    public a1(Object obj, float f9, int i10) {
+        this.f22723a = i10;
+        this.f22725c = obj;
+        this.f22724b = f9;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f22707a) {
+        switch (this.f22723a) {
             case 0:
-                d1 d1Var = (d1) this.f22709c;
+                d1 d1Var = (d1) this.f22725c;
                 d1Var.P = null;
-                d1Var.f22818a = this.f22708b;
+                d1Var.f22835a = this.f22724b;
                 d1Var.invalidate();
                 return;
             case 1:
-                u3 u3Var = (u3) this.f22709c;
-                u3Var.f23822i = this.f22708b;
-                v3 v3Var = u3Var.f23817b;
+                u3 u3Var = (u3) this.f22725c;
+                u3Var.f23840i = this.f22724b;
+                v3 v3Var = u3Var.f23835b;
                 if (v3Var != null) {
                     v3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                n6 n6Var = (n6) this.f22709c;
-                n6Var.A = this.f22708b;
-                n6Var.invalidate();
+                l6 l6Var = (l6) this.f22725c;
+                l6Var.A = this.f22724b;
+                l6Var.invalidate();
                 return;
             case 3:
                 ColorMatrix colorMatrix = new ColorMatrix();
-                x7 x7Var = (x7) this.f22709c;
-                float f10 = this.f22708b;
-                x7Var.v = f10;
-                colorMatrix.setSaturation(f10);
-                if (f6.I.q()) {
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - x7Var.v) * (-0.3f));
+                v7 v7Var = (v7) this.f22725c;
+                float f9 = this.f22724b;
+                v7Var.v = f9;
+                colorMatrix.setSaturation(f9);
+                if (g6.I.q()) {
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - v7Var.v) * (-0.3f));
                 }
-                x7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                v7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 4:
-                q9 q9Var = (q9) this.f22709c;
-                q9Var.f31870g = this.f22708b;
-                q9Var.invalidateSelf();
+                v9 v9Var = (v9) this.f22725c;
+                v9Var.f33501g = this.f22724b;
+                v9Var.invalidateSelf();
                 return;
             default:
-                fg0 fg0Var = (fg0) this.f22709c;
-                fg0Var.D.unlock();
-                float f11 = this.f22708b;
-                fg0Var.f28417b = f11;
-                if (f11 <= 0.0f) {
-                    fg0Var.C = -1;
+                qg0 qg0Var = (qg0) this.f22725c;
+                qg0Var.D.unlock();
+                float f10 = this.f22724b;
+                qg0Var.f31942b = f10;
+                if (f10 <= 0.0f) {
+                    qg0Var.C = -1;
                 }
-                fg0Var.c(true);
-                fg0Var.f28420f = false;
-                if (fg0Var.K != null && Math.abs(f11 - 1.0f) < 0.01f) {
-                    fg0Var.K.run();
+                qg0Var.c(true);
+                qg0Var.f31945f = false;
+                if (qg0Var.K != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    qg0Var.K.run();
                     return;
                 }
                 return;
@@ -79,11 +79,11 @@ public final class a1 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f22707a) {
+        switch (this.f22723a) {
             case 5:
-                fg0 fg0Var = (fg0) this.f22709c;
-                fg0Var.f28420f = true;
-                fg0Var.f28418c = this.f22708b;
+                qg0 qg0Var = (qg0) this.f22725c;
+                qg0Var.f31945f = true;
+                qg0Var.f31943c = this.f22724b;
                 return;
             default:
                 super.onAnimationStart(animator);

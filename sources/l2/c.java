@@ -2,17 +2,18 @@ package l2;
 
 import a0.f;
 import a0.k;
+import a4.w;
 import android.os.Parcel;
 import android.util.SparseIntArray;
 public final class c extends b {
     public final SparseIntArray d;
-    public final Parcel f16623e;
-    public final int f16624f;
-    public final int f16625g;
+    public final Parcel f14051e;
+    public final int f14052f;
+    public final int f14053g;
     public final String h;
-    public int f16626i;
-    public int f16627j;
-    public int f16628k;
+    public int f14054i;
+    public int f14055j;
+    public int f14056k;
 
     public c(Parcel parcel) {
         this(parcel, parcel.dataPosition(), parcel.dataSize(), "", new k(0), new k(0), new k(0));
@@ -20,27 +21,27 @@ public final class c extends b {
 
     @Override
     public final c a() {
-        Parcel parcel = this.f16623e;
+        Parcel parcel = this.f14051e;
         int dataPosition = parcel.dataPosition();
-        int i9 = this.f16627j;
-        if (i9 == this.f16624f) {
-            i9 = this.f16625g;
+        int i10 = this.f14055j;
+        if (i10 == this.f14052f) {
+            i10 = this.f14053g;
         }
-        return new c(parcel, dataPosition, i9, aa.d.r(new StringBuilder(), this.h, "  "), this.f16620a, this.f16621b, this.f16622c);
+        return new c(parcel, dataPosition, i10, w.q(new StringBuilder(), this.h, "  "), this.f14048a, this.f14049b, this.f14050c);
     }
 
     @Override
-    public final boolean e(int i9) {
-        while (this.f16627j < this.f16625g) {
-            int i10 = this.f16628k;
-            if (i10 != i9) {
-                if (String.valueOf(i10).compareTo(String.valueOf(i9)) <= 0) {
-                    int i11 = this.f16627j;
-                    Parcel parcel = this.f16623e;
-                    parcel.setDataPosition(i11);
+    public final boolean e(int i10) {
+        while (this.f14055j < this.f14053g) {
+            int i11 = this.f14056k;
+            if (i11 != i10) {
+                if (String.valueOf(i11).compareTo(String.valueOf(i10)) <= 0) {
+                    int i12 = this.f14055j;
+                    Parcel parcel = this.f14051e;
+                    parcel.setDataPosition(i12);
                     int readInt = parcel.readInt();
-                    this.f16628k = parcel.readInt();
-                    this.f16627j += readInt;
+                    this.f14056k = parcel.readInt();
+                    this.f14055j += readInt;
                 } else {
                     return false;
                 }
@@ -48,39 +49,39 @@ public final class c extends b {
                 return true;
             }
         }
-        if (this.f16628k == i9) {
+        if (this.f14056k == i10) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void i(int i9) {
-        int i10 = this.f16626i;
+    public final void i(int i10) {
+        int i11 = this.f14054i;
         SparseIntArray sparseIntArray = this.d;
-        Parcel parcel = this.f16623e;
-        if (i10 >= 0) {
-            int i11 = sparseIntArray.get(i10);
+        Parcel parcel = this.f14051e;
+        if (i11 >= 0) {
+            int i12 = sparseIntArray.get(i11);
             int dataPosition = parcel.dataPosition();
-            parcel.setDataPosition(i11);
-            parcel.writeInt(dataPosition - i11);
+            parcel.setDataPosition(i12);
+            parcel.writeInt(dataPosition - i12);
             parcel.setDataPosition(dataPosition);
         }
-        this.f16626i = i9;
-        sparseIntArray.put(i9, parcel.dataPosition());
+        this.f14054i = i10;
+        sparseIntArray.put(i10, parcel.dataPosition());
         parcel.writeInt(0);
-        parcel.writeInt(i9);
+        parcel.writeInt(i10);
     }
 
-    public c(Parcel parcel, int i9, int i10, String str, f fVar, f fVar2, f fVar3) {
+    public c(Parcel parcel, int i10, int i11, String str, f fVar, f fVar2, f fVar3) {
         super(fVar, fVar2, fVar3);
         this.d = new SparseIntArray();
-        this.f16626i = -1;
-        this.f16628k = -1;
-        this.f16623e = parcel;
-        this.f16624f = i9;
-        this.f16625g = i10;
-        this.f16627j = i9;
+        this.f14054i = -1;
+        this.f14056k = -1;
+        this.f14051e = parcel;
+        this.f14052f = i10;
+        this.f14053g = i11;
+        this.f14055j = i10;
         this.h = str;
     }
 }

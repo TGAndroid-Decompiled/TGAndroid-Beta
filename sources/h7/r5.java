@@ -1,17 +1,23 @@
 package h7;
-public final class r5 implements q9.d {
-    public static final r5 f10087a = new Object();
-
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+public abstract class r5 {
+    public static String a(String str) {
+        int length = str.length();
+        int i10 = 0;
+        while (i10 < length) {
+            char charAt = str.charAt(i10);
+            if (charAt >= 'a' && charAt <= 'z') {
+                char[] charArray = str.toCharArray();
+                while (i10 < length) {
+                    char c3 = charArray[i10];
+                    if (c3 >= 'a' && c3 <= 'z') {
+                        charArray[i10] = (char) (c3 ^ ' ');
+                    }
+                    i10++;
+                }
+                return String.valueOf(charArray);
+            }
+            i10++;
         }
-        throw new ClassCastException();
+        return str;
     }
 }

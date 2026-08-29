@@ -1,41 +1,20 @@
 package f7;
-public final class e implements i {
-    public final int f5645a;
 
-    public e(int i9) {
-        this.f5645a = i9;
+import a4.w;
+import org.telegram.ui.th;
+public final class e {
+    public final Object f6657a;
+    public final Object f6658b;
+    public final Object f6659c;
+
+    public e(Object obj, Object obj2, Object obj3) {
+        this.f6657a = obj;
+        this.f6658b = obj2;
+        this.f6659c = obj3;
     }
 
-    @Override
-    public final Class annotationType() {
-        return i.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof i) {
-                if (this.f5645a == ((e) ((i) obj)).f5645a) {
-                    Object obj2 = h.f5687a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.f5645a ^ 14552422) + (h.f5687a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f5645a + "intEncoding=" + h.f5687a + ')';
+    public final IllegalArgumentException a() {
+        Object obj = this.f6657a;
+        return new IllegalArgumentException(w.o(String.valueOf(obj), "=", String.valueOf(this.f6659c), th.k("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f6658b), " and ")));
     }
 }

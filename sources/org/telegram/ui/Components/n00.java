@@ -1,356 +1,303 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_chatlists;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class n00 extends sa {
-    public long A0;
-    public String T;
-    public int U;
-    public TL_chatlists.chatlist_ChatlistInvite V;
-    public TL_chatlists.TL_chatlists_chatlistUpdates W;
-    public final boolean X;
-    public String Y;
-    public ArrayList Z;
-    public boolean f30958a0;
-    public CharSequence f30959b0;
-    public ArrayList f30960c0;
-    public ArrayList f30961d0;
-    public ArrayList f30962e0;
-    public ArrayList f30963f0;
-    public FrameLayout f30964g0;
-    public j00 f30965h0;
-    public View f30966i0;
-    public m00 f30967j0;
-    public int f30968k0;
-    public int f30969l0;
-    public int m0;
-    public int f30970n0;
-    public int f30971o0;
-    public int f30972p0;
-    public int f30973q0;
-    public int f30974r0;
-    public int f30975s0;
-    public int f30976t0;
-    public k00 f30977u0;
-    public int f30978v0;
-    public boolean f30979w0;
-    public Utilities.Callback f30980x0;
-    public int f30981y0;
-    public long f30982z0;
+public class n00 extends View {
+    public static final int[] A;
+    public static final int[] B;
+    public static final int[] C;
+    public static final Paint[] f30789s;
+    public static Drawable[] v;
+    public static Drawable[] f30790w;
+    public static final int f30791x;
+    public static final int f30792y;
+    public final RectF f30793a;
+    public long f30794b;
+    public boolean f30795c;
+    public boolean d;
+    public float f30796e;
+    public int f30797f;
+    public boolean h;
+    public boolean f30798n;
+    public final ArrayList f30799r;
 
-    public n00(org.telegram.ui.ActionBar.o2 o2Var, int i9, ArrayList arrayList) {
-        super(o2Var, false);
-        MessagesController.DialogFilter dialogFilter;
-        TLRPC.Chat chat;
-        this.U = -1;
-        this.Y = "";
-        this.Z = new ArrayList();
-        this.f30959b0 = "";
-        this.f30961d0 = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        this.f30962e0 = arrayList2;
-        this.f30978v0 = -1;
-        this.f30981y0 = -5;
-        this.U = i9;
-        this.X = true;
-        this.f30960c0 = new ArrayList();
-        arrayList2.clear();
-        if (arrayList != null) {
-            arrayList2.addAll(arrayList);
-        }
-        ArrayList<MessagesController.DialogFilter> arrayList3 = o2Var.getMessagesController().dialogFilters;
-        if (arrayList3 != null) {
-            for (int i10 = 0; i10 < arrayList3.size(); i10++) {
-                if (arrayList3.get(i10).f19649id == i9) {
-                    dialogFilter = arrayList3.get(i10);
-                    break;
-                }
-            }
-        }
-        dialogFilter = null;
-        if (dialogFilter != null) {
-            this.Y = dialogFilter.name;
-            this.Z = dialogFilter.entities;
-            this.f30958a0 = dialogFilter.title_noanimate;
-            for (int i11 = 0; i11 < this.f30962e0.size(); i11++) {
-                TLRPC.Peer peer = o2Var.getMessagesController().getPeer(((Long) this.f30962e0.get(i11)).longValue());
-                if ((peer instanceof TLRPC.TL_peerChat) || (peer instanceof TLRPC.TL_peerChannel)) {
-                    this.f30960c0.add(peer);
-                }
-            }
-            for (int i12 = 0; i12 < dialogFilter.alwaysShow.size(); i12++) {
-                Long l10 = dialogFilter.alwaysShow.get(i12);
-                long longValue = l10.longValue();
-                if (!this.f30962e0.contains(l10)) {
-                    TLRPC.Peer peer2 = o2Var.getMessagesController().getPeer(longValue);
-                    if (((peer2 instanceof TLRPC.TL_peerChat) || (peer2 instanceof TLRPC.TL_peerChannel)) && ((chat = o2Var.getMessagesController().getChat(Long.valueOf(-longValue))) == null || !ChatObject.isNotInChat(chat))) {
-                        this.f30960c0.add(peer2);
-                    }
-                }
-            }
-        }
-        R();
-    }
-
-    public static void S(org.telegram.ui.ActionBar.o2 o2Var, int i9, Utilities.Callback callback) {
-        MessagesController.DialogFilter dialogFilter;
-        ArrayList<MessagesController.DialogFilter> arrayList = o2Var.getMessagesController().dialogFilters;
-        if (arrayList != null) {
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10).f19649id == i9) {
-                    dialogFilter = arrayList.get(i10);
-                    break;
-                }
-            }
-        }
-        dialogFilter = null;
-        org.telegram.ui.rl rlVar = new org.telegram.ui.rl(i9, o2Var, callback, 4);
-        if (dialogFilter != null && dialogFilter.isMyChatlist()) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o2Var.getContext());
-            alertDialog$Builder.f22702a.N = LocaleController.getString(R.string.FilterDelete);
-            alertDialog$Builder.f22702a.P = LocaleController.getString(R.string.FilterDeleteAlertLinks);
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new km(callback));
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new wu(rlVar, 4));
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22702a;
-            o2Var.showDialog(c2Var);
-            TextView textView = (TextView) c2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23230q7, false));
-                return;
-            }
-            return;
-        }
-        rlVar.run();
-    }
-
-    @Override
-    public final void F(xu0 xu0Var) {
-        float f10;
-        wk0 wk0Var = this.d;
-        wk0Var.setOverScrollMode(2);
-        int dp = AndroidUtilities.dp(6.0f);
-        int dp2 = AndroidUtilities.dp(6.0f);
-        if (this.f30965h0 != null) {
-            f10 = 68.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        wk0Var.setPadding(dp, 0, dp2, AndroidUtilities.dp(f10));
-        wk0Var.setOnItemClickListener(new j(this, 8));
-    }
-
-    public final void P(boolean z10) {
-        String str;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.f30962e0.size(), new Object[0]));
-        if (z10 && this.f30977u0 != null) {
-            str = ", " + ((Object) this.f30977u0.f29900b.getText());
-        } else {
-            str = "";
-        }
-        sb2.append(str);
-        AndroidUtilities.makeAccessibilityAnnouncement(sb2.toString());
-    }
-
-    public final void Q(k00 k00Var, boolean z10) {
-        int i9;
-        ArrayList arrayList = this.f30960c0;
-        ArrayList arrayList2 = this.f30962e0;
-        arrayList2.clear();
-        arrayList2.addAll(this.f30961d0);
-        int i10 = 0;
-        if (!z10) {
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) arrayList.get(i11));
-                if (!arrayList2.contains(Long.valueOf(peerDialogId))) {
-                    arrayList2.add(Long.valueOf(peerDialogId));
-                }
-            }
-        }
-        T(true);
-        if (z10) {
-            i9 = R.string.SelectAll;
-        } else {
-            i9 = R.string.DeselectAll;
-        }
-        k00Var.a(LocaleController.getString(i9), new gh.u5(this, k00Var, z10, 16));
-        P(true);
-        while (true) {
-            wk0 wk0Var = this.d;
-            if (i10 < wk0Var.getChildCount()) {
-                View childAt = wk0Var.getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Cells.g4) {
-                    Object tag = childAt.getTag();
-                    if (tag instanceof Long) {
-                        ((org.telegram.ui.Cells.g4) childAt).c(arrayList2.contains((Long) tag), true);
-                    }
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final void R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n00.R():void");
-    }
-
-    public final void T(boolean z10) {
-        String string;
-        float f10;
-        int i9;
+    static {
         int i10;
-        TL_chatlists.chatlist_ChatlistInvite chatlist_chatlistinvite = this.V;
-        ArrayList arrayList = this.f30962e0;
-        int size = arrayList.size();
-        j00 j00Var = this.f30965h0;
-        if (j00Var != null) {
-            if (this.X) {
-                if (size > 0) {
-                    i10 = R.string.FolderLinkButtonRemoveChats;
-                } else {
-                    i10 = R.string.FolderLinkButtonRemove;
-                }
-                j00Var.b(LocaleController.getString(i10), z10);
+        int i11;
+        if (SharedConfig.getDevicePerformanceClass() == 0) {
+            i10 = 50;
+        } else {
+            i10 = 60;
+        }
+        f30791x = i10;
+        if (SharedConfig.getDevicePerformanceClass() == 0) {
+            i11 = 20;
+        } else {
+            i11 = 30;
+        }
+        f30792y = i11;
+        int[] iArr = {-13845272, -6421296, -79102, -187561, -14185218, -10897300};
+        A = iArr;
+        B = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
+        C = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
+        f30789s = new Paint[iArr.length];
+        int i12 = 0;
+        while (true) {
+            Paint[] paintArr = f30789s;
+            if (i12 < paintArr.length) {
+                Paint paint = new Paint(1);
+                paintArr[i12] = paint;
+                paint.setColor(A[i12]);
+                i12++;
             } else {
-                ArrayList arrayList2 = this.f30960c0;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    int i11 = 0;
-                    if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                        this.f30965h0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.Y, this.f30965h0.f29564b.f29332a.getFontMetricsInt(), false), this.Z, this.f30965h0.f29564b.f29332a.getFontMetricsInt())), z10);
-                        j00 j00Var2 = this.f30965h0;
-                        if (this.f30958a0) {
-                            i11 = 26;
-                        }
-                        j00Var2.f29564b.f29341l = i11;
-                    } else {
-                        j00 j00Var3 = this.f30965h0;
-                        if (size > 0) {
-                            string = LocaleController.formatPluralString("FolderLinkButtonJoinPlural", size, new Object[0]);
+                return;
+            }
+        }
+    }
+
+    public n00(Context context) {
+        super(context);
+        this.f30793a = new RectF();
+        this.f30796e = 1.0f;
+        this.f30799r = new ArrayList(f30791x + f30792y);
+    }
+
+    private int getHeightForAnimation() {
+        if (getMeasuredHeight() == 0) {
+            return ((View) getParent()).getHeight();
+        }
+        return getMeasuredHeight();
+    }
+
+    private int getWidthForAnimation() {
+        if (getMeasuredWidth() == 0) {
+            return ((View) getParent()).getWidth();
+        }
+        return getMeasuredWidth();
+    }
+
+    public final org.telegram.ui.Components.m00 a(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n00.a(boolean):org.telegram.ui.Components.m00");
+    }
+
+    public void c(boolean z10) {
+        this.f30798n = z10;
+        setLayerType(2, null);
+        boolean z11 = true;
+        this.f30795c = true;
+        this.d = false;
+        this.f30797f = 0;
+        this.f30796e = 1.0f;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int i10 = calendar.get(5);
+        if (calendar.get(2) != 1 || (!BuildVars.DEBUG_PRIVATE_VERSION && i10 != 14)) {
+            z11 = false;
+        }
+        this.h = z11;
+        if (z11) {
+            if (v == null) {
+                v = new Drawable[B.length];
+                int i11 = 0;
+                while (true) {
+                    Drawable[] drawableArr = v;
+                    if (i11 >= drawableArr.length) {
+                        break;
+                    }
+                    drawableArr[i11] = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.heart_confetti).mutate();
+                    v[i11].setColorFilter(new PorterDuffColorFilter(B[i11], PorterDuff.Mode.MULTIPLY));
+                    i11++;
+                }
+            }
+        } else if (z10 && f30790w == null) {
+            f30790w = new Drawable[C.length];
+            int i12 = 0;
+            while (true) {
+                Drawable[] drawableArr2 = f30790w;
+                if (i12 >= drawableArr2.length) {
+                    break;
+                }
+                drawableArr2[i12] = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_settings_premium).mutate();
+                f30790w[i12].setColorFilter(new PorterDuffColorFilter(C[i12], PorterDuff.Mode.MULTIPLY));
+                i12++;
+            }
+        }
+        int i13 = f30791x;
+        int clamp = Utilities.clamp(i13 - this.f30799r.size(), i13, i13 / 3);
+        for (int i14 = 0; i14 < clamp; i14++) {
+            this.f30799r.add(a(false));
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f9;
+        float f10;
+        Drawable drawable;
+        boolean z10;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        int i10 = (int) (elapsedRealtime - this.f30794b);
+        this.f30794b = elapsedRealtime;
+        if (i10 > 18) {
+            i10 = 16;
+        }
+        ArrayList arrayList = this.f30799r;
+        int size = arrayList.size();
+        int i11 = 0;
+        while (i11 < size) {
+            m00 m00Var = (m00) arrayList.get(i11);
+            n00 n00Var = m00Var.f30497l;
+            byte b10 = m00Var.f30488a;
+            Paint[] paintArr = f30789s;
+            if (b10 == 0) {
+                f9 = 2.0f;
+                canvas.drawCircle(m00Var.f30493g, m00Var.h, AndroidUtilities.dp(m00Var.d), paintArr[m00Var.f30489b]);
+                f10 = 16.0f;
+            } else {
+                f9 = 2.0f;
+                if (b10 == 1) {
+                    RectF rectF = n00Var.f30793a;
+                    f10 = 16.0f;
+                    rectF.set(m00Var.f30493g - AndroidUtilities.dp(m00Var.d), m00Var.h - AndroidUtilities.dp(2.0f), m00Var.f30493g + AndroidUtilities.dp(m00Var.d), m00Var.h + AndroidUtilities.dp(2.0f));
+                    canvas.save();
+                    canvas.rotate(m00Var.f30494i, rectF.centerX(), rectF.centerY());
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paintArr[m00Var.f30489b]);
+                    canvas.restore();
+                } else {
+                    f10 = 16.0f;
+                    if (b10 == 2) {
+                        Drawable[] drawableArr = f30790w;
+                        if (drawableArr != null) {
+                            drawable = drawableArr[m00Var.f30489b];
                         } else {
-                            string = LocaleController.getString(R.string.FolderLinkButtonNone);
+                            drawable = null;
                         }
-                        j00Var3.b(string, z10);
+                        Drawable[] drawableArr2 = v;
+                        if (drawableArr2 != null) {
+                            drawable = drawableArr2[m00Var.f30489b];
+                        }
+                        if (drawable != null) {
+                            int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
+                            int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
+                            int i12 = (int) m00Var.f30493g;
+                            int i13 = (int) m00Var.h;
+                            drawable.setBounds(i12 - intrinsicWidth, i13 - intrinsicHeight, i12 + intrinsicWidth, i13 + intrinsicHeight);
+                            canvas.save();
+                            canvas.rotate(m00Var.f30494i, m00Var.f30493g, m00Var.h);
+                            float f11 = m00Var.d / 6.0f;
+                            canvas.scale(f11, f11, m00Var.f30493g, m00Var.h);
+                            drawable.draw(canvas);
+                            canvas.restore();
+                        }
+                    }
+                }
+            }
+            n00 n00Var2 = m00Var.f30497l;
+            float f12 = i10 / f10;
+            float f13 = m00Var.f30493g;
+            float f14 = m00Var.f30495j;
+            m00Var.f30493g = (f14 * f12) + f13;
+            m00Var.h = (m00Var.f30496k * f12) + m00Var.h;
+            if (m00Var.f30491e != 0) {
+                float dp = AndroidUtilities.dp(1.0f) * 0.5f;
+                if (m00Var.f30491e == 1) {
+                    float x4 = com.google.android.recaptcha.internal.a.x(dp, f12, 0.05f, m00Var.f30495j);
+                    m00Var.f30495j = x4;
+                    if (x4 >= dp) {
+                        m00Var.f30491e = (byte) 2;
                     }
                 } else {
-                    this.f30965h0.b(LocaleController.getString(R.string.OK), z10);
+                    float f15 = m00Var.f30495j - ((dp * f12) * 0.05f);
+                    m00Var.f30495j = f15;
+                    if (f15 <= (-dp)) {
+                        m00Var.f30491e = (byte) 1;
+                    }
+                }
+            } else if (m00Var.f30490c == 0) {
+                if (f14 > 0.0f) {
+                    float f16 = f14 - (0.05f * f12);
+                    m00Var.f30495j = f16;
+                    if (f16 <= 0.0f) {
+                        m00Var.f30495j = 0.0f;
+                        m00Var.f30491e = m00Var.f30492f;
+                    }
+                }
+            } else if (f14 < 0.0f) {
+                float f17 = (0.05f * f12) + f14;
+                m00Var.f30495j = f17;
+                if (f17 >= 0.0f) {
+                    m00Var.f30495j = 0.0f;
+                    m00Var.f30491e = m00Var.f30492f;
                 }
             }
-            j00 j00Var4 = this.f30965h0;
-            i6 i6Var = j00Var4.f29565c;
-            if (z10) {
-                i6Var.b();
-            }
-            if (z10 && size != (i9 = j00Var4.f29571w) && size > 0 && i9 > 0) {
-                ValueAnimator valueAnimator = j00Var4.v;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    j00Var4.v = null;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                j00Var4.v = ofFloat;
-                ofFloat.addUpdateListener(new i00(j00Var4, 1));
-                j00Var4.v.addListener(new org.telegram.ui.xp(j00Var4, 29));
-                j00Var4.v.setInterpolator(new OvershootInterpolator(2.0f));
-                j00Var4.v.setDuration(200L);
-                j00Var4.v.start();
-            }
-            j00Var4.f29571w = size;
-            if (size != 0) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            j00Var4.d = f10;
-            i6Var.q("" + size, z10, true);
-            j00Var4.invalidate();
-            if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                this.f30965h0.setEnabled(!arrayList.isEmpty());
-            }
-        }
-        m00 m00Var = this.f30967j0;
-        if (m00Var != null) {
-            m00Var.a();
-        }
-    }
-
-    public final void U() {
-        int i9;
-        ArrayList arrayList = this.f30961d0;
-        ArrayList arrayList2 = this.f30960c0;
-        k00 k00Var = this.f30977u0;
-        if (k00Var == null) {
-            return;
-        }
-        boolean z10 = false;
-        if (this.X) {
-            k00Var.b(LocaleController.formatPluralString("FolderLinkHeaderChatsQuit", arrayList2.size(), new Object[0]), false);
-        } else {
-            k00Var.b(LocaleController.formatPluralString("FolderLinkHeaderChatsJoin", arrayList2.size(), new Object[0]), false);
-        }
-        if (arrayList2 != null && arrayList2.size() - arrayList.size() > 1) {
-            if (this.f30962e0.size() >= arrayList2.size() - arrayList.size()) {
+            float f18 = (-AndroidUtilities.dp(1.0f)) / f9;
+            float f19 = m00Var.f30496k;
+            if (f19 < f18) {
                 z10 = true;
-            }
-            k00 k00Var2 = this.f30977u0;
-            if (z10) {
-                i9 = R.string.DeselectAll;
             } else {
-                i9 = R.string.SelectAll;
+                z10 = false;
             }
-            k00Var2.a(LocaleController.getString(i9), new eh.f(28, this, z10));
+            if (f19 > f18) {
+                m00Var.f30496k = ((AndroidUtilities.dp(1.0f) / 3.0f) * f12 * n00Var2.f30796e) + f19;
+            } else {
+                m00Var.f30496k = u3.c.c(AndroidUtilities.dp(1.0f), 3.0f, f12, f19);
+            }
+            if (z10 && m00Var.f30496k > f18) {
+                n00Var2.f30797f++;
+            }
+            byte b11 = m00Var.f30488a;
+            if (b11 == 1 || b11 == 2) {
+                short s10 = (short) ((f12 * 10.0f) + m00Var.f30494i);
+                m00Var.f30494i = s10;
+                if (s10 > 360) {
+                    m00Var.f30494i = (short) (s10 - 360);
+                }
+            }
+            if (m00Var.h >= n00Var2.getHeightForAnimation()) {
+                arrayList.remove(i11);
+                i11--;
+                size--;
+            }
+            i11++;
+        }
+        if (this.f30797f >= f30791x / 2 && this.f30796e > 0.2f) {
+            if (!this.d) {
+                this.d = true;
+                for (int i14 = 0; i14 < f30792y; i14++) {
+                    arrayList.add(a(true));
+                }
+            }
+            float A2 = org.telegram.messenger.x3.A(i10, 16.0f, 0.15f, this.f30796e);
+            this.f30796e = A2;
+            if (A2 < 0.2f) {
+                this.f30796e = 0.2f;
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            invalidate();
             return;
         }
-        this.f30977u0.a("", null);
+        this.f30795c = false;
+        AndroidUtilities.runOnUIThread(new rp(this, 18));
+        b();
     }
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        if (this.f30978v0 >= 0) {
-            this.f32410n.getConnectionsManager().cancelRequest(this.f30978v0, true);
-        }
-        Utilities.Callback callback = this.f30980x0;
-        if (callback != null) {
-            callback.run(Boolean.valueOf(this.f30979w0));
-            this.f30980x0 = null;
-        }
-    }
-
-    @Override
-    public final vk0 v(wk0 wk0Var) {
-        return new h00(this);
-    }
-
-    @Override
-    public final CharSequence y() {
-        if (this.X) {
-            return LocaleController.getString(R.string.FolderLinkTitleRemove);
-        }
-        if (this.V instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-            return LocaleController.getString(R.string.FolderLinkTitleAdd);
-        }
-        ArrayList arrayList = this.f30960c0;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return LocaleController.getString(R.string.FolderLinkTitleAddChats);
-        }
-        return LocaleController.getString(R.string.FolderLinkTitleAlready);
+    public void b() {
     }
 }

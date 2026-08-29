@@ -1,10 +1,17 @@
 package j7;
-
-import java.util.logging.Logger;
-public abstract class l4 {
-    public static final int f14012a = 0;
+public final class l4 implements s9.d {
+    public static final l4 f11081a = new Object();
 
     static {
-        Logger.getLogger(l4.class.getName());
+        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.r(h0.class, new e0(1)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            s9.e eVar = (s9.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

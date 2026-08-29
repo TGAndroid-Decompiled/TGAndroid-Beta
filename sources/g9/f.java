@@ -1,14 +1,49 @@
 package g9;
-public final class f implements q9.d {
-    public static final f f7512a = new Object();
-    public static final q9.c f7513b = q9.c.c("filename");
-    public static final q9.c f7514c = q9.c.c("contents");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        q9.e eVar = (q9.e) obj2;
-        f0 f0Var = (f0) ((i1) obj);
-        eVar.g(f7513b, f0Var.f7515a);
-        eVar.g(f7514c, f0Var.f7516b);
+import android.os.Process;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicLong;
+public final class f {
+    public static final AtomicLong f7154a = new AtomicLong(0);
+    public static String f7155b;
+
+    public f(y yVar) {
+        long time = new Date().getTime();
+        ByteBuffer allocate = ByteBuffer.allocate(4);
+        allocate.putInt((int) (time / 1000));
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.position(0);
+        byte[] array = allocate.array();
+        byte b10 = array[0];
+        byte b11 = array[1];
+        byte b12 = array[2];
+        byte b13 = array[3];
+        byte[] a2 = a(time % 1000);
+        byte b14 = a2[0];
+        byte b15 = a2[1];
+        byte[] a10 = a(f7154a.incrementAndGet());
+        byte b16 = a10[0];
+        byte b17 = a10[1];
+        byte[] a11 = a(Integer.valueOf(Process.myPid()).shortValue());
+        byte[] bArr = {b10, b11, b12, b13, b14, b15, b16, b17, a11[0], a11[1]};
+        String i10 = h.i(yVar.b().f7149a);
+        String f9 = h.f(bArr);
+        Locale locale = Locale.US;
+        f7155b = String.format(locale, "%s%s%s%s", f9.substring(0, 12), f9.substring(12, 16), f9.subSequence(16, 20), i10.substring(0, 12)).toUpperCase(locale);
+    }
+
+    public static byte[] a(long j10) {
+        ByteBuffer allocate = ByteBuffer.allocate(2);
+        allocate.putShort((short) j10);
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.position(0);
+        return allocate.array();
+    }
+
+    public final String toString() {
+        return f7155b;
     }
 }

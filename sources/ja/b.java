@@ -1,55 +1,49 @@
 package ja;
 
-import hd.c0;
-import java.io.Serializable;
-import java.util.Map;
-import org.json.JSONObject;
-import zc.p;
-public final class b extends sc.i implements p {
-    public final int f14253a = 1;
-    public int f14254b;
-    public Object f14255c;
-    public Object d;
-    public Serializable f14256e;
-    public final Object f14257f;
+import android.os.Build;
+import j7.l1;
+public final class b {
+    public final String f11299a;
+    public final a f11300b;
 
-    public b(j4.c cVar, Map map, b bVar, c cVar2, qc.c cVar3) {
-        super(2, cVar3);
-        this.d = cVar;
-        this.f14255c = map;
-        this.f14256e = bVar;
-        this.f14257f = cVar2;
+    public b(String appId, a aVar) {
+        String deviceModel = Build.MODEL;
+        String osVersion = Build.VERSION.RELEASE;
+        kotlin.jvm.internal.j.e(appId, "appId");
+        kotlin.jvm.internal.j.e(deviceModel, "deviceModel");
+        kotlin.jvm.internal.j.e(osVersion, "osVersion");
+        this.f11299a = appId;
+        this.f11300b = aVar;
     }
 
-    @Override
-    public final qc.c create(Object obj, qc.c cVar) {
-        switch (this.f14253a) {
-            case 0:
-                b bVar = new b((d) this.f14257f, cVar);
-                bVar.f14255c = obj;
-                return bVar;
-            default:
-                return new b((j4.c) this.d, this.f14255c, (b) this.f14256e, (c) this.f14257f, cVar);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (kotlin.jvm.internal.j.a(this.f11299a, bVar.f11299a)) {
+                    String str = Build.MODEL;
+                    if (kotlin.jvm.internal.j.a(str, str)) {
+                        String str2 = Build.VERSION.RELEASE;
+                        if (!kotlin.jvm.internal.j.a(str2, str2) || !this.f11300b.equals(bVar.f11300b)) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f14253a) {
-            case 0:
-                return ((b) create((JSONObject) obj, (qc.c) obj2)).invokeSuspend(oc.i.f19197a);
-            default:
-                return ((b) create((c0) obj, (qc.c) obj2)).invokeSuspend(oc.i.f19197a);
-        }
+    public final int hashCode() {
+        int f9 = l1.f((((Build.MODEL.hashCode() + (this.f11299a.hashCode() * 31)) * 31) + 46672439) * 31, 31, Build.VERSION.RELEASE);
+        return this.f11300b.hashCode() + ((p.LOG_ENVIRONMENT_PROD.hashCode() + f9) * 31);
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r18) {
-        throw new UnsupportedOperationException("Method not decompiled: ja.b.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public b(d dVar, qc.c cVar) {
-        super(2, cVar);
-        this.f14257f = dVar;
+    public final String toString() {
+        return "ApplicationInfo(appId=" + this.f11299a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=1.2.0, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + p.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.f11300b + ')';
     }
 }

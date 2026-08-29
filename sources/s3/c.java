@@ -1,67 +1,86 @@
 package s3;
 
-import h3.t1;
-import m3.v;
-import m3.w;
-import m3.x;
-public final class c {
-    public int A;
-    public int B;
-    public int C;
-    public float D;
-    public float E;
-    public float F;
-    public float G;
-    public float H;
-    public float I;
-    public float J;
-    public float K;
-    public float L;
-    public float M;
-    public byte[] N;
-    public int O;
-    public int P;
-    public int Q;
-    public long R;
-    public long S;
-    public x T;
-    public boolean U;
-    public boolean V;
-    public String W;
-    public w X;
-    public int Y;
-    public String f47305a;
-    public String f47306b;
-    public int f47307c;
-    public int d;
-    public int f47308e;
-    public int f47309f;
-    public int f47310g;
-    public boolean h;
-    public byte[] f47311i;
-    public v f47312j;
-    public byte[] f47313k;
-    public l3.c f47314l;
-    public int f47315m;
-    public int f47316n;
-    public int f47317o;
-    public int f47318p;
-    public int f47319q;
-    public int f47320r;
-    public float f47321s;
-    public float f47322t;
-    public float f47323u;
-    public byte[] v;
-    public int f47324w;
-    public boolean f47325x;
-    public int f47326y;
-    public int f47327z;
+import ab.e;
+import f5.w;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+public final class c extends e {
+    public long f47571b;
+    public long[] f47572c;
+    public long[] d;
 
-    public final byte[] a(String str) {
-        byte[] bArr = this.f47313k;
-        if (bArr != null) {
-            return bArr;
+    public static Serializable Q(int i10, w wVar) {
+        if (i10 != 0) {
+            boolean z10 = false;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 8) {
+                            if (i10 != 10) {
+                                if (i10 != 11) {
+                                    return null;
+                                }
+                                Date date = new Date((long) Double.longBitsToDouble(wVar.l()));
+                                wVar.D(2);
+                                return date;
+                            }
+                            int u10 = wVar.u();
+                            ArrayList arrayList = new ArrayList(u10);
+                            for (int i11 = 0; i11 < u10; i11++) {
+                                Serializable Q = Q(wVar.r(), wVar);
+                                if (Q != null) {
+                                    arrayList.add(Q);
+                                }
+                            }
+                            return arrayList;
+                        }
+                        return R(wVar);
+                    }
+                    HashMap hashMap = new HashMap();
+                    while (true) {
+                        String S = S(wVar);
+                        int r6 = wVar.r();
+                        if (r6 == 9) {
+                            return hashMap;
+                        }
+                        Serializable Q2 = Q(r6, wVar);
+                        if (Q2 != null) {
+                            hashMap.put(S, Q2);
+                        }
+                    }
+                } else {
+                    return S(wVar);
+                }
+            } else {
+                if (wVar.r() == 1) {
+                    z10 = true;
+                }
+                return Boolean.valueOf(z10);
+            }
+        } else {
+            return Double.valueOf(Double.longBitsToDouble(wVar.l()));
         }
-        throw t1.a("Missing CodecPrivate for codec " + str, null);
+    }
+
+    public static HashMap R(w wVar) {
+        int u10 = wVar.u();
+        HashMap hashMap = new HashMap(u10);
+        for (int i10 = 0; i10 < u10; i10++) {
+            String S = S(wVar);
+            Serializable Q = Q(wVar.r(), wVar);
+            if (Q != null) {
+                hashMap.put(S, Q);
+            }
+        }
+        return hashMap;
+    }
+
+    public static String S(w wVar) {
+        int w10 = wVar.w();
+        int i10 = wVar.f6641b;
+        wVar.D(w10);
+        return new String(wVar.f6640a, i10, w10);
     }
 }

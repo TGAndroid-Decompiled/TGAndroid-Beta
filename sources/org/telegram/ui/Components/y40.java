@@ -1,54 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import org.telegram.messenger.ImageReceiver;
-public abstract class y40 extends FrameLayout {
-    public ImageReceiver f34848a;
-    public float f34849b;
-    public final f50 f34850c;
+import android.opengl.GLES20;
+import org.telegram.messenger.R;
+public class y40 {
+    public final int f34917a;
+    public final int f34918b;
+    public final int f34919c;
+    public final int d;
+    public final int f34920e;
+    public final int f34921f;
 
-    public y40(f50 f50Var, Context context) {
-        super(context);
-        this.f34850c = f50Var;
-        f50Var.setWillNotDraw(false);
+    public y40(int i10) {
+        int a2 = z40.a(35633, R.raw.round_blur_vert);
+        this.f34918b = a2;
+        int a10 = z40.a(35632, i10);
+        this.f34919c = a10;
+        int glCreateProgram = GLES20.glCreateProgram();
+        GLES20.glAttachShader(glCreateProgram, a2);
+        GLES20.glAttachShader(glCreateProgram, a10);
+        GLES20.glLinkProgram(glCreateProgram);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
+        if (iArr[0] == 0) {
+            GLES20.glDeleteProgram(glCreateProgram);
+            glCreateProgram = 0;
+        }
+        this.f34917a = glCreateProgram;
+        this.d = GLES20.glGetAttribLocation(glCreateProgram, "aPosition");
+        this.f34920e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
+        this.f34921f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float f10 = this.f34849b;
-        if (f10 != 1.0f) {
-            float f11 = f10 + 0.064f;
-            this.f34849b = f11;
-            if (f11 > 1.0f) {
-                this.f34849b = 1.0f;
-            }
-            invalidate();
-        }
-        if (this.f34848a != null) {
-            canvas.save();
-            float imageWidth = this.f34848a.getImageWidth();
-            int i9 = this.f34850c.J0;
-            if (imageWidth != i9) {
-                float imageWidth2 = i9 / this.f34848a.getImageWidth();
-                canvas.scale(imageWidth2, imageWidth2);
-            }
-            canvas.translate(-this.f34848a.getImageX(), -this.f34848a.getImageY());
-            float alpha = this.f34848a.getAlpha();
-            this.f34848a.setAlpha(this.f34849b);
-            this.f34848a.draw(canvas);
-            this.f34848a.setAlpha(alpha);
-            canvas.restore();
-        }
-    }
-
-    public void setImageReceiver(ImageReceiver imageReceiver) {
-        if (this.f34848a == null) {
-            this.f34849b = 0.0f;
-        }
-        this.f34848a = imageReceiver;
-        invalidate();
+    public final void a() {
+        GLES20.glDeleteProgram(this.f34917a);
+        GLES20.glDeleteShader(this.f34918b);
+        GLES20.glDeleteShader(this.f34919c);
     }
 }

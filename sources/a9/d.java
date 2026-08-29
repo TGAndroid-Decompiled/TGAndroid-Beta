@@ -1,35 +1,44 @@
 package a9;
 
-import c3.h;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import e9.m;
-import e9.q;
-import e9.z;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-public final class d implements Callable {
-    public final boolean f120a;
-    public final q f121b;
-    public final h f122c;
+import android.util.Log;
+import com.google.firebase.components.ComponentRegistrar;
+import java.lang.reflect.InvocationTargetException;
+public final class d implements z9.b {
+    public final int f238a;
+    public final Object f239b;
 
-    public d(boolean z10, q qVar, h hVar) {
-        this.f120a = z10;
-        this.f121b = qVar;
-        this.f122c = hVar;
+    public d(Object obj, int i10) {
+        this.f238a = i10;
+        this.f239b = obj;
     }
 
     @Override
-    public final Object call() {
-        if (this.f120a) {
-            q qVar = this.f121b;
-            ExecutorService executorService = qVar.f5048k;
-            m mVar = new m(2, qVar, this.f122c);
-            ExecutorService executorService2 = z.f5083a;
-            TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-            executorService.execute(new androidx.car.app.utils.b(mVar, executorService, taskCompletionSource, 11));
-            taskCompletionSource.getTask();
-            return null;
+    public final Object get() {
+        switch (this.f238a) {
+            case 0:
+                String str = (String) this.f239b;
+                try {
+                    Class<?> cls = Class.forName(str);
+                    if (ComponentRegistrar.class.isAssignableFrom(cls)) {
+                        return (ComponentRegistrar) cls.getDeclaredConstructor(null).newInstance(null);
+                    }
+                    throw new RuntimeException("Class " + str + " is not an instance of com.google.firebase.components.ComponentRegistrar");
+                } catch (ClassNotFoundException unused) {
+                    Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
+                    return null;
+                } catch (IllegalAccessException e10) {
+                    throw new RuntimeException(a4.w.n("Could not instantiate ", str, "."), e10);
+                } catch (InstantiationException e11) {
+                    throw new RuntimeException(a4.w.n("Could not instantiate ", str, "."), e11);
+                } catch (NoSuchMethodException e12) {
+                    throw new RuntimeException(u3.c.e("Could not instantiate ", str), e12);
+                } catch (InvocationTargetException e13) {
+                    throw new RuntimeException(u3.c.e("Could not instantiate ", str), e13);
+                }
+            case 1:
+                return (ComponentRegistrar) this.f239b;
+            default:
+                return new ba.c((u8.g) this.f239b);
         }
-        return null;
     }
 }

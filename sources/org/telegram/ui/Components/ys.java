@@ -1,30 +1,73 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class ys {
-    public final int f35059a;
-    public final Object f35060b;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class ys implements Runnable {
+    public final int f35125a;
+    public final at f35126b;
 
-    public ys(Object obj, int i9) {
-        this.f35059a = i9;
-        this.f35060b = obj;
+    public ys(at atVar, int i10) {
+        this.f35125a = i10;
+        this.f35126b = atVar;
     }
 
-    public final void a(int i9, boolean z10) {
-        switch (this.f35059a) {
+    @Override
+    public final void run() {
+        int i10;
+        Bitmap bitmap;
+        switch (this.f35125a) {
             case 0:
-                ArrayList arrayList = ((at) this.f35060b).f26898b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((ys) obj).a(i9, z10);
+                at atVar = this.f35126b;
+                try {
+                    i10 = atVar.f26875w + 0;
+                    bitmap = atVar.f26868b;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    atVar.A = true;
                 }
+                if (bitmap != null) {
+                    if (bitmap.getWidth() == atVar.f26876x) {
+                        if (atVar.f26868b.getHeight() != i10) {
+                        }
+                        atVar.f26868b.eraseColor(0);
+                        atVar.f26869c.save();
+                        atVar.f26869c.translate(0.0f, 0);
+                        atVar.c(atVar.f26869c);
+                        atVar.f26869c.restore();
+                        atVar.f26868b.prepareToDraw();
+                        AndroidUtilities.runOnUIThread(atVar.D);
+                        return;
+                    }
+                }
+                Bitmap bitmap2 = atVar.f26868b;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                atVar.f26868b = Bitmap.createBitmap(atVar.f26876x, i10, Bitmap.Config.ARGB_8888);
+                atVar.f26869c = new Canvas(atVar.f26868b);
+                atVar.f26868b.eraseColor(0);
+                atVar.f26869c.save();
+                atVar.f26869c.translate(0.0f, 0);
+                atVar.c(atVar.f26869c);
+                atVar.f26869c.restore();
+                atVar.f26868b.prepareToDraw();
+                AndroidUtilities.runOnUIThread(atVar.D);
                 return;
             default:
-                ((Runnable) this.f35060b).run();
-                return;
+                at atVar2 = this.f35126b;
+                atVar2.f26871f = false;
+                atVar2.g();
+                if (!atVar2.f26867a) {
+                    atVar2.j();
+                    return;
+                } else if (atVar2.v == atVar2.F) {
+                    atVar2.C = true;
+                    return;
+                } else {
+                    return;
+                }
         }
     }
 }

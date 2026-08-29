@@ -54,8 +54,8 @@ public class BuildVars {
                 final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
-                    public final void uncaughtException(Thread thread, Throwable th) {
-                        BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
+                    public final void uncaughtException(Thread thread, Throwable th2) {
+                        BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th2);
                     }
                 });
             }
@@ -73,23 +73,23 @@ public class BuildVars {
     }
 
     private static boolean hasDirectCurrency() {
-        n2.l lVar;
+        p2.l lVar;
         if (BillingController.getInstance().isReady() && (lVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
             ArrayList arrayList = lVar.h;
             int size = arrayList.size();
-            int i9 = 0;
-            while (i9 < size) {
-                Object obj = arrayList.get(i9);
-                i9++;
-                ArrayList arrayList2 = (ArrayList) ((n2.k) obj).f18332b.f17378b;
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                ArrayList arrayList2 = (ArrayList) ((p2.k) obj).f45470b.f19159b;
                 int size2 = arrayList2.size();
-                int i10 = 0;
-                while (i10 < size2) {
-                    Object obj2 = arrayList2.get(i10);
-                    i10++;
-                    n2.j jVar = (n2.j) obj2;
+                int i11 = 0;
+                while (i11 < size2) {
+                    Object obj2 = arrayList2.get(i11);
+                    i11++;
+                    p2.j jVar = (p2.j) obj2;
                     for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(jVar.f18330c, str)) {
+                        if (Objects.equals(jVar.f45468c, str)) {
                             return true;
                         }
                     }
@@ -116,10 +116,10 @@ public class BuildVars {
         return ApplicationLoader.isHuaweiStoreBuild();
     }
 
-    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
-        FileLog.fatal(th, false);
+    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th2) {
+        FileLog.fatal(th2, false);
         if (uncaughtExceptionHandler != null) {
-            uncaughtExceptionHandler.uncaughtException(thread, th);
+            uncaughtExceptionHandler.uncaughtException(thread, th2);
         }
     }
 

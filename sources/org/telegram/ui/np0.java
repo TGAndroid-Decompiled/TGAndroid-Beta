@@ -1,26 +1,39 @@
 package org.telegram.ui;
-public final class np0 implements Runnable {
-    public final int f40783a;
-    public final boolean f40784b;
-    public final Object f40785c;
-    public final Object d;
 
-    public np0(Object obj, Object obj2, boolean z10, int i9) {
-        this.f40783a = i9;
-        this.f40785c = obj;
-        this.d = obj2;
-        this.f40784b = z10;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class np0 extends f2.a1 {
+    public final zp0 f40874a;
+
+    public np0(zp0 zp0Var) {
+        this.f40874a = zp0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.np0.run():void");
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(this.f40874a.getParentActivity().getCurrentFocus());
+        }
     }
 
-    public np0(Object obj, boolean z10, Object obj2, int i9) {
-        this.f40783a = i9;
-        this.f40785c = obj;
-        this.f40784b = z10;
-        this.d = obj2;
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        zp0 zp0Var = this.f40874a;
+        if (zp0Var.F == null) {
+            int L0 = zp0Var.I.L0();
+            boolean z10 = false;
+            if (L0 == -1) {
+                abs = 0;
+            } else {
+                abs = Math.abs(zp0Var.I.N0() - L0) + 1;
+            }
+            if (abs > 0 && L0 + abs > zp0Var.I.B() - 2 && !zp0Var.f45293r && !zp0Var.f45295s) {
+                if (zp0Var.f45271a == 1) {
+                    z10 = true;
+                }
+                zp0Var.d0(zp0Var.v, zp0Var.f45298w, z10, true);
+            }
+        }
     }
 }

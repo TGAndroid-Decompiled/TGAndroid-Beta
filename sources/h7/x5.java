@@ -1,17 +1,14 @@
 package h7;
-public final class x5 implements q9.d {
-    public static final x5 f10179a = new Object();
+public abstract class x5 {
+    public abstract com.google.android.gms.internal.cast.a4 a(com.google.android.gms.internal.cast.g4 g4Var);
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(5, e2.c.s(h0.class, e2.c.j(4, e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))))))));
-    }
+    public abstract com.google.android.gms.internal.cast.f4 b(com.google.android.gms.internal.cast.g4 g4Var);
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
-    }
+    public abstract void c(com.google.android.gms.internal.cast.f4 f4Var, com.google.android.gms.internal.cast.f4 f4Var2);
+
+    public abstract void d(com.google.android.gms.internal.cast.f4 f4Var, Thread thread);
+
+    public abstract boolean e(com.google.android.gms.internal.cast.g4 g4Var, Object obj, Object obj2);
+
+    public abstract boolean f(com.google.android.gms.internal.cast.g4 g4Var, com.google.android.gms.internal.cast.f4 f4Var, com.google.android.gms.internal.cast.f4 f4Var2);
 }

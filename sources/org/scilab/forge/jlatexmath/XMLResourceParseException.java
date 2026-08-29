@@ -14,8 +14,8 @@ public class XMLResourceParseException extends ResourceParseException {
         super(str + ": the required <" + str2 + ">-element is not found!");
     }
 
-    public XMLResourceParseException(String str, Throwable th) {
-        super(str, th);
+    public XMLResourceParseException(String str, Throwable th2) {
+        super(str, th2);
     }
 
     public XMLResourceParseException(String str) {

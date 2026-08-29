@@ -8,7 +8,7 @@ import android.media.audiofx.NoiseSuppressor;
 import android.text.TextUtils;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
-import kh.o8;
+import nh.b6;
 public class AudioRecordJNI {
     private AcousticEchoCanceler aec;
     private AutomaticGainControl agc;
@@ -25,8 +25,8 @@ public class AudioRecordJNI {
         this.nativeInst = j10;
     }
 
-    private int getBufferSize(int i9, int i10) {
-        return Math.max(AudioRecord.getMinBufferSize(i10, 16, 2), i9);
+    private int getBufferSize(int i10, int i11) {
+        return Math.max(AudioRecord.getMinBufferSize(i11, 16, 2), i10);
     }
 
     private static boolean isGoodAudioEffect(AudioEffect audioEffect) {
@@ -109,7 +109,7 @@ public class AudioRecordJNI {
             } else {
                 byteBuffer = null;
             }
-            Thread thread = new Thread(new o8(23, this, byteBuffer));
+            Thread thread = new Thread(new b6(20, this, byteBuffer));
             this.thread = thread;
             thread.start();
             return;
@@ -122,24 +122,24 @@ public class AudioRecordJNI {
     }
 
     public int getEnabledEffectsMask() {
-        int i9;
+        int i10;
         AcousticEchoCanceler acousticEchoCanceler = this.aec;
         if (acousticEchoCanceler != null && acousticEchoCanceler.getEnabled()) {
-            i9 = 1;
+            i10 = 1;
         } else {
-            i9 = 0;
+            i10 = 0;
         }
         NoiseSuppressor noiseSuppressor = this.ns;
         if (noiseSuppressor != null && noiseSuppressor.getEnabled()) {
-            return i9 | 2;
+            return i10 | 2;
         }
-        return i9;
+        return i10;
     }
 
-    public void init(int i9, int i10, int i11, int i12) {
+    public void init(int i10, int i11, int i12, int i13) {
         boolean z10;
         if (this.audioRecord == null) {
-            this.bufferSize = i12;
+            this.bufferSize = i13;
             boolean tryInit = tryInit(7, 48000);
             boolean z11 = true;
             if (!tryInit) {
@@ -164,8 +164,8 @@ public class AudioRecordJNI {
                 } else {
                     VLog.w("AutomaticGainControl is not available on this device :(");
                 }
-            } catch (Throwable th) {
-                VLog.e("error creating AutomaticGainControl", th);
+            } catch (Throwable th2) {
+                VLog.e("error creating AutomaticGainControl", th2);
             }
             try {
                 if (NoiseSuppressor.isAvailable()) {
@@ -182,8 +182,8 @@ public class AudioRecordJNI {
                 } else {
                     VLog.w("NoiseSuppressor is not available on this device :(");
                 }
-            } catch (Throwable th2) {
-                VLog.e("error creating NoiseSuppressor", th2);
+            } catch (Throwable th3) {
+                VLog.e("error creating NoiseSuppressor", th3);
             }
             try {
                 if (AcousticEchoCanceler.isAvailable()) {
@@ -198,10 +198,10 @@ public class AudioRecordJNI {
                 } else {
                     VLog.w("AcousticEchoCanceler is not available on this device");
                 }
-            } catch (Throwable th3) {
-                VLog.e("error creating AcousticEchoCanceler", th3);
+            } catch (Throwable th4) {
+                VLog.e("error creating AcousticEchoCanceler", th4);
             }
-            this.buffer = ByteBuffer.allocateDirect(i12);
+            this.buffer = ByteBuffer.allocateDirect(i13);
             return;
         }
         throw new IllegalStateException("already inited");

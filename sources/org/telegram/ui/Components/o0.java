@@ -1,27 +1,28 @@
 package org.telegram.ui.Components;
+public final class o0 implements oc0 {
+    public final int f31202a;
+    public final qc0 f31203b;
+    public final qc0 f31204c;
+    public final qc0 d;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class o0 implements Runnable {
-    public final int f31241a;
-    public final EditTextBoldCursor f31242b;
-    public final org.telegram.ui.ActionBar.c2 f31243c;
-    public final org.telegram.ui.ActionBar.o2 d;
-
-    public o0(EditTextBoldCursor editTextBoldCursor, org.telegram.ui.ActionBar.c2 c2Var, org.telegram.ui.ActionBar.o2 o2Var, int i9) {
-        this.f31241a = i9;
-        this.f31242b = editTextBoldCursor;
-        this.f31243c = c2Var;
-        this.d = o2Var;
+    public o0(qc0 qc0Var, qc0 qc0Var2, qc0 qc0Var3, int i10) {
+        this.f31202a = i10;
+        this.f31203b = qc0Var;
+        this.f31204c = qc0Var2;
+        this.d = qc0Var3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31241a) {
+    public final void q(qc0 qc0Var, int i10) {
+        switch (this.f31202a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new o0(this.f31242b, this.f31243c, this.d, 1));
+                c5.b(this.f31203b, this.f31204c, this.d);
+                return;
+            case 1:
+                c5.y0(this.f31203b, this.f31204c, this.d);
                 return;
             default:
-                y4.e0(this.f31242b, this.f31243c, this.d);
+                c5.y0(this.f31203b, this.f31204c, this.d);
                 return;
         }
     }

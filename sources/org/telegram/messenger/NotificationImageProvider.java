@@ -42,8 +42,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     }
 
     @Override
-    public void didReceivedNotification(int i9, int i10, Object... objArr) {
-        if (i9 == NotificationCenter.fileLoaded) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
             synchronized (this.sync) {
                 try {
                     String str = (String) objArr[0];
@@ -51,8 +51,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
                         this.fileStartTimes.remove(str);
                         this.sync.notifyAll();
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -78,8 +78,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public boolean onCreate() {
-        for (int i9 = 0; i9 < UserConfig.getActivatedAccountsCount(); i9++) {
-            NotificationCenter.getInstance(i9).addObserver(this, NotificationCenter.fileLoaded);
+        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
         }
         return true;
     }
@@ -149,8 +149,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
 
     @Override
     public void shutdown() {
-        for (int i9 = 0; i9 < UserConfig.getActivatedAccountsCount(); i9++) {
-            NotificationCenter.getInstance(i9).removeObserver(this, NotificationCenter.fileLoaded);
+        for (int i10 = 0; i10 < UserConfig.getActivatedAccountsCount(); i10++) {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileLoaded);
         }
     }
 

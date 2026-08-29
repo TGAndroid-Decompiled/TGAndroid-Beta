@@ -9,7 +9,7 @@ import android.opengl.GLES20;
 import android.view.Surface;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
-import kh.z7;
+import nh.n7;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
@@ -27,8 +27,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i9, int i10, int i11, int i12, int i13, float f10, boolean z10, Integer num, Integer num2, z7 z7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, str3, arrayList, cropState, i9, i10, i11, i12, i13, f10, z10, num, num2, z7Var, convertVideoParams);
+    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i10, int i11, int i12, int i13, int i14, float f9, boolean z10, Integer num, Integer num2, n7 n7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, str3, arrayList, cropState, i10, i11, i12, i13, i14, f9, z10, num, num2, n7Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         SurfaceTexture surfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -41,7 +41,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        throw new RuntimeException(ta.b.d("EGL error encountered (see log) at: ", str));
+        throw new RuntimeException(u3.c.e("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {
@@ -83,8 +83,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
                 } else {
                     throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }

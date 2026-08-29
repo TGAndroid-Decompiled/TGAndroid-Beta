@@ -38,8 +38,8 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         this.surfaceTextureHelper.setTextureSize(this.width, this.height);
         try {
             this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
     }
 
@@ -65,10 +65,10 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void changeCaptureFormat(int i9, int i10, int i11) {
+    public synchronized void changeCaptureFormat(int i10, int i11, int i12) {
         checkNotDisposed();
-        this.width = i9;
-        this.height = i10;
+        this.width = i10;
+        this.height = i11;
         if (this.virtualDisplay == null) {
             return;
         }
@@ -121,11 +121,11 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void startCapture(int i9, int i10, int i11) {
+    public synchronized void startCapture(int i10, int i11, int i12) {
         if (this.mediaProjection == null && this.mediaProjectionManager != null) {
             checkNotDisposed();
-            this.width = i9;
-            this.height = i10;
+            this.width = i10;
+            this.height = i11;
             MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
             this.mediaProjection = mediaProjection;
             mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());

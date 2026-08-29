@@ -1,128 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.animation.TimeAnimator;
 import android.animation.ValueAnimator;
-import android.text.TextUtils;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class vv0 extends vk0 {
-    public int f34008c;
-    public final ew0 d;
+public final class vv0 extends TimeAnimator {
+    public int f34184a;
+    public int f34185b;
+    public ValueAnimator.AnimatorUpdateListener f34186c;
+    public Float d;
+    public float[] f34187e;
 
-    public vv0(ew0 ew0Var) {
-        this.d = ew0Var;
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f34186c = animatorUpdateListener;
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        if (q1Var.f5505f == 1) {
-            return true;
-        }
-        return false;
+    public final void end() {
+        this.f34186c = null;
+        super.end();
     }
 
     @Override
-    public final int h() {
-        int length;
-        ew0 ew0Var = this.d;
-        aw0[] aw0VarArr = ew0Var.U2;
-        if (aw0VarArr == null) {
-            length = 0;
-        } else {
-            length = aw0VarArr.length;
-        }
-        int i9 = length + 1;
-        if (i9 != this.f34008c) {
-            fh.l2 l2Var = ew0Var.f28199h3;
-            if (l2Var != null) {
-                l2Var.requestLayout();
-            }
-            this.f34008c = i9;
-        }
-        return i9;
+    public final Object getAnimatedValue() {
+        return this.d;
     }
 
     @Override
-    public final int j(int i9) {
-        if (i9 == 0) {
-            return 0;
-        }
-        return 1;
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.f34187e = fArr;
     }
 
     @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        ew0 ew0Var;
-        aw0[] aw0VarArr;
-        boolean z10 = true;
-        if (q1Var.f5505f == 1 && (aw0VarArr = (ew0Var = this.d).U2) != null) {
-            int i10 = i9 - 1;
-            aw0 aw0Var = aw0VarArr[i10];
-            final zv0 zv0Var = (zv0) q1Var.f5501a;
-            if (ew0Var.f28200i3 != i10) {
-                z10 = false;
-            }
-            zv0Var.getClass();
-            if (!TextUtils.isEmpty(aw0Var.d)) {
-                zv0Var.setContentDescription(aw0Var.d);
-            } else if (!TextUtils.isEmpty(aw0Var.f26914a)) {
-                zv0Var.setContentDescription(aw0Var.f26914a);
-            } else {
-                zv0Var.setContentDescription(null);
-            }
-            ValueAnimator valueAnimator = zv0Var.C;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                zv0Var.C = null;
-            }
-            zv0Var.setImageResource(0);
-            zv0Var.a();
-            final boolean A1 = zv0Var.D.A1();
-            zv0Var.f35380w = false;
-            zv0Var.f35382y = 1.0f;
-            k5.h(UserConfig.selectedAccount).b(aw0Var.f26916c, new h5() {
-                @Override
-                public final void a(TLRPC.Document document) {
-                    zv0 zv0Var2 = zv0.this;
-                    zv0Var2.setOnlyLastFrame(!A1);
-                    zv0Var2.g(24, 24, document);
-                    zv0Var2.d();
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j10, long j11) {
+                int i10;
+                vv0 vv0Var = vv0.this;
+                int i11 = vv0Var.f34184a;
+                if (i11 > 0 && (i10 = vv0Var.f34185b) > 0) {
+                    int i12 = i11 - 1;
+                    vv0Var.f34184a = i12;
+                    if (vv0Var.f34186c != null) {
+                        float[] fArr = vv0Var.f34187e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = vv0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
+                            float[] fArr2 = vv0Var.f34187e;
+                            float f9 = fArr2[0];
+                            vv0Var.d = Float.valueOf(((fArr2[1] - f9) * interpolation) + f9);
+                            vv0Var.f34186c.onAnimationUpdate(vv0Var);
+                            return;
+                        }
+                        vv0Var.end();
+                        return;
+                    }
+                    return;
                 }
-            });
-            AndroidUtilities.runOnUIThread(new tp0(zv0Var, 9), 60L);
-            zv0Var.l(z10, false);
-            zv0Var.setAlpha(ew0Var.f28202k3);
-            zv0Var.setScaleX(ew0Var.f28202k3);
-            zv0Var.setScaleY(ew0Var.f28202k3);
-            zv0Var.j();
-        }
-    }
-
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        zv0 zv0Var;
-        ew0 ew0Var = this.d;
-        if (i9 == 0) {
-            fh.l2 l2Var = new fh.l2(this, ew0Var.getContext(), 24);
-            ew0Var.f28199h3 = l2Var;
-            zv0Var = l2Var;
-        } else {
-            zv0Var = new zv0(ew0Var, ew0Var.getContext());
-        }
-        return new f2.q1(zv0Var);
-    }
-
-    @Override
-    public final void y(f2.q1 q1Var) {
-        boolean z10 = true;
-        if (q1Var.f5505f == 1) {
-            zv0 zv0Var = (zv0) q1Var.f5501a;
-            if (this.d.f28200i3 != q1Var.b() - 1) {
-                z10 = false;
+                vv0Var.end();
             }
-            zv0Var.l(z10, false);
-            zv0Var.j();
-        }
+        });
+        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
+        this.f34184a = duration;
+        this.f34185b = duration;
+        super.start();
     }
 }

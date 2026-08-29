@@ -4,12 +4,12 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
-import ih.f1;
-import j3.r0;
+import j7.l1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import lh.d1;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 public class Camera1Session implements CameraSession {
@@ -72,14 +72,14 @@ public class Camera1Session implements CameraSession {
         STOPPED
     }
 
-    private Camera1Session(CameraSession.Events events, boolean z10, Context context, SurfaceTextureHelper surfaceTextureHelper, int i9, Camera camera, Camera.CameraInfo cameraInfo, CameraEnumerationAndroid.CaptureFormat captureFormat, long j10) {
-        Logging.d("Camera1Session", "Create new camera1 session on camera " + i9);
+    private Camera1Session(CameraSession.Events events, boolean z10, Context context, SurfaceTextureHelper surfaceTextureHelper, int i10, Camera camera, Camera.CameraInfo cameraInfo, CameraEnumerationAndroid.CaptureFormat captureFormat, long j10) {
+        Logging.d("Camera1Session", "Create new camera1 session on camera " + i10);
         this.cameraThreadHandler = new Handler();
         this.events = events;
         this.captureToTexture = z10;
         this.applicationContext = context;
         this.surfaceTextureHelper = surfaceTextureHelper;
-        this.cameraId = i9;
+        this.cameraId = i10;
         this.camera = camera;
         this.info = cameraInfo;
         this.captureFormat = captureFormat;
@@ -96,7 +96,7 @@ public class Camera1Session implements CameraSession {
         throw new IllegalStateException("Wrong thread");
     }
 
-    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z10, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i9, int i10, int i11) {
+    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z10, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12) {
         long nanoTime = System.nanoTime();
         Logging.d("Camera1Session", "Open camera " + str);
         events.onCameraOpening();
@@ -115,11 +115,11 @@ public class Camera1Session implements CameraSession {
                     Camera.getCameraInfo(cameraIndex, cameraInfo);
                     try {
                         Camera.Parameters parameters = open.getParameters();
-                        CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat = findClosestCaptureFormat(parameters, i9, i10, i11);
-                        updateCameraParameters(open, parameters, findClosestCaptureFormat, findClosestPictureSize(parameters, i9, i10), z10);
+                        CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat = findClosestCaptureFormat(parameters, i10, i11, i12);
+                        updateCameraParameters(open, parameters, findClosestCaptureFormat, findClosestPictureSize(parameters, i10, i11), z10);
                         if (!z10) {
                             int frameSize = findClosestCaptureFormat.frameSize();
-                            for (int i12 = 0; i12 < 3; i12++) {
+                            for (int i13 = 0; i13 < 3; i13++) {
                                 open.addCallbackBuffer(ByteBuffer.allocateDirect(frameSize).array());
                             }
                         }
@@ -146,22 +146,22 @@ public class Camera1Session implements CameraSession {
         }
     }
 
-    private static CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat(Camera.Parameters parameters, int i9, int i10, int i11) {
+    private static CameraEnumerationAndroid.CaptureFormat findClosestCaptureFormat(Camera.Parameters parameters, int i10, int i11, int i12) {
         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = Camera1Enumerator.convertFramerates(parameters.getSupportedPreviewFpsRange());
         Logging.d("Camera1Session", "Available fps ranges: " + convertFramerates);
-        CameraEnumerationAndroid.CaptureFormat.FramerateRange closestSupportedFramerateRange = CameraEnumerationAndroid.getClosestSupportedFramerateRange(convertFramerates, i11);
-        Size closestSupportedSize = CameraEnumerationAndroid.getClosestSupportedSize(Camera1Enumerator.convertSizes(parameters.getSupportedPreviewSizes()), i9, i10);
+        CameraEnumerationAndroid.CaptureFormat.FramerateRange closestSupportedFramerateRange = CameraEnumerationAndroid.getClosestSupportedFramerateRange(convertFramerates, i12);
+        Size closestSupportedSize = CameraEnumerationAndroid.getClosestSupportedSize(Camera1Enumerator.convertSizes(parameters.getSupportedPreviewSizes()), i10, i11);
         CameraEnumerationAndroid.reportCameraResolution(camera1ResolutionHistogram, closestSupportedSize);
         return new CameraEnumerationAndroid.CaptureFormat(closestSupportedSize.width, closestSupportedSize.height, closestSupportedFramerateRange);
     }
 
-    private static Size findClosestPictureSize(Camera.Parameters parameters, int i9, int i10) {
-        return CameraEnumerationAndroid.getClosestSupportedSize(Camera1Enumerator.convertSizes(parameters.getSupportedPictureSizes()), i9, i10);
+    private static Size findClosestPictureSize(Camera.Parameters parameters, int i10, int i11) {
+        return CameraEnumerationAndroid.getClosestSupportedSize(Camera1Enumerator.convertSizes(parameters.getSupportedPictureSizes()), i10, i11);
     }
 
     public int getFrameOrientation() {
         int orientation;
-        if (f1.S != null) {
+        if (d1.S != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -212,19 +212,19 @@ public class Camera1Session implements CameraSession {
             }
 
             @Override
-            public void onError(int i9, Camera camera) {
-                String l10;
-                if (i9 == 100) {
-                    l10 = "Camera server died!";
+            public void onError(int i10, Camera camera) {
+                String k9;
+                if (i10 == 100) {
+                    k9 = "Camera server died!";
                 } else {
-                    l10 = r0.l(i9, "Camera error: ");
+                    k9 = l1.k(i10, "Camera error: ");
                 }
-                Logging.e("Camera1Session", l10);
+                Logging.e("Camera1Session", k9);
                 Camera1Session.this.stopInternal();
-                if (i9 == 2) {
+                if (i10 == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    Camera1Session.this.events.onCameraError(Camera1Session.this, l10);
+                    Camera1Session.this.events.onCameraError(Camera1Session.this, k9);
                 }
             }
         });

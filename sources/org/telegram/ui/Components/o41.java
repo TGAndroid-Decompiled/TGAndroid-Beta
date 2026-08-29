@@ -1,54 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class o41 extends MetricAffectingSpan {
-    public final CharSequence f31283a;
-    public final int f31284b;
-    public final int f31285c;
-    public final byte d;
-    public final vz0 f31286e;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class o41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31254a;
+    public int f31255b;
+    public final int f31256c;
+    public final Object d;
 
-    public o41(CharSequence charSequence, int i9, int i10, byte b10, vz0 vz0Var) {
-        this.f31283a = charSequence;
-        this.f31284b = i9;
-        this.f31285c = i10;
-        this.d = b10;
-        this.f31286e = vz0Var;
+    public o41(org.telegram.ui.tu tuVar, int i10, int i11) {
+        this.f31254a = 1;
+        this.d = tuVar;
+        this.f31255b = i10;
+        this.f31256c = i11;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.ec, false));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31254a) {
+            case 0:
+                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f31256c);
+                s41 s41Var = (s41) this.d;
+                s41Var.J = true;
+                s41Var.f32485n.scrollBy(0, floatValue - this.f31255b);
+                s41Var.J = false;
+                this.f31255b = floatValue;
+                return;
+            default:
+                ((org.telegram.ui.tu) this.d).f43098c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f31255b, this.f31256c), PorterDuff.Mode.SRC_IN));
+                return;
         }
-        vz0 vz0Var = this.f31286e;
-        if (vz0Var != null) {
-            vz0Var.a(textPaint);
-            return;
-        }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        vz0 vz0Var = this.f31286e;
-        if (vz0Var != null) {
-            vz0Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+    public o41(s41 s41Var, int i10) {
+        this.f31254a = 0;
+        this.d = s41Var;
+        this.f31256c = i10;
+        this.f31255b = 0;
     }
 }

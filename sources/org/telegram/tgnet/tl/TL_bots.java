@@ -28,12 +28,12 @@ public class TL_bots {
         public botVerifierSettings verifier_settings;
         public int version;
 
-        public static BotInfo TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return (BotInfo) TLObject.TLdeserialize(BotInfo.class, fromConstructor(i9), inputSerializedData, i9, z10);
+        public static BotInfo TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return (BotInfo) TLObject.TLdeserialize(BotInfo.class, fromConstructor(i10), inputSerializedData, i10, z10);
         }
 
-        private static BotInfo fromConstructor(int i9) {
-            switch (i9) {
+        private static BotInfo fromConstructor(int i10) {
+            switch (i10) {
                 case -2109505932:
                     return new TL_botInfo_layer192();
                 case -1892676777:
@@ -59,11 +59,11 @@ public class TL_bots {
     }
 
     public static abstract class BotMenuButton extends TLObject {
-        public static BotMenuButton TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static BotMenuButton TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             TLObject tL_botMenuButton;
-            if (i9 != -944407322) {
-                if (i9 != 1113113093) {
-                    if (i9 != 1966318984) {
+            if (i10 != -944407322) {
+                if (i10 != 1113113093) {
+                    if (i10 != 1966318984) {
                         tL_botMenuButton = null;
                     } else {
                         tL_botMenuButton = new TL_botMenuButtonDefault();
@@ -74,7 +74,7 @@ public class TL_bots {
             } else {
                 tL_botMenuButton = new TL_botMenuButton();
             }
-            return (BotMenuButton) TLObject.TLdeserialize(BotMenuButton.class, tL_botMenuButton, inputSerializedData, i9, z10);
+            return (BotMenuButton) TLObject.TLdeserialize(BotMenuButton.class, tL_botMenuButton, inputSerializedData, i10, z10);
         }
     }
 
@@ -488,8 +488,8 @@ public class TL_bots {
         public TLRPC.InputMedia media;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return botPreviewMedia.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return botPreviewMedia.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -506,8 +506,8 @@ public class TL_bots {
         public TLRPC.InputUser bot;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -527,14 +527,14 @@ public class TL_bots {
         public byte[] placeholder_path;
         public Path placeholder_svg_path;
 
-        public static botAppSettings TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static botAppSettings TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             botAppSettings botappsettings;
-            if (-912582320 != i9) {
+            if (-912582320 != i10) {
                 botappsettings = null;
             } else {
                 botappsettings = new botAppSettings();
             }
-            return (botAppSettings) TLObject.TLdeserialize(botAppSettings.class, botappsettings, inputSerializedData, i9, z10);
+            return (botAppSettings) TLObject.TLdeserialize(botAppSettings.class, botappsettings, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -587,14 +587,14 @@ public class TL_bots {
         public int date;
         public TLRPC.MessageMedia media;
 
-        public static botPreviewMedia TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static botPreviewMedia TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             botPreviewMedia botpreviewmedia;
-            if (602479523 != i9) {
+            if (602479523 != i10) {
                 botpreviewmedia = null;
             } else {
                 botpreviewmedia = new botPreviewMedia();
             }
-            return (botPreviewMedia) TLObject.TLdeserialize(botPreviewMedia.class, botpreviewmedia, inputSerializedData, i9, z10);
+            return (botPreviewMedia) TLObject.TLdeserialize(botPreviewMedia.class, botpreviewmedia, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -617,14 +617,14 @@ public class TL_bots {
         public String description;
         public long icon;
 
-        public static botVerification TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static botVerification TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             botVerification botverification;
-            if (-113453988 != i9) {
+            if (-113453988 != i10) {
                 botverification = null;
             } else {
                 botverification = new botVerification();
             }
-            return (botVerification) TLObject.TLdeserialize(botVerification.class, botverification, inputSerializedData, i9, z10);
+            return (botVerification) TLObject.TLdeserialize(botVerification.class, botverification, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -651,14 +651,14 @@ public class TL_bots {
         public int flags;
         public long icon;
 
-        public static botVerifierSettings TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static botVerifierSettings TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             botVerifierSettings botverifiersettings;
-            if (-1328716265 != i9) {
+            if (-1328716265 != i10) {
                 botverifiersettings = null;
             } else {
                 botverifiersettings = new botVerifierSettings();
             }
-            return (botVerifierSettings) TLObject.TLdeserialize(botVerifierSettings.class, botverifiersettings, inputSerializedData, i9, z10);
+            return (botVerifierSettings) TLObject.TLdeserialize(botVerifierSettings.class, botverifiersettings, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -692,8 +692,8 @@ public class TL_bots {
         public TLRPC.InputUser bot;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -710,8 +710,8 @@ public class TL_bots {
         public String url;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -734,8 +734,8 @@ public class TL_bots {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -759,8 +759,8 @@ public class TL_bots {
         }
 
         @Override
-        public TLRPC.User deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.User.TLdeserialize(inputSerializedData, i9, z10);
+        public TLRPC.User deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.User.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -771,8 +771,8 @@ public class TL_bots {
         public ArrayList<TLRPC.InputMedia> media = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -792,8 +792,8 @@ public class TL_bots {
         public TLRPC.InputMedia new_media;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return botPreviewMedia.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return botPreviewMedia.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -819,8 +819,8 @@ public class TL_bots {
         }
 
         @Override
-        public exportedBotToken deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return exportedBotToken.TLdeserialize(inputSerializedData, i9, z10);
+        public exportedBotToken deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return exportedBotToken.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -828,14 +828,14 @@ public class TL_bots {
         public static final int constructor = 1012971041;
         public String token;
 
-        public static exportedBotToken TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static exportedBotToken TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             exportedBotToken exportedbottoken;
-            if (1012971041 != i9) {
+            if (1012971041 != i10) {
                 exportedbottoken = null;
             } else {
                 exportedbottoken = new exportedBotToken();
             }
-            return (exportedBotToken) TLObject.TLdeserialize(exportedBotToken.class, exportedbottoken, inputSerializedData, i9, z10);
+            return (exportedBotToken) TLObject.TLdeserialize(exportedBotToken.class, exportedbottoken, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -854,8 +854,8 @@ public class TL_bots {
         public static final int constructor = -1334764157;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i9, z10, new l(4));
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new l(4));
         }
 
         @Override
@@ -871,8 +871,8 @@ public class TL_bots {
         public String lang_code;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return BotInfo.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return BotInfo.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -891,8 +891,8 @@ public class TL_bots {
         public TLRPC.InputUser user_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return BotMenuButton.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return BotMenuButton.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -907,8 +907,8 @@ public class TL_bots {
         public TLRPC.InputUser bot;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Users.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Users.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -924,8 +924,8 @@ public class TL_bots {
         public String offset;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return popularAppBots.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return popularAppBots.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -942,8 +942,8 @@ public class TL_bots {
         public String lang_code = "";
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return previewInfo.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return previewInfo.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -959,8 +959,8 @@ public class TL_bots {
         public TLRPC.InputUser bot;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i9, z10, new c(19));
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new c(19));
         }
 
         @Override
@@ -983,8 +983,8 @@ public class TL_bots {
         }
 
         @Override
-        public TL_keyboard.KeyboardButton deserializeResponseT(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i9, z10);
+        public TL_keyboard.KeyboardButton deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
@@ -995,8 +995,8 @@ public class TL_bots {
         public TLRPC.TL_dataJSON params;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1014,14 +1014,14 @@ public class TL_bots {
         public String next_offset;
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static popularAppBots TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static popularAppBots TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             popularAppBots popularappbots;
-            if (428978491 != i9) {
+            if (428978491 != i10) {
                 popularappbots = null;
             } else {
                 popularappbots = new popularAppBots();
             }
-            return (popularAppBots) TLObject.TLdeserialize(popularAppBots.class, popularappbots, inputSerializedData, i9, z10);
+            return (popularAppBots) TLObject.TLdeserialize(popularAppBots.class, popularappbots, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1050,14 +1050,14 @@ public class TL_bots {
         public ArrayList<botPreviewMedia> media = new ArrayList<>();
         public ArrayList<String> lang_codes = new ArrayList<>();
 
-        public static previewInfo TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static previewInfo TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             previewInfo previewinfo;
-            if (212278628 != i9) {
+            if (212278628 != i10) {
                 previewinfo = null;
             } else {
                 previewinfo = new previewInfo();
             }
-            return (previewInfo) TLObject.TLdeserialize(previewInfo.class, previewinfo, inputSerializedData, i9, z10);
+            return (previewInfo) TLObject.TLdeserialize(previewInfo.class, previewinfo, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1081,8 +1081,8 @@ public class TL_bots {
         public ArrayList<TLRPC.InputMedia> order = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1100,8 +1100,8 @@ public class TL_bots {
         public ArrayList<String> order = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1116,14 +1116,14 @@ public class TL_bots {
         public static final int constructor = -247743273;
         public String webapp_req_id;
 
-        public static requestedButton TLdeserialize(InputSerializedData inputSerializedData, int i9, boolean z10) {
+        public static requestedButton TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
             requestedButton requestedbutton;
-            if (-247743273 != i9) {
+            if (-247743273 != i10) {
                 requestedbutton = null;
             } else {
                 requestedbutton = new requestedButton();
             }
-            return (requestedButton) TLObject.TLdeserialize(requestedButton.class, requestedbutton, inputSerializedData, i9, z10);
+            return (requestedButton) TLObject.TLdeserialize(requestedButton.class, requestedbutton, inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1148,8 +1148,8 @@ public class TL_bots {
         public String name;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1178,8 +1178,8 @@ public class TL_bots {
         public TLRPC.InputUser user_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1199,8 +1199,8 @@ public class TL_bots {
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1225,8 +1225,8 @@ public class TL_bots {
         public boolean enabled;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1244,8 +1244,8 @@ public class TL_bots {
         public String username;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override
@@ -1265,8 +1265,8 @@ public class TL_bots {
         public int flags;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i9, boolean z10) {
-            return TL_payments.starRefProgram.TLdeserialize(inputSerializedData, i9, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TL_payments.starRefProgram.TLdeserialize(inputSerializedData, i10, z10);
         }
 
         @Override

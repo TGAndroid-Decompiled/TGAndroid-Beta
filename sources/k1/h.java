@@ -1,8 +1,8 @@
 package k1;
-public final class h extends a0 {
-    public final Throwable f14449a;
+public final class h extends b0 {
+    public final Throwable f13267a;
 
-    public h(Throwable th) {
-        this.f14449a = th;
+    public h(Throwable th2) {
+        this.f13267a = th2;
     }
 }

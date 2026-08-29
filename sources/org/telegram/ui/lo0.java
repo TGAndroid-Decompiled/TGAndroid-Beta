@@ -2,69 +2,60 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class lo0 extends Drawable {
-    public final org.telegram.ui.Components.nz0 f40199a;
-    public final Drawable f40200b;
-    public final zf.z0 f40201c;
+public final class lo0 extends org.telegram.ui.Components.jl0 {
+    public final int T2;
+    public final to0 U2;
 
-    public lo0(int i9, Context context, org.telegram.ui.ActionBar.b6 b6Var, boolean z10) {
-        String str;
-        if (z10) {
-            str = "BoostLevelPlus";
-        } else {
-            str = "BoostLevel";
+    public lo0(to0 to0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
+        this.U2 = to0Var;
+        this.T2 = i10;
+    }
+
+    @Override
+    public final Integer W0(int i10) {
+        to0 to0Var = this.U2;
+        if ((i10 >= to0Var.P && i10 < to0Var.Q) || (i10 >= to0Var.R && i10 < to0Var.S)) {
+            return 0;
         }
-        this.f40199a = new org.telegram.ui.Components.nz0(LocaleController.formatPluralString(str, i9, new Object[0]), 12.0f, AndroidUtilities.bold());
-        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f40200b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f40201c = new zf.z0(org.telegram.ui.ActionBar.f6.Lj, org.telegram.ui.ActionBar.f6.Mj, -1, -1, b6Var);
+        return super.W0(i10);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i9 = getBounds().left;
-        int centerY = getBounds().centerY();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f10 = centerY;
-        rectF.set(i9, f10 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i9, (AndroidUtilities.dp(18.33f) / 2.0f) + f10);
-        zf.z0 z0Var = this.f40201c;
-        z0Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), z0Var.f50792f);
-        Drawable drawable = this.f40200b;
-        drawable.setBounds(AndroidUtilities.dp(3.33f) + i9, (int) (f10 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i9), (int) aa.d.d(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f10));
-        drawable.draw(canvas);
-        this.f40199a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i9, f10, 1.0f, -1, canvas);
+    public final void onDraw(Canvas canvas) {
+        to0 to0Var = this.U2;
+        O0(canvas, to0Var.P, Math.max(to0Var.S, to0Var.Q) - 1, org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23062d6, this.f29709l2), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        super.onDraw(canvas);
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.33f);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        jh.k7 k7Var;
+        super.onLayout(z10, i10, i11, i12, i13);
+        to0 to0Var = this.U2;
+        yo0 yo0Var = to0Var.f43077f0;
+        to0.a(to0Var);
+        if (to0Var.B != null) {
+            if (to0Var.A != null && to0Var.c()) {
+                to0Var.A.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.T2 == 1) {
+            k7Var = yo0Var.f44943c;
+        } else {
+            k7Var = yo0Var.f44942b;
+        }
+        if (k7Var != null && to0Var.c()) {
+            k7Var.a();
+        }
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f40199a.l() + (this.f40200b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        to0.a(this.U2);
     }
 }

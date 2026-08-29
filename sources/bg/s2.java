@@ -1,50 +1,36 @@
 package bg;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class s2 implements Utilities.Callback {
-    public final int f1959a;
-    public final g3 f1960b;
-
-    public s2(g3 g3Var, int i9) {
-        this.f1959a = i9;
-        this.f1960b = g3Var;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.il0;
+public final class s2 extends il0 {
+    @Override
+    public final boolean D(f2.n1 n1Var) {
+        return true;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f1959a) {
-            case 0:
-                g3 g3Var = this.f1960b;
-                ArrayList arrayList = g3Var.f1785n0;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                d3 d3Var = g3Var.U;
-                if (d3Var.J) {
-                    d3Var.setLoading(false);
-                    if (g3Var.d.C) {
-                        g3Var.c0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                this.f1960b.dismiss(((Boolean) obj).booleanValue());
-                return;
-            case 2:
-                g3.S(this.f1960b, (TL_account.TL_birthday) obj);
-                return;
-            default:
-                g3 g3Var2 = this.f1960b;
-                g3Var2.f1783k0 = (String) obj;
-                androidx.activity.i iVar = g3Var2.f1790s0;
-                AndroidUtilities.cancelRunOnUIThread(iVar);
-                AndroidUtilities.runOnUIThread(iVar, 350L);
-                return;
+    public final int h() {
+        return ag.u0.c().size();
+    }
+
+    @Override
+    public final void v(f2.n1 n1Var, int i10) {
+        m2 m2Var = (m2) n1Var.f6432a;
+        ag.u0 u0Var = (ag.u0) ag.u0.c().get(i10);
+        m2Var.getClass();
+        m2Var.setTypeface(u0Var.d());
+        String str = u0Var.f676c;
+        if (str == null) {
+            str = LocaleController.getString(u0Var.f675b);
         }
+        m2Var.setText(str);
+    }
+
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        m2 m2Var = new m2(viewGroup.getContext());
+        m2Var.setLayoutParams(new f2.x0(-1, -2));
+        return new f2.n1(m2Var);
     }
 }

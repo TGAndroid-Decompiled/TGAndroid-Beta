@@ -27,10 +27,10 @@ public final class RenderSynchronizer {
         void onRenderWindowOpen();
     }
 
-    public RenderSynchronizer(float f10) {
+    public RenderSynchronizer(float f9) {
         this.lock = new Object();
         this.listeners = new CopyOnWriteArrayList();
-        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f10);
+        this.targetFrameIntervalNanos = Math.round(((float) TimeUnit.SECONDS.toNanos(1L)) / f9);
         Handler handler = new Handler(Looper.getMainLooper());
         this.mainThreadHandler = handler;
         handler.post(new n(this, 1));
@@ -70,8 +70,8 @@ public final class RenderSynchronizer {
                 } else if (this.renderWindowOpen) {
                     closeRenderWindow();
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -105,8 +105,8 @@ public final class RenderSynchronizer {
                     this.isListening = true;
                     this.mainThreadHandler.post(new n(this, 0));
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }

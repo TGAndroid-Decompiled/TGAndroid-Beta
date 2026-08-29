@@ -1,34 +1,13 @@
 package la;
 
-import oa.y;
-public class f extends y {
-    public u f16716a = null;
+import kotlin.jvm.internal.m;
+import kotlin.jvm.internal.r;
+public final class f {
+    public static final fd.g[] f15124a;
 
-    @Override
-    public final u a() {
-        u uVar = this.f16716a;
-        if (uVar != null) {
-            return uVar;
-        }
-        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
-    }
-
-    @Override
-    public final Object read(ta.a aVar) {
-        u uVar = this.f16716a;
-        if (uVar != null) {
-            return uVar.read(aVar);
-        }
-        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
-    }
-
-    @Override
-    public final void write(ta.c cVar, Object obj) {
-        u uVar = this.f16716a;
-        if (uVar != null) {
-            uVar.write(cVar, obj);
-            return;
-        }
-        throw new IllegalStateException("Adapter for type with cyclic dependency has been used before dependency has been resolved");
+    static {
+        m mVar = new m(f.class);
+        r.f13928a.getClass();
+        f15124a = new fd.g[]{mVar};
     }
 }

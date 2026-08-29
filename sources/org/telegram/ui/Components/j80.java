@@ -1,31 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class j80 extends org.telegram.ui.ActionBar.h5 {
-    public final org.telegram.ui.ActionBar.b6 I0;
-    public final i80 J0;
-    public m80 K0;
+import android.view.KeyEvent;
+public final class j80 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.ActionBar.m1 {
+    public final int f29615a;
+    public final r80 f29616b;
 
-    public j80(Context context, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context);
-        this.J0 = new i80(this);
-        this.I0 = b6Var;
+    public j80(r80 r80Var, int i10) {
+        this.f29615a = i10;
+        this.f29616b = r80Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getLayoutX(), getLayoutY());
-        if (this.J0.f(canvas)) {
-            invalidate();
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f29615a) {
+            case 0:
+                q80 q80Var = this.f29616b.f32237r;
+                if (q80Var != null) {
+                    q80Var.k();
+                    return;
+                }
+                return;
+            default:
+                q80 q80Var2 = this.f29616b.f32237r;
+                if (q80Var2 != null) {
+                    q80Var2.b();
+                    return;
+                }
+                return;
         }
-        canvas.restore();
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j80.onTouchEvent(android.view.MotionEvent):boolean");
+    public void o(KeyEvent keyEvent) {
+        r80 r80Var = this.f29616b;
+        r80Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && r80Var.f32238s.isShowing()) {
+            r80Var.f32238s.d(true);
+        }
     }
 }

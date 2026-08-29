@@ -11,7 +11,7 @@ public abstract class h {
         return Os.dup(fileDescriptor);
     }
 
-    public static long c(FileDescriptor fileDescriptor, long j10, int i9) {
-        return Os.lseek(fileDescriptor, j10, i9);
+    public static long c(FileDescriptor fileDescriptor, long j10, int i10) {
+        return Os.lseek(fileDescriptor, j10, i10);
     }
 }

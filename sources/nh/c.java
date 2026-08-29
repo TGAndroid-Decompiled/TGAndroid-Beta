@@ -1,37 +1,29 @@
 package nh;
 
-import android.view.View;
-import fh.f1;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l41;
-public final class c implements Utilities.Callback5, Utilities.Callback5Return, MessagesStorage.StringCallback {
-    public final f f18618a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c extends AnimatorListenerAdapter {
+    public final int f17451a;
+    public final d f17452b;
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l41 l41Var = (l41) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f18618a.getClass();
-        return Boolean.FALSE;
+    public c(d dVar, int i10) {
+        this.f17451a = i10;
+        this.f17452b = dVar;
     }
 
     @Override
-    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        f.T(this.f18618a, (l41) obj);
-    }
-
-    @Override
-    public void run(String str) {
-        f fVar = this.f18618a;
-        fVar.getMessagesController().getChat(Long.valueOf(-fVar.f18628a));
-        fVar.showDialog(new ph.a(fVar.getParentActivity(), null, fVar.f18628a, new f1(22, fVar, str)));
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f17451a) {
+            case 0:
+                d dVar = this.f17452b;
+                dVar.F = false;
+                dVar.f17496e.q(null, false, true);
+                return;
+            default:
+                d dVar2 = this.f17452b;
+                dVar2.L = 1.0f;
+                dVar2.invalidate();
+                return;
+        }
     }
 }

@@ -1,24 +1,27 @@
 package xf;
 
-import org.telegram.messenger.R;
-public final class a extends m {
-    @Override
-    public final int c() {
-        return -30208;
+import org.telegram.ui.Components.q6;
+public final class a {
+    public final CharSequence f50116a;
+    public final int f50117b = 2;
+    public final Runnable f50118c;
+    public final float d;
+    public final float f50119e;
+    public final q6 f50120f;
+
+    public a(String str, Runnable runnable) {
+        this.f50116a = str;
+        this.f50118c = runnable;
     }
 
-    @Override
-    public final float d() {
-        return 0.25f;
+    public a(String str) {
+        this.f50116a = str;
     }
 
-    @Override
-    public final int e() {
-        return R.raw.photo_arrow;
-    }
-
-    @Override
-    public final float j() {
-        return 0.25f;
+    public a(String str, float f9, float f10, q6 q6Var) {
+        this.f50116a = str;
+        this.d = f9;
+        this.f50119e = f10;
+        this.f50120f = q6Var;
     }
 }

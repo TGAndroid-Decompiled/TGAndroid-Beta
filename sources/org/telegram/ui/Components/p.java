@@ -1,17 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class p extends f2.n {
-    public final q F;
+import android.view.View;
+public final class p implements View.OnClickListener {
+    public final int f31516a;
+    public final s f31517b;
 
-    public p(q qVar) {
-        this.F = qVar;
+    public p(s sVar, int i10) {
+        this.f31516a = i10;
+        this.f31517b = sVar;
     }
 
     @Override
-    public final void P(f2.q1 q1Var) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.F).containerView;
-        viewGroup.invalidate();
+    public final void onClick(View view) {
+        switch (this.f31516a) {
+            case 0:
+                this.f31517b.dismiss();
+                return;
+            default:
+                s.Q(this.f31517b);
+                return;
+        }
     }
 }

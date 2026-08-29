@@ -1,46 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.fc1;
-public final class uo implements fc1 {
-    public final cp f33098a;
+import android.graphics.Bitmap;
+import org.telegram.ui.qc1;
+public final class uo extends qc1 {
+    public final int f33283g2;
 
-    public uo(cp cpVar) {
-        this.f33098a = cpVar;
+    public uo(Object obj, Bitmap bitmap, boolean z10, int i10) {
+        super(obj, bitmap, z10);
+        this.f33283g2 = i10;
     }
 
     @Override
-    public final boolean X0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f33098a.J;
-    }
-
-    @Override
-    public final void m1(boolean z10) {
-        TLRPC.WallPaper wallPaper;
-        cp cpVar = this.f33098a;
-        org.telegram.ui.qn qnVar = cpVar.v;
-        cpVar.J = !cpVar.J;
-        if (cpVar.I != null) {
-            cpVar.L = true;
-            qnVar.f41845a7 = true;
-            if (cpVar.v()) {
-                wallPaper = null;
-            } else {
-                wallPaper = cpVar.f27528n.h;
-            }
-            TLRPC.WallPaper wallPaper2 = wallPaper;
-            org.telegram.ui.ActionBar.b4 b4Var = cpVar.I.f27261a;
-            if (b4Var.f22748a) {
-                cpVar.f27528n.i(null, wallPaper2, z10, Boolean.valueOf(cpVar.J), false);
-            } else {
-                cpVar.f27528n.i(b4Var, wallPaper2, z10, Boolean.valueOf(cpVar.J), false);
-            }
-            qnVar.f41845a7 = false;
+    public final boolean U0() {
+        switch (this.f33283g2) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            default:
+                return true;
         }
     }
 }

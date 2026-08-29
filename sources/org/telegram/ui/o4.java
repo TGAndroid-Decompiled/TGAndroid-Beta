@@ -1,5 +1,10 @@
 package org.telegram.ui;
-public final class o4 extends org.telegram.ui.Cells.j6 {
-    public boolean d;
-    public int f40877e;
+
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o4 implements RequestDelegate {
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    }
 }

@@ -1,36 +1,36 @@
 package oc;
-public final class b implements Comparable {
-    public static final b f19187b = new b();
-    public final int f19188a = 131348;
+
+import java.util.regex.Pattern;
+import le.p;
+import le.s;
+public final class b extends h {
+    public static final Pattern f19472e = j.f19488m;
 
     @Override
-    public final int compareTo(Object obj) {
-        b other = (b) obj;
-        kotlin.jvm.internal.i.e(other, "other");
-        return this.f19188a - other.f19188a;
+    public final p b() {
+        this.d++;
+        if (c() == '\n') {
+            le.g gVar = new le.g(1);
+            this.d++;
+            return gVar;
+        }
+        if (this.d < this.f19481c.length()) {
+            String str = this.f19481c;
+            int i10 = this.d;
+            if (f19472e.matcher(str.substring(i10, i10 + 1)).matches()) {
+                String str2 = this.f19481c;
+                int i11 = this.d;
+                this.f19479a.getClass();
+                s sVar = new s(str2.substring(i11, i11 + 1));
+                this.d++;
+                return sVar;
+            }
+        }
+        return f("\\");
     }
 
-    public final boolean equals(Object obj) {
-        b bVar;
-        if (this == obj) {
-            return true;
-        }
-        if (obj instanceof b) {
-            bVar = (b) obj;
-        } else {
-            bVar = null;
-        }
-        if (bVar != null && this.f19188a == bVar.f19188a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f19188a;
-    }
-
-    public final String toString() {
-        return "2.1.20";
+    @Override
+    public final char d() {
+        return '\\';
     }
 }

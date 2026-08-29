@@ -1,42 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class cn0 extends js {
-    public final org.telegram.ui.dy Z;
-    public final org.telegram.ui.mx f27516a0;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class cn0 extends kg.o0 {
+    public final dn0 f27511h0;
 
-    public cn0(org.telegram.ui.mx mxVar, wk0 wk0Var, Context context, int i9, int i10, org.telegram.ui.dy dyVar) {
-        super(wk0Var, context, i9, i10);
-        this.f27516a0 = mxVar;
-        this.Z = dyVar;
+    public cn0(dn0 dn0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(null, i10, view, tL_reactionCount, false, true, c6Var);
+        this.f27511h0 = dn0Var;
     }
 
     @Override
-    public final void N(boolean z10) {
-        boolean z11;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        ArrayList arrayList3;
-        ArrayList arrayList4;
-        super.N(z10);
-        um0 um0Var = this.f27516a0.f29137c0;
-        if (!this.S && !this.T && (arrayList = this.L) != null && arrayList.isEmpty() && (arrayList2 = this.M) != null && arrayList2.isEmpty() && (arrayList3 = this.O) != null && arrayList3.isEmpty() && (arrayList4 = this.N) != null && arrayList4.isEmpty()) {
-            z11 = false;
+    public final boolean e() {
+        if (this.f13816w <= 0 && !this.f13815u && this.F.f31740l == 1.0f) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean i() {
+        return !e();
+    }
+
+    @Override
+    public final int j() {
+        return 18;
+    }
+
+    @Override
+    public final void s(float f9) {
+        int i10;
+        int i11;
+        int v02;
+        int i12 = this.f13803i;
+        dn0 dn0Var = this.f27511h0;
+        if (dn0Var.f27817e) {
+            i10 = org.telegram.ui.ActionBar.g6.Fj;
         } else {
-            z11 = true;
+            i10 = org.telegram.ui.ActionBar.g6.f23387va;
         }
-        um0Var.e(z11, z10);
-        if (TextUtils.isEmpty(this.X)) {
-            um0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
-            um0Var.f28885e.setVisibility(0);
-            um0Var.f28885e.setText(LocaleController.getString(R.string.NoChannelsMessage));
-            return;
+        this.N = i0.a.d(f9, i12, org.telegram.ui.ActionBar.g6.v0(i10, dn0Var.f27821s.f28118c));
+        int i13 = this.f13801g;
+        if (dn0Var.f27817e) {
+            i11 = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.Cj, dn0Var.f27821s.f28118c);
+        } else {
+            i11 = 0;
         }
-        um0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        um0Var.f28885e.setVisibility(8);
+        int d = i0.a.d(f9, i13, i11);
+        this.O = d;
+        this.N = org.telegram.ui.ActionBar.g6.v(d, this.N);
+        int i14 = this.h;
+        if (dn0Var.f27817e) {
+            v02 = 1526726655;
+        } else {
+            v02 = org.telegram.ui.ActionBar.g6.v0(org.telegram.ui.ActionBar.g6.f23405wa, dn0Var.f27821s.f28118c);
+        }
+        this.P = i0.a.d(f9, i14, v02);
     }
 }

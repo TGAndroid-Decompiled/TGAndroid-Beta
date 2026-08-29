@@ -1,27 +1,15 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-public final class ha0 implements d5.d {
-    public final int f29023a;
-    public final ViewGroup f29024b;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public interface ha0 {
+    void b(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
 
-    public ha0(ViewGroup viewGroup, int i9) {
-        this.f29023a = i9;
-        this.f29024b = viewGroup;
-    }
+    Paint.FontMetricsInt n();
 
-    @Override
-    public final void accept(Object obj) {
-        switch (this.f29023a) {
-            case 0:
-                wa0 wa0Var = (wa0) this.f29024b;
-                wa0Var.f34173n.y(wa0Var.f34172f.T((View) obj));
-                return;
-            default:
-                i51 i51Var = (i51) this.f29024b;
-                i51Var.U2.Q(i51Var.T((View) obj), i51Var.Y2);
-                return;
-        }
-    }
+    void p(TLRPC.TL_document tL_document, String str, Object obj);
+
+    void r(int i10, int i11, CharSequence charSequence, boolean z10);
+
+    void s(String str);
 }

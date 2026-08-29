@@ -1,101 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class u01 implements TextWatcher {
-    public final v01 f32873a;
+public final class u01 extends FrameLayout {
+    public boolean f33081a;
+    public final RectF f33082b;
+    public Boolean f33083c;
+    public final ThemeEditorView.EditorAlert d;
 
-    public u01(v01 v01Var) {
-        this.f32873a = v01Var;
+    public u01(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context);
+        this.d = editorAlert;
+        this.f33081a = false;
+        this.f33082b = new RectF();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
+    public final void onDraw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u01.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            ThemeEditorView.EditorAlert editorAlert = this.d;
+            if (editorAlert.A != 0 && motionEvent.getY() < editorAlert.A) {
+                editorAlert.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        ThemeEditorView.EditorAlert.s(this.d);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
         boolean z10;
-        boolean z11;
-        float f10;
-        if (this.f32873a.f33196b.length() > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        int i12;
+        int i13;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        ThemeEditorView.EditorAlert editorAlert = this.d;
+        v01 v01Var = editorAlert.f26577c;
+        z10 = ((org.telegram.ui.ActionBar.f3) editorAlert).isFullscreen;
+        if (!z10) {
+            this.f33081a = true;
+            i12 = ((org.telegram.ui.ActionBar.f3) editorAlert).backgroundPaddingLeft;
+            int i14 = AndroidUtilities.statusBarHeight;
+            i13 = ((org.telegram.ui.ActionBar.f3) editorAlert).backgroundPaddingLeft;
+            setPadding(i12, i14, i13, 0);
+            this.f33081a = false;
         }
-        float f11 = 0.0f;
-        if (this.f32873a.f33195a.getAlpha() != 0.0f) {
-            z11 = true;
-        } else {
-            z11 = false;
+        int dp = (AndroidUtilities.dp(8.0f) + (size2 - AndroidUtilities.statusBarHeight)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
+        if (v01Var.getPaddingTop() != dp) {
+            this.f33081a = true;
+            v01Var.getPaddingTop();
+            v01Var.setPadding(0, dp, 0, AndroidUtilities.dp(48.0f));
+            if (editorAlert.f26576b.getVisibility() == 0) {
+                editorAlert.setScrollOffsetY(v01Var.getPaddingTop());
+                editorAlert.C = 0;
+            }
+            this.f33081a = false;
         }
-        if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f32873a.f33195a.animate();
-            float f12 = 1.0f;
-            if (z10) {
-                f11 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.1f;
-            }
-            ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z10) {
-                f12 = 0.1f;
-            }
-            scaleX.scaleY(f12).start();
-        }
-        String obj = this.f32873a.f33196b.getText().toString();
-        if (obj.length() != 0) {
-            yy yyVar = this.f32873a.f33197c.f26567e;
-            if (yyVar != null) {
-                yyVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            f2.r0 adapter = this.f32873a.f33197c.f26566c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f32873a.f33197c;
-            if (adapter != editorAlert.f26569n) {
-                int I = ThemeEditorView.EditorAlert.I(editorAlert);
-                this.f32873a.f33197c.f26567e.setText(LocaleController.getString(R.string.NoChats));
-                this.f32873a.f33197c.f26567e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f32873a.f33197c;
-                editorAlert2.f26566c.setAdapter(editorAlert2.f26569n);
-                this.f32873a.f33197c.f26569n.l();
-                if (I > 0) {
-                    this.f32873a.f33197c.h.h1(0, -I);
-                }
-            }
-        }
-        r01 r01Var = this.f32873a.f33197c.f26570r;
-        if (r01Var != null && !obj.equals(r01Var.f32049n)) {
-            r01Var.f32049n = obj;
-            if (r01Var.h != null) {
-                Utilities.searchQueue.cancelRunnable(r01Var.h);
-                r01Var.h = null;
-            }
-            if (obj.length() == 0) {
-                r01Var.f32047e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = r01Var.f32050r;
-                editorAlert3.B = ThemeEditorView.EditorAlert.I(editorAlert3);
-                r01Var.d = -1;
-                r01Var.l();
-                return;
-            }
-            int i9 = r01Var.d + 1;
-            r01Var.d = i9;
-            r01Var.h = new org.telegram.ui.rl(r01Var, obj, i9, 23);
-            Utilities.searchQueue.postRunnable(r01Var.h, 300L);
-        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
+    public final void requestLayout() {
+        if (this.f33081a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

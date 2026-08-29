@@ -1,45 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.messenger.ChatThemeController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class yo implements ResultCallback {
-    public final ChatThemeController f35041a;
-    public final cp f35042b;
+import org.telegram.ui.hc1;
+public final class yo implements hc1 {
+    public final gp f35110a;
 
-    public yo(cp cpVar, ChatThemeController chatThemeController) {
-        this.f35042b = cpVar;
-        this.f35041a = chatThemeController;
+    public yo(gp gpVar) {
+        this.f35110a = gpVar;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        int i9;
-        int i10;
-        Void r62 = (Void) obj;
-        ChatThemeController chatThemeController = this.f35041a;
-        if (chatThemeController.isGiftThemesFullyLoaded()) {
-            i9 = 2;
-        } else {
-            i9 = 0;
+    public final boolean U0() {
+        return true;
+    }
+
+    @Override
+    public final boolean a() {
+        return this.f35110a.J;
+    }
+
+    @Override
+    public final void j1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        gp gpVar = this.f35110a;
+        org.telegram.ui.tn tnVar = gpVar.v;
+        gpVar.J = !gpVar.J;
+        if (gpVar.I != null) {
+            gpVar.L = true;
+            tnVar.f42743a7 = true;
+            if (gpVar.v()) {
+                wallPaper = null;
+            } else {
+                wallPaper = gpVar.f28939n.h;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.b4 b4Var = gpVar.I.f28512a;
+            if (b4Var.f22762a) {
+                gpVar.f28939n.i(null, wallPaper2, z10, Boolean.valueOf(gpVar.J), false);
+            } else {
+                gpVar.f28939n.i(b4Var, wallPaper2, z10, Boolean.valueOf(gpVar.J), false);
+            }
+            tnVar.f42743a7 = false;
         }
-        List<org.telegram.ui.ActionBar.b4> emojiThemes = chatThemeController.getEmojiThemes(i9 | 5);
-        cp cpVar = this.f35042b;
-        i10 = ((org.telegram.ui.ActionBar.f3) cpVar).currentAccount;
-        NotificationCenter.getInstance(i10).doOnIdle(new org.telegram.ui.wq(28, this, emojiThemes));
-        cpVar.X = false;
-    }
-
-    @Override
-    public final void onError(Throwable th) {
-        org.telegram.tgnet.k.a(this, th);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f35042b.getContext(), tL_error.text, 0).show();
     }
 }

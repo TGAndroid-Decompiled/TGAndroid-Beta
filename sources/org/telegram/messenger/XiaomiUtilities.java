@@ -49,10 +49,10 @@ public class XiaomiUtilities {
         return intent;
     }
 
-    public static boolean isCustomPermissionGranted(int i9) {
+    public static boolean isCustomPermissionGranted(int i10) {
         try {
             Class cls = Integer.TYPE;
-            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops"), Integer.valueOf(i9), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0) {
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) ApplicationLoader.applicationContext.getSystemService("appops"), Integer.valueOf(i10), Integer.valueOf(Process.myUid()), ApplicationLoader.applicationContext.getPackageName())).intValue() == 0) {
                 return true;
             }
             return false;

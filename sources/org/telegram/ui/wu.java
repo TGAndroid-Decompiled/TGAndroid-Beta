@@ -1,58 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.graphics.drawable.ColorDrawable;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class wu extends org.telegram.ui.Components.kx0 {
-    public final g5.b E;
+public final class wu extends org.telegram.ui.Components.il0 {
+    public final yu f44382c;
 
-    public wu(Context context, long j10, g5.b bVar) {
-        super(context);
-        this.E = bVar;
-        this.f30253a = new RectF();
-        this.f30257f = 0.0f;
-        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true, false);
-        this.f30259r = i6Var;
-        org.telegram.ui.Components.i6 i6Var2 = new org.telegram.ui.Components.i6(false, true, false, false);
-        this.f30260s = i6Var2;
-        i6Var.setCallback(this);
-        i6Var2.setCallback(this);
-        this.f30258n = Long.valueOf(j10);
-        org.telegram.ui.Components.z8 z8Var = new org.telegram.ui.Components.z8((org.telegram.ui.ActionBar.b6) null);
-        z8Var.f35234p = 1.5f;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.h = imageReceiver;
-        imageReceiver.setParentView(this);
-        if (j10 == Long.MAX_VALUE) {
-            this.v = LocaleController.getString(R.string.CacheOtherChats);
-            z8Var.g(14);
-            imageReceiver.setForUserOrChat(null, z8Var);
-            return;
-        }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, z8Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
-        this.v = dialogPhotoTitle;
-        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+    public wu(yu yuVar) {
+        this.f44382c = yuVar;
     }
 
     @Override
-    public final void b() {
-        g5.b bVar = this.E;
-        y6 y6Var = (y6) bVar.f7112c;
-        y6Var.P.dismiss();
-        Bundle bundle = new Bundle();
-        long j10 = ((r6) bVar.f7111b).f42274a;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
-        } else {
-            bundle.putLong("chat_id", -j10);
+    public final boolean D(f2.n1 n1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        if (this.f44382c.f44970c0.h()) {
+            return 1;
         }
-        y6Var.presentFragment(new ProfileActivity(bundle, null));
+        return 3;
+    }
+
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        int i11;
+        int i12;
+        yu yuVar = this.f44382c;
+        if (i10 == 0) {
+            view = yuVar.Z;
+        } else if (i10 == 2) {
+            view = yuVar.f44968a0;
+            f2.x0 x0Var = new f2.x0(-1, -2);
+            i11 = ((org.telegram.ui.ActionBar.f3) yuVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) x0Var).leftMargin = i11;
+            i12 = ((org.telegram.ui.ActionBar.f3) yuVar).backgroundPaddingLeft;
+            ((ViewGroup.MarginLayoutParams) x0Var).rightMargin = i12;
+            view.setLayoutParams(x0Var);
+        } else {
+            org.telegram.ui.Cells.y8 y8Var = new org.telegram.ui.Cells.y8(viewGroup.getContext());
+            y8Var.setFixedSize(12);
+            org.telegram.ui.Components.jq jqVar = new org.telegram.ui.Components.jq(new ColorDrawable(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23009a7, false)), org.telegram.ui.ActionBar.g6.V0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.g6.f23028b7));
+            jqVar.f29792w = true;
+            y8Var.setBackgroundDrawable(jqVar);
+            view = y8Var;
+        }
+        return new f2.n1(view);
+    }
+
+    @Override
+    public final int j(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void v(f2.n1 n1Var, int i10) {
     }
 }

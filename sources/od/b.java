@@ -1,35 +1,35 @@
 package od;
 
-import g7.n7;
-public final class b {
-    public static final b f19205a;
-    public static final b f19206b;
-    public static final b f19207c;
-    public static final b d;
-    public static final b f19208e;
-    public static final b[] f19209f;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+public abstract class b extends q {
+    public static final AtomicReferenceFieldUpdater f19506a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
+    private volatile Object _consensus$volatile = a.f19501a;
 
-    static {
-        ?? r02 = new Enum("CPU_ACQUIRED", 0);
-        f19205a = r02;
-        ?? r12 = new Enum("BLOCKING", 1);
-        f19206b = r12;
-        ?? r32 = new Enum("PARKING", 2);
-        f19207c = r32;
-        ?? r52 = new Enum("DORMANT", 3);
-        d = r52;
-        ?? r72 = new Enum("TERMINATED", 4);
-        f19208e = r72;
-        b[] bVarArr = {r02, r12, r32, r52, r72};
-        f19209f = bVarArr;
-        n7.a(bVarArr);
+    @Override
+    public final Object a(Object obj) {
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f19506a;
+        Object obj2 = atomicReferenceFieldUpdater.get(this);
+        fc.a aVar = a.f19501a;
+        if (obj2 == aVar) {
+            fc.a c3 = c(obj);
+            obj2 = atomicReferenceFieldUpdater.get(this);
+            if (obj2 == aVar) {
+                while (true) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(this, aVar, c3)) {
+                        obj2 = c3;
+                        break;
+                    } else if (atomicReferenceFieldUpdater.get(this) != aVar) {
+                        obj2 = atomicReferenceFieldUpdater.get(this);
+                        break;
+                    }
+                }
+            }
+        }
+        b(obj, obj2);
+        return obj2;
     }
 
-    public static b valueOf(String str) {
-        return (b) Enum.valueOf(b.class, str);
-    }
+    public abstract void b(Object obj, Object obj2);
 
-    public static b[] values() {
-        return (b[]) f19209f.clone();
-    }
+    public abstract fc.a c(Object obj);
 }

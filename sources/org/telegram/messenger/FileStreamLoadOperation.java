@@ -33,7 +33,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
     }
 
     private int getCurrentPriority() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f22386id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.f22398id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -42,23 +42,23 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
 
     public static int getStreamPrioriy(TLRPC.Document document) {
         Integer num;
-        if (document == null || (num = priorityMap.get(Long.valueOf(document.f22386id))) == null) {
+        if (document == null || (num = priorityMap.get(Long.valueOf(document.f22398id))) == null) {
             return 3;
         }
         return num.intValue();
     }
 
-    public static Uri prepareUri(int i9, TLRPC.Document document, Object obj) {
+    public static Uri prepareUri(int i10, TLRPC.Document document, Object obj) {
         String attachFileName = FileLoader.getAttachFileName(document);
-        File pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document);
+        File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document);
         if (pathToAttach != null && pathToAttach.exists()) {
             return Uri.fromFile(pathToAttach);
         }
         try {
             StringBuilder sb2 = new StringBuilder("?account=");
-            sb2.append(i9);
+            sb2.append(i10);
             sb2.append("&id=");
-            sb2.append(document.f22386id);
+            sb2.append(document.f22398id);
             sb2.append("&hash=");
             sb2.append(document.access_hash);
             sb2.append("&dc=");
@@ -68,7 +68,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
             sb2.append("&mime=");
             sb2.append(URLEncoder.encode(document.mime_type, "UTF-8"));
             sb2.append("&rid=");
-            sb2.append(FileLoader.getInstance(i9).getFileReference(obj));
+            sb2.append(FileLoader.getInstance(i10).getFileReference(obj));
             sb2.append("&name=");
             sb2.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
             sb2.append("&reference=");
@@ -85,15 +85,15 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         }
     }
 
-    public static void setPriorityForDocument(TLRPC.Document document, int i9) {
+    public static void setPriorityForDocument(TLRPC.Document document, int i10) {
         if (document != null) {
-            priorityMap.put(Long.valueOf(document.f22386id), Integer.valueOf(i9));
+            priorityMap.put(Long.valueOf(document.f22398id), Integer.valueOf(i10));
         }
     }
 
     @Override
     public void close() {
-        FileLog.e("FileStreamLoadOperation " + this.document.f22386id + " close me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {
             fileLoadOperation.removeStreamListener(this);
@@ -108,7 +108,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
             this.file = null;
         }
         this.uri = null;
-        allStreams.remove(Long.valueOf(this.document.f22386id));
+        allStreams.remove(Long.valueOf(this.document.f22398id));
         if (this.opened) {
             this.opened = false;
             transferEnded();
@@ -141,8 +141,8 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
 
     @Override
     public long open(com.google.android.exoplayer2.upstream.q qVar) {
-        Uri uri = qVar.f2585a;
-        long j10 = qVar.f2588e;
+        Uri uri = qVar.f3599a;
+        long j10 = qVar.f3602e;
         this.uri = uri;
         transferInitializing(qVar);
         int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
@@ -151,7 +151,7 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         TLRPC.TL_document tL_document = new TLRPC.TL_document();
         this.document = tL_document;
         tL_document.access_hash = Utilities.parseLong(this.uri.getQueryParameter("hash")).longValue();
-        this.document.f22386id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
+        this.document.f22398id = Utilities.parseLong(this.uri.getQueryParameter("id")).longValue();
         this.document.size = Utilities.parseLong(this.uri.getQueryParameter("size")).longValue();
         this.document.dc_id = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("dc")).intValue();
         this.document.mime_type = this.uri.getQueryParameter("mime");
@@ -164,9 +164,9 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
         } else if (this.document.mime_type.startsWith("audio")) {
             this.document.attributes.add(new TLRPC.TL_documentAttributeAudio());
         }
-        allStreams.put(Long.valueOf(this.document.f22386id), this);
+        allStreams.put(Long.valueOf(this.document.f22398id), this);
         this.currentOffset = j10;
-        this.requestedLength = qVar.f2589f;
+        this.requestedLength = qVar.f3603f;
         this.loadOperation = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
         this.bytesTransferred = 0L;
         long j11 = this.document.size - j10;
@@ -199,8 +199,8 @@ public class FileStreamLoadOperation extends com.google.android.exoplayer2.upstr
                 }
             }
         }
-        FileLog.e("FileStreamLoadOperation " + this.document.f22386id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
-        FileLog.e("FileStreamLoadOperation " + this.document.f22386id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
+        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " open operation=" + this.loadOperation + " currentFile=" + this.currentFile + " file=" + this.file + " bytesRemaining=" + this.bytesRemaining + " me=" + this);
+        FileLog.e("FileStreamLoadOperation " + this.document.f22398id + " " + MessageObject.getVideoWidth(this.document) + "x" + MessageObject.getVideoWidth(this.document) + " mime_type=" + this.document.mime_type + " codec=" + MessageObject.getVideoCodec(this.document) + " size=" + this.document.size);
         return this.bytesRemaining;
     }
 

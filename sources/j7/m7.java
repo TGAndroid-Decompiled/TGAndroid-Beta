@@ -1,17 +1,16 @@
 package j7;
-public final class m7 implements q9.d {
-    public static final m7 f14026a = new Object();
+public final class m7 {
+    public final Long f11103a;
+    public final t7 f11104b;
+    public final Boolean f11105c;
+    public final Boolean d;
+    public final Boolean f11106e;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, new s(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public m7(a5.j jVar) {
+        this.f11103a = (Long) jVar.f211a;
+        this.f11104b = (t7) jVar.f212b;
+        this.f11105c = (Boolean) jVar.f213c;
+        this.d = (Boolean) jVar.d;
+        this.f11106e = (Boolean) jVar.f214e;
     }
 }

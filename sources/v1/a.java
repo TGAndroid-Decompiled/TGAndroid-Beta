@@ -1,4 +1,6 @@
 package v1;
-public final class a extends a8.a {
-    public static final a f48245b = new a8.a(7);
+
+import ab.e;
+public final class a extends e {
+    public static final a f49321b = new e(8);
 }

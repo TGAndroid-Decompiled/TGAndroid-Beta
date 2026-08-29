@@ -1,63 +1,69 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class gf0 extends c5.c {
-    public final int h;
-    public final Object f28765n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gf0 extends LinearLayout {
+    public final LinearLayout f28878a;
+    public final LinearLayout f28879b;
 
-    public gf0(Object obj, Context context, int i9) {
+    public gf0(Context context) {
         super(context);
-        this.h = i9;
-        this.f28765n = obj;
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f28879b = a2;
+        addView(a2, i7.f6.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f28878a = a10;
+        addView(a10, i7.f6.n(-2, -1));
+    }
+
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, i7.f6.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, i7.f6.n(-2, -2));
+        i7.h6.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
-            case 0:
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f28765n;
-                if (view == pipRoundVideoView.f26426c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.A.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.A, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.f6.f23123k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i9, int i10) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i9, i10);
-                g81 g81Var = (g81) this.f28765n;
-                if (g81Var.f28701f != null) {
-                    ViewGroup.LayoutParams layoutParams = g81Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = g81Var.f28699e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onMeasure(i9, i10);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f28878a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f28879b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

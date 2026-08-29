@@ -1,24 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class s4 extends FrameLayout {
-    public final org.telegram.ui.Cells.z1[] f32361a;
-
-    public s4(Context context, org.telegram.ui.Cells.z1[] z1VarArr) {
-        super(context);
-        this.f32361a = z1VarArr;
-    }
-
+import org.telegram.messenger.LocaleController;
+public final class s4 extends qc0 {
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, i10);
-        org.telegram.ui.Cells.z1[] z1VarArr = this.f32361a;
-        if (z1VarArr[0] != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + z1VarArr[0].getMeasuredHeight() + measuredHeight);
-        }
+    public final CharSequence d(int i10) {
+        return LocaleController.formatPluralString("Hours", i10, new Object[0]);
     }
 }

@@ -5,19 +5,19 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface ft {
-    boolean A();
+    void A(TLRPC.Document document);
 
-    void B(TLRPC.Document document);
+    boolean B();
 
-    boolean C();
+    boolean C(TLRPC.Document document);
 
-    boolean D(TLRPC.Document document);
+    void D(TLRPC.Document document);
 
-    void E(TLRPC.Document document);
+    String E(boolean z10);
 
-    void F(CharSequence charSequence, String str, df dfVar);
+    void F(CharSequence charSequence, String str, tm tmVar);
 
-    String G(boolean z10);
+    org.telegram.ui.Components.j70 G(bg.d1 d1Var);
 
     void H(TLRPC.Document document);
 
@@ -59,9 +59,9 @@ public interface ft {
 
     boolean j();
 
-    boolean k(int i9);
+    boolean k(int i10);
 
-    void l(TLRPC.Document document, String str, Object obj, boolean z10, int i9, int i10);
+    void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
 
     void m(String str);
 
@@ -73,21 +73,21 @@ public interface ft {
 
     void q();
 
-    org.telegram.ui.Components.x60 r(fh.v vVar);
+    void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
 
-    void s(int i9, int i10, Object obj, TLObject tLObject, boolean z10);
+    void s();
 
-    void t();
+    void t(TLRPC.Document document);
 
-    void u(TLRPC.Document document);
+    void u(TLRPC.StickerSet stickerSet, String str);
 
-    void v(TLRPC.StickerSet stickerSet, String str);
+    void v(TLObject tLObject, Object obj);
 
-    void w(TLObject tLObject, Object obj);
+    boolean w();
 
-    boolean x();
+    void x(String str);
 
-    void y(String str);
+    MessageObject y();
 
-    MessageObject z();
+    boolean z();
 }

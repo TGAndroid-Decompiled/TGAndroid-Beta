@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class ah implements View.OnClickListener {
-    public final int f36498a;
-    public final org.telegram.ui.Components.x60 f36499b;
+    public final int f36549a;
+    public final org.telegram.ui.Components.j70 f36550b;
 
-    public ah(org.telegram.ui.Components.x60 x60Var, int i9) {
-        this.f36498a = i9;
-        this.f36499b = x60Var;
+    public ah(org.telegram.ui.Components.j70 j70Var, int i10) {
+        this.f36549a = i10;
+        this.f36550b = j70Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i9 = this.f36498a;
-        org.telegram.ui.Components.x60 x60Var = this.f36499b;
-        switch (i9) {
+        int i10 = this.f36549a;
+        org.telegram.ui.Components.j70 j70Var = this.f36550b;
+        switch (i10) {
             case 0:
-                x60Var.s();
+                j70Var.s();
                 return;
             default:
                 Drawable[] drawableArr = PhotoViewer.P8;
-                x60Var.s();
+                j70Var.s();
                 return;
         }
     }

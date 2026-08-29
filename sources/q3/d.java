@@ -1,18 +1,21 @@
 package q3;
+public final class d implements a {
+    public final int f46233a;
+    public final int f46234b;
+    public final int f46235c;
+    public final int d;
+    public final int f46236e;
 
-import d5.y;
-import m3.w;
-public final class d extends a8.a {
-    public final y f46002b;
-    public final y f46003c;
-    public int d;
-    public boolean f46004e;
-    public boolean f46005f;
-    public int f46006g;
+    public d(int i10, int i11, int i12, int i13, int i14) {
+        this.f46233a = i10;
+        this.f46234b = i11;
+        this.f46235c = i12;
+        this.d = i13;
+        this.f46236e = i14;
+    }
 
-    public d(w wVar) {
-        super(wVar);
-        this.f46002b = new y(d5.a.d);
-        this.f46003c = new y(4);
+    @Override
+    public final int getType() {
+        return 1752331379;
     }
 }

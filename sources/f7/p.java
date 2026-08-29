@@ -1,30 +1,17 @@
 package f7;
 
-import android.content.Context;
-import android.util.Log;
-public abstract class p {
-    public static String a(Context context, int i9) {
-        if (context == null) {
-            return "";
-        }
-        if (i9 != 1) {
-            if (i9 != 7) {
-                switch (i9) {
-                    case 9:
-                        break;
-                    case 10:
-                        return context.getString(2131701348);
-                    case 11:
-                        return context.getString(2131701347);
-                    case 12:
-                        return context.getString(2131701345);
-                    default:
-                        Log.e("BiometricUtils", "Unknown error code: " + i9);
-                        return context.getString(2131701340);
-                }
-            }
-            return context.getString(2131701346);
-        }
-        return context.getString(2131701344);
+import java.util.concurrent.Callable;
+public final class p implements Callable {
+    public final int f6673a;
+    public final Object f6674b;
+
+    public p(Object obj, int i10) {
+        this.f6673a = i10;
+        this.f6674b = obj;
+    }
+
+    @Override
+    public final java.lang.Object call() {
+        throw new UnsupportedOperationException("Method not decompiled: f7.p.call():java.lang.Object");
     }
 }

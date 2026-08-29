@@ -24,8 +24,8 @@ class NativeLibrary {
                 String str2 = TAG;
                 Logging.d(str2, "Loading native library: " + str);
                 libraryLoaded = nativeLibraryLoader.load(str);
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }

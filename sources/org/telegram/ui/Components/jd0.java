@@ -1,32 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-public final class jd0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f29719a;
-    public final Utilities.Callback f29720b;
-    public final NotificationCenter.NotificationCenterDelegate[] f29721c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class jd0 extends AnimatorListenerAdapter {
+    public final int f29644a;
+    public final nh.l8 f29645b;
 
-    public jd0(int i9, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f29719a = i9;
-        this.f29720b = callback;
-        this.f29721c = notificationCenterDelegateArr;
+    public jd0(nh.l8 l8Var, int i10) {
+        this.f29644a = i10;
+        this.f29645b = l8Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i9, int i10, Object... objArr) {
-        int i11 = NotificationCenter.activityPermissionsGranted;
-        if (i9 == i11) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f29719a) {
-                Utilities.Callback callback = this.f29720b;
-                if (callback != null) {
-                    callback.run(iArr);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29644a) {
+            case 0:
+                nh.l8 l8Var = this.f29645b;
+                AnimatorSet animatorSet = (AnimatorSet) l8Var.f18050e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    l8Var.f18050e = null;
+                    return;
                 }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f29721c[0], i11);
-            }
+                return;
+            case 1:
+                nh.l8 l8Var2 = this.f29645b;
+                AnimatorSet animatorSet2 = (AnimatorSet) l8Var2.f18050e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    l8Var2.f18050e = null;
+                    return;
+                }
+                return;
+            default:
+                nh.l8 l8Var3 = this.f29645b;
+                AnimatorSet animatorSet3 = (AnimatorSet) l8Var3.f18050e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    l8Var3.f18050e = null;
+                    return;
+                }
+                return;
         }
     }
 }

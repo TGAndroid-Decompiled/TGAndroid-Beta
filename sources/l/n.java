@@ -3,22 +3,22 @@ package l;
 import android.view.ActionProvider;
 import android.view.View;
 public final class n implements ActionProvider.VisibilityListener {
-    public final ActionProvider f16601a;
-    public android.support.v4.media.c f16602b;
+    public final ActionProvider f14029a;
+    public za.c f14030b;
 
     public n(r rVar, ActionProvider actionProvider) {
-        this.f16601a = actionProvider;
+        this.f14029a = actionProvider;
     }
 
     public final View a(m mVar) {
-        return this.f16601a.onCreateActionView(mVar);
+        return this.f14029a.onCreateActionView(mVar);
     }
 
     @Override
     public final void onActionProviderVisibilityChanged(boolean z10) {
-        android.support.v4.media.c cVar = this.f16602b;
+        za.c cVar = this.f14030b;
         if (cVar != null) {
-            k kVar = ((m) cVar.f281b).f16589n;
+            k kVar = ((m) cVar.f50799b).f14017n;
             kVar.h = true;
             kVar.p(true);
         }

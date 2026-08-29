@@ -1,63 +1,36 @@
 package t3;
 
-import android.util.Pair;
-import d5.f0;
-import m3.s;
-import m3.u;
-public final class c implements f {
-    public final long[] f47604a;
-    public final long[] f47605b;
-    public final long f47606c;
+import o3.s;
+import o3.t;
+import o3.u;
+public final class c implements t {
+    public final t f48108a;
+    public final f2.c f48109b;
 
-    public c(long j10, long[] jArr, long[] jArr2) {
-        this.f47604a = jArr;
-        this.f47605b = jArr2;
-        this.f47606c = j10 == -9223372036854775807L ? f0.H(jArr2[jArr2.length - 1]) : j10;
-    }
-
-    public static Pair b(long j10, long[] jArr, long[] jArr2) {
-        double d;
-        int e10 = f0.e(jArr, j10, true);
-        long j11 = jArr[e10];
-        long j12 = jArr2[e10];
-        int i9 = e10 + 1;
-        if (i9 == jArr.length) {
-            return Pair.create(Long.valueOf(j11), Long.valueOf(j12));
-        }
-        long j13 = jArr[i9];
-        long j14 = jArr2[i9];
-        if (j13 == j11) {
-            d = 0.0d;
-        } else {
-            d = (j10 - j11) / (j13 - j11);
-        }
-        return Pair.create(Long.valueOf(j10), Long.valueOf(((long) (d * (j14 - j12))) + j12));
+    public c(f2.c cVar, t tVar) {
+        this.f48109b = cVar;
+        this.f48108a = tVar;
     }
 
     @Override
-    public final long a(long j10) {
-        return f0.H(((Long) b(j10, this.f47604a, this.f47605b).second).longValue());
+    public final boolean c() {
+        return this.f48108a.c();
     }
 
     @Override
-    public final long d() {
-        return -1L;
+    public final s g(long j10) {
+        s g10 = this.f48108a.g(j10);
+        u uVar = g10.f19115a;
+        long j11 = uVar.f19118a;
+        long j12 = uVar.f19119b;
+        long j13 = this.f48109b.f6282b;
+        u uVar2 = new u(j11, j12 + j13);
+        u uVar3 = g10.f19116b;
+        return new s(uVar2, new u(uVar3.f19118a, uVar3.f19119b + j13));
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final s h(long j10) {
-        Pair b10 = b(f0.S(f0.i(j10, 0L, this.f47606c)), this.f47605b, this.f47604a);
-        u uVar = new u(f0.H(((Long) b10.first).longValue()), ((Long) b10.second).longValue());
-        return new s(uVar, uVar);
-    }
-
-    @Override
-    public final long i() {
-        return this.f47606c;
+    public final long h() {
+        return this.f48108a.h();
     }
 }

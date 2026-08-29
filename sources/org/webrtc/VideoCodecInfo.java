@@ -57,8 +57,8 @@ public class VideoCodecInfo {
     }
 
     @Deprecated
-    public VideoCodecInfo(int i9, String str, Map<String, String> map) {
-        this.payload = i9;
+    public VideoCodecInfo(int i10, String str, Map<String, String> map) {
+        this.payload = i10;
         this.name = str;
         this.params = map;
     }

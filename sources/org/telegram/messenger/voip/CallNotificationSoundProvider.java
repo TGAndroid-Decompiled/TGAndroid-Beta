@@ -48,7 +48,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
             }
             throw new FileNotFoundException("Unexpected application state");
         }
-        throw new SecurityException(ta.b.d("Unexpected file mode ", str));
+        throw new SecurityException(u3.c.e("Unexpected file mode ", str));
     }
 
     @Override

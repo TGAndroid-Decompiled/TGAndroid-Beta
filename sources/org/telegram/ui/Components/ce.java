@@ -1,66 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Canvas;
+import android.util.Property;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class ce extends FrameLayout {
-    public final ChatActivityEnterView f27471a;
+public final class ce extends Property {
+    public final int f27461a;
+    public final ChatActivityEnterView f27462b;
 
-    public ce(ChatActivityEnterView chatActivityEnterView, Activity activity) {
-        super(activity);
-        this.f27471a = chatActivityEnterView;
-    }
-
-    @Override
-    public final boolean drawChild(final Canvas canvas, final View view, final long j10) {
-        ChatActivityEnterView chatActivityEnterView = this.f27471a;
-        if (view != null && view == chatActivityEnterView.A0) {
-            return chatActivityEnterView.e0(canvas, new Utilities.Callback0Return() {
-                @Override
-                public final Object run() {
-                    Boolean valueOf;
-                    valueOf = Boolean.valueOf(super/*android.widget.FrameLayout*/.drawChild(canvas, view, j10));
-                    return valueOf;
-                }
-            });
-        }
-        if (chatActivityEnterView.f26191u4 && view == chatActivityEnterView.f26077a1) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
-        ChatActivityEnterView chatActivityEnterView = this.f27471a;
-        if (!chatActivityEnterView.f26203x0.isEmpty()) {
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                View childAt = getChildAt(i13);
-                Float f10 = (Float) chatActivityEnterView.f26203x0.get(childAt);
-                if (f10 != null) {
-                    childAt.setTranslationX(f10.floatValue() - childAt.getLeft());
-                    childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(gr.f28844f).start();
-                }
-            }
-            chatActivityEnterView.f26203x0.clear();
+    public ce(ChatActivityEnterView chatActivityEnterView, int i10) {
+        super(Float.class, "emoji_button_scale");
+        this.f27461a = i10;
+        switch (i10) {
+            case 1:
+                this.f27462b = chatActivityEnterView;
+                super(Float.class, "attach_scale");
+                return;
+            case 2:
+                this.f27462b = chatActivityEnterView;
+                super(Float.class, "emoji_button_alpha");
+                return;
+            case 3:
+                this.f27462b = chatActivityEnterView;
+                super(Float.class, "attach_layout_translation_x");
+                return;
+            case 4:
+                this.f27462b = chatActivityEnterView;
+                super(Float.class, "message_text_translation_x");
+                return;
+            default:
+                this.f27462b = chatActivityEnterView;
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, i10);
-        int max = Math.max(AndroidUtilities.dp(44.0f), getMeasuredHeight());
-        ChatActivityEnterView chatActivityEnterView = this.f27471a;
-        td.c cVar = chatActivityEnterView.f26079a5;
-        if (cVar.f47780e > 0.0f) {
-            cVar.a(max);
-        } else {
-            cVar.c(max);
+    public final Object get(Object obj) {
+        switch (this.f27461a) {
+            case 0:
+                View view = (View) obj;
+                return Float.valueOf(this.f27462b.h);
+            case 1:
+                View view2 = (View) obj;
+                return Float.valueOf(this.f27462b.A);
+            case 2:
+                View view3 = (View) obj;
+                return Float.valueOf(this.f27462b.f26160n);
+            case 3:
+                View view4 = (View) obj;
+                return Float.valueOf(this.f27462b.f26214x);
+            default:
+                View view5 = (View) obj;
+                return Float.valueOf(this.f27462b.C);
         }
-        chatActivityEnterView.M();
+    }
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f27461a) {
+            case 0:
+                View view = (View) obj;
+                float floatValue = ((Float) obj2).floatValue();
+                ChatActivityEnterView chatActivityEnterView = this.f27462b;
+                chatActivityEnterView.h = floatValue;
+                chatActivityEnterView.F1();
+                return;
+            case 1:
+                View view2 = (View) obj;
+                float floatValue2 = ((Float) obj2).floatValue();
+                ChatActivityEnterView chatActivityEnterView2 = this.f27462b;
+                chatActivityEnterView2.A = floatValue2;
+                chatActivityEnterView2.A1();
+                return;
+            case 2:
+                View view3 = (View) obj;
+                float floatValue3 = ((Float) obj2).floatValue();
+                ChatActivityEnterView chatActivityEnterView3 = this.f27462b;
+                chatActivityEnterView3.f26160n = floatValue3;
+                chatActivityEnterView3.F1();
+                return;
+            case 3:
+                View view4 = (View) obj;
+                float floatValue4 = ((Float) obj2).floatValue();
+                ChatActivityEnterView chatActivityEnterView4 = this.f27462b;
+                chatActivityEnterView4.f26214x = floatValue4;
+                chatActivityEnterView4.A1();
+                return;
+            default:
+                View view5 = (View) obj;
+                float floatValue5 = ((Float) obj2).floatValue();
+                ChatActivityEnterView chatActivityEnterView5 = this.f27462b;
+                chatActivityEnterView5.C = floatValue5;
+                chatActivityEnterView5.J1();
+                return;
+        }
     }
 }

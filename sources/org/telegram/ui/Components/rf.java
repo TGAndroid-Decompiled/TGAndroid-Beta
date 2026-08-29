@@ -1,20 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class rf extends mh.o0 {
-    public final ChatActivityEnterView f32153y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class rf extends AnimatorListenerAdapter {
+    public final int f32280a;
+    public final ChatActivityEnterView f32281b;
 
-    public rf(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context, b6Var);
-        this.f32153y = chatActivityEnterView;
+    public rf(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f32281b = chatActivityEnterView;
+        this.f32280a = i10;
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        ChatActivityEnterView chatActivityEnterView = this.f32153y;
-        if (chatActivityEnterView.R0 != null && chatActivityEnterView.f26134j3 == 1) {
-            chatActivityEnterView.U2.o(f10);
+    public final void onAnimationEnd(Animator animator) {
+        ChatActivityEnterView chatActivityEnterView = this.f32281b;
+        if (animator.equals(chatActivityEnterView.f26168o2)) {
+            int i10 = this.f32280a;
+            if (i10 != 3 && chatActivityEnterView.A0 != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                chatActivityEnterView.A0.requestFocus();
+            }
+            chatActivityEnterView.A();
+            if (i10 != 3) {
+                lg lgVar = chatActivityEnterView.J1;
+                if (lgVar != null) {
+                    lgVar.setVisibility(8);
+                }
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.I1;
+                if (recordCircle != null) {
+                    recordCircle.d();
+                }
+            }
         }
     }
 }

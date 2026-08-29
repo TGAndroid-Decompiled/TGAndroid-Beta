@@ -5,10 +5,10 @@ public class Insets {
     public int right;
     public int top;
 
-    public Insets(int i9, int i10, int i11, int i12) {
-        this.top = i9;
-        this.left = i10;
-        this.bottom = i11;
-        this.right = i12;
+    public Insets(int i10, int i11, int i12, int i13) {
+        this.top = i10;
+        this.left = i11;
+        this.bottom = i12;
+        this.right = i13;
     }
 }

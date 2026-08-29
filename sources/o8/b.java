@@ -1,105 +1,87 @@
 package o8;
 
-import h7.wa;
-import j$.util.Objects;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-public final class b extends h7.d0 {
-    public final wa f19027b;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.util.Log;
+public final class b implements ServiceConnection {
+    public n8.c f19468a;
+    public final c f19469b;
 
-    public b(wa waVar) {
-        super(2);
-        this.f19027b = waVar;
+    public b(c cVar) {
+        this.f19469b = cVar;
     }
 
-    @Override
-    public final void clear() {
-        this.f19027b.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        Set entrySet = this.f19027b.f10166b.entrySet();
-        entrySet.getClass();
-        try {
-            return entrySet.contains(obj);
-        } catch (ClassCastException | NullPointerException unused) {
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return this.f19027b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new h7.c(this.f19027b, (char) 0);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        Object obj2;
-        if (!contains(obj)) {
-            return false;
-        }
-        Map.Entry entry = (Map.Entry) obj;
-        Objects.requireNonNull(entry);
-        h0 h0Var = (h0) this.f19027b.f10168e;
-        Object key = entry.getKey();
-        Map map = h0Var.d;
-        map.getClass();
-        try {
-            obj2 = map.remove(key);
-        } catch (ClassCastException | NullPointerException unused) {
-            obj2 = null;
-        }
-        Collection collection = (Collection) obj2;
-        if (collection != null) {
-            int size = collection.size();
-            collection.clear();
-            h0Var.f19047e -= size;
+    public static boolean a(b bVar) {
+        if (bVar.f19468a != null) {
             return true;
         }
-        return true;
+        return false;
     }
 
-    @Override
-    public final boolean removeAll(Collection collection) {
-        try {
-            collection.getClass();
-            return super.removeAll(collection);
-        } catch (UnsupportedOperationException unused) {
-            boolean z10 = false;
-            for (Object obj : collection) {
-                z10 |= remove(obj);
+    public final boolean b(Intent intent, Bundle bundle) {
+        boolean z10;
+        n8.c cVar = this.f19468a;
+        if (cVar != null) {
+            n8.a aVar = (n8.a) cVar;
+            Parcel obtain = Parcel.obtain();
+            obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
+            int i10 = u2.a.f48960a;
+            if (intent == null) {
+                obtain.writeInt(0);
+            } else {
+                obtain.writeInt(1);
+                intent.writeToParcel(obtain, 0);
             }
-            return z10;
-        }
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        try {
-            collection.getClass();
-            return super.retainAll(collection);
-        } catch (UnsupportedOperationException unused) {
-            HashSet l10 = l.l(collection.size());
-            for (Object obj : collection) {
-                if (contains(obj) && (obj instanceof Map.Entry)) {
-                    l10.add(((Map.Entry) obj).getKey());
-                }
+            obtain.writeInt(1);
+            bundle.writeToParcel(obtain, 0);
+            Parcel E0 = aVar.E0(obtain, 1);
+            if (E0.readInt() != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            return this.f19027b.keySet().retainAll(l10);
+            E0.recycle();
+            if (z10) {
+                return true;
+            }
         }
+        return false;
     }
 
     @Override
-    public final int size() {
-        return this.f19027b.f10166b.size();
+    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        boolean z10;
+        n8.c aVar;
+        z10 = this.f19469b.dbg;
+        if (z10) {
+            Log.d("SAVerificationClientS", "onServiceConnected");
+        }
+        int i10 = n8.b.f17163a;
+        if (iBinder == null) {
+            aVar = null;
+        } else {
+            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.search.verification.api.ISearchActionVerificationService");
+            if (queryLocalInterface instanceof n8.c) {
+                aVar = (n8.c) queryLocalInterface;
+            } else {
+                aVar = new n8.a(iBinder);
+            }
+        }
+        this.f19468a = aVar;
+    }
+
+    @Override
+    public final void onServiceDisconnected(ComponentName componentName) {
+        boolean z10;
+        this.f19468a = null;
+        z10 = this.f19469b.dbg;
+        if (z10) {
+            Log.d("SAVerificationClientS", "onServiceDisconnected");
+        }
     }
 }

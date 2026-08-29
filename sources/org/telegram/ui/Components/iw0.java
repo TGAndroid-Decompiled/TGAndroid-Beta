@@ -1,13 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class iw0 extends cc {
-    public iw0(LaunchActivity launchActivity, int i9, TLRPC.Document document) {
-        this(launchActivity, null, 1, i9, document, null);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class iw0 extends AnimatorListenerAdapter {
+    public final int f29490a;
+    public final jw0 f29491b;
+
+    public iw0(jw0 jw0Var, int i10) {
+        this.f29490a = i10;
+        this.f29491b = jw0Var;
     }
 
-    public iw0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.b6 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iw0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.b6):void");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29490a) {
+            case 0:
+                jw0 jw0Var = this.f29491b;
+                jw0Var.f29839y = 1.0f;
+                jw0Var.invalidate();
+                jw0Var.C = null;
+                return;
+            case 1:
+                jw0 jw0Var2 = this.f29491b;
+                jw0Var2.m(((Float) jw0Var2.v.getAnimatedValue()).floatValue());
+                jw0Var2.v = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                this.f29491b.B = null;
+                return;
+        }
     }
 }

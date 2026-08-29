@@ -1,16 +1,20 @@
 package org.telegram.ui;
+public final class lk extends c2.z {
+    public final tn f40237l;
 
-import android.widget.FrameLayout;
-public final class lk extends py {
-    public final qn J;
-
-    public lk(qn qnVar, qn qnVar2, FrameLayout frameLayout, ij ijVar, int i9, long j10, long j11) {
-        super(qnVar2, frameLayout, ijVar, i9, j10, j11);
-        this.J = qnVar;
+    public lk(tn tnVar, lj ljVar, oj ojVar) {
+        super(ljVar, ojVar);
+        this.f40237l = tnVar;
     }
 
-    @Override
-    public final void i() {
-        this.J.uc();
+    public final void d(int i10) {
+        if (this.f40237l.La) {
+            if (i10 == 0) {
+                i10 = 1;
+            } else if (i10 == 1) {
+                i10 = 0;
+            }
+        }
+        this.f2933b = i10;
     }
 }

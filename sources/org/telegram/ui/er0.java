@@ -8,11 +8,11 @@ public final class er0 extends FloatProperty {
 
     @Override
     public final Float get(Object obj) {
-        return Float.valueOf(((iu0) obj).f39285a);
+        return Float.valueOf(((gu0) obj).f38666a);
     }
 
     @Override
-    public final void setValue(Object obj, float f10) {
-        ((iu0) obj).b(f10);
+    public final void setValue(Object obj, float f9) {
+        ((gu0) obj).b(f9);
     }
 }

@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class dt implements Runnable {
-    public final ht f37593a;
+    public final ht f37629a;
 
     public dt(ht htVar) {
-        this.f37593a = htVar;
+        this.f37629a = htVar;
     }
 
     @Override

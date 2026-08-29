@@ -24,14 +24,14 @@ public class MessageCustomParamsHelper {
                 this.message.voiceTranscription = inputSerializedData.readString(z10);
             }
             TLRPC.Message message = this.message;
-            int i9 = this.flags;
-            if ((i9 & 2) != 0) {
+            int i10 = this.flags;
+            if ((i10 & 2) != 0) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             message.voiceTranscriptionForce = z11;
-            if ((i9 & 512) == 0) {
+            if ((i10 & 512) == 0) {
                 z12 = false;
             }
             message.summarizedOpen = z12;
@@ -77,23 +77,23 @@ public class MessageCustomParamsHelper {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i9;
             int i10;
+            int i11;
             outputSerializedData.writeInt32(1);
             TLRPC.Message message = this.message;
             if (message.voiceTranscriptionForce) {
-                i9 = this.flags | 2;
+                i10 = this.flags | 2;
             } else {
-                i9 = this.flags & (-3);
-            }
-            this.flags = i9;
-            if (message.summarizedOpen) {
-                i10 = i9 | 512;
-            } else {
-                i10 = i9 & (-513);
+                i10 = this.flags & (-3);
             }
             this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            if (message.summarizedOpen) {
+                i11 = i10 | 512;
+            } else {
+                i11 = i10 & (-513);
+            }
+            this.flags = i11;
+            outputSerializedData.writeInt32(i11);
             if ((1 & this.flags) != 0) {
                 outputSerializedData.writeString(this.message.voiceTranscription);
             }
@@ -140,25 +140,25 @@ public class MessageCustomParamsHelper {
         private Params_v1(TLRPC.Message message) {
             this.flags = 0;
             this.message = message;
-            int i9 = message.voiceTranscription != null ? 1 : 0;
-            this.flags = i9;
-            int i10 = i9 | (message.voiceTranscriptionForce ? 2 : 0);
+            int i10 = message.voiceTranscription != null ? 1 : 0;
             this.flags = i10;
-            int i11 = i10 | (message.originalLanguage != null ? 4 : 0);
+            int i11 = i10 | (message.voiceTranscriptionForce ? 2 : 0);
             this.flags = i11;
-            int i12 = i11 | (message.translatedToLanguage != null ? 8 : 0);
+            int i12 = i11 | (message.originalLanguage != null ? 4 : 0);
             this.flags = i12;
-            int i13 = i12 | (message.translatedText != null ? 16 : 0);
+            int i13 = i12 | (message.translatedToLanguage != null ? 8 : 0);
             this.flags = i13;
-            int i14 = i13 | (message.translatedPoll != null ? 32 : 0);
+            int i14 = i13 | (message.translatedText != null ? 16 : 0);
             this.flags = i14;
-            int i15 = i14 | (message.errorAllowedPriceStars != 0 ? 64 : 0);
+            int i15 = i14 | (message.translatedPoll != null ? 32 : 0);
             this.flags = i15;
-            int i16 = i15 | (message.errorNewPriceStars != 0 ? 128 : 0);
+            int i16 = i15 | (message.errorAllowedPriceStars != 0 ? 64 : 0);
             this.flags = i16;
-            int i17 = i16 | (message.translatedVoiceTranscription != null ? 256 : 0);
+            int i17 = i16 | (message.errorNewPriceStars != 0 ? 128 : 0);
             this.flags = i17;
-            int flag = TLObject.setFlag(i17, 1024, message.summaryText != null);
+            int i18 = i17 | (message.translatedVoiceTranscription != null ? 256 : 0);
+            this.flags = i18;
+            int flag = TLObject.setFlag(i18, 1024, message.summaryText != null);
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2048, message.translatedSummaryText != null);
             this.flags = flag2;
@@ -206,7 +206,7 @@ public class MessageCustomParamsHelper {
             new Params_v1(message).readParams(nativeByteBuffer, true);
             return;
         }
-        throw new RuntimeException(j3.r0.l(readInt32, "can't read params version = "));
+        throw new RuntimeException(j7.l1.k(readInt32, "can't read params version = "));
     }
 
     public static NativeByteBuffer writeLocalParams(TLRPC.Message message) {

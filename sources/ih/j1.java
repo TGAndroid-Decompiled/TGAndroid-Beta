@@ -1,31 +1,22 @@
 package ih;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class j1 extends ViewGroup {
-    @Override
-    public final void draw(Canvas canvas) {
-        if (k1.V.S) {
-            return;
-        }
-        super.draw(canvas);
+import android.content.Context;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.tc;
+public final class j1 extends e6 {
+    public final h2 f9248t0;
+
+    public j1(h2 h2Var, Context context, int i10, TL_stars.StarGift starGift, long j10, y0 y0Var, boolean z10, boolean z11) {
+        super(context, i10, starGift, null, j10, y0Var, z10, z11);
+        this.f9248t0 = h2Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        k1 k1Var = k1.V;
-        if (k1Var.f11659e.getParent() == this) {
-            k1Var.f11659e.layout(0, 0, k1Var.F, k1Var.G);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i9), View.MeasureSpec.getSize(i10));
-        k1 k1Var = k1.V;
-        if (k1Var.f11659e.getParent() == this) {
-            k1Var.f11659e.measure(View.MeasureSpec.makeMeasureSpec(k1Var.F, 1073741824), View.MeasureSpec.makeMeasureSpec(k1Var.G, 1073741824));
-        }
+    public final tc X() {
+        org.telegram.ui.ActionBar.c6 c6Var;
+        h2 h2Var = this.f9248t0;
+        org.telegram.ui.ActionBar.d3 d3Var = h2Var.container;
+        c6Var = h2Var.resourcesProvider;
+        return new tc(d3Var, c6Var);
     }
 }

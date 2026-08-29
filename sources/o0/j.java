@@ -1,17 +1,19 @@
 package o0;
 
-import android.os.Process;
-public final class j extends Thread {
-    public final int f18769a;
+import android.net.Uri;
+public final class j {
+    public final Uri f19008a;
+    public final int f19009b;
+    public final int f19010c;
+    public final boolean d;
+    public final int f19011e;
 
-    public j(Runnable runnable) {
-        super(runnable, "fonts-androidx");
-        this.f18769a = 10;
-    }
-
-    @Override
-    public final void run() {
-        Process.setThreadPriority(this.f18769a);
-        super.run();
+    public j(Uri uri, int i10, int i11, boolean z10, int i12) {
+        uri.getClass();
+        this.f19008a = uri;
+        this.f19009b = i10;
+        this.f19010c = i11;
+        this.d = z10;
+        this.f19011e = i12;
     }
 }

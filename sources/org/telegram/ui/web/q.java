@@ -1,34 +1,39 @@
 package org.telegram.ui.web;
+public final class q implements Runnable {
+    public final int f44143a;
+    public final z0 f44144b;
+    public final String f44145c;
 
-import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-public final class q implements Utilities.Callback {
-    public final int f43965a;
-    public final y0 f43966b;
-
-    public q(y0 y0Var, int i9) {
-        this.f43965a = i9;
-        this.f43966b = y0Var;
+    public q(z0 z0Var, String str, int i10) {
+        this.f44143a = i10;
+        this.f44144b = z0Var;
+        this.f44145c = str;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43965a) {
+    public final void run() {
+        switch (this.f44143a) {
             case 0:
-                y0 y0Var = this.f43966b;
-                y0Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    y0Var.v("home_screen_added", null);
-                    return;
-                } else {
-                    y0Var.v("home_screen_failed", y0.x("UNSUPPORTED", "error"));
+                w0 w0Var = this.f44144b.f44260a;
+                if (w0Var != null) {
+                    w0Var.d(this.f44145c);
                     return;
                 }
-            case 1:
-                this.f43966b.v("location_requested", (JSONObject) obj);
                 return;
             default:
-                this.f43966b.v("location_requested", (JSONObject) obj);
+                z0 z0Var = this.f44144b;
+                z0Var.J = false;
+                z0Var.L = 0L;
+                z0Var.P = false;
+                String str = this.f44145c;
+                z0Var.f44262b = str;
+                z0Var.c();
+                w0 w0Var2 = z0Var.f44260a;
+                if (w0Var2 != null) {
+                    w0Var2.onResume();
+                    z0Var.f44260a.loadUrl(str);
+                    return;
+                }
                 return;
         }
     }

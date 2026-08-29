@@ -1,40 +1,80 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-public final class t implements ku0, org.telegram.ui.Components.ok0, org.telegram.ui.ActionBar.m1 {
-    public final l4 f42796a;
+import android.net.Uri;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class t implements Utilities.Callback {
+    public final int f42499a;
+    public final m4 f42500b;
 
-    public t(l4 l4Var) {
-        this.f42796a = l4Var;
+    public t(m4 m4Var, int i10) {
+        this.f42499a = i10;
+        this.f42500b = m4Var;
     }
 
     @Override
-    public boolean a(int i9, View view) {
-        l4 l4Var = this.f42796a;
-        l4Var.getClass();
-        if (view instanceof l2) {
-            f4 f4Var = ((l2) view).f39975n;
-            l4Var.Z(f4Var.f38130a.articles.get(f4Var.f38131b).url);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void h(float[] fArr) {
-        l4 l4Var = this.f42796a;
-        fArr[0] = l4Var.E0;
-        fArr[1] = l4Var.f40026q0[0].f41320b.getMeasuredHeight();
-    }
-
-    @Override
-    public void k(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.o1 o1Var;
-        l4 l4Var = this.f42796a;
-        l4Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = l4Var.D) != null && o1Var.isShowing()) {
-            l4Var.D.d(true);
+    public final void run(Object obj) {
+        switch (this.f42499a) {
+            case 0:
+                m4 m4Var = this.f42500b;
+                bh.d dVar = m4Var.m0;
+                float f9 = -((Integer) obj).intValue();
+                m4Var.f40400l0 = f9;
+                dVar.setTranslationY(((1.0f - m4Var.U0) * AndroidUtilities.dp(51.0f)) + f9);
+                return;
+            case 1:
+                String str = (String) obj;
+                if (!TextUtils.isEmpty(str)) {
+                    m4 m4Var2 = this.f42500b;
+                    m4Var2.f40392d0.U.setText(str);
+                    jh.m mVar = m4Var2.f40392d0.U;
+                    mVar.setSelection(mVar.getText().length());
+                    AndroidUtilities.showKeyboard(m4Var2.f40392d0.U);
+                    return;
+                }
+                return;
+            case 2:
+                String str2 = (String) obj;
+                m4 m4Var3 = this.f42500b;
+                if (m4Var3.H != null && str2 != null) {
+                    m4Var3.f40392d0.k(false);
+                    if (ye.d.f(Uri.parse(str2), false, null)) {
+                        z3 z3Var = m4Var3.G;
+                        if (z3Var != null) {
+                            z3Var.dismiss(true);
+                        }
+                        ye.d.k(m4Var3.H, str2, false, false, null);
+                        return;
+                    } else if (!ye.d.l(m4Var3.H, str2, false)) {
+                        q3 q3Var = m4Var3.f40404q0[0];
+                        if (q3Var != null && q3Var.getWebView() != null) {
+                            m4Var3.f40404q0[0].getWebView().loadUrl(str2);
+                            return;
+                        } else {
+                            ye.d.n(str2);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            default:
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) obj;
+                m4 m4Var4 = this.f42500b;
+                if (m4Var4.H != null && a1Var != null) {
+                    m4Var4.f40392d0.k(false);
+                    q3 q3Var2 = m4Var4.f40404q0[0];
+                    if (q3Var2 != null && q3Var2.getWebView() != null) {
+                        m4Var4.f40404q0[0].getWebView().e(a1Var.f43977c, a1Var.d);
+                        return;
+                    } else {
+                        ye.d.n(a1Var.f43977c);
+                        return;
+                    }
+                }
+                return;
         }
     }
 }

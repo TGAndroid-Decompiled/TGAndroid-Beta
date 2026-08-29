@@ -4,19 +4,19 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 public final class i {
-    public final ColorStateList f9291a;
-    public final Configuration f9292b;
-    public final int f9293c;
+    public final ColorStateList f7485a;
+    public final Configuration f7486b;
+    public final int f7487c;
 
     public i(ColorStateList colorStateList, Configuration configuration, Resources.Theme theme) {
         int hashCode;
-        this.f9291a = colorStateList;
-        this.f9292b = configuration;
+        this.f7485a = colorStateList;
+        this.f7486b = configuration;
         if (theme == null) {
             hashCode = 0;
         } else {
             hashCode = theme.hashCode();
         }
-        this.f9293c = hashCode;
+        this.f7487c = hashCode;
     }
 }

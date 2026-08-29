@@ -6,25 +6,25 @@ public class AccountInstance {
     private static volatile AccountInstance[] Instance = new AccountInstance[4];
     private int currentAccount;
 
-    public AccountInstance(int i9) {
-        this.currentAccount = i9;
+    public AccountInstance(int i10) {
+        this.currentAccount = i10;
     }
 
-    public static AccountInstance getInstance(int i9) {
+    public static AccountInstance getInstance(int i10) {
         AccountInstance accountInstance;
-        AccountInstance accountInstance2 = Instance[i9];
+        AccountInstance accountInstance2 = Instance[i10];
         if (accountInstance2 == null) {
             synchronized (AccountInstance.class) {
                 try {
-                    accountInstance = Instance[i9];
+                    accountInstance = Instance[i10];
                     if (accountInstance == null) {
                         AccountInstance[] accountInstanceArr = Instance;
-                        AccountInstance accountInstance3 = new AccountInstance(i9);
-                        accountInstanceArr[i9] = accountInstance3;
+                        AccountInstance accountInstance3 = new AccountInstance(i10);
+                        accountInstanceArr[i10] = accountInstance3;
                         accountInstance = accountInstance3;
                     }
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
             return accountInstance;
@@ -32,8 +32,8 @@ public class AccountInstance {
         return accountInstance2;
     }
 
-    public xf.s0 getColorPalette() {
-        return xf.s0.e(this.currentAccount);
+    public ag.h1 getColorPalette() {
+        return ag.h1.e(this.currentAccount);
     }
 
     public ConnectionsManager getConnectionsManager() {

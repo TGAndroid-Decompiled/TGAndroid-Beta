@@ -7,14 +7,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.Components.ClippingImageView;
 public final class iq0 implements Runnable {
-    public final int f39253a;
-    public final PhotoViewer f39254b;
-    public final bu0 f39255c;
+    public final int f39318a;
+    public final PhotoViewer f39319b;
+    public final zt0 f39320c;
 
-    public iq0(PhotoViewer photoViewer, bu0 bu0Var, int i9) {
-        this.f39253a = i9;
-        this.f39254b = photoViewer;
-        this.f39255c = bu0Var;
+    public iq0(PhotoViewer photoViewer, zt0 zt0Var, int i10) {
+        this.f39318a = i10;
+        this.f39319b = photoViewer;
+        this.f39320c = zt0Var;
     }
 
     @Override
@@ -22,17 +22,17 @@ public final class iq0 implements Runnable {
         ClippingImageView clippingImageView;
         ArrayList arrayList;
         ArrayList arrayList2;
-        switch (this.f39253a) {
+        switch (this.f39318a) {
             case 0:
-                PhotoViewer photoViewer = this.f39254b;
-                photoViewer.f35607d0.setImageBitmap(null);
-                bu0 bu0Var = this.f39255c;
-                if (bu0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = bu0Var.f36988m) != null) {
+                PhotoViewer photoViewer = this.f39319b;
+                photoViewer.f35673d0.setImageBitmap(null);
+                zt0 zt0Var = this.f39320c;
+                if (zt0Var != null && !AndroidUtilities.isTablet() && (clippingImageView = zt0Var.f45326m) != null) {
                     clippingImageView.setImageBitmap(null);
                 }
                 try {
-                    if (photoViewer.f35598c0.getParent() != null) {
-                        ((WindowManager) photoViewer.f35797y.getSystemService("window")).removeView(photoViewer.f35598c0);
+                    if (photoViewer.f35666c0.getParent() != null) {
+                        ((WindowManager) photoViewer.f35864y.getSystemService("window")).removeView(photoViewer.f35666c0);
                         photoViewer.V1();
                         return;
                     }
@@ -42,19 +42,19 @@ public final class iq0 implements Runnable {
                     return;
                 }
             case 1:
-                PhotoViewer photoViewer2 = this.f39254b;
-                photoViewer2.f35684l4 = null;
-                int i9 = 0;
-                photoViewer2.f35580a0.setLayerType(0, null);
-                photoViewer2.f35667j4 = 0;
+                PhotoViewer photoViewer2 = this.f39319b;
+                photoViewer2.f35750l4 = null;
+                int i10 = 0;
+                photoViewer2.f35647a0.setLayerType(0, null);
+                photoViewer2.f35733j4 = 0;
                 photoViewer2.F1();
-                photoViewer2.X1(this.f39255c);
+                photoViewer2.X1(this.f39320c);
                 MediaController.getInstance().tryResumePausedAudio();
-                if (photoViewer2.f35740r7 && !photoViewer2.f35750s7 && (arrayList = photoViewer2.f35605c7) != null) {
+                if (photoViewer2.f35806r7 && !photoViewer2.f35816s7 && (arrayList = photoViewer2.f35671c7) != null) {
                     int size = arrayList.size();
-                    while (i9 < size) {
-                        Object obj = arrayList.get(i9);
-                        i9++;
+                    while (i10 < size) {
+                        Object obj = arrayList.get(i10);
+                        i10++;
                         if (obj instanceof MediaController.PhotoEntry) {
                             ((MediaController.PhotoEntry) obj).deleteAll();
                         }
@@ -63,22 +63,22 @@ public final class iq0 implements Runnable {
                 }
                 return;
             default:
-                PhotoViewer photoViewer3 = this.f39254b;
-                photoViewer3.f35684l4 = null;
-                tt0 tt0Var = photoViewer3.f35580a0;
-                if (tt0Var != null) {
-                    int i10 = 0;
-                    tt0Var.setLayerType(0, null);
-                    photoViewer3.f35667j4 = 0;
-                    photoViewer3.X1(this.f39255c);
-                    photoViewer3.f35580a0.setScaleX(1.0f);
-                    photoViewer3.f35580a0.setScaleY(1.0f);
+                PhotoViewer photoViewer3 = this.f39319b;
+                photoViewer3.f35750l4 = null;
+                rt0 rt0Var = photoViewer3.f35647a0;
+                if (rt0Var != null) {
+                    int i11 = 0;
+                    rt0Var.setLayerType(0, null);
+                    photoViewer3.f35733j4 = 0;
+                    photoViewer3.X1(this.f39320c);
+                    photoViewer3.f35647a0.setScaleX(1.0f);
+                    photoViewer3.f35647a0.setScaleY(1.0f);
                     MediaController.getInstance().tryResumePausedAudio();
-                    if (photoViewer3.f35740r7 && !photoViewer3.f35750s7 && (arrayList2 = photoViewer3.f35605c7) != null) {
+                    if (photoViewer3.f35806r7 && !photoViewer3.f35816s7 && (arrayList2 = photoViewer3.f35671c7) != null) {
                         int size2 = arrayList2.size();
-                        while (i10 < size2) {
-                            Object obj2 = arrayList2.get(i10);
-                            i10++;
+                        while (i11 < size2) {
+                            Object obj2 = arrayList2.get(i11);
+                            i11++;
                             if (obj2 instanceof MediaController.PhotoEntry) {
                                 ((MediaController.PhotoEntry) obj2).deleteAll();
                             }

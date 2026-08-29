@@ -1,50 +1,62 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class ej {
-    public final int f28035a;
-    public final long f28036b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class ej implements TextWatcher {
+    public final sj f28092a;
 
-    public ej(int i9, long j10) {
-        this.f28035a = i9;
-        this.f28036b = j10;
+    public ej(sj sjVar) {
+        this.f28092a = sjVar;
     }
 
-    public static ej a(Object obj) {
-        if (obj instanceof ContactsController.Contact) {
-            return new ej(2, ((ContactsController.Contact) obj).contact_id);
-        }
-        if (obj instanceof TLRPC.User) {
-            return new ej(1, ((TLRPC.User) obj).f22527id);
-        }
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ej.class == obj.getClass()) {
-                ej ejVar = (ej) obj;
-                if (this.f28036b == ejVar.f28036b && this.f28035a == ejVar.f28035a) {
-                    return true;
-                }
-                return false;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        int currentTop;
+        String obj = editable.toString();
+        if (!obj.isEmpty()) {
+            hz hzVar = this.f28092a.C;
+            if (hzVar != null) {
+                hzVar.setText(LocaleController.getString(R.string.NoResult));
             }
-            return false;
+        } else {
+            f2.p0 adapter = this.f28092a.f32656s.getAdapter();
+            sj sjVar = this.f28092a;
+            if (adapter != sjVar.A) {
+                currentTop = sjVar.getCurrentTop();
+                this.f28092a.C.setText(LocaleController.getString(R.string.NoContacts));
+                this.f28092a.C.c();
+                sj sjVar2 = this.f28092a;
+                sjVar2.f32656s.setAdapter(sjVar2.A);
+                this.f28092a.A.l();
+                if (currentTop > 0) {
+                    this.f28092a.v.h1(0, -currentTop);
+                }
+            }
         }
-        return true;
+        oj ojVar = this.f28092a.B;
+        if (ojVar != null) {
+            if (ojVar.f31375f != null) {
+                Utilities.searchQueue.cancelRunnable(ojVar.f31375f);
+                ojVar.f31375f = null;
+            }
+            int i10 = ojVar.h + 1;
+            ojVar.h = i10;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            mj mjVar = new mj(ojVar, obj, i10, 0);
+            ojVar.f31375f = mjVar;
+            dispatchQueue.postRunnable(mjVar, 300L);
+        }
     }
 
-    public final int hashCode() {
-        Integer valueOf;
-        Long valueOf2 = Long.valueOf(this.f28036b);
-        int i9 = this.f28035a;
-        if (i9 == 0) {
-            valueOf = null;
-        } else {
-            valueOf = Integer.valueOf(i9 - 1);
-        }
-        return Objects.hash(valueOf, valueOf2);
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

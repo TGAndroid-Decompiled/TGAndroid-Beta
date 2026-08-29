@@ -7,29 +7,29 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class gh0 extends org.telegram.ui.Components.vk0 {
-    public final Context f38552c;
+public final class gh0 extends org.telegram.ui.Components.il0 {
+    public final Context f38594c;
     public final hh0 d;
 
     public gh0(hh0 hh0Var, Context context) {
         this.d = hh0Var;
-        this.f38552c = context;
+        this.f38594c = context;
     }
 
     @Override
-    public final void A(f2.q1 q1Var) {
-        View view = q1Var.f5501a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
+    public final void A(f2.n1 n1Var) {
+        View view = n1Var.f6432a;
+        if (view instanceof org.telegram.ui.Cells.z4) {
+            ((org.telegram.ui.Cells.z4) view).a();
         }
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        int b10 = q1Var.b();
+    public final boolean D(f2.n1 n1Var) {
+        int b10 = n1Var.b();
         hh0 hh0Var = this.d;
-        if (hh0Var.M != b10 && hh0Var.f38815x != b10) {
-            if (b10 < hh0Var.f38816y || b10 >= hh0Var.A) {
+        if (hh0Var.M != b10 && hh0Var.f38936x != b10) {
+            if (b10 < hh0Var.f38937y || b10 >= hh0Var.A) {
                 if ((b10 < hh0Var.D || b10 >= hh0Var.E) && b10 != hh0Var.J) {
                     if (b10 >= hh0Var.Q && b10 < hh0Var.R) {
                         return true;
@@ -49,40 +49,40 @@ public final class gh0 extends org.telegram.ui.Components.vk0 {
     }
 
     @Override
-    public final int j(int i9) {
+    public final int j(int i10) {
         hh0 hh0Var = this.d;
-        if (i9 == hh0Var.f38812r) {
+        if (i10 == hh0Var.f38933r) {
             return 0;
         }
-        if (i9 == hh0Var.f38813s || i9 == hh0Var.H || i9 == hh0Var.O || i9 == hh0Var.L) {
+        if (i10 == hh0Var.f38934s || i10 == hh0Var.H || i10 == hh0Var.O || i10 == hh0Var.L) {
             return 1;
         }
-        if (i9 == hh0Var.v) {
+        if (i10 == hh0Var.v) {
             return 2;
         }
-        if (i9 == hh0Var.f38815x) {
+        if (i10 == hh0Var.f38936x) {
             return 3;
         }
-        if (i9 != hh0Var.f38814w && i9 != hh0Var.F && i9 != hh0Var.I && i9 != hh0Var.N && i9 != hh0Var.P) {
-            if (i9 < hh0Var.f38816y || i9 >= hh0Var.A) {
-                if (i9 >= hh0Var.D && i9 < hh0Var.E) {
+        if (i10 != hh0Var.f38935w && i10 != hh0Var.F && i10 != hh0Var.I && i10 != hh0Var.N && i10 != hh0Var.P) {
+            if (i10 < hh0Var.f38937y || i10 >= hh0Var.A) {
+                if (i10 >= hh0Var.D && i10 < hh0Var.E) {
                     return 5;
                 }
-                if (i9 == hh0Var.B) {
+                if (i10 == hh0Var.B) {
                     return 6;
                 }
-                if (i9 == hh0Var.G) {
+                if (i10 == hh0Var.G) {
                     return 7;
                 }
-                if (i9 == hh0Var.J) {
+                if (i10 == hh0Var.J) {
                     return 8;
                 }
-                if (i9 == hh0Var.K) {
+                if (i10 == hh0Var.K) {
                     return 9;
                 }
-                if (i9 != hh0Var.M) {
-                    if (i9 < hh0Var.Q || i9 >= hh0Var.R) {
-                        if (i9 != hh0Var.C) {
+                if (i10 != hh0Var.M) {
+                    if (i10 < hh0Var.Q || i10 >= hh0Var.R) {
+                        if (i10 != hh0Var.C) {
                             return 1;
                         }
                         return 11;
@@ -97,82 +97,82 @@ public final class gh0 extends org.telegram.ui.Components.vk0 {
     }
 
     @Override
-    public final void v(f2.q1 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gh0.v(f2.q1, int):void");
+    public final void v(f2.n1 r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gh0.v(f2.n1, int):void");
     }
 
     @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        org.telegram.ui.Components.e80 e80Var;
-        org.telegram.ui.ActionBar.b6 b6Var;
-        org.telegram.ui.ActionBar.b6 b6Var2;
-        int i10;
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Components.r80 r80Var;
+        org.telegram.ui.ActionBar.c6 c6Var;
+        org.telegram.ui.ActionBar.c6 c6Var2;
+        int i11;
         hh0 hh0Var = this.d;
-        Context context = this.f38552c;
-        switch (i9) {
+        Context context = this.f38594c;
+        switch (i10) {
             case 1:
-                e80Var = new org.telegram.ui.Cells.m4(context, 23);
+                r80Var = new org.telegram.ui.Cells.k4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.e80 e80Var2 = new org.telegram.ui.Components.e80(this.f38552c, hh0Var, null, true, hh0Var.h);
-                e80Var2.setPermanent(true);
-                e80Var2.setDelegate(new fh0(this, e80Var2));
-                e80Var = e80Var2;
+                org.telegram.ui.Components.r80 r80Var2 = new org.telegram.ui.Components.r80(this.f38594c, hh0Var, null, true, hh0Var.h);
+                r80Var2.setPermanent(true);
+                r80Var2.setDelegate(new fh0(this, r80Var2));
+                r80Var = r80Var2;
                 break;
             case 3:
-                b6Var = ((org.telegram.ui.ActionBar.o2) hh0Var).resourceProvider;
-                e80Var = new org.telegram.ui.Cells.f2(context, 64, b6Var);
+                c6Var = ((org.telegram.ui.ActionBar.o2) hh0Var).resourceProvider;
+                r80Var = new org.telegram.ui.Cells.e2(context, 64, c6Var);
                 break;
             case 4:
-                e80Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.j2) null);
+                r80Var = new org.telegram.ui.Cells.x6(context, (b) null);
                 break;
             case 5:
-                e80Var = new eh0(hh0Var, context);
+                r80Var = new eh0(hh0Var, context);
                 break;
             case 6:
-                org.telegram.ui.Components.e00 e00Var = new org.telegram.ui.Components.e00(context, null);
-                e00Var.setIsSingleCell(true);
-                e00Var.setViewType(9);
-                e00Var.f27885w = false;
-                e80Var = e00Var;
+                org.telegram.ui.Components.p00 p00Var = new org.telegram.ui.Components.p00(context, null);
+                p00Var.setIsSingleCell(true);
+                p00Var.setViewType(9);
+                p00Var.f31529w = false;
+                r80Var = p00Var;
                 break;
             case 7:
-                e80Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.j2) null);
+                r80Var = new org.telegram.ui.Cells.x6(context, (b) null);
                 break;
             case 8:
-                org.telegram.ui.Cells.ba baVar = new org.telegram.ui.Cells.ba(context);
-                baVar.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
-                baVar.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23212p7, false));
-                e80Var = baVar;
+                org.telegram.ui.Cells.y9 y9Var = new org.telegram.ui.Cells.y9(context);
+                y9Var.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
+                y9Var.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23279p7, false));
+                r80Var = y9Var;
                 break;
             case 9:
-                e80Var = new org.telegram.ui.Cells.b9(context);
+                r80Var = new org.telegram.ui.Cells.y8(context);
                 break;
             case 10:
-                e80Var = new org.telegram.ui.Cells.b5(8, 6, this.f38552c, null, false);
+                r80Var = new org.telegram.ui.Cells.z4(8, 6, this.f38594c, null, false);
                 break;
             case 11:
-                b6Var2 = ((org.telegram.ui.ActionBar.o2) hh0Var).resourceProvider;
-                e80Var = new org.telegram.ui.Cells.b9(context, b6Var2);
+                c6Var2 = ((org.telegram.ui.ActionBar.o2) hh0Var).resourceProvider;
+                r80Var = new org.telegram.ui.Cells.y8(context, c6Var2);
                 break;
             default:
                 FrameLayout frameLayout = new FrameLayout(context);
-                frameLayout.addView(new zg0(context), g7.e6.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
+                frameLayout.addView(new zg0(context), i7.f6.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
                 TextView textView = new TextView(context);
-                textView.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23058g9, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.g6.w0(null, org.telegram.ui.ActionBar.g6.f23120g9, false));
                 textView.setTextSize(1, 14.0f);
                 textView.setGravity(17);
                 if (hh0Var.h) {
-                    i10 = R.string.PrimaryLinkHelpChannel;
+                    i11 = R.string.PrimaryLinkHelpChannel;
                 } else {
-                    i10 = R.string.PrimaryLinkHelp;
+                    i11 = R.string.PrimaryLinkHelp;
                 }
-                textView.setText(LocaleController.getString(i10));
-                frameLayout.addView(textView, g7.e6.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
+                textView.setText(LocaleController.getString(i11));
+                frameLayout.addView(textView, i7.f6.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
                 frameLayout.setTag(-33024);
-                e80Var = frameLayout;
+                r80Var = frameLayout;
                 break;
         }
-        return j3.r0.s(e80Var, e80Var, -1, -2);
+        return th.m(r80Var, r80Var, -1, -2);
     }
 }

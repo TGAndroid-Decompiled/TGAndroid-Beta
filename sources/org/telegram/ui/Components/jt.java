@@ -1,48 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class jt implements ActionMode.Callback {
-    public final ActionMode.Callback f29835a;
-    public final mt f29836b;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class jt implements Utilities.Callback0Return {
+    public final int f29817a;
+    public final Object f29818b;
 
-    public jt(mt mtVar, ActionMode.Callback callback) {
-        this.f29836b = mtVar;
-        this.f29835a = callback;
+    public jt(Object obj, int i10) {
+        this.f29817a = i10;
+        this.f29818b = obj;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f29836b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final Object run() {
+        boolean z10;
+        Editable text;
+        pi0[] pi0VarArr;
+        int i10 = this.f29817a;
+        Object obj = this.f29818b;
+        switch (i10) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                int i11 = EditTextBoldCursor.f26384a;
+                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((pi0VarArr = (pi0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), pi0.class)) == null || pi0VarArr.length == 0)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
+            default:
+                return ((r40) obj).getCloseIntoObject();
         }
-        try {
-            return this.f29835a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        mt mtVar = this.f29836b;
-        mtVar.copyPasteShowed = true;
-        mtVar.onContextMenuOpen();
-        return this.f29835a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        mt mtVar = this.f29836b;
-        mtVar.copyPasteShowed = false;
-        mtVar.onContextMenuClose();
-        this.f29835a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f29835a.onPrepareActionMode(actionMode, menu);
     }
 }

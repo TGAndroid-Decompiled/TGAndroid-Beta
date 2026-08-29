@@ -1,17 +1,12 @@
 package kb;
-public final class c extends h {
-    public static final c f14732c;
 
-    static {
-        ?? exc = new Exception();
-        f14732c = exc;
-        exc.setStackTrace(h.f14742b);
-    }
-
-    public static c a() {
-        if (h.f14741a) {
-            return new Exception();
-        }
-        return f14732c;
-    }
+import androidx.lifecycle.b0;
+import androidx.lifecycle.m;
+import androidx.lifecycle.s;
+import com.google.android.gms.common.api.n;
+import java.io.Closeable;
+public interface c extends Closeable, s, n {
+    @Override
+    @b0(m.ON_DESTROY)
+    void close();
 }

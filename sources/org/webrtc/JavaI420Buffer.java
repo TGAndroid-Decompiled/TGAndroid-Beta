@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import j3.r0;
+import j7.l1;
 import java.nio.ByteBuffer;
 import org.webrtc.VideoFrame;
 public class JavaI420Buffer implements VideoFrame.I420Buffer {
@@ -14,78 +14,78 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     private final int strideY;
     private final int width;
 
-    private JavaI420Buffer(int i9, int i10, ByteBuffer byteBuffer, int i11, ByteBuffer byteBuffer2, int i12, ByteBuffer byteBuffer3, int i13, Runnable runnable) {
-        this.width = i9;
-        this.height = i10;
+    private JavaI420Buffer(int i10, int i11, ByteBuffer byteBuffer, int i12, ByteBuffer byteBuffer2, int i13, ByteBuffer byteBuffer3, int i14, Runnable runnable) {
+        this.width = i10;
+        this.height = i11;
         this.dataY = byteBuffer;
         this.dataU = byteBuffer2;
         this.dataV = byteBuffer3;
-        this.strideY = i11;
-        this.strideU = i12;
-        this.strideV = i13;
+        this.strideY = i12;
+        this.strideU = i13;
+        this.strideV = i14;
         this.refCountDelegate = new RefCountDelegate(runnable);
     }
 
-    public static JavaI420Buffer allocate(int i9, int i10) {
-        int i11 = (i10 + 1) / 2;
-        int i12 = (i9 + 1) / 2;
-        int i13 = i9 * i10;
-        int i14 = i12 * i11;
-        int i15 = i13 + i14;
-        ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer((i12 * 2 * i11) + i13);
+    public static JavaI420Buffer allocate(int i10, int i11) {
+        int i12 = (i11 + 1) / 2;
+        int i13 = (i10 + 1) / 2;
+        int i14 = i10 * i11;
+        int i15 = i13 * i12;
+        int i16 = i14 + i15;
+        ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer((i13 * 2 * i12) + i14);
         nativeAllocateByteBuffer.position(0);
-        nativeAllocateByteBuffer.limit(i13);
+        nativeAllocateByteBuffer.limit(i14);
         ByteBuffer slice = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i13);
-        nativeAllocateByteBuffer.limit(i15);
+        nativeAllocateByteBuffer.position(i14);
+        nativeAllocateByteBuffer.limit(i16);
         ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i15);
-        nativeAllocateByteBuffer.limit(i15 + i14);
-        return new JavaI420Buffer(i9, i10, slice, i9, slice2, i12, nativeAllocateByteBuffer.slice(), i12, new j(0, nativeAllocateByteBuffer));
+        nativeAllocateByteBuffer.position(i16);
+        nativeAllocateByteBuffer.limit(i16 + i15);
+        return new JavaI420Buffer(i10, i11, slice, i10, slice2, i13, nativeAllocateByteBuffer.slice(), i13, new j(0, nativeAllocateByteBuffer));
     }
 
-    private static void checkCapacity(ByteBuffer byteBuffer, int i9, int i10, int i11) {
-        int e10 = e2.c.e(i10, 1, i11, i9);
-        if (byteBuffer.capacity() >= e10) {
+    private static void checkCapacity(ByteBuffer byteBuffer, int i10, int i11, int i12) {
+        int f9 = com.google.android.recaptcha.internal.a.f(i11, 1, i12, i10);
+        if (byteBuffer.capacity() >= f9) {
             return;
         }
-        StringBuilder p6 = r0.p(e10, "Buffer must be at least ", " bytes, but was ");
-        p6.append(byteBuffer.capacity());
-        throw new IllegalArgumentException(p6.toString());
+        StringBuilder o10 = l1.o(f9, "Buffer must be at least ", " bytes, but was ");
+        o10.append(byteBuffer.capacity());
+        throw new IllegalArgumentException(o10.toString());
     }
 
-    public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i9, int i10, int i11, int i12, int i13, int i14) {
-        if (i11 == i13 && i12 == i14) {
+    public static VideoFrame.Buffer cropAndScaleI420(VideoFrame.I420Buffer i420Buffer, int i10, int i11, int i12, int i13, int i14, int i15) {
+        if (i12 == i14 && i13 == i15) {
             ByteBuffer dataY = i420Buffer.getDataY();
             ByteBuffer dataU = i420Buffer.getDataU();
             ByteBuffer dataV = i420Buffer.getDataV();
-            dataY.position((i420Buffer.getStrideY() * i10) + i9);
-            int i15 = i9 / 2;
+            dataY.position((i420Buffer.getStrideY() * i11) + i10);
             int i16 = i10 / 2;
-            dataU.position((i420Buffer.getStrideU() * i16) + i15);
-            dataV.position((i420Buffer.getStrideV() * i16) + i15);
+            int i17 = i11 / 2;
+            dataU.position((i420Buffer.getStrideU() * i17) + i16);
+            dataV.position((i420Buffer.getStrideV() * i17) + i16);
             i420Buffer.retain();
-            return wrap(i13, i14, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new h(i420Buffer, 1));
+            return wrap(i14, i15, dataY.slice(), i420Buffer.getStrideY(), dataU.slice(), i420Buffer.getStrideU(), dataV.slice(), i420Buffer.getStrideV(), new h(i420Buffer, 1));
         }
-        JavaI420Buffer allocate = allocate(i13, i14);
-        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i9, i10, i11, i12, allocate.getDataY(), allocate.getStrideY(), allocate.getDataU(), allocate.getStrideU(), allocate.getDataV(), allocate.getStrideV(), i13, i14);
+        JavaI420Buffer allocate = allocate(i14, i15);
+        nativeCropAndScaleI420(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), i10, i11, i12, i13, allocate.getDataY(), allocate.getStrideY(), allocate.getDataU(), allocate.getStrideU(), allocate.getDataV(), allocate.getStrideV(), i14, i15);
         return allocate;
     }
 
-    private static native void nativeCropAndScaleI420(ByteBuffer byteBuffer, int i9, ByteBuffer byteBuffer2, int i10, ByteBuffer byteBuffer3, int i11, int i12, int i13, int i14, int i15, ByteBuffer byteBuffer4, int i16, ByteBuffer byteBuffer5, int i17, ByteBuffer byteBuffer6, int i18, int i19, int i20);
+    private static native void nativeCropAndScaleI420(ByteBuffer byteBuffer, int i10, ByteBuffer byteBuffer2, int i11, ByteBuffer byteBuffer3, int i12, int i13, int i14, int i15, int i16, ByteBuffer byteBuffer4, int i17, ByteBuffer byteBuffer5, int i18, ByteBuffer byteBuffer6, int i19, int i20, int i21);
 
-    public static JavaI420Buffer wrap(int i9, int i10, ByteBuffer byteBuffer, int i11, ByteBuffer byteBuffer2, int i12, ByteBuffer byteBuffer3, int i13, Runnable runnable) {
+    public static JavaI420Buffer wrap(int i10, int i11, ByteBuffer byteBuffer, int i12, ByteBuffer byteBuffer2, int i13, ByteBuffer byteBuffer3, int i14, Runnable runnable) {
         if (byteBuffer != null && byteBuffer2 != null && byteBuffer3 != null) {
             if (byteBuffer.isDirect() && byteBuffer2.isDirect() && byteBuffer3.isDirect()) {
                 ByteBuffer slice = byteBuffer.slice();
                 ByteBuffer slice2 = byteBuffer2.slice();
                 ByteBuffer slice3 = byteBuffer3.slice();
-                int i14 = (i9 + 1) / 2;
                 int i15 = (i10 + 1) / 2;
-                checkCapacity(slice, i9, i10, i11);
-                checkCapacity(slice2, i14, i15, i12);
-                checkCapacity(slice3, i14, i15, i13);
-                return new JavaI420Buffer(i9, i10, slice, i11, slice2, i12, slice3, i13, runnable);
+                int i16 = (i11 + 1) / 2;
+                checkCapacity(slice, i10, i11, i12);
+                checkCapacity(slice2, i15, i16, i13);
+                checkCapacity(slice3, i15, i16, i14);
+                return new JavaI420Buffer(i10, i11, slice, i12, slice2, i13, slice3, i14, runnable);
             }
             throw new IllegalArgumentException("Data buffers must be direct byte buffers.");
         }
@@ -93,8 +93,8 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     }
 
     @Override
-    public VideoFrame.Buffer cropAndScale(int i9, int i10, int i11, int i12, int i13, int i14) {
-        return cropAndScaleI420(this, i9, i10, i11, i12, i13, i14);
+    public VideoFrame.Buffer cropAndScale(int i10, int i11, int i12, int i13, int i14, int i15) {
+        return cropAndScaleI420(this, i10, i11, i12, i13, i14, i15);
     }
 
     @Override

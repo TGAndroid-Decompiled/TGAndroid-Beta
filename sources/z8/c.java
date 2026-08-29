@@ -1,34 +1,70 @@
 package z8;
 
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import n5.a0;
-public final class c implements g {
-    public final int f50365a;
-    public final f f50366b;
-    public final Runnable f50367c;
-    public final long d;
-    public final long f50368e;
-    public final TimeUnit f50369f;
+import android.os.Parcel;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.f;
+import com.google.android.gms.common.api.internal.w;
+import com.google.android.gms.common.api.q;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.messaging.r;
+public final class c extends w implements f {
+    public TaskCompletionSource d;
+    public final b[] f50794e;
 
-    public c(f fVar, Runnable runnable, long j10, long j11, TimeUnit timeUnit, int i9) {
-        this.f50365a = i9;
-        this.f50366b = fVar;
-        this.f50367c = runnable;
-        this.d = j10;
-        this.f50368e = j11;
-        this.f50369f = timeUnit;
+    public c(b[] bVarArr) {
+        super(null, false, 9004);
+        this.f50794e = bVarArr;
     }
 
     @Override
-    public final ScheduledFuture a(a0 a0Var) {
-        switch (this.f50365a) {
-            case 0:
-                f fVar = this.f50366b;
-                return fVar.f50377b.scheduleAtFixedRate(new d(fVar, this.f50367c, a0Var, 0), this.d, this.f50368e, this.f50369f);
+    public final void a(q qVar) {
+        r rVar;
+        Status status = (Status) qVar;
+        if (status.b()) {
+            this.d.setResult(null);
+            return;
+        }
+        TaskCompletionSource taskCompletionSource = this.d;
+        String str = status.f3756b;
+        str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
+        switch (status.f3755a) {
+            case 17510:
+                rVar = new r(str);
+                break;
+            case 17511:
+                rVar = new r(str);
+                break;
+            case 17512:
             default:
-                f fVar2 = this.f50366b;
-                return fVar2.f50377b.scheduleWithFixedDelay(new d(fVar2, this.f50367c, a0Var, 2), this.d, this.f50368e, this.f50369f);
+                rVar = new r(str);
+                break;
+            case 17513:
+                rVar = new r(str);
+                break;
+            case 17514:
+                rVar = new r(str);
+                break;
+        }
+        taskCompletionSource.setException(rVar);
+    }
+
+    @Override
+    public final void c(com.google.android.gms.common.api.c cVar, TaskCompletionSource taskCompletionSource) {
+        this.d = taskCompletionSource;
+        b7.a aVar = (b7.a) ((b7.b) cVar).u();
+        n6.b bVar = new n6.b(this);
+        Parcel obtain = Parcel.obtain();
+        obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
+        int i10 = b7.c.f1941a;
+        obtain.writeStrongBinder(bVar);
+        obtain.writeTypedArray(this.f50794e, 0);
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            aVar.f1940a.transact(7, obtain, obtain2, 0);
+            obtain2.readException();
+        } finally {
+            obtain.recycle();
+            obtain2.recycle();
         }
     }
 }

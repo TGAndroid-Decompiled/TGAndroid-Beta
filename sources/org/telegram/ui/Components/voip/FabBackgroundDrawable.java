@@ -8,29 +8,29 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public class FabBackgroundDrawable extends Drawable {
-    public final Paint f33418a = new Paint(1);
-    public final Paint f33419b;
-    public Bitmap f33420c;
+    public final Paint f33601a = new Paint(1);
+    public final Paint f33602b;
+    public Bitmap f33603c;
 
     public FabBackgroundDrawable() {
         Paint paint = new Paint();
-        this.f33419b = paint;
+        this.f33602b = paint;
         paint.setColor(1275068416);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i9;
-        if (this.f33420c == null) {
+        int i10;
+        if (this.f33603c == null) {
             onBoundsChange(getBounds());
         }
         int min = Math.min(getBounds().width(), getBounds().height());
-        Bitmap bitmap = this.f33420c;
+        Bitmap bitmap = this.f33603c;
         if (bitmap != null) {
-            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f33420c.getWidth() / 2), getBounds().centerY() - (this.f33420c.getHeight() / 2), this.f33419b);
+            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f33603c.getWidth() / 2), getBounds().centerY() - (this.f33603c.getHeight() / 2), this.f33602b);
         }
-        float f10 = min / 2;
-        canvas.drawCircle(f10, f10, i9 - AndroidUtilities.dp(4.0f), this.f33418a);
+        float f9 = min / 2;
+        canvas.drawCircle(f9, f9, i10 - AndroidUtilities.dp(4.0f), this.f33601a);
     }
 
     @Override
@@ -47,24 +47,24 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        int i9;
+        int i10;
         int min = Math.min(rect.width(), rect.height());
         if (min <= 0) {
-            this.f33420c = null;
+            this.f33603c = null;
             return;
         }
-        this.f33420c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
-        float f10 = min / 2;
-        new Canvas(this.f33420c).drawCircle(f10, f10, i9 - AndroidUtilities.dp(4.0f), new Paint(1));
+        this.f33603c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
+        float f9 = min / 2;
+        new Canvas(this.f33603c).drawCircle(f9, f9, i10 - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
-    public void setColor(int i9) {
-        this.f33418a.setColor(i9);
+    public void setColor(int i10) {
+        this.f33601a.setColor(i10);
         invalidateSelf();
     }
 
     @Override
-    public final void setAlpha(int i9) {
+    public final void setAlpha(int i10) {
     }
 
     @Override

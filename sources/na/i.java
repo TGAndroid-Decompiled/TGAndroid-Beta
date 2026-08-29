@@ -1,60 +1,28 @@
 package na;
-public final class i extends Number {
-    public final String f18539a;
 
-    public i(String str) {
-        this.f18539a = str;
-    }
-
-    @Override
-    public final double doubleValue() {
-        return Double.parseDouble(this.f18539a);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+import java.io.IOException;
+import java.io.StringWriter;
+public abstract class i {
+    public final l i() {
+        if (this instanceof l) {
+            return (l) this;
         }
-        if (obj instanceof i) {
-            return this.f18539a.equals(((i) obj).f18539a);
-        }
-        return false;
+        throw new IllegalStateException("Not a JSON Object: " + this);
     }
 
-    @Override
-    public final float floatValue() {
-        return Float.parseFloat(this.f18539a);
-    }
-
-    public final int hashCode() {
-        return this.f18539a.hashCode();
-    }
-
-    @Override
-    public final int intValue() {
-        String str = this.f18539a;
-        try {
-            try {
-                return Integer.parseInt(str);
-            } catch (NumberFormatException unused) {
-                return (int) Long.parseLong(str);
-            }
-        } catch (NumberFormatException unused2) {
-            return d.i(str).intValue();
-        }
-    }
-
-    @Override
-    public final long longValue() {
-        String str = this.f18539a;
-        try {
-            return Long.parseLong(str);
-        } catch (NumberFormatException unused) {
-            return d.i(str).longValue();
-        }
+    public String n() {
+        throw new UnsupportedOperationException(getClass().getSimpleName());
     }
 
     public final String toString() {
-        return this.f18539a;
+        try {
+            StringWriter stringWriter = new StringWriter();
+            va.b bVar = new va.b(stringWriter);
+            bVar.f49494n = 1;
+            pa.d.l(this, bVar);
+            return stringWriter.toString();
+        } catch (IOException e10) {
+            throw new AssertionError(e10);
+        }
     }
 }

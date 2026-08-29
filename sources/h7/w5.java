@@ -1,17 +1,17 @@
 package h7;
-public final class w5 implements q9.d {
-    public static final w5 f10164a = new Object();
-
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+public abstract class w5 {
+    public static int a(int i10, int i11) {
+        if (i11 >= 0) {
+            int i12 = i10 + (i10 >> 1) + 1;
+            if (i12 < i11) {
+                int highestOneBit = Integer.highestOneBit(i11 - 1);
+                i12 = highestOneBit + highestOneBit;
+            }
+            if (i12 < 0) {
+                return Integer.MAX_VALUE;
+            }
+            return i12;
         }
-        throw new ClassCastException();
+        throw new AssertionError("cannot store more than MAX_VALUE elements");
     }
 }

@@ -1,29 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class dt implements ViewTreeObserver.OnPreDrawListener {
-    public final int f27807a;
-    public final View f27808b;
+import java.util.ArrayList;
+public final class dt {
+    public final int f27871a;
+    public final Object f27872b;
 
-    public dt(int i9, View view) {
-        this.f27807a = i9;
-        this.f27808b = view;
+    public dt(Object obj, int i10) {
+        this.f27871a = i10;
+        this.f27872b = obj;
     }
 
-    @Override
-    public final boolean onPreDraw() {
-        switch (this.f27807a) {
+    public final void a(int i10, boolean z10) {
+        switch (this.f27871a) {
             case 0:
-                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f27808b).floatingActionMode;
-                if (g4Var != null) {
-                    g4Var.e();
-                    return true;
+                ArrayList arrayList = ((ft) this.f27872b).f28529b;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    ((dt) obj).a(i10, z10);
                 }
-                return true;
+                return;
             default:
-                ((v60) this.f27808b).invalidate();
-                return true;
+                ((Runnable) this.f27872b).run();
+                return;
         }
     }
 }

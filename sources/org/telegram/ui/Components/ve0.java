@@ -1,132 +1,190 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.TextPaint;
+import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ii1;
-import org.telegram.ui.te1;
-public final class ve0 extends WebViewClient {
-    public final int f33355a;
-    public final Object f33356b;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+public final class ve0 extends View {
+    public int f33538a;
+    public boolean f33539b;
+    public boolean f33540c;
+    public float d;
+    public hk0 f33541e;
+    public Paint f33542f;
+    public Paint h;
+    public Paint f33543n;
+    public TextPaint f33544r;
+    public Path f33545s;
+    public ue0 v;
+    public af0 f33546w;
 
-    public ve0(Object obj, int i9) {
-        this.f33355a = i9;
-        this.f33356b = obj;
-    }
-
-    public boolean a(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        Uri parse = Uri.parse(str);
-        if (!"tg".equals(parse.getScheme())) {
-            return false;
-        }
-        ((ii1) this.f33356b).getClass();
-        ((ii1) this.f33356b).finishFragment(false);
-        try {
-            Intent intent = new Intent("android.intent.action.VIEW", parse);
-            intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
-            intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
-            ApplicationLoader.applicationContext.startActivity(intent);
-            return true;
-        } catch (Exception e10) {
-            FileLog.e(e10);
-            return true;
-        }
-    }
-
-    @Override
-    public void onLoadResource(WebView webView, String str) {
-        switch (this.f33355a) {
-            case 1:
-                if (!a(str)) {
-                    super.onLoadResource(webView, str);
+    public final void a(int i10, MotionEvent motionEvent) {
+        bf0 bf0Var;
+        float x4 = motionEvent.getX();
+        float y8 = motionEvent.getY();
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f33538a != 0) {
+                    this.f33538a = 0;
                     return;
                 }
                 return;
-            default:
-                super.onLoadResource(webView, str);
-                return;
+            }
+            float min = Math.min(2.0f, (this.d - y8) / 8.0f);
+            af0 af0Var = this.f33546w;
+            int i11 = af0Var.f26765f;
+            if (i11 != 0) {
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            bf0Var = null;
+                        } else {
+                            bf0Var = af0Var.d;
+                        }
+                    } else {
+                        bf0Var = af0Var.f26763c;
+                    }
+                } else {
+                    bf0Var = af0Var.f26762b;
+                }
+            } else {
+                bf0Var = af0Var.f26761a;
+            }
+            int i12 = this.f33538a;
+            if (i12 != 1) {
+                if (i12 != 2) {
+                    if (i12 != 3) {
+                        if (i12 != 4) {
+                            if (i12 == 5) {
+                                bf0Var.f27069e = Math.max(0.0f, Math.min(100.0f, bf0Var.f27069e + min));
+                            }
+                        } else {
+                            bf0Var.d = Math.max(0.0f, Math.min(100.0f, bf0Var.d + min));
+                        }
+                    } else {
+                        bf0Var.f27068c = Math.max(0.0f, Math.min(100.0f, bf0Var.f27068c + min));
+                    }
+                } else {
+                    bf0Var.f27067b = Math.max(0.0f, Math.min(100.0f, bf0Var.f27067b + min));
+                }
+            } else {
+                bf0Var.f27066a = Math.max(0.0f, Math.min(100.0f, bf0Var.f27066a + min));
+            }
+            invalidate();
+            ue0 ue0Var = this.v;
+            if (ue0Var != null) {
+                ef0 ef0Var = ((we0) ue0Var).f34394a;
+                ef0Var.g();
+                qz qzVar = ef0Var.f28034h0;
+                if (qzVar != null) {
+                    qzVar.e(false, false, false);
+                }
+            }
+            this.d = y8;
+        } else if (this.f33538a != 0) {
+        } else {
+            hk0 hk0Var = this.f33541e;
+            this.f33538a = (int) Math.floor(com.google.android.recaptcha.internal.a.A(x4, hk0Var.f29195a, hk0Var.f29197c / 5.0f, 1.0f));
         }
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        int i9 = this.f33355a;
-        Object obj = this.f33356b;
-        switch (i9) {
-            case 0:
-                super.onPageFinished(webView, str);
-                org.telegram.ui.gt0 gt0Var = (org.telegram.ui.gt0) obj;
-                View view = gt0Var.f35292r;
-                if (!gt0Var.f35295x) {
-                    gt0Var.f35291n.setVisibility(4);
-                    gt0Var.h.setVisibility(4);
-                    view.setEnabled(true);
-                    view.setAlpha(1.0f);
-                    return;
-                }
-                return;
-            default:
-                super.onPageFinished(webView, str);
-                ii1 ii1Var = (ii1) obj;
-                jq jqVar = ii1Var.f39169c;
-                if (jqVar != null && jqVar.getVisibility() == 0) {
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    ii1Var.f39168b.getContentView().setVisibility(0);
-                    ii1Var.f39168b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(ii1Var.f39169c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(ii1Var.f39169c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(ii1Var.f39169c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(ii1Var.f39168b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(ii1Var.f39168b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(ii1Var.f39168b.getContentView(), "alpha", 0.0f, 1.0f));
-                    animatorSet.addListener(new te1(this, 3));
-                    animatorSet.setDuration(150L);
-                    animatorSet.start();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        bf0 bf0Var;
+        String format;
+        TextPaint textPaint = this.f33544r;
+        Path path = this.f33545s;
+        Paint paint = this.f33543n;
+        af0 af0Var = this.f33546w;
+        hk0 hk0Var = this.f33541e;
+        float f9 = hk0Var.f29197c / 5.0f;
+        for (int i10 = 0; i10 < 4; i10++) {
+            float f10 = hk0Var.f29195a;
+            float f11 = i10 * f9;
+            float f12 = f10 + f9 + f11;
+            float f13 = hk0Var.f29196b;
+            canvas.drawLine(f12, f13, f11 + f10 + f9, f13 + hk0Var.d, this.f33542f);
         }
+        float f14 = hk0Var.f29195a;
+        float f15 = hk0Var.f29196b;
+        canvas.drawLine(f14, f15 + hk0Var.d, f14 + hk0Var.f29197c, f15, this.h);
+        int i11 = af0Var.f26765f;
+        int i12 = 3;
+        int i13 = 2;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 != 3) {
+                        bf0Var = null;
+                    } else {
+                        paint.setColor(-13404165);
+                        bf0Var = af0Var.d;
+                    }
+                } else {
+                    paint.setColor(-15667555);
+                    bf0Var = af0Var.f26763c;
+                }
+            } else {
+                paint.setColor(-1229492);
+                bf0Var = af0Var.f26762b;
+            }
+        } else {
+            paint.setColor(-1);
+            bf0Var = af0Var.f26761a;
+        }
+        int i14 = 0;
+        while (i14 < 5) {
+            if (i14 != 0) {
+                if (i14 != 1) {
+                    if (i14 != i13) {
+                        if (i14 != i12) {
+                            if (i14 != 4) {
+                                format = "";
+                            } else {
+                                format = String.format(Locale.US, "%.2f", Float.valueOf(bf0Var.f27069e / 100.0f));
+                            }
+                        } else {
+                            format = String.format(Locale.US, "%.2f", Float.valueOf(bf0Var.d / 100.0f));
+                        }
+                    } else {
+                        format = String.format(Locale.US, "%.2f", Float.valueOf(bf0Var.f27068c / 100.0f));
+                    }
+                } else {
+                    format = String.format(Locale.US, "%.2f", Float.valueOf(bf0Var.f27067b / 100.0f));
+                }
+            } else {
+                format = String.format(Locale.US, "%.2f", Float.valueOf(bf0Var.f27066a / 100.0f));
+            }
+            canvas.drawText(format, (i14 * f9) + com.google.android.recaptcha.internal.a.A(f9, textPaint.measureText(format), 2.0f, hk0Var.f29195a), (hk0Var.f29196b + hk0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
+            i14++;
+            i12 = 3;
+            i13 = 2;
+        }
+        float[] a2 = bf0Var.a();
+        invalidate();
+        path.reset();
+        for (int i15 = 0; i15 < a2.length / 2; i15++) {
+            if (i15 == 0) {
+                int i16 = i15 * 2;
+                path.moveTo((a2[i16] * hk0Var.f29197c) + hk0Var.f29195a, ((1.0f - a2[i16 + 1]) * hk0Var.d) + hk0Var.f29196b);
+            } else {
+                int i17 = i15 * 2;
+                path.lineTo((a2[i17] * hk0Var.f29197c) + hk0Var.f29195a, ((1.0f - a2[i17 + 1]) * hk0Var.d) + hk0Var.f29196b);
+            }
+        }
+        canvas.drawPath(path, paint);
     }
 
     @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f33355a) {
-            case 0:
-                String uri = webResourceRequest.getUrl().toString();
-                if (((org.telegram.ui.gt0) this.f33356b).f35295x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
-                    Utilities.externalNetworkQueue.postRunnable(new ue0(this, uri, webResourceRequest, 0));
-                    return null;
-                }
-                return null;
-            default:
-                return super.shouldInterceptRequest(webView, webResourceRequest);
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ve0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        switch (this.f33355a) {
-            case 0:
-                if (((org.telegram.ui.gt0) this.f33356b).f35295x) {
-                    ve.e.s(webView.getContext(), str);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(webView, str);
-            default:
-                if (!a(str) && !super.shouldOverrideUrlLoading(webView, str)) {
-                    return false;
-                }
-                return true;
-        }
+    public void setDelegate(ue0 ue0Var) {
+        this.v = ue0Var;
     }
 }

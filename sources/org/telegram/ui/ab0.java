@@ -1,11 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface ab0 {
-    void a(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.EditText;
+public final class ab0 extends EditText {
+    public final int f36501a;
 
-    void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+    public ab0(Context context, int i10) {
+        super(context);
+        this.f36501a = i10;
+    }
 
-    void c(TLObject tLObject);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f36501a) {
+            case 0:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
+                }
+                return super.onTouchEvent(motionEvent);
+        }
+    }
 }

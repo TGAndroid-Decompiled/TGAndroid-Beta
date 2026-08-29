@@ -10,9 +10,9 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 import org.telegram.ui.LaunchActivity;
 public class FeedWidgetProvider extends AppWidgetProvider {
-    public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i9) {
+    public static void updateWidget(Context context, AppWidgetManager appWidgetManager, int i10) {
         Intent intent = new Intent(context, FeedWidgetService.class);
-        intent.putExtra("appWidgetId", i9);
+        intent.putExtra("appWidgetId", i10);
         intent.setData(Uri.parse(intent.toUri(1)));
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.feed_widget_layout);
         remoteViews.setRemoteAdapter(R.id.list_view, intent);
@@ -22,16 +22,16 @@ public class FeedWidgetProvider extends AppWidgetProvider {
         intent2.addFlags(67108864);
         intent2.addCategory("android.intent.category.LAUNCHER");
         remoteViews.setPendingIntentTemplate(R.id.list_view, PendingIntent.getActivity(ApplicationLoader.applicationContext, 0, intent2, 167772160));
-        appWidgetManager.updateAppWidget(i9, remoteViews);
+        appWidgetManager.updateAppWidget(i10, remoteViews);
     }
 
     @Override
     public void onDeleted(Context context, int[] iArr) {
         super.onDeleted(context, iArr);
-        for (int i9 = 0; i9 < iArr.length; i9++) {
+        for (int i10 = 0; i10 < iArr.length; i10++) {
             SharedPreferences.Editor edit = context.getSharedPreferences("shortcut_widget", 0).edit();
-            SharedPreferences.Editor remove = edit.remove("account" + iArr[i9]);
-            remove.remove("dialogId" + iArr[i9]).commit();
+            SharedPreferences.Editor remove = edit.remove("account" + iArr[i10]);
+            remove.remove("dialogId" + iArr[i10]).commit();
         }
     }
 
@@ -43,8 +43,8 @@ public class FeedWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] iArr) {
         super.onUpdate(context, appWidgetManager, iArr);
-        for (int i9 : iArr) {
-            updateWidget(context, appWidgetManager, i9);
+        for (int i10 : iArr) {
+            updateWidget(context, appWidgetManager, i10);
         }
     }
 }

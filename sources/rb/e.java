@@ -1,66 +1,60 @@
 package rb;
 
-import com.google.firebase.messaging.l;
+import p2.u;
 public final class e {
-    public final pb.d f47118a;
-    public final int f47119b;
-    public final int f47120c;
+    public static final int[] f47107e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
+    public static final e[] f47108f = a();
+    public final int f47109a;
+    public final int[] f47110b;
+    public final u[] f47111c;
     public final int d;
-    public final e f47121e;
-    public final int f47122f;
 
-    public e(l lVar, pb.d dVar, int i9, int i10, int i11, e eVar, pb.e eVar2) {
-        int i12;
-        int i13;
-        this.f47118a = dVar;
-        this.f47119b = i9;
-        pb.d dVar2 = pb.d.BYTE;
-        if (dVar != dVar2 && eVar != null) {
-            i12 = eVar.f47120c;
-        } else {
-            i12 = i10;
+    public e(int i10, int[] iArr, u... uVarArr) {
+        a5.e[] eVarArr;
+        this.f47109a = i10;
+        this.f47110b = iArr;
+        this.f47111c = uVarArr;
+        u uVar = uVarArr[0];
+        int i11 = uVar.f45494b;
+        int i12 = 0;
+        for (a5.e eVar : (a5.e[]) uVar.f45495c) {
+            i12 += (eVar.f166b + i11) * eVar.f165a;
         }
-        this.f47120c = i12;
-        this.d = i11;
-        this.f47121e = eVar;
-        boolean z10 = false;
-        if (eVar != null) {
-            i13 = eVar.f47122f;
-        } else {
-            i13 = 0;
-        }
-        if ((dVar == dVar2 && eVar == null && i12 != 0) || (eVar != null && i12 != eVar.f47120c)) {
-            z10 = true;
-        }
-        int i14 = 4;
-        i13 = (eVar == null || dVar != eVar.f47118a || z10) ? i13 + dVar.a(eVar2) + 4 : i13;
-        int ordinal = dVar.ordinal();
-        if (ordinal != 1) {
-            if (ordinal != 2) {
-                if (ordinal != 4) {
-                    if (ordinal == 6) {
-                        i13 += 13;
-                    }
-                } else {
-                    i13 += ((String) lVar.f4158b).substring(i9, i11 + i9).getBytes(((lb.e) lVar.f4159c).f16749a[i10].charset()).length * 8;
-                    if (z10) {
-                        i13 += 12;
-                    }
-                }
-                this.f47122f = i13;
-            } else if (i11 == 1) {
-                i14 = 6;
-            } else {
-                i14 = 11;
+        this.d = i12;
+    }
+
+    public static e[] a() {
+        return new e[]{new e(1, new int[0], new u(7, new a5.e[]{new a5.e(1, 19)}), new u(10, new a5.e[]{new a5.e(1, 16)}), new u(13, new a5.e[]{new a5.e(1, 13)}), new u(17, new a5.e[]{new a5.e(1, 9)})), new e(2, new int[]{6, 18}, new u(10, new a5.e[]{new a5.e(1, 34)}), new u(16, new a5.e[]{new a5.e(1, 28)}), new u(22, new a5.e[]{new a5.e(1, 22)}), new u(28, new a5.e[]{new a5.e(1, 16)})), new e(3, new int[]{6, 22}, new u(15, new a5.e[]{new a5.e(1, 55)}), new u(26, new a5.e[]{new a5.e(1, 44)}), new u(18, new a5.e[]{new a5.e(2, 17)}), new u(22, new a5.e[]{new a5.e(2, 13)})), new e(4, new int[]{6, 26}, new u(20, new a5.e[]{new a5.e(1, 80)}), new u(18, new a5.e[]{new a5.e(2, 32)}), new u(26, new a5.e[]{new a5.e(2, 24)}), new u(16, new a5.e[]{new a5.e(4, 9)})), new e(5, new int[]{6, 30}, new u(26, new a5.e[]{new a5.e(1, 108)}), new u(24, new a5.e[]{new a5.e(2, 43)}), new u(18, new a5.e[]{new a5.e(2, 15), new a5.e(2, 16)}), new u(22, new a5.e[]{new a5.e(2, 11), new a5.e(2, 12)})), new e(6, new int[]{6, 34}, new u(18, new a5.e[]{new a5.e(2, 68)}), new u(16, new a5.e[]{new a5.e(4, 27)}), new u(24, new a5.e[]{new a5.e(4, 19)}), new u(28, new a5.e[]{new a5.e(4, 15)})), new e(7, new int[]{6, 22, 38}, new u(20, new a5.e[]{new a5.e(2, 78)}), new u(18, new a5.e[]{new a5.e(4, 31)}), new u(18, new a5.e[]{new a5.e(2, 14), new a5.e(4, 15)}), new u(26, new a5.e[]{new a5.e(4, 13), new a5.e(1, 14)})), new e(8, new int[]{6, 24, 42}, new u(24, new a5.e[]{new a5.e(2, 97)}), new u(22, new a5.e[]{new a5.e(2, 38), new a5.e(2, 39)}), new u(22, new a5.e[]{new a5.e(4, 18), new a5.e(2, 19)}), new u(26, new a5.e[]{new a5.e(4, 14), new a5.e(2, 15)})), new e(9, new int[]{6, 26, 46}, new u(30, new a5.e[]{new a5.e(2, 116)}), new u(22, new a5.e[]{new a5.e(3, 36), new a5.e(2, 37)}), new u(20, new a5.e[]{new a5.e(4, 16), new a5.e(4, 17)}), new u(24, new a5.e[]{new a5.e(4, 12), new a5.e(4, 13)})), new e(10, new int[]{6, 28, 50}, new u(18, new a5.e[]{new a5.e(2, 68), new a5.e(2, 69)}), new u(26, new a5.e[]{new a5.e(4, 43), new a5.e(1, 44)}), new u(24, new a5.e[]{new a5.e(6, 19), new a5.e(2, 20)}), new u(28, new a5.e[]{new a5.e(6, 15), new a5.e(2, 16)})), new e(11, new int[]{6, 30, 54}, new u(20, new a5.e[]{new a5.e(4, 81)}), new u(30, new a5.e[]{new a5.e(1, 50), new a5.e(4, 51)}), new u(28, new a5.e[]{new a5.e(4, 22), new a5.e(4, 23)}), new u(24, new a5.e[]{new a5.e(3, 12), new a5.e(8, 13)})), new e(12, new int[]{6, 32, 58}, new u(24, new a5.e[]{new a5.e(2, 92), new a5.e(2, 93)}), new u(22, new a5.e[]{new a5.e(6, 36), new a5.e(2, 37)}), new u(26, new a5.e[]{new a5.e(4, 20), new a5.e(6, 21)}), new u(28, new a5.e[]{new a5.e(7, 14), new a5.e(4, 15)})), new e(13, new int[]{6, 34, 62}, new u(26, new a5.e[]{new a5.e(4, 107)}), new u(22, new a5.e[]{new a5.e(8, 37), new a5.e(1, 38)}), new u(24, new a5.e[]{new a5.e(8, 20), new a5.e(4, 21)}), new u(22, new a5.e[]{new a5.e(12, 11), new a5.e(4, 12)})), new e(14, new int[]{6, 26, 46, 66}, new u(30, new a5.e[]{new a5.e(3, 115), new a5.e(1, 116)}), new u(24, new a5.e[]{new a5.e(4, 40), new a5.e(5, 41)}), new u(20, new a5.e[]{new a5.e(11, 16), new a5.e(5, 17)}), new u(24, new a5.e[]{new a5.e(11, 12), new a5.e(5, 13)})), new e(15, new int[]{6, 26, 48, 70}, new u(22, new a5.e[]{new a5.e(5, 87), new a5.e(1, 88)}), new u(24, new a5.e[]{new a5.e(5, 41), new a5.e(5, 42)}), new u(30, new a5.e[]{new a5.e(5, 24), new a5.e(7, 25)}), new u(24, new a5.e[]{new a5.e(11, 12), new a5.e(7, 13)})), new e(16, new int[]{6, 26, 50, 74}, new u(24, new a5.e[]{new a5.e(5, 98), new a5.e(1, 99)}), new u(28, new a5.e[]{new a5.e(7, 45), new a5.e(3, 46)}), new u(24, new a5.e[]{new a5.e(15, 19), new a5.e(2, 20)}), new u(30, new a5.e[]{new a5.e(3, 15), new a5.e(13, 16)})), new e(17, new int[]{6, 30, 54, 78}, new u(28, new a5.e[]{new a5.e(1, 107), new a5.e(5, 108)}), new u(28, new a5.e[]{new a5.e(10, 46), new a5.e(1, 47)}), new u(28, new a5.e[]{new a5.e(1, 22), new a5.e(15, 23)}), new u(28, new a5.e[]{new a5.e(2, 14), new a5.e(17, 15)})), new e(18, new int[]{6, 30, 56, 82}, new u(30, new a5.e[]{new a5.e(5, 120), new a5.e(1, 121)}), new u(26, new a5.e[]{new a5.e(9, 43), new a5.e(4, 44)}), new u(28, new a5.e[]{new a5.e(17, 22), new a5.e(1, 23)}), new u(28, new a5.e[]{new a5.e(2, 14), new a5.e(19, 15)})), new e(19, new int[]{6, 30, 58, 86}, new u(28, new a5.e[]{new a5.e(3, 113), new a5.e(4, 114)}), new u(26, new a5.e[]{new a5.e(3, 44), new a5.e(11, 45)}), new u(26, new a5.e[]{new a5.e(17, 21), new a5.e(4, 22)}), new u(26, new a5.e[]{new a5.e(9, 13), new a5.e(16, 14)})), new e(20, new int[]{6, 34, 62, 90}, new u(28, new a5.e[]{new a5.e(3, 107), new a5.e(5, 108)}), new u(26, new a5.e[]{new a5.e(3, 41), new a5.e(13, 42)}), new u(30, new a5.e[]{new a5.e(15, 24), new a5.e(5, 25)}), new u(28, new a5.e[]{new a5.e(15, 15), new a5.e(10, 16)})), new e(21, new int[]{6, 28, 50, 72, 94}, new u(28, new a5.e[]{new a5.e(4, 116), new a5.e(4, 117)}), new u(26, new a5.e[]{new a5.e(17, 42)}), new u(28, new a5.e[]{new a5.e(17, 22), new a5.e(6, 23)}), new u(30, new a5.e[]{new a5.e(19, 16), new a5.e(6, 17)})), new e(22, new int[]{6, 26, 50, 74, 98}, new u(28, new a5.e[]{new a5.e(2, 111), new a5.e(7, 112)}), new u(28, new a5.e[]{new a5.e(17, 46)}), new u(30, new a5.e[]{new a5.e(7, 24), new a5.e(16, 25)}), new u(24, new a5.e[]{new a5.e(34, 13)})), new e(23, new int[]{6, 30, 54, 78, 102}, new u(30, new a5.e[]{new a5.e(4, 121), new a5.e(5, 122)}), new u(28, new a5.e[]{new a5.e(4, 47), new a5.e(14, 48)}), new u(30, new a5.e[]{new a5.e(11, 24), new a5.e(14, 25)}), new u(30, new a5.e[]{new a5.e(16, 15), new a5.e(14, 16)})), new e(24, new int[]{6, 28, 54, 80, 106}, new u(30, new a5.e[]{new a5.e(6, 117), new a5.e(4, 118)}), new u(28, new a5.e[]{new a5.e(6, 45), new a5.e(14, 46)}), new u(30, new a5.e[]{new a5.e(11, 24), new a5.e(16, 25)}), new u(30, new a5.e[]{new a5.e(30, 16), new a5.e(2, 17)})), new e(25, new int[]{6, 32, 58, 84, 110}, new u(26, new a5.e[]{new a5.e(8, 106), new a5.e(4, 107)}), new u(28, new a5.e[]{new a5.e(8, 47), new a5.e(13, 48)}), new u(30, new a5.e[]{new a5.e(7, 24), new a5.e(22, 25)}), new u(30, new a5.e[]{new a5.e(22, 15), new a5.e(13, 16)})), new e(26, new int[]{6, 30, 58, 86, 114}, new u(28, new a5.e[]{new a5.e(10, 114), new a5.e(2, 115)}), new u(28, new a5.e[]{new a5.e(19, 46), new a5.e(4, 47)}), new u(28, new a5.e[]{new a5.e(28, 22), new a5.e(6, 23)}), new u(30, new a5.e[]{new a5.e(33, 16), new a5.e(4, 17)})), new e(27, new int[]{6, 34, 62, 90, 118}, new u(30, new a5.e[]{new a5.e(8, 122), new a5.e(4, 123)}), new u(28, new a5.e[]{new a5.e(22, 45), new a5.e(3, 46)}), new u(30, new a5.e[]{new a5.e(8, 23), new a5.e(26, 24)}), new u(30, new a5.e[]{new a5.e(12, 15), new a5.e(28, 16)})), new e(28, new int[]{6, 26, 50, 74, 98, 122}, new u(30, new a5.e[]{new a5.e(3, 117), new a5.e(10, 118)}), new u(28, new a5.e[]{new a5.e(3, 45), new a5.e(23, 46)}), new u(30, new a5.e[]{new a5.e(4, 24), new a5.e(31, 25)}), new u(30, new a5.e[]{new a5.e(11, 15), new a5.e(31, 16)})), new e(29, new int[]{6, 30, 54, 78, 102, 126}, new u(30, new a5.e[]{new a5.e(7, 116), new a5.e(7, 117)}), new u(28, new a5.e[]{new a5.e(21, 45), new a5.e(7, 46)}), new u(30, new a5.e[]{new a5.e(1, 23), new a5.e(37, 24)}), new u(30, new a5.e[]{new a5.e(19, 15), new a5.e(26, 16)})), new e(30, new int[]{6, 26, 52, 78, 104, 130}, new u(30, new a5.e[]{new a5.e(5, 115), new a5.e(10, 116)}), new u(28, new a5.e[]{new a5.e(19, 47), new a5.e(10, 48)}), new u(30, new a5.e[]{new a5.e(15, 24), new a5.e(25, 25)}), new u(30, new a5.e[]{new a5.e(23, 15), new a5.e(25, 16)})), new e(31, new int[]{6, 30, 56, 82, 108, 134}, new u(30, new a5.e[]{new a5.e(13, 115), new a5.e(3, 116)}), new u(28, new a5.e[]{new a5.e(2, 46), new a5.e(29, 47)}), new u(30, new a5.e[]{new a5.e(42, 24), new a5.e(1, 25)}), new u(30, new a5.e[]{new a5.e(23, 15), new a5.e(28, 16)})), new e(32, new int[]{6, 34, 60, 86, 112, 138}, new u(30, new a5.e[]{new a5.e(17, 115)}), new u(28, new a5.e[]{new a5.e(10, 46), new a5.e(23, 47)}), new u(30, new a5.e[]{new a5.e(10, 24), new a5.e(35, 25)}), new u(30, new a5.e[]{new a5.e(19, 15), new a5.e(35, 16)})), new e(33, new int[]{6, 30, 58, 86, 114, 142}, new u(30, new a5.e[]{new a5.e(17, 115), new a5.e(1, 116)}), new u(28, new a5.e[]{new a5.e(14, 46), new a5.e(21, 47)}), new u(30, new a5.e[]{new a5.e(29, 24), new a5.e(19, 25)}), new u(30, new a5.e[]{new a5.e(11, 15), new a5.e(46, 16)})), new e(34, new int[]{6, 34, 62, 90, 118, 146}, new u(30, new a5.e[]{new a5.e(13, 115), new a5.e(6, 116)}), new u(28, new a5.e[]{new a5.e(14, 46), new a5.e(23, 47)}), new u(30, new a5.e[]{new a5.e(44, 24), new a5.e(7, 25)}), new u(30, new a5.e[]{new a5.e(59, 16), new a5.e(1, 17)})), new e(35, new int[]{6, 30, 54, 78, 102, 126, 150}, new u(30, new a5.e[]{new a5.e(12, 121), new a5.e(7, 122)}), new u(28, new a5.e[]{new a5.e(12, 47), new a5.e(26, 48)}), new u(30, new a5.e[]{new a5.e(39, 24), new a5.e(14, 25)}), new u(30, new a5.e[]{new a5.e(22, 15), new a5.e(41, 16)})), new e(36, new int[]{6, 24, 50, 76, 102, 128, 154}, new u(30, new a5.e[]{new a5.e(6, 121), new a5.e(14, 122)}), new u(28, new a5.e[]{new a5.e(6, 47), new a5.e(34, 48)}), new u(30, new a5.e[]{new a5.e(46, 24), new a5.e(10, 25)}), new u(30, new a5.e[]{new a5.e(2, 15), new a5.e(64, 16)})), new e(37, new int[]{6, 28, 54, 80, 106, 132, 158}, new u(30, new a5.e[]{new a5.e(17, 122), new a5.e(4, 123)}), new u(28, new a5.e[]{new a5.e(29, 46), new a5.e(14, 47)}), new u(30, new a5.e[]{new a5.e(49, 24), new a5.e(10, 25)}), new u(30, new a5.e[]{new a5.e(24, 15), new a5.e(46, 16)})), new e(38, new int[]{6, 32, 58, 84, 110, 136, 162}, new u(30, new a5.e[]{new a5.e(4, 122), new a5.e(18, 123)}), new u(28, new a5.e[]{new a5.e(13, 46), new a5.e(32, 47)}), new u(30, new a5.e[]{new a5.e(48, 24), new a5.e(14, 25)}), new u(30, new a5.e[]{new a5.e(42, 15), new a5.e(32, 16)})), new e(39, new int[]{6, 26, 54, 82, 110, 138, 166}, new u(30, new a5.e[]{new a5.e(20, 117), new a5.e(4, 118)}), new u(28, new a5.e[]{new a5.e(40, 47), new a5.e(7, 48)}), new u(30, new a5.e[]{new a5.e(43, 24), new a5.e(22, 25)}), new u(30, new a5.e[]{new a5.e(10, 15), new a5.e(67, 16)})), new e(40, new int[]{6, 30, 58, 86, 114, 142, 170}, new u(30, new a5.e[]{new a5.e(19, 118), new a5.e(6, 119)}), new u(28, new a5.e[]{new a5.e(18, 47), new a5.e(31, 48)}), new u(30, new a5.e[]{new a5.e(34, 24), new a5.e(34, 25)}), new u(30, new a5.e[]{new a5.e(20, 15), new a5.e(61, 16)}))};
+    }
+
+    public static e b(int i10) {
+        int i11 = Integer.MAX_VALUE;
+        int i12 = 0;
+        for (int i13 = 0; i13 < 34; i13++) {
+            int i14 = f47107e[i13];
+            if (i14 == i10) {
+                return c(i13 + 7);
             }
-        } else if (i11 != 1) {
-            if (i11 == 2) {
-                i14 = 7;
-            } else {
-                i14 = 10;
+            int bitCount = Integer.bitCount(i14 ^ i10);
+            if (bitCount < i11) {
+                i12 = i13 + 7;
+                i11 = bitCount;
             }
         }
-        i13 += i14;
-        this.f47122f = i13;
+        if (i11 <= 3) {
+            return c(i12);
+        }
+        return null;
+    }
+
+    public static e c(int i10) {
+        if (i10 >= 1 && i10 <= 40) {
+            return f47108f[i10 - 1];
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public final String toString() {
+        return String.valueOf(this.f47109a);
     }
 }

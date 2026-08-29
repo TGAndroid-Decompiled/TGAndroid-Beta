@@ -1,46 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class jr extends View {
-    public final TextPaint f29828a;
-    public final TextPaint f29829b;
-    public final String f29830c;
-    public final String d;
-    public final Rect f29831e;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class jr implements Interpolator {
+    public static final jr f29800f = new jr(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final jr f29801g = new jr(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final jr h = new jr(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final jr f29802i = new jr(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final jr f29803j = new jr(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final jr f29804k = new jr(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f29805l;
+    public final PointF f29806a;
+    public final PointF f29807b;
+    public final PointF f29808c;
+    public final PointF d;
+    public final PointF f29809e;
 
-    public jr(Context context, String str, String str2) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f29828a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f29829b = textPaint2;
-        this.f29831e = new Rect();
-        this.f29830c = str;
-        this.d = str2;
-        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
-        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.H6, false));
+    static {
+        new PathInterpolator(h7.c8.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f29805l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
+    public jr(float f9, float f10, float f11, float f12) {
+        PointF pointF = new PointF(f9, f10);
+        PointF pointF2 = new PointF(f11, f12);
+        this.f29808c = new PointF();
+        this.d = new PointF();
+        this.f29809e = new PointF();
+        float f13 = pointF.x;
+        if (f13 >= 0.0f && f13 <= 1.0f) {
+            float f14 = pointF2.x;
+            if (f14 >= 0.0f && f14 <= 1.0f) {
+                this.f29806a = pointF;
+                this.f29807b = pointF2;
+                return;
+            }
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
+        }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f29829b;
-        String str = this.d;
-        float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f29828a;
-        String str2 = this.f29830c;
-        float measureText2 = textPaint2.measureText(str2);
-        int length = str2.length();
-        Rect rect = this.f29831e;
-        textPaint2.getTextBounds(str2, 0, length, rect);
-        textPaint.getTextBounds(str, 0, str.length(), rect);
-        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
-        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
+    public final float getInterpolation(float f9) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i10 = 1;
+        float f10 = f9;
+        while (true) {
+            pointF = this.f29807b;
+            pointF2 = this.f29806a;
+            pointF3 = this.f29808c;
+            pointF4 = this.d;
+            pointF5 = this.f29809e;
+            if (i10 >= 14) {
+                break;
+            }
+            float f11 = pointF2.x * 3.0f;
+            pointF5.x = f11;
+            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
+            pointF4.x = f12;
+            float f13 = (1.0f - pointF5.x) - f12;
+            pointF3.x = f13;
+            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f9;
+            if (Math.abs(f14) < 0.001d) {
+                break;
+            }
+            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
+            i10++;
+        }
+        float f15 = pointF2.y * 3.0f;
+        pointF5.y = f15;
+        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
+        pointF4.y = f16;
+        float f17 = (1.0f - pointF5.y) - f16;
+        pointF3.y = f17;
+        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
+    }
+
+    public jr(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
     }
 }

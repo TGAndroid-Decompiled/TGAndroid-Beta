@@ -1,22 +1,22 @@
 package n4;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-public final class a {
-    public final int f18382a;
-    public final int f18383b;
-    public final List f18384c;
-    public final List d;
-    public final List f18385e;
-    public final List f18386f;
+import com.google.android.exoplayer2.upstream.q;
+import j3.t0;
+public abstract class a extends k {
+    public final long v;
+    public final long f17108w;
+    public g9.l f17109x;
+    public int[] f17110y;
 
-    public a(int i9, int i10, ArrayList arrayList, List list, List list2, List list3) {
-        this.f18382a = i9;
-        this.f18383b = i10;
-        this.f18384c = DesugarCollections.unmodifiableList(arrayList);
-        this.d = DesugarCollections.unmodifiableList(list);
-        this.f18385e = DesugarCollections.unmodifiableList(list2);
-        this.f18386f = DesugarCollections.unmodifiableList(list3);
+    public a(com.google.android.exoplayer2.upstream.m mVar, q qVar, t0 t0Var, int i10, Object obj, long j10, long j11, long j12, long j13, long j14) {
+        super(mVar, qVar, t0Var, i10, obj, j10, j11, j14);
+        this.v = j12;
+        this.f17108w = j13;
+    }
+
+    public final int d(int i10) {
+        int[] iArr = this.f17110y;
+        f5.a.j(iArr);
+        return iArr[i10];
     }
 }

@@ -1,46 +1,40 @@
 package d2;
 public final class b {
-    public final int f4259a;
-    public int f4260b;
-    public int f4261c;
+    public final int f5268a;
+    public int f5269b;
+    public int f5270c;
     public int d;
-    public int f4262e;
-    public int f4263f;
-    public int f4264g;
+    public int f5271e;
+    public int f5272f;
+    public int f5273g;
     public int h;
-    public int f4265i;
-    public final c f4266j;
+    public int f5274i;
+    public final c f5275j;
 
-    public b(c cVar, int i9, int i10) {
-        this.f4266j = cVar;
-        this.f4259a = i9;
-        this.f4260b = i10;
+    public b(c cVar, int i10, int i11) {
+        this.f5275j = cVar;
+        this.f5268a = i10;
+        this.f5269b = i11;
         a();
     }
 
     public final void a() {
-        c cVar = this.f4266j;
-        int[] iArr = (int[]) cVar.f4269a;
-        int[] iArr2 = (int[]) cVar.f4270b;
-        int i9 = Integer.MAX_VALUE;
+        c cVar = this.f5275j;
+        int[] iArr = (int[]) cVar.f5278a;
+        int[] iArr2 = (int[]) cVar.f5279b;
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MAX_VALUE;
-        int i12 = Integer.MIN_VALUE;
+        int i12 = Integer.MAX_VALUE;
         int i13 = Integer.MIN_VALUE;
         int i14 = Integer.MIN_VALUE;
-        int i15 = 0;
-        for (int i16 = this.f4259a; i16 <= this.f4260b; i16++) {
-            int i17 = iArr[i16];
-            i15 += iArr2[i17];
-            int i18 = (i17 >> 10) & 31;
-            int i19 = (i17 >> 5) & 31;
-            int i20 = i17 & 31;
-            if (i18 > i12) {
-                i12 = i18;
-            }
-            if (i18 < i9) {
-                i9 = i18;
-            }
+        int i15 = Integer.MIN_VALUE;
+        int i16 = 0;
+        for (int i17 = this.f5268a; i17 <= this.f5269b; i17++) {
+            int i18 = iArr[i17];
+            i16 += iArr2[i18];
+            int i19 = (i18 >> 10) & 31;
+            int i20 = (i18 >> 5) & 31;
+            int i21 = i18 & 31;
             if (i19 > i13) {
                 i13 = i19;
             }
@@ -53,17 +47,23 @@ public final class b {
             if (i20 < i11) {
                 i11 = i20;
             }
+            if (i21 > i15) {
+                i15 = i21;
+            }
+            if (i21 < i12) {
+                i12 = i21;
+            }
         }
-        this.d = i9;
-        this.f4262e = i12;
-        this.f4263f = i10;
-        this.f4264g = i13;
-        this.h = i11;
-        this.f4265i = i14;
-        this.f4261c = i15;
+        this.d = i10;
+        this.f5271e = i13;
+        this.f5272f = i11;
+        this.f5273g = i14;
+        this.h = i12;
+        this.f5274i = i15;
+        this.f5270c = i16;
     }
 
     public final int b() {
-        return ((this.f4265i - this.h) + 1) * ((this.f4264g - this.f4263f) + 1) * ((this.f4262e - this.d) + 1);
+        return ((this.f5274i - this.h) + 1) * ((this.f5273g - this.f5272f) + 1) * ((this.f5271e - this.d) + 1);
     }
 }

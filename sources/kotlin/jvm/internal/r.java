@@ -1,10 +1,22 @@
 package kotlin.jvm.internal;
-public final class r {
-    public static String a(f fVar) {
-        String obj = fVar.getClass().getGenericInterfaces()[0].toString();
-        if (obj.startsWith("kotlin.jvm.functions.")) {
-            return obj.substring(21);
+public abstract class r {
+    public static final s f13928a;
+
+    static {
+        ?? r02;
+        try {
+            r02 = (s) Class.forName("kotlin.reflect.jvm.internal.ReflectionFactoryImpl").newInstance();
+        } catch (ClassCastException | ClassNotFoundException | IllegalAccessException | InstantiationException unused) {
+            r02 = 0;
         }
-        return obj;
+        if (r02 == 0) {
+            r02 = new Object();
+        }
+        f13928a = r02;
+    }
+
+    public static e a(Class cls) {
+        f13928a.getClass();
+        return new e(cls);
     }
 }

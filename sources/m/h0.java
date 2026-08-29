@@ -10,11 +10,11 @@ public abstract class h0 {
         return view.getTextDirection();
     }
 
-    public static void c(View view, int i9) {
-        view.setTextAlignment(i9);
+    public static void c(View view, int i10) {
+        view.setTextAlignment(i10);
     }
 
-    public static void d(View view, int i9) {
-        view.setTextDirection(i9);
+    public static void d(View view, int i10) {
+        view.setTextDirection(i10);
     }
 }

@@ -1,57 +1,61 @@
 package od;
 
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class m {
-    public static final AtomicReferenceFieldUpdater f19231b = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "lastScheduledTask$volatile");
-    public static final AtomicIntegerFieldUpdater f19232c = AtomicIntegerFieldUpdater.newUpdater(m.class, "producerIndex$volatile");
-    public static final AtomicIntegerFieldUpdater d = AtomicIntegerFieldUpdater.newUpdater(m.class, "consumerIndex$volatile");
-    public static final AtomicIntegerFieldUpdater f19233e = AtomicIntegerFieldUpdater.newUpdater(m.class, "blockingTasksInBuffer$volatile");
-    public final AtomicReferenceArray f19234a = new AtomicReferenceArray(128);
-    private volatile int blockingTasksInBuffer$volatile;
-    private volatile int consumerIndex$volatile;
-    private volatile Object lastScheduledTask$volatile;
-    private volatile int producerIndex$volatile;
+public class m {
+    public static final AtomicReferenceFieldUpdater f19526a = AtomicReferenceFieldUpdater.newUpdater(m.class, Object.class, "_cur$volatile");
+    private volatile Object _cur$volatile = new o(8, false);
 
-    public final i a() {
-        i iVar;
+    public final boolean a(Runnable runnable) {
         while (true) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = d;
-            int i9 = atomicIntegerFieldUpdater.get(this);
-            if (i9 - f19232c.get(this) == 0) {
-                return null;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f19526a;
+            o oVar = (o) atomicReferenceFieldUpdater.get(this);
+            int a2 = oVar.a(runnable);
+            if (a2 == 0) {
+                return true;
             }
-            int i10 = i9 & 127;
-            if (atomicIntegerFieldUpdater.compareAndSet(this, i9, i9 + 1) && (iVar = (i) this.f19234a.getAndSet(i10, null)) != null) {
-                if (iVar.f19222b.f2981a == 1) {
-                    f19233e.decrementAndGet(this);
+            if (a2 != 1) {
+                if (a2 == 2) {
+                    return false;
                 }
-                return iVar;
+            } else {
+                o c3 = oVar.c();
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, oVar, c3) && atomicReferenceFieldUpdater.get(this) == oVar) {
+                }
             }
         }
     }
 
-    public final i b(int i9, boolean z10) {
-        int i10 = i9 & 127;
-        AtomicReferenceArray atomicReferenceArray = this.f19234a;
-        i iVar = (i) atomicReferenceArray.get(i10);
-        if (iVar != null) {
-            boolean z11 = true;
-            if (iVar.f19222b.f2981a != 1) {
-                z11 = false;
+    public final void b() {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f19526a;
+            o oVar = (o) atomicReferenceFieldUpdater.get(this);
+            if (oVar.b()) {
+                return;
             }
-            if (z11 == z10) {
-                while (!atomicReferenceArray.compareAndSet(i10, iVar, null)) {
-                    if (atomicReferenceArray.get(i10) != iVar) {
-                    }
-                }
-                if (z10) {
-                    f19233e.decrementAndGet(this);
-                }
-                return iVar;
+            o c3 = oVar.c();
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, oVar, c3) && atomicReferenceFieldUpdater.get(this) == oVar) {
             }
         }
-        return null;
+    }
+
+    public final int c() {
+        o oVar = (o) f19526a.get(this);
+        oVar.getClass();
+        long j10 = o.f19529f.get(oVar);
+        return 1073741823 & (((int) ((j10 & 1152921503533105152L) >> 30)) - ((int) (1073741823 & j10)));
+    }
+
+    public final Object d() {
+        while (true) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f19526a;
+            o oVar = (o) atomicReferenceFieldUpdater.get(this);
+            Object d = oVar.d();
+            if (d != o.f19530g) {
+                return d;
+            }
+            o c3 = oVar.c();
+            while (!atomicReferenceFieldUpdater.compareAndSet(this, oVar, c3) && atomicReferenceFieldUpdater.get(this) == oVar) {
+            }
+        }
     }
 }

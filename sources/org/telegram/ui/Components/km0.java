@@ -1,80 +1,133 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class km0 implements mk0 {
-    public final int f30202a;
-    public final int f30203b;
-    public final org.telegram.ui.ActionBar.o2 f30204c;
-    public final Object d;
+public abstract class km0 extends HorizontalScrollView {
+    public boolean f30107a;
+    public LinearLayout f30108b;
+    public ValueAnimator f30109c;
+    public boolean d;
+    public int f30110e;
+    public ValueAnimator f30111f;
 
-    public km0(Object obj, int i9, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        this.f30202a = i10;
-        this.d = obj;
-        this.f30203b = i9;
-        this.f30204c = o2Var;
+    public km0(Context context) {
+        super(context);
+        this.f30110e = -1;
+    }
+
+    public final void a(int i10) {
+        if (this.f30110e != i10) {
+            this.f30110e = i10;
+            ValueAnimator valueAnimator = this.f30111f;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            if (getScrollX() == i10) {
+                return;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i10);
+            this.f30111f = ofFloat;
+            ofFloat.addUpdateListener(new d70(this, 14));
+            this.f30111f.setInterpolator(jr.h);
+            this.f30111f.setDuration(250L);
+            this.f30111f.addListener(new zz(this, 17));
+            this.f30111f.start();
+        }
+    }
+
+    public final void b(int i10, int i11) {
+        int measuredWidth;
+        if (getChildCount() > 0) {
+            int dp = AndroidUtilities.dp(50.0f);
+            if (i10 < getScrollX() + dp) {
+                measuredWidth = i10 - dp;
+            } else {
+                if (i11 > (getMeasuredWidth() - dp) + getScrollX()) {
+                    measuredWidth = (i11 - getMeasuredWidth()) + dp;
+                } else {
+                    return;
+                }
+            }
+            a(i7.w.b(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
+        }
+    }
+
+    public final void c() {
+        boolean z10;
+        boolean z11;
+        p5 p5Var;
+        lh.x2 x2Var;
+        xi0 xi0Var;
+        ValueAnimator valueAnimator;
+        int childCount = this.f30108b.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = this.f30108b.getChildAt(i10);
+            if (childAt instanceof pv) {
+                pv pvVar = (pv) childAt;
+                if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (this.d && ((valueAnimator = this.f30109c) == null || !valueAnimator.isRunning())) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (!pvVar.f31787y && z10 && (xi0Var = pvVar.f31780e) != null && !xi0Var.f34742h0 && !z11) {
+                    pvVar.f31780e.Q(0.0f, true);
+                    pvVar.f31780e.start();
+                }
+                if (pvVar.f31787y != z10) {
+                    pvVar.f31787y = z10;
+                    if (z10) {
+                        pvVar.invalidate();
+                        cg.t1 t1Var = pvVar.f31781f;
+                        if (t1Var != null) {
+                            t1Var.invalidate();
+                        }
+                        cg.t1 t1Var2 = pvVar.f31781f;
+                        if (t1Var2 != null && (p5Var = pvVar.f31785w) != null && (x2Var = p5Var.f31593k) != null) {
+                            t1Var2.setImageReceiver(x2Var);
+                        }
+                        t9 t9Var = pvVar.d;
+                        if (t9Var != null) {
+                            t9Var.invalidate();
+                        }
+                    } else {
+                        pvVar.b();
+                    }
+                    pvVar.c();
+                }
+            }
+        }
     }
 
     @Override
-    public final void a(int i9, View view) {
-        hg.r0 r0Var;
-        switch (this.f30202a) {
-            case 0:
-                sm0 sm0Var = (sm0) this.d;
-                ArrayList arrayList = sm0Var.f32524r;
-                gh.f1 f1Var = sm0Var.d;
-                if (i9 >= 0 && i9 < arrayList.size()) {
-                    if (!UserConfig.getInstance(this.f30203b).isPremium()) {
-                        new zf.x0(this.f30204c, 24, true).show();
-                        return;
-                    }
-                    long j10 = ((pm0) arrayList.get(i9)).f31693a.h;
-                    if (sm0Var.h == j10) {
-                        r0Var = null;
-                    } else {
-                        r0Var = ((pm0) arrayList.get(i9)).f31693a;
-                    }
-                    if (sm0Var.f(r0Var)) {
-                        for (int i10 = 0; i10 < f1Var.getChildCount(); i10++) {
-                            if (f1Var.getChildAt(i10) == view) {
-                                float f10 = 50.0f;
-                                if (i10 <= 1) {
-                                    if (i10 == 0) {
-                                        f10 = 90.0f;
-                                    }
-                                    f1Var.v0(-AndroidUtilities.dp(f10), 0, null);
-                                } else if (i10 >= f1Var.getChildCount() - 2) {
-                                    if (i10 == f1Var.getChildCount() - 1) {
-                                        f10 = 80.0f;
-                                    }
-                                    f1Var.v0(AndroidUtilities.dp(f10), 0, null);
-                                }
-                            }
-                        }
-                        f1Var.M(new org.telegram.ui.yq(3));
-                        if (sm0Var.h == j10) {
-                            sm0Var.h = 0L;
-                            return;
-                        }
-                        sm0Var.h = j10;
-                        ((rm0) view).a(true, true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                zf.k1 k1Var = (zf.k1) this.d;
-                if (view instanceof org.telegram.ui.qv0) {
-                    org.telegram.ui.qv0 qv0Var = (org.telegram.ui.qv0) view;
-                    PremiumPreviewFragment.p0(this.f30203b, qv0Var.f42209f.f38610a);
-                    k1Var.showDialog(new zf.x0(this.f30204c, qv0Var.f42209f.f38610a, false));
-                    return;
-                }
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        c();
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f30107a) {
+            requestDisallowInterceptTouchEvent(false);
         }
+        c();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
+            motionEvent.getAction();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

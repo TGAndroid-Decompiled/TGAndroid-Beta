@@ -1,17 +1,18 @@
 package j7;
-public final class g7 implements q9.d {
-    public static final g7 f13802a = new Object();
+public final class g7 {
+    public final Long f11019a;
+    public final Long f11020b;
+    public final Long f11021c;
+    public final Long d;
+    public final Long f11022e;
+    public final Long f11023f;
 
-    static {
-        e2.c.u(j3.r0.r(w.class, j3.r0.i(3, j3.r0.r(w.class, j3.r0.i(2, j3.r0.r(w.class, new s(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public g7(f7 f7Var) {
+        this.f11019a = f7Var.f11005a;
+        this.f11020b = f7Var.f11006b;
+        this.f11021c = f7Var.f11007c;
+        this.d = f7Var.d;
+        this.f11022e = f7Var.f11008e;
+        this.f11023f = f7Var.f11009f;
     }
 }

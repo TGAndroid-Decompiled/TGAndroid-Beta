@@ -2,51 +2,23 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class vy extends org.telegram.ui.ActionBar.o2 {
-    public long f43607a;
-    public TLRPC.Chat f43608b;
-    public boolean f43609c;
-    public boolean d;
-    public sy f43610e;
-    public bg.y0 f43611f;
+public final class vy extends org.telegram.ui.Components.v41 {
+    public static final int f43797a = 0;
 
-    public final void T() {
-        if (this.d && getParentLayout() != null) {
-            for (org.telegram.ui.ActionBar.o2 o2Var : getParentLayout().getFragmentStack()) {
-                if (o2Var instanceof dy) {
-                    yw ywVar = ((dy) o2Var).B3;
-                    if (ywVar.c()) {
-                        ywVar.a();
-                    }
-                }
-            }
-        }
+    static {
+        org.telegram.ui.Components.v41.setup(new org.telegram.ui.Components.v41());
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new tq(this, 16));
-        this.actionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
-        FrameLayout frameLayout = new FrameLayout(context);
-        ?? i51Var = new org.telegram.ui.Components.i51(this, new a5(this, 13), new wt(this, 6), null);
-        this.f43610e = i51Var;
-        i51Var.p1();
-        this.f43610e.setBackgroundColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f22947a7, this.resourceProvider));
-        frameLayout.addView(this.f43610e, g7.e6.e(-1, -1, 119));
-        this.actionBar.setAdaptiveBackground(this.f43610e);
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public final void bindView(View view, org.telegram.ui.Components.w41 w41Var, boolean z10, org.telegram.ui.Components.k51 k51Var, org.telegram.ui.Components.u51 u51Var) {
+        wy wyVar = (wy) view;
+        wyVar.f44399b.setOnClickListener((View.OnClickListener) w41Var.G);
+        wyVar.f44401e.setOnClickListener((View.OnClickListener) w41Var.H);
+        wyVar.a(w41Var.f34294e, false);
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        this.f43608b = getMessagesController().getChat(Long.valueOf(-this.f43607a));
-        return super.onFragmentCreate();
+    public final View createView(Context context, org.telegram.ui.Components.jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new wy(context, c6Var);
     }
 }

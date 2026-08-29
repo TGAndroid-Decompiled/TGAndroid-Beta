@@ -1,77 +1,45 @@
 package tf;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
 public final class f {
-    public boolean f47862a;
-    public float f47863b;
-    public float f47864c;
-    public float d;
-    public float f47865e;
-    public float f47866f;
-    public float f47867g;
-    public boolean h;
-    public int f47868i;
-    public float f47869j;
-    public float f47870k;
-    public float f47871l;
-    public float f47872m;
+    public Bitmap f48228a;
+    public Canvas f48229b;
+    public final RectF f48230c = new RectF();
+    public final Paint d;
+    public final c6 f48231e;
+    public int f48232f;
+    public boolean f48233g;
 
-    public final f clone() {
-        ?? obj = new Object();
-        obj.f47862a = this.f47862a;
-        obj.f47863b = this.f47863b;
-        obj.f47864c = this.f47864c;
-        obj.d = this.d;
-        obj.f47865e = this.f47865e;
-        obj.f47866f = this.f47866f;
-        obj.f47867g = this.f47867g;
-        obj.h = this.h;
-        obj.f47868i = this.f47868i;
-        obj.f47869j = this.f47869j;
-        obj.f47870k = this.f47870k;
-        obj.f47871l = this.f47871l;
-        obj.f47872m = this.f47872m;
-        return obj;
+    public f(c6 c6Var) {
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f48232f = 0;
+        this.f48233g = true;
+        paint.setColor(0);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f48231e = c6Var;
     }
 
-    public final int b() {
-        return this.f47868i;
-    }
-
-    public final boolean c() {
-        return this.f47862a;
-    }
-
-    public final boolean d() {
-        return this.h;
-    }
-
-    public final void e(boolean z10, float f10, float f11, float f12, int i9, float f13, float f14, float f15, float f16, float f17, float f18, float f19, boolean z11) {
-        this.f47862a = z10;
-        this.f47863b = f10;
-        this.f47864c = f11;
-        this.f47866f = f13;
-        this.f47867g = f12;
-        this.f47868i = i9;
-        while (true) {
-            int i10 = this.f47868i;
-            if (i10 >= 0) {
-                break;
-            }
-            this.f47868i = i10 + 360;
+    public final Bitmap a(int i10, int i11) {
+        int i12 = (i10 + i11) << 10;
+        if (i12 != this.f48232f || this.f48233g) {
+            this.f48233g = false;
+            this.f48232f = i12;
+            this.f48228a = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
+            this.f48229b = new Canvas(this.f48228a);
+            RectF rectF = this.f48230c;
+            rectF.set(0.0f, 0.0f, i11, i10);
+            this.f48229b.drawColor(g6.v0(g6.f23062d6, this.f48231e));
+            this.f48229b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.d);
         }
-        while (true) {
-            int i11 = this.f47868i;
-            if (i11 >= 360) {
-                this.f47868i = i11 - 360;
-            } else {
-                this.f47869j = f16;
-                this.f47870k = f17;
-                this.d = f18;
-                this.f47865e = f19;
-                this.f47871l = f14;
-                this.f47872m = f15;
-                this.h = z11;
-                return;
-            }
-        }
+        return this.f48228a;
     }
 }

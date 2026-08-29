@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
+public final class an0 extends f2.q {
+    public final en0 f26806b;
 
-import android.content.Context;
-public final class an0 extends of.f0 {
-    public final org.telegram.ui.dy E0;
-    public final Context F0;
-    public final org.telegram.ui.mx G0;
-
-    public an0(org.telegram.ui.mx mxVar, Context context, org.telegram.ui.dy dyVar, int i9, int i10, f2.n nVar, boolean z10, org.telegram.ui.dy dyVar2, Context context2) {
-        super(context, dyVar, i9, i10, nVar, z10);
-        this.G0 = mxVar;
-        this.E0 = dyVar2;
-        this.F0 = context2;
+    public an0(en0 en0Var) {
+        this.f26806b = en0Var;
     }
 
     @Override
-    public final void l() {
-        gh.f1 f1Var;
-        int i9 = this.f19316x0;
-        super.l();
-        org.telegram.ui.mx mxVar = this.G0;
-        if (!mxVar.E0 && (f1Var = mxVar.R) != null) {
-            f1Var.u0(0);
-            mxVar.E0 = true;
+    public final boolean a(int i10, int i11) {
+        en0 en0Var = this.f26806b;
+        return ((bn0) en0Var.f28121n.get(i10)).equals(en0Var.f28122r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        en0 en0Var = this.f26806b;
+        if (((bn0) en0Var.f28121n.get(i10)).f27188a.h == ((bn0) en0Var.f28122r.get(i11)).f27188a.h) {
+            return true;
         }
-        if (h() != 0 || i9 == 0 || this.f19319z0 > 0) {
-            return;
-        }
-        mxVar.S.e(false, false);
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f26806b.f28122r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f26806b.f28121n.size();
     }
 }

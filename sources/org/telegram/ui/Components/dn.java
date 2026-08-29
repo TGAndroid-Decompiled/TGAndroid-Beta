@@ -1,67 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import java.util.ArrayList;
-public final class dn extends org.telegram.ui.Cells.c6 {
-    public final int B;
-    public final hn C;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class dn extends f2.k0 {
+    public final gj f27813r;
 
-    public dn(hn hnVar, Context context, int i9, org.telegram.ui.ActionBar.b6 b6Var, int i10) {
-        super(context, i9, null, b6Var);
-        this.C = hnVar;
-        this.B = i10;
+    public dn(gj gjVar, Context context) {
+        super(context);
+        this.f27813r = gjVar;
     }
 
     @Override
-    public final void g(fh.s sVar, ActionMode actionMode) {
-        jn jnVar = this.C.d;
-        if (!jnVar.f29784n && this.B == 11 && sVar.isFocused() && sVar.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                org.telegram.ui.qn.k8(menu, ((org.telegram.ui.qn) jnVar.f27493b.f30099b0).h, false, true, true, true);
-            }
+    public final int k(int i10, View view) {
+        int i11;
+        on onVar = (on) this.f27813r.V;
+        if (onVar.R0) {
+            i10 = -1;
         }
-    }
-
-    @Override
-    public final void i(boolean z10) {
-        jn.L(this.C.d, this, z10);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.c6 c6Var) {
-        jn.M(this.C.d, c6Var);
-    }
-
-    @Override
-    public final void k(fh.s sVar) {
-        this.C.d.f27493b.t1(sVar, true);
-    }
-
-    @Override
-    public final boolean l(ArrayList arrayList) {
-        jn jnVar = this.C.d;
-        if (arrayList.isEmpty()) {
-            return false;
+        int k9 = super.k(i10, view);
+        if (onVar.R0) {
+            k9 += AndroidUtilities.dp(160.0f);
         }
-        fh.s sVar = this.d;
-        sVar.getText().replace(sVar.getSelectionStart(), sVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-        int i9 = 0;
-        while (!arrayList.isEmpty() && i9 < jnVar.F) {
-            for (int length = jnVar.G.length - 1; length > i9; length--) {
-                CharSequence[] charSequenceArr = jnVar.G;
-                charSequenceArr[length] = charSequenceArr[length - 1];
-            }
-            jnVar.G[i9] = (CharSequence) arrayList.remove(0);
-            jnVar.I++;
-            i9++;
+        if (!onVar.R0) {
+            k9 = org.telegram.messenger.x3.z(7.0f, onVar.N0 - AndroidUtilities.statusBarHeight, k9);
         }
-        jnVar.g0();
-        jnVar.f29776g0 = (jnVar.f29787p0 + i9) - 1;
-        jnVar.f29791s.setItemAnimator(jnVar.v);
-        jnVar.f29789r.l();
-        return true;
+        if (onVar.R0 && k9 == 0 && (i11 = onVar.S0) >= 0) {
+            on.J(onVar, i11);
+            onVar.S0 = -1;
+        }
+        onVar.R0 = false;
+        return k9;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

@@ -1,3 +1,3 @@
 package ye;
-public interface b {
+public final class b {
 }

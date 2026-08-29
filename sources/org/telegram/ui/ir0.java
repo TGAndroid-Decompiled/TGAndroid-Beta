@@ -1,31 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-public final class ir0 implements Runnable {
-    public final int f39265a;
-    public final Object f39266b;
-    public final Object f39267c;
-    public final Object d;
-    public final Object f39268e;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class ir0 implements Utilities.Callback {
+    public final int f39330a;
+    public final or0 f39331b;
+    public final boolean f39332c;
 
-    public ir0(Object obj, Object obj2, Object obj3, Object obj4, int i9) {
-        this.f39265a = i9;
-        this.f39267c = obj;
-        this.f39266b = obj2;
-        this.d = obj3;
-        this.f39268e = obj4;
+    public ir0(or0 or0Var, boolean z10, int i10) {
+        this.f39330a = i10;
+        this.f39331b = or0Var;
+        this.f39332c = z10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ir0.run():void");
-    }
-
-    public ir0(org.telegram.ui.ActionBar.o2 o2Var, Object obj, TLObject tLObject, Object obj2, int i9) {
-        this.f39265a = i9;
-        this.f39267c = o2Var;
-        this.d = obj;
-        this.f39266b = tLObject;
-        this.f39268e = obj2;
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f39330a) {
+            case 0:
+                org.telegram.ui.Components.tc.F(this.f39331b.f41216b.f35647a0, this.f39332c).j();
+                return;
+            default:
+                org.telegram.ui.Components.tc.F(this.f39331b.f41216b.f35647a0, this.f39332c).j();
+                return;
+        }
     }
 }

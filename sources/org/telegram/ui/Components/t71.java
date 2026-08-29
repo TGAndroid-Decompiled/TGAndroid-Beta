@@ -1,9 +1,13 @@
 package org.telegram.ui.Components;
+public final class t71 extends f2.l {
+    public final y71 F;
 
-import android.graphics.Bitmap;
-import java.io.File;
-public interface t71 {
-    void a();
+    public t71(y71 y71Var) {
+        this.F = y71Var;
+    }
 
-    void b(File file, Bitmap bitmap, boolean z10);
+    @Override
+    public final void P(f2.n1 n1Var) {
+        this.F.invalidate();
+    }
 }

@@ -1,27 +1,35 @@
 package f7;
 
-import java.util.Map;
-public final class j implements q9.d {
-    public static final j f5706b = new j(0);
-    public static final j f5707c = new j(1);
-    public final int f5708a;
+import java.util.Iterator;
+public final class j extends f {
+    public final transient l f6666c;
+    public final transient k d;
 
-    public j(int i9) {
-        this.f5708a = i9;
+    public j(l lVar, k kVar) {
+        this.f6666c = lVar;
+        this.d = kVar;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f5708a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) obj;
-                q9.e eVar = (q9.e) obj2;
-                eVar.g(k.f5719g, entry.getKey());
-                eVar.g(k.h, entry.getValue());
-                return;
-            default:
-                q9.e eVar2 = (q9.e) obj2;
-                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
+    public final boolean contains(Object obj) {
+        if (this.f6666c.get(obj) != null) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int i(Object[] objArr) {
+        return this.d.i(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        return this.f6666c.h;
     }
 }

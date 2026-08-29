@@ -1,22 +1,23 @@
 package k2;
 
+import ag.j2;
 import android.graphics.Paint;
 public final class i extends l {
-    public a6.a d;
-    public float f14534e;
-    public a6.a f14535f;
-    public float f14536g;
+    public j2 d;
+    public float f13346e;
+    public j2 f13347f;
+    public float f13348g;
     public float h;
-    public float f14537i;
-    public float f14538j;
-    public float f14539k;
-    public Paint.Cap f14540l;
-    public Paint.Join f14541m;
-    public float f14542n;
+    public float f13349i;
+    public float f13350j;
+    public float f13351k;
+    public Paint.Cap f13352l;
+    public Paint.Join f13353m;
+    public float f13354n;
 
     @Override
     public final boolean a() {
-        if (!this.f14535f.h() && !this.d.h()) {
+        if (!this.f13347f.j() && !this.d.j()) {
             return false;
         }
         return true;
@@ -32,62 +33,62 @@ public final class i extends l {
     }
 
     public int getFillColor() {
-        return this.f14535f.f102c;
+        return this.f13347f.f558b;
     }
 
     public float getStrokeAlpha() {
-        return this.f14536g;
+        return this.f13348g;
     }
 
     public int getStrokeColor() {
-        return this.d.f102c;
+        return this.d.f558b;
     }
 
     public float getStrokeWidth() {
-        return this.f14534e;
+        return this.f13346e;
     }
 
     public float getTrimPathEnd() {
-        return this.f14538j;
+        return this.f13350j;
     }
 
     public float getTrimPathOffset() {
-        return this.f14539k;
+        return this.f13351k;
     }
 
     public float getTrimPathStart() {
-        return this.f14537i;
+        return this.f13349i;
     }
 
-    public void setFillAlpha(float f10) {
-        this.h = f10;
+    public void setFillAlpha(float f9) {
+        this.h = f9;
     }
 
-    public void setFillColor(int i9) {
-        this.f14535f.f102c = i9;
+    public void setFillColor(int i10) {
+        this.f13347f.f558b = i10;
     }
 
-    public void setStrokeAlpha(float f10) {
-        this.f14536g = f10;
+    public void setStrokeAlpha(float f9) {
+        this.f13348g = f9;
     }
 
-    public void setStrokeColor(int i9) {
-        this.d.f102c = i9;
+    public void setStrokeColor(int i10) {
+        this.d.f558b = i10;
     }
 
-    public void setStrokeWidth(float f10) {
-        this.f14534e = f10;
+    public void setStrokeWidth(float f9) {
+        this.f13346e = f9;
     }
 
-    public void setTrimPathEnd(float f10) {
-        this.f14538j = f10;
+    public void setTrimPathEnd(float f9) {
+        this.f13350j = f9;
     }
 
-    public void setTrimPathOffset(float f10) {
-        this.f14539k = f10;
+    public void setTrimPathOffset(float f9) {
+        this.f13351k = f9;
     }
 
-    public void setTrimPathStart(float f10) {
-        this.f14537i = f10;
+    public void setTrimPathStart(float f9) {
+        this.f13349i = f9;
     }
 }

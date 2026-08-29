@@ -1,80 +1,68 @@
 package f4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import d5.f0;
-import h3.g1;
-import h3.t0;
-import j3.r0;
-import java.util.Arrays;
-public final class a implements z3.b {
-    public static final Parcelable.Creator<a> CREATOR = new c.c(22);
-    public final String f5574a;
-    public final byte[] f5575b;
-    public final int f5576c;
-    public final int d;
-
-    public a(String str, byte[] bArr, int i9, int i10) {
-        this.f5574a = str;
-        this.f5575b = bArr;
-        this.f5576c = i9;
-        this.d = i10;
-    }
+import b4.e;
+import h7.h5;
+import i7.n6;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CharsetDecoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import p8.d;
+public final class a extends h5 {
+    public static final Pattern f6547c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f6548a = d.f45658c.newDecoder();
+    public final CharsetDecoder f6549b = d.f45657b.newDecoder();
 
     @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final b4.c b(e eVar, ByteBuffer byteBuffer) {
+        String str;
+        CharsetDecoder charsetDecoder = this.f6549b;
+        CharsetDecoder charsetDecoder2 = this.f6548a;
+        String str2 = null;
+        try {
+            str = charsetDecoder2.decode(byteBuffer).toString();
+        } catch (CharacterCodingException unused) {
+            try {
+                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = charBuffer;
+            } catch (CharacterCodingException unused2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = null;
+            } catch (Throwable th2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                throw th2;
+            }
+        } finally {
+            charsetDecoder2.reset();
+            byteBuffer.rewind();
         }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            if (this.f5574a.equals(aVar.f5574a) && Arrays.equals(this.f5575b, aVar.f5575b) && this.f5576c == aVar.f5576c && this.d == aVar.d) {
-                return true;
+        byte[] bArr = new byte[byteBuffer.limit()];
+        byteBuffer.get(bArr);
+        if (str == null) {
+            return new b4.c(new c(null, null, bArr));
+        }
+        Matcher matcher = f6547c.matcher(str);
+        String str3 = null;
+        for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
+            String group = matcher.group(1);
+            String group2 = matcher.group(2);
+            if (group != null) {
+                String b10 = n6.b(group);
+                b10.getClass();
+                if (!b10.equals("streamurl")) {
+                    if (b10.equals("streamtitle")) {
+                        str2 = group2;
+                    }
+                } else {
+                    str3 = group2;
+                }
             }
         }
-        return false;
-    }
-
-    @Override
-    public final byte[] getWrappedMetadataBytes() {
-        return null;
-    }
-
-    @Override
-    public final t0 getWrappedMetadataFormat() {
-        return null;
-    }
-
-    public final int hashCode() {
-        return ((((Arrays.hashCode(this.f5575b) + r0.f(527, 31, this.f5574a)) * 31) + this.f5576c) * 31) + this.d;
-    }
-
-    public final String toString() {
-        return "mdta: key=" + this.f5574a;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeString(this.f5574a);
-        parcel.writeByteArray(this.f5575b);
-        parcel.writeInt(this.f5576c);
-        parcel.writeInt(this.d);
-    }
-
-    public a(Parcel parcel) {
-        String readString = parcel.readString();
-        int i9 = f0.f4349a;
-        this.f5574a = readString;
-        this.f5575b = parcel.createByteArray();
-        this.f5576c = parcel.readInt();
-        this.d = parcel.readInt();
-    }
-
-    @Override
-    public final void populateMediaMetadata(g1 g1Var) {
+        return new b4.c(new c(str2, str3, bArr));
     }
 }

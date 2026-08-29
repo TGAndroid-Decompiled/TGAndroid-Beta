@@ -1,9 +1,13 @@
 package org.telegram.ui.Components;
-public final class fn0 {
-    public final int f28514a;
-    public int f28515b;
+public final class fn0 extends f2.l {
+    public final org.telegram.ui.ox F;
 
-    public fn0(int i9) {
-        this.f28514a = i9;
+    public fn0(org.telegram.ui.ox oxVar) {
+        this.F = oxVar;
+    }
+
+    @Override
+    public final void P(f2.n1 n1Var) {
+        this.F.invalidate();
     }
 }

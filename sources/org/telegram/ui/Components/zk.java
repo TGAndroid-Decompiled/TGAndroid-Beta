@@ -1,65 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class zk implements h81, x4, ok0 {
-    public final int f35327a;
-    public final ChatAttachAlertPhotoLayout f35328b;
+import android.content.Context;
+import android.widget.TextView;
+public final class zk extends TextView {
+    public final int f35360a;
+    public float f35361b;
+    public float f35362c;
 
-    public zk(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i9) {
-        this.f35327a = i9;
-        this.f35328b = chatAttachAlertPhotoLayout;
+    public zk(Context context, int i10) {
+        super(context);
+        this.f35360a = i10;
     }
 
     @Override
-    public void B(int i9, int i10, boolean z10) {
-        int i11 = this.f35327a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f35328b;
-        switch (i11) {
-            case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f26241m1;
-                ki kiVar = chatAttachAlertPhotoLayout.f27493b;
-                kiVar.Y0();
-                kiVar.V1.L(7, false, z10, i9, 0, 0L, kiVar.s1(), false, 0L);
+    public final float getTranslationX() {
+        switch (this.f35360a) {
+            case 0:
+                return this.f35361b;
+            default:
+                return this.f35361b;
+        }
+    }
+
+    @Override
+    public final void setTranslationX(float f9) {
+        switch (this.f35360a) {
+            case 0:
+                this.f35361b = f9;
+                setTranslationY(this.f35362c + f9);
                 return;
             default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f26241m1;
-                ki kiVar2 = chatAttachAlertPhotoLayout.f27493b;
-                kiVar2.Y0();
-                kiVar2.V1.L(4, true, z10, i9, 0, 0L, kiVar2.s1(), false, 0L);
+                this.f35361b = f9;
+                setTranslationY(this.f35362c + f9);
                 return;
         }
-    }
-
-    @Override
-    public boolean a(int i9, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f26241m1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f35328b;
-        ki kiVar = chatAttachAlertPhotoLayout.f27493b;
-        if (!kiVar.P0) {
-            if (i9 == 0 && chatAttachAlertPhotoLayout.P0 == chatAttachAlertPhotoLayout.Q0) {
-                ii iiVar = kiVar.V1;
-                if (iiVar != null) {
-                    iiVar.L(0, false, true, 0, 0, 0L, kiVar.s1(), false, 0L);
-                }
-                return true;
-            } else if (view instanceof org.telegram.ui.Cells.t5) {
-                yk0 yk0Var = chatAttachAlertPhotoLayout.E;
-                boolean z11 = !((org.telegram.ui.Cells.t5) view).a();
-                chatAttachAlertPhotoLayout.G = z11;
-                yk0Var.d(view, i9, z11);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void b(float f10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f35328b;
-        ul ulVar = chatAttachAlertPhotoLayout.L;
-        if (ulVar != null) {
-            chatAttachAlertPhotoLayout.f26284x0 = f10;
-            ulVar.setZoom(f10);
-        }
-        chatAttachAlertPhotoLayout.s0(true);
     }
 }

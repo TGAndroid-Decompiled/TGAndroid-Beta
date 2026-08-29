@@ -47,8 +47,8 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
                     this.rotatedFrameHeight = videoFrame.getRotatedHeight();
                     this.frameRotation = videoFrame.getRotation();
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -88,23 +88,23 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     @Override
-    public void setFpsReduction(float f10) {
+    public void setFpsReduction(float f9) {
         boolean z10;
         synchronized (this.layoutLock) {
-            if (f10 == 0.0f) {
+            if (f9 == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.isRenderingPaused = z10;
         }
-        super.setFpsReduction(f10);
+        super.setFpsReduction(f9);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i9, int i10, int i11) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
         ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i9 + " size: " + i10 + "x" + i11);
+        logD("surfaceChanged: format: " + i10 + " size: " + i11 + "x" + i12);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new org.telegram.ui.ActionBar.p(countDownLatch, 16), false);
+        releaseEglSurface(new org.telegram.ui.ActionBar.q(countDownLatch, 16), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

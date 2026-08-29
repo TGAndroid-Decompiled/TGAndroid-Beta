@@ -1,19 +1,15 @@
 package md;
 
-import hd.c0;
-public final class e implements c0 {
-    public final qc.h f17647a;
-
-    public e(qc.h hVar) {
-        this.f17647a = hVar;
-    }
+import kotlin.jvm.internal.q;
+public final class e extends uc.c {
+    public q f16985a;
+    public Object f16986b;
+    public int f16987c;
 
     @Override
-    public final qc.h c() {
-        return this.f17647a;
-    }
-
-    public final String toString() {
-        return "CoroutineScope(coroutineContext=" + this.f17647a + ')';
+    public final Object invokeSuspend(Object obj) {
+        this.f16986b = obj;
+        this.f16987c |= Integer.MIN_VALUE;
+        return n.a(null, null, this);
     }
 }

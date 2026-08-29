@@ -8,7 +8,7 @@ public interface AudioDeviceModule {
 
     boolean setNoiseSuppressorEnabled(boolean z10);
 
-    boolean setPreferredMicrophoneFieldDimension(float f10);
+    boolean setPreferredMicrophoneFieldDimension(float f9);
 
     void setSpeakerMute(boolean z10);
 }

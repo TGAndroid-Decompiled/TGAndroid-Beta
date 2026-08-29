@@ -1,162 +1,156 @@
 package ig;
 
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.support.v4.media.session.z;
-import org.telegram.messenger.MediaDataController;
-public final class c {
-    public final RenderNode f11148a = z.c();
-    public final RenderNode[] f11149b;
-    public final RenderNode[] f11150c;
-    public final boolean d;
-    public int f11151e;
-    public int f11152f;
-    public float f11153g;
-    public float h;
-    public long f11154i;
-    public final e f11155j;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import cg.m2;
+import i7.f6;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.g6;
+import org.telegram.ui.Components.hp;
+public final class c extends gg.d {
+    public final hp f8968r;
+    public TLRPC.TL_help_country f8969s;
+    public final TextPaint v;
+    public final m2 f8970w;
 
-    public c(e eVar, String str, int i9, boolean z10) {
-        this.f11155j = eVar;
-        int i10 = i9 + 1;
-        this.f11149b = new RenderNode[i10];
-        for (int i11 = 0; i11 < i10; i11++) {
-            RenderNode[] renderNodeArr = this.f11149b;
-            z.i();
-            renderNodeArr[i11] = z.d(str + "_down_" + i9);
-        }
-        if (i9 <= 0 && !z10) {
-            this.f11150c = this.f11149b;
+    public c(Context context, c6 c6Var) {
+        super(context, c6Var);
+        int i10;
+        TextPaint textPaint = new TextPaint();
+        this.v = textPaint;
+        this.f8970w = new m2(this, 17);
+        textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+        this.f7292f.setVisibility(8);
+        this.f7290c.setVisibility(8);
+        hp hpVar = new hp(context, 21, c6Var);
+        this.f8968r = hpVar;
+        hpVar.b(g6.B5, g6.f23171j7, g6.C5);
+        hpVar.setDrawUnchecked(true);
+        hpVar.setDrawBackgroundAsArc(10);
+        addView(hpVar);
+        hpVar.a(false, false);
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            this.f11150c = new RenderNode[i10];
-            for (int i12 = 0; i12 < i10; i12++) {
-                this.f11150c[i12] = z.c();
-            }
+            i10 = 3;
         }
-        this.d = this.f11150c == this.f11149b;
-        this.f11152f = 1;
-        this.f11151e = 1;
+        hpVar.setLayoutParams(f6.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
-    public final void a(RenderNode renderNode) {
-        boolean z10;
-        RenderNode[] renderNodeArr;
-        boolean z11;
-        int width = renderNode.getWidth();
-        int height = renderNode.getHeight();
-        float f10 = width;
-        e eVar = this.f11155j;
-        int round = Math.round((eVar.d * f10) / this.f11151e);
-        float f11 = height;
-        int round2 = Math.round((eVar.d * f11) / this.f11152f);
-        float f12 = round;
-        float f13 = f12 / f10;
-        float f14 = round2;
-        float f15 = f14 / f11;
-        int i9 = eVar.d;
-        float f16 = (f10 * i9) / f12;
-        float f17 = (f11 * i9) / f14;
-        long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
-        if (this.f11148a.hasDisplayList() && this.f11149b[0].hasDisplayList()) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        int i10 = 0;
-        while (true) {
-            int length = this.f11149b.length;
-            z11 = this.d;
-            if (i10 >= length) {
-                break;
-            }
-            z10 |= !renderNodeArr[i10].hasDisplayList();
-            if (!z11) {
-                z10 |= !this.f11150c[i10].hasDisplayList();
-            }
-            i10++;
-        }
-        if (this.f11154i != calcHash || z10) {
-            this.f11154i = calcHash;
-            int i11 = 0;
-            this.f11148a.setPosition(0, 0, width, height);
-            this.f11148a.beginRecording(width, height).drawRenderNode(renderNode);
-            this.f11148a.endRecording();
-            this.f11149b[0].setPosition(0, 0, round, round2);
-            RecordingCanvas beginRecording = this.f11149b[0].beginRecording(round, round2);
-            beginRecording.scale(f13, f15);
-            beginRecording.drawRenderNode(this.f11148a);
-            this.f11149b[0].endRecording();
-            int i12 = 0;
-            while (true) {
-                RenderNode[] renderNodeArr2 = this.f11149b;
-                if (i12 < renderNodeArr2.length) {
-                    renderNodeArr2[i12].setPosition(i11, i11, round, round2);
-                    RecordingCanvas beginRecording2 = this.f11149b[i12].beginRecording(round, round2);
-                    if (i12 > 0) {
-                        beginRecording2.drawRenderNode(this.f11149b[i11]);
-                    } else {
-                        beginRecording2.scale(f13, f15);
-                        beginRecording2.drawRenderNode(this.f11148a);
-                    }
-                    this.f11149b[i12].endRecording();
-                    if (z11) {
-                        this.f11149b[i12].setScaleX(f16);
-                        this.f11149b[i12].setScaleY(f17);
-                        this.f11149b[i12].setPivotX(0.0f);
-                        this.f11149b[i12].setPivotY(0.0f);
-                    } else {
-                        this.f11150c[i12].setPosition(0, 0, width, height);
-                        RecordingCanvas beginRecording3 = this.f11150c[i12].beginRecording(width, height);
-                        beginRecording3.scale(f16, f17);
-                        beginRecording3.drawRenderNode(this.f11149b[i12]);
-                        this.f11150c[i12].endRecording();
-                    }
-                    i12++;
-                    i11 = 0;
-                } else {
-                    return;
-                }
-            }
+    @Override
+    public final int a() {
+        return 22;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z10, boolean z11) {
+        hp hpVar = this.f8968r;
+        if (hpVar.getVisibility() == 0) {
+            hpVar.a(z10, z11);
         }
     }
 
-    public final void b(float f10, float f11) {
+    @Override
+    public final void d() {
+        int i10;
+        float f9;
+        float f10;
+        int i11;
+        float f11;
         float f12;
-        RenderNode[] renderNodeArr;
-        int i9 = this.f11151e;
-        float f13 = 0.0f;
-        if (i9 >= 2) {
-            f12 = (this.f11153g + f10) % i9;
+        float f13;
+        float f14;
+        boolean z10 = LocaleController.isRTL;
+        int i12 = 3;
+        if (z10) {
+            i10 = 5;
         } else {
-            f12 = 0.0f;
+            i10 = 3;
         }
-        this.f11153g = f12;
-        int i10 = this.f11152f;
-        if (i10 >= 2) {
-            f13 = (this.h + f11) % i10;
+        int i13 = i10 | 16;
+        if (z10) {
+            f9 = 20.0f;
+        } else {
+            f9 = 52.0f;
         }
-        this.h = f13;
-        if (this.f11155j.f11161b) {
-            this.f11148a.setTranslationX(f12);
-            this.f11148a.setTranslationY(this.h);
-            for (RenderNode renderNode : this.f11150c) {
-                renderNode.setTranslationX(-this.f11153g);
-                renderNode.setTranslationY(-this.h);
-            }
+        if (z10) {
+            f10 = 52.0f;
+        } else {
+            f10 = 20.0f;
         }
+        this.d.setLayoutParams(f6.d(-1, -2.0f, i13, f9, 0.0f, f10, 0.0f));
+        boolean z11 = LocaleController.isRTL;
+        if (z11) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        int i14 = i11 | 16;
+        if (z11) {
+            f11 = 20.0f;
+        } else {
+            f11 = 52.0f;
+        }
+        if (z11) {
+            f12 = 52.0f;
+        } else {
+            f12 = 20.0f;
+        }
+        this.f7291e.setLayoutParams(f6.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
+        boolean z12 = LocaleController.isRTL;
+        if (z12) {
+            i12 = 5;
+        }
+        int i15 = i12 | 16;
+        if (z12) {
+            f13 = 15.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        if (z12) {
+            f14 = 20.0f;
+        } else {
+            f14 = 15.0f;
+        }
+        this.f7292f.setLayoutParams(f6.d(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
     }
 
-    public final void c(float f10) {
-        this.f11149b[0].setRenderEffect(RenderEffect.createBlurEffect(e.a(f10, this.f11151e), e.a(f10, this.f11152f), Shader.TileMode.CLAMP));
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.f8969s;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f8970w);
+        if (replaceWithRestrictedEmoji != null) {
+            spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
+        } else {
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
+        }
+        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
+        if (TextUtils.isEmpty(countryName)) {
+            countryName = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) countryName);
+        this.d.k(spannableStringBuilder);
     }
 
-    public final void d(float f10, RenderEffect renderEffect) {
-        this.f11149b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(e.a(f10, this.f11151e), e.a(f10, this.f11152f), Shader.TileMode.CLAMP), renderEffect));
+    public TLRPC.TL_help_country getCountry() {
+        return this.f8969s;
     }
 
-    public final void e(RenderEffect renderEffect) {
-        this.f11149b[1].setRenderEffect(renderEffect);
+    @Override
+    public int getFullHeight() {
+        return 44;
     }
 }

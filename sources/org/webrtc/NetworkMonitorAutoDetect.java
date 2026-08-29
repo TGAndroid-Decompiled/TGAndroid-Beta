@@ -45,12 +45,12 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         private final int underlyingNetworkSubtypeForVpn;
         private final int underlyingNetworkTypeForVpn;
 
-        public NetworkState(boolean z10, int i9, int i10, int i11, int i12) {
+        public NetworkState(boolean z10, int i10, int i11, int i12, int i13) {
             this.connected = z10;
-            this.type = i9;
-            this.subtype = i10;
-            this.underlyingNetworkTypeForVpn = i11;
-            this.underlyingNetworkSubtypeForVpn = i12;
+            this.type = i10;
+            this.subtype = i11;
+            this.underlyingNetworkTypeForVpn = i12;
+            this.underlyingNetworkSubtypeForVpn = i13;
         }
 
         public int getNetworkSubType() {
@@ -104,8 +104,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         }
 
         @Override
-        public void onLosing(Network network, int i9) {
-            Logging.d("NetworkMonitorAutoDetect", "Network " + network.toString() + " is about to lose in " + i9 + "ms");
+        public void onLosing(Network network, int i10) {
+            Logging.d("NetworkMonitorAutoDetect", "Network " + network.toString() + " is about to lose in " + i10 + "ms");
         }
 
         @Override
@@ -127,13 +127,13 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("android.net.wifi.p2p.STATE_CHANGED");
             intentFilter.addAction("android.net.wifi.p2p.CONNECTION_STATE_CHANGE");
-            int i9 = Build.VERSION.SDK_INT;
-            if (i9 >= 33) {
+            int i10 = Build.VERSION.SDK_INT;
+            if (i10 >= 33) {
                 context.registerReceiver(this, intentFilter, 4);
             } else {
                 context.registerReceiver(this, intentFilter);
             }
-            if (i9 > 28) {
+            if (i10 > 28) {
                 WifiP2pManager wifiP2pManager = (WifiP2pManager) context.getSystemService("wifip2p");
                 wifiP2pManager.requestGroupInfo(wifiP2pManager.initialize(context, context.getMainLooper(), null), new WifiP2pManager.GroupInfoListener() {
                     @Override
@@ -149,8 +149,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                 try {
                     ArrayList list = Collections.list(NetworkInterface.getByName(wifiP2pGroup.getInterface()).getInetAddresses());
                     NetworkChangeDetector.IPAddress[] iPAddressArr = new NetworkChangeDetector.IPAddress[list.size()];
-                    for (int i9 = 0; i9 < list.size(); i9++) {
-                        iPAddressArr[i9] = new NetworkChangeDetector.IPAddress(((InetAddress) list.get(i9)).getAddress());
+                    for (int i10 = 0; i10 < list.size(); i10++) {
+                        iPAddressArr[i10] = new NetworkChangeDetector.IPAddress(((InetAddress) list.get(i10)).getAddress());
                     }
                     NetworkChangeDetector.NetworkInformation networkInformation = new NetworkChangeDetector.NetworkInformation(wifiP2pGroup.getInterface(), NetworkChangeDetector.ConnectionType.CONNECTION_WIFI, NetworkChangeDetector.ConnectionType.CONNECTION_NONE, 0L, iPAddressArr);
                     this.wifiP2pNetworkInfo = networkInformation;
@@ -161,8 +161,8 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
             }
         }
 
-        private void onWifiP2pStateChange(int i9) {
-            if (i9 == 1) {
+        private void onWifiP2pStateChange(int i10) {
+            if (i10 == 1) {
                 this.wifiP2pNetworkInfo = null;
                 this.observer.onNetworkDisconnect(0L);
             }
@@ -233,10 +233,10 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
         this.observer.onConnectionTypeChanged(connectionType);
     }
 
-    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z10, int i9, int i10) {
+    private static NetworkChangeDetector.ConnectionType getConnectionType(boolean z10, int i10, int i11) {
         if (z10) {
-            if (i9 == 0) {
-                switch (i10) {
+            if (i10 == 0) {
+                switch (i11) {
                     case 1:
                     case 2:
                     case 4:
@@ -264,11 +264,11 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
                     case 20:
                         return NetworkChangeDetector.ConnectionType.CONNECTION_5G;
                 }
-            } else if (i9 != 1) {
-                if (i9 != 6) {
-                    if (i9 != 7) {
-                        if (i9 != 9) {
-                            if (i9 != 17) {
+            } else if (i10 != 1) {
+                if (i10 != 6) {
+                    if (i10 != 7) {
+                        if (i10 != 9) {
+                            if (i10 != 17) {
                                 return NetworkChangeDetector.ConnectionType.CONNECTION_UNKNOWN;
                             }
                             return NetworkChangeDetector.ConnectionType.CONNECTION_VPN;
@@ -499,10 +499,10 @@ public class NetworkMonitorAutoDetect extends BroadcastReceiver implements Netwo
 
         public NetworkChangeDetector.IPAddress[] getIPAddresses(LinkProperties linkProperties) {
             NetworkChangeDetector.IPAddress[] iPAddressArr = new NetworkChangeDetector.IPAddress[linkProperties.getLinkAddresses().size()];
-            int i9 = 0;
+            int i10 = 0;
             for (LinkAddress linkAddress : linkProperties.getLinkAddresses()) {
-                iPAddressArr[i9] = new NetworkChangeDetector.IPAddress(linkAddress.getAddress().getAddress());
-                i9++;
+                iPAddressArr[i10] = new NetworkChangeDetector.IPAddress(linkAddress.getAddress().getAddress());
+                i10++;
             }
             return iPAddressArr;
         }

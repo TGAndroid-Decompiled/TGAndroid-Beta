@@ -1,22 +1,14 @@
 package org.telegram.ui;
-public final class cp implements Runnable {
-    public final int f37283a;
-    public final dp f37284b;
+public final class cp implements s60 {
+    public final kp f37187a;
 
-    public cp(dp dpVar, int i9) {
-        this.f37283a = i9;
-        this.f37284b = dpVar;
+    public cp(kp kpVar) {
+        this.f37187a = kpVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37283a) {
-            case 0:
-                this.f37284b.f37576x.d.L = false;
-                return;
-            default:
-                this.f37284b.f37576x.d.L = false;
-                return;
-        }
+    public final void a(t60 t60Var, long j10) {
+        kp kpVar = this.f37187a;
+        kpVar.Y(kpVar.getMessagesController().getChat(Long.valueOf(j10)), t60Var);
     }
 }

@@ -1,40 +1,78 @@
 package org.telegram.ui;
+public final class ks0 extends org.telegram.ui.Components.x61 {
+    public final PhotoViewer f40004i0;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.OrientationEventListener;
-public final class ks0 extends OrientationEventListener {
-    public final PhotoViewer f39916a;
-
-    public ks0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f39916a = photoViewer;
+    public ks0(PhotoViewer photoViewer) {
+        this.f40004i0 = photoViewer;
     }
 
     @Override
-    public final void onOrientationChanged(int i9) {
-        ps0 ps0Var;
-        Activity activity;
-        int i10;
-        PhotoViewer photoViewer = this.f39916a;
-        if (photoViewer.S3 != null && (ps0Var = photoViewer.f35763u2) != null && ps0Var.getVisibility() == 0 && (activity = photoViewer.f35797y) != null && (i10 = photoViewer.U3) != 0) {
-            if (i10 == 1) {
-                if (i9 >= 240 && i9 <= 300) {
-                    photoViewer.V3 = true;
-                } else if (photoViewer.V3 && i9 > 0) {
-                    if (i9 >= 330 || i9 <= 30) {
-                        activity.setRequestedOrientation(photoViewer.T3);
-                        photoViewer.U3 = 0;
-                        photoViewer.V3 = false;
-                    }
-                }
-            } else if (i9 > 0 && (i9 >= 330 || i9 <= 30)) {
-                photoViewer.V3 = true;
-            } else if (photoViewer.V3 && i9 >= 240 && i9 <= 300) {
-                activity.setRequestedOrientation(photoViewer.T3);
-                photoViewer.U3 = 0;
-                photoViewer.V3 = false;
+    public final void C() {
+        super.C();
+        PhotoViewer photoViewer = this.f40004i0;
+        if (photoViewer.f35795q4 == 0) {
+            PhotoViewer.Y(photoViewer, false);
+        }
+        if (!photoViewer.J8) {
+            d1.f.D(o());
+            d1.f.x(false);
+        }
+    }
+
+    @Override
+    public final void D() {
+        super.D();
+        PhotoViewer photoViewer = this.f40004i0;
+        PhotoViewer.Y(photoViewer, true);
+        if (!photoViewer.J8) {
+            d1.f.D(o());
+            d1.f.x(true);
+        }
+    }
+
+    @Override
+    public final void L(long j10) {
+        M(j10, false);
+        PhotoViewer photoViewer = this.f40004i0;
+        if (photoViewer.f35765n1) {
+            PhotoViewer.Z(photoViewer, j10);
+        }
+        if (!photoViewer.J8) {
+            d1.f.D(j10);
+        }
+    }
+
+    @Override
+    public final void R(float f9) {
+        super.R(f9);
+        if (!this.f40004i0.J8) {
+            d1.f.z(f9);
+        }
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        j3.x1 playbackParameters;
+        super.onRenderedFirstFrame();
+        PhotoViewer photoViewer = this.f40004i0;
+        boolean z10 = true;
+        photoViewer.N = true;
+        if (photoViewer.f35875z2) {
+            photoViewer.f35647a0.invalidate();
+        }
+        photoViewer.z3();
+        if (!d1.f.u() && !photoViewer.f35799r) {
+            z10 = false;
+        }
+        P(z10);
+        if (!photoViewer.J8) {
+            d1.f.D(o());
+            j3.k0 k0Var = this.d;
+            float f9 = 1.0f;
+            if (k0Var != null && (playbackParameters = k0Var.getPlaybackParameters()) != null) {
+                f9 = playbackParameters.f10848a;
             }
+            d1.f.z(f9);
         }
     }
 }

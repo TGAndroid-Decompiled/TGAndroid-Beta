@@ -9,34 +9,34 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class e3 extends Drawable {
-    public final Paint f22897a;
-    public final Rect f22898b;
-    public final Rect f22899c;
+    public final Paint f22893a;
+    public final Rect f22894b;
+    public final Rect f22895c;
 
     public e3() {
         Paint paint = new Paint(1);
-        this.f22897a = paint;
-        this.f22898b = new Rect();
-        this.f22899c = new Rect();
+        this.f22893a = paint;
+        this.f22894b = new Rect();
+        this.f22895c = new Rect();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setColor(-16777216);
     }
 
-    public final void a(int i9) {
-        Rect rect = this.f22898b;
-        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i9) {
+    public final void a(int i10) {
+        Rect rect = this.f22894b;
+        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
             return;
         }
-        rect.set(0, 0, 0, i9);
+        rect.set(0, 0, 0, i10);
         onBoundsChange(getBounds());
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Rect rect = this.f22899c;
+        Rect rect = this.f22895c;
         if (!rect.isEmpty()) {
-            Paint paint = this.f22897a;
+            Paint paint = this.f22893a;
             if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
                 canvas.drawRect(rect, paint);
             }
@@ -45,7 +45,7 @@ public final class e3 extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f22897a.getAlpha();
+        return this.f22893a.getAlpha();
     }
 
     @Override
@@ -56,24 +56,24 @@ public final class e3 extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        Rect rect2 = this.f22899c;
+        Rect rect2 = this.f22895c;
         rect2.set(rect);
-        int i9 = rect2.left;
-        Rect rect3 = this.f22898b;
-        rect2.left = Math.max(0, rect3.left) + i9;
+        int i10 = rect2.left;
+        Rect rect3 = this.f22894b;
+        rect2.left = Math.max(0, rect3.left) + i10;
         rect2.top = Math.max(0, rect3.top) + rect2.top;
         rect2.right -= Math.max(0, rect3.right);
         rect2.bottom -= Math.max(0, rect3.bottom);
     }
 
     @Override
-    public final void setAlpha(int i9) {
-        this.f22897a.setAlpha(i9);
+    public final void setAlpha(int i10) {
+        this.f22893a.setAlpha(i10);
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22897a.setColorFilter(colorFilter);
+        this.f22893a.setColorFilter(colorFilter);
     }
 }

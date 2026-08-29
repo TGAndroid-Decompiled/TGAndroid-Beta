@@ -1,61 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class mo0 extends org.telegram.ui.Components.wk0 {
-    public final int T2;
-    public final uo0 U2;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class mo0 implements Utilities.Callback {
+    public final int f40615a;
+    public final no0 f40616b;
 
-    public mo0(uo0 uo0Var, Context context, org.telegram.ui.ActionBar.b6 b6Var, int i9) {
-        super(context, b6Var);
-        this.U2 = uo0Var;
-        this.T2 = i9;
+    public mo0(no0 no0Var, int i10) {
+        this.f40615a = i10;
+        this.f40616b = no0Var;
     }
 
     @Override
-    public final Integer W0(int i9) {
-        uo0 uo0Var = this.U2;
-        if ((i9 >= uo0Var.P && i9 < uo0Var.Q) || (i9 >= uo0Var.R && i9 < uo0Var.S)) {
-            return 0;
-        }
-        return super.W0(i9);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        uo0 uo0Var = this.U2;
-        O0(canvas, uo0Var.P, Math.max(uo0Var.S, uo0Var.Q) - 1, org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f23001d6, this.f34260l2), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        gh.n7 n7Var;
-        super.onLayout(z10, i9, i10, i11, i12);
-        uo0 uo0Var = this.U2;
-        zo0 zo0Var = uo0Var.f43287f0;
-        uo0.a(uo0Var);
-        if (uo0Var.B != null) {
-            if (uo0Var.A != null && uo0Var.c()) {
-                uo0Var.A.g(false);
+    public final void run(Object obj) {
+        TL_stars.StarGift starGift;
+        int i10;
+        to0 to0Var;
+        xo0 xo0Var;
+        to0 to0Var2;
+        switch (this.f40615a) {
+            case 0:
+                Integer num = (Integer) obj;
+                no0 no0Var = this.f40616b;
+                to0 to0Var3 = no0Var.f40855e;
+                if (num.intValue() == 0) {
+                    starGift = null;
+                } else {
+                    starGift = (TL_stars.StarGift) to0Var3.D.get(num);
+                }
+                to0Var3.B = starGift;
+                yo0 yo0Var = to0Var3.f43077f0;
+                if (starGift == null) {
+                    ih.b5 b5Var = to0Var3.A;
+                    if (b5Var != null) {
+                        b5Var.f();
+                        to0Var3.A = null;
+                    }
+                } else {
+                    ih.b5 b5Var2 = to0Var3.A;
+                    if (b5Var2 == null || b5Var2.f9044b != starGift.f22619id) {
+                        i10 = ((org.telegram.ui.ActionBar.o2) yo0Var).currentAccount;
+                        ih.b5 b5Var3 = new ih.b5(to0Var3.B.f22619id, i10, new mo0(no0Var, 2));
+                        to0Var3.A = b5Var3;
+                        b5Var3.g(false);
+                    }
+                }
+                to0Var3.e();
+                if (yo0Var.f44951y.getCurrentPosition() == 1) {
+                    to0Var = yo0Var.h;
+                } else {
+                    to0Var = yo0Var.f44945f;
+                }
+                to0Var.e();
                 return;
-            }
-            return;
+            case 1:
+                to0 to0Var4 = this.f40616b.f40855e;
+                to0Var4.f43078n = ((Integer) obj).intValue();
+                to0Var4.f43080s = null;
+                to0Var4.v = null;
+                to0Var4.f43083y = null;
+                to0Var4.i(true);
+                to0Var4.h();
+                to0Var4.f();
+                so0 so0Var = to0Var4.f43082x;
+                if (so0Var != null) {
+                    so0Var.invalidate();
+                }
+                yo0 yo0Var2 = to0Var4.f43077f0;
+                to0 to0Var5 = yo0Var2.h;
+                if (to0Var5 != null && (xo0Var = to0Var5.f43067a) != null && (to0Var2 = yo0Var2.f44945f) != null) {
+                    xo0Var.a(to0Var2.f43078n);
+                    return;
+                }
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                this.f40616b.f40855e.e();
+                return;
         }
-        if (this.T2 == 1) {
-            n7Var = zo0Var.f45194c;
-        } else {
-            n7Var = zo0Var.f45193b;
-        }
-        if (n7Var != null && uo0Var.c()) {
-            n7Var.a();
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, i10);
-        uo0.a(this.U2);
     }
 }

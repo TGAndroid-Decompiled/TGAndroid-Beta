@@ -1,110 +1,59 @@
 package jh;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.eu0;
-import org.telegram.ui.Components.n71;
-import org.telegram.ui.Components.uq0;
-import org.telegram.ui.Components.yq0;
-import org.telegram.ui.Components.zq0;
-public final class a extends n71 {
-    public final int P = 0;
-    public Object Q;
-    public final FrameLayout R;
+import android.text.SpannableStringBuilder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.gs;
+import org.telegram.ui.Components.ls;
+public final class a implements Runnable {
+    public final int f11699a = 0;
+    public final org.telegram.ui.ActionBar.c6 f11700b;
+    public final Context f11701c;
 
-    public a(zq0 zq0Var, Context context, yq0 yq0Var) {
-        super(context, null);
-        this.R = zq0Var;
-        this.Q = yq0Var;
+    public a(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f11701c = context;
+        this.f11700b = c6Var;
     }
 
     @Override
-    public boolean i(MotionEvent motionEvent) {
-        switch (this.P) {
+    public final void run() {
+        switch (this.f11699a) {
             case 0:
-                return !((uq0) this.R).C.f28178y1;
+                new z9(this.f11701c, this.f11700b).show();
+                return;
             default:
-                return super.i(motionEvent);
-        }
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        switch (this.P) {
-            case 0:
-                uq0 uq0Var = (uq0) this.R;
-                String currentLang = uq0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.Q, currentLang)) {
-                    this.Q = currentLang;
-                    uq0Var.C.L0();
-                    return;
+                org.telegram.ui.ActionBar.c2[] c2VarArr = new org.telegram.ui.ActionBar.c2[1];
+                String string = LocaleController.getString(R.string.AppsTabInfoText);
+                gs gsVar = new gs(c2VarArr, 0);
+                org.telegram.ui.ActionBar.c6 c6Var = this.f11700b;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, c6Var, gsVar));
+                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
+                while (true) {
+                    boolean find = matcher.find();
+                    Context context = this.f11701c;
+                    if (find) {
+                        replaceTags.setSpan(new org.telegram.ui.r0(c2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
+                    } else {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+                        String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
+                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22714a;
+                        c2Var.N = string2;
+                        c2Var.P = replaceTags;
+                        alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
+                        c2VarArr[0] = alertDialog$Builder.o();
+                        return;
+                    }
                 }
-                return;
-            default:
-                ((yq0) this.Q).d.J0(((zq0) this.R).f44301n.getAnimatingIndicatorProgress());
-                return;
         }
     }
 
-    @Override
-    public void x(int i9) {
-        switch (this.P) {
-            case 0:
-                uq0 uq0Var = (uq0) this.R;
-                String currentLang = uq0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.Q, currentLang)) {
-                    this.Q = currentLang;
-                    uq0Var.C.L0();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void y(int i9, boolean z10) {
-        switch (this.P) {
-            case 1:
-                int i10 = ((zq0) this.R).f44301n.U.get(i9, -1);
-                eu0 eu0Var = ((yq0) this.Q).d;
-                if (i10 <= 0) {
-                    eu0.t(eu0Var, 8, z10);
-                    return;
-                } else {
-                    eu0.t(eu0Var, eu0Var.i1(i10).f27810a, z10);
-                    return;
-                }
-            default:
-                super.y(i9, z10);
-                return;
-        }
-    }
-
-    @Override
-    public final void z(int i9) {
-        switch (this.P) {
-            case 0:
-                uq0 uq0Var = (uq0) this.R;
-                String currentLang = uq0Var.getCurrentLang();
-                if (!TextUtils.equals((String) this.Q, currentLang)) {
-                    this.Q = currentLang;
-                    uq0Var.C.L0();
-                    return;
-                }
-                return;
-            default:
-                ((zq0) this.R).f44301n.U.get(i9, -1);
-                ((yq0) this.Q).d.J0(1.0f);
-                return;
-        }
-    }
-
-    public a(uq0 uq0Var, Context context) {
-        super(context, null);
-        this.R = uq0Var;
+    public a(ls lsVar, org.telegram.ui.ActionBar.c6 c6Var, Context context) {
+        this.f11700b = c6Var;
+        this.f11701c = context;
     }
 }

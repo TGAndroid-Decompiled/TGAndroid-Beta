@@ -53,10 +53,10 @@ public class OneUIUtilities {
         if (intValue < 100000) {
             return false;
         }
-        int i9 = intValue - 90000;
-        oneUIEncodedVersion = i9;
-        oneUIMajorVersion = i9 / 10000;
-        oneUIMinorVersion = (i9 % 10000) / 100.0f;
+        int i10 = intValue - 90000;
+        oneUIEncodedVersion = i10;
+        oneUIMajorVersion = i10 / 10000;
+        oneUIMinorVersion = (i10 % 10000) / 100.0f;
         isOneUI = Boolean.TRUE;
         return isOneUI.booleanValue();
     }

@@ -1,55 +1,199 @@
 package z6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.Locale;
-public final class m extends y5.a {
-    public static final Parcelable.Creator<m> CREATOR = new w7.i(25);
-    public final f f50336a;
-    public final long f50337b;
-    public final int f50338c;
-    public final String d;
-    public final e f50339e;
-    public final boolean f50340f;
-    public final int h;
-    public final int f50341n;
-    public final String f50342r;
+import j$.util.List;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+import java.util.function.UnaryOperator;
+public abstract class m extends h implements List, RandomAccess, j$.util.List {
+    public static final i f50736b = new i(x.f50770e, 0);
 
-    public m(f fVar, long j10, int i9, String str, e eVar, boolean z10, int i10, int i11, String str2) {
-        this.f50336a = fVar;
-        this.f50337b = j10;
-        this.f50338c = i9;
-        this.d = str;
-        this.f50339e = eVar;
-        this.f50340f = z10;
-        this.h = i10;
-        this.f50341n = i11;
-        this.f50342r = str2;
+    public static x t(int i10, Object[] objArr) {
+        if (i10 == 0) {
+            return x.f50770e;
+        }
+        return new x(i10, objArr);
     }
 
-    public final String toString() {
-        Locale locale = Locale.US;
-        return "UsageInfo[documentId=" + this.f50336a + ", timestamp=" + this.f50337b + ", usageType=" + this.f50338c + ", status=" + this.f50341n + "]";
+    public static x u(Object[] objArr) {
+        if (objArr.length == 0) {
+            return x.f50770e;
+        }
+        Object[] objArr2 = (Object[]) objArr.clone();
+        int length = objArr2.length;
+        for (int i10 = 0; i10 < length; i10++) {
+            if (objArr2[i10] == null) {
+                throw new NullPointerException(j7.l1.k(i10, "at index "));
+            }
+        }
+        return t(length, objArr2);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.k(parcel, 1, this.f50336a, i9);
-        p8.s(parcel, 2, 8);
-        parcel.writeLong(this.f50337b);
-        p8.s(parcel, 3, 4);
-        parcel.writeInt(this.f50338c);
-        p8.l(parcel, 4, this.d);
-        p8.k(parcel, 5, this.f50339e, i9);
-        p8.s(parcel, 6, 4);
-        parcel.writeInt(this.f50340f ? 1 : 0);
-        p8.s(parcel, 7, 4);
-        parcel.writeInt(this.h);
-        p8.s(parcel, 8, 4);
-        parcel.writeInt(this.f50341n);
-        p8.l(parcel, 9, this.f50342r);
-        p8.r(parcel, q10);
+    public final void add(int i10, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i10, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i10 = 0; i10 < size; i10++) {
+                            if (a.h(get(i10), list.get(i10))) {
+                            }
+                        }
+                        return true;
+                    }
+                    i listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (it.hasNext()) {
+                                if (!a.h(listIterator.next(), it.next())) {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i10 = 1;
+        for (int i11 = 0; i11 < size; i11++) {
+            i10 = (i10 * 31) + get(i11).hashCode();
+        }
+        return i10;
+    }
+
+    @Override
+    public int i(Object[] objArr) {
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            objArr[i10] = get(i10);
+        }
+        return size;
+    }
+
+    public int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i10 = 0; i10 < size; i10++) {
+            if (obj.equals(get(i10))) {
+                return i10;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    public int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final d0 p() {
+        return listIterator(0);
+    }
+
+    public m r() {
+        if (size() <= 1) {
+            return this;
+        }
+        return new k(this);
+    }
+
+    @Override
+    public final Object remove(int i10) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
+    }
+
+    @Override
+    public m subList(int i10, int i11) {
+        a.m(i10, i11, size());
+        int i12 = i11 - i10;
+        if (i12 == size()) {
+            return this;
+        }
+        if (i12 == 0) {
+            return x.f50770e;
+        }
+        return new l(this, i10, i12);
+    }
+
+    @Override
+    public final Object set(int i10, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void sort(Comparator comparator) {
+        List.CC.$default$sort(this, comparator);
+    }
+
+    @Override
+    public final i listIterator(int i10) {
+        int size = size();
+        if (i10 >= 0 && i10 <= size) {
+            if (isEmpty()) {
+                return f50736b;
+            }
+            return new i(this, i10);
+        }
+        throw new IndexOutOfBoundsException(a.n(i10, size, "index"));
     }
 }

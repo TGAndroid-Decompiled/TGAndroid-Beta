@@ -1,351 +1,191 @@
 package w3;
 
-import d5.f0;
-import h3.s0;
-import h3.t0;
-import java.util.Arrays;
-import java.util.Collections;
-public final class e implements h {
-    public static final byte[] v = {73, 68, 51};
-    public final boolean f48529a;
-    public final String d;
-    public String f48532e;
-    public m3.w f48533f;
-    public m3.w f48534g;
-    public boolean f48537k;
-    public boolean f48538l;
-    public int f48541o;
-    public boolean f48542p;
-    public int f48544r;
-    public m3.w f48546t;
-    public long f48547u;
-    public final d5.x f48530b = new d5.x(new byte[7], 7);
-    public final d5.y f48531c = new d5.y(Arrays.copyOf(v, 10));
-    public int h = 0;
-    public int f48535i = 0;
-    public int f48536j = 256;
-    public int f48539m = -1;
-    public int f48540n = -1;
-    public long f48543q = -9223372036854775807L;
-    public long f48545s = -9223372036854775807L;
+import android.util.Pair;
+import f5.d0;
+import f5.w;
+import i7.h0;
+import l4.v0;
+public abstract class e {
+    public static final byte[] f49642a;
 
-    public e(String str, boolean z10) {
-        this.f48529a = z10;
-        this.d = str;
+    static {
+        int i10 = d0.f6579a;
+        f49642a = "OpusHead".getBytes(p8.d.f45658c);
     }
 
-    @Override
-    public final void g(d5.y yVar) {
-        int i9;
-        int i10;
-        byte b10;
-        boolean z10;
-        int i11;
-        this.f48533f.getClass();
-        int i12 = f0.f4349a;
-        while (yVar.a() > 0) {
-            int i13 = this.h;
-            d5.y yVar2 = this.f48531c;
-            int i14 = 0;
-            d5.x xVar = this.f48530b;
-            int i15 = 4;
-            int i16 = 1;
-            if (i13 != 0) {
-                if (i13 != 1) {
-                    if (i13 != 2) {
-                        if (i13 != 3) {
-                            if (i13 == 4) {
-                                int min = Math.min(yVar.a(), this.f48544r - this.f48535i);
-                                this.f48546t.a(min, yVar);
-                                int i17 = this.f48535i + min;
-                                this.f48535i = i17;
-                                int i18 = this.f48544r;
-                                if (i17 == i18) {
-                                    long j10 = this.f48545s;
-                                    if (j10 != -9223372036854775807L) {
-                                        this.f48546t.e(j10, 1, i18, 0, null);
-                                        this.f48545s += this.f48547u;
-                                    }
-                                    this.h = 0;
-                                    this.f48535i = 0;
-                                    this.f48536j = 256;
-                                }
-                            } else {
-                                throw new IllegalStateException();
-                            }
-                        } else {
-                            if (this.f48537k) {
-                                i9 = 7;
-                            } else {
-                                i9 = 5;
-                            }
-                            byte[] bArr = xVar.f4405b;
-                            int min2 = Math.min(yVar.a(), i9 - this.f48535i);
-                            yVar.c(this.f48535i, min2, bArr);
-                            int i19 = this.f48535i + min2;
-                            this.f48535i = i19;
-                            if (i19 == i9) {
-                                xVar.p(0);
-                                if (!this.f48542p) {
-                                    int i20 = xVar.i(2) + 1;
-                                    if (i20 != 2) {
-                                        d5.a.K("AdtsReader", "Detected audio object type: " + i20 + ", but assuming AAC LC.");
-                                        i20 = 2;
-                                    }
-                                    xVar.s(5);
-                                    int i21 = xVar.i(3);
-                                    int i22 = this.f48540n;
-                                    byte[] bArr2 = {(byte) (((i20 << 3) & 248) | ((i22 >> 1) & 7)), (byte) (((i21 << 3) & 120) | ((i22 << 7) & 128))};
-                                    j3.a h = j3.b.h(new d5.x(bArr2, 2), false);
-                                    s0 s0Var = new s0();
-                                    s0Var.f9693a = this.f48532e;
-                                    s0Var.f9705o = "audio/mp4a-latm";
-                                    s0Var.h = h.f13206c;
-                                    s0Var.B = h.f13205b;
-                                    s0Var.C = h.f13204a;
-                                    s0Var.f9707q = Collections.singletonList(bArr2);
-                                    s0Var.f9695c = this.d;
-                                    t0 t0Var = new t0(s0Var);
-                                    this.f48543q = 1024000000 / t0Var.P;
-                                    this.f48533f.c(t0Var);
-                                    this.f48542p = true;
-                                } else {
-                                    xVar.s(10);
-                                }
-                                xVar.s(4);
-                                int i23 = xVar.i(13);
-                                int i24 = i23 - 7;
-                                if (this.f48537k) {
-                                    i24 = i23 - 9;
-                                }
-                                m3.w wVar = this.f48533f;
-                                long j11 = this.f48543q;
-                                this.h = 4;
-                                this.f48535i = 0;
-                                this.f48546t = wVar;
-                                this.f48547u = j11;
-                                this.f48544r = i24;
-                            }
-                        }
-                    } else {
-                        byte[] bArr3 = yVar2.f4410a;
-                        int min3 = Math.min(yVar.a(), 10 - this.f48535i);
-                        yVar.c(this.f48535i, min3, bArr3);
-                        int i25 = this.f48535i + min3;
-                        this.f48535i = i25;
-                        if (i25 == 10) {
-                            this.f48534g.a(10, yVar2);
-                            yVar2.C(6);
-                            m3.w wVar2 = this.f48534g;
-                            this.h = 4;
-                            this.f48535i = 10;
-                            this.f48546t = wVar2;
-                            this.f48547u = 0L;
-                            this.f48544r = yVar2.q() + 10;
-                        }
-                    }
-                } else if (yVar.a() != 0) {
-                    xVar.f4405b[0] = yVar.f4410a[yVar.f4411b];
-                    xVar.p(2);
-                    int i26 = xVar.i(4);
-                    int i27 = this.f48540n;
-                    if (i27 != -1 && i26 != i27) {
-                        this.f48538l = false;
-                        this.h = 0;
-                        this.f48535i = 0;
-                        this.f48536j = 256;
-                    } else {
-                        if (!this.f48538l) {
-                            this.f48538l = true;
-                            this.f48539m = this.f48541o;
-                            this.f48540n = i26;
-                        }
-                        this.h = 3;
-                        this.f48535i = 0;
-                    }
-                }
-            } else {
-                byte[] bArr4 = yVar.f4410a;
-                int i28 = yVar.f4411b;
-                int i29 = yVar.f4412c;
-                while (true) {
-                    if (i28 < i29) {
-                        i10 = i28 + 1;
-                        b10 = bArr4[i28];
-                        int i30 = b10 & 255;
-                        if (this.f48536j == 512 && ((65280 | (((byte) i30) & 255)) & 65526) == 65520) {
-                            if (!this.f48538l) {
-                                int i31 = i28 - 1;
-                                yVar.C(i28);
-                                byte[] bArr5 = xVar.f4405b;
-                                if (yVar.a() >= i16) {
-                                    yVar.c(i14, i16, bArr5);
-                                    xVar.p(i15);
-                                    int i32 = xVar.i(i16);
-                                    int i33 = this.f48539m;
-                                    if (i33 == -1 || i32 == i33) {
-                                        if (this.f48540n != -1) {
-                                            byte[] bArr6 = xVar.f4405b;
-                                            if (yVar.a() < i16) {
-                                                break;
-                                            }
-                                            yVar.c(i14, i16, bArr6);
-                                            xVar.p(2);
-                                            i11 = 4;
-                                            if (xVar.i(4) == this.f48540n) {
-                                                yVar.C(i10);
-                                            }
-                                        } else {
-                                            i11 = 4;
-                                        }
-                                        byte[] bArr7 = xVar.f4405b;
-                                        if (yVar.a() >= i11) {
-                                            yVar.c(i14, i11, bArr7);
-                                            xVar.p(14);
-                                            int i34 = xVar.i(13);
-                                            if (i34 >= 7) {
-                                                byte[] bArr8 = yVar.f4410a;
-                                                int i35 = yVar.f4412c;
-                                                int i36 = i31 + i34;
-                                                if (i36 >= i35) {
-                                                    break;
-                                                }
-                                                byte b11 = bArr8[i36];
-                                                if (b11 == -1) {
-                                                    int i37 = i36 + 1;
-                                                    if (i37 != i35) {
-                                                        byte b12 = bArr8[i37];
-                                                        if (((65280 | (b12 & 255)) & 65526) == 65520 && ((b12 & 8) >> 3) == i32) {
-                                                            break;
-                                                        }
-                                                    } else {
-                                                        break;
-                                                    }
-                                                } else if (b11 == 73) {
-                                                    int i38 = i36 + 1;
-                                                    if (i38 != i35) {
-                                                        if (bArr8[i38] == 68) {
-                                                            int i39 = i36 + 2;
-                                                            if (i39 != i35) {
-                                                                if (bArr8[i39] == 51) {
-                                                                    break;
-                                                                }
-                                                            } else {
-                                                                break;
-                                                            }
-                                                        }
-                                                    } else {
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                }
-                            } else {
-                                break;
-                            }
-                        }
-                        int i40 = this.f48536j;
-                        int i41 = i30 | i40;
-                        if (i41 != 329) {
-                            if (i41 != 511) {
-                                if (i41 != 836) {
-                                    if (i41 != 1075) {
-                                        if (i40 != 256) {
-                                            this.f48536j = 256;
-                                            i14 = 0;
-                                            i15 = 4;
-                                            i16 = 1;
-                                        }
-                                    } else {
-                                        this.h = 2;
-                                        this.f48535i = 3;
-                                        this.f48544r = 0;
-                                        yVar2.C(0);
-                                        yVar.C(i10);
-                                        break;
-                                    }
-                                } else {
-                                    this.f48536j = 1024;
-                                }
-                            } else {
-                                this.f48536j = 512;
-                            }
-                        } else {
-                            this.f48536j = 768;
-                        }
-                        i28 = i10;
-                        i14 = 0;
-                        i15 = 4;
-                        i16 = 1;
-                    } else {
-                        yVar.C(i28);
-                        break;
-                    }
-                }
-                this.f48541o = (b10 & 8) >> 3;
-                if ((b10 & 1) == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f48537k = z10;
-                if (!this.f48538l) {
-                    this.h = 1;
-                    this.f48535i = 0;
-                } else {
-                    this.h = 3;
-                    this.f48535i = 0;
-                }
-                yVar.C(i10);
+    public static v0 a(int i10, w wVar) {
+        wVar.C(i10 + 12);
+        wVar.D(1);
+        b(wVar);
+        wVar.D(2);
+        int r6 = wVar.r();
+        if ((r6 & 128) != 0) {
+            wVar.D(2);
+        }
+        if ((r6 & 64) != 0) {
+            wVar.D(wVar.r());
+        }
+        if ((r6 & 32) != 0) {
+            wVar.D(2);
+        }
+        wVar.D(1);
+        b(wVar);
+        String d = f5.o.d(wVar.r());
+        if (!"audio/mpeg".equals(d) && !"audio/vnd.dts".equals(d) && !"audio/vnd.dts.hd".equals(d)) {
+            wVar.D(4);
+            long s10 = wVar.s();
+            long s11 = wVar.s();
+            wVar.D(1);
+            int b10 = b(wVar);
+            long j10 = s11;
+            byte[] bArr = new byte[b10];
+            wVar.c(0, b10, bArr);
+            long j11 = -1;
+            if (j10 <= 0) {
+                j10 = -1;
             }
+            if (s10 > 0) {
+                j11 = s10;
+            }
+            return new v0(d, bArr, j10, j11);
         }
+        return new v0(d, null, -1L, -1L);
     }
 
-    @Override
-    public final void h() {
-        this.f48545s = -9223372036854775807L;
-        this.f48538l = false;
-        this.h = 0;
-        this.f48535i = 0;
-        this.f48536j = 256;
-    }
-
-    @Override
-    public final void j(m3.m mVar, d0 d0Var) {
-        d0Var.a();
-        d0Var.b();
-        this.f48532e = d0Var.f48528e;
-        d0Var.b();
-        m3.w I = mVar.I(d0Var.d, 1);
-        this.f48533f = I;
-        this.f48546t = I;
-        if (this.f48529a) {
-            d0Var.a();
-            d0Var.b();
-            m3.w I2 = mVar.I(d0Var.d, 5);
-            this.f48534g = I2;
-            s0 s0Var = new s0();
-            d0Var.b();
-            s0Var.f9693a = d0Var.f48528e;
-            s0Var.f9705o = "application/id3";
-            I2.c(new t0(s0Var));
-            return;
+    public static int b(w wVar) {
+        int r6 = wVar.r();
+        int i10 = r6 & 127;
+        while ((r6 & 128) == 128) {
+            r6 = wVar.r();
+            i10 = (i10 << 7) | (r6 & 127);
         }
-        this.f48534g = new m3.j();
+        return i10;
     }
 
-    @Override
-    public final void k(int i9, long j10) {
-        if (j10 != -9223372036854775807L) {
-            this.f48545s = j10;
+    public static Pair c(w wVar, int i10, int i11) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        Integer num;
+        p pVar;
+        Pair create;
+        int i12;
+        int i13;
+        Integer num2;
+        boolean z13;
+        int i14 = wVar.f6641b;
+        while (i14 - i10 < i11) {
+            wVar.C(i14);
+            int e10 = wVar.e();
+            boolean z14 = false;
+            if (e10 > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            h0.a("childAtomSize must be positive", z10);
+            if (wVar.e() == 1936289382) {
+                int i15 = i14 + 8;
+                int i16 = -1;
+                Integer num3 = null;
+                String str = null;
+                int i17 = 0;
+                while (i15 - i14 < e10) {
+                    wVar.C(i15);
+                    int e11 = wVar.e();
+                    int e12 = wVar.e();
+                    if (e12 == 1718775137) {
+                        num3 = Integer.valueOf(wVar.e());
+                    } else if (e12 == 1935894637) {
+                        wVar.D(4);
+                        str = wVar.p(4, p8.d.f45658c);
+                    } else if (e12 == 1935894633) {
+                        i16 = i15;
+                        i17 = e11;
+                    }
+                    i15 += e11;
+                }
+                byte[] bArr = null;
+                if (!"cenc".equals(str) && !"cbc1".equals(str) && !"cens".equals(str) && !"cbcs".equals(str)) {
+                    create = null;
+                } else {
+                    if (num3 != null) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    h0.a("frma atom is mandatory", z11);
+                    if (i16 != -1) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    h0.a("schi atom is mandatory", z12);
+                    int i18 = i16 + 8;
+                    while (true) {
+                        if (i18 - i16 < i17) {
+                            wVar.C(i18);
+                            int e13 = wVar.e();
+                            if (wVar.e() == 1952804451) {
+                                int b10 = nc.k.b(wVar.e());
+                                wVar.D(1);
+                                if (b10 == 0) {
+                                    wVar.D(1);
+                                    i13 = 0;
+                                    i12 = 0;
+                                } else {
+                                    int r6 = wVar.r();
+                                    i12 = r6 & 15;
+                                    i13 = (r6 & 240) >> 4;
+                                }
+                                if (wVar.r() == 1) {
+                                    num2 = num3;
+                                    z13 = true;
+                                } else {
+                                    num2 = num3;
+                                    z13 = false;
+                                }
+                                int r9 = wVar.r();
+                                byte[] bArr2 = new byte[16];
+                                wVar.c(0, 16, bArr2);
+                                if (z13 && r9 == 0) {
+                                    int r10 = wVar.r();
+                                    byte[] bArr3 = new byte[r10];
+                                    wVar.c(0, r10, bArr3);
+                                    bArr = bArr3;
+                                }
+                                num = num2;
+                                pVar = new p(z13, str, r9, bArr2, i13, i12, bArr);
+                            } else {
+                                i18 += e13;
+                            }
+                        } else {
+                            num = num3;
+                            pVar = null;
+                            break;
+                        }
+                    }
+                    if (pVar != null) {
+                        z14 = true;
+                    }
+                    h0.a("tenc atom is mandatory", z14);
+                    int i19 = d0.f6579a;
+                    create = Pair.create(num, pVar);
+                }
+                if (create != null) {
+                    return create;
+                }
+            }
+            i14 += e10;
         }
+        return null;
     }
 
-    @Override
-    public final void i() {
+    public static w3.r d(w3.o r42, w3.a r43, o3.q r44) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.e.d(w3.o, w3.a, o3.q):w3.r");
+    }
+
+    public static java.util.ArrayList e(w3.a r73, o3.q r74, long r75, n3.c r77, boolean r78, boolean r79, p8.e r80) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.e.e(w3.a, o3.q, long, n3.c, boolean, boolean, p8.e):java.util.ArrayList");
     }
 }

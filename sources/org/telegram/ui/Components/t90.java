@@ -1,15 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public interface t90 {
-    void A(String str);
-
-    void a(TLRPC.BotInlineResult botInlineResult, boolean z10, int i9);
-
-    Paint.FontMetricsInt h();
-
-    void p(TLRPC.TL_document tL_document, String str, Object obj);
-
-    void y(int i9, int i10, CharSequence charSequence, boolean z10);
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class t90 extends org.telegram.ui.iz0 {
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
+    }
 }

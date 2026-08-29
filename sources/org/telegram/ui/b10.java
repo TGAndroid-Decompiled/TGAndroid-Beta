@@ -1,45 +1,46 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-import org.telegram.messenger.LocaleController;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class b10 implements org.telegram.ui.Cells.k7 {
-    public final c10 f36594a;
+public final class b10 extends org.telegram.ui.Cells.f7 {
+    public final c10 f36645h0;
 
-    public b10(c10 c10Var) {
-        this.f36594a = c10Var;
+    public b10(c10 c10Var, Context context) {
+        super(context, 1, null);
+        this.f36645h0 = c10Var;
     }
 
     @Override
-    public final void a(String str, boolean z10) {
-        f10 f10Var = this.f36594a.v;
-        if (z10) {
-            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(f10Var.G, null, false, false);
-            f3Var.fixNavigationBar();
-            f3Var.title = str;
-            f3Var.bigTitle = false;
-            CharSequence[] charSequenceArr = {LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)};
-            v vVar = new v(6, this, str);
-            f3Var.items = charSequenceArr;
-            f3Var.onClickListener = vVar;
-            f10Var.H.showDialog(f3Var);
-            return;
+    public final boolean d(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList;
+        boolean isVoice = messageObject.isVoice();
+        c10 c10Var = this.f36645h0;
+        if (!isVoice && !messageObject.isRoundVideo()) {
+            if (!messageObject.isMusic()) {
+                return false;
+            }
+            h10 h10Var = c10Var.v;
+            String str = h10Var.M;
+            long j10 = h10Var.A;
+            long j11 = h10Var.D;
+            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j10, j11, j11, h10Var.f38741y);
+            h10 h10Var2 = c10Var.v;
+            playlistGlobalSearchParams.endReached = h10Var2.J;
+            playlistGlobalSearchParams.nextSearchRate = h10Var2.v;
+            playlistGlobalSearchParams.totalCount = h10Var2.K;
+            playlistGlobalSearchParams.folderId = h10Var2.F ? 1 : 0;
+            return MediaController.getInstance().setPlaylist(c10Var.v.f38727f, messageObject, 0L, playlistGlobalSearchParams);
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = f10.f38084o0;
-        f10Var.g(str);
-    }
-
-    @Override
-    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        f10 f10Var = this.f36594a.v;
-        SpannableStringBuilder[] spannableStringBuilderArr = f10.f38084o0;
-        org.telegram.ui.Components.gu.I(f10Var.H, messageObject, f10Var.f38090c0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
-    }
-
-    @Override
-    public final boolean f() {
-        return !this.f36594a.v.f38100k0.f();
+        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
+        MediaController mediaController = MediaController.getInstance();
+        if (playMessage) {
+            arrayList = c10Var.v.f38727f;
+        } else {
+            arrayList = null;
+        }
+        mediaController.setVoiceMessagesPlaylist(arrayList, false);
+        return playMessage;
     }
 }

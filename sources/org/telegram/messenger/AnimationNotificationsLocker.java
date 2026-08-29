@@ -18,13 +18,13 @@ public class AnimationNotificationsLocker {
         if (this.disabled) {
             return;
         }
-        int i9 = UserConfig.selectedAccount;
-        if (this.currentAccount != i9) {
-            NotificationCenter.getInstance(i9).onAnimationFinish(this.notificationsIndex);
+        int i10 = UserConfig.selectedAccount;
+        if (this.currentAccount != i10) {
+            NotificationCenter.getInstance(i10).onAnimationFinish(this.notificationsIndex);
             this.notificationsIndex = -1;
-            this.currentAccount = i9;
+            this.currentAccount = i10;
         }
-        this.notificationsIndex = NotificationCenter.getInstance(i9).setAnimationInProgress(this.notificationsIndex, this.allowedNotifications);
+        this.notificationsIndex = NotificationCenter.getInstance(i10).setAnimationInProgress(this.notificationsIndex, this.allowedNotifications);
         this.globalNotificationsIndex = NotificationCenter.getGlobalInstance().setAnimationInProgress(this.globalNotificationsIndex, this.allowedNotifications);
     }
 

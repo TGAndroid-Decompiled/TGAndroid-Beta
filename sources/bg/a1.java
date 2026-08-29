@@ -1,32 +1,35 @@
 package bg;
 
-import android.content.DialogInterface;
-public final class a1 implements DialogInterface.OnDismissListener {
-    public final int f1693a;
-    public final h1 f1694b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ws0;
+public final class a1 extends h2 {
+    public final Path c3;
+    public final ws0 f2080d3;
 
-    public a1(h1 h1Var, int i9) {
-        this.f1693a = i9;
-        this.f1694b = h1Var;
+    public a1(ws0 ws0Var, Context context) {
+        super(context);
+        this.f2080d3 = ws0Var;
+        this.c3 = new Path();
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f1693a) {
-            case 0:
-                dg.u uVar = this.f1694b.f1810c0.f2391r;
-                if (uVar != null) {
-                    uVar.setPaused(false);
-                    return;
-                }
-                return;
-            default:
-                dg.u uVar2 = this.f1694b.f1810c0.f2391r;
-                if (uVar2 != null) {
-                    uVar2.setPaused(false);
-                    return;
-                }
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        ws0 ws0Var = this.f2080d3;
+        barView = ws0Var.getBarView();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, ws0Var.J1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, ws0Var.J1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), ws0Var.J1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), ws0Var.J1));
+        Path path = this.c3;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

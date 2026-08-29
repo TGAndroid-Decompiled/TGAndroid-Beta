@@ -1,44 +1,65 @@
 package org.telegram.ui;
 
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class a41 implements r0.o, org.telegram.ui.ActionBar.b2 {
-    public final int f36360a;
-    public final d41 f36361b;
+import org.telegram.messenger.MediaController;
+public final class a41 implements Runnable {
+    public final int f36423a;
+    public final f41 f36424b;
 
-    public a41(d41 d41Var, int i9) {
-        this.f36360a = i9;
-        this.f36361b = d41Var;
+    public a41(f41 f41Var, int i10) {
+        this.f36423a = i10;
+        this.f36424b = f41Var;
     }
 
     @Override
-    public r0.m1 L0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        d41 d41Var = this.f36361b;
-        d41Var.f37407e = defaultWindowInsets;
-        d41Var.f37406c.setPadding(defaultWindowInsets.f10848a, defaultWindowInsets.f10849b, defaultWindowInsets.f10850c, defaultWindowInsets.d);
-        d41Var.f37405b.requestLayout();
-        return r0.m1.f46928b;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        switch (this.f36360a) {
-            case 1:
-                org.telegram.ui.ActionBar.c2 c2Var2 = this.f36361b.Y;
-                if (c2Var2 != null) {
-                    c2Var2.dismiss();
+    public final void run() {
+        switch (this.f36423a) {
+            case 0:
+                f41 f41Var = this.f36424b;
+                a41 a41Var = f41Var.V;
+                org.telegram.ui.Components.x61 x61Var = f41Var.f37996w;
+                if (x61Var != null) {
+                    f41Var.W = ((float) x61Var.o()) / ((float) f41Var.f37996w.q());
+                    d41 d41Var = f41Var.J;
+                    if (d41Var != null) {
+                        d41Var.Td = (f41Var.f37996w.q() - f41Var.f37996w.o()) / 1000;
+                        f41Var.J.q4();
+                        org.telegram.ui.Components.co0 seekBarWaveform = f41Var.J.getSeekBarWaveform();
+                        if (seekBarWaveform != null) {
+                            float f9 = f41Var.W;
+                            seekBarWaveform.J = true;
+                            seekBarWaveform.K = f9;
+                            org.telegram.ui.Cells.s1 s1Var = seekBarWaveform.f27534n;
+                            if (s1Var != null) {
+                                s1Var.invalidate();
+                            }
+                        }
+                    }
+                    if (f41Var.f37996w.z()) {
+                        AndroidUtilities.cancelRunOnUIThread(a41Var);
+                        AndroidUtilities.runOnUIThread(a41Var, 16L);
+                        return;
+                    }
                     return;
                 }
                 return;
+            case 1:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
             default:
-                d41 d41Var = this.f36361b;
-                org.telegram.ui.ActionBar.c2 c2Var3 = d41Var.Y;
-                if (c2Var3 != null) {
-                    c2Var3.dismiss();
-                    d41Var.Y = null;
+                f41 f41Var2 = this.f36424b;
+                if (f41Var2.d == null) {
+                    AndroidUtilities.runOnUIThread(new a41(f41Var2, 2));
+                    org.telegram.ui.Cells.s1 s1Var2 = f41Var2.K;
+                    if (s1Var2 != null) {
+                        s1Var2.setVisibility(0);
+                        f41Var2.K.invalidate();
+                    }
                 }
-                d41Var.dismiss();
+                MediaController.getInstance().tryResumePausedAudio();
                 return;
         }
     }

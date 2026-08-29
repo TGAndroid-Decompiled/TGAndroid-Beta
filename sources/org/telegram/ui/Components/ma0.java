@@ -1,49 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class ma0 extends f2.y0 {
+import android.graphics.drawable.Drawable;
+public final class ma0 extends Drawable {
+    public Paint f30628a;
+    public Paint f30629b;
+    public long f30630c;
+    public float d;
+    public boolean f30631e;
+    public boolean f30632f;
+    public float f30633g;
+    public float h;
+    public float f30634i;
+    public float f30635j;
+    public float f30636k;
+    public long f30637l;
+    public org.telegram.ui.Cells.s1 f30638m;
+
+    public final void a() {
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f9 = bounds.left - centerX;
+        float f10 = bounds.top - centerY;
+        this.f30633g = (float) Math.ceil(Math.sqrt(com.google.android.recaptcha.internal.a.z(i11, centerY, f10, f9 * (i10 - centerX))));
+    }
+
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, f2.n1 n1Var) {
-        org.telegram.ui.Cells.t1 t1Var;
-        MessageObject.GroupedMessages currentMessagesGroup;
-        MessageObject.GroupedMessagePosition currentPosition;
-        int i9 = 0;
-        rect.bottom = 0;
-        if ((view instanceof org.telegram.ui.Cells.t1) && (currentMessagesGroup = (t1Var = (org.telegram.ui.Cells.t1) view).getCurrentMessagesGroup()) != null && (currentPosition = t1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
-            Point point = AndroidUtilities.displaySize;
-            float max = Math.max(point.x, point.y) * 0.5f;
-            int extraInsetHeight = t1Var.getExtraInsetHeight();
-            int i10 = 0;
-            while (true) {
-                float[] fArr = currentPosition.siblingHeights;
-                if (i10 >= fArr.length) {
-                    break;
-                }
-                extraInsetHeight += (int) Math.ceil(fArr[i10] * max);
-                i10++;
-            }
-            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
-            int size = currentMessagesGroup.posArray.size();
-            while (true) {
-                if (i9 < size) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i9);
-                    byte b10 = groupedMessagePosition.minY;
-                    byte b11 = currentPosition.minY;
-                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
-                        round = org.telegram.messenger.l0.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f19646ph), round);
-                        break;
-                    }
-                    i9++;
-                } else {
-                    break;
-                }
-            }
-            rect.bottom = -round;
-        }
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ma0.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f30628a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f30628a.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

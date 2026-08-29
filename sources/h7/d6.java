@@ -1,17 +1,12 @@
 package h7;
-public final class d6 implements q9.d {
-    public static final d6 f9905a = new Object();
+public final class d6 {
+    public final Long f7584a;
+    public final j6 f7585b;
+    public final Boolean f7586c;
 
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(3, e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public d6(androidx.biometric.e eVar) {
+        this.f7584a = (Long) eVar.f1030b;
+        this.f7585b = (j6) eVar.f1031c;
+        this.f7586c = (Boolean) eVar.d;
     }
 }

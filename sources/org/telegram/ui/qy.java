@@ -1,12 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public abstract class qy extends org.telegram.ui.ActionBar.o2 {
-    @Override
-    public final View createView(Context context) {
-        org.telegram.ui.Components.xu0 xu0Var = new org.telegram.ui.Components.xu0(context, null);
-        this.fragmentView = xu0Var;
-        return xu0Var;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class qy {
+    public float f41797a;
+    public float f41798b;
+    public boolean f41799c;
+    public float d;
+    public float f41800e;
+    public float f41801f;
+    public float f41802g;
+    public boolean h;
+    public boolean f41803i;
+    public kg.d f41804j;
+    public long f41805k;
+    public boolean f41806l;
+    public boolean f41807m;
+    public boolean f41808n;
+    public float f41809o;
+    public int f41810p;
+    public TLRPC.Document f41811q;
+    public final ImageReceiver f41812r;
+    public String f41813s;
+
+    public qy() {
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.f41812r = imageReceiver;
+        imageReceiver.setAllowLoadingOnAttachedOnly(true);
+        imageReceiver.setAllowDrawWhileCacheGenerating(true);
     }
 }

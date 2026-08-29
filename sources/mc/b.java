@@ -1,36 +1,71 @@
 package mc;
 
-import ie.p;
-import ie.s;
-import java.util.regex.Pattern;
-public final class b extends h {
-    public static final Pattern f17612e = i.f17625m;
+import java.util.Arrays;
+import java.util.Iterator;
+public final class b implements Iterable, Cloneable {
+    public static final String[] d = new String[0];
+    public int f16974a = 0;
+    public String[] f16975b;
+    public String[] f16976c;
 
-    @Override
-    public final p b() {
-        this.d++;
-        if (c() == '\n') {
-            ie.g gVar = new ie.g(1);
-            this.d++;
-            return gVar;
+    public b() {
+        String[] strArr = d;
+        this.f16975b = strArr;
+        this.f16976c = strArr;
+    }
+
+    public final Object clone() {
+        try {
+            b bVar = (b) super.clone();
+            bVar.f16974a = this.f16974a;
+            String[] strArr = this.f16975b;
+            int i10 = this.f16974a;
+            String[] strArr2 = new String[i10];
+            System.arraycopy(strArr, 0, strArr2, 0, Math.min(strArr.length, i10));
+            this.f16975b = strArr2;
+            String[] strArr3 = this.f16976c;
+            int i11 = this.f16974a;
+            String[] strArr4 = new String[i11];
+            System.arraycopy(strArr3, 0, strArr4, 0, Math.min(strArr3.length, i11));
+            this.f16976c = strArr4;
+            return bVar;
+        } catch (CloneNotSupportedException e10) {
+            throw new RuntimeException(e10);
         }
-        if (this.d < this.f17621c.length()) {
-            String str = this.f17621c;
-            int i9 = this.d;
-            if (f17612e.matcher(str.substring(i9, i9 + 1)).matches()) {
-                String str2 = this.f17621c;
-                int i10 = this.d;
-                this.f17619a.getClass();
-                s sVar = new s(str2.substring(i10, i10 + 1));
-                this.d++;
-                return sVar;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || b.class != obj.getClass()) {
+            return false;
+        }
+        b bVar = (b) obj;
+        if (this.f16974a != bVar.f16974a || !Arrays.equals(this.f16975b, bVar.f16975b)) {
+            return false;
+        }
+        return Arrays.equals(this.f16976c, bVar.f16976c);
+    }
+
+    public final int hashCode() {
+        return (((this.f16974a * 31) + Arrays.hashCode(this.f16975b)) * 31) + Arrays.hashCode(this.f16976c);
+    }
+
+    public final int i(String str) {
+        if (str != null) {
+            for (int i10 = 0; i10 < this.f16974a; i10++) {
+                if (str.equals(this.f16975b[i10])) {
+                    return i10;
+                }
             }
+            return -1;
         }
-        return f("\\");
+        throw new IllegalArgumentException("Object must not be null");
     }
 
     @Override
-    public final char d() {
-        return '\\';
+    public final Iterator iterator() {
+        return new kotlin.jvm.internal.a(this);
     }
 }

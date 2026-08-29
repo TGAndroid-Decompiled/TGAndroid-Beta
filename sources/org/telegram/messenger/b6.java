@@ -1,30 +1,32 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b6 implements RequestDelegate {
-    public final int f19807a;
-    public final int f19808b;
-    public final int f19809c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import org.telegram.ui.Components.j70;
+public final class b6 implements Runnable {
+    public final int f19775a;
+    public final float f19776b;
+    public final NotificationCenter.NotificationCenterDelegate f19777c;
+    public final Object d;
 
-    public b6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i9, int i10, int i11) {
-        this.f19807a = i11;
-        this.d = notificationCenterDelegate;
-        this.f19808b = i9;
-        this.f19809c = i10;
+    public b6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f9, int i10) {
+        this.f19775a = i10;
+        this.f19777c = notificationCenterDelegate;
+        this.d = obj;
+        this.f19776b = f9;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19807a) {
+    public final void run() {
+        switch (this.f19775a) {
             case 0:
-                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f19808b, this.f19809c, tLObject, tL_error);
+                ((MediaController) this.f19777c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f19776b);
                 return;
             default:
-                ((MessagesController) this.d).lambda$getDifference$359(this.f19808b, this.f19809c, tLObject, tL_error);
+                org.telegram.ui.m4 m4Var = (org.telegram.ui.m4) this.f19777c;
+                j70 j70Var = (j70) this.d;
+                m4Var.f40392d0.I.c(0.0f, true);
+                j70Var.f29595p = new org.telegram.ui.e0(m4Var, this.f19776b, 0);
+                j70Var.Z();
                 return;
         }
     }

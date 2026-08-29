@@ -1,17 +1,52 @@
 package h7;
-public final class c6 implements q9.d {
-    public static final c6 f9898a = new Object();
-
-    static {
-        e2.c.u(e2.c.s(h0.class, e2.c.j(2, e2.c.s(h0.class, new e0(1)))));
+public abstract class c6 {
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
+        }
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(j7.l1.k(i11, "negative size: "));
+            }
+            a2 = e6.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = e6.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
-            throw null;
+    public static void b(int i10, int i11) {
+        if (i10 >= 0 && i10 <= i11) {
+            return;
         }
-        throw new ClassCastException();
+        throw new IndexOutOfBoundsException(d(i10, i11, "index"));
+    }
+
+    public static void c(int i10, int i11, int i12) {
+        String d;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                d = e6.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                d = d(i11, i12, "end index");
+            }
+        } else {
+            d = d(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(d);
+    }
+
+    public static String d(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return e6.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return e6.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(j7.l1.k(i11, "negative size: "));
     }
 }

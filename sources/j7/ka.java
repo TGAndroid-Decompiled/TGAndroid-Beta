@@ -1,3 +1,4 @@
 package j7;
-public abstract class ka {
+public interface ka {
+    void a(ag.j2 j2Var);
 }

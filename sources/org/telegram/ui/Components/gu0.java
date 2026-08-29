@@ -1,77 +1,89 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.R;
-public final class gu0 extends vk0 {
-    public final Context f28878c;
-    public final iu0 d;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.SparseArray;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+public abstract class gu0 extends ht0 {
+    public final HashSet f28989b3;
+    public final ArrayList c3;
+    public final ArrayList f28990d3;
+    public final ArrayList f28991e3;
+    public TextPaint f28992f3;
+    public StaticLayout f28993g3;
+    public float f28994h3;
+    public float f28995i3;
+    public lh.q9 f28996j3;
+    public int f28997k3;
+    public final ArrayList f28998l3;
 
-    public gu0(iu0 iu0Var, Context context) {
-        this.d = iu0Var;
-        this.f28878c = context;
+    public gu0(Context context) {
+        super(context, null);
+        this.f28989b3 = new HashSet();
+        this.c3 = new ArrayList();
+        this.f28990d3 = new ArrayList();
+        this.f28991e3 = new ArrayList();
+        this.f28998l3 = new ArrayList();
+    }
+
+    public abstract boolean A1();
+
+    public boolean B1() {
+        return true;
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        if (q1Var.f5505f == 0) {
+    public void dispatchDraw(android.graphics.Canvas r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gu0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        tk0 movingAdapter = getMovingAdapter();
+        if (B1() && getAdapter() == movingAdapter && z1() && (view instanceof org.telegram.ui.Cells.p7)) {
             return true;
         }
-        return false;
+        return super.drawChild(canvas, view, j10);
     }
 
-    @Override
-    public final int h() {
-        return LocationController.getLocationsCount() + 1;
+    public int getAnimateToColumnsCount() {
+        return 3;
     }
 
-    @Override
-    public final int j(int i9) {
-        if (i9 == 0) {
-            return 1;
-        }
+    public float getChangeColumnsProgress() {
+        return 0.0f;
+    }
+
+    public int getColumnsCount() {
+        return 3;
+    }
+
+    public SparseArray<Float> getMessageAlphaEnter() {
+        return null;
+    }
+
+    public tk0 getMovingAdapter() {
+        return null;
+    }
+
+    public int getPinchCenterPosition() {
         return 0;
     }
 
-    @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        TextView textView;
-        int i10 = q1Var.f5505f;
-        if (i10 != 0) {
-            if (i10 == 1 && (textView = this.d.f29526e) != null) {
-                textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
-                return;
-            }
-            return;
-        }
-        ((org.telegram.ui.Cells.u7) q1Var.f5501a).setDialog(iu0.p(i9 - 1));
+    public tk0 getSupportingAdapter() {
+        return null;
     }
 
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        FrameLayout u7Var;
-        org.telegram.ui.ActionBar.b6 b6Var;
-        Context context = this.f28878c;
-        iu0 iu0Var = this.d;
-        if (i9 == 0) {
-            b6Var = ((org.telegram.ui.ActionBar.f3) iu0Var).resourcesProvider;
-            u7Var = new org.telegram.ui.Cells.u7(54, context, b6Var, false);
-        } else {
-            u7Var = new dh.g(context, 17);
-            u7Var.setWillNotDraw(false);
-            TextView textView = new TextView(context);
-            iu0Var.f29526e = textView;
-            textView.setTextColor(iu0Var.getThemedColor(org.telegram.ui.ActionBar.f6.J5));
-            iu0Var.f29526e.setTextSize(1, 14.0f);
-            iu0Var.f29526e.setGravity(17);
-            iu0Var.f29526e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            u7Var.addView(iu0Var.f29526e, g7.e6.c(40.0f, -1));
-        }
-        return new f2.q1(u7Var);
+    public ht0 getSupportingListView() {
+        return null;
+    }
+
+    public abstract boolean z1();
+
+    public void y1(org.telegram.ui.Cells.p7 p7Var) {
     }
 }

@@ -1,20 +1,18 @@
 package j3;
-public final class w {
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && w.class == obj.getClass()) {
-                w wVar = (w) obj;
-                if (Float.compare(0.0f, 0.0f) == 0) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+public final class w implements f5.k, f5.j {
+    public final k0 f10824a;
+
+    public w(k0 k0Var) {
+        this.f10824a = k0Var;
     }
 
-    public final int hashCode() {
-        return Float.floatToIntBits(0.0f) + 16337;
+    @Override
+    public void e(Object obj, f5.g gVar) {
+        ((a2) obj).onEvents(this.f10824a.f10576f, new z1(gVar));
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        ((a2) obj).onAvailableCommandsChanged(this.f10824a.N);
     }
 }

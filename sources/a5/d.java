@@ -1,12 +1,53 @@
 package a5;
 public final class d {
-    public final r4.b f69a;
-    public final long f70b;
-    public final long f71c;
+    public final int f162a;
+    public final int f163b;
+    public float f164c;
 
-    public d(r4.b bVar, long j10, long j11) {
-        this.f69a = bVar;
-        this.f70b = j10;
-        this.f71c = j11;
+    public d(float f9, int i10, int i11) {
+        this.f164c = f9;
+        this.f162a = i10;
+        this.f163b = i11;
+    }
+
+    public float a(int i10) {
+        int i11 = this.f162a;
+        int i12 = this.f163b;
+        if (i12 == i10 && i11 == i10) {
+            return 1.0f;
+        }
+        if (i12 == i10) {
+            return this.f164c;
+        }
+        if (i11 == i10) {
+            return 1.0f - this.f164c;
+        }
+        return 0.0f;
+    }
+
+    public boolean b(int i10) {
+        if (this.f162a != i10 && this.f163b != i10) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean c(int i10) {
+        if (this.f163b == i10) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean d(int i10) {
+        if (this.f163b == i10) {
+            return true;
+        }
+        return false;
+    }
+
+    public d(int i10, int i11) {
+        this.f162a = i10;
+        this.f163b = i11;
     }
 }

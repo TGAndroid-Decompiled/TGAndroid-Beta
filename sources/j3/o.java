@@ -1,14 +1,30 @@
 package j3;
-public final class o extends Exception {
-    public final h3.t0 f13299a;
+public final class o implements p8.i {
+    public final int f10650a;
+    public final Object f10651b;
 
-    public o(i iVar, h3.t0 t0Var) {
-        super(iVar);
-        this.f13299a = t0Var;
+    public o(Object obj, int i10) {
+        this.f10650a = i10;
+        this.f10651b = obj;
     }
 
-    public o(String str, h3.t0 t0Var) {
-        super(str);
-        this.f13299a = t0Var;
+    @Override
+    public final Object get() {
+        switch (this.f10650a) {
+            case 0:
+                return (j) this.f10651b;
+            case 1:
+                return (d5.u) this.f10651b;
+            case 2:
+                return (l) this.f10651b;
+            case 3:
+                return Boolean.valueOf(((q0) this.f10651b).K);
+            default:
+                try {
+                    return (l4.b0) ((Class) this.f10651b).getConstructor(null).newInstance(null);
+                } catch (Exception e10) {
+                    throw new IllegalStateException(e10);
+                }
+        }
     }
 }

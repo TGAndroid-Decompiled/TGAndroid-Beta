@@ -1,62 +1,55 @@
 package bg;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class z0 implements Utilities.Callback {
-    public final int f2009a;
-    public final h1 f2010b;
+import org.telegram.ui.ws0;
+public final class z0 extends FrameLayout {
+    public final ws0 f2634a;
 
-    public z0(h1 h1Var, int i9) {
-        this.f2009a = i9;
-        this.f2010b = h1Var;
+    public z0(ws0 ws0Var, Context context) {
+        super(context);
+        this.f2634a = ws0Var;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f2009a) {
-            case 0:
-                Void r42 = (Void) obj;
-                h1 h1Var = this.f2010b;
-                h1Var.dismiss();
-                AndroidUtilities.runOnUIThread(new v0(h1Var, 2), 220L);
-                return;
-            case 1:
-                h1 h1Var2 = this.f2010b;
-                h1Var2.m0.b(false);
-                u.j(h1Var2.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 2:
-                h1 h1Var3 = this.f2010b;
-                h1Var3.f1817j0 = h1Var3.U.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
-                h1Var3.Z(true, true);
-                h1Var3.Y(true);
-                return;
-            case 3:
-                Void r43 = (Void) obj;
-                h1 h1Var4 = this.f2010b;
-                h1Var4.dismiss();
-                AndroidUtilities.runOnUIThread(new v0(h1Var4, 1), 220L);
-                return;
-            case 4:
-                h1 h1Var5 = this.f2010b;
-                h1Var5.m0.b(false);
-                u.j(h1Var5.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 5:
-                h1 h1Var6 = this.f2010b;
-                ArrayList arrayList = h1Var6.f1809b0;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                h1Var6.Z(true, true);
-                return;
-            default:
-                h1 h1Var7 = this.f2010b;
-                h1Var7.m0.b(false);
-                u.j(h1Var7.getContext(), (TLRPC.TL_error) obj);
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        ws0 ws0Var = this.f2634a;
+        Paint paint = ws0Var.f2257x1;
+        n2 n2Var = ws0Var.f2248q1;
+        paint.setAlpha((int) ((1.0f - ws0Var.f2261z1) * n2Var.getAlpha() * 102.0f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        n2Var.b(rectF);
+        b1 b1Var = ws0Var.Y0;
+        int top = b1Var.getTop();
+        float translationY = n2Var.getTranslationY() + b1Var.getTranslationY() + n2Var.getTop() + top;
+        float f9 = rectF.left;
+        t2 t2Var = ws0Var.f2249r1;
+        rectF.set(AndroidUtilities.lerp(f9, t2Var.getLeft(), ws0Var.f2261z1), AndroidUtilities.lerp(rectF.top + translationY, t2Var.getTop() - t2Var.getTranslationY(), ws0Var.f2261z1), AndroidUtilities.lerp(rectF.right, t2Var.getRight(), ws0Var.f2261z1), AndroidUtilities.lerp(translationY + rectF.bottom, t2Var.getBottom() - t2Var.getTranslationY(), ws0Var.f2261z1));
+        float dp = AndroidUtilities.dp(AndroidUtilities.lerp(32, 16, ws0Var.f2261z1));
+        Paint paint2 = ws0Var.f2259y1;
+        int alpha = paint2.getAlpha();
+        paint2.setAlpha((int) (alpha * ws0Var.f2261z1));
+        canvas.drawRoundRect(rectF, dp, dp, paint2);
+        paint2.setAlpha(alpha);
+        canvas.drawRoundRect(rectF, dp, dp, paint);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getActionMasked() == 0) {
+            ws0 ws0Var = this.f2634a;
+            if (ws0Var.A1) {
+                ws0Var.z0(false);
+                return true;
+            }
         }
+        return super.onTouchEvent(motionEvent);
     }
 }

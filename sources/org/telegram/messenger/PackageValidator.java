@@ -26,7 +26,7 @@ public final class PackageValidator {
     private PackageValidator() {
     }
 
-    private static boolean hasPermission(Context context, String str, int i9) {
+    private static boolean hasPermission(Context context, String str, int i10) {
         PackageManager packageManager = context.getPackageManager();
         try {
             if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) == 0) {
@@ -41,13 +41,13 @@ public final class PackageValidator {
         }
     }
 
-    public static boolean isKnownCaller(Context context, String str, int i9) {
+    public static boolean isKnownCaller(Context context, String str, int i10) {
         if (str == null) {
             return false;
         }
-        if (i9 == 1000 || i9 == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
+        if (i10 == 1000 || i10 == Process.myUid() || KNOWN_PACKAGES.contains(str)) {
             return true;
         }
-        return hasPermission(context, str, i9);
+        return hasPermission(context, str, i10);
     }
 }

@@ -1,14 +1,60 @@
 package v7;
-public abstract class f {
-    public static final u5.c f48363a;
-    public static final u5.c f48364b;
-    public static final u5.c[] f48365c;
 
-    static {
-        u5.c cVar = new u5.c("EXECUTE", 1L);
-        f48363a = cVar;
-        u5.c cVar2 = new u5.c("INIT", 1L);
-        f48364b = cVar2;
-        f48365c = new u5.c[]{cVar, cVar2};
+import android.os.Parcel;
+import android.os.RemoteException;
+import e7.i;
+import org.telegram.ui.Components.n;
+import z5.l;
+public final class f {
+    public final e7.a f49450a;
+
+    public f(e7.a aVar) {
+        l.h(aVar);
+        this.f49450a = aVar;
+    }
+
+    public final void a(n nVar) {
+        try {
+            i iVar = (i) this.f49450a;
+            Parcel M0 = iVar.M0();
+            e7.b.c(M0, (j6.a) nVar.f30787b);
+            iVar.Q0(M0, 18);
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        boolean z10 = false;
+        if (!(obj instanceof f)) {
+            return false;
+        }
+        try {
+            e7.a aVar = this.f49450a;
+            e7.a aVar2 = ((f) obj).f49450a;
+            i iVar = (i) aVar;
+            Parcel M0 = iVar.M0();
+            e7.b.c(M0, aVar2);
+            Parcel L0 = iVar.L0(M0, 16);
+            if (L0.readInt() != 0) {
+                z10 = true;
+            }
+            L0.recycle();
+            return z10;
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    public final int hashCode() {
+        try {
+            i iVar = (i) this.f49450a;
+            Parcel L0 = iVar.L0(iVar.M0(), 17);
+            int readInt = L0.readInt();
+            L0.recycle();
+            return readInt;
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
     }
 }

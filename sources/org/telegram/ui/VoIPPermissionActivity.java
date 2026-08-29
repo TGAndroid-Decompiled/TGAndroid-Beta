@@ -12,7 +12,7 @@ public class VoIPPermissionActivity extends Activity {
     @Override
     public final void onCreate(Bundle bundle) {
         boolean isVideo;
-        int i9;
+        int i10;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
@@ -36,11 +36,11 @@ public class VoIPPermissionActivity extends Activity {
             try {
                 String[] strArr = (String[]) arrayList.toArray(new String[0]);
                 if (isVideo) {
-                    i9 = 102;
+                    i10 = 102;
                 } else {
-                    i9 = 101;
+                    i10 = 101;
                 }
-                requestPermissions(strArr, i9);
+                requestPermissions(strArr, i10);
             } catch (Exception e10) {
                 FileLog.e(e10);
             }
@@ -48,18 +48,18 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public final void onRequestPermissionsResult(int i9, String[] strArr, int[] iArr) {
-        if (i9 != 101 && i9 != 102) {
+    public final void onRequestPermissionsResult(int i10, String[] strArr, int[] iArr) {
+        if (i10 != 101 && i10 != 102) {
             return;
         }
         boolean z10 = false;
-        int i10 = 0;
+        int i11 = 0;
         while (true) {
-            if (i10 < iArr.length) {
-                if (iArr[i10] != 0) {
+            if (i11 < iArr.length) {
+                if (iArr[i11] != 0) {
                     break;
                 }
-                i10++;
+                i11++;
             } else {
                 z10 = true;
                 break;
@@ -79,7 +79,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.e2.i(this, new ky0(this, 27), i9);
+            org.telegram.ui.Components.voip.h2.i(this, new ky0(this, 27), i10);
         } else {
             finish();
         }

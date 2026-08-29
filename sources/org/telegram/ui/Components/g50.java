@@ -1,37 +1,14 @@
 package org.telegram.ui.Components;
-public abstract class g50 extends mn0 {
+
+import java.io.File;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class g50 extends File {
     @Override
-    public final boolean a() {
-        if (j() > 0) {
-            return true;
+    public final boolean delete() {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.e("delete camera file");
         }
-        return false;
+        return super.delete();
     }
-
-    @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        int h = h();
-        if (z10) {
-            h *= -1;
-        }
-        k(Math.min(i(), Math.max(0, j() + h)));
-    }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i9);
 }

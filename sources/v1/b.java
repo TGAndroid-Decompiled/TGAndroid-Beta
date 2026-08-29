@@ -1,15 +1,16 @@
 package v1;
 
+import ab.e;
 import java.util.LinkedHashMap;
-import kotlin.jvm.internal.i;
-public final class b extends a8.a {
+import kotlin.jvm.internal.j;
+public final class b extends e {
     public b() {
-        this(a.f48245b);
+        this(a.f49321b);
     }
 
-    public b(a8.a initialExtras) {
-        super(7);
-        i.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f108a).putAll((LinkedHashMap) initialExtras.f108a);
+    public b(e initialExtras) {
+        super(8);
+        j.e(initialExtras, "initialExtras");
+        ((LinkedHashMap) this.f306a).putAll((LinkedHashMap) initialExtras.f306a);
     }
 }

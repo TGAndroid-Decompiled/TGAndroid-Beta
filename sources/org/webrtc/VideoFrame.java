@@ -8,7 +8,7 @@ public class VideoFrame implements RefCounted {
     private final long timestampNs;
 
     public interface Buffer extends RefCounted {
-        Buffer cropAndScale(int i9, int i10, int i11, int i12, int i13, int i14);
+        Buffer cropAndScale(int i10, int i11, int i12, int i13, int i14, int i15);
 
         int getBufferType();
 
@@ -50,8 +50,8 @@ public class VideoFrame implements RefCounted {
             
             private final int glTarget;
 
-            Type(int i9) {
-                this.glTarget = i9;
+            Type(int i10) {
+                this.glTarget = i10;
             }
 
             public int getGlTarget() {
@@ -59,7 +59,7 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i9, int i10);
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i10, int i11);
 
         int getTextureId();
 
@@ -72,11 +72,11 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i9, long j10) {
+    public VideoFrame(Buffer buffer, int i10, long j10) {
         if (buffer != null) {
-            if (i9 % 90 == 0) {
+            if (i10 % 90 == 0) {
                 this.buffer = buffer;
-                this.rotation = i9;
+                this.rotation = i10;
                 this.timestampNs = j10;
                 return;
             }

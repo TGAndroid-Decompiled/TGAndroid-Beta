@@ -1,37 +1,69 @@
 package jh;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.e00;
-public final class m extends e00 {
-    public final Paint Q;
-    public final q R;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class m extends EditTextBoldCursor {
+    public final int f12441b;
 
-    public m(q qVar, Context context) {
-        super(context, null);
-        this.R = qVar;
-        this.Q = new Paint();
+    public m(Context context, int i10) {
+        super(context);
+        this.f12441b = i10;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.R.d;
+    public void onDetachedFromWindow() {
+        switch (this.f12441b) {
+            case 0:
+                super.onDetachedFromWindow();
+                AndroidUtilities.hideKeyboard(this);
+                return;
+            case 1:
+                super.onDetachedFromWindow();
+                AndroidUtilities.hideKeyboard(this);
+                return;
+            default:
+                super.onDetachedFromWindow();
+                return;
+        }
     }
 
     @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
+    public void onMeasure(int i10, int i11) {
+        switch (this.f12441b) {
+            case 2:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int v02 = f6.v0(f6.f23001d6, this.R.S.f14380c);
-        Paint paint = this.Q;
-        paint.setColor(v02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f12441b) {
+            case 3:
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 4:
+                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            case 5:
+                if (!isEnabled()) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
     }
 }

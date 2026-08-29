@@ -10,44 +10,43 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ll;
 public final class y1 extends FrameLayout {
-    public final TextView f23970a;
-    public final ImageView f23971b;
+    public final TextView f23975a;
+    public final ImageView f23976b;
 
-    public y1(Context context, b6 b6Var) {
+    public y1(Context context, c6 c6Var) {
         super(context);
-        int i9;
-        setBackground(f6.f0(f6.v0(f6.I5, b6Var), 2, -1));
+        int i10;
+        setBackground(g6.f0(g6.v0(g6.I5, c6Var), 2, -1));
         setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f23971b = imageView;
+        this.f23976b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(f6.v0(f6.J5, b6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(g6.v0(g6.J5, c6Var), PorterDuff.Mode.MULTIPLY));
         if (LocaleController.isRTL) {
-            i9 = 5;
+            i10 = 5;
         } else {
-            i9 = 3;
+            i10 = 3;
         }
-        addView(imageView, g7.e6.e(-2, 40, i9 | 16));
+        addView(imageView, i7.f6.e(-2, 40, i10 | 16));
         TextView textView = new TextView(context);
-        this.f23970a = textView;
+        this.f23975a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        ll.n(f6.f23108j5, b6Var, textView, 1, 16.0f);
-        addView(textView, g7.e6.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+        org.telegram.ui.b.m(g6.f23169j5, c6Var, textView, 1, 16.0f);
+        addView(textView, i7.f6.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
     }
 
-    public final void a(int i9, CharSequence charSequence) {
+    public final void a(int i10, CharSequence charSequence) {
         int dp;
-        int i10;
-        TextView textView = this.f23970a;
+        int i11;
+        TextView textView = this.f23975a;
         textView.setText(charSequence);
-        ImageView imageView = this.f23971b;
-        if (i9 != 0) {
-            imageView.setImageResource(i9);
+        ImageView imageView = this.f23976b;
+        if (i10 != 0) {
+            imageView.setImageResource(i10);
             imageView.setVisibility(0);
             if (LocaleController.isRTL) {
                 dp = 0;
@@ -55,11 +54,11 @@ public final class y1 extends FrameLayout {
                 dp = AndroidUtilities.dp(56.0f);
             }
             if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(56.0f);
+                i11 = AndroidUtilities.dp(56.0f);
             } else {
-                i10 = 0;
+                i11 = 0;
             }
-            textView.setPadding(dp, 0, i10, 0);
+            textView.setPadding(dp, 0, i11, 0);
             return;
         }
         imageView.setVisibility(4);
@@ -67,15 +66,15 @@ public final class y1 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public void setGravity(int i9) {
-        this.f23970a.setGravity(i9);
+    public void setGravity(int i10) {
+        this.f23975a.setGravity(i10);
     }
 
-    public void setTextColor(int i9) {
-        this.f23970a.setTextColor(i9);
+    public void setTextColor(int i10) {
+        this.f23975a.setTextColor(i10);
     }
 }

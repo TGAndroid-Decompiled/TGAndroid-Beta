@@ -1,32 +1,28 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import android.animation.ValueAnimator;
 import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-public final class m80 implements DialogInterface.OnDismissListener {
-    public final int f40349a;
-    public final LaunchActivity f40350b;
+public final class m80 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40490a;
+    public final LaunchActivity f40491b;
 
-    public m80(LaunchActivity launchActivity, int i9) {
-        this.f40349a = i9;
-        this.f40350b = launchActivity;
+    public m80(LaunchActivity launchActivity, int i10) {
+        this.f40490a = i10;
+        this.f40491b = launchActivity;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i9 = this.f40349a;
-        LaunchActivity launchActivity = this.f40350b;
-        switch (i9) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f40490a;
+        LaunchActivity launchActivity = this.f40491b;
+        switch (i10) {
             case 0:
-                launchActivity.f35529r1 = false;
-                return;
-            case 1:
-                Pattern pattern = LaunchActivity.f35493x1;
-                AndroidUtilities.runOnUIThread(new l80(launchActivity, 9), 30000L);
+                launchActivity.f35597s0.invalidate();
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.f35493x1;
-                AndroidUtilities.runOnUIThread(new l80(launchActivity, 10), 30000L);
+                Pattern pattern = LaunchActivity.f35560x1;
+                launchActivity.getClass();
+                launchActivity.z0(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
         }
     }

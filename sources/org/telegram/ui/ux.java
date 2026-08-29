@@ -1,35 +1,17 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ux implements Runnable {
-    public final int f43329a;
-    public final vx f43330b;
-
-    public ux(vx vxVar, int i9) {
-        this.f43329a = i9;
-        this.f43330b = vxVar;
+import android.view.MotionEvent;
+public final class ux extends org.telegram.ui.Components.x10 {
+    public ux(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
     }
 
     @Override
-    public final void run() {
-        int i9;
-        switch (this.f43329a) {
-            case 0:
-                vx vxVar = this.f43330b;
-                dy dyVar = vxVar.A0;
-                Context context = vxVar.getContext();
-                i9 = ((org.telegram.ui.ActionBar.o2) dyVar).currentAccount;
-                dyVar.showDialog(new zf.j0(3, i9, context, dyVar, null));
-                return;
-            default:
-                dy dyVar2 = this.f43330b.A0;
-                ax axVar = dyVar2.I0;
-                if (axVar != null) {
-                    axVar.dismiss();
-                    dyVar2.I0 = null;
-                    return;
-                }
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && getAlpha() < 0.25f) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

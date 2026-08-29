@@ -1,65 +1,54 @@
 package org.telegram.ui;
 
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
 public final class l8 implements View.OnClickListener {
-    public final int f40076a;
-    public final boolean[] f40077b;
+    public final int f40114a;
+    public final h9 f40115b;
 
-    public l8(int i9, boolean[] zArr) {
-        this.f40076a = i9;
-        this.f40077b = zArr;
+    public l8(h9 h9Var, int i10) {
+        this.f40114a = i10;
+        this.f40115b = h9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f40076a) {
+        switch (this.f40114a) {
             case 0:
-                boolean[] zArr = this.f40077b;
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((org.telegram.ui.Cells.z1) view).c(z10, true);
+                Long l10 = (Long) view.getTag();
+                h9 h9Var = this.f40115b;
+                ChatObject.Call groupCall = h9Var.getMessagesController().getGroupCall(l10.longValue(), false);
+                TLRPC.Chat chat = h9Var.getMessagesController().getChat(l10);
+                h9Var.M = chat;
+                if (groupCall != null) {
+                    org.telegram.ui.Components.voip.h2.m(chat, null, false, null, h9Var.getParentActivity(), h9Var, h9Var.getAccountInstance());
+                    return;
+                }
+                h9Var.N = l10;
+                h9Var.getMessagesController().loadFullChat(l10.longValue(), 0, true);
                 return;
             case 1:
-                boolean[] zArr2 = this.f40077b;
-                boolean z11 = !zArr2[1];
-                zArr2[1] = z11;
-                ((org.telegram.ui.Cells.z1) view).c(z11, true);
+                this.f40115b.k0(true);
                 return;
             case 2:
-                boolean[] zArr3 = this.f40077b;
-                boolean z12 = !zArr3[0];
-                zArr3[0] = z12;
-                ((org.telegram.ui.Cells.z1) view).c(z12, true);
-                return;
-            case 3:
-                boolean[] zArr4 = this.f40077b;
-                boolean z13 = !zArr4[0];
-                zArr4[0] = z13;
-                ((org.telegram.ui.Cells.z1) view).c(z13, true);
-                return;
-            case 4:
-                if (view.isEnabled()) {
-                    boolean[] zArr5 = this.f40077b;
-                    boolean z14 = !zArr5[0];
-                    zArr5[0] = z14;
-                    ((org.telegram.ui.Cells.z1) view).c(z14, true);
-                    return;
+                h9 h9Var2 = this.f40115b;
+                org.telegram.ui.Components.j70 H = org.telegram.ui.Components.j70.H(h9Var2, h9Var2.B);
+                H.f29600s = 8;
+                if (h9Var2.getUserConfig().showCallsTab) {
+                    H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new h8(h9Var2, 1), false);
                 }
-                return;
-            case 5:
-                boolean[] zArr6 = this.f40077b;
-                boolean z15 = !zArr6[0];
-                zArr6[0] = z15;
-                ((org.telegram.ui.Cells.z1) view).c(z15, true);
+                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAllCalls), new h8(h9Var2, 2), true);
+                H.Z();
+                H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                if (view.isEnabled()) {
-                    boolean[] zArr7 = this.f40077b;
-                    boolean z16 = !zArr7[0];
-                    zArr7[0] = z16;
-                    ((org.telegram.ui.Cells.z1) view).c(z16, true);
-                    return;
-                }
+                h9 h9Var3 = this.f40115b;
+                h9Var3.getClass();
+                h9.m0(h9Var3);
                 return;
         }
     }

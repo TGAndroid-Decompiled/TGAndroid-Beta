@@ -1,20 +1,34 @@
 package bg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class e2 extends AnimatorListenerAdapter {
-    public final a2 f1745a;
-    public final f2 f1746b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class e2 extends View {
+    public final Paint f2176a;
+    public float f2177b;
 
-    public e2(f2 f2Var, a2 a2Var) {
-        this.f1746b = f2Var;
-        this.f1745a = a2Var;
+    public e2(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f2176a = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        a2 a2Var = this.f1745a;
-        a2Var.setLayerType(0, null);
-        this.f1746b.d.removeView(a2Var);
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = this.f2176a;
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-5.33f, -4.0f, this.f2177b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(5.33f, 0.0f, this.f2177b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(5.33f, 3.0f, this.f2177b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-5.33f, -7.0f, this.f2177b)), paint);
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(5.33f, 3.0f, this.f2177b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(5.33f, 7.0f, this.f2177b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-5.33f, -4.0f, this.f2177b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-5.33f, 0.0f, this.f2177b)), paint);
+    }
+
+    public void setProgress(float f9) {
+        this.f2177b = f9;
+        invalidate();
     }
 }

@@ -1,25 +1,29 @@
 package v7;
+public final class c extends h {
+    public final int f49445c;
+    public final float d;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import q7.j;
-public final class c extends y5.a {
-    public static final Parcelable.Creator<c> CREATOR = new j(23);
-
-    public final boolean equals(Object obj) {
-        if (this == obj || (obj instanceof c)) {
-            return true;
+    public c(float f9, int i10) {
+        super(0, Float.valueOf(Math.max(f9, 0.0f)));
+        this.f49445c = i10;
+        switch (i10) {
+            case 1:
+                super(2, Float.valueOf(Math.max(f9, 0.0f)));
+                this.d = Math.max(f9, 0.0f);
+                return;
+            default:
+                this.d = Math.max(f9, 0.0f);
+                return;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 0;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        p8.r(parcel, p8.q(parcel, 20293));
+    public final String toString() {
+        switch (this.f49445c) {
+            case 0:
+                return "[Dash: length=" + this.d + "]";
+            default:
+                return "[Gap: length=" + this.d + "]";
+        }
     }
 }

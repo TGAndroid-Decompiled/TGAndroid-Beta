@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class md0 implements NotificationCenter.NotificationCenterDelegate {
-    public final pd0 f40397a;
+import android.content.Context;
+public final class md0 extends sr {
+    public final int h;
+    public final Object f40528n;
 
-    public md0(pd0 pd0Var) {
-        this.f40397a = pd0Var;
+    public md0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f40528n = obj;
     }
 
     @Override
-    public final void didReceivedNotification(int i9, int i10, Object... objArr) {
-        pd0 pd0Var = this.f40397a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                pd0Var.B = (GoogleSignInAccount) f7.s8.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                pd0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e10) {
-                FileLog.e(e10);
-            }
+    public final void a() {
+        switch (this.h) {
+            case 0:
+                ((pd0) this.f40528n).h(null);
+                return;
+            case 1:
+                ((ie0) this.f40528n).h(null);
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40528n;
+                if (passcodeActivity.A == 0) {
+                    postDelayed(new vk0(this, 0), 260L);
+                    return;
+                } else {
+                    passcodeActivity.g0();
+                    return;
+                }
+            default:
+                ((cg1) this.f40528n).C0();
+                return;
         }
     }
 }

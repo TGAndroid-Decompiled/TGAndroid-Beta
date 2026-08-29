@@ -1,132 +1,78 @@
 package k8;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.RemoteException;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class c {
-    public static final HashMap f14670o = new HashMap();
-    public final Context f14671a;
-    public final g0 f14672b;
-    public final String f14673c;
-    public boolean f14676g;
-    public final Intent h;
-    public final k0 f14677i;
-    public df.a f14681m;
-    public IInterface f14682n;
-    public final ArrayList d = new ArrayList();
-    public final HashSet f14674e = new HashSet();
-    public final Object f14675f = new Object();
-    public final i0 f14679k = new IBinder.DeathRecipient() {
-        @Override
-        public final void binderDied() {
-            c cVar = c.this;
-            int i9 = 0;
-            cVar.f14672b.b("reportBinderDeath", new Object[0]);
-            if (cVar.f14678j.get() == null) {
-                cVar.f14672b.b("%s : Binder has died.", cVar.f14673c);
-                ArrayList arrayList = cVar.d;
-                int size = arrayList.size();
-                while (i9 < size) {
-                    Object obj = arrayList.get(i9);
-                    i9++;
-                    ((h0) obj).a(new RemoteException(String.valueOf(cVar.f14673c).concat(" : Binder has died.")));
-                }
-                cVar.d.clear();
-                synchronized (cVar.f14675f) {
-                    cVar.e();
-                }
-                return;
-            }
-            throw new ClassCastException();
-        }
-    };
-    public final AtomicInteger f14680l = new AtomicInteger(0);
-    public final WeakReference f14678j = new WeakReference(null);
+import android.os.Parcelable;
+import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
+public final class c implements Parcelable.Creator {
+    public final int f13476a;
 
-    public c(Context context, g0 g0Var, String str, Intent intent, k0 k0Var) {
-        this.f14671a = context;
-        this.f14672b = g0Var;
-        this.f14673c = str;
-        this.h = intent;
-        this.f14677i = k0Var;
+    @Override
+    public final java.lang.Object createFromParcel(android.os.Parcel r10) {
+        throw new UnsupportedOperationException("Method not decompiled: k8.c.createFromParcel(android.os.Parcel):java.lang.Object");
     }
 
-    public static void b(c cVar, h0 h0Var) {
-        IInterface iInterface = cVar.f14682n;
-        g0 g0Var = cVar.f14672b;
-        ArrayList arrayList = cVar.d;
-        int i9 = 0;
-        if (iInterface == null && !cVar.f14676g) {
-            g0Var.b("Initiate binding to the service.", new Object[0]);
-            arrayList.add(h0Var);
-            df.a aVar = new df.a(cVar, 2);
-            cVar.f14681m = aVar;
-            cVar.f14676g = true;
-            if (!cVar.f14671a.bindService(cVar.h, aVar, 1)) {
-                g0Var.b("Failed to bind to the service.", new Object[0]);
-                cVar.f14676g = false;
-                int size = arrayList.size();
-                while (i9 < size) {
-                    Object obj = arrayList.get(i9);
-                    i9++;
-                    ((h0) obj).a(new RuntimeException("Failed to bind to the service."));
-                }
-                arrayList.clear();
-            }
-        } else if (cVar.f14676g) {
-            g0Var.b("Waiting to bind to the service.", new Object[0]);
-            arrayList.add(h0Var);
-        } else {
-            h0Var.run();
+    @Override
+    public final Object[] newArray(int i10) {
+        switch (this.f13476a) {
+            case 0:
+                return new b[i10];
+            case 1:
+                return new e[i10];
+            case 2:
+                return new f[i10];
+            case 3:
+                return new g[i10];
+            case 4:
+                return new h[i10];
+            case 5:
+                return new i[i10];
+            case 6:
+                return new j[i10];
+            case 7:
+                return new DataItemAssetParcelable[i10];
+            case 8:
+                return new m[i10];
+            case 9:
+                return new n[i10];
+            case 10:
+                return new o[i10];
+            case 11:
+                return new p[i10];
+            case 12:
+                return new q[i10];
+            case 13:
+                return new r[i10];
+            case 14:
+                return new s[i10];
+            case 15:
+                return new t[i10];
+            case 16:
+                return new u[i10];
+            case 17:
+                return new v[i10];
+            case 18:
+                return new w[i10];
+            case 19:
+                return new x[i10];
+            case 20:
+                return new y[i10];
+            case 21:
+                return new z[i10];
+            case 22:
+                return new a0[i10];
+            case 23:
+                return new b0[i10];
+            case 24:
+                return new c0[i10];
+            case 25:
+                return new d0[i10];
+            case 26:
+                return new c1[i10];
+            case 27:
+                return new m0[i10];
+            case 28:
+                return new g0[i10];
+            default:
+                return new n0[i10];
         }
-    }
-
-    public final Handler a() {
-        Handler handler;
-        HashMap hashMap = f14670o;
-        synchronized (hashMap) {
-            try {
-                if (!hashMap.containsKey(this.f14673c)) {
-                    HandlerThread handlerThread = new HandlerThread(this.f14673c, 10);
-                    handlerThread.start();
-                    hashMap.put(this.f14673c, new Handler(handlerThread.getLooper()));
-                }
-                handler = (Handler) hashMap.get(this.f14673c);
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        return handler;
-    }
-
-    public final void c(h0 h0Var, TaskCompletionSource taskCompletionSource) {
-        a().post(new j0(this, h0Var.c(), taskCompletionSource, h0Var));
-    }
-
-    public final void d(TaskCompletionSource taskCompletionSource) {
-        synchronized (this.f14675f) {
-            this.f14674e.remove(taskCompletionSource);
-        }
-        a().post(new b(this, 1));
-    }
-
-    public final void e() {
-        HashSet hashSet = this.f14674e;
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            ((TaskCompletionSource) it.next()).trySetException(new RemoteException(String.valueOf(this.f14673c).concat(" : Binder has died.")));
-        }
-        hashSet.clear();
     }
 }

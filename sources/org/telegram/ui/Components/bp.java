@@ -1,23 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-public final class bp {
-    public final org.telegram.ui.ActionBar.b4 f27261a;
-    public Drawable f27262b;
-    public int f27263c;
-    public boolean d;
-    public Bitmap f27264e;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class bp implements ResultCallback {
+    public final ChatThemeController f27197a;
+    public final gp f27198b;
 
-    public bp(org.telegram.ui.ActionBar.b4 b4Var) {
-        this.f27261a = b4Var;
+    public bp(gp gpVar, ChatThemeController chatThemeController) {
+        this.f27198b = gpVar;
+        this.f27197a = chatThemeController;
     }
 
-    public final String a() {
-        org.telegram.ui.ActionBar.b4 b4Var = this.f27261a;
-        if (b4Var != null && !b4Var.f22748a) {
-            return b4Var.f22751e;
-        }
-        return null;
+    @Override
+    public final void onComplete(Object obj) {
+        int i10;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.b4> emojiThemes = this.f27197a.getEmojiThemes(7);
+        gp gpVar = this.f27198b;
+        i10 = ((org.telegram.ui.ActionBar.f3) gpVar).currentAccount;
+        NotificationCenter.getInstance(i10).doOnIdle(new z2(24, this, emojiThemes));
+        gpVar.X = false;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f27198b.getContext(), tL_error.text, 0).show();
     }
 }

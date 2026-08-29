@@ -1,35 +1,35 @@
 package n4;
 
-import g7.c0;
-import java.util.Arrays;
-public final class b {
-    public final String f18387a;
-    public final String f18388b;
-    public final int f18389c;
-    public final int d;
+import java.util.NoSuchElementException;
+public abstract class b implements l {
+    public final long f17111a;
+    public final long f17112b;
+    public long f17113c;
 
-    public b(int i9, int i10, String str, String str2) {
-        this.f18387a = str;
-        this.f18388b = str2;
-        this.f18389c = i9;
-        this.d = i10;
+    public b(long j10, long j11) {
+        this.f17111a = j10;
+        this.f17112b = j11;
+        this.f17113c = j10 - 1;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a() {
+        long j10 = this.f17113c;
+        if (j10 >= this.f17111a && j10 <= this.f17112b) {
+            return;
         }
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        b bVar = (b) obj;
-        if (this.f18389c == bVar.f18389c && this.d == bVar.d && c0.a(this.f18387a, bVar.f18387a) && c0.a(this.f18388b, bVar.f18388b)) {
-            return true;
-        }
-        return false;
+        throw new NoSuchElementException();
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f18387a, this.f18388b, Integer.valueOf(this.f18389c), Integer.valueOf(this.d)});
+    @Override
+    public final boolean next() {
+        boolean z10;
+        long j10 = this.f17113c + 1;
+        this.f17113c = j10;
+        if (j10 > this.f17112b) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return !z10;
     }
 }

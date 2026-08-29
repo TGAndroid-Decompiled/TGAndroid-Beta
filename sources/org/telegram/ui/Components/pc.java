@@ -1,83 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-public class pc {
-    public View f31606a;
-    public final float f31607b;
-    public final float f31608c;
-    public final float d;
-    public long f31609e;
-    public Runnable f31610f;
-    public ValueAnimator f31611g;
-    public boolean h;
-    public float f31612i;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class pc implements Utilities.Callback {
+    public final int f31641a = 0;
+    public final long f31642b;
+    public final int f31643c;
+    public final Object d;
 
-    public pc(View view) {
-        this(view, 1.0f, 5.0f);
+    public pc(int i10, mc mcVar, long j10) {
+        this.f31643c = i10;
+        this.d = mcVar;
+        this.f31642b = j10;
     }
 
-    public final float a(float f10) {
-        return e2.c.z(1.0f, this.f31612i, f10, 1.0f - f10);
-    }
-
-    public void b() {
-        View view = this.f31606a;
-        if (view != null) {
-            view.invalidate();
-        }
-        Runnable runnable = this.f31610f;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public final void c(boolean z10) {
-        float f10;
-        if (this.h != z10) {
-            this.h = z10;
-            ValueAnimator valueAnimator = this.f31611g;
-            this.f31611g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f11 = this.f31612i;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f31611g = ofFloat;
-            ofFloat.addUpdateListener(new e6(this, 7));
-            this.f31611g.addListener(new u9(1, this, z10));
-            if (this.h) {
-                this.f31611g.setInterpolator(gr.f28844f);
-                this.f31611g.setDuration(this.f31607b * 60.0f);
-                this.f31611g.setStartDelay(0L);
-            } else {
-                this.f31611g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f31611g.setDuration(this.f31608c * 350.0f);
-                this.f31611g.setStartDelay(this.f31609e);
-            }
-            this.f31611g.start();
+    @Override
+    public final void run(Object obj) {
+        Object string;
+        TLRPC.StickerSet stickerSet;
+        int i10 = this.f31641a;
+        int i11 = this.f31643c;
+        long j10 = this.f31642b;
+        Object obj2 = this.d;
+        switch (i10) {
+            case 0:
+                mc mcVar = (mc) obj2;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
+                    if (i11 == 1) {
+                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
+                    } else if (i11 == 2) {
+                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
+                    } else {
+                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
+                    }
+                } else {
+                    string = LocaleController.getString(R.string.AddEmojiNotFound);
+                }
+                AndroidUtilities.runOnUIThread(new z2(2, mcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
+                return;
+            default:
+                ((qu0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
+                return;
         }
     }
 
-    public pc(View view, float f10, float f11) {
-        this.f31609e = 0L;
-        this.f31606a = view;
-        this.f31608c = f10;
-        this.f31607b = f10;
-        this.d = f11;
-    }
-
-    public pc(kh.e6 e6Var) {
-        this.f31609e = 0L;
-        this.f31606a = e6Var;
-        this.f31607b = 1.5f;
-        this.f31608c = 1.0f;
-        this.d = 2.0f;
+    public pc(qu0 qu0Var, long j10, int i10) {
+        this.d = qu0Var;
+        this.f31642b = j10;
+        this.f31643c = i10;
     }
 }

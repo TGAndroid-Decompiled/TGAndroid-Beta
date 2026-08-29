@@ -5,9 +5,9 @@ public class BaseController {
     protected final int currentAccount;
     private AccountInstance parentAccountInstance;
 
-    public BaseController(int i9) {
-        this.parentAccountInstance = AccountInstance.getInstance(i9);
-        this.currentAccount = i9;
+    public BaseController(int i10) {
+        this.parentAccountInstance = AccountInstance.getInstance(i10);
+        this.currentAccount = i10;
     }
 
     public final AccountInstance getAccountInstance() {
@@ -18,7 +18,7 @@ public class BaseController {
         return getMessagesController().config;
     }
 
-    public final xf.s0 getColorPalette() {
+    public final ag.h1 getColorPalette() {
         return this.parentAccountInstance.getColorPalette();
     }
 

@@ -4,19 +4,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
 public final class s2 implements View.OnFocusChangeListener {
-    public final int f17080a;
-    public final ViewGroup f17081b;
+    public final int f16686a;
+    public final ViewGroup f16687b;
 
-    public s2(ViewGroup viewGroup, int i9) {
-        this.f17080a = i9;
-        this.f17081b = viewGroup;
+    public s2(ViewGroup viewGroup, int i10) {
+        this.f16686a = i10;
+        this.f16687b = viewGroup;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f17080a) {
+        switch (this.f16686a) {
             case 0:
-                SearchView searchView = (SearchView) this.f17081b;
+                SearchView searchView = (SearchView) this.f16687b;
                 View.OnFocusChangeListener onFocusChangeListener = searchView.W;
                 if (onFocusChangeListener != null) {
                     onFocusChangeListener.onFocusChange(searchView, z10);
@@ -24,20 +24,20 @@ public final class s2 implements View.OnFocusChangeListener {
                 }
                 return;
             case 1:
-                org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f17081b;
-                g3Var.h = z10;
-                if (g3Var.f24376f) {
-                    g3Var.c();
+                org.telegram.ui.Cells.d3 d3Var = (org.telegram.ui.Cells.d3) this.f16687b;
+                d3Var.h = z10;
+                if (d3Var.f24221f) {
+                    d3Var.c();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f17081b;
-                j3Var.f24548n = z10;
-                if (j3Var.f24547f) {
-                    j3Var.c();
+                org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f16687b;
+                g3Var.f24391n = z10;
+                if (g3Var.f24390f) {
+                    g3Var.c();
                 }
-                j3Var.a(z10);
+                g3Var.a(z10);
                 return;
         }
     }

@@ -1,89 +1,95 @@
 package org.telegram.ui;
-public final class q10 implements org.telegram.ui.Components.on0 {
-    public final int f41646a;
-    public final ag.a f41647b;
 
-    public q10(ag.a aVar, int i9) {
-        this.f41646a = i9;
-        this.f41647b = aVar;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class q10 extends f2.b0 {
+    public final FiltersSetupActivity d;
+
+    public q10(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
     @Override
-    public final void Q(float f10, boolean z10) {
-        switch (this.f41646a) {
-            case 0:
-                ag.k kVar = this.f41647b.f164c;
-                if (kVar != null) {
-                    kVar.v = f10 * 2.0f;
-                    return;
+    public final void a(RecyclerView recyclerView, f2.n1 n1Var) {
+        super.a(recyclerView, n1Var);
+        View view = n1Var.f6432a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, f2.n1 n1Var) {
+        if (n1Var.f6436f != 2) {
+            return f2.b0.l(0, 0);
+        }
+        return f2.b0.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, f2.n1 n1Var, f2.n1 n1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (n1Var.f6436f != n1Var2.f6436f) {
+            return false;
+        }
+        n10 n10Var = this.d.f35544b;
+        int b10 = n1Var.b();
+        int b11 = n1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = n10Var.f40685e;
+        int i10 = filtersSetupActivity.f35549r;
+        ArrayList arrayList = filtersSetupActivity.f35548n;
+        if (b10 >= i10 && b11 >= i10) {
+            l10 l10Var = (l10) arrayList.get(b10);
+            l10 l10Var2 = (l10) arrayList.get(b11);
+            if (l10Var != null && l10Var2 != null && (dialogFilter = l10Var.d) != null && (dialogFilter2 = l10Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f35549r, l10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f35549r, l10Var.d);
+                } catch (Exception unused) {
                 }
-                return;
-            case 1:
-                ag.k kVar2 = this.f41647b.f164c;
-                if (kVar2 != null) {
-                    kVar2.f238w = f10 * 2.0f;
-                    return;
-                }
-                return;
-            case 2:
-                ag.k kVar3 = this.f41647b.f164c;
-                if (kVar3 != null) {
-                    kVar3.f239x = f10;
-                    return;
-                }
-                return;
-            default:
-                ag.k kVar4 = this.f41647b.f164c;
-                if (kVar4 != null) {
-                    kVar4.A = f10 * 2.0f;
-                    return;
-                }
-                return;
+                filtersSetupActivity.f35546e = true;
+                filtersSetupActivity.Z(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(f2.n1 n1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f35543a.I0(false);
+            n1Var.f6432a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new q00(this, 4));
+            AndroidUtilities.runOnUIThread(new q00(this, 4), 320L);
+        }
+        if (n1Var != null) {
+            View view = n1Var.f6432a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final int c0() {
-        switch (this.f41646a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f41646a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final void n() {
-        int i9 = this.f41646a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    public final void q(f2.n1 n1Var) {
     }
 }

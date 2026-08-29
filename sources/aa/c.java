@@ -1,206 +1,426 @@
 package aa;
 
-import android.content.Context;
+import a9.q;
+import ag.j2;
+import android.net.TrafficStats;
 import android.text.TextUtils;
-import android.util.JsonReader;
 import android.util.Log;
-import com.google.firebase.messaging.s;
-import java.io.BufferedReader;
+import b9.l;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.messaging.r;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
-import java.util.zip.GZIPOutputStream;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.j2;
-import x5.l;
-public final class c {
-    public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f131e = Charset.forName("UTF-8");
-    public final Context f132a;
-    public final x9.b f133b;
-    public final e f134c = new e();
+public final class c implements d {
+    public static final Object f281m = new Object();
+    public final u8.g f282a;
+    public final ca.c f283b;
+    public final ze.b f284c;
+    public final j d;
+    public final q f285e;
+    public final h f286f;
+    public final Object f287g;
+    public final ExecutorService h;
+    public final l f288i;
+    public String f289j;
+    public final HashSet f290k;
+    public final ArrayList f291l;
 
-    public c(Context context, x9.b bVar) {
-        this.f132a = context;
-        this.f133b = bVar;
+    static {
+        new AtomicInteger(1);
     }
 
-    public static URL a(String str) {
-        try {
-            return new URL("https://firebaseinstallations.googleapis.com/v1/" + str);
-        } catch (MalformedURLException e10) {
-            throw new s(e10.getMessage());
+    public c(u8.g gVar, z9.b bVar, ExecutorService executorService, l lVar) {
+        gVar.a();
+        ca.c cVar = new ca.c(gVar.f49131a, bVar);
+        ?? obj = new Object();
+        obj.f50825b = gVar;
+        if (bb.a.f2041b == null) {
+            bb.a.f2041b = new bb.a(5);
+        }
+        bb.a aVar = bb.a.f2041b;
+        if (j.d == null) {
+            j.d = new j(aVar);
+        }
+        j jVar = j.d;
+        q qVar = new q(new a9.d(gVar, 2));
+        ?? obj2 = new Object();
+        this.f287g = new Object();
+        this.f290k = new HashSet();
+        this.f291l = new ArrayList();
+        this.f282a = gVar;
+        this.f283b = cVar;
+        this.f284c = obj;
+        this.d = jVar;
+        this.f285e = qVar;
+        this.f286f = obj2;
+        this.h = executorService;
+        this.f288i = lVar;
+    }
+
+    public final void a(i iVar) {
+        synchronized (this.f287g) {
+            this.f291l.add(iVar);
         }
     }
 
-    public static void b(HttpURLConnection httpURLConnection, String str, String str2, String str3) {
-        String d9;
-        InputStream errorStream = httpURLConnection.getErrorStream();
-        String str4 = null;
-        if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f131e));
-            try {
-                StringBuilder sb2 = new StringBuilder();
-                while (true) {
-                    String readLine = bufferedReader.readLine();
-                    if (readLine == null) {
-                        break;
-                    }
-                    sb2.append(readLine);
-                    sb2.append('\n');
-                }
-                str4 = String.format("Error when communicating with the Firebase Installations server API. HTTP response: [%d %s: %s]", Integer.valueOf(httpURLConnection.getResponseCode()), httpURLConnection.getResponseMessage(), sb2);
-            } catch (IOException unused) {
-            } catch (Throwable th) {
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: aa.c.b():void");
+    }
+
+    public final ba.b c(ba.b bVar) {
+        int responseCode;
+        boolean z10;
+        ca.b f9;
+        u8.g gVar = this.f282a;
+        gVar.a();
+        String str = gVar.f49133c.f49143a;
+        String str2 = bVar.f2032a;
+        gVar.a();
+        String str3 = gVar.f49133c.f49148g;
+        String str4 = bVar.d;
+        ca.c cVar = this.f283b;
+        ca.d dVar = cVar.f3023c;
+        if (dVar.b()) {
+            URL a2 = ca.c.a("projects/" + str3 + "/installations/" + str2 + "/authTokens:generate");
+            for (int i10 = 0; i10 <= 1; i10++) {
+                TrafficStats.setThreadStatsTag(32771);
+                HttpURLConnection c3 = cVar.c(a2, str);
                 try {
-                    bufferedReader.close();
-                } catch (IOException unused2) {
-                }
-                throw th;
-            }
-            try {
-                bufferedReader.close();
-            } catch (IOException unused3) {
-            }
-        }
-        if (!TextUtils.isEmpty(str4)) {
-            Log.w("Firebase-Installations", str4);
-            if (TextUtils.isEmpty(str)) {
-                d9 = "";
-            } else {
-                d9 = ta.b.d(", ", str);
-            }
-            Log.w("Firebase-Installations", j2.h("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, d9));
-        }
-    }
-
-    public static long d(String str) {
-        l.a("Invalid Expiration Timestamp.", d.matcher(str).matches());
-        if (str != null && str.length() != 0) {
-            return Long.parseLong(str.substring(0, str.length() - 1));
-        }
-        return 0L;
-    }
-
-    public static a e(HttpURLConnection httpURLConnection) {
-        InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f131e));
-        a6.a a2 = b.a();
-        jsonReader.beginObject();
-        String str = null;
-        String str2 = null;
-        String str3 = null;
-        b bVar = null;
-        while (jsonReader.hasNext()) {
-            String nextName = jsonReader.nextName();
-            if (nextName.equals("name")) {
-                str = jsonReader.nextString();
-            } else if (nextName.equals("fid")) {
-                str2 = jsonReader.nextString();
-            } else if (nextName.equals("refreshToken")) {
-                str3 = jsonReader.nextString();
-            } else if (nextName.equals("authToken")) {
-                jsonReader.beginObject();
-                while (jsonReader.hasNext()) {
-                    String nextName2 = jsonReader.nextName();
-                    if (nextName2.equals("token")) {
-                        a2.f101b = jsonReader.nextString();
-                    } else if (nextName2.equals("expiresIn")) {
-                        a2.d = Long.valueOf(d(jsonReader.nextString()));
+                    c3.setRequestMethod("POST");
+                    c3.addRequestProperty("Authorization", "FIS_v2 " + str4);
+                    c3.setDoOutput(true);
+                    ca.c.h(c3);
+                    responseCode = c3.getResponseCode();
+                    dVar.d(responseCode);
+                    if (responseCode >= 200 && responseCode < 300) {
+                        z10 = true;
                     } else {
-                        jsonReader.skipValue();
+                        z10 = false;
+                    }
+                } catch (IOException | AssertionError unused) {
+                } catch (Throwable th2) {
+                    c3.disconnect();
+                    TrafficStats.clearThreadStatsTag();
+                    throw th2;
+                }
+                if (z10) {
+                    f9 = ca.c.f(c3);
+                } else {
+                    ca.c.b(c3, null, str, str3);
+                    if (responseCode != 401 && responseCode != 404) {
+                        if (responseCode != 429) {
+                            if (responseCode < 500 || responseCode >= 600) {
+                                Log.e("Firebase-Installations", "Firebase Installations can not communicate with Firebase server APIs due to invalid configuration. Please update your Firebase initialization process and set valid Firebase options (API key, Project ID, Application ID) when initializing Firebase.");
+                                j2 a10 = ca.b.a();
+                                a10.f558b = 2;
+                                f9 = a10.b();
+                            }
+                            c3.disconnect();
+                            TrafficStats.clearThreadStatsTag();
+                        } else {
+                            throw new r("Firebase servers have received too many requests from this client in a short period of time. Please try again later.");
+                        }
+                    } else {
+                        j2 a11 = ca.b.a();
+                        a11.f558b = 3;
+                        f9 = a11.b();
                     }
                 }
-                b b10 = a2.b();
-                jsonReader.endObject();
-                bVar = b10;
-            } else {
-                jsonReader.skipValue();
+                c3.disconnect();
+                TrafficStats.clearThreadStatsTag();
+                int b10 = m1.j.b(f9.f3019c);
+                if (b10 != 0) {
+                    if (b10 != 1) {
+                        if (b10 == 2) {
+                            l(null);
+                            ba.a a12 = bVar.a();
+                            a12.f2027b = 2;
+                            return a12.a();
+                        }
+                        throw new r("Firebase Installations Service is unavailable. Please try again later.");
+                    }
+                    ba.a a13 = bVar.a();
+                    a13.f2030f = "BAD CONFIG";
+                    a13.f2027b = 5;
+                    return a13.a();
+                }
+                String str5 = f9.f3017a;
+                long j10 = f9.f3018b;
+                j jVar = this.d;
+                jVar.getClass();
+                TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+                jVar.f299a.getClass();
+                long seconds = timeUnit.toSeconds(System.currentTimeMillis());
+                ba.a a14 = bVar.a();
+                a14.d = str5;
+                a14.f2031g = Long.valueOf(j10);
+                a14.h = Long.valueOf(seconds);
+                return a14.a();
             }
+            throw new r("Firebase Installations Service is unavailable. Please try again later.");
         }
-        jsonReader.endObject();
-        jsonReader.close();
-        inputStream.close();
-        return new a(str, str2, str3, bVar, 1);
+        throw new r("Firebase Installations Service is unavailable. Please try again later.");
     }
 
-    public static b f(HttpURLConnection httpURLConnection) {
-        InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f131e));
-        a6.a a2 = b.a();
-        jsonReader.beginObject();
-        while (jsonReader.hasNext()) {
-            String nextName = jsonReader.nextName();
-            if (nextName.equals("token")) {
-                a2.f101b = jsonReader.nextString();
-            } else if (nextName.equals("expiresIn")) {
-                a2.d = Long.valueOf(d(jsonReader.nextString()));
-            } else {
-                jsonReader.skipValue();
-            }
+    public final Task d() {
+        String str;
+        g();
+        synchronized (this) {
+            str = this.f289j;
         }
-        jsonReader.endObject();
-        jsonReader.close();
-        inputStream.close();
-        a2.f102c = 1;
-        return a2.b();
+        if (str != null) {
+            return Tasks.forResult(str);
+        }
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        a(new g(taskCompletionSource));
+        Task task = taskCompletionSource.getTask();
+        this.h.execute(new b(this, 0));
+        return task;
     }
 
-    public static void g(HttpURLConnection httpURLConnection, String str, String str2) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("fid", str);
-            jSONObject.put("appId", str2);
-            jSONObject.put("authVersion", "FIS_v2");
-            jSONObject.put("sdkVersion", "a:17.2.0");
-            i(httpURLConnection, jSONObject.toString().getBytes("UTF-8"));
-        } catch (JSONException e10) {
-            throw new IllegalStateException(e10);
-        }
+    public final Task e() {
+        g();
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        a(new f(this.d, taskCompletionSource));
+        Task task = taskCompletionSource.getTask();
+        this.h.execute(new b(this, 2));
+        return task;
     }
 
-    public static void h(HttpURLConnection httpURLConnection) {
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("sdkVersion", "a:17.2.0");
-            JSONObject jSONObject2 = new JSONObject();
-            jSONObject2.put("installation", jSONObject);
-            i(httpURLConnection, jSONObject2.toString().getBytes("UTF-8"));
-        } catch (JSONException e10) {
-            throw new IllegalStateException(e10);
-        }
-    }
-
-    public static void i(HttpURLConnection httpURLConnection, byte[] bArr) {
-        OutputStream outputStream = httpURLConnection.getOutputStream();
-        if (outputStream != null) {
-            GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
+    public final void f(ba.b bVar) {
+        synchronized (f281m) {
             try {
-                gZIPOutputStream.write(bArr);
-                try {
-                    return;
-                } catch (IOException unused) {
-                    return;
+                u8.g gVar = this.f282a;
+                gVar.a();
+                ze.b i10 = ze.b.i(gVar.f49131a);
+                this.f284c.K(bVar);
+                if (i10 != null) {
+                    i10.S();
                 }
-            } finally {
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final void g() {
+        u8.g gVar = this.f282a;
+        gVar.a();
+        z5.l.g(gVar.f49133c.f49144b, "Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        gVar.a();
+        z5.l.g(gVar.f49133c.f49148g, "Please set your Project ID. A valid Firebase Project ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        gVar.a();
+        z5.l.g(gVar.f49133c.f49143a, "Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.");
+        gVar.a();
+        String str = gVar.f49133c.f49144b;
+        Pattern pattern = j.f298c;
+        z5.l.a("Please set your Application ID. A valid Firebase App ID is required to communicate with Firebase server APIs: It identifies your application with Firebase.Please refer to https://firebase.google.com/support/privacy/init-options.", str.contains(":"));
+        gVar.a();
+        z5.l.a("Please set a valid API key. A Firebase API key is required to communicate with Firebase server APIs: It authenticates your project with Google.Please refer to https://firebase.google.com/support/privacy/init-options.", j.f298c.matcher(gVar.f49133c.f49143a).matches());
+    }
+
+    public final java.lang.String h(ba.b r3) {
+        throw new UnsupportedOperationException("Method not decompiled: aa.c.h(ba.b):java.lang.String");
+    }
+
+    public final ba.b i(ba.b bVar) {
+        int responseCode;
+        boolean z10;
+        String str = bVar.f2032a;
+        String str2 = null;
+        if (str != null && str.length() == 11) {
+            ba.c cVar = (ba.c) this.f285e.get();
+            synchronized (cVar.f2039a) {
                 try {
-                    gZIPOutputStream.close();
-                    outputStream.close();
-                } catch (IOException unused2) {
+                    String[] strArr = ba.c.f2038c;
+                    int i10 = 0;
+                    while (true) {
+                        if (i10 < 4) {
+                            String str3 = strArr[i10];
+                            String str4 = cVar.f2040b;
+                            String string = cVar.f2039a.getString("|T|" + str4 + "|" + str3, null);
+                            if (string != null && !string.isEmpty()) {
+                                if (string.startsWith("{")) {
+                                    try {
+                                        str2 = new JSONObject(string).getString("token");
+                                    } catch (JSONException unused) {
+                                    }
+                                } else {
+                                    str2 = string;
+                                }
+                            } else {
+                                i10++;
+                            }
+                        }
+                    }
+                } finally {
                 }
             }
         }
-        throw new IOException("Cannot send request to FIS servers. No OutputStream available.");
+        ca.c cVar2 = this.f283b;
+        u8.g gVar = this.f282a;
+        gVar.a();
+        String str5 = gVar.f49133c.f49143a;
+        String str6 = bVar.f2032a;
+        u8.g gVar2 = this.f282a;
+        gVar2.a();
+        String str7 = gVar2.f49133c.f49148g;
+        u8.g gVar3 = this.f282a;
+        gVar3.a();
+        String str8 = gVar3.f49133c.f49144b;
+        ca.d dVar = cVar2.f3023c;
+        if (dVar.b()) {
+            URL a2 = ca.c.a("projects/" + str7 + "/installations");
+            int i11 = 0;
+            ca.a aVar = cVar2;
+            while (i11 <= 1) {
+                TrafficStats.setThreadStatsTag(32769);
+                HttpURLConnection c3 = aVar.c(a2, str5);
+                try {
+                    try {
+                        c3.setRequestMethod("POST");
+                        c3.setDoOutput(true);
+                        if (str2 != null) {
+                            c3.addRequestProperty("x-goog-fis-android-iid-migration-auth", str2);
+                        }
+                        ca.c.g(c3, str6, str8);
+                        responseCode = c3.getResponseCode();
+                        dVar.d(responseCode);
+                        if (responseCode >= 200 && responseCode < 300) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                    } catch (IOException | AssertionError unused2) {
+                    }
+                    if (z10) {
+                        ca.a e10 = ca.c.e(c3);
+                        c3.disconnect();
+                        TrafficStats.clearThreadStatsTag();
+                        aVar = e10;
+                    } else {
+                        try {
+                            ca.c.b(c3, str8, str5, str7);
+                        } catch (IOException | AssertionError unused3) {
+                            c3.disconnect();
+                            TrafficStats.clearThreadStatsTag();
+                            i11++;
+                            aVar = aVar;
+                        }
+                        if (responseCode != 429) {
+                            if (responseCode >= 500 && responseCode < 600) {
+                                c3.disconnect();
+                                TrafficStats.clearThreadStatsTag();
+                                i11++;
+                                aVar = aVar;
+                            } else {
+                                Log.e("Firebase-Installations", "Firebase Installations can not communicate with Firebase server APIs due to invalid configuration. Please update your Firebase initialization process and set valid Firebase options (API key, Project ID, Application ID) when initializing Firebase.");
+                                ca.a aVar2 = new ca.a(null, null, null, null, 2);
+                                c3.disconnect();
+                                TrafficStats.clearThreadStatsTag();
+                                aVar = aVar2;
+                            }
+                        } else {
+                            throw new r("Firebase servers have received too many requests from this client in a short period of time. Please try again later.");
+                            break;
+                        }
+                    }
+                    int b10 = m1.j.b(aVar.f3016e);
+                    if (b10 != 0) {
+                        if (b10 == 1) {
+                            ba.a a10 = bVar.a();
+                            a10.f2030f = "BAD CONFIG";
+                            a10.f2027b = 5;
+                            return a10.a();
+                        }
+                        throw new r("Firebase Installations Service is unavailable. Please try again later.");
+                    }
+                    String str9 = aVar.f3014b;
+                    String str10 = aVar.f3015c;
+                    j jVar = this.d;
+                    jVar.getClass();
+                    TimeUnit timeUnit = TimeUnit.MILLISECONDS;
+                    jVar.f299a.getClass();
+                    long seconds = timeUnit.toSeconds(System.currentTimeMillis());
+                    ca.b bVar2 = aVar.d;
+                    String str11 = bVar2.f3017a;
+                    long j10 = bVar2.f3018b;
+                    ba.a a11 = bVar.a();
+                    a11.f2028c = str9;
+                    a11.f2027b = 4;
+                    a11.d = str11;
+                    a11.f2029e = str10;
+                    a11.f2031g = Long.valueOf(j10);
+                    a11.h = Long.valueOf(seconds);
+                    return a11.a();
+                } finally {
+                    c3.disconnect();
+                    TrafficStats.clearThreadStatsTag();
+                }
+            }
+            throw new r("Firebase Installations Service is unavailable. Please try again later.");
+        }
+        throw new r("Firebase Installations Service is unavailable. Please try again later.");
     }
 
-    public final java.net.HttpURLConnection c(java.net.URL r10, java.lang.String r11) {
-        throw new UnsupportedOperationException("Method not decompiled: aa.c.c(java.net.URL, java.lang.String):java.net.HttpURLConnection");
+    public final void j(Exception exc) {
+        synchronized (this.f287g) {
+            try {
+                Iterator it = this.f291l.iterator();
+                while (it.hasNext()) {
+                    if (((i) it.next()).b(exc)) {
+                        it.remove();
+                    }
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final void k(ba.b bVar) {
+        synchronized (this.f287g) {
+            try {
+                Iterator it = this.f291l.iterator();
+                while (it.hasNext()) {
+                    if (((i) it.next()).a(bVar)) {
+                        it.remove();
+                    }
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final synchronized void l(String str) {
+        this.f289j = str;
+    }
+
+    public final synchronized void m(ba.b bVar, ba.b bVar2) {
+        try {
+            if (this.f290k.size() != 0 && !TextUtils.equals(bVar.f2032a, bVar2.f2032a)) {
+                Iterator it = this.f290k.iterator();
+                if (it.hasNext()) {
+                    if (it.next() == null) {
+                        throw null;
+                    }
+                    throw new ClassCastException();
+                }
+            }
+        } finally {
+        }
     }
 }

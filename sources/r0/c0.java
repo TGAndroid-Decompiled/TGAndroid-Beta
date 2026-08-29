@@ -9,13 +9,13 @@ public abstract class c0 {
             return null;
         }
         m1 h = m1.h(null, rootWindowInsets);
-        j1 j1Var = h.f46929a;
+        j1 j1Var = h.f46843a;
         j1Var.r(h);
         j1Var.d(view.getRootView());
         return h;
     }
 
-    public static void b(View view, int i9, int i10) {
-        view.setScrollIndicators(i9, i10);
+    public static void b(View view, int i10, int i11) {
+        view.setScrollIndicators(i10, i11);
     }
 }

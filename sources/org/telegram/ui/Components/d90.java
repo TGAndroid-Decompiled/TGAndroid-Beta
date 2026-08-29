@@ -1,57 +1,99 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class d90 extends org.telegram.ui.ActionBar.j {
-    public final k90 f27692a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class d90 extends ReplacementSpan {
+    public final int f27717a;
+    public View f27718b;
+    public final c90 f27719c;
+    public final int d;
+    public float f27720e;
+    public float f27721f;
+    public float h;
+    public boolean f27722n;
 
-    public d90(k90 k90Var) {
-        this.f27692a = k90Var;
+    public d90(int i10, View view) {
+        this(view, i10, AndroidUtilities.dp(2.0f), null);
+    }
+
+    public final void a(int i10, int i11) {
+        Integer valueOf = Integer.valueOf(i10);
+        c90 c90Var = this.f27719c;
+        c90Var.f27392o = valueOf;
+        c90Var.f27393p = Integer.valueOf(i11);
     }
 
     @Override
-    public final void b(int i9) {
-        int i10;
-        k90 k90Var = this.f27692a;
-        if (i9 == -1) {
-            if (!k90Var.R.L(true)) {
-                k90Var.finishFragment();
-            }
-        } else if (i9 == 2) {
-            if (k90Var.E != null) {
-                ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < k90Var.E.size(); i11++) {
-                    TL_stories.StoryItem storyItem = ((MessageObject) k90Var.E.valueAt(i11)).storyItem;
-                    if (storyItem != null) {
-                        arrayList.add(storyItem);
-                    }
-                }
-                if (!arrayList.isEmpty()) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k90Var.getParentActivity(), 0, k90Var.getResourceProvider());
-                    if (arrayList.size() > 1) {
-                        i10 = R.string.DeleteStoriesTitle;
-                    } else {
-                        i10 = R.string.DeleteStoryTitle;
-                    }
-                    alertDialog$Builder.f22702a.N = LocaleController.getString(i10);
-                    alertDialog$Builder.f22702a.P = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new g1(22, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new g2(17));
-                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f22702a;
-                    c2Var.show();
-                    c2Var.h();
-                }
-            }
-        } else if (i9 == 10) {
-            h90 h90Var = k90Var.R;
-            h90Var.c1(h90Var.getClosestTab(), false);
-        } else if (i9 == 11) {
-            k90Var.R.L(true);
-            k90Var.R.getSearchItem().z(false);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f9, int i12, int i13, int i14, Paint paint) {
+        int alpha;
+        View view;
+        boolean z10 = this.f27722n;
+        int i15 = this.f27717a;
+        if (z10 && (view = this.f27718b) != null && view.getMeasuredWidth() > 0) {
+            i15 = ((this.f27718b.getMeasuredWidth() - this.f27718b.getPaddingLeft()) - this.f27718b.getPaddingRight()) - i15;
         }
+        float f10 = this.f27721f;
+        c90 c90Var = this.f27719c;
+        if (f10 > 0.0f) {
+            float f11 = (i12 + i14) / 2.0f;
+            int i16 = (int) f9;
+            float f12 = f10 / 2.0f;
+            c90Var.setBounds(i16, (int) (f11 - f12), i15 + i16, (int) (f12 + f11));
+        } else {
+            int i17 = (int) f9;
+            float z11 = com.google.android.recaptcha.internal.a.z(1.0f, this.f27720e, org.telegram.messenger.x3.B(2.0f, i14, i12) / 2.0f, i12);
+            float f13 = this.d;
+            c90Var.setBounds(i17, (int) (z11 + f13), i15 + i17, (int) (((i14 - AndroidUtilities.dp(2.0f)) - ((1.0f - this.f27720e) * (org.telegram.messenger.x3.B(2.0f, i14, i12) / 2.0f))) + f13));
+        }
+        if (paint == null) {
+            alpha = 255;
+        } else {
+            alpha = paint.getAlpha();
+        }
+        c90Var.setAlpha((int) (alpha * this.h));
+        c90Var.draw(canvas);
+        View view2 = this.f27718b;
+        if (view2 != null) {
+            view2.invalidate();
+        }
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        View view;
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        if (fontMetricsInt != null) {
+            fontMetricsInt.ascent = (int) fontMetrics.ascent;
+            fontMetricsInt.bottom = (int) fontMetrics.bottom;
+            fontMetricsInt.descent = (int) fontMetrics.descent;
+            fontMetricsInt.leading = (int) fontMetrics.leading;
+            fontMetricsInt.top = (int) fontMetrics.top;
+        }
+        c90 c90Var = this.f27719c;
+        if (c90Var.f27392o == null && c90Var.f27393p == null) {
+            c90Var.e(org.telegram.ui.ActionBar.g6.l1(0.1f, paint.getColor()), org.telegram.ui.ActionBar.g6.l1(0.25f, paint.getColor()));
+        }
+        boolean z10 = this.f27722n;
+        int i12 = this.f27717a;
+        if (z10 && (view = this.f27718b) != null && view.getMeasuredWidth() > 0) {
+            return ((this.f27718b.getMeasuredWidth() - this.f27718b.getPaddingLeft()) - this.f27718b.getPaddingRight()) - i12;
+        }
+        return i12;
+    }
+
+    public d90(View view, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f27720e = 1.0f;
+        this.f27721f = -1.0f;
+        this.h = 1.0f;
+        this.f27722n = false;
+        this.f27718b = view;
+        this.f27717a = i10;
+        this.d = i11;
+        c90 c90Var = new c90(c6Var);
+        this.f27719c = c90Var;
+        c90Var.j(4.0f);
     }
 }

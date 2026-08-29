@@ -1,19 +1,17 @@
 package md;
-public final class g extends RuntimeException {
-    public final transient qc.h f17649a;
 
-    public g(qc.h hVar) {
-        this.f17649a = hVar;
+import kotlin.jvm.internal.q;
+public final class g implements c {
+    public final c f16991a;
+    public final q f16992b;
+
+    public g(c cVar, q qVar) {
+        this.f16991a = cVar;
+        this.f16992b = qVar;
     }
 
     @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
-    }
-
-    @Override
-    public final String getLocalizedMessage() {
-        return this.f17649a.toString();
+    public final java.lang.Object c(java.lang.Object r5, uc.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: md.g.c(java.lang.Object, uc.c):java.lang.Object");
     }
 }

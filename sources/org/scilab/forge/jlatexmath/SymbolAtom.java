@@ -25,11 +25,11 @@ public class SymbolAtom extends CharSymbol {
         validSymbolTypes.set(10);
     }
 
-    public SymbolAtom(SymbolAtom symbolAtom, int i9) {
-        if (validSymbolTypes.get(i9)) {
+    public SymbolAtom(SymbolAtom symbolAtom, int i10) {
+        if (validSymbolTypes.get(i10)) {
             this.name = symbolAtom.name;
-            this.type = i9;
-            if (i9 == 1) {
+            this.type = i10;
+            if (i10 == 1) {
                 this.type_limits = 0;
             }
             this.delimiter = symbolAtom.delimiter;
@@ -56,12 +56,12 @@ public class SymbolAtom extends CharSymbol {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        char c10;
+        char c3;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r22 = teXFont.getChar(this.name, style);
         Box charBox = new CharBox(r22);
-        if (teXEnvironment.getSmallCap() && (c10 = this.unicode) != 0 && Character.isLowerCase(c10)) {
+        if (teXEnvironment.getSmallCap() && (c3 = this.unicode) != 0 && Character.isLowerCase(c3)) {
             try {
                 charBox = new ScaleBox(new CharBox(teXFont.getChar(TeXFormula.symbolTextMappings[Character.toUpperCase(this.unicode)], style)), 0.8d, 0.8d);
             } catch (SymbolMappingNotFoundException unused) {
@@ -100,8 +100,8 @@ public class SymbolAtom extends CharSymbol {
         return this.delimiter;
     }
 
-    public SymbolAtom setUnicode(char c10) {
-        this.unicode = c10;
+    public SymbolAtom setUnicode(char c3) {
+        this.unicode = c3;
         return this;
     }
 
@@ -113,10 +113,10 @@ public class SymbolAtom extends CharSymbol {
         symbols.put(symbolAtom.name, symbolAtom);
     }
 
-    public SymbolAtom(String str, int i9, boolean z10) {
+    public SymbolAtom(String str, int i10, boolean z10) {
         this.name = str;
-        this.type = i9;
-        if (i9 == 1) {
+        this.type = i10;
+        if (i10 == 1) {
             this.type_limits = 0;
         }
         this.delimiter = z10;

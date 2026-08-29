@@ -8,16 +8,16 @@ public class TStrokeAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        char c10;
+        char c3;
         Char r02 = teXEnvironment.getTeXFont().getChar("bar", teXEnvironment.getStyle());
         float italic = r02.getItalic();
         TeXFont teXFont = teXEnvironment.getTeXFont();
         if (this.upper) {
-            c10 = 'T';
+            c3 = 'T';
         } else {
-            c10 = 't';
+            c3 = 't';
         }
-        CharBox charBox = new CharBox(teXFont.getChar(c10, "mathnormal", teXEnvironment.getStyle()));
+        CharBox charBox = new CharBox(teXFont.getChar(c3, "mathnormal", teXEnvironment.getStyle()));
         Box charBox2 = new CharBox(r02);
         if (Math.abs(italic) > 1.0E-7f) {
             Box horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));

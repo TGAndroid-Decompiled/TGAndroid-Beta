@@ -6,12 +6,12 @@ public class OverUnderDelimiter extends Atom {
     private Atom script;
     private final SymbolAtom symbol;
 
-    public OverUnderDelimiter(Atom atom, Atom atom2, SymbolAtom symbolAtom, int i9, float f10, boolean z10) {
+    public OverUnderDelimiter(Atom atom, Atom atom2, SymbolAtom symbolAtom, int i10, float f9, boolean z10) {
         this.type = 7;
         this.base = atom;
         this.script = atom2;
         this.symbol = symbolAtom;
-        this.kern = new SpaceAtom(i9, 0.0f, f10, 0.0f);
+        this.kern = new SpaceAtom(i10, 0.0f, f9, 0.0f);
         this.over = z10;
     }
 

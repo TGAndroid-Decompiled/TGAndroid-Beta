@@ -1,11 +1,10 @@
 package ie;
+public final class l {
+    public final le.n f8950a;
+    public final int f8951b;
 
-import f7.p8;
-public final class l extends a {
-    public String f11118g;
-
-    @Override
-    public final void a(p8 p8Var) {
-        p8Var.j(this);
+    public l(le.n nVar, int i10) {
+        this.f8950a = nVar;
+        this.f8951b = i10;
     }
 }

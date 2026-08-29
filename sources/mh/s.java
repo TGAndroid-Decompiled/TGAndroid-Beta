@@ -1,28 +1,36 @@
 package mh;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l41;
-public final class s implements Utilities.Callback5, Utilities.Callback5Return {
-    public final t f18089a;
+import org.telegram.messenger.TranslateController;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.v41;
+import org.telegram.ui.Components.w41;
+public final class s extends v41 {
+    public static final int f17052a = 0;
 
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l41 l41Var = (l41) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f18089a.getClass();
-        return Boolean.FALSE;
+    static {
+        v41.setup(new v41());
     }
 
     @Override
-    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        t.U(this.f18089a, (l41) obj);
+    public final void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
+        t tVar = (t) view;
+        TranslateController.Language language = (TranslateController.Language) w41Var.G;
+        tVar.f17053a.setText(language.displayName);
+        tVar.f17054b.setText(language.ownDisplayName);
+        if (tVar.f17055c != z10) {
+            tVar.invalidate();
+        }
+        tVar.f17055c = z10;
+        tVar.setWillNotDraw(!z10);
+    }
+
+    @Override
+    public final View createView(Context context, jl0 jl0Var, int i10, int i11, c6 c6Var) {
+        return new t(context);
     }
 }

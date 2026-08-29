@@ -1,201 +1,222 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.ll;
-public class a9 extends FrameLayout {
-    public final TextView f24067a;
-    public final TextView f24068b;
-    public final ImageView f24069c;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.RadioButton;
+public final class a9 extends FrameLayout {
+    public TextView f24094a;
+    public TextView f24095b;
+    public RadioButton f24096c;
     public boolean d;
-    public boolean f24070e;
+    public int f24097e;
+    public float f24098f;
+    public float h;
+    public boolean f24099n;
+    public int f24100r;
 
-    public a9(Context context) {
-        super(context);
-        int i9;
+    static {
+        new fh.g("animationProgress", 4);
+    }
+
+    public void setAnimationProgress(float f9) {
+        this.f24098f = f9;
+        Math.max(this.h, getMeasuredWidth() - this.h);
+        AndroidUtilities.dp(40.0f);
+        getMeasuredHeight();
+    }
+
+    public final void b(String str, String str2, boolean z10) {
+        TextView textView = this.f24094a;
+        textView.setText(str);
+        TextView textView2 = this.f24095b;
+        textView2.setText(str2);
+        this.f24096c.a(false, false);
+        this.d = z10;
+        textView2.setVisibility(0);
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setPadding(0, 0, 0, 0);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        layoutParams.height = -2;
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        textView.setLayoutParams(layoutParams);
+        setWillNotDraw(!z10);
+    }
+
+    public final void c() {
         int i10;
         int i11;
+        float f9;
+        float f10;
         int i12;
-        TextView textView = new TextView(context);
-        this.f24067a = textView;
-        ll.s(textView, org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.G6, false), 1, 16.0f, 1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        if (LocaleController.isRTL) {
-            i9 = 5;
-        } else {
-            i9 = 3;
+        int i13;
+        float f11;
+        RadioButton radioButton = this.f24096c;
+        TextView textView = this.f24095b;
+        TextView textView2 = this.f24094a;
+        int i14 = this.f24100r;
+        boolean z10 = this.f24099n;
+        boolean z11 = LocaleController.isRTL;
+        if (z10 == z11) {
+            return;
         }
-        textView.setGravity(i9 | 16);
-        if (LocaleController.isRTL) {
+        this.f24099n = z11;
+        int i15 = 3;
+        if (z11) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        addView(textView, g7.e6.d(-2, -2.0f, i10 | 48, 21.0f, 10.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f24068b = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23386z6, false));
-        textView2.setTextSize(1, 13.0f);
-        if (LocaleController.isRTL) {
+        textView2.setGravity(i10 | 16);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView2.getLayoutParams();
+        boolean z12 = LocaleController.isRTL;
+        if (z12) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        textView2.setGravity(i11);
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setPadding(0, 0, 0, 0);
+        layoutParams.gravity = i11 | 48;
+        float f12 = 64.0f;
+        if (z12) {
+            f9 = i14;
+        } else {
+            f9 = 64.0f;
+        }
+        layoutParams.leftMargin = AndroidUtilities.dp(f9);
+        if (LocaleController.isRTL) {
+            f10 = 64.0f;
+        } else {
+            f10 = i14;
+        }
+        layoutParams.rightMargin = AndroidUtilities.dp(f10);
+        textView2.setLayoutParams(layoutParams);
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
             i12 = 3;
         }
-        addView(textView2, g7.e6.d(-2, -2.0f, i12 | 48, 21.0f, 35.0f, 21.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f24069c = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23162m6, false), PorterDuff.Mode.MULTIPLY));
-        imageView.setVisibility(8);
-        addView(imageView, g7.e6.d(52, 52.0f, (LocaleController.isRTL ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
-    }
-
-    public final void a(String str, String str2, boolean z10) {
-        this.f24067a.setText(str);
-        this.f24068b.setText(str2);
-        this.d = z10;
-        this.f24069c.setVisibility(8);
-        setWillNotDraw(!z10);
-    }
-
-    public final void b(int i9, String str, String str2, boolean z10) {
-        int dp;
-        int i10;
-        int dp2;
-        int i11;
-        int i12;
-        TextView textView = this.f24067a;
-        textView.setText(str);
-        TextView textView2 = this.f24068b;
-        textView2.setText(str2);
-        ImageView imageView = this.f24069c;
-        imageView.setImageResource(i9);
-        imageView.setVisibility(0);
+        textView.setGravity(i12);
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        boolean z13 = LocaleController.isRTL;
+        if (z13) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        layoutParams2.gravity = i13 | 48;
+        if (z13) {
+            f11 = i14;
+        } else {
+            f11 = 64.0f;
+        }
+        layoutParams2.leftMargin = AndroidUtilities.dp(f11);
+        if (!LocaleController.isRTL) {
+            f12 = i14;
+        }
+        layoutParams2.rightMargin = AndroidUtilities.dp(f12);
+        textView.setLayoutParams(layoutParams2);
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
         if (LocaleController.isRTL) {
-            dp = 0;
-        } else {
-            dp = AndroidUtilities.dp(50.0f);
+            i15 = 5;
         }
-        if (LocaleController.isRTL) {
-            i10 = AndroidUtilities.dp(50.0f);
-        } else {
-            i10 = 0;
-        }
-        textView.setPadding(dp, 0, i10, 0);
-        if (LocaleController.isRTL) {
-            dp2 = 0;
-        } else {
-            dp2 = AndroidUtilities.dp(50.0f);
-        }
-        if (LocaleController.isRTL) {
-            i11 = AndroidUtilities.dp(50.0f);
-        } else {
-            i11 = 0;
-        }
-        if (this.f24070e) {
-            i12 = AndroidUtilities.dp(12.0f);
-        } else {
-            i12 = 0;
-        }
-        textView2.setPadding(dp2, 0, i11, i12);
-        this.d = z10;
-        setWillNotDraw(!z10);
-    }
-
-    public TextView getTextView() {
-        return this.f24067a;
-    }
-
-    public TextView getValueTextView() {
-        return this.f24068b;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f24067a.invalidate();
+        layoutParams3.gravity = i15 | 16;
+        radioButton.setLayoutParams(layoutParams3);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f10;
         float dp;
-        int i9;
-        if (this.d && org.telegram.ui.ActionBar.f6.f23121k0 != null) {
-            boolean z10 = LocaleController.isRTL;
-            float f11 = 20.0f;
-            ImageView imageView = this.f24069c;
-            if (z10) {
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
-                if (imageView.getVisibility() == 0) {
-                    f10 = 71.0f;
-                } else {
-                    f10 = 20.0f;
-                }
-                dp = AndroidUtilities.dp(f10);
+                dp = AndroidUtilities.dp(64.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                if (imageView.getVisibility() == 0) {
-                    f11 = 71.0f;
-                }
-                i9 = AndroidUtilities.dp(f11);
+                i10 = AndroidUtilities.dp(64.0f);
             } else {
-                i9 = 0;
+                i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i9, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.f6.f23121k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.g6.f23183k0);
         }
     }
 
     @Override
-    public final void onMeasure(int i9, int i10) {
-        if (!this.f24070e) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        int i10;
+        TextView textView = this.f24095b;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setCheckable(true);
+        RadioButton radioButton = this.f24096c;
+        accessibilityNodeInfo.setChecked(radioButton.f26519f);
+        if (radioButton.f26519f) {
+            i10 = R.string.NotificationsOn;
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+            i10 = R.string.NotificationsOff;
         }
+        accessibilityNodeInfo.setContentDescription(LocaleController.getString(i10));
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(this.f24094a.getText());
+        if (!TextUtils.isEmpty(textView.getText())) {
+            sb2.append("\n");
+            sb2.append(textView.getText());
+        }
+        accessibilityNodeInfo.setContentDescription(sb2);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
     }
 
-    public void setMultilineDetail(boolean z10) {
-        this.f24070e = z10;
-        TextView textView = this.f24068b;
-        if (z10) {
-            textView.setLines(0);
-            textView.setMaxLines(0);
-            textView.setSingleLine(false);
-            textView.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
-            return;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f9;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (this.f24095b.getVisibility() == 0) {
+            f9 = 64.0f;
+        } else {
+            f9 = this.f24097e;
         }
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setPadding(0, 0, 0, 0);
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f9) + (this.d ? 1 : 0), 1073741824));
     }
 
-    public void setValue(CharSequence charSequence) {
-        this.f24068b.setText(charSequence);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.h = motionEvent.getX();
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        clearAnimation();
+        super.setBackgroundColor(i10);
+    }
+
+    public void setChecked(boolean z10) {
+        this.f24096c.a(z10, true);
+    }
+
+    public void setHeight(int i10) {
+        this.f24097e = i10;
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+    }
+
+    public void setTypeface(Typeface typeface) {
+        this.f24094a.setTypeface(typeface);
     }
 }

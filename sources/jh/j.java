@@ -1,99 +1,59 @@
 package jh;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import f2.n1;
-import f2.y0;
-import org.telegram.ui.Cells.r7;
-public final class j extends y0 {
-    public final int f14352a;
-    public final q f14353b;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class j implements TextView.OnEditorActionListener {
+    public final int f12278a;
+    public final Object f12279b;
 
-    public j(q qVar, int i9) {
-        this.f14352a = i9;
-        this.f14353b = qVar;
+    public j(Object obj, int i10) {
+        this.f12278a = i10;
+        this.f12279b = obj;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, n1 n1Var) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        switch (this.f14352a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        th.c1 c1Var;
+        switch (this.f12278a) {
             case 0:
-                if (view instanceof r7) {
-                    r7 r7Var = (r7) view;
-                    q qVar = this.f14353b;
-                    qVar.f14367f.getClass();
-                    int R = RecyclerView.R(r7Var);
-                    int i9 = qVar.h.J;
-                    boolean z14 = true;
-                    if (R < i9) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    r7Var.T = z10;
-                    int i10 = R % i9;
-                    if (i10 == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    r7Var.R = z11;
-                    if (i10 != i9 - 1) {
-                        z14 = false;
-                    }
-                    r7Var.S = z14;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                    return;
+                q qVar = (q) this.f12279b;
+                if (i10 == 5) {
+                    qVar.k0();
+                    return true;
                 }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
-                return;
+                qVar.getClass();
+                return false;
+            case 1:
+                sf.l0 l0Var = (sf.l0) this.f12279b;
+                sf.h0 h0Var = l0Var.B;
+                boolean z10 = false;
+                if (i10 == 6) {
+                    l0Var.f47869x = false;
+                    AndroidUtilities.cancelRunOnUIThread(h0Var);
+                    z10 = true;
+                    if (TextUtils.isEmpty(l0Var.f47864f.getText())) {
+                        l0Var.f47870y = null;
+                        l0Var.d.b();
+                        l0Var.f47862c.U2.N(true);
+                    } else {
+                        AndroidUtilities.runOnUIThread(h0Var);
+                    }
+                    l0Var.b0();
+                }
+                return z10;
             default:
-                if (view instanceof r7) {
-                    r7 r7Var2 = (r7) view;
-                    q qVar2 = this.f14353b;
-                    qVar2.f14369r.getClass();
-                    int R2 = RecyclerView.R(r7Var2);
-                    int i11 = qVar2.f14370s.J;
-                    boolean z15 = true;
-                    if (R2 < i11) {
-                        z12 = true;
+                th.d1 d1Var = (th.d1) this.f12279b;
+                if (i10 == 5 && (c1Var = d1Var.f48399c) != null && !d1Var.f48405w) {
+                    if (d1Var.f48403r) {
+                        d1Var.p();
                     } else {
-                        z12 = false;
+                        c1Var.S0(d1Var);
                     }
-                    r7Var2.T = z12;
-                    int i12 = R2 % i11;
-                    if (i12 == 0) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    r7Var2.R = z13;
-                    if (i12 != i11 - 1) {
-                        z15 = false;
-                    }
-                    r7Var2.S = z15;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                    return;
+                    return true;
                 }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
-                return;
+                return false;
         }
     }
 }

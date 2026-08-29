@@ -1,13 +1,39 @@
 package c2;
-public final class x {
-    public final c0 f2242a;
-    public final w f2243b;
-    public v f2244c = v.f2236c;
-    public int d;
-    public long f2245e;
+public abstract class x {
+    public abstract void e(b0 b0Var);
 
-    public x(c0 c0Var, w wVar) {
-        this.f2242a = c0Var;
-        this.f2243b = wVar;
+    public void h(d0 d0Var, b0 b0Var, int i10) {
+        g(b0Var);
+    }
+
+    public void j(d0 d0Var, b0 b0Var, int i10) {
+        i();
+    }
+
+    public void a() {
+    }
+
+    public void b() {
+    }
+
+    public void c() {
+    }
+
+    public void i() {
+    }
+
+    public void d(b0 b0Var) {
+    }
+
+    public void f(b0 b0Var) {
+    }
+
+    public void g(b0 b0Var) {
+    }
+
+    public void k(b0 b0Var) {
+    }
+
+    public void l(g0 g0Var) {
     }
 }

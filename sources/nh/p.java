@@ -1,35 +1,27 @@
 package nh;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l41;
-import r0.m1;
-public final class p implements Utilities.Callback5, Utilities.Callback5Return, r0.o {
-    public final r f18695a;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.camera.CameraController;
+public final class p extends t6 {
+    public final r B;
 
-    @Override
-    public m1 L0(View view, m1 m1Var) {
-        this.f18695a.U(m1Var.f46929a.f(519).d);
-        return m1.f46928b;
+    public p(r rVar, Context context) {
+        super(context);
+        this.B = rVar;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l41 l41Var = (l41) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f18695a.getClass();
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        r.T(this.f18695a, (l41) obj);
+    public final void c() {
+        AndroidUtilities.cancelRunOnUIThread(this.h);
+        if (this.f18674c <= 0) {
+            a(true);
+        } else {
+            CameraController.getInstance().stopVideoRecording(this.f18672a.getCameraSessionRecording(), false, false);
+        }
+        r rVar = this.B;
+        if (rVar.K1) {
+            rVar.z(true, false);
+        }
     }
 }

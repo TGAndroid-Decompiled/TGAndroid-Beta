@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import j3.r0;
+import j7.l1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,18 +21,18 @@ public class RtpTransceiver {
         
         private final int nativeIndex;
 
-        RtpTransceiverDirection(int i9) {
-            this.nativeIndex = i9;
+        RtpTransceiverDirection(int i10) {
+            this.nativeIndex = i10;
         }
 
-        public static RtpTransceiverDirection fromNativeIndex(int i9) {
+        public static RtpTransceiverDirection fromNativeIndex(int i10) {
             RtpTransceiverDirection[] values;
             for (RtpTransceiverDirection rtpTransceiverDirection : values()) {
-                if (rtpTransceiverDirection.getNativeIndex() == i9) {
+                if (rtpTransceiverDirection.getNativeIndex() == i10) {
                     return rtpTransceiverDirection;
                 }
             }
-            throw new IllegalArgumentException(r0.l(i9, "Uknown native RtpTransceiverDirection type"));
+            throw new IllegalArgumentException(l1.k(i10, "Uknown native RtpTransceiverDirection type"));
         }
 
         public int getNativeIndex() {

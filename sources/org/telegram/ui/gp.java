@@ -1,103 +1,46 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class gp extends org.telegram.ui.Components.vk0 {
-    public final Context f38586c;
-    public ArrayList d = new ArrayList();
-    public ArrayList f38587e = new ArrayList();
-    public fp f38588f;
-    public final hp h;
+public final class gp extends org.telegram.ui.Components.g80 {
+    public final TLRPC.Chat f38645w;
+    public final hp f38646x;
 
-    public gp(hp hpVar, Context context) {
-        this.h = hpVar;
-        this.f38586c = context;
-    }
-
-    public static void E(gp gpVar, ArrayList arrayList, ArrayList arrayList2) {
-        hp hpVar = gpVar.h;
-        if (!hpVar.J) {
-            return;
-        }
-        gpVar.d = arrayList;
-        gpVar.f38587e = arrayList2;
-        if (hpVar.f38882b.getAdapter() == hpVar.f38884e) {
-            hpVar.d.c();
-        }
-        super.l();
+    public gp(hp hpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f38646x = hpVar;
+        this.f38645w = chat2;
     }
 
     @Override
-    public final void A(f2.q1 q1Var) {
-        View view = q1Var.f5501a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
+    public final boolean a(boolean z10, org.telegram.ui.Components.e80 e80Var) {
+        kp kpVar = this.f38646x.d;
+        if (kpVar.L) {
+            return false;
         }
+        kpVar.L = true;
+        e(new vf(24, this, e80Var), new ag.w0(this, this.f38645w, z10, e80Var, 13));
+        return true;
     }
 
     @Override
-    public final boolean D(f2.q1 q1Var) {
-        if (q1Var.f5505f != 1) {
-            return true;
+    public final boolean b(boolean z10, org.telegram.ui.Components.f80 f80Var) {
+        kp kpVar = this.f38646x.d;
+        if (kpVar.K) {
+            return false;
         }
-        return false;
+        kpVar.K = true;
+        e(new vf(24, this, f80Var), new ag.w0(this, this.f38645w, z10, f80Var, 12));
+        return true;
     }
 
-    public final void F(String str) {
-        if (this.f38588f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f38588f);
-            this.f38588f = null;
+    public final void e(vf vfVar, Runnable runnable) {
+        kp kpVar = this.f38646x.d;
+        if (!ChatObject.isChannel(kpVar.f39981f)) {
+            kpVar.getMessagesController().convertToMegaGroup(kpVar.getParentActivity(), this.f38645w.f22392id, kpVar, new kg.w(25, this, runnable), vfVar);
+        } else {
+            runnable.run();
         }
-        if (TextUtils.isEmpty(str)) {
-            this.d.clear();
-            this.f38587e.clear();
-            super.l();
-            return;
-        }
-        DispatchQueue dispatchQueue = Utilities.searchQueue;
-        fp fpVar = new fp(this, str, 0);
-        this.f38588f = fpVar;
-        dispatchQueue.postRunnable(fpVar, 300L);
-    }
-
-    @Override
-    public final int h() {
-        return this.d.size();
-    }
-
-    @Override
-    public final int j(int i9) {
-        return 0;
-    }
-
-    @Override
-    public final void v(f2.q1 q1Var, int i9) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i9);
-        String publicUsername = ChatObject.getPublicUsername(chat);
-        CharSequence charSequence = (CharSequence) this.f38587e.get(i9);
-        CharSequence charSequence2 = null;
-        if (charSequence != null && !TextUtils.isEmpty(publicUsername)) {
-            if (charSequence.toString().startsWith("@" + publicUsername)) {
-                charSequence2 = charSequence;
-                charSequence = null;
-            }
-        }
-        org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) q1Var.f5501a;
-        b5Var.setTag(Integer.valueOf(i9));
-        b5Var.b(chat, charSequence, charSequence2, false);
-    }
-
-    @Override
-    public final f2.q1 x(ViewGroup viewGroup, int i9) {
-        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f38586c, null, false);
-        b5Var.setBackgroundColor(org.telegram.ui.ActionBar.f6.w0(null, org.telegram.ui.ActionBar.f6.f23001d6, false));
-        return new f2.q1(b5Var);
     }
 }

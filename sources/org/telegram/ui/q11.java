@@ -1,43 +1,30 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class q11 implements r9 {
-    public final int f41648a;
-    public final org.telegram.ui.ActionBar.o2 f41649b;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class q11 implements ResultCallback {
+    public final a21 f41504a;
 
-    public q11(int i9, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f41648a = i9;
-        this.f41649b = o2Var;
+    public q11(a21 a21Var) {
+        this.f41504a = a21Var;
     }
 
     @Override
-    public final String C0() {
-        return null;
+    public final void onComplete(Object obj) {
+        List list = (List) obj;
+        this.f41504a.c0(list);
+        a21.O = list;
     }
 
     @Override
-    public final void K(String str) {
-        String b10 = ve.e.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f41648a).getUserNameResolver().resolve(b10, new sb(this.f41649b, 4));
-        } else {
-            AndroidUtilities.runOnUIThread(new lj0(2));
-        }
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
     @Override
-    public final boolean i1(String str, j9 j9Var) {
-        return false;
-    }
-
-    @Override
-    public final void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f41504a.getParentActivity(), tL_error.text, 0).show();
     }
 }

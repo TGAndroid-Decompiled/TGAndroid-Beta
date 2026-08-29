@@ -1,22 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class n5 extends org.telegram.ui.Cells.y4 {
-    public final int f40591f;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class n5 implements f5.d {
+    public final int f40712a;
+    public final v5 f40713b;
 
-    public n5(Context context, int i9) {
-        super(context);
-        this.f40591f = i9;
+    public n5(v5 v5Var, int i10) {
+        this.f40712a = i10;
+        this.f40713b = v5Var;
     }
 
     @Override
-    public final int getFullHeight() {
-        switch (this.f40591f) {
+    public final void accept(Object obj) {
+        switch (this.f40712a) {
             case 0:
-                return AndroidUtilities.dp(50.0f);
+                this.f40713b.O = (ChannelBoostsController.CanApplyBoost) obj;
+                return;
             default:
-                return AndroidUtilities.dp(50.0f);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c(10, this.f40713b, (TL_stories.TL_premium_boostsStatus) obj));
+                return;
         }
     }
 }

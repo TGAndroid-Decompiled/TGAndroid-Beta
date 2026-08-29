@@ -1,6 +1,14 @@
 package m3;
 public interface e {
-    d Q1(l lVar, long j10);
+    Object dequeueInputBuffer();
 
-    void i2();
+    Object dequeueOutputBuffer();
+
+    void flush();
+
+    String getName();
+
+    void queueInputBuffer(Object obj);
+
+    void release();
 }

@@ -1,106 +1,71 @@
 package j3;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public abstract class x implements j {
-    public h f13390b;
-    public h f13391c;
-    public h d;
-    public h f13392e;
-    public ByteBuffer f13393f;
-    public ByteBuffer f13394g;
-    public boolean h;
+import j$.time.LocalDate;
+import j$.time.ZoneOffset;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.wk0;
+public final class x implements f5.j, wk0, mc0, org.telegram.ui.ActionBar.b2 {
+    public final int f10842a;
+    public final int f10843b;
 
-    public x() {
-        ByteBuffer byteBuffer = j.f13282a;
-        this.f13393f = byteBuffer;
-        this.f13394g = byteBuffer;
-        h hVar = h.f13246e;
-        this.d = hVar;
-        this.f13392e = hVar;
-        this.f13390b = hVar;
-        this.f13391c = hVar;
+    public x(int i10, int i11) {
+        this.f10842a = i11;
+        this.f10843b = i10;
     }
 
     @Override
-    public ByteBuffer a() {
-        ByteBuffer byteBuffer = this.f13394g;
-        this.f13394g = j.f13282a;
-        return byteBuffer;
-    }
-
-    @Override
-    public final void c() {
-        this.h = true;
-        h();
-    }
-
-    @Override
-    public boolean d() {
-        if (this.h && this.f13394g == j.f13282a) {
-            return true;
+    public String e(int i10) {
+        int i11 = this.f10842a;
+        int i12 = this.f10843b;
+        switch (i11) {
+            case 3:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                LocalDate plusDays = LocalDate.now().plusDays(i10);
+                int year = plusDays.getYear();
+                long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
+                if (year == i12) {
+                    return LocaleController.getInstance().getFormatterWeek().format(epochMilli) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(epochMilli);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
+            default:
+                if (i10 == i12) {
+                    return "—";
+                }
+                return String.format("%02d", Integer.valueOf(i10));
         }
-        return false;
     }
 
     @Override
-    public final h e(h hVar) {
-        this.d = hVar;
-        this.f13392e = f(hVar);
-        if (isActive()) {
-            return this.f13392e;
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        MessagesController.getInstance(this.f10843b).performLogout(1);
+    }
+
+    @Override
+    public void invoke(Object obj) {
+        switch (this.f10842a) {
+            case 0:
+                ((a2) obj).onRepeatModeChanged(this.f10843b);
+                return;
+            default:
+                k3.b bVar = (k3.b) obj;
+                bVar.getClass();
+                bVar.e(this.f10843b);
+                return;
         }
-        return h.f13246e;
-    }
-
-    public abstract h f(h hVar);
-
-    @Override
-    public final void flush() {
-        this.f13394g = j.f13282a;
-        this.h = false;
-        this.f13390b = this.d;
-        this.f13391c = this.f13392e;
-        g();
     }
 
     @Override
-    public boolean isActive() {
-        if (this.f13392e != h.f13246e) {
-            return true;
-        }
-        return false;
+    public int run() {
+        return this.f10843b;
     }
 
-    public final ByteBuffer j(int i9) {
-        if (this.f13393f.capacity() < i9) {
-            this.f13393f = ByteBuffer.allocateDirect(i9).order(ByteOrder.nativeOrder());
-        } else {
-            this.f13393f.clear();
-        }
-        ByteBuffer byteBuffer = this.f13393f;
-        this.f13394g = byteBuffer;
-        return byteBuffer;
-    }
-
-    @Override
-    public final void reset() {
-        flush();
-        this.f13393f = j.f13282a;
-        h hVar = h.f13246e;
-        this.d = hVar;
-        this.f13392e = hVar;
-        this.f13390b = hVar;
-        this.f13391c = hVar;
-        i();
-    }
-
-    public void g() {
-    }
-
-    public void h() {
-    }
-
-    public void i() {
+    public x(k3.a aVar, int i10, b2 b2Var, b2 b2Var2) {
+        this.f10842a = 1;
+        this.f10843b = i10;
     }
 }

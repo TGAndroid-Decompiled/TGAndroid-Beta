@@ -1,103 +1,43 @@
 package r3;
 
-import d5.y;
-import h3.s0;
-import h3.t0;
-import m3.h;
-import m3.k;
-import m3.l;
-import m3.m;
-import m3.o;
-import m3.w;
-public final class a implements k {
-    public m f47015b;
-    public int f47016c;
-    public int d;
-    public int f47017e;
-    public f4.b f47019g;
-    public l h;
-    public f2.d f47020i;
-    public u3.l f47021j;
-    public final y f47014a = new y(6);
-    public long f47018f = -1;
+import o3.c;
+import o3.e;
+import o3.l;
+import o3.n;
+public final class a {
+    public final o3.a f46920a;
+    public final e f46921b;
+    public o3.b f46922c;
+    public final int d;
 
-    public final void a() {
-        d(new z3.b[0]);
-        m mVar = this.f47015b;
-        mVar.getClass();
-        mVar.B();
-        this.f47015b.y(new o(-9223372036854775807L));
-        this.f47016c = 6;
+    public a(c cVar, e eVar, long j10, long j11, long j12, long j13, long j14, int i10) {
+        this.f46921b = eVar;
+        this.d = i10;
+        this.f46920a = new o3.a(cVar, j10, j11, j12, j13, j14);
     }
 
-    @Override
-    public final int b(m3.l r26, m3.n r27) {
-        throw new UnsupportedOperationException("Method not decompiled: r3.a.b(m3.l, m3.n):int");
+    public static int a(int i10, byte[] bArr) {
+        return (bArr[i10 + 3] & 255) | ((bArr[i10] & 255) << 24) | ((bArr[i10 + 1] & 255) << 16) | ((bArr[i10 + 2] & 255) << 8);
     }
 
-    @Override
-    public final void c(m mVar) {
-        this.f47015b = mVar;
-    }
-
-    public final void d(z3.b... bVarArr) {
-        m mVar = this.f47015b;
-        mVar.getClass();
-        w I = mVar.I(1024, 4);
-        s0 s0Var = new s0();
-        s0Var.f9704n = "image/jpeg";
-        s0Var.f9699i = new z3.c(bVarArr);
-        I.c(new t0(s0Var));
-    }
-
-    @Override
-    public final boolean f(l lVar) {
-        h hVar = (h) lVar;
-        y yVar = this.f47014a;
-        yVar.z(2);
-        hVar.g(yVar.f4410a, 0, 2, false);
-        if (yVar.w() == 65496) {
-            yVar.z(2);
-            hVar.g(yVar.f4410a, 0, 2, false);
-            int w8 = yVar.w();
-            this.d = w8;
-            if (w8 == 65504) {
-                yVar.z(2);
-                hVar.g(yVar.f4410a, 0, 2, false);
-                hVar.a(yVar.w() - 2, false);
-                yVar.z(2);
-                hVar.g(yVar.f4410a, 0, 2, false);
-                this.d = yVar.w();
-            }
-            if (this.d == 65505) {
-                hVar.a(2, false);
-                yVar.z(6);
-                hVar.g(yVar.f4410a, 0, 6, false);
-                if (yVar.s() == 1165519206 && yVar.w() == 0) {
-                    return true;
-                }
-            }
+    public static int c(l lVar, long j10, n nVar) {
+        if (j10 == lVar.getPosition()) {
+            return 0;
         }
-        return false;
+        nVar.f19103a = j10;
+        return 1;
     }
 
-    @Override
-    public final void g(long j10, long j11) {
-        if (j10 == 0) {
-            this.f47016c = 0;
-            this.f47021j = null;
-        } else if (this.f47016c == 5) {
-            u3.l lVar = this.f47021j;
-            lVar.getClass();
-            lVar.g(j10, j11);
-        }
+    public final int b(o3.l r27, o3.n r28) {
+        throw new UnsupportedOperationException("Method not decompiled: r3.a.b(o3.l, o3.n):int");
     }
 
-    @Override
-    public final void release() {
-        u3.l lVar = this.f47021j;
-        if (lVar != null) {
-            lVar.getClass();
+    public final void d(long j10) {
+        o3.b bVar = this.f46922c;
+        if (bVar != null && bVar.f19073a == j10) {
+            return;
         }
+        o3.a aVar = this.f46920a;
+        this.f46922c = new o3.b(j10, aVar.f19068a.l(j10), aVar.f19070c, aVar.d, aVar.f19071e, aVar.f19072f);
     }
 }

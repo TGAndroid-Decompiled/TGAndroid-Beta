@@ -1,116 +1,157 @@
 package org.telegram.ui.Components;
 
+import android.animation.TimeInterpolator;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.widget.FrameLayout;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
-import j$.util.Objects;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public class t31 extends org.telegram.ui.ActionBar.f3 {
-    public final int f32617b;
-    public final GradientDrawable f32618c;
-    public final s31 d;
-    public final h41 f32619e;
-    public int f32620f;
-
-    public t31(Context context, org.telegram.ui.ActionBar.o2 o2Var, h41 h41Var, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context, b6Var, true, false);
-        this.f32617b = AndroidUtilities.dp(12.0f);
-        this.f32618c = new GradientDrawable();
-        s31 s31Var = new s31(this, context);
-        this.d = s31Var;
-        s31Var.addView(h41Var, g7.e6.c(-1.0f, -1));
-        this.containerView = s31Var;
-        this.f32619e = h41Var;
-        h41Var.setParentFragment(o2Var);
-        h41Var.setOnScrollListener(new q31(this));
+import android.widget.TextView;
+public final class t31 extends v41 {
+    static {
+        v41.setup(new v41());
     }
 
-    public static void m(t31 t31Var) {
-        h41 h41Var = t31Var.f32619e;
-        if (h41Var.c()) {
-            t31Var.f32620f = h41Var.getContentTopOffset();
-            t31Var.containerView.invalidate();
-        }
+    public static w41 a(int i10, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, x80 x80Var, View.OnClickListener onClickListener2) {
+        w41 J = w41.J(t31.class);
+        J.d = i10;
+        J.f34300l = charSequence;
+        J.f34295f = z10;
+        J.f34308t = false;
+        J.D = onClickListener;
+        J.G = x80Var;
+        J.E = onClickListener2;
+        return J;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
+    public final void bindView(View view, w41 w41Var, boolean z10, k51 k51Var, u51 u51Var) {
+        x80 x80Var;
+        CharSequence cloneSpans;
+        int i10;
+        int i11;
+        int i12;
+        boolean z11;
+        int i13;
+        u31 u31Var = (u31) view;
+        CharSequence charSequence = w41Var.f34300l;
+        boolean z12 = w41Var.f34295f;
+        View.OnClickListener onClickListener = w41Var.D;
+        Object obj = w41Var.G;
+        if (obj != null) {
+            x80Var = (x80) obj;
+        } else {
+            x80Var = null;
+        }
+        boolean z13 = w41Var.f34308t;
+        View.OnClickListener onClickListener2 = w41Var.E;
+        ImageView imageView = u31Var.f33119n;
+        TextView textView = u31Var.d;
+        r31 r31Var = u31Var.f33116c;
+        s31 s31Var = u31Var.f33118f;
+        if (charSequence == null) {
+            cloneSpans = "";
+        } else {
+            cloneSpans = y5.cloneSpans(charSequence);
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(cloneSpans);
+        d90[] d90VarArr = (d90[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), d90.class);
+        if (d90VarArr != null) {
+            int i14 = 0;
+            while (i14 < d90VarArr.length) {
+                int spanStart = spannableStringBuilder.getSpanStart(d90VarArr[i14]);
+                int spanEnd = spannableStringBuilder.getSpanEnd(d90VarArr[i14]);
+                boolean z14 = z13;
+                spannableStringBuilder.removeSpan(d90VarArr[i14]);
+                int i15 = i14;
+                d90 d90Var = d90VarArr[i15];
+                d90 d90Var2 = new d90(s31Var, d90Var.f27717a, d90Var.d, null);
+                d90 d90Var3 = d90VarArr[i15];
+                d90Var2.f27721f = d90Var3.f27721f;
+                d90Var2.h = d90Var3.h;
+                d90Var2.f27722n = d90Var3.f27722n;
+                spannableStringBuilder.setSpan(d90Var2, spanStart, spanEnd, 33);
+                i14 = i15 + 1;
+                z13 = z14;
+                onClickListener2 = onClickListener2;
+            }
+        }
+        View.OnClickListener onClickListener3 = onClickListener2;
+        boolean z15 = z13;
+        if (u31Var.h && !z12) {
+            r31Var.setVisibility(0);
+            s31Var.setVisibility(0);
+            ViewPropertyAnimator withEndAction = r31Var.animate().alpha(0.0f).withEndAction(new fq0(u31Var, 23));
+            TimeInterpolator timeInterpolator = jr.h;
+            withEndAction.setInterpolator(timeInterpolator).setDuration(320L).start();
+            s31Var.animate().alpha(1.0f).setInterpolator(timeInterpolator).setDuration(320L).start();
+        } else {
+            if (z12) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            r31Var.setVisibility(i10);
+            if (!z12) {
+                i11 = 0;
+            } else {
+                i11 = 8;
+            }
+            s31Var.setVisibility(i11);
+        }
+        u31Var.h = z12;
+        if (z12) {
+            i12 = 0;
+        } else {
+            i12 = 8;
+        }
+        textView.setVisibility(i12);
+        textView.setOnClickListener(onClickListener);
+        u31Var.setClipChildren(z12);
+        r31Var.setText(spannableStringBuilder);
+        s31Var.setText(spannableStringBuilder);
+        if (!z15 && (d90VarArr == null || d90VarArr.length == 0)) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        s31Var.setTextIsSelectable(z11);
+        s31Var.setOnLinkPressListener(x80Var);
+        if (onClickListener3 != null) {
+            i13 = 0;
+        } else {
+            i13 = 8;
+        }
+        imageView.setVisibility(i13);
+        imageView.setOnClickListener(onClickListener3);
+        u31Var.f33115b = z10;
+        u31Var.setWillNotDraw(true ^ z10);
+    }
+
+    @Override
+    public final boolean contentsEquals(w41 w41Var, w41 w41Var2) {
+        if (TextUtils.equals(w41Var.f34300l, w41Var2.f34300l) && w41Var.f34295f == w41Var2.f34295f) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
-        h41 h41Var = this.f32619e;
-        NotificationCenter notificationCenter = NotificationCenter.getInstance(h41Var.f28967a);
-        notificationCenter.removeObserver(h41Var, NotificationCenter.stickersDidLoad);
-        notificationCenter.removeObserver(h41Var, NotificationCenter.featuredStickersDidLoad);
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 2);
+    public final View createView(Context context, jl0 jl0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new u31(context, c6Var);
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        h41 h41Var = this.f32619e;
-        Objects.requireNonNull(h41Var);
-        s6 s6Var = new s6(h41Var, 10);
-        w31 w31Var = h41Var.h;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(w31Var.f29129a, 32, null, null, null, null, org.telegram.ui.ActionBar.f6.O5));
-        ImageView imageView = w31Var.f29130b;
-        int i9 = org.telegram.ui.ActionBar.f6.Q5;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(imageView, 8, null, null, null, null, i9));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(w31Var.f29131c, 8, null, null, null, null, i9));
-        fg.g gVar = w31Var.f29132e;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(gVar, 4, null, null, null, null, org.telegram.ui.ActionBar.f6.R5));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(gVar, 8388608, null, null, null, null, org.telegram.ui.ActionBar.f6.P5));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(gVar, 16777216, null, null, null, null, org.telegram.ui.ActionBar.f6.Mh));
-        g41 g41Var = h41Var.f28974s;
-        x31 x31Var = h41Var.f28972n;
-        g41Var.getClass();
-        org.telegram.ui.Cells.s3.a(arrayList, x31Var, s6Var);
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var, 4, new Class[]{org.telegram.ui.Cells.q3.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.f6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var, 4, new Class[]{org.telegram.ui.Cells.q3.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.f6.f23386z6));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var, 4, new Class[]{org.telegram.ui.Cells.q3.class}, new String[]{"addButton"}, null, null, -1, null, org.telegram.ui.ActionBar.f6.Sh));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var, 4, new Class[]{org.telegram.ui.Cells.q3.class}, new String[]{"delButton"}, null, null, -1, null, org.telegram.ui.ActionBar.f6.Rh));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var, 0, new Class[]{org.telegram.ui.Cells.q3.class}, org.telegram.ui.ActionBar.f6.f23121k0, null, null, org.telegram.ui.ActionBar.f6.f23002d7));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(null, 0, null, null, null, s6Var, org.telegram.ui.ActionBar.f6.Nh));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(null, 0, null, null, null, s6Var, org.telegram.ui.ActionBar.f6.Qh));
-        org.telegram.ui.Cells.v3.a(arrayList, x31Var);
-        of.y1 y1Var = h41Var.v;
-        x31 x31Var2 = h41Var.f28972n;
-        y1Var.getClass();
-        org.telegram.ui.Cells.s3.a(arrayList, x31Var2, s6Var);
-        int i10 = org.telegram.ui.ActionBar.f6.Te;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var2, 4, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"textView"}, null, null, -1, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var2, 4, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"urlTextView"}, null, null, -1, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(x31Var2, 8, new Class[]{org.telegram.ui.Cells.m8.class}, new String[]{"buttonView"}, null, null, -1, null, org.telegram.ui.ActionBar.f6.Ve));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(null, 0, null, null, null, s6Var, org.telegram.ui.ActionBar.f6.Ue));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(null, 0, null, null, null, s6Var, i10));
-        ImageView imageView2 = y1Var.H;
-        int i11 = org.telegram.ui.ActionBar.f6.Le;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(imageView2, 8, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(y1Var.I, 4, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(h41Var.f28971f, 1, null, null, null, null, org.telegram.ui.ActionBar.f6.V5));
-        FrameLayout frameLayout = h41Var.f28975w;
-        int i12 = org.telegram.ui.ActionBar.f6.f23072h5;
-        arrayList.add(new org.telegram.ui.ActionBar.h6(frameLayout, 1, null, null, null, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(this.d, 0, null, null, new Drawable[]{this.shadowDrawable}, null, i12));
-        arrayList.add(new org.telegram.ui.ActionBar.h6(this.d, 0, null, null, null, null, org.telegram.ui.ActionBar.f6.Ii));
-        return arrayList;
+    public final boolean equals(w41 w41Var, w41 w41Var2) {
+        if (w41Var.d == w41Var2.d) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void setAllowNestedScroll(boolean z10) {
-        this.allowNestedScroll = z10;
-    }
-
-    @Override
-    public final void show() {
-        super.show();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 2);
+    public final boolean isClickable() {
+        return false;
     }
 }

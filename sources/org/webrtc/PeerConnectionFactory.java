@@ -252,9 +252,9 @@ public class PeerConnectionFactory {
         final Thread thread;
         final int tid;
 
-        private ThreadInfo(Thread thread, int i9) {
+        private ThreadInfo(Thread thread, int i10) {
             this.thread = thread;
-            this.tid = i9;
+            this.tid = i10;
         }
 
         public static ThreadInfo getCurrent() {
@@ -357,13 +357,13 @@ public class PeerConnectionFactory {
 
     private static native void nativeInitializeInternalTracer();
 
-    private static native void nativeInjectLoggable(JNILogging jNILogging, int i9);
+    private static native void nativeInjectLoggable(JNILogging jNILogging, int i10);
 
-    private static native void nativePrintStackTrace(int i9);
+    private static native void nativePrintStackTrace(int i10);
 
     private static native void nativeShutdownInternalTracer();
 
-    private static native boolean nativeStartAecDump(long j10, int i9, int i10);
+    private static native boolean nativeStartAecDump(long j10, int i10, int i11);
 
     private static native boolean nativeStartInternalTracingCapture(String str);
 
@@ -505,9 +505,9 @@ public class PeerConnectionFactory {
         printStackTrace(this.networkThread, z10);
     }
 
-    public boolean startAecDump(int i9, int i10) {
+    public boolean startAecDump(int i10, int i11) {
         checkPeerConnectionFactoryExists();
-        return nativeStartAecDump(this.nativeFactory, i9, i10);
+        return nativeStartAecDump(this.nativeFactory, i10, i11);
     }
 
     public void stopAecDump() {

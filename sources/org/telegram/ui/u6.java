@@ -1,42 +1,41 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class u6 extends org.telegram.ui.Components.uc {
-    public final w6 f43144a0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class u6 extends q7 {
+    public final int f43187w;
+    public final Object f43188x;
 
-    public u6(w6 w6Var, Context context) {
-        super(context, 11, org.telegram.ui.Components.uc.S, 0, org.telegram.ui.Components.uc.T);
-        this.f43144a0 = w6Var;
+    public u6(Object obj, Context context, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
+        super(context, o2Var);
+        this.f43187w = i10;
+        this.f43188x = obj;
+    }
+
+    public void e(boolean z10) {
+        org.telegram.ui.ActionBar.l lVar;
+        org.telegram.ui.ActionBar.l lVar2;
+        x6 x6Var = ((v6) this.f43188x).f43438e;
+        if (!z10) {
+            lVar = ((org.telegram.ui.ActionBar.o2) x6Var).actionBar;
+            lVar.r();
+            return;
+        }
+        x6.b0(x6Var, true);
+        lVar2 = ((org.telegram.ui.ActionBar.o2) x6Var).actionBar;
+        lVar2.O(null, null);
     }
 
     @Override
-    public final void d(int i9, boolean z10) {
-        y6 y6Var = this.f43144a0.f43679e;
-        if (!z10) {
-            y6Var.f44738b.j1();
-            return;
-        }
-        int i10 = -1;
-        if (i9 == 8) {
-            i9 = -1;
-        }
-        int i11 = 0;
-        while (true) {
-            if (i11 < y6Var.W.size()) {
-                t6 t6Var = (t6) y6Var.W.get(i11);
-                if (t6Var != null && t6Var.f48814a == 11 && t6Var.f42865f == i9) {
-                    i10 = i11;
-                    break;
-                }
-                i11++;
-            } else {
-                break;
-            }
-        }
-        if (i10 >= 0) {
-            y6Var.f44738b.e1(new h3.x(i10, 2), 0, true);
-        } else {
-            y6Var.f44738b.j1();
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f43187w) {
+            case 0:
+                super.onMeasure(i10, b.d(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() / 2), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((yu) this.f43188x).h - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                return;
         }
     }
 }

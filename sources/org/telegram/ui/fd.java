@@ -1,57 +1,64 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class fd extends org.telegram.ui.Components.pi0 {
-    public final int f38210r;
-    public final Object f38211s;
+import android.view.ContextThemeWrapper;
+import org.telegram.ui.Components.RadialProgressView;
+public final class fd extends RadialProgressView {
+    public final int G;
+    public final Object H;
 
-    public fd(Object obj, Context context, int i9) {
-        super(context);
-        this.f38210r = i9;
-        this.f38211s = obj;
+    public fd(org.telegram.ui.Components.r40 r40Var, Context context, int i10) {
+        super(context, null);
+        this.G = i10;
+        this.H = r40Var;
     }
 
     @Override
-    public void invalidate(int i9, int i10, int i11, int i12) {
-        switch (this.f38210r) {
-            case 0:
-                super.invalidate(i9, i10, i11, i12);
-                ((id) this.f38211s).f39110f.invalidate();
-                return;
-            case 1:
-            default:
-                super.invalidate(i9, i10, i11, i12);
-                return;
-            case 2:
-                super.invalidate(i9, i10, i11, i12);
-                ((r60) this.f38211s).f42280e.invalidate();
-                return;
+    public void invalidate() {
+        switch (this.G) {
             case 3:
-                super.invalidate(i9, i10, i11, i12);
-                ((qe0) this.f38211s).h.invalidate();
+                super.invalidate();
+                rt0 rt0Var = ((PhotoViewer) this.H).f35647a0;
+                if (rt0Var != null) {
+                    rt0Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
                 return;
         }
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.f38210r) {
+    public final void setAlpha(float f9) {
+        switch (this.G) {
             case 0:
-                super.invalidate();
-                ((id) this.f38211s).f39110f.invalidate();
+                super.setAlpha(f9);
+                ((hd) this.H).f38858f.invalidate();
                 return;
             case 1:
-                super.invalidate();
-                ((org.telegram.ui.Components.b20) this.f38211s).invalidate();
+                super.setAlpha(f9);
+                ((t60) this.H).f42560e.invalidate();
                 return;
             case 2:
-                super.invalidate();
-                ((r60) this.f38211s).f42280e.invalidate();
+                super.setAlpha(f9);
+                ((pe0) this.H).h.invalidate();
                 return;
             default:
-                super.invalidate();
-                ((qe0) this.f38211s).h.invalidate();
+                super.setAlpha(f9);
+                rt0 rt0Var = ((PhotoViewer) this.H).f35647a0;
+                if (rt0Var != null) {
+                    rt0Var.invalidate();
+                    return;
+                }
                 return;
         }
+    }
+
+    public fd(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(contextThemeWrapper, c6Var);
+        this.G = 3;
+        this.H = photoViewer;
     }
 }

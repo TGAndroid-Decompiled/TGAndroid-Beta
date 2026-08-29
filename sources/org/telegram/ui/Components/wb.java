@@ -1,66 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.widget.FrameLayout;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class wb extends FrameLayout {
-    public final y5 f34179a;
-    public final y5 f34180b;
-    public final Paint f34181c;
-    public final RectF d;
-    public final long f34182e;
-    public final xb f34183f;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class wb implements ek0 {
+    public final xb f34362a;
 
-    public wb(xb xbVar, Activity activity) {
-        super(activity);
-        this.f34183f = xbVar;
-        gr grVar = gr.h;
-        this.f34179a = new y5(this, 320L, grVar);
-        this.f34180b = new y5(this, 320L, grVar);
-        Paint paint = new Paint(1);
-        this.f34181c = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(268435455);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.d = new RectF();
-        this.f34182e = System.currentTimeMillis();
+    public wb(xb xbVar) {
+        this.f34362a = xbVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        xb xbVar = this.f34183f;
-        float d = this.f34179a.d(xbVar.f34633a, false);
-        if (xbVar.f34633a >= 1.0f) {
-            z10 = true;
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final void Q(View view, kg.q0 q0Var, boolean z10, boolean z11) {
+        boolean z12;
+        xb xbVar = this.f34362a;
+        org.telegram.ui.ActionBar.o2 o2Var = xbVar.f34671f;
+        if (xbVar.f34670e == null) {
+            return;
+        }
+        long clientUserId = UserConfig.getInstance(o2Var.getCurrentAccount()).getClientUserId();
+        if ((o2Var instanceof org.telegram.ui.tn) && ((org.telegram.ui.tn) o2Var).a() == clientUserId) {
+            z12 = true;
         } else {
-            z10 = false;
+            z12 = false;
         }
-        float e10 = this.f34180b.e(z10);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        RectF rectF = this.d;
-        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.f34182e)) * 0.45f) % 5400.0f;
-        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
-        for (int i9 = 0; i9 < 4; i9++) {
-            u1.a aVar = jp.h;
-            int i10 = i9 * 1350;
-            aVar.getInterpolation((currentTimeMillis - i10) / 667.0f);
-            max += aVar.getInterpolation((currentTimeMillis - (i10 + 667)) / 667.0f) * 250.0f;
+        int i10 = 0;
+        for (int i11 = 0; i11 < xbVar.f34670e.size(); i11++) {
+            int keyAt = xbVar.f34670e.keyAt(i11);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = o2Var.getUserConfig().getClientUserId();
+            message.f22413id = keyAt;
+            MessageObject messageObject = new MessageObject(o2Var.getCurrentAccount(), message, false, false);
+            ArrayList<kg.q0> arrayList = new ArrayList<>();
+            arrayList.add(q0Var);
+            o2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, q0Var, false, false, xbVar.f34671f, null);
+            i10 = message.f22413id;
         }
-        int l1 = org.telegram.ui.ActionBar.f6.l1((1.0f - e10) * 1.0f, -1);
-        Paint paint = this.f34181c;
-        paint.setColor(l1);
-        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
-        if (d < 1.0f && e10 < 1.0f) {
-            invalidate();
-        }
-        super.onDraw(canvas);
+        xbVar.f();
+        mc.e();
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.qj(this, q0Var, !z12, o2Var.getCurrentAccount(), i10), 300L);
+    }
+
+    @Override
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void G(Canvas canvas, RectF rectF, float f9, float f10, float f11, int i10, boolean z10) {
     }
 }

@@ -1,29 +1,27 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ai implements Runnable {
-    public final int f19753a;
-    public final SendMessagesHelper f19754b;
-    public final TLRPC.Updates f19755c;
-    public final TLRPC.Message d;
-    public final boolean f19756e;
+public final class ai implements RequestDelegate {
+    public final int f19736a;
+    public final SecretChatHelper f19737b;
+    public final TLRPC.EncryptedChat f19738c;
 
-    public ai(SendMessagesHelper sendMessagesHelper, TLRPC.Updates updates, TLRPC.Message message, boolean z10, int i9) {
-        this.f19753a = i9;
-        this.f19754b = sendMessagesHelper;
-        this.f19755c = updates;
-        this.d = message;
-        this.f19756e = z10;
+    public ai(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f19736a = i10;
+        this.f19737b = secretChatHelper;
+        this.f19738c = encryptedChat;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19753a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19736a) {
             case 0:
-                this.f19754b.lambda$performSendMessageRequest$88(this.f19755c, this.d, this.f19756e);
+                this.f19737b.lambda$acceptSecretChat$22(this.f19738c, tLObject, tL_error);
                 return;
             default:
-                this.f19754b.lambda$performSendMessageRequest$85(this.f19755c, this.d, this.f19756e);
+                this.f19737b.lambda$acceptSecretChat$23(this.f19738c, tLObject, tL_error);
                 return;
         }
     }

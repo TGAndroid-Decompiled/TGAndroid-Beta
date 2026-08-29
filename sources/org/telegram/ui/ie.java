@@ -1,52 +1,27 @@
 package org.telegram.ui;
+public final class ie implements Runnable {
+    public final int f39214a;
+    public final org.telegram.ui.Components.yl0 f39215b;
 
-import android.animation.ValueAnimator;
-public final class ie implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39138a;
-    public final qn f39139b;
-
-    public ie(qn qnVar, int i9) {
-        this.f39138a = i9;
-        this.f39139b = qnVar;
+    public ie(org.telegram.ui.Components.yl0 yl0Var, int i10) {
+        this.f39214a = i10;
+        this.f39215b = yl0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39138a) {
+    public final void run() {
+        switch (this.f39214a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qn qnVar = this.f39139b;
-                qnVar.G8 = floatValue;
-                im imVar = qnVar.T0;
-                if (imVar != null) {
-                    imVar.invalidate();
-                    qnVar.f42077t0.invalidate();
+                org.telegram.ui.Components.yl0 yl0Var = this.f39215b;
+                if (!yl0Var.I) {
+                    yl0Var.I = true;
+                    yl0Var.c(new org.telegram.ui.Components.wl0(yl0Var, 0), false);
+                    yl0Var.f35097s.invalidate();
                     return;
                 }
                 return;
-            case 1:
-                qn qnVar2 = this.f39139b;
-                qnVar2.getClass();
-                qnVar2.f41894e3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar2.lc();
-                return;
-            case 2:
-                qn qnVar3 = this.f39139b;
-                qnVar3.getClass();
-                qnVar3.f41894e3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar3.lc();
-                return;
-            case 3:
-                qn qnVar4 = this.f39139b;
-                qnVar4.getClass();
-                qnVar4.f42163za = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar4.o9();
-                return;
             default:
-                qn qnVar5 = this.f39139b;
-                qnVar5.getClass();
-                qnVar5.f42163za = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qnVar5.o9();
+                this.f39215b.dismiss();
                 return;
         }
     }

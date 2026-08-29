@@ -1,26 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import org.telegram.messenger.RichMessageLayout;
 public final class xh implements Runnable {
-    public final int f22156a;
-    public final SecretChatHelper f22157b;
-    public final TLRPC.TL_encryptedChatDiscarded f22158c;
+    public final int f22183a = 0;
+    public final RichMessageLayout.Text f22184b;
+    public final RichMessageLayout f22185c;
+    public final View d;
 
-    public xh(SecretChatHelper secretChatHelper, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded, int i9) {
-        this.f22156a = i9;
-        this.f22157b = secretChatHelper;
-        this.f22158c = tL_encryptedChatDiscarded;
+    public xh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
+        this.f22184b = text;
+        this.d = view;
+        this.f22185c = richMessageLayout;
     }
 
     @Override
     public final void run() {
-        switch (this.f22156a) {
+        switch (this.f22183a) {
             case 0:
-                this.f22157b.lambda$processAcceptedSecretChat$19(this.f22158c);
+                this.f22184b.lambda$revealSpoilers$4(this.d, this.f22185c);
                 return;
             default:
-                this.f22157b.lambda$decryptMessage$17(this.f22158c);
+                this.f22184b.lambda$revealSpoilers$3(this.f22185c, this.d);
                 return;
         }
+    }
+
+    public xh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
+        this.f22184b = text;
+        this.f22185c = richMessageLayout;
+        this.d = view;
     }
 }

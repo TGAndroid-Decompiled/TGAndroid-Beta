@@ -1,86 +1,72 @@
 package qh;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.wg;
-public final class l implements ii {
-    public final ki f46493a;
-    public final p f46494b;
+import org.telegram.ui.Components.t9;
+import org.telegram.ui.pt0;
+import org.telegram.ui.zt0;
+public final class l extends pt0 {
+    public final n f46729a;
 
-    public l(p pVar, ki kiVar) {
-        this.f46494b = pVar;
-        this.f46493a = kiVar;
+    public l(n nVar) {
+        this.f46729a = nVar;
     }
 
     @Override
-    public final void L(int i9, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
-        ki kiVar = this.f46493a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kiVar.f30114f0;
-        o3 o3Var = this.f46494b.f46606r;
-        if (i9 == 7 || i9 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = o3Var.X3;
-            o3Var.X3 = null;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof MediaController.PhotoEntry) {
-                    if (aVar != null) {
-                        o3Var.T1(aVar, (MediaController.PhotoEntry) obj);
-                    } else {
-                        o3Var.f2((MediaController.PhotoEntry) obj);
-                    }
-                } else {
-                    i12++;
-                }
+    public final zt0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        TLRPC.FileLocation fileLocation2;
+        TLRPC.ChatPhoto chatPhoto;
+        if (fileLocation != null) {
+            n nVar = this.f46729a;
+            TLRPC.Chat chat = nVar.getMessagesController().getChat(Long.valueOf(nVar.f46737b));
+            if (chat == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null) {
+                fileLocation2 = null;
+            }
+            if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
+                int[] iArr = new int[2];
+                nVar.v.getLocationInWindow(iArr);
+                zt0 zt0Var = new zt0();
+                zt0Var.f45317b = iArr[0];
+                zt0Var.f45318c = iArr[1];
+                t9 t9Var = nVar.v;
+                zt0Var.d = t9Var;
+                ImageReceiver imageReceiver = t9Var.getImageReceiver();
+                zt0Var.f45316a = imageReceiver;
+                zt0Var.f45320f = -nVar.f46737b;
+                zt0Var.f45319e = imageReceiver.getBitmapSafe();
+                zt0Var.f45321g = -1L;
+                zt0Var.h = nVar.v.getImageReceiver().getRoundRadius(true);
+                zt0Var.f45324k = 1.0f;
+                zt0Var.f45329p = true;
+                return zt0Var;
             }
         }
-        o3Var.X3 = null;
-        kiVar.dismiss(true);
+        return null;
     }
 
     @Override
-    public final boolean j() {
+    public final void G() {
+        this.f46729a.v.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final boolean M() {
+        return true;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f46729a.A.q(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
         return false;
     }
 
     @Override
-    public final void t(wg wgVar) {
-        NotificationCenter.getInstance(this.f46494b.f46605n).doOnIdle(wgVar);
-    }
-
-    @Override
-    public final boolean t0() {
-        return false;
-    }
-
-    @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void A(Object obj) {
-    }
-
-    @Override
-    public final void E(TLRPC.User user) {
-    }
-
-    @Override
-    public final void v0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i9, int i10, long j10, boolean z11, long j11) {
+    public final int y() {
+        return 1;
     }
 }

@@ -1,56 +1,39 @@
 package qh;
 
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.li0;
-public final class d implements Runnable {
-    public final int f46332a;
-    public final p f46333b;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.ActionBar.c2;
+public final class d implements MessagesStorage.LongCallback {
+    public final int f46684a;
+    public final c2 f46685b;
+    public final long f46686c;
+    public final boolean d;
+    public final NotificationCenter.NotificationCenterDelegate f46687e;
 
-    public d(p pVar, int i9) {
-        this.f46332a = i9;
-        this.f46333b = pVar;
+    public d(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, c2 c2Var, long j10, boolean z10, int i10) {
+        this.f46684a = i10;
+        this.f46687e = notificationCenterDelegate;
+        this.f46685b = c2Var;
+        this.f46686c = j10;
+        this.d = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46332a) {
+    public final void run(long j10) {
+        switch (this.f46684a) {
             case 0:
-                p pVar = this.f46333b;
-                pVar.H(2147483646, true, 0, false, 0L);
-                li0 li0Var = pVar.K;
-                if (li0Var != null) {
-                    li0Var.h(false);
-                    pVar.K = null;
-                    return;
-                }
-                return;
-            case 1:
-                p pVar2 = this.f46333b;
-                pVar2.H(0, false, 0, false, 0L);
-                li0 li0Var2 = pVar2.K;
-                if (li0Var2 != null) {
-                    li0Var2.h(true);
-                    pVar2.K = null;
-                    return;
-                }
-                return;
-            case 2:
-                p pVar3 = this.f46333b;
-                if (!UserConfig.getInstance(pVar3.f46605n).isPremium()) {
-                    new zf.x0(pVar3.f27493b.f30099b0, pVar3.getContext(), pVar3.f46605n, 43, true).show();
-                    return;
-                }
-                return;
-            case 3:
-                p pVar4 = this.f46333b;
-                s3 s3Var = pVar4.f46607s;
-                if (s3Var != null) {
-                    s3Var.setSendEnabled(pVar4.f46606r.M3());
+                g gVar = (g) this.f46687e;
+                gVar.getClass();
+                this.f46685b.dismiss();
+                if (j10 != 0) {
+                    gVar.f46700a = -j10;
+                    gVar.f46701b = gVar.getMessagesController().getChat(Long.valueOf(j10));
+                    gVar.W(this.f46686c, this.d);
                     return;
                 }
                 return;
             default:
-                this.f46333b.Z();
+                i0.p((i0) this.f46687e, this.f46685b, this.f46686c, this.d, j10);
                 return;
         }
     }

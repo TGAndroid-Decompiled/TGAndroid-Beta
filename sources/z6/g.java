@@ -1,34 +1,36 @@
 package z6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g7.p8;
-import java.util.ArrayList;
-public final class g extends y5.a {
-    public final String f50318a;
-    public final k f50319b;
-    public final int f50320c;
-    public final byte[] d;
-    public static final int f50317e = Integer.parseInt("-1");
-    public static final Parcelable.Creator<g> CREATOR = new w7.i(20);
+import java.io.Serializable;
+import java.util.Comparator;
+public final class g extends w implements Serializable {
+    public final Comparator f50711a;
 
-    static {
-        ArrayList arrayList = new ArrayList();
-        h[] hVarArr = (h[]) arrayList.toArray(new h[arrayList.size()]);
-    }
-
-    public g(java.lang.String r8, z6.k r9, int r10, byte[] r11) {
-        throw new UnsupportedOperationException("Method not decompiled: z6.g.<init>(java.lang.String, z6.k, int, byte[]):void");
+    public g(Comparator comparator) {
+        comparator.getClass();
+        this.f50711a = comparator;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        int q10 = p8.q(parcel, 20293);
-        p8.l(parcel, 1, this.f50318a);
-        p8.k(parcel, 3, this.f50319b, i9);
-        p8.s(parcel, 4, 4);
-        parcel.writeInt(this.f50320c);
-        p8.c(parcel, 5, this.d);
-        p8.r(parcel, q10);
+    public final int compare(Object obj, Object obj2) {
+        return this.f50711a.compare(obj, obj2);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof g) {
+            return this.f50711a.equals(((g) obj).f50711a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f50711a.hashCode();
+    }
+
+    public final String toString() {
+        return this.f50711a.toString();
     }
 }

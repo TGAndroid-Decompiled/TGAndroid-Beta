@@ -51,14 +51,14 @@ public final class k extends x {
         kVar.value_ = Boolean.valueOf(z10);
     }
 
-    public static void n(k kVar, float f10) {
+    public static void n(k kVar, float f9) {
         kVar.valueCase_ = 2;
-        kVar.value_ = Float.valueOf(f10);
+        kVar.value_ = Float.valueOf(f9);
     }
 
-    public static void o(k kVar, int i9) {
+    public static void o(k kVar, int i10) {
         kVar.valueCase_ = 3;
-        kVar.value_ = Integer.valueOf(i9);
+        kVar.value_ = Integer.valueOf(i10);
     }
 
     public static k q() {
@@ -70,9 +70,9 @@ public final class k extends x {
     }
 
     @Override
-    public final Object d(int i9) {
+    public final Object d(int i10) {
         x0 x0Var;
-        switch (j.b(i9)) {
+        switch (j.b(i10)) {
             case 0:
                 return (byte) 1;
             case 1:
@@ -97,8 +97,8 @@ public final class k extends x {
                                 PARSER = obj;
                                 x0Var = obj;
                             }
-                        } catch (Throwable th) {
-                            throw th;
+                        } catch (Throwable th2) {
+                            throw th2;
                         }
                     }
                     return x0Var;

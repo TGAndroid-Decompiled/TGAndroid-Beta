@@ -1,16 +1,16 @@
 package n1;
 
+import bd.l;
 import java.util.Map;
-import kotlin.jvm.internal.i;
 import kotlin.jvm.internal.j;
-import zc.l;
-public final class a extends j implements l {
-    public static final a f18256b = new j(1);
+import kotlin.jvm.internal.k;
+public final class a extends k implements l {
+    public static final a f17082b = new k(1);
 
     @Override
     public final Object invoke(Object obj) {
         Map.Entry entry = (Map.Entry) obj;
-        i.e(entry, "entry");
-        return "  " + ((d) entry.getKey()).f18262a + " = " + entry.getValue();
+        j.e(entry, "entry");
+        return "  " + ((d) entry.getKey()).f17088a + " = " + entry.getValue();
     }
 }

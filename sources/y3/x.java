@@ -1,114 +1,80 @@
 package y3;
 
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.Surface;
-import d5.f0;
-import java.nio.ByteBuffer;
-public final class x implements k {
-    public final MediaCodec f49558a;
-    public ByteBuffer[] f49559b;
-    public ByteBuffer[] f49560c;
+import android.util.SparseArray;
+public final class x implements o3.k {
+    public boolean f50457e;
+    public boolean f50458f;
+    public boolean f50459g;
+    public long h;
+    public r3.a f50460i;
+    public o3.m f50461j;
+    public boolean f50462k;
+    public final f5.c0 f50454a = new f5.c0(0);
+    public final f5.w f50456c = new f5.w(4096);
+    public final SparseArray f50455b = new SparseArray();
+    public final v d = new v(0);
 
-    public x(MediaCodec mediaCodec) {
-        this.f49558a = mediaCodec;
-        if (f0.f4349a < 21) {
-            this.f49559b = mediaCodec.getInputBuffers();
-            this.f49560c = mediaCodec.getOutputBuffers();
-        }
+    @Override
+    public final int d(o3.l r28, o3.n r29) {
+        throw new UnsupportedOperationException("Method not decompiled: y3.x.d(o3.l, o3.n):int");
     }
 
     @Override
-    public final void a(long j10, int i9, int i10, int i11) {
-        this.f49558a.queueInputBuffer(i9, 0, i10, j10, i11);
-    }
-
-    @Override
-    public final void b(int i9, long j10) {
-        this.f49558a.releaseOutputBuffer(i9, j10);
-    }
-
-    @Override
-    public final int c() {
-        return this.f49558a.dequeueInputBuffer(0L);
-    }
-
-    @Override
-    public final int d(MediaCodec.BufferInfo bufferInfo) {
-        int dequeueOutputBuffer;
-        do {
-            MediaCodec mediaCodec = this.f49558a;
-            dequeueOutputBuffer = mediaCodec.dequeueOutputBuffer(bufferInfo, 0L);
-            if (dequeueOutputBuffer == -3 && f0.f4349a < 21) {
-                this.f49560c = mediaCodec.getOutputBuffers();
-                continue;
+    public final boolean e(o3.l lVar) {
+        byte[] bArr = new byte[14];
+        o3.h hVar = (o3.h) lVar;
+        hVar.f(bArr, 0, 14, false);
+        if (442 == (((bArr[0] & 255) << 24) | ((bArr[1] & 255) << 16) | ((bArr[2] & 255) << 8) | (bArr[3] & 255)) && (bArr[4] & 196) == 68 && (bArr[6] & 4) == 4 && (bArr[8] & 4) == 4 && (bArr[9] & 1) == 1 && (bArr[12] & 3) == 3) {
+            hVar.b(bArr[13] & 7, false);
+            hVar.f(bArr, 0, 3, false);
+            if (1 == (((bArr[0] & 255) << 16) | ((bArr[1] & 255) << 8) | (bArr[2] & 255))) {
+                return true;
             }
-        } while (dequeueOutputBuffer == -3);
-        return dequeueOutputBuffer;
-    }
-
-    @Override
-    public final void e(int i9, k3.d dVar, long j10) {
-        this.f49558a.queueSecureInputBuffer(i9, 0, dVar.f14595i, j10, 0);
-    }
-
-    @Override
-    public final void f(int i9) {
-        this.f49558a.setVideoScalingMode(i9);
-    }
-
-    @Override
-    public final void flush() {
-        this.f49558a.flush();
-    }
-
-    @Override
-    public final void g(Surface surface) {
-        this.f49558a.setOutputSurface(surface);
-    }
-
-    @Override
-    public final ByteBuffer getInputBuffer(int i9) {
-        if (f0.f4349a >= 21) {
-            return this.f49558a.getInputBuffer(i9);
         }
-        return this.f49559b[i9];
+        return false;
     }
 
     @Override
-    public final ByteBuffer getOutputBuffer(int i9) {
-        if (f0.f4349a >= 21) {
-            return this.f49558a.getOutputBuffer(i9);
+    public final void f(long j10, long j11) {
+        boolean z10;
+        f5.c0 c0Var = this.f50454a;
+        boolean z11 = true;
+        if (c0Var.d() == -9223372036854775807L) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return this.f49560c[i9];
+        if (!z10) {
+            long c3 = c0Var.c();
+            z10 = (c3 == -9223372036854775807L || c3 == 0 || c3 == j11) ? false : false;
+        }
+        if (z10) {
+            c0Var.e(j11);
+        }
+        r3.a aVar = this.f50460i;
+        if (aVar != null) {
+            aVar.d(j11);
+        }
+        int i10 = 0;
+        while (true) {
+            SparseArray sparseArray = this.f50455b;
+            if (i10 < sparseArray.size()) {
+                w wVar = (w) sparseArray.valueAt(i10);
+                wVar.f50452f = false;
+                wVar.f50448a.a();
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 
     @Override
-    public final MediaFormat getOutputFormat() {
-        return this.f49558a.getOutputFormat();
-    }
-
-    @Override
-    public final void h(e5.i iVar, Handler handler) {
-        this.f49558a.setOnFrameRenderedListener(new a(this, iVar, 1), handler);
+    public final void i(o3.m mVar) {
+        this.f50461j = mVar;
     }
 
     @Override
     public final void release() {
-        this.f49559b = null;
-        this.f49560c = null;
-        this.f49558a.release();
-    }
-
-    @Override
-    public final void releaseOutputBuffer(int i9, boolean z10) {
-        this.f49558a.releaseOutputBuffer(i9, z10);
-    }
-
-    @Override
-    public final void setParameters(Bundle bundle) {
-        this.f49558a.setParameters(bundle);
     }
 }

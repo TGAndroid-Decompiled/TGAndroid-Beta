@@ -1,36 +1,30 @@
 package ih;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class e2 implements Runnable {
-    public final int f11348a;
-    public final Runnable f11349b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class e2 implements View.OnClickListener {
+    public final int f9118a;
+    public final Utilities.Callback f9119b;
+    public final int f9120c;
 
-    public e2(int i9, Runnable runnable) {
-        this.f11348a = i9;
-        this.f11349b = runnable;
+    public e2(int i10, int i11, Utilities.Callback callback) {
+        this.f9118a = i11;
+        this.f9119b = callback;
+        this.f9120c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f11348a) {
+    public final void onClick(View view) {
+        switch (this.f9118a) {
             case 0:
-                Runnable runnable = this.f11349b;
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                AndroidUtilities.runOnUIThread(runnable);
-                return;
-            case 1:
-                Runnable runnable2 = this.f11349b;
-                AndroidUtilities.cancelRunOnUIThread(runnable2);
-                AndroidUtilities.runOnUIThread(runnable2);
-                return;
-            case 2:
-                Runnable runnable3 = this.f11349b;
-                AndroidUtilities.cancelRunOnUIThread(runnable3);
-                AndroidUtilities.runOnUIThread(runnable3);
+                Utilities.Callback callback = this.f9119b;
+                if (callback != null) {
+                    callback.run(Integer.valueOf(this.f9120c));
+                    return;
+                }
                 return;
             default:
-                ConnectionsManager.lambda$cancelRequest$9(this.f11349b);
+                this.f9119b.run(Integer.valueOf(this.f9120c));
                 return;
         }
     }

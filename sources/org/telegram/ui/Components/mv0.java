@@ -1,49 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class mv0 extends sa {
-    public hs T;
-
-    public mv0(Context context) {
-        super(context, null, true, false, false, 1, null);
-        fixNavigationBar();
-        this.A = true;
-        this.f32415y = true;
-        J();
-        wk0 wk0Var = this.d;
-        int i9 = this.backgroundPaddingLeft;
-        wk0Var.setPadding(i9, 0, i9, 0);
-        this.d.j(new kn(this, 12));
-        this.d.setOnItemClickListener(new j(this, 14));
+import android.os.Bundle;
+import android.widget.LinearLayout;
+public abstract class mv0 extends LinearLayout {
+    public boolean a() {
+        return this instanceof org.telegram.ui.pd0;
     }
 
-    public static void O(mv0 mv0Var, int i9) {
-        Object obj;
-        l41 G = mv0Var.T.G(i9 - 1);
-        if (G != null) {
-            obj = G.G;
-        } else {
-            obj = null;
-        }
-        if (obj instanceof TLRPC.User) {
-            MessagesController.getInstance(mv0Var.currentAccount).openApp(mv0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
-        }
+    public boolean b() {
+        return this instanceof org.telegram.ui.pd0;
     }
 
-    @Override
-    public final vk0 v(wk0 wk0Var) {
-        hs hsVar = new hs(wk0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.T = hsVar;
-        hsVar.f35188r = false;
-        return hsVar;
+    public boolean c(boolean z10) {
+        return true;
     }
 
-    @Override
-    public final CharSequence y() {
-        return LocaleController.getString(R.string.SearchAppsExamples);
+    public String getHeaderName() {
+        return "";
+    }
+
+    public void d() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void h(String str) {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void k(Bundle bundle) {
+    }
+
+    public void l(Bundle bundle) {
+    }
+
+    public void n() {
+    }
+
+    public void m(Bundle bundle, boolean z10) {
     }
 }

@@ -1,13 +1,43 @@
 package e6;
 
-import java.util.regex.Pattern;
-public abstract class c {
-    static {
-        Pattern.compile("\\\\.");
-        Pattern.compile("[\\\\\"/\b\f\n\r\t]");
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+public final class c implements Parcelable.Creator {
+    @Override
+    public final Object createFromParcel(Parcel parcel) {
+        int A = ce.b.A(parcel);
+        ArrayList arrayList = null;
+        String str = null;
+        String str2 = null;
+        boolean z10 = false;
+        while (parcel.dataPosition() < A) {
+            int readInt = parcel.readInt();
+            char c3 = (char) readInt;
+            if (c3 != 1) {
+                if (c3 != 2) {
+                    if (c3 != 3) {
+                        if (c3 != 4) {
+                            ce.b.z(parcel, readInt);
+                        } else {
+                            str2 = ce.b.i(parcel, readInt);
+                        }
+                    } else {
+                        str = ce.b.i(parcel, readInt);
+                    }
+                } else {
+                    z10 = ce.b.o(parcel, readInt);
+                }
+            } else {
+                arrayList = ce.b.m(parcel, readInt, w5.c.CREATOR);
+            }
+        }
+        ce.b.n(parcel, A);
+        return new a(arrayList, z10, str, str2);
     }
 
-    public static boolean a(java.lang.Object r4, java.lang.Object r5) {
-        throw new UnsupportedOperationException("Method not decompiled: e6.c.a(java.lang.Object, java.lang.Object):boolean");
+    @Override
+    public final Object[] newArray(int i10) {
+        return new a[i10];
     }
 }

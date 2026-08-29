@@ -1,27 +1,32 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 public final class wf implements Runnable {
-    public final int f22037a;
-    public final MessagesStorage f22038b;
-    public final ArrayList f22039c;
-    public final ArrayList d;
+    public final int f22096a;
+    public final MessagesStorage f22097b;
+    public final long f22098c;
+    public final boolean[] d;
+    public final CountDownLatch f22099e;
 
-    public wf(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i9) {
-        this.f22037a = i9;
-        this.f22038b = messagesStorage;
-        this.f22039c = arrayList;
-        this.d = arrayList2;
+    public wf(int i10, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
+        this.f22096a = i10;
+        this.f22097b = messagesStorage;
+        this.f22098c = j10;
+        this.d = zArr;
+        this.f22099e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f22037a) {
+        switch (this.f22096a) {
             case 0:
-                this.f22038b.lambda$setDialogsPinned$252(this.f22039c, this.d);
+                this.f22097b.lambda$checkMessageByRandomId$153(this.f22098c, this.d, this.f22099e);
+                return;
+            case 1:
+                this.f22097b.lambda$isMigratedChat$141(this.f22098c, this.d, this.f22099e);
                 return;
             default:
-                this.f22038b.lambda$loadTopics$50(this.f22039c, this.d);
+                this.f22097b.lambda$hasInviteMeMessage$143(this.f22098c, this.d, this.f22099e);
                 return;
         }
     }

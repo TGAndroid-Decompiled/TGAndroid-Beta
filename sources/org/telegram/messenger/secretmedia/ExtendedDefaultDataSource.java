@@ -12,8 +12,8 @@ import com.google.android.exoplayer2.upstream.m;
 import com.google.android.exoplayer2.upstream.q;
 import com.google.android.exoplayer2.upstream.y0;
 import com.google.android.exoplayer2.upstream.z;
-import d5.a;
-import d5.f0;
+import f5.a;
+import f5.d0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,8 +44,8 @@ public final class ExtendedDefaultDataSource implements m {
     }
 
     private void addListenersToDataSource(m mVar) {
-        for (int i9 = 0; i9 < this.transferListeners.size(); i9++) {
-            mVar.addTransferListener(this.transferListeners.get(i9));
+        for (int i10 = 0; i10 < this.transferListeners.size(); i10++) {
+            mVar.addTransferListener(this.transferListeners.get(i10));
         }
     }
 
@@ -187,13 +187,13 @@ public final class ExtendedDefaultDataSource implements m {
             z10 = false;
         }
         a.i(z10);
-        Uri uri = qVar.f2585a;
+        Uri uri = qVar.f3599a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(qVar.f2585a.toString().substring(8)));
-            qVar.f2585a = uri;
+            uri = this.mtprotoUris.get(Long.parseLong(qVar.f3599a.toString().substring(8)));
+            qVar.f3599a = uri;
         }
         String scheme = uri.getScheme();
-        int i9 = f0.f4349a;
+        int i10 = d0.f6579a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !"file".equals(scheme2)) {
             if ("tg".equals(scheme)) {
@@ -225,14 +225,14 @@ public final class ExtendedDefaultDataSource implements m {
     }
 
     @Override
-    public int read(byte[] bArr, int i9, int i10) {
+    public int read(byte[] bArr, int i10, int i11) {
         m mVar = this.dataSource;
         mVar.getClass();
-        return mVar.read(bArr, i9, i10);
+        return mVar.read(bArr, i10, i11);
     }
 
-    public ExtendedDefaultDataSource(Context context, String str, int i9, int i10, boolean z10) {
-        this(context, new z(str, i9, i10, z10, null, 0), (LongSparseArray<Uri>) null);
+    public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
+        this(context, new z(str, i10, i11, z10, null, 0), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, m mVar, LongSparseArray<Uri> longSparseArray) {

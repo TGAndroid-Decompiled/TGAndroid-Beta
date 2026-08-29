@@ -1,30 +1,23 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class t2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33859a;
-    public final u2 f33860b;
+import android.content.Context;
+import org.webrtc.TextureViewRenderer;
+public final class t2 extends TextureViewRenderer {
+    public final u2 f34013a;
 
-    public t2(u2 u2Var, int i9) {
-        this.f33859a = i9;
-        this.f33860b = u2Var;
+    public t2(u2 u2Var, Context context) {
+        super(context);
+        this.f34013a = u2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33859a) {
-            case 0:
-                u2 u2Var = this.f33860b;
-                u2Var.getClass();
-                u2Var.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u2Var.a(u2Var.N, u2Var.O);
-                return;
-            default:
-                u2 u2Var2 = this.f33860b;
-                u2Var2.getClass();
-                u2Var2.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u2Var2.invalidate();
-                return;
-        }
+    public final void onFirstFrameRendered() {
+        super.onFirstFrameRendered();
+        this.f34013a.b();
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
     }
 }

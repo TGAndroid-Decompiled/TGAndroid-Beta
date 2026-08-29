@@ -1,40 +1,39 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class w2 extends AnimatorListenerAdapter {
-    public final int f25887a;
-    public final x2 f25888b;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+public final class w2 implements View.OnClickListener {
+    public final int f25859a;
+    public final FrameLayout f25860b;
+    public final Object f25861c;
 
-    public w2(x2 x2Var, int i9) {
-        this.f25887a = i9;
-        this.f25888b = x2Var;
+    public w2(FrameLayout frameLayout, Object obj, int i10) {
+        this.f25859a = i10;
+        this.f25860b = frameLayout;
+        this.f25861c = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25887a) {
+    public final void onClick(View view) {
+        switch (this.f25859a) {
             case 0:
-                x2 x2Var = this.f25888b;
-                Runnable runnable = x2Var.f25931b;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (animator == x2Var.f25933e) {
-                    x2Var.f25933e = null;
+                View.OnClickListener onClickListener = (View.OnClickListener) this.f25861c;
+                if (((x2) this.f25860b).getAlpha() > 0.5f && onClickListener != null) {
+                    onClickListener.onClick(view);
                     return;
                 }
                 return;
             default:
-                x2 x2Var2 = this.f25888b;
-                Runnable runnable2 = x2Var2.f25931b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-                if (animator == x2Var2.f25933e) {
-                    x2Var2.f25933e = null;
+                nh.d dVar = (nh.d) this.f25860b;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f25861c;
+                if (dVar.B > 0) {
+                    AndroidUtilities.shakeViewSpring(dVar, 3.0f);
+                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;
                 }
+                f3Var.dismiss();
                 return;
         }
     }

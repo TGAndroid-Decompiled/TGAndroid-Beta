@@ -1,20 +1,22 @@
 package ih;
-public abstract class w extends u7 {
-    @Override
-    public final void invalidate() {
-        if (v.f12218c) {
-            v.f12217b.add(this);
-        } else {
-            super.invalidate();
-        }
+public final class w implements Runnable {
+    public final int f9463a;
+    public final g0 f9464b;
+
+    public w(g0 g0Var, int i10) {
+        this.f9463a = i10;
+        this.f9464b = g0Var;
     }
 
     @Override
-    public final void invalidate(int i9, int i10, int i11, int i12) {
-        if (v.f12218c) {
-            v.f12217b.add(this);
-        } else {
-            super.invalidate(i9, i10, i11, i12);
+    public final void run() {
+        switch (this.f9463a) {
+            case 0:
+                this.f9464b.onBackPressed();
+                return;
+            default:
+                this.f9464b.T();
+                return;
         }
     }
 }

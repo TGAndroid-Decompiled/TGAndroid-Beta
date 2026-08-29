@@ -1,26 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class pl extends rt0 {
-    public final qn f41556a;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class pl extends nh.t3 {
+    public final tn H0;
 
-    public pl(qn qnVar) {
-        this.f41556a = qnVar;
+    public pl(tn tnVar, Activity activity) {
+        super(activity, 3);
+        this.H0 = tnVar;
     }
 
     @Override
-    public final org.telegram.ui.bu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pl.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.bu0");
-    }
-
-    @Override
-    public final void o(int i9, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11) {
-        if (i9 >= 0) {
-            qn qnVar = this.f41556a;
-            if (i9 < qnVar.Da.size()) {
-                qnVar.cb((TLRPC.BotInlineResult) qnVar.Da.get(i9), z10, i10, 0L);
-            }
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.H0.f43039y1);
     }
 }

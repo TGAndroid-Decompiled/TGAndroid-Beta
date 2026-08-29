@@ -1,22 +1,28 @@
 package c2;
 
 import android.os.Handler;
-import java.lang.ref.WeakReference;
-public final class v0 extends Handler {
-    public final int f2239a;
-    public WeakReference f2240b;
-
-    public v0(int i9) {
-        this.f2239a = i9;
+import android.os.Looper;
+public class v0 extends Handler {
+    public v0(Looper looper, int i10) {
+        super(looper);
+        switch (i10) {
+            case 4:
+                super(looper);
+                Looper.getMainLooper();
+                return;
+            case 5:
+            default:
+                Looper.getMainLooper();
+                return;
+            case 6:
+                super(looper);
+                Looper.getMainLooper();
+                return;
+        }
     }
 
-    @Override
-    public final void handleMessage(android.os.Message r39) {
-        throw new UnsupportedOperationException("Method not decompiled: c2.v0.handleMessage(android.os.Message):void");
-    }
-
-    public v0(s0 s0Var) {
-        this.f2239a = 0;
-        this.f2240b = new WeakReference(s0Var);
+    public v0(Looper looper, Handler.Callback callback) {
+        super(looper, callback);
+        Looper.getMainLooper();
     }
 }

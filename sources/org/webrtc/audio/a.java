@@ -4,7 +4,7 @@ public abstract class a {
         return false;
     }
 
-    public static boolean b(AudioDeviceModule audioDeviceModule, float f10) {
+    public static boolean b(AudioDeviceModule audioDeviceModule, float f9) {
         return false;
     }
 }

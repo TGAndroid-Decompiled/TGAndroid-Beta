@@ -1,33 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jl implements RequestDelegate {
-    public final int f20734a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f20735b;
-    public final Utilities.Callback f20736c;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class jl implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f20716a;
+    public final TL_stories.StoryItem f20717b;
+    public final TranslateController.StoryKey f20718c;
 
-    public jl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, int i9) {
-        this.f20734a = i9;
-        this.f20735b = unconfirmedAuth;
-        this.f20736c = callback;
+    public jl(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
+        this.f20716a = translateController;
+        this.f20717b = storyItem;
+        this.f20718c = storyKey;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20734a) {
-            case 0:
-                this.f20735b.lambda$deny$4(this.f20736c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f20735b.lambda$deny$6(this.f20736c, tLObject, tL_error);
-                return;
-            default:
-                this.f20735b.lambda$confirm$2(this.f20736c, tLObject, tL_error);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f20716a.lambda$detectStoryLanguage$34(this.f20717b, this.f20718c, exc);
+    }
+
+    @Override
+    public void run(String str) {
+        this.f20716a.lambda$detectStoryLanguage$32(this.f20717b, this.f20718c, str);
     }
 }

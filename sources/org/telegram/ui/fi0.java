@@ -1,33 +1,49 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class fi0 implements Runnable {
-    public final int f38296a;
-    public final gi0 f38297b;
+public final class fi0 extends uh.m {
+    public Runnable W;
 
-    public fi0(gi0 gi0Var, int i9) {
-        this.f38296a = i9;
-        this.f38297b = gi0Var;
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
+        }
+        ei0 ei0Var = new ei0(this, 0);
+        this.W = ei0Var;
+        AndroidUtilities.runOnUIThread(ei0Var);
     }
 
     @Override
-    public final void run() {
-        switch (this.f38296a) {
-            case 0:
-                this.f38297b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                this.f38297b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void W() {
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.W = null;
         }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("chatItemAnimator disable notifications");
+        }
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        ei0 ei0Var = new ei0(this, 1);
+        this.W = ei0Var;
+        AndroidUtilities.runOnUIThread(ei0Var);
+    }
+
+    @Override
+    public final void F() {
     }
 }

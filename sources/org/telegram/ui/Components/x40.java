@@ -1,21 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public interface x40 {
-    long a();
+import android.opengl.GLES20;
+import org.telegram.messenger.R;
+public final class x40 extends y40 {
+    public final int f34569g;
+    public final int h;
 
-    boolean c();
-
-    int getClassGuid();
-
-    View getFragmentView();
-
-    Activity getParentActivity();
-
-    void r(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i9, int i10, boolean z11, long j10);
-
-    boolean w();
+    public x40() {
+        super(R.raw.round_blur_stage_2_frag);
+        this.f34569g = GLES20.glGetUniformLocation(this.f34917a, "bTexture");
+        this.h = GLES20.glGetUniformLocation(this.f34917a, "center");
+    }
 }

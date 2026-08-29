@@ -1,23 +1,20 @@
 package b7;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-import f7.h5;
-public final class j extends a0 {
-    public final TaskCompletionSource f1562b;
-    public final k f1563c;
+import java.util.HashMap;
+public abstract class j {
+    public static final String[] f1958a = {"text1", "text2", "icon", "intent_action", "intent_data", "intent_data_id", "intent_extra_data", "suggest_large_icon", "intent_activity", "thing_proto"};
+    public static final HashMap f1959b = new HashMap(10);
 
-    public j(TaskCompletionSource taskCompletionSource, k kVar) {
-        this.f1562b = taskCompletionSource;
-        this.f1563c = kVar;
-    }
-
-    @Override
-    public final void x0(y yVar) {
-        h5.a(yVar.f1594a, null, this.f1562b);
-    }
-
-    @Override
-    public final void zze() {
-        this.f1563c.J0();
+    static {
+        int i10 = 0;
+        while (true) {
+            String[] strArr = f1958a;
+            if (i10 < 10) {
+                f1959b.put(strArr[i10], Integer.valueOf(i10));
+                i10++;
+            } else {
+                return;
+            }
+        }
     }
 }

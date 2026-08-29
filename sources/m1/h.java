@@ -25,19 +25,19 @@ public final class h extends x {
     }
 
     public static void i(h hVar, Set set) {
-        int i9;
+        int i10;
         z zVar = hVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) zVar).f708a) {
+        if (!((androidx.datastore.preferences.protobuf.b) zVar).f1202a) {
             int size = zVar.size();
             if (size == 0) {
-                i9 = 10;
+                i10 = 10;
             } else {
-                i9 = size * 2;
+                i10 = size * 2;
             }
-            hVar.strings_ = zVar.e(i9);
+            hVar.strings_ = zVar.e(i10);
         }
         z zVar2 = hVar.strings_;
-        Charset charset = a0.f699a;
+        Charset charset = a0.f1193a;
         if (set instanceof f0) {
             List h = ((f0) set).h();
             f0 f0Var = (f0) zVar2;
@@ -82,9 +82,9 @@ public final class h extends x {
     }
 
     @Override
-    public final Object d(int i9) {
+    public final Object d(int i10) {
         x0 x0Var;
-        switch (j.b(i9)) {
+        switch (j.b(i10)) {
             case 0:
                 return (byte) 1;
             case 1:
@@ -109,8 +109,8 @@ public final class h extends x {
                                 PARSER = obj;
                                 x0Var = obj;
                             }
-                        } catch (Throwable th) {
-                            throw th;
+                        } catch (Throwable th2) {
+                            throw th2;
                         }
                     }
                     return x0Var;

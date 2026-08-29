@@ -1,32 +1,29 @@
 package org.telegram.ui.Components;
-public final class to0 extends f2.x {
-    public final int f32773c;
-    public final rp0 d;
 
-    public to0(rp0 rp0Var, int i9) {
-        this.f32773c = i9;
-        this.d = rp0Var;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class to0 implements o1.h {
+    public final int f33016a;
+    public final int[] f33017b;
+    public final NotificationCenter.NotificationCenterDelegate f33018c;
+    public final View d;
+
+    public to0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
+        this.f33016a = i10;
+        this.f33018c = notificationCenterDelegate;
+        this.d = view;
+        this.f33017b = iArr;
     }
 
     @Override
-    public final int i(int i9) {
-        switch (this.f32773c) {
+    public final void a(o1.i iVar, float f9, float f10) {
+        switch (this.f33016a) {
             case 0:
-                if (i9 == 0) {
-                    return this.d.D.J;
-                }
-                return 1;
-            case 1:
-                np0 np0Var = this.d.I;
-                if (i9 != np0Var.f31151w && i9 != np0Var.f31152x && i9 != np0Var.f31153y && i9 != np0Var.B && np0Var.j(i9) != 0) {
-                    return 1;
-                }
-                return 4;
+                ((dq0) this.f33018c).Q0((org.telegram.ui.Cells.c7) this.d, this.f33017b, f9 / 1000.0f);
+                return;
             default:
-                if (i9 == 0) {
-                    return this.d.E.J;
-                }
-                return 1;
+                ((jp0) this.f33018c).d.Q0(this.d, this.f33017b, f9 / 1000.0f);
+                return;
         }
     }
 }

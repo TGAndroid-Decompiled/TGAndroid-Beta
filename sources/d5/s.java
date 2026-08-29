@@ -1,10 +1,23 @@
 package d5;
-public final class s {
-    public final int f4386a;
-    public final boolean f4387b;
 
-    public s(int i9, int i10, boolean z10) {
-        this.f4386a = i10;
-        this.f4387b = z10;
+import java.util.List;
+public final class s extends c {
+    @Override
+    public final int c() {
+        return 0;
+    }
+
+    @Override
+    public final int o() {
+        return 0;
+    }
+
+    @Override
+    public final Object r() {
+        return null;
+    }
+
+    @Override
+    public final void b(long j10, long j11, long j12, List list, n4.l[] lVarArr) {
     }
 }

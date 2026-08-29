@@ -1,46 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class xh0 extends py {
-    public final int[] J;
-    public final li0 K;
+import android.content.Context;
+public final class xh0 extends org.telegram.ui.Components.og {
+    public final org.telegram.ui.Components.og f44594h0;
+    public final boolean f44595i0;
+    public final ki0 f44596j0;
 
-    public xh0(li0 li0Var, wh0 wh0Var, int i9) {
-        super(i9, wh0Var);
-        this.K = li0Var;
-        this.J = new int[2];
+    public xh0(ki0 ki0Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, org.telegram.ui.Components.og ogVar, boolean z10) {
+        super(i10, context, c6Var, false);
+        this.f44596j0 = ki0Var;
+        this.f44594h0 = ogVar;
+        this.f44595i0 = z10;
     }
 
     @Override
-    public final void h(oy oyVar) {
-        li0 li0Var = this.K;
-        ei0 ei0Var = li0Var.G;
-        if (oyVar != null) {
-            if (li0Var.f40159h0 != null) {
-                oyVar.f41264c = true;
-                float f10 = (py.f() * AndroidUtilities.density) / 1.3f;
-                float f11 = f10 / 3.0f;
-                oyVar.d = f11;
-                oyVar.f41265e = f11;
-                oyVar.f41262a = Utilities.clamp(li0Var.f40159h0.right - (0.75f * f10), AndroidUtilities.displaySize.x - f10, 0.0f);
-                oyVar.f41263b = li0Var.f40159h0.bottom - (f10 / 2.0f);
-                return;
-            }
-            org.telegram.ui.Cells.t1 t1Var = li0Var.M;
-            if (t1Var != null && t1Var.isAttachedToWindow() && li0Var.M.getMessageObject() != null && li0Var.M.getMessageObject().getId() == li0Var.N) {
-                org.telegram.ui.Cells.t1 t1Var2 = li0Var.M;
-                int[] iArr = this.J;
-                t1Var2.getLocationOnScreen(iArr);
-                oyVar.f41264c = true;
-                float f12 = (py.f() * AndroidUtilities.density) / 1.3f;
-                float f13 = f12 / 3.0f;
-                oyVar.d = f13;
-                oyVar.f41265e = f13;
-                float f14 = f12 / 2.0f;
-                oyVar.f41262a = Utilities.clamp(((ei0Var.getScaleX() * li0Var.M.getTimeX()) + iArr[0]) - f14, AndroidUtilities.displaySize.x - f12, 0.0f);
-                oyVar.f41263b = ((ei0Var.getScaleY() * li0Var.M.getTimeY()) + iArr[1]) - f14;
-            }
+    public final boolean d() {
+        return this.f44594h0.d();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.f44594h0.e();
+    }
+
+    @Override
+    public final boolean f() {
+        if (this.f44595i0 && this.f44596j0.m0 && this.f31358r <= 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int getFillColor() {
+        return this.f44594h0.getFillColor();
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f44594h0.j();
     }
 }

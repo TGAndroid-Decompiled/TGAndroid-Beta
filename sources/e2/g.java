@@ -1,9 +1,9 @@
 package e2;
 
-import android.view.Choreographer;
-import dh.m;
+import android.os.Handler;
+import android.os.Looper;
 public abstract class g {
-    public static void a(Runnable runnable) {
-        Choreographer.getInstance().postFrameCallback(new m(runnable, 1));
+    public static Handler a(Looper looper) {
+        return Handler.createAsync(looper);
     }
 }

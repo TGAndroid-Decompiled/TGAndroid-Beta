@@ -1,20 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public final class z90 extends t5 {
-    public final ca0 f35252a;
+import android.widget.FrameLayout;
+public final class z90 extends hh.v {
+    public final int E = 0;
+    public final Object F;
 
-    public z90(ca0 ca0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f35252a = ca0Var;
+    public z90(org.telegram.ui.ih0 ih0Var, org.telegram.ui.ih0 ih0Var2, FrameLayout frameLayout, long j10) {
+        super(ih0Var2, frameLayout, j10, true);
+        this.F = ih0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i9, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        int i14 = i13 + i11;
-        int i15 = this.measuredSize;
-        this.f35252a.f27443c.set((int) f10, (i14 - i15) / 2, (int) (f10 + i15), (i14 + i15) / 2);
+    public final void f(String str, boolean z10, boolean z11) {
+        switch (this.E) {
+            case 0:
+                hh.c cVar = (hh.c) this.F;
+                qw0 qw0Var = cVar.S;
+                if (this.f8123e.isEmpty()) {
+                    if (qw0Var.getVisibility() != 4) {
+                        qw0Var.setVisibility(4);
+                        return;
+                    }
+                    return;
+                } else if (z11) {
+                    cVar.f28335w.F.setText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
+            default:
+                if (z11) {
+                    org.telegram.ui.ih0.U((org.telegram.ui.ih0) this.F).setSearchFieldText("");
+                    return;
+                } else {
+                    super.f(str, z10, z11);
+                    return;
+                }
+        }
+    }
+
+    public z90(hh.c cVar, org.telegram.ui.ActionBar.o2 o2Var, FrameLayout frameLayout, long j10) {
+        super(o2Var, frameLayout, j10, false);
+        this.F = cVar;
     }
 }

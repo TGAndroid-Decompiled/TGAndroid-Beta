@@ -1,9 +1,6 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.IMapsProvider;
 import org.telegram.tgnet.TLRPC;
-public final class wk {
-    public int f34236a;
-    public IMapsProvider.IMarker f34237b;
-    public TLRPC.TL_messageMediaVenue f34238c;
+public interface wk {
+    void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10);
 }

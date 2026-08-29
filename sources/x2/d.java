@@ -1,31 +1,15 @@
 package x2;
+public final class d implements s9.d {
+    public static final d f49998a = new Object();
+    public static final s9.c f49999b = s9.c.c("clientType");
+    public static final s9.c f50000c = s9.c.c("androidClientInfo");
 
-import android.content.Context;
-import com.google.android.datatransport.cct.CctBackendFactory;
-import java.util.HashMap;
-public final class d {
-    public final w4.e f48855a;
-    public final t5.c f48856b;
-    public final HashMap f48857c;
-
-    public d(Context context, t5.c cVar) {
-        w4.e eVar = new w4.e(context, 1);
-        this.f48857c = new HashMap();
-        this.f48855a = eVar;
-        this.f48856b = cVar;
-    }
-
-    public final synchronized e a(String str) {
-        if (this.f48857c.containsKey(str)) {
-            return (e) this.f48857c.get(str);
-        }
-        CctBackendFactory f10 = this.f48855a.f(str);
-        if (f10 == null) {
-            return null;
-        }
-        t5.c cVar = this.f48856b;
-        e create = f10.create(new b((Context) cVar.f47682b, (f3.a) cVar.f47683c, (f3.a) cVar.d, str));
-        this.f48857c.put(str, create);
-        return create;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        s9.e eVar = (s9.e) obj2;
+        j jVar = (j) ((q) obj);
+        jVar.getClass();
+        eVar.e(f49999b, p.f50042a);
+        eVar.e(f50000c, jVar.f50027a);
     }
 }

@@ -2,30 +2,30 @@ package org.scilab.forge.jlatexmath;
 public class FcscoreAtom extends Atom {
     private int N;
 
-    public FcscoreAtom(int i9) {
-        this.N = i9;
+    public FcscoreAtom(int i10) {
+        this.N = i10;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i9;
+        int i10;
         boolean z10;
         float factor = SpaceAtom.getFactor(5, teXEnvironment) * 12.0f;
-        int i10 = this.N;
-        if (i10 == 5) {
-            i9 = 4;
+        int i11 = this.N;
+        if (i11 == 5) {
+            i10 = 4;
         } else {
-            i9 = i10;
+            i10 = i11;
         }
-        float f10 = 1.0f * factor;
-        float f11 = 0.07f * factor;
-        float f12 = factor * 0.125f;
-        if (i10 == 5) {
+        float f9 = 1.0f * factor;
+        float f10 = 0.07f * factor;
+        float f11 = factor * 0.125f;
+        if (i11 == 5) {
             z10 = true;
         } else {
             z10 = false;
         }
-        return new FcscoreBox(i9, f10, f11, f12, z10);
+        return new FcscoreBox(i10, f9, f10, f11, z10);
     }
 
     @Override

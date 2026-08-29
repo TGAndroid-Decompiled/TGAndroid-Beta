@@ -1,36 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class mw extends ImageView {
-    public final wy f30928a;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class mw extends f2.w {
+    public final fz Q;
 
-    public mw(wy wyVar, Context context) {
-        super(context);
-        this.f30928a = wyVar;
+    public mw(fz fzVar) {
+        super(5);
+        this.Q = fzVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        wx wxVar;
-        int action = motionEvent.getAction();
-        wy wyVar = this.f30928a;
-        if (action == 0) {
-            wyVar.L1 = true;
-            wyVar.M1 = false;
-            AndroidUtilities.runOnUIThread(new qd(wyVar, 350, 2), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            wyVar.L1 = false;
-            if (!wyVar.M1 && (wxVar = wyVar.f34432p1) != null && wxVar.k()) {
-                try {
-                    wyVar.f34458x.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
+    public final int o0(int i10, f2.d1 d1Var, f2.k1 k1Var) {
+        int o02 = super.o0(i10, d1Var, k1Var);
+        fz fzVar = this.Q;
+        if (o02 != 0 && fzVar.f28657z0.getScrollState() == 1) {
+            fzVar.T1 = false;
+            fzVar.a0();
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        if (fzVar.P0 == null) {
+            vw vwVar = new vw(fzVar, fzVar.Y0, fzVar.f28623p1.a(), fzVar.f28623p1.f(), 0);
+            fzVar.P0 = vwVar;
+            vwVar.a();
+        }
+        fzVar.P0.b();
+        return o02;
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, f2.k1 k1Var, int i10) {
+        try {
+            uh.n nVar = new uh.n(recyclerView.getContext(), 2);
+            nVar.f6373a = i10;
+            w0(nVar);
+        } catch (Exception e10) {
+            FileLog.e(e10);
+        }
     }
 }

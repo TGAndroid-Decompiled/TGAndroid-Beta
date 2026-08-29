@@ -1,28 +1,30 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class tm implements Utilities.Callback {
-    public final int f32722a;
-    public final Utilities.Callback f32723b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class tm extends AnimatorListenerAdapter {
+    public final int f32975a;
+    public final on f32976b;
 
-    public tm(int i9, Utilities.Callback callback) {
-        this.f32722a = i9;
-        this.f32723b = callback;
+    public tm(on onVar, int i10) {
+        this.f32975a = i10;
+        this.f32976b = onVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f32722a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32975a) {
             case 0:
-                this.f32723b.run(new zg.e((String) obj));
+                this.f32976b.A.setTranslationY(0.0f);
+                return;
+            case 1:
+                this.f32976b.A.setTranslationY(0.0f);
                 return;
             default:
-                int[] iArr = (int[]) obj;
-                boolean z10 = false;
-                if (iArr.length >= 1 && iArr[0] == 0) {
-                    z10 = true;
-                }
-                this.f32723b.run(Boolean.valueOf(z10));
+                on onVar = this.f32976b;
+                onVar.f31403b1 = false;
+                onVar.A.setTranslationY(0.0f);
+                onVar.a0();
                 return;
         }
     }

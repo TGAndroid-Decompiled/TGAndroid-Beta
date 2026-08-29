@@ -1,39 +1,45 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class q71 implements Utilities.Callback5, Utilities.Callback5Return, r0.o {
-    public final z71 f41711a;
+public final class q71 implements View.OnClickListener {
+    public final int f41560a;
+    public final b81 f41561b;
 
-    public q71(z71 z71Var) {
-        this.f41711a = z71Var;
+    public q71(b81 b81Var, int i10) {
+        this.f41560a = i10;
+        this.f41561b = b81Var;
     }
 
     @Override
-    public r0.m1 L0(View view, r0.m1 m1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(m1Var, false);
-        int i9 = defaultWindowInsets.d;
-        z71 z71Var = this.f41711a;
-        z71Var.O = i9;
-        z71Var.f45062c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f10849b, 0, z71Var.O + z71Var.P);
-        return r0.m1.f46928b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(z71.T(this.f41711a, (org.telegram.ui.Components.l41) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo18run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        z71.d0(this.f41711a, (org.telegram.ui.Components.l41) obj);
+    public final void onClick(View view) {
+        switch (this.f41560a) {
+            case 0:
+                b81 b81Var = this.f41561b;
+                ye.d.s(b81Var.getParentActivity(), b81Var.getMessagesController().premiumManageSubscriptionUrl);
+                b81Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
+                return;
+            case 1:
+                b81 b81Var2 = this.f41561b;
+                b81Var2.getClass();
+                b81Var2.presentFragment(new i(3));
+                return;
+            case 2:
+                this.f41561b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
+                return;
+            case 3:
+                b81 b81Var3 = this.f41561b;
+                b81Var3.getClass();
+                b81Var3.presentFragment(new cg1(8, null));
+                return;
+            case 4:
+                this.f41561b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                return;
+            case 5:
+                b81.V(this.f41561b);
+                return;
+            default:
+                b81.Y(this.f41561b);
+                return;
+        }
     }
 }

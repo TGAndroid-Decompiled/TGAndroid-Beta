@@ -1,22 +1,10 @@
 package f2;
+public interface l0 {
+    void H0(int i10, int i11);
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class l0 implements Parcelable {
-    public static final Parcelable.Creator<l0> CREATOR = new c.c(21);
-    public int f5419a;
-    public int f5420b;
-    public boolean f5421c;
+    void f1(int i10, int i11);
 
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+    void i0(int i10, int i11);
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeInt(this.f5419a);
-        parcel.writeInt(this.f5420b);
-        parcel.writeInt(this.f5421c ? 1 : 0);
-    }
+    void z(int i10, int i11);
 }

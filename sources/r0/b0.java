@@ -40,17 +40,17 @@ public abstract class b0 {
         c1 y0Var;
         if (x0.d && view.isAttachedToWindow()) {
             try {
-                Object obj = x0.f46958a.get(view.getRootView());
+                Object obj = x0.f46872a.get(view.getRootView());
                 if (obj != null) {
-                    Rect rect = (Rect) x0.f46959b.get(obj);
-                    Rect rect2 = (Rect) x0.f46960c.get(obj);
+                    Rect rect = (Rect) x0.f46873b.get(obj);
+                    Rect rect2 = (Rect) x0.f46874c.get(obj);
                     if (rect != null && rect2 != null) {
-                        int i9 = Build.VERSION.SDK_INT;
-                        if (i9 >= 34) {
+                        int i10 = Build.VERSION.SDK_INT;
+                        if (i10 >= 34) {
                             y0Var = new b1();
-                        } else if (i9 >= 30) {
+                        } else if (i10 >= 30) {
                             y0Var = new a1();
-                        } else if (i9 >= 29) {
+                        } else if (i10 >= 29) {
                             y0Var = new z0();
                         } else {
                             y0Var = new y0();
@@ -58,8 +58,8 @@ public abstract class b0 {
                         y0Var.e(i0.b.b(rect.left, rect.top, rect.right, rect.bottom));
                         y0Var.g(i0.b.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
                         m1 b10 = y0Var.b();
-                        b10.f46929a.r(b10);
-                        b10.f46929a.d(view.getRootView());
+                        b10.f46843a.r(b10);
+                        b10.f46843a.d(view.getRootView());
                         return b10;
                     }
                 }
@@ -78,8 +78,8 @@ public abstract class b0 {
         view.setBackgroundTintMode(mode);
     }
 
-    public static void i(View view, float f10) {
-        view.setElevation(f10);
+    public static void i(View view, float f9) {
+        view.setElevation(f9);
     }
 
     public static void j(View view, o oVar) {

@@ -1,20 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class vr0 implements View.OnLayoutChangeListener {
-    public final eu0 f33985a;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class vr0 implements cl0 {
+    public final lr0 f34173a;
+    public final qu0 f34174b;
 
-    public vr0(eu0 eu0Var) {
-        this.f33985a = eu0Var;
+    public vr0(qu0 qu0Var, lr0 lr0Var) {
+        this.f34174b = qu0Var;
+        this.f34173a = lr0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        eu0 eu0Var = this.f33985a;
-        org.telegram.ui.ActionBar.w0 w0Var = eu0Var.f28143j0;
-        if (w0Var == null) {
-            return;
+    public final boolean mo17b(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vr0.mo17b(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void h() {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f34174b.f32093r1;
+        if (o2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                o2Var.finishPreviewFragment();
+            }
         }
-        eu0Var.f28143j0.setTranslationX(((View) w0Var.getParent()).getMeasuredWidth() - eu0Var.f28143j0.getRight());
+    }
+
+    @Override
+    public final void r(float f9) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f34174b.f32093r1;
+        if (o2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                o2Var.movePreviewFragment(f9);
+            }
+        }
     }
 }

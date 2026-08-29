@@ -4,57 +4,57 @@ public interface TeXFont {
 
     TeXFont copy();
 
-    TeXFont deriveFont(float f10);
+    TeXFont deriveFont(float f9);
 
-    float getAxisHeight(int i9);
+    float getAxisHeight(int i10);
 
-    float getBigOpSpacing1(int i9);
+    float getBigOpSpacing1(int i10);
 
-    float getBigOpSpacing2(int i9);
+    float getBigOpSpacing2(int i10);
 
-    float getBigOpSpacing3(int i9);
+    float getBigOpSpacing3(int i10);
 
-    float getBigOpSpacing4(int i9);
+    float getBigOpSpacing4(int i10);
 
-    float getBigOpSpacing5(int i9);
+    float getBigOpSpacing5(int i10);
 
     boolean getBold();
 
-    Char getChar(char c10, String str, int i9);
+    Char getChar(char c3, String str, int i10);
 
-    Char getChar(String str, int i9);
+    Char getChar(String str, int i10);
 
-    Char getChar(CharFont charFont, int i9);
+    Char getChar(CharFont charFont, int i10);
 
-    Char getDefaultChar(char c10, int i9);
+    Char getDefaultChar(char c3, int i10);
 
-    float getDefaultRuleThickness(int i9);
+    float getDefaultRuleThickness(int i10);
 
-    float getDenom1(int i9);
+    float getDenom1(int i10);
 
-    float getDenom2(int i9);
+    float getDenom2(int i10);
 
-    float getEM(int i9);
+    float getEM(int i10);
 
-    Extension getExtension(Char r12, int i9);
+    Extension getExtension(Char r12, int i10);
 
     boolean getIt();
 
-    float getKern(CharFont charFont, CharFont charFont2, int i9);
+    float getKern(CharFont charFont, CharFont charFont2, int i10);
 
     CharFont getLigature(CharFont charFont, CharFont charFont2);
 
     int getMuFontId();
 
-    Char getNextLarger(Char r12, int i9);
+    Char getNextLarger(Char r12, int i10);
 
-    float getNum1(int i9);
+    float getNum1(int i10);
 
-    float getNum2(int i9);
+    float getNum2(int i10);
 
-    float getNum3(int i9);
+    float getNum3(int i10);
 
-    float getQuad(int i9, int i10);
+    float getQuad(int i10, int i11);
 
     boolean getRoman();
 
@@ -62,37 +62,37 @@ public interface TeXFont {
 
     float getSize();
 
-    float getSkew(CharFont charFont, int i9);
+    float getSkew(CharFont charFont, int i10);
 
-    float getSpace(int i9);
+    float getSpace(int i10);
 
     boolean getSs();
 
-    float getSub1(int i9);
+    float getSub1(int i10);
 
-    float getSub2(int i9);
+    float getSub2(int i10);
 
-    float getSubDrop(int i9);
+    float getSubDrop(int i10);
 
-    float getSup1(int i9);
+    float getSup1(int i10);
 
-    float getSup2(int i9);
+    float getSup2(int i10);
 
-    float getSup3(int i9);
+    float getSup3(int i10);
 
-    float getSupDrop(int i9);
+    float getSupDrop(int i10);
 
     boolean getTt();
 
-    float getXHeight(int i9, int i10);
+    float getXHeight(int i10, int i11);
 
     boolean hasNextLarger(Char r12);
 
-    boolean hasSpace(int i9);
+    boolean hasSpace(int i10);
 
     boolean isExtensionChar(Char r12);
 
-    TeXFont scaleFont(float f10);
+    TeXFont scaleFont(float f9);
 
     void setBold(boolean z10);
 

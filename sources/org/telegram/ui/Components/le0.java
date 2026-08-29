@@ -1,76 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class le0 implements TextureView.SurfaceTextureListener {
-    public final boolean f30424a;
-    public final ba f30425b;
-    public final qe0 f30426c;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class le0 extends Path {
+    public int f30295a;
+    public int f30296b;
+    public int f30297c;
 
-    public le0(qe0 qe0Var, boolean z10, ba baVar) {
-        this.f30426c = qe0Var;
-        this.f30424a = z10;
-        this.f30425b = baVar;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i9, int i10) {
-        qe0 qe0Var = this.f30426c;
-        TextureView textureView = qe0Var.f31898e0;
-        if (qe0Var.f31902h0 == null && surfaceTexture != null) {
-            hz hzVar = new hz(surfaceTexture, qe0Var.f31924y0, qe0Var.D0, qe0Var.f31915s0, this.f30424a, this.f30425b, i9, i10);
-            qe0Var.f31902h0 = hzVar;
-            if (!this.f30424a) {
-                hzVar.i(qe0Var.F0, qe0Var.G0);
-                hz hzVar2 = qe0Var.f31902h0;
-                Matrix transform = textureView.getTransform(null);
-                int width = textureView.getWidth();
-                int height = textureView.getHeight();
-                ha haVar = hzVar2.E;
-                if (haVar != null) {
-                    Matrix matrix = haVar.v;
-                    transform.invert(matrix);
-                    float f10 = width;
-                    float f11 = height;
-                    matrix.preScale(f10, f11);
-                    matrix.postScale(1.0f / f10, 1.0f / f11);
-                    haVar.c(matrix);
-                    hzVar2.e(false, false, false);
-                }
-            }
-            qe0Var.f31902h0.f(qe0Var);
-            hz hzVar3 = qe0Var.f31902h0;
-            hzVar3.getClass();
-            hzVar3.postRunnable(new dz(hzVar3, i9, i10, 1));
-            qe0Var.f31902h0.e(true, true, false);
+    public final void a(int i10, int i11, int i12) {
+        if (this.f30295a == i10 && this.f30296b == i11 && this.f30297c == i12) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        qe0 qe0Var = this.f30426c;
-        hz hzVar = qe0Var.f31902h0;
-        if (hzVar != null) {
-            hzVar.postRunnable(new ez(hzVar, 0));
-            qe0Var.f31902h0 = null;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i9, int i10) {
-        qe0 qe0Var = this.f30426c;
-        hz hzVar = qe0Var.f31902h0;
-        if (hzVar != null) {
-            hzVar.postRunnable(new dz(hzVar, i9, i10, 1));
-            qe0Var.f31902h0.e(false, true, false);
-            qe0Var.f31902h0.postRunnable(new ib0(this, 6));
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f9 = i10 - i12;
+        float f10 = i11 + i12;
+        rectF.set(f9, i11 - i12, i10 + i12, f10);
+        arcTo(rectF, -180.0f, 270.0f, false);
+        float f11 = i12 / 81.0f;
+        float f12 = i10;
+        float f13 = f10 - (3.0f * f11);
+        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
+        float f14 = f10 - f11;
+        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
+        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
+        float f15 = f12 - (63.73f * f11);
+        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
+        float f16 = i11;
+        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f9, (f11 * 18.87f) + f16, f9, f16);
+        close();
+        this.f30295a = i10;
+        this.f30296b = i11;
+        this.f30297c = i12;
     }
 }

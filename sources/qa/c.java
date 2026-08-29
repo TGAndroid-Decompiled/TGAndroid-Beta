@@ -1,92 +1,65 @@
 package qa;
 
-import aa.d;
-import g7.t6;
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public abstract class c {
-    public static final t6 f46123a;
+import java.lang.reflect.Type;
+import java.util.Collection;
+public final class c extends na.u {
+    public final int f46521a = 0;
+    public final Object f46522b;
+    public final Object f46523c;
 
-    static {
-        b bVar;
-        try {
-            bVar = new b();
-        } catch (ReflectiveOperationException unused) {
-            bVar = new Object();
-        }
-        f46123a = bVar;
+    public c(na.g gVar, Type type, na.u uVar, pa.m mVar) {
+        this.f46522b = new o(gVar, uVar, type);
+        this.f46523c = mVar;
     }
 
-    public static void a(AccessibleObject accessibleObject, StringBuilder sb2) {
-        Class<?>[] parameterTypes;
-        sb2.append('(');
-        if (accessibleObject instanceof Method) {
-            parameterTypes = ((Method) accessibleObject).getParameterTypes();
-        } else {
-            parameterTypes = ((Constructor) accessibleObject).getParameterTypes();
+    @Override
+    public final Object read(va.a aVar) {
+        switch (this.f46521a) {
+            case 0:
+                if (aVar.x() == 9) {
+                    aVar.t();
+                    return null;
+                }
+                Collection collection = (Collection) ((pa.m) this.f46523c).p2();
+                aVar.a();
+                while (aVar.k()) {
+                    collection.add(((na.u) ((o) this.f46522b).f46559c).read(aVar));
+                }
+                aVar.e();
+                return collection;
+            default:
+                Class cls = (Class) this.f46522b;
+                Object read = ((x0) this.f46523c).f46586c.read(aVar);
+                if (read != null && !cls.isInstance(read)) {
+                    throw new RuntimeException("Expected a " + cls.getName() + " but was " + read.getClass().getName() + "; at path " + aVar.j());
+                }
+                return read;
         }
-        for (int i9 = 0; i9 < parameterTypes.length; i9++) {
-            if (i9 > 0) {
-                sb2.append(", ");
-            }
-            sb2.append(parameterTypes[i9].getSimpleName());
-        }
-        sb2.append(')');
     }
 
-    public static String b(Constructor constructor) {
-        StringBuilder sb2 = new StringBuilder(constructor.getDeclaringClass().getName());
-        a(constructor, sb2);
-        return sb2.toString();
+    @Override
+    public final void write(va.b bVar, Object obj) {
+        switch (this.f46521a) {
+            case 0:
+                Collection<Object> collection = (Collection) obj;
+                if (collection == null) {
+                    bVar.i();
+                    return;
+                }
+                bVar.b();
+                for (Object obj2 : collection) {
+                    ((o) this.f46522b).write(bVar, obj2);
+                }
+                bVar.e();
+                return;
+            default:
+                ((x0) this.f46523c).f46586c.write(bVar, obj);
+                return;
+        }
     }
 
-    public static String c(Field field) {
-        return field.getDeclaringClass().getName() + "#" + field.getName();
-    }
-
-    public static String d(AccessibleObject accessibleObject, boolean z10) {
-        String str;
-        if (accessibleObject instanceof Field) {
-            str = "field '" + c((Field) accessibleObject) + "'";
-        } else if (accessibleObject instanceof Method) {
-            Method method = (Method) accessibleObject;
-            StringBuilder sb2 = new StringBuilder(method.getName());
-            a(method, sb2);
-            str = "method '" + method.getDeclaringClass().getName() + "#" + sb2.toString() + "'";
-        } else if (accessibleObject instanceof Constructor) {
-            str = "constructor '" + b((Constructor) accessibleObject) + "'";
-        } else {
-            str = "<unknown AccessibleObject> " + accessibleObject.toString();
-        }
-        if (z10 && Character.isLowerCase(str.charAt(0))) {
-            return Character.toUpperCase(str.charAt(0)) + str.substring(1);
-        }
-        return str;
-    }
-
-    public static String e(Exception exc) {
-        String str;
-        if (exc.getClass().getName().equals("java.lang.reflect.InaccessibleObjectException")) {
-            String message = exc.getMessage();
-            if (message != null && message.contains("to module com.google.gson")) {
-                str = "reflection-inaccessible-to-module-gson";
-            } else {
-                str = "reflection-inaccessible";
-            }
-            return "\nSee " + "https://github.com/google/gson/blob/main/Troubleshooting.md#".concat(str);
-        }
-        return "";
-    }
-
-    public static void f(AccessibleObject accessibleObject) {
-        try {
-            accessibleObject.setAccessible(true);
-        } catch (Exception e10) {
-            StringBuilder t10 = d.t("Failed making ", d(accessibleObject, false), " accessible; either increase its visibility or write a custom TypeAdapter for its declaring type.");
-            t10.append(e(e10));
-            throw new RuntimeException(t10.toString(), e10);
-        }
+    public c(x0 x0Var, Class cls) {
+        this.f46523c = x0Var;
+        this.f46522b = cls;
     }
 }

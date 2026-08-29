@@ -6,14 +6,14 @@ import android.os.Bundle;
 import java.util.HashSet;
 import java.util.Iterator;
 public final class r0 {
-    public final CharSequence f4758a;
-    public final Bundle f4759b;
-    public final HashSet f4760c;
+    public final CharSequence f5728a;
+    public final Bundle f5729b;
+    public final HashSet f5730c;
 
     public r0(String str, Bundle bundle, HashSet hashSet) {
-        this.f4758a = str;
-        this.f4759b = bundle;
-        this.f4760c = hashSet;
+        this.f5728a = str;
+        this.f5729b = bundle;
+        this.f5730c = hashSet;
     }
 
     public static RemoteInput[] a(r0[] r0VarArr) {
@@ -21,20 +21,20 @@ public final class r0 {
             return null;
         }
         RemoteInput[] remoteInputArr = new RemoteInput[r0VarArr.length];
-        for (int i9 = 0; i9 < r0VarArr.length; i9++) {
-            r0 r0Var = r0VarArr[i9];
+        for (int i10 = 0; i10 < r0VarArr.length; i10++) {
+            r0 r0Var = r0VarArr[i10];
             r0Var.getClass();
-            RemoteInput.Builder addExtras = new RemoteInput.Builder("extra_voice_reply").setLabel(r0Var.f4758a).setChoices(null).setAllowFreeFormInput(true).addExtras(r0Var.f4759b);
+            RemoteInput.Builder addExtras = new RemoteInput.Builder("extra_voice_reply").setLabel(r0Var.f5728a).setChoices(null).setAllowFreeFormInput(true).addExtras(r0Var.f5729b);
             if (Build.VERSION.SDK_INT >= 26) {
-                Iterator it = r0Var.f4760c.iterator();
+                Iterator it = r0Var.f5730c.iterator();
                 while (it.hasNext()) {
-                    g6.a.f(addExtras, (String) it.next());
+                    i6.a.g(addExtras, (String) it.next());
                 }
             }
             if (Build.VERSION.SDK_INT >= 29) {
-                com.google.firebase.messaging.q.h(addExtras);
+                com.google.firebase.messaging.p.h(addExtras);
             }
-            remoteInputArr[i9] = addExtras.build();
+            remoteInputArr[i10] = addExtras.build();
         }
         return remoteInputArr;
     }

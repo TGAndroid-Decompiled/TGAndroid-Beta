@@ -1,43 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class w extends org.telegram.ui.b61 {
-    public final org.telegram.ui.s51[] Z1;
-    public final y a2;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class w implements TextWatcher {
+    public final int f34247a;
+    public final a0 f34248b;
 
-    public w(y yVar, Context context, Integer num, org.telegram.ui.ActionBar.b6 b6Var, org.telegram.ui.s51[] s51VarArr) {
-        super(null, context, true, num, 15, b6Var);
-        this.a2 = yVar;
-        this.Z1 = s51VarArr;
+    public w(a0 a0Var, int i10) {
+        this.f34247a = i10;
+        this.f34248b = a0Var;
     }
 
     @Override
-    public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        int i9;
-        if (tL_starGiftUnique != null) {
-            i9 = ((org.telegram.ui.ActionBar.f3) this.a2).currentAccount;
-            if (gh.v7.y(i9, false).n(tL_starGiftUnique.f22607id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
-                return false;
-            }
-            return true;
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f34247a) {
+            case 0:
+                this.f34248b.W();
+                return;
+            default:
+                this.f34248b.W();
+                return;
         }
-        return true;
     }
 
     @Override
-    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        y yVar = this.a2;
-        yVar.f34813d0 = l10;
-        yVar.W();
-        yVar.V();
-        org.telegram.ui.s51 s51Var = this.Z1[0];
-        if (s51Var != null) {
-            yVar.f34814e0 = null;
-            s51Var.dismiss();
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f34247a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f34247a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

@@ -1,29 +1,22 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.nc1;
-public final class so implements nc1 {
-    public final int f32531a;
-    public final to f32532b;
+import android.animation.ValueAnimator;
+public final class so implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f32695a = false;
+    public final gp f32696b;
 
-    public so(to toVar, int i9) {
-        this.f32531a = i9;
-        this.f32532b = toVar;
+    public so(gp gpVar) {
+        this.f32696b = gpVar;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f32531a) {
-            case 0:
-                cp cpVar = this.f32532b.f32772a;
-                cpVar.U.dismissInternal();
-                cpVar.dismiss();
-                return;
-            default:
-                cp cpVar2 = this.f32532b.f32772a;
-                cpVar2.U.dismissInternal();
-                cpVar2.dismiss();
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        gp gpVar = this.f32696b;
+        gpVar.O = floatValue;
+        gpVar.N.invalidate();
+        if (!this.f32695a && gpVar.O > 0.5f) {
+            this.f32695a = true;
         }
     }
 }

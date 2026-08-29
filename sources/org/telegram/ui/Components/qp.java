@@ -1,24 +1,29 @@
 package org.telegram.ui.Components;
-public final class qp implements av0 {
-    public final op f32002a;
-    public final sp f32003b;
 
-    public qp(sp spVar, op opVar) {
-        this.f32003b = spVar;
-        this.f32002a = opVar;
+import android.content.Context;
+public abstract class qp extends m2.g {
+    public pp f32025s0;
+
+    public qp(Context context) {
+        super(context);
+        b(new op((kh0) this));
     }
 
     @Override
-    public final void h(int i9) {
-        sp spVar = this.f32003b;
-        spVar.f32538r = i9;
-        spVar.p(true);
+    @Deprecated
+    public void setAdapter(m2.a aVar) {
+        if (aVar instanceof pp) {
+            setAdapter((pp) aVar);
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
-    @Override
-    public final void m() {
-        int measuredHeight = this.f32003b.f32534c.getMeasuredHeight();
-        op opVar = this.f32002a;
-        opVar.y(0 - opVar.getScrollX(), measuredHeight - opVar.getScrollY(), false);
+    public void setAdapter(pp ppVar) {
+        this.f32025s0 = ppVar;
+        super.setAdapter((m2.a) ppVar);
+        if (ppVar != null) {
+            x(ppVar.j(), false);
+        }
     }
 }

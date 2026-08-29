@@ -8,7 +8,7 @@ public interface yp0 {
 
     boolean e();
 
-    void h();
+    void g();
 
-    void i(int i9, boolean z10, boolean z11);
+    void h(int i10, boolean z10, boolean z11);
 }

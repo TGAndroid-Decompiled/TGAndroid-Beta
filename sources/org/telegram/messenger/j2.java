@@ -10,50 +10,50 @@ import org.json.JSONObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jb0;
-import org.telegram.ui.Components.mt;
-import org.telegram.ui.jh0;
-import org.telegram.ui.kn;
-import org.telegram.ui.on;
+import org.telegram.ui.Components.st;
+import org.telegram.ui.Components.yb0;
+import org.telegram.ui.ll0;
+import org.telegram.ui.nn;
+import org.telegram.ui.rn;
 public final class j2 implements org.telegram.ui.ActionBar.b2, ResultCallback {
-    public final int f20640a = 0;
-    public final boolean f20641b;
-    public final int f20642c;
+    public final int f20622a = 0;
+    public final boolean f20623b;
+    public final int f20624c;
     public final Object d;
-    public final Object f20643e;
-    public final Object f20644f;
+    public final Object f20625e;
+    public final Object f20626f;
 
-    public j2(FactCheckController factCheckController, mt mtVar, int i9, MessageObject messageObject, boolean z10) {
+    public j2(FactCheckController factCheckController, st stVar, int i10, MessageObject messageObject, boolean z10) {
         this.d = factCheckController;
-        this.f20643e = mtVar;
-        this.f20642c = i9;
-        this.f20644f = messageObject;
-        this.f20641b = z10;
+        this.f20625e = stVar;
+        this.f20624c = i10;
+        this.f20626f = messageObject;
+        this.f20623b = z10;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i9) {
-        switch (this.f20640a) {
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f20622a) {
             case 0:
-                boolean z10 = this.f20641b;
-                ((FactCheckController) this.d).lambda$openFactCheckEditor$8((mt) this.f20643e, this.f20642c, (MessageObject) this.f20644f, z10, c2Var, i9);
+                boolean z10 = this.f20623b;
+                ((FactCheckController) this.d).lambda$openFactCheckEditor$8((st) this.f20625e, this.f20624c, (MessageObject) this.f20626f, z10, c2Var, i10);
                 return;
             default:
-                org.telegram.ui.web.y0 y0Var = (org.telegram.ui.web.y0) this.d;
-                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f20644f;
-                ((String[]) this.f20643e)[0] = null;
+                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.d;
+                org.telegram.ui.web.w0 w0Var = (org.telegram.ui.web.w0) this.f20626f;
+                ((String[]) this.f20625e)[0] = null;
                 c2Var.dismiss();
-                boolean z11 = this.f20641b;
-                int i10 = this.f20642c;
+                boolean z11 = this.f20623b;
+                int i11 = this.f20624c;
                 if (z11) {
-                    MessagesController.getInstance(y0Var.I).unblockPeer(y0Var.Q.f22527id, new jh0(y0Var, i10, v0Var, 12));
+                    MessagesController.getInstance(z0Var.I).unblockPeer(z0Var.Q.f22539id, new ll0(z0Var, i11, w0Var, 11));
                     return;
                 }
-                SendMessagesHelper.getInstance(y0Var.I).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(y0Var.I).getCurrentUser(), y0Var.Q.f22527id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
+                SendMessagesHelper.getInstance(z0Var.I).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(z0Var.I).getCurrentUser(), z0Var.Q.f22539id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 try {
                     JSONObject jSONObject = new JSONObject();
                     jSONObject.put("status", "sent");
-                    org.telegram.ui.web.y0.u(i10, v0Var, "phone_requested", jSONObject);
+                    org.telegram.ui.web.z0.u(i11, w0Var, "phone_requested", jSONObject);
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
@@ -64,48 +64,48 @@ public final class j2 implements org.telegram.ui.ActionBar.b2, ResultCallback {
 
     @Override
     public void onComplete(Object obj) {
-        on onVar = (on) this.d;
-        org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) this.f20643e;
-        jb0 jb0Var = (jb0) this.f20644f;
+        rn rnVar = (rn) this.d;
+        org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) this.f20625e;
+        yb0 yb0Var = (yb0) this.f20626f;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
-            Bitmap bitmap = ((lf.a) pair.second).f16853b;
-            org.telegram.ui.ActionBar.b4 b4Var2 = onVar.f41205f;
-            if (b4Var2 != null && longValue == b4Var2.i(onVar.C ? 1 : 0) && bitmap != null) {
-                ValueAnimator valueAnimator = onVar.f41207r;
+            Bitmap bitmap = ((of.a) pair.second).f19547b;
+            org.telegram.ui.ActionBar.b4 b4Var2 = rnVar.f42156f;
+            if (b4Var2 != null && longValue == b4Var2.i(rnVar.C ? 1 : 0) && bitmap != null) {
+                ValueAnimator valueAnimator = rnVar.f42158r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                int i9 = b4Var.k(this.f20641b ? 1 : 0).settings.intensity;
-                List list = ((lf.a) pair.second).f16854c;
-                jb0Var.R = list;
-                long j10 = onVar.R.Ma;
+                int i10 = b4Var.k(this.f20623b ? 1 : 0).settings.intensity;
+                List list = ((of.a) pair.second).f19548c;
+                yb0Var.R = list;
+                long j10 = rnVar.R.Ma;
                 if (list != null) {
-                    jb0Var.S = new Random(j10).nextInt(jb0Var.R.size());
+                    yb0Var.S = new Random(j10).nextInt(yb0Var.R.size());
                 }
-                jb0Var.t(bitmap, i9);
-                jb0Var.u(this.f20642c);
+                yb0Var.t(bitmap, i10);
+                yb0Var.u(this.f20624c);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                onVar.f41207r = ofFloat;
-                ofFloat.addUpdateListener(new kn(jb0Var, 2));
-                onVar.f41207r.setDuration(250L);
-                onVar.f41207r.start();
+                rnVar.f42158r = ofFloat;
+                ofFloat.addUpdateListener(new nn(yb0Var, 2));
+                rnVar.f42158r.setDuration(250L);
+                rnVar.f42158r.start();
             }
         }
     }
 
     @Override
-    public void onError(Throwable th) {
-        org.telegram.tgnet.k.a(this, th);
+    public void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
-    public j2(on onVar, org.telegram.ui.ActionBar.b4 b4Var, boolean z10, jb0 jb0Var, int i9) {
-        this.d = onVar;
-        this.f20643e = b4Var;
-        this.f20641b = z10;
-        this.f20644f = jb0Var;
-        this.f20642c = i9;
+    public j2(rn rnVar, org.telegram.ui.ActionBar.b4 b4Var, boolean z10, yb0 yb0Var, int i10) {
+        this.d = rnVar;
+        this.f20625e = b4Var;
+        this.f20623b = z10;
+        this.f20626f = yb0Var;
+        this.f20624c = i10;
     }
 
     @Override
@@ -113,11 +113,11 @@ public final class j2 implements org.telegram.ui.ActionBar.b2, ResultCallback {
         org.telegram.tgnet.k.b(this, tL_error);
     }
 
-    public j2(org.telegram.ui.web.y0 y0Var, String[] strArr, boolean z10, int i9, org.telegram.ui.web.v0 v0Var) {
-        this.d = y0Var;
-        this.f20643e = strArr;
-        this.f20641b = z10;
-        this.f20642c = i9;
-        this.f20644f = v0Var;
+    public j2(org.telegram.ui.web.z0 z0Var, String[] strArr, boolean z10, int i10, org.telegram.ui.web.w0 w0Var) {
+        this.d = z0Var;
+        this.f20625e = strArr;
+        this.f20623b = z10;
+        this.f20624c = i10;
+        this.f20626f = w0Var;
     }
 }

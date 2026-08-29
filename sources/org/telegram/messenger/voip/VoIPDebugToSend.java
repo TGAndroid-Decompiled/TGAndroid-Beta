@@ -1,7 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.text.TextUtils;
-import fh.f1;
+import ih.b1;
 import java.io.File;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,7 +14,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.voip.e2;
+import org.telegram.ui.Components.voip.h2;
 public class VoIPDebugToSend {
     private final int currentAccount;
     private final HashMap<Long, Data> pending = new HashMap<>();
@@ -30,8 +30,8 @@ public class VoIPDebugToSend {
         }
     }
 
-    public VoIPDebugToSend(int i9) {
-        this.currentAccount = i9;
+    public VoIPDebugToSend(int i10) {
+        this.currentAccount = i10;
     }
 
     public void lambda$done$0(TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
@@ -45,7 +45,7 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new f1(24, this, savecalldebug));
+        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new b1(17, this, savecalldebug));
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
@@ -60,7 +60,7 @@ public class VoIPDebugToSend {
             FileLog.d("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.searchQueue.postRunnable(new k(this, data, new File(aa.d.r(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            Utilities.searchQueue.postRunnable(new k(this, data, new File(a4.w.q(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
         }
     }
 
@@ -74,7 +74,7 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f22445id = remove.callId;
+            tL_inputPhoneCall.f22457id = remove.callId;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new m(this, remove, savecalldebug, 0));
         }
     }
@@ -82,7 +82,7 @@ public class VoIPDebugToSend {
     public void push(long j10, long j11, Instance.FinalState finalState, String str) {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
-                finalState.debugLog = VoIPService.getStringFromFile(e2.e("" + j10, true));
+                finalState.debugLog = VoIPService.getStringFromFile(h2.e("" + j10, true));
             } catch (Exception e10) {
                 e10.printStackTrace();
             }

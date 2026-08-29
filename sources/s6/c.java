@@ -1,65 +1,22 @@
 package s6;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.t3;
-public final class c extends x5.g {
-    public final Bundle Q;
+import android.os.Parcel;
+import android.os.Parcelable;
+import o6.w0;
+public final class c extends a6.a {
+    public static final Parcelable.Creator<c> CREATOR = new w0(25);
+    public final boolean f47644a;
 
-    public c(Context context, Looper looper, k kVar, l lVar, t3 t3Var) {
-        super(context, looper, 212, t3Var, kVar, lVar, 0);
-        this.Q = new Bundle();
+    public c(boolean z10) {
+        this.f47644a = z10;
     }
 
     @Override
-    public final boolean C() {
-        return true;
-    }
-
-    @Override
-    public final int l() {
-        return 17895000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.identity.internal.ISignInService");
-        if (queryLocalInterface instanceof i) {
-            return (i) queryLocalInterface;
-        }
-        return new b7.a(iBinder, "com.google.android.gms.auth.api.identity.internal.ISignInService", 9);
-    }
-
-    @Override
-    public final u5.c[] r() {
-        return d.f47455b;
-    }
-
-    @Override
-    public final Bundle t() {
-        return this.Q;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.auth.api.identity.internal.ISignInService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.auth.api.identity.service.signin.START";
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
+    public final void writeToParcel(Parcel dest, int i10) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int q6 = com.google.android.gms.internal.cast.o.q(dest, 20293);
+        com.google.android.gms.internal.cast.o.s(dest, 1, 4);
+        dest.writeInt(this.f47644a ? 1 : 0);
+        com.google.android.gms.internal.cast.o.r(dest, q6);
     }
 }

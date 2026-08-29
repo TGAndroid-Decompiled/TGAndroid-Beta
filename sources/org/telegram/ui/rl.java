@@ -1,121 +1,69 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLRPC;
-public final class rl implements Runnable {
-    public final int f42457a;
-    public final int f42458b;
-    public final Object f42459c;
-    public final Object d;
+public final class rl extends AnimatorListenerAdapter {
+    public final boolean f42129a;
+    public final boolean f42130b;
+    public final org.telegram.ui.Components.t9 f42131c;
+    public final sn d;
+    public final org.telegram.ui.ActionBar.h5 f42132e;
+    public final boolean f42133f;
+    public final eg.r h;
+    public final tn f42134n;
 
-    public rl(int i9, Object obj, Object obj2, int i10) {
-        this.f42457a = i10;
-        this.f42458b = i9;
-        this.f42459c = obj;
-        this.d = obj2;
-    }
-
-    private final void a() {
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.y01((org.telegram.ui.Components.a11) this.f42459c, (org.telegram.ui.Components.bp) this.d, this.f42458b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 0));
-    }
-
-    private final void b() {
-        MessageObject messageObject = (MessageObject) this.f42459c;
-        org.telegram.ui.Cells.k1 k1Var = (org.telegram.ui.Cells.k1) this.d;
-        HashMap hashMap = org.telegram.ui.Components.i21.P;
-        if (hashMap != null) {
-            hashMap.remove(Integer.valueOf(org.telegram.ui.Components.i21.o(messageObject)));
-        }
-        if (k1Var != null) {
-            k1Var.i0(3);
-        }
-        int i9 = this.f42458b;
-        NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
-        NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
-    }
-
-    private final void c() {
-        int i9;
-        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        dy dyVar = ((hx) this.f42459c).f38949b0;
-        ArrayList arrayList = dyVar.N1;
-        if (arrayList != null && (i9 = this.f42458b) >= 0 && i9 < arrayList.size()) {
-            dyVar.N1.add(i9, dialog);
-            dyVar.f37629a0[0].q(true);
-        }
-    }
-
-    private final void e() {
-        ay ayVar = (ay) this.f42459c;
-        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-        cy cyVar = ayVar.f36576g;
-        dy dyVar = ayVar.h;
-        dyVar.O1 = true;
-        dyVar.getMessagesController().addDialogToFolder(dialog.f22384id, 0, this.f42458b, 0L);
-        dyVar.O1 = false;
-        ArrayList<TLRPC.Dialog> dialogs = dyVar.getMessagesController().getDialogs(0);
-        int indexOf = dialogs.indexOf(dialog);
-        if (indexOf >= 0) {
-            ArrayList<TLRPC.Dialog> dialogs2 = dyVar.getMessagesController().getDialogs(1);
-            if (!dialogs2.isEmpty() || indexOf != 1) {
-                dyVar.A4(true, true);
-                cyVar.f37359x.D();
-                cyVar.q(true);
-                dyVar.o3();
-            }
-            if (dialogs2.isEmpty()) {
-                dialogs.remove(0);
-                if (indexOf == 1) {
-                    dyVar.A4(true, true);
-                    cyVar.q(true);
-                    dyVar.o3();
-                    return;
-                }
-                if (!dyVar.N1.isEmpty()) {
-                    dyVar.N1.remove(0);
-                }
-                cyVar.f37359x.D();
-                cyVar.q(true);
-                return;
-            }
-            return;
-        }
-        cyVar.q(false);
-    }
-
-    private final void f() {
-        o50 o50Var = (o50) this.f42459c;
-        org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.d;
-        org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
-        if (c2Var == null) {
-            return;
-        }
-        c2Var.setOnCancelListener(new gh.x(o50Var, this.f42458b, 6));
-        c2VarArr[0].show();
+    public rl(tn tnVar, boolean z10, boolean z11, org.telegram.ui.Components.t9 t9Var, sn snVar, org.telegram.ui.ActionBar.h5 h5Var, boolean z12, eg.r rVar) {
+        this.f42134n = tnVar;
+        this.f42129a = z10;
+        this.f42130b = z11;
+        this.f42131c = t9Var;
+        this.d = snVar;
+        this.f42132e = h5Var;
+        this.f42133f = z12;
+        this.h = rVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rl.run():void");
+    public final void onAnimationCancel(Animator animator) {
+        tn tnVar = this.f42134n;
+        tnVar.D2[1] = null;
+        tnVar.f43029x2[1].setTranslationY(0.0f);
     }
 
-    public rl(Object obj, int i9, Object obj2, int i10) {
-        this.f42457a = i10;
-        this.f42459c = obj;
-        this.f42458b = i9;
-        this.d = obj2;
-    }
-
-    public rl(Object obj, Object obj2, int i9, int i10) {
-        this.f42457a = i10;
-        this.f42459c = obj;
-        this.d = obj2;
-        this.f42458b = i9;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        Object[] objArr = this.f42134n.D2;
+        if (animator.equals(objArr[1])) {
+            org.telegram.ui.Components.t9 t9Var = this.f42131c;
+            boolean z10 = this.f42130b;
+            boolean z11 = this.f42129a;
+            if (!z11 && !z10 && t9Var == null) {
+                objArr[1] = null;
+                return;
+            }
+            objArr[1] = new AnimatorSet();
+            objArr[1].setInterpolator(org.telegram.ui.Components.jr.h);
+            objArr[1].setDuration(360L);
+            ArrayList arrayList = new ArrayList();
+            if (z11) {
+                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
+            }
+            if (z10) {
+                arrayList.add(ObjectAnimator.ofFloat(this.f42132e, View.TRANSLATION_Y, 0.0f));
+            }
+            if (this.f42133f) {
+                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
+            }
+            if (t9Var != null) {
+                arrayList.add(ObjectAnimator.ofFloat(t9Var, View.TRANSLATION_Y, 0.0f));
+            }
+            objArr[1].addListener(new nh.q5(this, 28));
+            objArr[1].playTogether(arrayList);
+            objArr[1].start();
+        }
     }
 }

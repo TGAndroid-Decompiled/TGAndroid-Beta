@@ -1,15 +1,15 @@
 package h7;
-public final class k4 implements q9.d {
-    public static final k4 f9992a = new Object();
+public final class k4 implements s9.d {
+    public static final k4 f7679a = new Object();
 
     static {
-        e2.c.u(e2.c.s(h0.class, new e0(1)));
+        com.google.android.recaptcha.internal.a.t(com.google.android.recaptcha.internal.a.p(i.class, new e(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            q9.e eVar = (q9.e) obj2;
+            s9.e eVar = (s9.e) obj2;
             throw null;
         }
         throw new ClassCastException();

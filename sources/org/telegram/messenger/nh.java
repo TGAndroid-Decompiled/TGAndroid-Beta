@@ -1,28 +1,35 @@
 package org.telegram.messenger;
 
-import android.text.Spanned;
-import java.util.Comparator;
-import org.telegram.messenger.RichMessageLayout;
-public final class nh implements Comparator {
-    public final int f21063a;
-    public final Spanned f21064b;
+import android.content.Context;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class nh implements Utilities.Callback2 {
+    public final int f21080a = 0;
+    public final int f21081b;
+    public final Object f21082c;
+    public final Object d;
 
-    public nh(Spanned spanned, int i9) {
-        this.f21063a = i9;
-        this.f21064b = spanned;
+    public nh(Context context, int i10, Utilities.Callback2 callback2) {
+        this.f21082c = callback2;
+        this.d = context;
+        this.f21081b = i10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$withReplacements$0;
-        int lambda$new$0;
-        switch (this.f21063a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f21080a) {
             case 0:
-                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f21064b, (org.telegram.ui.Cells.t9) obj, (org.telegram.ui.Cells.t9) obj2);
-                return lambda$withReplacements$0;
+                PasskeysController.lambda$create$7((Utilities.Callback2) this.f21082c, (Context) this.d, this.f21081b, (v0.c) obj, (Throwable) obj2);
+                return;
             default:
-                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f21064b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
-                return lambda$new$0;
+                ((TranslateController) this.f21082c).lambda$pushToSummarize$19(this.f21081b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                return;
         }
+    }
+
+    public nh(TranslateController translateController, int i10, Utilities.Callback callback) {
+        this.f21082c = translateController;
+        this.f21081b = i10;
+        this.d = callback;
     }
 }

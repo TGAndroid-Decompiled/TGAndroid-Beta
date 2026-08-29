@@ -1,18 +1,20 @@
 package ja;
-public final class i extends sc.c {
-    public Object f14273a;
-    public final k f14274b;
-    public int f14275c;
+public enum i implements u9.f {
+    COLLECTION_UNKNOWN(0),
+    COLLECTION_SDK_NOT_INSTALLED(1),
+    COLLECTION_ENABLED(2),
+    COLLECTION_DISABLED(3),
+    COLLECTION_DISABLED_REMOTE(4),
+    COLLECTION_SAMPLED(5);
+    
+    public final int f11350a;
 
-    public i(k kVar, sc.c cVar) {
-        super(cVar);
-        this.f14274b = kVar;
+    i(int i10) {
+        this.f11350a = i10;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f14273a = obj;
-        this.f14275c |= Integer.MIN_VALUE;
-        return this.f14274b.c(null, null, this);
+    public final int a() {
+        return this.f11350a;
     }
 }

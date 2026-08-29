@@ -1,47 +1,47 @@
 package org.telegram.ui.Components;
 public final class oy0 {
-    public static final oy0 f31474e = new oy0(false, new ly0(Integer.MIN_VALUE, -2147483647), ry0.N, 0.0f);
-    public final boolean f31475a;
-    public final ly0 f31476b;
-    public final dy0 f31477c;
-    public final float d;
+    public final int f31511a;
 
-    public oy0(boolean z10, ly0 ly0Var, dy0 dy0Var, float f10) {
-        this.f31475a = z10;
-        this.f31476b = ly0Var;
-        this.f31477c = dy0Var;
-        this.d = f10;
+    public oy0(int i10) {
+        this.f31511a = i10;
     }
 
-    public static dy0 a(oy0 oy0Var, boolean z10) {
-        dy0 dy0Var = oy0Var.f31477c;
-        if (dy0Var != ry0.N) {
-            return dy0Var;
+    public final int a(vy0 vy0Var, int i10) {
+        switch (this.f31511a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        if (oy0Var.d == 0.0f) {
-            if (z10) {
-                return ry0.O;
-            }
-            return ry0.P;
-        }
-        return ry0.Q;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final int b(vy0 vy0Var, int i10) {
+        switch (this.f31511a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
         }
-        if (obj == null || oy0.class != obj.getClass()) {
-            return false;
-        }
-        oy0 oy0Var = (oy0) obj;
-        if (this.f31477c.equals(oy0Var.f31477c) && this.f31476b.equals(oy0Var.f31476b)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return this.f31477c.hashCode() + (this.f31476b.hashCode() * 31);
+    public int c(int i10, int i11) {
+        switch (this.f31511a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

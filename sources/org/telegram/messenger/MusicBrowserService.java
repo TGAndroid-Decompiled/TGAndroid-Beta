@@ -22,11 +22,11 @@ public class MusicBrowserService extends MediaBrowserService {
     }
 
     @Override
-    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i9, Bundle bundle) {
+    public MediaBrowserService.BrowserRoot onGetRoot(String str, int i10, Bundle bundle) {
         if (str == null) {
             return null;
         }
-        if ((1000 != i9 && Process.myUid() != i9 && !PackageValidator.isKnownCaller(this, str, i9)) || TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
+        if ((1000 != i10 && Process.myUid() != i10 && !PackageValidator.isKnownCaller(this, str, i10)) || TelegramMediaSession.getInstance(this).isPasscodeLocked()) {
             return null;
         }
         return new MediaBrowserService.BrowserRoot("__ROOT__", TelegramMediaSession.getInstance(this).buildRootHints());

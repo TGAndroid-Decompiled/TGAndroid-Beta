@@ -1,70 +1,61 @@
 package org.telegram.ui.web;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import i7.f6;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.nz0;
-public final class f extends Drawable {
-    public final int f43849a;
-    public final nz0 f43850b;
-    public final h f43851c;
+import org.telegram.messenger.R;
+public final class f extends FrameLayout {
+    public final ImageView f44025a;
+    public final TextView f44026b;
+    public final ImageView f44027c;
+    public final Paint d;
+    public boolean f44028e;
 
-    public f(h hVar, String str, int i9) {
-        this.f43849a = i9;
-        switch (i9) {
-            case 1:
-                this.f43851c = hVar;
-                this.f43850b = new nz0(str, 14.0f, AndroidUtilities.bold());
-                return;
-            default:
-                this.f43851c = hVar;
-                this.f43850b = new nz0(str, 14.0f, AndroidUtilities.bold());
-                return;
+    public f(Context context) {
+        super(context);
+        this.d = new Paint(1);
+        ImageView imageView = new ImageView(context);
+        this.f44025a = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.menu_clear_recent);
+        addView(imageView, f6.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f44026b = textView;
+        textView.setTextSize(1, 16.0f);
+        addView(textView, f6.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f44027c = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(R.drawable.menu_browser_arrowup);
+        addView(imageView2, f6.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f44028e) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.d);
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f43849a) {
-            case 0:
-                this.f43850b.c(getBounds().centerX() - (this.f43850b.f31223c / 2.0f), getBounds().centerY(), 1.0f, this.f43851c.f43872s, canvas);
-                return;
-            default:
-                this.f43850b.c(getBounds().centerX() - (this.f43850b.f31223c / 2.0f), getBounds().centerY(), 1.0f, this.f43851c.f43872s, canvas);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f43849a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        int i10 = this.f43849a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i9 = this.f43849a;
-    }
-
-    private final void a(int i9) {
-    }
-
-    private final void b(int i9) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+    public void setAsShowMore(l lVar) {
+        int i10 = R.drawable.arrow_more;
+        ImageView imageView = this.f44025a;
+        imageView.setImageResource(i10);
+        imageView.setColorFilter(new PorterDuffColorFilter(lVar.D, PorterDuff.Mode.SRC_IN));
     }
 }

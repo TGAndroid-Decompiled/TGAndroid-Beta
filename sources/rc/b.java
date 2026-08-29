@@ -1,37 +1,31 @@
 package rc;
 
-import g7.y5;
-import kotlin.jvm.internal.i;
-import kotlin.jvm.internal.s;
-import sc.g;
-import zc.p;
-public final class b extends g {
-    public int f47129a;
-    public final p f47130b;
-    public final qc.c f47131c;
+import a4.w;
+import i7.i7;
+import java.util.RandomAccess;
+public final class b extends c implements RandomAccess {
+    public final c f47112a;
+    public final int f47113b;
+    public final int f47114c;
 
-    public b(qc.c cVar, qc.c cVar2, p pVar) {
-        super(cVar);
-        this.f47130b = pVar;
-        this.f47131c = cVar2;
+    public b(c cVar, int i10, int i11) {
+        this.f47112a = cVar;
+        this.f47113b = i10;
+        i7.a(i10, i11, cVar.i());
+        this.f47114c = i11 - i10;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        int i9 = this.f47129a;
-        if (i9 != 0) {
-            if (i9 == 1) {
-                this.f47129a = 2;
-                y5.b(obj);
-                return obj;
-            }
-            throw new IllegalStateException("This coroutine had already completed");
+    public final Object get(int i10) {
+        int i11 = this.f47114c;
+        if (i10 >= 0 && i10 < i11) {
+            return this.f47112a.get(this.f47113b + i10);
         }
-        this.f47129a = 1;
-        y5.b(obj);
-        p pVar = this.f47130b;
-        i.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
-        s.a(2, pVar);
-        return pVar.invoke(this.f47131c, this);
+        throw new IndexOutOfBoundsException(w.k(i10, i11, "index: ", ", size: "));
+    }
+
+    @Override
+    public final int i() {
+        return this.f47114c;
     }
 }

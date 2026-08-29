@@ -1,35 +1,8 @@
 package org.telegram.ui.Components;
-
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class ct implements Utilities.Callback0Return {
-    public final int f27563a;
-    public final Object f27564b;
-
-    public ct(Object obj, int i9) {
-        this.f27563a = i9;
-        this.f27564b = obj;
-    }
-
-    @Override
-    public final Object run() {
-        boolean z10;
-        Editable text;
-        ei0[] ei0VarArr;
-        int i9 = this.f27563a;
-        Object obj = this.f27564b;
-        switch (i9) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i10 = EditTextBoldCursor.f26373a;
-                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((ei0VarArr = (ei0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), ei0.class)) == null || ei0VarArr.length == 0)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            default:
-                return ((d40) obj).getCloseIntoObject();
-        }
-    }
+public abstract class ct {
+    public static final jr f27564a = new jr(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final jr f27565b = new jr(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final jr f27566c = new jr(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final jr d = new jr(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final jr f27567e = new jr(0.455d, 0.03d, 0.515d, 0.955d);
 }

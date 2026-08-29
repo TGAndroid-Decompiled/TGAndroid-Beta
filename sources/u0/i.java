@@ -15,57 +15,57 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 public final class i implements ActionMode.Callback {
-    public final ActionMode.Callback f47954a;
-    public final TextView f47955b;
-    public Class f47956c;
+    public final ActionMode.Callback f48952a;
+    public final TextView f48953b;
+    public Class f48954c;
     public Method d;
-    public boolean f47957e;
-    public boolean f47958f = false;
+    public boolean f48955e;
+    public boolean f48956f = false;
 
     public i(ActionMode.Callback callback, TextView textView) {
-        this.f47954a = callback;
-        this.f47955b = textView;
+        this.f48952a = callback;
+        this.f48953b = textView;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        return this.f47954a.onActionItemClicked(actionMode, menuItem);
+        return this.f48952a.onActionItemClicked(actionMode, menuItem);
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        return this.f47954a.onCreateActionMode(actionMode, menu);
+        return this.f48952a.onCreateActionMode(actionMode, menu);
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        this.f47954a.onDestroyActionMode(actionMode);
+        this.f48952a.onDestroyActionMode(actionMode);
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
         Method declaredMethod;
         boolean z10;
-        TextView textView = this.f47955b;
+        TextView textView = this.f48953b;
         Context context = textView.getContext();
         PackageManager packageManager = context.getPackageManager();
-        boolean z11 = this.f47958f;
+        boolean z11 = this.f48956f;
         Class<?> cls = Integer.TYPE;
         if (!z11) {
-            this.f47958f = true;
+            this.f48956f = true;
             try {
                 Class<?> cls2 = Class.forName("com.android.internal.view.menu.MenuBuilder");
-                this.f47956c = cls2;
+                this.f48954c = cls2;
                 this.d = cls2.getDeclaredMethod("removeItemAt", cls);
-                this.f47957e = true;
+                this.f48955e = true;
             } catch (ClassNotFoundException | NoSuchMethodException unused) {
-                this.f47956c = null;
+                this.f48954c = null;
                 this.d = null;
-                this.f47957e = false;
+                this.f48955e = false;
             }
         }
         try {
-            if (this.f47957e && this.f47956c.isInstance(menu)) {
+            if (this.f48955e && this.f48954c.isInstance(menu)) {
                 declaredMethod = this.d;
             } else {
                 declaredMethod = menu.getClass().getDeclaredMethod("removeItemAt", cls);
@@ -90,9 +90,9 @@ public final class i implements ActionMode.Callback {
                     arrayList.add(resolveInfo);
                 }
             }
-            for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                ResolveInfo resolveInfo2 = (ResolveInfo) arrayList.get(i9);
-                MenuItem add = menu.add(0, 0, i9 + 100, resolveInfo2.loadLabel(packageManager));
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                ResolveInfo resolveInfo2 = (ResolveInfo) arrayList.get(i10);
+                MenuItem add = menu.add(0, 0, i10 + 100, resolveInfo2.loadLabel(packageManager));
                 Intent type = new Intent().setAction("android.intent.action.PROCESS_TEXT").setType("text/plain");
                 if ((textView instanceof Editable) && textView.onCheckIsTextEditor() && textView.isEnabled()) {
                     z10 = true;
@@ -105,6 +105,6 @@ public final class i implements ActionMode.Callback {
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException unused2) {
         }
-        return this.f47954a.onPrepareActionMode(actionMode, menu);
+        return this.f48952a.onPrepareActionMode(actionMode, menu);
     }
 }

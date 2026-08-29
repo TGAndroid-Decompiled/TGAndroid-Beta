@@ -1,27 +1,23 @@
 package f4;
 
+import a4.w;
 import android.os.Parcel;
 import android.os.Parcelable;
-import d5.f0;
+import d6.d;
+import j3.g1;
+import j3.t0;
 import java.util.Arrays;
-import java.util.Locale;
-public final class c implements Parcelable {
-    public static final Parcelable.Creator<c> CREATOR = new c.c(25);
-    public final long f5581a;
-    public final long f5582b;
-    public final int f5583c;
+import org.telegram.ui.th;
+public final class c implements b4.b {
+    public static final Parcelable.Creator<c> CREATOR = new d(18);
+    public final byte[] f6555a;
+    public final String f6556b;
+    public final String f6557c;
 
-    public c(long j10, long j11, int i9) {
-        boolean z10;
-        if (j10 < j11) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        d5.a.f(z10);
-        this.f5581a = j10;
-        this.f5582b = j11;
-        this.f5583c = i9;
+    public c(String str, String str2, byte[] bArr) {
+        this.f6555a = bArr;
+        this.f6556b = str;
+        this.f6557c = str2;
     }
 
     @Override
@@ -34,32 +30,49 @@ public final class c implements Parcelable {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            c cVar = (c) obj;
-            if (this.f5581a == cVar.f5581a && this.f5582b == cVar.f5582b && this.f5583c == cVar.f5583c) {
-                return true;
-            }
+            return Arrays.equals(this.f6555a, ((c) obj).f6555a);
         }
         return false;
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f5581a), Long.valueOf(this.f5582b), Integer.valueOf(this.f5583c)});
-    }
-
-    public final String toString() {
-        int i9 = f0.f4349a;
-        Locale locale = Locale.US;
-        StringBuilder s10 = aa.d.s(this.f5581a, "Segment: startTimeMs=", ", endTimeMs=");
-        s10.append(this.f5582b);
-        s10.append(", speedDivisor=");
-        s10.append(this.f5583c);
-        return s10.toString();
+    @Override
+    public final byte[] getWrappedMetadataBytes() {
+        return null;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i9) {
-        parcel.writeLong(this.f5581a);
-        parcel.writeLong(this.f5582b);
-        parcel.writeInt(this.f5583c);
+    public final t0 getWrappedMetadataFormat() {
+        return null;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(this.f6555a);
+    }
+
+    @Override
+    public final void populateMediaMetadata(g1 g1Var) {
+        String str = this.f6556b;
+        if (str != null) {
+            g1Var.f10448a = str;
+        }
+    }
+
+    public final String toString() {
+        return w.l(this.f6555a.length, "\"", th.k("ICY: title=\"", this.f6556b, "\", url=\"", this.f6557c, "\", rawMetadata.length=\""));
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeByteArray(this.f6555a);
+        parcel.writeString(this.f6556b);
+        parcel.writeString(this.f6557c);
+    }
+
+    public c(Parcel parcel) {
+        byte[] createByteArray = parcel.createByteArray();
+        createByteArray.getClass();
+        this.f6555a = createByteArray;
+        this.f6556b = parcel.readString();
+        this.f6557c = parcel.readString();
     }
 }

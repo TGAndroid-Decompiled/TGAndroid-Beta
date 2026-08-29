@@ -6,10 +6,10 @@ public class ExtendedBitmapDrawable extends BitmapDrawable {
     private int invert;
     private int orientation;
 
-    public ExtendedBitmapDrawable(Bitmap bitmap, int i9, int i10) {
+    public ExtendedBitmapDrawable(Bitmap bitmap, int i10, int i11) {
         super(bitmap);
-        this.invert = i10;
-        this.orientation = i9;
+        this.invert = i11;
+        this.orientation = i10;
     }
 
     public int getInvert() {

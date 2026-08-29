@@ -36,8 +36,8 @@ public class LanguageDetector {
         if (z10) {
             try {
                 Context context = ApplicationLoader.applicationContext;
-                synchronized (ya.g.f49691b) {
-                    ya.g.d(context, TaskExecutors.MAIN_THREAD);
+                synchronized (ab.h.f310b) {
+                    ab.h.d(context, TaskExecutors.MAIN_THREAD);
                 }
             } catch (IllegalStateException e10) {
                 if (!z10) {
@@ -55,14 +55,14 @@ public class LanguageDetector {
                 }
                 FileLog.e(e11);
                 return;
-            } catch (Throwable th) {
+            } catch (Throwable th2) {
                 if (exceptionCallback != null) {
                     exceptionCallback.run(null);
                 }
-                FileLog.e(th, false);
+                FileLog.e(th2, false);
                 return;
             }
         }
-        com.google.android.gms.internal.play_billing.s1.a().g(str).addOnSuccessListener(new d(stringCallback, 6)).addOnFailureListener(new d(exceptionCallback, 7));
+        h7.l5.a().g(str).addOnSuccessListener(new d(stringCallback, 6)).addOnFailureListener(new d(exceptionCallback, 7));
     }
 }

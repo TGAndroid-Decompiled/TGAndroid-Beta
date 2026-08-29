@@ -2,27 +2,27 @@ package c1;
 
 import w0.i;
 public final class a implements Runnable {
-    public final int f2078a;
-    public final e f2079b;
-    public final i f2080c;
+    public final int f2747a;
+    public final e f2748b;
+    public final i f2749c;
 
-    public a(e eVar, i iVar, int i9) {
-        this.f2078a = i9;
-        this.f2079b = eVar;
-        this.f2080c = iVar;
+    public a(e eVar, i iVar, int i10) {
+        this.f2747a = i10;
+        this.f2748b = eVar;
+        this.f2749c = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f2078a) {
+        switch (this.f2747a) {
             case 0:
-                this.f2079b.e().onError(this.f2080c);
+                this.f2748b.e().onError(this.f2749c);
                 return;
             case 1:
-                this.f2079b.e().onError(this.f2080c);
+                this.f2748b.e().onError(this.f2749c);
                 return;
             default:
-                this.f2079b.e().onError(this.f2080c);
+                this.f2748b.e().onError(this.f2749c);
                 return;
         }
     }

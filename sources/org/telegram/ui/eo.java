@@ -1,35 +1,82 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class eo implements Runnable {
-    public final int f37998a;
-    public final long f37999b;
-    public final long f38000c;
-    public final org.telegram.ui.ActionBar.o2 d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class eo implements org.telegram.ui.ActionBar.b2, MessagesStorage.LongCallback, mc0, MessagesStorage.BooleanCallback {
+    public final int f37878a;
+    public final ko f37879b;
 
-    public eo(org.telegram.ui.ActionBar.o2 o2Var, long j10, long j11, int i9) {
-        this.f37998a = i9;
-        this.d = o2Var;
-        this.f37999b = j10;
-        this.f38000c = j11;
+    public eo(ko koVar, int i10) {
+        this.f37878a = i10;
+        this.f37879b = koVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.z41 z41Var;
-        switch (this.f37998a) {
+    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
+        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+        tL_channelLocation.address = messageMedia.address;
+        tL_channelLocation.geo_point = messageMedia.geo;
+        ko koVar = this.f37879b;
+        TLRPC.ChatFull chatFull = koVar.f39965u0;
+        chatFull.location = tL_channelLocation;
+        chatFull.flags |= 32768;
+        koVar.p0(false, true);
+        koVar.getMessagesController().loadFullChat(koVar.f39963s0, 0, true);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f37878a) {
             case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f37999b, this.f38000c, new a5((ho) this.d, 4));
+                this.f37879b.j0();
+                return;
+            case 1:
+                this.f37879b.finishFragment();
+                return;
+            case 2:
+                this.f37879b.j0();
                 return;
             default:
-                org.telegram.ui.web.u1 u1Var = (org.telegram.ui.web.u1) this.d;
-                u1Var.f44031f = this.f37999b;
-                u1Var.h = this.f38000c;
-                org.telegram.ui.Components.c51 c51Var = u1Var.f27658a;
-                if (c51Var != null && (z41Var = c51Var.U2) != null && c51Var.C) {
-                    z41Var.N(true);
+                this.f37879b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void run(boolean z10) {
+        ko koVar = this.f37879b;
+        koVar.getClass();
+        if (AndroidUtilities.isTablet()) {
+            koVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-koVar.f39963s0));
+        } else {
+            koVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+        }
+        koVar.finishFragment();
+        koVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-koVar.f39964t0.f22392id), null, koVar.f39964t0, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void run(long j10) {
+        switch (this.f37878a) {
+            case 4:
+                this.f37879b.t0(Long.valueOf(j10));
+                return;
+            default:
+                ko koVar = this.f37879b;
+                if (j10 == 0) {
+                    koVar.J0 = false;
                     return;
                 }
+                koVar.f39963s0 = j10;
+                koVar.f39964t0 = koVar.getMessagesController().getChat(Long.valueOf(j10));
+                koVar.J0 = false;
+                TLRPC.ChatFull chatFull = koVar.f39965u0;
+                if (chatFull != null) {
+                    chatFull.hidden_prehistory = true;
+                }
+                koVar.j0();
                 return;
         }
     }

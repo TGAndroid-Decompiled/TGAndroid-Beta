@@ -1,10 +1,9 @@
 package s3;
-public final class a {
-    public final int f47297a;
-    public final long f47298b;
 
-    public a(int i9, long j10) {
-        this.f47297a = i9;
-        this.f47298b = j10;
-    }
+import ab.e;
+public final class a extends e {
+    public static final int[] f47554e = {5512, 11025, 22050, 44100};
+    public boolean f47555b;
+    public boolean f47556c;
+    public int d;
 }

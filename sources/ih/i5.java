@@ -1,84 +1,44 @@
 package ih;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-public final class i5 extends m2.g {
-    public boolean f11615s0;
-    public final o5 f11616t0;
-    public final o5 f11617u0;
+import jh.s9;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.c80;
+import org.telegram.ui.Components.w41;
+import org.telegram.ui.Components.xa;
+public final class i5 implements Utilities.Callback2 {
+    public final int f9242a;
+    public final long f9243b;
+    public final org.telegram.ui.ActionBar.f3 f9244c;
+    public final Object d;
 
-    public i5(o5 o5Var, Context context) {
-        super(context);
-        this.f11617u0 = o5Var;
-        this.f11616t0 = o5Var;
-    }
-
-    public final boolean A(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f11615s0 = true;
-        }
-        if (this.f11615s0 && this.f11616t0.f11899x <= 0) {
-            try {
-                return super.onInterceptTouchEvent(motionEvent);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    public final boolean B(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f11615s0 = true;
-        }
-        if (this.f11615s0 && this.f11616t0.f11899x <= 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
+    public i5(xa xaVar, Object obj, long j10, int i10) {
+        this.f9242a = i10;
+        this.f9244c = xaVar;
+        this.d = obj;
+        this.f9243b = j10;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float y10 = motionEvent.getY();
-        currentTopOffset = this.f11617u0.getCurrentTopOffset();
-        if (y10 < currentTopOffset && motionEvent.getAction() == 0) {
-            return false;
+    public final void run(Object obj, Object obj2) {
+        switch (this.f9242a) {
+            case 0:
+                q5.V((q5) this.f9244c, (TL_stars.TL_starGiftUnique) this.d, this.f9243b, (jh.j4) obj, (ye.c) obj2);
+                return;
+            case 1:
+                s9.Q((s9) this.f9244c, (w41) this.d, this.f9243b, (Boolean) obj, (String) obj2);
+                return;
+            default:
+                c80.m((c80) this.f9244c, this.f9243b, (TLRPC.TL_messages_importChatInvite) this.d, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y10 = motionEvent.getY();
-        o5 o5Var = this.f11617u0;
-        currentTopOffset = o5Var.getCurrentTopOffset();
-        if (y10 >= currentTopOffset) {
-            currentTopOffset2 = o5Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - o5Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
-            }
-            return A(motionEvent);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y10 = motionEvent.getY();
-        o5 o5Var = this.f11617u0;
-        currentTopOffset = o5Var.getCurrentTopOffset();
-        if (y10 >= currentTopOffset) {
-            currentTopOffset2 = o5Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - o5Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
-            }
-            return B(motionEvent);
-        }
-        return false;
+    public i5(c80 c80Var, long j10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f9242a = 2;
+        this.f9244c = c80Var;
+        this.f9243b = j10;
+        this.d = tL_messages_importChatInvite;
     }
 }

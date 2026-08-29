@@ -1,3 +1,5 @@
 package fd;
-public abstract class f extends e {
+
+import bd.p;
+public interface f extends g, p {
 }

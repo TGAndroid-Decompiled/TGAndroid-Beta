@@ -28,10 +28,10 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
         this.mContext = context;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
         SharedPreferences sharedPreferences = context.getSharedPreferences("shortcut_widget", 0);
-        int i9 = sharedPreferences.getInt("account" + intExtra, -1);
-        if (i9 >= 0) {
+        int i10 = sharedPreferences.getInt("account" + intExtra, -1);
+        if (i10 >= 0) {
             this.dialogId = sharedPreferences.getLong("dialogId" + intExtra, 0L);
-            this.accountInstance = AccountInstance.getInstance(i9);
+            this.accountInstance = AccountInstance.getInstance(i10);
         }
     }
 
@@ -44,8 +44,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     }
 
     @Override
-    public void didReceivedNotification(int i9, int i10, Object... objArr) {
-        if (i9 == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
+    public void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
             this.messages.clear();
             this.messages.addAll((ArrayList) objArr[2]);
             this.countDownLatch.countDown();
@@ -58,8 +58,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     }
 
     @Override
-    public long getItemId(int i9) {
-        return i9;
+    public long getItemId(int i10) {
+        return i10;
     }
 
     @Override
@@ -68,8 +68,8 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     }
 
     @Override
-    public RemoteViews getViewAt(int i9) {
-        MessageObject messageObject = this.messages.get(i9);
+    public RemoteViews getViewAt(int i10) {
+        MessageObject messageObject = this.messages.get(i10);
         RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), R.layout.feed_widget_item);
         if (messageObject.type == 0) {
             remoteViews.setTextViewText(R.id.feed_widget_item_text, messageObject.messageText);
@@ -132,7 +132,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     public void onDataSetChanged() {
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance != null && accountInstance.getUserConfig().isClientActivated()) {
-            AndroidUtilities.runOnUIThread(new e1(this, 1));
+            AndroidUtilities.runOnUIThread(new d1(this, 1));
             try {
                 this.countDownLatch.await();
                 return;

@@ -41,7 +41,7 @@ public class TLJsonParser {
         }
     }
 
-    private int parseInt32(Object obj, int i9) {
+    private int parseInt32(Object obj, int i10) {
         try {
             if (obj instanceof Number) {
                 return ((Number) obj).intValue();
@@ -49,10 +49,10 @@ public class TLJsonParser {
             if (obj instanceof String) {
                 return Integer.parseInt((String) obj, 10);
             }
-            return i9;
+            return i10;
         } catch (Exception e10) {
             FileLog.e(e10);
-            return i9;
+            return i10;
         }
     }
 
@@ -82,12 +82,12 @@ public class TLJsonParser {
         return parseBoolean(this.jsonObject.opt(str), z10);
     }
 
-    public int readInt32(String str, int i9) {
-        return parseInt32(this.jsonObject.opt(str), i9);
+    public int readInt32(String str, int i10) {
+        return parseInt32(this.jsonObject.opt(str), i10);
     }
 
-    public long readInt64(String str, int i9) {
-        return parseInt64(this.jsonObject.opt(str), i9);
+    public long readInt64(String str, int i10) {
+        return parseInt64(this.jsonObject.opt(str), i10);
     }
 
     public <T extends Deserializable> T readObject(String str, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {
@@ -107,9 +107,9 @@ public class TLJsonParser {
         JSONArray optJSONArray = this.jsonObject.optJSONArray(str);
         if (optJSONArray != null) {
             int length = optJSONArray.length();
-            for (int i9 = 0; i9 < length; i9++) {
+            for (int i10 = 0; i10 < length; i10++) {
                 try {
-                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i9)), callbackReturn);
+                    Deserializable parse = parse(new TLJsonParser(optJSONArray.getJSONObject(i10)), callbackReturn);
                     if (parse != null) {
                         arrayList.add(parse);
                     }

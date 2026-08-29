@@ -3,18 +3,18 @@ package y1;
 import android.os.Build;
 import android.text.TextUtils;
 public final class a {
-    public d f49456a;
+    public d f50157a;
 
-    public a(String str, int i9, int i10) {
+    public a(String str, int i10, int i11) {
         if (str != null) {
             if (!TextUtils.isEmpty(str)) {
                 if (Build.VERSION.SDK_INT >= 28) {
-                    d dVar = new d(str, i9, i10);
-                    b.a(i9, i10, str);
-                    this.f49456a = dVar;
+                    d dVar = new d(str, i10, i11);
+                    b.a(i10, i11, str);
+                    this.f50157a = dVar;
                     return;
                 }
-                this.f49456a = new d(str, i9, i10);
+                this.f50157a = new d(str, i10, i11);
                 return;
             }
             throw new IllegalArgumentException("packageName should be nonempty");
@@ -29,10 +29,10 @@ public final class a {
         if (!(obj instanceof a)) {
             return false;
         }
-        return this.f49456a.equals(((a) obj).f49456a);
+        return this.f50157a.equals(((a) obj).f50157a);
     }
 
     public final int hashCode() {
-        return this.f49456a.hashCode();
+        return this.f50157a.hashCode();
     }
 }

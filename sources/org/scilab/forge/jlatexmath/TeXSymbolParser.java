@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import aa.d;
+import a4.w;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +42,8 @@ public class TeXSymbolParser {
         boolean z10;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i9 = 0; i9 < elementsByTagName.getLength(); i9++) {
-            Element element = (Element) elementsByTagName.item(i9);
+        for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
+            Element element = (Element) elementsByTagName.item(i10);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
@@ -56,7 +56,7 @@ public class TeXSymbolParser {
             if (num != null) {
                 hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", d.o("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", w.n("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
         }
         return hashMap;

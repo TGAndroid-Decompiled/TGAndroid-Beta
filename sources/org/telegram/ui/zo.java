@@ -1,14 +1,33 @@
 package org.telegram.ui;
-public final class zo implements q60 {
-    public final hp f45191a;
+public final class zo implements Runnable {
+    public final int f45265a;
+    public final kp f45266b;
 
-    public zo(hp hpVar) {
-        this.f45191a = hpVar;
+    public zo(kp kpVar, int i10) {
+        this.f45265a = i10;
+        this.f45266b = kpVar;
     }
 
     @Override
-    public final void a(r60 r60Var, long j10) {
-        hp hpVar = this.f45191a;
-        hpVar.X(hpVar.getMessagesController().getChat(Long.valueOf(j10)), r60Var);
+    public final void run() {
+        switch (this.f45265a) {
+            case 0:
+                kp kpVar = this.f45266b;
+                org.telegram.ui.ActionBar.c2 c2Var = kpVar.f39983r;
+                if (c2Var != null) {
+                    c2Var.setOnCancelListener(new cg(kpVar, 2));
+                    kpVar.showDialog(kpVar.f39983r);
+                    return;
+                }
+                return;
+            case 1:
+                kp kpVar2 = this.f45266b;
+                kpVar2.getMessagesController().loadFullChat(kpVar2.A, 0, true);
+                return;
+            default:
+                kp kpVar3 = this.f45266b;
+                kpVar3.getMessagesController().loadFullChat(kpVar3.A, 0, true);
+                return;
+        }
     }
 }

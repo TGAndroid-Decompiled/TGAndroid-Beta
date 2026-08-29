@@ -19,8 +19,8 @@ public class RtpParameters {
         public Map<String, String> parameters;
         public int payloadType;
 
-        public Codec(int i9, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
-            this.payloadType = i9;
+        public Codec(int i10, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
+            this.payloadType = i10;
             this.name = str;
             this.kind = mediaType;
             this.clockRate = num;
@@ -59,19 +59,19 @@ public class RtpParameters {
         MAINTAIN_RESOLUTION,
         BALANCED;
 
-        public static DegradationPreference fromNativeIndex(int i9) {
-            return values()[i9];
+        public static DegradationPreference fromNativeIndex(int i10) {
+            return values()[i10];
         }
     }
 
     public static class HeaderExtension {
         private final boolean encrypted;
-        private final int f45281id;
+        private final int f45361id;
         private final String uri;
 
-        public HeaderExtension(String str, int i9, boolean z10) {
+        public HeaderExtension(String str, int i10, boolean z10) {
             this.uri = str;
-            this.f45281id = i9;
+            this.f45361id = i10;
             this.encrypted = z10;
         }
 
@@ -80,7 +80,7 @@ public class RtpParameters {
         }
 
         public int getId() {
-            return this.f45281id;
+            return this.f45361id;
         }
 
         public String getUri() {
@@ -204,16 +204,16 @@ public class RtpParameters {
             return this.ssrc;
         }
 
-        public Encoding(String str, boolean z10, double d, int i9, Integer num, Integer num2, Integer num3, Integer num4, Double d9, Long l10, boolean z11) {
+        public Encoding(String str, boolean z10, double d, int i10, Integer num, Integer num2, Integer num3, Integer num4, Double d10, Long l10, boolean z11) {
             this.rid = str;
             this.active = z10;
             this.bitratePriority = d;
-            this.networkPriority = i9;
+            this.networkPriority = i10;
             this.maxBitrateBps = num;
             this.minBitrateBps = num2;
             this.maxFramerate = num3;
             this.numTemporalLayers = num4;
-            this.scaleResolutionDownBy = d9;
+            this.scaleResolutionDownBy = d10;
             this.ssrc = l10;
             this.adaptiveAudioPacketTime = z11;
         }

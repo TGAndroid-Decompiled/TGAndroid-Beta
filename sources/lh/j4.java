@@ -1,0 +1,28 @@
+package lh;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.jl0;
+public final class j4 extends jl0 implements z6 {
+    public final c5 T2;
+    public final c5 U2;
+
+    public j4(c5 c5Var, Context context, b bVar) {
+        super(context, bVar);
+        this.U2 = c5Var;
+        this.T2 = c5Var;
+    }
+
+    @Override
+    public final void a(int[] iArr) {
+        iArr[0] = AndroidUtilities.dp(this.T2.f15435e);
+        iArr[1] = getMeasuredHeight();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.U2.f15437n = View.MeasureSpec.getSize(i11);
+        super.onMeasure(i10, i11);
+    }
+}

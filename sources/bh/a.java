@@ -1,68 +1,46 @@
 package bh;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import n5.a0;
-import org.telegram.ui.Components.jn;
-public final class a implements View.OnClickListener {
-    public final int f2013a;
-    public final j f2014b;
+import android.text.TextUtils;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class a {
+    public final int f2641a;
+    public final TLRPC.Document f2642b;
+    public final String f2643c;
+    public final MessageObject d;
+    public final String f2644e;
+    public boolean f2645f;
+    public boolean f2646g;
 
-    public a(j jVar, int i9) {
-        this.f2013a = i9;
-        this.f2014b = jVar;
+    public a(int i10, MessageObject messageObject, TLRPC.Document document, String str) {
+        this.f2641a = i10;
+        this.d = messageObject;
+        this.f2642b = document;
+        this.f2643c = str;
+        this.f2644e = TextUtils.isEmpty(str) ? FileLoader.getAttachFileName(document) : str;
+        a();
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i9 = this.f2013a;
-        j jVar = this.f2014b;
-        switch (i9) {
-            case 0:
-                a0 a0Var = jVar.f2041g0;
-                if (a0Var != null) {
-                    ArrayList arrayList = new ArrayList(jVar.f2040f0.keySet());
-                    jn jnVar = (jn) a0Var.f18462b;
-                    ArrayList arrayList2 = jnVar.L0;
-                    arrayList2.clear();
-                    arrayList2.addAll(arrayList);
-                    int i10 = jnVar.H0;
-                    if (i10 >= 0) {
-                        jnVar.f29789r.m(i10);
-                    }
-                }
-                jVar.dismiss();
-                return;
-            case 1:
-                a0 a0Var2 = jVar.f2041g0;
-                if (a0Var2 != null) {
-                    ArrayList arrayList3 = new ArrayList(jVar.f2040f0.keySet());
-                    jn jnVar2 = (jn) a0Var2.f18462b;
-                    ArrayList arrayList4 = jnVar2.L0;
-                    arrayList4.clear();
-                    arrayList4.addAll(arrayList3);
-                    int i11 = jnVar2.H0;
-                    if (i11 >= 0) {
-                        jnVar2.f29789r.m(i11);
-                    }
-                }
-                jVar.dismiss();
-                return;
-            case 2:
-                HashMap hashMap = jVar.f2040f0;
-                hashMap.clear();
-                jVar.f2038d0.b();
-                jVar.Z.N(true);
-                jVar.f2035a0.c(hashMap.size(), true);
-                return;
-            case 3:
-                jVar.R(view);
-                return;
-            default:
-                int i12 = j.f2034n0;
-                jVar.R(view);
-                return;
+    public final void a() {
+        boolean z10;
+        boolean z11 = false;
+        String str = this.f2643c;
+        if (str != null) {
+            z10 = new File(str).exists();
+        } else {
+            z10 = false;
         }
+        int i10 = this.f2641a;
+        if (!z10) {
+            z10 = FileLoader.getInstance(i10).getPathToAttach(this.f2642b).exists();
+        }
+        this.f2645f = z10;
+        String str2 = this.f2644e;
+        if (!TextUtils.isEmpty(str2) && FileLoader.getInstance(i10).isLoadingFile(str2)) {
+            z11 = true;
+        }
+        this.f2646g = z11;
     }
 }

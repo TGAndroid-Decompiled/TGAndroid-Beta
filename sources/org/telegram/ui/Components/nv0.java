@@ -1,35 +1,37 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
 public final class nv0 implements Runnable {
-    public final int f31190a;
-    public final qv0 f31191b;
+    public final int f31155a;
+    public final pv0 f31156b;
 
-    public nv0(qv0 qv0Var, int i9) {
-        this.f31190a = i9;
-        this.f31191b = qv0Var;
+    public nv0(pv0 pv0Var, int i10) {
+        this.f31155a = i10;
+        this.f31156b = pv0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f31190a) {
+        switch (this.f31155a) {
             case 0:
-                qv0 qv0Var = this.f31191b;
-                qv0Var.invalidate();
-                AndroidUtilities.runOnUIThread(new nv0(qv0Var, 1));
-                return;
-            default:
-                qv0 qv0Var2 = this.f31191b;
-                pv0 pv0Var = qv0Var2.f32035e;
-                if (pv0Var != null) {
-                    qv0Var2.getVisibilityFactor();
-                    ProfileActivity profileActivity = ((org.telegram.ui.fx0) pv0Var).f38363b;
-                    org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f36037r;
-                    h5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.V5));
-                    h5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.W5));
+                pv0 pv0Var = this.f31156b;
+                pv0Var.R0 = false;
+                if (!pv0Var.U0 && pv0Var.S0) {
+                    pv0Var.A(true);
                     return;
                 }
+                return;
+            case 1:
+                this.f31156b.R0 = false;
+                return;
+            case 2:
+                pv0 pv0Var2 = this.f31156b;
+                pv0Var2.U0 = false;
+                if (!pv0Var2.R0 && pv0Var2.S0) {
+                    pv0Var2.A(true);
+                    return;
+                }
+                return;
+            default:
+                this.f31156b.U0 = false;
                 return;
         }
     }

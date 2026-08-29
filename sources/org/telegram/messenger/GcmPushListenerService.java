@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.r;
 public class GcmPushListenerService extends FirebaseMessagingService {
     public static void lambda$onNewToken$0(String str) {
         if (BuildVars.LOGS_ENABLED) {
@@ -14,11 +13,11 @@ public class GcmPushListenerService extends FirebaseMessagingService {
     }
 
     @Override
-    public void onMessageReceived(r rVar) {
+    public void onMessageReceived(com.google.firebase.messaging.q qVar) {
         long parseLong;
-        Bundle bundle = rVar.f4173a;
+        Bundle bundle = qVar.f5181a;
         String string = bundle.getString("from");
-        if (rVar.f4174b == null) {
+        if (qVar.f5182b == null) {
             ?? kVar = new a0.k(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -29,9 +28,9 @@ public class GcmPushListenerService extends FirebaseMessagingService {
                     }
                 }
             }
-            rVar.f4174b = kVar;
+            qVar.f5182b = kVar;
         }
-        a0.f fVar = rVar.f4174b;
+        a0.f fVar = qVar.f5182b;
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();

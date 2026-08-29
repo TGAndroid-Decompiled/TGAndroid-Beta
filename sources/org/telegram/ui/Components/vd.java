@@ -1,68 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
+import android.graphics.Canvas;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 public final class vd implements Utilities.Callback {
-    public final int f33347a = 0;
-    public final Object f33348b;
-    public final boolean f33349c;
-    public final int d;
-    public final int f33350e;
-    public final boolean f33351f;
-    public final String f33352g;
-    public final Object h;
-    public final Object f33353i;
-    public final Object f33354j;
+    public final int f33527a;
+    public final ChatActivityEnterView f33528b;
 
-    public vd(xf xfVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i9, int i10, boolean z11, String str, Object obj2) {
-        this.h = xfVar;
-        this.f33348b = obj;
-        this.f33353i = photoEntry;
-        this.f33349c = z10;
-        this.d = i9;
-        this.f33350e = i10;
-        this.f33351f = z11;
-        this.f33352g = str;
-        this.f33354j = obj2;
+    public vd(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f33527a = i10;
+        this.f33528b = chatActivityEnterView;
     }
 
     @Override
     public final void run(Object obj) {
-        int i9 = this.f33347a;
-        Object obj2 = this.f33353i;
-        Object obj3 = this.h;
-        switch (i9) {
+        int i10 = this.f33527a;
+        ChatActivityEnterView chatActivityEnterView = this.f33528b;
+        switch (i10) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                int i10 = ChatActivityEnterView.f26074i5;
-                gd gdVar = new gd(chatActivityEnterView, (TLRPC.Document) obj2, this.f33352g, (MessageObject.SendAnimationData) this.f33354j, this.f33349c, this.d, this.f33350e, this.f33348b, (Long) obj, this.f33351f);
-                if (!chatActivityEnterView.r1(gdVar)) {
-                    gdVar.run();
-                    return;
-                }
+                chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
+                return;
+            case 1:
+                CharSequence charSequence = (CharSequence) obj;
+                chatActivityEnterView.A0.setText(charSequence);
+                chatActivityEnterView.A0.setSelection(charSequence.length(), charSequence.length());
                 return;
             default:
-                xf xfVar = (xf) obj3;
-                gd gdVar2 = new gd(xfVar, this.f33348b, (MediaController.PhotoEntry) obj2, this.f33349c, this.d, this.f33350e, this.f33351f, (Long) obj, this.f33352g, this.f33354j);
-                if (!xfVar.f34670a.r1(gdVar2)) {
-                    gdVar2.run();
-                    return;
-                }
+                int i11 = ChatActivityEnterView.f26085i5;
+                chatActivityEnterView.e0((Canvas) obj, false);
                 return;
         }
-    }
-
-    public vd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i9, int i10, Object obj, boolean z11) {
-        this.h = chatActivityEnterView;
-        this.f33353i = document;
-        this.f33352g = str;
-        this.f33354j = sendAnimationData;
-        this.f33349c = z10;
-        this.d = i9;
-        this.f33350e = i10;
-        this.f33348b = obj;
-        this.f33351f = z11;
     }
 }

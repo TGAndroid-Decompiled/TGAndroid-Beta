@@ -1,3 +1,10 @@
 package s7;
-public final class c extends b7.a {
+
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationResult;
+public abstract class c {
+    public abstract void onLocationResult(LocationResult locationResult);
+
+    public void onLocationAvailability(LocationAvailability locationAvailability) {
+    }
 }

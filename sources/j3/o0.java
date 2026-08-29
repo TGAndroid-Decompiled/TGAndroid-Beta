@@ -1,19 +1,18 @@
 package j3;
-public final class o0 extends x {
-    @Override
-    public final void b(java.nio.ByteBuffer r10) {
-        throw new UnsupportedOperationException("Method not decompiled: j3.o0.b(java.nio.ByteBuffer):void");
-    }
+public final class o0 {
+    public final l4.c0 f10652a;
+    public final long f10653b;
+    public final long f10654c;
+    public final boolean d;
+    public final boolean f10655e;
+    public final boolean f10656f;
 
-    @Override
-    public final h f(h hVar) {
-        int i9 = hVar.f13249c;
-        if (i9 != 3 && i9 != 2 && i9 != 268435456 && i9 != 536870912 && i9 != 805306368 && i9 != 4) {
-            throw new i(hVar);
-        }
-        if (i9 != 2) {
-            return new h(hVar.f13247a, hVar.f13248b, 2);
-        }
-        return h.f13246e;
+    public o0(l4.c0 c0Var, long j10, long j11, boolean z10, boolean z11, boolean z12) {
+        this.f10652a = c0Var;
+        this.f10653b = j10;
+        this.f10654c = j11;
+        this.d = z10;
+        this.f10655e = z11;
+        this.f10656f = z12;
     }
 }

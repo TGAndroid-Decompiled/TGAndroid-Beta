@@ -1,37 +1,37 @@
 package na;
-public abstract class h {
-    public static final int f18538a;
 
-    static {
-        int i9;
-        String property = System.getProperty("java.version");
-        try {
-            String[] split = property.split("[._]", 3);
-            i9 = Integer.parseInt(split[0]);
-            if (i9 == 1 && split.length > 1) {
-                i9 = Integer.parseInt(split[1]);
+import j7.l1;
+import java.util.ArrayList;
+import java.util.Iterator;
+public final class h extends i implements Iterable {
+    public final ArrayList f17192a = new ArrayList();
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (!(obj instanceof h) || !((h) obj).f17192a.equals(this.f17192a)) {
+                return false;
             }
-        } catch (NumberFormatException unused) {
-            i9 = -1;
+            return true;
         }
-        if (i9 == -1) {
-            try {
-                StringBuilder sb2 = new StringBuilder();
-                for (int i10 = 0; i10 < property.length(); i10++) {
-                    char charAt = property.charAt(i10);
-                    if (!Character.isDigit(charAt)) {
-                        break;
-                    }
-                    sb2.append(charAt);
-                }
-                i9 = Integer.parseInt(sb2.toString());
-            } catch (NumberFormatException unused2) {
-                i9 = -1;
-            }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.f17192a.hashCode();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.f17192a.iterator();
+    }
+
+    @Override
+    public final String n() {
+        ArrayList arrayList = this.f17192a;
+        int size = arrayList.size();
+        if (size == 1) {
+            return ((i) arrayList.get(0)).n();
         }
-        if (i9 == -1) {
-            i9 = 6;
-        }
-        f18538a = i9;
+        throw new IllegalStateException(l1.k(size, "Array must have size 1, but has size "));
     }
 }

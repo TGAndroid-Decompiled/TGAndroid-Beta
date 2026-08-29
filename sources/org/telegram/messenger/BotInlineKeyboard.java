@@ -17,11 +17,11 @@ public class BotInlineKeyboard {
         private int separators;
 
         public void addBotKeyboard(TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup) {
-            for (int i9 = 0; i9 < tL_replyInlineMarkup.rows.size(); i9++) {
-                ArrayList<TL_keyboard.KeyboardInlineButton> arrayList = tL_replyInlineMarkup.rows.get(i9).buttons;
+            for (int i10 = 0; i10 < tL_replyInlineMarkup.rows.size(); i10++) {
+                ArrayList<TL_keyboard.KeyboardInlineButton> arrayList = tL_replyInlineMarkup.rows.get(i10).buttons;
                 ButtonBot[] buttonBotArr = new ButtonBot[arrayList.size()];
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    buttonBotArr[i10] = new ButtonBot(arrayList.get(i10));
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    buttonBotArr[i11] = new ButtonBot(arrayList.get(i11));
                 }
                 this.buttons.add(buttonBotArr);
             }
@@ -38,14 +38,14 @@ public class BotInlineKeyboard {
         public void addKeyboardSource(Source source) {
             if (source != null) {
                 int rowsCount = source.getRowsCount();
-                for (int i9 = 0; i9 < rowsCount; i9++) {
-                    int columnsCount = source.getColumnsCount(i9);
+                for (int i10 = 0; i10 < rowsCount; i10++) {
+                    int columnsCount = source.getColumnsCount(i10);
                     Button[] buttonArr = new Button[columnsCount];
-                    for (int i10 = 0; i10 < columnsCount; i10++) {
-                        buttonArr[i10] = source.getButton(i9, i10);
+                    for (int i11 = 0; i11 < columnsCount; i11++) {
+                        buttonArr[i11] = source.getButton(i10, i11);
                     }
                     this.buttons.add(buttonArr);
-                    if (source.hasSeparator(i9)) {
+                    if (source.hasSeparator(i10)) {
                         addSeparator();
                     }
                 }
@@ -146,13 +146,13 @@ public class BotInlineKeyboard {
         public static final int SUGGESTION_DECLINE = 1;
         public static final int SUGGESTION_EDIT = 3;
         public final int icon;
-        public final int f19635id;
+        public final int f19606id;
         public final int text;
 
-        public ButtonCustom(int i9, int i10, int i11) {
-            this.f19635id = i9;
-            this.text = i10;
-            this.icon = i11;
+        public ButtonCustom(int i10, int i11, int i12) {
+            this.f19606id = i10;
+            this.text = i11;
+            this.icon = i12;
         }
 
         @Override
@@ -171,13 +171,13 @@ public class BotInlineKeyboard {
         private final int separators;
 
         @Override
-        public Button getButton(int i9, int i10) {
-            return this.buttons[i9][i10];
+        public Button getButton(int i10, int i11) {
+            return this.buttons[i10][i11];
         }
 
         @Override
-        public int getColumnsCount(int i9) {
-            return this.buttons[i9].length;
+        public int getColumnsCount(int i10) {
+            return this.buttons[i10].length;
         }
 
         @Override
@@ -186,8 +186,8 @@ public class BotInlineKeyboard {
         }
 
         @Override
-        public boolean hasSeparator(int i9) {
-            if (((1 << i9) & this.separators) != 0) {
+        public boolean hasSeparator(int i10) {
+            if (((1 << i10) & this.separators) != 0) {
                 return true;
             }
             return false;
@@ -195,23 +195,23 @@ public class BotInlineKeyboard {
 
         @Override
         public final boolean isEmpty() {
-            return n0.a(this);
+            return m0.a(this);
         }
 
-        private KeyboardSourceArray(Button[][] buttonArr, int i9) {
+        private KeyboardSourceArray(Button[][] buttonArr, int i10) {
             this.buttons = buttonArr;
-            this.separators = i9;
+            this.separators = i10;
         }
     }
 
     public interface Source {
-        Button getButton(int i9, int i10);
+        Button getButton(int i10, int i11);
 
-        int getColumnsCount(int i9);
+        int getColumnsCount(int i10);
 
         int getRowsCount();
 
-        boolean hasSeparator(int i9);
+        boolean hasSeparator(int i10);
 
         boolean isEmpty();
     }

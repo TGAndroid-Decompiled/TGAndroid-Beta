@@ -1,91 +1,58 @@
 package ig;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-public final class i extends Drawable {
-    public lg.a f11189a;
-    public int f11190b;
-    public int f11191c;
-    public int f11193f;
-    public boolean f11196j;
-    public float f11197k;
-    public float d = 1.0f;
-    public final RectF f11192e = new RectF();
-    public final Paint f11194g = new Paint(1);
-    public final Paint h = new Paint(1);
-    public final Paint f11195i = new Paint(1);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+public final class i extends AnimatorListenerAdapter {
+    public final int f8984a;
+    public final ArrayList f8985b;
+    public final j f8986c;
 
-    public final void a(lg.a aVar) {
-        this.f11189a = aVar;
-        Paint.Style style = Paint.Style.STROKE;
-        this.h.setStyle(style);
-        this.f11195i.setStyle(style);
-        b();
-    }
-
-    public final void b() {
-        lg.a aVar = this.f11189a;
-        if (aVar == null) {
-            return;
-        }
-        this.f11190b = f6.l1(this.d, aVar.e());
-        this.f11191c = f6.l1(this.d, this.f11189a.g());
-        int i9 = this.f11190b;
-        Paint paint = this.h;
-        paint.setColor(i9);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        int i10 = this.f11191c;
-        Paint paint2 = this.f11195i;
-        paint2.setColor(i10);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
+    public i(j jVar, ArrayList arrayList, int i10) {
+        this.f8984a = i10;
+        this.f8986c = jVar;
+        this.f8985b = arrayList;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Canvas canvas2;
-        float centerX = getBounds().centerX();
-        float centerY = getBounds().centerY();
-        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f11193f;
-        RectF rectF = this.f11192e;
-        rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
-        if (this.f11196j) {
-            rectF.set(getBounds());
-            min = this.f11197k;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f8984a) {
+            case 0:
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f8985b;
+                    int size = arrayList.size();
+                    j jVar = this.f8986c;
+                    if (i10 < size) {
+                        jVar.removeView((View) arrayList.get(i10));
+                        i10++;
+                    } else {
+                        jVar.getClass();
+                        jVar.h.clear();
+                        jVar.f8988b = null;
+                        jVar.f8989c = false;
+                        ((k) jVar.f8992n).f8994b.setAllowDrawCursor(true);
+                        return;
+                    }
+                }
+            default:
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f8985b;
+                    int size2 = arrayList2.size();
+                    j jVar2 = this.f8986c;
+                    if (i11 < size2) {
+                        jVar2.removeView((View) arrayList2.get(i11));
+                        i11++;
+                    } else {
+                        jVar2.h.clear();
+                        jVar2.f8988b = null;
+                        jVar2.f8989c = false;
+                        ((k) jVar2.f8992n).f8994b.setAllowDrawCursor(true);
+                        return;
+                    }
+                }
         }
-        float f10 = min;
-        Paint paint = this.f11194g;
-        if (Color.alpha(paint.getColor()) > 0) {
-            canvas.drawCircle(centerX, centerY, f10, paint);
-        }
-        if (this.f11190b != 0) {
-            canvas2 = canvas;
-            kg.d.f(canvas2, rectF, f10, AndroidUtilities.dpf2(1.0f), true, this.h);
-        } else {
-            canvas2 = canvas;
-        }
-        if (this.f11191c != 0) {
-            kg.d.f(canvas2, rectF, f10, AndroidUtilities.dpf2(0.6666667f), false, this.f11195i);
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i9) {
-        this.d = i9 / 255.0f;
-        b();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

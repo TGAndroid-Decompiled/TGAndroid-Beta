@@ -1,28 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class y6 implements RequestDelegate {
-    public final int f22213a;
-    public final MediaDataController f22214b;
-    public final String f22215c;
+public final class y6 implements Runnable {
+    public final int f22228a = 0;
+    public final MediaDataController f22229b;
+    public final TLRPC.Message f22230c;
+    public final MessagesStorage.TopicKey d;
 
-    public y6(MediaDataController mediaDataController, String str, int i9) {
-        this.f22213a = i9;
-        this.f22214b = mediaDataController;
-        this.f22215c = str;
+    public y6(MediaDataController mediaDataController, MessagesStorage.TopicKey topicKey, TLRPC.Message message) {
+        this.f22229b = mediaDataController;
+        this.d = topicKey;
+        this.f22230c = message;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f22213a) {
+    public final void run() {
+        switch (this.f22228a) {
             case 0:
-                this.f22214b.lambda$verifyAnimatedStickerMessageInternal$70(this.f22215c, tLObject, tL_error);
+                this.f22229b.lambda$putBotKeyboard$200(this.d, this.f22230c);
                 return;
             default:
-                this.f22214b.lambda$fetchStickerSetInternal$42(this.f22215c, tLObject, tL_error);
+                this.f22229b.lambda$loadBotKeyboard$195(this.f22230c, this.d);
                 return;
         }
+    }
+
+    public y6(MediaDataController mediaDataController, TLRPC.Message message, MessagesStorage.TopicKey topicKey) {
+        this.f22229b = mediaDataController;
+        this.f22230c = message;
+        this.d = topicKey;
     }
 }

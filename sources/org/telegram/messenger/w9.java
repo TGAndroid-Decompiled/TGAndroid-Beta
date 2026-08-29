@@ -1,41 +1,48 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class w9 implements Utilities.Callback2 {
-    public final int f22006a;
-    public final MessagesController f22007b;
+public final class w9 implements Comparator {
+    public final int f22073a;
+    public final MessagesController f22074b;
 
-    public w9(MessagesController messagesController, int i9) {
-        this.f22006a = i9;
-        this.f22007b = messagesController;
+    public w9(MessagesController messagesController, int i10) {
+        this.f22073a = i10;
+        this.f22074b = messagesController;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f22006a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$new$9;
+        int lambda$new$10;
+        int lambda$new$11;
+        int lambda$new$12;
+        int lambda$processUpdatesQueue$327;
+        int lambda$renameSavedReactionTag$484;
+        int lambda$updateSavedReactionTags$483;
+        switch (this.f22073a) {
             case 0:
-                this.f22007b.lambda$updateWebBrowserSettings$517((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$new$9 = this.f22074b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$9;
             case 1:
-                this.f22007b.lambda$removeWebBrowserException$515((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$new$10 = this.f22074b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$10;
             case 2:
-                this.f22007b.lambda$addWebBrowserException$513((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$new$11 = this.f22074b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                return lambda$new$11;
             case 3:
-                this.f22007b.lambda$loadStakeDiceInfo$507((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$new$12 = this.f22074b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                return lambda$new$12;
             case 4:
-                this.f22007b.lambda$deleteReactionsFromMessage$132((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$processUpdatesQueue$327 = this.f22074b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                return lambda$processUpdatesQueue$327;
             case 5:
-                this.f22007b.lambda$loadWebBrowserConfig$509((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
-                return;
+                lambda$renameSavedReactionTag$484 = this.f22074b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$renameSavedReactionTag$484;
             default:
-                this.f22007b.lambda$clearAllWebBrowserExceptions$516((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
-                return;
+                lambda$updateSavedReactionTags$483 = this.f22074b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$updateSavedReactionTags$483;
         }
     }
 }

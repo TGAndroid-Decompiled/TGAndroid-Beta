@@ -1,5 +1,7 @@
 package org.telegram.messenger.camera;
 
+import ag.v0;
+import ag.z1;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
@@ -39,9 +41,8 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import g7.e6;
-import ih.f1;
-import j3.r0;
+import i7.f6;
+import j7.l1;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -59,6 +60,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
+import lh.d1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -70,13 +72,13 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.ll;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.t40;
-import org.telegram.ui.Components.y5;
+import org.telegram.messenger.x3;
+import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.h50;
+import org.telegram.ui.Components.jr;
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
     private static final int MSG_START_RECORDING = 0;
@@ -200,19 +202,19 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int blurTextureHandle;
         private int blurTextureMatrixHandle;
         private int blurVertexMatrixHandle;
-        private final y5 camera1Appear;
+        private final d6 camera1Appear;
         private boolean camera1Appeared;
         private long camera1AppearedUntil;
         private final int[] cameraId;
         private int cameraMatrixHandle;
         private final SurfaceTexture[] cameraSurface;
-        private final y5 crossfade;
+        private final d6 crossfade;
         private int crossfadeHandle;
         private boolean crossfading;
         private final CameraSessionWrapper[] currentSession;
         private int drawBlurProgram;
         private int drawProgram;
-        private final y5 dualAppear;
+        private final d6 dualAppear;
         private boolean dualAppeared;
         private int dualHandle;
         private EGL10 egl10;
@@ -236,7 +238,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private boolean recording;
         private int roundRadiusHandle;
         private int scaleHandle;
-        private final y5 shape;
+        private final d6 shape;
         private int shapeFromHandle;
         private int shapeHandle;
         private float shapeTo;
@@ -271,11 +273,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.cameraId = new int[]{-1, -1};
             this.verticesData = new float[]{-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f};
             p pVar = new p(this, 2);
-            gr grVar = gr.h;
-            this.crossfade = new y5(pVar, 560L, grVar);
-            this.camera1Appear = new y5(1.0f, new p(this, 3), 0L, 420L, grVar);
-            this.dualAppear = new y5(new p(this, 4), 340L, grVar);
-            this.shape = new y5(new p(this, 5), 340L, grVar);
+            jr jrVar = jr.h;
+            this.crossfade = new d6(pVar, 560L, jrVar);
+            this.camera1Appear = new d6(1.0f, new p(this, 3), 0L, 420L, jrVar);
+            this.dualAppear = new d6(new p(this, 4), 340L, jrVar);
+            this.shape = new d6(new p(this, 5), 340L, jrVar);
             this.shapeTo = MessagesController.getGlobalMainSettings().getInt("dualshape", 0);
             this.array = new int[1];
             this.updateTex1 = new Object();
@@ -353,7 +355,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             return true;
                         }
                         if (BuildVars.LOGS_ENABLED) {
-                            ll.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                            x3.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                         }
                         finishBlur();
                         EGL10 egl10 = this.egl10;
@@ -363,7 +365,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         return false;
                     }
                     if (BuildVars.LOGS_ENABLED) {
-                        ll.t(this.egl10, new StringBuilder("createWindowSurface failed "));
+                        x3.u(this.egl10, new StringBuilder("createWindowSurface failed "));
                     }
                     finishBlur();
                     return false;
@@ -373,7 +375,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
             this.eglBlurContext = null;
             if (BuildVars.LOGS_ENABLED) {
-                ll.t(this.egl10, new StringBuilder("eglCreateContext (blur) failed "));
+                x3.u(this.egl10, new StringBuilder("eglCreateContext (blur) failed "));
             }
             return false;
         }
@@ -388,14 +390,14 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.eglDisplay = eglGetDisplay;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 if (BuildVars.LOGS_ENABLED) {
-                    ll.t(this.egl10, new StringBuilder("eglGetDisplay failed "));
+                    x3.u(this.egl10, new StringBuilder("eglGetDisplay failed "));
                 }
                 this.eglDisplay = null;
                 finish();
                 return false;
             } else if (!this.egl10.eglInitialize(eglGetDisplay, new int[2])) {
                 if (BuildVars.LOGS_ENABLED) {
-                    ll.t(this.egl10, new StringBuilder("eglInitialize failed "));
+                    x3.u(this.egl10, new StringBuilder("eglInitialize failed "));
                 }
                 finish();
                 return false;
@@ -404,7 +406,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 EGLConfig[] eGLConfigArr = new EGLConfig[1];
                 if (!this.egl10.eglChooseConfig(this.eglDisplay, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 0, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
                     if (BuildVars.LOGS_ENABLED) {
-                        ll.t(this.egl10, new StringBuilder("eglChooseConfig failed "));
+                        x3.u(this.egl10, new StringBuilder("eglChooseConfig failed "));
                     }
                     finish();
                     return false;
@@ -424,7 +426,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
                                 if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                                     if (BuildVars.LOGS_ENABLED) {
-                                        ll.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                                        x3.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                                     }
                                     finish();
                                     return false;
@@ -477,16 +479,16 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                         FileLog.e("gl initied");
                                     }
                                     updateScale(0);
-                                    float f10 = (1.0f / CameraView.this.scaleX) / 2.0f;
-                                    float f11 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                                    float f9 = (1.0f / CameraView.this.scaleX) / 2.0f;
+                                    float f10 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                                    float f11 = 0.5f - f9;
                                     float f12 = 0.5f - f10;
-                                    float f13 = 0.5f - f11;
+                                    float f13 = f9 + 0.5f;
                                     float f14 = f10 + 0.5f;
-                                    float f15 = f11 + 0.5f;
                                     CameraView.this.vertexBuffer = ByteBuffer.allocateDirect(this.verticesData.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
                                     CameraView.this.vertexBuffer.put(this.verticesData).position(0);
                                     CameraView.this.textureBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
-                                    CameraView.this.textureBuffer.put(new float[]{f12, f13, f14, f13, f12, f15, f14, f15}).position(0);
+                                    CameraView.this.textureBuffer.put(new float[]{f11, f12, f13, f12, f11, f14, f13, f14}).position(0);
                                     this.cameraSurface[0] = new SurfaceTexture(CameraView.this.cameraTexture[0][0]);
                                     this.cameraSurface[0].setOnFrameAvailableListener(new q(this));
                                     if (this.initDual) {
@@ -527,7 +529,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 return false;
                             }
                             if (BuildVars.LOGS_ENABLED) {
-                                ll.t(this.egl10, new StringBuilder("createWindowSurface failed "));
+                                x3.u(this.egl10, new StringBuilder("createWindowSurface failed "));
                             }
                             finish();
                             return false;
@@ -537,7 +539,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     }
                     this.eglContext = null;
                     if (BuildVars.LOGS_ENABLED) {
-                        ll.t(this.egl10, new StringBuilder("eglCreateContext failed "));
+                        x3.u(this.egl10, new StringBuilder("eglCreateContext failed "));
                     }
                     finish();
                     return false;
@@ -575,21 +577,21 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             CameraView.this.onFirstFrameRendered(1);
         }
 
-        private void onDraw(int i9, int i10, boolean z10, boolean z11) {
+        private void onDraw(int i10, int i11, boolean z10, boolean z11) {
             boolean z12;
             boolean z13;
             boolean z14;
             boolean z15;
             Object obj;
-            char c10;
-            float f10;
-            int i11;
-            float f11;
-            float f12;
+            char c3;
+            float f9;
             int i12;
+            float f10;
+            float f11;
             int i13;
             int i14;
-            float f13;
+            int i15;
+            float f12;
             CameraSessionWrapper cameraSessionWrapper;
             int width;
             int height;
@@ -601,7 +603,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     EGLSurface eGLSurface = this.eglSurface;
                     if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
                         if (BuildVars.LOGS_ENABLED) {
-                            ll.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                            x3.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                             return;
                         }
                         return;
@@ -622,21 +624,21 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 if (z14) {
                     try {
                         SurfaceTexture surfaceTexture = this.cameraSurface[0];
-                        if (surfaceTexture != null && i9 >= 0) {
+                        if (surfaceTexture != null && i10 >= 0) {
                             surfaceTexture.updateTexImage();
                         }
-                    } catch (Throwable th) {
-                        FileLog.e(th);
+                    } catch (Throwable th2) {
+                        FileLog.e(th2);
                     }
                 }
                 if (z15) {
                     try {
                         SurfaceTexture surfaceTexture2 = this.cameraSurface[1];
-                        if (surfaceTexture2 != null && i10 >= 0) {
+                        if (surfaceTexture2 != null && i11 >= 0) {
                             surfaceTexture2.updateTexImage();
                         }
-                    } catch (Throwable th2) {
-                        FileLog.e(th2);
+                    } catch (Throwable th3) {
+                        FileLog.e(th3);
                     }
                 }
                 Object obj2 = CameraView.this.layoutLock;
@@ -645,83 +647,83 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         try {
                             if (CameraView.this.fpsLimit <= 0) {
                                 obj = obj2;
-                                c10 = 0;
+                                c3 = 0;
                             } else {
                                 long nanoTime = System.nanoTime();
                                 CameraView cameraView = CameraView.this;
                                 long j10 = cameraView.nextFrameTimeNs;
                                 if (nanoTime < j10) {
                                     obj = obj2;
-                                    c10 = 0;
+                                    c3 = 0;
                                     z16 = false;
                                 } else {
                                     obj = obj2;
-                                    c10 = 0;
+                                    c3 = 0;
                                     cameraView.nextFrameTimeNs = j10 + (TimeUnit.SECONDS.toNanos(1L) / CameraView.this.fpsLimit);
                                     CameraView cameraView2 = CameraView.this;
                                     cameraView2.nextFrameTimeNs = Math.max(cameraView2.nextFrameTimeNs, nanoTime);
                                     z16 = true;
                                 }
                             }
-                            CameraSessionWrapper cameraSessionWrapper3 = this.currentSession[c10];
-                            if (cameraSessionWrapper3 != null && cameraSessionWrapper3.getCameraId() == i9) {
+                            CameraSessionWrapper cameraSessionWrapper3 = this.currentSession[c3];
+                            if (cameraSessionWrapper3 != null && cameraSessionWrapper3.getCameraId() == i10) {
                                 if (this.recording && CameraView.this.videoEncoder != null && (z14 || z15)) {
-                                    CameraView.this.videoEncoder.frameAvailable(this.cameraSurface[c10], Integer.valueOf(i9), System.nanoTime());
+                                    CameraView.this.videoEncoder.frameAvailable(this.cameraSurface[c3], Integer.valueOf(i10), System.nanoTime());
                                 }
                                 if (z16) {
                                     this.egl10.eglQuerySurface(this.eglDisplay, this.eglSurface, 12375, this.array);
                                     int[] iArr = this.array;
-                                    int i15 = iArr[c10];
+                                    int i16 = iArr[c3];
                                     this.egl10.eglQuerySurface(this.eglDisplay, this.eglSurface, 12374, iArr);
-                                    GLES20.glViewport(0, 0, i15, this.array[c10]);
+                                    GLES20.glViewport(0, 0, i16, this.array[c3]);
                                     if (z12) {
                                         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
                                         GLES20.glClear(16384);
                                     }
                                     CameraView.this.shapeValue = this.shape.d(this.shapeTo, false);
-                                    float f14 = CameraView.this.lastCrossfadeValue = this.crossfade.d(0.0f, false);
-                                    y5 y5Var = this.dualAppear;
+                                    float f13 = CameraView.this.lastCrossfadeValue = this.crossfade.d(0.0f, false);
+                                    d6 d6Var = this.dualAppear;
                                     if (this.dualAppeared) {
-                                        f10 = 1.0f;
+                                        f9 = 1.0f;
                                     } else {
-                                        f10 = 0.0f;
+                                        f9 = 0.0f;
                                     }
-                                    float d = y5Var.d(f10, false);
+                                    float d = d6Var.d(f9, false);
                                     float e10 = 1.0f - this.camera1Appear.e(this.camera1Appeared);
-                                    if (f14 <= 0.0f) {
+                                    if (f13 <= 0.0f) {
                                         this.crossfading = false;
                                     }
-                                    int i16 = -1;
                                     int i17 = -1;
                                     int i18 = -1;
-                                    while (i17 < 2) {
-                                        if (i17 != i16 || this.crossfading) {
-                                            if (i17 < 0) {
-                                                i11 = 1;
+                                    int i19 = -1;
+                                    while (i18 < 2) {
+                                        if (i18 != i17 || this.crossfading) {
+                                            if (i18 < 0) {
+                                                i12 = 1;
                                             } else {
-                                                i11 = i17;
+                                                i12 = i18;
                                             }
-                                            if (this.cameraSurface[i11] != null && ((i11 == 0 || ((cameraSessionWrapper2 = this.currentSession[i11]) != null && cameraSessionWrapper2.isInitiated())) && (i11 != 0 || i9 >= 0 || z12))) {
-                                                if (i11 != 1 || i10 >= 0) {
-                                                    if ((i11 == 0 && z14) || (i11 == 1 && z15)) {
-                                                        this.cameraSurface[i11].getTransformMatrix(CameraView.this.mSTMatrix[i11]);
+                                            if (this.cameraSurface[i12] != null && ((i12 == 0 || ((cameraSessionWrapper2 = this.currentSession[i12]) != null && cameraSessionWrapper2.isInitiated())) && (i12 != 0 || i10 >= 0 || z12))) {
+                                                if (i12 != 1 || i11 >= 0) {
+                                                    if ((i12 == 0 && z14) || (i12 == 1 && z15)) {
+                                                        this.cameraSurface[i12].getTransformMatrix(CameraView.this.mSTMatrix[i12]);
                                                     }
                                                     GLES20.glUseProgram(this.drawProgram);
                                                     GLES20.glActiveTexture(33984);
-                                                    GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i11][0]);
-                                                    if (i18 == i16) {
-                                                        i18 = CameraView.this.cameraTexture[i11][0];
+                                                    GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i12][0]);
+                                                    if (i19 == i17) {
+                                                        i19 = CameraView.this.cameraTexture[i12][0];
                                                     }
                                                     GLES20.glVertexAttribPointer(this.positionHandle, 3, 5126, false, 12, (Buffer) CameraView.this.vertexBuffer);
                                                     GLES20.glEnableVertexAttribArray(this.positionHandle);
                                                     GLES20.glVertexAttribPointer(this.textureHandle, 2, 5126, false, 8, (Buffer) CameraView.this.textureBuffer);
                                                     GLES20.glEnableVertexAttribArray(this.textureHandle);
-                                                    GLES20.glUniformMatrix4fv(this.cameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[i11], 0);
-                                                    GLES20.glUniformMatrix4fv(this.oppositeCameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[1 - i11], 0);
-                                                    GLES20.glUniformMatrix4fv(this.textureMatrixHandle, 1, false, CameraView.this.mSTMatrix[i11], 0);
-                                                    GLES20.glUniformMatrix4fv(this.vertexMatrixHandle, 1, false, CameraView.this.mMVPMatrix[i11], 0);
-                                                    Size size = CameraView.this.previewSize[i11];
-                                                    if (size != null && (cameraSessionWrapper = this.currentSession[i11]) != null) {
+                                                    GLES20.glUniformMatrix4fv(this.cameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[i12], 0);
+                                                    GLES20.glUniformMatrix4fv(this.oppositeCameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[1 - i12], 0);
+                                                    GLES20.glUniformMatrix4fv(this.textureMatrixHandle, 1, false, CameraView.this.mSTMatrix[i12], 0);
+                                                    GLES20.glUniformMatrix4fv(this.vertexMatrixHandle, 1, false, CameraView.this.mMVPMatrix[i12], 0);
+                                                    Size size = CameraView.this.previewSize[i12];
+                                                    if (size != null && (cameraSessionWrapper = this.currentSession[i12]) != null) {
                                                         int worldAngle = cameraSessionWrapper.getWorldAngle();
                                                         if (worldAngle != 90 && worldAngle != 270) {
                                                             width = size.getHeight();
@@ -731,40 +733,40 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                                             height = size.getHeight();
                                                         }
                                                         GLES20.glUniform2f(this.pixelHandle, width, height);
-                                                    } else if (i11 == 0) {
+                                                    } else if (i12 == 0) {
                                                         GLES20.glUniform2f(this.pixelHandle, CameraView.this.pixelW, CameraView.this.pixelH);
                                                     } else {
                                                         GLES20.glUniform2f(this.pixelHandle, CameraView.this.pixelDualW, CameraView.this.pixelDualH);
                                                     }
-                                                    if (i11 == 0) {
-                                                        int i19 = this.dualHandle;
+                                                    if (i12 == 0) {
+                                                        int i20 = this.dualHandle;
                                                         if (z12) {
-                                                            f13 = 1.0f;
+                                                            f12 = 1.0f;
                                                         } else {
-                                                            f13 = 0.0f;
+                                                            f12 = 0.0f;
                                                         }
-                                                        GLES20.glUniform1f(i19, f13);
-                                                        f11 = 1.0f;
+                                                        GLES20.glUniform1f(i20, f12);
+                                                        f10 = 1.0f;
                                                     } else {
-                                                        f11 = 1.0f;
+                                                        f10 = 1.0f;
                                                         GLES20.glUniform1f(this.dualHandle, 1.0f);
                                                     }
-                                                    int i20 = this.blurHandle;
-                                                    if (i11 == 0) {
-                                                        f12 = e10;
+                                                    int i21 = this.blurHandle;
+                                                    if (i12 == 0) {
+                                                        f11 = e10;
                                                     } else {
-                                                        f12 = 0.0f;
+                                                        f11 = 0.0f;
                                                     }
-                                                    GLES20.glUniform1f(i20, f12);
-                                                    if (i11 == 1) {
-                                                        GLES20.glUniform1f(this.alphaHandle, f11);
-                                                        if (i17 < 0) {
+                                                    GLES20.glUniform1f(i21, f11);
+                                                    if (i12 == 1) {
+                                                        GLES20.glUniform1f(this.alphaHandle, f10);
+                                                        if (i18 < 0) {
                                                             GLES20.glUniform1f(this.roundRadiusHandle, 0.0f);
-                                                            GLES20.glUniform1f(this.scaleHandle, f11);
+                                                            GLES20.glUniform1f(this.scaleHandle, f10);
                                                             GLES20.glUniform1f(this.shapeFromHandle, 2.0f);
                                                             GLES20.glUniform1f(this.shapeToHandle, 2.0f);
                                                             GLES20.glUniform1f(this.shapeHandle, 0.0f);
-                                                            GLES20.glUniform1f(this.crossfadeHandle, f11);
+                                                            GLES20.glUniform1f(this.crossfadeHandle, f10);
                                                         } else if (!this.crossfading) {
                                                             GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.dp(16.0f));
                                                             GLES20.glUniform1f(this.scaleHandle, d);
@@ -774,25 +776,25 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                                             GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                                                         } else {
                                                             GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.dp(16.0f));
-                                                            GLES20.glUniform1f(this.scaleHandle, 1.0f - f14);
+                                                            GLES20.glUniform1f(this.scaleHandle, 1.0f - f13);
                                                             GLES20.glUniform1f(this.shapeFromHandle, (float) Math.floor(CameraView.this.shapeValue));
                                                             GLES20.glUniform1f(this.shapeToHandle, (float) Math.ceil(CameraView.this.shapeValue));
                                                             GLES20.glUniform1f(this.shapeHandle, CameraView.this.shapeValue - ((float) Math.floor(CameraView.this.shapeValue)));
-                                                            GLES20.glUniform1f(this.shapeHandle, f14);
+                                                            GLES20.glUniform1f(this.shapeHandle, f13);
                                                             GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                                                         }
-                                                        i12 = 4;
-                                                        i13 = 5;
-                                                        i14 = 0;
+                                                        i13 = 4;
+                                                        i14 = 5;
+                                                        i15 = 0;
                                                     } else {
                                                         GLES20.glUniform1f(this.alphaHandle, 1.0f);
                                                         if (this.crossfading) {
-                                                            GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), f14));
+                                                            GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), f13));
                                                             GLES20.glUniform1f(this.scaleHandle, 1.0f);
                                                             GLES20.glUniform1f(this.shapeFromHandle, this.shapeTo);
                                                             GLES20.glUniform1f(this.shapeToHandle, 2.0f);
-                                                            GLES20.glUniform1f(this.shapeHandle, Utilities.clamp(1.0f - f14, 1.0f, 0.0f));
-                                                            GLES20.glUniform1f(this.crossfadeHandle, f14);
+                                                            GLES20.glUniform1f(this.shapeHandle, Utilities.clamp(1.0f - f13, 1.0f, 0.0f));
+                                                            GLES20.glUniform1f(this.crossfadeHandle, f13);
                                                         } else {
                                                             GLES20.glUniform1f(this.roundRadiusHandle, 0.0f);
                                                             GLES20.glUniform1f(this.scaleHandle, 1.0f);
@@ -801,24 +803,24 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                                             GLES20.glUniform1f(this.shapeHandle, 0.0f);
                                                             GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                                                         }
-                                                        i12 = 4;
-                                                        i13 = 5;
-                                                        i14 = 0;
+                                                        i13 = 4;
+                                                        i14 = 5;
+                                                        i15 = 0;
                                                     }
-                                                    GLES20.glDrawArrays(i13, i14, i12);
+                                                    GLES20.glDrawArrays(i14, i15, i13);
                                                     GLES20.glDisableVertexAttribArray(this.positionHandle);
                                                     GLES20.glDisableVertexAttribArray(this.textureHandle);
-                                                    GLES20.glBindTexture(36197, i14);
-                                                    GLES20.glUseProgram(i14);
-                                                    i17++;
-                                                    i16 = -1;
+                                                    GLES20.glBindTexture(36197, i15);
+                                                    GLES20.glUseProgram(i15);
+                                                    i18++;
+                                                    i17 = -1;
                                                 }
-                                                i17++;
-                                                i16 = -1;
+                                                i18++;
+                                                i17 = -1;
                                             }
                                         }
-                                        i17++;
-                                        i16 = -1;
+                                        i18++;
+                                        i17 = -1;
                                     }
                                     this.egl10.eglSwapBuffers(this.eglDisplay, this.eglSurface);
                                     if (this.blurSurfaceTexture != null && this.blurInited) {
@@ -828,7 +830,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                             EGLSurface eGLSurface2 = this.eglBlurSurface;
                                             if (!egl102.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, this.eglBlurContext)) {
                                                 if (BuildVars.LOGS_ENABLED) {
-                                                    ll.t(this.egl10, new StringBuilder("eglMakeCurrent failed "));
+                                                    x3.u(this.egl10, new StringBuilder("eglMakeCurrent failed "));
                                                 }
                                             }
                                         }
@@ -867,12 +869,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                     }
                                 }
                             }
-                        } catch (Throwable th3) {
-                            th = th3;
+                        } catch (Throwable th4) {
+                            th = th4;
                             throw th;
                         }
-                    } catch (Throwable th4) {
-                        th = th4;
+                    } catch (Throwable th5) {
+                        th = th5;
                         z11 = obj2;
                         throw th;
                     }
@@ -899,23 +901,23 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         }
 
-        private void updateScale(int i9) {
-            if (CameraView.this.previewSize[i9] != null) {
-                int width = CameraView.this.previewSize[i9].getWidth();
-                int height = CameraView.this.previewSize[i9].getHeight();
+        private void updateScale(int i10) {
+            if (CameraView.this.previewSize[i10] != null) {
+                int width = CameraView.this.previewSize[i10].getWidth();
+                int height = CameraView.this.previewSize[i10].getHeight();
                 float min = CameraView.this.surfaceWidth / Math.min(width, height);
-                int i10 = (int) (width * min);
-                int i11 = (int) (height * min);
-                if (i10 == i11) {
+                int i11 = (int) (width * min);
+                int i12 = (int) (height * min);
+                if (i11 == i12) {
                     CameraView.this.scaleX = 1.0f;
                     CameraView.this.scaleY = 1.0f;
-                } else if (i10 <= i11) {
+                } else if (i11 <= i12) {
                     CameraView.this.scaleX = 1.0f;
                     CameraView cameraView = CameraView.this;
-                    cameraView.scaleY = i10 / cameraView.surfaceHeight;
+                    cameraView.scaleY = i11 / cameraView.surfaceHeight;
                 } else {
                     CameraView cameraView2 = CameraView.this;
-                    cameraView2.scaleX = i11 / cameraView2.surfaceWidth;
+                    cameraView2.scaleX = i12 / cameraView2.surfaceWidth;
                     CameraView.this.scaleY = 1.0f;
                 }
                 FileLog.d("CameraView camera scaleX = " + CameraView.this.scaleX + " scaleY = " + CameraView.this.scaleY);
@@ -924,19 +926,19 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
         public void finish() {
             if (this.cameraSurface != null) {
-                int i9 = 0;
+                int i10 = 0;
                 while (true) {
                     SurfaceTexture[] surfaceTextureArr = this.cameraSurface;
-                    if (i9 >= surfaceTextureArr.length) {
+                    if (i10 >= surfaceTextureArr.length) {
                         break;
                     }
-                    SurfaceTexture surfaceTexture = surfaceTextureArr[i9];
+                    SurfaceTexture surfaceTexture = surfaceTextureArr[i10];
                     if (surfaceTexture != null) {
                         surfaceTexture.setOnFrameAvailableListener(null);
-                        this.cameraSurface[i9].release();
-                        this.cameraSurface[i9] = null;
+                        this.cameraSurface[i10].release();
+                        this.cameraSurface[i10] = null;
                     }
-                    i9++;
+                    i10++;
                 }
             }
             finishBlur();
@@ -980,13 +982,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         @Override
         public void handleMessage(Message message) {
             boolean z10;
-            int i9;
-            int i10 = message.what;
+            int i10;
+            int i11 = message.what;
             boolean z11 = true;
-            switch (i10) {
+            switch (i11) {
                 case 0:
-                    int i11 = message.arg1;
-                    int i12 = message.arg2;
+                    int i12 = message.arg1;
+                    int i13 = message.arg2;
                     Object obj = message.obj;
                     Object obj2 = this.updateTexBoth;
                     if (obj != obj2 && obj != this.updateTex1) {
@@ -997,7 +999,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     if (obj != obj2 && obj != this.updateTex2) {
                         z11 = false;
                     }
-                    onDraw(i11, i12, z10, z11);
+                    onDraw(i12, i13, z10, z11);
                     return;
                 case 1:
                     finishBlur();
@@ -1013,10 +1015,10 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     return;
                 case 2:
                 case 6:
-                    if (i10 == 2) {
-                        i9 = 0;
+                    if (i11 == 2) {
+                        i10 = 0;
                     } else {
-                        i9 = 1;
+                        i10 = 1;
                     }
                     EGL10 egl10 = this.egl10;
                     EGLDisplay eGLDisplay = this.eglDisplay;
@@ -1028,43 +1030,43 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         }
                         return;
                     }
-                    SurfaceTexture surfaceTexture = this.cameraSurface[i9];
+                    SurfaceTexture surfaceTexture = this.cameraSurface[i10];
                     if (surfaceTexture != null) {
-                        surfaceTexture.getTransformMatrix(CameraView.this.moldSTMatrix[i9]);
-                        this.cameraSurface[i9].setOnFrameAvailableListener(null);
-                        this.cameraSurface[i9].release();
-                        this.cameraSurface[i9] = null;
+                        surfaceTexture.getTransformMatrix(CameraView.this.moldSTMatrix[i10]);
+                        this.cameraSurface[i10].setOnFrameAvailableListener(null);
+                        this.cameraSurface[i10].release();
+                        this.cameraSurface[i10] = null;
                     }
-                    if (CameraView.this.cameraTexture[i9][0] == 0) {
-                        GLES20.glGenTextures(1, CameraView.this.cameraTexture[i9], 0);
+                    if (CameraView.this.cameraTexture[i10][0] == 0) {
+                        GLES20.glGenTextures(1, CameraView.this.cameraTexture[i10], 0);
                     }
-                    this.cameraId[i9] = message.arg1;
-                    GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i9][0]);
+                    this.cameraId[i10] = message.arg1;
+                    GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i10][0]);
                     GLES20.glTexParameteri(36197, 10241, 9729);
                     GLES20.glTexParameteri(36197, 10240, 9729);
                     GLES20.glTexParameteri(36197, 10242, 33071);
                     GLES20.glTexParameteri(36197, 10243, 33071);
-                    if (i9 == 1) {
+                    if (i10 == 1) {
                         applyDualMatrix((Matrix) message.obj);
                     }
-                    this.cameraSurface[i9] = new SurfaceTexture(CameraView.this.cameraTexture[i9][0]);
-                    this.cameraSurface[i9].setOnFrameAvailableListener(new q(this));
+                    this.cameraSurface[i10] = new SurfaceTexture(CameraView.this.cameraTexture[i10][0]);
+                    this.cameraSurface[i10].setOnFrameAvailableListener(new q(this));
                     if (this.ignoreCamera1Upd) {
                         this.camera1Appeared = false;
                         this.camera1AppearedUntil = System.currentTimeMillis() + 60;
                         this.ignoreCamera1Upd = false;
                     }
-                    CameraView.this.createCamera(this.cameraSurface[i9], i9);
-                    updateScale(i9);
-                    float f10 = (1.0f / CameraView.this.scaleX) / 2.0f;
-                    float f11 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                    CameraView.this.createCamera(this.cameraSurface[i10], i10);
+                    updateScale(i10);
+                    float f9 = (1.0f / CameraView.this.scaleX) / 2.0f;
+                    float f10 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                    float f11 = 0.5f - f9;
                     float f12 = 0.5f - f10;
-                    float f13 = 0.5f - f11;
+                    float f13 = f9 + 0.5f;
                     float f14 = f10 + 0.5f;
-                    float f15 = f11 + 0.5f;
                     CameraView.this.textureBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
-                    CameraView.this.textureBuffer.put(new float[]{f12, f13, f14, f13, f12, f15, f14, f15}).position(0);
-                    if (i9 == 1) {
+                    CameraView.this.textureBuffer.put(new float[]{f11, f12, f13, f12, f11, f14, f13, f14}).position(0);
+                    if (i10 == 1) {
                         this.dualAppeared = false;
                         synchronized (CameraView.this.layoutLock) {
                             CameraView.this.dualCameraAppeared = false;
@@ -1075,21 +1077,21 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     }
                     return;
                 case 3:
-                    int i13 = message.arg1;
+                    int i14 = message.arg1;
                     CameraSessionWrapper cameraSessionWrapper = (CameraSessionWrapper) message.obj;
                     if (cameraSessionWrapper != null) {
                         CameraSessionWrapper[] cameraSessionWrapperArr = this.currentSession;
-                        if (cameraSessionWrapperArr[i13] != cameraSessionWrapper) {
-                            cameraSessionWrapperArr[i13] = cameraSessionWrapper;
-                            this.cameraId[i13] = cameraSessionWrapper.getCameraId();
+                        if (cameraSessionWrapperArr[i14] != cameraSessionWrapper) {
+                            cameraSessionWrapperArr[i14] = cameraSessionWrapper;
+                            this.cameraId[i14] = cameraSessionWrapper.getCameraId();
                         }
-                        int worldAngle = this.currentSession[i13].getWorldAngle();
+                        int worldAngle = this.currentSession[i14].getWorldAngle();
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.d("CameraView set gl renderer session " + i13 + " angle=" + worldAngle);
+                            FileLog.d("CameraView set gl renderer session " + i14 + " angle=" + worldAngle);
                         }
-                        android.opengl.Matrix.setIdentityM(CameraView.this.mMVPMatrix[i13], 0);
+                        android.opengl.Matrix.setIdentityM(CameraView.this.mMVPMatrix[i14], 0);
                         if (worldAngle != 0) {
-                            android.opengl.Matrix.rotateM(CameraView.this.mMVPMatrix[i13], 0, worldAngle, 0.0f, 0.0f, 1.0f);
+                            android.opengl.Matrix.rotateM(CameraView.this.mMVPMatrix[i14], 0, worldAngle, 0.0f, 0.0f, 1.0f);
                             return;
                         }
                         return;
@@ -1118,9 +1120,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     return;
                 case 8:
                     int[] iArr = this.cameraId;
-                    int i14 = iArr[0];
+                    int i15 = iArr[0];
                     iArr[0] = iArr[1];
-                    iArr[1] = i14;
+                    iArr[1] = i15;
                     CameraSessionWrapper[] cameraSessionWrapperArr2 = this.currentSession;
                     CameraSessionWrapper cameraSessionWrapper2 = cameraSessionWrapperArr2[0];
                     cameraSessionWrapperArr2[0] = cameraSessionWrapperArr2[1];
@@ -1147,9 +1149,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     requestRender(true, true);
                     return;
                 case 9:
-                    float f16 = this.shapeTo + 1.0f;
-                    this.shapeTo = f16;
-                    CameraView.this.lastShapeTo = f16;
+                    float f15 = this.shapeTo + 1.0f;
+                    this.shapeTo = f15;
+                    CameraView.this.lastShapeTo = f15;
                     requestRender(false, false);
                     return;
                 case 10:
@@ -1226,8 +1228,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         }
                         handler.removeMessages(0);
                         int[] iArr = this.cameraId;
-                        int i9 = iArr[0];
-                        int i10 = iArr[1];
+                        int i10 = iArr[0];
+                        int i11 = iArr[1];
                         if (z10 && z11) {
                             obj = this.updateTexBoth;
                         } else if (z10) {
@@ -1235,7 +1237,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         } else {
                             obj = this.updateTex2;
                         }
-                        sendMessage(handler.obtainMessage(0, i9, i10, obj), 0);
+                        sendMessage(handler.obtainMessage(0, i10, i11, obj), 0);
                     }
                 }
             }
@@ -1259,17 +1261,17 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         }
 
-        public void setCurrentSession(CameraSessionWrapper cameraSessionWrapper, int i9) {
+        public void setCurrentSession(CameraSessionWrapper cameraSessionWrapper, int i10) {
             Handler handler = getHandler();
             if (handler != null) {
-                sendMessage(handler.obtainMessage(3, i9, 0, cameraSessionWrapper), 0);
+                sendMessage(handler.obtainMessage(3, i10, 0, cameraSessionWrapper), 0);
             }
         }
 
-        public void shutdown(int i9) {
+        public void shutdown(int i10) {
             Handler handler = getHandler();
             if (handler != null) {
-                sendMessage(handler.obtainMessage(1, i9, 0), 0);
+                sendMessage(handler.obtainMessage(1, i10, 0), 0);
             }
         }
 
@@ -1307,16 +1309,16 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
         @Override
         public void handleMessage(Message message) {
-            int i9 = message.what;
+            int i10 = message.what;
             VideoRecorder videoRecorder = this.mWeakEncoder.get();
             if (videoRecorder != null) {
-                if (i9 != 0) {
-                    if (i9 != 1) {
-                        if (i9 == 2) {
+                if (i10 != 0) {
+                    if (i10 != 1) {
+                        if (i10 == 2) {
                             videoRecorder.handleVideoFrameAvailable((message.arg1 << 32) | (message.arg2 & 4294967295L), (Integer) message.obj);
                             return;
-                        } else if (i9 == 3) {
-                            videoRecorder.handleAudioFrameAvailable((t40) message.obj);
+                        } else if (i10 == 3) {
+                            videoRecorder.handleAudioFrameAvailable((h50) message.obj);
                             return;
                         } else {
                             return;
@@ -1357,8 +1359,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int audioTrackIndex;
         private boolean blendEnabled;
         private int blurHandle;
-        private ArrayBlockingQueue<t40> buffers;
-        private ArrayList<t40> buffersToWrite;
+        private ArrayBlockingQueue<h50> buffers;
+        private ArrayList<h50> buffersToWrite;
         private int cameraMatrixHandle;
         private int crossfadeHandle;
         private long currentTimestamp;
@@ -1448,13 +1450,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.recorderRunnable = new AnonymousClass1();
         }
 
-        public void handleAudioFrameAvailable(org.telegram.ui.Components.t40 r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.t40):void");
+        public void handleAudioFrameAvailable(org.telegram.ui.Components.h50 r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.h50):void");
         }
 
-        public void handleStopRecording(int i9) {
+        public void handleStopRecording(int i10) {
             if (this.running) {
-                this.sendWhenDone = i9;
+                this.sendWhenDone = i10;
                 this.running = false;
                 return;
             }
@@ -1525,8 +1527,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         public void handleVideoFrameAvailable(long j10, Integer num) {
             long j11;
             boolean z10;
-            int i9;
-            float f10;
+            int i10;
+            float f9;
             int width;
             int height;
             try {
@@ -1563,7 +1565,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.videoFirst == -1) {
                 this.videoFirst = j10 / 1000;
                 if (BuildVars.LOGS_ENABLED) {
-                    r0.z(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
+                    l1.x(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
                 }
             }
             this.videoLast = j10;
@@ -1576,34 +1578,34 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
                 GLES20.glClear(16384);
             }
-            float f11 = CameraView.this.lastCrossfadeValue;
-            if (f11 > 0.0f) {
+            float f10 = CameraView.this.lastCrossfadeValue;
+            if (f10 > 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            for (int i10 = -1; i10 < 2; i10++) {
-                if (i10 != -1 || z10) {
-                    if (i10 < 0) {
-                        i9 = 1;
+            for (int i11 = -1; i11 < 2; i11++) {
+                if (i11 != -1 || z10) {
+                    if (i11 < 0) {
+                        i10 = 1;
                     } else {
-                        i9 = i10;
+                        i10 = i11;
                     }
-                    if (CameraView.this.cameraTexture[i9][0] != 0) {
+                    if (CameraView.this.cameraTexture[i10][0] != 0) {
                         GLES20.glUseProgram(this.drawProgram);
                         GLES20.glVertexAttribPointer(this.positionHandle, 3, 5126, false, 12, (Buffer) CameraView.this.vertexBuffer);
                         GLES20.glEnableVertexAttribArray(this.positionHandle);
                         GLES20.glVertexAttribPointer(this.textureHandle, 2, 5126, false, 8, (Buffer) this.textureBuffer);
                         GLES20.glEnableVertexAttribArray(this.textureHandle);
-                        GLES20.glUniformMatrix4fv(this.vertexMatrixHandle, 1, false, CameraView.this.mMVPMatrix[i9], 0);
-                        GLES20.glUniformMatrix4fv(this.cameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[i9], 0);
-                        GLES20.glUniformMatrix4fv(this.oppositeCameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[1 - i9], 0);
+                        GLES20.glUniformMatrix4fv(this.vertexMatrixHandle, 1, false, CameraView.this.mMVPMatrix[i10], 0);
+                        GLES20.glUniformMatrix4fv(this.cameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[i10], 0);
+                        GLES20.glUniformMatrix4fv(this.oppositeCameraMatrixHandle, 1, false, CameraView.this.cameraMatrix[1 - i10], 0);
                         GLES20.glActiveTexture(33984);
-                        GLES20.glUniformMatrix4fv(this.textureMatrixHandle, 1, false, CameraView.this.mSTMatrix[i9], 0);
+                        GLES20.glUniformMatrix4fv(this.textureMatrixHandle, 1, false, CameraView.this.mSTMatrix[i10], 0);
                         GLES20.glUniform1f(this.blurHandle, 0.0f);
-                        Size size = CameraView.this.previewSize[i9];
-                        if (size != null && CameraView.this.cameraSession[i9] != null) {
-                            int worldAngle = CameraView.this.cameraSession[i9].getWorldAngle();
+                        Size size = CameraView.this.previewSize[i10];
+                        if (size != null && CameraView.this.cameraSession[i10] != null) {
+                            int worldAngle = CameraView.this.cameraSession[i10].getWorldAngle();
                             if (worldAngle != 90 && worldAngle != 270) {
                                 width = size.getHeight();
                                 height = size.getWidth();
@@ -1612,25 +1614,25 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 height = size.getHeight();
                             }
                             GLES20.glUniform2f(this.pixelHandle, width, height);
-                        } else if (i9 == 0) {
+                        } else if (i10 == 0) {
                             GLES20.glUniform2f(this.pixelHandle, CameraView.this.pixelW, CameraView.this.pixelH);
                         } else {
                             GLES20.glUniform2f(this.pixelHandle, CameraView.this.pixelDualW, CameraView.this.pixelDualH);
                         }
-                        if (i9 == 0) {
-                            int i11 = this.dualHandle;
+                        if (i10 == 0) {
+                            int i12 = this.dualHandle;
                             if (z11) {
-                                f10 = 1.0f;
+                                f9 = 1.0f;
                             } else {
-                                f10 = 0.0f;
+                                f9 = 0.0f;
                             }
-                            GLES20.glUniform1f(i11, f10);
+                            GLES20.glUniform1f(i12, f9);
                         } else {
                             GLES20.glUniform1f(this.dualHandle, 1.0f);
                         }
-                        if (i9 == 1) {
+                        if (i10 == 1) {
                             GLES20.glUniform1f(this.alphaHandle, 1.0f);
-                            if (i10 < 0) {
+                            if (i11 < 0) {
                                 GLES20.glUniform1f(this.roundRadiusHandle, 0.0f);
                                 GLES20.glUniform1f(this.scaleHandle, 1.0f);
                                 GLES20.glUniform1f(this.shapeFromHandle, 2.0f);
@@ -1646,22 +1648,22 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                             } else {
                                 GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.dp(16.0f));
-                                GLES20.glUniform1f(this.scaleHandle, 1.0f - f11);
+                                GLES20.glUniform1f(this.scaleHandle, 1.0f - f10);
                                 GLES20.glUniform1f(this.shapeFromHandle, (float) Math.floor(CameraView.this.shapeValue));
                                 GLES20.glUniform1f(this.shapeToHandle, (float) Math.ceil(CameraView.this.shapeValue));
                                 GLES20.glUniform1f(this.shapeHandle, CameraView.this.shapeValue - ((float) Math.floor(CameraView.this.shapeValue)));
-                                GLES20.glUniform1f(this.shapeHandle, f11);
+                                GLES20.glUniform1f(this.shapeHandle, f10);
                                 GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                             }
                         } else {
                             GLES20.glUniform1f(this.alphaHandle, 1.0f);
                             if (z10) {
-                                GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), f11));
+                                GLES20.glUniform1f(this.roundRadiusHandle, AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), f10));
                                 GLES20.glUniform1f(this.scaleHandle, 1.0f);
                                 GLES20.glUniform1f(this.shapeFromHandle, CameraView.this.lastShapeTo);
                                 GLES20.glUniform1f(this.shapeToHandle, 2.0f);
-                                GLES20.glUniform1f(this.shapeHandle, Utilities.clamp(1.0f - f11, 1.0f, 0.0f));
-                                GLES20.glUniform1f(this.crossfadeHandle, f11);
+                                GLES20.glUniform1f(this.shapeHandle, Utilities.clamp(1.0f - f10, 1.0f, 0.0f));
+                                GLES20.glUniform1f(this.crossfadeHandle, f10);
                             } else {
                                 GLES20.glUniform1f(this.roundRadiusHandle, 0.0f);
                                 GLES20.glUniform1f(this.scaleHandle, 1.0f);
@@ -1671,7 +1673,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                 GLES20.glUniform1f(this.crossfadeHandle, 0.0f);
                             }
                         }
-                        GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i9][0]);
+                        GLES20.glBindTexture(36197, CameraView.this.cameraTexture[i10][0]);
                         GLES20.glDrawArrays(5, 0, 4);
                         GLES20.glDisableVertexAttribArray(this.positionHandle);
                         GLES20.glDisableVertexAttribArray(this.textureHandle);
@@ -1720,7 +1722,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void prepareEncoder() {
-            int i9;
+            int i10;
             String str;
             MediaCodec mediaCodec;
             try {
@@ -1729,18 +1731,18 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     minBufferSize = 3584;
                 }
                 if (49152 < minBufferSize) {
-                    i9 = ((minBufferSize / 2048) + 1) * 4096;
+                    i10 = ((minBufferSize / 2048) + 1) * 4096;
                 } else {
-                    i9 = 49152;
+                    i10 = 49152;
                 }
-                for (int i10 = 0; i10 < 3; i10++) {
-                    this.buffers.add(new t40());
+                for (int i11 = 0; i11 < 3; i11++) {
+                    this.buffers.add(new h50());
                 }
-                AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i9);
+                AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i10);
                 this.audioRecorder = audioRecord;
                 audioRecord.startRecording();
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("CameraView initied audio record with channels " + this.audioRecorder.getChannelCount() + " sample rate = " + this.audioRecorder.getSampleRate() + " bufferSize = " + i9);
+                    FileLog.d("CameraView initied audio record with channels " + this.audioRecorder.getChannelCount() + " sample rate = " + this.audioRecorder.getSampleRate() + " bufferSize = " + i10);
                 }
                 Thread thread = new Thread(this.recorderRunnable);
                 thread.setPriority(10);
@@ -1835,16 +1837,16 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                         throw new RuntimeException("eglMakeCurrent failed");
                                     }
                                     GLES20.glBlendFunc(770, 771);
-                                    float f10 = (1.0f / CameraView.this.scaleX) / 2.0f;
-                                    float f11 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                                    float f9 = (1.0f / CameraView.this.scaleX) / 2.0f;
+                                    float f10 = (1.0f / CameraView.this.scaleY) / 2.0f;
+                                    float f11 = 0.5f - f9;
                                     float f12 = 0.5f - f10;
-                                    float f13 = 0.5f - f11;
+                                    float f13 = f9 + 0.5f;
                                     float f14 = f10 + 0.5f;
-                                    float f15 = f11 + 0.5f;
-                                    float[] fArr = {f12, f13, f14, f13, f12, f15, f14, f15};
-                                    FloatBuffer h = ll.h(ByteBuffer.allocateDirect(32));
-                                    this.textureBuffer = h;
-                                    h.put(fArr).position(0);
+                                    float[] fArr = {f11, f12, f13, f12, f11, f14, f13, f14};
+                                    FloatBuffer l10 = x3.l(ByteBuffer.allocateDirect(32));
+                                    this.textureBuffer = l10;
+                                    l10.put(fArr).position(0);
                                     int loadShader = CameraView.this.loadShader(35633, AndroidUtilities.readRes(R.raw.camera_vert));
                                     int loadShader2 = CameraView.this.loadShader(35632, AndroidUtilities.readRes(R.raw.camera_frag));
                                     if (loadShader != 0 && loadShader2 != 0) {
@@ -1930,9 +1932,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     }
                     long timestamp = surfaceTexture.getTimestamp();
                     if (timestamp == 0) {
-                        int i9 = this.zeroTimeStamps + 1;
-                        this.zeroTimeStamps = i9;
-                        if (i9 > 1) {
+                        int i10 = this.zeroTimeStamps + 1;
+                        this.zeroTimeStamps = i10;
+                        if (i10 > 1) {
                             if (BuildVars.LOGS_ENABLED) {
                                 FileLog.d("CameraView fix timestamp enabled");
                             }
@@ -1944,8 +1946,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                         j10 = timestamp;
                     }
                     this.handler.sendMessage(this.handler.obtainMessage(2, (int) (j10 >> 32), (int) j10, num));
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
@@ -1969,13 +1971,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
 
         public void startRecording(File file, android.opengl.EGLContext eGLContext) {
-            int i9;
+            int i10;
             String str = Build.DEVICE;
             Size size = CameraView.this.previewSize[0];
             if (Math.min(size.mHeight, size.mWidth) >= 720) {
-                i9 = 3500000;
+                i10 = 3500000;
             } else {
-                i9 = 1800000;
+                i10 = 1800000;
             }
             this.videoFile = file;
             if (CameraView.this.cameraSession[0].getWorldAngle() != 90 && CameraView.this.cameraSession[0].getWorldAngle() != 270) {
@@ -1985,7 +1987,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 CameraView.this.videoWidth = size.getWidth();
                 CameraView.this.videoHeight = size.getHeight();
             }
-            this.videoBitrate = i9;
+            this.videoBitrate = i10;
             this.sharedEglContext = eGLContext;
             synchronized (this.sync) {
                 try {
@@ -2007,14 +2009,14 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     dispatchQueue.setPriority(10);
                     this.keyframeThumbs.clear();
                     this.handler.sendMessage(this.handler.obtainMessage(0));
-                } catch (Throwable th) {
-                    throw th;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
         }
 
-        public void stopRecording(int i9) {
-            this.handler.sendMessage(this.handler.obtainMessage(1, i9, 0));
+        public void stopRecording(int i10) {
+            this.handler.sendMessage(this.handler.obtainMessage(1, i10, 0));
         }
     }
 
@@ -2032,11 +2034,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
     }
 
-    private Rect calculateTapArea(float f10, float f11, float f12) {
-        int intValue = Float.valueOf(this.focusAreaSize * f12).intValue();
-        int i9 = intValue / 2;
-        int clamp = clamp(((int) f10) - i9, 0, getWidth() - intValue);
-        int clamp2 = clamp(((int) f11) - i9, 0, getHeight() - intValue);
+    private Rect calculateTapArea(float f9, float f10, float f11) {
+        int intValue = Float.valueOf(this.focusAreaSize * f11).intValue();
+        int i10 = intValue / 2;
+        int clamp = clamp(((int) f9) - i10, 0, getWidth() - intValue);
+        int clamp2 = clamp(((int) f10) - i10, 0, getHeight() - intValue);
         RectF rectF = new RectF(clamp, clamp2, clamp + intValue, clamp2 + intValue);
         this.matrix.mapRect(rectF);
         return new Rect(Math.round(rectF.left), Math.round(rectF.top), Math.round(rectF.right), Math.round(rectF.bottom));
@@ -2052,10 +2054,10 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.cameraSession[0] != null) {
                 matrix.postRotate(cameraSessionWrapper.getDisplayOrientation());
             }
-            float f10 = width;
-            float f11 = height;
-            matrix.postScale(f10 / 2000.0f, f11 / 2000.0f);
-            matrix.postTranslate(f10 / 2.0f, f11 / 2.0f);
+            float f9 = width;
+            float f10 = height;
+            matrix.postScale(f9 / 2000.0f, f10 / 2000.0f);
+            matrix.postTranslate(f9 / 2.0f, f10 / 2.0f);
             matrix.invert(this.matrix);
             CameraGLThread cameraGLThread = this.cameraThread;
             if (cameraGLThread != null) {
@@ -2068,18 +2070,18 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
     }
 
-    private int clamp(int i9, int i10, int i11) {
-        if (i9 > i11) {
+    private int clamp(int i10, int i11, int i12) {
+        if (i10 > i12) {
+            return i12;
+        }
+        if (i10 < i11) {
             return i11;
         }
-        if (i9 < i10) {
-            return i10;
-        }
-        return i9;
+        return i10;
     }
 
-    public void createCamera(SurfaceTexture surfaceTexture, int i9) {
-        AndroidUtilities.runOnUIThread(new d5.i(this, i9, surfaceTexture, 19));
+    public void createCamera(SurfaceTexture surfaceTexture, int i10) {
+        AndroidUtilities.runOnUIThread(new v0(this, i10, surfaceTexture, 18));
     }
 
     private void enableDualInternal() {
@@ -2116,7 +2118,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
     public static boolean isCameraAllowed() {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if ((sharedInstance != null && sharedInstance.hasVideoCapturer()) || f1.S != null) {
+        if ((sharedInstance != null && sharedInstance.hasVideoCapturer()) || d1.S != null) {
             return false;
         }
         return true;
@@ -2128,25 +2130,25 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         addToDualWait(350L);
     }
 
-    public void lambda$createCamera$11(int i9, CameraSession cameraSession, CameraGLThread cameraGLThread) {
-        if (this.cameraSession[i9] != null) {
+    public void lambda$createCamera$11(int i10, CameraSession cameraSession, CameraGLThread cameraGLThread) {
+        if (this.cameraSession[i10] != null) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("CameraView camera initied " + i9);
+                FileLog.d("CameraView camera initied " + i10);
             }
             cameraSession.setInitied();
             requestLayout();
         }
-        if (this.dual && i9 == 1 && this.initFirstCameraAfterSecond) {
+        if (this.dual && i10 == 1 && this.initFirstCameraAfterSecond) {
             this.initFirstCameraAfterSecond = false;
             AndroidUtilities.runOnUIThread(new n(this, cameraGLThread, 0));
         }
     }
 
-    public void lambda$createCamera$12(CameraGLThread cameraGLThread, int i9) {
-        cameraGLThread.setCurrentSession(this.cameraSession[i9], i9);
+    public void lambda$createCamera$12(CameraGLThread cameraGLThread, int i10) {
+        cameraGLThread.setCurrentSession(this.cameraSession[i10], i10);
     }
 
-    public void lambda$createCamera$13(int i9, SurfaceTexture surfaceTexture) {
+    public void lambda$createCamera$13(int i10, SurfaceTexture surfaceTexture) {
         String str;
         CameraGLThread cameraGLThread = this.cameraThread;
         if (cameraGLThread != null) {
@@ -2159,12 +2161,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
                 sb2.append(str);
                 sb2.append(" session ");
-                sb2.append(i9);
+                sb2.append(i10);
                 FileLog.d(sb2.toString());
             }
             if (this.useCamera2) {
                 boolean z10 = this.isFrontface;
-                if (i9 != 0) {
+                if (i10 != 0) {
                     if (!z10) {
                         z10 = true;
                     } else {
@@ -2173,29 +2175,29 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
                 Camera2Session create = Camera2Session.create(z10, this.surfaceWidth, this.surfaceHeight);
                 if (create != null) {
-                    this.cameraSession[i9] = CameraSessionWrapper.of(create);
-                    this.previewSize[i9] = new Size(create.getPreviewWidth(), create.getPreviewHeight());
-                    cameraGLThread.setCurrentSession(this.cameraSession[i9], i9);
-                    create.whenDone(new l(this, i9, cameraGLThread));
+                    this.cameraSession[i10] = CameraSessionWrapper.of(create);
+                    this.previewSize[i10] = new Size(create.getPreviewWidth(), create.getPreviewHeight());
+                    cameraGLThread.setCurrentSession(this.cameraSession[i10], i10);
+                    create.whenDone(new l(this, i10, cameraGLThread));
                     create.open(surfaceTexture);
                     return;
                 }
                 return;
             }
-            if (this.previewSize[i9] == null) {
-                updateCameraInfoSize(i9);
+            if (this.previewSize[i10] == null) {
+                updateCameraInfoSize(i10);
             }
-            Size size = this.previewSize[i9];
+            Size size = this.previewSize[i10];
             if (size == null) {
                 return;
             }
-            surfaceTexture.setDefaultBufferSize(size.getWidth(), this.previewSize[i9].getHeight());
-            CameraSession cameraSession = new CameraSession(this.info[i9], this.previewSize[i9], this.pictureSize[i9], 256, false);
+            surfaceTexture.setDefaultBufferSize(size.getWidth(), this.previewSize[i10].getHeight());
+            CameraSession cameraSession = new CameraSession(this.info[i10], this.previewSize[i10], this.pictureSize[i10], 256, false);
             cameraSession.setCurrentFlashMode("off");
-            this.cameraSession[i9] = CameraSessionWrapper.of(cameraSession);
-            cameraGLThread.setCurrentSession(this.cameraSession[i9], i9);
+            this.cameraSession[i10] = CameraSessionWrapper.of(cameraSession);
+            cameraGLThread.setCurrentSession(this.cameraSession[i10], i10);
             requestLayout();
-            CameraController.getInstance().open(cameraSession, surfaceTexture, new c3.d(this, i9, cameraSession, cameraGLThread, 7), new l(this, cameraGLThread, i9));
+            CameraController.getInstance().open(cameraSession, surfaceTexture, new z1(this, i10, cameraSession, cameraGLThread, 6), new l(this, cameraGLThread, i10));
         }
     }
 
@@ -2205,9 +2207,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         addToDualWait(350L);
     }
 
-    public void lambda$createCamera$9(int i9, CameraGLThread cameraGLThread) {
+    public void lambda$createCamera$9(int i10, CameraGLThread cameraGLThread) {
         requestLayout();
-        if (this.dual && i9 == 1 && this.initFirstCameraAfterSecond) {
+        if (this.dual && i10 == 1 && this.initFirstCameraAfterSecond) {
             this.initFirstCameraAfterSecond = false;
             AndroidUtilities.runOnUIThread(new n(this, cameraGLThread, 1));
         }
@@ -2230,12 +2232,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     public void lambda$new$7() {
         CameraGLThread cameraGLThread = this.cameraThread;
         if (cameraGLThread != null) {
-            for (int i9 = 0; i9 < 2; i9++) {
-                if (cameraGLThread.currentSession[i9] != null) {
-                    int worldAngle = cameraGLThread.currentSession[i9].getWorldAngle();
-                    android.opengl.Matrix.setIdentityM(this.mMVPMatrix[i9], 0);
+            for (int i10 = 0; i10 < 2; i10++) {
+                if (cameraGLThread.currentSession[i10] != null) {
+                    int worldAngle = cameraGLThread.currentSession[i10].getWorldAngle();
+                    android.opengl.Matrix.setIdentityM(this.mMVPMatrix[i10], 0);
                     if (worldAngle != 0) {
-                        android.opengl.Matrix.rotateM(this.mMVPMatrix[i9], 0, worldAngle, 0.0f, 0.0f, 1.0f);
+                        android.opengl.Matrix.rotateM(this.mMVPMatrix[i10], 0, worldAngle, 0.0f, 0.0f, 1.0f);
                     }
                 }
             }
@@ -2278,8 +2280,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
     }
 
-    public int loadShader(int i9, String str) {
-        int glCreateShader = GLES20.glCreateShader(i9);
+    public int loadShader(int i10, String str) {
+        int glCreateShader = GLES20.glCreateShader(i10);
         GLES20.glShaderSource(glCreateShader, str);
         GLES20.glCompileShader(glCreateShader);
         int[] iArr = new int[1];
@@ -2294,8 +2296,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         return glCreateShader;
     }
 
-    public void onFirstFrameRendered(int i9) {
-        if (i9 == 0) {
+    public void onFirstFrameRendered(int i10) {
+        if (i10 == 0) {
             this.flipping = false;
             if (this.blurredStubView.getVisibility() == 0) {
                 this.blurredStubView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
@@ -2340,8 +2342,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     public void destroy(boolean z10, Runnable runnable) {
-        for (int i9 = 0; i9 < 2; i9++) {
-            CameraSessionWrapper cameraSessionWrapper = this.cameraSession[i9];
+        for (int i10 = 0; i10 < 2; i10++) {
+            CameraSessionWrapper cameraSessionWrapper = this.cameraSession[i10];
             if (cameraSessionWrapper != null) {
                 cameraSessionWrapper.destroy(z10, runnable, null);
             }
@@ -2355,11 +2357,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             canvas.drawColor(-16777216);
         }
         super.dispatchDraw(canvas);
-        float f10 = this.takePictureProgress;
-        if (f10 != 1.0f) {
-            float f11 = f10 + 0.064f;
-            this.takePictureProgress = f11;
-            if (f11 > 1.0f) {
+        float f9 = this.takePictureProgress;
+        if (f9 != 1.0f) {
+            float f10 = f9 + 0.064f;
+            this.takePictureProgress = f10;
+            if (f10 > 1.0f) {
                 this.takePictureProgress = 1.0f;
             } else {
                 invalidate();
@@ -2374,23 +2376,23 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         Object obj;
         Object obj2;
         if (view == this.textureView && canvas.isHardwareAccelerated() && (obj2 = this.renderNode) != null) {
-            RenderNode c10 = org.telegram.messenger.b.c(obj2);
-            c10.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = c10.beginRecording();
+            RenderNode c3 = org.telegram.messenger.b.c(obj2);
+            c3.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = c3.beginRecording();
         } else {
             recordingCanvas = canvas;
         }
         boolean drawChild = super.drawChild(recordingCanvas, view, j10);
         if (view == this.textureView && canvas.isHardwareAccelerated() && (obj = this.renderNode) != null) {
-            RenderNode c11 = org.telegram.messenger.b.c(obj);
-            c11.endRecording();
-            canvas.drawRenderNode(c11);
+            RenderNode c6 = org.telegram.messenger.b.c(obj);
+            c6.endRecording();
+            canvas.drawRenderNode(c6);
             Object obj3 = this.blurRenderNode;
             if (obj3 != null) {
-                RenderNode c12 = org.telegram.messenger.b.c(obj3);
-                c12.setPosition(0, 0, getWidth(), getHeight());
-                c12.beginRecording().drawRenderNode(c11);
-                c12.endRecording();
+                RenderNode c10 = org.telegram.messenger.b.c(obj3);
+                c10.setPosition(0, 0, getWidth(), getHeight());
+                c10.beginRecording().drawRenderNode(c6);
+                c10.endRecording();
             }
         }
         if (this.focusProgress != 1.0f || this.innerAlpha != 0.0f || this.outerAlpha != 0.0f) {
@@ -2404,34 +2406,34 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.outerPaint.setAlpha((int) (this.interpolator.getInterpolation(this.outerAlpha) * 255.0f));
             this.innerPaint.setAlpha((int) (this.interpolator.getInterpolation(this.innerAlpha) * 127.0f));
             float interpolation = this.interpolator.getInterpolation(this.focusProgress);
-            float f10 = dp;
-            canvas.drawCircle(this.cx, this.cy, e2.c.z(1.0f, interpolation, f10, f10), this.outerPaint);
-            canvas.drawCircle(this.cx, this.cy, f10 * interpolation, this.innerPaint);
-            float f11 = this.focusProgress;
-            if (f11 < 1.0f) {
-                float f12 = (((float) j11) / 200.0f) + f11;
-                this.focusProgress = f12;
-                if (f12 > 1.0f) {
+            float f9 = dp;
+            canvas.drawCircle(this.cx, this.cy, com.google.android.recaptcha.internal.a.z(1.0f, interpolation, f9, f9), this.outerPaint);
+            canvas.drawCircle(this.cx, this.cy, f9 * interpolation, this.innerPaint);
+            float f10 = this.focusProgress;
+            if (f10 < 1.0f) {
+                float f11 = (((float) j11) / 200.0f) + f10;
+                this.focusProgress = f11;
+                if (f11 > 1.0f) {
                     this.focusProgress = 1.0f;
                 }
                 invalidate();
                 return drawChild;
             }
-            float f13 = this.innerAlpha;
-            if (f13 != 0.0f) {
-                float f14 = f13 - (((float) j11) / 150.0f);
-                this.innerAlpha = f14;
-                if (f14 < 0.0f) {
+            float f12 = this.innerAlpha;
+            if (f12 != 0.0f) {
+                float f13 = f12 - (((float) j11) / 150.0f);
+                this.innerAlpha = f13;
+                if (f13 < 0.0f) {
                     this.innerAlpha = 0.0f;
                 }
                 invalidate();
                 return drawChild;
             }
-            float f15 = this.outerAlpha;
-            if (f15 != 0.0f) {
-                float f16 = f15 - (((float) j11) / 150.0f);
-                this.outerAlpha = f16;
-                if (f16 < 0.0f) {
+            float f14 = this.outerAlpha;
+            if (f14 != 0.0f) {
+                float f15 = f14 - (((float) j11) / 150.0f);
+                this.outerAlpha = f15;
+                if (f15 < 0.0f) {
                     this.outerAlpha = 0.0f;
                 }
                 invalidate();
@@ -2454,8 +2456,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
     }
 
-    public void focusToPoint(int i9, int i10, boolean z10) {
-        focusToPoint(0, i9, i10, i9, i10, z10);
+    public void focusToPoint(int i10, int i11, boolean z10) {
+        focusToPoint(0, i10, i11, i10, i11, z10);
     }
 
     public Object getBlurRenderNode() {
@@ -2506,7 +2508,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         return this.previewSize[0];
     }
 
-    public float getTextureHeight(float f10, float f11) {
+    public float getTextureHeight(float f9, float f10) {
         CameraSessionWrapper cameraSessionWrapper;
         int width;
         int height;
@@ -2518,11 +2520,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 width = this.previewSize[0].getWidth();
                 height = this.previewSize[0].getHeight();
             }
-            float f12 = f10 / width;
-            float f13 = height;
-            return (int) (Math.max(f12, f11 / f13) * f13);
+            float f11 = f9 / width;
+            float f12 = height;
+            return (int) (Math.max(f11, f10 / f12) * f12);
         }
-        return f11;
+        return f10;
     }
 
     public TextureView getTextureView() {
@@ -2539,8 +2541,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
     public boolean hasFrontFaceCamera() {
         ArrayList<CameraInfo> cameras = CameraController.getInstance().getCameras();
-        for (int i9 = 0; i9 < cameras.size(); i9++) {
-            if (cameras.get(i9).frontCamera != 0) {
+        for (int i10 = 0; i10 < cameras.size(); i10++) {
+            if (cameras.get(i10).frontCamera != 0) {
                 return true;
             }
         }
@@ -2552,7 +2554,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             return;
         }
         this.textureView.setSurfaceTextureListener(this);
-        addView(this.textureView, 0, e6.e(-1, -1, 17));
+        addView(this.textureView, 0, f6.e(-1, -1, 17));
         this.textureInited = true;
     }
 
@@ -2561,10 +2563,10 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         super.invalidate();
         ArrayList<Runnable> arrayList = this.invalidateListeners;
         int size = arrayList.size();
-        int i9 = 0;
-        while (i9 < size) {
-            Runnable runnable = arrayList.get(i9);
-            i9++;
+        int i10 = 0;
+        while (i10 < size) {
+            Runnable runnable = arrayList.get(i10);
+            i10++;
             runnable.run();
         }
     }
@@ -2595,7 +2597,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
 
                 @Override
-                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i9, int i10) {
+                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
                     CameraGLThread cameraGLThread = CameraView.this.cameraThread;
                     if (cameraGLThread != null) {
                         cameraGLThread.setBlurSurfaceTexture(surfaceTexture);
@@ -2617,7 +2619,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 }
 
                 @Override
-                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i9, int i10) {
+                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
                 }
             });
         }
@@ -2637,28 +2639,28 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             float intrinsicWidth = this.thumbDrawable.getIntrinsicWidth();
             float intrinsicHeight = this.thumbDrawable.getIntrinsicHeight();
             float min = 1.0f / Math.min(intrinsicWidth / Math.max(1, this.bounds.width()), intrinsicHeight / Math.max(1, this.bounds.height()));
-            float f10 = (intrinsicWidth * min) / 2.0f;
-            float f11 = (intrinsicHeight * min) / 2.0f;
-            this.thumbDrawable.setBounds((int) (this.bounds.centerX() - f10), (int) (this.bounds.centerY() - f11), (int) (this.bounds.centerX() + f10), (int) (this.bounds.centerY() + f11));
+            float f9 = (intrinsicWidth * min) / 2.0f;
+            float f10 = (intrinsicHeight * min) / 2.0f;
+            this.thumbDrawable.setBounds((int) (this.bounds.centerX() - f9), (int) (this.bounds.centerY() - f10), (int) (this.bounds.centerX() + f9), (int) (this.bounds.centerY() + f10));
             this.thumbDrawable.draw(canvas);
         }
         super.onDraw(canvas);
     }
 
     @Override
-    public void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        super.onLayout(z10, i9, i10, i11, i12);
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
         checkPreviewMatrix();
     }
 
     @Override
-    public void onMeasure(int i9, int i10) {
+    public void onMeasure(int i10, int i11) {
         CameraSessionWrapper cameraSessionWrapper;
         int width;
         int height;
         float max;
-        int size = View.MeasureSpec.getSize(i9);
-        int size2 = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
         if (this.previewSize[0] != null && (cameraSessionWrapper = this.cameraSession[0]) != null) {
             if ((this.lastWidth != size || this.lastHeight != size2) && this.measurementsCount > 1) {
                 cameraSessionWrapper.updateRotation();
@@ -2677,15 +2679,15 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 max = Math.max(size / width, size2 / height);
             }
             ViewGroup.LayoutParams layoutParams = this.blurredStubView.getLayoutParams();
-            int i11 = (int) (width * max);
-            this.textureView.getLayoutParams().width = i11;
-            layoutParams.width = i11;
+            int i12 = (int) (width * max);
+            this.textureView.getLayoutParams().width = i12;
+            layoutParams.width = i12;
             ViewGroup.LayoutParams layoutParams2 = this.blurredStubView.getLayoutParams();
-            int i12 = (int) (max * height);
-            this.textureView.getLayoutParams().height = i12;
-            layoutParams2.height = i12;
+            int i13 = (int) (max * height);
+            this.textureView.getLayoutParams().height = i13;
+            layoutParams2.height = i13;
         }
-        super.onMeasure(i9, i10);
+        super.onMeasure(i10, i11);
         checkPreviewMatrix();
         this.lastWidth = size;
         this.lastHeight = size2;
@@ -2695,13 +2697,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.pixelDualH = getMeasuredHeight();
     }
 
-    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i9, int i10) {
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         updateCameraInfoSize(0);
         if (this.dual) {
             updateCameraInfoSize(1);
         }
-        this.surfaceHeight = i10;
-        this.surfaceWidth = i9;
+        this.surfaceHeight = i11;
+        this.surfaceWidth = i10;
         if (this.cameraThread == null && surfaceTexture != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("CameraView start create thread");
@@ -2735,9 +2737,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     @Override
-    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i9, int i10) {
-        this.surfaceHeight = i10;
-        this.surfaceWidth = i9;
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.surfaceHeight = i11;
+        this.surfaceWidth = i10;
         checkPreviewMatrix();
     }
 
@@ -2791,20 +2793,20 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
     }
 
-    public void setClipBottom(int i9) {
-        this.clipBottom = i9;
+    public void setClipBottom(int i10) {
+        this.clipBottom = i10;
     }
 
-    public void setClipTop(int i9) {
-        this.clipTop = i9;
+    public void setClipTop(int i10) {
+        this.clipTop = i10;
     }
 
     public void setDelegate(CameraViewDelegate cameraViewDelegate) {
         this.delegate = cameraViewDelegate;
     }
 
-    public void setFpsLimit(int i9) {
-        this.fpsLimit = i9;
+    public void setFpsLimit(int i10) {
+        this.fpsLimit = i10;
     }
 
     public void setMirror(boolean z10) {
@@ -2844,10 +2846,10 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.useMaxPreview = z10;
     }
 
-    public void setZoom(float f10) {
+    public void setZoom(float f9) {
         CameraSessionWrapper cameraSessionWrapper = this.cameraSession[0];
         if (cameraSessionWrapper != null) {
-            cameraSessionWrapper.setZoom(f10);
+            cameraSessionWrapper.setZoom(f9);
         }
     }
 
@@ -2860,13 +2862,13 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             valueAnimator.cancel();
             this.textureViewAnimator = null;
         }
-        float f10 = 0.0f;
+        float f9 = 0.0f;
         if (z11) {
             float alpha = this.textureView.getAlpha();
             if (z10) {
-                f10 = 1.0f;
+                f9 = 1.0f;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f10);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f9);
             this.textureViewAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -2881,14 +2883,14 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    float f11;
+                    float f10;
                     TextureView textureView = CameraView.this.textureView;
                     if (z10) {
-                        f11 = 1.0f;
+                        f10 = 1.0f;
                     } else {
-                        f11 = 0.0f;
+                        f10 = 0.0f;
                     }
-                    textureView.setAlpha(f11);
+                    textureView.setAlpha(f10);
                     CameraView.this.textureViewAnimator = null;
                 }
             });
@@ -2897,9 +2899,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
         TextureView textureView = this.textureView;
         if (z10) {
-            f10 = 1.0f;
+            f9 = 1.0f;
         }
-        textureView.setAlpha(f10);
+        textureView.setAlpha(f9);
     }
 
     public boolean square() {
@@ -2949,9 +2951,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     floatValue -= 1.0f;
                     z10 = true;
                 }
-                float f10 = floatValue * 180.0f;
-                CameraView.this.textureView.setRotationY(f10);
-                CameraView.this.blurredStubView.setRotationY(f10);
+                float f9 = floatValue * 180.0f;
+                CameraView.this.textureView.setRotationY(f9);
+                CameraView.this.blurredStubView.setRotationY(f9);
                 if (z10) {
                     CameraView cameraView = CameraView.this;
                     if (!cameraView.flipHalfReached) {
@@ -2984,7 +2986,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(gr.f28844f);
+        this.flipAnimator.setInterpolator(jr.f29800f);
         this.flipAnimator.start();
         invalidate();
     }
@@ -3116,7 +3118,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         setWillNotDraw(!z11);
         ImageView imageView = new ImageView(context);
         this.blurredStubView = imageView;
-        addView(imageView, e6.e(-1, -1, 17));
+        addView(imageView, f6.e(-1, -1, 17));
         this.blurredStubView.setVisibility(8);
         this.focusAreaSize = AndroidUtilities.dp(96.0f);
         this.outerPaint.setColor(-1);
@@ -3125,12 +3127,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.innerPaint.setColor(Integer.MAX_VALUE);
     }
 
-    public void focusToPoint(int i9, int i10, int i11, int i12, int i13, boolean z10) {
-        float f10 = i10;
-        float f11 = i11;
-        Rect calculateTapArea = calculateTapArea(f10, f11, 1.0f);
-        Rect calculateTapArea2 = calculateTapArea(f10, f11, 1.5f);
-        CameraSessionWrapper cameraSessionWrapper = this.cameraSession[i9];
+    public void focusToPoint(int i10, int i11, int i12, int i13, int i14, boolean z10) {
+        float f9 = i11;
+        float f10 = i12;
+        Rect calculateTapArea = calculateTapArea(f9, f10, 1.0f);
+        Rect calculateTapArea2 = calculateTapArea(f9, f10, 1.5f);
+        CameraSessionWrapper cameraSessionWrapper = this.cameraSession[i10];
         if (cameraSessionWrapper != null) {
             cameraSessionWrapper.focusToRect(calculateTapArea, calculateTapArea2);
         }
@@ -3138,15 +3140,15 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.focusProgress = 0.0f;
             this.innerAlpha = 1.0f;
             this.outerAlpha = 1.0f;
-            this.cx = i12;
-            this.cy = i13;
+            this.cx = i13;
+            this.cy = i14;
             this.lastDrawTime = System.currentTimeMillis();
             invalidate();
         }
     }
 
-    public CameraSessionWrapper getCameraSession(int i9) {
-        return this.cameraSession[i9];
+    public CameraSessionWrapper getCameraSession(int i10) {
+        return this.cameraSession[i10];
     }
 
     public void toggleDual(boolean z10) {
@@ -3201,29 +3203,29 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         super.invalidate(rect);
         ArrayList<Runnable> arrayList = this.invalidateListeners;
         int size = arrayList.size();
-        int i9 = 0;
-        while (i9 < size) {
-            Runnable runnable = arrayList.get(i9);
-            i9++;
+        int i10 = 0;
+        while (i10 < size) {
+            Runnable runnable = arrayList.get(i10);
+            i10++;
             runnable.run();
         }
     }
 
     @Override
-    public void invalidate(int i9, int i10, int i11, int i12) {
-        super.invalidate(i9, i10, i11, i12);
+    public void invalidate(int i10, int i11, int i12, int i13) {
+        super.invalidate(i10, i11, i12, i13);
         ArrayList<Runnable> arrayList = this.invalidateListeners;
         int size = arrayList.size();
-        int i13 = 0;
-        while (i13 < size) {
-            Runnable runnable = arrayList.get(i13);
-            i13++;
+        int i14 = 0;
+        while (i14 < size) {
+            Runnable runnable = arrayList.get(i14);
+            i14++;
             runnable.run();
         }
     }
 
-    public void focusToPoint(int i9, int i10) {
-        focusToPoint(i9, i10, true);
+    public void focusToPoint(int i10, int i11) {
+        focusToPoint(i10, i11, true);
     }
 
     public void onDualCameraSuccess() {
@@ -3232,6 +3234,6 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     public void receivedAmplitude(double d) {
     }
 
-    public void onError(int i9, Camera camera, CameraSessionWrapper cameraSessionWrapper) {
+    public void onError(int i10, Camera camera, CameraSessionWrapper cameraSessionWrapper) {
     }
 }

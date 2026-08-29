@@ -1,28 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class dw0 extends zf.p1 {
-    public final ew0 J;
+import android.view.ViewGroup;
+public final class dw0 extends org.telegram.ui.Components.il0 {
+    public final Context f37643c;
+    public final ew0 d;
 
     public dw0(ew0 ew0Var, Context context) {
-        super(context);
-        this.J = ew0Var;
+        this.d = ew0Var;
+        this.f37643c = context;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f50662r;
-        if (textView.getVisibility() == 0) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
-            ew0 ew0Var = this.J;
-            ew0Var.d.f38361n.f35853j0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f50661n.h, ew0Var.d.f38361n.K);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), ew0Var.d.f38361n.f35853j0.f50792f);
+    public final boolean D(f2.n1 n1Var) {
+        return !((gw0) this.d.f37915n.d.get(n1Var.b())).f38677a.current;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f37915n.d.size();
+    }
+
+    @Override
+    public final void v(f2.n1 n1Var, int i10) {
+        boolean z10;
+        cg.l2 l2Var = (cg.l2) n1Var.f6432a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f37915n;
+        gw0 gw0Var = (gw0) premiumPreviewFragment.d.get(i10);
+        boolean z11 = true;
+        if (i10 != h() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        super.dispatchDraw(canvas);
+        l2Var.a(gw0Var, z10);
+        if (premiumPreviewFragment.f35912e != i10) {
+            z11 = false;
+        }
+        l2Var.c(z11, false);
+    }
+
+    @Override
+    public final f2.n1 x(ViewGroup viewGroup, int i10) {
+        cw0 cw0Var = new cw0(this, this.f37643c);
+        cw0Var.setCirclePaintProvider(new kl0(11, this, cw0Var));
+        return new f2.n1(cw0Var);
     }
 }

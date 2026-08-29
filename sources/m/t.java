@@ -21,32 +21,32 @@ import android.view.inputmethod.InputConnection;
 import android.view.textclassifier.TextClassifier;
 import android.widget.EditText;
 import android.widget.TextView;
-import g7.r7;
+import i7.d8;
 public final class t extends EditText implements r0.p, u0.k {
-    public final n f17091a;
-    public final x0 f17092b;
-    public final z f17093c;
+    public final n f16693a;
+    public final x0 f16694b;
+    public final z f16695c;
     public final u0.j d;
-    public final z f17094e;
-    public s f17095f;
+    public final z f16696e;
+    public s f16697f;
 
     public t(Context context, AttributeSet attributeSet) {
         super(context, attributeSet, 2130968776);
         e3.a(context);
         d3.a(this, getContext());
         n nVar = new n(this);
-        this.f17091a = nVar;
+        this.f16693a = nVar;
         nVar.d(attributeSet, 2130968776);
         x0 x0Var = new x0(this);
-        this.f17092b = x0Var;
+        this.f16694b = x0Var;
         x0Var.f(attributeSet, 2130968776);
         x0Var.b();
         z zVar = new z();
-        zVar.f17156b = this;
-        this.f17093c = zVar;
+        zVar.f16753b = this;
+        this.f16695c = zVar;
         this.d = new Object();
         z zVar2 = new z(this);
-        this.f17094e = zVar2;
+        this.f16696e = zVar2;
         zVar2.b(attributeSet, 2130968776);
         KeyListener keyListener = getKeyListener();
         if (!(keyListener instanceof NumberKeyListener)) {
@@ -66,10 +66,10 @@ public final class t extends EditText implements r0.p, u0.k {
     }
 
     private s getSuperCaller() {
-        if (this.f17095f == null) {
-            this.f17095f = new s(this);
+        if (this.f16697f == null) {
+            this.f16697f = new s(this);
         }
-        return this.f17095f;
+        return this.f16697f;
     }
 
     @Override
@@ -81,11 +81,11 @@ public final class t extends EditText implements r0.p, u0.k {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             nVar.a();
         }
-        x0 x0Var = this.f17092b;
+        x0 x0Var = this.f16694b;
         if (x0Var != null) {
             x0Var.b();
         }
@@ -93,11 +93,11 @@ public final class t extends EditText implements r0.p, u0.k {
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return r7.d(super.getCustomSelectionActionModeCallback());
+        return d8.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             return nVar.b();
         }
@@ -105,7 +105,7 @@ public final class t extends EditText implements r0.p, u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             return nVar.c();
         }
@@ -113,20 +113,20 @@ public final class t extends EditText implements r0.p, u0.k {
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f17092b.d();
+        return this.f16694b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f17092b.e();
+        return this.f16694b.e();
     }
 
     @Override
     public TextClassifier getTextClassifier() {
         z zVar;
-        if (Build.VERSION.SDK_INT < 28 && (zVar = this.f17093c) != null) {
-            TextClassifier textClassifier = (TextClassifier) zVar.f17157c;
+        if (Build.VERSION.SDK_INT < 28 && (zVar = this.f16695c) != null) {
+            TextClassifier textClassifier = (TextClassifier) zVar.f16754c;
             if (textClassifier == null) {
-                return r0.a((TextView) zVar.f17156b);
+                return r0.a((TextView) zVar.f16753b);
             }
             return textClassifier;
         }
@@ -137,22 +137,22 @@ public final class t extends EditText implements r0.p, u0.k {
     public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
         String[] e10;
         InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        this.f17092b.getClass();
+        this.f16694b.getClass();
         x0.h(editorInfo, onCreateInputConnection, this);
-        g7.l.a(editorInfo, onCreateInputConnection, this);
+        i7.u.a(editorInfo, onCreateInputConnection, this);
         if (onCreateInputConnection != null && Build.VERSION.SDK_INT <= 30 && (e10 = r0.j0.e(this)) != null) {
             t0.b.b(editorInfo, e10);
-            onCreateInputConnection = t0.g.a(onCreateInputConnection, editorInfo, new t0.c(this, 0));
+            onCreateInputConnection = t0.f.a(onCreateInputConnection, editorInfo, new sf.f1(this, 2));
         }
-        return this.f17094e.c(onCreateInputConnection, editorInfo);
+        return this.f16696e.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public final boolean onDragEvent(DragEvent dragEvent) {
         Activity activity;
-        int i9 = Build.VERSION.SDK_INT;
+        int i10 = Build.VERSION.SDK_INT;
         boolean z10 = false;
-        if (i9 < 31 && i9 >= 24 && dragEvent.getLocalState() == null && r0.j0.e(this) != null) {
+        if (i10 < 31 && i10 >= 24 && dragEvent.getLocalState() == null && r0.j0.e(this) != null) {
             Context context = getContext();
             while (true) {
                 if (context instanceof ContextWrapper) {
@@ -179,12 +179,12 @@ public final class t extends EditText implements r0.p, u0.k {
     }
 
     @Override
-    public final boolean onTextContextMenuItem(int i9) {
+    public final boolean onTextContextMenuItem(int i10) {
         ClipData primaryClip;
         r0.e eVar;
-        int i10;
-        int i11 = Build.VERSION.SDK_INT;
-        if (i11 < 31 && r0.j0.e(this) != null && (i9 == 16908322 || i9 == 16908337)) {
+        int i11;
+        int i12 = Build.VERSION.SDK_INT;
+        if (i12 < 31 && r0.j0.e(this) != null && (i10 == 16908322 || i10 == 16908337)) {
             ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
             if (clipboardManager == null) {
                 primaryClip = null;
@@ -192,49 +192,49 @@ public final class t extends EditText implements r0.p, u0.k {
                 primaryClip = clipboardManager.getPrimaryClip();
             }
             if (primaryClip != null && primaryClip.getItemCount() > 0) {
-                if (i11 >= 31) {
+                if (i12 >= 31) {
                     eVar = new r0.d(primaryClip, 1);
                 } else {
                     r0.f fVar = new r0.f();
-                    fVar.f46895b = primaryClip;
-                    fVar.f46896c = 1;
+                    fVar.f46809b = primaryClip;
+                    fVar.f46810c = 1;
                     eVar = fVar;
                 }
-                if (i9 == 16908322) {
-                    i10 = 0;
+                if (i10 == 16908322) {
+                    i11 = 0;
                 } else {
-                    i10 = 1;
+                    i11 = 1;
                 }
-                eVar.c(i10);
+                eVar.c(i11);
                 r0.j0.i(this, eVar.build());
             }
             return true;
         }
-        return super.onTextContextMenuItem(i9);
+        return super.onTextContextMenuItem(i10);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             nVar.e();
         }
     }
 
     @Override
-    public void setBackgroundResource(int i9) {
-        super.setBackgroundResource(i9);
-        n nVar = this.f17091a;
+    public void setBackgroundResource(int i10) {
+        super.setBackgroundResource(i10);
+        n nVar = this.f16693a;
         if (nVar != null) {
-            nVar.f(i9);
+            nVar.f(i10);
         }
     }
 
     @Override
     public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f17092b;
+        x0 x0Var = this.f16694b;
         if (x0Var != null) {
             x0Var.b();
         }
@@ -243,7 +243,7 @@ public final class t extends EditText implements r0.p, u0.k {
     @Override
     public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        x0 x0Var = this.f17092b;
+        x0 x0Var = this.f16694b;
         if (x0Var != null) {
             x0Var.b();
         }
@@ -251,27 +251,27 @@ public final class t extends EditText implements r0.p, u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(r7.e(callback, this));
+        super.setCustomSelectionActionModeCallback(d8.e(callback, this));
     }
 
     public void setEmojiCompatEnabled(boolean z10) {
-        this.f17094e.d(z10);
+        this.f16696e.d(z10);
     }
 
     @Override
     public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f17094e.a(keyListener));
+        super.setKeyListener(this.f16696e.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             nVar.h(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        n nVar = this.f17091a;
+        n nVar = this.f16693a;
         if (nVar != null) {
             nVar.i(mode);
         }
@@ -279,32 +279,32 @@ public final class t extends EditText implements r0.p, u0.k {
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        x0 x0Var = this.f17092b;
+        x0 x0Var = this.f16694b;
         x0Var.l(colorStateList);
         x0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        x0 x0Var = this.f17092b;
+        x0 x0Var = this.f16694b;
         x0Var.m(mode);
         x0Var.b();
     }
 
     @Override
-    public final void setTextAppearance(Context context, int i9) {
-        super.setTextAppearance(context, i9);
-        x0 x0Var = this.f17092b;
+    public final void setTextAppearance(Context context, int i10) {
+        super.setTextAppearance(context, i10);
+        x0 x0Var = this.f16694b;
         if (x0Var != null) {
-            x0Var.g(context, i9);
+            x0Var.g(context, i10);
         }
     }
 
     @Override
     public void setTextClassifier(TextClassifier textClassifier) {
         z zVar;
-        if (Build.VERSION.SDK_INT < 28 && (zVar = this.f17093c) != null) {
-            zVar.f17157c = textClassifier;
+        if (Build.VERSION.SDK_INT < 28 && (zVar = this.f16695c) != null) {
+            zVar.f16754c = textClassifier;
         } else {
             super.setTextClassifier(textClassifier);
         }

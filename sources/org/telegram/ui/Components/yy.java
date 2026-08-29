@@ -1,174 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class yy extends FrameLayout {
-    public static final int h = 0;
-    public final org.telegram.ui.ActionBar.b6 f35099a;
-    public final TextView f35100b;
-    public final View f35101c;
-    public final pi0 d;
-    public boolean f35102e;
-    public int f35103f;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.Utilities;
+public final class yy implements sy {
+    public String f35149a;
+    public int f35150b;
+    public final ArrayList f35151c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final HashMap f35152e = new HashMap();
+    public final HashMap f35153f = new HashMap();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList f35154n = new ArrayList();
+    public final ArrayList f35155r = new ArrayList(0);
+    public final ArrayList f35156s = new ArrayList(0);
+    public final LongSparseArray v = new LongSparseArray(0);
+    public final az f35157w;
 
-    public yy(Context context, org.telegram.ui.ActionBar.b6 b6Var) {
-        super(context);
-        this.f35099a = b6Var;
-        View radialProgressView = new RadialProgressView(context, null);
-        addView(radialProgressView, g7.e6.c(-2.0f, -2));
-        this.f35101c = radialProgressView;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        linearLayout.setGravity(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setOrientation(1);
-        ?? imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImportantForAccessibility(2);
-        imageView.setVisibility(8);
-        linearLayout.addView((View) imageView, g7.e6.t(150, 150, 17, 0, 0, 0, 20));
-        TextView textView = new TextView(context);
-        this.f35100b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f22984c7, b6Var));
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.NoResult));
-        linearLayout.addView(textView, g7.e6.q(-2, -2, 17));
-        addView(linearLayout, g7.e6.c(-2.0f, -2));
-        AndroidUtilities.updateViewVisibilityAnimated(textView, false, 2.0f, false);
-        AndroidUtilities.updateViewVisibilityAnimated(radialProgressView, false, 1.0f, false);
-        setOnTouchListener(new jh.d(18));
+    public yy(az azVar) {
+        this.f35157w = azVar;
     }
 
-    public final void a(int i9, int i10, int i11) {
-        int i12;
-        if (i9 != 0) {
-            i12 = 0;
+    public final void a(Runnable runnable, boolean z10) {
+        String str;
+        String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+        if (currentKeyboardLanguage != null && currentKeyboardLanguage.length != 0) {
+            str = currentKeyboardLanguage[0];
         } else {
-            i12 = 8;
+            str = "";
         }
-        pi0 pi0Var = this.d;
-        pi0Var.setVisibility(i12);
-        if (i9 != 0) {
-            pi0Var.f(i9, i10, i11, null);
-            pi0Var.d();
-        }
-    }
-
-    public final void b() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f35100b, false, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f35101c, true, 1.0f, true);
-    }
-
-    public final void c() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f35100b, true, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f35101c, false, 1.0f, true);
+        MediaDataController.getInstance(this.f35157w.M.Y0).searchStickers(false, str, this.f35149a, new nh.yb(this, z10, runnable, 2), z10);
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i9, int i10, int i11, int i12) {
-        int measuredHeight;
-        int paddingTop;
-        this.f35102e = true;
-        int i13 = i11 - i9;
-        int i14 = i12 - i10;
-        int childCount = getChildCount();
-        for (int i15 = 0; i15 < childCount; i15++) {
-            View childAt = getChildAt(i15);
-            if (childAt.getVisibility() != 8) {
-                int measuredWidth = (i13 - childAt.getMeasuredWidth()) / 2;
-                View view = this.f35101c;
-                if (childAt == view && (view instanceof e00)) {
-                    measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
-                    paddingTop = getPaddingTop();
-                } else {
-                    int i16 = this.f35103f;
-                    if (i16 == 2) {
-                        measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    } else if (i16 == 1) {
-                        measuredHeight = ((i14 / 2) - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    } else {
-                        measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
-                        paddingTop = getPaddingTop();
-                    }
-                }
-                int i17 = paddingTop + measuredHeight;
-                childAt.layout(measuredWidth, i17, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i17);
-            }
-        }
-        this.f35102e = false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (!this.f35102e) {
-            super.requestLayout();
-        }
-    }
-
-    public void setProgressBarColor(int i9) {
-        View view = this.f35101c;
-        if (view instanceof RadialProgressView) {
-            ((RadialProgressView) view).setProgressColor(i9);
-        }
-    }
-
-    public void setShowAtCenter(boolean z10) {
-        this.f35103f = z10 ? 1 : 0;
-    }
-
-    public void setShowAtTop(boolean z10) {
-        int i9;
-        if (z10) {
-            i9 = 2;
-        } else {
-            i9 = 0;
-        }
-        this.f35103f = i9;
-    }
-
-    public void setText(String str) {
-        this.f35100b.setText(str);
-    }
-
-    public void setTextColor(int i9) {
-        this.f35100b.setTextColor(i9);
-    }
-
-    public void setTextSize(int i9) {
-        this.f35100b.setTextSize(1, i9);
-    }
-
-    public void setTopImage(int i9) {
-        TextView textView = this.f35100b;
-        if (i9 == 0) {
-            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+    public final void d() {
+        ow owVar = this.f35157w.M.C0;
+        if (owVar.B) {
             return;
         }
-        Drawable mutate = getContext().getResources().getDrawable(i9).mutate();
-        if (mutate != null) {
-            mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.f6.v0(org.telegram.ui.ActionBar.f6.f22984c7, this.f35099a), PorterDuff.Mode.MULTIPLY));
+        owVar.e(true);
+        Utilities.raceCallbacks(new rp(this, 16), new xy(this, 0));
+    }
+
+    @Override
+    public final void run() {
+        az azVar = this.f35157w;
+        fz fzVar = azVar.M;
+        if (TextUtils.isEmpty(azVar.J)) {
+            f2.p0 adapter = fzVar.f28657z0.getAdapter();
+            wy wyVar = fzVar.f28639u0;
+            if (adapter != wyVar) {
+                fzVar.f28657z0.setAdapter(wyVar);
+            }
+            azVar.l();
+            return;
         }
-        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
-        textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));
+        int i10 = azVar.I + 1;
+        azVar.I = i10;
+        this.f35150b = i10;
+        this.f35149a = azVar.J;
+        azVar.f26921y = false;
+        this.f35151c.clear();
+        this.d.clear();
+        this.f35152e.clear();
+        this.f35153f.clear();
+        this.h.clear();
+        this.f35155r.clear();
+        this.f35156s.clear();
+        this.v.clear();
+        fzVar.C0.e(true);
+        if ("premium".equalsIgnoreCase(this.f35149a)) {
+            Utilities.raceCallbacks(new rp(this, 16), new xy(this, 1));
+        } else {
+            Utilities.raceCallbacks(new rp(this, 16), new xy(this, 2), new xy(this, 3), new xy(this, 4), new xy(this, 5), new xy(this, 6), new xy(this, 7));
+        }
     }
 }
